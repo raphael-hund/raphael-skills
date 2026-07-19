@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Editors
+.vscode/
+*.swp
+
+# Secrets (sollten nie hier landen, aber sicher ist sicher)
+.env
+*.env

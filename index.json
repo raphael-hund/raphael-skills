@@ -1,0 +1,78 @@
+{
+  "generated_by": "tools/build-index.py",
+  "skill_count": 12,
+  "skills": [
+    {
+      "name": "extract-approach",
+      "version": "0.1.0",
+      "path": "skills/eigene/extract-approach/SKILL.md",
+      "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
+    },
+    {
+      "name": "r-ads",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-ads/SKILL.md",
+      "description": "Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks, Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\"."
+    },
+    {
+      "name": "r-copywriting",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-copywriting/SKILL.md",
+      "description": "Feuert für JEDEN deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, E-Mail): klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\"."
+    },
+    {
+      "name": "r-eval",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-eval/SKILL.md",
+      "description": "Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel, rubric-author. Jeder Ship-Output läuft hier durch. Trigger: \"evaluieren\", \"Gate fahren\", \"Judge\", \"Rubrik schreiben\", \"QA-Score\"."
+    },
+    {
+      "name": "r-handoff",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-handoff/SKILL.md",
+      "description": "Feuert vor jedem /clear und am Session-Ende: schreibt einen Übergabe-Brief, damit die nächste Session ohne Verlust weiterarbeitet. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\"."
+    },
+    {
+      "name": "r-offers",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-offers/SKILL.md",
+      "description": "Feuert für Angebots-Design: Offer-Stack, Preislogik, Risiko-Umkehr, Value-Equation (Hormozi). Trigger: \"Angebot bauen\", \"Offer\", \"Preis festlegen\", \"Garantie\", \"Bonus-Stack\", \"Value Proposition schärfen\"."
+    },
+    {
+      "name": "r-onboard",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-onboard/SKILL.md",
+      "description": "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger-Worte: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\"."
+    },
+    {
+      "name": "r-orchestrate",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-orchestrate/SKILL.md",
+      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Modell + Effort je Subagent explizit setzen, Dispatch nach ROUTING/quota. Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\"."
+    },
+    {
+      "name": "r-report",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-report/SKILL.md",
+      "description": "Feuert für Kundenreports: baut Berichte NUR aus belegbaren, echten Zahlen — jede Zahl mit Quelle, sonst Block. Trigger: \"Report bauen\", \"Kundenbericht\", \"Weekly\", \"Performance-Report\", \"Ergebnisse zusammenfassen\"."
+    },
+    {
+      "name": "r-seo",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-seo/SKILL.md",
+      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\"."
+    },
+    {
+      "name": "r-web",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-web/SKILL.md",
+      "description": "Feuert für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Art Direction, Components, Build, QA, CRO-Learning. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\"."
+    },
+    {
+      "name": "r-design",
+      "version": "0.1.0",
+      "path": "skills/r-design/SKILL.md",
+      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\"."
+    }
+  ]
+}
