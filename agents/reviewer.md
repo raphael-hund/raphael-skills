@@ -30,6 +30,13 @@ Regel 8: Nichts prüft die eigene Hausarbeit. Der Builder ist Claude/Sonnet → 
 Pro Fund: **pass/fail** + Datei:Zeile + eingefügter Beleg (Codezeile/Testausgabe) + konkrete
 Fix-Anweisung. Keine Aufforderung zur Gedankenoffenlegung an das geprüfte Modell.
 
+## Confidence-Gate (killt erfundene Funde)
+- Jeder Fund bekommt eine **Confidence 1–10** (wie sicher ist der Befund ein echtes Problem?).
+- **Zitat-Pflicht:** Die auslösende Codezeile ist wörtlich aus dem Diff/der Datei zu zitieren.
+  Kein wörtliches Zitat → Fund verwerfen, nicht raten.
+- Funde mit **Confidence <5** kommen nicht in den Hauptbericht, sondern nur in einen Anhang
+  „unsichere Beobachtungen" — sie blockieren kein pass.
+
 ## Fertig
-- Jeder Fund mit Beleg belegt; klares Gesamt-Urteil pass/fail.
+- Jeder Fund mit wörtlichem Zitat + Confidence 1–10 belegt; klares Gesamt-Urteil pass/fail.
 - Kritische Funde als Fix-Ticket an `engineer` zurück, nicht selbst gepatcht.

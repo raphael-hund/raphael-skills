@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 27,
+  "skill_count": 29,
   "skills": [
     {
       "name": "extract-approach",
@@ -10,7 +10,7 @@
     },
     {
       "name": "r-ads",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/r-ads/SKILL.md",
       "description": "Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks, Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\"."
     },
@@ -22,9 +22,15 @@
     },
     {
       "name": "r-copywriting",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/r-copywriting/SKILL.md",
       "description": "Feuert für JEDEN deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, E-Mail): klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\"."
+    },
+    {
+      "name": "r-debug",
+      "version": "0.1.0",
+      "path": "skills/eigene/r-debug/SKILL.md",
+      "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
     },
     {
       "name": "r-eval",
@@ -40,7 +46,7 @@
     },
     {
       "name": "r-kimi-first",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/r-kimi-first/SKILL.md",
       "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
     },
@@ -70,15 +76,21 @@
     },
     {
       "name": "r-seo",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/r-seo/SKILL.md",
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\"."
     },
     {
-      "name": "r-web",
+      "name": "r-watch",
       "version": "0.1.0",
+      "path": "skills/eigene/r-watch/SKILL.md",
+      "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
+    },
+    {
+      "name": "r-web",
+      "version": "0.2.0",
       "path": "skills/eigene/r-web/SKILL.md",
-      "description": "Feuert für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Art Direction, Components, Build, QA, CRO-Learning. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\"."
+      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (r-design integriert), Build, QA, CRO-Learning. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\"."
     },
     {
       "name": "r-last30days",

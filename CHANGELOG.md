@@ -10,6 +10,18 @@ CHANGELOG beschreibt das Repo drumherum (Vertrag, Validator, Marker).
 
 ---
 
+## 2026-07-19 — Neue Skills r-watch + r-debug
+
+**Neu**
+- `skills/eigene/r-watch/`: lokale Video-Analyse (yt-dlp + ffmpeg, Hook-Kontaktboegen
+  15 s @ 15 fps, Body 1 Frame/3,5 s, YouTube-Auto-Subs statt Whisper) inkl. Helper
+  `scripts/watch-extract.sh` (eigener Code). Quelle: quellenreview-2026-07-19 Teil D.
+- `skills/eigene/r-debug/`: kombinierte Debug-Disziplin aus mattpocock
+  `diagnosing-bugs` + superpowers `systematic-debugging` (enger pass/fail-Loop vor
+  Hypothesen, Root Cause vor Fix, nach 3 Fehlversuchen Architektur hinterfragen).
+
+---
+
 ## 2026-07-19 — Skill-Vertraege gehaertet
 
 Grundlage: v5-Plan Abschnitt 9.1 (Skill-Vertrag) und 9.2 (Progressive

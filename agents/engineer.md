@@ -5,7 +5,7 @@ description: >
   zuerst (TDD), kleine Diffs, chirurgische Änderungen. Baut, entscheidet nicht über Scope.
 model: sonnet
 effort: xhigh
-source: role-cut adapted from gstack (garrytan) /implement @ a3259400
+source: role-cut adapted from gstack (garrytan) /autoplan @ a3259400
 ---
 
 # engineer — Worker / Umsetzung (Sonnet, xhigh)
