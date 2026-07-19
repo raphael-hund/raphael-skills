@@ -5,6 +5,8 @@ Skript-getrieben, Exit-Code entscheidet. Ein Blocker = kein Publish.
 ## Meta
 - Title 1×, eindeutig, < ~60 Zeichen, Keyword vorne.
 - Meta-Description vorhanden, 1×, ~150–160 Zeichen.
+- Intent-Match: Title/Description versprechen exakt, was die Seite hält (kein Snippet-Bait) —
+  Lücke Erwartung↔Inhalt ist ein Blocker.
 - Genau eine H1, sinnvolle H2/H3-Hierarchie (keine Sprünge).
 
 ## Schema

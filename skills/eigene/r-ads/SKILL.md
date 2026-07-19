@@ -1,6 +1,6 @@
 ---
 name: r-ads
-version: 0.1.0
+version: 0.2.0
 description: >
   Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks,
   Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse.
@@ -41,6 +41,10 @@ in Testwellen verbessern.
 7. **claims-qa** — **Sol, frische Session.** Jede Behauptung: belegt / riskant / verboten.
    Gegen Meta-Policy **und** HWG/UWG-Verbotsliste (`references/claims-verbote.md`).
 8. **Schaltung** — **Signatur (Geld = rot) + Budget-Egress-Gate.** Nie autonom.
+   **Pixel-Regel (hart, vor Launch):** Tracking/Events VOR dem ersten Live-Schalten
+   einrichten; Lead-Event NUR bei qualifizierter Antwort feuern (nicht bei jedem
+   Formular-Submit); auf das tiefste Funnel-Event optimieren (Booking, nicht Klicks).
+   Details in `references/loop3-ablauf.md` (Pixel-Conditioning).
 9. **perf-analyse** — Performance vs. echte KPI → nächste Testwelle (Sonnet, G4).
 
 ## Loop-3-Tabelle (Modell + Gate — verbindlich)
@@ -64,3 +68,12 @@ in Testwellen verbessern.
   des Autors.
 - HWG (Heilmittelwerbung) trifft Gesundheit/Beauty/Supplements hart — Verbotsliste immer prüfen.
 - Hook-Autor darf nicht sein eigener Judge sein (Regel 8).
+- **Andromeda-Budget-Klumpen ist KEIN Fehler (Stand 2025).** Wenn Meta bei ~12 aktiven
+  Ads fast das ganze Budget auf eine Anzeige legt, ist das erwartetes Matching — nicht
+  manuell umverteilen. (Andromeda-Details + Datumshinweis in loop3-ablauf.md.)
+- **Negative Kommentare sind kein Abschalt-Signal.** Nie nach Kommentarstimmung ab-/anschalten
+  oder Kommentare löschen — nur nach CPL/Ergebnis entscheiden. Bissige Kommentare als
+  Ad-Rohstoff recyceln (Kommentar einblenden → Beweis-Sequenz).
+- **Link-CTR > 2 % = Warnsignal, nicht Erfolg.** Zu wenig Filterung im Text: viele falsche
+  Klicks kosten Geld ohne Conversion. Mehr Committed-Sprache senkt die CTR (~1 %) und
+  vervielfacht oft die LP-Conversion. Jede Metrik ist ein Regler, kein An/Aus-Schalter.

@@ -4,9 +4,36 @@ Vier Fächer laufen parallel, jeweils eigener Agent (gemischte Modellfamilien). 
 dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung.
 
 ## Fach 1 — Conversion
-- Ein klares Ziel je Seite? CTA über dem Fold + wiederholt?
+- Ein klares Ziel je Seite? CTA über dem Fold + wiederholt? Landing = eine Aktion
+  (kein Menü/Blog), Formular direkt eingebettet statt hinter einer Button-Seite.
 - Value Proposition in < 5 Sek erfassbar? Proof (Zahlen/Logos/Testimonials belegt)?
 - Reibung raus: Formularfelder minimal, Einwände vorweggenommen.
+
+### Harte QA-Regeln Formular (G1, blockieren den Launch)
+- **Reihenfolge = Mikro-Commitments, Kontaktdaten IMMER zuletzt:** Identifikation
+  ("Welche Beschreibung passt zu dir?") → Qualifizierung (Branche, Team-Größe,
+  **Website-URL** statt Firmenname) → **erst zuletzt** Kontaktdaten (Name → E-Mail →
+  Telefon). Kontaktdaten nie als erste Frage. *Beleg: Kontaktdaten nach vorne gezogen →
+  Conversion brach ein; zurück ans Ende → Conversion vervierfacht.*
+- **Drop-off pro Slide messen:** Conversion jedes einzelnen Slides tracken, Ausreißer-Frage
+  finden und fixen. *Beleg: offene Frage → ~40 % Drop-off auf Slide 3; ein URL-Freitextfeld
+  27 % Drop-off vs. 3–4 % sonst.*
+- **Offene Textfelder ersetzen:** sobald die häufigsten Antworten bekannt sind, Freitext →
+  Radio-Select (springt automatisch weiter; weniger Tipp-Reibung als Checkbox).
+
+### Harte QA-Regel Thank-You-/Zwischenseiten (G1)
+- **Vor dem letzten Schritt KEIN Abschluss-Wording** ("Danke", "Glückwunsch", "Geschafft") —
+  das schließt die Schleife im Kopf, der Nutzer schließt den Tab. Stattdessen "Fast geschafft"/
+  "Letzter Schritt" + Fortschrittsanzeige. *Beleg: ein 1,5-s-Ladescreen mit "Thank you" zwischen
+  zwei Schritten reichte zum Abbruch; Fix "Please wait".*
+- Danach zuerst eine Identitätsaussage zum Zustimmen, dann No-Show-/No-BS-Policy
+  (Konsistenzprinzip). *Beleg: ein Identitäts-Textblock hob die Show-Rate 60 % → ~75 %.*
+
+### Testimonial-Check
+- Video oder echter Screenshot (voller Name/Handle) statt Fließtext; nach **Identität/Branche**
+  gelabelt; Video-Schnitt **Hook-first** (stärkster Moment zuerst, nicht die Vorstellung).
+- **Menge NICHT wegkürzen** — Volumen ist der Beweis. *Beleg: Reduktion auf die 4 größten
+  halbierte die Conversion.*
 
 ## Fach 2 — Design (→ r-design)
 - G1: `npx impeccable detect --json` = 0 Findings (46 deterministische Regeln).

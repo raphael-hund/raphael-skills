@@ -2,9 +2,12 @@
 """validate-skill.py — dependency-free SKILL.md frontmatter linter.
 
 Prueft, dass jede SKILL.md ein YAML-Frontmatter mit den Pflichtfeldern
-`name`, `version`, `description`, `completion_criteria` hat und dass diese
-nicht leer sind. Nutzt NUR die Python-Standardbibliothek (kein PyYAML, kein
-Netz) — laeuft ueberall, auch im pre-commit-Hook, ohne Installationsschritt.
+`name`, `version`, `description`, `class`, `scope`, `sensitivity`,
+`completion_criteria` (v5-Plan 9.1) hat und dass diese nicht leer sind.
+Die Werte von class/scope/sensitivity werden weich geprueft (unbekannt = nur
+Warnung), empfohlene Felder fehlen = nur Warnung. Nutzt NUR die Python-
+Standardbibliothek (kein PyYAML, kein Netz) — laeuft ueberall, auch im
+pre-commit-Hook, ohne Installationsschritt.
 
 Usage:
     python3 tools/validate-skill.py                # scannt skills/ ab Repo-Root
@@ -18,10 +21,40 @@ import re
 import sys
 from pathlib import Path
 
-REQUIRED_FIELDS = ["name", "version", "description", "completion_criteria"]
+# Pflichtfelder laut v5-Plan 9.1: name, version, description, class, scope,
+# sensitivity, completion_criteria. class/scope/sensitivity wurden additiv
+# ergaenzt — alle bestehenden Skills fuehren sie bereits, keiner wird rot.
+REQUIRED_FIELDS = [
+    "name",
+    "version",
+    "description",
+    "class",
+    "scope",
+    "sensitivity",
+    "completion_criteria",
+]
+# Empfohlen laut v5-Plan 9.1: fehlt nur eine Warnung, nie rot.
+RECOMMENDED_FIELDS = ["provenance", "eval_scorecard", "expires", "loads", "requires_skills"]
+
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 NAME_RE = re.compile(r"^[a-z][a-z0-9-]*$")
 TOP_KEY_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*):\s*(.*)$")
+
+# Erlaubte Werte fuer die leichten Label-Felder. Unbekannte Werte geben nur
+# eine WARNUNG (nicht rot), damit aeltere Skills gruen bleiben (additive Haertung).
+CLASS_VALUES = {"R", "M", "F", "O", "E", "W", "G"}  # Router·Methodik·Fulfillment·Orchestrierung·Eval·Wissen·Governance
+SENSITIVITY_VALUES = {"public", "internal", "client-confidential", "secret"}
+SCOPE_SIMPLE_VALUES = {"global", "agency"}  # zusaetzlich erlaubt: client:<slug> | project:<slug>
+
+
+def _scalar_value(raw: str) -> str:
+    """Nimmt den Roh-Wert eines Skalar-Feldes und entfernt einen YAML-Inline-
+    Kommentar (' # ...') sowie umschliessende Anfuehrungszeichen, damit
+    Enum-Vergleiche auf 'M # Kommentar' oder '\"agency\"' funktionieren."""
+    val = raw.split(" #", 1)[0].strip()
+    if len(val) >= 2 and val[0] == val[-1] and val[0] in ("'", '"'):
+        val = val[1:-1].strip()
+    return val
 
 # Regel 19 (Fable-Gotcha): Judge-/Verifier-Prompts sollen "pass/fail mit
 # eingefuegtem Beweis" verlangen, nie "erklaere deinen Gedankengang" —
@@ -141,6 +174,36 @@ def validate_skill_file(path: Path) -> SkillFile:
         nm = fields["name"]["raw"].strip()
         if not NAME_RE.match(nm):
             sf.fail(f"name '{nm}' passt nicht auf ^[a-z][a-z0-9-]*$")
+
+    # Weiche Enum-Pruefung fuer die Label-Felder: unbekannte Werte -> nur WARNUNG.
+    # So bleiben bestehende Skills gruen (additive Haertung, v5-Plan 9.1).
+    if "class" in fields and fields["class"]["nonempty"]:
+        cls = _scalar_value(fields["class"]["raw"])
+        if cls not in CLASS_VALUES:
+            sf.warn(f"class '{cls}' ist keiner der 7 Werte R/M/F/O/E/W/G "
+                    "(Router·Methodik·Fulfillment·Orchestrierung·Eval·Wissen·Governance)")
+
+    if "sensitivity" in fields and fields["sensitivity"]["nonempty"]:
+        sens = _scalar_value(fields["sensitivity"]["raw"])
+        if sens not in SENSITIVITY_VALUES:
+            sf.warn(f"sensitivity '{sens}' ist keiner von "
+                    "public|internal|client-confidential|secret")
+
+    if "scope" in fields and fields["scope"]["nonempty"]:
+        sc = _scalar_value(fields["scope"]["raw"])
+        scope_ok = sc in SCOPE_SIMPLE_VALUES or sc.startswith("client:") or sc.startswith("project:")
+        if not scope_ok:
+            sf.warn(f"scope '{sc}' ist keiner von global|agency|client:<slug>|project:<slug>")
+        # Plan-Regel: client-confidential darf nie global werden.
+        if sc == "global" and "sensitivity" in fields and \
+                _scalar_value(fields["sensitivity"]["raw"]) == "client-confidential":
+            sf.warn("scope 'global' bei sensitivity 'client-confidential' — "
+                    "Kundengeheimnis darf nicht global werden (v5-Plan 8.4/9.1)")
+
+    # Empfohlene Felder: fehlen -> nur eine gesammelte WARNUNG, nie rot.
+    missing_recommended = [f for f in RECOMMENDED_FIELDS if f not in fields]
+    if missing_recommended:
+        sf.warn("empfohlene Felder fehlen (kein Fehler): " + ", ".join(missing_recommended))
 
     # completion_criteria sollte als Liste vorliegen (mind. ein '- ' Eintrag),
     # nicht nur ein Freitext-Satz — sonst ist "fertig" keine pruefbare Tatsache.
