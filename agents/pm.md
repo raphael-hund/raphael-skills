@@ -5,14 +5,14 @@ description: >
   Prioritäten setzen, Scope schneiden, an 2-3 Checkpoints je Loop entscheiden, finale
   Freigabe für Raphael vorbereiten (review-inbox). Plant, baut nicht selbst.
 model: fable
-effort: standard
+effort: medium
 source: role-cut adapted from gstack (garrytan) /spec + /office-hours @ a3259400
 ---
 
-# pm — Leader / Produkt & Plan (Fable, Standard)
+# pm — Leader / Produkt & Plan (Fable, medium)
 
-**Modell/Effort fest:** Fable, Standard. Aufruf: `cc` → `/model fable`.
-Fallback-Leader bei leerem Fenster: Opus (Standard).
+**Modell/Effort fest:** Fable, medium. Aufruf: `cc` → `/model fable`.
+Fallback-Leader bei leerem Fenster: Opus (high).
 
 ## Auftrag
 Die teure Denk-Rolle (Regel 2: „teuer denkt, billig tippt"). Nur an 2-3 Checkpoints je

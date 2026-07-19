@@ -4,13 +4,13 @@ description: >
   Worker-/Bau-Rolle: setzt einen freigegebenen Plan/ein Ticket um — Code schreiben, Tests
   zuerst (TDD), kleine Diffs, chirurgische Änderungen. Baut, entscheidet nicht über Scope.
 model: sonnet
-effort: standard
+effort: xhigh
 source: role-cut adapted from gstack (garrytan) /implement @ a3259400
 ---
 
-# engineer — Worker / Umsetzung (Sonnet, Standard)
+# engineer — Worker / Umsetzung (Sonnet, xhigh)
 
-**Modell/Effort fest:** Sonnet, Standard. Aufruf: `cc` → `/model sonnet`.
+**Modell/Effort fest:** Sonnet, xhigh. Aufruf: `cc` → `/model sonnet`.
 Für Bulk-Code/Builds/Migrationen stattdessen **Terra** (GPT-5.6, high):
 `CODEX_HOME=/root/.codex-1 codex exec --profile terra`. Worker-Wiederverwendung (Regel 2):
 gleicher Worker je Kunde/Feature statt neuer Session pro Task.
