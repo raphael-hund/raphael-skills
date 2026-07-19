@@ -1,6 +1,9 @@
 # agents/ — Subagenten-Definitionen
 
-Platzhalter. Noch keine Subagenten-Definition angelegt (Stand skills v1).
+> **Umgezogen:** Die wiederverwendbaren Rollen-Templates liegen jetzt auf Repo-Ebene unter
+> `/root/raphael-skills/agents/` (pm, engineer, reviewer, qa, retro — je mit festem
+> Modell + Effort, Rollen-Schnitt adaptiert aus gstack). Siehe `agents/README.md` dort und
+> `/root/raphael-skills/VENDORING.md` Abschnitt 2. Dieser Ordner unter `skills/` bleibt frei.
 
 Regel 7 (AGENTS.md, Command-Center): "Subagents immer mit festem Modell UND Effort
 losschicken — sonst erben sie das teure Leader-Setup." Dieser Ordner ist der Ort fuer

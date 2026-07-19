@@ -1,8 +1,11 @@
 # imported/ — vendorte Fremd-Skills
 
-Platzhalter. Noch nichts vendored (Stand skills v1).
+Bestand: `r-last30days` (Recency-/Social-Research, aus last30days-skill/mvanhorn @ 249c7a4c,
+v3.16.0). Herkunft + Anpassungen (Frontmatter auf unser Schema, origin/main-Auto-Update-Reset
+entfernt, `assets/` ausgelassen, `SCRAPECREATORS_API_KEY` als Voraussetzung dokumentiert):
+`/root/raphael-skills/VENDORING.md` Abschnitt 3.
 
-Wenn ein Fremd-Skill uebernommen wird (z. B. superpowers-Subset, mattpocock/skills,
+Wenn ein weiterer Fremd-Skill uebernommen wird (z. B. superpowers-Subset, mattpocock/skills,
 Anthropic-Offizielle pdf/docx/xlsx/brand-guidelines/frontend-design):
 
 1. Fork/Kopie, NIE Marketplace-Auto-Update.
