@@ -47,7 +47,7 @@ klingt — als Stil-Gate für r-ads, r-web, r-seo.
   darf Regelbruch belohnen, wenn er den Text menschlicher macht.
 - **Voice-Slot: Kunde vor Zentrale.** Ein globaler Skill kopiert nie Kundeninhalt — VOICE.md
   wird zur Laufzeit als Verweis geladen (scope/sensitivity!).
-- **Judge-Prompt nie "explain your thinking"** → Fable `reasoning_extraction`-Refusal, stiller
+- **Judge-Prompt nie nach dem Denkweg fragen ("erklaere dein Denken"-Muster)** → Fable `reasoning_extraction`-Refusal, stiller
   Opus-Fallback (Regel 19). Immer "pass/fail + eingefügter Beweis".
 - Deutsch ist nicht Englisch: Nominalstil ("die Durchführung der Optimierung") und
   Funktionsverbgefüge ("zur Anwendung bringen") sind die deutschen Haupt-Floskeln — der
