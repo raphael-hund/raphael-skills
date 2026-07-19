@@ -48,6 +48,7 @@ kopiert (reine Methode). Alle `validate-skill.py`-grün.
 | `r-research` | mattpocock | `skills/engineering/research` | 9603c1cc |
 | `r-code-review` | **Fusion** (siehe unten) | superpowers requesting+receiving-code-review · mattpocock engineering/code-review | d884ae04 / 9603c1cc |
 | `r-writing-skills` | **Fusion** (siehe unten) | mattpocock writing-great-skills · superpowers writing-skills | 9603c1cc / d884ae04 |
+| `r-debug` | **Fusion** (siehe unten) | mattpocock engineering/diagnosing-bugs · superpowers systematic-debugging | 9603c1cc / d884ae04 |
 
 ### Aufgelöste Kollisionen
 
@@ -61,6 +62,12 @@ kopiert (reine Methode). Alle `validate-skill.py`-grün.
   direkt auf unser `completion_criteria`-Schema + `validate-skill.py` passen. Die superpowers-
   Version (`writing-skills`, harte TDD-für-Skills-Gates) ist als `references/tdd-fuer-skills.md`
   eingearbeitet.
+- **`r-debug` (Debug-Disziplin zweifach belegt).** Beide Quellen decken unabhängig denselben
+  Kern ab (enger pass/fail-Loop vor Hypothesen, Root Cause vor Fix); zu **einem** Skill
+  fusioniert statt zweier (Quellenreview 2026-07-19, Teil B). Aus mattpocock
+  `engineering/diagnosing-bugs` kommt die Loop-Disziplin, aus superpowers
+  `systematic-debugging` die Iron Law (kein Fix ohne Root Cause; nach 3 Fehlversuchen
+  Architektur hinterfragen). Liegt unter `skills/eigene/r-debug/`.
 - **`handoff` vs. vorhandenes `eigene/r-handoff`.** Nicht ersetzt. Unser `r-handoff` bleibt das
   Session-interne Git-Ritual (PROGRESS/DECISIONS, Commit+Push, hartes `/clear`); die mattpocock-
   Variante wurde als eigenständiges `r-handoff-ext` (Übergabe an eine FREMDE Instanz: Subagent/

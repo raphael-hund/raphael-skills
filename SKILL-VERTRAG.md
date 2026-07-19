@@ -130,7 +130,67 @@ completion_criteria:
 
 ---
 
-## 7. Pruefen
+## 7. Gotchas — die Pflichtsektion
+
+**Warum Pflicht:** Gotchas (echte Fallen, die schon einmal zugeschlagen haben)
+sind der hoechstwertige Inhalt eines Skills — sie verhindern, dass derselbe
+Fehler zweimal passiert. Befund aus dem Quellenreview 2026-07-19 (Anthropic-
+intern): Gotchas liefern den groessten Qualitaetsimpact pro Zeile.
+
+**Regel:**
+
+1. Jede **neue** SKILL.md hat eine Sektion `## Gotchas`.
+2. Jede **bestehende** SKILL.md bekommt die Sektion **bei der naechsten
+   Beruehrung** mit — kein Big-Bang-Umschreiben aller Bestandsskills.
+3. Nur **echte, beobachtete** Fallen eintragen (Fehlbilder, stille Failures,
+   Policy-Stolpersteine). Nie Gotchas erfinden, nur damit die Sektion voll
+   ist — bei einem jungen Skill ist "noch keine beobachtet" ein ehrlicher
+   Eintrag.
+
+---
+
+## 8. Parameter deklarieren (Method-Call-Konvention)
+
+Ein Skill wird wie eine Methode aufgerufen: seine Eingaben sind **deklariert**,
+nicht zu erraten. Ein Skill, der Eingaben erwartet, schreibt sie direkt unter
+den Titel als Aufruf-Signatur:
+
+    Aufruf: r-ads(kunde: slug [pflicht], testwelle: int = 1)
+
+Bei mehr als zwei Parametern eine eigene Sektion `## Parameter` mit Tabelle:
+
+| Name | Pflicht/Default | Bedeutung |
+|---|---|---|
+| `kunde` | pflicht | Kunden-Slug, z. B. `mueller-bau` |
+| `testwelle` | `= 1` | Nummer der Testwelle |
+
+**Regeln:**
+
+- Pflicht bei Skills mit Eingaben; parameterlose Skills brauchen keine Signatur.
+- Fehlende oder unklare Pflicht-Parameter: der Skill **stoppt und fragt**,
+  statt still zu raten.
+
+---
+
+## 9. Skill-Kandidaten: confidence/evidence/seen_in
+
+Kandidaten in `skills/_candidates/` duerfen ein zusaetzliches Frontmatter
+tragen (alle drei Felder optional, aber zusammen sinnvoll):
+
+```yaml
+confidence: 0.6                                  # 0.0-1.0 — wie sicher ist das Muster?
+evidence: clients/client-x/worklog.md:44         # wo beobachtet (datei:zeile)
+seen_in: [onboarding-mueller, onboarding-schmidt] # Arbeiten, in denen es auftauchte
+```
+
+**Promotion-Regel:** Ein Kandidat wird Raphael erst ab `confidence >= 0.7`
+zur Freigabe vorgeschlagen. Darunter bleibt er liegen und sammelt Evidenz —
+bei jeder Wiederholung waechst `seen_in` (Promotion-Pipeline Stufe 5: 2x
+Muster). Das ersetzt Bauchgefuehl durch eine Zahl (Vorbild: ECC-Instinct-Modell).
+
+---
+
+## 10. Pruefen
 
     python3 tools/validate-skill.py            # scannt skills/ ab Repo-Root
     python3 tools/validate-skill.py <pfad>      # prueft einzelne Pfade/Dateien

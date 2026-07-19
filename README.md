@@ -50,6 +50,13 @@ Jede `SKILL.md` traegt ein Pflicht-Frontmatter mit mindestens `name`, `version`
 maschinell und laesst als Lint-Warnung u. a. reasoning-extraction-Trigger-Phrasen
 ("explain your thinking" etc., Regel 19 / Fable-Gotcha) durchklingeln.
 
+Seit 2026-07-19 gilt zusaetzlich (Details: `SKILL-VERTRAG.md` Abschnitte 7-9):
+`## Gotchas` ist **Pflichtsektion** — bei Neu-Skills sofort, bei Bestandsskills
+bei der naechsten Beruehrung (kein Big-Bang-Umschreiben). Skills mit Eingaben
+deklarieren ihre Parameter als Aufruf-Signatur (Method-Call-Konvention).
+Kandidaten in `skills/_candidates/` duerfen `confidence`/`evidence`/`seen_in`
+tragen; ein Promotion-Vorschlag an Raphael geht erst ab confidence >= 0.7 raus.
+
 ## Vendoring-Politik
 
 Fremd-Skills werden nie live nachgeladen (kein Marketplace, kein Auto-Update).
