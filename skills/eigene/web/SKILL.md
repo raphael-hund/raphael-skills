@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.3.0
+version: 0.5.0
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
@@ -25,6 +25,9 @@ loads:
   - references/code-qualitaets-checkliste.md
   - references/domain-safe-browsing-checkliste.md
   - references/readonly-db-rolle.md
+  - references/design-systeme-vergleich.md
+  - references/radix-shadcn-tailwind-stack.md
+  - references/remotion-produktionsweg.md
   - references/templates/statistics-page-template.html
 requires_skills: [copywriting@^0, design@^0, eval@^0]
 completion_criteria:
@@ -94,7 +97,13 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Motion-Komponenten (Buttons, Modals, Tabs, Command-Palette, …) → `references/ui-components/INDEX.md`
    + Motion-Doktrin (wann/wie animieren, Reduced-Motion-Pflicht) → `references/motion-doktrin.md`.
    Weitere Komponenten-Ideen (Glass/Mesh-Gradient/3D) nur als Vokabular →
-   `references/ui-layouts-catalog.md`.
+   `references/ui-layouts-catalog.md`. Welches Design-System zum Brief passt
+   (Radix/shadcn/Tailwind, Fluent, Carbon, Polaris, Atlassian, Material, …) →
+   `references/design-systeme-vergleich.md`. Raphaels Default-Stack für eigene
+   Agenturprojekte (Next.js + Tailwind + Radix/shadcn + Framer Motion) →
+   `references/radix-shadcn-tailwind-stack.md`. Braucht das Projekt ein
+   Hero-/Teaser-Video oder eine React-basierte Video-Composition (kein
+   normales CSS-Motion) → `references/remotion-produktionsweg.md`.
 6. **build** — Umsetzung (Terra/Sol, Cross-Vendor `/codex:review`). Bei echtem Custom-Code
    zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Braucht der
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie

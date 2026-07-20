@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.2.0
+version: 0.3.0
 description: >
   Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max +
   kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills).
@@ -31,6 +31,7 @@ loads:
   - references/typografie.md
   - references/ui-polish-details.md
   - references/design-dna-schema.md
+  - references/component-bibliotheken-radar.md
 completion_criteria:
   - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
   - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
@@ -129,6 +130,7 @@ stimmig? Motion motiviert? Bilder real?).
 | Typografie (Scale, Heading-Hierarchie, iOS-Zoom-Fix) | `references/typografie.md` |
 | Feinschliff-Details (Radius, Shadows, Icon-Motion, Hit-Areas) | `references/ui-polish-details.md` |
 | Referenz-Site als Stilvorlage destillieren (nicht 1:1 klonen) | `references/design-dna-schema.md` + `scripts/dna-scaffold.mjs` |
+| Externe Component-/Motion-Bibliothek pruefen statt neu erfinden | `references/component-bibliotheken-radar.md` |
 
 ## Doktrin ist bindend
 `references/design-doktrin.md` enthaelt die fusionierten Regeln (dedupliziert,
