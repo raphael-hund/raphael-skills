@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.6.0
+version: 0.6.1
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -18,11 +18,13 @@ source: >
   (MIT, seo-audit/ai-seo/programmatic-seo/schema/directory-submissions/
   competitors) @ 67264763; qwoted-seo-backlinks-skill (MIT) @ 3ef97c52;
   distribb-skill (kein LICENSE, nur Paraphrase/Ideen, keine wörtliche
-  Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9 — Details
-  siehe VENDORING-NOTE.md
+  Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
+  AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract) —
+  Details siehe VENDORING-NOTE.md und VENDORING.md Runde 6
 loads:
   - references/wissens-router.md
   - references/loop4-ablauf.md
+  - references/blog-delivery-contract.md
   - references/tech-qa-checkliste.md
   - references/regeln-technischer-audit.md
   - references/regeln-schema-markup.md
@@ -57,6 +59,7 @@ Ranking-Decay auffrischen.
 | Anliegen | Datei | Ebene |
 |---|---|---|
 | Loop-4-Ablauf, Gates, Belegpflicht, Modell-Zuteilung | `references/loop4-ablauf.md` | Ablauf |
+| Blog-Text vor Auslieferung: 5-Gate-Blocker-Sequenz (Format/Review/P0-Filter/Link-Integrität), Iterationsschleife, Bypass-Protokoll | `references/blog-delivery-contract.md` | Ablauf |
 | Publish-Blocker vor jedem Go-Live | `references/tech-qa-checkliste.md` | Regeln |
 | Crawlability/CWV/On-Page/hreflang/GSC-9-Analysen | `references/regeln-technischer-audit.md` | Regeln |
 | JSON-LD-Typen, Validierung (Kern; Detektion/Generierung bei Bedarf: `seo-schema.md`) | `references/regeln-schema-markup.md` | Regeln |

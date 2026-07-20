@@ -35,6 +35,13 @@ CC-BY-SA-4.0-Implikation für `security-audit-playbook.md` müssen von Raphael n
 geprüft und freigegeben werden, bevor sie als reguläre Allowlist-Einträge gelten. Bis dahin: kein
 stiller Vollzug, offene Entscheidung.
 
+**OFFENE FREIGABE (Runde 6, 2026-07-20, noch NICHT auf dieser Allowlist bestätigt):**
+**AgriciDaniel/claude-blog** — vendoriert unter „Vendoring-Runde 6" unten, aber bisher nicht
+von Raphael als benannte Quelle explizit freigegeben (Regel Zeile 4). MIT-Lizenz, also
+lizenzrechtlich unproblematisch für normale Destillation — die offene Frage ist rein die
+Namens-Freigabe analog Runde 5, nicht die Lizenz. Bis Raphael das bestätigt: gilt als
+vendoriert, aber nicht regulär gelistet.
+
 Übernahme-Datum: **2026-07-19**. Alle Commits per `git -C /root/tools/vendor/<repo> rev-parse HEAD`
 zum Übernahme-Zeitpunkt verifiziert.
 
@@ -267,7 +274,7 @@ Quellen (von Raphael am 2026-07-20 freigegeben, aus der Web-Recherche-Kandidaten
 
 | Quelle | Upstream | Commit | Lizenz |
 |---|---|---|---|
-| claude-seo | github.com/AgriciDaniel/claude-seo | `6cf1ea9` | MIT |
+| claude-seo | github.com/AgriciDaniel/claude-seo | `6cf1ea9` → `09d37c7` (Update-Check 20.07.26, v2.2.3/v2.2.4) | MIT |
 | claude-ads | github.com/AgriciDaniel/claude-ads | `669c760` | MIT |
 | knowledge-work-plugins | github.com/anthropics/knowledge-work-plugins | `b02472b` | Apache-2.0 (Repo) / MIT (partner-built/brand-voice, Tribe AI) |
 
@@ -290,6 +297,24 @@ Nur für den `seo`-Skill. Ersetzt/ergänzt nichts im zentralen `VENDORING.md`.
   1:1 kopiert, damit es zur Regeln/Taktiken-Trennung des Repos passt.
 - Umfang der Quelle: ~25 Sub-Skills, ~18 Sub-Agents, 8 optionale MCP-Extensions
   (DataForSEO, Firecrawl, Banana, Ahrefs, SE Ranking, Profound, Bing Webmaster, Unlighthouse).
+  Hinweis Update-Check 20.07.26: diese Zahl war schon bei `6cf1ea9` erreicht — kein Wachstum
+  seither, die kursierende Recherche-Behauptung ("Wachstum auf 25/18") war für den
+  Update-Zeitraum falsch, siehe unten.
+
+## Update-Check 20.07.26: `6cf1ea9` → `09d37c7`
+
+- Upstream lag 3 Commits vor: v2.2.3 (14.07., Prompt-Hygiene/Em-Dash-Sweep, keine
+  Verhaltensänderung), v2.2.4 (20.07., Community-Maintenance: 410 Tests, Runtime-Manager
+  `claude-seo run`, SSRF-sichere Sitemap-Discovery, GSC/Bing-Fixes, Security-Härtung), plus
+  ein Contributor-Credit-Commit. Kein Sub-Skill- und kein Sub-Agent-Zuwachs (weiterhin 25/18).
+- Substanziell für unsere Wissensseiten waren nur die Google-Fakten-Korrekturen in
+  `skills/seo-geo` und `skills/seo-schema` (AI-Mode-Modell korrigiert auf "custom version of
+  Gemini 2.5" statt der falschen "Gemini 3.5 Flash"-Zuschreibung, AI-Overviews-Reichweite als
+  Third-Party-Zahl gekennzeichnet, Preferred-Sources/Highly-Cited/Community-Perspectives,
+  explizites Google-Statement gegen llms.txt, Dataset-Klarstellung als nicht eingestellt,
+  hasAdultConsideration) sowie die 50MB-Sitemap-Grenze/lastmod-Genauigkeitsregel in
+  `skills/seo-sitemap`. In die wiki/seo-Seiten (seo-geo.md, seo-schema.md, seo-sitemap.md)
+  übernommen — siehe dortige Quelle-Sektionen.
 
 ## Was übernommen wurde (5 Lücken, als eigene/erweiterte References)
 
@@ -629,3 +654,40 @@ Alle drei per `git clone --depth 1` nach `/root/tools/vendor/`.
     ausdrücklichem Video-/Composition-Auftrag aktivieren).
 - Keine Hooks, kein SessionStart-Auto-Update, keine Telemetrie in den drei destillierten
   Ziel-Dateien übernommen — konsistent mit Regel aus Runde 2026-07-20.
+
+## Vendoring-Runde 6 — 2026-07-20 (claude-blog)
+
+### Quellen-Commit (Runde 6)
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| claude-blog | github.com/AgriciDaniel/claude-blog | `49842ea9e7b9a1f6f8a3774a3fcfb082ab6a7d25` | MIT |
+
+Per `git clone --depth 1` nach `/root/tools/vendor/claude-blog`.
+
+**Befund:**
+- Repo enthält 30 Sub-Skills, 5 Agenten, ein `.claude-plugin/` (Plugin-Manifest/Marketplace,
+  KEIN `.claude/hooks`-Ordner, keine `hooks.json`) und ein `install.sh`, das per
+  `curl | bash` von GitHub installiert (nicht ausgeführt, nur gelesen). Keine Hooks, kein
+  Auto-Update-Mechanismus, kein exec von Fremd-Eingaben in den gesichteten Skills gefunden.
+  Netz-Calls existieren (Google PageSpeed/GSC/GA4/YouTube-APIs, NotebookLM, Gemini-Bild/TTS,
+  Openverse-Stockfotos) — alles explizite, dokumentierte API-Integrationen mit eigenem
+  Env-Var-Schema, keine versteckte Telemetrie. `.claude-plugin`-Ordner nicht umbenannt, da
+  kein Hook-Mechanismus darin (nur Manifest-JSON).
+- Abgeglichen gegen bestehende SEO-Bibliothek (`wiki/seo/`, `skills/eigene/seo/references/`,
+  inkl. bereits vendoriertem `AgriciDaniel/claude-seo` @ 6cf1ea9): GEO/AEO-Zitier-Taktiken,
+  Interlinking/Cluster-Logik sind bereits vollständig abgedeckt (selber Autor, gleiche
+  Kernzahlen) — reine Wiederholung, nichts Neues übernommen.
+- **Neu übernommen:** der 5-Gate-Blog-Delivery-Contract (`skills/blog/references/
+  blog-delivery-contract.md` im Original) als Ablauf-Disziplin — Capability-Discovery,
+  Format-Vollständigkeit, visuelle Verifikation, BLOCKIERENDER Content-Review mit P0-Filter
+  (unabhängig vom Zahlenscore), Asset-/Link-Integrität, Iterationsschleife (3 Versuche),
+  explizites Bypass-Protokoll. Bisher fehlte in `loop4-ablauf.md`/G2 ein automatischer
+  Blocker zwischen Fertigstellung und Auslieferung — G2 war weich (Schwelle 0.7), P0 als
+  score-unabhängiger Absolut-Filter war neu.
+- Destilliert (nicht wörtlich kopiert, obwohl MIT das erlaubt hätte) nach
+  `skills/eigene/seo/references/blog-delivery-contract.md`: auf unser Loop-4/G1-G2-Modell
+  umgeschrieben, Patchright/Google-API-spezifische Implementierungsdetails NICHT übernommen
+  (Werkzeug-Bindung des Originals, keine Agentur-Wissenstiefe für uns).
+- Router-Zeile in `skills/eigene/seo/SKILL.md` ergänzt (Reference-Routing-Tabelle + `loads:`),
+  Version 0.6.0 → 0.6.1.
