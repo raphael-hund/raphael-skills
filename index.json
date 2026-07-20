@@ -4,7 +4,7 @@
   "skills": [
     {
       "name": "design",
-      "version": "0.3.0",
+      "version": "0.3.2",
       "path": "skills/design/SKILL.md",
       "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als eigene References bei Bedarf nachladen. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Referenz-Site als Stilvorlage\"."
     },
@@ -106,7 +106,7 @@
     },
     {
       "name": "web",
-      "version": "0.6.0",
+      "version": "0.6.1",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },

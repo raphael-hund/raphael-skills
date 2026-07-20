@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.3.0
+version: 0.3.2
 description: >
   Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max +
   kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills).
@@ -32,6 +32,7 @@ loads:
   - references/ui-polish-details.md
   - references/design-dna-schema.md
   - references/component-bibliotheken-radar.md
+  - references/wissens-router.md
 completion_criteria:
   - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
   - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
@@ -124,13 +125,16 @@ stimmig? Motion motiviert? Bilder real?).
 |---|---|
 | Animation/Motion bauen oder reviewen | `references/motion-doktrin.md` (Werte+Standards+Review-Format) |
 | Gesten/Drag/Sheet/Spring, "Apple-Style"/"iOS-Feel" | `references/apple-fluid-interfaces.md` |
-| Deutscher Begriff -> englischer Motion-Fachbegriff | `references/animation-vokabular.md` |
+| Deutscher Begriff -> englischer Motion-Fachbegriff ("wie heisst dieser Effekt") | `references/animation-vokabular.md` (reines Uebersetzungsglossar, KEIN Performance-Tool) |
+| Animation "ruckelt"/laggt, Performance-Diagnose bei Motion | `references/motion-audit-workflow.md` + `wiki/webdesign/effekt-performance-patterns.md` + `wiki/webdesign/motion-polish.md` |
 | Voller Motion-Audit ueber ein Repo | `references/motion-audit-workflow.md` (nur hier laden, nicht bei jedem UI-Task) |
 | Farben/Kontrast/OKLCH/Tailwind-Theme | `references/farben-oklch.md` |
 | Typografie (Scale, Heading-Hierarchie, iOS-Zoom-Fix) | `references/typografie.md` |
+| Buttons/Formulare: hover/focus/error-States + A11y | `wiki/webdesign/interaction-states-and-accessibility.md` (zuerst), `references/ui-polish-details.md` nur ergaenzend |
 | Feinschliff-Details (Radius, Shadows, Icon-Motion, Hit-Areas) | `references/ui-polish-details.md` |
 | Referenz-Site als Stilvorlage destillieren (nicht 1:1 klonen) | `references/design-dna-schema.md` + `scripts/dna-scaffold.mjs` |
 | Externe Component-/Motion-Bibliothek pruefen statt neu erfinden | `references/component-bibliotheken-radar.md` |
+| Vertiefte, belegte Web-Substanz (States/A11y, Farb-/Typo-System, Motion-Polish, Anti-Slop-QA, Referenz-Auswahl) | `references/wissens-router.md` (liest `wiki/webdesign/`) |
 
 ## Doktrin ist bindend
 `references/design-doktrin.md` enthaelt die fusionierten Regeln (dedupliziert,

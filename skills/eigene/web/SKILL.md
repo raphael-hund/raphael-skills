@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.6.0
+version: 0.6.1
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
@@ -69,6 +69,12 @@ zwischen zwei Skills springen, aber Design auch nie hier neu erfinden. So teilt 
 Regel: In den Schritten `art-direction` und `qa-faecher` (Fach 2 Design) **design laden
 und befolgen**. impeccable = Exit 0 ist harte Ship-Bedingung. Herkunft der Design-Regeln
 (impeccable/taste/ui-ux-pro-max, Lizenzen) steht in `design/VENDORING.md`.
+
+**Feste Reihenfolge bei kombiniertem Design+Copy-Check (z.B. AI-Slop-Check über mehrere
+Seiten):** immer **design ZUERST** (Detektoren `node scripts/detect.mjs` + `node
+scripts/scan-ai-slop.mjs` je Exit 0), **danach copywriting G1→G2** auf denselben Seiten
+— orchestriert über web als Dach-Skill. "Unklar" ist hier kein zulässiges Ergebnis;
+wenn wirklich kein Skill passt, erst dann als unklar zurückmelden.
 
 ## Landingpage-Struktur (Besucher → qualifizierte Leads)
 
