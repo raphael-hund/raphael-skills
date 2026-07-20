@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 30,
+  "skill_count": 31,
   "skills": [
     {
       "name": "design",
@@ -31,6 +31,12 @@
       "version": "0.2.0",
       "path": "skills/eigene/debug/SKILL.md",
       "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
+    },
+    {
+      "name": "dynamic-workflow",
+      "version": "0.1.0",
+      "path": "skills/eigene/dynamic-workflow/SKILL.md",
+      "description": "Erzwingt für EINE Aufgabe die Ausführung als dynamischer Workflow (Workflow-Tool) mit Subagent-Flotte — nie Solo-Arbeit des Cockpits. Zerlegt die Aufgabe, wählt das passende Orchestrierungs-Muster (Fan-out/Pipeline/Kritik/Council), baut das Script nach Vorlage, startet, verifiziert die Kern-Ergebnisse selbst. Trigger: \"/dynamic-workflow\", \"dynamic workflow\", \"als Workflow machen\", \"mach das mit Subagents\", \"starte einen Workflow dafür\", \"fächere das auf\"."
     },
     {
       "name": "eval",
