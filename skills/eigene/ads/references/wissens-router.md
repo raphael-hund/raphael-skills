@@ -36,6 +36,7 @@ Gedächtnis diagnostizieren. Immer nur die 1–3 wirklich relevanten Seiten lade
 | eine Landing-Page für Paid-Traffic prüfen (Message-Match, Mobile, Consent, Friction) | `ads-landing.md` |
 | eine Testwelle/ein A/B-Experiment designen und auswerten (Hypothese, Sample-Size, Stopp-Regel) | `ads-test.md` |
 | ein volles Konto-Audit über 1–12 Plattformen mit JSON-Bundle fahren | `ads-audit.md` |
+| eine EINZELNE Kennzahl (CPL/CPA/ROAS) driftet über Zeit — Ursache finden & beheben (NICHT ads-audit.md, das ist nur für den vollständigen Konto-/Multiplattform-Review) | `ads-optimize.md` (+ `ads-creative.md` bei Fatigue-Verdacht, + `benchmarks.md`) |
 | Optimierungen diagnostizieren und (Draft-first) anwenden | `ads-optimize.md` |
 | Pacing/Delivery/Fatigue/Tracking laufend überwachen (read-only) | `ads-monitor.md` |
 | eine Kampagne launchen (Draft-first, Mutation-Gate) | `ads-launch.md` |

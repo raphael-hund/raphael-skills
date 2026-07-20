@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 0.6.0
+version: 0.6.1
 description: >
   Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks,
   Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse,

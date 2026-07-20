@@ -10,7 +10,7 @@
     },
     {
       "name": "ads",
-      "version": "0.6.0",
+      "version": "0.6.1",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks, Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/ads, on-demand) nach"
     },
