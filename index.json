@@ -88,7 +88,7 @@
     },
     {
       "name": "ultra-loop",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/ultra-loop/SKILL.md",
       "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Kritiker-Flotte (opus/sonnet/haiku) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
     },

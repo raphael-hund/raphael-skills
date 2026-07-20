@@ -15,9 +15,25 @@ Erlaubte Quellen (und nur diese): **humanizer** (blader), **kill-ai-slop** (yeto
 **conradcaffier-gist** — alle am 2026-07-20 von Raphael explizit benannt (zweite
 Vendoring-Runde, siehe unten) — sowie weiterhin **superpowers** (obra), **mattpocock/skills**,
 **gstack** (garrytan), **last30days-skill** (mvanhorn), **andrej-karpathy-skills** (erste Runde,
-2026-07-19).
+2026-07-19); **claude-seo** (AgriciDaniel), **claude-ads** (AgriciDaniel),
+**knowledge-work-plugins** (anthropics) — dritte Vendoring-Runde, 2026-07-20, von Raphael aus
+der Web-Recherche-Kandidatenliste freigegeben (siehe „Vendoring-Runde 3" unten).
 NICHT vendored (nur als Doku-Verweis erlaubt, kein Code übernommen): steipete/agent-scripts,
 anthropics/skills, SkillSpector.
+
+**OFFENE FREIGABE (Runde 5, 2026-07-20, noch NICHT auf dieser Allowlist bestätigt):**
+**trailofbits-skills**, **claude-code-owasp** (agamm), **webdesigner-pro** — vendoriert unter
+„Vendoring-Runde 5" unten, aber bisher nicht von Raphael als benannte Quelle freigegeben (Regel
+Zeile 4: „nur aus den von Raphael benannten Repos"). Besonders **trailofbits-skills steht unter
+CC-BY-SA-4.0** (Share-Alike/Copyleft) — die erste Copyleft-Lizenz in allen bisherigen Runden
+(bisher nur MIT/Apache/Sustainable-Use/keine). Share-Alike kann eine Pflicht auslösen, die
+abgeleitete Datei (`skills/eigene/web/references/security-audit-playbook.md`) unter derselben
+Lizenz (CC-BY-SA-4.0) weiterzugeben bzw. mit Namensnennung zu versehen — bloße Attribution reicht
+unter Share-Alike-Regimes unter Umständen NICHT aus. Analog zum oh-my-openagent-Sonderfall (siehe
+Sustainable-Use-Hinweis oben, Zeile 179 der Runde-2-Tabelle): diese drei Quellen und speziell die
+CC-BY-SA-4.0-Implikation für `security-audit-playbook.md` müssen von Raphael noch explizit
+geprüft und freigegeben werden, bevor sie als reguläre Allowlist-Einträge gelten. Bis dahin: kein
+stiller Vollzug, offene Entscheidung.
 
 Übernahme-Datum: **2026-07-19**. Alle Commits per `git -C /root/tools/vendor/<repo> rev-parse HEAD`
 zum Übernahme-Zeitpunkt verifiziert.
@@ -573,3 +589,43 @@ Beide per `git clone --depth 1` nach `/root/tools/vendor/`.
   keine Hooks/Telemetrie. SKILL.md lässt Claude CLAUDE.md/memory/ als Kontext scannen (gewollt).
 - **Installiert:** Symlink `/root/.claude/skills/llm-council` → Vendor-Klon (konfliktfrei;
   bestehende Skills unberührt). Kein .claude-Ordner zum Deaktivieren vorhanden (beide Repos).
+
+## Vendoring-Runde 5 — 2026-07-20 (Security + Webdesigner-Pro)
+
+### Quellen-Commits (Runde 5)
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| trailofbits-skills | github.com/trailofbits/skills | `cfe5d7b` | CC-BY-SA-4.0 |
+| claude-code-owasp | github.com/agamm/claude-code-owasp | `f5dfa3d` | MIT |
+| webdesigner-pro | (Vendor-Klon `/root/tools/vendor/webdesigner-pro`) | `04340d6` | **kein LICENSE-File** — nur paraphrasiert (siehe Regel Zeile 159). Vendort selbst `remotion-dev/skills` weiter (eigene kommerzielle Remotion-Lizenz) und enthält eine Higgsfield-Abo-Kopplung (Vendor-Infrastruktur, nicht übernommen). |
+
+Alle drei per `git clone --depth 1` nach `/root/tools/vendor/`.
+
+**Befund:**
+- `trailofbits-skills`: Enthält u.a. `plugins/insecure-defaults`, `plugins/sharp-edges`,
+  `plugins/static-analysis` (CodeQL/SARIF/Semgrep). CC-BY-SA-4.0 erlaubt Bearbeitung mit
+  Namensnennung/Share-Alike — destilliert (nicht wörtlich kopiert) nach
+  `skills/eigene/web/references/security-audit-playbook.md`: Doktrin ("Pit of Success"),
+  Fail-Open-Erkennung (Regel 1, Quelle `plugins/insecure-defaults`). Tooling-Tiefe
+  (CodeQL/SARIF/Semgrep) bewusst NICHT dupliziert — dafür bleibt `plugins/static-analysis`
+  im Vendor-Klon die Referenz, falls je gebraucht.
+- `claude-code-owasp` (agamm, MIT): README-Checkliste destilliert nach
+  `skills/methodik/code-review/references/owasp-checkliste.md` — auf OWASP Top 10:2025 +
+  ASVS-Kern gekürzt und auf Agentur-Realität gemappt (Next.js/Kontaktformulare/Airtable-Meta-
+  API-Anbindungen), Enterprise-Themen (HSM, Pen-Testing-Level-3) weggelassen.
+- `webdesigner-pro`: Kein Ganzes-Repo-Vendoring, drei separate Übernahmen als Rezeptkarten
+  (Paraphrase, keine wörtliche Kopie — mangels LICENSE-File):
+  - Skill `webdesign-component-registry` + Wiki `external-skill-libraries.md` →
+    `skills/design/references/component-bibliotheken-radar.md` (Katalog externer
+    Component-/Motion-Quellen als Nachschlagewerk, nicht zum pauschalen Laden/Installieren).
+  - Skill `rebuild-website-from-image` →
+    `skills/eigene/web/references/rebuild-from-image.md` (Denkweg für Bild-zu-Website-Rebuild;
+    Higgsfield-Asset-Pipeline und Node-Gate-Scripts bewusst NICHT übernommen — Vendor-/
+    Abo-Infrastruktur, kein portabler Ablauf).
+  - Skill `remotion-best-practices` (Original-Quelle `github.com/remotion-dev/skills`,
+    Weiter-Vendoring durch webdesigner-pro selbst) + Wiki `remotion-production.md` →
+    `skills/eigene/web/references/remotion-produktionsweg.md` (neues Thema, nur bei
+    ausdrücklichem Video-/Composition-Auftrag aktivieren).
+- Keine Hooks, kein SessionStart-Auto-Update, keine Telemetrie in den drei destillierten
+  Ziel-Dateien übernommen — konsistent mit Regel aus Runde 2026-07-20.

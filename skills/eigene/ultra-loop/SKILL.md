@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.1.0
+version: 0.2.0
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
@@ -57,6 +57,12 @@ erzwingt die Run-ID als Beweis.
 
 ## Die Runden-Mechanik (jede Runde gleich)
 
+0. **Working-Tree prüfen** (`git status`): unbestätigte Reste einer
+   abgebrochenen Vorrunde (Session-Tod, Cron-Timeout, Workflow-Abbruch
+   zwischen Fixen und Committen) erst einordnen — committen (wenn erkennbar
+   fertig und verifiziert) oder verwerfen (wenn halb/unklar) — bevor neue
+   Arbeit beginnt. Ergebnis als `ABGEBROCHEN R<N>`-Eintrag protokollieren
+   (siehe `references/runden-protokoll.md`), dann erst Schritt 1.
 1. **Stand lesen:** `PROGRESS.md` → Abschnitt `## Skill-Loop` (oder die im
    Mandat genannte Stand-Datei). Nächsten offenen Punkt wählen.
 2. **Workflow starten** (Pflicht bei Substanz-Arbeit): Script nach

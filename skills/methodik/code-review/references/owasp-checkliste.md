@@ -10,6 +10,13 @@ Nutzen: bei Code-Reviews von Formularen, API-Routes, Server-Actions,
 Webhook-Handlern und Integrations-Skripten (Meta/Pipedrive/Airtable) als
 Zusatz-Checkliste neben `zwei-achsen-review.md` / `audit-playbook.md` laden.
 
+**Führungs-Regel (Dopplung mit Web-Security-Audit-Playbook vermeiden):** Für die
+Fail-Open/Fail-Closed-Doktrin, CORS-Wildcard-Footguns und Webhook-Signaturprüfung sowie
+npm-Supply-Chain-Tiefe führt `web/references/security-audit-playbook.md` (dort Regel 1-3).
+Diese Checkliste hier ist der Code-Review-Zusatzcheck (A02/A03/A05/A08/A10, Airtable-
+Checkliste) — bei Widerspruch oder Änderungsbedarf an einer der genannten Regeln zuerst
+das Playbook prüfen und synchron halten, nicht hier isoliert weiterschreiben.
+
 ## OWASP Top 10:2025 — Quick Reference
 
 | # | Risiko | Worauf achten (Agentur-Kontext) |

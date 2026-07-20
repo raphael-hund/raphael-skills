@@ -25,6 +25,11 @@ Mission: <1 Satz>. Gates: <Liste>. Tabu: <Liste>.
   Begründung (eine Datei, <5 Min).
 - Leere Runde: `- [x] R<N>: nichts Belegbares gefunden — <was geprüft wurde>.`
   Nichts erfinden.
+- Abgebrochene Vorrunde (Working-Tree bei Rundenstart nicht sauber, Schritt 0
+  der Runden-Mechanik): `- [x] ABGEBROCHEN R<N>: <was lag halb vor (Dateien,
+  git status)> → <committet mit Hash | verworfen mit git-Befehl>. Ursache falls
+  bekannt: <Session-Tod/Cron-Timeout/Workflow-Abbruch>.` Erst danach beginnt
+  die neue Runde regulär mit Schritt 1.
 
 ## Offene-Punkte-Liste
 
