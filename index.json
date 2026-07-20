@@ -10,7 +10,7 @@
     },
     {
       "name": "ads",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks, Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/ads, on-demand) nach"
     },
@@ -82,7 +82,7 @@
     },
     {
       "name": "seo",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "path": "skills/eigene/seo/SKILL.md",
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\". Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)"
     },

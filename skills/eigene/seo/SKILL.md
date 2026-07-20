@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.5.0
+version: 0.6.0
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -21,6 +21,7 @@ source: >
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9 — Details
   siehe VENDORING-NOTE.md
 loads:
+  - references/wissens-router.md
   - references/loop4-ablauf.md
   - references/tech-qa-checkliste.md
   - references/regeln-technischer-audit.md
@@ -58,48 +59,35 @@ Ranking-Decay auffrischen.
 | Loop-4-Ablauf, Gates, Belegpflicht, Modell-Zuteilung | `references/loop4-ablauf.md` | Ablauf |
 | Publish-Blocker vor jedem Go-Live | `references/tech-qa-checkliste.md` | Regeln |
 | Crawlability/CWV/On-Page/hreflang/GSC-9-Analysen | `references/regeln-technischer-audit.md` | Regeln |
-| JSON-LD-Typen, Validierung | `references/regeln-schema-markup.md` | Regeln |
+| JSON-LD-Typen, Validierung (Kern; Detektion/Generierung bei Bedarf: `seo-schema.md`) | `references/regeln-schema-markup.md` | Regeln |
 | E-E-A-T-Tiefe, Who/How/Why-Test, YMYL, KI-Content-Bewertung | `references/regeln-eeat.md` | Regeln |
-| Backlinks, Digital PR (HARO/Qwoted), Statistikseiten, Directories | `references/taktiken-linkbuilding-digitalpr.md` | Taktiken |
+| Backlinks, Digital PR (HARO/Qwoted), Statistikseiten, Directories (Kern; Profil-Bewertung bei Bedarf: `seo-backlinks.md`) | `references/taktiken-linkbuilding-digitalpr.md` | Taktiken |
 | Instagram-Carousel, Newsjacking, Vergleichsseiten, pSEO, 90-Tage-Fahrplan | `references/taktiken-content-distribution.md` | Taktiken |
-| Local SEO/GBP-Taktik-Tiefe (Kategorien, Reviews, NAP, Swap-Test, Branchen-Schema) | `references/taktiken-local-seo-gbp.md` | Taktiken |
+| Local SEO/GBP-Taktik-Tiefe (Kategorien, Reviews, NAP, Swap-Test, Branchen-Schema) (Kern; Website-Signale bei Bedarf: `seo-local.md`, Maps-Präsenz/Geo-Grid: `seo-maps.md`) | `references/taktiken-local-seo-gbp.md` | Taktiken |
 | SERP-Feature-/Seitentyp-Analyse (SXO), Featured Snippet, PAA, User-Storys | `references/taktiken-serp-features.md` | Taktiken |
-| Themen-Cluster bauen: Hub-and-Spoke, SERP-Overlap-Clustering, Link-Matrix | `references/taktiken-interne-verlinkung-cluster.md` | Taktiken |
-| AI-Sichtbarkeit/AEO/GEO, llms.txt, AI-Crawler, Citability-Score | `references/ideen-ai-sichtbarkeit-aeo.md` | Ideen (unbestätigt, mit Vorsicht) |
+| Themen-Cluster bauen: Hub-and-Spoke, SERP-Overlap-Clustering, Link-Matrix (Kern; Umsetzung bei Bedarf: `seo-cluster.md`) | `references/taktiken-interne-verlinkung-cluster.md` | Taktiken |
+| AI-Sichtbarkeit/AEO/GEO, llms.txt, AI-Crawler, Citability-Score (Kern; belegte Umsetzung bei Bedarf: `seo-geo.md`) | `references/ideen-ai-sichtbarkeit-aeo.md` | Ideen (unbestätigt, mit Vorsicht) |
 
 ## Wissens-Router (Second Brain)
 
-Die operative Arbeit steuert der Skill selbst (siehe Reference-Routing oben). Trifft eine Aufgabe aber ein **Spezialthema**, lies **vor** dem Arbeiten die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe (Schwellenwerte, Algorithmen, API-Tiers, Studienzahlen). Pfadpräfix immer absolut: `/root/raphael-brain/wiki/seo/`. Lade **nur die 1–3 wirklich relevanten Seiten**, nie alle.
+Die operative Arbeit steuert der Skill selbst (siehe Reference-Routing oben). Für die
+**häufigsten** Spezialfälle:
 
-| Wenn die Aufgabe … | dann lies |
-|---|---|
-| eine ganze Website von A–Z durchleuchten, Health-Score + Prioritätenliste liefern | `seo-audit.md` |
-| Gesamt-Synthese ÜBER MEHRERE Audits (Health-Score-Gewichte/Branchen-Template/Quality-Gates zusammenführen) — für den normalen Einzel-Audit reicht `seo-audit.md` | `seo.md` |
-| eine einzelne URL tief prüfen (Title/Meta/H1, Keyword-Dichte, Schema, CWV-Risiken) | `seo-page.md` |
-| SEO-Strategie/Roadmap für neue oder bestehende Site inkl. Branchen-Template aufsetzen | `seo-plan.md` |
-| evidenz-geführtes Betriebsmodell (Find→Leverage→Optimize→Win) + Prompt-Bibliothek anwenden | `seo-flow.md` |
-| Keywords nach echtem Google-SERP-Overlap zu Hub-and-Spoke clustern | `seo-cluster.md` |
-| einen recherche-gestützten Content-Brief schreiben, der die Top-Ergebnisse schlägt | `seo-content-brief.md` |
-| Content-Qualität + E-E-A-T bewerten (Who/How/Why, Thin Content, AI-Content) | `seo-content.md` |
-| „X vs Y“-, „Alternatives to X“- oder „Best of“-Vergleichsseiten bauen | `seo-competitor-pages.md` |
-| Seiten in Masse aus Daten erzeugen/auditen — Templates, Thin-Content-Gates | `seo-programmatic.md` |
-| vollständigen Tech-Audit fahren (Crawlability, CWV, JS-Rendering, IndexNow, 9 Kategorien) | `seo-technical.md` |
-| Structured Data erkennen/validieren/generieren + Deprecation-Status prüfen | `seo-schema.md` |
-| eine XML-Sitemap validieren oder korrekt generieren (Limits, Quality-Gates) | `seo-sitemap.md` |
-| mehrsprachige/mehrregionale Site: hreflang validieren oder generieren | `seo-hreflang.md` |
-| Regressionen nach Deploy erkennen — SEO-Elemente als Baseline snapshoten und vergleichen | `seo-drift.md` |
-| Bilder für SEO/Performance optimieren (Alt-Texte, Größen, Formate, CLS, Image-SERP) | `seo-images.md` |
-| SEO-Bild-Assets per AI generieren (OG-Preview, Hero, Infografik, Favicon) | `seo-image-gen.md` |
-| Produktseiten-/E-Commerce-SEO + Google-Shopping/Amazon-Intelligence | `seo-ecommerce.md` |
-| lokale WEBSITE-Signale prüfen (GBP, NAP, Citations, Reviews, lokales Schema, Location-Pages) | `seo-local.md` |
-| Maps-PLATTFORM-Präsenz analysieren (Geo-Grid, SoLV, Live-GBP-Audit, Review-Intelligence) | `seo-maps.md` |
-| für AI-Suche sichtbar werden (AI Overviews, AI Mode, ChatGPT, Perplexity, Citability) | `seo-geo.md` |
-| erklären, warum eine technisch perfekte Seite nicht rankt (Seitentyp-Mismatch, User Stories) | `seo-sxo.md` |
-| ein Backlink-Profil bewerten (Referring Domains, Anchor, toxische Links, Competitor-Gap, Disavow) | `seo-backlinks.md` |
-| echte Google-Felddaten ziehen (GSC, CrUX/PageSpeed, Indexing, GA4, YouTube, NLP) | `seo-google.md` |
-| Live-SERP-/Keyword-/Backlink-/OnPage-Daten via DataForSEO holen (mit Kosten-Guardrails) | `seo-dataforseo.md` |
+- Volles Website-Audit mit Health-Score → `seo-audit.md`
+- Content-Brief recherche-gestützt schreiben → `seo-content-brief.md`
+- Voller Tech-Audit (Crawlability/CWV/JS-Rendering) → `seo-technical.md`
+- Echte Google-Felddaten ziehen (GSC/CrUX/GA4) → `seo-google.md`
 
-**Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste) bleiben der **Kern** jeder Arbeit; die Brain-Seiten sind die **tiefe Nachschlage-Bibliothek** für Spezialfälle — dorthin greifen, wenn ein Thema mehr Tiefe braucht als der Kern hergibt, nicht routinemäßig.
+**Anderes Spezialthema** (Cluster, Schema, hreflang, Local/Maps, GEO/AEO, Backlinks,
+Competitor-Pages, Sitemap, Drift, Bilder, E-Commerce, SXO, DataForSEO, Gesamt-Synthese
+über mehrere Audits)? Lies zuerst `references/wissens-router.md` und dann die 1-3
+passenden Brain-Seiten daraus — Pfadpräfix immer `/root/raphael-brain/wiki/seo/`,
+nie alle Seiten laden, nie aus dem Gedächtnis diagnostizieren.
+
+**Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste)
+bleiben der **Kern** jeder Arbeit; die Brain-Seiten sind die **tiefe
+Nachschlage-Bibliothek** für Spezialfälle — dorthin greifen, wenn ein Thema mehr Tiefe
+braucht als der Kern hergibt, nicht routinemäßig.
 
 ## Ablauf (Detail in references/loop4-ablauf.md)
 
