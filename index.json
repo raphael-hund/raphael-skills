@@ -100,7 +100,7 @@
     },
     {
       "name": "web",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, UI-Motion-Komponenten. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\"."
     },
@@ -118,7 +118,7 @@
     },
     {
       "name": "code-review",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "path": "skills/methodik/code-review/SKILL.md",
       "description": "Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern (frischer Subagent, präzise Diff-Grenze statt Session-Historie), und wie Feedback danach behandelt wird — verifizieren statt performativ zustimmen, gezielt zurückfragen, technisch begründet widersprechen. Jeder Fund bekommt eine von drei Eskalationsstufen (auto-fix/no-op/ask-user), Reviews starten mit der erklärten Absicht des Autors, nicht nur dem Diff. Für tiefere Reviews steht optional die Zwei-Achsen-Methode (Standards vs. Spec, mit Fowler-Smell-Baseline) und ein 9-Kategorien-Audit-Playbook als Referenz bereit. Trigger: \"Code Review\", \"review anfordern\", \"Feedback bekommen\", \"PR review\", \"vor dem Merge prüfen\"."
     },

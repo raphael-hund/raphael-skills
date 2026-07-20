@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.5.0
+version: 0.5.1
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
@@ -23,6 +23,7 @@ loads:
   - references/experiment-programm.md
   - references/conversion-elemente.md
   - references/code-qualitaets-checkliste.md
+  - references/security-audit-playbook.md
   - references/domain-safe-browsing-checkliste.md
   - references/readonly-db-rolle.md
   - references/design-systeme-vergleich.md
@@ -105,7 +106,10 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Hero-/Teaser-Video oder eine React-basierte Video-Composition (kein
    normales CSS-Motion) → `references/remotion-produktionsweg.md`.
 6. **build** — Umsetzung (Terra/Sol, Cross-Vendor `/codex:review`). Bei echtem Custom-Code
-   zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Braucht der
+   zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Formular-
+   Backends, Kundendaten-Handling, npm-Abhängigkeiten (Formular/Tracking/Payment) →
+   `references/security-audit-playbook.md` (Fail-Open-Defaults, Footgun-Configs,
+   Supply-Chain-Check, Quelle Trail of Bits). Braucht der
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
    Schreibzugriff für Agenten).
 7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).

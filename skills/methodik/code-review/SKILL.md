@@ -1,6 +1,6 @@
 ---
 name: code-review
-version: 0.2.0
+version: 0.2.1
 description: >
   Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern
   (frischer Subagent, präzise Diff-Grenze statt Session-Historie), und wie
@@ -19,6 +19,7 @@ source: fusion — superpowers skills/requesting-code-review + skills/receiving-
 loads:
   - references/zwei-achsen-review.md
   - references/audit-playbook.md
+  - references/owasp-checkliste.md
 completion_criteria:
   - "Reviewer war ein frischer Subagent mit exakt eingegrenztem Diff (BASE_SHA..HEAD_SHA oder Fixpunkt), nicht die eigene Session-Historie"
   - "Reviewer bekam vor dem Diff die erklärte Absicht des Autors (Ziel, Trade-offs, bewusst verworfene Alternativen)"
@@ -79,6 +80,10 @@ Refactorings (Baseline), nach komplexen Bugfixes.
    anwenden (Standards-Achse + Spec-Achse getrennt, parallel, nicht
    gegeneinander verrechnet), oder für eine vollständige 9-Kategorien-
    Durchsicht mit Evidenz-Pflicht `references/audit-playbook.md`.
+6. Bei Formularen, API-Routes/Server-Actions, Webhook-Handlern oder
+   Airtable-/Meta-API-Integrationen zusätzlich `references/owasp-checkliste.md`
+   laden (OWASP Top 10:2025 + ASVS-Kern, auf Agentur-Realität gemappt —
+   destilliert aus agamm/claude-code-owasp, MIT).
 
 ## Findings-Klassifikation
 
