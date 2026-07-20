@@ -173,13 +173,14 @@ neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
   Fidelity-Achsen) ist oben eingearbeitet — die Scripts selbst nicht vendoriert.
 - **`agents/openai.yaml`** — Agent-Definition für einen fremden Runner, ohne Bezug zu dieser Umgebung.
 
-## Brain-Kandidat für spätere Vertiefung
+## Abgrenzung zu wdp-rebuild-prompt-vertrag.md — nicht doppelt lesen
 
-`wdp-rebuild-prompt-vertrag` — die Idee, den Build-Handoff aus Schritt 3
-(Region-Map + Renderstrategie + Responsive-/Interaction-Vertrag, ohne dass
-der Builder das Bild frei neu interpretiert) als eigenständigen, testbaren
-Prompt-Vertrag zu formalisieren, ist als Kandidat vorgemerkt, aber noch
-nicht ins Second-Brain-Wiki überführt (kein Eintrag unter
-`wiki/_candidates/` bisher). Bei wiederholtem Bild-Rebuild-Bedarf mit
-echtem Bedarf an einem geprüften Prompt-Format: `extract-approach`-Skill
-("skillify this") auf diesen Ablauf ansetzen.
+Der zuvor hier vorgemerkte Brain-Kandidat ist inzwischen im Second-Brain-Wiki
+angelegt: `wiki/_candidates/2026-07-20-wdp-rebuild-prompt-vertrag.md`. Er
+vertieft nur Schritt 3 dieses Dokuments (Region-Map + Renderstrategie →
+deterministischer Build-Handoff) zu einer eigenständigen, werkzeugunabhängigen
+Vertrags-Anatomie (feste Reihenfolge, Verbatim-Blöcke, exakte px-Werte,
+explizite Verbote). Die anderen vier Schritte hier — Intake/Bild-Herkunft,
+Sektions-Analyse, Build, Pixel-Treue-Check — bleiben bildspezifisch und
+gehören nicht dorthin. Bei Bedarf an der reinen Prompt-Anatomie (auch für
+Nicht-Bild-Vorlagen) dort nachlesen, bei Bedarf am Bild-Ablauf selbst hier.
