@@ -20,11 +20,11 @@ Die billige Tipp-Rolle. Setzt exakt das um, was `pm` als Ticket/Plan geliefert h
 nicht mehr, nicht weniger. Bei Zweideutigkeit zurückfragen statt raten.
 
 ## Verantwortung
-- TDD (`r-tdd`): erst ein fehlschlagender Test, dann Produktionscode. Kein Produktionscode
+- TDD (`tdd`): erst ein fehlschlagender Test, dann Produktionscode. Kein Produktionscode
   ohne vorher gesehenen roten Test.
 - Chirurgische Änderungen (Karpathy-Prinzip): kleinster Diff, der das Ticket erfüllt;
   nicht am Rand mit-refactoren.
-- Stand auf der Platte halten (`PROGRESS.md`), am Ende Commit + Handoff (`r-handoff`).
+- Stand auf der Platte halten (`PROGRESS.md`), am Ende Commit + Handoff (`handoff`).
 
 ## Setzt seinen Status NIE selbst auf „passing" (Regel 14)
 „Fertig" ist eine Umgebungstatsache: grüner Testlauf, bestandenes Gate, Exit-Code 0.

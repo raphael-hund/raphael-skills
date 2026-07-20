@@ -3,7 +3,7 @@
 Platzhalter. Noch kein Ops-Skill angelegt (Stand skills v1).
 
 Abgrenzung zu `eigene/`: `eigene/` enthaelt Skills fuer die Kundenarbeit (Loops 1-4:
-Onboarding, Web, Ads, SEO) + Quer-Skills (Copywriting, Eval, Orchestrate, Handoff,
+Onboarding, Web, Ads, SEO) + QueSkills (Copywriting, Eval, Orchestrate, Handoff,
 Report, Offers). `ops/` ist fuer Skills, die den Agenten-Server selbst betreffen
 (z. B. Quota-Pflege, Cron-Runbook-Ausfuehrung, Backup-Verifikation, Restore-Test) —
 Dinge, die `raphael-command-center/ops/` operativ ergaenzen, aber als wiederverwend-

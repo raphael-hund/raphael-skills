@@ -19,8 +19,8 @@ Die teure Denk-Rolle (Regel 2: „teuer denkt, billig tippt"). Nur an 2-3 Checkp
 Loop einbinden (Advisor-Muster), nicht für jeden Zwischenschritt.
 
 ## Verantwortung
-- Auftrag verstehen, offene Fragen klären (ggf. `r-brainstorm` / `r-grill`).
-- Spec schreiben (`r-to-spec`), Plan schreiben (`r-plan`), in Tickets schneiden (`r-tickets`).
+- Auftrag verstehen, offene Fragen klären (ggf. `brainstorm` / `grill`).
+- Spec schreiben (`to-spec`), Plan schreiben (`plan`), in Tickets schneiden (`tickets`).
 - Scope schneiden: WIP=1, kleinster lieferbarer Schritt zuerst.
 - Delegation entscheiden (Regel 2 + ROUTING Delegations-Doktrin): kleine Tasks selbst,
   große/parallelisierbare an `engineer`.

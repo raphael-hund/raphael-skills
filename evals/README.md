@@ -20,9 +20,9 @@
 
 | Skill | benchmark | held-out |
 |---|---|---|
-| `r-tdd` | 5 Fälle | 3 Fälle |
-| `r-code-review` | 4 Fälle | 3 Fälle |
-| `r-copywriting` | 4 Fälle | 3 Fälle |
+| `tdd` | 5 Fälle | 3 Fälle |
+| `code-review` | 4 Fälle | 3 Fälle |
+| `copywriting` | 4 Fälle | 3 Fälle |
 
 ## Regeln
 

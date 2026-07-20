@@ -2,7 +2,7 @@
 
 **TLDR:** Jede `SKILL.md` beginnt mit einem YAML-Kopf. Sieben Felder sind
 Pflicht: `name`, `version`, `description`, `class`, `scope`, `sensitivity`,
-`completion_criteria`. Der Name faengt mit `r-` an, die Klasse ist einer von
+`completion_criteria`. Der Name ist der einfache Disziplin-Name ohne Praefix (z. B. `seo`, `design`), die Klasse ist einer von
 sieben Buchstaben, und "fertig" ist immer eine pruefbare Tatsache. Das Skript
 `tools/validate-skill.py` prueft das. Dieses Dokument erklaert die Regeln so
 einfach, dass ein Fuenfjaehriger sie versteht.
@@ -14,7 +14,7 @@ einfach, dass ein Fuenfjaehriger sie versteht.
 
 Grundlage: v5-Plan Abschnitt 9.1 (Skill-Vertrag) und 9.2 (Progressive
 Disclosure), sowie `raphael-command-center/AGENTS.md` (7 Rot-Klassen,
-Trust-Grenzen). Namensraum-Marker: `.skill-namespace` (Inhalt `r-`).
+Trust-Grenzen). Namensraum-Marker: `.skill-namespace` (leer — Skills tragen seit 2026-07-20 auf Raphaels Anweisung KEIN Praefix mehr; frueher `r-`).
 
 ---
 
@@ -24,7 +24,7 @@ Fehlt eines oder ist es leer, ist die SKILL.md **rot** (Fehler, Exit-Code 1).
 
 | Feld | Was es bedeutet (einfach) | Beispiel |
 |---|---|---|
-| `name` | Der eindeutige Name. Faengt mit `r-` an. Nur Kleinbuchstaben, Ziffern, Bindestriche. | `r-ads-hooks` |
+| `name` | Der eindeutige Name, ohne Praefix. Nur Kleinbuchstaben, Ziffern, Bindestriche. | `ads-hooks` |
 | `version` | Die Ausgabe-Nummer im Format `x.y.z` (semver). | `1.0.0` |
 | `description` | **WANN** der Skill feuert — nicht bloss was drinsteht. Der wichtigste Satz. | `Scroll-Stopper-Hooks fuer Meta-Ads aus Angle + Brand-Voice.` |
 | `class` | Ein Buchstabe: was fuer eine Art Skill das ist (siehe Teil 2). | `F` |
@@ -110,7 +110,7 @@ Bedarf ueber `loads`.
 
 ```yaml
 ---
-name: r-ads-hooks
+name: ads-hooks
 version: 1.0.0
 description: >
   Wann dieser Skill feuert, nicht bloss was er enthaelt.
@@ -121,7 +121,7 @@ sensitivity: public
 loads:
   - references/hook-frameworks.md
 requires_skills:
-  - r-copywriting@^1
+  - copywriting@^1
 completion_criteria:
   - "rubric: evals/rubrics/ads.md >= 0.7"
 # empfohlen: provenance, eval_scorecard, expires
@@ -155,7 +155,7 @@ Ein Skill wird wie eine Methode aufgerufen: seine Eingaben sind **deklariert**,
 nicht zu erraten. Ein Skill, der Eingaben erwartet, schreibt sie direkt unter
 den Titel als Aufruf-Signatur:
 
-    Aufruf: r-ads(kunde: slug [pflicht], testwelle: int = 1)
+    Aufruf: ads(kunde: slug [pflicht], testwelle: int = 1)
 
 Bei mehr als zwei Parametern eine eigene Sektion `## Parameter` mit Tabelle:
 

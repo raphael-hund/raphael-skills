@@ -40,7 +40,7 @@ Vorrat bauen.
 3. **Kandidat schreiben** — nach `references/candidate-template.md` als SKILL.md-Entwurf.
 4. **Ablegen in `_candidates/`** — NIE direkt als aktiver Skill. Skill-Mutation ist Rot-Klasse.
 5. **Inbox-Notiz** — Kandidat in `ops/review-inbox.md` verlinken → Raphaels Freigabe
-   entscheidet über Promotion in den aktiven `r-*`-Namespace.
+   entscheidet über Promotion in den aktiven -Namespace.
 
 ## Gotchas
 

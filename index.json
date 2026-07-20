@@ -3,178 +3,178 @@
   "skill_count": 29,
   "skills": [
     {
+      "name": "design",
+      "version": "0.2.0",
+      "path": "skills/design/SKILL.md",
+      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als eigene References bei Bedarf nachladen. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Referenz-Site als Stilvorlage\"."
+    },
+    {
+      "name": "ads",
+      "version": "0.5.0",
+      "path": "skills/eigene/ads/SKILL.md",
+      "description": "Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks, Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/ads, on-demand) nach"
+    },
+    {
+      "name": "codex-first",
+      "version": "0.1.0",
+      "path": "skills/eigene/codex-first/SKILL.md",
+      "description": "Delegiert ein Arbeitspaket an die Codex-CLI (GPT-5.6, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Billig/anders bauen (Codex), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/codex-first\", \"an Codex geben\", \"von GPT bauen lassen\", \"codex exec\", \"Cross-Vendor-Bau\"."
+    },
+    {
+      "name": "copywriting",
+      "version": "0.4.0",
+      "path": "skills/eigene/copywriting/SKILL.md",
+      "description": "Feuert für JEDEN deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\"."
+    },
+    {
+      "name": "debug",
+      "version": "0.2.0",
+      "path": "skills/eigene/debug/SKILL.md",
+      "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
+    },
+    {
+      "name": "eval",
+      "version": "0.3.0",
+      "path": "skills/eigene/eval/SKILL.md",
+      "description": "Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel, rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet nie selbst \"fertig\" — eine andere Instanz verifiziert per striktem Verdikt-Vertrag, jede Einstufung braucht einen konkreten Beleg statt einer Vermutung. Trigger: \"evaluieren\", \"Gate fahren\", \"Judge\", \"Rubrik schreiben\", \"QA-Score\"."
+    },
+    {
       "name": "extract-approach",
       "version": "0.1.0",
       "path": "skills/eigene/extract-approach/SKILL.md",
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
     {
-      "name": "r-ads",
+      "name": "handoff",
       "version": "0.2.0",
-      "path": "skills/eigene/r-ads/SKILL.md",
-      "description": "Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks, Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\"."
+      "path": "skills/eigene/handoff/SKILL.md",
+      "description": "Feuert vor jedem /clear und am Session-Ende: schreibt einen Übergabe-Brief, damit die nächste Session ohne Verlust weiterarbeitet. Fakten statt Anweisungen (State, not instructions), inkl. Fallen/Sackgassen-Sektion und Secret-Redaktion. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\"."
     },
     {
-      "name": "r-codex-first",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-codex-first/SKILL.md",
-      "description": "Delegiert ein Arbeitspaket an die Codex-CLI (GPT-5.6, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Billig/anders bauen (Codex), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/codex-first\", \"an Codex geben\", \"von GPT bauen lassen\", \"codex exec\", \"Cross-Vendor-Bau\"."
-    },
-    {
-      "name": "r-copywriting",
+      "name": "kimi-first",
       "version": "0.2.0",
-      "path": "skills/eigene/r-copywriting/SKILL.md",
-      "description": "Feuert für JEDEN deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, E-Mail): klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\"."
-    },
-    {
-      "name": "r-debug",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-debug/SKILL.md",
-      "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
-    },
-    {
-      "name": "r-eval",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-eval/SKILL.md",
-      "description": "Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel, rubric-author. Jeder Ship-Output läuft hier durch. Trigger: \"evaluieren\", \"Gate fahren\", \"Judge\", \"Rubrik schreiben\", \"QA-Score\"."
-    },
-    {
-      "name": "r-handoff",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-handoff/SKILL.md",
-      "description": "Feuert vor jedem /clear und am Session-Ende: schreibt einen Übergabe-Brief, damit die nächste Session ohne Verlust weiterarbeitet. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\"."
-    },
-    {
-      "name": "r-kimi-first",
-      "version": "0.2.0",
-      "path": "skills/eigene/r-kimi-first/SKILL.md",
+      "path": "skills/eigene/kimi-first/SKILL.md",
       "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
     },
     {
-      "name": "r-offers",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-offers/SKILL.md",
+      "name": "offers",
+      "version": "0.2.0",
+      "path": "skills/eigene/offers/SKILL.md",
       "description": "Feuert für Angebots-Design: Offer-Stack, Preislogik, Risiko-Umkehr, Value-Equation (Hormozi). Trigger: \"Angebot bauen\", \"Offer\", \"Preis festlegen\", \"Garantie\", \"Bonus-Stack\", \"Value Proposition schärfen\"."
     },
     {
-      "name": "r-onboard",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-onboard/SKILL.md",
+      "name": "onboard",
+      "version": "0.3.0",
+      "path": "skills/eigene/onboard/SKILL.md",
       "description": "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger-Worte: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\"."
     },
     {
-      "name": "r-orchestrate",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-orchestrate/SKILL.md",
-      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Modell + Effort je Subagent explizit setzen, Dispatch nach ROUTING/quota. Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\"."
+      "name": "orchestrate",
+      "version": "0.3.0",
+      "path": "skills/eigene/orchestrate/SKILL.md",
+      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Modell + Effort je Subagent explizit setzen, Dispatch nach ROUTING/quota. Für schwierige Entscheidungen: adversariales Cross-Critique-Muster (mehrere gegensätzliche Rollen greifen sich an, nur Überlebendes geht an den Planer — der Leader plant nie selbst) oder Council-Muster (3 Modellfamilien antworten unabhängig, ranken sich anonym, Chairman synthetisiert). Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\"."
     },
     {
-      "name": "r-report",
+      "name": "report",
       "version": "0.1.0",
-      "path": "skills/eigene/r-report/SKILL.md",
+      "path": "skills/eigene/report/SKILL.md",
       "description": "Feuert für Kundenreports: baut Berichte NUR aus belegbaren, echten Zahlen — jede Zahl mit Quelle, sonst Block. Trigger: \"Report bauen\", \"Kundenbericht\", \"Weekly\", \"Performance-Report\", \"Ergebnisse zusammenfassen\"."
     },
     {
-      "name": "r-seo",
-      "version": "0.2.0",
-      "path": "skills/eigene/r-seo/SKILL.md",
-      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\"."
+      "name": "seo",
+      "version": "0.5.0",
+      "path": "skills/eigene/seo/SKILL.md",
+      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\". Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)"
     },
     {
-      "name": "r-watch",
-      "version": "0.1.0",
-      "path": "skills/eigene/r-watch/SKILL.md",
+      "name": "watch",
+      "version": "0.2.0",
+      "path": "skills/eigene/watch/SKILL.md",
       "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
     },
     {
-      "name": "r-web",
-      "version": "0.2.0",
-      "path": "skills/eigene/r-web/SKILL.md",
-      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (r-design integriert), Build, QA, CRO-Learning. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\"."
+      "name": "web",
+      "version": "0.3.0",
+      "path": "skills/eigene/web/SKILL.md",
+      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, UI-Motion-Komponenten. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\"."
     },
     {
-      "name": "r-last30days",
+      "name": "last30days",
       "version": "3.16.0",
-      "path": "skills/imported/r-last30days/SKILL.md",
+      "path": "skills/imported/last30days/SKILL.md",
       "description": "Recherchiert, was Leute in den letzten 30 Tagen wirklich über ein Thema sagen — Posts und Engagement aus Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub und dem Web, inkl. doctor-Health-Check. Vendored aus last30days-skill (mvanhorn). VORAUSSETZUNG: SCRAPECREATORS_API_KEY (ohne Key laufen nur keyless/degradierte Quellen). Trigger: \"last30days\", \"was sagen Leute über\", \"Trend-/Ad-Library-Scan\", \"Recency-Recherche\"."
     },
     {
-      "name": "r-brainstorm",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-brainstorm/SKILL.md",
-      "description": "Verwandelt eine Idee durch geführten Dialog in eine geprüfte Design-Spec, bevor auch nur eine Zeile Code geschrieben wird. Fragt einzeln nach, schlägt 2-3 Ansätze mit Trade-offs vor, lässt die Spec vom Nutzer freigeben und übergibt danach an r-plan. Trigger: \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"bevor wir loslegen\", \"Anforderungen klären\"."
+      "name": "brainstorm",
+      "version": "0.2.0",
+      "path": "skills/methodik/brainstorm/SKILL.md",
+      "description": "Verwandelt eine Idee durch geführten Dialog in eine geprüfte Design-Spec, bevor auch nur eine Zeile Code geschrieben wird. Fragt einzeln nach, schlägt 2-3 Ansätze mit Trade-offs vor, lässt die Spec vom Nutzer freigeben und übergibt danach an plan. Jeder Vorschlag braucht ein Zitat aus Codebase/Gespräch — generische Ideen ohne Beleg sind Rauschen, keine Option. Trigger: \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"bevor wir loslegen\", \"Anforderungen klären\"."
     },
     {
-      "name": "r-code-review",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-code-review/SKILL.md",
-      "description": "Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern (frischer Subagent, präzise Diff-Grenze statt Session-Historie), und wie Feedback danach behandelt wird — verifizieren statt performativ zustimmen, gezielt zurückfragen, technisch begründet widersprechen. Für tiefere Reviews steht optional die Zwei-Achsen-Methode (Standards vs. Spec, mit Fowler-Smell-Baseline) als Referenz bereit. Trigger: \"Code Review\", \"review anfordern\", \"Feedback bekommen\", \"PR review\", \"vor dem Merge prüfen\"."
+      "name": "code-review",
+      "version": "0.2.0",
+      "path": "skills/methodik/code-review/SKILL.md",
+      "description": "Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern (frischer Subagent, präzise Diff-Grenze statt Session-Historie), und wie Feedback danach behandelt wird — verifizieren statt performativ zustimmen, gezielt zurückfragen, technisch begründet widersprechen. Jeder Fund bekommt eine von drei Eskalationsstufen (auto-fix/no-op/ask-user), Reviews starten mit der erklärten Absicht des Autors, nicht nur dem Diff. Für tiefere Reviews steht optional die Zwei-Achsen-Methode (Standards vs. Spec, mit Fowler-Smell-Baseline) und ein 9-Kategorien-Audit-Playbook als Referenz bereit. Trigger: \"Code Review\", \"review anfordern\", \"Feedback bekommen\", \"PR review\", \"vor dem Merge prüfen\"."
     },
     {
-      "name": "r-finish",
+      "name": "finish",
       "version": "0.1.0",
-      "path": "skills/methodik/r-finish/SKILL.md",
+      "path": "skills/methodik/finish/SKILL.md",
       "description": "Schließt einen Entwicklungs-Branch sauber ab: Tests verifizieren, Umgebung erkennen, genau die passenden Optionen anbieten (Merge, PR, Behalten, Verwerfen), gewählten Weg ausführen, Workspace aufräumen. Trigger: \"Branch abschließen\", \"fertig implementiert\", \"mergen oder PR\", \"finishing a development branch\"."
     },
     {
-      "name": "r-grill",
+      "name": "grill",
       "version": "0.1.0",
-      "path": "skills/methodik/r-grill/SKILL.md",
+      "path": "skills/methodik/grill/SKILL.md",
       "description": "Bohrt einen Plan, eine Entscheidung oder eine Idee rigoros durch, bis ein gemeinsames Verständnis steht — eine Frage nach der anderen, mit Empfehlung, Fakten selbst recherchiert statt erfragt. Kein Umsetzen vor Bestätigung. Trigger: \"grillen\", \"grill mich\", \"Plan stresstesten\", \"Entscheidung durchleuchten\"."
     },
     {
-      "name": "r-handoff-ext",
+      "name": "handoff-ext",
       "version": "0.1.0",
-      "path": "skills/methodik/r-handoff-ext/SKILL.md",
+      "path": "skills/methodik/handoff-ext/SKILL.md",
       "description": "Verdichtet das laufende Gespräch zu einem kompakten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person, die weiterarbeiten soll — mit Redaktion sensibler Daten und Verweis statt Duplikat auf bestehende Artefakte. Trigger: \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
     },
     {
-      "name": "r-plan",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-plan/SKILL.md",
-      "description": "Verwandelt eine freigegebene Spec in einen bissgroßen Umsetzungsplan mit exakten Dateipfaden, vollständigem Code je Schritt und TDD-Zyklus — für einen Umsetzer, der die Codebasis nicht kennt. Trigger: \"Umsetzungsplan\", \"Plan schreiben\", \"Spec in Tasks zerlegen\", \"implementation plan\"."
+      "name": "plan",
+      "version": "0.2.0",
+      "path": "skills/methodik/plan/SKILL.md",
+      "description": "Verwandelt eine freigegebene Spec in einen bissgroßen Umsetzungsplan mit exakten Dateipfaden, vollständigem Code je Schritt und TDD-Zyklus — für einen Umsetzer, der die Codebasis nicht kennt. Jeder Schritt endet an einem Verify-Kommando, jeder Plan trägt einen Drift-Check und explizite STOP-Bedingungen statt Freestyle bei Unstimmigkeiten. Trigger: \"Umsetzungsplan\", \"Plan schreiben\", \"Spec in Tasks zerlegen\", \"implementation plan\"."
     },
     {
-      "name": "r-research",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-research/SKILL.md",
-      "description": "Recherchiert eine Sachfrage gegen vertrauenswürdige Primärquellen (Docs, Source Code, Specs, First-Party-APIs) im Hintergrund und hält die Befunde als zitierte Markdown-Datei fest. Trigger: \"recherchieren\", \"Doku nachschlagen\", \"API-Fakten sammeln\", \"Hintergrund-Recherche\"."
+      "name": "research",
+      "version": "0.2.0",
+      "path": "skills/methodik/research/SKILL.md",
+      "description": "Recherchiert eine Sachfrage gegen vertrauenswürdige Primärquellen (Docs, Source Code, Specs, First-Party-APIs) im Hintergrund und hält die Befunde als zitierte Markdown-Datei fest. Die Recherche-Frage selbst wird zuerst scharf formuliert (Ziel + Entscheidung, 3-6 Unterfragen, Quellenhierarchie) und vor Abschluss läuft eine Gap-Round-Selbstkritik. Trigger: \"recherchieren\", \"Doku nachschlagen\", \"API-Fakten sammeln\", \"Hintergrund-Recherche\"."
     },
     {
-      "name": "r-sdd",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-sdd/SKILL.md",
-      "description": "Führt einen Umsetzungsplan aus, indem pro Task ein frischer Subagent dispatcht, gefolgt von Spec- und Qualitätsreview, plus finaler Gesamt-Review am Ende. Trennt Kontexte sauber, hält Fortschritt in einem Ledger fest statt im Gesprächsgedächtnis. Trigger: \"Plan umsetzen\", \"Subagent pro Task\", \"Tasks ausführen\", \"subagent-driven development\"."
+      "name": "sdd",
+      "version": "0.2.0",
+      "path": "skills/methodik/sdd/SKILL.md",
+      "description": "Führt einen Umsetzungsplan aus, indem pro Task ein frischer Subagent dispatcht, gefolgt von Spec- und Qualitätsreview, plus finaler Gesamt-Review am Ende. Trennt Kontexte sauber (idealerweise per Worktree-Isolation), hält Fortschritt in einem Ledger fest statt im Gesprächsgedächtnis, und pflegt zwischen Sessions einen lebenden Backlog statt verwaister Pläne. Trigger: \"Plan umsetzen\", \"Subagent pro Task\", \"Tasks ausführen\", \"subagent-driven development\"."
     },
     {
-      "name": "r-tdd",
+      "name": "tdd",
       "version": "0.1.0",
-      "path": "skills/methodik/r-tdd/SKILL.md",
+      "path": "skills/methodik/tdd/SKILL.md",
       "description": "Test-Driven Development als eiserne Regel: erst der fehlschlagende Test, dann minimaler Code, dann Refactor. Kein Produktionscode ohne vorher gesehenen Fehlschlag. Trigger: \"TDD\", \"Test-Driven Development\", \"Red-Green-Refactor\", \"Feature implementieren\", \"Bugfix schreiben\"."
     },
     {
-      "name": "r-tickets",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-tickets/SKILL.md",
-      "description": "Zerlegt einen Plan, eine Spec oder das laufende Gespräch in tracer-bullet Tickets — vertikale Slices mit expliziten Blocking-Kanten statt horizontaler Layer-Schnitte. Trigger: \"Tickets schreiben\", \"in Tickets aufteilen\", \"Backlog bauen\", \"to-tickets\"."
+      "name": "tickets",
+      "version": "0.2.0",
+      "path": "skills/methodik/tickets/SKILL.md",
+      "description": "Zerlegt einen Plan, eine Spec oder das laufende Gespräch in tracer-bullet Tickets — vertikale Slices mit expliziten Blocking-Kanten statt horizontaler Layer-Schnitte. Priorisiert per Tiebreaker (Unblocker zuerst, Security-Funde mit hoher Konfidenz vorziehen, \"nicht wert\" ist ein gültiges Verdikt). Trigger: \"Tickets schreiben\", \"in Tickets aufteilen\", \"Backlog bauen\", \"to-tickets\"."
     },
     {
-      "name": "r-to-spec",
+      "name": "to-spec",
       "version": "0.1.0",
-      "path": "skills/methodik/r-to-spec/SKILL.md",
+      "path": "skills/methodik/to-spec/SKILL.md",
       "description": "Verdichtet den bereits geführten Gesprächs- und Codebase-Kontext zu einer Spec (PRD) — kein neues Interview, reine Synthese des Bekannten. Trigger: \"Spec schreiben\", \"PRD bauen\", \"aus dem Gespräch eine Spec machen\", \"to-spec\"."
     },
     {
-      "name": "r-writing-skills",
-      "version": "0.1.0",
-      "path": "skills/methodik/r-writing-skills/SKILL.md",
-      "description": "Beschreibt, wie in diesem Repo neue r-*-Skills geschrieben werden: Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter → SKILL.md-Schritte → references/), unser Pflicht-Frontmatter-Schema und wann validate-skill.py grün sein muss. Ergänzt um die TDD-Testdisziplin aus superpowers für Skills, die unter Druck befolgt werden müssen. Trigger: \"neuen Skill schreiben\", \"SKILL.md anlegen\", \"Skill überarbeiten\", \"r-Skill erstellen\", \"Frontmatter-Schema\"."
-    },
-    {
-      "name": "r-design",
-      "version": "0.1.0",
-      "path": "skills/r-design/SKILL.md",
-      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\"."
+      "name": "writing-skills",
+      "version": "0.2.0",
+      "path": "skills/methodik/writing-skills/SKILL.md",
+      "description": "Beschreibt, wie in diesem Repo neue Skills geschrieben werden: Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter → SKILL.md-Schritte → references/), unser Pflicht-Frontmatter-Schema und wann validate-skill.py grün sein muss. Ergänzt um die TDD-Testdisziplin aus superpowers, die zwei Skill-Archetypen (Capability- vs. Process-Primitive) und eine Sicherheits-/Qualitäts-Checkliste für jedes vendorierte Fremd-Skill. Trigger: \"neuen Skill schreiben\", \"SKILL.md anlegen\", \"Skill überarbeiten\", \"Skill erstellen\", \"Frontmatter-Schema\", \"Fremd-Skill vendorieren\"."
     }
   ]
 }

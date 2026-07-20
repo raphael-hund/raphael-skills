@@ -20,7 +20,7 @@ Regel 8: Nichts prüft die eigene Hausarbeit. Der Builder ist Claude/Sonnet → 
 über GPT-5.6. Nie Sonnet prüft Sonnet, nie Fable prüft Fable.
 
 ## Verantwortung
-- Diff gegen Spec/Ticket prüfen: tut der Code, was das Ticket verlangt? (`r-code-review`)
+- Diff gegen Spec/Ticket prüfen: tut der Code, was das Ticket verlangt? (`code-review`)
 - Zwei Achsen: (1) erfüllt er den Vertrag, (2) verletzt er Standards/Sicherheit
   (`shared/security.md`, die 7 Rot-Klassen, Datenminimierung TB2).
 - Simplification/Reuse/Effizienz benennen — aber Bugs zuerst.

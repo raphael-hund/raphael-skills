@@ -13,11 +13,11 @@ raphael-skills/
 │   ├── validate-skill.py   # prueft SKILL.md-Frontmatter (Pflichtfelder)
 │   └── build-index.py      # schreibt/prueft index.json aus allen SKILL.md
 └── skills/
-    ├── eigene/              # Raphaels eigene r-*-Skills fuer die Kundenarbeit
-    │                         #   (Loops 1-4: onboard/web/ads/seo) + Quer-Skills
+    ├── eigene/              # Raphaels eigene Skills fuer die Kundenarbeit
+    │                         #   (Loops 1-4: onboard/web/ads/seo) + QueSkills
     │                         #   (copywriting, eval, orchestrate, handoff, report, offers)
     │                         #   + extract-approach ("skillify this")
-    ├── r-design/             # eigener Top-Level-Ordner (nicht in eigene/), weil er
+    ├── design/             # eigener Top-Level-Ordner (nicht in eigene/), weil er
     │                         #   ein vendorter Fusion-Skill mit eigenem scripts/+vendor/
     │                         #   Payload ist (impeccable + taste + ui-ux-pro-max)
     ├── imported/             # Platzhalter fuer vendorte Fremd-Skills (noch leer)
@@ -64,7 +64,7 @@ Stattdessen:
 
 1. **Vorher lesen** — kein Skill wird blind uebernommen.
 2. **Fork/Kopie, auf einen Commit-Hash gepinnt** — der Hash steht in einer
-   `VENDORING.md` neben der Skill-Kopie (Referenzbeispiel: `skills/r-design/VENDORING.md`,
+   `VENDORING.md` neben der Skill-Kopie (Referenzbeispiel: `skills/design/VENDORING.md`,
    dort dokumentiert als Fusion aus drei Fremd-Quellen mit Commit-Tabelle,
    Lizenz-Spalte und bewusst entfernten Bezahl-/Netzwerk-Abhaengigkeiten).
 3. **Umbenennen in den `r-`-Namespace** — verhindert Namenskollisionen und
