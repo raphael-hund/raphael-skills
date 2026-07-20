@@ -1,12 +1,13 @@
 ---
 name: web
-version: 0.5.1
+version: 0.6.0
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
-  nachbauen, UI-Motion-Komponenten. Trigger: "Website bauen", "Landingpage",
-  "Sitemap", "Website-QA", "CRO", "Design polieren", "Slop entfernen",
-  "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet".
+  nachbauen, Bild-Rebuild, UI-Motion-Komponenten. Trigger: "Website bauen",
+  "Landingpage", "Sitemap", "Website-QA", "CRO", "Design polieren",
+  "Slop entfernen", "Referenzseite nachbauen", "Website clonen",
+  "Popup/Lead-Magnet", "Screenshot nachbauen", "aus Bild bauen".
 class: F
 scope: agency
 sensitivity: internal
@@ -16,6 +17,7 @@ loads:
   - references/landingpage-struktur.md
   - references/informationsarchitektur.md
   - references/web-clone-playbook.md
+  - references/rebuild-from-image.md
   - references/ui-components/INDEX.md
   - references/motion-doktrin.md
   - references/ui-layouts-catalog.md
@@ -94,6 +96,14 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Soll eine bestehende Referenzseite als Vorlage/Stil dienen ("baue mir etwas Ähnliches
    wie X", "clone diese Landingpage") → **zuerst** `references/web-clone-playbook.md` laden
    (Entscheidungsbaum, Lizenz-Check, Komplexitätsskala L1–L6) **bevor** Art Direction beginnt.
+   Ist die Vorlage kein Link, sondern ein **Bild** (Screenshot, Mockup,
+   Figma-Export, Fullpage-Longshot — "Screenshot nachbauen", "aus Bild bauen",
+   "pixelgenau aus dem Bild umsetzen") → **zuerst** `references/rebuild-from-image.md`
+   laden (Sektions-Analyse, Renderstrategie pro Element, Rebuild-Prompt,
+   Pixel-Treue-Check gegen 1440/768/390 px). Beide Vorlagen gleichzeitig
+   vorhanden (Screenshot einer Seite, deren URL man auch hat) → web-clone-
+   playbook.md zuerst, rebuild-from-image.md nur für Bildteile ohne
+   erreichbaren Source.
 5. **components** — Komponenten-Spezifikation aus Art Direction. Copy-paste-fertige
    Motion-Komponenten (Buttons, Modals, Tabs, Command-Palette, …) → `references/ui-components/INDEX.md`
    + Motion-Doktrin (wann/wie animieren, Reduced-Motion-Pflicht) → `references/motion-doktrin.md`.
