@@ -90,9 +90,9 @@ Gedächtnis diagnostizieren. Immer nur die 1–3 wirklich relevanten Seiten lade
 | Plattform-/API-/Policy-Wissen refreshen oder abgelaufene Claims verifizieren | `ads-research.md` |
 | Wettbewerber-Ads über Transparenz-Bibliotheken analysieren | `ads-competitor.md` |
 | eine Paid-Media-Strategie/Media-Plan (Objectives, Kanalwahl, Architektur) bauen | `ads-plan.md` |
-| Kampagnenkonzepte, Messaging, Copy und Creative-Briefs erzeugen | `ads-create.md` |
-| bestehendes Werbematerial auditieren (Hooks, Format-Coverage, Fatigue, Message-Match) | `ads-creative.md` |
-| Ad-Bilder aus einem validierten Brief generieren (Provider, Provenance) | `ads-generate.md` |
+| Kampagnenkonzepte, Messaging, Copy und Creative-Briefs **NEU erzeugen** | `ads-create.md` |
+| **BESTEHENDES** Werbematerial auditieren (Hooks, Format-Coverage, Fatigue, Message-Match) | `ads-creative.md` |
+| Ad-**Bilddateien** aus einem validierten Brief generieren (Provider, Provenance) | `ads-generate.md` |
 | Produktfoto-Varianten (Studio/Lifestyle/Ingredient) generieren | `ads-photoshoot.md` |
 | eine Landing-Page für Paid-Traffic prüfen (Message-Match, Mobile, Consent, Friction) | `ads-landing.md` |
 | eine Testwelle/ein A/B-Experiment designen und auswerten (Hypothese, Sample-Size, Stopp-Regel) | `ads-test.md` |
@@ -124,6 +124,25 @@ Gedächtnis diagnostizieren. Immer nur die 1–3 wirklich relevanten Seiten lade
 Raphael skaliert v.a. **Meta**, also ist `ads-meta.md` der Normalfall. Nie alle 12 Plattformen
 durchgehen. Quermaterie (Attribution, Server-Side-Tracking, Budget, Scoring, Benchmarks,
 Bidding, Denk-Framework) kommt **separat** aus dem ersten Block dazu, nicht aus der Plattform-Seite.
+
+### Belegte Muster & Referenz-Notizen (eigene Tiefe, an die Ablauf-Schritte gekoppelt)
+
+Diese datierten Seiten in `wiki/ads/` tragen die **eigene, belegte Substanz** (echte Creatives, KPI-Hierarchien, Kampagnenstruktur) und ergänzen die generischen `ads-*.md`. Im passenden Ablauf-Schritt lesen:
+
+| Ablauf-Schritt | dann lies |
+|---|---|
+| voc-mine / angles (Voice-of-Customer → Winkel) | `2026-07-20-voice-of-customer-angle-produktions-pipeline.md` |
+| angles: Awareness-Stufe & Funnel-Zuordnung | `2026-07-20-referenz-awareness-funnel-zuordnung.md` |
+| angles: bewährte Nische auf neue übertragen (Make) | `2026-07-20-referenz-nischen-transfer-make.md` |
+| video-scripts: Skript-Struktur / Skripte für sophisticated ICP | `2026-07-20-referenz-video-skript-struktur.md`, `2026-07-20-video-ad-skripte-sophisticated-icp.md` |
+| ad-copy: Offer-/Garantie-/CTA-Muster | `2026-07-20-referenz-offer-garantie-cta-muster.md` |
+| statics: Muster & Konzept-Prinzipien | `2026-07-20-referenz-static-ad-muster.md`, `2026-07-20-static-ad-konzept-prinzipien.md` |
+| Schaltung/Pixel-Regel: Lead-Qualifizierung Pixel/CAPI | `2026-07-20-lead-qualifizierung-pixel-conversions-api.md` |
+| perf-analyse: Metrik-Hierarchie / Testing-vs-Scaling / eigene Creative-Lehren | `2026-07-20-meta-ads-metrik-hierarchie-kpi.md`, `2026-07-20-testing-vs-scaling-kampagnenstruktur.md`, `2026-07-20-eigene-creatives-performance-lehren.md` |
+
+(`README.md` im Ordner ist eine Ordnerbeschreibung, keine Wissensseite — nicht laden.)
+
+**Kern vs. Tiefe:** Die operativen `references/` (loop3-ablauf, hook-taxonomie, claims-verbote, static-ad-templates) sind der **Kern** jeder Arbeit; die Brain-Seiten oben sind **Tiefen-Nachschlag** für Spezialfälle. Bei Themen-Überschneidung (z. B. „Copy erzeugen": reference vs. `ads-create.md`) **führt die `references/`-Quelle**.
 
 ## Ablauf (Detail in references/loop3-ablauf.md)
 

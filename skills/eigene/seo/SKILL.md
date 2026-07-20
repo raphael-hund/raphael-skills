@@ -74,7 +74,7 @@ Die operative Arbeit steuert der Skill selbst (siehe Reference-Routing oben). Tr
 | Wenn die Aufgabe … | dann lies |
 |---|---|
 | eine ganze Website von A–Z durchleuchten, Health-Score + Prioritätenliste liefern | `seo-audit.md` |
-| Gesamt-Synthese: Health-Score-Gewichte, Branchen-Erkennung, Quality-Gates zusammenführen | `seo.md` |
+| Gesamt-Synthese ÜBER MEHRERE Audits (Health-Score-Gewichte/Branchen-Template/Quality-Gates zusammenführen) — für den normalen Einzel-Audit reicht `seo-audit.md` | `seo.md` |
 | eine einzelne URL tief prüfen (Title/Meta/H1, Keyword-Dichte, Schema, CWV-Risiken) | `seo-page.md` |
 | SEO-Strategie/Roadmap für neue oder bestehende Site inkl. Branchen-Template aufsetzen | `seo-plan.md` |
 | evidenz-geführtes Betriebsmodell (Find→Leverage→Optimize→Win) + Prompt-Bibliothek anwenden | `seo-flow.md` |
