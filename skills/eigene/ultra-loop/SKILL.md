@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.3.3
+version: 0.3.4
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents

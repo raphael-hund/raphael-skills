@@ -38,6 +38,12 @@ Jeder Fund braucht diese Kette, nicht nur "X lief schlecht".
 
 - **Verschwendete Agent-Dispatches**: Kosten/Aufwand vs. genutztes Ergebnis —
   wurde ein Subagent-Output verworfen oder nur teilweise verwendet?
+  Bei rundenübergreifenden „X wurde doppelt gemacht"-Behauptungen ZUERST die
+  Startzeiten der beiden Dispatches vergleichen (meta.json / journal-Reihenfolge):
+  Ein Dispatch ist nur dann redundant, wenn er NACH dem bereits fertigen
+  Ergebnis lief. Ein Such-/Recherche-Dispatch, der einen Kandidaten VOR dessen
+  Vendorisierung vorschlägt, ist die Entdeckung, kein Duplikat — Kausalität
+  nicht rückwärts lesen.
 - **Übergroße Tool-Ergebnisse**: z.B. ein großer Read, dessen Inhalt nie
   wieder referenziert wurde — Zeichen für fehlendes Offset/Limit oder dass
   ein gezielterer Zugriff gereicht hätte.
