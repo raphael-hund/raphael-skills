@@ -85,3 +85,12 @@ return { kritik_funde: alle.length, fixes, review }
 - Bei Fehlschlag: Script-Datei patchen und mit `resumeFromRunId` fortsetzen —
   fertige Agenten kommen aus dem Cache.
 - Vor „Ergebnis ist leer"-Diagnosen: `journal.jsonl` im Transcript-Dir lesen.
+
+## Slice-Falle (3x in der Praxis passiert — R13, R15)
+
+Große Zwischenergebnisse NIE per `JSON.stringify(x).slice(0, N)` an
+Folge-Agenten übergeben — der Slice kappt still Fälle, und der Folge-Agent
+arbeitet unvollständig, ohne es zu merken. Stattdessen: Zwischenergebnis
+als Datei ins Scratchpad schreiben (ein kleiner Haiku-Agent oder das
+Cockpit) und dem Folge-Agenten den PFAD geben — er liest selbst per Read.
+Faustregel: alles über ~8k Zeichen geht als Datei, nicht als Prompt-Text.

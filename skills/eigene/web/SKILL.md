@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.6.1
+version: 0.6.2
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
@@ -125,7 +125,11 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Formular-
    Backends, Kundendaten-Handling, npm-Abhängigkeiten (Formular/Tracking/Payment) →
    `references/security-audit-playbook.md` (Fail-Open-Defaults, Footgun-Configs,
-   Supply-Chain-Check, Quelle Trail of Bits). Braucht der
+   Supply-Chain-Check, Quelle Trail of Bits). Bei Code-Review von Formularen/API-Routes/
+   Webhooks (z.B. Popup-Lead-Magnet mit E-Mail-Erfassung) zusätzlich
+   `/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`
+   nachladen (A02/A03/A05/A08/A10-Einträge, DSGVO-Consent des Formularfelds prüfen).
+   Braucht der
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
    Schreibzugriff für Agenten).
 7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).
