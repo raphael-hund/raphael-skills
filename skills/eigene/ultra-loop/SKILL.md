@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.3.4
+version: 0.3.5
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
@@ -78,7 +78,11 @@ erzwingt die Run-ID als Beweis.
 5. **Gates grün:** die im Mandat genannten (z. B. `validate-skill.py`,
    `build-index.py`, `candidate-provenance.py`, `wiki-lint.sh`).
 6. **Committen + pushen:** nur konkret bearbeitete Pfade (NIE `git add -A` —
-   Parallel-Sessions!), aussagekräftige Message.
+   Parallel-Sessions!), aussagekräftige Message. **Vor jedem Push den
+   ahead-Stand prüfen** (`git status -sb`): Sitzen fremde ungepushte Commits
+   unter dem eigenen, würde ein Push deren Push-Gate (z.B. Sol-PASS der
+   Brain-Loop-Session) umgehen — dann eigenen Commit zurückstellen oder auf
+   deren Push warten, nie durchpushen (Lektion R29).
 7. **Protokoll fortschreiben:** nach `references/runden-protokoll.md`
    (Runde, Workflow-Run-ID, Agentenzahl, Funde→Fixes, Commits, Nächstes).
 
