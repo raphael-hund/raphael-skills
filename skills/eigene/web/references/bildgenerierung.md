@@ -44,18 +44,31 @@ Referenzen vorhanden?
 ├── JA  → GPT Image 2  (gpt_image_2)   ← Standard, sobald es IRGENDEINE Referenz gibt
 │         ├── Inhaltliche Referenz (was ist zu sehen)
 │         └── Visuelle/stilistische Referenz (wie soll es aussehen)
-└── NEIN → Recraft V4.1 (recraft_v4_1) ← nur wenn es GAR KEINE Referenz gibt
-              mit striktem JSON-Prompting, ohne Color-Grading
+└── NEIN → Was für ein Bild?
+          ├── Illustration / stilisiert (2D/3D) → GPT Image 2  ← bester Illustrator
+          └── echt fotorealistisch              → Recraft V4.1 (recraft_v4_1)
+                mit striktem JSON-Prompting, ohne Color-Grading
+                ⚠ KEINE Nahaufnahme-Gesichter echter Menschen — nur Distanz / beiläufig
 
 Previews (schnell, wegwerfbar) → Nano Banana 2 (nano_banana_flash), sonst NIE.
 Auflösung finaler Assets → immer 4k oder 2k, nie 1k.
 ```
+
+**Merksatz:** GPT Image 2 ist die erste Wahl für alles Stilisierte und alles mit
+Referenz. Recraft ist der **Realismus-Spezialist** — nur ranholen, wenn es echt
+fotorealistisch aussehen muss.
 
 ### 1. Referenzen vorhanden → GPT Image 2 (`gpt_image_2`)
 
 **Sobald es eine Referenz gibt, ist GPT Image 2 der Default.** Referenzen werden per
 `--image-references` (Alias `--image`) übergeben — mehrfach wiederholen für mehrere
 Bilder. Genau das ist das „Add Image 1 / Add Image 2 / …"-Prinzip.
+
+**GPT Image 2 ist außerdem der beste Illustrator.** Jede stilisierte Illustration
+(2D, 3D-Render, Icon-Szenen, „geile Illustrationen") läuft über GPT Image 2 — **auch
+ohne Referenz**. Recraft ist dafür die falsche Wahl (das ist der Realismus-Weg unten).
+Mit Stil-Referenz (bestehende Illustrationen) wird es noch treffsicherer, aber
+zwingend ist sie hier nicht.
 
 Zwei Arten von Referenz — meist gemischt:
 
@@ -96,10 +109,17 @@ Params (`gpt_image_2`): `aspect_ratio` (1:1,4:3,3:4,16:9,9:16,3:2,2:3) ·
 `resolution` (1k,2k,4k, Default 2k → **auf 4k setzen** für Finals) ·
 `quality` (low,medium,high; Default high) · `image_references` (Array).
 
-### 2. Keine Referenz → Recraft V4.1 (`recraft_v4_1`)
+### 2. Echt fotorealistisch, keine Referenz → Recraft V4.1 (`recraft_v4_1`)
 
-Nur wenn es **gar keine** Referenz gibt (weder Inhalt noch Stil). Recraft ist reines
-Text-zu-Bild — **kein `image_references`**.
+Recraft ist der **Realismus-Spezialist** — nur ranholen, wenn das Bild echt
+fotorealistisch aussehen soll und es keine Referenz gibt. Alles Stilisierte gehört zu
+GPT Image 2 (oben). Recraft ist reines Text-zu-Bild — **kein `image_references`**.
+
+**Gesichter echter Menschen: nur aus Distanz oder beiläufig.** Keine
+Nahaufnahme-Porträts realer Personen mit Recraft — KI-Gesichter fallen im Close-up auf
+und werden schnell unheimlich/fake. Menschen nur auf mittlere/weite Distanz, angeschnitten,
+von der Seite, in Bewegung, als Teil der Szene — nie das erkennbare Gesicht als Motiv.
+Braucht die Seite ein echtes, nahes Gesicht → **echtes Foto** (Shooting/Stock), nicht Recraft.
 
 **Das Recraft-Problem:** Recraft baut ungefragt gern einen **cinematischen, leicht
 getönten, filmischen Look** (Teal-Orange-Grade, Film-Tint). Das passt fast nie zu
@@ -159,14 +179,18 @@ Default-Ästhetik.
 ## Harte Regeln (Kurzfassung)
 
 1. **Referenz da → GPT Image 2.** Immer. `--image-references` = Add Image 1/2/…
-2. Inhaltliche Referenz fehlt als Bild → **online suchen**, nie erfinden.
-3. Visuelle Referenz (Shooting-Look, Illustration) → **als Referenzbilder mitgeben**,
+2. **Illustration/stilisiert (2D/3D) → GPT Image 2**, auch ohne Referenz (bester Illustrator).
+3. Inhaltliche Referenz fehlt als Bild → **online suchen**, nie erfinden.
+4. Visuelle Referenz (Shooting-Look, Illustration) → **als Referenzbilder mitgeben**,
    Übernahme im Prompt benennen (Farbe/Licht/Stil).
-4. **Keine Referenz → Recraft**, mit JSON-Prompting, Farbe im Prompt festgenagelt.
-5. **Recraft: kein Color-Grading** (`colors`/`background_color`/`color_grading_lut` aus).
-6. **Auflösung: 4k oder 2k** (GPT 4k, Recraft max 2k). Nie 1k für Finals.
-7. **Nano Banana nur als Nano Banana 2 (`nano_banana_flash`) für Previews.**
-8. Vorab **immer** `hf generate cost`; Jobs mit `--wait` bzw. `hf generate wait` abholen.
+5. **Nur echt fotorealistisch & ohne Referenz → Recraft**, mit JSON-Prompting,
+   Farbe im Prompt festgenagelt.
+6. **Recraft: keine Nahaufnahme-Gesichter echter Menschen** — nur Distanz/beiläufig;
+   echtes nahes Gesicht → echtes Foto.
+7. **Recraft: kein Color-Grading** (`colors`/`background_color`/`color_grading_lut` aus).
+8. **Auflösung: 4k oder 2k** (GPT 4k, Recraft max 2k). Nie 1k für Finals.
+9. **Nano Banana nur als Nano Banana 2 (`nano_banana_flash`) für Previews.**
+10. Vorab **immer** `hf generate cost`; Jobs mit `--wait` bzw. `hf generate wait` abholen.
 
 ## Guardrails (Kundenprojekte)
 

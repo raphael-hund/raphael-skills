@@ -115,8 +115,10 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    2D/3D-Illustration) → `references/bildgenerierung.md` laden: Standard-Werkzeug ist
    die **Higgsfield CLI**, mit festem Entscheidungsbaum — **Referenz vorhanden →
    GPT Image 2** (`--image-references` = „Add Image 1/2/…", für inhaltliche UND
-   stilistische Referenzen), **keine Referenz → Recraft V4.1** mit JSON-Prompting
-   und ohne Color-Grading, **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht
+   stilistische Referenzen; GPT Image 2 ist auch der beste **Illustrator**, 2D/3D auch
+   ohne Referenz), **nur echt fotorealistisch ohne Referenz → Recraft V4.1** mit
+   JSON-Prompting, ohne Color-Grading und ohne Nahaufnahme-Gesichter echter Menschen,
+   **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht
    verwechseln mit den **Design-Referenz-Mockups** aus `imagegen-web`/`imagegen-mobile`
    (ein Mockup pro Sektion) — die Tabelle „Abgrenzung" in `bildgenerierung.md` trennt das.
 5. **components** — Komponenten-Spezifikation aus Art Direction. Copy-paste-fertige
@@ -186,7 +188,9 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
 - Motion-Komponenten aus `ui-components/` nie ohne `useReducedMotion()`-Äquivalent
   einbauen — die globale CSS-Media-Query stoppt keine JS-Animationen.
 - **Bild-Assets über die Higgsfield CLI, nach `references/bildgenerierung.md`** —
-  Referenz vorhanden ist der Normalfall → **GPT Image 2**; Recraft nur ohne Referenz
-  (dann JSON-Prompt gegen den Filmlook, **kein** Color-Grading). Nano Banana nur als
-  Nano Banana 2 für Previews. Bei Kundenseiten vorher klären, ob KI-Bilder erlaubt
-  sind (manche wollen nur echte Fotos) — Datenminimierung (TB2) beachten.
+  Referenz vorhanden **oder Illustration (2D/3D)** → **GPT Image 2**; Recraft nur für
+  **echt fotorealistische** Bilder ohne Referenz (JSON-Prompt gegen den Filmlook,
+  **kein** Color-Grading, **keine** Nahaufnahme-Gesichter echter Menschen — nur
+  Distanz/beiläufig). Nano Banana nur als Nano Banana 2 für Previews. Bei Kundenseiten
+  vorher klären, ob KI-Bilder erlaubt sind (manche wollen nur echte Fotos) —
+  Datenminimierung (TB2) beachten.
