@@ -21,10 +21,26 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { basename, extname, join, resolve } from "node:path";
 
-const CRF = "30";        // Qualitaet (niedriger = besser/groesser)
-const CPU_USED = "5";    // libaom Speed/Quality-Tradeoff (0 lang/best … 8 schnell)
+const CRF = "30";        // ffmpeg-Fallback: Qualitaet (niedriger = besser/groesser)
+const CPU_USED = "5";    // ffmpeg-Fallback: libaom Speed/Quality-Tradeoff (0 best … 8 schnell)
 
 function die(msg) { console.error("FEHLER: " + msg); process.exit(1); }
+
+function have(bin) {
+  try { execFileSync("sh", ["-c", `command -v ${bin}`], { stdio: "ignore" }); return true; }
+  catch { return false; }
+}
+const HAVE_AVIFENC = have("avifenc");   // libavif — erhaelt Alpha (Background-Remover!)
+
+// Alpha im Quellbild? (Background-Remover/freigestellte PNGs) -> AVIF mit Alpha noetig.
+function hasAlpha(src) {
+  try {
+    const pf = execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0",
+      "-show_entries", "stream=pix_fmt", "-of", "default=nk=1:nw=1", src],
+      { encoding: "utf8" }).trim();
+    return /(^|_)(rgba|argb|bgra|abgr|ya|pal8)|a$/i.test(pf);
+  } catch { return false; }
+}
 
 function parseFlags(argv) {
   const flags = {}; const pos = [];
@@ -58,6 +74,17 @@ function uniqueId(idx, base) {
 }
 
 function toAvif(src, outPath) {
+  const alpha = hasAlpha(src);
+  if (HAVE_AVIFENC) {
+    // avifenc erhaelt Alpha automatisch (separate Plane); -y 420 nur fuer opake Fotos (kleiner).
+    const args = ["--min", "20", "--max", "30", "-s", "6"];
+    if (!alpha) args.push("-y", "420");
+    args.push(src, outPath);
+    execFileSync("avifenc", args, { stdio: ["ignore", "ignore", "inherit"] });
+    return { alpha };
+  }
+  // Fallback: ffmpeg libaom — kann in diesem Build KEIN Alpha (geht verloren).
+  if (alpha) console.error("WARN: avifenc fehlt — Transparenz geht bei ffmpeg-Fallback verloren. `apt-get install libavif-bin`.");
   execFileSync("ffmpeg", [
     "-hide_banner", "-loglevel", "error", "-y",
     "-i", src,
@@ -65,6 +92,7 @@ function toAvif(src, outPath) {
     "-crf", CRF, "-cpu-used", CPU_USED, "-pix_fmt", "yuv420p",
     outPath,
   ], { stdio: ["ignore", "ignore", "inherit"] });
+  return { alpha: false };
 }
 
 function cmdAdd(pos, flags) {
@@ -81,7 +109,7 @@ function cmdAdd(pos, flags) {
   const outPath = join(dir, datei);
   if (existsSync(outPath)) die("Zieldatei existiert schon: " + outPath);
 
-  toAvif(src, outPath);
+  const { alpha } = toAvif(src, outPath);
 
   const entry = {
     id,
@@ -93,6 +121,7 @@ function cmdAdd(pos, flags) {
     referenzen: flags.ref ? flags.ref.split(",").map((s) => s.trim()).filter(Boolean) : [],
     prompt: flags.prompt || "",
     quelle: flags.quelle || "generiert",
+    transparenz: alpha,
     erstellt: flags.datum || "TBD",   // Datum bewusst nicht aus Date.now() (reproduzierbar)
     status: "aktiv",
   };

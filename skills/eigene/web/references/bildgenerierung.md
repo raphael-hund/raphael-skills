@@ -176,6 +176,35 @@ Herkunft der Methode: strukturiertes Prompting (das „JSON-Prompting-Skill"-Pri
 `image-to-prompt` als Extraktor. Ziel ist Kontrolle über Farbe/Stil, nicht Recrafts
 Default-Ästhetik.
 
+## Bild-Bearbeitung mit Higgsfield (nicht nur erzeugen)
+
+Higgsfield erzeugt nicht nur Bilder, es **bearbeitet und erweitert** sie auch. Ein
+bestehendes Asset (generiert oder geliefert) muss nicht neu geprompted werden — oft
+reicht eine gezielte Bearbeitung. Alle mit echten Job-Types/Params (`higgsfield model
+get <job_type>`). Übergabe des Ausgangsbilds per `--image` (= `--image-references`).
+
+| Aufgabe | Job-Type | Aufruf (Kurz) |
+|---|---|---|
+| **Hintergrund entfernen / freistellen** | `image_background_remover` | `--image ./foto.jpg` (genau 1) → **transparentes** Ergebnis |
+| **Bild erweitern / Canvas vergrößern (Outpaint)** | `outpaint` | `--image ./hero.jpg --aspect-ratio 21:9` (Hero auf Breitbild ziehen) |
+| **Gezielt ändern per Anweisung** (Objekt raus/rein, Farbe, Text) | `flux_kontext` | `--image ./bild.jpg --prompt "entferne die Person links"` (bis 4 Refs) |
+| **Hochskalieren, schnell** | `bytedance_image_upscale` | `--image ./bild.jpg --resolution 4k` |
+| **Hochskalieren / restaurieren, High-End** | `topaz_image` | `--image … --output-width 3840 --output-height 2160 --variant "High Fidelity V2"` |
+| **Auto (Modellwahl automatisch)** | `image_auto` | `--image … --prompt "…"` (bis 14 Refs) |
+
+```bash
+# Beispiel: Produktfoto freistellen → transparentes Ergebnis
+hf generate create image_background_remover --image ./sessel.jpg --wait
+# Beispiel: Hero-Foto auf 21:9 erweitern
+hf generate create outpaint --image ./hero.jpg --aspect-ratio 21:9 --wait
+```
+
+**Regel:** Jede Bearbeitung ergibt ein **neues** Bild → danach zwingend durch
+`bilder.mjs add` (AVIF + Index). Beim Freistellen ist das Ergebnis **transparent** —
+das wird als AVIF **mit Alpha** gespeichert und im Index als `transparenz: true`
+geführt (siehe unten). Weitere Higgsfield-Fähigkeiten (Video, 3D, Upscale, Marketing
+Studio) stehen in der Memory `higgsfield-cli` — hier nur die Web-Bild-relevanten Ops.
+
 ## Bild-Index + AVIF — Pflicht bei JEDEM Bild
 
 Gilt für **alle** Bilder im Projekt: selbst generierte **und** von Raphael gelieferte.
@@ -187,10 +216,15 @@ Zwei feste Regeln:
    **typ** (Hero/Produkt/Szene/Illustration-2D/-3D/Portrait…), **motiv** (was ist zu
    sehen, konkret), **style** (Look/Palette/Stil), **modell** (`gpt_image_2` /
    `recraft_v4_1` / `nano_banana_flash` / `-` bei geliefert), **referenzen** (genutzte
-   Referenzbilder), **prompt**, **quelle** (`generiert`/`geliefert`), **erstellt**, **status**.
+   Referenzbilder), **prompt**, **quelle** (`generiert`/`geliefert`), **transparenz**
+   (true/false, automatisch erkannt), **erstellt**, **status**.
 
-Das erledigt deterministisch das Helferskript `scripts/bilder.mjs` (nutzt ffmpeg,
-`libaom-av1` still-picture, keine npm-Abhängigkeiten):
+Das erledigt deterministisch das Helferskript `scripts/bilder.mjs` (keine
+npm-Abhängigkeiten). Konvertierung: **`avifenc`** (libavif) — erhält **Transparenz**
+(Pflicht für freigestellte Bilder aus dem Background-Remover), erkennt Alpha
+automatisch und schreibt `transparenz: true/false` in den Index. Fehlt `avifenc`
+(`apt-get install libavif-bin`), fällt das Skript auf ffmpeg zurück — **das verliert
+Alpha**, also für freigestellte Bilder unbedingt `avifenc` installiert lassen.
 
 ```bash
 DIR=/root/clients/client-<name>/web/assets   # ein Index pro Projekt
