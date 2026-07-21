@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.6.5
+version: 0.7.0
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
@@ -18,6 +18,7 @@ loads:
   - references/informationsarchitektur.md
   - references/web-clone-playbook.md
   - references/rebuild-from-image.md
+  - references/bildgenerierung.md
   - references/ui-components/INDEX.md
   - references/motion-doktrin.md
   - references/ui-layouts-catalog.md
@@ -110,6 +111,14 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    vorhanden (Screenshot einer Seite, deren URL man auch hat) → web-clone-
    playbook.md zuerst, rebuild-from-image.md nur für Bildteile ohne
    erreichbaren Source.
+   Sobald **echte Bild-Assets** gebraucht werden (Hero-Foto, Produkt-Shot, Szene,
+   2D/3D-Illustration) → `references/bildgenerierung.md` laden: Standard-Werkzeug ist
+   die **Higgsfield CLI**, mit festem Entscheidungsbaum — **Referenz vorhanden →
+   GPT Image 2** (`--image-references` = „Add Image 1/2/…", für inhaltliche UND
+   stilistische Referenzen), **keine Referenz → Recraft V4.1** mit JSON-Prompting
+   und ohne Color-Grading, **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht
+   verwechseln mit den **Design-Referenz-Mockups** aus `imagegen-web`/`imagegen-mobile`
+   (ein Mockup pro Sektion) — die Tabelle „Abgrenzung" in `bildgenerierung.md` trennt das.
 5. **components** — Komponenten-Spezifikation aus Art Direction. Copy-paste-fertige
    Motion-Komponenten (Buttons, Modals, Tabs, Command-Palette, …) → `references/ui-components/INDEX.md`
    + Motion-Doktrin (wann/wie animieren, Reduced-Motion-Pflicht) → `references/motion-doktrin.md`.
@@ -176,3 +185,8 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
   erst wenn der rote Warnbildschirm schon da ist.
 - Motion-Komponenten aus `ui-components/` nie ohne `useReducedMotion()`-Äquivalent
   einbauen — die globale CSS-Media-Query stoppt keine JS-Animationen.
+- **Bild-Assets über die Higgsfield CLI, nach `references/bildgenerierung.md`** —
+  Referenz vorhanden ist der Normalfall → **GPT Image 2**; Recraft nur ohne Referenz
+  (dann JSON-Prompt gegen den Filmlook, **kein** Color-Grading). Nano Banana nur als
+  Nano Banana 2 für Previews. Bei Kundenseiten vorher klären, ob KI-Bilder erlaubt
+  sind (manche wollen nur echte Fotos) — Datenminimierung (TB2) beachten.
