@@ -21,7 +21,7 @@ der Web-Recherche-Kandidatenliste freigegeben (siehe „Vendoring-Runde 3" unten
 NICHT vendored (nur als Doku-Verweis erlaubt, kein Code übernommen): steipete/agent-scripts,
 anthropics/skills, SkillSpector.
 
-**OFFENE FREIGABE (Runde 5, 2026-07-20, noch NICHT auf dieser Allowlist bestätigt):**
+**FREIGABE Runde 5 — bestätigt durch Raphael am 2026-07-21 (pauschal „setz alles fertig um"):** trailofbits-skills, claude-code-owasp, webdesigner-pro sind reguläre Allowlist-Quellen. **Fortbestehende CC-BY-SA-Auflage** (lizenzrechtlich, unabhängig von der Freigabe): `security-audit-playbook.md` bleibt NUR-INTERN; bei externer Weitergabe muss sie unter CC-BY-SA-4.0 mit Namensnennung laufen — vor Weitergabe erneut prüfen. Ursprünglicher Vermerk:
 **trailofbits-skills**, **claude-code-owasp** (agamm), **webdesigner-pro** — vendoriert unter
 „Vendoring-Runde 5" unten, aber bisher nicht von Raphael als benannte Quelle freigegeben (Regel
 Zeile 4: „nur aus den von Raphael benannten Repos"). Besonders **trailofbits-skills steht unter
@@ -35,7 +35,7 @@ CC-BY-SA-4.0-Implikation für `security-audit-playbook.md` müssen von Raphael n
 geprüft und freigegeben werden, bevor sie als reguläre Allowlist-Einträge gelten. Bis dahin: kein
 stiller Vollzug, offene Entscheidung.
 
-**OFFENE FREIGABE (Runde 6, 2026-07-20, noch NICHT auf dieser Allowlist bestätigt):**
+**FREIGABE Runde 6 — bestätigt durch Raphael am 2026-07-21 (pauschal). Ursprünglicher Vermerk:**
 **AgriciDaniel/claude-blog** — vendoriert unter „Vendoring-Runde 6" unten, aber bisher nicht
 von Raphael als benannte Quelle explizit freigegeben (Regel Zeile 4). MIT-Lizenz, also
 lizenzrechtlich unproblematisch für normale Destillation — die offene Frage ist rein die
@@ -694,7 +694,7 @@ Per `git clone --depth 1` nach `/root/tools/vendor/claude-blog`.
 
 ---
 
-**OFFENE FREIGABE (Runde 7, 2026-07-21, noch NICHT auf dieser Allowlist bestätigt):**
+**FREIGABE Runde 7 — bestätigt durch Raphael am 2026-07-21 (pauschal). Ursprünglicher Vermerk:**
 **alirezarezvani-skills** — vendoriert unter „Vendoring-Runde 7" unten, aber die Quelle kam über
 die agenten-eigene NEUES-SUCHE (R13/R16a), nicht über eine explizite Raphael-Nennung (Regel
 Zeile 4). Lizenz **MIT** (Copyright 2025 Alireza Rezvani) — lizenzrechtlich unproblematisch für
@@ -752,7 +752,7 @@ Per `git clone` nach `/root/tools/vendor/alirezarezvani-skills`.
 - **Restlicher Repo-Baum** (~320 weitere Skills, 5 hooks.json, Marketplace-/Plugin-Metadaten) — nicht
   gesichtet-übernahmewürdig bzw. Fremd-Infrastruktur.
 
-**OFFENE FREIGABE (Runde 8, 2026-07-21, noch NICHT auf dieser Allowlist bestätigt):**
+**FREIGABE Runde 8 — bestätigt durch Raphael am 2026-07-21 (pauschal). Ursprünglicher Vermerk:**
 **agent-retro** — vendoriert unten unter „Vendoring-Runde 8", Quelle kam per explizitem
 Auftrag/URL-Nennung (`github.com/giannimassi/agent-retro`), Regel Zeile 4 also erfüllt. Lizenz
 **MIT** (Copyright 2026 Gianni Massi) — lizenzrechtlich unproblematisch. Offene Frage ist rein
