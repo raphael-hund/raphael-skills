@@ -892,3 +892,51 @@ Schwartz' 2 fehlende Awareness-Randstufen → `copywriting/references/direct-res
 - **`ad-copy`, `compliance-checker`, `copychief`, `landing-page-copy`** (die anderen 4 Skills
   im Repo) — nicht Teil des Auftrags dieser Runde (Fokus: Direct-Response-Klassiker-Lücke);
   bei Bedarf separat prüfen.
+
+### Prüf-Runde: obsidian-second-brain (2026-07-21) — NICHTS vendored, nur geprüft
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| obsidian-second-brain | github.com/(Eugeniu Ghelbur)/obsidian-second-brain | `1306c7a54b407adb58c3f96f117b4b941e3f141e` | MIT (Copyright (c) 2026 Eugeniu Ghelbur) |
+
+Geklont (nur Analyse) nach `/root/tools/vendor/obsidian-second-brain`. **Kein Code, kein Skill
+übernommen** — Buchführungs-Eintrag trotz Ablehnung.
+
+**Red-Flag-Check:** LICENSE real (Standard-MIT). `.claude-plugin/` = reines Plugin-/Marketplace-
+Manifest (kein Session-Ordner, kein Umbenennen nötig). Ein SessionStart-Hook (`load_vault_context.py`,
+harmlos) + PostCompact-Hook. **Größter Fund:** `hooks/obsidian-bg-agent.sh` spawnt einen headless
+`claude --dangerously-skip-permissions -p`-Subprozess, der unbeaufsichtigt in den Vault schreibt —
+doppelt gegated (braucht `OBSIDIAN_VAULT_PATH` UND `OBSIDIAN_BG_AGENT_ENABLED=1`, `setup.sh` setzt nur
+ersteres), per Default inert. Bei etwaiger Übernahme diesen Hook **NICHT** vendoren/aktivieren. Sonst:
+Research-Netz-Calls (Perplexity/Grok/Gemini/Wikipedia/Ollama) klar deklariert, keine versteckte
+Telemetrie; kein `os.system`/`shell=True`/`eval`/`exec`; kein Auto-Update (nur manuelles `git pull`);
+keine mitgelieferten Cron/launchd-Dateien.
+
+**Doktrin-Kollisions-Check gegen `raphael-brain/AGENTS.md`:**
+- **ABGELEHNT — Self-rewriting notes** (Notizen werden bei jeder Quelle in-place gemergt, Widersprüche
+  "resolve automatically"): verstößt hart gegen §4.4 ("nie still überschreiben") und §4.6 ("automatisiert
+  nur Scan/Vorschlag, nie Übernahme"). Autonomes Schreiben in den kanonischen Vault ohne Freigabe.
+- **ABGELEHNT — Scheduled nightly/weekly maintenance-Agents** (reconcile/heal/synthesize/rebuild autonom
+  22 Uhr): verstößt gegen §4.6 und §5-Guardrail ("`wiki/` nie blind überschreiben"). Unsere Kadenz (§6)
+  produziert nur Kandidaten, kein autonomes Healing im kanonischen Wiki. Keine "Anpassung", die die
+  Freigabe-Pipeline aufweicht.
+- **ABGELEHNT (Ziel-Ort) — `/obsidian-architect`** schreibt Architektur-Notizen direkt in den kanonischen
+  Vault statt nach `_candidates/` (§4.1-Verstoß); Codebase-Doku deckt bereits die `understand-*`-Familie ab.
+  Die **Sentinel-Marker-Mechanik** (`@generated`/`@user`) wird als reines Markup-Muster für Kandidaten
+  entkoppelt übernommen — siehe unten.
+- **KOMPATIBEL, aber HABEN WIR SCHON — Hybrid Semantic Search** (Ollama bge-m3 / OpenAI-Endpoint, opt-in):
+  Äquivalent vorhanden (`raphael-brain/scripts/embed-search.py` + `brain-context.py`, §2 Abrufmodi). Kein
+  Übernahmebedarf.
+
+**ÜBERNOMMEN (max 2, nur als Vorschlags-Notiz beschrieben, NICHT umgesetzt — Umsetzung = Folgerunde/
+ops/proposals wegen Brain-Skript-Nähe & Parallel-Session):**
+1. **Read-only Kalender-Abgleich** (`reconcile`-Modus: flaggt Zusagen, die im Kalender fehlen, schreibt
+   nie Termine) — doktrin-kompatibel (§4.6/§2) und **real fehlend** (kein Kalender-Äquivalent im Skill-Set).
+   → `raphael-brain/wiki/_candidates/2026-07-21-kalender-reconcile-readonly-scan.md`.
+2. **`@generated`/`@user`-Sentinel-Marker** als Markup-Konvention **nur für `wiki/_candidates/`**, damit
+   Re-Runs Raphaels Handschrift nicht überschreiben — doktrin-kompatibel (schützt §4.4), fehlt uns.
+   → `raphael-brain/wiki/_candidates/2026-07-21-generated-user-sentinel-marker.md`.
+
+**Fazit:** Repo unbedenklich (MIT, keine Bösartigkeit), aber die zwei Kern-Features (self-rewriting +
+autonome Maintenance-Agents) sind fundamental unvereinbar mit der Scan/Vorschlag-Doktrin. Zwei kleine,
+doktrin-konforme Einzelideen als Kandidaten notiert; sonst nichts vendored.
