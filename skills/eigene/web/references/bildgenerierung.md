@@ -176,6 +176,50 @@ Herkunft der Methode: strukturiertes Prompting (das „JSON-Prompting-Skill"-Pri
 `image-to-prompt` als Extraktor. Ziel ist Kontrolle über Farbe/Stil, nicht Recrafts
 Default-Ästhetik.
 
+## Bild-Index + AVIF — Pflicht bei JEDEM Bild
+
+Gilt für **alle** Bilder im Projekt: selbst generierte **und** von Raphael gelieferte.
+Zwei feste Regeln:
+
+1. **Jedes Bild wird sofort nach AVIF konvertiert.** Kein PNG/JPG bleibt als Web-Asset
+   liegen — AVIF ist das Format im `assets/`-Ordner.
+2. **Jedes Bild steht im Index** (`bilder-index.json` im selben `assets/`-Ordner) mit:
+   **typ** (Hero/Produkt/Szene/Illustration-2D/-3D/Portrait…), **motiv** (was ist zu
+   sehen, konkret), **style** (Look/Palette/Stil), **modell** (`gpt_image_2` /
+   `recraft_v4_1` / `nano_banana_flash` / `-` bei geliefert), **referenzen** (genutzte
+   Referenzbilder), **prompt**, **quelle** (`generiert`/`geliefert`), **erstellt**, **status**.
+
+Das erledigt deterministisch das Helferskript `scripts/bilder.mjs` (nutzt ffmpeg,
+`libaom-av1` still-picture, keine npm-Abhängigkeiten):
+
+```bash
+DIR=/root/clients/client-<name>/web/assets   # ein Index pro Projekt
+
+# Bild aufnehmen: konvertiert nach AVIF + trägt in den Index ein
+node scripts/bilder.mjs add "$DIR" ./roh/hero.png \
+  --typ "Hero-Foto" --motiv "Werkstatt bei Tageslicht" \
+  --style "clean, neutraler Grade" --modell gpt_image_2 \
+  --ref "shooting-01.jpg,shooting-02.jpg" --quelle generiert --datum 2026-07-21
+
+node scripts/bilder.mjs list "$DIR"     # Index als Tabelle
+```
+
+Fehlen `--typ/--motiv/--style/--datum`, stehen sie als `TBD` im Index und **müssen**
+nachgetragen werden (das Skript warnt). Semantik kennt nur der Agent — Konvertierung
+und Buchhaltung macht das Skript.
+
+### Verwerfen — „das Bild ist scheiße"
+
+Sagt Raphael, ein von mir erstelltes Bild taugt nichts:
+
+```bash
+node scripts/bilder.mjs reject "$DIR" <id-oder-datei>
+```
+
+Das **löscht die AVIF-Datei komplett** und **entfernt den Index-Eintrag** in einem
+Schritt — weg ist weg, der Index bleibt sauber und zeigt nur noch, was wirklich lebt.
+Nie nur die Datei löschen und den Index stehen lassen (oder umgekehrt).
+
 ## Harte Regeln (Kurzfassung)
 
 1. **Referenz da → GPT Image 2.** Immer. `--image-references` = Add Image 1/2/…
@@ -191,6 +235,9 @@ Default-Ästhetik.
 8. **Auflösung: 4k oder 2k** (GPT 4k, Recraft max 2k). Nie 1k für Finals.
 9. **Nano Banana nur als Nano Banana 2 (`nano_banana_flash`) für Previews.**
 10. Vorab **immer** `hf generate cost`; Jobs mit `--wait` bzw. `hf generate wait` abholen.
+11. **Jedes** Bild (generiert wie geliefert) sofort → **AVIF** via `scripts/bilder.mjs add`.
+12. **Jedes** Bild steht im **Index** (`bilder-index.json`): typ/motiv/style/modell/refs/quelle.
+13. **„Bild ist scheiße" → `bilder.mjs reject`**: Datei komplett löschen + Index-Eintrag raus.
 
 ## Guardrails (Kundenprojekte)
 

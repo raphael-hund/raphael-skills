@@ -194,3 +194,8 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
   Distanz/beiläufig). Nano Banana nur als Nano Banana 2 für Previews. Bei Kundenseiten
   vorher klären, ob KI-Bilder erlaubt sind (manche wollen nur echte Fotos) —
   Datenminimierung (TB2) beachten.
+- **Jedes Bild → AVIF + Index, Verwerfen löscht komplett.** Alle Bilder (generiert wie
+  geliefert) sofort nach AVIF konvertieren und in `bilder-index.json` führen
+  (typ/motiv/style/modell/refs) — deterministisch über `scripts/bilder.mjs`
+  (`add`/`list`/`reject`). „Bild ist scheiße" → `reject` löscht Datei **und**
+  Index-Eintrag in einem Schritt. Details in `references/bildgenerierung.md`.
