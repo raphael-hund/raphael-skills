@@ -157,8 +157,25 @@ def check_nondeterminism(code, findings):
 
 
 def check_model_fable(code, findings):
-    """ultra-loop/SKILL.md: NIE Fable-Subagents."""
-    for m in re.finditer(r"model\s*:\s*['\"]fable['\"]", code):
+    """ultra-loop/SKILL.md: NIE Fable-Subagents.
+
+    Bekannte Grenze: dies ist eine Heuristik auf dem Quelltext, keine harte
+    Garantie. Sie erkennt nur das woertliche Literal model:'fable'
+    (case-insensitiv, faengt also auch 'Fable'/'FABLE'). Verschleierung durch
+    Variablen-Concat (z.B. `const m='fa'+'ble'; agent('p',{model:m})`) kann
+    dieser statische Check prinzipbedingt nicht erfassen. Die Cockpit-
+    Letztverifikation (siehe ultra-loop/SKILL.md, Abschnitt zur finalen
+    Pruefung vor dem Merge) ist die eigentliche Grenze gegen sowas — dieser
+    Check ist nur eine fruehe Advisory-Warnung, kein hartes Gate.
+
+    Backtick-Template-Strings werden vor dem Match maskiert: echte
+    Modell-Konfiguration steht in `model:'...'`/`model:"..."` (einfache/
+    doppelte Anfuehrungszeichen), waehrend Kritiker-Agent-Prompts (Backtick-
+    Templates) das Fable-Verbot haeufig als Text zitieren — ohne Maskierung
+    false-positiv FAIL auf legitimen Prompt-Text.
+    """
+    masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
+    for m in re.finditer(r"model\s*:\s*['\"]fable['\"]", masked, re.I):
         findings.append((FAIL, _lineno(code, m.start()),
                          "model:'fable' ist verboten — ultra-loop nutzt NIE Fable-Subagents (opus=Urteil/sonnet=Inhalt/haiku=Mechanik)."))
 

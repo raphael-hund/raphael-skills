@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.3.0
+version: 0.3.2
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
@@ -113,3 +113,13 @@ Session bzw. nach 7 Tagen Auto-Ablauf. Für sessionübergreifende Loops:
   oder sequenzieren).
 - Der Verify-Schritt gehört in den Workflow (haiku je Artefakt), aber die
   Letzt-Verifikation der Kern-Funde macht das Cockpit selbst.
+- `check_model_fable` in `scripts/validate-workflow.py` ist nur eine
+  Text-Heuristik, kein hartes Gate: sie erkennt das Literal
+  `model:'fable'` case-insensitiv, aber Verschleierung per
+  Variablen-Concat (`const m='fa'+'ble'`) kann ein statischer Check
+  prinzipbedingt nicht fangen. Genau dafür ist die Cockpit-
+  Letztverifikation oben da — sie ist die eigentliche Grenze gegen
+  Fable-Subagents, nicht der Regex. Backtick-Template-Strings (Kritiker-
+  Agent-Prompts) werden vor dem Match maskiert, damit ein Prompt-Text,
+  der das Fable-Verbot nur zitiert, keinen False-Positive-FAIL auslöst —
+  echte Konfiguration in `'...'`/`"..."` wird weiter erkannt.

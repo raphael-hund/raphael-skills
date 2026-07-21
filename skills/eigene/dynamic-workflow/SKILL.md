@@ -1,6 +1,6 @@
 ---
 name: dynamic-workflow
-version: 0.1.0
+version: 0.1.1
 description: >
   Erzwingt für EINE Aufgabe die Ausführung als dynamischer Workflow
   (Workflow-Tool) mit Subagent-Flotte — nie Solo-Arbeit des Cockpits.
@@ -40,7 +40,7 @@ Eigen-Verifikation.
   ultra-loop benutzt intern dasselbe Muster; dieser Skill ist der
   Einzelfall-Einstieg.
 
-## Ablauf (5 Schritte)
+## Ablauf (6 Schritte)
 
 1. **Aufgabe zerlegen** (30 Sekunden, im Kopf): Was ist die Arbeits-Liste
    (Dateien/Themen/Quellen)? Was ist das Fertig-Kriterium? Welche Gates
@@ -53,11 +53,14 @@ Eigen-Verifikation.
    parsen (`typeof args === 'string' ? JSON.parse(args) : args`),
    Modell-Mix opus/sonnet/haiku, NIE Fable-Subagents, kein
    `Date.now()`/`Math.random()`.
-4. **Starten & begleiten:** Workflow-Tool aufrufen, Run-ID merken.
+4. **Validieren (Pflicht-Vorstufe):** `python3
+   /root/raphael-skills/skills/eigene/ultra-loop/scripts/validate-workflow.py
+   <script>` laufen lassen — rot (FAIL) = nicht starten, erst fixen.
+5. **Starten & begleiten:** Workflow-Tool aufrufen, Run-ID merken.
    Bei Crash: Script-Datei patchen, mit `resumeFromRunId` fortsetzen
    (fertige Agenten kommen aus dem Cache). Vor „Ergebnis leer"-Diagnosen
    immer `journal.jsonl` lesen.
-5. **Eigen-Verifikation:** Kern-Funde/Kern-Artefakte mit eigenem
+6. **Eigen-Verifikation:** Kern-Funde/Kern-Artefakte mit eigenem
    Read/Bash-Beleg prüfen — Agenten-Reports nie blind übernehmen.
    Widersprechen sich Agenten: llm-council-Muster, nicht den Nutzer
    fragen. Dann Ergebnis knapp berichten (Agentenzahl, verifiziert,
