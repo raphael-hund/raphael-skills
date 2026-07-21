@@ -187,7 +187,7 @@ get <job_type>`). Übergabe des Ausgangsbilds per `--image` (= `--image-referenc
 |---|---|---|
 | **Hintergrund entfernen / freistellen** | `image_background_remover` | `--image ./foto.jpg` (genau 1) → **transparentes** Ergebnis |
 | **Bild erweitern / Canvas vergrößern (Outpaint)** | `outpaint` | `--image ./hero.jpg --aspect-ratio 21:9` (Hero auf Breitbild ziehen) |
-| **Gezielt ändern per Anweisung** (Objekt raus/rein, Farbe, Text) | `flux_kontext` | `--image ./bild.jpg --prompt "entferne die Person links"` (bis 4 Refs) |
+| **Gezielt ändern per Anweisung** (Objekt raus/rein, Farbe, Text) | `gpt_image_2` | `--image ./bild.jpg --prompt "entferne die Person links"` (Ausgangsbild als Referenz) |
 | **Hochskalieren, schnell** | `bytedance_image_upscale` | `--image ./bild.jpg --resolution 4k` |
 | **Hochskalieren / restaurieren, High-End** | `topaz_image` | `--image … --output-width 3840 --output-height 2160 --variant "High Fidelity V2"` |
 | **Auto (Modellwahl automatisch)** | `image_auto` | `--image … --prompt "…"` (bis 14 Refs) |
