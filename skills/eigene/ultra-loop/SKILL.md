@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.3.2
+version: 0.3.3
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
@@ -18,6 +18,7 @@ source: >
 loads:
   - references/workflow-vorlage.md
   - references/runden-protokoll.md
+  - references/retro-muster.md
 requires_skills: [orchestrate@^0, eval@^0]
 completion_criteria:
   - "Cron-Job existiert (CronList zeigt ihn) und der Prompt enthält das Workflow-Pflicht-Mandat"

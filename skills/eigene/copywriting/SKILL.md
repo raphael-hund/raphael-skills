@@ -1,12 +1,15 @@
 ---
 name: copywriting
-version: 0.4.0
+version: 0.4.1
 description: >
-  Feuert für JEDEN deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, E-Mail)
-  UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer,
-  aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von
-  AI-Slop-Tells. Trigger: "Text schreiben", "Copy", "umschreiben", "Stil
-  prüfen", "entfloskeln", "klingt nach KI", "humanize", "AI-Slop raus".
+  Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
+  SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
+  KI-generiertem Text: klarer, aktiver, floskelfreier Text in der
+  Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: "Text schreiben",
+  "Copy", "umschreiben", "Stil prüfen", "entfloskeln", "klingt nach KI",
+  "humanize", "AI-Slop raus". Für mehrteilige Email-Sequenzen, Drip-Kampagnen,
+  Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails
+  als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill.
 class: F
 scope: agency
 sensitivity: internal

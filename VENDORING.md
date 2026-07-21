@@ -751,3 +751,51 @@ Per `git clone` nach `/root/tools/vendor/alirezarezvani-skills`.
   Cockpit-Modell; nur das Prinzip destilliert, nicht der Prozess.
 - **Restlicher Repo-Baum** (~320 weitere Skills, 5 hooks.json, Marketplace-/Plugin-Metadaten) — nicht
   gesichtet-übernahmewürdig bzw. Fremd-Infrastruktur.
+
+**OFFENE FREIGABE (Runde 8, 2026-07-21, noch NICHT auf dieser Allowlist bestätigt):**
+**agent-retro** — vendoriert unten unter „Vendoring-Runde 8", Quelle kam per explizitem
+Auftrag/URL-Nennung (`github.com/giannimassi/agent-retro`), Regel Zeile 4 also erfüllt. Lizenz
+**MIT** (Copyright 2026 Gianni Massi) — lizenzrechtlich unproblematisch. Offene Frage ist rein
+die Namens-Freigabe/Bestätigung analog Runde 5/6/7, nicht die Lizenz.
+
+## Vendoring-Runde 8 — 2026-07-21 (agent-retro / Reibungspunkt-Analyse-Muster)
+
+### Quellen-Commit (Runde 8)
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| agent-retro | github.com/giannimassi/agent-retro | `b09bc15e05ea6d757eaa11756ba1ccfd351385dd` | MIT (Copyright 2026 Gianni Massi) |
+
+Per `git clone --depth 1` nach `/root/tools/vendor/agent-retro`.
+
+**Red-Flag-Check:** kein `.claude`-Ordner im Repo (nichts umzubenennen), kein Hook, kein
+Auto-Update-Mechanismus, kein Netzwerk-Call, keine `exec`/`eval`/`subprocess`-Aufrufe im einzigen
+Skript (`scripts/extract.py`, stdlib-only, liest ausschließlich lokale eigene Claude-Code-JSONL-
+Transkripte). Unbedenklich.
+
+**Substanz-Abgleich mit unserer Praxis:** Unser Runden-Protokoll (Protokoll-Snapshot → Sonnet
+destilliert → Opus-Erfindungs-Check → Doktrin-Check) hält fest, WAS eine Runde tat, hat aber
+keine systematische Methode, WIE Reibungspunkte im Rohmaterial überhaupt gefunden werden.
+agent-retro bringt genau das: eine Signalwort-Suche nach Korrekturen/Umlenkungen/Wiederholungen/
+Stopps in User-Nachrichten, eine erzwungene Root-Cause-Kette statt Symptom-Listen, konkrete
+Fehlermuster-Checkliste (verschwendete Agent-Dispatches, übergroße Tool-Ergebnisse, wiederholte
+Versuche, abgebrochene Ansätze, Überengineering, unnötige Rückfragen) und eine Skill-Fund-
+Taxonomie (Triggering/fehlende Anleitung/falsche Anleitung/zu starr/zu offen/fehlendes Werkzeug).
+Das ist neu und ergänzt — nicht redundant zu unserer Kette, die den Erfindungs-/Doktrin-Check
+NACH der Destillation macht, aber nicht sagt, wie man Reibung im Rohmaterial überhaupt findet.
+
+**Übernommen (destilliert, kein Code):** die Reibungspunkt-Signalwörter, die Root-Cause-Ketten-
+Pflicht und die Fehlermuster-/Skill-Fund-Kategorien → paraphrasiert nach
+`skills/eigene/ultra-loop/references/retro-muster.md`, als zusätzlicher Analyseschritt VOR der
+bestehenden Kette, kein Ersatz. Eingebunden über `loads:` in `ultra-loop/SKILL.md` (Version
+0.3.2 → 0.3.3).
+
+**Verworfen (mit Grund):**
+- **Der komplette Extraktions-/Ausführungsapparat** (`scripts/extract.py`, Session-Datei-Auffinden
+  über `~/.claude/sessions/`, Token-Kosten-Berechnung, Retro-Datei-Schema Schritt 1/7/8/9) — passt
+  nicht zu unserem Modell: wir arbeiten nicht mit Claude-Code-JSONL-Session-Transkripten als
+  Rohquelle, sondern mit Workflow-Runden/PROGRESS.md-Protokoll-Snapshots. Der Handoff-Schwellenwert-
+  Mechanismus (Schritt 9, 500+ Turns/4h+/$300+) ist ebenfalls Claude-Code-Session-spezifisch und hat
+  keine Entsprechung in unserem Cron-Loop-Modell.
+- **Outcome-Klassifikations-Tabelle (Schritt 3)** — redundant zu unseren Runden-Protokoll-Feldern
+  (Funde/Fixes/Commits) bzw. unserem Eval-Skill (G1/G2-Gates).
