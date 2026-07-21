@@ -940,3 +940,43 @@ ops/proposals wegen Brain-Skript-Nähe & Parallel-Session):**
 **Fazit:** Repo unbedenklich (MIT, keine Bösartigkeit), aber die zwei Kern-Features (self-rewriting +
 autonome Maintenance-Agents) sind fundamental unvereinbar mit der Scan/Vorschlag-Doktrin. Zwei kleine,
 doktrin-konforme Einzelideen als Kandidaten notiert; sonst nichts vendored.
+
+---
+
+## Prüf-/Ideen-Runde — 2026-07-21 (inspect-ai, UK AI Security Institute)
+
+Reine **Ideen-Sichtung** (kein Skill-Install, kein Code übernommen). Quelle nur als Doku-/
+Ideen-Verweis, nicht als reguläre Allowlist-Quelle beantragt.
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| inspect-ai | github.com/UKGovernmentBEIS/inspect_ai (depth-1-Klon `/root/tools/vendor/inspect-ai`) | `8ebc782ec6e5f74774c0878214502ed694cdf9db` | MIT (Copyright 2024 UK AI Security Institute) |
+
+**ÜBERNOMMEN (1 Idee, chirurgisch, prompt-basiert):**
+- **Per-Achsen-Veto-Schwelle im Judge/Rubrik** (aus `docs/multiple-scorers.qmd`: Inspect wertet je
+  Score-Achse unabhängig mit eigener Metrik/Schwelle aus, statt nur einen aggregierten Wert zu
+  schwellen). Schließt eine echte Lücke: unser Rubrik-Aggregat (Summe/8 ≥ 0.7) konnte einen
+  katastrophalen Riss auf der harten Ship-Bedingung überdecken. Fix: harte Ship-Bedingung ist jetzt
+  `[VETO]` — erreicht sie nicht die volle 2, ist das Gesamt-Verdikt FAIL, egal wie hoch die Summe.
+  Eingearbeitet in `skills/eigene/eval/references/rubric-author.md` + `judge-prompts.md` + SKILL.md-
+  Gotcha, Herkunfts-Vermerk (Inspect-AI, MIT) inline. eval 0.3.1 → **0.3.2** (patch, additiv).
+
+**ABGELEHNT (mit Grund):**
+- **Majority-Vote über eine Judge-Liste** (`multi_scorer()` mode-Reducer) — **haben wir schon**:
+  Panel-Modus in `judge-prompts.md` lässt 3 Modellfamilien (Sonnet+Sol+Kimi) unabhängig bewerten und
+  nimmt den **Median** je Frage. Kein Mehrwert, keine Referenzimplementierung nötig.
+- **Model-Roles (grader/verifier abstrakt, Laufzeit-Mapping)** — marginal: unser Cross-Family-Routing
+  benennt die Judge-Familien bereits und der Verifier-nie-aus-Autor-Familie-Zwang ist im Vertrag
+  verankert. Keine echte Lücke, nur Umbenennung.
+- **Framework-Mechanik** (`.eval`-Logformat + `inspect view` Web-UI, Sandbox-Config, `@task`/`@scorer`-
+  Decorator-API, Dataset-Loader, CLI, Logprob-/Perplexity-Scorer, S3/Azure/HF-Log-Storage,
+  VS-Code-Extension) — durchgehend Python-Framework-spezifisch, passt nicht in unsere prompt-basierte
+  Judge-Welt. Logprob-Scorer scheitern schon daran, dass wir beim Prompt-Judging keinen Logprob-Zugriff
+  haben.
+- **OWASP-ASI-Prüf-Fälle** (aus paralleler Sichtung B) — stammen aus `claude-code-owasp`, NICHT aus
+  inspect-ai (das selbst keine agentischen Security-Benchmarks enthält). Gehören nicht in diese
+  Inspect-Ideen-Runde und die Quelle steht ohnehin unter offener Freigabe (Runde 5). Nicht eingearbeitet.
+
+**Fazit:** MIT-Lizenz bestätigt, Repo unbedenklich. Von den gesichteten Ideen passt genau **eine** wirklich
+in unsere prompt-basierte Welt (Per-Achsen-Veto) und ist eingearbeitet; der Rest ist entweder schon
+vorhanden (Median-Panel) oder framework-spezifisch. Ehrlichkeit vor Aktivität.

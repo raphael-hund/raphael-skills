@@ -20,12 +20,19 @@ Rubrik:
 2. ...
 
 Am Ende: SCORE = Summe/Maximum. VERDICT = PASS (>=0.7) | FAIL.
+VETO: Erreicht eine mit [VETO] markierte Frage nicht die volle 2 → VERDICT = FAIL,
+unabhängig vom SCORE.
 ```
+
+**Veto vor Aggregat.** Die harte Ship-Bedingung (Frage 1, `[VETO]`) wird pro Achse eigenständig
+geschwellt: ein Riss dort zieht das Gesamt-Verdikt auf FAIL, auch wenn die Summe ≥ 0.7 liegt. Der
+aggregierte Schwellwert darf einen katastrophalen Einzelriss nie überdecken. (Idee: Inspect-AI,
+`docs/multiple-scorers.qmd` — unabhängige Per-Achsen-Metriken/Schwellen, MIT.)
 
 ## Beispiel (Ads-Copy)
 
 ```
-1. Enthält jeder Claim mit Zahl einen Beleg aus PROOF.md?  → 0/1/2 + Beleg
+1. [VETO] Enthält jeder Claim mit Zahl einen Beleg aus PROOF.md? → 0/1/2 + Beleg  (< 2 ⇒ FAIL)
 2. 0 verbotene Claims (Meta/HWG/UWG)?                       → 0/1/2 + Beleg
 3. Klingt der Text in der Brand-Voice (VOICE.md)?           → 0/1/2 + Beleg
 4. 0 LLM-Floskeln aus der Verbotsliste?                     → 0/1/2 + Beleg

@@ -1,6 +1,6 @@
 ---
 name: eval
-version: 0.3.1
+version: 0.3.2
 description: >
   Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel,
   rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet
@@ -104,5 +104,8 @@ Rubriken schreiben: 3–6 binäre, überprüfbare Ja/Nein-Fragen mit Beweis-Anke
 - **G1 vor G2, immer.** Kein Judge auf einem Output, der die deterministischen Checks nicht
   besteht — Judge-Tokens sind teuer und die Antwort steht schon fest.
 - Mehr als 6 Rubrik-Fragen werden gegamed — kurz halten.
+- **Veto vor Aggregat.** Die harte Ship-Bedingung (`[VETO]`) wird pro Achse eigenständig
+  geschwellt: Riss dort ⇒ Gesamt-FAIL, egal ob die Summe ≥ 0.7 liegt. Detail in
+  `references/rubric-author.md` / `judge-prompts.md` (Idee aus Inspect-AI `multiple-scorers`, MIT).
 - "Fertig" ist Environment-Tatsache (Exit-Code/Gate), der Agent setzt sich nie selbst auf
   "passing" (Regel 14).
