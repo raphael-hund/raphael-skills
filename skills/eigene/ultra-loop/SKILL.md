@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.2.0
+version: 0.3.0
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
@@ -67,7 +67,8 @@ erzwingt die Run-ID als Beweis.
    Mandat genannte Stand-Datei). Nächsten offenen Punkt wählen.
 2. **Workflow starten** (Pflicht bei Substanz-Arbeit): Script nach
    `references/workflow-vorlage.md` bauen — Kritik-Flotte, Verifikation,
-   Fix-Kette, Review. Run-ID notieren.
+   Fix-Kette, Review. Vor dem Start: `python3 scripts/validate-workflow.py
+   <script>` — rot (FAIL) = nicht starten, erst fixen. Run-ID notieren.
 3. **Selbst verifizieren:** Funde der Kritiker nie ungeprüft übernehmen —
    jeden Kern-Fund mit eigenem Read/Bash-Beleg bestätigen (kein performatives
    Zustimmen). Bei echtem Streit zwischen Kritikern: llm-council-Muster

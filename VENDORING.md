@@ -691,3 +691,63 @@ Per `git clone --depth 1` nach `/root/tools/vendor/claude-blog`.
   (Werkzeug-Bindung des Originals, keine Agentur-Wissenstiefe für uns).
 - Router-Zeile in `skills/eigene/seo/SKILL.md` ergänzt (Reference-Routing-Tabelle + `loads:`),
   Version 0.6.0 → 0.6.1.
+
+---
+
+**OFFENE FREIGABE (Runde 7, 2026-07-21, noch NICHT auf dieser Allowlist bestätigt):**
+**alirezarezvani-skills** — vendoriert unter „Vendoring-Runde 7" unten, aber die Quelle kam über
+die agenten-eigene NEUES-SUCHE (R13/R16a), nicht über eine explizite Raphael-Nennung (Regel
+Zeile 4). Lizenz **MIT** (Copyright 2025 Alireza Rezvani) — lizenzrechtlich unproblematisch für
+wörtliche Code-Übernahme; die offene Frage ist rein die Namens-Freigabe analog Runde 5/6, nicht
+die Lizenz. Bis Raphael das bestätigt: gilt als vendoriert, aber nicht regulär gelistet.
+
+## Vendoring-Runde 7 — 2026-07-21 (agent-harness / workflow-builder Perlen)
+
+Zwei streng gefilterte „Perlen" aus einem großen Fremd-Repo (~362 unique Skills, R16a-Stichprobe:
+MIT bestätigt, keine bösartigen Muster; die kursierende Zahl 436 sind Gemini-Spiegel). Kein
+Skill-Install, kein Masseneinzug — nur zwei einzelne Übernahmen, davon eine als adaptierter Code,
+eine als destilliertes Prinzip.
+
+### Quellen-Commit (Runde 7)
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| alirezarezvani-skills | github.com/alirezarezvani/claude-code-skills | `aa8d778811a557a2c28ccadda4cf3d0bd028a4cc` | MIT (Copyright 2025 Alireza Rezvani) |
+
+Per `git clone` nach `/root/tools/vendor/alirezarezvani-skills`.
+
+**Befund:**
+- `.claude`/`.claude-plugin` des Fremd-Repos zu `.claude.vendored-disabled` bzw.
+  `.claude-plugin.vendored-disabled` umbenannt (Hook-/Marketplace-Mechanik deaktiviert, vom
+  Cockpit nachgezogen — bestätigt vorhanden). 5 lokale `hooks.json` im Repo werden dadurch nie
+  aktiv, da wir das Repo nie als Plugin installieren, nur zwei Dateien einzeln destillieren.
+- **Perle 1 (adaptierter Code):** `engineering/workflow-builder/skills/workflow-builder/scripts/`
+  `validate_workflow.py` → `skills/eigene/ultra-loop/scripts/validate-workflow.py`. Deterministischer,
+  stdlib-only Pre-Flight-Gate für Workflow-`.js` (kein Netz, kein exec — führt die Datei NIE aus,
+  reine Regex/Text-Heuristik). `_strip_comments`/`check_meta`/`check_nondeterminism`/`render`/
+  `verdict`/CLI-Grundgerüst 1:1 übernommen. **Angepasst an unsere Workflow-Realität:** Original-Checks
+  `check_size` (524288-Byte-Kappe), `check_node_apis`, `check_parallel_thunks`, `check_filter_boolean`,
+  `check_agent_present`, `check_loops_guarded` ENTFERNT (fremde Laufzeit-Annahmen — bei uns sind
+  Thunks Standard, parallel/pipeline anders genutzt, würden legitime Muster unserer Runden blocken).
+  NEU ergänzt: `check_model_fable` (FAIL, ultra-loop verbietet Fable), `check_args_falle` +
+  `check_slice_falle` (WARN, unsere häufigsten realen Fallen). Zusätzlich: `check_meta`-Funktionsaufruf-
+  Prüfung maskiert String-Literale vorher, um False Positives auf `description`-Fließtext mit Klammern
+  zu vermeiden (Original feuerte dort fälschlich). Verifiziert: PASS auf der echten `workflow-vorlage.md`
+  (parallel/pipeline/schema/agent), FAIL nur auf dem eingebauten Kaputt-Sample.
+- **Perle 2 (destilliertes Prinzip, kein Code):** `engineering/agent-harness/skills/agent-harness/`
+  `scripts/loop_controller.py` (verified-nur-mit-Exit-Code-Beweis-State-Machine) → paraphrasiert nach
+  `skills/eigene/eval/references/verifikations-vertrag.md`. **Wir portieren den Code NICHT** — unser
+  Loop ist Cockpit-getrieben (kein Python-State-Machine-Prozess). Übernommen ist nur das Prinzip
+  (Verified nur mit aufgezeichnetem Verify-Lauf; Close verweigert ohne Verify/Waiver; Retry-Caps +
+  Eskalation statt Fake-Success), gemappt auf unsere G1/G2-Gates und ultra-loop-Runden.
+
+**Verworfen (mit Grund):**
+- **`autoresearch-agent`** — haben wir bereits als eigenes Muster.
+- **~40 Marketing-Skills** — 1:1 redundant zu unserem Bestand (R16a Scout A: teils dateinamengleich).
+- **`goal_compiler.py`-Keyword-Scoring** — Task-Zerlegung passiert bei uns durch das Cockpit/den
+  Workflow selbst (dynamic-workflow/ultra-loop), nicht durch deterministisches Tokenisieren.
+- **Der Python-Harness/State-Machine-Prozess selbst** (`init/next/record/verify/close`-CLI, JSON-
+  State-Datei, atomare `os.replace`-Writes, numerische Exit-Codes als API) — passt nicht zu unserem
+  Cockpit-Modell; nur das Prinzip destilliert, nicht der Prozess.
+- **Restlicher Repo-Baum** (~320 weitere Skills, 5 hooks.json, Marketplace-/Plugin-Metadaten) — nicht
+  gesichtet-übernahmewürdig bzw. Fremd-Infrastruktur.

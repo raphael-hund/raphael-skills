@@ -1,6 +1,6 @@
 ---
 name: eval
-version: 0.3.0
+version: 0.3.1
 description: >
   Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel,
   rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet
@@ -11,7 +11,7 @@ description: >
 class: E
 scope: agency
 sensitivity: internal
-loads: [references/judge-prompts.md, references/rubric-author.md]
+loads: [references/judge-prompts.md, references/rubric-author.md, references/verifikations-vertrag.md]
 requires_skills: []
 completion_criteria:
   - "G1 deterministisch grün BEVOR ein Judge läuft"
@@ -85,6 +85,10 @@ Ohne `evidence` kein Verdikt — eine Behauptung ohne Beleg zählt nicht.
 braucht konkrete Voraussetzungen, unter denen der Fund tatsächlich auftritt
 (nicht nur "könnte theoretisch"), sonst auf niedriger einstufen oder als
 `needs-human-review` markieren statt aufzublähen.
+
+## Verifikations-Vertrag (Verified nur mit Beweis)
+
+Bei jedem "fertig"/"verifiziert"-Anspruch (Runden-Abschluss, Close, Waiver, Retry-Cap/Eskalation): `references/verifikations-vertrag.md` — destilliertes agent-harness-Prinzip, auf G1/G2 und ultra-loop-Runden gemappt.
 
 ## rubric-author
 

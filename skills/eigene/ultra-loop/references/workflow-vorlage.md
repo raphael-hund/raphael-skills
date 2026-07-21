@@ -82,6 +82,9 @@ return { kritik_funde: alle.length, fixes, review }
 - `pipeline()` ist Default; `parallel()`-Barriere nur, wenn Stufe N wirklich
   ALLE Ergebnisse von N-1 zusammen braucht (Dedup, Früh-Abbruch).
 - `meta` = pures Literal. Kein `Date.now()`, kein `Math.random()`.
+- Vor jedem Workflow-Start: `python3 scripts/validate-workflow.py <script>`
+  laufen lassen — prüft `meta`-Literal, Date.now/Math.random/new Date,
+  Args-Falle, Slice-Falle und `model:'fable'`. Rot (FAIL) = nicht starten.
 - Bei Fehlschlag: Script-Datei patchen und mit `resumeFromRunId` fortsetzen —
   fertige Agenten kommen aus dem Cache.
 - Vor „Ergebnis ist leer"-Diagnosen: `journal.jsonl` im Transcript-Dir lesen.
