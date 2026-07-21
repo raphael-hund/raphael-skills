@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.6.2
+version: 0.6.4
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
@@ -126,15 +126,18 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Backends, Kundendaten-Handling, npm-Abhängigkeiten (Formular/Tracking/Payment) →
    `references/security-audit-playbook.md` (Fail-Open-Defaults, Footgun-Configs,
    Supply-Chain-Check, Quelle Trail of Bits). Bei Code-Review von Formularen/API-Routes/
-   Webhooks (z.B. Popup-Lead-Magnet mit E-Mail-Erfassung) zusätzlich
+   Webhooks/**Cookie-Banner/Consent-Layer/Tracking-Einbindung** (z.B. Popup-Lead-Magnet
+   mit E-Mail-Erfassung, DSGVO-Consent-Formular, Tracking-Skript-Einbindung) zusätzlich
    `/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`
    nachladen (A02/A03/A05/A08/A10-Einträge, DSGVO-Consent des Formularfelds prüfen).
    Braucht der
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
    Schreibzugriff für Agenten).
 7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).
-   G1 Lighthouse/axe = 0, hart. Optional Persona-QA (Beginner/Engineer/Business-Owner).
-   Fächer in `references/qa-faecher.md`. Conversion-Elemente (Popup/Lead-Magnet/Free-Tool) →
+   G1 Lighthouse/axe = 0, hart. Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
+   Sequenz aus "Look & QA": design ZUERST, **danach copywriting G1→G2 als fester zweiter
+   Schritt** (nicht optional) — Details in `references/qa-faecher.md`. Optional Persona-QA
+   (Beginner/Engineer/Business-Owner). Conversion-Elemente (Popup/Lead-Magnet/Free-Tool) →
    `references/conversion-elemente.md`. Tiefere CRO-Diagnose bei Bestandsseiten →
    `references/cro-diagnose.md`.
 8. **Launch** — **Signatur + Deploy-Egress-Gate.** Nie autonom. Neue/junge Domain →
