@@ -38,9 +38,9 @@ ui-ux-Linie · finale QA IMMER ueber die impeccable-Detektoren (Exit 0) + Handru
 
 | Quelle | Rolle in design | Upstream | Commit | Lizenz |
 |---|---|---|---|---|
-| **impeccable** v3.9.1 | Doktrin-Basis + **deterministische Detektoren** (finale QA) | github.com/pbakaus/impeccable | `e4ab5e24bdf5321b72163d2fbcbe6fa985c848ba` (2026-07-18) | Apache-2.0 |
+| **impeccable** v3.9.1 | Doktrin-Basis + **deterministische Detektoren** (finale QA) | github.com/pbakaus/impeccable | `51b470f903045dc6d459ddfaf6f1700d6a3516e2` (2026-07-20; abgeglichen 2026-07-21, Diff seit e4ab5e2 betraf nur `plugin/skills/impeccable/scripts/{detector/design-system.mjs,lib/impeccable-config.mjs,lib/impeccable-paths.mjs}` — Font-Size-Detektor unterstuetzt jetzt `clamp()`-Fluid-Endpunkte + DESIGN.md `typography.scale`, plus Pfad-Traversal-Haertung `safeSessionId()`; nachgezogen, SKILL.md/Doktrin unveraendert) | Apache-2.0 |
 | **taste-skill** (design-taste-frontend) | **taste-Linie** (Landing/Portfolio) | github.com/Leonxlnx/taste-skill | `7c397f22d3af6f2b3f1925eb147d8e8801086151` (2026-07-17) | MIT |
-| **ui-ux-pro-max** v2.11.0 | **ui-ux-Linie** (App/Dashboard) — nur Offline-DB | github.com/nextlevelbuilder/ui-ux-pro-max-skill | `f8ac5e1266dba8354ea96e19994d9f4345e7ec31` (2026-07-15) | MIT |
+| **ui-ux-pro-max** v2.11.0 | **ui-ux-Linie** (App/Dashboard) — nur Offline-DB | github.com/nextlevelbuilder/ui-ux-pro-max-skill | `5c0946f66120079258e1efc8e436d78ec793877c` (2026-07-20; abgeglichen 2026-07-21, Diff seit f8ac5e1 betrifft nur `stack/`-Starterkit + Stat-Fix in skill.json/marketplace.json — vendorierter Pfad `.claude/skills/ui-ux-pro-max/` unveraendert) | MIT |
 
 Uebernommene Upstream-Pfade:
 - impeccable: `.claude/skills/impeccable/SKILL.md` + `scripts/{detect.mjs,detector/,lib/}`

@@ -199,7 +199,7 @@ fehlendem `LICENSE`-File nur Paraphrase/Idee, keine wörtliche Kopie).
 | claude-skill-web-clone | github.com/Jane-xiaoer/claude-skill-web-clone | `0269e0e08a3783184ec641d341e7d57065d4a5f8` | MIT (Copyright Jane/xiaoerzhan, 2026) |
 | openui | github.com/wandb/openui | `42d7ab4ab6650433486dfb12eb3783c393a3e475` | Apache-2.0 |
 | ui-layouts-mcp | github.com/ui-layouts/mcp | `d2248f3e859fe84469f3c9b62a105bd878b4c108` | MIT (Copyright 2025 Jinho Yeom) |
-| oh-my-openagent | github.com/code-yeongyu/oh-my-openagent | `a4586027934074bd03a5008b7d068130c395a65b` | Sustainable Use License 1.0 (nur interner Gebrauch, kein Weiterverkauf/SaaS) |
+| oh-my-openagent | github.com/code-yeongyu/oh-my-openagent | `50d9307ea36f775298d50f035f4b0c03d0925efd` | Sustainable Use License 1.0 (nur interner Gebrauch, kein Weiterverkauf/SaaS) |
 | davidondrej-skills | github.com/davidondrej/skills | `249954322cd12e684ced7275633da82f9f5c0e27` | MIT (Copyright David Ondrej, 2026) |
 | jakubkrehel-skills | github.com/jakubkrehel/skills | `f8a1574b08319685705a82e3c28139d1c935af9e` | MIT (Copyright Jakub Krehel, 2026) |
 | conradcaffier-gist | Gist (conradcaffier-Agentur-Freebie) | `ea54fc5bbb7263723000e4ebde6061fb62b03197` | kein LICENSE — nur Format-Idee (Zwei-Stufen-Sampling), keine wörtliche Übernahme |
