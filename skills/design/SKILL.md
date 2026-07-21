@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.3.2
+version: 0.3.3
 description: >
   Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max +
   kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills).
@@ -11,7 +11,8 @@ description: >
   eigene References bei Bedarf nachladen. Trigger: "Landingpage bauen",
   "Dashboard designen", "UI review", "Design polieren", "sieht nach AI aus",
   "Slop entfernen", "Farben/Typo/Layout fixen", "Animation/Motion pruefen",
-  "Kontrast/OKLCH", "Referenz-Site als Stilvorlage".
+  "Kontrast/OKLCH", "Referenz-Site als Stilvorlage", "Stitch",
+  "Screen in Stitch bauen", "Design mit Google Stitch".
 class: F
 scope: agency
 sensitivity: internal
@@ -33,6 +34,7 @@ loads:
   - references/design-dna-schema.md
   - references/component-bibliotheken-radar.md
   - references/wissens-router.md
+  - references/stitch-workflow.md
 completion_criteria:
   - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
   - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
@@ -85,6 +87,23 @@ Wahl nach: (1) Task-Cue ("Landingpage" vs "Dashboard"), (2) konkrete Seite/Route
 2. Stack aus dem Projekt erkennen (package.json etc.), Empfehlungen daran binden.
 3. Doktrin anwenden. Karten hier als legitime Datencontainer (nicht verschachtelt).
 
+## Screenshot-Pflicht — nach JEDER sichtbaren Aenderung (Raphael-Regel, hart)
+
+Nichts Visuelles wird gebaut, geaendert oder als fertig gemeldet ohne
+Screenshot-Zyklus. Kein "muesste jetzt passen" — nur belegte Sicht.
+
+1. Nach JEDER Aenderung rendern (Chrome headless `--screenshot`, Playwright,
+   `pdftoppm`, Figma `get_screenshot`) und das PNG **per Read ansehen**.
+2. **Jedes Asset einzeln ansehen, BEVOR es eingebaut wird:** Freisteller
+   wirklich freigestellt (kein sichtbarer Hintergrund-Kasten auf farbiger
+   Flaeche)? Richtiges Produkt/Motiv? Stil konsistent zu den Nachbar-Assets?
+   Nicht freigestellt -> Higgsfield `image_background_remover`, dann erneut ansehen.
+3. Kleinlich triagieren: Bildkanten, Farbsprung Asset- vs. Seitenhintergrund,
+   falsches Motiv, Abschnitt, Matsch-Aufloesung = Fehler -> fixen -> ERNEUT
+   Screenshot. Erst melden, wenn der letzte Zyklus sauber war.
+4. In JEDEN Subagent-Prompt fuer visuelle Arbeit diese Pflicht explizit
+   hineinschreiben (rendern + Read + nachbessern, mind. 2 Zyklen).
+
 ## Finale QA — IMMER, unabhaengig von der Linie
 Kein Interface gilt als fertig, bevor BEIDE Scanner gruen sind.
 
@@ -126,15 +145,15 @@ stimmig? Motion motiviert? Bilder real?).
 | Animation/Motion bauen oder reviewen | `references/motion-doktrin.md` (Werte+Standards+Review-Format) |
 | Gesten/Drag/Sheet/Spring, "Apple-Style"/"iOS-Feel" | `references/apple-fluid-interfaces.md` |
 | Deutscher Begriff -> englischer Motion-Fachbegriff ("wie heisst dieser Effekt") | `references/animation-vokabular.md` (reines Uebersetzungsglossar, KEIN Performance-Tool) |
-| Animation "ruckelt"/laggt, Performance-Diagnose bei Motion | `references/motion-audit-workflow.md` + `wiki/webdesign/effekt-performance-patterns.md` + `wiki/webdesign/motion-polish.md` |
+| Animation "ruckelt"/laggt, Performance-Diagnose bei Motion | `references/motion-audit-workflow.md` + `wiki/craft/webdesign/effekt-performance-patterns.md` + `wiki/craft/webdesign/motion-polish.md` |
 | Voller Motion-Audit ueber ein Repo | `references/motion-audit-workflow.md` (nur hier laden, nicht bei jedem UI-Task) |
 | Farben/Kontrast/OKLCH/Tailwind-Theme | `references/farben-oklch.md` |
 | Typografie (Scale, Heading-Hierarchie, iOS-Zoom-Fix) | `references/typografie.md` |
-| Buttons/Formulare: hover/focus/error-States + A11y | `wiki/webdesign/interaction-states-and-accessibility.md` (zuerst), `references/ui-polish-details.md` nur ergaenzend |
+| Buttons/Formulare: hover/focus/error-States + A11y | `wiki/craft/webdesign/interaction-states-and-accessibility.md` (zuerst), `references/ui-polish-details.md` nur ergaenzend |
 | Feinschliff-Details (Radius, Shadows, Icon-Motion, Hit-Areas) | `references/ui-polish-details.md` |
 | Referenz-Site als Stilvorlage destillieren (nicht 1:1 klonen) | `references/design-dna-schema.md` + `scripts/dna-scaffold.mjs` |
 | Externe Component-/Motion-Bibliothek pruefen statt neu erfinden | `references/component-bibliotheken-radar.md` |
-| Vertiefte, belegte Web-Substanz (States/A11y, Farb-/Typo-System, Motion-Polish, Anti-Slop-QA, Referenz-Auswahl) | `references/wissens-router.md` (liest `wiki/webdesign/`) |
+| Vertiefte, belegte Web-Substanz (States/A11y, Farb-/Typo-System, Motion-Polish, Anti-Slop-QA, Referenz-Auswahl) | `references/wissens-router.md` (liest `wiki/craft/webdesign/`) |
 
 ## Doktrin ist bindend
 `references/design-doktrin.md` enthaelt die fusionierten Regeln (dedupliziert,

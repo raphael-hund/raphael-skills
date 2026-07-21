@@ -1,7 +1,7 @@
 # Wissens-Router (Second Brain) — design
 
 Die belegte, aufgabengenaue Substanz liegt als Wissensseiten unter
-`/root/raphael-brain/wiki/webdesign/`. Trifft eine Aufgabe ein Spezialthema,
+`/root/raphael-brain/wiki/craft/webdesign/`. Trifft eine Aufgabe ein Spezialthema,
 lies die passende Seite mit dem **Read-Tool** nach, *bevor* du arbeitest — nie
 aus dem Gedächtnis diagnostizieren. Immer nur die 1–3 wirklich relevanten
 Seiten laden, nie alle 21.
@@ -32,7 +32,7 @@ Seiten laden, nie alle 21.
 
 **Kern vs. Tiefe:** Die operativen `references/` (design-doktrin, impeccable-
 Detektoren, ai-slop-*, motion-doktrin, farben-oklch, typografie,
-ui-polish-details) sind der **Kern** jeder Arbeit; die `wiki/webdesign/`-Seiten
+ui-polish-details) sind der **Kern** jeder Arbeit; die `wiki/craft/webdesign/`-Seiten
 oben sind **Tiefen-Nachschlag** für Spezialfälle. Bei Überschneidung
 (z. B. Typo-Skala: `references/typografie.md` vs. `typography-system.md`)
 **führt die `references/`-Quelle**, die Wiki-Seite ergänzt mit tieferem Beleg.
