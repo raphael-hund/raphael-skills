@@ -22,7 +22,7 @@
     },
     {
       "name": "copywriting",
-      "version": "0.4.1",
+      "version": "0.4.2",
       "path": "skills/eigene/copywriting/SKILL.md",
       "description": "Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\". Für mehrteilige Email-Sequenzen, Drip-Kampagnen, Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill."
     },
@@ -106,7 +106,7 @@
     },
     {
       "name": "web",
-      "version": "0.6.4",
+      "version": "0.6.5",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },

@@ -1,6 +1,6 @@
 ---
 name: copywriting
-version: 0.4.1
+version: 0.4.2
 description: >
   Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
   SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
@@ -14,8 +14,10 @@ class: F
 scope: agency
 sensitivity: internal
 source: ergänzt um voice-analysis.md — adaptiert aus knowledge-work-plugins/
-  partner-built/brand-voice (Tribe AI, MIT-Lizenz), Stand 2026-07-20
-loads: [references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md]
+  partner-built/brand-voice (Tribe AI, MIT-Lizenz), Stand 2026-07-20;
+  ergänzt um direct-response-klassiker.md — destilliert aus
+  robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
+loads: [references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md]
 requires_skills: [eval@^0]
 completion_criteria:
   - "G1 grün: Orwell-Regeln 2-5 + Passiv-/Nominalstil-Detektor + Floskelliste (inkl. quantifizierter Interpunktions-Schwellen) = 0 Treffer"

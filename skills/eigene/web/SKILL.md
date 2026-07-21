@@ -1,6 +1,6 @@
 ---
 name: web
-version: 0.6.4
+version: 0.6.5
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen

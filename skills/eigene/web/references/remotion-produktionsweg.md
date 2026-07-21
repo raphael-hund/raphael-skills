@@ -4,6 +4,11 @@
 (Skill `remotion-best-practices` + Wiki-Seite `remotion-production.md`,
 Original-Quelle `github.com/remotion-dev/skills`). Details im Vendor-Repo:
 `/root/tools/vendor/webdesigner-pro/skills/remotion-best-practices/`.
+Ergaenzt am 2026-07-21 um Luecken aus den offiziellen Remotion Agent Skills
+(liegen NICHT in einem eigenen Repo `remotion-dev/skills`, sondern im
+Monorepo `github.com/remotion-dev/remotion`, Pfad `packages/skills/skills/`,
+Commit `511e50f10977fd9de56b6ea6889a62d963eca031`, 2026-07-20). Vendor-Klon:
+`/root/tools/vendor/remotion-skills/packages/skills/skills/` (Sparse-Checkout).
 
 **Wofuer:** Neues Thema fuer uns — wir hatten bisher keinen Remotion-/Video-
 Composition-Skill. Nur bei einem AUSDRUECKLICHEN Video-, Composition-,
@@ -39,6 +44,59 @@ kein Rendering-Stack.
    kontrollieren. Einen kompletten Render nur starten, wenn Umfang und Ziel
    klar sind — Rendering kostet Zeit/Compute.
 7. **Kein Upload, Deploy, Kauf oder Publish ohne Freigabe.**
+
+## Video-Layout-Regeln (aus offiziellem `video-layout.md`, neu)
+
+Ein Video-Frame wird anders wahrgenommen als eine Webseite — kurz betrachtet,
+nicht Zeile fuer Zeile gelesen. Deshalb eigene Layout-Regeln statt Web-UI-
+Gewohnheiten:
+
+- Safe Area einhalten: bei 1080px Breite mind. 80px Abstand zu den Seiten,
+  100px zu oben/unten fuer wichtigen Text.
+- Ein Frame, eine Kernaussage. Kein dashboard-artiges Nebeneinander vieler
+  Karten/Badges/Pills — das sind Web-Muster, die im Video ueberladen wirken.
+  Konkurrierende Elemente lieber nacheinander zeigen (Zeit statt Flaeche
+  loest Enge) als gleichzeitig kleiner machen.
+- Layout ueber `flex`/`grid`/`gap` bauen, nicht jedes Element einzeln mit
+  `top`/`left`/`right`/`bottom` positionieren. Absolute Positionierung bleibt
+  Hintergruenden/Deko vorbehalten. Jedes Element animiert aus seinem
+  reservierten Slot heraus (Opacity/Transform/Scale) — nie in einen Slot
+  hinein, den ein anderes Element belegt.
+- Mindestschriftgroessen bei 1080px Breite (proportional skalieren mit der
+  Composition-Breite): Headline ~84px, wichtiger Nebentext ~44px, Labels
+  ~32px. Im Zweifel groesser statt kleiner, kurze Zeilen statt Schriftgroesse
+  runterschrauben.
+- Pre-Render-Check als Frage formulieren: Kernaussage in unter einer Sekunde
+  erfassbar? Ein klarer Fokuspunkt? Nichts, das sich beruehrt/ueberlappt?
+
+## Technische Markup-Regeln (aus offiziellem `remotion-markup/SKILL.md`, neu)
+
+- `interpolate()` ist der Standardweg fuer Animation ueber `useCurrentFrame()`;
+  `spring()`/`Easing.spring()` nur gezielt fuer Feder-Charakter, sonst
+  `Easing.bezier()` fuer eigene Timing-Kurven.
+  **CSS-Transitions/-Animationen und Tailwind-Animationsklassen sind nicht
+  nur "nicht frame-exakt", sondern rendern im Remotion-Export schlicht
+  falsch** — das ist der technische Kern hinter Regel 4 oben, nicht nur ein
+  Stilargument.
+  `scale`/`translate`/`rotate` als eigene CSS-Properties bevorzugen statt
+  eines zusammengesetzten `transform`-Strings — das bleibt im Studio (Visual
+  Mode) einzeln editierbar.
+- Assets liegen in `public/`, referenziert ueber `staticFile()`; Remote-URLs
+  gehen direkt in `src`. Neue `@remotion/*`-/`mediabunny`-Pakete ueber
+  `npx remotion add <paket>` installieren, nicht per Hand in die
+  package.json eintragen (haelt Versionen kompatibel).
+  `<Sequence from={} durationInFrames={}>` fuer Timing/Verzoegerung/
+  Begrenzung von Abschnitten statt manueller Frame-Arithmetik in jeder
+  Komponente.
+- Vor einem vollen Render genuegt oft ein einzelnes Standbild als
+  Stichprobe: `npx remotion still [composition-id] --scale=0.25 --frame=N`
+  (bei trivialen Edits/reinen Refactors optional, bei allem mit
+  Layout-/Timing-Aenderung ein guter Zwischenschritt vor dem Vollrender aus
+  Regel 6).
+- Upgrade-Pfad (falls je gebraucht): `npx remotion upgrade` fuer
+  Remotion-/Mediabunny-Pakete, danach `npx remotion skills update` fuer die
+  Skill-Dateien selbst — nur relevant, wenn ein Projekt aktiv gepflegt wird,
+  nicht Teil des normalen Produktionswegs hier.
 
 ## Richtiger Fall (Illustrativ)
 

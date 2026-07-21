@@ -799,3 +799,96 @@ bestehenden Kette, kein Ersatz. Eingebunden über `loads:` in `ultra-loop/SKILL.
   keine Entsprechung in unserem Cron-Loop-Modell.
 - **Outcome-Klassifikations-Tabelle (Schritt 3)** — redundant zu unseren Runden-Protokoll-Feldern
   (Funde/Fixes/Commits) bzw. unserem Eval-Skill (G1/G2-Gates).
+
+## Vendoring-Runde 9 — 2026-07-21 (Offizielle Remotion Agent Skills)
+
+### Quellen-Commit (Runde 9)
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| remotion-skills | github.com/remotion-dev/remotion (Pfad `packages/skills/skills/`, Sparse-Checkout) | `511e50f10977fd9de56b6ea6889a62d963eca031` | Remotion-Lizenz (Free/Company-Tier, `LICENSE.md` im Repo) |
+
+Die Doku-Seite `remotion.dev/docs/ai/skills` verweist NICHT auf ein eigenständiges Repo
+`remotion-dev/skills` (das existiert nicht) — die Skills liegen im Haupt-Monorepo
+`remotion-dev/remotion` unter `packages/skills/skills/`. Per `git clone --depth 1
+--filter=blob:none --sparse` + `git sparse-checkout set packages/skills` nach
+`/root/tools/vendor/remotion-skills`.
+
+**Lizenz-Befund (Skills vs. Lib — wichtig, weil unser Destillat ein Lizenz-Gate hat):**
+`LICENSE.md` im Repo gilt fuer das gesamte Monorepo, keine separate Lizenz nur fuer
+`packages/skills/`. Free-Tier: Einzelpersonen und Firmen bis 3 Mitarbeitende duerfen Remotion
+frei nutzen (auch kommerziell fuer Video-Erstellung), groessere For-Profit-Organisationen
+brauchen eine Company-Lizenz. Verboten ist nur das Kopieren/Modifizieren von Remotion-Code, um
+ein eigenes Remotion-Derivat zu verkaufen/lizenzieren. Die Skill-Dateien (`SKILL.md` +
+Rezeptkarten) sind Anleitungstext, kein Software-Produkt zum Weiterverkauf — trotzdem NICHT
+wörtlich übernommen, sondern paraphrasiert destilliert (gleiche Vorsichtsregel wie beim
+webdesigner-pro-Vendoring in Runde 5, mangels expliziter Content-Lizenz fuer die Skill-Texte
+selbst). Bestaetigt das bestehende Lizenz-Gate in `remotion-produktionsweg.md` (Zeile
+"Lizenz/Nutzungsklasse pruefen zuerst") — Team-/Firmengroesse bleibt der Schwellenwert, den
+Raphael vor kommerziellem Einsatz klaeren muss.
+
+**Red-Flag-Check:** keine Hooks, kein `.claude`-Ordner, kein Auto-Update-Mechanismus in den 52
+Skill-/Rezept-Dateien unter `packages/skills/skills/`. Vorkommende `http(s)://`-Treffer sind
+ausschliesslich Doku-Links (remotion.dev/docs/*.md) und eine dokumentierte Algolia-Such-API
+(`remotion-docs/SKILL.md`, offener Read-Key fuer Doku-Suche) — kein exec/eval, keine versteckte
+Telemetrie.
+
+**Substanz-Diff gegen `skills/eigene/web/references/remotion-produktionsweg.md`:** Unser
+Destillat (aus webdesigner-pro Zweithand-Weiterreichung) deckte den Denkweg/die Freigabe-Gates
+ab, hatte aber keine der praktischen Video-Layout- und Markup-Detailregeln der offiziellen 10
+Skills. Zwei echte Luecken chirurgisch ergaenzt (Update-in-place, kein Neuschreiben):
+- **Video-Layout-Regeln** (aus `remotion-create/video-layout.md`): Safe-Area-Masse bei 1080px,
+  Mindestschriftgroessen (Headline/Nebentext/Label), Layout-in-Slots via flex/grid statt
+  Einzelpositionierung, "Zeit statt Flaeche" gegen Enge, Pre-Render-Checkfragen.
+- **Technische Markup-Regeln** (aus `remotion-markup/SKILL.md`): `interpolate()` vs. `spring()`,
+  der technische Grund, warum CSS-Transitions/Tailwind-Animationsklassen im Remotion-Export
+  **falsch rendern** (nicht nur "nicht frame-exakt" — das war vorher nur halb begruendet),
+  `scale`/`translate`/`rotate` statt `transform`-String, `staticFile()`/`public/`,
+  `npx remotion add` fuer Paketinstallation, `<Sequence from/durationInFrames>`, der konkrete
+  Einzelframe-Check-Befehl (`npx remotion still --scale=0.25 --frame=N`) und der Upgrade-Pfad
+  (`npx remotion upgrade` + `npx remotion skills update`).
+Marketing-Zahlen aus der Doku-Seite (Install-Zahlen, Kostenreduktions-Prozente) NICHT
+übernommen — nicht verifizierbar, nicht relevant für den Produktionsweg.
+`skills/eigene/web/SKILL.md` Version `0.6.4` → `0.6.5` (Reference geaendert). `validate-skill.py`
++ `build-index.py` grün (31 Skills, keine Fehler).
+
+### Quellen-Commit (Runde 9)
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| robpalmer-copy-skills | github.com/robpalmer99/claude-code-copywriting-skills | `7dbfd61e0f283ca09c20b3eca3657365e00e991d` | CC-BY-4.0 (Copyright 2026 Rob Palmer) |
+
+Per `git clone --depth 1` nach `/root/tools/vendor/robpalmer-copy-skills`. 5 Skills:
+`ad-copy`, `compliance-checker`, `copychief`, `direct-response-copy`, `landing-page-copy`.
+
+**Red-Flag-Check:** keine `.claude`-Umbenennung nötig (kein `.claude`-Ordner im Repo), keine
+Hooks, keine Auto-Update-/Netzwerk-Mechanismen, keine `exec`/`eval`/Skripte — reine
+Markdown-Skills. Unbedenklich.
+
+**Substanz-Abgleich mit unserer Praxis:** Abgeglichen gegen `copywriting/references/`
+(floskel-verbote, ai-slop-patterns-en, voice-analysis, cta-framework, vsl-framework,
+mental-models-en) und `wiki/ads/2026-07-20-referenz-awareness-funnel-zuordnung.md`. Der
+größte Teil von `direct-response-copy/SKILL.md` ist redundant: Headline-/Opening-/CTA-Muster
+und die "AI tells"-Liste decken sich mit unserem Floskel-/AI-Slop-Bestand, oft weniger
+quantifiziert als unsere Version. **Echte Lücke:** der Abschnitt "Classic Direct Response
+Frameworks" — die Namen und Kernregeln von Schwartz, Hopkins, Ogilvy, Halbert, Caples,
+Sugarman, Collier fehlten komplett in unserem Bestand. Unsere Awareness-Referenznotiz deckt
+nur 3 von Schwartz' 5 Stufen ab (problem-/solution-/most-aware, datengetrieben aus
+Konto-Daten); die 2 Randstufen (unaware, product-aware) fehlten.
+
+**Übernommen (destilliert, mit CC-BY-Attribution):** die 6 Kernregeln der Klassiker plus
+Schwartz' 2 fehlende Awareness-Randstufen → `copywriting/references/direct-response-klassiker.md`
+(neu), eingebunden über `loads:` in `copywriting/SKILL.md` (Version 0.4.1 → 0.4.2).
+
+**Verworfen (mit Grund):**
+- **Headline-/Opening-Muster, Curiosity-Gaps, Bucket-Brigades, CTA-Tabelle, "founder story",
+  Testimonial-Formel, Disqualifikation, VSL-Skript-Format** (`direct-response-copy/SKILL.md`,
+  Zeilen 24–465) — redundant zu `cta-framework.md` und `vsl-framework.md`, die dieselben
+  Prinzipien bereits mit eigener Datenbasis (Klickrate/LP-Conversion-Trade-off,
+  Identitäts-Commitment) abdecken.
+- **"AI tells to avoid"-Liste** — vollständig redundant zu `floskel-verbote.md` und
+  `ai-slop-patterns-en.md`, die dieselben Wörter/Phrasen bereits mit quantifizierten
+  Interpunktions-Schwellen führen.
+- **`ad-copy`, `compliance-checker`, `copychief`, `landing-page-copy`** (die anderen 4 Skills
+  im Repo) — nicht Teil des Auftrags dieser Runde (Fokus: Direct-Response-Klassiker-Lücke);
+  bei Bedarf separat prüfen.
