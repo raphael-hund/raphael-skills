@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Orchestrate"
+  short_description: "Coordinate visible task and review threads"
+  default_prompt: "Use $orchestrate for this request."

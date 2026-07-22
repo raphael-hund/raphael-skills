@@ -4,7 +4,7 @@ Die operative Arbeit steuert der Skill selbst (siehe Reference-Routing in der
 SKILL.md). Trifft eine Aufgabe aber ein **Spezialthema**, lies **vor** dem Arbeiten
 die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 (Schwellenwerte, Algorithmen, API-Tiers, Studienzahlen). Pfadpräfix immer absolut:
-`/root/raphael-brain/wiki/seo/`. Lade **nur die 1–3 wirklich relevanten Seiten**, nie alle.
+`/root/raphael-brain/wiki/craft/seo/`. Lade **nur die 1–3 wirklich relevanten Seiten**, nie alle.
 
 | Wenn die Aufgabe … | dann lies |
 |---|---|

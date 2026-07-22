@@ -54,6 +54,17 @@ Für alles Visuelle → **design** (Art Direction, impeccable-QA).
 Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und aus echten
 Analytics verbessern.
 
+## Screenshot-Pflicht (Raphael-Regel, hart — gilt fuer jede sichtbare Aenderung)
+
+Nach JEDER Aenderung an Seiten/Folien/Creatives: rendern (Chrome headless /
+Playwright / pdftoppm) und das PNG **per Read wirklich ansehen** — nicht nur
+erzeugen. Jedes Bild-Asset VOR dem Einbau einzeln ansehen: Freisteller wirklich
+freigestellt (kein Hintergrund-Kasten), richtiges Produkt/Motiv, Stil passt zu
+den Nachbar-Assets (sonst Higgsfield `image_background_remover` bzw. neu generieren).
+Fehler fixen -> ERNEUT Screenshot. Erst fertig melden, wenn der letzte Zyklus
+sauber war. Diese Pflicht in jeden Subagent-Prompt fuer visuelle Arbeit
+explizit hineinschreiben. Details: design-Skill, Abschnitt "Screenshot-Pflicht".
+
 ## Look & QA (design ist die einzige Design-Wissensquelle)
 
 Dieser Skill ist das **Dach**: eine Anleitung von Strategie bis Launch. Alles Visuelle

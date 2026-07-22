@@ -7,7 +7,7 @@ description: >
   Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz.
   Trigger: "Ads bauen", "Hooks schreiben", "Creatives", "Anzeigentexte", "Testwelle",
   "Konto-Audit", "Health-Score", "Testwelle auswerten", "Ad-Fatigue prüfen".
-  Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/ads, on-demand) nach
+  Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach
 class: F
 scope: agency
 sensitivity: internal
@@ -39,7 +39,7 @@ completion_criteria:
 **Lies zuerst:**
 `/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`
 (Dossier aus Loop 1 — Pflicht-Voraussetzung),
-`/root/raphael-brain/wiki/swipes/` (Swipe-File), `/root/raphael-brain/wiki/hot.md`.
+`/root/raphael-brain/wiki/craft/hooks/` (Swipe-File), `/root/raphael-brain/wiki/hot.md`.
 
 ## Zweck (1 Satz)
 
@@ -63,12 +63,12 @@ in Testwellen verbessern.
 ## Wissens-Router (Second Brain)
 
 Die früheren ~39 Einzel-Slash-Skills sind jetzt belegte Wissensseiten unter
-`/root/raphael-brain/wiki/ads/`. Für die **häufigsten** Fälle:
+`/root/raphael-brain/wiki/craft/ads/` (Unterordner: grundlagen/ plattformen/ creative/ messung/ strategie/). Für die **häufigsten** Fälle:
 
-- Meta-Konto prüfen/bauen (Normalfall bei Raphael) → `ads-meta.md`
-- Kampagnenkonzepte/Copy/Briefs neu erzeugen → `ads-create.md`
-- Konto-Audit/Health-Score über 1-12 Plattformen → `ads-audit.md`
-- Testwelle designen/auswerten (Signifikanz) → `ads-test.md`
+- Meta-Konto prüfen/bauen (Normalfall bei Raphael) → `plattformen/ads-meta.md`
+- Kampagnenkonzepte/Copy/Briefs neu erzeugen → `creative/ads-create.md`
+- Konto-Audit/Health-Score über 1-12 Plattformen → `grundlagen/ads-audit.md`
+- Testwelle designen/auswerten (Signifikanz) → `strategie/ads-test.md`
 
 **Spezialthema (andere Plattform, Quermaterie wie Attribution/Budget/Bidding/Scoring,
 Pipeline-Schritt oder belegte Referenz-Notiz)?** Lies zuerst

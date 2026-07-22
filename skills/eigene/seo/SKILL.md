@@ -84,7 +84,7 @@ Die operative Arbeit steuert der Skill selbst (siehe Reference-Routing oben). F�
 **Anderes Spezialthema** (Cluster, Schema, hreflang, Local/Maps, GEO/AEO, Backlinks,
 Competitor-Pages, Sitemap, Drift, Bilder, E-Commerce, SXO, DataForSEO, Gesamt-Synthese
 über mehrere Audits)? Lies zuerst `references/wissens-router.md` und dann die 1-3
-passenden Brain-Seiten daraus — Pfadpräfix immer `/root/raphael-brain/wiki/seo/`,
+passenden Brain-Seiten daraus — Pfadpräfix immer `/root/raphael-brain/wiki/craft/seo/`,
 nie alle Seiten laden, nie aus dem Gedächtnis diagnostizieren.
 
 **Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste)

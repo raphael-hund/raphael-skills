@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "helper_id": "raphael.kimi-upstream-bridge",
+  "helper_version": "1.0.0",
+  "superpowers": {
+    "repository_url": "https://github.com/obra/superpowers.git",
+    "pinned_commit": "d884ae04edebef577e82ff7c4e143debd0bbec99",
+    "source_root": "/root/tools/vendor/superpowers",
+    "skills_relative": "skills",
+    "managed_root_template": "{kimi_code_home}/plugins/managed/superpowers",
+    "installed_plugins_relative": "plugins/installed.json",
+    "managed_manifest_relative": ".kimi-plugin/plugin.json",
+    "plugin_id": "superpowers",
+    "plugin_name": "superpowers",
+    "plugin_version": "6.1.1",
+    "expected_skill_bundle_count": 14
+  },
+  "gstack": {
+    "registry_path": "../codex/upstream-skills.json",
+    "state_path_template": "{state_root}/raphael-codex-skills/upstream-links.json",
+    "pack_root_template": "{share_root}/gstack/{pinned_commit}-bridge-v5",
+    "accepted_prior_pack_templates": ["{share_root}/gstack/{pinned_commit}-bridge-v4"],
+    "expected_generated_count": 54,
+    "expected_prefixed_count": 53,
+    "attested_link_id": "global-runtime:gstack-upgrade",
+    "attested_target_template": "{pack_root}/skills/gstack-upgrade"
+  },
+  "kimi": {
+    "skills_relative": "skills",
+    "links": [
+      {"name": "gstack-upgrade", "source": "gstack-attested"},
+      {"name": "writing-skills", "source": "superpowers-managed", "target_relative": "skills/writing-skills"}
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "helper_id": "raphael.gstack-upstream-codex",
+  "helper_version": "5.0.0",
+  "migration": {
+    "accepted_prior_registry_sha256": [
+      "bc26955f27c36daa2a8bcca1adaa82fca19afd44d13b6363c9e6ffe8ff51f8e7",
+      "c33d9e459af5b196ae697c48303e276c989d790a189b8b35cac5cc1c1659ac01",
+      "bf02cf53774ee56c268796f5f8dc6bf3540d4e301fa808741c33526e5aee77bc",
+      "aaa00a7ecdbdc7abb85c3bd93f21787f26cfdcc14b8eafbb7101ae043fc9fd09"
+    ],
+    "accepted_prior_helper_versions": ["1.0.0", "2.0.0", "3.0.0", "4.0.0"]
+  },
+  "repository": {
+    "url": "https://github.com/garrytan/gstack.git",
+    "pinned_commit": "a3259400a366593e0c909dd9ac3e59752efd2488"
+  },
+  "generator": {
+    "command": ["bun", "run", "gen:skill-docs", "--host", "codex"],
+    "working_directory": "checkout"
+  },
+  "runtime_build": {
+    "commands": [
+      ["bun", "install", "--frozen-lockfile"],
+      ["bun", "run", "build"]
+    ],
+    "required_outputs": [
+      "browse/dist/browse",
+      "browse/dist/find-browse",
+      "browse/dist/server-node.mjs"
+    ]
+  },
+  "source_manifest": {
+    "root_template": "SKILL.md.tmpl",
+    "skill_template_glob": "*/SKILL.md.tmpl",
+    "generated_prefix": "gstack-",
+    "expected_generated_count": 54,
+    "expected_discoverable_count": 54,
+    "expected_prefixed_count": 53,
+    "root_generated_directory": "gstack",
+    "excluded_source_directories": ["codex", "connect-chrome"],
+    "excluded_reason": {
+      "codex": "The official Codex host excludes the Claude wrapper skill.",
+      "connect-chrome": "A symlink alias of open-gstack-browser; the generator emits one canonical directory."
+    }
+  },
+  "pack": {
+    "root_template": "{share_root}/gstack/{pinned_commit}-bridge-v5",
+    "generated_skills_directory": "skills",
+    "generated_root_directory": "root",
+    "runtime_directory": "runtime",
+    "manifest_file": "PACK-MANIFEST.json",
+    "immutable": true
+  },
+  "state": {
+    "path_template": "{state_root}/raphael-codex-skills/upstream-links.json"
+  },
+  "link_graph": {
+    "global_root_template": "{user_root}/.codex/skills/gstack",
+    "sidecar_root_template": "{user_root}/.agents/skills/gstack",
+    "discovery_template": "{user_root}/.agents/skills/{generated_name}",
+    "root_discovery_name": "gstack-router",
+    "global_runtime_assets": ["bin", "browse/dist", "browse/bin", "gstack-upgrade", "ETHOS.md"],
+    "global_runtime_files": ["review/checklist.md", "review/TODOS-format.md"],
+    "sidecar_runtime_assets": ["bin", "browse", "review", "qa", "ETHOS.md"],
+    "root_files": ["SKILL.md", "agents/openai.yaml"]
+  }
+}

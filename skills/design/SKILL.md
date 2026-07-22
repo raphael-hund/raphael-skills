@@ -103,6 +103,10 @@ Screenshot-Zyklus. Kein "muesste jetzt passen" — nur belegte Sicht.
    Screenshot. Erst melden, wenn der letzte Zyklus sauber war.
 4. In JEDEN Subagent-Prompt fuer visuelle Arbeit diese Pflicht explizit
    hineinschreiben (rendern + Read + nachbessern, mind. 2 Zyklen).
+5. Bei PDF-Export zusaetzlich `pdffonts <datei.pdf>` laufen lassen: Nur die
+   CI-Fonts duerfen eingebettet sein. Faellt etwas auf Arimo/Roboto/Arial o. ae.
+   zurueck, war der Webfont beim Headless-Render nicht da -> Fonts lokal per
+   `@font-face` buendeln (nie auf Netz-@import verlassen), neu rendern.
 
 ## Finale QA — IMMER, unabhaengig von der Linie
 Kein Interface gilt als fertig, bevor BEIDE Scanner gruen sind.

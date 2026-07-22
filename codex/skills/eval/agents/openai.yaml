@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Eval"
+  short_description: "Codex adapter for the eval skill"
+  default_prompt: "Use $eval for this task."

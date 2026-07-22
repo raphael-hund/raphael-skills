@@ -41,7 +41,7 @@ Transkript zeitlich aligned ergeben einen Scene-by-Scene-Breakdown statt nur Tex
 
 - Konkurrenz-/Swipe-Analyse: „Was macht dieser Hook / dieses Reel stark?"
 - Content-Recherche: Transkript eines YT-Videos ohne Whisper/API-Kosten.
-- Vorlagenbau: Struktur eines funktionierenden Videos abstrahieren (→ `wiki/swipes/`).
+- Vorlagenbau: Struktur eines funktionierenden Videos abstrahieren (→ `wiki/craft/hooks/`).
 
 ## Ablauf
 
@@ -61,7 +61,7 @@ Transkript zeitlich aligned ergeben einen Scene-by-Scene-Breakdown statt nur Tex
    Transkript danebenlegen und zeitlich zuordnen. Nicht raten, was auf einem Frame
    steht — den Frame anschauen.
 3. **Schreiben** — Ausgabe im Format unten. Ergebnis gehört (je nach Kontext) als
-   Kandidat nach `wiki/_candidates/` bzw. `wiki/swipes/` — nie direkt ins Wiki
+   Kandidat nach `wiki/_candidates/` bzw. `wiki/craft/hooks/` — nie direkt ins Wiki
    (Promotion nur mit Freigabe).
 
 ## Ausgabeformat (Pflicht)

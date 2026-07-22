@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Tdd"
+  short_description: "Codex adapter for the tdd skill"
+  default_prompt: "Use $tdd for this task."

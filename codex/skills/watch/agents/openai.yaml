@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Watch"
+  short_description: "Codex adapter for the watch skill"
+  default_prompt: "Use $watch for this task."

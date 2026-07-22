@@ -19,7 +19,7 @@ statt vage, und teste, statt zu raten.
 - **Eugene Schwartz — 5 Awareness-Stufen** (unaware → problem-aware →
   solution-aware → product-aware → most-aware): je unbewusster der Leser,
   desto länger muss der Text erst das Problem aufbauen, bevor er verkauft.
-  Unsere eigene Awareness-Regel (`wiki/ads/2026-07-20-referenz-awareness-funnel-zuordnung.md`)
+  Unsere eigene Awareness-Regel (`wiki/craft/ads/creative/2026-07-20-referenz-awareness-funnel-zuordnung.md`)
   deckt bereits 3 der 5 Stufen mit echten Konto-Daten ab (problem-/solution-/
   most-aware); die 2 fehlenden Randstufen ergänzen hier: **unaware** (Leser
   weiß nicht, dass er ein Problem hat → Einstieg über Identität/Emotion, nie
@@ -73,5 +73,5 @@ statt vage, und teste, statt zu raten.
 - github.com/robpalmer99/claude-code-copywriting-skills, `direct-response-copy/SKILL.md`,
   Abschnitt "Classic Direct Response Frameworks" (Zeilen 498-594), Stand des
   Clones 2026-07-21, Lizenz CC-BY-4.0.
-- Ergänzend: `wiki/ads/2026-07-20-referenz-awareness-funnel-zuordnung.md` (unsere
+- Ergänzend: `wiki/craft/ads/creative/2026-07-20-referenz-awareness-funnel-zuordnung.md` (unsere
   3-Stufen-Datenbasis, hier um Schwartz' 2 Randstufen erweitert).

@@ -30,7 +30,7 @@ completion_criteria:
 **Lies zuerst (brand-voice-Slot):**
 `/root/raphael-brain/business/` (voice-Dateien, falls zentral) **und** zur Laufzeit
 `/root/clients/client-<name>/wiki/VOICE.md` (kundenspezifische Voice) —
-der Kunde gewinnt bei Widerspruch. Außerdem `/root/raphael-brain/wiki/swipes/`.
+der Kunde gewinnt bei Widerspruch. Außerdem `/root/raphael-brain/wiki/craft/hooks/`.
 
 ## Zweck (1 Satz)
 

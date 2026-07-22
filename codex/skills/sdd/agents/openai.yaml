@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec-Driven Development"
+  short_description: "Execute plans with visible review threads"
+  default_prompt: "Use $sdd for this request."
