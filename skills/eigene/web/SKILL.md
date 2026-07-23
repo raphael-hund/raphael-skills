@@ -61,18 +61,26 @@ Analytics verbessern.
 
 ## Screenshot-Pflicht (Raphael-Regel, hart — gilt fuer jede sichtbare Aenderung)
 
-Nach JEDER Aenderung an Seiten/Folien/Creatives: rendern (Chrome headless /
-Playwright / pdftoppm) und das PNG **per Read wirklich ansehen** — nicht nur
-erzeugen. Jedes Bild-Asset VOR dem Einbau einzeln ansehen: Freisteller wirklich
-freigestellt (kein Hintergrund-Kasten), richtiges Produkt/Motiv, Stil passt zu
-den Nachbar-Assets (sonst Higgsfield `image_background_remover` bzw. neu generieren).
-Fehler fixen -> ERNEUT Screenshot. Erst fertig melden, wenn der letzte Zyklus
-sauber war. Diese Pflicht in jeden Subagent-Prompt fuer visuelle Arbeit
-explizit hineinschreiben. Bei PDF-Export zusaetzlich `pdffonts <datei.pdf>`
-laufen lassen: Nur die CI-Fonts duerfen eingebettet sein (Fallback auf
-Arimo/Roboto/Arial = Webfont war beim Headless-Render nicht da -> Fonts
-lokal per `@font-face` buendeln, neu rendern).
-Details: design-Skill, Abschnitt "Screenshot-Pflicht".
+**Design wird NUR noch an Screenshots entschieden (Raphael 23.07.). Desktop zuerst.**
+Standard-Werkzeug ist `scripts/shot-sweep.mjs`: First Fold exakt 1440×730, danach
+1440×1400 im 50-%-Schritt, echte Scroll-Events, NIEMALS fullPage/captureBeyondViewport.
+Das Skript schreibt ein `manifest.json` — Kritik-Agents bekommen ausschliesslich
+dieses Manifest + die PNGs, keine selbst geratenen Pfade. Der vollstaendige Ablauf
+(Sweep → eigenes Ansehen → Panel Sol/Sonnet/Kimi → verifizierte Fixliste → Fix →
+Re-Sweep-Vergleich) steht in `references/screenshot-kritik-loop.md` und ist bei
+jeder visuellen Arbeit verbindlich.
+
+Nach JEDER Aenderung an Seiten/Folien/Creatives: Sweep fahren und jedes PNG
+**per Read wirklich ansehen** — nicht nur erzeugen. Jedes Bild-Asset VOR dem Einbau
+einzeln ansehen: Freisteller wirklich freigestellt (kein Hintergrund-Kasten),
+richtiges Produkt/Motiv, Stil passt zu den Nachbar-Assets (sonst Higgsfield
+`image_background_remover` bzw. neu generieren). Fehler fixen -> ERNEUT Sweep.
+Erst fertig melden, wenn der letzte Zyklus sauber war. Diese Pflicht in jeden
+Subagent-Prompt fuer visuelle Arbeit explizit hineinschreiben (inkl. absoluter
+Pfade zum Skript und zum out-Verzeichnis). Bei PDF-Export zusaetzlich
+`pdffonts <datei.pdf>` laufen lassen: Nur die CI-Fonts duerfen eingebettet sein
+(Fallback auf Arimo/Roboto/Arial = Webfont war beim Headless-Render nicht da ->
+Fonts lokal per `@font-face` buendeln, neu rendern).
 
 **Nach JEDEM Fix ALLES nochmal pruefen, nicht nur die geaenderte Stelle.**
 Wer einen Fehler fixt (Pfad, Layout, Bild-Quelle, CSS) und dann nur die
@@ -173,7 +181,7 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
    Schreibzugriff für Agenten).
 7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).
-   G1 Lighthouse/axe = 0, hart. Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
+   G1 Lighthouse/axe = 0, hart. Fach 2 Design laeuft ab jetzt als Screenshot-Kritik-Loop nach references/screenshot-kritik-loop.md (Panel: sol-pruefer=Code, sonnet-worker=Screenshots, kimi-recherche=Screenshots). Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
    Sequenz aus "Look & QA": design ZUERST, **danach copywriting G1→G2 als fester zweiter
    Schritt** (nicht optional) — Details in `references/qa-faecher.md`. Optional Persona-QA
    (Beginner/Engineer/Business-Owner). Conversion-Elemente (Popup/Lead-Magnet/Free-Tool) →
