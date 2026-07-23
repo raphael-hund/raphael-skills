@@ -36,7 +36,7 @@ def frontmatter_name(path: Path) -> str:
 def expected_inventories() -> tuple[set[str], set[str], set[str], Path]:
     raphael_data = json.loads(CODEX_COMPAT.read_text(encoding="utf-8"))
     raphael = set(raphael_data["skills"])
-    assert len(raphael) == 32, f"expected 32 Raphael skills, found {len(raphael)}"
+    assert len(raphael) == 36, f"expected 36 Raphael skills, found {len(raphael)}"
 
     state = json.loads(GSTACK_STATE.read_text(encoding="utf-8"))
     pack = Path(state["pack_root"])

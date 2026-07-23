@@ -116,14 +116,14 @@ def check_registry_and_sources(c: Checks, registry: dict[str, dict]) -> tuple[di
         c.check(sf.ok, f"source validation failed: {path}: {sf.errors}")
         fm = sync.parse_top_level_keys(sync.extract_frontmatter(path.read_text(encoding="utf-8")) or [])
         source_names.append(fm.get("name", {}).get("raw", "").strip())
-    c.check(len(source_paths) == 31, f"expected 31 source SKILL.md files, found {len(source_paths)}")
+    c.check(len(source_paths) == 35, f"expected 35 source SKILL.md files, found {len(source_paths)}")
     c.check(len(source_names) == len(set(source_names)), "source skill names are not unique")
     source_registry = {
         name for name, entry in registry.items()
         if entry.get("mode") != "native-external-review"
     }
     c.check(set(source_names) == source_registry, "registry/source name sets differ")
-    c.check(len(registry) == 32, f"expected 32 registry entries, found {len(registry)}")
+    c.check(len(registry) == 36, f"expected 36 registry entries, found {len(registry)}")
     for name, entry in registry.items():
         c.check(entry.get("mode") in {"source-adapter", "native-thread", "native-external-review"}, f"{name}: invalid mode")
         c.check(bool(entry.get("rationale", "").strip()), f"{name}: empty rationale")

@@ -31,7 +31,7 @@ def run(*command: str, cwd: Path = ROOT) -> str:
 def main() -> int:
     registry = json.loads((ROOT / "claude" / "compatibility.json").read_text(encoding="utf-8"))
     raphael_names = set(json.loads((ROOT / "codex" / "compatibility.json").read_text(encoding="utf-8"))["skills"])
-    assert registry["expected_count"] == len(raphael_names) == 32
+    assert registry["expected_count"] == len(raphael_names) == 36
     for name in raphael_names:
         installed = CLAUDE_SKILLS / name
         assert installed.is_symlink(), f"missing Claude Raphael link: {name}"
@@ -66,7 +66,7 @@ def main() -> int:
 
     broken = [path for path in CLAUDE_SKILLS.iterdir() if path.is_symlink() and not os.path.exists(path)]
     assert not broken, f"broken Claude skill links: {broken}"
-    print("Claude live catalog: OK (Raphael 32, gstack 54, Superpowers 14)")
+    print("Claude live catalog: OK (Raphael 36, gstack 54, Superpowers 14)")
     return 0
 
 

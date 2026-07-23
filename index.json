@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 33,
+  "skill_count": 35,
   "skills": [
     {
       "name": "design",
@@ -103,6 +103,18 @@
       "version": "0.6.1",
       "path": "skills/eigene/seo/SKILL.md",
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\". Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)"
+    },
+    {
+      "name": "taste",
+      "version": "0.1.0",
+      "path": "skills/eigene/taste/SKILL.md",
+      "description": "Feuert bei Landing/Marketing/Portfolio/Editorial-Flächen, wenn der Look \"besonders\", \"premium\", \"nicht nach Template\" aussehen soll — die Landing-/Brand-Linie des design-Systems. Trigger: \"Landingpage designen\", \"Premium-Look\", \"nicht nach Baukasten aussehen\", \"Brand-Fläche\", \"Hero gestalten\", \"Portfolio\", \"Editorial\", \"taste\", \"mehr Geschmack ins Design\"."
+    },
+    {
+      "name": "ui-ux",
+      "version": "0.1.0",
+      "path": "skills/eigene/ui-ux/SKILL.md",
+      "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
     },
     {
       "name": "ultra-loop",

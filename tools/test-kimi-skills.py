@@ -64,8 +64,8 @@ def run(command: list[str], home: Path, *, extra_env: dict[str, str] | None = No
 def check_registry(c: Checks, registry: dict[str, dict]) -> None:
     codex = json.loads(CODEX_COMPAT_PATH.read_text(encoding="utf-8"))["skills"]
     kimi_json = json.loads(KIMI_COMPAT_PATH.read_text(encoding="utf-8"))
-    c.check(len(codex) == 32, f"Codex inventory expected 32, found {len(codex)}")
-    c.check(len(registry) == 32, f"Kimi registry expected 32, found {len(registry)}")
+    c.check(len(codex) == 36, f"Codex inventory expected 36, found {len(codex)}")
+    c.check(len(registry) == 36, f"Kimi registry expected 36, found {len(registry)}")
     mapped = {name: entry.get("codex_name", name) for name, entry in registry.items()}
     c.check(set(mapped.values()) == set(codex) and len(set(mapped.values())) == len(mapped), "Kimi registry is not bijective with Codex inventory")
     c.check(kimi_json.get("target") == "kimi-code-0.28.1", "Kimi target is not pinned to 0.28.1")

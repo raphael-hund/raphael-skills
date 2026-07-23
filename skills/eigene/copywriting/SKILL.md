@@ -17,7 +17,7 @@ source: ergänzt um voice-analysis.md — adaptiert aus knowledge-work-plugins/
   partner-built/brand-voice (Tribe AI, MIT-Lizenz), Stand 2026-07-20;
   ergänzt um direct-response-klassiker.md — destilliert aus
   robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
-loads: [references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md]
+loads: [references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md, references/sprachstile-referenz.md]
 requires_skills: [eval@^0, no-ai-slop@^0]
 completion_criteria:
   - "G1 grün: Orwell-Regeln 2-5 + Passiv-/Nominalstil-Detektor + Floskelliste (inkl. quantifizierter Interpunktions-Schwellen) = 0 Treffer"
@@ -53,6 +53,11 @@ klingt — als Stil-Gate für ads, web, seo.
 2. **Schreiben/Umschreiben** — nach Orwell-DE (`references/orwell-de.md`). Perfekte Grammatik
    oder gehobenes Vokabular allein ist **kein** KI-Beweis (siehe Detection Guidance in
    `references/ai-slop-patterns-en.md`) — nicht jede saubere Formulierung kaputt-editieren.
+   **Sprachstil wählen:** Für Conversion-Copy (Landing, Ads, Sales) vor dem Schreiben einen
+   der 6 Referenz-Sprachstile aus `references/sprachstile-referenz.md` wählen
+   (Lokal-Vertrauen / Coach-DR / Skeptiker-DR / Quiz-Funnel / Velvet-Rope / Enterprise) —
+   gewählt nach Kunde + Kanal + Markt-Reife, nie nach eigener Vorliebe. Der Stil liefert
+   Rhythmus, Proof-Muster und CTA-Form; die VOICE.md des Kunden gewinnt bei Konflikt.
 3. **G1 (deterministisch, immer zuerst):**
    - Orwell-Regeln **2–5** als Checks (kurzes Wort, Aktiv, kürzen, kein Fachjargon-Ballast).
    - **Passiv-/Nominalstil-Detektor** (`references/orwell-de.md` → Heuristik).

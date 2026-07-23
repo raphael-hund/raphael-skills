@@ -33,7 +33,7 @@ loads:
   - references/radix-shadcn-tailwind-stack.md
   - references/remotion-produktionsweg.md
   - references/templates/statistics-page-template.html
-requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0]
+requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 completion_criteria:
   - "Lighthouse/axe = 0 Fehler (G1, hart)"
   - "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)"
@@ -49,10 +49,10 @@ completion_criteria:
 (Dossier aus Loop 1 — Pflicht), `/root/raphael-brain/wiki/hot.md`.
 Für alles Visuelle → **design** (Art Direction, impeccable-QA).
 
-**Lädt automatisch mit:** `design` (Wissensquelle: taste-Linie für Landing,
-ui-ux-Linie für App, Doktrin, Detektoren) **und** `impeccable`
-(Kommandosprache + Craft-Floor für Design-Arbeit und QA). taste lebt als
-`references/taste-kern.md` im design-Skill — kein separater Skill nötig.
+**Lädt automatisch mit:** `design` (Wissensquelle: Doktrin, Detektoren,
+beide Register-Linien) **und** `impeccable` (Kommandosprache + Craft-Floor)
+**sowie** `taste` und `ui-ux` (Register-Router: taste = Landing/brand-Linie,
+ui-ux = App/product-Linie — beide zeigen auf die Linien im design-Skill).
 
 ## Zweck (1 Satz)
 
@@ -68,7 +68,11 @@ freigestellt (kein Hintergrund-Kasten), richtiges Produkt/Motiv, Stil passt zu
 den Nachbar-Assets (sonst Higgsfield `image_background_remover` bzw. neu generieren).
 Fehler fixen -> ERNEUT Screenshot. Erst fertig melden, wenn der letzte Zyklus
 sauber war. Diese Pflicht in jeden Subagent-Prompt fuer visuelle Arbeit
-explizit hineinschreiben. Details: design-Skill, Abschnitt "Screenshot-Pflicht".
+explizit hineinschreiben. Bei PDF-Export zusaetzlich `pdffonts <datei.pdf>`
+laufen lassen: Nur die CI-Fonts duerfen eingebettet sein (Fallback auf
+Arimo/Roboto/Arial = Webfont war beim Headless-Render nicht da -> Fonts
+lokal per `@font-face` buendeln, neu rendern).
+Details: design-Skill, Abschnitt "Screenshot-Pflicht".
 
 **Nach JEDEM Fix ALLES nochmal pruefen, nicht nur die geaenderte Stelle.**
 Wer einen Fehler fixt (Pfad, Layout, Bild-Quelle, CSS) und dann nur die

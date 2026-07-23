@@ -55,14 +55,14 @@ def load_inventory() -> dict[str, Path]:
     required = {"schema_version", "helper_id", "target", "inventory_source", "expected_count", "native_overrides"}
     if set(registry) != required or registry["schema_version"] != 1 or registry["helper_id"] != "raphael.claude-skills":
         raise SyncError("unsupported Claude registry")
-    if registry["expected_count"] != 32 or registry["inventory_source"] != "../codex/compatibility.json":
+    if registry["expected_count"] != 36 or registry["inventory_source"] != "../codex/compatibility.json":
         raise SyncError("Claude registry inventory contract is invalid")
     overrides = registry["native_overrides"]
     if overrides != {"kimi-sol": "claude/skills/kimi-sol/SKILL.md"}:
         raise SyncError("Claude native override registry is invalid")
     codex = read_json(CODEX_REGISTRY_PATH).get("skills")
-    if not isinstance(codex, dict) or len(codex) != 32:
-        raise SyncError("Codex inventory must contain exactly 32 skills")
+    if not isinstance(codex, dict) or len(codex) != 36:
+        raise SyncError("Codex inventory must contain exactly 36 skills")
 
     inventory: dict[str, Path] = {}
     for name, entry in codex.items():

@@ -143,7 +143,7 @@ def load_registry() -> dict[str, dict[str, Any]]:
 
     ``kimi/compatibility.json`` deliberately stores the stable source/mode
     mapping.  Rationale, triggers, aliases, and dependency notes are inherited
-    from the Codex inventory so the 32-name set has one deterministic source of
+    from the Codex inventory so the 36-name set has one deterministic source of
     truth while the Kimi registry remains small and reviewable.
     """
     data = _load_json(REGISTRY_PATH, "Kimi registry")
