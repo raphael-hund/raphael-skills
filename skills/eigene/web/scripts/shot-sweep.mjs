@@ -11,7 +11,8 @@ const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const BASE = get('base', 'http://localhost:5280').replace(/\/$/, '');
 const OUT = get('out', '/tmp/shot-sweep');
-const ROUTES = get('routes', '/').split(',').map((r) => r.trim());
+const ROUTES = get('routes', '/').split(',').map((r) => r.trim())
+  .map((r) => (r.startsWith('/') ? r : `/${r}`));
 const MOBILE = args.includes('--mobile');
 const HOVERS = args.filter((a, i) => args[i - 1] === '--hover');
 
@@ -34,58 +35,92 @@ async function waitSettled(page) {
 
 async function sweepRoute(browser, route, vp, label, manifest) {
   const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
+  page.setDefaultNavigationTimeout(45000);
+  // Slug: '/' -> '__', fuehrenden Slash strippen — '/a/b' und '/a_b' kollidieren so nicht.
   const slug = route === '/' ? 'home'
-    : route.replace(/\/+/g, '_').replace(/^_+|_+$/g, '');
-  const res = await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' }).catch((e) => {
-    console.log(`NAV-ERR ${route}: ${e.message}`);
-    return null;
-  });
-  if (!res) { await page.close(); return; }
-  console.log(`${label} ${route} -> ${res.status()}`);
-  await waitSettled(page);
-
-  const entry = { route, status: res.status(), shots: [] };
-
-  // 1) First Fold exakt 730 (bei Desktop) — eigener Shot, kein Zuschnitt.
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await page.waitForTimeout(350);
-  const foldFile = `${slug}-${label}-00-fold.png`;
-  await page.screenshot({ path: path.join(OUT, foldFile) });
-  entry.shots.push({ file: foldFile, y: 0, kind: 'fold', viewport: vp, width: vp.width, height: vp.height });
-
-  // 2) Hover-Shots (z.B. Header-Dropdowns) direkt nach dem Fold.
-  for (let h = 0; h < HOVERS.length; h++) {
-    const sel = HOVERS[h];
-    const loc = page.locator(sel).first();
-    if (await loc.count()) {
-      await loc.hover().catch(() => {});
-      await page.waitForTimeout(500);
-      const hf = `${slug}-${label}-hover-${h}.png`;
-      await page.screenshot({ path: path.join(OUT, hf) });
-      entry.shots.push({ file: hf, y: 0, kind: 'hover', selector: sel, viewport: vp, width: vp.width, height: vp.height });
+    : route.replace(/^\/+/, '').replace(/\//g, '__').replace(/[^\w.-]+/g, '_');
+  try {
+    const res = await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' }).catch((e) => {
+      console.log(`NAV-ERR ${route}: ${e.message}`);
+      return null;
+    });
+    if (!res) {
+      manifest.routes.push({ route, error: `navigation failed (${BASE}${route})`, shots: [] });
+      return;
     }
-  }
+    console.log(`${label} ${route} -> ${res.status()}`);
+    await waitSettled(page);
 
-  // 3) Rest der Seite: Viewport 1400 hoch (Desktop), Schritt 50%, echte Scroll-Events.
-  if (label === 'desktop') {
-    await page.setViewportSize({ width: DEEP.width, height: DEEP.height });
-    await page.waitForTimeout(250);
+    const entry = { route, status: res.status(), shots: [] };
+
+    // SPA-Catch-Alls liefern oft 200 + NotFound-Seite: als ehrlichen Fehler markieren,
+    // sonst sweepen wir lautlos eine 404-Huelse. Heuristik: <title> mit 404/not found,
+    // sonst schlanker Fallback ueber Body-Text.
+    let isNotFound = /\b(404|not found|nicht gefunden)\b/i.test(await page.title());
+    if (!isNotFound) {
+      const bodyText = await page.evaluate(() => (document.body?.innerText || '').slice(0, 600));
+      isNotFound = /\b(404|page not found|seite nicht gefunden)\b/i.test(bodyText);
+    }
+    if (res.ok() && isNotFound) {
+      entry.error = 'not-found page served with HTTP 200 (SPA catch-all)';
+      entry.shots = [];
+      manifest.routes.push(entry);
+      console.log(`WARN ${route}: NotFound-Seite (HTTP 200) -> als Fehler im Manifest`);
+      return;
+    }
+
+    // 1) First Fold exakt 730 (bei Desktop) — eigener Shot, kein Zuschnitt.
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(350);
+    const foldFile = `${slug}-${label}-00-fold.png`;
+    await page.screenshot({ path: path.join(OUT, foldFile) });
+    entry.shots.push({ file: foldFile, y: 0, kind: 'fold', viewport: vp, width: vp.width, height: vp.height });
+
+    // 2) Hover-Shots (z.B. Header-Dropdowns) direkt nach dem Fold.
+    for (let h = 0; h < HOVERS.length; h++) {
+      const sel = HOVERS[h];
+      const loc = page.locator(sel).first();
+      if (await loc.count()) {
+        await loc.hover().catch(() => {});
+        await page.waitForTimeout(500);
+        const hf = `${slug}-${label}-hover-${h}.png`;
+        await page.screenshot({ path: path.join(OUT, hf) });
+        entry.shots.push({ file: hf, y: 0, kind: 'hover', selector: sel, viewport: vp, width: vp.width, height: vp.height });
+      }
+    }
+
+    // 3) Rest der Seite: Viewport 1400 hoch (Desktop), Schritt 50%, echte Scroll-Events.
+    //    Maximal scrollbar ist docH - viewportHoehe — der Browser clamped hoehere Ziele
+    //    (sonst doppelte Bottom-Shots). Nach jedem scrollTo das TATSÄCHLICHE scrollY
+    //    auslesen und fuer Dateiname/Manifest verwenden.
+    if (label === 'desktop') {
+      await page.setViewportSize({ width: DEEP.width, height: DEEP.height });
+      await page.waitForTimeout(250);
+    }
+    const activeVp = label === 'desktop' ? DEEP : vp;
+    const docH = await page.evaluate(() => document.documentElement.scrollHeight);
+    const vh = activeVp.height;
+    const maxY = Math.max(0, docH - vh);
+    const step = Math.round(vh * 0.5);
+    let i = 1;
+    let lastY = 0;
+    const scrollShot = async (target) => {
+      await page.evaluate((yy) => window.scrollTo({ top: yy, behavior: 'instant' }), target);
+      await page.waitForTimeout(400);           // Reveal-Animationen zuende laufen lassen
+      const realY = await page.evaluate(() => Math.round(window.scrollY));
+      const f = `${slug}-${label}-${String(i).padStart(2, '0')}-y${realY}.png`;
+      await page.screenshot({ path: path.join(OUT, f) });
+      entry.shots.push({ file: f, y: realY, kind: 'scroll', viewport: activeVp, width: activeVp.width, height: activeVp.height });
+      lastY = realY;
+      i++;
+    };
+    for (let y = step; y < maxY; y += step) await scrollShot(y);
+    if (maxY > 0 && lastY < maxY) await scrollShot(maxY);  // ein finaler Shot exakt am Bottom
+    entry.docHeight = docH;
+    manifest.routes.push(entry);
+  } finally {
+    await page.close();
   }
-  const activeVp = label === 'desktop' ? DEEP : vp;
-  const docH = await page.evaluate(() => document.documentElement.scrollHeight);
-  const step = Math.round((label === 'desktop' ? DEEP.height : vp.height) * 0.5);
-  let i = 1;
-  for (let y = step; y < docH; y += step) {
-    await page.evaluate((yy) => window.scrollTo({ top: yy, behavior: 'instant' }), y);
-    await page.waitForTimeout(400);           // Reveal-Animationen zuende laufen lassen
-    const f = `${slug}-${label}-${String(i).padStart(2, '0')}-y${y}.png`;
-    await page.screenshot({ path: path.join(OUT, f) });
-    entry.shots.push({ file: f, y, kind: 'scroll', viewport: activeVp, width: activeVp.width, height: activeVp.height });
-    i++;
-  }
-  entry.docHeight = docH;
-  manifest.routes.push(entry);
-  await page.close();
 }
 
 (async () => {
@@ -97,4 +132,9 @@ async function sweepRoute(browser, route, vp, label, manifest) {
   fs.writeFileSync(path.join(OUT, 'manifest.json'), JSON.stringify(manifest, null, 2));
   console.log(`manifest: ${path.join(OUT, 'manifest.json')} (${manifest.routes.reduce((n, r) => n + r.shots.length, 0)} shots)`);
   await browser.close();
+  const failed = manifest.routes.filter((r) => r.error);
+  if (failed.length) {
+    console.log(`WARN: ${failed.length} Route(s) mit Fehler im Manifest: ${failed.map((r) => r.route).join(', ')}`);
+    process.exitCode = 1;
+  }
 })();
