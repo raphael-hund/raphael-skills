@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Ads Video"
+  short_description: "Codex adapter for the ads-video skill"
+  default_prompt: "Use $ads-video for this task."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Ads Statics"
+  short_description: "Codex adapter for the ads-statics skill"
+  default_prompt: "Use $ads-statics for this task."

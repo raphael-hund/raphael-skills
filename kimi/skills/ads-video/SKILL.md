@@ -1,12 +1,12 @@
 ---
-name: "ads"
-description: "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\""
+name: "ads-video"
+description: "Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan. Trigger: \"Video-Skript schreiben\", \"Ad-Skript\", \"Drehbuch für Ads\", \"Skripte für Testwelle\", \"Hook-Varianten fürs Video\""
 ---
 
-# ads — Kimi source adapter
+# ads-video — Kimi source adapter
 
 Read the complete canonical source file before acting:
-`/root/raphael-skills/skills/eigene/ads/SKILL.md`
+`/root/raphael-skills/skills/eigene/ads-video/SKILL.md`
 
 The canonical source is authoritative for safety, scope, procedure, and completion. Do not copy or paraphrase it into this adapter.
 

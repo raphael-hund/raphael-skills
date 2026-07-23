@@ -42,6 +42,30 @@
     "Ad-Fatigue prüfen"
    ]
   },
+  "ads-video": {
+   "source": "skills/eigene/ads-video/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Keep the paid-ads video-script fulfillment (beat structure, VO, on-screen plan) available as one Codex capability.",
+   "triggers": [
+    "Video-Skript schreiben",
+    "Ad-Skript",
+    "Drehbuch für Ads",
+    "Skripte für Testwelle",
+    "Hook-Varianten fürs Video"
+   ]
+  },
+  "ads-statics": {
+   "source": "skills/eigene/ads-statics/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Keep the paid-ads static-creative fulfillment (angle x visual-style briefs, copy Bauformen) available as one Codex capability.",
+   "triggers": [
+    "Statics bauen",
+    "Static-Briefs",
+    "Bildanzeigen",
+    "Testwelle Statics",
+    "Angle-Matrix für Creatives"
+   ]
+  },
   "codex-first": {
    "source": "skills/eigene/codex-first/SKILL.md",
    "mode": "source-adapter",

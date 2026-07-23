@@ -7,6 +7,14 @@
    "source": "skills/eigene/ads/SKILL.md",
    "mode": "source-adapter"
   },
+  "ads-statics": {
+   "source": "skills/eigene/ads-statics/SKILL.md",
+   "mode": "source-adapter"
+  },
+  "ads-video": {
+   "source": "skills/eigene/ads-video/SKILL.md",
+   "mode": "source-adapter"
+  },
   "brainstorm": {
    "source": "skills/methodik/brainstorm/SKILL.md",
    "mode": "source-adapter"
