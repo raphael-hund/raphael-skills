@@ -205,6 +205,27 @@ das wird als AVIF **mit Alpha** gespeichert und im Index als `transparenz: true`
 geführt (siehe unten). Weitere Higgsfield-Fähigkeiten (Video, 3D, Upscale, Marketing
 Studio) stehen in der Memory `higgsfield-cli` — hier nur die Web-Bild-relevanten Ops.
 
+**Illustrations-Regel: freistellen + eng zuschneiden (Raphael-Doktrin 23.07.2026, hart).**
+Illustrationen, die auf der Website mit transparentem Hintergrund stehen sollen,
+werden IMMER (1) per `image_background_remover` freigestellt und (2) danach mit
+ImageMagick **auf das Motiv getrimmt**, sodass das Bild links/rechts/oben/unten
+exakt am letzten Element-Pixel aufhört (z. B. genau an der Dachkante des Hauses):
+
+```bash
+# Schritt 1: freistellen (transparent)
+hf generate create image_background_remover --image ./illustration.png --wait
+# Schritt 2: eng auf das Motiv zuschneiden (Alpha-Trim, kein Rand)
+convert freigestellt.png -trim +repage illustration-final.png
+```
+
+Grund: Ohne Trim bringt das generierte Bild seinen eigenen White Space mit, der
+sich mit den normalen Margins/Paddings des Layouts addiert — die Illustration
+wirkt dann verloren und die Abstände sind unkontrollierbar. Der Abstand gehört
+ins CSS, NIE ins Bild. (Beim Generieren darf/soll das Motiv trotzdem mit viel
+Luft angefragt werden — damit nichts angeschnitten wird; der Rand fliegt danach
+im Trim-Schritt raus.) Danach wie immer: AVIF mit Alpha + `bilder.mjs add`
+(`transparenz: true`).
+
 ## Bild-Index + AVIF — Pflicht bei JEDEM Bild
 
 Gilt für **alle** Bilder im Projekt: selbst generierte **und** von Raphael gelieferte.

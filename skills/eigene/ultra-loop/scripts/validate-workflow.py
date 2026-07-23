@@ -25,10 +25,12 @@ runden-protokoll.md), gegenueber dem Original:
   - check_slice_falle: NEU. Warnt vor `.slice(` auf `JSON.stringify(...)` in
     agent()-Prompts — die "Slice-Falle" aus workflow-vorlage.md (3x real
     passiert, R13/R15): stiller Datenverlust an Folge-Agenten statt Datei+Pfad.
-  - check_model_fable: NEU. FAIL bei `model:'fable'` / `model: "fable"` —
+  - check_model_fable: NEU. FAIL bei Fable als `model` oder `agentType` —
     ultra-loop/SKILL.md verbietet Fable-Subagents explizit (NIE Fable).
+  - check_multimodel_fleet: NEU. FAIL wenn Sol, Kimi oder Luna als
+    `agentType` fehlen — Modell-Overrides allein sind keine Cross-Vendor-Flotte.
   - render()/verdict()/CLI-Grundgeruest (argparse, --json, --sample) 1:1
-    uebernommen, SAMPLE auf unsere 4 Regeln erweitert.
+    uebernommen, SAMPLE auf unsere Regeln erweitert.
 
 Stdlib only. Heuristisch (Regex/Text) — fuehrt die Datei nicht aus. Keine
 Netz-Calls, kein exec.
@@ -175,9 +177,29 @@ def check_model_fable(code, findings):
     false-positiv FAIL auf legitimen Prompt-Text.
     """
     masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
-    for m in re.finditer(r"model\s*:\s*['\"]fable['\"]", masked, re.I):
-        findings.append((FAIL, _lineno(code, m.start()),
-                         "model:'fable' ist verboten — ultra-loop nutzt NIE Fable-Subagents (opus=Urteil/sonnet=Inhalt/haiku=Mechanik)."))
+    patterns = (
+        r"model\s*:\s*['\"]fable['\"]",
+        r"agentType\s*:\s*['\"][^'\"]*fable[^'\"]*['\"]",
+    )
+    for pattern in patterns:
+        for m in re.finditer(pattern, masked, re.I):
+            findings.append((FAIL, _lineno(code, m.start()),
+                             "Fable-Subagents sind verboten — Fable bleibt das Cockpit; Worker laufen ueber Sol/Kimi/Luna/Sonnet/Haiku."))
+
+
+def check_multimodel_fleet(code, findings):
+    """Erzwingt die Cross-Vendor-Pflicht-Flotte in Substanz-Workflows."""
+    masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
+    required = (
+        ("sol-pruefer", r"agentType\s*:\s*['\"]sol-pruefer['\"]"),
+        ("kimi", r"agentType\s*:\s*['\"]kimi-(?:recherche|worker)['\"]"),
+        ("luna-worker", r"agentType\s*:\s*['\"]luna-worker['\"]"),
+    )
+    for label, pattern in required:
+        if not re.search(pattern, masked, re.I):
+            findings.append((FAIL, None,
+                             f"Pflicht-Flotte unvollstaendig: `{label}` fehlt. "
+                             "Substanz-Workflows muessen Sol, Kimi und Luna als `agentType` einsetzen."))
 
 
 def check_args_falle(code, findings):
@@ -211,6 +233,7 @@ def validate(raw):
     check_meta(code, findings)
     check_nondeterminism(code, findings)
     check_model_fable(code, findings)
+    check_multimodel_fleet(code, findings)
     check_args_falle(code, findings)
     check_slice_falle(code, findings)
     return findings

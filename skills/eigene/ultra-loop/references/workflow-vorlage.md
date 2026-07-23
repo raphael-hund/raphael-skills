@@ -10,9 +10,9 @@ export const meta = {
   name: 'loop-runde-N',
   description: '<was diese Runde verbessert>',
   phases: [
-    { title: 'Kritik', detail: '3 Kritiker opus/sonnet/haiku, adversarisch' },
+    { title: 'Kritik', detail: 'Sol/Kimi/Luna plus Claude, adversarisch' },
     { title: 'Fix', detail: 'verifizierte Funde chirurgisch fixen' },
-    { title: 'Review', detail: 'Opus-Substanz-Check + Gates' },
+    { title: 'Review', detail: 'Sol-Substanz-Check + Gates' },
   ],
 }
 
@@ -28,12 +28,17 @@ const FUNDE = { type: 'object', additionalProperties: false, properties: {
 }, required: ['funde'] }
 
 phase('Kritik')
-// PFLICHT: Modell-Mix. opus = Urteil/Design, sonnet = Inhalt/Qualität,
-// haiku = Mechanik/Pfade/Lint. NIE model:'fable'.
+// PFLICHT: Cross-Vendor-Flotte per agentType. `model:` allein startet nur
+// Claude-Workflowmodelle und zaehlt NICHT als Multi-Modell. NIE Fable.
 const kritik = await parallel([
-  () => agent(PROMPT_DESIGN,  {label:'kritik:design',  phase:'Kritik', model:'opus',   schema: FUNDE}),
-  () => agent(PROMPT_INHALT,  {label:'kritik:inhalt',  phase:'Kritik', model:'sonnet', schema: FUNDE}),
-  () => agent(PROMPT_MECHANIK,{label:'kritik:mechanik',phase:'Kritik', model:'haiku',  effort:'low', schema: FUNDE}),
+  () => agent(PROMPT_DESIGN, {label:'kritik:sol', phase:'Kritik',
+    agentType:'sol-pruefer', schema:FUNDE}),
+  () => agent(PROMPT_INHALT, {label:'kritik:kimi', phase:'Kritik',
+    agentType:'kimi-recherche', schema:FUNDE}),
+  () => agent(PROMPT_MECHANIK, {label:'kritik:luna', phase:'Kritik',
+    agentType:'luna-worker', effort:'low', schema:FUNDE}),
+  () => agent(PROMPT_INHALT, {label:'kritik:sonnet', phase:'Kritik',
+    agentType:'sonnet-worker', schema:FUNDE}),
 ])
 const alle = kritik.filter(Boolean).flatMap(k => k.funde)
   .filter(f => f.schwere !== 'NICE')          // NICE nur protokollieren
@@ -43,13 +48,13 @@ phase('Fix')
 const fixes = await pipeline(alle,
   f => agent(`Verifiziere adversarisch, ob dieser Fund real ist (Read/Bash-Beleg,
     Default: widerlegt wenn unsicher): ${JSON.stringify(f)}. Gib {real, beleg} zurück.`,
-    {label:`verify:${f.wo}`, phase:'Fix', model:'haiku', effort:'low',
+    {label:`verify:${f.wo}`, phase:'Fix', agentType:'luna-worker', effort:'low',
      schema:{type:'object',additionalProperties:false,
              properties:{real:{type:'boolean'},beleg:{type:'string'}},required:['real','beleg']}}),
   async (v, f) => v && v.real
     ? agent(`Fixe chirurgisch: ${JSON.stringify(f)}. Nichts erfinden, nichts
         kürzen, keine Checks aufweichen. Gib {done, notes} zurück.`,
-        {label:`fix:${f.wo}`, phase:'Fix', model:'sonnet',
+        {label:`fix:${f.wo}`, phase:'Fix', agentType:'sonnet-worker',
          schema:{type:'object',additionalProperties:false,
                  properties:{done:{type:'boolean'},notes:{type:'string'}},required:['done','notes']}})
     : { skipped: f }
@@ -59,7 +64,7 @@ phase('Review')
 const review = await agent(`Substanz-Review nach den Fixes: git diff der
   betroffenen Pfade lesen. Wurde etwas gekürzt/erfunden/aufgeweicht?
   Gates laufen lassen: <GATES DER MISSION>. Gib {verdict, probleme} zurück.`,
-  {label:'review:final', phase:'Review', model:'opus'})
+  {label:'review:final', phase:'Review', agentType:'sol-pruefer'})
 
 return { kritik_funde: alle.length, fixes, review }
 ```
@@ -67,12 +72,13 @@ return { kritik_funde: alle.length, fixes, review }
 ## Varianten
 
 - **Massen-Umbau über N Dateien** (je Datei ein Schreiber + Prüfer):
-  `pipeline(dateien, schreib(sonnet), pruef(haiku), fixWennRot(sonnet))` —
-  Schreiber schreiben je EINE eigene Datei (kein Race). Danach Opus-Stichprobe
-  (jede ~8. Datei voll lesen, git diff gegen Substanzverlust/Erfindung).
-- **Vendoring-Runde:** je Repo ein Sonnet-Agent (clone → Lizenz → Red-Flags
-  → destillieren in bestehende Skill-References — nie Masseninstall), danach
-  Haiku-Validate.
+  `pipeline(dateien, schreib(sonnet-worker/kimi-worker),
+  pruef(luna-worker/haiku-worker), fixWennRot(sonnet-worker))` — Schreiber
+  schreiben je EINE eigene Datei (kein Race). Danach Sol-Stichprobe (jede
+  ~8. Datei voll lesen, git diff gegen Substanzverlust/Erfindung).
+- **Vendoring-Runde:** je Repo ein Sonnet- oder Kimi-Agent (clone → Lizenz →
+  Red-Flags → destillieren in bestehende Skill-References — nie
+  Masseninstall), danach Luna-/Haiku-Validate und Sol-Abnahme.
 - **Streitfall:** llm-council-Muster — N Antworten parallel, anonymes
   Peer-Ranking („Antwort A/B/C", drei Fragen: stärkste? größter blinder Fleck?
   was übersahen ALLE?), Chairman-Synthese. Statt Nutzer-Rückfrage.

@@ -34,7 +34,7 @@
     },
     {
       "name": "dynamic-workflow",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "path": "skills/eigene/dynamic-workflow/SKILL.md",
       "description": "Erzwingt für EINE Aufgabe die Ausführung als dynamischer Workflow (Workflow-Tool) mit Subagent-Flotte — nie Solo-Arbeit des Cockpits. Zerlegt die Aufgabe, wählt das passende Orchestrierungs-Muster (Fan-out/Pipeline/Kritik/Council), baut das Script nach Vorlage, startet, verifiziert die Kern-Ergebnisse selbst. Trigger: \"/dynamic-workflow\", \"dynamic workflow\", \"als Workflow machen\", \"mach das mit Subagents\", \"starte einen Workflow dafür\", \"fächere das auf\"."
     },
@@ -118,9 +118,9 @@
     },
     {
       "name": "ultra-loop",
-      "version": "0.3.5",
+      "version": "0.4.0",
       "path": "skills/eigene/ultra-loop/SKILL.md",
-      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Kritiker-Flotte (opus/sonnet/haiku) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
+      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Cross-Vendor-Flotte (Sol/Kimi/Luna plus Sonnet/Haiku) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
     },
     {
       "name": "watch",

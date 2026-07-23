@@ -5,21 +5,27 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 
 | Aufgaben-Form | Muster | Skelett |
 |---|---|---|
-| Viele gleichartige Einheiten bearbeiten (N Dateien umbauen, N Seiten schreiben, N Repos sichten) | **Fan-out-Pipeline** | `pipeline(items, schreib(sonnet), pruef(haiku), fixWennRot(sonnet))` — je Einheit eigene Datei, geteilte Dateien zentral am Ende |
-| Qualität eines bestehenden Stands prüfen/heben | **Kritik-Flotte** | 3 Kritiker parallel (opus=Design, sonnet=Inhalt, haiku=Mechanik) → je Fund Haiku-Verify (Default: widerlegt) → Sonnet-Fix → Opus-Abnahme |
-| Echte Streitfrage / Architektur-Entscheidung | **Council** | 3 Meinungen mit Gegensatz-Linsen (First-Principles / Executor / Outsider), anonym als Antwort A/B/C, 2 Peer-Rankings (erst Einzelbewertung, dann `FINAL RANKING:`), Opus-Chairman (5 Abschnitte: einig / Streit / blinde Flecken / Empfehlung / eine erste Handlung) — dann SOFORT umsetzen |
+| Viele gleichartige Einheiten bearbeiten (N Dateien umbauen, N Seiten schreiben, N Repos sichten) | **Fan-out-Pipeline** | `pipeline(items, schreib(sonnet-worker/kimi-worker), pruef(luna-worker/haiku-worker), fixWennRot(sonnet-worker))` — je Einheit eigene Datei, geteilte Dateien zentral am Ende; Sol nimmt die Stichprobe ab |
+| Qualität eines bestehenden Stands prüfen/heben | **Kritik-Flotte** | `sol-pruefer`=Urteil, `kimi-recherche`=Gegenperspektive, `luna-worker`=Mechanik parallel; Sonnet/Haiku ergänzen → je Fund Verify (Default: widerlegt) → passender Fixer → Sol-Abnahme |
+| Echte Streitfrage / Architektur-Entscheidung | **Council** | Sol, Kimi und Claude mit Gegensatz-Linsen (First-Principles / Executor / Outsider), anonym als Antwort A/B/C, 2 Peer-Rankings (erst Einzelbewertung, dann `FINAL RANKING:`), Sol-Chairman (5 Abschnitte: einig / Streit / blinde Flecken / Empfehlung / eine erste Handlung) — dann SOFORT umsetzen |
 | Unbekanntes Terrain erkunden (Web, Codebase, Vendor-Repo) | **Recherche-Sweep** | mehrere Sucher mit VERSCHIEDENEN Zugängen parallel (Community-Meinung / Doku / Code lesen / Gegenprobe), danach Synthese-Agent; Warnliste ist Pflicht-Output |
 | Etwas Fremdes übernehmen (Repo, Skill, Wissen) | **Vendor-Kette** | je Quelle: clone → Lizenz → Red-Flag-Check (Hooks/Netz/exec/Auto-Update) → destillieren in BESTEHENDE Strukturen (nie Masseninstall) → Haiku-Validate → Buchführung (VENDORING) |
 | Unbekannte Fundmenge ausschöpfen ("finde alle X") | **Loop-until-dry** | Runden von Findern, dedupe gegen ALLE bisherigen Funde (auch verworfene!), Stopp nach 2 leeren Runden |
 | Messen/Diagnose ohne Eingriff (geteilte Infrastruktur) | **Mess-und-Vorschlag** | Messen (haiku) + Vergleich (sonnet) + Urteil (opus) parallel → EIN Proposal-Dokument, KEIN Eingriff — Abschluss-Check verifiziert Unberührtheit |
 
-## Modell-Zuteilung (Standard)
+## Worker-Zuteilung (Standard)
 
-- **opus** — Urteil, Design-Kritik, Chairman, Abnahme, strenge Ablehnung.
-- **sonnet** — Schreiben, Integrieren, Destillieren, Recherche.
-- **haiku** — Mechanik, Verify je Artefakt, Lint/Gates, Massen-Checks
-  (`effort: 'low'`).
+- **`sol-pruefer`** — Pflicht: Urteil, Design-Kritik, Chairman, finale Abnahme.
+- **`kimi-recherche` / `kimi-worker`** — Pflicht: unabhängige dritte
+  Modellfamilie; Gegenprobe bzw. Frontend/deutscher Text.
+- **`luna-worker`** — Pflicht: Mechanik, Tests, klar begrenzte Umbauten.
+- **`sonnet-worker`** — Schreiben, Integrieren, Destillieren.
+- **`haiku-worker`** — Massen-Lesen, einfache Verify-/Lint-Aufgaben.
 - **NIE Fable-Subagents** (Raphael-Regel; Fable nur als Cockpit).
+
+Im Workflow-Script diese Rollen mit `agentType:'…'` starten. `model:'opus'`,
+`model:'sonnet'` und `model:'haiku'` sind reine Claude-Overrides und zählen
+nicht als Multi-Modell-Flotte.
 
 ## Dimensionierung
 

@@ -1,6 +1,6 @@
 ---
 name: dynamic-workflow
-version: 0.1.1
+version: 0.2.0
 description: >
   Erzwingt für EINE Aufgabe die Ausführung als dynamischer Workflow
   (Workflow-Tool) mit Subagent-Flotte — nie Solo-Arbeit des Cockpits.
@@ -20,7 +20,7 @@ loads:
 requires_skills: [ultra-loop@^0]
 completion_criteria:
   - "Die Aufgabe lief als Workflow-Run (Run-ID genannt) — Solo nur bei Kleinst-Aufgaben (<5 Min, eine Datei), dann explizit als SOLO begründet"
-  - "Modell-Mix genutzt: opus=Urteil, sonnet=Schreiben, haiku=Mechanik — NIE Fable-Subagents"
+  - "Cross-Vendor-Flotte genutzt: sol-pruefer=Urteil, kimi=Gegenperspektive, luna-worker=Mechanik; sonnet-worker/haiku-worker passend zur Aufgabe — NIE Fable-Subagents"
   - "Kern-Ergebnisse vom Cockpit selbst nachverifiziert (eigener Read/Bash-Beleg), nicht nur Agenten-Report übernommen"
   - "Ergebnis-Zusammenfassung nennt: Agentenzahl, was verifiziert, was verworfen"
 ---
@@ -50,9 +50,13 @@ Eigen-Verifikation.
 3. **Script bauen** nach der geteilten Vorlage
    `skills/eigene/ultra-loop/references/workflow-vorlage.md`:
    `meta` als pures Literal, `pipeline()` als Default, Args defensiv
-   parsen (`typeof args === 'string' ? JSON.parse(args) : args`),
-   Modell-Mix opus/sonnet/haiku, NIE Fable-Subagents, kein
-   `Date.now()`/`Math.random()`.
+   parsen (`typeof args === 'string' ? JSON.parse(args) : args`). Jeder
+   Substanz-Workflow nutzt die Cross-Vendor-Pflicht-Flotte über `agentType`:
+   `sol-pruefer` für Urteil, `kimi-recherche` oder `kimi-worker` für eine
+   unabhängige dritte Perspektive und `luna-worker` für Mechanik/Tests.
+   `sonnet-worker` und `haiku-worker` ergänzen passend zur Aufgabe. Modell-
+   Overrides (`model:'opus'`) ersetzen diese Worker nicht. NIE Fable-
+   Subagents, kein `Date.now()`/`Math.random()`.
 4. **Validieren (Pflicht-Vorstufe):** `python3
    /root/raphael-skills/skills/eigene/ultra-loop/scripts/validate-workflow.py
    <script>` laufen lassen — rot (FAIL) = nicht starten, erst fixen.
@@ -85,4 +89,7 @@ Eigen-Verifikation.
   ALLE Vorergebnisse zusammen braucht (Dedup, Früh-Abbruch) — sonst
   `pipeline()`.
 - Agent-Ausfälle liefern `null` — Ergebnisse immer `.filter(Boolean)`.
+- `model:` wählt nur Claude-Workflowmodelle. GPT/Kimi/Sol werden ausschließlich
+  über `agentType:'luna-worker'`, `agentType:'kimi-recherche'` bzw.
+  `agentType:'sol-pruefer'` gestartet.
 - Lange Läufe: Zwischenstand dem Nutzer melden, nicht stumm warten.

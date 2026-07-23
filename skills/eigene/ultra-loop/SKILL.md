@@ -1,10 +1,10 @@
 ---
 name: ultra-loop
-version: 0.3.5
+version: 0.4.0
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
-  startet: Kritiker-Flotte (opus/sonnet/haiku) findet Schwächen → verifizieren
+  startet: Cross-Vendor-Flotte (Sol/Kimi/Luna plus Sonnet/Haiku) findet Schwächen → verifizieren
   → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger:
   "/ultra-loop", "Loop mit Workflows", "Dauer-Verbesserungs-Loop",
   "selbstkritischer Loop", "loop der sich verbessert", "ultracode-Loop".
@@ -50,8 +50,9 @@ erzwingt die Run-ID als Beweis.
    bleiben, was ist TABU (Fremd-Baustellen, `git add -A`, Reward-Hacking).
 2. **Cron anlegen** (CronCreate, Standard alle 20–30 Min, Session-only):
    Der Prompt MUSS enthalten: (a) Pflicht "starte einen Workflow
-   (Workflow-Tool) nach references/workflow-vorlage.md", (b) Modell-Mix
-   opus=Urteil / sonnet=Schreiben / haiku=Mechanik, NIE Fable-Subagents,
+   (Workflow-Tool) nach references/workflow-vorlage.md", (b) Cross-Vendor-
+   Pflicht-Flotte per `agentType`: sol-pruefer=Urteil, kimi=Gegenperspektive,
+   luna-worker=Mechanik; Sonnet/Haiku ergänzen, NIE Fable-Subagents,
    (c) Stand-Datei lesen+fortschreiben, (d) Commit/Push-Regel,
    (e) "EINEN Punkt tief und fertig, nicht zehn anfangen".
 3. **Runde 1 sofort ausführen** — nicht auf den ersten Cron-Fire warten.
@@ -93,7 +94,9 @@ erzwingt die Run-ID als Beweis.
 - **Kein Reward-Hacking:** nie Checks/Lints aufweichen, Sektionen leeren oder
   Wissen erfinden, um grün zu werden. Gleichstand nach Änderung = revertieren
   (autoresearch-Regel).
-- **Nie Fable-Subagents** — Kritik/Arbeit läuft auf opus/sonnet/haiku.
+- **Nie Fable-Subagents** — Fable bleibt Cockpit. Jede Substanz-Runde startet
+  mindestens `sol-pruefer`, einen Kimi-Worker und `luna-worker` per
+  `agentType`; Sonnet/Haiku ergänzen passend zur Aufgabe.
 - **Fremd-Baustellen** anderer Sessions nicht anfassen (im Mandat gelistet).
 - **Ehrlichkeit:** findet eine Runde nichts Belegbares, wird genau das
   protokolliert — keine Beschäftigungstherapie.
