@@ -18,7 +18,7 @@ loads:
 requires_skills: [copywriting@^0]
 completion_criteria:
   - "jedes Skript hat eine Beat-Tabelle mit Wortzahlen (Funktion, Zeile, Wortzahl, Device je Beat)"
-  - "jeder Claim/jede Zahl im Skript trägt eine Grounding-Quelle (PROOF.md/VOC.md/echter Case)"
+  - "jeder Claim/jede Zahl im Skript trägt eine Grounding-Quelle (vorhandene Dossier-Datei z.B. Proof/VOC, oder echter Case)"
   - "Sprechtext ohne Regel-Sätze/Weichmacher (references/sprech-text-regeln.md, Wort-Substitutionstest bestanden)"
   - "je Skript mindestens 3 Hook-Varianten"
   - "Einblendungs-/Visuals-Plan liegt vor, ein Beat je Einblendungszeile"
@@ -32,12 +32,13 @@ completion_criteria:
 
 | `kunde` | Wissens-Pfad | Stil-Referenz (bestehende Skripte) |
 |---|---|---|
-| `make` | `/root/raphael-brain/wiki/company/` (`icp/`, `offer/`, `voice/`) | `/root/clients/client-make/ads/` |
-| `<slug>` (jeder andere Kunde) | `/root/clients/client-<slug>/wiki/` (ICP.md, OFFER.md, PROOF.md, VOICE.md, voc.md — Dossier aus Loop 1) | `/root/clients/client-<slug>/ads/` |
+| `make` (Sonderfall: Agentur ist eigener Kunde, ICP/Offer/Voice liegen im gemeinsamen Brain statt in einem Kundenrepo-Wiki) | `/root/raphael-brain/wiki/company/` (`icp/`, `offer/`, `voice/`) | `/root/clients/client-make/ads/` (bestehende Skripte/Statics als Stil-Referenz) |
+| `<slug>` (jeder andere Kunde) | `/root/clients/client-<slug>/wiki/` (Dossier-Dateien aus Loop 1 — vorhandene ICP/Offer/Proof/Voice/VOC lesen, Dateinamen können je Kunde variieren) | `/root/clients/client-<slug>/ads/` |
 
-**Fehlt das Kunden-Wiki** (kein `wiki/` unter dem Kundenpfad, oder ICP/OFFER/VOICE darin
-leer) → **stoppen und Raphael fragen**, nicht mit generischer Annahme weiterschreiben.
-Das Kunden-Wiki ist Pflicht-Voraussetzung (Loop-1-Dossier), kein optionaler Kontext.
+**Fehlt der Wissens-Pfad** (bei MAKE: `wiki/company/` leer oder icp/offer/voice fehlen; bei
+anderen Kunden: kein `wiki/` unter dem Kundenpfad, oder kein Dossier darin) → **stoppen und
+Raphael fragen**, nicht mit generischer Annahme weiterschreiben. Das Kunden-/Agentur-Wissen ist
+Pflicht-Voraussetzung (Loop-1-Dossier bzw. Agentur-Brain), kein optionaler Kontext.
 
 ## Ablauf
 
@@ -64,7 +65,7 @@ Das Kunden-Wiki ist Pflicht-Voraussetzung (Loop-1-Dossier), kein optionaler Kont
 5. **Beat-Tabelle + Grounding-Checkliste ausgeben.** Pro finalem Skript: Beat-Tabelle
    (Funktion, Zeile, Wortzahl, Device — gleiches Format wie Phase 1 der Analyse-Methodik),
    Gesamt-/Hook-Wortzahl, CTA-Typ. Grounding-Checkliste: jede Zahl/jeder Case-Name im
-   Skript mit Quelle (PROOF.md-Zeile, VOC.md-Zitat, oder als offene Frage an
+   Skript mit Quelle (Zeile/Zitat aus vorhandener Dossier-Datei, oder als offene Frage an
    Raphael/Kunden markiert, falls (noch) unbelegt) — kein erfundener Claim.
 6. **Visuals-Plan.** Einblendungs-/Illustrations-/B-Roll-Plan nach
    `references/video-visuals.md`: Tabelle Sprech-Zeile ↔ Einblendung, Illustrations-
@@ -72,8 +73,8 @@ Das Kunden-Wiki ist Pflicht-Voraussetzung (Loop-1-Dossier), kein optionaler Kont
 
 ## Grounding-Pflicht (hart)
 
-Jede Zahl, jeder Kundenname, jedes Ergebnis im Skript braucht eine Quelle aus
-`PROOF.md`/`voc.md`/einem echten freigegebenen Case. Fehlt Rohmaterial: stoppen und
+Jede Zahl, jeder Kundenname, jedes Ergebnis im Skript braucht eine Quelle aus einer
+vorhandenen Dossier-Datei (z.B. Proof/VOC) oder einem echten freigegebenen Case. Fehlt Rohmaterial: stoppen und
 Raphael/Kunden um Material bitten, nicht ungegroundet weiterproduzieren — identisch zur
 Grounding-Pflicht der Statics-Briefs im `ads`-Router.
 

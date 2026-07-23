@@ -31,9 +31,8 @@ loads:
 requires_skills: [copywriting@^0, offers@^0, eval@^0, ads-video@^0, ads-statics@^0]
 completion_criteria:
   - "0 verbotene Claims im Live-Set (claims-qa Block, Sol frische Session)"
-  - "G1-Stil grün, dann G2 >= 0.7 auf jedem Ship-Output"
+  - "G1-Stil grün, dann G2 >= 0.7 auf jedem Ship-Output (Gate-Definition: references/loop3-ablauf.md → Abschnitt Gates, Rubrik evals/rubrics/ads.md)"
   - "Schaltung nur mit Raphaels Signatur + Budget-Egress-Gate"
-  - "statics-Konzepte tragen Grounding-Quelle (Review/Winning-Ad/Kommentar) — sonst Stopp statt Erfindung"
 ---
 
 # ads — Loop 3: Paid Ads
@@ -181,13 +180,15 @@ nicht automatisch bei E-Com.
 - **"No Spend" ist fast immer ein Hook-Problem, nicht ein Budget-/Targeting-Problem.** Eine
   Anzeige, die keinen Spend bekommt, wird an den ersten 3 Sekunden (Hook) repariert oder
   ersetzt — nicht am Targeting gedreht. Ausnahme: technische Ursache (Ablehnung, Budget-Cap,
-  frisch gestartete Lernphase) statt kreativer Ursache (Beleg: `media-buying-scaling.md`
-  → Täglicher Kill/Keep/Scale-Check).
+  frisch gestartete Lernphase) statt kreativer Ursache (Beleg:
+  `raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/media-buying-scaling.md` →
+  Täglicher Kill/Keep/Scale-Check; Candidate, noch nicht freigegeben, wandert nach Freigabe
+  an `wiki/craft/ads/strategie/2026-07-20-testing-vs-scaling-kampagnenstruktur.md`).
 - **Tages-Zahlen bei Ads sind Rauschen — nie auf Tagesbasis killen/skalieren.** Bei
   schwankenden Tageswerten auf 3-7-Tage-Durchschnitt umstellen, sonst wird normale
-  Volatilität für ein Signal gehalten (Beleg: `media-buying-scaling.md` → Täglicher
-  Kill/Keep/Scale-Check). Bei sehr kleinem Budget/wenig Conversions reicht auch das
-  3-7-Tage-Fenster oft nicht — dann länger beobachten statt trotzdem zu entscheiden.
+  Volatilität für ein Signal gehalten (Beleg: gleiche Quelle wie oben). Bei sehr kleinem
+  Budget/wenig Conversions reicht auch das 3-7-Tage-Fenster oft nicht — dann länger
+  beobachten statt trotzdem zu entscheiden.
 - **Statics-first-Sequenz ist kein MAKE-Standard, sondern ein Einzelfall-Beleg für neue
   Angles.** MAKEs laufender Standard ist Static+Video desselben Angles gleichzeitig im
   selben Testing-Ad-Set (siehe Strategie-Regel oben) — die sequenzielle Statics-vor-Video-

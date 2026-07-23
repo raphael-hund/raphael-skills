@@ -31,12 +31,16 @@ completion_criteria:
 **Aufruf:** `ads-statics(kunde: slug [pflicht], welle: int = 1)`
 
 **Lies zuerst:**
-- MAKE (`kunde: make`): `/root/raphael-brain/wiki/company/` + Kundenrepo
-  `/root/clients/client-make/wiki/` + bisherige Statics `/root/clients/client-make/ads/statics/`.
-- Alle anderen Kunden: `/root/clients/client-<slug>/wiki/` (ICP.md, OFFER.md, PROOF.md,
-  VOICE.md, voc.md — Dossier aus Loop 1) + `/root/clients/client-<slug>/ads/`.
-- **Fehlt das Kunden-Wiki (keins der obigen Dokumente vorhanden):** stoppen und Raphael
-  fragen, nicht aus dem Gedächtnis oder mit erfundenen Annahmen weiterbauen.
+- MAKE (`kunde: make`, Sonderfall: Agentur ist eigener Kunde, ICP/Offer/Voice liegen im
+  gemeinsamen Brain statt in einem Kundenrepo-Wiki): `/root/raphael-brain/wiki/company/`
+  (`icp/`, `offer/`, `voice/`) + bisherige Statics/Ad-Artefakte als Stil-Referenz
+  `/root/clients/client-make/ads/statics/`.
+- Alle anderen Kunden: `/root/clients/client-<slug>/wiki/` (Dossier-Dateien aus Loop 1 —
+  vorhandene ICP/Offer/Proof/Voice/VOC lesen, Dateinamen können je Kunde variieren) +
+  `/root/clients/client-<slug>/ads/`.
+- **Fehlt der Wissens-Pfad** (bei MAKE: `wiki/company/` leer oder icp/offer/voice fehlen;
+  bei anderen Kunden: kein `wiki/` unter dem Kundenpfad, oder kein Dossier darin): stoppen
+  und Raphael fragen, nicht aus dem Gedächtnis oder mit erfundenen Annahmen weiterbauen.
 
 ## Zweck (1 Satz)
 
