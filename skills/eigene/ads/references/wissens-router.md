@@ -83,3 +83,31 @@ Diese datierten Seiten in `wiki/craft/ads/` (bzw. die eigenen Konto-Seiten unter
 (`README.md` im Ordner ist eine Ordnerbeschreibung, keine Wissensseite — nicht laden.)
 
 **Kern vs. Tiefe:** Die operativen `references/` (loop3-ablauf, hook-taxonomie, claims-verbote, static-ad-templates) sind der **Kern** jeder Arbeit; die Brain-Seiten oben sind **Tiefen-Nachschlag** für Spezialfälle. Bei Themen-Überschneidung (z. B. „Copy erzeugen": reference vs. `creative/ads-create.md`) **führt die `references/`-Quelle**.
+
+## Konsolidierte Themen-Seiten (Stand 23.07., noch Candidates)
+
+Die zehn Seiten unten liegen unter
+`/root/raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/` und tragen Stand 23.07. noch
+`status: candidate` — sie sind aus dem Ads-Wissenspaket 2 synthetisiert, aber noch **nicht**
+freigegeben und gemergt. Jede Candidate-Seite nennt in ihrem eigenen Frontmatter (`merge_into:`)
+die kanonische Wiki-Zielseite. Bis zur Freigabe zuerst die Candidate-Seite lesen; nach der
+Freigabe (Review-Inbox, Raphaels Signatur) wandert der Inhalt an den `merge_into`-Pfad — dann
+dort statt im Candidates-Ordner nachschlagen.
+
+| Situation | Candidate-Seite (Stand 23.07.) | Inhalt |
+|---|---|---|
+| Leads kommen rein, aber Qualität stimmt nicht ("Broke Leads", Diagnose Pixel vs. Messaging) | `lead-qualitaet.md` (→ `messung/2026-07-20-lead-qualifizierung-pixel-conversions-api.md`) | Zwei-Ursachen-Diagnose für Broke Leads, Attract-Repel-Copy-Logik, Pain/Dream-State/Offer-Checkliste, Casting/Mirroring-Hebel im Creative |
+| Kampagnen-Defaults setzen, täglich Kill/Keep/Scale entscheiden, Test-Kadenz nach Budget planen | `media-buying-scaling.md` (→ `strategie/2026-07-20-testing-vs-scaling-kampagnenstruktur.md`) | ABO/Broad/Placement-Defaults, 3-Prüfgrößen-Entscheidungsbaum (Spend/Volatilität/CPA-Trend), Skalierungsregeln nach Spend/CPA, Test-Kadenz-Tabelle nach Tagesbudget |
+| Testwelle/Angle-Rotation für MAKE konkret aufsetzen (Register, Hook-bleibt-Angle-wechselt) | `teststrategie.md` (→ NEU: `strategie/2026-07-21-creative-testwellen-register-strategie.md`) | MAKE-Entscheidung Statics+Video im selben Ad-Set, Statics-first-Sequenz als externe Herkunftsidee, Testwellen-Register als Steuerungstabelle, Wochen-Rhythmus, Winner-Reformat-Skalierung |
+| Retargeting-Audiences aufbauen oder gegen Andromeda/organisches Publikum einordnen | `retargeting-oekosystem.md` (→ NEU: `strategie/2026-07-20-retargeting-und-organic-oekosystem.md`) | Retargeting als Brücke Cold-Ads↔Organic, Custom-Audience-Bausteine, Widerspruch Andromeda vs. Retargeting-Pflicht-Layer, 180-Tage-Fenster vs. reale Kaufzyklen |
+| Termine/Sales-Calls fallen aus (No-Show), Show-Rate verbessern | `show-rate.md` (→ NEU: `craft/sales/2026-07-20-show-rate-terminpflege.md`) | Erwartungs-Sequenz + Bestätigung + Rückweg bei Absage, Ziel-Show-Rate >70 % statt branchenüblich ~50 % |
+| Garantie/Preisanker/Lead-Magnet fürs Offer bauen oder Marketing- vs. Sales-Versprechen abgrenzen | `offer.md` (→ `company/offer/2026-07-20-garantie-preisanker-offer-erweiterung.md`) | Garantie-Conditionals-Mechanik, Marketing- vs. Sales-Versprechen-Framing, zwei Lead-Magnet-Typologien, Problem-Solution-Cycle |
+| Messaging fürs Marktstadium wählen, ICP-Sprache/Buying-Trigger recherchieren | `messaging-icp.md` (→ `company/icp/icp-glaubenssaetze-und-sprache.md`) | Market-Sophistication-Diagnose vor Copy, Trigger-Research-Methodik, Ablagepfad für gefundene Pains/Trigger |
+| Organischen Content/Follower in bezahlten Funnel überführen (Boost, DM-/Lead-Form-Funnel) | `organic-zu-paid.md` (→ `creative/2026-07-20-referenz-nischen-transfer-make.md`) | Drei Funnel-Mechaniken Organic→Paid, Boost-Ad vs. Ad-Account-Duplikat, DM-/Lead-Form-Alternative zur Landingpage |
+| Agentur-/Advertising-Grundsatzfragen: AI-Anteil an Creative, Rollenverteilung Mensch/AI | `agency-scaling.md` (→ NEU: `grundlagen/2026-07-20-agency-scaling-prinzipien.md`) | AI übernimmt Creative-Discovery, Menschen entscheiden Studio-Produktion; Advertising als Agentur-Kern-Skill |
+| Server-Side-Tracking/CRM-Verknüpfung vor Skalierung prüfen, LTGP:CAC als Steuergröße | `tracking-attribution-report.md` (→ `messung/ads-server-side-tracking.md`) | Warum Tracking vor Skalierung Pflicht ist, LTGP:CAC-Steuerlogik, Praxisbeispiel Meta Ad ID → Pipedrive |
+
+Diese Tabelle ergänzt den Block „Belegte Muster & Referenz-Notizen" oben — bei Themen-
+Überschneidung (Candidate-Seite deckt denselben Fall wie eine bereits gemergte Referenz-Notiz
+ab) gilt: die **neuere, noch nicht gemergte Candidate-Seite** hat den aktuelleren Stand, die
+gemergte Notiz bleibt der stabile Unterbau.

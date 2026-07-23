@@ -1,10 +1,12 @@
 ---
 name: ads
-version: 0.6.1
+version: 0.7.0
 description: >
-  Feuert für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Hooks,
-  Video-Skripte, Ad-Copy, Statics-Briefs, Claims-QA, Performance-Analyse,
-  Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz.
+  Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie,
+  Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits
+  mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an
+  `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien-
+  Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss.
   Trigger: "Ads bauen", "Hooks schreiben", "Creatives", "Anzeigentexte", "Testwelle",
   "Konto-Audit", "Health-Score", "Testwelle auswerten", "Ad-Fatigue prüfen".
   Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach
@@ -26,7 +28,7 @@ loads:
   - references/vendor/claude-ads/quellen-und-benchmarks.md
   - references/vendor/claude-ads/experimente-und-monitoring.md
   - references/vendor/claude-ads/automatisierungs-tiers.md
-requires_skills: [copywriting@^0, offers@^0, eval@^0]
+requires_skills: [copywriting@^0, offers@^0, eval@^0, ads-video@^0, ads-statics@^0]
 completion_criteria:
   - "0 verbotene Claims im Live-Set (claims-qa Block, Sol frische Session)"
   - "G1-Stil grün, dann G2 >= 0.7 auf jedem Ship-Output"
@@ -80,6 +82,21 @@ claims-verbote, static-ad-templates) sind der **Kern** jeder Arbeit; die Brain-S
 sind **Tiefen-Nachschlag** für Spezialfälle. Bei Themen-Überschneidung (z. B. „Copy
 erzeugen": reference vs. `ads-create.md`) **führt die `references/`-Quelle**.
 
+## Strategie-Regel: Angles zuerst mit Statics testen, Gewinner zu Video machen
+
+**Statics-first-Sequenz** (Beleg: `raw/evidence/2026-07-23-ads-wissenspaket-2/ig-reel-angle-statics-video/analyse.md`):
+neue Angles werden zuerst als einfache Statics getestet (billiger/schneller zu produzieren als
+Video), bevor überhaupt ein Video-Skript entsteht. Gewinnt eine Static (bester Cost-per-Ergebnis,
+nicht Klicks), wird ihr Hook 1:1 in mehrere Video-Varianten übernommen — nur der Body/die
+Pain-Point-Ansprache variiert, der Hook bleibt eingefroren. Reihenfolge im Ablauf: **angles →
+statics (Angle-Screening) → Gewinner-Angle an `video-scripts` (Skript-Produktion) →
+Testwelle**. Format-Frage (Static vs. Video) ist der Angle-Frage bewusst untergeordnet — bei
+MAKEs Budget läuft primär und laufend Static+Video desselben Angles im selben Testing-Ad-Set
+(siehe `references/wissens-router.md` → teststrategie), die Statics-first-Sequenz ist der
+Spezialfall für einen **neuen, ungetesteten** Angle. Einschränkung: Einzelfall-Beleg eines
+Coaches (unverifizierte Eigenangabe), trägt nur bei Call-Funnel-artigen Offers verlässlich,
+nicht automatisch bei E-Com.
+
 ## Ablauf (Detail in references/loop3-ablauf.md)
 
 1. **voc-mine** — Voice-of-Customer aus Transkripten/Reviews (Kimi 1M). G1. Wörtliche
@@ -87,16 +104,18 @@ erzeugen": reference vs. `ads-create.md`) **führt die `references/`-Quelle**.
 2. **angles** — Winkel/Big-Ideas (Fable, Checkpoint Raphael).
 3. **hooks** — Scroll-Stopper (Sonnet-Worker, Reuse je Kunde). Taxonomie in
    `references/hook-taxonomie.md`. Stil über `copywriting`. G1-Stil → G2.
-4. **video-scripts** — Skripte pro gewähltem Hook (Sonnet). G1 → G2.
+4. **video-scripts** — Skripte pro gewähltem Hook. **→ Skill `ads-video` mit
+   `kunde=<slug>`** (Delegation, siehe Strategie-Regel oben: erst nach Statics-Gewinner).
 5. **ad-copy** — Primary Text / Headline / Description (Sonnet). G1 → G2.
-6. **statics** — Briefs für statische Creatives → verweist auf `design` fürs Visuelle.
-   Layout-Vorlagen in `references/vendor/coreyhaines-ads/static-ad-templates-en.md` (15
-   Templates, über alle zyklen statt auf 2-3 Favoriten zu clustern). **Grounding-Pflicht:**
-   jedes Konzept braucht eine Quelle (echte Review/Winning-Ad/Ad-Kommentar aus voc.md/
-   PROOF.md) — keine erfundenen Claims/Statistiken/Testimonials. Fehlt Rohmaterial: stoppen
-   und Raphael/Kunden um Material bitten, nicht ungegroundet weiterproduzieren. Für Kunden-
-   Freigabe eines Batches das Review-Artefakt `assets/creative-review-template.html`
-   nutzen (ein HTML-File, JSON-Datenblock, kein Build nötig).
+6. **statics** — Briefs für statische Creatives. **→ Skill `ads-statics` mit `kunde=<slug>`**
+   (Delegation) → verweist dort weiter auf `design` fürs Visuelle. Layout-Vorlagen in
+   `references/vendor/coreyhaines-ads/static-ad-templates-en.md` (15 Templates, über alle
+   Zyklen statt auf 2-3 Favoriten zu clustern). **Grounding-Pflicht:** jedes Konzept braucht
+   eine Quelle (echte Review/Winning-Ad/Ad-Kommentar aus voc.md/PROOF.md) — keine erfundenen
+   Claims/Statistiken/Testimonials. Fehlt Rohmaterial: stoppen und Raphael/Kunden um Material
+   bitten, nicht ungegroundet weiterproduzieren. Für Kunden-Freigabe eines Batches das
+   Review-Artefakt `assets/creative-review-template.html` nutzen (ein HTML-File,
+   JSON-Datenblock, kein Build nötig).
 7. **claims-qa** — **Sol, frische Session.** Jede Behauptung: belegt / riskant / verboten.
    Gegen Meta-Policy **und** HWG/UWG-Verbotsliste (`references/claims-verbote.md`).
 8. **Schaltung** — **Signatur (Geld = rot) + Budget-Egress-Gate.** Nie autonom.
@@ -117,7 +136,9 @@ erzeugen": reference vs. `ads-create.md`) **führt die `references/`-Quelle**.
 |---|---|---|
 | Voice-of-Customer aus Transkripten | Kimi (1M) | G1 |
 | Angles | Fable | Checkpoint Raphael |
-| Hooks / Video-Skripte / Ad-Copy / Statics-Briefs | Sonnet-Worker (Reuse je Kunde) | G1 Stil → G2 |
+| Hooks / Ad-Copy | Sonnet-Worker (Reuse je Kunde) | G1 Stil → G2 |
+| Video-Skripte | → Skill `ads-video` | wie dort definiert |
+| Statics-Briefs | → Skill `ads-statics` | wie dort definiert |
 | Claims-QA (Meta-Policy + HWG/UWG) | Sol, frische Session | belegt / riskant / verboten |
 | Schaltung | — | **Signatur (Geld=rot) + Budget-Egress-Gate** |
 | Performance vs. echte KPI → nächste Testwelle | Sonnet | G4 |
@@ -157,3 +178,18 @@ erzeugen": reference vs. `ads-create.md`) **führt die `references/`-Quelle**.
 - **Health-Score ist nie eine Buchstaben-Note.** Jeder Score bekommt Coverage-Status und
   Datenfenster dazu; unter 60 % Coverage wird der Score nicht als Konto-Note präsentiert
   (`references/vendor/claude-ads/scoring-methodik.md`).
+- **"No Spend" ist fast immer ein Hook-Problem, nicht ein Budget-/Targeting-Problem.** Eine
+  Anzeige, die keinen Spend bekommt, wird an den ersten 3 Sekunden (Hook) repariert oder
+  ersetzt — nicht am Targeting gedreht. Ausnahme: technische Ursache (Ablehnung, Budget-Cap,
+  frisch gestartete Lernphase) statt kreativer Ursache (Beleg: `media-buying-scaling.md`
+  → Täglicher Kill/Keep/Scale-Check).
+- **Tages-Zahlen bei Ads sind Rauschen — nie auf Tagesbasis killen/skalieren.** Bei
+  schwankenden Tageswerten auf 3-7-Tage-Durchschnitt umstellen, sonst wird normale
+  Volatilität für ein Signal gehalten (Beleg: `media-buying-scaling.md` → Täglicher
+  Kill/Keep/Scale-Check). Bei sehr kleinem Budget/wenig Conversions reicht auch das
+  3-7-Tage-Fenster oft nicht — dann länger beobachten statt trotzdem zu entscheiden.
+- **Statics-first-Sequenz ist kein MAKE-Standard, sondern ein Einzelfall-Beleg für neue
+  Angles.** MAKEs laufender Standard ist Static+Video desselben Angles gleichzeitig im
+  selben Testing-Ad-Set (siehe Strategie-Regel oben) — die sequenzielle Statics-vor-Video-
+  Idee stammt aus einer unabhängigen Quelle mit unverifizierten Eigenangaben und ersetzt den
+  MAKE-Standard nicht, sie ergänzt ihn nur für brandneue, ungetestete Angles.
