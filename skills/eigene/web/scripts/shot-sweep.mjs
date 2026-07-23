@@ -34,7 +34,8 @@ async function waitSettled(page) {
 
 async function sweepRoute(browser, route, vp, label, manifest) {
   const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
-  const slug = route === '/' ? 'home' : route.replace(/\//g, '_').replace(/^_/, '');
+  const slug = route === '/' ? 'home'
+    : route.replace(/\/+/g, '_').replace(/^_+|_+$/g, '');
   const res = await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' }).catch((e) => {
     console.log(`NAV-ERR ${route}: ${e.message}`);
     return null;
@@ -48,7 +49,7 @@ async function sweepRoute(browser, route, vp, label, manifest) {
   // 1) First Fold exakt 730 (bei Desktop) — eigener Shot, kein Zuschnitt.
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(350);
-  const foldFile = `${slug}-00-fold.png`;
+  const foldFile = `${slug}-${label}-00-fold.png`;
   await page.screenshot({ path: path.join(OUT, foldFile) });
   entry.shots.push({ file: foldFile, y: 0, kind: 'fold', viewport: vp, width: vp.width, height: vp.height });
 
@@ -59,7 +60,7 @@ async function sweepRoute(browser, route, vp, label, manifest) {
     if (await loc.count()) {
       await loc.hover().catch(() => {});
       await page.waitForTimeout(500);
-      const hf = `${slug}-hover-${h}.png`;
+      const hf = `${slug}-${label}-hover-${h}.png`;
       await page.screenshot({ path: path.join(OUT, hf) });
       entry.shots.push({ file: hf, y: 0, kind: 'hover', selector: sel, viewport: vp, width: vp.width, height: vp.height });
     }
@@ -77,7 +78,7 @@ async function sweepRoute(browser, route, vp, label, manifest) {
   for (let y = step; y < docH; y += step) {
     await page.evaluate((yy) => window.scrollTo({ top: yy, behavior: 'instant' }), y);
     await page.waitForTimeout(400);           // Reveal-Animationen zuende laufen lassen
-    const f = `${slug}-${String(i).padStart(2, '0')}-y${y}.png`;
+    const f = `${slug}-${label}-${String(i).padStart(2, '0')}-y${y}.png`;
     await page.screenshot({ path: path.join(OUT, f) });
     entry.shots.push({ file: f, y, kind: 'scroll', viewport: activeVp, width: activeVp.width, height: activeVp.height });
     i++;
