@@ -35,6 +35,7 @@ loads:
   - references/component-bibliotheken-radar.md
   - references/wissens-router.md
   - references/stitch-workflow.md
+requires_skills: [impeccable@^0]
 completion_criteria:
   - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
   - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
@@ -49,7 +50,6 @@ gotchas:
   - "taste imagegen-Teile (generate_image-Pflicht) ENTFERNT — hier: Bild-Slots + reale Quellen (picsum-seed), nie div-Fake-Screenshots."
   - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift auf englischen Text). Fuer deutsche Ads/Web-Copy siehe copywriting — dort liegt die deutsche Entfloskelungs-Referenz. TODO fuer einen spaeteren Agenten: eine rules.de.mjs nach dem Vorbild von scripts/rules.ru.mjs.example bauen, die deutsche Slop-Phrasen per --rules=scripts/rules.de.mjs zusaetzlich scannt."
   - "UI-Polish-Details (jakubkrehel) liefert exaktere Zahlenwerte (Scale 0.96 nicht 0.9, Blur 4px nicht 2px) als manche Faustregeln in design-doktrin.md/taste-kern.md. Bei Widerspruch gewinnt der exaktere, deterministisch pruefbare Wert aus ui-polish-details.md."
-requires_skills: [impeccable@^0]
 ---
 
 # design — Anti-Slop Frontend (Router)
