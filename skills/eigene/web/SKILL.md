@@ -62,10 +62,12 @@ Analytics verbessern.
 ## Screenshot-Pflicht (Raphael-Regel, hart — gilt fuer jede sichtbare Aenderung)
 
 **Design wird NUR noch an Screenshots entschieden (Raphael 23.07.). Desktop zuerst.**
-Standard-Werkzeug ist `scripts/shot-sweep.mjs`: First Fold exakt 1440×730, danach
-1440×1400 im 50-%-Schritt, echte Scroll-Events, NIEMALS fullPage/captureBeyondViewport.
-Das Skript schreibt ein `manifest.json` — Kritik-Agents bekommen ausschliesslich
-dieses Manifest + die PNGs, keine selbst geratenen Pfade. Der vollstaendige Ablauf
+Fuer WEB-Seiten/URL-Routen ist `scripts/shot-sweep.mjs` das Standard-Werkzeug: First Fold
+exakt 1440×730, danach 1440×1400 im 50-%-Schritt, echte Scroll-Events, NIEMALS
+fullPage/captureBeyondViewport. Bei PDFs/Folien/Creatives gilt weiterhin: rendern
+(z. B. pdftoppm) und jedes PNG per Read ansehen. Das Skript schreibt ein
+`manifest.json` — Kritik-Agents bekommen ausschliesslich dieses Manifest + die PNGs,
+keine selbst geratenen Pfade. Der vollstaendige Ablauf
 (Sweep → eigenes Ansehen → Panel Sol/Sonnet/Kimi → verifizierte Fixliste → Fix →
 Re-Sweep-Vergleich) steht in `references/screenshot-kritik-loop.md` und ist bei
 jeder visuellen Arbeit verbindlich.
@@ -181,7 +183,10 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
    Schreibzugriff für Agenten).
 7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).
-   G1 Lighthouse/axe = 0, hart. Fach 2 Design laeuft ab jetzt als Screenshot-Kritik-Loop nach references/screenshot-kritik-loop.md (Panel: sol-pruefer=Code, sonnet-worker=Screenshots, kimi-recherche=Screenshots). Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
+   G1 Lighthouse/axe = 0, hart. Fach 2 Design laeuft ab jetzt als Screenshot-Kritik-Loop
+   nach references/screenshot-kritik-loop.md.
+   (Panel: sol-pruefer=Code+Befundliste, sonnet-worker=Screenshots, kimi-recherche=Screenshots.)
+   Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
    Sequenz aus "Look & QA": design ZUERST, **danach copywriting G1→G2 als fester zweiter
    Schritt** (nicht optional) — Details in `references/qa-faecher.md`. Optional Persona-QA
    (Beginner/Engineer/Business-Owner). Conversion-Elemente (Popup/Lead-Magnet/Free-Tool) →

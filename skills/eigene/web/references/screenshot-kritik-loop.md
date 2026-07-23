@@ -7,7 +7,7 @@ Pflicht-Check, nicht als Design-Quelle.
 ## Ablauf (immer diese Reihenfolge)
 
 ### 1. Sweep
-`node scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> [--hover ...] [--mobile]`
+`node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> [--hover ...] [--mobile]`
 - First Fold 1440×730, Rest 1440×1400, Schritt 50 %. Niemals fullPage.
 - Das Skript schreibt `manifest.json` — NUR dieses Manifest wird an Agents gegeben.
 
@@ -19,7 +19,7 @@ Erst wer selbst gesehen hat, darf das Panel rufen.
 ### 3. Kritik-Panel (3 Rollen, parallel, frische Kontexte)
 | Rolle | Agent | Liest | Auftrag |
 |---|---|---|---|
-| Code-Kritik („Zoll") | `sol-pruefer` | Die zum Befund gehoerenden Source-Dateien + die Befundliste | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
+| Code-Kritik („Zoll") | `sol-pruefer` | Die zum Befund gehoerenden Source-Dateien + die Befundliste (KEIN Manifest noetig — er prueft Code gegen Befund, nicht Screenshots) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
 | Visuelle Kritik A („Opus-Register") | `sonnet-worker` | manifest.json + alle Shot-PNGs (per Read) | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
 | Visuelle Kritik B (Kimi) | `kimi-recherche` | manifest.json + alle Shot-PNGs (per Read) | „Zweite, unabhaengige Sicht: Was wirkt wie KI-Slop, was ist inkonsistent ueber die Seiten? Befund + Shot-Datei als Beleg." |
 
@@ -32,8 +32,9 @@ Der Cockpit-Agent merged: nur Befunde, die (a) von >=2 Panel-Mitgliedern ODER
 Sol-Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
 
 ### 5. Fix (Worker nach Doktrin)
-Salsaflow-Frontend: `kimi-worker`. Der Fix-Prompt enthaelt: Fixliste mit Shot-Belegen,
-betroffene Dateien, Verify-Kommandos (Build/TS + Re-Sweep), Screenshot-Pflicht.
+Salsaflow-Frontend: `kimi-worker`. Der Fix-Prompt enthaelt: Fixliste MIT Shot-Belegen
+(Dateipfade der relevanten PNGs pro Befund), betroffene Dateien, Verify-Kommandos
+(Build/TS + Re-Sweep), Screenshot-Pflicht.
 
 ### 6. Re-Sweep + Vergleich
 Gleiche Routes, gleiche Spec, NEUES out-Verzeichnis. Der Cockpit-Agent vergleicht
@@ -46,7 +47,8 @@ Kommentar. Dann ALLE Seiten erneut pruefen (Nebenwirkungen), nicht nur die gefix
 Status. Screenshots sind der Beweis, nicht Prosa.
 
 ## Verbote (hart)
-- Kein fullPage-Screenshot, kein captureBeyondViewport (R20-Schein-Funde).
+- Kein fullPage-Screenshot, kein captureBeyondViewport (R20-Schein-Funde = Fullpage-Artefakte:
+  fixed Elemente schweben mitten im Inhalt, leere Reveal-Flaechen).
 - Kein Panel ohne vorheriges eigenes Ansehen der Shots.
 - Kein „fixed" ohne Nachher-Shot, der das belegt.
 - Keine Design-Entscheidung aus dem Code heraus (z.B. „sticky ist gesetzt" statt
