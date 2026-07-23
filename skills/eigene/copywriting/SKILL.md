@@ -18,7 +18,7 @@ source: ergänzt um voice-analysis.md — adaptiert aus knowledge-work-plugins/
   ergänzt um direct-response-klassiker.md — destilliert aus
   robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
 loads: [references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md]
-requires_skills: [eval@^0]
+requires_skills: [eval@^0, no-ai-slop@^0]
 completion_criteria:
   - "G1 grün: Orwell-Regeln 2-5 + Passiv-/Nominalstil-Detektor + Floskelliste (inkl. quantifizierter Interpunktions-Schwellen) = 0 Treffer"
   - "Selbstkritik-Zwischenschritt durchlaufen: 'was ist an diesem Entwurf noch offensichtlich KI-generiert?' beantwortet, vor G2"
@@ -31,6 +31,9 @@ completion_criteria:
 `/root/raphael-brain/business/` (voice-Dateien, falls zentral) **und** zur Laufzeit
 `/root/clients/client-<name>/wiki/VOICE.md` (kundenspezifische Voice) —
 der Kunde gewinnt bei Widerspruch. Außerdem `/root/raphael-brain/wiki/craft/hooks/`.
+
+**Lädt automatisch mit:** `no-ai-slop` (Zweit-Editor, läuft NACH diesem Skill
+als Redigier- und Audit-Schicht — siehe dort für Muster-Katalog und Eval).
 
 ## Zweck (1 Satz)
 
@@ -68,10 +71,13 @@ klingt — als Stil-Gate für ads, web, seo.
    Curious-vs-Committed-Diagnose, Financial Qualification über die Situation). Für
    Persuasion-Framing (Anchoring, Verlust-Aversion, Decoy-Effekt etc.) siehe
    `references/mental-models-en.md` — ersetzt keine echte Voice-of-Customer-Recherche.
-7. **Verkaufs-/VSL-Struktur** — bei Long-Form (VSL, Sales-Page, Nurture) nach
+7. **Zweit-Edit (no-ai-slop, bei Bedarf):** Wenn der Text nach G2 immer noch "irgendwie
+   nach KI" klingt oder ein Fremd-Text auditiert werden soll → **no-ai-slop** laden
+   (Detect- oder Edit-Modus). copywriting produziert, no-ai-slop redigiert.
+8. **Verkaufs-/VSL-Struktur** — bei Long-Form (VSL, Sales-Page, Nurture) nach
    `references/vsl-framework.md`: Reihenfolge nach Überzeugungskraft, Identitäts-Commitment
    auf Danke-Seiten, Nurture aus Empfängerperspektive.
-8. **Selbstcheck vor Abgabe (letzter Schritt, still anwenden):** Banned Words? Drei
+9. **Selbstcheck vor Abgabe (letzter Schritt, still anwenden):** Banned Words? Drei
    gleichlange Sätze in Folge? Parataxe (drei+ kurze Sätze hintereinander)? Hedging statt
    klarer Position? Mehr als 1 Em-Dash/500 Wörter? Erfundene Zahlen/Zitate? "Könnte das
    jede KI für jeden Kunden geschrieben haben?" — falls ja, eine konkrete Zahl/Nomen/Konsequenz

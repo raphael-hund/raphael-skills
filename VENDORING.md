@@ -980,3 +980,73 @@ Ideen-Verweis, nicht als reguläre Allowlist-Quelle beantragt.
 **Fazit:** MIT-Lizenz bestätigt, Repo unbedenklich. Von den gesichteten Ideen passt genau **eine** wirklich
 in unsere prompt-basierte Welt (Per-Achsen-Veto) und ist eingearbeitet; der Rest ist entweder schon
 vorhanden (Median-Panel) oder framework-spezifisch. Ehrlichkeit vor Aktivität.
+
+---
+
+## Vendoring-Runde 10 — 2026-07-23 (impeccable Update + no-ai-slop, explizite Raphael-Freigabe)
+
+Quellen (von Raphael am 2026-07-23 per URL benannt, Regel Zeile 4 erfüllt):
+
+| Quelle | Upstream | Commit | Lizenz |
+|---|---|---|---|
+| impeccable (Update) | github.com/pbakaus/impeccable | `bdaa5a4eb9ad2f5b9ce6164a9ded049da9c00d58` (v4.0.1) | Apache-2.0 |
+| no-ai-slop | github.com/petergyang/no-ai-slop | `bdaa5a4` (main, Stand 2026-07-23) | MIT |
+
+### impeccable (Update von v3.9.1 auf v4.0.1)
+
+Upstream in `/root/tools/vendor/impeccable` per `git fetch` aktualisiert (51b470f → bdaa5a4).
+**Neu:** v4 führt 23 Kommandos ein (audit, critique, polish, bolder, quieter, distill, animate,
+colorize, typeset, layout, delight, harden, clarify, adapt, optimize, live, craft, init, shape,
+document, extract, onboard, overdrive) und den `craft-floor` (8-Check-Qualitäts-Minimum).
+
+**Übernommen (als neuer Skill `eigene/impeccable/`):**
+- Kommando-Sprache (23 Befehle als Arbeitsanweisungen, nicht als CLI-Calls)
+- Craft-Floor (8 Checks: Kontrast, Tiefe, Spacing, Typo, Motion, States, Copy, Coverage)
+- Refuse-Liste (Kategorie-Defaults: Cards, Gradient-Text, Glass, Eyebrow, Hero-Metrik, etc.)
+
+**Bewusst NICHT übernommen:**
+- **CLI/Setup-Flow** (`context.mjs`, `PRODUCT.md`, `init`, `hooks`, `pin`, `doctor`) —
+  Upstream erwartet eine installierte CLI; wir nutzen impeccable als reine Methodik.
+- **Detektor-Update** — bleibt im design-Skill (`scripts/detect.mjs` v3.9.1), da v4 Detektor-
+  Logik unverändert. Der design-Skill bleibt die kanonische QA-Quelle.
+- **Native-Platform-Referenzen** (`ios.md`, `android.md`, `audit.native.md`, `adapt.native.md`) —
+  außerhalb unseres Web-Scopes.
+
+**Verdrahtung:** `design` lädt `impeccable` automatisch mit (requires_skills). `web` lädt
+`design` + `impeccable` automatisch mit. taste bleibt als `design/references/taste-kern.md`
+eingebaut (kein separater Skill).
+
+### no-ai-slop (petergyang)
+
+**Übernommen (als neuer Skill `eigene/no-ai-slop/`):**
+- 20+ Muster-Katalog (binary contrasts, throat-clearing, faux-insight, colon reveals,
+  importance puffery, weasel attribution, fake-strong verbs, synonym cycling, negative listing,
+  dramatic fragmentation, robotic rhythm, rhetorical setups, fake-profound kickers,
+  summary-recap endings, formatting slop, em-dash discipline)
+- Zwei Modi: Edit (minimaler Eingriff) / Detect (nur benennen, nicht umschreiben)
+- Banned-Words-Liste (delve, foster, leverage, utilize, empower, streamline, robust, etc.)
+- Selbst-Eval (`references/no-ai-slop-eval.md`)
+
+**Harmonisierung mit copywriting:** copywriting bleibt der Primär-Stil-Gate (Orwell-DE,
+Floskel-Verbote, Brand-Voice). no-ai-slop ist die Zweit-Meinung als Editor — läuft NACH
+copywriting oder bei Fremd-Text-Audits. Deutsche Entsprechungen (Nominalstil, Funktionsverbgefüge)
+verweisen auf `floskel-verbote.md`, keine Dopplung.
+
+**Verdrahtung:** `copywriting` lädt `no-ai-slop` automatisch mit (requires_skills).
+
+### RED-GREEN-Tests (Skill-TDD)
+
+- **RED 1 (Copy, ohne Skill):** Haiku-Worker erkannte ~70% der Slop-Muster, verpasste
+  binary contrasts, colon reveals, fake-profound kicker.
+- **GREEN 1 (Copy, mit no-ai-slop):** Haiku-Worker erkannte 10/10 Muster, benannte sie
+  korrekt, behielt Stimme bei, erklärte Verhältnis zu Teamlead-Druck.
+- **RED 2 (Web, ohne Skill):** Haiku-Worker baute purple gradient + serif + cards + glow
+  ohne Widerspruch — genau die Refuse-Liste.
+- **GREEN 2 (Web, mit impeccable):** Haiku-Worker benannte Register/Modus, lehnte Cards/
+  Gradient-Text ab (brief-earned aber nicht default), Craft-Floor 8/8 grün.
+- **RED 3 (Deutsche Copy, ohne Skill):** Haiku-Worker entfernte deutsche Floskeln gut
+  ("Synergien heben", "transformative Ergebnisse") — copywriting allein reicht hier.
+
+**Fazit:** no-ai-slop schließt die englische Muster-Lücke, impeccable die Kommando-/
+Floor-Lücke. Deutsche Copy bleibt copywriting-Domäne.
+

@@ -49,9 +49,15 @@ gotchas:
   - "taste imagegen-Teile (generate_image-Pflicht) ENTFERNT — hier: Bild-Slots + reale Quellen (picsum-seed), nie div-Fake-Screenshots."
   - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift auf englischen Text). Fuer deutsche Ads/Web-Copy siehe copywriting — dort liegt die deutsche Entfloskelungs-Referenz. TODO fuer einen spaeteren Agenten: eine rules.de.mjs nach dem Vorbild von scripts/rules.ru.mjs.example bauen, die deutsche Slop-Phrasen per --rules=scripts/rules.de.mjs zusaetzlich scannt."
   - "UI-Polish-Details (jakubkrehel) liefert exaktere Zahlenwerte (Scale 0.96 nicht 0.9, Blur 4px nicht 2px) als manche Faustregeln in design-doktrin.md/taste-kern.md. Bei Widerspruch gewinnt der exaktere, deterministisch pruefbare Wert aus ui-polish-details.md."
+requires_skills: [impeccable@^0]
 ---
 
 # design — Anti-Slop Frontend (Router)
+
+**Lädt automatisch mit:** `impeccable` (Kommandosprache + Craft-Floor für
+Design-Arbeit und QA — dieses Skill bleibt die kanonische Wissensquelle,
+impeccable liefert das Vokabular). taste ist hier eingebaut als
+`references/taste-kern.md` (kein separater Skill).
 
 **Zweck (1 Satz):** Interfaces bauen/pruefen, die niemand als "AI-gemacht" erkennt —
 teuer denkt (Register + Doktrin), billig tippt, deterministisch geprueft.
@@ -107,6 +113,13 @@ Screenshot-Zyklus. Kein "muesste jetzt passen" — nur belegte Sicht.
    CI-Fonts duerfen eingebettet sein. Faellt etwas auf Arimo/Roboto/Arial o. ae.
    zurueck, war der Webfont beim Headless-Render nicht da -> Fonts lokal per
    `@font-face` buendeln (nie auf Netz-@import verlassen), neu rendern.
+6. **Nach JEDEM Fix ALLES nochmal pruefen, nicht nur die geaenderte Stelle.**
+   Wer einen Fehler fixt (Pfad, Layout, Bild-Quelle, CSS) und dann nur die
+   gefixte Seite anschaut, uebersieht dasselbe Problem auf den anderen Seiten.
+   Nach jedem Fix: ALLE Seiten/Assets erneut rendern und ansehen. Beispiel:
+   Bild-Pfad auf Seite 3 gefixt -> Seiten 1-11 alle nochmal ansehen, ob die
+   Bilder ueberall laden. Erst wenn ALLE Seiten sauber sind, ist die Arbeit
+   fertig.
 
 ## Finale QA — IMMER, unabhaengig von der Linie
 Kein Interface gilt als fertig, bevor BEIDE Scanner gruen sind.

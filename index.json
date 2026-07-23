@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 31,
+  "skill_count": 33,
   "skills": [
     {
       "name": "design",
@@ -57,10 +57,22 @@
       "description": "Feuert vor jedem /clear und am Session-Ende: schreibt einen Übergabe-Brief, damit die nächste Session ohne Verlust weiterarbeitet. Fakten statt Anweisungen (State, not instructions), inkl. Fallen/Sackgassen-Sektion und Secret-Redaktion. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\"."
     },
     {
+      "name": "impeccable",
+      "version": "0.1.0",
+      "path": "skills/eigene/impeccable/SKILL.md",
+      "description": "Feuert bei Frontend-Design-Arbeit, die über \"funktioniert\" hinausgehen soll: Design bauen, redesignen, kritisieren, auditieren, polieren, vereinfachen, härtener, animieren, kolorieren, typographieren, layouten, begeistern, klären, anpassen, optimieren — oder bei der Frage \"sieht das nach AI aus?\" / \"mach es bolder/quieter\". Liefert die Kommando-Sprache (23 Befehle wie `audit`, `critique`, `polish`, `bolder`, `quieter`, `distill`, `animate`, `colorize`, `typeset`, `layout`, `delight`, `clarify`, `harden`, `adapt`, `optimize`) und den Craft-Floor (Qualitäts-Mindeststandard) für Web-UI. Der design-Skill bleibt die kanonische Wissensquelle; impeccable ist die Arbeits- und QA-Sprache. Trigger: \"Design review\", \"UI audit\", \"polish this\", \"make it bolder\", \"landing page critique\", \"sieht nach AI aus\", \"Slop check\", \"Design verbessern\", \"animate this\", \"typography fix\"."
+    },
+    {
       "name": "kimi-first",
       "version": "0.2.0",
       "path": "skills/eigene/kimi-first/SKILL.md",
       "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
+    },
+    {
+      "name": "no-ai-slop",
+      "version": "0.1.0",
+      "path": "skills/eigene/no-ai-slop/SKILL.md",
+      "description": "Feuert beim Redigieren/Verfeinern englischer UND deutscher Texte, die nach KI klingen sollen — und bei der Frage \"liest sich das nach AI?\". Zweit-Meinung als scharfer menschlicher Editor NACH dem copywriting-Skill: erkennt 20+ AI-Slop-Muster (binary contrasts, throat-clearing, faux-insight, colon reveals, importance puffery, weasel attribution u.a.), entfernt sie mit minimalen Eingriffen und bewahrt dabei die Stimme des Autors. Trigger: \"klingt nach KI\", \"humanize\", \"schärfer machen\", \"AI slop raus\", \"ist das AI-slop?\", \"audit this text\", \"make it sound human\"."
     },
     {
       "name": "offers",

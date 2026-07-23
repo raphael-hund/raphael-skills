@@ -33,7 +33,7 @@ loads:
   - references/radix-shadcn-tailwind-stack.md
   - references/remotion-produktionsweg.md
   - references/templates/statistics-page-template.html
-requires_skills: [copywriting@^0, design@^0, eval@^0]
+requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0]
 completion_criteria:
   - "Lighthouse/axe = 0 Fehler (G1, hart)"
   - "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)"
@@ -48,6 +48,11 @@ completion_criteria:
 `/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`
 (Dossier aus Loop 1 — Pflicht), `/root/raphael-brain/wiki/hot.md`.
 Für alles Visuelle → **design** (Art Direction, impeccable-QA).
+
+**Lädt automatisch mit:** `design` (Wissensquelle: taste-Linie für Landing,
+ui-ux-Linie für App, Doktrin, Detektoren) **und** `impeccable`
+(Kommandosprache + Craft-Floor für Design-Arbeit und QA). taste lebt als
+`references/taste-kern.md` im design-Skill — kein separater Skill nötig.
 
 ## Zweck (1 Satz)
 
@@ -64,6 +69,14 @@ den Nachbar-Assets (sonst Higgsfield `image_background_remover` bzw. neu generie
 Fehler fixen -> ERNEUT Screenshot. Erst fertig melden, wenn der letzte Zyklus
 sauber war. Diese Pflicht in jeden Subagent-Prompt fuer visuelle Arbeit
 explizit hineinschreiben. Details: design-Skill, Abschnitt "Screenshot-Pflicht".
+
+**Nach JEDEM Fix ALLES nochmal pruefen, nicht nur die geaenderte Stelle.**
+Wer einen Fehler fixt (Pfad, Layout, Bild-Quelle, CSS) und dann nur die
+gefixte Seite anschaut, uebersieht dasselbe Problem auf den anderen Seiten.
+Nach jedem Fix: ALLE Seiten/Assets erneut rendern und ansehen. Beispiel:
+Bild-Pfad auf Seite 3 gefixt -> Seiten 1-11 alle nochmal ansehen, ob die
+Bilder ueberall laden. Erst wenn ALLE Seiten sauber sind, ist die Arbeit
+fertig.
 
 ## Look & QA (design ist die einzige Design-Wissensquelle)
 
