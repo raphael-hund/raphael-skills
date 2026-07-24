@@ -11,3 +11,5 @@ vor „fertig") musste das Cockpit einfordern → 5/6.
 
 Ab hier gilt der Mutations-Loop: 1 Änderung an SKILL.md je Experiment, gleiche Inputs,
 Score schlechter/gleich = revert.
+
+Baseline 2026-07-23 deckt Input A ab (5/6); Inputs B+C werden beim naechsten echten Einsatz gemessen.
