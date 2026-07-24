@@ -16,6 +16,19 @@ Der ausfuehrende Agent liest JEDES PNG per Read. Befundliste schreiben:
 `befund: <shot-datei> | <was falsch ist> | <vermutete Ursache>`.
 Erst wer selbst gesehen hat, darf das Panel rufen.
 
+**Besucher-Blick-Katalog (pro Shot explizit durchgehen, nicht nur "draufschauen"):**
+1. **Koepfe/Gesichter angeschnitten?** Jedes Bild mit Personen: Ist irgendein Kopf am
+   Rahmen abgeschnitten oder klebt am Rand? → immer HOCH, immer fixen (object-position
+   auf Kopfhoehe, nicht Bildmitte). Diese Frage pro Personen-Bild einzeln beantworten.
+2. Seltsamer Crop: Nur Ruecken/Haare/Koerperteile ohne erkennbares Motiv?
+3. Text lesbar? (Kontrast auf Foto, Scrim vorhanden, nichts abgeschnitten)
+4. Layout kaputt? (Ueberlappungen, Elemente ausserhalb, horizontales Scrollen auf Mobile)
+5. Leere/kaputte Bilder, sichtbare Platzhalter?
+6. Wuerde ein Besucher lachen oder stutzen? Wenn ja → Befund, egal ob "technisch korrekt".
+
+Regel dazu (Raphael, 24.07.2026): Diese Dinge muessen von ALLEINE auffallen — er will
+sie nicht ansagen muessen. Ein Sweep ohne diesen Katalog gilt als nicht angesehen.
+
 ### 3. Kritik-Panel (3 Rollen, parallel, frische Kontexte)
 | Rolle | Agent | Liest | Auftrag |
 |---|---|---|---|
