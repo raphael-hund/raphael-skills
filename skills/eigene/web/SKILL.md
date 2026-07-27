@@ -33,9 +33,11 @@ loads:
   - references/radix-shadcn-tailwind-stack.md
   - references/remotion-produktionsweg.md
   - references/templates/statistics-page-template.html
+  - references/agentur-merkmale.md
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 completion_criteria:
-  - "Lighthouse/axe = 0 Fehler (G1, hart)"
+  - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Sweep in einem Exit-Code)"
+  - "`node scripts/craft-check.mjs --url <url>` meldet 0 BLOCK (Agentur-Merkmale, belegt in references/agentur-merkmale.md)"
   - "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)"
   - "G2 auf jedem Ship-Copy-Block >= 0.7"
   - "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate"
@@ -91,6 +93,30 @@ Nach jedem Fix: ALLE Seiten/Assets erneut rendern und ansehen. Beispiel:
 Bild-Pfad auf Seite 3 gefixt -> Seiten 1-11 alle nochmal ansehen, ob die
 Bilder ueberall laden. Erst wenn ALLE Seiten sauber sind, ist die Arbeit
 fertig.
+
+## Das Auslieferungs-Tor (G1) — "fertig" ist ein Exit-Code
+
+Vor jeder Auslieferung und vor jeder Fertig-Meldung läuft **ein** Befehl:
+
+```bash
+node scripts/g1-gate.mjs --url http://localhost:3000/ --src .
+```
+
+Er bündelt Erreichbarkeit, Lighthouse (4 Kategorien), axe, tote Links, AI-Slop,
+Craft-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
+
+- **Exit 0** — bestanden. Nur dann darf „fertig" gesagt werden.
+- **Exit 1** — Qualität gerissen. Der Bericht nennt Kategorie und Ist/Soll.
+- **Exit 2** — das Tor selbst ist kaputt (Server nicht erreichbar, Werkzeug fehlt).
+  **Ausdrücklich kein Bestanden.** Ein Prüfer, der nicht laufen konnte, hat nichts geprüft.
+
+Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
+hat ein ungeprüftes Feld — kein grünes.
+
+Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Quelltext**,
+`craft-check.mjs` liest das **gerenderte DOM**. Auf demselben Testfall meldete der
+Quelltext-Scan 0 Tells, während der DOM-Scan 5 Blocker fand. Details und Schwellen:
+`references/agentur-merkmale.md`.
 
 ## Look & QA (design ist die einzige Design-Wissensquelle)
 

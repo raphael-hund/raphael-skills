@@ -32,9 +32,22 @@ sie nicht ansagen muessen. Ein Sweep ohne diesen Katalog gilt als nicht angesehe
 ### 3. Kritik-Panel (3 Rollen, parallel, frische Kontexte)
 | Rolle | Agent | Liest | Auftrag |
 |---|---|---|---|
-| Code-Kritik („Zoll") | `sol-pruefer` | Die zum Befund gehoerenden Source-Dateien + die Befundliste (KEIN Manifest noetig — er prueft Code gegen Befund, nicht Screenshots) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
+| Code-Kritik („Zoll") | `sol-pruefer` | Die zum Befund gehoerenden Source-Ausschnitte **als eingebetteten Text mit Zeilennummern** (KEIN Manifest, KEINE Pfade — siehe Kasten unten) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
 | Visuelle Kritik A („Opus-Register") | `sonnet-worker` | manifest.json + alle Shot-PNGs (per Read) | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
 | Visuelle Kritik B (Kimi) | `kimi-recherche` | manifest.json + alle Shot-PNGs (per Read) | „Zweite, unabhaengige Sicht: Was wirkt wie KI-Slop, was ist inkonsistent ueber die Seiten? Befund + Shot-Datei als Beleg." |
+
+> **Sol bekommt Text, niemals Pfade — und niemals Bilder.**
+> Sols Sandbox kann auf diesem VPS keine einzige Datei oeffnen (bubblewrap ohne
+> User-Namespaces, `kernel.apparmor_restrict_unprivileged_userns=1`). Gibt man ihm einen
+> Pfad, antwortet er „KEIN-ZUGRIFF" — oder er raet. Deshalb liest die Huelle die Stelle
+> selbst und bettet sie mit Zeilennummern in den Prompt ein (das erfuellt zugleich die
+> Datenminimierung, Regel 15/TB2). Belegt am 27.07.2026, Vorfall
+> `ops/incidents/2026-07-27-sol-pruefer-tot.md`.
+>
+> **Bildfaehig sind — getestet, nicht vermutet:** `sonnet-worker`, `haiku-worker`,
+> `kimi-recherche` und `luna-worker`. Alle vier haben am 27.07.2026 ein Kontrollbild
+> korrekt beschrieben, dessen Inhalt kein Modell erraten kann. Fuer visuelle Kritik ist
+> also jeder von ihnen zulaessig; Sol nie.
 
 Judge-Prompt-Form: IMMER „pass/fail + eingefuegter Beweis", NIE „erklaere dein Denken"
 (Fable-Gotcha, Regel 19). Jeder Befund ohne Shot-Beleg gilt als nicht gefunden.

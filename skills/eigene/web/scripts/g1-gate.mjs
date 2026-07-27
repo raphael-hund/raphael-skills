@@ -23,7 +23,17 @@ const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const has = (k) => args.includes(`--${k}`);
 
-const BASE = get('base', 'http://localhost:5280').replace(/\/$/, '');
+// Ein vertipptes Flag darf nicht still auf den Default zurueckfallen — sonst prueft das
+// Gate klaglos die falsche Adresse und meldet ein gruenes Ergebnis fuer nichts.
+const KNOWN = ['base', 'url', 'routes', 'out', 'src', 'budget', 'strict', 'no-shots', 'help'];
+const unknown = args.filter((a) => a.startsWith('--') && !KNOWN.includes(a.slice(2)));
+if (unknown.length) {
+  console.error(`Unbekanntes Flag: ${unknown.join(', ')}\nErlaubt: ${KNOWN.map((k) => `--${k}`).join(' ')}`);
+  process.exit(2);
+}
+
+// --url ist ein Alias fuer --base (die Doktrin nennt es --url, das Skript hiess --base).
+const BASE = get('base', get('url', 'http://localhost:5280')).replace(/\/$/, '');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim()).filter(Boolean)
   .map((r) => (r.startsWith('/') ? r : `/${r}`));
 const OUT = get('out', path.join(os.tmpdir(), 'g1-gate'));
