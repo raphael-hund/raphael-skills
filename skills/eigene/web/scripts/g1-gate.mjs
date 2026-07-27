@@ -184,7 +184,34 @@ function checkSlop() {
   }
 }
 
-// --- Check 6: Screenshot-Sweep muss sauber durchlaufen ---------------------
+// --- Check 6: Handwerks-Merkmale (M1-M25 / T1-T10) ------------------------
+function checkCraft() {
+  const runner = path.join(SKILL_DIR, 'craft-check.mjs');
+  if (!fs.existsSync(runner)) { record('craft', true, 'craft-check.mjs nicht gefunden', true); return; }
+  for (const route of ROUTES) {
+    let out = '';
+    let code = 0;
+    try {
+      out = run('node', [runner, '--url', `${BASE}${route}`, '--json', ...(has('strict') ? ['--strict'] : [])]);
+    } catch (e) {
+      code = e.status ?? 2;
+      out = String(e.stdout || '');
+      if (code === 2) { record(`craft${route}`, false, `craft-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); continue; }
+    }
+    try {
+      const parsed = JSON.parse(out);
+      const b = parsed.blockers || [];
+      const w = parsed.warns || [];
+      record(`craft${route}`, b.length === 0,
+        b.length === 0 ? `0 Blocker, ${w.length} Warnung(en)`
+          : `${b.length} Blocker: ${b.slice(0, 5).map((f) => `${f.id}`).join(', ')} (+${w.length} Warnungen)`);
+    } catch {
+      record(`craft${route}`, false, `craft-check-Ausgabe unlesbar (exit ${code})`);
+    }
+  }
+}
+
+// --- Check 7: Screenshot-Sweep muss sauber durchlaufen ---------------------
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
   if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
@@ -215,6 +242,7 @@ checkLighthouse();
 checkAxe();
 checkLinks();
 checkSlop();
+checkCraft();
 if (!has('no-shots')) checkSweep();
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
