@@ -34,6 +34,7 @@ loads:
   - references/remotion-produktionsweg.md
   - references/templates/statistics-page-template.html
   - references/agentur-merkmale.md
+  - references/orchestrierung.md
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 completion_criteria:
   - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Sweep in einem Exit-Code)"
