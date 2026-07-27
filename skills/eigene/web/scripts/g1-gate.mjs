@@ -167,6 +167,61 @@ function checkLinks() {
 // scan-ai-slop.mjs greppt QUELLCODE, nicht eine URL — braucht daher --src.
 // Ohne --src ist der Check nicht anwendbar und wird ehrlich uebersprungen,
 // statt still zu bestehen.
+// Der Scanner meldet `hits` als ZAHL und `findings` als Gruppen-Liste. Ein naives
+// `parsed.hits || parsed.findings` liefert deshalb die Zahl, und `Array.isArray(4)`
+// ist false — das Gate meldete "0 Slop-Tells" fuer eine Seite mit vier Treffern.
+// Darum hier explizit: Zahl gewinnt, sonst Treffer ueber alle Gruppen summieren.
+function slopZaehlen(parsed) {
+  if (typeof parsed.hits === 'number') return parsed.hits;
+  if (Array.isArray(parsed.hits)) return parsed.hits.length;
+  if (Array.isArray(parsed.findings)) {
+    return parsed.findings.reduce((s, g) => s + (Array.isArray(g.hits) ? g.hits.length : 1), 0);
+  }
+  return null; // unbekanntes Format — nicht als 0 durchwinken
+}
+
+function slopNamen(parsed) {
+  const g = Array.isArray(parsed.findings) ? parsed.findings : [];
+  return g.slice(0, 5).map((x) => x.name || x.id || '?').join(', ');
+}
+
+// Der Scanner kennt keine Schweregrade: jede seiner 33 Regeln zaehlt gleich viel.
+// Damit wuerde ein "Kicker ueber der Ueberschrift" (in der Doktrin WARN) die
+// Auslieferung genauso stoppen wie ein Indigo-Violett-Verlauf (BLOCK). Die
+// Einteilung passiert deshalb hier, in denselben Stufen wie craft-check.
+// Quelle der Zuordnung: references/agentur-merkmale.md.
+const SLOP_BLOCK = new Set([
+  '01', // Indigo→Violett-Verlauf (T2)
+  '02', // Verlauf in der Headline
+  '14', // KI-Textstimme ("nahtlos", "muehelos", "Game-Changer")
+  '24', // KI-gezeichnetes SVG-Icon
+  '28', // erfundene Statistik-Zeile (T9)
+]);
+
+function slopTeilen(parsed) {
+  const g = Array.isArray(parsed.findings) ? parsed.findings : [];
+  const zaehle = (x) => (Array.isArray(x.hits) ? x.hits.length : 1);
+  const block = g.filter((x) => SLOP_BLOCK.has(String(x.id)));
+  const warn = g.filter((x) => !SLOP_BLOCK.has(String(x.id)));
+  return {
+    block: block.reduce((s, x) => s + zaehle(x), 0),
+    warn: warn.reduce((s, x) => s + zaehle(x), 0),
+    blockNamen: block.map((x) => x.name || x.id).join(', '),
+    warnNamen: warn.map((x) => x.name || x.id).join(', '),
+  };
+}
+
+function slopMelden(parsed) {
+  const n = slopZaehlen(parsed);
+  if (n === null) { record('ai-slop', false, 'Slop-Scan: unbekanntes JSON-Format'); return; }
+  if (n === 0) { record('ai-slop', true, '0 Slop-Tells'); return; }
+  const s = slopTeilen(parsed);
+  const detail = s.block
+    ? `${s.block} Blocker (${s.blockNamen})${s.warn ? `, ${s.warn} Warnung(en): ${s.warnNamen}` : ''}`
+    : `0 Blocker, ${s.warn} Warnung(en): ${s.warnNamen}`;
+  record('ai-slop', s.block <= BUDGET.slopScore, detail);
+}
+
 function checkSlop() {
   const src = get('src', null);
   const scan = path.resolve(SKILL_DIR, '../../../design/scripts/scan-ai-slop.mjs');
@@ -174,20 +229,11 @@ function checkSlop() {
   if (!src) { record('ai-slop', true, 'kein --src <projektordner> uebergeben', true); return; }
   if (!fs.existsSync(src)) { record('ai-slop', false, `--src existiert nicht: ${src}`); return; }
   try {
-    const out = run('node', [scan, src, '--json']);
-    const parsed = JSON.parse(out);
-    const hits = parsed.hits || parsed.findings || [];
-    const n = Array.isArray(hits) ? hits.length : 0;
-    record('ai-slop', n <= BUDGET.slopScore,
-      n === 0 ? '0 Slop-Tells' : `${n} Tells: ${hits.slice(0, 5).map((h) => h.id || h.tell || '?').join(', ')}`);
+    slopMelden(JSON.parse(run('node', [scan, src, '--json'])));
   } catch (e) {
     // Exit 1 = Tells gefunden (kein kaputter Lauf). JSON steht trotzdem auf stdout.
-    const stdout = String(e.stdout || '');
     try {
-      const parsed = JSON.parse(stdout);
-      const hits = parsed.hits || parsed.findings || [];
-      record('ai-slop', hits.length <= BUDGET.slopScore,
-        `${hits.length} Tells: ${hits.slice(0, 5).map((h) => h.id || h.tell || '?').join(', ')}`);
+      slopMelden(JSON.parse(String(e.stdout || '')));
     } catch {
       record('ai-slop', false, `Slop-Scan kaputt: ${String(e.stderr || e.message).split('\n')[0]}`);
     }
@@ -212,8 +258,13 @@ function checkCraft() {
       const parsed = JSON.parse(out);
       const b = parsed.blockers || [];
       const w = parsed.warns || [];
-      record(`craft${route}`, b.length === 0,
-        b.length === 0 ? `0 Blocker, ${w.length} Warnung(en)`
+      // Mit --strict zaehlen Warnungen als Fehler. Das entscheidet craft-check
+      // selbst ueber seinen Exit-Code — wer hier nur `blockers.length` liest,
+      // schluckt das Flag stillschweigend und meldet PASS trotz Warnungen.
+      const strengeVerletzt = has('strict') && w.length > 0;
+      record(`craft${route}`, b.length === 0 && !strengeVerletzt,
+        b.length === 0
+          ? `0 Blocker, ${w.length} Warnung(en)${strengeVerletzt ? ' — strict: Warnungen zaehlen als Fehler' : ''}`
           : `${b.length} Blocker: ${b.slice(0, 5).map((f) => `${f.id}`).join(', ')} (+${w.length} Warnungen)`);
     } catch {
       record(`craft${route}`, false, `craft-check-Ausgabe unlesbar (exit ${code})`);
