@@ -267,4 +267,16 @@ if (failed.length) {
   console.log(`\nG1 GERISSEN — ${failed.length} Check(s): ${failed.map((r) => r.name).join(', ')}`);
   process.exit(1);
 }
+
+// Uebersprungen ist nicht bestanden. Fehlt zu viel Werkzeug, hat das Gate nichts
+// geprueft und darf kein Gruen melden — sonst liefert ein kaputter Rechner
+// jede Seite durch. Exit 2 heisst "Tor kaputt", nicht "Seite gut".
+// Namen tragen die Route als Suffix (`lighthouse/`, `axe/preise`), darum Praefix-Vergleich.
+const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft'];
+const gelaufen = results.filter((r) => !r.skipped && QUALITAET.some((q) => r.name.startsWith(q)));
+if (gelaufen.length < 2) {
+  console.log(`\nG1 KANN NICHT URTEILEN — nur ${gelaufen.length} von ${QUALITAET.length} Qualitaets-Checks gelaufen.`);
+  console.log('Uebersprungen ist nicht bestanden. Fehlende Werkzeuge nachinstallieren, dann erneut.');
+  process.exit(2);
+}
 console.log(`\nG1 BESTANDEN — ${results.length - skipped.length} Check(s) gruen.`);

@@ -102,6 +102,26 @@ springt das Layout beim Laden.
 `meta description`, `og:image`, `favicon`. Fehlt das, sieht der erste Eindruck beim
 Teilen billig aus, egal wie gut die Seite ist.
 
+**M13 · Mobile** (BLOCK bei Overflow, WARN bei steckengebliebenem Raster) — zweiter
+Durchgang auf 390×844. Drei Befunde: die Seite selbst breiter als der Viewport,
+einzelne Elemente, die rechts aus dem Bild ragen, und mehrspaltige Grids, die auf
+dem Handy mehrspaltig geblieben sind (nur WARN — es gibt legitime Zwei-Spalter,
+etwa Icon plus Text).
+
+*Warum das drin ist:* Der Beweis-Build lief mit `performance=99 accessibility=100
+best-practices=100 seo=100`, 0 axe-Violations, 0 Slop-Tells, 0 Craft-Blockern durchs
+Tor — **während das Hero-Grid auf 390px nie umbrach und die Proof-Karte mitten im
+Wort abschnitt** („ANSPRECHPARTNE…"). Ein Tor, das nur 1440 kennt, ist auf einer
+Handy-Mehrheit blind. Gegenprobe an derselben Seite mit entfernter Umbruch-Regel:
+
+| Seite | M13 | Exit |
+|---|---|---|
+| mit `.hero{grid-template-columns:1fr}` im 860px-Query | 0 Blocker | 0 |
+| ohne diese eine Zeile | 2 Blocker (430px bei 390px Viewport, 14 Elemente ragen raus) | 1 |
+
+*Regel-Falle:* `position: fixed` ausnehmen. Ein Cookie-Banner oder eine Sticky-Nav
+darf rechnerisch aus dem Viewport ragen, ohne dass jemand scrollen muss.
+
 ### Nicht maschinell prüfbar (immer INFO)
 
 **M20 · Signature-Moment** — Ein Detail, das man sich merkt. Genau das, was eine

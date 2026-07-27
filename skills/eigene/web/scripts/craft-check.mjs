@@ -306,6 +306,58 @@ try {
 
     return out;
   }, KI_FONTS);
+
+  // ---- M13: Mobile. Ein zweiter Durchgang auf 390x844, weil die haesslichsten
+  // Fehler erst dort entstehen: ein Grid, das nie umbricht, und alles laeuft
+  // seitlich aus dem Bild. Auf 1440 ist davon nichts zu sehen — genau deshalb
+  // faellt es sonst erst dem Besucher auf.
+  const mob = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true });
+  await mob.goto(URL_, { waitUntil: 'networkidle', timeout: 45000 });
+  await mob.waitForTimeout(700);
+  const mobile = await mob.evaluate(() => {
+    const out = [];
+    const vw = document.documentElement.clientWidth;
+
+    // Seitliches Auslaufen der ganzen Seite.
+    const docW = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+    if (docW > vw + 2) {
+      out.push({ level: 'BLOCK', id: 'M13', marker: 'Mobile-Overflow',
+        msg: `Seite ist ${docW}px breit bei ${vw}px Viewport — horizontales Scrollen`, sample: null });
+    }
+
+    // Einzelne Elemente, die rechts aus dem Bild ragen.
+    const over = [];
+    for (const el of document.querySelectorAll('body *')) {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) continue;
+      if (getComputedStyle(el).position === 'fixed') continue;
+      if (r.right > vw + 2) {
+        over.push(`${el.tagName.toLowerCase()}${el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\s+/)[0] : ''} (bis ${Math.round(r.right)}px)`);
+      }
+    }
+    if (over.length) {
+      out.push({ level: 'BLOCK', id: 'M13', marker: 'Mobile-Overflow',
+        msg: `${over.length} Element(e) ragen rechts aus dem Bild`, sample: over.slice(0, 4).join(', ') });
+    }
+
+    // Mehrspaltige Raster, die auf dem Handy mehrspaltig geblieben sind.
+    const stuck = [];
+    for (const el of document.querySelectorAll('body *')) {
+      const s = getComputedStyle(el);
+      if (s.display !== 'grid') continue;
+      const cols = (s.gridTemplateColumns || '').split(' ').filter(Boolean);
+      if (cols.length > 1 && el.getBoundingClientRect().width > vw * 0.6) {
+        stuck.push(`${el.tagName.toLowerCase()}${el.className && typeof el.className === 'string' ? '.' + el.className.trim().split(/\s+/)[0] : ''} (${cols.length} Spalten)`);
+      }
+    }
+    if (stuck.length) {
+      out.push({ level: 'WARN', id: 'M13', marker: 'Mobile-Raster',
+        msg: `${stuck.length} Raster bleiben auf 390px mehrspaltig`, sample: stuck.slice(0, 4).join(', ') });
+    }
+    return out;
+  });
+  await mob.close();
+  findings.push(...mobile);
 } catch (e) {
   console.error(`craft-check kaputt: ${e.message}`);
   process.exit(2);

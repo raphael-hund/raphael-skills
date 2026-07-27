@@ -112,7 +112,18 @@ Craft-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
   **Ausdrücklich kein Bestanden.** Ein Prüfer, der nicht laufen konnte, hat nichts geprüft.
 
 Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
-hat ein ungeprüftes Feld — kein grünes.
+hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** laufen weniger
+als zwei der vier Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft), endet es mit
+Exit 2 statt Exit 0. Sonst hätte ein Rechner ohne installierte Werkzeuge jede beliebige
+Seite mit „G1 BESTANDEN — 0 Checks grün" durchgewinkt.
+
+Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebungen:
+
+| Lauf | Ergebnis | Exit |
+|---|---|---|
+| Beweis-Build, alle Werkzeuge da | 7 Checks grün | **0** |
+| dieselbe Seite ohne die Mobile-Umbruch-Regel | craft/ gerissen, 2× M13 | **1** |
+| dieselbe Seite, Werkzeuge nicht auffindbar | 1 von 4 Prüfern gelaufen | **2** |
 
 Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Quelltext**,
 `craft-check.mjs` liest das **gerenderte DOM**. Auf demselben Testfall meldete der
