@@ -131,6 +131,13 @@ darf rechnerisch aus dem Viewport ragen, ohne dass jemand scrollen muss.
 
 **M25 · Proof** — Echte Zahlen, echte Namen, echte Referenzen. Inhaltlich, nicht messbar.
 
+> **INFO im Skript heisst nicht INFO im Urteil.** Das Skript zaehlt nur, ob Bilder da
+> sind, und darf deshalb nie blocken. Das Panel darf sehr wohl. Am 27.07.2026 gab das
+> Tor den Beweis-Build frei (98/100/100/100, 0 Verstoesse) und das Panel stufte
+> „kein einziges Foto auf einer Sanierungs-Seite" als **BLOCK** ein: „ein Content-
+> Geruest, kein fertiges Produkt". Das ist die richtige Reihenfolge. Wer M24/M25 als
+> erledigt abhakt, weil das Skript INFO sagt, hat die Zeile falsch gelesen.
+
 ---
 
 ## T — KI-Tells
