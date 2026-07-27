@@ -125,6 +125,32 @@ Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebun
 | dieselbe Seite ohne die Mobile-Umbruch-Regel | craft/ gerissen, 2× M13 | **1** |
 | dieselbe Seite, Werkzeuge nicht auffindbar | 1 von 4 Prüfern gelaufen | **2** |
 
+### Wer prüft den Prüfer
+
+```bash
+node evals/run-antiset.mjs
+```
+
+Unter `evals/antiset/` liegt sechsmal **dieselbe** saubere Seite: einmal als
+Kontrolle, fünfmal mit je **genau einem** eingebauten Fehler. Der Lauf besteht nur,
+wenn die Kontrolle durchgeht **und** jede kaputte Fixture am erwarteten Check reißt —
+nicht an einem anderen und nicht an gar keinem.
+
+Ein Tor, das nie grün wird, ist genauso nutzlos wie eins, das nie rot wird. Nur der
+Unterschied ist der Beweis. `a5` prüft zusätzlich den Schweregrad: Ghost-Card und
+Springy-Hover sind laut Doktrin WARN und dürfen im Normallauf **nicht** blocken,
+müssen aber mit `--strict` rot werden.
+
+Das hat sich sofort gelohnt: Der erste Lauf legte zwei Bugs frei, die vorher grün
+gemeldet hatten. `ai-slop` zählte vier gefundene Tells als null (der Scanner liefert
+`hits` als Zahl, nicht als Liste), und `--strict` war wirkungslos, weil das Gate den
+Exit-Code des Craft-Prüfers wegwarf. **Beide Fehler zeigten sich nur in Richtung
+falsches Grün** — die Richtung, die ein Gate nie haben darf.
+
+Unter `evals/briefings/` liegen fünf Aufträge als Gegenstück (Handwerk, B2B-SaaS,
+Beratung, Produkt, Relaunch). Sie messen nicht das Tor, sondern das Ergebnis: jedes
+Briefing endet mit prüfbaren Kriterien, nicht mit „wirkt professionell".
+
 Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Quelltext**,
 `craft-check.mjs` liest das **gerenderte DOM**. Auf demselben Testfall meldete der
 Quelltext-Scan 0 Tells, während der DOM-Scan 5 Blocker fand. Details und Schwellen:
