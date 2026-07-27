@@ -198,11 +198,17 @@ const SLOP_BLOCK = new Set([
   '28', // erfundene Statistik-Zeile (T9)
 ]);
 
+// Der Scanner schreibt die IDs heute als String mit fuehrender Null ("01").
+// Wuerde er auf Zahlen umstellen, waere aus "01" die 1 — und `Set.has("1")`
+// faende die schlimmste Regel (Indigo-Violett-Verlauf) nicht mehr. Das waere
+// ein stilles falsches Gruen, also wird die ID vorher auf zwei Stellen normiert.
+const slopId = (id) => String(id).trim().padStart(2, '0');
+
 function slopTeilen(parsed) {
   const g = Array.isArray(parsed.findings) ? parsed.findings : [];
   const zaehle = (x) => (Array.isArray(x.hits) ? x.hits.length : 1);
-  const block = g.filter((x) => SLOP_BLOCK.has(String(x.id)));
-  const warn = g.filter((x) => !SLOP_BLOCK.has(String(x.id)));
+  const block = g.filter((x) => SLOP_BLOCK.has(slopId(x.id)));
+  const warn = g.filter((x) => !SLOP_BLOCK.has(slopId(x.id)));
   return {
     block: block.reduce((s, x) => s + zaehle(x), 0),
     warn: warn.reduce((s, x) => s + zaehle(x), 0),
@@ -216,6 +222,15 @@ function slopMelden(parsed) {
   if (n === null) { record('ai-slop', false, 'Slop-Scan: unbekanntes JSON-Format'); return; }
   if (n === 0) { record('ai-slop', true, '0 Slop-Tells'); return; }
   const s = slopTeilen(parsed);
+  // Gesamtzahl und Einteilung lesen zwei verschiedene Felder: `hits` (Zahl) und
+  // `findings` (Gruppen). Klaffen sie auseinander, sind Treffer gemeldet, die
+  // sich keiner Regel zuordnen lassen — dann ist die Einteilung blind und darf
+  // nicht Gruen sagen. Sol-Befund 27.07.2026: {hits:1, findings:[]} meldete Gruen.
+  if (s.block + s.warn !== n) {
+    record('ai-slop', false,
+      `${n} Tells gemeldet, aber nur ${s.block + s.warn} einer Regel zuzuordnen — Einteilung unvollstaendig`);
+    return;
+  }
   const detail = s.block
     ? `${s.block} Blocker (${s.blockNamen})${s.warn ? `, ${s.warn} Warnung(en): ${s.warnNamen}` : ''}`
     : `0 Blocker, ${s.warn} Warnung(en): ${s.warnNamen}`;
