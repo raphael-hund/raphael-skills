@@ -27,8 +27,11 @@ runden-protokoll.md), gegenueber dem Original:
     passiert, R13/R15): stiller Datenverlust an Folge-Agenten statt Datei+Pfad.
   - check_model_fable: NEU. FAIL bei Fable als `model` oder `agentType` —
     ultra-loop/SKILL.md verbietet Fable-Subagents explizit (NIE Fable).
-  - check_multimodel_fleet: NEU. FAIL wenn Sol, Kimi oder Luna als
-    `agentType` fehlen — Modell-Overrides allein sind keine Cross-Vendor-Flotte.
+  - check_multimodel_fleet: seit 28.07.2026 WARN (nicht FAIL) bei
+    Claude-only-Flotten. Grenze der Heuristik: sie sieht nur, OB irgendwo
+    eine Nicht-Claude-Familie vorkommt — nicht, ob ausgerechnet der
+    VERIFIER-Agent aus der anderen Familie stammt (Rollen sind statisch
+    nicht erkennbar). Das prüft die Cockpit-Letztverifikation, nicht der Regex.
   - render()/verdict()/CLI-Grundgeruest (argparse, --json, --sample) 1:1
     uebernommen, SAMPLE auf unsere Regeln erweitert.
 

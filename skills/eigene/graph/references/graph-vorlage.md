@@ -62,7 +62,7 @@ for (let briefRunde = 0; briefRunde < 2; briefRunde++) {
       (verdict ? ` und diesen Mängeln: ${JSON.stringify(verdict.maengel)}` : '') +
       `. Schreibe nach ${DIR}/draft.md. Frozen Rules: ${FROZEN}`,
       { label: `draft:b${briefRunde}r${runde}`, phase: 'Draft', agentType: 'kimi-worker' })
-    verdict = await agent(`Bewerte ${DIR}/draft.md gegen die Rubrik: ${RUBRIK}.`,
+    verdict = await agent(`${LONGHORIZON} Bewerte ${DIR}/draft.md gegen die Rubrik: ${RUBRIK}.`,
       { label: `score:b${briefRunde}r${runde}`, phase: 'Score', agentType: 'sol-pruefer', schema: VERDICT })
     if (verdict && verdict.pass) break
   }
@@ -74,7 +74,7 @@ if (!verdict || !verdict.pass) return { abbruch: 'score auch nach Brief-Neuschri
 **Externes Gate (Bash-Anker):** ein Agent führt den Check aus und liefert
 das ROHE Ergebnis (Exit-Code + Ausgabe) — er interpretiert nicht weg:
 ```javascript
-const gate = await agent(`Führe aus: <GATE-KOMMANDO>. Gib {exitCode, output} zurück, ungeschönt.`,
+const gate = await agent(`${LONGHORIZON} Führe aus: <GATE-KOMMANDO>. Gib {exitCode, output} zurück, ungeschönt.`,
   { label: 'gate:lint', phase: 'Gate', agentType: 'haiku-worker', schema: GATE_SCHEMA })
 if (!gate || gate.exitCode !== 0) return { abbruch: 'Gate rot', gate }
 ```
