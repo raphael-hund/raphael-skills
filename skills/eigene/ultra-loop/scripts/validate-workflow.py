@@ -188,19 +188,31 @@ def check_model_fable(code, findings):
 
 
 def check_multimodel_fleet(code, findings):
-    """ENTFERNT am 25.07.2026 auf Anweisung von Raphael.
+    """WARN (kein FAIL) seit 28.07.2026 — vorher Historie in zwei Schritten:
 
-    Frueher: FAIL, wenn nicht Sol, Kimi UND Luna als `agentType` vorkamen.
-    Ein OpenAI-Ausfall (biscuit_baker_service_me_circuit_open) legte Sol
-    und Luna gleichzeitig lahm — die Regel war nicht mehr erfuellbar,
-    obwohl Claude und Kimi lieferten.
+    Bis 25.07.2026: FAIL, wenn nicht Sol, Kimi UND Luna als `agentType`
+    vorkamen. Ein OpenAI-Ausfall (biscuit_baker_service_me_circuit_open)
+    legte Sol und Luna gleichzeitig lahm — die Regel war nicht mehr
+    erfuellbar, obwohl Claude und Kimi lieferten. Raphael strich die
+    Pflicht (Flotten-Wahl frei).
 
-    Was damit NICHT mehr geprueft wird: dass der Verifier aus einer
-    anderen Modellfamilie stammt als der schreibende Agent.
-    Alte Fassung: `git log -p -- skills/eigene/ultra-loop/scripts/validate-workflow.py`
-    (Stand vor dem 25.07.2026).
+    25.-28.07.2026: kompletter No-Op — damit prüfte NICHTS mehr die
+    Empfehlung "Verifier aus anderer Modellfamilie", obwohl
+    eval/SKILL.md sie weiter als Kriterium führt (Kritik-Runde 28.07.).
+
+    Jetzt: WARN, wenn ein Workflow agent() nutzt, aber keine einzige
+    Nicht-Claude-Familie (sol-pruefer/kimi-*/luna-worker) vorkommt.
+    Warnung = starten erlaubt (Anbieter-Ausfall bleibt legitim), aber im
+    Runden-Protokoll vermerken, warum nur eine Familie lief.
     """
-    return
+    if not re.search(r"\bagent\s*\(", code):
+        return
+    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|kimi-[a-z]+|luna-worker)['\"]", code):
+        return
+    findings.append((WARN, 1,
+                     "Nur Claude-Familie im Workflow (kein sol-pruefer/kimi-*/luna-worker als agentType). "
+                     "Cross-Vendor-Verifier ist Empfehlung, kein Gate (Raphael 25.07.2026) — "
+                     "wenn Anbieter-Ausfall der Grund ist, im Runden-Protokoll vermerken."))
 
 
 def check_args_falle(code, findings):

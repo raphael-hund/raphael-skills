@@ -40,19 +40,35 @@ Grundformen:
 **Kette (research → brief → draft):** sequenzielle `await agent(...)`-Aufrufe,
 jeder bekommt die PFADE der Vorergebnisse (Slice-Falle!).
 
-**Loop-in-Node (draft ↔ score, max 3):**
+**Loop-in-Node (draft ↔ score, max 3, danach Rückroute → brief):**
 ```javascript
-let verdict = null, draftPfad = `${DIR}/draft.md`
-for (let runde = 0; runde < 3; runde++) {
-  await agent(`Schreibe/überarbeite den Artikel nach ${DIR}/brief.md` +
-    (verdict ? ` und diesen Mängeln: ${JSON.stringify(verdict.maengel)}` : '') +
-    `. Schreibe nach ${draftPfad}. Frozen Rules: ${FROZEN}`,
-    { label: `draft:r${runde}`, phase: 'Draft', agentType: 'kimi-worker' })
-  verdict = await agent(`Bewerte ${draftPfad} gegen die Rubrik: ${RUBRIK}.`,
-    { label: `score:r${runde}`, phase: 'Score', agentType: 'sol-pruefer', schema: VERDICT })
+// LONGHORIZON gehört in JEDEN Node-Prompt (Pflicht bei kimi/luna — die erben
+// das private CLAUDE.md nicht und bleiben sonst bei Unsicherheit stehen):
+const LONGHORIZON = 'Long horizon session, human is away — autonom arbeiten, ' +
+  'nicht rückfragen, bei Unsicherheit weiterarbeiten. Rot-Klassen bleiben bindend.'
+
+// Äußerer Loop = die Karten-Route "score FAIL → draft (max 3, danach → brief)":
+// nach 3 roten Score-Runden wird der Brief EINMAL neu geschrieben, dann
+// nochmal 3 Draft-Runden. Erst wenn auch das rot bleibt: Abbruch.
+let verdict = null
+for (let briefRunde = 0; briefRunde < 2; briefRunde++) {
+  if (briefRunde > 0) {
+    await agent(`${LONGHORIZON} Überarbeite ${DIR}/brief.md grundlegend — der ` +
+      `Draft scheiterte 3x am Score, letzte Mängel: ${JSON.stringify(verdict.maengel)}.`,
+      { label: 'brief:neu', phase: 'Brief', agentType: 'sonnet-worker' })
+  }
+  for (let runde = 0; runde < 3; runde++) {
+    await agent(`${LONGHORIZON} Schreibe/überarbeite den Artikel nach ${DIR}/brief.md` +
+      (verdict ? ` und diesen Mängeln: ${JSON.stringify(verdict.maengel)}` : '') +
+      `. Schreibe nach ${DIR}/draft.md. Frozen Rules: ${FROZEN}`,
+      { label: `draft:b${briefRunde}r${runde}`, phase: 'Draft', agentType: 'kimi-worker' })
+    verdict = await agent(`Bewerte ${DIR}/draft.md gegen die Rubrik: ${RUBRIK}.`,
+      { label: `score:b${briefRunde}r${runde}`, phase: 'Score', agentType: 'sol-pruefer', schema: VERDICT })
+    if (verdict && verdict.pass) break
+  }
   if (verdict && verdict.pass) break
 }
-if (!verdict || !verdict.pass) return { abbruch: 'score nach 3 Runden rot', verdict }
+if (!verdict || !verdict.pass) return { abbruch: 'score auch nach Brief-Neuschrieb rot', verdict }
 ```
 
 **Externes Gate (Bash-Anker):** ein Agent führt den Check aus und liefert

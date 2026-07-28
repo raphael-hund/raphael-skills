@@ -16,7 +16,7 @@ requires_skills: []
 completion_criteria:
   - "G1 deterministisch grün BEVOR ein Judge läuft"
   - "G2-Judge liefert pass/fail + eingefügten Beweis, Schwelle 0.7"
-  - "Verifier nie aus der Autor-Familie; Fable nie Selbstprüfung"
+  - "Verifier möglichst andere Modellfamilie (bei Anbieter-Ausfall Ausnahme im Protokoll vermerken); Fable nie Selbstprüfung"
   - "Jedes Verdikt trägt evidence+confidence; keine Severity-Einstufung ohne konkreten Beleg/Angriffspfad"
 ---
 
@@ -106,7 +106,9 @@ Rubriken schreiben: 3–6 binäre, überprüfbare Ja/Nein-Fragen mit Beweis-Anke
 - **Judge-Prompts: "pass/fail + eingefügter Beweis", NIE "erkläre dein Denken"/"show your
   work".** Löst bei Fable die `reasoning_extraction`-Refusal aus → stiller Opus-Fallback
   (Regel 19). Prompt-Vorlagen in `references/judge-prompts.md`.
-- **Verifier = andere Modellfamilie, frische Session.** Fable prüft nie Fable (Regel 8).
+- **Verifier = möglichst andere Modellfamilie, frische Session.** Fable prüft nie Fable (Regel 8).
+  Seit 25.07.2026 Empfehlung statt hartes Gate (Anbieter-Ausfälle): geht keine Fremd-Familie,
+  Ausnahme im Protokoll vermerken — siehe ultra-loop/SKILL.md "Flotten-Wahl ist frei".
 - **G1 vor G2, immer.** Kein Judge auf einem Output, der die deterministischen Checks nicht
   besteht — Judge-Tokens sind teuer und die Antwort steht schon fest.
 - Mehr als 6 Rubrik-Fragen werden gegamed — kurz halten.

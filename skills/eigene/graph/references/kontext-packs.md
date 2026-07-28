@@ -34,5 +34,13 @@ bei Anbieter-Ausfall frei wählen und protokollieren).
 ## Automatik im Skill-Ablauf
 
 Beim Kompilieren der Karte baut das Cockpit pro Node den Prompt aus:
-`[Rolle+Auftrag] + [Frozen Rules] + [Kontext-Pack-Pfade] + [Skill-Zuweisung] + [Output-Vertrag]`.
+`[Rolle+Auftrag] + [Frozen Rules] + [Long-Horizon-Hinweis] + [Kontext-Pack-Pfade] + [Skill-Zuweisung] + [Output-Vertrag]`.
 Nichts davon fragt Raphael — die Karte enthält alles.
+
+**Long-Horizon-Hinweis (bei Codex/Kimi-Workern Pflicht, bei Claude-Workern
+empfohlen):** wortgleich zur ultra-loop-Klausel — "long horizon session,
+human is away": autonom weiterarbeiten, bis Gates grün oder Budget/Rundenlimit
+erreicht; bei Unsicherheit nicht stoppen und nicht auf Rückfrage warten;
+Rot-Klassen bleiben bindend. Grund: Codex/Kimi-Adapter erben das private
+CLAUDE.md (Autonomie-Doktrin) NICHT — ohne diesen Baustein bleibt ein
+kimi-worker/luna-worker-Node mitten im Graphen stehen und fragt ins Leere.
