@@ -78,3 +78,13 @@ Kette (Snapshot → Sonnet-Destillation → Opus-Erfindungs-Check →
 Doktrin-Check), kein Ersatz. Einsetzen, wenn eine Runde/Session spürbare
 Reibung hatte und die Ursache unklar ist — nicht bei jeder Routine-Runde
 (Overhead unnötig bei glatten Runden ohne Korrekturen).
+
+## Wenn ein Fund Doktrin-Ebene ist, nicht Skill-Ebene
+
+Manche Retro-Funde sind keine Skill-Textkorrektur, sondern eine
+Lücke in `AGENTS.md`/`ROUTING.md` selbst (z. B. eine neue Rot-Linie wie die
+R29-Push-Regel oben). Für diese Funde: Vorschlag als eigener Eintrag in
+`ops/review-inbox.md` mit Vorher/Nachher-Diff-Text, NIE automatisch in
+AGENTS.md schreiben (Rot-Klasse, nur Raphael editiert "Das Gesetz").
+Kennzeichnung im Protokoll: `DOKTRIN-VORSCHLAG` statt `SKILL-FUND`, damit
+der Unterschied beim Review sofort sichtbar ist.
