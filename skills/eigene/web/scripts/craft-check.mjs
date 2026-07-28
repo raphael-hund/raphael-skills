@@ -22,6 +22,9 @@ const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i
 const URL_ = get('url', null);
 const AS_JSON = args.includes('--json');
 const STRICT = args.includes('--strict');
+// Reiner Rechtstext (Impressum, Datenschutz, AGB): dort ist "kein Bild" richtig,
+// nicht kaputt. Muss ausdruecklich gesetzt werden — siehe M24 weiter unten.
+const TEXTSEITE = args.includes('--textseite');
 
 if (!URL_) { console.error('usage: craft-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
 
@@ -36,7 +39,7 @@ try {
   if (!res || !res.ok()) { console.error(`Navigation fehlgeschlagen: ${URL_} -> ${res ? res.status() : 'kein Response'}`); process.exit(2); }
   await page.waitForTimeout(900);
 
-  findings = await page.evaluate((KI_FONTS) => {
+  findings = await page.evaluate(([KI_FONTS, TEXTSEITE]) => {
     const out = [];
     const add = (level, id, marker, msg, sample) => out.push({ level, id, marker, msg, sample: sample || null });
     const px = (v) => parseFloat(v) || 0;
@@ -298,14 +301,38 @@ try {
         `${noDim.length}/${imgs.length} Bilder ohne explizite width/height`, noDim[0].getAttribute('src') || '?');
     }
 
-    // ---- INFO: was nur der Screenshot-Blick entscheiden kann.
+    // ---- M24: Bildwelt. OB ein Bild gut ist, entscheidet der Blick (INFO).
+    // DASS ueberhaupt eines da ist, ist eine Zahl — und die kann das Skript zaehlen.
+    //
+    // Panel-Befund 27.07.2026 am Beweis-Build: 98/100/100/100, null Verstoesse,
+    // und trotzdem "nicht ausliefern" — auf der Seite eines Sanierungsbetriebs war
+    // kein einziges Foto. Das Tor hat es nicht gemerkt, weil M24 komplett INFO war.
+    // Hintergrundbilder in CSS zaehlen mit; nur Icon-Groesse zaehlt nicht als Bildwelt.
+    const grafik = [...document.querySelectorAll('img, picture, video')].filter(vis)
+      .concat([...document.querySelectorAll('body *')].filter((el) => {
+        if (!vis(el)) return false;
+        const bg = getComputedStyle(el).backgroundImage || '';
+        return bg.startsWith('url(');            // Verlaeufe sind keine Bildwelt
+      }));
+    const echteFlaeche = grafik.filter((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width >= 120 && r.height >= 120;   // alles darunter ist Icon/Logo
+    });
+    // Rechtstexte (Impressum, Datenschutz, AGB) haben legitim kein Bild. Dort waere
+    // ein Blocker falsches Rot — also mit --textseite abschaltbar, aber NICHT
+    // stillschweigend: wer die Ausnahme will, muss sie hinschreiben.
+    if (echteFlaeche.length === 0 && !TEXTSEITE) {
+      add('BLOCK', 'M24', 'Bildwelt fehlt',
+        'kein einziges Bild ueber Icon-Groesse auf der Seite — eine Agenturseite ohne Bildwelt gibt es nicht'
+        + ' (reiner Rechtstext? dann --textseite)');
+    }
     add('INFO', 'M24/M25', 'Bildwelt + Proof',
-      `${imgs.length} Bilder auf der Seite — echt oder Stock, entscheidet der Blick, nicht dieses Skript`);
+      `${imgs.length} <img>, ${echteFlaeche.length} Flaechenbilder — echt oder Stock, entscheidet der Blick, nicht dieses Skript`);
     add('INFO', 'M20', 'Signature-Moment',
       `${animated.length} animierte Elemente — genau EIN Signature-Moment pro Seite ist das Ziel`);
 
     return out;
-  }, KI_FONTS);
+  }, [KI_FONTS, TEXTSEITE]);
 
   // ---- M13: Mobile. Ein zweiter Durchgang auf 390x844, weil die haesslichsten
   // Fehler erst dort entstehen: ein Grid, das nie umbricht, und alles laeuft

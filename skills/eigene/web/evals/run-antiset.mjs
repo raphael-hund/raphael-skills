@@ -38,6 +38,10 @@ const ERWARTET = {
   // Border+Shadow (M11) und Springy-Hover (T7) sind laut Doktrin WARN. Sie duerfen
   // die Auslieferung NICHT stoppen. Rot wird hier nur der tote Link.
   'a5-craft-kaputt':        { checks: ['links'], strict: true, was: 'toter Link (hart) + Ghost-Card/Springy-Hover (nur Warnung)' },
+  // Zugefuegt 28.07.2026. Vorher pruefte nichts den M24-Blocker: alle sechs Fixtures
+  // hatten dasselbe Bild, eine bildlose Seite kam im Anti-Set schlicht nicht vor.
+  // Ein Blocker ohne Fixture ist ein Blocker, von dem niemand weiss, ob er ausloest.
+  'a6-ohne-bildwelt':       { checks: ['craft'],             was: 'kein einziges Bild ueber Icon-Groesse (M24)' },
 };
 
 const namen = Object.keys(ERWARTET);
@@ -51,9 +55,14 @@ for (const n of namen) {
 
 // Jede Fixture bekommt einen eigenen Ordner, weil --src einen Projektordner erwartet.
 const wurzel = fs.mkdtempSync('/tmp/antiset-');
+// Mitkopiert wird alles, was die Fixtures nebenbei brauchen (Bilder). Wuerde nur
+// die HTML-Datei wandern, waere jedes Bild ein 404 — die Kontrolle wuerde an der
+// Link-Pruefung rot, und zwar aus einem Grund, den keine Fixture testen will.
+const BEIWERK = fs.readdirSync(FIXTURES).filter((f) => !f.endsWith('.html'));
 for (const n of namen) {
   fs.mkdirSync(path.join(wurzel, n), { recursive: true });
   fs.copyFileSync(path.join(FIXTURES, `${n}.html`), path.join(wurzel, n, 'index.html'));
+  for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(wurzel, n, b));
 }
 
 const server = spawnSync('bash', ['-c',
@@ -62,7 +71,19 @@ const pid = (server.stdout || '').trim();
 const aufraeumen = () => { if (pid) spawnSync('kill', [pid]); };
 process.on('exit', aufraeumen);
 
-console.log(`Anti-Set — ${namen.length} Fixtures auf Port ${PORT}\n`);
+// Node puffert stdout, wenn es in eine Datei oder Pipe laeuft. Wird der Lauf per
+// Timeout abgeschossen (28.07.2026 zweimal passiert), ist der Puffer weg: null
+// Ausgabe, obwohl er minutenlang gearbeitet hat. Man weiss dann nicht einmal, bei
+// welcher Fixture er stand. Darum jede Zeile zusaetzlich synchron aufs Protokoll.
+const PROTOKOLL = process.env.ANTISET_LOG || path.join(HIER, 'antiset-lauf.log');
+fs.writeFileSync(PROTOKOLL, '');
+const sag = (zeile) => {
+  console.log(zeile);
+  fs.appendFileSync(PROTOKOLL, `${zeile}\n`);
+};
+
+sag(`Anti-Set — ${namen.length} Fixtures auf Port ${PORT}`);
+sag(`Protokoll: ${PROTOKOLL}\n`);
 
 const torLauf = (n, strict) => spawnSync('node', [
   path.join(SKILL, 'scripts/g1-gate.mjs'),
@@ -79,6 +100,9 @@ const gerissenAus = (r) =>
 let rot = 0;
 for (const n of namen) {
   const erwartet = ERWARTET[n];
+  // VOR dem Lauf ins Protokoll, nicht danach: bricht der Lauf hier ab, steht im
+  // Protokoll genau die Fixture, an der es haengt.
+  fs.appendFileSync(PROTOKOLL, `.. laeuft: ${n}\n`);
   const r = torLauf(n, false);
   const gerissen = gerissenAus(r);
   const fehlend = erwartet.checks.filter((c) => !gerissen.includes(c));
@@ -95,19 +119,19 @@ for (const n of namen) {
   }
 
   const ok = exitOk && fehlend.length === 0 && zuviel.length === 0 && strictOk;
-  console.log(`${ok ? 'OK  ' : 'ROT '} ${n.padEnd(24)} exit=${r.status}${erwartet.strict ? ` strict=${strictStatus}` : ''}  ${erwartet.was}`);
+  sag(`${ok ? 'OK  ' : 'ROT '} ${n.padEnd(24)} exit=${r.status}${erwartet.strict ? ` strict=${strictStatus}` : ''}  ${erwartet.was}`);
   if (!ok) {
     rot++;
-    if (!exitOk) console.log(`       Exit erwartet ${erwartet.checks.length === 0 ? 0 : 1}, bekommen ${r.status}`);
-    if (fehlend.length) console.log(`       nicht gerissen, aber erwartet: ${fehlend.join(', ')}`);
-    if (zuviel.length) console.log(`       zusaetzlich gerissen: ${zuviel.join(', ')}`);
-    if (!strictOk) console.log('       --strict hat die Warnungen NICHT rot gemacht — Schweregrad ist wirkungslos');
+    if (!exitOk) sag(`       Exit erwartet ${erwartet.checks.length === 0 ? 0 : 1}, bekommen ${r.status}`);
+    if (fehlend.length) sag(`       nicht gerissen, aber erwartet: ${fehlend.join(', ')}`);
+    if (zuviel.length) sag(`       zusaetzlich gerissen: ${zuviel.join(', ')}`);
+    if (!strictOk) sag('       --strict hat die Warnungen NICHT rot gemacht — Schweregrad ist wirkungslos');
   }
 }
 
-console.log(`\n${namen.length - rot}/${namen.length} Fixtures wie erwartet.`);
+sag(`\n${namen.length - rot}/${namen.length} Fixtures wie erwartet.`);
 if (rot) {
-  console.log('Das Tor unterscheidet nicht wie dokumentiert. Erst reparieren, dann ausliefern.');
+  sag('Das Tor unterscheidet nicht wie dokumentiert. Erst reparieren, dann ausliefern.');
   process.exit(1);
 }
-console.log('Das Tor laesst Sauberes durch und faengt jeden eingebauten Fehler.');
+sag('Das Tor laesst Sauberes durch und faengt jeden eingebauten Fehler.');

@@ -131,12 +131,26 @@ darf rechnerisch aus dem Viewport ragen, ohne dass jemand scrollen muss.
 
 **M25 · Proof** — Echte Zahlen, echte Namen, echte Referenzen. Inhaltlich, nicht messbar.
 
-> **INFO im Skript heisst nicht INFO im Urteil.** Das Skript zaehlt nur, ob Bilder da
-> sind, und darf deshalb nie blocken. Das Panel darf sehr wohl. Am 27.07.2026 gab das
-> Tor den Beweis-Build frei (98/100/100/100, 0 Verstoesse) und das Panel stufte
-> „kein einziges Foto auf einer Sanierungs-Seite" als **BLOCK** ein: „ein Content-
-> Geruest, kein fertiges Produkt". Das ist die richtige Reihenfolge. Wer M24/M25 als
-> erledigt abhakt, weil das Skript INFO sagt, hat die Zeile falsch gelesen.
+> **INFO im Skript heisst nicht INFO im Urteil.** Am 27.07.2026 gab das Tor den
+> Beweis-Build frei (98/100/100/100, 0 Verstoesse) und das Panel stufte „kein einziges
+> Foto auf einer Sanierungs-Seite" als **BLOCK** ein: „ein Content-Geruest, kein
+> fertiges Produkt". Wer M24/M25 als erledigt abhakt, weil das Skript INFO sagt, hat
+> die Zeile falsch gelesen.
+
+**Die Grenze verlaeuft zwischen „ob" und „wie gut".** Anfangs war M24 komplett INFO,
+mit der Begruendung, ein Skript koenne Bildqualitaet nicht beurteilen. Das stimmt —
+aber es verdeckte eine Frage, die sehr wohl zaehlbar ist: **ist ueberhaupt eines da?**
+Genau daran ist das Tor gescheitert. Seit 27.07. gilt:
+
+| Frage | Wer entscheidet | Stufe |
+|---|---|---|
+| Ist ueberhaupt ein Bild ueber Icon-Groesse da? | `craft-check.mjs` (zaehlt) | **BLOCK** |
+| Ist es echt, passend, gut? Stock? KI-Uncanny? | Panel + eigenes Auge | INFO im Skript |
+
+Gezaehlt werden `img`, `picture`, `video` und CSS-`background-image` ab 120×120px —
+Icons und Logos zaehlen nicht als Bildwelt, CSS-Verlaeufe erst recht nicht. Reine
+Rechtstexte (Impressum, Datenschutz, AGB) haben legitim kein Bild und laufen mit
+`--textseite`. Die Ausnahme muss hingeschrieben werden; still wegfallen darf sie nicht.
 
 ---
 

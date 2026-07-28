@@ -69,6 +69,32 @@ async function sweepRoute(browser, route, vp, label, manifest) {
       return;
     }
 
+    // Ein Fehlerstatus wurde bisher nur ins Log geschrieben und dann normal
+    // durchgesweept: 500er landeten als huebsche PNGs im Manifest, das Gate sah
+    // "Shots vorhanden, keine Fehler" und meldete gruen.
+    if (!res.ok()) {
+      entry.error = `HTTP ${res.status()}`;
+      entry.shots = [];
+      manifest.routes.push(entry);
+      console.log(`FEHLER ${route}: HTTP ${res.status()} -> kein Sweep`);
+      return;
+    }
+
+    // Weisse Seite. Liefert der Server 200 und die App hydratisiert nicht, sind
+    // die Screenshots leer — und ein leeres Bild besteht jede Pruefung, weil
+    // niemand hineinschaut. Zwei Zeilen Text sind die Untergrenze fuer "geladen".
+    const inhalt = await page.evaluate(() => ({
+      text: (document.body?.innerText || '').trim().length,
+      knoten: document.body ? document.body.querySelectorAll('*').length : 0,
+    }));
+    if (inhalt.text < 40 || inhalt.knoten < 10) {
+      entry.error = `leere Seite (${inhalt.text} Zeichen Text, ${inhalt.knoten} Elemente) — nicht gerendert?`;
+      entry.shots = [];
+      manifest.routes.push(entry);
+      console.log(`FEHLER ${route}: ${entry.error}`);
+      return;
+    }
+
     // 1) First Fold exakt 730 (bei Desktop) — eigener Shot, kein Zuschnitt.
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(350);

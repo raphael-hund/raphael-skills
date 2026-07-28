@@ -112,10 +112,15 @@ Craft-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
   **Ausdrücklich kein Bestanden.** Ein Prüfer, der nicht laufen konnte, hat nichts geprüft.
 
 Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
-hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** laufen weniger
-als zwei der vier Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft), endet es mit
-Exit 2 statt Exit 0. Sonst hätte ein Rechner ohne installierte Werkzeuge jede beliebige
-Seite mit „G1 BESTANDEN — 0 Checks grün" durchgewinkt.
+hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** ist auch nur
+**einer** der vier Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft) überhaupt nicht
+gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein Rechner ohne installierte
+Werkzeuge jede beliebige Seite mit „G1 BESTANDEN — 0 Checks grün" durchgewinkt.
+
+> Bis 27.07. reichten hier **zwei von vier**. Diese Schwelle war willkürlich: fehlten
+> Lighthouse und der Slop-Scan, meldeten axe und Craft allein ein grünes Tor — Tempo,
+> Suchmaschinen und KI-Tells waren schlicht ungeprüft. Jeder der vier beantwortet eine
+> eigene Frage, keiner vertritt einen anderen.
 
 Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebungen:
 
@@ -131,8 +136,8 @@ Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebun
 node evals/run-antiset.mjs
 ```
 
-Unter `evals/antiset/` liegt sechsmal **dieselbe** saubere Seite: einmal als
-Kontrolle, fünfmal mit je **genau einem** eingebauten Fehler. Der Lauf besteht nur,
+Unter `evals/antiset/` liegt siebenmal **dieselbe** saubere Seite: einmal als
+Kontrolle, sechsmal mit je **genau einem** eingebauten Fehler. Der Lauf besteht nur,
 wenn die Kontrolle durchgeht **und** jede kaputte Fixture am erwarteten Check reißt —
 nicht an einem anderen und nicht an gar keinem.
 
@@ -150,6 +155,71 @@ falsches Grün** — die Richtung, die ein Gate nie haben darf.
 Unter `evals/briefings/` liegen fünf Aufträge als Gegenstück (Handwerk, B2B-SaaS,
 Beratung, Produkt, Relaunch). Sie messen nicht das Tor, sondern das Ergebnis: jedes
 Briefing endet mit prüfbaren Kriterien, nicht mit „wirkt professionell".
+
+### Das Anti-Set findet nur, woran gedacht wurde
+
+Es prüft die Fälle, für die jemand eine Fixture gebaut hat. Es prüft **nicht**, was
+passiert, wenn ein Werkzeug mitten im Lauf stirbt — dafür bräuchte es eine Fixture pro
+Absturzart. Diese Lücke schließt ein zweiter, andersartiger Prüfschritt: ein Auditor
+aus einer **fremden Modellfamilie** liest die Skripte mit genau einem Auftrag —
+*„finde Wege, auf denen ein kaputtes Ergebnis grün gemeldet wird"*. Nur diese Richtung.
+Falsches Rot darf er ignorieren.
+
+Der Lauf vom 27.07. brachte elf Befunde, davon neun **derselbe Fehler an neun Stellen**:
+
+```js
+const violations = parsed.violations || [];   // ← stirbt das Werkzeug, ist das "0 Probleme"
+```
+
+`|| []` macht aus einer fehlenden Antwort eine leere Liste — und aus einem Absturz
+eine Bestnote. Ersetzt durch einen Helfer `liste(parsed, feld, werkzeug)`, der wirft,
+wenn das Feld fehlt oder keine Liste ist. **Fehlendes Feld ist nicht dasselbe wie
+leeres Feld.** Der Aufrufer fängt das ohnehin und meldet ehrlich „Ausgabe unlesbar".
+
+Dieselbe Denkart in drei weiteren Ecken:
+
+| Stelle | vorher grün, obwohl… |
+|---|---|
+| Lighthouse-Score fehlt | Kategorie wurde als `?` gedruckt und nicht gewertet |
+| Screenshot-Sweep bei HTTP 500 | Fehlerseiten wurden hübsch fotografiert und gezählt |
+| Screenshot-Sweep bei weißer Seite | leere Bilder bestehen jede Prüfung, weil niemand hineinsieht |
+
+Der Sweep verlangt jetzt vor dem ersten Auslöser mindestens 40 Zeichen Text und
+10 Elemente im Body. Eine App, die nicht hydratisiert, liefert damit einen ehrlichen
+Fehler statt einer Serie weißer PNGs.
+
+Aus dem Befund wurde ein dauerhafter Prüfschritt — sonst schleicht sich `|| []` beim
+nächsten Umbau wieder ein:
+
+```bash
+node evals/run-kaputte-ausgaben.mjs     # braucht weder Browser noch Server, läuft in Sekunden
+```
+
+Er füttert die Auswertung mit neun Antworten, wie ein sterbendes Werkzeug sie liefert
+(`{}`, `null`, `0`, `"Segmentation fault"`, fehlendes Feld) und verlangt, dass keine
+davon als „0 Probleme" durchgeht. Dazu zwei **echte** leere Antworten, die durchgehen
+müssen — sonst hätte man das Tor nur in die andere Richtung kaputtgemacht.
+
+**Merksatz:** Das Anti-Set prüft, ob das Tor Fehler *erkennt*. Dieser Lauf prüft, ob
+das Tor einen Absturz *überlebt*. Beides ist nötig, und der Anstoß dazu muss aus
+anderer Hand kommen als der Code selbst (Regel 8).
+
+### Ein neuer Blocker braucht am selben Tag seine Fixture
+
+Am 27.07. bekam `craft-check.mjs` den M24-Blocker („kein einziges Bild über
+Icon-Größe"). Am selben Tag bekamen **alle sechs** Fixtures ein Bild — sonst wäre die
+Kontrolle daran gerissen. Damit prüfte das Anti-Set den neuen Blocker nicht mehr: es
+gab keine bildlose Seite mehr. Der Blocker war scharf, aber ungeprüft — niemand hätte
+gemerkt, wenn er nie auslöst.
+
+`a6-ohne-bildwelt.html` schließt das. Sie ist eine Kopie der Kontrolle, aus der genau
+eine Zeile entfernt wurde. Das ist die Bauform für jede Fixture:
+
+> **Eine Fixture ändert genau einen Umstand gegenüber `_basis.html`.** Reißt sie an
+> zwei Checks, weiß man nicht, welcher der beiden den Fehler wirklich sieht.
+
+**Regel:** Wer einen BLOCK-Befund einbaut, baut im selben Zug die Fixture, die ihn
+auslöst, und trägt sie in `ERWARTET` ein. Ein Blocker ohne Fixture ist eine Behauptung.
 
 Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Quelltext**,
 `craft-check.mjs` liest das **gerenderte DOM**. Auf demselben Testfall meldete der

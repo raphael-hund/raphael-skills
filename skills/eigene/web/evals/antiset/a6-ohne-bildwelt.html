@@ -37,8 +37,7 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--acc);outline-offset:3
 section{padding:var(--s-24) 0}
 h2{font-size:var(--t-2xl);margin-bottom:var(--s-16)}
 .grid,.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-16)}
-.card{background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.18);border-radius:13px;padding:var(--s-16);transition:transform .2s ease}
-.card:hover{transform:scale(1.05)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-16)}
 .card h3{font-size:var(--t-lg);margin-bottom:var(--s-8)}
 .card p{color:var(--mut)}
 footer{border-top:1px solid var(--line);padding:var(--s-24) 0;color:var(--mut);background:#fff}
@@ -51,7 +50,7 @@ footer{border-top:1px solid var(--line);padding:var(--s-24) 0;color:var(--mut);b
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body>
 <header><div class="wrap"><strong class="ui">Kerner.</strong>
-<nav><a href="/gibt-es-nicht">Leistungen</a><a href="#ablauf">Ablauf</a></nav>
+<nav><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a></nav>
 <a class="tel" href="tel:+4972112345">0721 1234567</a></div></header>
 <main class="wrap">
 <div class="hero">
@@ -62,12 +61,12 @@ footer{border-top:1px solid var(--line);padding:var(--s-24) 0;color:var(--mut);b
   <div class="row"><a class="btn" href="#kontakt">Ortstermin vereinbaren</a><a class="btn2" href="#ablauf">So laeuft es ab</a></div>
  </div>
  <aside class="hero-proof">
-  <img src="werkstatt.svg" width="800" height="600" alt="Sanierter Altbau-Wohnraum nach der Uebergabe" style="width:100%;height:auto;display:block;border-radius:8px 8px 0 0">
   <dl>
   <div><dt>Angebot</dt><dd>Festpreis<span>Der Preis vom Ortstermin steht auf der Rechnung.</span></dd></div>
   <div><dt>Ansprechpartner</dt><dd>Einer<span>Vom Aufmass bis zur Uebergabe dieselbe Nummer.</span></dd></div>
   <div><dt>Uebergabe</dt><dd>Mit Protokoll<span>Offene Punkte schriftlich, mit Termin.</span></dd></div>
- </dl></aside>
+ </dl>
+ </aside>
 </div>
 <section id="leistungen"><h2>Was wir machen</h2><div class="grid">
  <article class="card"><h3>Bad</h3><p>Vom Abriss bis zur Silikonfuge. Estrich, Fliesen, Sanitaer, Elektro.</p></article>

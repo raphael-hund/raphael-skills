@@ -39,6 +39,25 @@ const ROUTES = get('routes', '/').split(',').map((r) => r.trim()).filter(Boolean
 const OUT = get('out', path.join(os.tmpdir(), 'g1-gate'));
 const SKILL_DIR = path.dirname(new URL(import.meta.url).pathname);
 
+// Fehlendes Feld ist NICHT dasselbe wie ein leeres Feld.
+//
+// Luna-Audit 27.07.2026: neunmal stand `parsed.violations || []` im Gate. Liefert
+// ein Werkzeug `{}`, weil es unterwegs gestorben ist, wird daraus eine leere Liste
+// und damit "0 Probleme gefunden" — ein Absturz meldete Bestnote. Wer eine Liste
+// erwartet, muss eine Liste bekommen; alles andere ist ein kaputter Lauf.
+//
+// Wirft, statt null zurueckzugeben: der Aufrufer faengt es ohnehin schon und
+// meldet dann ehrlich "Ausgabe unlesbar" statt still zu bestehen.
+function liste(parsed, feld, werkzeug) {
+  if (parsed === null || typeof parsed !== 'object') {
+    throw new Error(`${werkzeug}: Ausgabe ist kein Objekt`);
+  }
+  const v = parsed[feld];
+  if (v === undefined) throw new Error(`${werkzeug}: Feld "${feld}" fehlt in der Ausgabe`);
+  if (!Array.isArray(v)) throw new Error(`${werkzeug}: "${feld}" ist ${typeof v}, erwartet Liste`);
+  return v;
+}
+
 // Budgets. Bewusst konservativ: ein 10k-Website-Ergebnis reisst diese Werte nicht.
 const DEFAULT_BUDGET = {
   lighthousePerformance: 0.90,
@@ -98,8 +117,17 @@ function checkLighthouse() {
         ['best-practices', s['best-practices']?.score, BUDGET.lighthouseBestPractices],
         ['seo', s.seo?.score, BUDGET.lighthouseSeo],
       ];
-      const bad = checks.filter(([, got, min]) => typeof got === 'number' && got < min);
-      const fmt = checks.map(([k, got]) => `${k}=${got == null ? '?' : Math.round(got * 100)}`).join(' ');
+      // Eine Kategorie ohne Zahl ist ein kaputter Lauf, kein bestandener.
+      // Vorher stand `typeof got === 'number' && got < min` da: fehlte der Score,
+      // wurde er als '?' gedruckt und zaehlte nicht als Verstoss — PASS mit Luecke.
+      const fehlend = checks.filter(([, got]) => typeof got !== 'number');
+      const fmt = checks.map(([k, got]) => `${k}=${typeof got === 'number' ? Math.round(got * 100) : '?'}`).join(' ');
+      if (fehlend.length) {
+        record(`lighthouse${route}`, false,
+          `${fmt} — ohne Score: ${fehlend.map(([k]) => k).join(', ')} (Lauf unvollstaendig)`);
+        continue;
+      }
+      const bad = checks.filter(([, got, min]) => got < min);
       record(`lighthouse${route}`, bad.length === 0, bad.length
         ? `${fmt} — unter Budget: ${bad.map(([k, got, min]) => `${k} ${Math.round(got * 100)}<${Math.round(min * 100)}`).join(', ')}`
         : fmt);
@@ -130,7 +158,7 @@ function checkAxe() {
     }
     try {
       const parsed = JSON.parse(out);
-      const violations = parsed.violations || [];
+      const violations = liste(parsed, 'violations', 'axe');
       record(`axe${route}`, violations.length <= BUDGET.axeViolations,
         violations.length === 0 ? `0 Violations (${parsed.passes} Passes)`
           : `${violations.length} Violations: ${violations.slice(0, 5).map((v) => `${v.id}(${v.impact})`).join(', ')}`);
@@ -146,15 +174,16 @@ function checkLinks() {
   try {
     const out = run('linkinator', [BASE, '--recurse', '--format', 'json', '--silent']);
     const parsed = JSON.parse(out);
-    const broken = (parsed.links || []).filter((l) => l.state === 'BROKEN');
+    const alle = liste(parsed, 'links', 'linkinator');
+    const broken = alle.filter((l) => l.state === 'BROKEN');
     record('links', broken.length <= BUDGET.brokenLinks,
-      broken.length === 0 ? `${(parsed.links || []).length} Links, 0 tot`
+      broken.length === 0 ? `${alle.length} Links, 0 tot`
         : `${broken.length} tot: ${broken.slice(0, 5).map((l) => l.url).join(', ')}`);
   } catch (e) {
     const stdout = e.stdout ? String(e.stdout) : '';
     try {
       const parsed = JSON.parse(stdout);
-      const broken = (parsed.links || []).filter((l) => l.state === 'BROKEN');
+      const broken = liste(parsed, 'links', 'linkinator').filter((l) => l.state === 'BROKEN');
       record('links', broken.length <= BUDGET.brokenLinks,
         `${broken.length} tot: ${broken.slice(0, 5).map((l) => l.url).join(', ')}`);
     } catch {
@@ -220,8 +249,16 @@ function slopTeilen(parsed) {
 function slopMelden(parsed) {
   const n = slopZaehlen(parsed);
   if (n === null) { record('ai-slop', false, 'Slop-Scan: unbekanntes JSON-Format'); return; }
-  if (n === 0) { record('ai-slop', true, '0 Slop-Tells'); return; }
   const s = slopTeilen(parsed);
+  // Die Abkuerzung "n === 0 -> gruen" stand frueher VOR dieser Pruefung. Meldet der
+  // Scanner {hits: 0, findings: [...]} — Zaehler kaputt, Funde da —, war das ein
+  // stilles Gruen auf einer Seite mit Treffern. Erst Widerspruch pruefen, dann Null.
+  if (n === 0 && s.block + s.warn > 0) {
+    record('ai-slop', false,
+      `Zaehler meldet 0 Tells, die Fundliste enthaelt aber ${s.block + s.warn} — Ausgabe widerspruechlich`);
+    return;
+  }
+  if (n === 0) { record('ai-slop', true, '0 Slop-Tells'); return; }
   // Gesamtzahl und Einteilung lesen zwei verschiedene Felder: `hits` (Zahl) und
   // `findings` (Gruppen). Klaffen sie auseinander, sind Treffer gemeldet, die
   // sich keiner Regel zuordnen lassen — dann ist die Einteilung blind und darf
@@ -271,8 +308,8 @@ function checkCraft() {
     }
     try {
       const parsed = JSON.parse(out);
-      const b = parsed.blockers || [];
-      const w = parsed.warns || [];
+      const b = liste(parsed, 'blockers', 'craft-check');
+      const w = liste(parsed, 'warns', 'craft-check');
       // Mit --strict zaehlen Warnungen als Fehler. Das entscheidet craft-check
       // selbst ueber seinen Exit-Code — wer hier nur `blockers.length` liest,
       // schluckt das Flag stillschweigend und meldet PASS trotz Warnungen.
@@ -338,11 +375,19 @@ if (failed.length) {
 // geprueft und darf kein Gruen melden — sonst liefert ein kaputter Rechner
 // jede Seite durch. Exit 2 heisst "Tor kaputt", nicht "Seite gut".
 // Namen tragen die Route als Suffix (`lighthouse/`, `axe/preise`), darum Praefix-Vergleich.
+//
+// Frueher galt "mindestens 2 von 4 gelaufen" als ausreichend. Diese Schwelle war
+// willkuerlich: fehlten Lighthouse UND der Slop-Scan, meldeten axe und craft
+// allein ein gruenes Tor — Tempo, Suchmaschinen und KI-Tells waren schlicht
+// ungeprueft. Jede der vier Familien beantwortet eine eigene Frage, also muss
+// jede mindestens einmal gelaufen sein. Wer eine bewusst weglassen will,
+// laesst sie weg und liest Exit 2 als das, was es ist: kein Urteil.
 const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft'];
-const gelaufen = results.filter((r) => !r.skipped && QUALITAET.some((q) => r.name.startsWith(q)));
-if (gelaufen.length < 2) {
-  console.log(`\nG1 KANN NICHT URTEILEN — nur ${gelaufen.length} von ${QUALITAET.length} Qualitaets-Checks gelaufen.`);
-  console.log('Uebersprungen ist nicht bestanden. Fehlende Werkzeuge nachinstallieren, dann erneut.');
+const fehltGanz = QUALITAET.filter((q) =>
+  !results.some((r) => r.name.startsWith(q) && !r.skipped));
+if (fehltGanz.length) {
+  console.log(`\nG1 KANN NICHT URTEILEN — kein einziger Lauf in: ${fehltGanz.join(', ')}.`);
+  console.log('Uebersprungen ist nicht bestanden. Werkzeug nachinstallieren bzw. --src setzen, dann erneut.');
   process.exit(2);
 }
 console.log(`\nG1 BESTANDEN — ${results.length - skipped.length} Check(s) gruen.`);
