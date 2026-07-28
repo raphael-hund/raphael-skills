@@ -29,7 +29,9 @@ completion_criteria:
 `/root/raphael-command-center/AGENTS.md` (Regeln 2, 7, 8, 17, 18),
 `/root/raphael-command-center/ops/ROUTING.md`,
 `/root/raphael-command-center/ops/quota.yaml`,
-`/root/raphael-command-center/KLARER-PLAN.md` Kap. 3 (Modelle & Effort).
+`/root/raphael-command-center/ops/MODELL-MATRIX.md` (Modelle & Effort;
+ersetzt das beim Aufräumen 274a4ff gelöschte KLARER-PLAN.md Kap. 3 —
+Historie bei Bedarf: `git show 274a4ff^:KLARER-PLAN.md`).
 
 ## Zweck (1 Satz)
 
@@ -47,7 +49,7 @@ niemand prüft die eigene Arbeit.
 ## Dispatch-Regeln (Detail in references/dispatch.md)
 
 1. **Modell + Effort IMMER explizit** je Subagent — sonst erbt er das teure Leader-Setup
-   (Regel 7). Effort-Defaults: Sol=medium, Terra/Luna=max, Kimi=high (KLARER-PLAN Kap. 3).
+   (Regel 7). Effort-Defaults: Sol=medium, Terra/Luna=max, Kimi=high (ops/MODELL-MATRIX.md).
 2. **Kein Subagent-Limit** — so viele parallel, wie die Aufgabe braucht.
 3. **Kleine Tasks solo** — Delegation kostet Aufschlag; unter der Schwelle selbst machen (Regel 2).
 4. **Effort vor Modell** — erst `effort high` auf dem günstigeren Modell, dann erst aufrüsten (Regel 13).

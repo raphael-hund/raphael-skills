@@ -51,7 +51,8 @@ erzwingt die Run-ID als Beweis.
 2. **Cron anlegen** (CronCreate, Standard alle 20–30 Min, Session-only):
    Der Prompt MUSS enthalten: (a) Pflicht "starte einen Workflow
    (Workflow-Tool) nach references/workflow-vorlage.md", (b) Cross-Vendor-
-   Pflicht-Flotte per `agentType`: sol-pruefer=Urteil, kimi=Gegenperspektive,
+   Pflicht-Flotte per `agentType`: sol-pruefer=Urteil, kimi-recherche
+   (lesend) bzw. kimi-worker (schreibend)=Gegenperspektive,
    luna-worker=Mechanik; Sonnet/Haiku ergänzen, NIE Fable-Subagents,
    (c) Stand-Datei lesen+fortschreiben, (d) Commit/Push-Regel,
    (e) "EINEN Punkt tief und fertig, nicht zehn anfangen".
