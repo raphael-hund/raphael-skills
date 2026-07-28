@@ -12,3 +12,10 @@ __pycache__/
 # Secrets (sollten nie hier landen, aber sicher ist sicher)
 .env
 *.env
+
+# Lokaler Harness-Zustand (Worktrees, lokale Einstellungen). Gehoert nie ins Repo:
+# maschinen- und sessiongebunden, ueberlebt keinen Klon.
+.claude/settings.local.json
+.claude/worktrees/
+.claude/checkpoints/
+.claude/agent-registry.json

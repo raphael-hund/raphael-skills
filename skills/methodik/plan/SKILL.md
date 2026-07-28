@@ -15,6 +15,7 @@ sensitivity: internal
 source: fusion — superpowers (obra) skills/writing-plans @ d884ae04 + shadcn/improve skills/improve/references/plan-template.md
 loads:
   - references/plan-template-vorlage.md
+  - references/reihenfolge.md
 completion_criteria:
   - "Plan-Datei mit Kopf (Ziel, Architektur, Tech-Stack, Global Constraints) geschrieben"
   - "Jeder Task hat exakte Dateipfade, vollständigen Code, Testschritte, Commit-Schritt"
@@ -122,3 +123,9 @@ sdd) — frischer Subagent je Task, schnelle Iteration, empfohlen bei
 weitgehend unabhängigen Tasks — oder **Inline-Ausführung** in der laufenden
 Session mit Checkpoints zur Prüfung, wenn Tasks eng gekoppelt sind oder eine
 Session-übergreifende Übergabe nicht gewünscht ist.
+
+## Framework-Reihenfolge
+
+`plan` ist Teil einer Drei-Framework-Sequenz: erst `grill` (Ausrichtung),
+dann `superpowers` ODER `gstack` für den Bau (nie beide parallel auf
+denselben Task). Details: `references/reihenfolge.md`.

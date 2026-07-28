@@ -235,6 +235,91 @@ def find_skill_files(paths: list[str]) -> list[Path]:
     return sorted(set(files))
 
 
+def _requires_names(raw: str) -> list[str]:
+    """Extrahiert Skill-Namen aus inline- oder Blocklisten.
+
+    Ein Eintrag darf wie im Skill-Vertrag eine Versionsangabe (z. B. ``@^0``)
+    tragen. Die Versionsangabe wird fuer die Existenz-/Zykluspruefung entfernt.
+    """
+    value = raw.strip()
+    if value.startswith("[") and value.endswith("]"):
+        value = value[1:-1].strip()
+    if not value:
+        return []
+    # parse_top_level_keys fuehrt eingerueckte Blocklisten zu einer Zeile
+    # zusammen; die Bindestriche bleiben dabei als Trennzeichen erhalten.
+    items = (re.findall(r"(?:^|\s)-\s*([^\s,]+)", value)
+             if value.startswith("-") else value.split(","))
+    names: list[str] = []
+    for item in items:
+        item = item.strip()
+        if item.startswith("-"):
+            item = item[1:].strip()
+        if len(item) >= 2 and item[0] == item[-1] and item[0] in ("'", '"'):
+            item = item[1:-1].strip()
+        if item:
+            names.append(item.split("@", 1)[0].strip())
+    return names
+
+
+def validate_requires_skills(all_files: list[Path], skill_files: dict[Path, SkillFile]) -> tuple[dict[Path, list[str]], list[str]]:
+    """Prueft tote requires_skills-Verweise und Zyklen im Skill-Graphen."""
+    repo_root = Path(__file__).resolve().parent.parent
+    indexed_names: set[str] = set()
+    index_path = repo_root / "index.json"
+    if index_path.is_file():
+        try:
+            import json
+            index_data = json.loads(index_path.read_text(encoding="utf-8"))
+            indexed_names = {str(entry.get("name")) for entry in index_data.get("skills", [])
+                             if isinstance(entry, dict) and entry.get("name")}
+        except (OSError, ValueError, TypeError):
+            # Der Verzeichnis-Scan bleibt die autoritative Fallback-Quelle.
+            pass
+
+    name_to_path: dict[str, Path] = {}
+    for path in all_files:
+        sf = skill_files.get(path)
+        if sf and sf.fields.get("name"):
+            name_to_path[sf.fields["name"].strip()] = path
+        name_to_path.setdefault(path.parent.name, path)
+    existing_names = indexed_names | set(name_to_path)
+
+    requirements: dict[Path, list[str]] = {}
+    dead_refs: dict[Path, list[str]] = {}
+    for path, sf in skill_files.items():
+        names = _requires_names(sf.fields.get("requires_skills", ""))
+        requirements[path] = names
+        dead_refs[path] = [name for name in names if name not in existing_names]
+
+    graph: dict[str, list[str]] = {}
+    for path, names in requirements.items():
+        source = sf_name = skill_files[path].fields.get("name", path.parent.name).strip()
+        graph[sf_name] = [name for name in names if name in name_to_path]
+
+    cycle_errors: list[str] = []
+    visited: set[str] = set()
+    active: list[str] = []
+
+    def visit(node: str) -> None:
+        if node in active:
+            start = active.index(node)
+            cycle = active[start:] + [node]
+            cycle_errors.append("requires_skills-Zyklus: " + " -> ".join(cycle))
+            return
+        if node in visited:
+            return
+        active.append(node)
+        for dependency in graph.get(node, []):
+            visit(dependency)
+        active.pop()
+        visited.add(node)
+
+    for node in graph:
+        visit(node)
+    return dead_refs, cycle_errors
+
+
 def main(argv: list[str]) -> int:
     files = find_skill_files(argv[1:])
     if not files:
@@ -243,8 +328,18 @@ def main(argv: list[str]) -> int:
 
     any_error = False
     any_warning = False
+    skill_files = {path: validate_skill_file(path) for path in files}
+    # requires_skills wird gegen den kompletten Skill-Bestand aufgeloest, auch
+    # wenn der Aufruf nur einzelne SKILL.md-Dateien zum Linten uebergibt.
+    all_skill_files = find_skill_files([])
+    all_skill_results = {path: (skill_files[path] if path in skill_files else validate_skill_file(path))
+                         for path in all_skill_files}
+    dead_refs, cycle_errors = validate_requires_skills(all_skill_files, all_skill_results)
+
     for path in files:
-        sf = validate_skill_file(path)
+        sf = skill_files[path]
+        for missing in dead_refs.get(path, []):
+            sf.warn(f"requires_skills verweist auf unbekannten Skill '{missing}' (toter Verweis)")
         rel = path
         if sf.ok:
             status = "OK  "
@@ -257,6 +352,11 @@ def main(argv: list[str]) -> int:
         for w in sf.warnings:
             print(f"        warning: {w}")
             any_warning = True
+
+    for cycle_error in cycle_errors:
+        print(f"[FAIL] requires_skills")
+        print(f"        error:   {cycle_error}")
+        any_error = True
 
     print()
     print(f"{len(files)} SKILL.md geprueft — {'FEHLER' if any_error else 'alle gueltig'}"

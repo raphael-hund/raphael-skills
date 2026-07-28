@@ -188,18 +188,19 @@ def check_model_fable(code, findings):
 
 
 def check_multimodel_fleet(code, findings):
-    """Erzwingt die Cross-Vendor-Pflicht-Flotte in Substanz-Workflows."""
-    masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
-    required = (
-        ("sol-pruefer", r"agentType\s*:\s*['\"]sol-pruefer['\"]"),
-        ("kimi", r"agentType\s*:\s*['\"]kimi-(?:recherche|worker)['\"]"),
-        ("luna-worker", r"agentType\s*:\s*['\"]luna-worker['\"]"),
-    )
-    for label, pattern in required:
-        if not re.search(pattern, masked, re.I):
-            findings.append((FAIL, None,
-                             f"Pflicht-Flotte unvollstaendig: `{label}` fehlt. "
-                             "Substanz-Workflows muessen Sol, Kimi und Luna als `agentType` einsetzen."))
+    """ENTFERNT am 25.07.2026 auf Anweisung von Raphael.
+
+    Frueher: FAIL, wenn nicht Sol, Kimi UND Luna als `agentType` vorkamen.
+    Ein OpenAI-Ausfall (biscuit_baker_service_me_circuit_open) legte Sol
+    und Luna gleichzeitig lahm — die Regel war nicht mehr erfuellbar,
+    obwohl Claude und Kimi lieferten.
+
+    Was damit NICHT mehr geprueft wird: dass der Verifier aus einer
+    anderen Modellfamilie stammt als der schreibende Agent.
+    Alte Fassung: `git log -p -- skills/eigene/ultra-loop/scripts/validate-workflow.py`
+    (Stand vor dem 25.07.2026).
+    """
+    return
 
 
 def check_args_falle(code, findings):

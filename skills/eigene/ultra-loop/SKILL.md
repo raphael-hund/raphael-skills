@@ -94,9 +94,13 @@ erzwingt die Run-ID als Beweis.
 - **Kein Reward-Hacking:** nie Checks/Lints aufweichen, Sektionen leeren oder
   Wissen erfinden, um grün zu werden. Gleichstand nach Änderung = revertieren
   (autoresearch-Regel).
-- **Nie Fable-Subagents** — Fable bleibt Cockpit. Jede Substanz-Runde startet
-  mindestens `sol-pruefer`, einen Kimi-Worker und `luna-worker` per
-  `agentType`; Sonnet/Haiku ergänzen passend zur Aufgabe.
+- **Nie Fable-Subagents** — Fable bleibt Cockpit.
+- **Flotten-Wahl ist frei** (seit 25.07.2026). Die frühere Pflicht, Sol *und*
+  Kimi *und* Luna zu starten, ist gestrichen — sie war bei Anbieter-Ausfällen
+  nicht erfüllbar und hat die Arbeit blockiert. Worker nach Aufgabe und
+  Verfügbarkeit wählen; vor dem Start prüfen, welche Routen antworten.
+- **Verifier möglichst aus anderer Modellfamilie** als der Schreiber — jetzt
+  Empfehlung statt Gate. Geht das nicht, im Protokoll vermerken.
 - **Fremd-Baustellen** anderer Sessions nicht anfassen (im Mandat gelistet).
 - **Ehrlichkeit:** findet eine Runde nichts Belegbares, wird genau das
   protokolliert — keine Beschäftigungstherapie.
@@ -131,3 +135,10 @@ Session bzw. nach 7 Tagen Auto-Ablauf. Für sessionübergreifende Loops:
   Agent-Prompts) werden vor dem Match maskiert, damit ein Prompt-Text,
   der das Fable-Verbot nur zitiert, keinen False-Positive-FAIL auslöst —
   echte Konfiguration in `'...'`/`"..."` wird weiter erkannt.
+- **Long-Horizon-Klausel (wichtig auf Codex/Kimi, die kein privates
+  CLAUDE.md erben):** Loop-/Workflow-Prompts müssen explizit tragen:
+  "long horizon session, human is away" — autonom weiterarbeiten, bis Gates
+  grün oder Budget/Rundenlimit erreicht ist, bei Unsicherheit nicht stoppen
+  und nicht auf Rückfrage warten. Rot-Klassen bleiben bindend: keine
+  Fremd-Baustellen oder Reward-Hacking; vor dem Abschluss-Commit kurzer
+  Selbst-QA-Check gegen die Gates, dann erst „fertig“ protokollieren.

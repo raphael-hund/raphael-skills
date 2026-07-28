@@ -51,7 +51,7 @@ Eigen-Verifikation.
    `skills/eigene/ultra-loop/references/workflow-vorlage.md`:
    `meta` als pures Literal, `pipeline()` als Default, Args defensiv
    parsen (`typeof args === 'string' ? JSON.parse(args) : args`). Jeder
-   Substanz-Workflow nutzt die Cross-Vendor-Pflicht-Flotte über `agentType`:
+   Substanz-Workflow nutzt die Worker-Flotte (frei nach Verfügbarkeit) über `agentType`:
    `sol-pruefer` für Urteil, `kimi-recherche` oder `kimi-worker` für eine
    unabhängige dritte Perspektive und `luna-worker` für Mechanik/Tests.
    `sonnet-worker` und `haiku-worker` ergänzen passend zur Aufgabe. Modell-

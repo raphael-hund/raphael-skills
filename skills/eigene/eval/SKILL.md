@@ -38,7 +38,13 @@ ohne dass etwas seine eigene Arbeit prüft.
    Skripte/Checklisten: impeccable-46 (`npx impeccable detect --json`), Link-/HTML-Check,
    Meta-Policy-Verbotsliste, LLM-ismus-/Passiv-Detektor, Zahlen-Plausibilität. **Exit-Code
    entscheidet.**
-2. **G2 Judge — 0-2-Skala je Rubrik-Frage, gestaffelt:**
+2. **Self-Check (Autor selbst, vor Abgabe an den Judge)** — der Autor prüft
+   sein eigenes Artefakt einmal gegen dieselbe Rubrik, korrigiert
+   offensichtliche Lücken selbst. Zählt NICHT als Verdikt (Autor prüft nie
+   sich selbst final, Regel 8) — reduziert nur die Zahl der Judge-Runden,
+   die an trivialen Mängeln scheitern. Bei Routine-Artefakten optional,
+   bei Ship-kritischem Output Pflicht.
+3. **G2 Judge — 0-2-Skala je Rubrik-Frage, gestaffelt:**
    - Rubrik = Ja/Nein-Checkliste, **3–6 Fragen** (mehr wird gegamed), Start-Schwelle **0.7**.
    - Routine-Zwischenartefakte: 1–2 Judges.
    - **Ship-kritischer/roter Kundenoutput: volles Panel aus 3 Modellfamilien** (z. B.
@@ -48,7 +54,7 @@ ohne dass etwas seine eigene Arbeit prüft.
    - **Abgrenzung:** das Panel judgt EIN Artefakt gegen eine Rubrik. Offene
      Entscheidungsfragen mit mehreren Kandidaten-Antworten gehören ins Council-Muster
      (anonymes Peer-Ranking + Chairman): `orchestrate` → `references/council.md`.
-3. **G3 Skill-Regression** — Baseline vs. Held-out, nur wenn ein Skill beteiligt ist.
+4. **G3 Skill-Regression** — Baseline vs. Held-out, nur wenn ein Skill beteiligt ist.
    Zum aktiven **Verbessern** eines Skills (nicht nur Absichern): Mutations-Loop nach
    Karpathys Autoresearch-Disziplin — erst Baseline messen, dann **genau eine** Änderung
    je Experiment, gleiche Test-Inputs, binäre Evals; Score besser = behalten, gleich
@@ -58,7 +64,7 @@ ohne dass etwas seine eigene Arbeit prüft.
    `autoresearch` (`~/.claude/skills/autoresearch`). Nicht auf die Test-Inputs
    overfitten — bestehen alle Evals ohne echte Qualitätsverbesserung, sind die
    Evals schlecht, nicht der Skill gut.
-4. **G4 Outcome** — echte CTR/CPL/CVR/Rankings korrigieren Rubriken rückwirkend;
+5. **G4 Outcome** — echte CTR/CPL/CVR/Rankings korrigieren Rubriken rückwirkend;
    "Judge liebte es, Markt floppte" → permanentes Anti-Beispiel (`evals/anti/`).
 
 ## Judge-Skala (0-2 je Frage)
