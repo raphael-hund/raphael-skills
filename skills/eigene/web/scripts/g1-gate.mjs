@@ -192,6 +192,33 @@ function checkServer() {
   }
 }
 
+// Hat Lighthouse ueberhaupt die Seite bewertet, nach der gefragt wurde?
+//
+// Zwei Wege zu falschem Gruen, beide gemessen 29.07.2026:
+//  1. runtimeError — Lighthouse konnte die Seite nicht laden (404, Timeout) und
+//     schreibt trotzdem einen vollstaendigen Bericht. Scores sind dann 0, aber
+//     ein Budget von 0 waere theoretisch bestehbar; vor allem sagt der Bericht
+//     nichts ueber die echte Seite aus.
+//  2. Stille Umleitung — `/preise` leitet auf `/` um. Gemessen: performance=100,
+//     seo=82, Exit 0, kein Fehler. Bewertet wurde die Startseite. Die Preisseite
+//     war nie gemessen, und nichts im Bericht sagte das.
+//
+// Rueckgabe: null wenn in Ordnung, sonst der Grund als Text.
+function lhLaufFehler(lh, angefragt) {
+  if (lh.runtimeError) {
+    return `Lighthouse konnte die Seite nicht laden: ${lh.runtimeError.code}`;
+  }
+  const norm = (u) => {
+    try { const x = new global.URL(u); return (x.pathname.replace(/\/+$/, '') || '/') + x.search; }
+    catch { return u; }
+  };
+  const ziel = lh.finalDisplayedUrl || lh.finalUrl;
+  if (ziel && norm(ziel) !== norm(angefragt)) {
+    return `bewertet wurde ${ziel}, angefragt war ${angefragt} — stille Umleitung, die genannte Seite ist ungeprueft`;
+  }
+  return null;
+}
+
 // --- Check 2: Lighthouse pro Route ----------------------------------------
 function checkLighthouse() {
   if (!toolExists('lighthouse')) { record('lighthouse', true, 'lighthouse nicht installiert', true); return; }
@@ -201,6 +228,8 @@ function checkLighthouse() {
       run('lighthouse', [`${BASE}${route}`, '--quiet', '--output=json', `--output-path=${jsonPath}`,
         '--chrome-flags=--headless=new --no-sandbox', '--only-categories=performance,accessibility,best-practices,seo']);
       const lh = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+      const laufFehler = lhLaufFehler(lh, `${BASE}${route}`);
+      if (laufFehler) { record(`lighthouse${route}`, false, laufFehler); continue; }
       const s = lh.categories;
       const checks = [
         ['performance', s.performance?.score, BUDGET.lighthousePerformance],
