@@ -1,12 +1,12 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 37,
+  "skill_count": 38,
   "skills": [
     {
       "name": "design",
-      "version": "0.3.3",
+      "version": "0.4.0",
       "path": "skills/design/SKILL.md",
-      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als eigene References bei Bedarf nachladen. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
+      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie, Layout/Struktur, Barrierefreiheit (A11y), Interface-Texte (Microcopy) und UI-Polish-Details als eigene References bei Bedarf nachladen; fuer \"review den ganzen Screen/Flow\" den konsolidierten Interface-Review fahren (eine Fund-Tabelle, ein Verdikt). Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Layout/Spacing/Ausrichtung\", \"Breakpoints/Responsive\", \"RTL\", \"Barrierefreiheit/A11y/WCAG\", \"Tastaturbedienung\", \"Screenreader\", \"Fokusring\", \"Hit-Area/Touch-Target\", \"Microcopy/Button-Label/ Fehlermeldung/Empty State\", \"voller Interface-Review\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
     },
     {
       "name": "ads-statics",
@@ -61,6 +61,12 @@
       "version": "0.1.0",
       "path": "skills/eigene/extract-approach/SKILL.md",
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
+    },
+    {
+      "name": "graph",
+      "version": "0.1.0",
+      "path": "skills/eigene/graph/SKILL.md",
+      "description": "Startet einen Agenten-Graphen: die Karte (Nodes → Routen → Checkpoints → Gates) wird VOR dem Lauf gezeichnet, dann automatisch als Workflow-Script mit Subagent-Flotte ausgeführt — inkl. automatischem Setup der Agenten und des Kontextes je Node. Trigger: \"/graph\", \"starte einen Graphen\", \"Graph Engineering\", \"baue eine Agenten-Pipeline\", \"State-Machine für diese Arbeit\", \"wiederkehrende Pipeline aufsetzen\"."
     },
     {
       "name": "handoff",

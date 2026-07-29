@@ -145,6 +145,22 @@
     "daraus einen Skill machen"
    ]
   },
+  "graph": {
+   "source": "skills/eigene/graph/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Adapter build: graph draws the map first and then runs it as a workflow script. Kept as source-adapter because NATIVE_THREAD_SKILLS is a hand-curated list (dynamic-workflow, orchestrate, sdd, ultra-loop) — adding graph there is a design decision for Raphael, not a repair.",
+   "triggers": [
+    "/graph",
+    "starte einen Graphen",
+    "Graph Engineering",
+    "baue eine Agenten-Pipeline",
+    "State-Machine für diese Arbeit",
+    "wiederkehrende Pipeline aufsetzen"
+   ],
+   "trigger_aliases": {
+    "baue eine Agenten-Pipeline": "baue eine Sub-Task-Pipeline"
+   }
+  },
   "handoff": {
    "source": "skills/eigene/handoff/SKILL.md",
    "mode": "source-adapter",
