@@ -42,10 +42,10 @@ loads:
   - references/orchestrierung.md
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 completion_criteria:
-  - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Formular, Sweep in einem Exit-Code)"
+  - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Formular, Importe, Sweep in einem Exit-Code)"
   - "Dieser Lauf ohne `--budget`. Mit gelockertem Budget ist Exit 0 kein Bestehen, sondern ein Vorbehalt — die Schlusszeile sagt dann `BESTANDEN MIT GELOCKERTEM BUDGET` und die Lockerung braucht eine schriftliche Begruendung"
   - "`node scripts/craft-check.mjs --url <url>` meldet 0 BLOCK (Agentur-Merkmale, belegt in references/agentur-merkmale.md)"
-  - "Jede im Build genutzte UI-Library ist per `node scripts/lib-lookup.mjs <name>` nachgeschlagen; jeder Import steht in deren `Export:`-Zeile (references/bibliotheks-tresor.md)"
+  - "Jede im Build genutzte UI-Library ist per `node scripts/lib-lookup.mjs <name>` nachgeschlagen; jeder Import steht in deren `Export:`-Zeile — maschinell erzwungen durch den Import-Check im G1-Tor, der dieselbe Quelle liest (references/bibliotheks-tresor.md)"
   - "`node scripts/formular-check.mjs --url <url>` meldet 0 BLOCK (richtiger input-type, Einfuegen nicht blockiert — im G1-Tor enthalten)"
   - "Formular-Reihenfolge: Kontaktdaten zuletzt (F6, WARN im Tor); Drop-off pro Slide gemessen (G1, hart)"
   - "G2 auf jedem Ship-Copy-Block >= 0.7"

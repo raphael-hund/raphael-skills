@@ -30,6 +30,11 @@ wieder anfasst, liefert das gleiche Aussehen wie jedes zweite Vercel-Template.
 (Base UI, React Aria, Radix Primitives), auf denen eine shadcn-Komponente
 aufbauen kann. Nicht jede Komponente hat alle drei.
 
+> **Falle:** Im selben Ordner liegt `shadcn-registry.json`. Das ist **keine
+> Registry**, sondern eine HTML-Fehlerseite mit `.json`-Endung (39 KB, beginnt
+> mit `<!DOCTYPE html>`) — ein missglückter Download vom 28.07.26. `jq` bricht
+> daran ab. Der brauchbare Index ist `shadcn-index.json`, sonst nichts.
+
 **Befehl (getestet):**
 
 ```bash
@@ -68,23 +73,64 @@ Index liegt lokal.
 
 Alle Namen auf einen Blick: `jq -r '.[].name' shadcn-index.json`.
 
+**Diese Zahlen sind geprüft, nicht behauptet:**
+
+```bash
+node evals/run-registry-check.mjs
+```
+
+9 Fälle, Exit 0. Er zieht Komponentenzahlen, Varianten-Verteilung, Doku-Seiten
+und **beide Einzelstück-Listen** aus den echten Dateien und vergleicht sie mit
+dieser Seite. Zahlen in einer Doku sind beim Schreiben wahr und danach still
+veraltet — der nächste Registry-Update verschiebt sie, ohne dass jemand hier
+etwas anfasst.
+
+Der Lauf hat sich sofort gelohnt: „87 Seiten" waren in Wahrheit 84, und die
+Liste der Appica-Only-Komponenten nannte 10 von 22. Wer sich darauf verließ,
+hielt `date-picker`, `autocomplete` oder `toolbar` für nicht vorhanden und baute
+sie nach. **Eine unvollständige Liste ist schlimmer als keine, weil sie wie eine
+vollständige aussieht.** Beide Richtungen sind belegt: Prüfstand gegen die alte
+Fassung → 2 rot, gegen die korrigierte → 9/9.
+
 ## 2. Appica als zweite lokale Quelle
 
 Appica UI (`/root/tools/uikit-vault/registry/appica/`) ist eine eigenständige,
 auf Base UI + Tailwind v4 aufbauende React-Bibliothek — 62 Komponenten laut
-`components.json`, dokumentiert in 87 Seiten unter `appica/docs/`.
+`components.json`, dokumentiert in 84 Seiten unter `appica/docs/`.
 
-**Was Appica hat, das shadcn (in diesem Index) nicht hat** (Fundstelle:
-Mengendifferenz `appica/components.json` vs. `shadcn-index.json`-Namen):
-`sparkline` (kompaktes Inline-Trend-Chart), `data-table` (fertige TanStack-Table-
-Verdrahtung: Sortierung, Filter, Auswahl, Pagination), `countdown` (Rolling-
-Digit-Timer), `gradient-glow` und `background-pattern` (dekorative Marketing-
-Effekte), `copy-button`, `preview-card`, `chip`, `toc`. Das sind eigene
-Konzepte, keine Umbenennungen.
+Beide Bibliotheken haben zufällig genau 62 Komponenten, aber je **22 davon sind
+Einzelstücke**. Die Mengendifferenz nicht abschreiben, sondern ziehen — der
+Index ändert sich mit jedem Update:
 
-**Was shadcn hat, das in Appica fehlt:** `sidebar` (App-Shell-Navigationsraster),
-`command` (cmdk-Befehlspalette), `chart` (Recharts-Wrapper), `sheet`
-(Seiten-Panel-Modal), `empty` (Empty-State-Pattern), `resizable`.
+```bash
+cd /root/tools/uikit-vault/registry
+jq -r '.[].name' shadcn-index.json      | sort > /tmp/sh.txt
+jq -r '.[].name' appica/components.json | sort > /tmp/ap.txt
+comm -13 /tmp/sh.txt /tmp/ap.txt    # nur Appica
+comm -23 /tmp/sh.txt /tmp/ap.txt    # nur shadcn
+```
+
+**Nur Appica** (Stand 29.07.26): `autocomplete`, `background-pattern`, `chip`,
+`copy-button`, `countdown`, `data-table`, `date-field`, `date-picker`,
+`gradient-glow`, `loader`, `meter`, `navigation`, `number-field`, `otp-field`,
+`preview-card`, `radio`, `sparkline`, `text-animate`, `thumbnail`, `time-field`,
+`toc`, `toolbar`. Eigene Konzepte, keine Umbenennungen — die wertvollsten sind
+`data-table` (fertige TanStack-Table-Verdrahtung: Sortierung, Filter, Auswahl,
+Pagination), `sparkline` (Inline-Trend-Chart), `countdown` (Rolling-Digit-Timer)
+sowie `gradient-glow` und `background-pattern` (dekorative Marketing-Effekte).
+
+**Nur shadcn:** `aspect-ratio`, `attachment`, `bubble`, `card`, `chart`
+(Recharts-Wrapper), `command` (cmdk-Befehlspalette), `direction`, `empty`
+(Empty-State-Pattern), `hover-card`, `input-group`, `input-otp`, `item`,
+`label`, `marker`, `message`, `message-scroller`, `native-select`,
+`radio-group`, `resizable`, `sheet` (Seiten-Panel-Modal), `sidebar`
+(App-Shell-Navigationsraster), `sonner`.
+
+> **Doppelgänger beachten:** `otp-field` (Appica) und `input-otp` (shadcn) lösen
+> dieselbe Aufgabe, ebenso `radio` und `radio-group`. Das entscheidet der Tresor
+> bereits: für OTP gilt die installierte Library `input-otp`, nicht die
+> Registry-Kopie (`bibliotheks-tresor.md`, Konflikt-Tabelle). Eine dritte
+> Antwort auf dieselbe Frage ist genau das, was dieser Skill nicht will.
 
 **Regel, wann Appica statt shadcn:** Braucht das Projekt eine der oben
 genannten Appica-Only-Komponenten (v.a. `data-table` oder `sparkline` für
