@@ -107,8 +107,59 @@ const DEFAULT_BUDGET = {
   slopScore: 0,              // scan-ai-slop.mjs Exit 1 = Slop gefunden
 };
 
+// Ein Budget kann Gruen erkaufen. Also muss es dafuer geradestehen.
+//
+// Befund 29.07.2026: `--budget` war die einzige Eingabe des Gates ohne jede
+// Pruefung. Drei Wege zu falschem Gruen lagen offen:
+//   1. `{"axeViolation": 99}` — ein fehlender Buchstabe, und die Lockerung
+//      landet still neben dem echten Schluessel. Das Gate laeuft weiter mit
+//      Standardwerten und meldet ein Ergebnis, das der Aufrufer anders erwartet.
+//      Vertippte FLAGS lehnt das Gate seit dem 26.07. hart ab — vertippte
+//      Budget-Schluessel nicht. Dieselbe Gefahr, halb geschlossen.
+//   2. Kaputtes JSON oder fehlende Datei liessen einen nackten Node-Stacktrace
+//      mit Exit 1 raus. Exit 1 heisst in diesem Tor "Qualitaet gerissen" — ein
+//      Werkzeugfehler tarnte sich als Befund. Das ist Exit 2.
+//   3. Nichts sagte hinterher, dass ueberhaupt gelockert wurde. Ein erkauftes
+//      Gruen sah aus wie ein verdientes.
+// Schluessel mit `_` sind Kommentare (siehe evals/antiset-budget.json) und
+// werden bewusst ignoriert, nicht abgelehnt.
+function budgetLaden(datei) {
+  if (!datei) return { budget: { ...DEFAULT_BUDGET }, gelockert: [] };
+  let roh;
+  try {
+    roh = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  } catch (e) {
+    console.error(`Budget-Datei unbrauchbar (${datei}): ${e.message.split('\n')[0]}`);
+    process.exit(2);
+  }
+  if (roh === null || typeof roh !== 'object' || Array.isArray(roh)) {
+    console.error(`Budget-Datei muss ein Objekt enthalten, ist aber ${Array.isArray(roh) ? 'eine Liste' : typeof roh}: ${datei}`);
+    process.exit(2);
+  }
+  const budget = { ...DEFAULT_BUDGET };
+  const gelockert = [];
+  for (const [k, v] of Object.entries(roh)) {
+    if (k.startsWith('_')) continue;
+    if (!(k in DEFAULT_BUDGET)) {
+      console.error(`Unbekannter Budget-Schluessel "${k}" in ${datei}`);
+      console.error(`Erlaubt: ${Object.keys(DEFAULT_BUDGET).join(', ')}`);
+      process.exit(2);
+    }
+    if (typeof v !== 'number' || !Number.isFinite(v)) {
+      console.error(`Budget "${k}" ist ${typeof v}, erwartet eine Zahl: ${datei}`);
+      process.exit(2);
+    }
+    budget[k] = v;
+    // Lockerung heisst: mehr Verstoesse erlaubt bzw. niedrigere Punktzahl noetig.
+    // Beide Richtungen haengen an derselben Frage — ist der Standard schaerfer?
+    const strenger = k.startsWith('lighthouse') ? v < DEFAULT_BUDGET[k] : v > DEFAULT_BUDGET[k];
+    if (strenger) gelockert.push(`${k}: ${DEFAULT_BUDGET[k]} -> ${v}`);
+  }
+  return { budget, gelockert };
+}
+
 const budgetFile = get('budget', null);
-const BUDGET = { ...DEFAULT_BUDGET, ...(budgetFile ? JSON.parse(fs.readFileSync(budgetFile, 'utf8')) : {}) };
+const { budget: BUDGET, gelockert: BUDGET_GELOCKERT } = budgetLaden(budgetFile);
 
 const results = [];
 const record = (name, ok, detail, skipped = false) => {
@@ -414,7 +465,11 @@ function checkSweep() {
 
 // --- main ------------------------------------------------------------------
 fs.mkdirSync(OUT, { recursive: true });
-console.log(`G1-Gate — ${BASE} — Routen: ${ROUTES.join(', ')}\n`);
+console.log(`G1-Gate — ${BASE} — Routen: ${ROUTES.join(', ')}`);
+if (BUDGET_GELOCKERT.length) {
+  console.log(`Budget gelockert (${budgetFile}): ${BUDGET_GELOCKERT.join(' | ')}`);
+}
+console.log('');
 
 if (!checkServer()) {
   console.log('\nServer nicht erreichbar — Gate kann nicht urteilen.');
@@ -432,7 +487,11 @@ if (!has('no-shots')) checkSweep();
 const failed = results.filter((r) => !r.ok && !r.skipped);
 const skipped = results.filter((r) => r.skipped);
 const reportPath = path.join(OUT, 'g1-report.json');
-fs.writeFileSync(reportPath, JSON.stringify({ base: BASE, routes: ROUTES, budget: BUDGET, results }, null, 2));
+fs.writeFileSync(reportPath, JSON.stringify({
+  base: BASE, routes: ROUTES, budget: BUDGET,
+  budgetDatei: budgetFile, budgetGelockert: BUDGET_GELOCKERT,
+  results,
+}, null, 2));
 
 console.log(`\nReport: ${reportPath}`);
 if (skipped.length) console.log(`${skipped.length} Check(s) uebersprungen (Tool fehlt): ${skipped.map((r) => r.name).join(', ')}`);
@@ -487,4 +546,11 @@ if (SRC) {
   }
 }
 
-console.log(`\nG1 BESTANDEN — ${results.length - skipped.length} Check(s) gruen.`);
+// Ein Gruen mit gelockertem Budget ist ein Gruen unter Vorbehalt. Es muss in der
+// Schlusszeile stehen, sonst liest der Naechste es als volles Bestehen.
+if (BUDGET_GELOCKERT.length) {
+  console.log(`\nG1 BESTANDEN MIT GELOCKERTEM BUDGET — ${results.length - skipped.length} Check(s) gruen.`);
+  console.log(`Gelockert: ${BUDGET_GELOCKERT.join(' | ')} (Datei: ${budgetFile})`);
+} else {
+  console.log(`\nG1 BESTANDEN — ${results.length - skipped.length} Check(s) gruen.`);
+}
