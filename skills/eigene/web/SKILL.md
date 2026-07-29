@@ -108,8 +108,13 @@ fertig.
 Vor jeder Auslieferung und vor jeder Fertig-Meldung läuft **ein** Befehl:
 
 ```bash
-node scripts/g1-gate.mjs --url http://localhost:3000/ --src .
+node scripts/g1-gate.mjs --url http://localhost:3000/ --src . --build dist
 ```
+
+`--src` ist die **Quelle** (Import-Check), `--build` der ausgelieferte Ordner
+(Slop-Scan, Routen-Zähler). Ohne `--build` sucht das Tor ihn selbst und schreibt in
+den Bericht, welchen es genommen hat — Begründung unter „Quelle und Build sind nicht
+derselbe Ordner".
 
 Er bündelt Erreichbarkeit, Lighthouse (4 Kategorien), axe, tote Links, AI-Slop,
 Craft-Check, Formular-Check, Import-Check und den Screenshot-Sweep in einem
@@ -672,9 +677,44 @@ und das Protokoll trägt die Prozessnummer.
 > **Falsches Rot ist auf Dauer so schädlich wie falsches Grün.** Nach dem dritten
 > Fehlalarm schaut niemand mehr hin — und dann übersieht man den echten Befund.
 
-Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Quelltext**,
+### Quelle und Build sind nicht derselbe Ordner
+
+```bash
+node scripts/g1-gate.mjs --url <url> --src . --build dist
+node evals/run-ordner-check.mjs      # 8 Fälle, startet seinen Server selbst
+```
+
+Bis 29.07. bekamen **alle** dateilesenden Prüfer dasselbe `--src`. Sie brauchen aber
+Gegensätzliches:
+
+| Prüfer | Braucht | Warum |
+|---|---|---|
+| Import-Check | **Quelle** | `import`-Zeilen stehen nur in `.tsx`/`.jsx`, im Build sind sie wegkompiliert |
+| Slop-Scan | **Build** | dort steht der Text, den der Besucher wirklich bekommt |
+| Routen-Zähler | **Build** | er zählt ausgelieferte HTML-Seiten |
+
+An der MAKE-Website gemessen — derselbe Scan, zwei Ordner:
+
+| Ordner | Dateien | Slop-Treffer |
+|---|---|---|
+| Quelle | 44 | **96** |
+| `dist/` | 5 | **6** |
+
+Mit `--src .` bekommt man 90 Befunde über Dateien, die nie ausgeliefert werden — der
+Lärm, an dem ein Wächter stirbt. Mit `--src dist` verliert man den Import-Check ganz.
+Ohne `--build` sucht das Tor `dist/`, `build/`, `out/`, `.output/public`, `.next`;
+findet es keinen, gilt `--src` als Build. **Beide Ordner stehen jetzt im Bericht** —
+genau weil das nicht dastand, fiel es monatelang nicht auf.
+
+> **Die Gegenprobe ist kein Beiwerk.** Der erste Eval-Lauf stand bei 7/8: Der
+> Testserver lag auf Port 1, also tot, und das Tor bricht bei unerreichbarem Server ab,
+> *bevor* der Slop-Scan läuft. Der Hauptfall hätte bestanden, ohne irgendetwas zu
+> messen. Aufgefallen ist es nur, weil daneben ein Fall steht, der bei absichtlich
+> falscher Einstellung Alarm schlagen **muss** — und stattdessen ebenfalls schwieg.
+
+Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Dateien**,
 `craft-check.mjs` liest das **gerenderte DOM**. Auf demselben Testfall meldete der
-Quelltext-Scan 0 Tells, während der DOM-Scan 5 Blocker fand. Details und Schwellen:
+Datei-Scan 0 Tells, während der DOM-Scan 5 Blocker fand. Details und Schwellen:
 `references/agentur-merkmale.md`.
 
 ## Look & QA (design ist die einzige Design-Wissensquelle)

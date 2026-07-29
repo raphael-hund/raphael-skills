@@ -152,6 +152,32 @@ const torLauf = (n, strict) => spawnSync('node', [
   ...(strict ? ['--strict'] : []),
 ], { encoding: 'utf8', timeout: FRIST });
 
+// Abgebrochene Laeufe lassen Chrome-Prozesse zurueck. Die haengen dann an PPID 1,
+// bekommen nie ein Ende und treiben die Last hoch — 29.07.2026 standen 41 Chrome-
+// Prozesse offen, der aelteste seit sechs Stunden, Last 108. Der naechste Lauf
+// reisst deshalb seine Frist, laesst wieder Leichen liegen und macht es schlimmer.
+//
+// Darum vor dem Start aufraeumen: NUR verwaiste Wurzeln (PPID 1) aelter als eine
+// Stunde. Ein laufender Lauf haengt an seinem Elternprozess und wird nie getroffen;
+// pauschales Killen nach Namen wuerde fremde Sessions abschiessen.
+function chromeLeichen() {
+  const ps = spawnSync('ps', ['-eo', 'pid,ppid,etimes,args', '--no-headers'], { encoding: 'utf8' });
+  if (ps.status !== 0) return [];
+  return (ps.stdout || '').split('\n')
+    .filter((z) => /google-chrome-stable|chrome_crashpad_handler/.test(z))
+    .map((z) => z.trim().split(/\s+/))
+    .filter((f) => f[1] === '1' && Number(f[2]) > 3600)
+    .map((f) => f[0]);
+}
+{
+  const tote = chromeLeichen();
+  if (tote.length) {
+    sag(`Aufgeraeumt: ${tote.length} verwaiste Chrome-Wurzel(n) aus frueheren Abbruechen beendet.`);
+    for (const p of tote) spawnSync('kill', [p]);
+    spawnSync('sleep', ['3']);
+  }
+}
+
 // `status === null` heisst: kein Urteil. Entweder abgewuergt (Frist) oder per
 // Signal gestorben. Beides ist ein kaputter LAUF, kein Befund ueber die Seite —
 // und muss darum den ganzen Durchgang abbrechen, statt eine Zeile Rot zu setzen.

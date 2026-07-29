@@ -25,7 +25,7 @@ const has = (k) => args.includes(`--${k}`);
 
 // Ein vertipptes Flag darf nicht still auf den Default zurueckfallen — sonst prueft das
 // Gate klaglos die falsche Adresse und meldet ein gruenes Ergebnis fuer nichts.
-const KNOWN = ['base', 'url', 'routes', 'out', 'src', 'budget', 'strict', 'no-shots', 'help'];
+const KNOWN = ['base', 'url', 'routes', 'out', 'src', 'build', 'budget', 'strict', 'no-shots', 'help'];
 const unknown = args.filter((a) => a.startsWith('--') && !KNOWN.includes(a.slice(2)));
 if (unknown.length) {
   console.error(`Unbekanntes Flag: ${unknown.join(', ')}\nErlaubt: ${KNOWN.map((k) => `--${k}`).join(' ')}`);
@@ -78,6 +78,39 @@ const SKILL_DIR = path.dirname(new URL(import.meta.url).pathname);
 // Zwei Pruefer brauchen den Quellcode statt der laufenden Seite: der
 // Import-Check und die Routen-Vollstaendigkeit ganz am Ende.
 const SRC = get('src', null);
+
+// --- Quelle und Build sind nicht derselbe Ordner --------------------------
+//
+// Bis 29.07.2026 bekamen ALLE dateilesenden Pruefer dasselbe `--src`. Die
+// brauchen aber Gegensaetzliches:
+//
+//   Import-Check   -> QUELLE. Er sucht `import`-Zeilen in .tsx/.jsx; im Build
+//                     sind die wegkompiliert.
+//   Slop-Scan      -> BUILD.  Dort steht der Text, den der Besucher bekommt.
+//   Routen-Zaehler -> BUILD.  Er zaehlt die ausgelieferten HTML-Seiten.
+//
+// An der MAKE-Website gemessen: derselbe Scan ergab 96 Treffer in der Quelle
+// und 6 im Build. Wer `--src .` setzt, bekommt 90 Befunde ueber Dateien, die
+// nie ausgeliefert werden — genau der Laerm, an dem ein Waechter stirbt. Wer
+// `--src dist` setzt, verliert den Import-Check ganz. Beides war falsch, und
+// es fiel nicht auf, weil kein Pruefer sagte, welchen Ordner er gelesen hat.
+//
+// Darum ein zweiter Schalter. Ohne ihn wird der uebliche Build-Ordner unter
+// --src gesucht; gefunden oder nicht, es steht im Bericht.
+const BUILD_KANDIDATEN = ['dist', 'build', 'out', '.output/public', '.next'];
+function buildFinden(src) {
+  if (!src) return null;
+  for (const k of BUILD_KANDIDATEN) {
+    const p = path.join(src, k);
+    if (fs.existsSync(p) && fs.statSync(p).isDirectory()) return p;
+  }
+  return null;
+}
+const BUILD_EXPLIZIT = get('build', null);
+const BUILD = BUILD_EXPLIZIT || buildFinden(SRC);
+// Kein Build gefunden und keiner genannt: dann IST --src vermutlich schon der
+// Build (statische Seite ohne Bundler). Das ist der haeufige Fall im Anti-Set.
+const LESEORDNER = BUILD || SRC;
 
 // Fehlendes Feld ist NICHT dasselbe wie ein leeres Feld.
 //
@@ -444,7 +477,8 @@ function slopMelden(parsed, deDa) {
 }
 
 function checkSlop() {
-  const src = get('src', null);
+  // Der Slop-Scan liest den BUILD, nicht die Quelle (siehe LESEORDNER oben).
+  const src = LESEORDNER;
   const scan = path.resolve(SKILL_DIR, '../../../design/scripts/scan-ai-slop.mjs');
   if (!fs.existsSync(scan)) { record('ai-slop', true, `scan-ai-slop.mjs nicht gefunden (${scan})`, true); return; }
   if (!src) { record('ai-slop', true, 'kein --src <projektordner> uebergeben', true); return; }
@@ -648,6 +682,14 @@ function sweepMaengel(manifest, verlangt, shotDir) {
 // --- main ------------------------------------------------------------------
 fs.mkdirSync(OUT, { recursive: true });
 console.log(`G1-Gate — ${BASE} — Routen: ${ROUTES.join(', ')}`);
+// Welcher Ordner gelesen wurde, muss dastehen. Genau weil es NICHT dastand,
+// fiel monatelang nicht auf, dass Slop-Scan und Import-Check denselben Ordner
+// bekamen, obwohl sie Gegensaetzliches brauchen.
+if (SRC) {
+  const woher = BUILD_EXPLIZIT ? '--build' : (BUILD ? 'gefunden unter --src' : 'kein Build-Ordner — --src gilt als Build');
+  console.log(`Quelle (Importe): ${SRC}`);
+  console.log(`Build  (Slop, Routen): ${LESEORDNER}   [${woher}]`);
+}
 if (BUDGET_GELOCKERT.length) {
   console.log(`Budget gelockert (${budgetFile}): ${BUDGET_GELOCKERT.join(' | ')}`);
 }
@@ -722,7 +764,8 @@ if (fehltGanz.length) {
 // Es zaehlt nicht, ob Routen genannt wurden, sondern ob ALLE genannt wurden.
 if (SRC) {
   const geprueft = new Set(ROUTES.map((r) => r.replace(/\/$/, '') || '/'));
-  const ungesehen = seitenImBuild(SRC)
+  // Der Routen-Zaehler zaehlt AUSGELIEFERTE Seiten -> Build, nicht Quelle.
+  const ungesehen = seitenImBuild(LESEORDNER)
     .filter((schreibweisen) => !schreibweisen.some((s) => geprueft.has(s.replace(/\/$/, '') || '/')))
     .map(([erste]) => erste);
   if (ungesehen.length) {
