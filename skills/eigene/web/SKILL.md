@@ -260,8 +260,41 @@ Was er nicht kann: beurteilen, ob die Tastenlogik *richtig* ist — nur, ob sie 
 Ein Fund ist ein Blocker, ein Nicht-Fund kein Freispruch.
 
 ```bash
-node evals/run-tastatur-check.mjs   # 14 Fälle: 5 müssen reißen, 5 durchgehen, 4 Verdrahtung
+node evals/run-tastatur-check.mjs   # 17 Fälle: reißen, durchgehen, Overlay-Grenze, Verdrahtung
 ```
+
+### 28 Handwerks-Regeln, 10 davon je einmal ausgelöst
+
+```bash
+node evals/run-craft-check.mjs           # 12 Fälle + Kontrolle
+node evals/run-craft-check.mjs --nur M6  # eine Regel einzeln
+```
+
+`craft-check.mjs` kennt 28 Regeln (M1–M25, T1–T10). Wie viele davon jemals
+angeschlagen haben, wusste niemand — bis es gemessen wurde, indem jede Anti-Set-Fixture
+einzeln durch den Prüfer lief:
+
+```
+_basis T5 · a1 T1,T2,T5 · a2 T5,T8,T9 · a3 M13,T5
+a4 M17,T5 · a5 M11,T5 · a6 M24,T5 · a8 T5
+```
+
+**Zehn Regeln belegt, achtzehn nie.** Das ist kein Beweis, dass sie falsch sind — aber
+auch keiner, dass sie funktionieren. Eine Regel ohne Fixture steht in der Liste, taucht
+im Bericht nie auf, und beim nächsten Umbau des Prüfers fällt ihr Ausfall nicht auf.
+
+Die Eval baut pro Regel eine winzige Seite mit **genau diesem einen** Fehler und läuft
+über `file://` — kein Server nötig, nur Chrome. Sie deckt jetzt 15 der 28 Regeln ab und
+**nennt die 13 offenen namentlich**, statt „12/12 grün" wie volle Abdeckung aussehen zu
+lassen.
+
+> **Die Kontrollseite ist der wichtigste Fall, und sie steht zuerst.** Mein erstes
+> Grundgerüst meldete `M23` (fehlende `meta description`) und `M4` (keine Überschrift mit
+> `text-wrap: balance`). Beide Befunde waren korrekt — mein Gerüst war unvollständig,
+> nicht der Prüfer. Erst als es alle Regeln erfüllte, wurden `M23` und `M4` überhaupt
+> testbar: man nimmt die eine Zeile wieder heraus und prüft, dass es auffällt.
+> Ein zweiter eigener Fehler derselben Art: `M11` (Rahmen **und** Schatten) griff nicht,
+> weil die Regel ab **drei** solchen Kästen feuert und mein Testfall einen hatte.
 
 ```bash
 node evals/run-formular-check.mjs      # 14 Fälle, jeder ändert genau einen Umstand
