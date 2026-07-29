@@ -43,6 +43,7 @@ loads:
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 completion_criteria:
   - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Formular, Sweep in einem Exit-Code)"
+  - "Dieser Lauf ohne `--budget`. Mit gelockertem Budget ist Exit 0 kein Bestehen, sondern ein Vorbehalt — die Schlusszeile sagt dann `BESTANDEN MIT GELOCKERTEM BUDGET` und die Lockerung braucht eine schriftliche Begruendung"
   - "`node scripts/craft-check.mjs --url <url>` meldet 0 BLOCK (Agentur-Merkmale, belegt in references/agentur-merkmale.md)"
   - "Jede im Build genutzte UI-Library ist per `node scripts/lib-lookup.mjs <name>` nachgeschlagen; jeder Import steht in deren `Export:`-Zeile (references/bibliotheks-tresor.md)"
   - "`node scripts/formular-check.mjs --url <url>` meldet 0 BLOCK (richtiger input-type, Einfuegen nicht blockiert — im G1-Tor enthalten)"
@@ -166,6 +167,35 @@ machen ihn nicht wahrer, nur lauter.
 Belegt in beide Richtungen: `a7-formular-kaputt` reißt an `formular`, und die
 Kontroll-Fixture trägt seit demselben Tag ein **korrekt** gebautes Formular — ein
 Wächter, der nur rot werden kann, wird nach dem dritten Fehlalarm abgeschaltet.
+
+```bash
+node evals/run-formular-check.mjs      # 14 Fälle, jeder ändert genau einen Umstand
+```
+
+**Was eine Heuristik falsch machen kann, macht sie auch — in beide Richtungen.**
+Der Prüfer erkennt Kontaktfelder an ihrer Beschriftung. Der erste Erkennungstest
+fand zwei Übersehen-Fälle (`aria-labelledby` wurde nicht gelesen; „Telefonnummer"
+scheiterte an der Wortgrenze, weil Deutsch Komposita bildet). Die Lockerung auf
+offene Wortanfänge erzeugte prompt die Gegenrichtung: „Mobiliar" wurde als
+Telefonfeld gemeldet. Fünf der 14 Fälle dürfen deshalb **nicht** anschlagen.
+
+Ein Roast-Durchgang durch Sol (Regel 18, andere Modellfamilie, Auftrag mit genau
+einer Richtung — *„finde Wege, auf denen ein kaputtes Formular grün gemeldet
+wird"*) fand sechs weitere. Alle sind zu und im Eval festgenagelt:
+
+| Weg zu falschem Grün | Warum es durchging |
+|---|---|
+| Formular im **Shadow DOM** | `querySelectorAll` steigt nicht ein — bei eingekauften Booking-/CRM-Widgets der Normalfall |
+| `<form style="display:contents">` | hat keine eigene Box, fiel aus der Sichtbarkeitsprüfung und damit aus F6 **und** F7 |
+| Formular **ohne `<form>`-Tag** | F6/F7 liefen nur über `querySelectorAll('form')`; React-Widgets senden per `fetch()` |
+| `<button type="submit" hidden>` | erfüllte F7, obwohl für den Besucher kein Knopf da ist |
+| `type="file"` auf dem E-Mail-Feld | stand in der Ausschlussliste und verdeckte genau den Fehler, den F1 sucht |
+| `addEventListener('paste', …)` | F3 las nur das Attribut. Wird jetzt **ausprobiert** statt gesucht — echtes Event, `defaultPrevented` lesen |
+
+Bewusst offen: wer die DOM-APIs der eigenen Seite manipuliert, um das eigene Tor
+zu täuschen, ist kein Bedrohungsmodell für dieses Werkzeug. Erst nach Klick
+sichtbare Felder und per CSS `order` umsortierte Reihenfolgen brauchen einen
+Interaktions-Durchlauf — eigene Runde, hier ehrlich als ungeprüft vermerkt.
 
 **Lighthouse-Performance misst die Maschine mit.** Dieselbe unveränderte Testseite
 lieferte am 28.07. einmal 92 und einmal 72 — nur weil der VPS zwischendurch unter
@@ -368,6 +398,41 @@ gefunden werden — `404.html`, `assets/`, `robots.txt`, `sitemap.xml`, `node_mo
 dürfen es nicht. Dazu die Gegenprobe, dass ein unlesbarer Ordner **laut** scheitert
 statt eine leere Liste zurückzugeben; leer hieße „Build ohne Unterseiten", und das
 wäre stilles Grün für eine Website, die das Tor nie gesehen hat.
+
+### `--budget` war die offene Hintertür
+
+Jeder Prüfer im Tor liest sein Limit aus `BUDGET`. Und `BUDGET` kommt aus einer Datei,
+die der Aufrufer selbst mitbringt. Damit ist `--budget` die einzige Stelle, an der man
+dem Tor *sagen* darf, weniger streng zu sein — und sie war bis zum 29.07. die einzige
+Eingabe ohne jede Prüfung. Drei Wege zu falschem Grün lagen offen:
+
+| Eingabe | vorher | jetzt |
+|---|---|---|
+| `{"axeViolation": 99}` (ein Buchstabe fehlt) | still ignoriert, Lauf geht weiter | Exit 2, erlaubte Schlüssel werden aufgelistet |
+| kaputtes JSON, fehlende Datei, `[1,2]`, `"5"` | nackter Stacktrace, **Exit 1** | Exit 2 mit Klartext |
+| `{"lighthousePerformance": 0}` | grün, ohne dass irgendwo steht warum | grün, aber `G1 BESTANDEN MIT GELOCKERTEM BUDGET` |
+
+Der zweite Punkt ist der heimtückische: Exit 1 heißt in diesem Tor **„Qualität
+gerissen"**. Ein Werkzeugfehler tarnte sich als Befund über die Seite. Werkzeugfehler
+ist Exit 2 — das ist der ganze Unterschied zwischen „die Seite ist schlecht" und „ich
+konnte nicht urteilen".
+
+Der dritte ist der teuerste. Ein erkauftes Grün sah aus wie ein verdientes. Wer den
+Report las, sah `G1 BESTANDEN` und nicht, dass jemand das Tempo-Limit auf null gesetzt
+hatte. Jetzt steht die Lockerung in der Kopfzeile, in der Schlusszeile und im
+`g1-report.json` (`budgetGelockert`).
+
+```bash
+node evals/run-budget-check.mjs      # 23 Fälle, weder Browser noch Server
+```
+
+Elf Eingaben, die stoppen müssen. Sieben, die durchgehen müssen (inkl. `_`-Kommentare
+und legitimer Lockerungen). Fünf Prüfungen auf die Standardwerte selbst — hätte jemand
+`DEFAULT_BUDGET` aufgeweicht, wären alle anderen Fälle weiterhin grün und das Tor
+trotzdem stumpf.
+
+**Gegenprobe gefahren:** Mit der alten Fassung von `budgetLaden` meldet derselbe Lauf
+**9/23, Exit 1**. Ein Prüfstand, der nie rot wird, beweist nichts — dieser wird rot.
 
 ### Zwei Läufe, ein Ergebnis: das Tor war nicht parallel-fest
 
