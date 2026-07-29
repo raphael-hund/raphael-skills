@@ -99,8 +99,46 @@ Richtiger Ablauf: Library installieren, dann die *Bewegung* von hier
 Render-Prop). Was die Library kann, wird nicht nachgebaut; was sie offen lässt,
 kommt von hier.
 
-Alle übrigen Komponenten dieser Bibliothek haben **keine** Entsprechung im
-Tresor — dort ist sie die richtige und einzige Antwort.
+### Neun weitere Überschneidungen — und die sind die gefährlicheren
+
+Bis 29.07.2026 stand hier: „alle übrigen Komponenten haben **keine**
+Entsprechung im Tresor". Nachgezählt ist das falsch. `@base-ui/react` liefert
+`select`, `popover`, `tooltip`, `checkbox`, `switch`, `radio`, `tabs`,
+`dialog`, `menu` — also fast alles, was hier als interaktives Bauteil liegt.
+
+Der Unterschied zu den sieben oben ist nicht die Zeilenzahl, sondern die
+Bedienbarkeit. Gemessen:
+
+| Datei | Rolle | Pfeiltasten |
+|---|---|---|
+| `select.tsx` (411 Z) | `listbox` / `option` | **keine** |
+| `select-morph.tsx` | `listbox` | **keine** |
+| `tabs.tsx` | `tablist` | **keine** |
+| `expandable-tabs.tsx` | `tablist` | **keine** |
+| `radio.tsx` | `radiogroup` | **keine** |
+| `table/table-menu.tsx` | `menu` / `menuitem` | **keine** |
+| `wallet-card/account-switcher.tsx` | `listbox` | **keine** |
+
+Sieben von zehn zusammengesetzten Widgets. Alle mit sauberen ARIA-Attributen,
+alle grün bei axe — und keines mit der Tastatur benutzbar.
+
+**Die Rolle ist ein Versprechen.** `role="listbox"` sagt einem
+Screenreader-Nutzer: *hier kommt eine Listbox, die kennst du, Pfeiltasten
+funktionieren.* Wer das Versprechen gibt und die Tastatur nicht liefert, hat es
+schlimmer gemacht als mit einem simplen `<select>` — der Nutzer weiß jetzt, was
+es sein sollte, und kommt trotzdem nicht durch.
+
+Deshalb: **bei diesen neun das Primitive aus dem Tresor nehmen**
+(`@base-ui/react`, unstyled), die Optik und die Motion von hier. Genau derselbe
+Ablauf wie bei den sieben oben — die Library übernimmt das Verhalten, diese
+Dateien liefern die Bewegung.
+
+Erzwungen wird das von `scripts/tastatur-check.mjs`, dem siebten
+Qualitäts-Prüfer im G1-Tor. Er findet eine Widget-Rolle ohne die Tasten, die
+ihr Pattern verlangt.
+
+Alles außerhalb dieser sechzehn Dateien hat wirklich keine Entsprechung im
+Tresor — dort ist diese Bibliothek die richtige und einzige Antwort.
 
 ## Nutzungsregel
 

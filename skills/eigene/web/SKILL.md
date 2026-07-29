@@ -117,8 +117,8 @@ den Bericht, welchen es genommen hat — Begründung unter „Quelle und Build s
 derselbe Ordner".
 
 Er bündelt Erreichbarkeit, Lighthouse (4 Kategorien), axe, tote Links, AI-Slop,
-Craft-Check, Formular-Check, Import-Check, Motion-Check und den Screenshot-Sweep in
-einem einzigen Exit-Code:
+Craft-Check, Formular-Check, Import-Check, Motion-Check, Tastatur-Check und den
+Screenshot-Sweep in einem einzigen Exit-Code:
 
 - **Exit 0** — bestanden. Nur dann darf „fertig" gesagt werden.
 - **Exit 1** — Qualität gerissen. Der Bericht nennt Kategorie und Ist/Soll.
@@ -127,8 +127,8 @@ einem einzigen Exit-Code:
 
 Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
 hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** ist auch nur
-**einer** der sechs Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft, Formular,
-Motion) überhaupt nicht gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein
+**einer** der sieben Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft, Formular,
+Motion, Tastatur) überhaupt nicht gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein
 Rechner ohne installierte Werkzeuge jede beliebige Seite mit „G1 BESTANDEN — 0 Checks
 grün" durchgewinkt.
 
@@ -223,6 +223,44 @@ zählbar ist.
 
 ```bash
 node evals/run-motion-check.mjs   # 15 Fälle: 4 müssen reißen, 5 durchgehen, 6 Verdrahtung
+```
+
+### axe prüft die Rolle, nicht das Versprechen
+
+```bash
+node scripts/tastatur-check.mjs <projektordner>
+```
+
+axe prüft, ob die ARIA-Rollen stimmen. Es prüft **nicht**, ob das Ding, das sich
+`role="listbox"` nennt, auf Pfeiltasten reagiert. In der eigenen
+Komponentenbibliothek gemessen: **7 von 10** zusammengesetzten Widgets haben saubere
+Rollen und keine Tastaturbedienung. `select.tsx` sind 411 Zeilen mit
+`role="listbox"`, `role="option"` und ARIA-Attributen — und null Pfeiltasten.
+
+Die Rolle ist ein **Versprechen** an Screenreader-Nutzer: *hier kommt eine Listbox,
+die kennst du.* Wer es gibt und die Tastatur nicht liefert, hat es schlimmer gemacht
+als mit einem simplen `<select>` — der Nutzer weiß jetzt, was es sein sollte, und
+kommt trotzdem nicht durch. axe meldet dazu 0 Violations, weil die Rollen ja stimmen.
+
+| Rolle | verlangt mindestens | Stufe |
+|---|---|---|
+| `listbox`, `combobox`, `menu`, `tree` | Pfeil hoch **und** runter | **BLOCK** |
+| `tablist`, `menubar`, `radiogroup` | eine Pfeil-Achse | **BLOCK** |
+| `grid` | alle vier Pfeile | **BLOCK** |
+| Overlays (`listbox`, `menu`, `dialog`) | Escape schließt | WARN |
+
+> **Ein Nachbar ist kein Beleg.** Die erste Fassung zählte den ganzen Ordner als
+> Nachweis. In dieser Bibliothek liegen 60 Komponenten flach nebeneinander, und
+> `command-palette.tsx` belegt Pfeiltasten — damit galt die Bedingung für alle 60 als
+> erfüllt, und der Prüfer meldete „alles gut" über sieben kaputte Widgets. Jetzt zählt
+> die Datei **plus das, was sie tatsächlich importiert**: ein ausgelagerter
+> `use-listbox-keys.ts` erfüllt die Bedingung, ein zufälliger Nachbar nicht.
+
+Was er nicht kann: beurteilen, ob die Tastenlogik *richtig* ist — nur, ob sie da ist.
+Ein Fund ist ein Blocker, ein Nicht-Fund kein Freispruch.
+
+```bash
+node evals/run-tastatur-check.mjs   # 14 Fälle: 5 müssen reißen, 5 durchgehen, 4 Verdrahtung
 ```
 
 ```bash

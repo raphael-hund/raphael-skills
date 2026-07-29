@@ -1,0 +1,200 @@
+#!/usr/bin/env node
+/*
+  tastatur-check.mjs — laesst sich das Widget ohne Maus bedienen?
+
+  WARUM ES DIESEN PRUEFER GIBT (Befund 29.07.2026)
+  axe prueft, ob die ARIA-Rollen stimmen. Es prueft NICHT, ob das Ding, das
+  sich `role="listbox"` nennt, auf Pfeiltasten reagiert. Diese Luecke ist keine
+  Theorie: in der eigenen Komponentenbibliothek gemessen —
+
+    expandable-tabs.tsx     role=tablist     —  0 Pfeiltasten
+    radio.tsx               role=radiogroup  —  0 Pfeiltasten
+    select-morph.tsx        role=listbox     —  0 Pfeiltasten
+    select.tsx              role=listbox     —  0 Pfeiltasten  (411 Zeilen, volle aria-*)
+    table/table-menu.tsx    role=menu        —  0 Pfeiltasten
+    tabs.tsx                role=tablist     —  0 Pfeiltasten
+    wallet-card/account-switcher.tsx  role=listbox  —  0 Pfeiltasten
+    wheel-picker.tsx        role=listbox     —  WARN
+
+  Sieben von zehn zusammengesetzten Widgets, gemessen ueber 113 Dateien
+  (`node scripts/tastatur-check.mjs references/ui-components --json`).
+  Erst geschaetzt, dann gemessen: die erste Fassung dieses Kommentars sprach
+  von "fuenf von sieben" — die Zahl stammte aus dem Kopf, nicht aus dem Lauf.
+
+  Alle sieben haben saubere Rollen, alle sind bei axe gruen, keines ist mit der
+  Tastatur benutzbar. Die Rolle ist ein
+  VERSPRECHEN an Screenreader-Nutzer: "hier kommt eine Listbox, die kennst du."
+  Wer das Versprechen gibt und die Tastatur nicht liefert, hat es schlimmer
+  gemacht als mit einem simplen <select> — der Nutzer weiss jetzt, was es sein
+  sollte, und kommt trotzdem nicht durch.
+
+  WAS ER PRUEFT — nur zusammengesetzte Widgets, nur das WAI-ARIA-Minimum:
+    listbox / combobox   Pfeil hoch+runter           BLOCK
+    menu / menubar       Pfeil hoch+runter           BLOCK
+    tablist              Pfeil links+rechts          BLOCK
+    grid / tree          alle vier Pfeile            BLOCK
+    dazu jeweils         Escape zum Schliessen       WARN (nur bei Overlays)
+
+  WAS ER NICHT PRUEFT
+    Ob die Reihenfolge stimmt, ob der Fokus sichtbar ist (das kann axe/craft),
+    ob Home/End belegt sind (empfohlen, nicht Pflicht). Und er kann nicht
+    wissen, ob die Tastenlogik RICHTIG ist — nur, ob sie ueberhaupt da ist.
+    Ein Fund ist ein Blocker, ein Nicht-Fund ist kein Freispruch.
+
+  Liest QUELLTEXT: die Tastaturlogik steht in Event-Handlern, nicht im DOM.
+
+    node tastatur-check.mjs <projektordner> [--json]
+
+  Exit 0 = keine Blocker. Exit 1 = Blocker. Exit 2 = Aufruf kaputt.
+*/
+import fs from 'node:fs';
+import path from 'node:path';
+
+const args = process.argv.slice(2);
+const alsJson = args.includes('--json');
+const wurzel = args.find((a) => !a.startsWith('--'));
+
+if (!wurzel || args.includes('--help')) {
+  console.error('Aufruf: node tastatur-check.mjs <projektordner> [--json]');
+  process.exit(2);
+}
+if (!fs.existsSync(wurzel) || !fs.statSync(wurzel).isDirectory()) {
+  console.error(`Kein Ordner: ${wurzel}`);
+  process.exit(2);
+}
+
+const UEBERSPRINGEN = new Set([
+  'node_modules', '.git', 'dist', 'build', 'out', '.next', '.astro',
+  '.output', '.svelte-kit', '.nuxt', 'coverage', '.cache', '.vercel', '.turbo',
+]);
+const ENDUNGEN = new Set(['.tsx', '.jsx', '.ts', '.js', '.vue', '.svelte', '.astro', '.html']);
+
+function dateien(unter) {
+  const raus = [];
+  for (const e of fs.readdirSync(unter, { withFileTypes: true })) {
+    if (e.name.startsWith('.')) continue;
+    if (UEBERSPRINGEN.has(e.name)) continue;
+    const p = path.join(unter, e.name);
+    if (e.isDirectory()) raus.push(...dateien(p));
+    else if (ENDUNGEN.has(path.extname(e.name))) raus.push(p);
+  }
+  return raus;
+}
+
+// Rolle -> welche Tasten das WAI-ARIA-Pattern mindestens verlangt.
+// Bewusst knapp: nur was ohne Ausnahme gilt. Wo eine Rolle mehrere Bauformen
+// erlaubt (menubar horizontal vs. vertikal), zaehlt EINE Achse als erfuellt.
+const MUSTER = {
+  listbox:  { tasten: [/ArrowDown/, /ArrowUp/], wie: 'Pfeil hoch/runter', achse: 'beide' },
+  combobox: { tasten: [/ArrowDown/, /ArrowUp/], wie: 'Pfeil hoch/runter', achse: 'beide' },
+  menu:     { tasten: [/ArrowDown/, /ArrowUp/], wie: 'Pfeil hoch/runter', achse: 'beide' },
+  menubar:  { tasten: [/ArrowLeft/, /ArrowRight/, /ArrowDown/, /ArrowUp/], wie: 'Pfeiltasten', achse: 'eine' },
+  tablist:  { tasten: [/ArrowLeft/, /ArrowRight/, /ArrowDown/, /ArrowUp/], wie: 'Pfeil links/rechts', achse: 'eine' },
+  grid:     { tasten: [/ArrowDown/, /ArrowUp/, /ArrowLeft/, /ArrowRight/], wie: 'alle vier Pfeile', achse: 'beide' },
+  tree:     { tasten: [/ArrowDown/, /ArrowUp/], wie: 'Pfeil hoch/runter', achse: 'beide' },
+  radiogroup: { tasten: [/ArrowDown/, /ArrowUp/, /ArrowLeft/, /ArrowRight/], wie: 'Pfeiltasten', achse: 'eine' },
+};
+
+// Rollen, die als Overlay ueber der Seite liegen: dort ist Escape Pflicht-nah.
+const OVERLAY = new Set(['listbox', 'combobox', 'menu', 'dialog']);
+
+const alleDateien = dateien(wurzel);
+const befunde = [];
+let widgets = 0;
+
+for (const f of alleDateien) {
+  let text;
+  try { text = fs.readFileSync(f, 'utf8'); } catch { continue; }
+  const rel = path.relative(wurzel, f) || path.basename(f);
+
+  // Rollen dieser Datei sammeln. `role="listbox"` und role={'listbox'} beide.
+  const rollen = new Set();
+  const roleRe = /role\s*=\s*["'{]\s*["']?([a-z]+)["']?/g;
+  let m;
+  while ((m = roleRe.exec(text)) !== null) {
+    if (MUSTER[m[1]]) rollen.add(m[1]);
+  }
+  if (!rollen.size) continue;
+
+  // Die Tastenlogik muss nicht in derselben Datei stehen — ein ausgelagerter
+  // Hook ist genauso richtig. Aber "irgendwo im selben Ordner" ist zu weit:
+  //
+  // Erster Versuch am 29.07.2026 zaehlte den ganzen Ordner. In dieser
+  // Bibliothek liegen 60 Komponenten flach nebeneinander, und `command-palette
+  // .tsx` belegt Pfeiltasten — damit galt die Bedingung fuer ALLE 60 als
+  // erfuellt. Der Pruefer meldete "jedes Widget hat Tastaturbedienung", obwohl
+  // sieben von zehn keine haben. Ein Nachbar ist kein Beleg.
+  //
+  // Also: die Datei selbst, plus die Dateien, die sie tatsaechlich IMPORTIERT.
+  // Das deckt den ausgelagerten Hook ab und sonst nichts.
+  const importiert = new Set();
+  const impRe = /from\s+["'](\.[^"']+)["']/g;
+  let im;
+  while ((im = impRe.exec(text)) !== null) {
+    const ziel = path.resolve(path.dirname(f), im[1]);
+    for (const kand of [ziel, `${ziel}.ts`, `${ziel}.tsx`, `${ziel}.js`, `${ziel}.jsx`,
+      path.join(ziel, 'index.ts'), path.join(ziel, 'index.tsx')]) {
+      if (alleDateien.includes(kand)) { importiert.add(kand); break; }
+    }
+  }
+  const umfeld = [text, ...[...importiert].map((x) => {
+    try { return fs.readFileSync(x, 'utf8'); } catch { return ''; }
+  })].join('\n');
+
+  for (const rolle of rollen) {
+    widgets++;
+    const { tasten, wie, achse } = MUSTER[rolle];
+    const treffer = tasten.filter((t) => t.test(umfeld));
+    const erfuellt = achse === 'beide'
+      ? treffer.length >= 2
+      : treffer.length >= 1;
+
+    if (!erfuellt) {
+      befunde.push({
+        id: 'K1', stufe: 'BLOCK', datei: rel, rolle,
+        was: `role="${rolle}" ohne Tastaturbedienung`,
+        fix: `${wie} belegen (WAI-ARIA-Pattern fuer ${rolle}) — oder das Primitive aus dem Tresor nehmen`,
+      });
+      continue;
+    }
+    if (OVERLAY.has(rolle) && !/Escape|['"]Esc['"]/.test(umfeld)) {
+      befunde.push({
+        id: 'K2', stufe: 'WARN', datei: rel, rolle,
+        was: `role="${rolle}" schliesst nicht mit Escape`,
+        fix: 'Escape-Handler ergaenzen — bei Overlays erwartet das jeder Nutzer',
+      });
+    }
+  }
+}
+
+const block = befunde.filter((b) => b.stufe === 'BLOCK').length;
+const warn = befunde.filter((b) => b.stufe === 'WARN').length;
+
+// Wie ueberall im Tor: ein Lauf ueber null Dateien ist kein sauberes Ergebnis.
+if (alleDateien.length === 0) {
+  const meldung = `tastatur-check hat 0 Dateien gelesen — zeigt der Pfad auf den richtigen Ordner? (${wurzel})`;
+  if (alsJson) console.log(JSON.stringify({ wurzel, dateienGelesen: 0, block: null, warn: null, fehler: meldung }, null, 2));
+  else console.error(meldung);
+  process.exit(1);
+}
+
+if (alsJson) {
+  console.log(JSON.stringify({
+    wurzel, dateienGelesen: alleDateien.length, widgets, block, warn, befunde,
+  }, null, 2));
+  process.exit(block > 0 ? 1 : 0);
+}
+
+console.log(`\ntastatur-check — ${alleDateien.length} Dateien, ${widgets} zusammengesetzte Widget(s)\n`);
+if (!befunde.length) {
+  console.log(widgets === 0
+    ? 'Keine zusammengesetzten Widgets gefunden — nichts zu pruefen.\n'
+    : 'Jedes Widget mit ARIA-Rolle hat auch die passende Tastaturbedienung.\n');
+  process.exit(0);
+}
+for (const b of befunde) {
+  console.log(`[${b.stufe}] ${b.id}  ${b.datei}  ${b.was}`);
+  console.log(`        -> ${b.fix}\n`);
+}
+console.log(`${block} Blocker, ${warn} Warnung(en).\n`);
+process.exit(block > 0 ? 1 : 0);
