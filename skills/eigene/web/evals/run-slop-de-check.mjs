@@ -66,6 +66,34 @@ const TREFFER = [
   ['de-16', 'Unserem Design fehlt nie das gewisse Etwas.'],
   ['de-16', 'Das ist bahnbrechend und revolutionär zugleich.'],
   ['de-15', 'Jetzt kaufen! Sofort starten! Nie wieder warten!'],
+  // Nach dem Roast verschaerft — die Muster sind enger, muessen den Kern aber
+  // weiterhin treffen. Ohne diese Faelle waere "keine Fehlalarme mehr" auch
+  // dadurch erreichbar, dass die Regel gar nichts mehr findet.
+  ['de-14', 'Wir beenden das Prozess-Theater in Ihrer Abteilung.'],
+  ['de-14', 'Schluss mit Papierkram.'],
+  ['de-16', 'Unsere revolutionäre Plattform verbindet alles.'],
+  ['de-16', 'Eine bahnbrechende Lösung für Ihr Lager.'],
+  // Abdeckungsmessung 29.07.2026: diese standen in floskel-verbote.md, aber in
+  // keinem Muster. "Wir entfesseln Ihr Potenzial" lief vorbei, weil nur die
+  // Wortstellung "Potenzial entfesseln" abgedeckt war — im Deutschen steht das
+  // Verb aber genauso oft vorn.
+  ['de-14', 'Es sei angemerkt, dass die Frist laeuft.'],
+  ['de-14', 'Entdecken Sie die Welt von Morgen.'],
+  ['de-14', 'Die Customer Journey beginnt hier.'],
+  ['de-16', 'Das ist das Nonplusultra der Branche.'],
+  ['de-16', 'Ein echter Game-Changer fuer Ihr Team.'],
+  ['de-16', 'Das i-Tuepfelchen auf Ihrem Projekt.'],
+  ['de-16', 'Wir entfesseln Ihr Potenzial.'],
+  ['de-16', 'Wir bieten nahtlose Ablaeufe und einzigartige Qualitaet.'],
+];
+
+// Steht in floskel-verbote.md, ist aber bewusst NICHT als Muster gebaut: eine
+// Dreier-Aufzaehlung ist strukturell nicht von einer echten Leistungsliste zu
+// unterscheiden. Der Fall steht hier, damit niemand ihn spaeter fuer eine
+// vergessene Luecke haelt und ein Muster nachruestet, das jede Aufzaehlung rot
+// faerbt. Er wird geprueft: er MUSS still bleiben.
+const BEWUSST_BLIND = [
+  ['Schnell, einfach und effektiv.', 'Dreier-Aufzaehlung — nicht greppbar, siehe rules.de.mjs'],
 ];
 
 // Diese Saetze sind normales, gutes Deutsch. Ein Treffer hier ist ein
@@ -79,6 +107,17 @@ const RUHE = [
   'Unser Team besteht aus elf Monteuren mit Fachausbildung.',
   'Die Integration laeuft ueber eine dokumentierte REST-Schnittstelle.',
   'Jetzt anfragen!',
+  // --- Roast-Funde 29.07.2026 -------------------------------------------
+  // Diese sechs schlugen in der ersten Fassung an, zwei davon als BLOCKER.
+  // Sie stehen hier dauerhaft, weil genau solche Saetze auf Raphaels
+  // Handwerker-Seiten vorkommen — ein Waechter, der sie rot faerbt, wird
+  // abgeschaltet und schuetzt danach gar nichts mehr.
+  'Wir haben das Stadttheater Karlsruhe saniert.',
+  'Der Theater-Umbau dauerte vier Monate.',
+  'Unser Buero liegt am Theaterplatz 4.',
+  'Schluss mit der Debatte um die Kostenverteilung.',
+  'Eine bahnbrechende Studie der TU Muenchen belegt das.',
+  'Wegweisende Urteile des BGH aus dem Jahr 2019.',
 ];
 
 // --- Hilfen ---------------------------------------------------------------
@@ -128,6 +167,14 @@ for (const satz of RUHE) {
     gefunden.length ? `Falsch-Positiv: ${gefunden.join(', ')}` : null);
 }
 
+// --- 2b. Bewusste Grenzen -------------------------------------------------
+console.log('\nBewusst nicht abgedeckt — muss still bleiben, ist keine Luecke:\n');
+for (const [satz, warum] of BEWUSST_BLIND) {
+  const gefunden = ids(scanne(satz)).filter((i) => i.startsWith('de-'));
+  zeile(gefunden.length === 0, `"${satz}"  (${warum})`,
+    gefunden.length ? `schlaegt jetzt an (${gefunden.join(', ')}) — Muster zu breit nachgeruestet?` : null);
+}
+
 // --- 3. Einstufung im Gate ------------------------------------------------
 console.log('\nEinstufung im Tor — nur die Textstimme darf die Auslieferung stoppen:\n');
 const gateQuelle = fs.readFileSync(GATE, 'utf8');
@@ -145,7 +192,7 @@ zeile(gateQuelle.includes('rules.de.mjs fehlt'),
   'fehlender Regelsatz steht im Urteilstext, statt still englisch zu laufen');
 
 // --- Schluss --------------------------------------------------------------
-const gesamt = TREFFER.length + RUHE.length + 5;
+const gesamt = TREFFER.length + RUHE.length + BEWUSST_BLIND.length + 5;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Der deutsche Slop-Schutz ist luecken- oder laermhaft.');
