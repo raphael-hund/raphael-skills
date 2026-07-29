@@ -939,6 +939,23 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Soll eine bestehende Referenzseite als Vorlage/Stil dienen ("baue mir etwas Ähnliches
    wie X", "clone diese Landingpage") → **zuerst** `references/web-clone-playbook.md` laden
    (Entscheidungsbaum, Lizenz-Check, Komplexitätsskala L1–L6) **bevor** Art Direction beginnt.
+
+   > **Die fremde Seite bestimmt den Inhalt, nicht den Ort.** `mirror-site.mjs`
+   > bildete den Dateipfad aus der URL der Zielseite, und `../` blieb dabei stehen:
+   > `https://opfer.test/x/../../../root/.ssh/authorized_keys` schrieb nach
+   > `/root/.ssh/authorized_keys`, `/../../etc/cron.d/boese` nach `/etc/cron.d/`.
+   > Nachgemessen, nicht vermutet. Genau der Fall aus der Quarantäne-Regel
+   > (AGENTS.md Nr. 17, *untrusted rein ODER mächtig raus*) — das Skript liest eine
+   > fremde Seite **und** schreibt Dateien, ein präparierter Link im Manifest
+   > reichte. Seit 29.07.2026 wird jeder Zielpfad aufgelöst und gegen den
+   > Site-Ordner geprüft; abgewiesene Pfade stehen am Ende des Laufs **namentlich**
+   > im Bericht, statt still zu fehlen — wer eine Seite spiegelt und hinterher
+   > Dateien vermisst, sucht sonst am falschen Ende.
+   > `sourcemap-hunt` und `network-capture` sind nicht betroffen: dort entsteht der
+   > Dateiname aus einem Filter auf `[a-z0-9._-]` plus Hash, ein Schrägstrich kann
+   > nicht übrig bleiben. Auch das steht als Fall in der Eval, damit ein späteres
+   > Lockern des Filters auffällt. `node evals/run-clone-pfade.mjs` (15 Fälle:
+   > 4 Ausbruchsversuche, 7 normale Asset-Pfade, 4 zur Gegenprobe).
    Ist die Vorlage kein Link, sondern ein **Bild** (Screenshot, Mockup,
    Figma-Export, Fullpage-Longshot — "Screenshot nachbauen", "aus Bild bauen",
    "pixelgenau aus dem Bild umsetzen") → **zuerst** `references/rebuild-from-image.md`

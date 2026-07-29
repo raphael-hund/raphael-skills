@@ -50,6 +50,28 @@ function urlToLocalPath(u, origin) {
   return p.replace(/^\/+/, "");
 }
 
+// Der Zielpfad kommt aus der URL der FREMDEN Seite. Bis 29.07.2026 ging er
+// ungeprueft in join() — und `../` blieb dabei stehen. Nachgemessen:
+//
+//   https://opfer.test/x/../../../root/.ssh/authorized_keys
+//     -> rel = "x/../../../root/.ssh/authorized_keys"
+//     -> dest = /root/.ssh/authorized_keys
+//
+//   https://opfer.test/../../etc/cron.d/boese   ->  /etc/cron.d/boese
+//
+// Das ist genau der Fall, vor dem die Quarantaene-Regel warnt (AGENTS.md Nr. 17,
+// "untrusted rein ODER maechtig raus"): dieses Skript liest eine fremde Seite und
+// schreibt Dateien. Der Server der Zielseite bestimmt dabei, WOHIN — ein
+// praeparierter Link im Manifest reicht, um in /root/.ssh oder /etc/cron.d zu
+// schreiben. Der Umweg ueber `path.resolve` faengt jede Schreibweise ab, auch
+// die getarnten (`a/b/../../..`), weil er den Pfad zuerst aufloest und dann
+// vergleicht.
+function zielImOrdner(basis, rel) {
+  const wurzel = path.resolve(basis);
+  const ziel = path.resolve(wurzel, rel);
+  return ziel === wurzel || ziel.startsWith(wurzel + path.sep) ? ziel : null;
+}
+
 const args = parseArgs(process.argv.slice(2));
 if (args.help || !args.url || !args.out) {
   usage();
@@ -90,9 +112,18 @@ const ownUrls = all.filter((r) => r.url.startsWith(origin + "/") || r.url === or
 console.log(`▸ 捕获请求 ${all.length} 个；同源 ${ownUrls.length} 个，开始下载…`);
 let ok = 0, fail = 0;
 const failed = [];
+const abgewehrt = [];
 for (const r of ownUrls) {
   const rel = urlToLocalPath(r.url, origin);
-  const dest = path.join(siteDir, rel);
+  const dest = zielImOrdner(siteDir, rel);
+  if (!dest) {
+    // Nicht still ueberspringen: wer eine Seite spiegelt und hinterher Dateien
+    // vermisst, sucht am falschen Ende. Und ein Ausbruchsversuch ist ein Befund
+    // ueber die Zielseite, kein Randfall des Werkzeugs.
+    abgewehrt.push(rel);
+    fail++;
+    continue;
+  }
   try {
     const resp = await ctx.request.get(r.url); // 复用浏览器网络栈(cookie/TUN/代理一致)
     if (!resp.ok()) { fail++; failed.push(`HTTP${resp.status()} ${rel}`); continue; }
@@ -110,10 +141,18 @@ const thirdHosts = [...new Set(all.filter((r) => !r.url.startsWith(origin)).map(
 const webfontCss = all.map((r) => r.url).filter((u) => /use\.typekit\.net\/[a-z0-9]+\.css|fonts\.googleapis\.com\/css/i.test(u));
 const outRoot = path.resolve(args.out);
 fs.writeFileSync(path.join(outRoot, "mirror-manifest.json"), JSON.stringify(all, null, 2));
-fs.writeFileSync(path.join(outRoot, "own-asset-urls.txt"), ownUrls.map((r) => urlToLocalPath(r.url, origin)).sort().join("\n") + "\n");
+fs.writeFileSync(path.join(outRoot, "own-asset-urls.txt"), ownUrls
+  .map((r) => urlToLocalPath(r.url, origin))
+  .filter((rel) => zielImOrdner(siteDir, rel))
+  .sort().join("\n") + "\n");
 fs.writeFileSync(path.join(outRoot, "third-party.json"), JSON.stringify({ hosts: thirdHosts, webfont_css_to_selfhost: webfontCss }, null, 2));
 
 console.log(`✅ 镜像完成: ${ok} 成功 / ${fail} 失败 → ${siteDir}`);
+if (abgewehrt.length) {
+  console.log(`\n  ⛔ ${abgewehrt.length} Pfad(e) zeigten AUS dem Zielordner heraus und wurden NICHT geschrieben:`);
+  for (const a of abgewehrt.slice(0, 10)) console.log(`     ${a}`);
+  console.log('     (Die Zielseite bestimmt hier den Dateipfad — das ist ein Befund ueber sie, nicht ueber dieses Werkzeug.)');
+}
 if (failed.length) console.log("  ⚠️ 失败:\n   " + failed.slice(0, 20).join("\n   "));
 console.log(`▸ 第三方 host: ${thirdHosts.join(", ") || "(无)"}`);
 if (webfontCss.length) console.log(`▸ 需自托管的 webfont CSS(锁域名,见 static-mirror.md): \n   ${webfontCss.join("\n   ")}`);
