@@ -118,6 +118,34 @@ const FAELLE = [
     reisst: false,
     dateien: { 'a.tsx': 'export const P = () => <p>Nur Text.</p>;' },
   },
+  {
+    // Eigener Fehlalarm vom 29.07.2026: wheel-picker.tsx ist ein EINGEBETTETER
+    // Rad-Picker, dauerhaft sichtbarer Teil des Formulars. Dort gibt es nichts
+    // zu schliessen — Escape zu fordern war Laerm. "listbox" heisst nicht
+    // automatisch Overlay.
+    name: 'eingebettete listbox braucht kein Escape (kein Overlay)',
+    reisst: false, keineWarnung: true,
+    dateien: {
+      'a.tsx': 'export const R = () => (<div className="relative">'
+        + '<ul role="listbox" onKeyDown={(e)=>{if(e.key==="ArrowDown"){} if(e.key==="ArrowUp"){}}}>'
+        + '<li role="option">A</li></ul></div>);',
+    },
+  },
+];
+
+// Die Gegenrichtung zum Fall oben: eine listbox, die WIRKLICH ueber der Seite
+// schwebt (Portal/open-Zustand), muss die Escape-Warnung bekommen. Ohne diesen
+// Fall waere die Overlay-Heuristik auch dadurch erfuellbar, dass sie nie warnt.
+const WARNT = [
+  {
+    name: 'schwebende listbox ohne Escape bekommt die Warnung',
+    dateien: {
+      'a.tsx': 'import { createPortal } from "react-dom";\n'
+        + 'export const S = () => { const [open, setOpen] = useState(false);\n'
+        + '  return open ? createPortal(<ul role="listbox" onKeyDown={(e)=>{'
+        + 'if(e.key==="ArrowDown"){} if(e.key==="ArrowUp"){}}} />, document.body) : null; };',
+    },
+  },
 ];
 
 function lauf(dateien) {
@@ -165,6 +193,21 @@ for (const f of FAELLE.filter((x) => !x.reisst)) {
     passt ? null : `Exit ${code}, Blocker ${json?.block ?? '?'}: ${(json?.befunde || []).map((b) => b.was).join('; ')}`);
 }
 
+// --- Escape nur bei echten Overlays --------------------------------------
+console.log('\nEscape-Warnung trifft nur schwebende Widgets:\n');
+for (const f of FAELLE.filter((x) => x.keineWarnung)) {
+  const { json } = lauf(f.dateien);
+  const warns = (json?.befunde || []).filter((b) => b.stufe === 'WARN');
+  zeile(warns.length === 0, f.name,
+    warns.length ? `Fehlalarm: ${warns.map((b) => b.was).join('; ')}` : null);
+}
+for (const f of WARNT) {
+  const { json } = lauf(f.dateien);
+  const warns = (json?.befunde || []).filter((b) => b.id === 'K2');
+  zeile(warns.length === 1, f.name,
+    warns.length === 1 ? null : `erwartet 1 K2-Warnung, bekam ${warns.length}`);
+}
+
 // --- Verdrahtung im Tor ---------------------------------------------------
 console.log('\nVerdrahtung im G1-Tor:\n');
 {
@@ -181,7 +224,7 @@ console.log('\nVerdrahtung im G1-Tor:\n');
   for (const [text, ok] of proben) zeile(ok, text);
 }
 
-const gesamt = FAELLE.length + 4;
+const gesamt = FAELLE.length + WARNT.length + 1 + 4;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Der Tastatur-Pruefer urteilt falsch — nicht ins Tor haengen.');

@@ -109,18 +109,24 @@ Entsprechung im Tresor". Nachgezählt ist das falsch. `@base-ui/react` liefert
 Der Unterschied zu den sieben oben ist nicht die Zeilenzahl, sondern die
 Bedienbarkeit. Gemessen:
 
-| Datei | Rolle | Pfeiltasten |
-|---|---|---|
-| `select.tsx` (411 Z) | `listbox` / `option` | **keine** |
-| `select-morph.tsx` | `listbox` | **keine** |
-| `tabs.tsx` | `tablist` | **keine** |
-| `expandable-tabs.tsx` | `tablist` | **keine** |
-| `radio.tsx` | `radiogroup` | **keine** |
-| `table/table-menu.tsx` | `menu` / `menuitem` | **keine** |
-| `wallet-card/account-switcher.tsx` | `listbox` | **keine** |
+| Datei | Rolle | Pfeiltasten vorher | Stand |
+|---|---|---|---|
+| `select.tsx` (411 Z) | `listbox` / `option` | keine | **repariert** |
+| `select-morph.tsx` | `listbox` | keine | **repariert** |
+| `tabs.tsx` | `tablist` | keine | **repariert** |
+| `expandable-tabs.tsx` | `tablist` | keine | **repariert** |
+| `radio.tsx` | `radiogroup` | keine | **repariert** |
+| `table/table-menu.tsx` | `menu` / `menuitem` | keine | **repariert** |
+| `wallet-card/account-switcher.tsx` | `listbox` | keine | **repariert** |
 
 Sieben von zehn zusammengesetzten Widgets. Alle mit sauberen ARIA-Attributen,
 alle grün bei axe — und keines mit der Tastatur benutzbar.
+
+**Alle sieben sind seit 29.07.2026 repariert** (Pfeiltasten, Home/End, Escape,
+Roving-Tabindex, Fokus folgt der Auswahl, Fokus-Rückgabe an den Auslöser).
+`node scripts/tastatur-check.mjs references/ui-components` meldet 0 Blocker.
+Damit sind sie wieder benutzbar — die Empfehlung unten bleibt trotzdem
+bestehen, aus einem anderen Grund.
 
 **Die Rolle ist ein Versprechen.** `role="listbox"` sagt einem
 Screenreader-Nutzer: *hier kommt eine Listbox, die kennst du, Pfeiltasten
@@ -132,6 +138,12 @@ Deshalb: **bei diesen neun das Primitive aus dem Tresor nehmen**
 (`@base-ui/react`, unstyled), die Optik und die Motion von hier. Genau derselbe
 Ablauf wie bei den sieben oben — die Library übernimmt das Verhalten, diese
 Dateien liefern die Bewegung.
+
+Die Reparatur ändert daran nichts. Was hier steht, ist jetzt das *Minimum* des
+Patterns; `@base-ui/react` bringt zusätzlich Typeahead, Fokus-Falle, korrektes
+`aria-activedescendant`, RTL und die Randfälle, an denen die Library jahrelang
+gearbeitet hat. Sieben Widgets von Hand nachzubauen war der Beweis, dass es
+geht — nicht die Empfehlung, es in jedem Kundenprojekt zu wiederholen.
 
 Erzwungen wird das von `scripts/tastatur-check.mjs`, dem siebten
 Qualitäts-Prüfer im G1-Tor. Er findet eine Widget-Rolle ohne die Tasten, die
