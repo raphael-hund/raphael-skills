@@ -51,6 +51,9 @@ interface MorphContextValue {
   triggerId: string;
   listId: string;
   disabled: boolean;
+  /** Value the arrow keys currently point at (roving focus), or undefined. */
+  aktiv: string | undefined;
+  setAktiv: (v: string | undefined) => void;
 }
 
 const MorphContext = createContext<MorphContextValue | null>(null);
@@ -94,6 +97,7 @@ export function MorphSelect({
     Map<string, { label: string; count: number }>
   >(new Map());
   const [placeholder, setPlaceholder] = useState("Select");
+  const [aktiv, setAktiv] = useState<string | undefined>(undefined);
 
   const controlled = value !== undefined;
   const current = controlled ? value : internal;
@@ -124,6 +128,67 @@ export function MorphSelect({
       return next;
     });
   }, []);
+
+  // A `role="listbox"` promises the WAI-ARIA listbox pattern: up/down move
+  // between options, Home/End jump, Enter picks, Escape closes. Like its sibling
+  // select.tsx this component kept only Escape until 29.07.2026 — correct roles,
+  // correct aria-selected, zero arrow keys, and axe green throughout. The role is
+  // a promise to screen-reader users; giving it without the keys is worse than a
+  // plain <select>.
+  //
+  // Option order comes from the `labels` Map, which keeps insertion order and so
+  // matches the DOM order the items registered in.
+  const werte = useMemo(() => [...labels.keys()], [labels]);
+
+  useEffect(() => {
+    if (!open) return;
+    const n = werte.length;
+    if (n === 0) return;
+    const springe = (richtung: 1 | -1) =>
+      setAktiv((v) => {
+        const i = v === undefined ? -1 : werte.indexOf(v);
+        if (i === -1) return richtung === 1 ? werte[0] : werte[n - 1];
+        return werte[(i + richtung + n) % n];
+      });
+    const onArrow = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          springe(1);
+          return;
+        case "ArrowUp":
+          e.preventDefault();
+          springe(-1);
+          return;
+        case "Home":
+          e.preventDefault();
+          setAktiv(werte[0]);
+          return;
+        case "End":
+          e.preventDefault();
+          setAktiv(werte[n - 1]);
+          return;
+        case "Enter":
+        case " ":
+          if (aktiv !== undefined) {
+            e.preventDefault();
+            select(aktiv);
+          }
+          return;
+        default:
+          return;
+      }
+    };
+    window.addEventListener("keydown", onArrow);
+    return () => window.removeEventListener("keydown", onArrow);
+  }, [open, werte, aktiv, select]);
+
+  // Opening puts the pointer on the current value, so arrows continue from where
+  // the eye already is instead of jumping to the top.
+  useEffect(() => {
+    if (open) setAktiv(current);
+    else setAktiv(undefined);
+  }, [open, current]);
 
   useEffect(() => {
     if (!open) return;
@@ -156,6 +221,8 @@ export function MorphSelect({
       triggerId: `${baseId}-trigger`,
       listId: `${baseId}-list`,
       disabled,
+      aktiv,
+      setAktiv,
     }),
     [
       current,
@@ -168,6 +235,7 @@ export function MorphSelect({
       reduce,
       baseId,
       disabled,
+      aktiv,
     ],
   );
 
@@ -238,6 +306,14 @@ export function MorphSelectTrigger({
             aria-expanded={ctx.open}
             aria-controls={ctx.listId}
             onClick={() => ctx.setOpen(true)}
+            // ArrowDown/Up on the closed trigger opens the list — the pattern's
+            // standard entry point.
+            onKeyDown={(e) => {
+              if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                e.preventDefault();
+                ctx.setOpen(true);
+              }
+            }}
             transition={ctx.reduce ? { duration: 0 } : MORPH}
             style={{ borderRadius: 12 }}
             className={cn(
@@ -352,18 +428,30 @@ export function MorphSelectItem({
   const ctx = useMorphContext("MorphSelectItem");
   const selected = ctx.value === value;
   const label = typeof children === "string" ? children : value;
+  const zeigtHierhin = ctx.aktiv === value;
+  const ref = useRef<HTMLButtonElement>(null);
 
   useLayoutEffect(() => {
     ctx.register(value, label);
     return () => ctx.unregister(value);
   }, [ctx.register, ctx.unregister, value, label]);
 
+  // The visible focus ring has to follow the arrow keys — otherwise the user
+  // navigates blind and the pattern is only half kept.
+  useEffect(() => {
+    if (zeigtHierhin) ref.current?.focus();
+  }, [zeigtHierhin]);
+
   return (
     <motion.li variants={ctx.reduce ? undefined : ITEM}>
       <button
+        ref={ref}
         type="button"
         role="option"
         aria-selected={selected}
+        // Roving tabindex: one option is tabbable at a time. Before any arrow
+        // press that is the selected one, so Tab lands where the eye is.
+        tabIndex={zeigtHierhin || (ctx.aktiv === undefined && selected) ? 0 : -1}
         disabled={disabled}
         onClick={() => ctx.select(value)}
         className={cn(

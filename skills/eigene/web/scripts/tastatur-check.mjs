@@ -157,7 +157,14 @@ for (const f of alleDateien) {
       });
       continue;
     }
-    if (OVERLAY.has(rolle) && !/Escape|['"]Esc['"]/.test(umfeld)) {
+    // "listbox" heisst nicht automatisch Overlay. Ein eingebetteter Rad-Picker
+    // (wheel-picker.tsx) ist dauerhaft sichtbarer Teil des Formulars — dort gibt
+    // es nichts zu schliessen, und Escape zu fordern war ein Fehlalarm meines
+    // eigenen Pruefers (29.07.2026). Nur wo die Rolle wirklich ueber der Seite
+    // schwebt, ist Escape die Erwartung: erkennbar an einem Portal, an
+    // position:fixed oder an einem open/close-Zustand.
+    const schwebt = /createPortal|position:\s*fixed|\bfixed\s+inset|\[open,\s*setOpen\]|setOpen\(/.test(umfeld);
+    if (OVERLAY.has(rolle) && schwebt && !/Escape|['"]Esc['"]/.test(umfeld)) {
       befunde.push({
         id: 'K2', stufe: 'WARN', datei: rel, rolle,
         was: `role="${rolle}" schliesst nicht mit Escape`,
