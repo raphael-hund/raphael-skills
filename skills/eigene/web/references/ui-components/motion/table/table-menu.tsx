@@ -28,27 +28,79 @@ export function TableMenu({
 }) {
   const reduce = useReducedMotion();
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [coords, setCoords] = useState<{ top: number; left: number } | null>(
     null,
   );
+  // Roving tabindex: exactly one item is tabbable, the arrows move which one.
+  // -1 means "menu open, nothing focused yet" (pointer users never leave it).
+  const [aktiv, setAktiv] = useState(-1);
   const open = coords !== null;
+
+  // Close and hand focus back to the trigger. Without the second half, keyboard
+  // users land at the top of the document after every menu use.
+  const close = (fokusZurueck = false) => {
+    setCoords(null);
+    setAktiv(-1);
+    if (fokusZurueck) triggerRef.current?.focus();
+  };
 
   useEffect(() => {
     if (!open) return;
-    const close = () => setCoords(null);
+    const wegKlicken = () => close();
+    // A `role="menu"` promises the WAI-ARIA menu pattern: arrows move between
+    // items, Home/End jump, Escape closes. This component kept the promise only
+    // for Escape until 29.07.2026 — the roles were correct, so axe stayed green
+    // and nothing flagged it. A role is a promise to screen-reader users; giving
+    // it without the keys is worse than a plain button list, because the user now
+    // knows what it should be and still cannot get through.
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      const n = items.length;
+      if (n === 0) return;
+      switch (e.key) {
+        case "Escape":
+          close(true);
+          return;
+        case "ArrowDown":
+          e.preventDefault();
+          setAktiv((i) => (i + 1) % n);
+          return;
+        case "ArrowUp":
+          e.preventDefault();
+          setAktiv((i) => (i <= 0 ? n - 1 : i - 1));
+          return;
+        case "Home":
+          e.preventDefault();
+          setAktiv(0);
+          return;
+        case "End":
+          e.preventDefault();
+          setAktiv(n - 1);
+          return;
+        case "Tab":
+          // Tab out of a menu closes it — that is the pattern, not a shortcut.
+          close();
+          return;
+        default:
+          return;
+      }
     };
     // Close on any scroll (the trigger moves) or resize; fixed coords go stale.
-    window.addEventListener("scroll", close, true);
-    window.addEventListener("resize", close);
+    window.addEventListener("scroll", wegKlicken, true);
+    window.addEventListener("resize", wegKlicken);
     window.addEventListener("keydown", onKey);
     return () => {
-      window.removeEventListener("scroll", close, true);
-      window.removeEventListener("resize", close);
+      window.removeEventListener("scroll", wegKlicken, true);
+      window.removeEventListener("resize", wegKlicken);
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, items.length]);
+
+  // Move real DOM focus to the active item. The visible focus ring has to follow
+  // the arrows, otherwise the user is navigating blind.
+  useEffect(() => {
+    if (open && aktiv >= 0) itemRefs.current[aktiv]?.focus();
+  }, [open, aktiv]);
 
   const toggle = () => {
     if (open) {
@@ -76,6 +128,16 @@ export function TableMenu({
           e.stopPropagation();
           toggle();
         }}
+        // ArrowDown on the trigger opens the menu AND lands on the first item —
+        // the pattern's standard entry. Without it a keyboard user opens the
+        // menu with Enter and then has to guess that arrows now work.
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault();
+            if (!open) toggle();
+            setAktiv(e.key === "ArrowDown" ? 0 : items.length - 1);
+          }
+        }}
         className={triggerClassName}
       >
         {trigger}
@@ -99,13 +161,19 @@ export function TableMenu({
                 }
                 transition={reduce ? { duration: 0 } : SPRING_PANEL}
               >
-                {items.map((item) => (
+                {items.map((item, i) => (
                   <button
                     key={item.label}
+                    ref={(el) => {
+                      itemRefs.current[i] = el;
+                    }}
                     type="button"
                     role="menuitem"
+                    // Roving tabindex: only the active item is reachable by Tab,
+                    // so Tab leaves the menu instead of walking through it.
+                    tabIndex={i === aktiv || (aktiv === -1 && i === 0) ? 0 : -1}
                     onClick={() => {
-                      setCoords(null);
+                      close(true);
                       item.onSelect();
                     }}
                     className={cn(

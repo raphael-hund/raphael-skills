@@ -12,6 +12,7 @@ import {
   useLayoutEffect,
   useRef,
   useState,
+  type KeyboardEvent as ReactKeyboardEvent,
   type ReactNode,
 } from "react";
 import { EASE_OUT } from "@/lib/ease";
@@ -266,6 +267,41 @@ export function ExpandableTabs({
     [labelWidths],
   );
 
+  // Tastaturbedienung fuer das tablist-Pattern (WAI-ARIA). Bis 29.07.2026 war
+  // die Rolle gesetzt, axe gruen — und mit der Tastatur kam man nicht durch die
+  // Leiste.
+  //
+  // Hier gilt MANUELLE Aktivierung, anders als bei tabs.tsx: ein Klick klappt
+  // das Panel auf UND wieder zu (`isActive ? null : item.id`). Wuerde der Pfeil
+  // automatisch aktivieren, klappte beim Durchpfeilen jeder Inhalt kurz auf —
+  // Enter/Leertaste loesen aus, die Pfeile bewegen nur den Fokus.
+  const aufTaste = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    const tasten = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (!tasten.includes(e.key)) return;
+    const leiste = e.currentTarget;
+    const tabs = [...leiste.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+      .filter((t) => !t.disabled);
+    if (!tabs.length) return;
+    const jetzt = tabs.indexOf(document.activeElement as HTMLButtonElement);
+    if (jetzt < 0) return;
+
+    let ziel: number;
+    if (e.key === 'ArrowRight') ziel = (jetzt + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') ziel = (jetzt - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') ziel = 0;
+    else ziel = tabs.length - 1;
+
+    e.preventDefault();
+    tabs[ziel].focus();          // nur Fokus, kein click()
+  };
+
+  // Roving Tabindex mit Einstieg. Da sich der aktive Tab abwaehlen laesst, kann
+  // GAR KEINER ausgewaehlt sein — dann stuende jeder auf -1 und die Leiste
+  // faellt aus der Tab-Reihenfolge. Derselbe Fehler waere mir bei radio.tsx
+  // beinahe passiert: ein Fix, der die Barriere verschiebt statt beseitigt.
+  const tabIndexFuer = (istAktiv: boolean, index: number) =>
+    visualActiveId === null ? (index === 0 ? 0 : -1) : (istAktiv ? 0 : -1);
+
   return (
     <>
       <motion.div
@@ -334,13 +370,14 @@ export function ExpandableTabs({
           role="tablist"
           aria-label="Navigation tabs"
           aria-orientation="horizontal"
+          onKeyDown={aufTaste}
           className={cn(
             "absolute bottom-0 left-0 z-20 flex w-full items-center justify-between gap-1 p-2",
             classNames?.bar,
           )}
           style={{ height: BAR_H }}
         >
-          {items.map((item) => {
+          {items.map((item, index) => {
             const isActive = item.id === visualActiveId;
             const activeTabWidth = getActiveTabWidth(item);
             const labelWidth = labelWidths[item.id] ?? 0;
@@ -352,6 +389,7 @@ export function ExpandableTabs({
                 role="tab"
                 aria-selected={isActive}
                 aria-label={item.label}
+                tabIndex={tabIndexFuer(isActive, index)}
                 onClick={() => setActive(isActive ? null : item.id)}
                 layout={reduce ? false : "position"}
                 animate={{

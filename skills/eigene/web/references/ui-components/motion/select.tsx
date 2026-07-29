@@ -53,6 +53,9 @@ interface SelectContextValue {
   disabled: boolean;
   placement: Placement;
   setPlacement: (p: Placement) => void;
+  /** Value the arrow keys currently point at (roving focus), or undefined. */
+  aktiv: string | undefined;
+  setAktiv: (v: string | undefined) => void;
 }
 
 const SelectContext = createContext<SelectContextValue | null>(null);
@@ -87,6 +90,7 @@ export function Select({
   const [internal, setInternal] = useState(defaultValue);
   const [labels, setLabels] = useState<Map<string, string>>(new Map());
   const [placement, setPlacement] = useState<Placement>("bottom");
+  const [aktiv, setAktiv] = useState<string | undefined>(undefined);
 
   const controlled = value !== undefined;
   const current = controlled ? value : internal;
@@ -111,6 +115,69 @@ export function Select({
       return next;
     });
   }, []);
+
+  // A `role="listbox"` promises the WAI-ARIA listbox pattern: up/down move
+  // between options, Home/End jump, Enter picks, Escape closes. This component
+  // kept only Escape until 29.07.2026 — 411 lines with role=listbox, role=option
+  // and full aria-*, and not a single arrow key. axe reported zero violations,
+  // because the roles were correct. That is exactly what makes it bad: the role
+  // is a promise to screen-reader users ("this is a listbox, you know this"),
+  // and giving it without the keys is worse than a plain <select> — the user now
+  // knows what it should be and still cannot get through.
+  //
+  // The option order comes from the `labels` Map, which keeps insertion order,
+  // so it matches the DOM order the items registered in.
+  const werte = useMemo(() => [...labels.keys()], [labels]);
+
+  useEffect(() => {
+    if (!open) return;
+    const n = werte.length;
+    if (n === 0) return;
+    const springe = (richtung: 1 | -1) =>
+      setAktiv((v) => {
+        const i = v === undefined ? -1 : werte.indexOf(v);
+        if (i === -1) return richtung === 1 ? werte[0] : werte[n - 1];
+        return werte[(i + richtung + n) % n];
+      });
+    const onArrow = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          springe(1);
+          return;
+        case "ArrowUp":
+          e.preventDefault();
+          springe(-1);
+          return;
+        case "Home":
+          e.preventDefault();
+          setAktiv(werte[0]);
+          return;
+        case "End":
+          e.preventDefault();
+          setAktiv(werte[n - 1]);
+          return;
+        case "Enter":
+        case " ":
+          if (aktiv !== undefined) {
+            e.preventDefault();
+            select(aktiv);
+          }
+          return;
+        default:
+          return;
+      }
+    };
+    window.addEventListener("keydown", onArrow);
+    return () => window.removeEventListener("keydown", onArrow);
+  }, [open, werte, aktiv, select]);
+
+  // Opening puts the pointer on the current value, so arrows continue from
+  // where the eye already is instead of jumping to the top.
+  useEffect(() => {
+    if (open) setAktiv(current);
+    else setAktiv(undefined);
+  }, [open, current]);
 
   // close on outside pointer / escape
   useEffect(() => {
@@ -143,6 +210,8 @@ export function Select({
       disabled,
       placement,
       setPlacement,
+      aktiv,
+      setAktiv,
     }),
     [
       current,
@@ -155,6 +224,7 @@ export function Select({
       baseId,
       disabled,
       placement,
+      aktiv,
     ],
   );
 
@@ -192,6 +262,15 @@ export function SelectTrigger({ className, children }: SelectTriggerProps) {
       aria-expanded={ctx.open}
       aria-controls={ctx.listId}
       onClick={() => ctx.setOpen(!ctx.open)}
+      // ArrowDown/Up on a closed trigger opens the list — the pattern's standard
+      // entry point. Without it a keyboard user opens with Enter and then has to
+      // guess that arrows are suddenly live.
+      onKeyDown={(e) => {
+        if (!ctx.open && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+          e.preventDefault();
+          ctx.setOpen(true);
+        }
+      }}
       // Gooey: the edge facing the panel snaps flat (panel attached) then rounds
       // back once the panel pulls away — the two pinch apart.
       initial={false}
@@ -380,18 +459,30 @@ export function SelectItem({
   const ctx = useSelectContext("SelectItem");
   const selected = ctx.value === value;
   const label = typeof children === "string" ? children : value;
+  const zeigtHierhin = ctx.aktiv === value;
+  const ref = useRef<HTMLButtonElement>(null);
 
   useLayoutEffect(() => {
     ctx.register(value, label);
     return () => ctx.unregister(value);
   }, [ctx.register, ctx.unregister, value, label]);
 
+  // The visible focus ring has to follow the arrow keys — otherwise the user
+  // navigates blind and the pattern is only half kept.
+  useEffect(() => {
+    if (zeigtHierhin) ref.current?.focus();
+  }, [zeigtHierhin]);
+
   return (
     <motion.li variants={ctx.reduce ? undefined : ITEM_VARIANTS}>
       <button
+        ref={ref}
         type="button"
         role="option"
         aria-selected={selected}
+        // Roving tabindex: one option is tabbable at a time. Before any arrow
+        // press that is the selected one, so Tab lands where the eye is.
+        tabIndex={zeigtHierhin || (ctx.aktiv === undefined && selected) ? 0 : -1}
         disabled={disabled}
         onClick={() => ctx.select(value)}
         className={cn(
