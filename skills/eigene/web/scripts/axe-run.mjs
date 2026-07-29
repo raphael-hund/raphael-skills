@@ -17,6 +17,8 @@ const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const URL_ = get('url', null);
 const AS_JSON = args.includes('--json');
+// wcag2a/wcag2aa/wcag21aa = der Umfang, den axe-cli und pa11y als Standard fahren.
+const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'];
 
 if (!URL_) { console.error('usage: axe-run.mjs --url <url> [--json]'); process.exit(2); }
 
@@ -37,16 +39,41 @@ try {
   await page.waitForTimeout(800);
 
   await page.addScriptTag({ path: axePath });
-  const result = await page.evaluate(async () => {
-    // wcag2a/wcag2aa/wcag21aa = der Umfang, den axe-cli und pa11y als Standard fahren.
-    return await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'] } });
-  });
 
+  // Ein unbekannter Tag laesst axe NICHT fehlschlagen — die Regeln dieses Tags
+  // fallen einfach weg. Gemessen 29.07.2026: mit `wcag2a` liefen 89 Regeln, mit
+  // `wcag2a-Tippfehler` statt `wcag2a` nur noch 32 — Exit trotzdem 0, Ausgabe
+  // "0 Violations". Die halbe a11y-Pruefung war still weg.
+  //
+  // axe validiert die Liste nur auf Leere ("must be a non-empty array"), nicht
+  // auf Existenz der Namen. Also jeden Tag einzeln gegen axe.getRules halten:
+  // ein Tag, den keine Regel traegt, ist ein Tippfehler.
+  const unbekannt = await page.evaluate(
+    (tags) => tags.filter((t) => window.axe.getRules([t]).length === 0), TAGS);
+  if (unbekannt.length) {
+    console.error(`axe kennt diese Tags nicht: ${unbekannt.join(', ')} — ihre Regeln liefen NICHT.`
+      + ' Ein Ergebnis mit 0 Violations waere hier wertlos.');
+    process.exit(2);
+  }
+
+  const result = await page.evaluate(
+    async (tags) => await window.axe.run(document, { runOnly: { type: 'tag', values: tags } }), TAGS);
+
+  // Zweite, unabhaengige Absicherung: eine HTML-Seite hat immer Regeln, die
+  // zutreffen oder nicht zutreffen. Sind alle vier Toepfe leer, lief gar nichts
+  // (defektes axe-core, leerer DOM) — auch das ist kein bestandener Lauf.
   const violations = result.violations || [];
+  const regeln = violations.length + (result.passes || []).length
+    + (result.incomplete || []).length + (result.inapplicable || []).length;
+  if (regeln === 0) {
+    console.error('axe hat keine einzige Regel ausgefuehrt — 0 Violations bedeutet hier NICHT barrierefrei.');
+    process.exit(2);
+  }
+
   if (AS_JSON) {
-    console.log(JSON.stringify({ url: URL_, violations, passes: (result.passes || []).length }, null, 2));
+    console.log(JSON.stringify({ url: URL_, violations, passes: (result.passes || []).length, regeln }, null, 2));
   } else {
-    console.log(`${URL_}: ${violations.length} Violation(s), ${(result.passes || []).length} Passes`);
+    console.log(`${URL_}: ${violations.length} Violation(s), ${(result.passes || []).length} Passes, ${regeln} Regeln gelaufen`);
     for (const v of violations) {
       console.log(`  [${v.impact || '?'}] ${v.id} — ${v.help} (${v.nodes.length}x)`);
       for (const n of v.nodes.slice(0, 3)) console.log(`      ${n.target.join(' ')}`);
