@@ -630,6 +630,49 @@ function checkImporte() {
   }
 }
 
+// Motion-Sprache. Wie der Import-Check braucht er die QUELLE, nicht den Build:
+// im Buendel sind Klassennamen und Kurven zusammengeworfen.
+//
+// Warum im Tor und nicht nur von Hand: die Doktrin sagt "beides im selben
+// Projekt -> eine waehlen". Dieser Satz war eine Bitte, und nichts hat je
+// nachgesehen, ob ein Projekt ihn befolgt (Doktrin-Regel 11: erzwingen statt
+// erbitten). Nachgemessen in der eigenen Bibliothek: drei Ease-Kurven im
+// Bestand, die dritte hatte nie jemand entschieden.
+function checkMotion() {
+  if (!SRC) { record('motion', true, 'ohne --src kein Quellcode zum Pruefen', true); return; }
+  const runner = path.join(SKILL_DIR, 'motion-check.mjs');
+  if (!fs.existsSync(runner)) { record('motion', true, 'motion-check.mjs nicht gefunden', true); return; }
+  let out = '';
+  let code = 0;
+  try {
+    // Der Ordner ist ein Positionsargument, kein --src (anders als import-check).
+    out = run('node', [runner, SRC, '--json']);
+  } catch (e) {
+    code = e.status ?? 2;
+    out = String(e.stdout || '');
+    if (code === 2) { record('motion', false, `motion-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); return; }
+  }
+  try {
+    const parsed = JSON.parse(out);
+    if (parsed.fehler) { record('motion', false, `motion-check: ${parsed.fehler}`); return; }
+    const befunde = liste(parsed, 'befunde', 'motion-check');
+    // "0 Dateien gelesen" ist kein bestandener Motion-Check, sondern ein leerer
+    // Lauf — dieselbe Frage wie beim Slop-Scan und beim Link-Check.
+    if (parsed.dateienGelesen === 0) {
+      record('motion', false, 'Motion-Check hat 0 Dateien gelesen — zeigt --src auf den richtigen Ordner?');
+      return;
+    }
+    const blocker = befunde.filter((b) => b.stufe === 'BLOCK');
+    const warn = befunde.filter((b) => b.stufe === 'WARN');
+    record('motion', (parsed.block || 0) === 0,
+      blocker.length === 0
+        ? `${parsed.kurvenAnzahl} Ease-Kurve(n) in ${parsed.dateienGelesen} Datei(en)${warn.length ? `, ${warn.length} Warnung(en)` : ''}`
+        : `${blocker.length} Befund(e): ${blocker.slice(0, 3).map((b) => b.was || b.id).join(', ')}`);
+  } catch {
+    record('motion', false, `motion-check-Ausgabe unlesbar (exit ${code})`);
+  }
+}
+
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
   if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
@@ -707,6 +750,7 @@ checkSlop();
 checkCraft();
 checkFormular();
 checkImporte();
+checkMotion();
 if (!has('no-shots')) checkSweep();
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
@@ -756,7 +800,10 @@ if (failed.length) {
 // aus einem fehlenden Argument wuerde ein kaputtes Tor. Er faellt trotzdem auf:
 // ohne `--src` erscheint er in der SKIP-Zeile, und die Routen-Vollstaendigkeit
 // weiter unten verlangt `--src` ohnehin fuer jede Auslieferung.
-const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular'];
+// motion gehoert dazu: er beantwortet eine Frage, die sonst keiner stellt —
+// ob die Bewegungen des Projekts EINE Sprache sprechen. Kein anderer Pruefer
+// vertritt ihn (gleiche Begruendung wie bei den fuenf anderen, 27.07.2026).
+const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular', 'motion'];
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
 if (fehltGanz.length) {

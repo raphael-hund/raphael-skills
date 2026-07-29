@@ -174,6 +174,52 @@ Belegt in beide Richtungen: `a7-formular-kaputt` reißt an `formular`, und die
 Kontroll-Fixture trägt seit demselben Tag ein **korrekt** gebautes Formular — ein
 Wächter, der nur rot werden kann, wird nach dem dritten Fehlalarm abgeschaltet.
 
+### Die Motion-Entscheidung war eine Bitte, kein Prüfer
+
+```bash
+node scripts/motion-check.mjs <projektordner>
+```
+
+Die Motion-Doktrin entscheidet den Kurven-Konflikt in Prosa: vendorierte Komponenten
+behalten `[0.16, 1, 0.3, 1]`, neuer eigener Code nimmt `cubic-bezier(0.23, 1, 0.32, 1)`,
+und *„beides im selben Projekt → eine wählen"*. Der letzte Satz ist der wichtige — und
+genau er war unverbindlich. Nichts hat je nachgesehen.
+
+Nachgemessen in der eigenen Komponentenbibliothek: **drei** Ease-Kurven statt der zwei
+dokumentierten. Die dritte, `cubic-bezier(0.4, 0, 0.2, 1)` (Material-Default), stand in
+keiner Doktrin-Zeile. Niemand hatte sie entschieden, sie war einfach da.
+
+Das ist der typische Motion-Fehler: nicht eine falsche Kurve, sondern drei richtige
+nebeneinander. Einzeln ist jede verteidigbar, zusammen ergeben sie keine Sprache. Ein
+Auge sieht das erst, wenn zwei Elemente nebeneinander laufen — ein Zähler sofort.
+
+| ID | Was | Stufe |
+|---|---|---|
+| M-motion-1 | drei oder mehr verschiedene Ease-Kurven | **BLOCK** |
+| M-motion-1 | zwei Kurven (dokumentierte Übergangslage: vendoriert + eigen) | WARN |
+| M-motion-3 | Animation ohne jede Reduced-Motion-Vorkehrung | **BLOCK** |
+| M-motion-2 | nacktes `ease`/`ease-out`/`linear` — laut Doktrin zu schwach | WARN |
+
+Liest **Quelltext**, keine URL: die Kurven stehen im CSS/TSX, im gerenderten DOM sind
+sie als Werte nicht mehr sichtbar. Erkennt beide Schreibweisen — `cubic-bezier(…)` im
+CSS und `ease: [0.16, 1, 0.3, 1]` in einer motion-Transition; ohne die zweite sieht der
+Prüfer in einem React-Projekt fast nichts.
+
+> **Reduced Motion hat zwei richtige Formen.** Die erste Fassung dieses Prüfers kannte
+> nur `@media (prefers-reduced-motion)` und färbte damit die eigene Bibliothek rot — die
+> löst es per `useReducedMotion()` in JS. Eine korrekte Umsetzung als Blocker zu melden
+> ist schlimmer als gar nicht zu prüfen: nach dem dritten Fehlalarm schaltet man den
+> Wächter ab, und dann schützt er auch im echten Fall nicht mehr.
+
+Was er **nicht** prüft: ob eine Bewegung überhaupt sein sollte (Frequenz-Gate), ob die
+Dauer zur Distanz passt, ob sie unterbrechbar ist. Das steht in
+`design/references/motion-doktrin.md` und braucht Augen. Dieser Prüfer zählt nur, was
+zählbar ist.
+
+```bash
+node evals/run-motion-check.mjs   # 15 Fälle: 4 müssen reißen, 5 durchgehen, 6 Verdrahtung
+```
+
 ```bash
 node evals/run-formular-check.mjs      # 14 Fälle, jeder ändert genau einen Umstand
 ```

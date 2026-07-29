@@ -52,6 +52,15 @@ Ease-Out-Kurven, beide erfüllen die Regel „CSS-Standard-Easings sind zu schwa
 | **Neuer eigener CSS/Motion-Code im Projekt** | `cubic-bezier(0.23, 1, 0.32, 1)` | design ist die kanonische Quelle. Ein Projekt mit zwei Ease-Out-Kurven hat keine Motion-Sprache. |
 | Beides im selben Projekt | Eine wählen und in den Projekt-Tokens festschreiben | Der Unterschied ist klein, die Uneinheitlichkeit ist der Befund. |
 
+**Diese Tabelle war bis 29.07.2026 eine Bitte.** Nichts hat je nachgezählt, wie viele
+Kurven ein Projekt wirklich benutzt. In dieser Bibliothek lagen **drei** statt der zwei
+oben genannten: `cubic-bezier(0.4, 0, 0.2, 1)` (Material-Default) in
+`ui-components/motion/theme-toggle.tsx` — von niemandem entschieden, einfach da.
+Seitdem prüft `scripts/motion-check.mjs` es, und das G1-Tor führt ihn als sechsten
+Qualitäts-Prüfer. Ab drei Kurven ist es Blocker; zwei bleiben die dokumentierte
+Übergangslage. Details und Belege im `web`-SKILL, Abschnitt „Die Motion-Entscheidung
+war eine Bitte, kein Prüfer".
+
 Wer eine Komponente aus `ui-components/` **anfasst**, zieht sie auf die
 Projekt-Kurve — ab dann gehört die Datei dem Projekt (gleiche Logik wie bei
 `shadcn add`, siehe `shadcn-arbeitsweise.md`).
