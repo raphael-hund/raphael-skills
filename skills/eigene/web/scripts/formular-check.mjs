@@ -58,16 +58,38 @@ try {
       return `${el.tagName.toLowerCase()}${id}${nm}`;
     };
     const sichtbar = (el) => {
-      const r = el.getBoundingClientRect();
       const s = getComputedStyle(el);
-      return r.width > 0 && r.height > 0 && s.visibility !== 'hidden' && s.display !== 'none';
+      if (s.visibility === 'hidden' || s.display === 'none') return false;
+      // `display: contents` loest die eigene Box auf — das Element hat dann
+      // Breite 0, ist aber sehr wohl da, und seine Kinder sind sichtbar.
+      // Sol-Befund 29.07.2026: ein <form style="display:contents"> fiel aus der
+      // Sichtbarkeitspruefung und damit aus F6/F7 komplett heraus. Ein
+      // fehlender Absende-Knopf blieb gruen.
+      if (s.display === 'contents') return true;
+      const r = el.getBoundingClientRect();
+      return r.width > 0 && r.height > 0;
+    };
+
+    // Auch in Shadow Roots suchen. Sol-Befund 29.07.2026: `querySelectorAll`
+    // steigt nicht in ein <lead-form> mit Shadow DOM ein — ein komplettes
+    // Kontaktformular blieb ungeprueft, auch mit --strict. Web-Components sind
+    // bei eingekauften Formular-Widgets (Booking, CRM-Embed) der Normalfall.
+    const tiefSuchen = (wurzel, wahl, raus = []) => {
+      raus.push(...wurzel.querySelectorAll(wahl));
+      for (const el of wurzel.querySelectorAll('*')) {
+        if (el.shadowRoot) tiefSuchen(el.shadowRoot, wahl, raus);
+      }
+      return raus;
     };
 
     // Nur echte Eingabefelder. Knoepfe, Hidden-Felder und Checkboxen haben
     // andere Regeln und wuerden hier nur Rauschen erzeugen.
+    // `file` steht bewusst NICHT mehr drin: ein E-Mail-Feld mit type="file" ist
+    // genau der Fehler, den F1 finden soll (Sol-Befund 29.07.2026) — die
+    // Ausschlussliste hatte ihn vorher unsichtbar gemacht.
     const OHNE_TASTATUR = new Set(['hidden', 'submit', 'button', 'reset', 'image',
-      'checkbox', 'radio', 'file', 'range', 'color']);
-    const felder = [...document.querySelectorAll('input, textarea, select')]
+      'checkbox', 'radio', 'range', 'color']);
+    const felder = tiefSuchen(document, 'input, textarea, select')
       .filter((el) => !OHNE_TASTATUR.has((el.getAttribute('type') || 'text').toLowerCase()))
       .filter(sichtbar);
 
@@ -92,19 +114,57 @@ try {
       if (lab) teile.push(lab.textContent || '');
       const umschliessend = el.closest('label');
       if (umschliessend) teile.push(umschliessend.textContent || '');
-      return teile.join(' ').toLowerCase();
+      // `aria-labelledby` zeigt auf ein beliebiges Element, oft ein <span> statt
+      // eines <label>. Ohne diesen Zweig blieb ein so beschriftetes E-Mail-Feld
+      // komplett ungeprueft — gemessen 29.07.2026 an einer Testseite.
+      // Mehrere IDs sind erlaubt und werden per Leerzeichen getrennt.
+      for (const id of (el.getAttribute('aria-labelledby') || '').split(/\s+/).filter(Boolean)) {
+        const ziel = document.getElementById(id);
+        if (ziel) teile.push(ziel.textContent || '');
+      }
+      // Zuletzt: das direkt davorstehende Textelement. Viele Formulare setzen ein
+      // <span>/<div> ueber das Feld, ohne es zu verknuepfen — fuer den Besucher
+      // ist das die Beschriftung, fuer den Browser nichts. Nur kurze Texte, damit
+      // kein ganzer Absatz als Feldname gilt.
+      const vor = el.previousElementSibling;
+      if (vor && !vor.querySelector('input, select, textarea')) {
+        const t = (vor.textContent || '').trim();
+        if (t && t.length <= 40) teile.push(t);
+      }
+      // Typografische Bindestriche vereinheitlichen. Sol-Befund 29.07.2026:
+      // "E‑Mail" mit U+2011 (non-breaking hyphen) ist fuer das Auge dasselbe
+      // Wort, fuer ein Regex mit ASCII-Bindestrich ein anderes — und genau so
+      // schreiben es Redaktionssysteme und Word-Importe. Dasselbe gilt fuer
+      // Gedankenstriche und weiche Trennstellen (U+00AD), die unsichtbar sind.
+      return teile.join(' ').toLowerCase()
+        .replace(/[‐-―−]/g, '-')
+        .replace(/[­​-‍﻿]/g, '');
     };
 
+    // Kein `\b` am Wortende: Deutsch bildet Komposita. "Telefonnummer",
+    // "Mailadresse", "Geschaeftsemail" und "Firmenwebseite" sind dasselbe Feld
+    // wie "Telefon" — mit Wortgrenze hinten faellt jedes davon durch.
+    // Gemessen 29.07.2026: "Telefonnummer" blieb ungeprueft.
+    // Vorne bleibt die Grenze, sonst traefe "detail" auf "tel".
     const ERWARTET = [
-      { was: 'E-Mail', typ: 'email', muster: /\b(e-?mail|mail)\b/ },
-      { was: 'Telefon', typ: 'tel', muster: /\b(tel|telefon|phone|handy|mobil|rufnummer)\b/ },
-      { was: 'Website/URL', typ: 'url', muster: /\b(url|website|webseite|homepage|domain)\b/ },
+      { was: 'E-Mail', typ: 'email', muster: /(\be-?mail|\bmail(?:adresse)?)/ },
+      { was: 'Telefon', typ: 'tel', muster: /(\btel|\bphone|\bhandy|\bmobil|\brufnummer)/ },
+      { was: 'Website/URL', typ: 'url', muster: /(\burl\b|\bwebsite|\bwebseite|\bhomepage|\bdomain)/ },
     ];
+
+    // Die offenen Wortanfaenge oben treffen auch Woerter, die kein Kontaktfeld
+    // meinen. Ein Moebelhaus mit einem Feld "Mobiliar" bekaeme sonst die
+    // Aufforderung, es auf type="tel" zu stellen — falsches Rot, und nach dem
+    // dritten Fehlalarm schaut niemand mehr hin.
+    // Geprueft 29.07.2026 gegen: detail, hotel, artikel, beschreibung,
+    // nachricht, betreff (alle sauber) sowie die drei hier.
+    const KEIN_KONTAKT = /\b(mobiliar|handyman|mailbox|telefonat|telefonnotiz)\b/;
 
     for (const el of felder) {
       if (el.tagName !== 'INPUT') continue;
       const typ = (el.getAttribute('type') || 'text').toLowerCase();
       const txt = beschriftung(el);
+      if (KEIN_KONTAKT.test(txt)) continue;
       for (const e of ERWARTET) {
         if (!e.muster.test(txt)) continue;
         if (typ !== e.typ) {
@@ -120,10 +180,12 @@ try {
     // Passwortmanager das Ausfuellen an — der Besucher tippt alles von Hand.
     // Gepueft wird nur bei Feldern, die erkennbar Kontaktdaten wollen; ein
     // Suchfeld oder eine Freitextfrage braucht das ausdruecklich NICHT.
-    const KONTAKT = /\b(e-?mail|mail|tel|telefon|phone|handy|mobil|name|vorname|nachname|firma|company|stra(ss|ß)e|plz|ort|adresse)\b/;
+    // Wie bei ERWARTET: keine Wortgrenze am Ende (deutsche Komposita).
+    // `\bort\b` bliebe sonst an "Wohnort" haengen, `\bname\b` an "Nachname".
+    const KONTAKT = /(\be-?mail|\bmail|\btel|\bphone|\bhandy|\bmobil|name|\bfirma|\bcompany|stra(ss|ß)e|\bplz\b|\bort\b|wohnort|adresse)/;
     for (const el of felder) {
       const txt = beschriftung(el);
-      if (!KONTAKT.test(txt)) continue;
+      if (!KONTAKT.test(txt) || KEIN_KONTAKT.test(txt)) continue;
       const ac = (el.getAttribute('autocomplete') || '').trim().toLowerCase();
       // "off" ist eine bewusste Entscheidung (z. B. gegen Passwortmanager-
       // Popups in Nicht-Login-Formularen) und darum kein Befund.
@@ -143,6 +205,22 @@ try {
       if (/preventdefault|return\s+false/i.test(h)) {
         add('BLOCK', 'F3', 'Einfuegen blockiert',
           'onpaste verhindert das Einfuegen — Passwortmanager und Copy-Paste sind tot', sel(el));
+        continue;
+      }
+      // Ein per addEventListener gesetzter Blocker ist im DOM unsichtbar
+      // (Sol-Befund 29.07.2026). Statt danach zu suchen, wird er ausprobiert:
+      // ein echtes paste-Event abschicken und nachsehen, ob es abgewuergt wurde.
+      // Das ist die einzige verlaessliche Antwort — sie gilt fuer beide
+      // Schreibweisen und laesst sich nicht durch Code-Kosmetik umgehen.
+      let blockiert = false;
+      try {
+        const ev = new ClipboardEvent('paste', { bubbles: true, cancelable: true });
+        el.dispatchEvent(ev);
+        blockiert = ev.defaultPrevented;
+      } catch { /* ClipboardEvent nicht baubar — dann bleibt es beim Attribut-Check */ }
+      if (blockiert) {
+        add('BLOCK', 'F3', 'Einfuegen blockiert',
+          'ein paste-Handler ruft preventDefault() — Passwortmanager und Copy-Paste sind tot', sel(el));
       }
     }
 
@@ -179,9 +257,19 @@ try {
     //
     // Gepueft wird pro <form>, in DOM-Reihenfolge. Ein Formular mit nur einem
     // Feld hat keine Reihenfolge und wird uebersprungen.
-    const IST_KONTAKT = /\b(e-?mail|mail|tel|telefon|phone|handy|mobil|rufnummer)\b/;
-    for (const form of [...document.querySelectorAll('form')].filter(sichtbar)) {
-      const eigene = felder.filter((el) => form.contains(el));
+    const IST_KONTAKT = /(\be-?mail|\bmail|\btel|\bphone|\bhandy|\bmobil|\brufnummer)/;
+
+    // Viele Formulare haben gar kein <form>-Element — React-Widgets sammeln die
+    // Felder und schicken sie per fetch(). Sol-Befund 29.07.2026: F6 und F7
+    // liefen ausschliesslich ueber `querySelectorAll('form')`, also blieb ein
+    // reines Label+Input-Konstrukt in beiden Regeln unsichtbar. Fehlt das
+    // <form>, gilt das Dokument selbst als der eine Container.
+    const container = tiefSuchen(document, 'form').filter(sichtbar);
+    const gruppen = container.length
+      ? container.map((f) => ({ el: f, felder: felder.filter((x) => f.contains(x)) }))
+      : [{ el: document.body, felder }];
+
+    for (const { felder: eigene } of gruppen) {
       if (eigene.length < 2) continue;
       const kontaktIdx = eigene.map((el, i) => (IST_KONTAKT.test(beschriftung(el)) ? i : -1))
         .filter((i) => i >= 0);
@@ -198,16 +286,22 @@ try {
 
     // ---- F7: Absende-Knopf. Ein von Anfang an deaktivierter Knopf sieht aus
     // wie ein kaputtes Formular; die Regel ist "aktiv bis der Request laeuft".
-    for (const form of [...document.querySelectorAll('form')].filter(sichtbar)) {
-      const knopf = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
-      if (!knopf) {
+    for (const { el: form } of gruppen) {
+      // Ein `hidden`- oder `display:none`-Knopf erfuellt die Regel nicht: fuer
+      // den Besucher existiert er nicht. Sol-Befund 29.07.2026 — vorher zaehlte
+      // `querySelector` jeden Treffer, auch einen unsichtbaren.
+      const knoepfe = [...form.querySelectorAll(
+        'button[type="submit"], input[type="submit"], button:not([type])')].filter(sichtbar);
+      if (!knoepfe.length) {
         add('WARN', 'F7', 'Kein Absende-Knopf',
-          'Formular ohne submit-Knopf — Enter-Absenden allein ist auf dem Handy unerreichbar', sel(form));
+          'Kein sichtbarer submit-Knopf — Enter-Absenden allein ist auf dem Handy unerreichbar',
+          sel(form));
         continue;
       }
-      if (knopf.disabled) {
+      // Sind ALLE deaktiviert, kann niemand absenden. Reicht einer, ist gut.
+      if (knoepfe.every((k) => k.disabled)) {
         add('WARN', 'F7', 'Absende-Knopf deaktiviert',
-          'submit-Knopf ist beim Laden deaktiviert — soll bis zum Absenden aktiv bleiben', sel(knopf));
+          'submit-Knopf ist beim Laden deaktiviert — soll bis zum Absenden aktiv bleiben', sel(knoepfe[0]));
       }
     }
 
