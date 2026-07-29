@@ -578,8 +578,15 @@ echten, sauberen Lauf aus. Behoben über `design/scripts/rules.de.mjs` (Abschnit
 
 ```bash
 node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch Scanner
-node evals/run-slop-de-check.mjs     # 30 Fälle: 17 Treffer, 8 Gegenproben, 5 Einstufungen
+node evals/run-slop-de-check.mjs     # 50 Fälle in 0,4s: Treffer, Gegenproben, Einstufung, Laufzeit
 ```
+
+> **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
+> `run-slop-de-check.mjs` rief den Scanner einmal pro Testfall auf. Unter Last
+> (Load 100 auf diesem VPS) lief sie über zehn Minuten und wurde zweimal vom
+> Zeitlimit abgeschossen — eine Eval, die niemand zu Ende laufen lässt, prüft
+> nichts. Alle Sätze in eine Datei, ein Lauf, Zuordnung über die Zeilennummer:
+> **0,4 Sekunden**, gleiche Aussagekraft. Gilt für jede neue Eval hier.
 
 Sechs Ausgaben, die reißen müssen — darunter drei ältere, bereits behobene Fehler als
 Regressionsschutz (`hits: 0` bei voller Fundliste, `hits: 1` bei leerer, ID als Zahl

@@ -121,11 +121,28 @@ const RUHE = [
 ];
 
 // --- Hilfen ---------------------------------------------------------------
-function scanne(text) {
+// EIN Scanner-Aufruf fuer alle Saetze, nicht einer pro Satz.
+//
+// Die erste Fassung startete pro Testfall einen eigenen node-Prozess. Bei 50
+// Faellen sind das 50 Interpreter-Starts; auf dem VPS unter Last (29.07.2026:
+// Load 100) lief die Eval damit ueber zehn Minuten und wurde zweimal vom
+// Zeitlimit abgeschossen. Eine Eval, die niemand zu Ende laufen laesst, prueft
+// nichts.
+//
+// Stattdessen: jeder Satz auf eine eigene Zeile derselben Datei, ein Lauf, die
+// Zuordnung ueber die Zeilennummer. Der Scanner meldet `line` je Treffer.
+// Das ist auch naeher am Ernstfall — dort steht der Satz ebenfalls in einer
+// Seite mit anderen Zeilen und nicht allein.
+function scanneAlle(saetze) {
   const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'slop-de-'));
   try {
-    fs.writeFileSync(path.join(ordner, 'index.html'),
-      `<!doctype html><html lang="de"><body><p>${text}</p></body></html>`);
+    // Zeile 1 ist der doctype, ab Zeile 2 kommen die Saetze: Satz i steht auf
+    // Zeile i+2. Ein <p> pro Zeile, damit kein Muster ueber zwei Saetze hinweg
+    // greift und einen Treffer dem falschen Fall zuschreibt.
+    const html = ['<!doctype html><html lang="de"><body>']
+      .concat(saetze.map((s) => `<p>${s}</p>`))
+      .concat(['</body></html>']).join('\n');
+    fs.writeFileSync(path.join(ordner, 'index.html'), html);
     let roh;
     try {
       roh = execFileSync('node', [SCAN, ordner, `--rules=${REGELN}`, '--json'],
@@ -133,13 +150,24 @@ function scanne(text) {
     } catch (e) {
       roh = String(e.stdout || '');
     }
-    return JSON.parse(roh);
+    const json = JSON.parse(roh);
+    // zeile -> Set der dort gefundenen Tell-IDs
+    const proZeile = new Map();
+    for (const f of json.findings || []) {
+      for (const h of f.hits || []) {
+        if (!proZeile.has(h.line)) proZeile.set(h.line, new Set());
+        proZeile.get(h.line).add(f.id);
+      }
+    }
+    return saetze.map((_, i) => [...(proZeile.get(i + 2) || [])]);
   } finally {
     fs.rmSync(ordner, { recursive: true, force: true });
   }
 }
 
-const ids = (json) => (json.findings || []).map((f) => f.id);
+// Der Regelsatz selbst — fuer die Laufzeitmessung direkt geladen.
+const REGELSATZ = (await import(REGELN)).default;
+
 
 let fehler = 0;
 const zeile = (ok, text, detail) => {
@@ -151,8 +179,9 @@ const zeile = (ok, text, detail) => {
 // --- 1. Treffer -----------------------------------------------------------
 console.log('\nSlop-Check DEUTSCH — findet der Scanner deutsche Floskeln?\n');
 console.log('Diese muessen anschlagen — sonst laeuft das Tor auf Deutsch blind:\n');
-for (const [erwartet, satz] of TREFFER) {
-  const gefunden = ids(scanne(satz));
+const trefferErg = scanneAlle(TREFFER.map(([, s]) => s));
+for (const [i, [erwartet, satz]] of TREFFER.entries()) {
+  const gefunden = trefferErg[i];
   zeile(gefunden.includes(erwartet),
     `${erwartet}  "${satz.slice(0, 52)}${satz.length > 52 ? '…' : ''}"`,
     gefunden.includes(erwartet) ? null : `erwartet ${erwartet}, bekam [${gefunden.join(', ') || 'nichts'}]`);
@@ -160,8 +189,9 @@ for (const [erwartet, satz] of TREFFER) {
 
 // --- 2. Ruhe --------------------------------------------------------------
 console.log('\nDiese muessen still bleiben — sonst ist der Regelsatz unbrauchbar:\n');
-for (const satz of RUHE) {
-  const gefunden = ids(scanne(satz)).filter((i) => i.startsWith('de-'));
+const ruheErg = scanneAlle(RUHE);
+for (const [i, satz] of RUHE.entries()) {
+  const gefunden = ruheErg[i].filter((x) => x.startsWith('de-'));
   zeile(gefunden.length === 0,
     `"${satz.slice(0, 56)}${satz.length > 56 ? '…' : ''}"`,
     gefunden.length ? `Falsch-Positiv: ${gefunden.join(', ')}` : null);
@@ -169,10 +199,37 @@ for (const satz of RUHE) {
 
 // --- 2b. Bewusste Grenzen -------------------------------------------------
 console.log('\nBewusst nicht abgedeckt — muss still bleiben, ist keine Luecke:\n');
-for (const [satz, warum] of BEWUSST_BLIND) {
-  const gefunden = ids(scanne(satz)).filter((i) => i.startsWith('de-'));
+const blindErg = scanneAlle(BEWUSST_BLIND.map(([s]) => s));
+for (const [i, [satz, warum]] of BEWUSST_BLIND.entries()) {
+  const gefunden = blindErg[i].filter((x) => x.startsWith('de-'));
   zeile(gefunden.length === 0, `"${satz}"  (${warum})`,
     gefunden.length ? `schlaegt jetzt an (${gefunden.join(', ')}) — Muster zu breit nachgeruestet?` : null);
+}
+
+// --- 2c. Laufzeit ---------------------------------------------------------
+// Die Muster enthalten begrenzte Quantifizierer ((?:\w+ ){0,2}?, {0,120}).
+// Das ist die Stelle, an der jemand spaeter versehentlich zwei unbegrenzte
+// Wiederholungen ineinander schachtelt und den Scanner damit auf boesartigen
+// Eingaben haengen laesst. Gemessen wird CPU-Zeit, nicht Wanduhr: der VPS hatte
+// am 29.07.2026 Load 100, und ein Wanduhr-Limit haette hier falschen Alarm
+// geschlagen (94s Laufzeit bei 0,1s Rechenzeit).
+console.log('\nLaufzeit der Muster — begrenzte Quantifizierer, kein Backtracking:\n');
+{
+  const boese = [
+    'a'.repeat(2000),
+    'Wir sind ' + 'sehr '.repeat(400) + 'gut.',
+    '!'.repeat(600),
+    'Schluss mit ' + 'x'.repeat(1500),
+    'nicht nur ' + '-'.repeat(1500),
+  ];
+  const vorher = process.cpuUsage();
+  for (const s of boese) {
+    for (const t of REGELSATZ) for (const p of t.patterns) p.test(s);
+  }
+  const cpuMs = (process.cpuUsage(vorher).user + process.cpuUsage(vorher).system) / 1000;
+  zeile(cpuMs < 500,
+    `${boese.length} boesartige Eingaben gegen alle Muster: ${cpuMs.toFixed(0)}ms CPU`,
+    cpuMs < 500 ? null : 'ueber 500ms — ein Muster backtrackt, bitte Quantifizierer pruefen');
 }
 
 // --- 3. Einstufung im Gate ------------------------------------------------
@@ -192,7 +249,7 @@ zeile(gateQuelle.includes('rules.de.mjs fehlt'),
   'fehlender Regelsatz steht im Urteilstext, statt still englisch zu laufen');
 
 // --- Schluss --------------------------------------------------------------
-const gesamt = TREFFER.length + RUHE.length + BEWUSST_BLIND.length + 5;
+const gesamt = TREFFER.length + RUHE.length + BEWUSST_BLIND.length + 1 + 5;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Der deutsche Slop-Schutz ist luecken- oder laermhaft.');

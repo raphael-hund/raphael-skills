@@ -30,6 +30,21 @@
 // Wer einen Treffer bewusst behaelt, unterdrueckt ihn per Kommentar-Direktive
 // `deslop-ignore de-16` in der Zeile — nicht durch Aufweichen des Musters.
 //
+// KEIN ReDoS — nachgemessen, nicht vermutet (29.07.2026)
+// Beim Anti-Set-Lauf brauchte der Scanner ueber 90 Sekunden fuer acht kleine
+// Dateien und lief ins Zeitlimit. Naheliegender Verdacht: katastrophales
+// Backtracking in einem der neuen Muster, vor allem den verschachtelten
+// (?:\w+ ){0,2}?- und {0,120}-Konstrukten. Falsch. Gemessen:
+//
+//   118.300 Regex-Tests in 165ms  =  1,4µs pro Test
+//   Prozess-CPU-Zeit 112ms bei 94s Laufzeit
+//
+// Die Muster sind harmlos; der VPS hatte Load 88-102. Wer hier das naechste Mal
+// einen langsamen Scan sieht: erst `uptime`, dann den Regex verdaechtigen. Alle
+// Quantifizierer sind bewusst begrenzt ({0,2}, {0,120}) und keiner verschachtelt
+// zwei unbegrenzte Wiederholungen ineinander — das ist die Bedingung, unter der
+// Backtracking wirklich explodiert.
+//
 // BEWUSST NICHT ABGEDECKT (Abdeckungsmessung 29.07.2026)
 // Die Dreier-Aufzaehlung als Reflex ("schnell, einfach und effektiv") steht in
 // der Verbotsliste, ist aber nicht greppbar: sie ist strukturell nicht von
