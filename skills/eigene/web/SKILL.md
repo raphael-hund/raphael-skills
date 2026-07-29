@@ -31,15 +31,22 @@ loads:
   - references/readonly-db-rolle.md
   - references/design-systeme-vergleich.md
   - references/radix-shadcn-tailwind-stack.md
+  - references/bibliotheks-tresor.md
+  - references/shadcn-arbeitsweise.md
+  - references/motion-gsap.md
+  - references/react-next-performance.md
+  - references/varianten-picker.md
   - references/remotion-produktionsweg.md
   - references/templates/statistics-page-template.html
   - references/agentur-merkmale.md
   - references/orchestrierung.md
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 completion_criteria:
-  - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Sweep in einem Exit-Code)"
+  - "`node scripts/g1-gate.mjs --url <url> --src <projekt>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Formular, Sweep in einem Exit-Code)"
   - "`node scripts/craft-check.mjs --url <url>` meldet 0 BLOCK (Agentur-Merkmale, belegt in references/agentur-merkmale.md)"
-  - "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)"
+  - "Jede im Build genutzte UI-Library ist per `node scripts/lib-lookup.mjs <name>` nachgeschlagen; jeder Import steht in deren `Export:`-Zeile (references/bibliotheks-tresor.md)"
+  - "`node scripts/formular-check.mjs --url <url>` meldet 0 BLOCK (richtiger input-type, Einfuegen nicht blockiert — im G1-Tor enthalten)"
+  - "Formular-Reihenfolge: Kontaktdaten zuletzt (F6, WARN im Tor); Drop-off pro Slide gemessen (G1, hart)"
   - "G2 auf jedem Ship-Copy-Block >= 0.7"
   - "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate"
   - "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch"
@@ -104,7 +111,7 @@ node scripts/g1-gate.mjs --url http://localhost:3000/ --src .
 ```
 
 Er bündelt Erreichbarkeit, Lighthouse (4 Kategorien), axe, tote Links, AI-Slop,
-Craft-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
+Craft-Check, Formular-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
 
 - **Exit 0** — bestanden. Nur dann darf „fertig" gesagt werden.
 - **Exit 1** — Qualität gerissen. Der Bericht nennt Kategorie und Ist/Soll.
@@ -113,14 +120,58 @@ Craft-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
 
 Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
 hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** ist auch nur
-**einer** der vier Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft) überhaupt nicht
-gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein Rechner ohne installierte
-Werkzeuge jede beliebige Seite mit „G1 BESTANDEN — 0 Checks grün" durchgewinkt.
+**einer** der fünf Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft, Formular)
+überhaupt nicht gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein Rechner ohne
+installierte Werkzeuge jede beliebige Seite mit „G1 BESTANDEN — 0 Checks grün"
+durchgewinkt.
 
 > Bis 27.07. reichten hier **zwei von vier**. Diese Schwelle war willkürlich: fehlten
 > Lighthouse und der Slop-Scan, meldeten axe und Craft allein ein grünes Tor — Tempo,
-> Suchmaschinen und KI-Tells waren schlicht ungeprüft. Jeder der vier beantwortet eine
+> Suchmaschinen und KI-Tells waren schlicht ungeprüft. Jeder beantwortet eine
 > eigene Frage, keiner vertritt einen anderen.
+
+### Das Formular sah keiner der vier an
+
+```bash
+node scripts/formular-check.mjs --url <url>
+```
+
+Testfall 29.07.: eine Seite mit `<input type="text" name="e">` für die E-Mail-Adresse,
+ohne `autocomplete`, ohne `inputmode`. **axe meldete 0 Violations** (31 Passes),
+**craft-check meldete keinen einzigen Formular-Befund.** Beide haben recht — axe prüft
+Zugänglichkeit, craft-check prüft Handwerk am Aussehen. Ob das Feld auf dem Telefon die
+richtige Tastatur öffnet und ob der Passwortmanager es ausfüllt, fragte niemand.
+
+Auf einer Landingpage ist das Formular die **einzige** Conversion. Ein E-Mail-Feld mit
+Buchstabentastatur kostet mehr Leads als jeder Kontrastfehler, den alle vier Prüfer
+zuverlässig finden.
+
+| ID | Was | Stufe |
+|---|---|---|
+| F1 | E-Mail/Telefon/URL mit falschem `type` | **BLOCK** |
+| F3 | `onpaste` verhindert Einfügen | **BLOCK** |
+| F2 | Kontaktfeld ohne `autocomplete` | WARN |
+| F4 | Eingabefeld unter 36px hoch | WARN |
+| F5 | Feldschrift unter 16px (iOS zoomt beim Fokus) | WARN |
+| F6 | Kontaktdaten vor den Sachfragen (`landingpage-struktur.md`) | WARN |
+| F7 | kein submit-Knopf, oder beim Laden deaktiviert | WARN |
+
+Regelherkunft: Vercel Web Interface Guidelines (Forms, Touch & Interaction,
+Anti-patterns) plus Raphaels eigene Formular-Reihenfolge. Der Vercel-Skill holt seine
+Regeln live per WebFetch — hier sind genau die **maschinell prüfbaren** fest verdrahtet,
+damit das Tor ohne Netz urteilt. Was sich mit axe überschneiden würde (Label vorhanden,
+Kontrast, Fokus), steht bewusst **nicht** drin: zwei Prüferstimmen zum selben Befund
+machen ihn nicht wahrer, nur lauter.
+
+Belegt in beide Richtungen: `a7-formular-kaputt` reißt an `formular`, und die
+Kontroll-Fixture trägt seit demselben Tag ein **korrekt** gebautes Formular — ein
+Wächter, der nur rot werden kann, wird nach dem dritten Fehlalarm abgeschaltet.
+
+**Lighthouse-Performance misst die Maschine mit.** Dieselbe unveränderte Testseite
+lieferte am 28.07. einmal 92 und einmal 72 — nur weil der VPS zwischendurch unter
+Last stand. Auf einem beschäftigten Rechner ist ein Performance-Rot deshalb erst ein
+Befund, wenn er sich bei ruhiger Maschine wiederholt. Die anderen drei Kategorien
+(accessibility, best-practices, seo) sind deterministisch und gelten sofort.
 
 Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebungen:
 
@@ -129,6 +180,80 @@ Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebun
 | Beweis-Build, alle Werkzeuge da | 7 Checks grün | **0** |
 | dieselbe Seite ohne die Mobile-Umbruch-Regel | craft/ gerissen, 2× M13 | **1** |
 | dieselbe Seite, Werkzeuge nicht auffindbar | 1 von 4 Prüfern gelaufen | **2** |
+
+> Diese drei Läufe stammen vom 27./28.07., als das Tor vier Qualitäts-Prüfer hatte.
+> Seit dem Formular-Check sind es fünf; die Zeile „7 Checks grün" wäre heute eine
+> andere Zahl. Der belastbare, täglich wiederholte Beweis ist ohnehin das Anti-Set
+> (`node evals/run-antiset.mjs`, 11 Fälle) — es prüft jede Richtung einzeln, statt
+> einmalig eine Gesamtzahl festzuhalten. Der Beweis-Build hat selbst kein Formular
+> und kein Bild und würde heute an M24 reißen: er ist ein Zeitdokument, kein
+> Zielbild. Wer eine aktuelle Referenz braucht, nimmt `evals/antiset/_basis.html`.
+
+### Der Prüfstand muss sich verhalten wie die Produktion
+
+```bash
+node scripts/pruefstand.mjs --dir dist --port 5399          # servieren
+node scripts/pruefstand.mjs --dir dist --routen             # nur die Routenliste
+```
+
+**Nie `python3 -m http.server` für einen Build, der auf Vercel läuft.** Am
+28.07. meldete das Tor an einer echten Kundenseite **172 tote Links**. Kein
+einziger war echt: die Seite läuft mit `cleanUrls: true`, `/team` liefert dort
+`team.html`. Der nackte Dateiserver kennt diese Regel nicht und antwortete 404.
+
+Falsches Rot ist auf Dauer genauso schädlich wie falsches Grün — nach dem dritten
+Fehlalarm schaut niemand mehr hin. Der Prüfstand liest darum `vercel.json` und
+wendet `cleanUrls`, `redirects` und `rewrites` an, bevor er urteilen lässt. Eine
+SPA-Auffangregel hat er bewusst **nicht**: die macht aus jedem toten Link eine
+200-Antwort und schaltet die Link-Prüfung praktisch ab.
+
+```bash
+node evals/run-pruefstand.mjs      # 10 Fälle, braucht keinen Browser
+```
+
+Ein Werkzeug, das andere Werkzeuge vor Fehlalarm schützt, ist selbst die neue
+Schwachstelle: sagt es fälschlich 200, verschwindet ein echter toter Link
+ungesehen. Der Lauf prüft beide Richtungen — `cleanUrls`, Ordner-Index und
+Wildcard-Redirects müssen greifen, tote Links müssen **404 bleiben**, ohne
+`vercel.json` darf `cleanUrls` nicht stillschweigend anspringen, und `/../` darf
+nicht aus dem Build-Ordner ausbrechen.
+
+Der erste Lauf fand sofort einen echten Fehler: in `zuRegex` fehlten `*` und `(`
+in der Escape-Klasse, aus `(.*)` wurde `(\.*)` — ein Muster, das nur auf Punkte
+passt. **Jeder Wildcard-Redirect war still wirkungslos.** Der Prüfstand hatte
+also genau den Fehlertyp, gegen den er gebaut wurde.
+
+### Erfundene Imports fallen vor dem Build auf
+
+```bash
+node scripts/import-check.mjs --src .
+```
+
+Modelle erfinden Exportnamen. `import { ToastProvider } from 'sonner'` sieht
+plausibel aus und existiert nicht — in TypeScript stirbt der Build, in JavaScript
+ist die Komponente zur Laufzeit `undefined` und die Seite bleibt still leer. Das
+Skript vergleicht jeden benannten Import gegen die echten Typdeklarationen im
+Tresor (`/root/tools/uikit-vault`, per `UIKIT_VAULT` umstellbar).
+
+Es urteilt nur, wo es sicher ist: Findet es keine Typdatei oder steht dort ein
+`export *`, gilt die Library als **unprüfbar** und wird still übersprungen — nie
+als „Import existiert nicht" gemeldet. Exit 2 heißt „Prüfer selbst kaputt"
+(Tresor fehlt), ausdrücklich kein Bestanden.
+
+### Grün für eine Seite ist kein Grün für die Website
+
+`--routes` steht ohne Angabe auf `/`. Derselbe Build hatte **28 Seiten** — geprüft
+wurde eine, gemeldet wurde grün fürs Ganze. Die anderen 27 waren nicht bestanden,
+sie waren ungesehen.
+
+Mit `--src` merkt das Tor das jetzt selbst: es vergleicht die genannten `--routes`
+mit den Seiten im Build. Bleibt eine übrig → **Exit 2**, nicht Exit 0. Es wählt die
+Routen nicht selbst aus, es weigert sich nur, stillschweigend für Unbesehenes zu
+bürgen. Vollständige Liste: `node scripts/pruefstand.mjs --dir <build> --routen`.
+
+> Die erste Fassung fragte nur, **ob** `--routes` gesetzt ist. Wer 2 von 28 Seiten
+> nannte, bekam Grün fürs Ganze — dieselbe Lücke, eine Ebene tiefer. Eine Regel, die
+> nur die nackte Anwesenheit einer Angabe prüft, prüft in Wahrheit gar nichts.
 
 ### Wer prüft den Prüfer
 
@@ -221,6 +346,48 @@ eine Zeile entfernt wurde. Das ist die Bauform für jede Fixture:
 **Regel:** Wer einen BLOCK-Befund einbaut, baut im selben Zug die Fixture, die ihn
 auslöst, und trägt sie in `ERWARTET` ein. Ein Blocker ohne Fixture ist eine Behauptung.
 
+Und die Fixture muss **beide** Richtungen abdecken. Der Routen-Wächter hatte zuerst
+nur den Fall „`--routes` fehlt ganz". Damit war die eigentliche Lücke ungeprüft — 2
+von 28 Seiten nennen und Grün bekommen — und der Fall „alle Routen genannt, darf grün
+werden" ebenfalls. Ein Wächter, der nie grün wird, wird nach dem dritten Fehlalarm
+abgeschaltet. `ROUTEN_FAELLE` in `run-antiset.mjs` prüft darum alle drei Ausgänge.
+
+Das prüft aber nur, **ob** der Wächter blockt — nicht, ob er die richtigen Seiten
+zählt. Beides kann getrennt kaputtgehen, und der zweite Fall ist der leisere: zählt
+`seitenImBuild` eine Seite nicht mit, gilt sie als bestanden, obwohl sie niemand
+geöffnet hat. Der Wächter meldet dann grün und liegt falsch, ohne je rot geworden zu
+sein.
+
+```bash
+node evals/run-routen-check.mjs      # 15 Fälle, weder Browser noch Server
+```
+
+Er baut einen Testordner, wie ihn ein echter Build hinterlässt, und verlangt beide
+Richtungen: `/`, `/impressum`, `/team`, `/leistungen`, `/leistungen/sanierung` müssen
+gefunden werden — `404.html`, `assets/`, `robots.txt`, `sitemap.xml`, `node_modules/`
+dürfen es nicht. Dazu die Gegenprobe, dass ein unlesbarer Ordner **laut** scheitert
+statt eine leere Liste zurückzugeben; leer hieße „Build ohne Unterseiten", und das
+wäre stilles Grün für eine Website, die das Tor nie gesehen hat.
+
+### Zwei Läufe, ein Ergebnis: das Tor war nicht parallel-fest
+
+Am 28.07. liefen zwei Anti-Set-Läufe gleichzeitig. Die Kontrolle meldete **rot** an
+`lighthouse`, obwohl an der Seite nichts kaputt war. Ursachen, alle drei derselbe
+Fehlertyp — geteilter Zustand ohne Eigentümer:
+
+| Geteilt | Folge |
+|---|---|
+| `/tmp/g1-gate/lh_.json` für alle Läufe | Lauf A schrieb das Ergebnis, Lauf B las es als seines |
+| Port 5321 fest verdrahtet | zweiter Server starb still, beide maßen gegen fremde Dateien |
+| eine Protokolldatei | Zeilen zweier Läufe verschränkt, unlesbar |
+
+Behoben: `--out` legt ohne Angabe je Lauf einen eigenen Ordner an (`mkdtemp`), der
+Anti-Set-Läufer beweist per Testdatei, dass der Server auf dem Port **seiner** ist,
+und das Protokoll trägt die Prozessnummer.
+
+> **Falsches Rot ist auf Dauer so schädlich wie falsches Grün.** Nach dem dritten
+> Fehlalarm schaut niemand mehr hin — und dann übersieht man den echten Befund.
+
 Zwei Prüfer, zwei Blindstellen, beide nötig: `scan-ai-slop.mjs` liest **Quelltext**,
 `craft-check.mjs` liest das **gerenderte DOM**. Auf demselben Testfall meldete der
 Quelltext-Scan 0 Tells, während der DOM-Scan 5 Blocker fand. Details und Schwellen:
@@ -234,10 +401,10 @@ zwischen zwei Skills springen, aber Design auch nie hier neu erfinden. So teilt 
 
 | Aufgabe | r-design-Linie | Referenz in design |
 |---|---|---|
-| Landing/Kampagne/Portfolio (Design IST das Produkt) | **taste-Linie** | `references/taste-kern.md` |
-| App/Dashboard/Tool (Design DIENT dem Produkt) | **ui-ux-Linie** (Offline-DB) | `references/ui-ux-db-nutzung.md` |
-| Finale Design-QA (immer, hart) | **impeccable-Detektoren** | `references/impeccable-detektoren.md` |
-| Konflikte/Doktrin (Typo/Farbe/Layout) | fusionierte Regeln | `references/design-doktrin.md` |
+| Landing/Kampagne/Portfolio (Design IST das Produkt) | **taste-Linie** | `design/references/taste-kern.md` |
+| App/Dashboard/Tool (Design DIENT dem Produkt) | **ui-ux-Linie** (Offline-DB) | `design/references/ui-ux-db-nutzung.md` |
+| Finale Design-QA (immer, hart) | **impeccable-Detektoren** | `design/references/impeccable-detektoren.md` |
+| Konflikte/Doktrin (Typo/Farbe/Layout) | fusionierte Regeln | `design/references/design-doktrin.md` |
 
 Regel: In den Schritten `art-direction` und `qa-faecher` (Fach 2 Design) **design laden
 und befolgen**. impeccable = Exit 0 ist harte Ship-Bedingung. Herkunft der Design-Regeln
@@ -293,9 +460,35 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht
    verwechseln mit den **Design-Referenz-Mockups** aus `imagegen-web`/`imagegen-mobile`
    (ein Mockup pro Sektion) — die Tabelle „Abgrenzung" in `bildgenerierung.md` trennt das.
-5. **components** — Komponenten-Spezifikation aus Art Direction. Copy-paste-fertige
-   Motion-Komponenten (Buttons, Modals, Tabs, Command-Palette, …) → `references/ui-components/INDEX.md`
-   + Motion-Doktrin (wann/wie animieren, Reduced-Motion-Pflicht) → `references/motion-doktrin.md`.
+5. **components** — Komponenten-Spezifikation aus Art Direction. **Erster Griff ist
+   immer der Bibliotheks-Tresor, nicht der eigene Kopf:**
+   `node scripts/lib-lookup.mjs --task <aufgabe>` sagt, welche der 30 lokal
+   installierten Libraries diese Aufgabe löst, `node scripts/lib-lookup.mjs <name>`
+   nennt Version, Doku-Pfad und die **echten** Exportnamen. Regeln, Zuordnung und
+   Lizenzen → `references/bibliotheks-tresor.md`. Ein Import, der nicht in der
+   `Export:`-Zeile steht, existiert nicht — das ersetzt jedes Raten aus dem
+   Gedächtnis. Kommen die Komponenten aus shadcn oder Appica, gilt zusätzlich
+   `references/shadcn-arbeitsweise.md` (lokale Registry statt Browser,
+   Audit→Plan→Ausführung, Marken-Tokens **vor** der Auslieferung — der
+   Default-Look ist der Anfang der Arbeit, nicht das Ergebnis).
+   Steht die **Form** eines tragenden Stücks (Hero, Preisblock, Formularschritt)
+   noch nicht fest und gibt es keine Vorlage → `references/varianten-picker.md`
+   (drei divergente Varianten hinter einem Umschalter, statt eine zu raten).
+   Copy-paste-fertige
+   Motion-Komponenten (Buttons, Modals, Tabs, …) → `references/ui-components/INDEX.md`.
+   **Vorfahrt: Tresor vor Bibliothek.** Für sieben Aufgaben gibt es beides — eine
+   handgeschriebene Datei in `ui-components/` **und** eine installierte Library im
+   Tresor. Dort gewinnt immer die Library (Toasts→`sonner`, OTP→`input-otp`,
+   ⌘K→`cmdk`, Drawer→`vaul`, Zahlen→`@number-flow/react`, lange Listen→
+   `react-virtuoso`, Karussell→`embla-carousel-react`); die Datei bleibt Vorlage
+   für die *Bewegung*, nicht Bauteil. Vollständige Tabelle im INDEX, Abschnitt
+   „Wo diese Bibliothek NICHT die Antwort ist".
+   Motion-**Regeln** stehen nicht in diesem Skill: `references/motion-doktrin.md`
+   nennt nur die Projekt-Bindung (ease-Token, Reduced-Motion je Framework) und
+   verweist für alle Werte auf die kanonische design-Doktrin;
+   Scroll-Sequenzen, Timelines und SVG-Morphing brauchen das dritte Werkzeug →
+   `references/motion-gsap.md` (Entscheidungstabelle CSS/Framer Motion/GSAP,
+   `useGSAP`-Pflichtmuster gegen Leaks, `gsap.matchMedia()` für Reduced-Motion).
    Weitere Komponenten-Ideen (Glass/Mesh-Gradient/3D) nur als Vokabular →
    `references/ui-layouts-catalog.md`. Welches Design-System zum Brief passt
    (Radix/shadcn/Tailwind, Fluent, Carbon, Polaris, Atlassian, Material, …) →
@@ -305,7 +498,12 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Hero-/Teaser-Video oder eine React-basierte Video-Composition (kein
    normales CSS-Motion) → `references/remotion-produktionsweg.md`.
 6. **build** — Umsetzung (Terra/Sol, Cross-Vendor `/codex:review`). Bei echtem Custom-Code
-   zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Formular-
+   zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Entsteht
+   echter React/Next-Code (eigene Komponenten, Data-Fetching, Server Actions) →
+   `references/react-next-performance.md`: Waterfalls und Bundle zuerst (das sind die
+   beiden größten Hebel), dazu die vier grep-Befehle am Ende der Datei, die
+   Barrel-Imports und rohe `<img>` deterministisch finden — das zahlt direkt auf den
+   Lighthouse-Teil von G1 ein. Formular-
    Backends, Kundendaten-Handling, npm-Abhängigkeiten (Formular/Tracking/Payment) →
    `references/security-audit-playbook.md` (Fail-Open-Defaults, Footgun-Configs,
    Supply-Chain-Check, Quelle Trail of Bits). Bei Code-Review von Formularen/API-Routes/
@@ -361,7 +559,32 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
   neuer Domain die Checkliste in `domain-safe-browsing-checkliste.md` durchgehen, nicht
   erst wenn der rote Warnbildschirm schon da ist.
 - Motion-Komponenten aus `ui-components/` nie ohne `useReducedMotion()`-Äquivalent
-  einbauen — die globale CSS-Media-Query stoppt keine JS-Animationen.
+  einbauen — die globale CSS-Media-Query stoppt keine JS-Animationen. Bei GSAP ist
+  das Äquivalent `gsap.matchMedia()`, nicht `useReducedMotion()` (siehe
+  `references/motion-gsap.md`).
+- **Keine Interaktion von Hand nachbauen, für die eine Library im Tresor steht.**
+  Toast, Command-Palette, OTP-Feld, Drawer, Drag-and-Drop, Virtualisierung,
+  animierte Zahlen — für jedes gibt es genau eine Antwort in
+  `references/bibliotheks-tresor.md`. Ein selbstgebauter Toast-Stapel ohne
+  Swipe-Dismiss und Fokus-Rückgabe ist kein Sparen, sondern ein Craft-Befund.
+  **Das gilt auch gegen die eigene Bibliothek:** `ui-components/` liefert für
+  sieben dieser Aufgaben eine handgeschriebene Datei mit (503 Zeilen Toast-Stapel,
+  392 Zeilen OTP, 341 Zeilen ⌘K). Die Regel war bis 29.07. nicht durchsetzbar, weil
+  der Skill sie aufstellte und gleichzeitig das Gegenteil auslieferte. Jetzt
+  entschieden: Library bauen, Bewegung von der Datei abschauen. Tabelle in
+  `references/ui-components/INDEX.md`.
+- **Das Formular prüft niemand nebenbei mit.** axe und craft-check ließen ein
+  E-Mail-Feld mit `type="text"` ohne `autocomplete` beide durch (gemessen 29.07.).
+  `scripts/formular-check.mjs` ist deshalb der fünfte Pflicht-Prüfer im Tor — auf
+  einer Landingpage ist das Formular die einzige Conversion.
+- **`shadcn add` ist der Anfang, nicht das Ergebnis.** Kopierte Komponenten mit
+  Default-Farben, Default-Radius und Default-Schatten auszuliefern gibt dem Kunden
+  exakt die Optik jedes KI-generierten Templates. Mindestens Marken-Tokens (Farbe,
+  Radius, Font) setzen — `references/shadcn-arbeitsweise.md` Punkt 5.
+- **GSAP ist nicht MIT.** Alle Plugins sind seit dem Webflow-Kauf kostenlos, aber
+  es gilt die GSAP-Standard-Lizenz, kein OSS-Kürzel. Vor dem ersten kommerziellen
+  Kunden-Build mit GSAP die Lizenzseite lesen (`references/bibliotheks-tresor.md`,
+  Abschnitt Lizenzen).
 - **Bild-Assets über die Higgsfield CLI, nach `references/bildgenerierung.md`** —
   Referenz vorhanden **oder Illustration (2D/3D)** → **GPT Image 2**; Recraft nur für
   **echt fotorealistische** Bilder ohne Referenz (JSON-Prompt gegen den Filmlook,

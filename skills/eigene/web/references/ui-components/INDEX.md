@@ -73,12 +73,46 @@ liegen in einem Unterordner (`swap/`, `button/`, `table/`, `wallet-card/`,
 | `availability-scheduler/` | Wochenverfügbarkeits-Editor mit Shared-Layout-Toggles |
 | `wallet-card/`, `table/`, `not-found/` | Weitere komplette Widget-Beispiele (Wallet-Karte, Daten-Tabelle mit Spalten-Resize/Sort/Reorder, 404-Varianten) |
 
+## Wo diese Bibliothek NICHT die Antwort ist
+
+Für sieben Aufgaben steht hier eine handgeschriebene Komponente **und** im
+Bibliotheks-Tresor (`../bibliotheks-tresor.md`) eine installierte Library. Das
+sind zwei Antworten auf dieselbe Frage — und die Datei hier ist bei diesen
+sieben die schlechtere: sie löst dasselbe Problem in mehr Zeilen und ohne die
+Randfälle, an denen die Library jahrelang gearbeitet hat.
+
+| Aufgabe | Hier liegt | Genommen wird | Warum |
+|---|---|---|---|
+| Toasts | `animated-toast-stack.tsx` (503 Z) | **`sonner`** | Promise-Toasts, Stapel-Limit, Fokus-Rückgabe, `aria-live`. |
+| Einmalcode / OTP | `otp-input.tsx` (392 Z) | **`input-otp`** | Paste über alle Felder, iOS-SMS-Autofill, Composition-Events. |
+| Command-Palette (⌘K) | `command-palette.tsx` (341 Z) | **`cmdk`** | Fuzzy-Scoring, Gruppen, `aria-activedescendant`. |
+| Drawer / Bottom-Sheet | `drawer.tsx`, `bottom-sheet.tsx` | **`vaul`** | Snap-Points, Scroll-Lock, iOS-Rubber-Band. |
+| Zahlen animieren | `number-ticker.tsx`, `animated-number.tsx` | **`@number-flow/react`** | Ziffernweiser Übergang statt neu gerendertem Text; lokalisiert. |
+| Lange Listen | `infinite-masonry.tsx` | **`react-virtuoso`** | Variable Höhen ohne eigene Messlogik. |
+| Karussell | `cylinder-carousel.tsx` | **`embla-carousel-react`** | Touch-Physik, Tastatur, `aria`-Rollen. |
+
+**Diese sieben Dateien sind trotzdem nützlich — als Vorlage, nicht als Bauteil.**
+Sie zeigen die Motion, die auf die Library gehört: wie der Toast-Stapel beim
+Hover auffächert, wie der Fokusring im OTP-Feld gleitet, wie die Ziffern rollen.
+Richtiger Ablauf: Library installieren, dann die *Bewegung* von hier
+übernehmen (`sonner` nimmt eigenes Markup, `input-otp` rendert per
+Render-Prop). Was die Library kann, wird nicht nachgebaut; was sie offen lässt,
+kommt von hier.
+
+Alle übrigen Komponenten dieser Bibliothek haben **keine** Entsprechung im
+Tresor — dort ist sie die richtige und einzige Antwort.
+
 ## Nutzungsregel
 
 Immer die **ganze Datei** (bzw. den ganzen Unterordner) kopieren, nicht nur
 Ausschnitte — Komponenten sind gegen `lib/ease.ts`/`lib/utils.ts`/die Hooks
 verdrahtet. Beim Einbau ins Kundenprojekt: Motion-Doktrin (`../motion-doktrin.md`)
 befolgen, insbesondere Reduced-Motion-Fallback nicht vergessen.
+
+Vier Dateien bringen eigene Abhängigkeiten mit, die im Tresor stehen und im
+Zielprojekt installiert sein müssen: `infinite-masonry.tsx` und `table/`
+(`@tanstack/*`), `smooth-scroll.tsx` (Lenis), `theme-toggle.tsx`
+(View Transition API — Fallback für Firefox/Safari-Altversionen mitdenken).
 
 Für weitere, nicht vendorierte Komponenten-Ideen (Glass/Mesh-Gradient/3D-Karten
 etc.) siehe `../ui-layouts-catalog.md` — dort nur Vokabular/Ideenliste, kein

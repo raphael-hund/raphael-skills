@@ -42,6 +42,12 @@ const ERWARTET = {
   // hatten dasselbe Bild, eine bildlose Seite kam im Anti-Set schlicht nicht vor.
   // Ein Blocker ohne Fixture ist ein Blocker, von dem niemand weiss, ob er ausloest.
   'a6-ohne-bildwelt':       { checks: ['craft'],             was: 'kein einziges Bild ueber Icon-Groesse (M24)' },
+  // Zugefuegt 29.07.2026 mit dem formular-check. Die Kontrolle traegt seither ein
+  // KORREKT gebautes Formular (type=email/tel, autocomplete, 44px, 16px Schrift) —
+  // damit beweist derselbe Lauf beide Richtungen: der Pruefer wird gruen bei einem
+  // guten Formular und rot bei einem schlechten. Ein Waechter, der nur rot kann,
+  // wird nach dem dritten Fehlalarm abgeschaltet.
+  'a7-formular-kaputt':     { checks: ['formular'],          was: 'E-Mail/Telefon als type="text" (F1)' },
 };
 
 const namen = Object.keys(ERWARTET);
@@ -65,17 +71,40 @@ for (const n of namen) {
   for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(wurzel, n, b));
 }
 
+// Der Port wurde bisher blind belegt. `python3 -m http.server` stirbt still an
+// "Address already in use" — und der Lauf misst danach gegen den Server eines
+// FREMDEN Laufs, also gegen fremde Dateien.
+//
+// Befund 28.07.2026: genau so geschehen. Zwei Anti-Set-Laeufe gleichzeitig, beide
+// auf 5321, beide ins selbe Protokoll. Die Kontrolle meldete rot, obwohl an ihr
+// nichts kaputt war. Ein Testlauf, der fremde Ergebnisse misst, ist schlimmer als
+// keiner: er erfindet Befunde und verbrennt das Vertrauen in die echten.
 const server = spawnSync('bash', ['-c',
   `cd ${wurzel} && (python3 -m http.server ${PORT} >/dev/null 2>&1 & echo $!) && sleep 2`], { encoding: 'utf8' });
 const pid = (server.stdout || '').trim();
 const aufraeumen = () => { if (pid) spawnSync('kill', [pid]); };
 process.on('exit', aufraeumen);
 
+// Beweis, dass DIESER Server antwortet und nicht ein fremder: eine Datei abfragen,
+// die es nur in diesem Wurzelordner gibt.
+const kennung = `probe-${process.pid}.txt`;
+fs.writeFileSync(path.join(wurzel, kennung), 'antiset');
+const probe = spawnSync('curl', ['-fsS', '-m', '5', `http://localhost:${PORT}/${kennung}`], { encoding: 'utf8' });
+if (probe.status !== 0 || (probe.stdout || '').trim() !== 'antiset') {
+  console.error(`Port ${PORT} antwortet nicht mit unserem Server (belegt?).`);
+  console.error('Anderen Port setzen: ANTISET_PORT=5322 node evals/run-antiset.mjs');
+  process.exit(2);
+}
+
 // Node puffert stdout, wenn es in eine Datei oder Pipe laeuft. Wird der Lauf per
 // Timeout abgeschossen (28.07.2026 zweimal passiert), ist der Puffer weg: null
 // Ausgabe, obwohl er minutenlang gearbeitet hat. Man weiss dann nicht einmal, bei
 // welcher Fixture er stand. Darum jede Zeile zusaetzlich synchron aufs Protokoll.
-const PROTOKOLL = process.env.ANTISET_LOG || path.join(HIER, 'antiset-lauf.log');
+//
+// Der Dateiname traegt die Prozessnummer: zwei gleichzeitige Laeufe schrieben
+// sonst ineinander, und das Ergebnis las sich wie ein Widerspruch derselben
+// Fixture mit sich selbst (28.07.2026 im Log nachlesbar).
+const PROTOKOLL = process.env.ANTISET_LOG || path.join(HIER, `antiset-lauf-${process.pid}.log`);
 fs.writeFileSync(PROTOKOLL, '');
 const sag = (zeile) => {
   console.log(zeile);
@@ -85,10 +114,21 @@ const sag = (zeile) => {
 sag(`Anti-Set — ${namen.length} Fixtures auf Port ${PORT}`);
 sag(`Protokoll: ${PROTOKOLL}\n`);
 
+// Eigenes Budget fuers Anti-Set: Lighthouse-Performance wird hier nicht bewertet.
+//
+// Befund 28.07.2026: dieselbe unveraenderte Kontroll-Fixture lieferte einmal 92 und
+// einmal 72 — allein je nach Maschinenlast. Bei einer statischen 6-KB-Seite misst
+// Lighthouse den Server, nicht die Seite. Ein Testlauf, dessen Ergebnis vom Wetter
+// abhaengt, meldet Rot ohne Fehler; nach dem dritten Fehlalarm schaut niemand mehr
+// hin. accessibility/best-practices/seo bleiben scharf — die sind deterministisch,
+// und a4 reisst genau daran. Fuer echte Builds gilt weiter das Gate-Budget.
+const BUDGET = path.join(HIER, 'antiset-budget.json');
+
 const torLauf = (n, strict) => spawnSync('node', [
   path.join(SKILL, 'scripts/g1-gate.mjs'),
   '--url', `http://localhost:${PORT}/${n}/`,
   '--src', path.join(wurzel, n),
+  '--budget', BUDGET,
   '--no-shots',
   ...(strict ? ['--strict'] : []),
 ], { encoding: 'utf8', timeout: 300000 });
@@ -129,7 +169,48 @@ for (const n of namen) {
   }
 }
 
-sag(`\n${namen.length - rot}/${namen.length} Fixtures wie erwartet.`);
+// Sonderfall mit anderer Form: die Fixtures oben sind Ein-Seiten-Builds, hier geht
+// es um einen MEHRseitigen. Geprueft wird der Routen-Waechter in beide Richtungen —
+// ein Waechter, der nie gruen wird, ist genauso nutzlos wie einer, der nie rot wird.
+//
+// Die erste Fassung testete nur "--routes fehlt ganz". Damit war die eigentliche
+// Luecke ungeprueft: 2 von 28 Seiten nennen und Gruen fuers Ganze bekommen.
+const mehr = path.join(wurzel, 'mehrseitig');
+fs.mkdirSync(mehr, { recursive: true });
+fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(mehr, 'index.html'));
+fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(mehr, 'team.html'));
+for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(mehr, b));
+
+const ROUTEN_FAELLE = [
+  { was: 'mehrseitig-ohne-routes',   routes: null,             exit: 2, warum: '2 Seiten im Build, --routes fehlt ganz' },
+  { was: 'mehrseitig-halbe-routes',  routes: '/',              exit: 2, warum: 'nur "/" genannt, /team.html ungesehen' },
+  { was: 'mehrseitig-alle-routes',   routes: '/,/team.html',   exit: 0, warum: 'alle Seiten genannt -> darf gruen werden' },
+];
+
+for (const f of ROUTEN_FAELLE) {
+  sag(`\n.. laeuft: ${f.was}`);
+  const lauf = spawnSync('node', [
+    path.join(SKILL, 'scripts/g1-gate.mjs'),
+    '--url', `http://localhost:${PORT}/mehrseitig/`,
+    '--src', mehr,
+    '--budget', BUDGET,
+    '--no-shots',
+    ...(f.routes ? ['--routes', f.routes] : []),
+  ], { encoding: 'utf8', timeout: 300000 });
+
+  const ok = lauf.status === f.exit;
+  if (!ok) rot++;
+  sag(`${ok ? 'OK  ' : 'ROT '} ${f.was.padEnd(24)} exit=${lauf.status}  ${f.warum}`);
+  if (!ok) {
+    sag(`       Exit erwartet ${f.exit}, bekommen ${lauf.status}`);
+    sag(f.exit === 2
+      ? '       Das Tor buergt fuer Seiten, die es nie gesehen hat.'
+      : '       Der Waechter blockt auch bei vollstaendigen Routen — dann nimmt ihn niemand ernst.');
+  }
+}
+
+const gesamt = namen.length + ROUTEN_FAELLE.length;
+sag(`\n${gesamt - rot}/${gesamt} Faelle wie erwartet.`);
 if (rot) {
   sag('Das Tor unterscheidet nicht wie dokumentiert. Erst reparieren, dann ausliefern.');
   process.exit(1);

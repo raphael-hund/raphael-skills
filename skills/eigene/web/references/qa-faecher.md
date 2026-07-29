@@ -14,6 +14,19 @@ Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 - Reibung raus: Formularfelder minimal, Einwände vorweggenommen.
 
 ### Harte QA-Regeln Formular (G1, blockieren den Launch)
+
+**Zuerst der Prüfer, dann der Blick.** `node scripts/formular-check.mjs --url <url>`
+(im G1-Tor enthalten) misst, was messbar ist: falscher `input-type` (F1, BLOCK),
+Einfüge-Sperre (F3, BLOCK), fehlendes `autocomplete` (F2), Feldhöhe (F4),
+iOS-Zoom bei Schrift unter 16px (F5), Kontaktdaten zu früh (F6), Absende-Knopf
+(F7). **Die Lücke war real:** axe und craft-check ließen ein E-Mail-Feld mit
+`type="text"` beide durch (gemessen 29.07.) — das kostet auf einer Landingpage
+mehr Leads als jeder Kontrastfehler, den beide zuverlässig finden.
+
+Was das Skript **nicht** kann, bleibt Handarbeit: es liest Feldnamen, nicht die
+Fragen dahinter. F6 erkennt „E-Mail steht vor einer Sachfrage", aber nicht, ob
+die Sachfrage überhaupt qualifiziert.
+
 - **Reihenfolge = Mikro-Commitments, Kontaktdaten IMMER zuletzt:** Identifikation
   ("Welche Beschreibung passt zu dir?") → Qualifizierung (Branche, Team-Größe,
   **Website-URL** statt Firmenname) → **erst zuletzt** Kontaktdaten (Name → E-Mail →
@@ -44,6 +57,24 @@ Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 - Visuelle Hierarchie, Kontrast, Rhythmus/Spacing, konsistente Tokens.
 - Landing → taste-Kern; App/Dashboard → ui-ux-DB.
 - Immer ZUERST vor Fach 1 Voice-/Floskel-Check laufen lassen (siehe AI-Slop-Sequenz oben).
+
+### Motion gehört in Fach 2, nicht in ein eigenes Fach
+Ein fünftes Fach für Bewegung würde nur ein weiteres Ergebnis erzeugen, das
+niemand gegen die anderen abwägt. Motion ist Teil des Design-Urteils:
+
+- **Vor der Auslieferung** (jedes Projekt, kostet Minuten): die zehn Standards
+  und die Eskalations-Trigger aus `design/references/motion-doktrin.md`. Befunde
+  im Tabellenformat der Doktrin (`| Before | After | Why |`), nie als
+  Vorher/Nachher-Liste.
+- **Bestehende Motion in einem ganzen Repo** (eigener Auftrag, nicht nebenbei):
+  `design/references/motion-audit-workflow.md` — 8 Audit-Kategorien.
+- **Es bewegt sich nichts und soll es vielleicht:** derselbe Workflow, Teil A —
+  das 4-Fragen-Gate. Deckel: 5–7 Vorschläge fürs Gesamtprodukt. Die häufigste
+  richtige Antwort bleibt „gar nicht animieren".
+- **Gesten, Drag, Sheets, „iOS-Feel"** → `design/references/apple-fluid-interfaces.md`
+  (Velocity-Handoff, Momentum-Projektion, Rubber-banding).
+- Maschinell prüft `craft-check` davon nur M18/M19/T7/M20. Easing-Richtung,
+  Dauer, Origin und Interruptibility sieht kein Skript — die brauchen den Blick.
 
 ## Fach 3 — A11y
 - G1: axe = 0 Fehler (hart). Farbkontrast AA, Fokus-Reihenfolge, Alt-Texte, Labels.

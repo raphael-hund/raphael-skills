@@ -36,7 +36,44 @@ if (unknown.length) {
 const BASE = get('base', get('url', 'http://localhost:5280')).replace(/\/$/, '');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim()).filter(Boolean)
   .map((r) => (r.startsWith('/') ? r : `/${r}`));
-const OUT = get('out', path.join(os.tmpdir(), 'g1-gate'));
+
+// Ohne --routes prueft das Gate nur die Startseite — und meldet gruen fuers Ganze.
+//
+// Befund 28.07.2026 (SalsaFlow): der Build hat 28 Seiten. Geprueft wurde eine.
+// Die anderen 27 waren nicht "bestanden", sie waren ungesehen; genau das darf ein
+// Tor nicht verwechseln. Es entscheidet die Routen nicht selbst — es weigert sich,
+// stillschweigend fuer Unbesehenes zu buergen.
+//
+// Jede Seite liefert BEIDE zulaessigen Schreibweisen (`/team` und `/team.html`),
+// weil das Gate nicht wissen kann, ob die Produktion cleanUrls fahrt. Passt eine
+// davon, gilt die Seite als benannt.
+function seitenImBuild(dir) {
+  const raus = [];
+  const gehe = (unter, praefix) => {
+    for (const e of fs.readdirSync(unter, { withFileTypes: true })) {
+      if (e.name.startsWith('.') || e.name === 'assets' || e.name === 'node_modules') continue;
+      if (e.isDirectory()) { gehe(path.join(unter, e.name), `${praefix}/${e.name}`); continue; }
+      if (!e.name.endsWith('.html') || e.name === '404.html') continue;
+      raus.push(e.name === 'index.html'
+        ? [praefix || '/', `${praefix}/`]
+        : [`${praefix}/${e.name.replace(/\.html$/, '')}`, `${praefix}/${e.name}`]);
+    }
+  };
+  // Kein `catch { return [] }`. Ein unlesbarer Ordner ist nicht dasselbe wie ein
+  // Build ohne Unterseiten — der eine Fall waere ein stilles Gruen fuer eine
+  // Website, die dieses Skript nie gesehen hat. Es fliegt lieber laut.
+  gehe(dir, '');
+  return raus;
+}
+// Ohne --out bekommt JEDER Lauf einen eigenen Ordner. Vorher war es fuer alle
+// derselbe (`/tmp/g1-gate`).
+//
+// Befund 28.07.2026: zwei Anti-Set-Laeufe liefen gleichzeitig, und beide riefen
+// `lighthouse --output-path=/tmp/g1-gate/lh_.json` auf. Lauf A schrieb das Ergebnis
+// von a3, Lauf B las es als seines. Die Folge war ein Urteil ueber die falsche
+// Seite — in beide Richtungen, unreproduzierbar, und niemand haette es gemerkt.
+// Betrifft ebenso g1-report.json und die Screenshots.
+const OUT = get('out', fs.mkdtempSync(path.join(os.tmpdir(), 'g1-gate-')));
 const SKILL_DIR = path.dirname(new URL(import.meta.url).pathname);
 
 // Fehlendes Feld ist NICHT dasselbe wie ein leeres Feld.
@@ -324,7 +361,40 @@ function checkCraft() {
   }
 }
 
-// --- Check 7: Screenshot-Sweep muss sauber durchlaufen ---------------------
+// --- Check 7: Formularfelder (F1-F7) --------------------------------------
+// Eigener Pruefer, weil die Luecke gemessen ist: ein E-Mail-Feld mit
+// type="text", ohne autocomplete, ohne inputmode kam am 29.07.2026 durch axe
+// (0 Violations, 31 Passes) UND durch craft-check (kein Formular-Befund).
+// Auf einer Landingpage ist das Formular die einzige Conversion.
+function checkFormular() {
+  const runner = path.join(SKILL_DIR, 'formular-check.mjs');
+  if (!fs.existsSync(runner)) { record('formular', true, 'formular-check.mjs nicht gefunden', true); return; }
+  for (const route of ROUTES) {
+    let out = '';
+    let code = 0;
+    try {
+      out = run('node', [runner, '--url', `${BASE}${route}`, '--json', ...(has('strict') ? ['--strict'] : [])]);
+    } catch (e) {
+      code = e.status ?? 2;
+      out = String(e.stdout || '');
+      if (code === 2) { record(`formular${route}`, false, `formular-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); continue; }
+    }
+    try {
+      const parsed = JSON.parse(out);
+      const b = liste(parsed, 'blockers', 'formular-check');
+      const w = liste(parsed, 'warns', 'formular-check');
+      const strengeVerletzt = has('strict') && w.length > 0;
+      record(`formular${route}`, b.length === 0 && !strengeVerletzt,
+        b.length === 0
+          ? `0 Blocker, ${w.length} Warnung(en)${strengeVerletzt ? ' — strict: Warnungen zaehlen als Fehler' : ''}`
+          : `${b.length} Blocker: ${b.slice(0, 5).map((f) => f.id).join(', ')} (+${w.length} Warnungen)`);
+    } catch {
+      record(`formular${route}`, false, `formular-check-Ausgabe unlesbar (exit ${code})`);
+    }
+  }
+}
+
+// --- Check 8: Screenshot-Sweep muss sauber durchlaufen ---------------------
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
   if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
@@ -356,6 +426,7 @@ checkAxe();
 checkLinks();
 checkSlop();
 checkCraft();
+checkFormular();
 if (!has('no-shots')) checkSweep();
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
@@ -382,7 +453,12 @@ if (failed.length) {
 // ungeprueft. Jede der vier Familien beantwortet eine eigene Frage, also muss
 // jede mindestens einmal gelaufen sein. Wer eine bewusst weglassen will,
 // laesst sie weg und liest Exit 2 als das, was es ist: kein Urteil.
-const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft'];
+//
+// 29.07.2026 kam `formular` als fuenfte Familie dazu. Sie beantwortet eine
+// Frage, die keine der anderen vier stellt: fuellt sich dieses Formular auf
+// einem Telefon ueberhaupt ausfuellen? Fehlt der Pruefer, ist das ungeprueft —
+// und auf einer Landingpage ist das Formular die einzige Conversion.
+const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular'];
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
 if (fehltGanz.length) {
@@ -390,4 +466,25 @@ if (fehltGanz.length) {
   console.log('Uebersprungen ist nicht bestanden. Werkzeug nachinstallieren bzw. --src setzen, dann erneut.');
   process.exit(2);
 }
+// Letzte Huerde: gruen fuer EINIGE Seiten ist kein gruen fuer die Website.
+//
+// Die erste Fassung fragte nur, ob --routes ueberhaupt gesetzt ist. Wer 2 von 28
+// Seiten nannte, bekam Gruen fuers Ganze — dieselbe Luecke, nur eine Ebene tiefer.
+// Es zaehlt nicht, ob Routen genannt wurden, sondern ob ALLE genannt wurden.
+const SRC = get('src', null);
+if (SRC) {
+  const geprueft = new Set(ROUTES.map((r) => r.replace(/\/$/, '') || '/'));
+  const ungesehen = seitenImBuild(SRC)
+    .filter((schreibweisen) => !schreibweisen.some((s) => geprueft.has(s.replace(/\/$/, '') || '/')))
+    .map(([erste]) => erste);
+  if (ungesehen.length) {
+    const zeigen = ungesehen.slice(0, 12).join(', ');
+    console.log(`\nG1 KANN NICHT URTEILEN — ${ungesehen.length} Seite(n) im Build wurden nie geoeffnet.`);
+    console.log(`Ungesehen: ${zeigen}${ungesehen.length > 12 ? ` … (+${ungesehen.length - 12})` : ''}`);
+    console.log('Ungesehen ist nicht bestanden. Alle Routen mit --routes benennen');
+    console.log('(vollstaendige Liste: node scripts/pruefstand.mjs --dir <build> --routen).');
+    process.exit(2);
+  }
+}
+
 console.log(`\nG1 BESTANDEN — ${results.length - skipped.length} Check(s) gruen.`);

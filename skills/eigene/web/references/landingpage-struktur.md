@@ -32,6 +32,21 @@ Warum: jede kleine Zustimmung erhöht die Wahrscheinlichkeit der nächsten (Kons
 Kontaktdaten sind das höchste Commitment. *Beleg: Kontaktdaten nach vorne → Conversion brach
 ein; zurück ans Ende → Conversion vervierfacht.*
 
+**Die Reihenfolge prüft seit 29.07. ein Skript mit:**
+`node scripts/formular-check.mjs --url <url>` meldet F6, wenn ein Kontaktfeld vor
+einer Sachfrage steht. Es ist eine Heuristik (es liest Feldnamen und Labels, nicht
+den Sinn der Frage) und darum WARN, nicht BLOCK — mit `--strict` wird sie rot.
+Ein F6-Befund ist ein Anlass zum Hinsehen, kein Urteil.
+
+**Die Feld-Mechanik prüft dasselbe Skript hart:** Ein E-Mail-Feld muss
+`type="email"` tragen, ein Telefonfeld `type="tel"` (F1, BLOCK). Mit `type="text"`
+öffnet das Telefon die Buchstabentastatur ohne `@` — der Lead tippt dreimal,
+bevor die Adresse steht. Dazu `autocomplete` (F2), Feldhöhe ab 40px (F4) und
+Feldschrift ab 16px, sonst zoomt iOS Safari beim Antippen in die Seite (F5).
+
+Das ist keine Kosmetik: In dieser Kette ist das Formular die **einzige**
+Conversion. Jede Reibung im Feld wirkt wie eine zusätzliche Frage.
+
 Mechanik:
 - **Drop-off pro Slide messen** und Ausreißer-Frage fixen (⭐).
 - **Freitext → Radio-Select**, sobald die häufigsten Antworten bekannt sind (springt automatisch

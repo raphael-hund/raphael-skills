@@ -94,6 +94,29 @@ Ein Import, der nicht in der `Export:`-Zeile steht, existiert nicht.
 Bei jeder neuen Library im Tresor: Lizenz aus der installierten `package.json`
 lesen und hier eintragen, bevor sie in einem Kundenprojekt landet.
 
+## Konflikt mit der Komponenten-Bibliothek — der Tresor gewinnt
+
+Für sieben dieser Aufgaben liegt in `ui-components/motion/` zusätzlich eine
+handgeschriebene Datei. Das ist kein Reichtum an Optionen, das sind zwei
+Antworten auf dieselbe Frage — und in diesen sieben Fällen gewinnt **immer**
+die installierte Library:
+
+| Aufgabe | Handgeschrieben | Genommen wird |
+|---|---|---|
+| Toasts | `animated-toast-stack.tsx` (503 Z) | `sonner` |
+| Einmalcode / OTP | `otp-input.tsx` (392 Z) | `input-otp` |
+| Command-Palette | `command-palette.tsx` (341 Z) | `cmdk` |
+| Drawer / Bottom-Sheet | `drawer.tsx`, `bottom-sheet.tsx` | `vaul` |
+| Zahlen animieren | `number-ticker.tsx`, `animated-number.tsx` | `@number-flow/react` |
+| Lange Listen | `infinite-masonry.tsx` | `react-virtuoso` |
+| Karussell | `cylinder-carousel.tsx` | `embla-carousel-react` |
+
+Die Dateien bleiben nützlich — als Vorlage für die **Bewegung**, die auf die
+Library gehört (`sonner` nimmt eigenes Markup, `input-otp` rendert per
+Render-Prop). Was die Library kann, wird nicht nachgebaut; was sie offen lässt,
+kommt von dort. Begründung je Zeile: `ui-components/INDEX.md`, Abschnitt
+„Wo diese Bibliothek NICHT die Antwort ist".
+
 ## Falscher Fall
 
 Ein Toast wird mit `motion` und einem eigenen `useState`-Stapel nachgebaut,

@@ -1050,3 +1050,87 @@ verweisen auf `floskel-verbote.md`, keine Dopplung.
 **Fazit:** no-ai-slop schließt die englische Muster-Lücke, impeccable die Kommando-/
 Floor-Lücke. Deutsche Copy bleibt copywriting-Domäne.
 
+
+## Integrations-Runde 11 — 2026-07-29 (web-Skill: Zusammenführen statt Addieren)
+
+Keine neuen Fremd-Quellen geklont. Diese Runde behebt **Doppelungen und
+Widersprüche** zwischen bereits vendorierten Quellen im `web`-Skill. Der Auslöser
+war die Beobachtung, dass mehrere Quellen nebeneinander lagen, statt eine
+Entscheidung zu ergeben — ein Agent, der zwei Antworten auf dieselbe Frage
+findet, hat keine Antwort.
+
+### Befund 1 — zwei Motion-Doktrinen
+
+| Datei | Herkunft | Umfang |
+|---|---|---|
+| `design/references/motion-doktrin.md` | emilkowalski `emil-design-eng` + `review-animations` (MIT) | 224 Zeilen |
+| `web/references/motion-doktrin.md` (alt) | starc007/ui-components (MIT) | 91 Zeilen |
+
+Der `web`-Skill lud die **dünnere** und widersprach damit seiner eigenen Regel
+„design ist die einzige Design-Wissensquelle". Der 91-Zeiler hatte keine
+Frequenz-Tabelle, keine Eskalations-Trigger, keine exakten Kurven.
+
+**Behoben:** `web/references/motion-doktrin.md` enthält jetzt **keine**
+Motion-Regeln mehr, sondern verweist auf die design-Quelle und trägt nur die
+Projekt-Bindung (ease-Token, Reduced-Motion je Framework, Recipe→Datei-Zuordnung,
+was `craft-check` davon misst). Die fünf Recipes des alten Textes sind erhalten,
+aber als Tabelle mit Datei-Verweis statt als konkurrierendes Regelwerk.
+
+**Konflikt entschieden:** `ui-components/lib/ease.ts` definiert
+`EASE_OUT = [0.16, 1, 0.3, 1]`, die design-Doktrin `cubic-bezier(0.23, 1, 0.32, 1)`.
+Unveränderte Vendor-Komponenten behalten ihre Kurve (sie ist auf die Springs
+derselben Datei abgestimmt), **neuer eigener Code** nimmt die design-Kurve.
+
+### Befund 2 — Bibliothek und Tresor lösten dieselben sieben Aufgaben doppelt
+
+`ui-components/motion/` (starc007, MIT) enthält handgeschriebene Komponenten für
+Aufgaben, für die im Bibliotheks-Tresor (`/root/tools/uikit-vault`, Auswahl aus
+emilkowalski `pick-ui-library`) eine installierte Library liegt:
+
+| Aufgabe | Handgeschrieben | Library (Version geprüft 29.07.) |
+|---|---|---|
+| Toasts | `animated-toast-stack.tsx` (503 Z) | `sonner` 2.0.7 |
+| OTP | `otp-input.tsx` (392 Z) | `input-otp` 1.4.2 |
+| Command-Palette | `command-palette.tsx` (341 Z) | `cmdk` 1.1.1 |
+| Drawer/Sheet | `drawer.tsx`, `bottom-sheet.tsx` | `vaul` 1.1.2 |
+| Zahlen | `number-ticker.tsx`, `animated-number.tsx` | `@number-flow/react` 0.6.2 |
+| Lange Listen | `infinite-masonry.tsx` | `react-virtuoso` 4.18.11 |
+| Karussell | `cylinder-carousel.tsx` | `embla-carousel-react` 8.6.0 |
+
+Der Skill verbot selbstgebaute Toast-Stapel in den Gotchas **und lieferte einen
+mit** — die Regel war nicht durchsetzbar.
+
+**Behoben:** Vorfahrt-Tabelle in `ui-components/INDEX.md` („Wo diese Bibliothek
+NICHT die Antwort ist"), Gegenstück in `bibliotheks-tresor.md`, Verdrahtung in
+`SKILL.md` Schritt 5 und im Gotcha. Die sieben Dateien bleiben als Vorlage für
+die **Bewegung**, nicht als Bauteil. Nichts gelöscht — fremder Code wird
+umgewidmet, nicht entfernt.
+
+### Befund 3 — die Vercel Web Interface Guidelines waren nur online
+
+`vercel-agent-skills/skills/web-design-guidelines` (MIT, Commit `7c180d9`) holt
+seine Regeln zur Laufzeit per WebFetch von
+`github.com/vercel-labs/web-interface-guidelines`. Im Tor war davon nichts.
+
+**Gemessene Lücke (29.07.):** eine Seite mit `<input type="text" name="e">` für
+die E-Mail-Adresse, ohne `autocomplete`, ohne `inputmode`. **axe: 0 Violations
+(31 Passes). craft-check: kein Formular-Befund.** Beide zu Recht — axe prüft
+Zugänglichkeit, craft-check das Aussehen. Die Handy-Tastatur fragt keiner.
+
+**Behoben:** `scripts/formular-check.mjs` (F1–F7) verdrahtet genau die
+**maschinell prüfbaren** Regeln aus den Abschnitten Forms / Touch & Interaction /
+Anti-patterns fest — das Tor urteilt damit ohne Netz. Was sich mit axe
+überschneiden würde (Label, Kontrast, Fokus), steht bewusst nicht drin.
+F6 (Kontaktdaten zuletzt) kommt nicht von Vercel, sondern aus Raphaels eigener
+`landingpage-struktur.md`.
+
+Der Prüfer ist die **fünfte** Pflicht-Familie im G1-Tor (`QUALITAET`-Liste):
+fehlt er, ist Exit 2, nicht Exit 0. Fixture `a7-formular-kaputt` belegt die
+Rot-Richtung; die Kontroll-Fixture trägt seit demselben Tag ein **korrekt**
+gebautes Formular und belegt die Grün-Richtung.
+
+**Warum nicht der Vercel-Skill selbst:** Er ist ein Review-Prompt für ein Modell,
+kein deterministischer Prüfer, und er braucht Netz. Beides verträgt sich nicht
+mit Regel 14 („fertig ist ein Exit-Code"). Der Rest seiner Regeln (Copy-Stil,
+i18n, Hydration) bleibt bewusst ungenutzt: teils modellabhängig, teils schon in
+`react-next-performance.md` und `code-qualitaets-checkliste.md` abgedeckt.
