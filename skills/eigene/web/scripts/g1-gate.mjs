@@ -446,6 +446,15 @@ function checkFormular() {
 }
 
 // --- Check 8: Screenshot-Sweep muss sauber durchlaufen ---------------------
+//
+// Das Urteil hing bis zum 29.07.2026 allein an `r.error`. Vier Manifeste kamen
+// damit als Gruen durch, jedes davon ein Sweep, der nichts fotografiert hat:
+//   { routes: [] }                            -> "0 Screenshots", bestanden
+//   [{ route: '/', shots: [] }]               -> "0 Screenshots", bestanden
+//   nur 1 von 3 verlangten Routen im Manifest -> "1 Screenshots", bestanden
+//   shots nennt eine Datei, die es nicht gibt -> "1 Screenshots", bestanden
+// Der Sweep ist die Grundlage jeder Sichtpruefung. Fehlt das Bild, hat der
+// Panel-Schritt nichts zu sehen — und ein Nichts besteht sonst jede Pruefung.
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
   if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
@@ -453,14 +462,46 @@ function checkSweep() {
   try {
     run('node', [sweep, '--base', BASE, '--routes', ROUTES.join(','), '--out', shotDir, '--mobile']);
     const manifest = JSON.parse(fs.readFileSync(path.join(shotDir, 'manifest.json'), 'utf8'));
-    const shots = manifest.routes.reduce((n, r) => n + r.shots.length, 0);
-    const errs = manifest.routes.filter((r) => r.error);
-    record('shot-sweep', errs.length === 0,
-      errs.length ? `${errs.length} Route(n) fehlerhaft: ${errs.map((r) => r.route).join(', ')}`
-        : `${shots} Screenshots in ${shotDir}`);
+    const maengel = sweepMaengel(manifest, ROUTES, shotDir);
+    const shots = liste(manifest, 'routes', 'shot-sweep').reduce((n, r) => n + (r.shots?.length || 0), 0);
+    record('shot-sweep', maengel.length === 0,
+      maengel.length ? maengel.join(' | ') : `${shots} Screenshots in ${shotDir}`);
   } catch (e) {
     record('shot-sweep', false, `Sweep fehlgeschlagen: ${String(e.message).split('\n')[0]}`);
   }
+}
+
+// Getrennt von checkSweep, damit evals/run-sweep-check.mjs sie ohne Browser
+// gegen erfundene Manifeste fahren kann.
+function sweepMaengel(manifest, verlangt, shotDir) {
+  const routen = liste(manifest, 'routes', 'shot-sweep');
+  const maengel = [];
+
+  const errs = routen.filter((r) => r.error);
+  if (errs.length) maengel.push(`${errs.length} Route(n) fehlerhaft: ${errs.map((r) => r.route).join(', ')}`);
+
+  // Jede verlangte Route muss im Manifest stehen — sonst hat der Sweep sie
+  // uebersprungen, ohne einen Fehler zu melden.
+  const gesehen = new Set(routen.map((r) => String(r.route).replace(/\/$/, '') || '/'));
+  const fehlend = verlangt.filter((r) => !gesehen.has(r.replace(/\/$/, '') || '/'));
+  if (fehlend.length) maengel.push(`nie fotografiert: ${fehlend.join(', ')}`);
+
+  // Und jede muss mindestens ein Bild haben. Eine Route mit shots: [] ist kein
+  // Fehler im Manifest-Sinn, aber sie ist auch keine Sichtpruefung.
+  const leer = routen.filter((r) => !r.error && !(r.shots?.length));
+  if (leer.length) maengel.push(`ohne einen einzigen Screenshot: ${leer.map((r) => r.route).join(', ')}`);
+
+  // Ein Dateiname im Manifest ist eine Behauptung. Nachsehen ist billig.
+  if (shotDir) {
+    const weg = [];
+    for (const r of routen) {
+      for (const s of r.shots || []) {
+        if (!fs.existsSync(path.join(shotDir, s.file))) weg.push(s.file);
+      }
+    }
+    if (weg.length) maengel.push(`${weg.length} Datei(en) im Manifest fehlen auf der Platte: ${weg.slice(0, 3).join(', ')}`);
+  }
+  return maengel;
 }
 
 // --- main ------------------------------------------------------------------

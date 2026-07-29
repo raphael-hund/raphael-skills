@@ -434,6 +434,40 @@ trotzdem stumpf.
 **Gegenprobe gefahren:** Mit der alten Fassung von `budgetLaden` meldet derselbe Lauf
 **9/23, Exit 1**. Ein Prüfstand, der nie rot wird, beweist nichts — dieser wird rot.
 
+### Ein Sweep ohne Bilder bestand jede Prüfung
+
+Der Screenshot-Sweep ist die Grundlage der ganzen Sichtprüfung: was er nicht
+fotografiert, sieht der Panel-Schritt nie. Sein Urteil im Tor hing bis zum 29.07. an
+einer einzigen Frage — steht in irgendeiner Route ein `error`? Alles andere galt als
+in Ordnung, auch das Gegenteil von Ordnung:
+
+| Manifest | altes Urteil |
+|---|---|
+| `{routes: []}` — gar keine Route drin | **bestanden**, „0 Screenshots" |
+| Route mit `shots: []` | **bestanden**, „0 Screenshots" |
+| 1 von 3 verlangten Routen im Manifest | **bestanden**, „1 Screenshots" |
+| `shots` nennt eine Datei, die es nicht gibt | **bestanden**, „1 Screenshots" |
+
+Alle vier sind derselbe Fehler wie überall in dieser Woche: **nichts gefunden** und
+**nicht nachgesehen** ergaben dieselbe Zahl. Ein leeres Bild besteht jede Prüfung,
+weil es nichts zu beanstanden gibt.
+
+`sweepMaengel()` prüft jetzt vier Dinge statt einem: gemeldete Fehler, jede verlangte
+Route im Manifest, mindestens ein Bild pro Route, und jede genannte Datei tatsächlich
+auf der Platte. Ein Dateiname im Manifest ist eine Behauptung — nachsehen kostet nichts.
+
+```bash
+node evals/run-sweep-check.mjs       # 13 Fälle, weder Browser noch Server
+```
+
+Sieben Manifeste, die reißen müssen. Drei, die durchgehen müssen — darunter derselbe
+Pfad mit und ohne Schrägstrich am Ende und dieselbe Route zweimal (Desktop + Mobile),
+sonst wäre das Tor nur in die andere Richtung kaputt. Drei unlesbare Manifeste, die
+über `liste()` **werfen** müssen statt still „keine Mängel" zu ergeben.
+
+**Gegenprobe gefahren:** Die alte Urteilslogik, isoliert nachgebaut, lässt alle vier
+Manifeste aus der Tabelle als grün durch. Der Fund war echt, nicht behauptet.
+
 ### Zwei Läufe, ein Ergebnis: das Tor war nicht parallel-fest
 
 Am 28.07. liefen zwei Anti-Set-Läufe gleichzeitig. Die Kontrolle meldete **rot** an

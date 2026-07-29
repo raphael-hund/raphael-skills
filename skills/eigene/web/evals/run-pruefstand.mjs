@@ -122,3 +122,11 @@ if (rot) {
   process.exit(1);
 }
 console.log('Der Pruefstand bildet cleanUrls, Redirects und Rewrites ab — und laesst tote Links tot.');
+
+// Beide Pruefstand-Kinder halten ueber ihre stdio-Rohre die Ereignisschleife
+// offen. Ohne dieses Ende meldet der Lauf 10/10 und haengt danach bis zum
+// Timeout — ein Runner sieht Exit 124 statt Exit 0 und liest den gruenen Lauf
+// als Fehlschlag. Kein `process.exit(0)`: das kann die letzte Zeile abschneiden,
+// wenn stdout ein Rohr ist. Kinder beenden reicht, dann laeuft Node selbst aus.
+kind.kill();
+kind2.kill();
