@@ -38,6 +38,39 @@ Export: Toaster, toast, useSonner
 Exit 1 heißt: Library gelistet, aber nicht installiert (`cd /root/tools/uikit-vault && npm install`)
 oder Aufgabe nicht abgedeckt. Exit 2 heißt: kein Tresor am erwarteten Pfad.
 
+### Wenn die Typdatei nur weiterleitet
+
+Sechs der 30 Libraries beschreiben ihre API nicht direkt in der Datei, auf die
+`package.json` zeigt:
+
+| Library | Form | 
+|---|---|
+| `leva` | `export * from './declarations/src/index.js'` |
+| `motion` | `export * from 'framer-motion/dom'` (Fremdpaket) |
+| `zustand` | `export * from 'zustand/vanilla'` + `/react` |
+| `date-fns` | `export *` auf ~300 Einzeldateien |
+| `clsx` | `export = clsx` (CommonJS-Default) |
+| `gsap` | `/// <reference path=…>` × 32 + `declare namespace gsap` |
+
+Bis 29.07.2026 gab `lib-lookup` für diese eine **leere Export-Zeile bei Exit 0**
+aus. Das liest sich wie „diese Library hat keine Exporte" — und ist damit genau
+die Verwechslung, gegen die der Tresor gebaut wurde: *nicht hingeschaut* sah aus
+wie *es gibt nichts*. Wer daraufhin aus dem Gedächtnis importiert, ist wieder am
+Raten.
+
+Das Werkzeug folgt jetzt allen drei Weiterleitungsformen (bis zu drei Ebenen
+tief) und nennt bei `clsx` den Default-Import, bei `gsap` die Namespace-API.
+Kommt es trotzdem nicht weiter, sagt es **UNPRUEFBAR** und nennt den Dateipfad —
+das ist eine Antwort, Schweigen ist keine.
+
+```bash
+node evals/run-lib-lookup.mjs      # 6 Sonderformen + Flächentest über alle 30
+```
+
+Der Lauf ist in beide Richtungen belegt: mit dem Fix 0 offene Fälle, mit
+zurückgedrehtem Fix 4 rote. Er fällt auch auf, wenn beim nächsten `npm update`
+eine siebte Sonderform dazukommt.
+
 **Pflicht bei jeder Library-Nutzung im Build:** erst `lib-lookup` auf die
 Library, dann den README-Pfad öffnen und das Muster von dort übernehmen.
 Ein Import, der nicht in der `Export:`-Zeile steht, existiert nicht.
