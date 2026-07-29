@@ -150,6 +150,61 @@ const FAELLE = {
       + '<div class="r4">4</div><div class="r5">5</div><div class="r6">6</div>'
       + '<div class="r7">7</div><div class="r8">8</div>',
   },
+  // --- Die sechs ungeprueften BLOCKER, nachgetragen 29.07.2026 -------------
+  // Von den 13 Regeln ohne Fixture waren sechs BLOCK-Stufe: sie stoppen
+  // Auslieferungen und niemand wusste, ob sie ausloesen. Das ist die
+  // unangenehmste Sorte Luecke — ein Blocker, der nie feuert, faellt nicht
+  // auf; einer, der falsch feuert, wird abgeschaltet.
+  M8: {
+    was: 'flache Hierarchie (alle Textgroessen zu aehnlich)',
+    // Der Pruefer verlangt Faktor >= 1.8 zwischen kleinster und groesster
+    // Schrift. Hier liegen alle zwischen 15 und 17px.
+    kopf: 'h1{font-size:17px}h2{font-size:16px}p,li{font-size:15px}',
+    body: '<h2>Leistungen</h2><p>Wir sanieren Wohnungen in Karlsruhe.</p>',
+  },
+  M3: {
+    was: 'Fliesstext breiter als 85 Zeichen',
+    kopf: '.breit{max-width:none;width:1400px;font-size:16px}',
+    body: '<p class="breit">Der Satzspiegel entscheidet, ob ein Absatz lesbar ist: '
+      + 'zu lange Zeilen zwingen das Auge, den Zeilenanfang zu suchen, und genau '
+      + 'das bricht den Lesefluss bei jedem Umbruch aufs Neue, weshalb diese Zeile '
+      + 'hier absichtlich weit ueber die Grenze hinaus laeuft.</p>',
+  },
+  M9: {
+    was: 'Kind und Eltern mit identischem Radius bei Padding',
+    kopf: '.aussen{border-radius:16px;padding:12px;background:var(--line)}'
+      + '.innen{border-radius:16px;padding:8px;background:#fff}',
+    body: '<div class="aussen"><div class="innen">Konzentrisch waere 4px innen.</div></div>',
+  },
+  M12: {
+    was: 'ein einziger gap-Wert auf allen Flex-Containern',
+    // Erster Versuch pruefte Padding gegen Margin — das ist NICHT, was M12
+    // messt. Die Regel zaehlt gap-Werte auf Flex/Grid-Containern: mindestens
+    // sechs, und alle identisch. Ein Fixture, das die Bedingung nur ungefaehr
+    // nachbaut, belegt nichts (29.07.2026, drei Versuche daneben).
+    kopf: '.f{display:flex;gap:16px}',
+    body: Array.from({ length: 7 }, (_, i) =>
+      `<div class="f"><span>A${i}</span><span>B${i}</span></div>`).join(''),
+  },
+  M16: {
+    was: 'Klickflaeche kleiner als 40x40px',
+    kopf: '.winzig{display:block;width:24px;height:24px;min-height:24px;padding:0;'
+      + 'border:0;background:var(--line);font-size:11px;line-height:1}',
+    body: '<div><button type="button" class="winzig" aria-label="Schliessen">x</button></div>',
+  },
+  M18: {
+    was: 'drei animierte Elemente ohne prefers-reduced-motion',
+    // Das Grundgeruest traegt selbst eine @media (prefers-reduced-motion)-Regel
+    // (Zeile 76) — damit ist hasRM im Pruefer immer true und M18 kann nie
+    // feuern. Zwei Fehlversuche gingen darauf zurueck, dass ich die Animation
+    // veraenderte statt die Erfuellung wegzunehmen. Genau dafuer gibt es
+    // kopfWeg: die Zeile, die das Geruest zur Erfuellung braucht, faellt weg.
+    kopfWeg: /@media \(prefers-reduced-motion:reduce\)\{[^}]*\}\}\n/,
+    kopf: '.a1,.a2,.a3,.a4{transition:opacity .3s ease;opacity:.9;'
+      + 'display:block;padding:4px}',
+    body: '<div class="a1">A</div><div class="a2">B</div>'
+      + '<div class="a3">C</div><div class="a4">D</div>',
+  },
   M24: {
     was: 'kein Bild ueber Icon-Groesse',
     // Der einzige Fall, der das Grundgeruest aendern muss: er ist die ABWESENHEIT
@@ -167,14 +222,18 @@ const NICHT_HIER = {
   T1: 'Indigo-Violett-Verlauf — Anti-Set a1',
   T2: 'Inter ueberall — braucht geladene Webfonts (Anti-Set a1)',
   T7: 'Springy-Hover — braucht echte Hover-Simulation (Anti-Set a5, WARN)',
-  M1: 'nicht hergestellt', M2: 'nicht hergestellt', M3: 'nicht hergestellt',
-  M7: 'nicht hergestellt',
-  M8: 'nicht hergestellt', M9: 'nicht hergestellt', M10: 'nicht hergestellt',
-  M12: 'nicht hergestellt', M16: 'nicht hergestellt', M18: 'nicht hergestellt',
-  M19: 'nicht hergestellt',
+  // Verbleibende WARN-Regeln ohne Fixture. Die fuenf BLOCKER dieser Liste sind
+  // am 29.07.2026 nachgetragen (M3, M8, M9, M12, M16, M18) — ein Blocker, der
+  // nie feuert, faellt nicht auf, und einer, der falsch feuert, wird
+  // abgeschaltet. Bei WARN ist der Schaden geringer, aber die Liste bleibt
+  // sichtbar, damit "alles gruen" nicht nach voller Abdeckung aussieht.
+  M1: 'nicht hergestellt (WARN, Typo-Skala: braucht >7 Schriftgroessen)',
+  M2: 'nicht hergestellt (WARN, vertikaler Rhythmus)',
+  M7: 'keine eigene add()-Stelle im Pruefer mehr — Regel-ID verwaist',
+  M19: 'nicht hergestellt (WARN, transition: all)',
   M20: 'INFO-Stufe, kein BLOCK/WARN — taucht im Bericht anders auf',
-  M25: 'nicht hergestellt',
-  T10: 'nicht hergestellt',
+  M25: 'keine eigene add()-Stelle (nur INFO zusammen mit M24)',
+  T10: 'keine eigene add()-Stelle im Pruefer mehr — Regel-ID verwaist',
 };
 
 function lauf(html) {
