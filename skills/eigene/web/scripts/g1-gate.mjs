@@ -75,6 +75,9 @@ function seitenImBuild(dir) {
 // Betrifft ebenso g1-report.json und die Screenshots.
 const OUT = get('out', fs.mkdtempSync(path.join(os.tmpdir(), 'g1-gate-')));
 const SKILL_DIR = path.dirname(new URL(import.meta.url).pathname);
+// Zwei Pruefer brauchen den Quellcode statt der laufenden Seite: der
+// Import-Check und die Routen-Vollstaendigkeit ganz am Ende.
+const SRC = get('src', null);
 
 // Fehlendes Feld ist NICHT dasselbe wie ein leeres Feld.
 //
@@ -247,8 +250,16 @@ function checkAxe() {
     try {
       const parsed = JSON.parse(out);
       const violations = liste(parsed, 'violations', 'axe');
+      // "0 Violations" ist nur dann eine Aussage, wenn ueberhaupt Regeln liefen.
+      // axe-run.mjs meldet die Zahl seit 29.07.2026 mit; fehlt sie, stammt die
+      // Ausgabe aus einer alten Fassung und ist nicht beurteilbar.
+      if (typeof parsed.regeln !== 'number' || parsed.regeln === 0) {
+        record(`axe${route}`, false,
+          `axe meldet ${parsed.regeln ?? 'keine Zahl fuer'} gelaufene Regeln — 0 Violations ist hier keine Freigabe`);
+        continue;
+      }
       record(`axe${route}`, violations.length <= BUDGET.axeViolations,
-        violations.length === 0 ? `0 Violations (${parsed.passes} Passes)`
+        violations.length === 0 ? `0 Violations (${parsed.passes} Passes, ${parsed.regeln} Regeln)`
           : `${violations.length} Violations: ${violations.slice(0, 5).map((v) => `${v.id}(${v.impact})`).join(', ')}`);
     } catch {
       record(`axe${route}`, false, `axe-Ausgabe unlesbar (exit ${code})`);
@@ -257,23 +268,42 @@ function checkAxe() {
 }
 
 // --- Check 4: tote Links ---------------------------------------------------
+//
+// Befund 29.07.2026: das Gate rief linkinator mit `--silent` auf. Das Flag
+// unterdrueckt die OK-Links — die Ausgabe enthaelt dann NUR noch die kaputten.
+// Auf der Kontroll-Fixture mit vier href-Attributen meldete das Tor deshalb
+// "0 Links, 0 tot" und bestand. Dieselbe Zeile kaeme heraus, wenn linkinator
+// die Seite gar nicht geoeffnet haette. Ein Pruefer, dessen Bestanden-Meldung
+// von seinem Nicht-gelaufen-Zustand ununterscheidbar ist, prueft nichts.
+//
+// Ohne --silent liefert dieselbe Seite zwei Links mit state: 'OK'. Also: Flag
+// weg, und eine leere Liste gilt als kaputter Lauf statt als sauberes Ergebnis.
+function linkUrteil(parsed) {
+  const alle = liste(parsed, 'links', 'linkinator');
+  if (alle.length === 0) {
+    return { ok: false, detail: 'linkinator hat 0 Links gesehen — auch die Startseite fehlt, also ist der Lauf leer, nicht sauber' };
+  }
+  const broken = alle.filter((l) => l.state === 'BROKEN');
+  return {
+    ok: broken.length <= BUDGET.brokenLinks,
+    detail: broken.length === 0
+      ? `${alle.length} Links geprueft, 0 tot`
+      : `${broken.length} von ${alle.length} tot: ${broken.slice(0, 5).map((l) => l.url).join(', ')}`,
+  };
+}
+
 function checkLinks() {
   if (!toolExists('linkinator')) { record('links', true, 'linkinator nicht installiert', true); return; }
+  const auswerten = (text) => {
+    const u = linkUrteil(JSON.parse(text));
+    record('links', u.ok, u.detail);
+  };
   try {
-    const out = run('linkinator', [BASE, '--recurse', '--format', 'json', '--silent']);
-    const parsed = JSON.parse(out);
-    const alle = liste(parsed, 'links', 'linkinator');
-    const broken = alle.filter((l) => l.state === 'BROKEN');
-    record('links', broken.length <= BUDGET.brokenLinks,
-      broken.length === 0 ? `${alle.length} Links, 0 tot`
-        : `${broken.length} tot: ${broken.slice(0, 5).map((l) => l.url).join(', ')}`);
+    auswerten(run('linkinator', [BASE, '--recurse', '--format', 'json']));
   } catch (e) {
-    const stdout = e.stdout ? String(e.stdout) : '';
+    // Exit 1 = tote Links gefunden (kein kaputter Lauf). JSON steht auf stdout.
     try {
-      const parsed = JSON.parse(stdout);
-      const broken = liste(parsed, 'links', 'linkinator').filter((l) => l.state === 'BROKEN');
-      record('links', broken.length <= BUDGET.brokenLinks,
-        `${broken.length} tot: ${broken.slice(0, 5).map((l) => l.url).join(', ')}`);
+      auswerten(String(e.stdout || ''));
     } catch {
       record('links', false, `linkinator-Lauf kaputt: ${String(e.message).split('\n')[0]}`);
     }
@@ -337,6 +367,20 @@ function slopTeilen(parsed) {
 function slopMelden(parsed) {
   const n = slopZaehlen(parsed);
   if (n === null) { record('ai-slop', false, 'Slop-Scan: unbekanntes JSON-Format'); return; }
+
+  // Dieselbe Frage wie beim Link-Check (29.07.2026): sieht die Erfolgsmeldung
+  // anders aus, wenn der Pruefer gar nicht gelaufen ist? Der Scanner meldet auf
+  // einem Ordner ohne eine einzige HTML-Datei `{filesScanned: 0, hits: 0}` — und
+  // das Gate machte daraus "0 Slop-Tells", bestanden. Ein --src, das auf den
+  // Quellordner statt auf den Build zeigt, auf einen Tippfehler, auf ein leeres
+  // dist/ — jedes davon war ein gruener Slop-Check ueber nichts.
+  const gelesen = parsed.filesScanned;
+  if (typeof gelesen === 'number' && gelesen === 0) {
+    record('ai-slop', false,
+      'Slop-Scan hat 0 Dateien gelesen — zeigt --src auf den richtigen Ordner? (leerer Lauf, kein sauberes Ergebnis)');
+    return;
+  }
+
   const s = slopTeilen(parsed);
   // Die Abkuerzung "n === 0 -> gruen" stand frueher VOR dieser Pruefung. Meldet der
   // Scanner {hits: 0, findings: [...]} — Zaehler kaputt, Funde da —, war das ein
@@ -435,10 +479,17 @@ function checkFormular() {
       const b = liste(parsed, 'blockers', 'formular-check');
       const w = liste(parsed, 'warns', 'formular-check');
       const strengeVerletzt = has('strict') && w.length > 0;
+      // Eine Seite ohne Formular ist nicht kaputt — sie ist nur nicht gemeint.
+      // Der Pruefer sagt das mit F0. Das Gate muss es weitersagen, statt "0
+      // Blocker" zu melden: sonst liest der Naechste ein geprueftes Formular,
+      // wo gar keines war (siehe Link-Check, 29.07.2026).
+      const ohneFormular = (parsed.infos || []).some((i) => i.id === 'F0');
       record(`formular${route}`, b.length === 0 && !strengeVerletzt,
-        b.length === 0
-          ? `0 Blocker, ${w.length} Warnung(en)${strengeVerletzt ? ' — strict: Warnungen zaehlen als Fehler' : ''}`
-          : `${b.length} Blocker: ${b.slice(0, 5).map((f) => f.id).join(', ')} (+${w.length} Warnungen)`);
+        ohneFormular
+          ? 'kein Formular auf dieser Seite — nichts zu pruefen'
+          : b.length === 0
+            ? `0 Blocker, ${w.length} Warnung(en)${strengeVerletzt ? ' — strict: Warnungen zaehlen als Fehler' : ''}`
+            : `${b.length} Blocker: ${b.slice(0, 5).map((f) => f.id).join(', ')} (+${w.length} Warnungen)`);
     } catch {
       record(`formular${route}`, false, `formular-check-Ausgabe unlesbar (exit ${code})`);
     }
@@ -455,6 +506,46 @@ function checkFormular() {
 //   shots nennt eine Datei, die es nicht gibt -> "1 Screenshots", bestanden
 // Der Sweep ist die Grundlage jeder Sichtpruefung. Fehlt das Bild, hat der
 // Panel-Schritt nichts zu sehen — und ein Nichts besteht sonst jede Pruefung.
+// --- Check 9: kein erfundener Import aus dem Tresor -----------------------
+//
+// Der Import-Pruefer existierte seit dem 28.07.2026, lief aber nur von Hand.
+// Damit war er kein Tor, sondern ein Angebot — und die Regel "erst lib-lookup,
+// dann importieren" stand als Prosa-Bitte da, obwohl sie maschinell pruefbar
+// ist (Doktrin-Regel 11: erzwingen statt erbitten).
+//
+// Er braucht als einziger Pruefer keinen Server, sondern `--src`. Ohne --src
+// gilt er als uebersprungen — das faellt in der SKIP-Zeile auf, statt still
+// als bestanden durchzugehen.
+function checkImporte() {
+  if (!SRC) { record('importe', true, 'ohne --src kein Quellcode zum Pruefen', true); return; }
+  const runner = path.join(SKILL_DIR, 'import-check.mjs');
+  if (!fs.existsSync(runner)) { record('importe', true, 'import-check.mjs nicht gefunden', true); return; }
+  let out = '';
+  let code = 0;
+  try {
+    out = run('node', [runner, '--src', SRC, '--json']);
+  } catch (e) {
+    code = e.status ?? 2;
+    out = String(e.stdout || '');
+    if (code === 2) { record('importe', false, `import-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); return; }
+  }
+  try {
+    const parsed = JSON.parse(out);
+    const b = liste(parsed, 'befunde', 'import-check');
+    // Wie beim Formular-Check (F0): "nichts zu pruefen" muss anders klingen als
+    // "geprueft und sauber". Eine reine HTML-Seite importiert nichts aus dem
+    // Tresor — das ist kein bestandener Import-Check, das ist gar keiner.
+    record('importe', b.length === 0,
+      b.length === 0
+        ? parsed.geprueft === 0
+          ? 'kein Import aus dem Tresor — nichts zu pruefen'
+          : `${parsed.geprueft} Tresor-Import(e) in ${parsed.dateien} Datei(en), keiner erfunden`
+        : `${b.length} erfundene(r) Import: ${b.slice(0, 5).map((f) => `${f.name} aus ${f.quelle}`).join(', ')}`);
+  } catch {
+    record('importe', false, `import-check-Ausgabe unlesbar (exit ${code})`);
+  }
+}
+
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
   if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
@@ -523,6 +614,7 @@ checkLinks();
 checkSlop();
 checkCraft();
 checkFormular();
+checkImporte();
 if (!has('no-shots')) checkSweep();
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
@@ -558,6 +650,13 @@ if (failed.length) {
 // Frage, die keine der anderen vier stellt: fuellt sich dieses Formular auf
 // einem Telefon ueberhaupt ausfuellen? Fehlt der Pruefer, ist das ungeprueft —
 // und auf einer Landingpage ist das Formular die einzige Conversion.
+//
+// `importe` steht bewusst NICHT in dieser Liste. Die anderen fuenf haengen an der
+// laufenden Seite und sind immer beantwortbar; der Import-Check braucht `--src`.
+// Waere er Pflichtfamilie, wuerde jeder Lauf ohne Quellordner mit Exit 2 enden —
+// aus einem fehlenden Argument wuerde ein kaputtes Tor. Er faellt trotzdem auf:
+// ohne `--src` erscheint er in der SKIP-Zeile, und die Routen-Vollstaendigkeit
+// weiter unten verlangt `--src` ohnehin fuer jede Auslieferung.
 const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular'];
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
@@ -571,7 +670,6 @@ if (fehltGanz.length) {
 // Die erste Fassung fragte nur, ob --routes ueberhaupt gesetzt ist. Wer 2 von 28
 // Seiten nannte, bekam Gruen fuers Ganze — dieselbe Luecke, nur eine Ebene tiefer.
 // Es zaehlt nicht, ob Routen genannt wurden, sondern ob ALLE genannt wurden.
-const SRC = get('src', null);
 if (SRC) {
   const geprueft = new Set(ROUTES.map((r) => r.replace(/\/$/, '') || '/'));
   const ungesehen = seitenImBuild(SRC)

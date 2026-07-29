@@ -49,7 +49,7 @@ Sechs der 30 Libraries beschreiben ihre API nicht direkt in der Datei, auf die
 | `motion` | `export * from 'framer-motion/dom'` (Fremdpaket) |
 | `zustand` | `export * from 'zustand/vanilla'` + `/react` |
 | `date-fns` | `export *` auf ~300 Einzeldateien |
-| `clsx` | `export = clsx` (CommonJS-Default) |
+| `clsx` | zwei Typdateien: `.d.mts` (benannt) und `.d.ts` (`export = clsx`) |
 | `gsap` | `/// <reference path=…>` × 32 + `declare namespace gsap` |
 
 Bis 29.07.2026 gab `lib-lookup` für diese eine **leere Export-Zeile bei Exit 0**
@@ -59,9 +59,9 @@ wie *es gibt nichts*. Wer daraufhin aus dem Gedächtnis importiert, ist wieder a
 Raten.
 
 Das Werkzeug folgt jetzt allen drei Weiterleitungsformen (bis zu drei Ebenen
-tief) und nennt bei `clsx` den Default-Import, bei `gsap` die Namespace-API.
-Kommt es trotzdem nicht weiter, sagt es **UNPRUEFBAR** und nennt den Dateipfad —
-das ist eine Antwort, Schweigen ist keine.
+tief) und nennt bei `gsap` die Namespace-API. Kommt es trotzdem nicht weiter,
+sagt es **UNPRUEFBAR** und nennt den Dateipfad — das ist eine Antwort, Schweigen
+ist keine.
 
 ```bash
 node evals/run-lib-lookup.mjs      # 6 Sonderformen + Flächentest über alle 30
@@ -70,6 +70,25 @@ node evals/run-lib-lookup.mjs      # 6 Sonderformen + Flächentest über alle 30
 Der Lauf ist in beide Richtungen belegt: mit dem Fix 0 offene Fälle, mit
 zurückgedrehtem Fix 4 rote. Er fällt auch auf, wenn beim nächsten `npm update`
 eine siebte Sonderform dazukommt.
+
+### Nachschlagen und Prüfen sind dieselbe Frage
+
+Beides beantwortet `scripts/lib-exporte.mjs` — `lib-lookup` zeigt die Namen an,
+`import-check` vergleicht dagegen. Vorher hatte jedes seine eigene Auflösung,
+und die des Prüfers war die schwächere: Er gab bei jedem `export *` auf und
+übersprang damit still dieselben sechs Libraries, die in der Tabelle oben stehen.
+Ein erfundener Import aus `zustand` kam durch, mit „Kein erfundener Import"
+darunter. Details und Prüfstand: `SKILL.md`, „Erfundene Imports fallen vor dem
+Build auf".
+
+Zwei Formen kommen dabei nur beim Prüfen vor, nicht beim Nachschlagen:
+
+- **Unterpfade.** `motion/react` ist eine andere Exportmenge als `motion` —
+  `AnimatePresence` gibt es nur im ersten. Der Pfad wird über die
+  `exports`-Karte des Pakets aufgelöst, nicht geraten.
+- **Bedingte Typdateien.** `clsx` liefert `.d.mts` (ESM, benannter Export) und
+  `.d.ts` (CommonJS, `export = clsx`). Maßgeblich ist die ESM-Datei, weil jedes
+  Projekt hier ESM ist.
 
 **Pflicht bei jeder Library-Nutzung im Build:** erst `lib-lookup` auf die
 Library, dann den README-Pfad öffnen und das Muster von dort übernehmen.

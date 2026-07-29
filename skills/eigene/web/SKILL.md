@@ -112,7 +112,8 @@ node scripts/g1-gate.mjs --url http://localhost:3000/ --src .
 ```
 
 Er bündelt Erreichbarkeit, Lighthouse (4 Kategorien), axe, tote Links, AI-Slop,
-Craft-Check, Formular-Check und den Screenshot-Sweep in einem einzigen Exit-Code:
+Craft-Check, Formular-Check, Import-Check und den Screenshot-Sweep in einem
+einzigen Exit-Code:
 
 - **Exit 0** — bestanden. Nur dann darf „fertig" gesagt werden.
 - **Exit 1** — Qualität gerissen. Der Bericht nennt Kategorie und Ist/Soll.
@@ -255,9 +256,19 @@ also genau den Fehlertyp, gegen den er gebaut wurde.
 
 ### Erfundene Imports fallen vor dem Build auf
 
+Läuft seit dem 29.07.2026 **im Tor mit** (`--src` genügt), einzeln aufrufbar mit:
+
 ```bash
 node scripts/import-check.mjs --src .
 ```
+
+Davor war er ein Angebot, kein Tor: die Regel „erst `lib-lookup`, dann
+importieren" stand als Prosa-Bitte da, obwohl sie maschinell prüfbar ist
+(Doktrin-Regel 11 — erzwingen statt erbitten). Er ist der einzige Prüfer, der
+nicht die laufende Seite liest, sondern den Quellcode; ohne `--src` erscheint er
+als SKIP. Deshalb zählt er **nicht** zu den fünf Pflicht-Familien — sonst würde
+aus einem fehlenden Argument ein Exit 2. Zwei Anti-Set-Fälle belegen beide
+Richtungen: `import-erfunden` → Exit 1, `import-echt` → Exit 0.
 
 Modelle erfinden Exportnamen. `import { ToastProvider } from 'sonner'` sieht
 plausibel aus und existiert nicht — in TypeScript stirbt der Build, in JavaScript
@@ -265,10 +276,37 @@ ist die Komponente zur Laufzeit `undefined` und die Seite bleibt still leer. Das
 Skript vergleicht jeden benannten Import gegen die echten Typdeklarationen im
 Tresor (`/root/tools/uikit-vault`, per `UIKIT_VAULT` umstellbar).
 
-Es urteilt nur, wo es sicher ist: Findet es keine Typdatei oder steht dort ein
-`export *`, gilt die Library als **unprüfbar** und wird still übersprungen — nie
-als „Import existiert nicht" gemeldet. Exit 2 heißt „Prüfer selbst kaputt"
-(Tresor fehlt), ausdrücklich kein Bestanden.
+Es urteilt nur, wo es sicher ist: Bleibt eine Weiterleitung offen oder findet
+sich keine Typdatei, gilt der Importpfad als **unprüfbar** und wird still
+übersprungen — nie als „Import existiert nicht" gemeldet. Exit 2 heißt „Prüfer
+selbst kaputt" (Tresor fehlt), ausdrücklich kein Bestanden.
+
+**Prüfer und Nachschlagewerk lesen aus derselben Quelle** (`scripts/lib-exporte.mjs`).
+Das ist kein Aufräumen, sondern die Reparatur eines Lochs: Bis zum 29.07.2026 löste
+`import-check` Exporte selbst auf, schwächer als `lib-lookup` — und schwieg damit
+zu genau den Fällen, für die der Tresor gebaut wurde.
+
+| Was der Prüfer nicht ansah | Folge |
+|---|---|
+| Jede Library mit `export * from` | `zustand`, `date-fns`, `motion`, `leva`, `clsx`, `gsap` — **6 von 30** nie geprüft |
+| Jeden Unterpfad (`motion/react`) | Der einzige Motion-Pfad, den dieser Skill lehrt (75× in den References) |
+| Verschachtelte `exports`-Bedingungen | Bei `clsx` die CommonJS-Datei statt der ESM-Datei gelesen |
+
+Die ersten beiden waren falsches Grün: ein erfundener `import { gibtEsNicht }
+from 'zustand'` kam durch, und darunter stand „Kein erfundener Import". Der
+dritte war falsches Rot — `import { clsx } from "clsx"` im **eigenen**
+`lib/utils.ts` des Skills wurde als erfunden gemeldet.
+
+```bash
+node evals/run-import-check.mjs
+```
+
+17 Fälle, Exit 0: sieben erfundene Namen, die auffallen **müssen**, neun echte
+Importe, die durchgehen müssen, plus die eigene Komponenten-Bibliothek als
+Flächenprobe (314 echte Importe in 113 Dateien). Die Flächenprobe hat eine
+Untergrenze — unter 200 geprüften Importen wird sie rot, sonst wäre ein Prüfer,
+der alles überspringt, hier grün. Beide Fixes sind rückwärts belegt:
+Subpfad-Fix zurückgedreht → 3 rot, Bedingungs-Fix zurückgedreht → 1 rot.
 
 ### Grün für eine Seite ist kein Grün für die Website
 
@@ -300,6 +338,12 @@ Ein Tor, das nie grün wird, ist genauso nutzlos wie eins, das nie rot wird. Nur
 Unterschied ist der Beweis. `a5` prüft zusätzlich den Schweregrad: Ghost-Card und
 Springy-Hover sind laut Doktrin WARN und dürfen im Normallauf **nicht** blocken,
 müssen aber mit `--strict` rot werden.
+
+Dazu sechs Fälle anderer Bauform, weil sie mehr als eine Seite brauchen: drei für
+den Routen-Wächter (keine, halbe, alle Routen genannt) und zwei für den
+Import-Check (erfundener vs. echter Import) — **13 Fälle, Exit 0**. Der Lauf
+dauert rund sechs Minuten; das ist der teuerste Prüfstand im Skill und der
+einzige, der das echte Tor gegen echte Seiten fährt.
 
 Das hat sich sofort gelohnt: Der erste Lauf legte zwei Bugs frei, die vorher grün
 gemeldet hatten. `ai-slop` zählte vier gefundene Tells als null (der Scanner liefert
@@ -467,6 +511,108 @@ sonst wäre das Tor nur in die andere Richtung kaputt. Drei unlesbare Manifeste,
 
 **Gegenprobe gefahren:** Die alte Urteilslogik, isoliert nachgebaut, lässt alle vier
 Manifeste aus der Tabelle als grün durch. Der Fund war echt, nicht behauptet.
+
+### „0 Links, 0 tot" hieß: linkinator hat nichts gesehen
+
+Derselbe Fehler, eine Zeile weiter oben im Tor. Der Aufruf trug `--silent` — und das
+Flag unterdrückt bei linkinator die **funktionierenden** Links. Übrig bleibt nur, was
+kaputt ist. Auf einer sauberen Seite ist die Antwort deshalb immer `{"links": []}`.
+
+Das Gate las diese leere Liste als Ergebnis und meldete `0 Links, 0 tot` — **bestanden**.
+Dieselbe Zeile käme heraus, wenn linkinator die Seite nie geöffnet hätte, wenn der
+Server tot wäre, wenn die URL falsch wäre. Nachgemessen an der Kontroll-Fixture: vier
+`href`-Attribute im Quelltext, Tor meldete null geprüfte Links.
+
+> **Ein Prüfer, dessen Bestanden-Meldung von seinem Nicht-gelaufen-Zustand
+> ununterscheidbar ist, prüft nichts.** Das ist der schärfste Test für jeden Check im
+> Tor: sähe seine Erfolgsmeldung anders aus, wenn er gar nicht gelaufen wäre?
+
+Behoben: `--silent` ist weg, und eine leere Liste gilt als kaputter Lauf. Ohne das Flag
+liefert dieselbe Seite zwei Links mit `state: 'OK'` — es gibt also immer mindestens
+einen, nämlich die Startseite selbst.
+
+```bash
+node evals/run-link-check.mjs        # 10 Fälle, weder Browser noch Server noch linkinator
+```
+
+Vier Ausgaben, die reißen müssen (leere Liste zweimal, ein toter Link, nur tote). Drei,
+die durchgehen müssen — darunter `state: 'SKIPPED'` für `mailto:`, das kein toter Link
+ist. Drei unlesbare, die werfen müssen.
+
+**Am echten Werkzeug gegengeprüft, beide Richtungen:** saubere Seite → `2 Links geprüft,
+0 tot`, Exit 0. Derselbe Ordner mit einem eingebauten toten Link → `1 von 3 tot`, Exit 1.
+
+### Dieselbe Frage an jeden Check gestellt
+
+Der Link-Fund war kein Einzelfall, sondern eine **Frage, die man an jeden Prüfer stellen
+kann**. Direkt danach durchgemessen — alle acht Checks des Tores mit einer leeren
+Eingabe gefüttert und nachgesehen, was sie melden:
+
+| Prüfer | leere Eingabe | altes Urteil |
+|---|---|---|
+| `links` | Seite mit 4 `href` | „0 Links, 0 tot" → **bestanden** |
+| `ai-slop` | Ordner ohne HTML-Datei | „0 Slop-Tells" → **bestanden** |
+| `formular` | Seite ohne Formular | „0 Blocker, 0 Warnungen" → **bestanden** |
+| `lighthouse` / `axe` / `craft` | Route existiert nicht | „Navigation fehlgeschlagen" → reißt korrekt |
+| `axe` | Tag-Liste unbekannt | „0 Violations" → **bestanden** (siehe unten) |
+| `shot-sweep` | leeres Manifest | seit heute früh behoben |
+
+Drei von acht meldeten Bestanden für einen Lauf, der nichts angesehen hatte. Die anderen
+reißen, weil sie an einer echten Navigation hängen — die scheitert sichtbar.
+
+Beim `ai-slop` ist der praktische Fall häufig: `--src` zeigt auf den Quell- statt den
+Build-Ordner, auf ein noch leeres `dist/` oder auf einen Tippfehler. Der Scanner meldet
+dann brav `filesScanned: 0`, und genau dieses Feld hat das Gate nie gelesen.
+
+Beim `formular` ist eine Seite ohne Formular **nicht kaputt** — Impressum, Datenschutz,
+eine Über-uns-Seite haben legitim keines. Der Prüfer sagt das mit `F0`. Falsch war nur,
+dass das Gate es verschwieg und `0 Blocker` meldete. Jetzt steht dort *„kein Formular auf
+dieser Seite — nichts zu prüfen"*: dieselbe Farbe, aber die Wahrheit.
+
+```bash
+node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch Scanner
+```
+
+Sechs Ausgaben, die reißen müssen — darunter drei ältere, bereits behobene Fehler als
+Regressionsschutz (`hits: 0` bei voller Fundliste, `hits: 1` bei leerer, ID als Zahl
+statt `"01"`). Drei, die durchgehen müssen, darunter eine Scanner-Version ganz **ohne**
+`filesScanned` — sonst hätte der neue Blocker ältere Werkzeuge falsch rot gemacht.
+
+### Ein Tippfehler legte die halbe Barrierefreiheits-Prüfung still
+
+Die Frage von oben ein drittes Mal gestellt, diesmal an `axe` — und sie hat wieder
+etwas gefunden. `axe.run(document, {runOnly: {type: 'tag', values: [...]}})` prüft
+die Liste **auf Leere**, aber nicht **auf Existenz** der Namen. Ein unbekannter Tag
+wirft nicht; seine Regeln fallen einfach weg.
+
+Am 29.07. an einer Seite mit vier echten Fehlern (Bild ohne `alt`, Link ohne Namen)
+gemessen:
+
+| Tag-Liste | Regeln gelaufen | Violations | Exit |
+|---|---|---|---|
+| `wcag2a` | 90 | 6 | 1 |
+| `wcag2a-Tippfehler` | **0** | 0 | **0** |
+| ein falscher Tag von fünf | **32** statt 89 | 0 | **0** |
+
+Diese halbe Validierung ist die eigentliche Falle: Wer den lauten Fall kennt (leere
+Liste → axe wirft), hält den stillen für miterledigt. Und die dritte Zeile ist die
+gefährlichste — sie sieht nach einem normalen Ergebnis aus.
+
+> Ein erster Fix, der nur zählte, ob überhaupt Regeln liefen, hätte genau diesen
+> Fall durchgelassen: 32 Regeln sind nicht null. Erst der **Namensabgleich pro Tag**
+> gegen `axe.getRules([tag])` fängt ihn.
+
+Behoben in `scripts/axe-run.mjs`: unbekannte Tags → Exit 2 vor dem Lauf; zusätzlich
+gilt „keine einzige Regel gelaufen" als kaputter Lauf. `g1-gate.mjs` liest die Zahl
+`regeln` mit — fehlt sie, ist die Ausgabe von einer alten Fassung und kein Bestanden.
+
+```bash
+node evals/run-axe-check.mjs         # 7 Fälle, braucht einen Browser, aber keinen Server
+```
+
+**Am echten Werkzeug gegengeprüft, beide Richtungen:** saubere Seite → `0 Violations,
+14 Passes, 89 Regeln gelaufen`, Exit 0. Dieselbe Seite mit einem verfälschten Tag →
+`axe kennt diese Tags nicht: … ihre Regeln liefen NICHT`, Exit 2.
 
 ### Zwei Läufe, ein Ergebnis: das Tor war nicht parallel-fest
 

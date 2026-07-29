@@ -209,7 +209,56 @@ for (const f of ROUTEN_FAELLE) {
   }
 }
 
-const gesamt = namen.length + ROUTEN_FAELLE.length;
+// Der Import-Check ist der einzige Pruefer im Tor, der nicht die laufende Seite
+// liest, sondern den Quellcode. Er lief seit dem 28.07.2026 nur von Hand — als
+// Angebot, nicht als Tor. Ab dem 29.07. haengt er drin, und diese zwei Faelle
+// belegen, dass er dort auch wirkt: ein erfundener Import muss die Auslieferung
+// stoppen, ein echter darf sie nicht stoppen.
+//
+// Dieselbe HTML-Seite wie oben, nur eine .tsx-Datei daneben — der Unterschied im
+// Ergebnis kann also nur vom Import kommen.
+const IMPORT_FAELLE = [
+  {
+    was: 'import-erfunden',
+    code: `import { toast, ToastProvider } from 'sonner';\nexport const x = () => toast('hi') && ToastProvider;`,
+    exit: 1, reisst: true, warum: 'ToastProvider gibt es in sonner nicht',
+  },
+  {
+    was: 'import-echt',
+    code: `import { Toaster, toast } from 'sonner';\nimport { motion, AnimatePresence } from 'motion/react';\nexport const x = () => [Toaster, toast, motion, AnimatePresence];`,
+    exit: 0, reisst: false, warum: 'echte Exporte, auch ueber den Subpfad motion/react',
+  },
+];
+
+for (const f of IMPORT_FAELLE) {
+  sag(`\n.. laeuft: ${f.was}`);
+  const dir = path.join(wurzel, f.was);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(dir, 'index.html'));
+  for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(dir, b));
+  fs.writeFileSync(path.join(dir, 'app.tsx'), f.code);
+
+  const lauf = spawnSync('node', [
+    path.join(SKILL, 'scripts/g1-gate.mjs'),
+    '--url', `http://localhost:${PORT}/${f.was}/`,
+    '--src', dir,
+    '--budget', BUDGET,
+    '--no-shots',
+  ], { encoding: 'utf8', timeout: 300000 });
+
+  const gerissen = gerissenAus(lauf).includes('importe');
+  const ok = lauf.status === f.exit && gerissen === f.reisst;
+  if (!ok) rot++;
+  sag(`${ok ? 'OK  ' : 'ROT '} ${f.was.padEnd(24)} exit=${lauf.status}  ${f.warum}`);
+  if (!ok) {
+    sag(`       Exit erwartet ${f.exit}, bekommen ${lauf.status}`);
+    sag(f.reisst
+      ? '       Ein erfundener Import kommt durchs Tor — der Build stirbt erst beim Kunden.'
+      : '       Das Tor blockt echte Importe. Nach dem dritten Fehlalarm schaltet es jemand ab.');
+  }
+}
+
+const gesamt = namen.length + ROUTEN_FAELLE.length + IMPORT_FAELLE.length;
 sag(`\n${gesamt - rot}/${gesamt} Faelle wie erwartet.`);
 if (rot) {
   sag('Das Tor unterscheidet nicht wie dokumentiert. Erst reparieren, dann ausliefern.');

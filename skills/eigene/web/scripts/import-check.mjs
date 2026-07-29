@@ -15,6 +15,12 @@
 
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, extname, relative } from 'node:path';
+// Die Namensmenge kommt aus derselben Quelle, die lib-lookup.mjs anzeigt.
+// Vorher hatte dieses Skript eine eigene, schwaechere Aufloesung: jedes
+// `export * from` liess es aufgeben, also blieben sechs der 30 Libraries
+// (u.a. zustand, date-fns, motion, leva) dauerhaft ungeprueft — bei Exit 0
+// und der Schlusszeile "Kein erfundener Import".
+import { pruefbareNamen, pfadTeilen } from './lib-exporte.mjs';
 
 const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
@@ -35,48 +41,6 @@ if (!existsSync(join(VAULT, 'package.json'))) {
 const TRESOR_LIBS = Object.keys(
   JSON.parse(readFileSync(join(VAULT, 'package.json'), 'utf8')).dependencies || {}
 );
-
-// --- echte Exporte einer Library lesen ------------------------------------
-// Bewusst dieselbe grobe Extraktion wie lib-lookup.mjs: es geht um die Namen,
-// nicht um vollstaendiges Typ-Parsing.
-const TYPE_KANDIDATEN = [
-  'dist/index.d.ts', 'index.d.ts', 'dist/index.d.mts',
-  'types/index.d.ts', 'dist/types/index.d.ts', 'lib/index.d.ts',
-];
-
-function typenDatei(lib) {
-  const base = join(VAULT, 'node_modules', lib);
-  let entry = null;
-  try {
-    const pj = JSON.parse(readFileSync(join(base, 'package.json'), 'utf8'));
-    entry = pj.types || pj.typings || null;
-  } catch { /* Kandidatenliste reicht */ }
-  for (const k of entry ? [entry, ...TYPE_KANDIDATEN] : TYPE_KANDIDATEN) {
-    const p = join(base, k.replace(/^\.\//, ''));
-    if (existsSync(p)) return p;
-  }
-  return null;
-}
-
-function exporte(lib) {
-  const dts = typenDatei(lib);
-  if (!dts) return null;              // null = unpruefbar, NICHT leere Menge
-  const text = readFileSync(dts, 'utf8');
-  const namen = new Set();
-  for (const m of text.matchAll(/^export\s*\{([^}]+)\}/gm)) {
-    for (const teil of m[1].split(',')) {
-      const n = teil.trim().split(/\s+as\s+/).pop().trim();
-      if (n && n !== 'type') namen.add(n.replace(/^type\s+/, ''));
-    }
-  }
-  for (const m of text.matchAll(/^export\s+(?:declare\s+)?(?:const|function|class|type|interface|enum)\s+([A-Za-z0-9_$]+)/gm)) {
-    namen.add(m[1]);
-  }
-  // Ein `export *` macht die Menge unvollstaendig — dann lieber gar nicht urteilen,
-  // als einen echten Export faelschlich als erfunden zu melden.
-  if (/^export\s+\*/m.test(text)) return null;
-  return namen.size ? namen : null;
-}
 
 // --- Projektdateien einsammeln --------------------------------------------
 const ENDUNGEN = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs']);
@@ -118,11 +82,14 @@ function importe(text) {
   return raus;
 }
 
-// Ein Import auf 'sonner/dist/x' gehoert zu 'sonner'. Subpath-Exporte haben eigene
-// Typdateien, die wir hier nicht aufloesen — die werden uebersprungen, nicht geraten.
+// Ein Import auf `motion/react` gehoert zu `motion`, `@dnd-kit/core` ist selbst
+// schon das Paket. Vorher verglich diese Funktion nur auf Gleichheit — damit
+// passte `motion/react` auf keine Library, obwohl genau dieser Pfad in den
+// References 75-mal steht. Der meistgelehrte Importpfad des Skills war der
+// einzige, den der Pruefer nie ansah.
 function libFuer(quelle) {
-  const treffer = TRESOR_LIBS.filter((l) => quelle === l);
-  return treffer[0] || null;
+  const { paket } = pfadTeilen(quelle);
+  return TRESOR_LIBS.includes(paket) ? paket : null;
 }
 
 const alle = dateien(SRC);
@@ -136,11 +103,17 @@ for (const f of alle) {
   for (const { name, quelle, zeile } of importe(text)) {
     const lib = libFuer(quelle);
     if (!lib) continue;
-    if (!cache.has(lib)) cache.set(lib, exporte(lib));
-    const bekannt = cache.get(lib);
+    // Nach Importpfad zwischenspeichern, nicht nach Paket: `motion` und
+    // `motion/react` haben verschiedene Exportmengen (`AnimatePresence` gibt es
+    // nur im zweiten). Ein Cache pro Paket wuerde die eine Menge fuer die
+    // andere ausgeben und damit echte Importe als erfunden melden.
+    if (!cache.has(quelle)) cache.set(quelle, pruefbareNamen(quelle));
+    const bekannt = cache.get(quelle);
     if (!bekannt) continue;            // unpruefbar → still lassen, nie raten
     geprueft++;
-    if (!bekannt.has(name)) befunde.push({ datei: relative(SRC, f), zeile, name, lib });
+    // `quelle` ist der Pfad, wie er im Code steht (`motion/react`) — das gehoert
+    // in den Befund. `lib` ist das Paket (`motion`) — nur das versteht lib-lookup.
+    if (!bekannt.has(name)) befunde.push({ datei: relative(SRC, f), zeile, name, quelle, lib });
   }
 }
 
@@ -150,7 +123,7 @@ if (JSON_OUT) {
   console.log(`Import-Check — ${alle.length} Dateien, ${geprueft} Tresor-Imports geprueft`);
   if (!geprueft) console.log('Keine Library aus dem Tresor importiert — nichts zu pruefen.');
   for (const b of befunde) {
-    console.log(`[FEHLT] ${b.datei}:${b.zeile} — "${b.name}" wird aus "${b.lib}" importiert, existiert dort aber nicht.`);
+    console.log(`[FEHLT] ${b.datei}:${b.zeile} — "${b.name}" wird aus "${b.quelle}" importiert, existiert dort aber nicht.`);
     console.log(`         Echte Exporte: node scripts/lib-lookup.mjs ${b.lib}`);
   }
   console.log(befunde.length
