@@ -140,7 +140,19 @@ function cmdReject(pos) {
   const i = idx.images.findIndex((im) => im.id === key || im.datei === key);
   if (i === -1) die("Kein Index-Eintrag fuer: " + key);
   const [removed] = idx.images.splice(i, 1);
-  const f = join(dir, removed.datei);
+  // `removed.datei` kommt AUS DEM INDEX, und den schreiben Agenten. Bis
+  // 29.07.2026 ging der Wert ungeprueft an join() — mit `"datei": "../opfer.txt"`
+  // im Index loeschte `reject` eine Datei ausserhalb des Asset-Ordners.
+  // Nachgemessen, nicht vermutet: Exit 0, "geloescht + aus Index entfernt:
+  // ../opfer.txt", und /tmp/bt/opfer.txt war weg.
+  //
+  // Das ist die einzige Stelle im ganzen Skill, die unwiderruflich loescht
+  // (rmSync ohne Papierkorb). Ein Index-Eintrag darf bestimmen, WELCHE Datei im
+  // Ordner drankommt — nicht, dass es eine ausserhalb ist.
+  const f = resolve(dir, removed.datei);
+  if (f !== join(dir, basename(f)) || basename(f) !== removed.datei) {
+    die(`Index-Eintrag zeigt aus dem Asset-Ordner heraus: "${removed.datei}" — nichts geloescht.`);
+  }
   if (existsSync(f)) rmSync(f);
   saveIndex(dir, idx);
   console.log(`- geloescht + aus Index entfernt: ${removed.datei} (id=${removed.id})`);

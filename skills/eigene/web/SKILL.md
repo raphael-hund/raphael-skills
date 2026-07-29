@@ -1094,3 +1094,19 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
   (typ/motiv/style/modell/refs) — deterministisch über `scripts/bilder.mjs`
   (`add`/`list`/`reject`). „Bild ist scheiße" → `reject` löscht Datei **und**
   Index-Eintrag in einem Schritt. Details in `references/bildgenerierung.md`.
+
+  > **`reject` ist die einzige Stelle im ganzen Skill, die unwiderruflich löscht**
+  > — `rmSync`, kein Papierkorb, keine Rückfrage. Und sie hatte bis 29.07.2026
+  > keinen Test. Den zu löschenden Pfad nahm sie aus dem Index-Feld `datei` und
+  > gab ihn ungeprüft an `join()`. Mit `"datei": "../opfer.txt"` im Index löschte
+  > `reject` eine Datei **außerhalb** des Asset-Ordners: Exit 0, brave
+  > Erfolgsmeldung, Datei weg (nachgemessen, nicht vermutet). Den Index schreiben
+  > Agenten — ein Eintrag darf bestimmen, *welche* Datei im Ordner drankommt,
+  > nicht *dass es eine außerhalb ist*. Jetzt wird der aufgelöste Pfad gegen
+  > `<assets-dir>/<dateiname>` geprüft und bei Abweichung abgebrochen, **bevor**
+  > der Index gespeichert wird — sonst wäre der Eintrag weg und die Datei noch
+  > da. `node evals/run-bilder-check.mjs` (9 Fälle: 5 Ausbruchsversuche, 4 Mal
+  > Normalbetrieb). Der zweite Teil ist der wichtigere: ein Wächter, der auch das
+  > Löschen im eigenen Ordner blockiert, wird ausgebaut statt repariert.
+  > `add` ist von derselben Lücke nicht betroffen — dort entsteht der Dateiname
+  > aus `slugify()`, das nur `\w` durchlässt, also keine Punkte und Schrägstriche.
