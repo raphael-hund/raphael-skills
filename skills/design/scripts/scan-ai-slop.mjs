@@ -335,15 +335,44 @@ function walk(dir, files = []) {
   return files;
 }
 
+// Bundler schreiben Nicht-ASCII als \uXXXX-Escape. Derselbe Satz, den der Scanner
+// in der Quelle findet ("naechste Level" mit echtem ä), steht im Build als
+// "nächste Level" — und keine Regel trifft mehr. Befund 29.07.2026: eine
+// deutsche Floskelseite ergab in der Quelle 3 Treffer, nach esbuild 0.
+//
+// Fuer die Suche wird darum eine entschaerfte Zweitfassung mitgelesen. Nur
+// \uXXXX wird aufgeloest, nichts anderes — der Text bleibt sonst Zeichen fuer
+// Zeichen gleich, damit Zeilennummern und Ausschnitte weiter stimmen.
+function loeseEscapes(text) {
+  if (!text.includes("\\u")) return text;              // Normalfall: nichts zu tun
+  return text.replace(/\\+u([0-9a-fA-F]{4})/g, (ganz, hex) => {
+    // Ungerade Anzahl Backslashes = echtes Escape. Gerade = ein literaler
+    // Backslash vor einem harmlosen "u", den wir nicht anfassen duerfen.
+    const slashes = ganz.length - 5;
+    if (slashes % 2 === 0) return ganz;
+    // KEINE Auffuellung. Der erste Versuch schob fuenf Leerzeichen hinter das
+    // Zeichen, um die Spalten zu halten — damit wurde aus "Geschaeft" ein
+    // "Gesch ä     ft" und keine Regel traf mehr. Spaltentreue ist wertlos,
+    // wenn der Text dabei zerfaellt; Zeilennummern bleiben ohnehin richtig,
+    // weil kein Zeilenumbruch entsteht.
+    return "\\".repeat(slashes - 1) + String.fromCharCode(parseInt(hex, 16));
+  });
+}
+
 function scanFile(path) {
   let text;
   try {
     const st = statSync(path);
-    if (st.size > 512 * 1024) return []; // skip large/generated files
+    // Frueher: >512 KB still ueberspringen. Ein echtes React-dist/ besteht aus
+    // genau solchen Buendeln — der Scanner las dort nie den ausgelieferten Text
+    // und meldete trotzdem "0 Tells". Grosse Dateien werden jetzt gelesen; nur
+    // wirklich riesige (>8 MB, Quellkarten/Assets) bleiben aussen vor.
+    if (st.size > 8 * 1024 * 1024) return [];
     text = readFileSync(path, "utf8");
   } catch {
     return [];
   }
+  text = loeseEscapes(text);
   const isCode = extname(path) !== ".md";
   const lines = text.split(/\r?\n/);
 
