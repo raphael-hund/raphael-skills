@@ -48,7 +48,7 @@ gotchas:
   - "impeccable ist auf ganze Projektkontexte (PRODUCT.md/DESIGN.md, context.mjs) ausgelegt. In design nutzen wir NUR den Detektor-Kern deterministisch; der context.mjs-Setup-Flow ist NICHT Teil dieses Skills."
   - "ui-ux 'design'-Skill (Logo/CIP/Icon/Banner) haengt an GEMINI_API_KEY (bezahlt) — komplett ENTFERNT. Nur die Offline-DB (search.py, BM25, stdlib) ist vendored."
   - "taste imagegen-Teile (generate_image-Pflicht) ENTFERNT — hier: Bild-Slots + reale Quellen (picsum-seed), nie div-Fake-Screenshots."
-  - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift auf englischen Text). Fuer deutsche Ads/Web-Copy siehe copywriting — dort liegt die deutsche Entfloskelungs-Referenz. TODO fuer einen spaeteren Agenten: eine rules.de.mjs nach dem Vorbild von scripts/rules.ru.mjs.example bauen, die deutsche Slop-Phrasen per --rules=scripts/rules.de.mjs zusaetzlich scannt."
+  - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift nur auf englischen Text). ERLEDIGT 29.07.2026: scripts/rules.de.mjs ergaenzt drei deutsche Tells (de-14 Textstimme = Blocker, de-15 Werbe-Interpunktion, de-16 Werbe-Leerformel), Muster aus copywriting/references/floskel-verbote.md. Immer mit --rules=scripts/rules.de.mjs scannen, wenn der Text deutsch ist; das web-Gate haengt ihn automatisch an. Beleg: web/evals/run-slop-de-check.mjs (30/30, inkl. 8 Falsch-Positiv-Faelle)."
   - "UI-Polish-Details (jakubkrehel) liefert exaktere Zahlenwerte (Scale 0.96 nicht 0.9, Blur 4px nicht 2px) als manche Faustregeln in design-doktrin.md/taste-kern.md. Bei Widerspruch gewinnt der exaktere, deterministisch pruefbare Wert aus ui-polish-details.md."
 ---
 
@@ -128,10 +128,20 @@ Kein Interface gilt als fertig, bevor BEIDE Scanner gruen sind.
 node scripts/detect.mjs <geaenderte .html/.css/.jsx/.tsx-Dateien>
 # Exit 0 = sauber (fertig) · Exit 2 = Funde (fixen) · Exit 1 = Fehler
 
-node scripts/scan-ai-slop.mjs <projekt-root>
+node scripts/scan-ai-slop.mjs <projekt-root> --rules=scripts/rules.de.mjs
 # druckt gruppierte file:line-Funde der 33 AI-Slop-Tells (Farbe/Typo/Copy/
 # Komponenten/Motion/Layout) · liest nie ueber das Projekt hinaus, editiert nie
 ```
+
+**`--rules=scripts/rules.de.mjs` ist bei deutschem Text Pflicht, nicht Kuer.**
+Die 33 Kern-Tells sind englisch: Tell 14 sucht "seamless", "game-changer",
+"say goodbye to". Eine deutsche Seite mit "maßgeschneiderte Lösungen", "auf das
+nächste Level" und "Rundum-sorglos-Paket" lief bis 29.07.2026 mit **0 Treffern
+und Exit 0** durch — der schaerfste Copy-Pruefer war auf der Ausliefersprache
+blind. Der Regelsatz ergaenzt `de-14` (Textstimme, im web-Gate ein Blocker),
+`de-15` (Werbe-Interpunktion) und `de-16` (Leerformel), alle aus Raphaels
+freigegebener Liste `copywriting/references/floskel-verbote.md`. Das web-Gate
+haengt ihn automatisch an und schreibt es ins Urteil, wenn er fehlt.
 
 Ablauf beider Scanner identisch (Scope -> Scan -> Triage -> Report -> Fix):
 1. **Scope**: Default = Frontend-Source, `node_modules`/`dist`/`.git`/Lockfiles

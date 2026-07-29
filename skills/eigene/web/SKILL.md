@@ -552,6 +552,7 @@ Eingabe gefüttert und nachgesehen, was sie melden:
 |---|---|---|
 | `links` | Seite mit 4 `href` | „0 Links, 0 tot" → **bestanden** |
 | `ai-slop` | Ordner ohne HTML-Datei | „0 Slop-Tells" → **bestanden** |
+| `ai-slop` | deutsche Floskel-Seite | „0 Slop-Tells" → **bestanden** (Regeln nur englisch, s.u.) |
 | `formular` | Seite ohne Formular | „0 Blocker, 0 Warnungen" → **bestanden** |
 | `lighthouse` / `axe` / `craft` | Route existiert nicht | „Navigation fehlgeschlagen" → reißt korrekt |
 | `axe` | Tag-Liste unbekannt | „0 Violations" → **bestanden** (siehe unten) |
@@ -569,8 +570,15 @@ eine Über-uns-Seite haben legitim keines. Der Prüfer sagt das mit `F0`. Falsch
 dass das Gate es verschwieg und `0 Blocker` meldete. Jetzt steht dort *„kein Formular auf
 dieser Seite — nichts zu prüfen"*: dieselbe Farbe, aber die Wahrheit.
 
+Beim `ai-slop` gibt es eine zweite, unabhängige Art von Blindheit: der Scanner las die
+Seite zwar, aber in der falschen Sprache. Deutsche Floskeln standen in keiner seiner 33
+Regeln. Das ist der schlimmere Fall, weil `filesScanned` dabei stimmt — es sah nach einem
+echten, sauberen Lauf aus. Behoben über `design/scripts/rules.de.mjs` (Abschnitt
+„Deutscher Text: der Scanner braucht den deutschen Regelsatz").
+
 ```bash
 node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch Scanner
+node evals/run-slop-de-check.mjs     # 30 Fälle: 17 Treffer, 8 Gegenproben, 5 Einstufungen
 ```
 
 Sechs Ausgaben, die reißen müssen — darunter drei ältere, bereits behobene Fehler als
@@ -679,9 +687,40 @@ Regel: In den Schritten `art-direction` und `qa-faecher` (Fach 2 Design) **desig
 und befolgen**. impeccable = Exit 0 ist harte Ship-Bedingung. Herkunft der Design-Regeln
 (impeccable/taste/ui-ux-pro-max, Lizenzen) steht in `design/VENDORING.md`.
 
+### Deutscher Text: der Scanner braucht den deutschen Regelsatz
+
+Der Slop-Scanner ist vendoriert und englisch. Seine Copy-Regel sucht „seamless",
+„game-changer", „say goodbye to". Raphaels Seiten sind deutsch — und eine Seite mit
+„maßgeschneiderte Lösungen", „in der heutigen schnelllebigen Welt", „auf das nächste
+Level" und „Rundum-sorglos-Paket" kam bis 29.07.2026 mit **0 Treffern, Exit 0** durch.
+Das Tor schrieb „0 Slop-Tells", bestanden. Der Prüfer, der Verkaufstext-Slop stoppen
+soll, war auf der einzigen Sprache blind, die hier ausgeliefert wird.
+
+`design/scripts/rules.de.mjs` schließt das: `de-14` (deutsche KI-Textstimme) zählt wie
+das englische Gegenstück als **Blocker**, `de-15` (Werbe-Interpunktion) und `de-16`
+(Leerformel) als Warnung. Die Muster sind nicht neu erfunden, sondern die maschinell
+prüfbare Hälfte von `copywriting/references/floskel-verbote.md`.
+
+Das Tor hängt den Regelsatz selbst an — von Hand also:
+
+```bash
+node ../../design/scripts/scan-ai-slop.mjs <projekt> \
+  --rules=../../design/scripts/rules.de.mjs --json
+```
+
+Fehlt die Datei, läuft der Scan englisch weiter, aber das Urteil sagt es an
+(`[nur englische Regeln — rules.de.mjs fehlt]`) statt still grün zu melden.
+Beleg: `evals/run-slop-de-check.mjs` — 17 Treffer-Fälle, 8 Gegenproben gegen
+Fehlalarm, 5 Einstufungs-Prüfungen, 30/30. Dieselbe Beispielseite: vorher
+„0 Slop-Tells / bestanden", jetzt „4 Blocker (deutsche KI-Textstimme)".
+
+> Ein grüner Scan heißt weiterhin nicht „klingt menschlich". Satzrhythmus,
+> Absatzstruktur und die Em-Dash-Schwelle pro Dokument sind nicht greppbar und
+> bleiben Lesearbeit im copywriting-Durchgang.
+
 **Feste Reihenfolge bei kombiniertem Design+Copy-Check (z.B. AI-Slop-Check über mehrere
 Seiten):** immer **design ZUERST** (Detektoren `node scripts/detect.mjs` + `node
-scripts/scan-ai-slop.mjs` je Exit 0), **danach copywriting G1→G2** auf denselben Seiten
+scripts/scan-ai-slop.mjs --rules=…/rules.de.mjs` je Exit 0), **danach copywriting G1→G2** auf denselben Seiten
 — orchestriert über web als Dach-Skill. "Unklar" ist hier kein zulässiges Ergebnis;
 wenn wirklich kein Skill passt, erst dann als unklar zurückmelden.
 

@@ -48,6 +48,17 @@ const ERWARTET = {
   // guten Formular und rot bei einem schlechten. Ein Waechter, der nur rot kann,
   // wird nach dem dritten Fehlalarm abgeschaltet.
   'a7-formular-kaputt':     { checks: ['formular'],          was: 'E-Mail/Telefon als type="text" (F1)' },
+  // Zugefuegt 29.07.2026. Alle bisherigen Slop-Fixtures (a1, a2) treffen die
+  // ENGLISCHEN Tells des vendorten Scanners — Verlauf, Inter, Em-Dash. Deutsche
+  // Verkaufsfloskeln kamen im Anti-Set nicht vor, und der Scanner kennt sie in
+  // seinen 33 Kernregeln auch nicht: diese Seite lief mit "0 Slop-Tells,
+  // bestanden" durch, obwohl in ihr "auf das naechste Level", "Rundum-sorglos-
+  // Paket" und "Schluss mit Baustellen-Theater" stehen. Raphaels Seiten sind
+  // alle deutsch — das Tor war auf der Ausliefersprache blind.
+  // Die Seite ist eine Kopie von _basis mit ausgetauschten Textstellen: reisst
+  // sie an etwas anderem als ai-slop, ist der neue Regelsatz laermig, nicht die
+  // Fixture kaputt.
+  'a8-deutsche-floskeln':   { checks: ['ai-slop'],           was: 'deutsche Werbefloskeln (de-14) — englische Regeln sahen sie nicht' },
 };
 
 const namen = Object.keys(ERWARTET);

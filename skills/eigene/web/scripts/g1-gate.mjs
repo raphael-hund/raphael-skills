@@ -372,6 +372,11 @@ const SLOP_BLOCK = new Set([
   '14', // KI-Textstimme ("nahtlos", "muehelos", "Game-Changer")
   '24', // KI-gezeichnetes SVG-Icon
   '28', // erfundene Statistik-Zeile (T9)
+  // Deutsche Textstimme — das Gegenstueck zu '14' auf Raphaels Ausliefersprache.
+  // Kommt aus scripts/rules.de.mjs im design-Skill (Befund 29.07.2026: der
+  // Scanner ist englischsprachig, deutsche Slop-Seiten liefen mit 0 Treffern
+  // durch). Nur de-14 blockt; de-15/de-16 bleiben Warnung.
+  'de-14',
 ]);
 
 // Der Scanner schreibt die IDs heute als String mit fuehrender Null ("01").
@@ -393,7 +398,10 @@ function slopTeilen(parsed) {
   };
 }
 
-function slopMelden(parsed) {
+// `deDa` = lief der deutsche Regelsatz mit? Steht im Urteilstext, damit ein
+// gruener Slop-Check nie verschweigt, dass er nur englisch gelesen hat.
+function slopMelden(parsed, deDa) {
+  const deNote = deDa === false ? ' [nur englische Regeln — rules.de.mjs fehlt]' : '';
   const n = slopZaehlen(parsed);
   if (n === null) { record('ai-slop', false, 'Slop-Scan: unbekanntes JSON-Format'); return; }
 
@@ -419,7 +427,7 @@ function slopMelden(parsed) {
       `Zaehler meldet 0 Tells, die Fundliste enthaelt aber ${s.block + s.warn} — Ausgabe widerspruechlich`);
     return;
   }
-  if (n === 0) { record('ai-slop', true, '0 Slop-Tells'); return; }
+  if (n === 0) { record('ai-slop', true, `0 Slop-Tells${deNote}`); return; }
   // Gesamtzahl und Einteilung lesen zwei verschiedene Felder: `hits` (Zahl) und
   // `findings` (Gruppen). Klaffen sie auseinander, sind Treffer gemeldet, die
   // sich keiner Regel zuordnen lassen — dann ist die Einteilung blind und darf
@@ -432,7 +440,7 @@ function slopMelden(parsed) {
   const detail = s.block
     ? `${s.block} Blocker (${s.blockNamen})${s.warn ? `, ${s.warn} Warnung(en): ${s.warnNamen}` : ''}`
     : `0 Blocker, ${s.warn} Warnung(en): ${s.warnNamen}`;
-  record('ai-slop', s.block <= BUDGET.slopScore, detail);
+  record('ai-slop', s.block <= BUDGET.slopScore, detail + deNote);
 }
 
 function checkSlop() {
@@ -441,12 +449,25 @@ function checkSlop() {
   if (!fs.existsSync(scan)) { record('ai-slop', true, `scan-ai-slop.mjs nicht gefunden (${scan})`, true); return; }
   if (!src) { record('ai-slop', true, 'kein --src <projektordner> uebergeben', true); return; }
   if (!fs.existsSync(src)) { record('ai-slop', false, `--src existiert nicht: ${src}`); return; }
+
+  // Deutscher Regelsatz (Befund 29.07.2026). Er liegt beim Scanner, nicht hier:
+  // die Muster kommen aus copywriting/references/floskel-verbote.md und gehoeren
+  // in den design-Skill, der die Slop-Wissensquelle ist. Fehlt die Datei, laeuft
+  // der Scan englisch weiter — aber sichtbar, nicht still: das Urteil sagt es an.
+  const regelnDe = path.resolve(SKILL_DIR, '../../../design/scripts/rules.de.mjs');
+  const deDa = fs.existsSync(regelnDe);
+  const argv = deDa ? [scan, src, `--rules=${regelnDe}`, '--json'] : [scan, src, '--json'];
+
+  const melden = (json) => {
+    slopMelden(json, deDa);
+  };
+
   try {
-    slopMelden(JSON.parse(run('node', [scan, src, '--json'])));
+    melden(JSON.parse(run('node', argv)));
   } catch (e) {
     // Exit 1 = Tells gefunden (kein kaputter Lauf). JSON steht trotzdem auf stdout.
     try {
-      slopMelden(JSON.parse(String(e.stdout || '')));
+      melden(JSON.parse(String(e.stdout || '')));
     } catch {
       record('ai-slop', false, `Slop-Scan kaputt: ${String(e.stderr || e.message).split('\n')[0]}`);
     }

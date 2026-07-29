@@ -68,6 +68,27 @@ so formulieren, wie eine Person es einer anderen erklärt.
   Übergang, jedes Mal gleich) — manche Absätze mit einer Frage beginnen,
   manche nach einem Satz abrupt enden.
 
+## Maschinell prüfbarer Teil (seit 29.07.2026)
+
+Diese Liste war bis dahin reine Prosa — sie galt nur, wenn ein Agent sie gelesen
+hatte. Die eindeutig greifbaren Muster stehen jetzt zusätzlich als Regelsatz in
+`/root/raphael-skills/skills/design/scripts/rules.de.mjs` und laufen im
+Slop-Scanner mit:
+
+```bash
+node skills/design/scripts/scan-ai-slop.mjs <projekt> --rules=skills/design/scripts/rules.de.mjs
+```
+
+`de-14` deutsche KI-Textstimme (Blocker im Web-Gate) · `de-15` Werbe-Interpunktion ·
+`de-16` Werbe-Leerformel. **Diese Datei bleibt die Quelle** — kommt hier eine
+Floskel dazu, gehört sie in den Regelsatz und in dessen Eval
+(`skills/eigene/web/evals/run-slop-de-check.mjs`, 30 Fälle inkl. 8 Gegenproben).
+
+Nicht maschinell prüfbar und deshalb weiterhin Lesearbeit: die Schwellen pro
+Dokument (Em-Dash pro 500 Wörter, Ausrufezeichen pro 1000), die Satzrhythmus-
+Regeln und die Absatzstruktur. Ein grüner Scan heißt also *nicht*, dass der Text
+menschlich klingt — nur, dass die bekannten Einzelfloskeln raus sind.
+
 ## Regel
 Detektor meldet Trefferliste mit Position. 0 Treffer = G1 grün. Voice mancher Kunden
 erlaubt einzelne Anglizismen bewusst — dann in VOICE.md als Ausnahme whitelisten.
