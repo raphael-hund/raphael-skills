@@ -143,10 +143,27 @@ console.log('\nDas Flag selbst:\n');
     aus.includes('Unbekanntes Flag') ? 'wird als Tippfehler abgelehnt' : null);
 }
 
-const gesamt = 3 + 1 + 1 + 2 + 1;
+// --- 6. Der Exit-Code muss im Text stehen --------------------------------
+// Zweimal am 29.07.2026 ging er an einer Pipe verloren (`| grep`, `| tail`),
+// beide Male mit dem falschen Schluss "meldet Blocker und besteht trotzdem".
+// Ein Urteil, das man beim Weiterreichen verliert, gehoert auch in den Text.
+console.log('\nDas Urteil muss die Pipe ueberleben:\n');
+{
+  const p = projektBauen({ buildName: 'dist' });
+  serverAn(path.join(p, 'dist'));
+  const aus = torQuelle(['--url', `http://localhost:${HAFEN}/`, '--src', p, '--no-shots']);
+  const schluss = (aus.match(/^G1 (?:GERISSEN|BESTANDEN|KANN NICHT URTEILEN).*$/m) || [''])[0];
+  zeile(/\(Exit [012]\)/.test(schluss), 'Schlusszeile nennt den Exit-Code',
+    schluss || '(keine Schlusszeile gefunden)');
+  serverAus();
+  fs.rmSync(p, { recursive: true, force: true });
+}
+
+const gesamt = 3 + 1 + 1 + 2 + 1 + 1;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Ein Pruefer liest den falschen Ordner — sein Urteil gilt fuer Dateien, die niemand bekommt.');
   process.exit(1);
 }
 console.log('Importe kommen aus der Quelle, Slop und Routen aus dem Build.');
+

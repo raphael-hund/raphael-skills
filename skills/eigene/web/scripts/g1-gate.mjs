@@ -721,8 +721,15 @@ fs.writeFileSync(reportPath, JSON.stringify({
 console.log(`\nReport: ${reportPath}`);
 if (skipped.length) console.log(`${skipped.length} Check(s) uebersprungen (Tool fehlt): ${skipped.map((r) => r.name).join(', ')}`);
 
+// Der Exit-Code steht in der Schlusszeile MIT DRIN.
+//
+// Er ist das eigentliche Urteil, aber er ist unsichtbar: wer die Ausgabe durch
+// `grep`, `tail` oder `head` schickt, liest danach `$?` der Pipe statt des Tores.
+// Das ist am 29.07.2026 zweimal an einem Tag passiert, beide Male mit dem
+// falschen Schluss "meldet Blocker und besteht trotzdem". Ein Urteil, das man
+// beim Weiterreichen verliert, muss auch im Text stehen.
 if (failed.length) {
-  console.log(`\nG1 GERISSEN — ${failed.length} Check(s): ${failed.map((r) => r.name).join(', ')}`);
+  console.log(`\nG1 GERISSEN (Exit 1) — ${failed.length} Check(s): ${failed.map((r) => r.name).join(', ')}`);
   process.exit(1);
 }
 
@@ -753,7 +760,7 @@ const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular'];
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
 if (fehltGanz.length) {
-  console.log(`\nG1 KANN NICHT URTEILEN — kein einziger Lauf in: ${fehltGanz.join(', ')}.`);
+  console.log(`\nG1 KANN NICHT URTEILEN (Exit 2) — kein einziger Lauf in: ${fehltGanz.join(', ')}.`);
   console.log('Uebersprungen ist nicht bestanden. Werkzeug nachinstallieren bzw. --src setzen, dann erneut.');
   process.exit(2);
 }
@@ -770,7 +777,7 @@ if (SRC) {
     .map(([erste]) => erste);
   if (ungesehen.length) {
     const zeigen = ungesehen.slice(0, 12).join(', ');
-    console.log(`\nG1 KANN NICHT URTEILEN — ${ungesehen.length} Seite(n) im Build wurden nie geoeffnet.`);
+    console.log(`\nG1 KANN NICHT URTEILEN (Exit 2) — ${ungesehen.length} Seite(n) im Build wurden nie geoeffnet.`);
     console.log(`Ungesehen: ${zeigen}${ungesehen.length > 12 ? ` … (+${ungesehen.length - 12})` : ''}`);
     console.log('Ungesehen ist nicht bestanden. Alle Routen mit --routes benennen');
     console.log('(vollstaendige Liste: node scripts/pruefstand.mjs --dir <build> --routen).');
@@ -781,8 +788,8 @@ if (SRC) {
 // Ein Gruen mit gelockertem Budget ist ein Gruen unter Vorbehalt. Es muss in der
 // Schlusszeile stehen, sonst liest der Naechste es als volles Bestehen.
 if (BUDGET_GELOCKERT.length) {
-  console.log(`\nG1 BESTANDEN MIT GELOCKERTEM BUDGET — ${results.length - skipped.length} Check(s) gruen.`);
+  console.log(`\nG1 BESTANDEN MIT GELOCKERTEM BUDGET (Exit 0) — ${results.length - skipped.length} Check(s) gruen.`);
   console.log(`Gelockert: ${BUDGET_GELOCKERT.join(' | ')} (Datei: ${budgetFile})`);
 } else {
-  console.log(`\nG1 BESTANDEN — ${results.length - skipped.length} Check(s) gruen.`);
+  console.log(`\nG1 BESTANDEN (Exit 0) — ${results.length - skipped.length} Check(s) gruen.`);
 }

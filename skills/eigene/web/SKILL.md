@@ -706,6 +706,26 @@ Ohne `--build` sucht das Tor `dist/`, `build/`, `out/`, `.output/public`, `.next
 findet es keinen, gilt `--src` als Build. **Beide Ordner stehen jetzt im Bericht** —
 genau weil das nicht dastand, fiel es monatelang nicht auf.
 
+### Das Urteil muss die Pipe überleben
+
+Der Exit-Code ist das eigentliche Urteil des Tores — und er ist unsichtbar. Wer die
+Ausgabe durch `grep`, `tail` oder `head` schickt, liest danach `$?` **der Pipe**, nicht
+des Tores. Das ist am 29.07. zweimal an einem Tag passiert, beide Male mit demselben
+falschen Schluss: „meldet Blocker und besteht trotzdem." Das Urteil war jedes Mal
+korrekt, nur weggeworfen.
+
+Darum steht der Exit-Code jetzt **im Text**:
+
+```
+G1 BESTANDEN (Exit 0) — 8 Check(s) gruen.
+G1 GERISSEN (Exit 1) — 3 Check(s): lighthouse/, axe/, craft/
+G1 KANN NICHT URTEILEN (Exit 2) — 4 Seite(n) im Build wurden nie geoeffnet.
+```
+
+> Wer den Exit-Code misst, misst ihn **ohne Pipe**: `node … > /tmp/x.txt 2>&1; echo $?`.
+> Und wer ein Urteil ausgibt, das beim Weiterreichen verlorengehen kann, schreibt es
+> zusätzlich in den Text. Das gilt für jedes Werkzeug hier, nicht nur fürs Tor.
+
 > **Die Gegenprobe ist kein Beiwerk.** Der erste Eval-Lauf stand bei 7/8: Der
 > Testserver lag auf Port 1, also tot, und das Tor bricht bei unerreichbarem Server ab,
 > *bevor* der Slop-Scan läuft. Der Hauptfall hätte bestanden, ohne irgendetwas zu
