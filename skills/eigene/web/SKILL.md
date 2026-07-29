@@ -614,6 +614,30 @@ node evals/run-axe-check.mjs         # 7 Fälle, braucht einen Browser, aber kei
 14 Passes, 89 Regeln gelaufen`, Exit 0. Dieselbe Seite mit einem verfälschten Tag →
 `axe kennt diese Tags nicht: … ihre Regeln liefen NICHT`, Exit 2.
 
+### Lighthouse bewertete die Startseite und nannte sie „/preise"
+
+Derselbe Fehlertyp wie bei axe, eine Ebene höher: Das Werkzeug **lief**, lieferte
+einen vollständigen Bericht — nur über eine andere Seite als die gefragte.
+
+| Fall | Bericht | Exit | was wirklich gemessen wurde |
+|---|---|---|---|
+| `/preise` leitet auf `/` um | performance=100, seo=82 | **0** | die Startseite |
+| `/suche?q=dach` verliert die Query | vollständig | **0** | die leere Suchseite |
+| Route existiert nicht (404) | vollständig, `runtimeError` gesetzt | **0** | nichts |
+
+Eine Umleitung ist im Bericht kein Fehler — sie steht nur als `finalDisplayedUrl`
+neben der angefragten URL, und die las das Tor nicht. Bei einer Route, die man
+gerade erst gebaut hat und die noch nicht verdrahtet ist, ist genau das der
+Normalfall: Die Seite ist ungeprüft, das Tor meldet grün.
+
+Behoben in `scripts/g1-gate.mjs`: Vergleich von `finalDisplayedUrl` mit der
+angefragten URL über Pfad **und** Query (abschließender Schrägstrich egal), plus
+Abbruch bei gesetztem `runtimeError`.
+
+```bash
+node evals/run-lighthouse-check.mjs  # 10 Fälle, weder Browser noch Server noch lighthouse
+```
+
 ### Zwei Läufe, ein Ergebnis: das Tor war nicht parallel-fest
 
 Am 28.07. liefen zwei Anti-Set-Läufe gleichzeitig. Die Kontrolle meldete **rot** an
