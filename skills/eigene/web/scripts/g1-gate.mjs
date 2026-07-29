@@ -6,7 +6,12 @@
 // visual-diff.mjs nur bei Exception. Kein Skript hat je an Qualitaet blockiert.
 // Dieses Gate buendelt die harten Checks und liefert EINEN Exit-Code.
 //
-//   node g1-gate.mjs --base http://localhost:5280 --routes /,/leistungen
+//   node g1-gate.mjs --url http://localhost:5280 --routes /,/leistungen \
+//                    --src <projektwurzel> --build <dist>
+//
+// `--src` ist nicht optional: Import- und Motion-Check lesen den Quellcode.
+// Ohne sie bleiben zwei Fragen ungestellt, und uebersprungen ist nicht
+// bestanden — der Lauf endet dann mit Exit 2 statt Exit 0.
 //
 // Exit 0 = alle aktivierten Checks bestanden. Exit 1 = mindestens ein Check
 // gerissen. Exit 2 = Gate selbst kaputt (Tool fehlt, Server tot) — das ist
@@ -673,6 +678,51 @@ function checkMotion() {
   }
 }
 
+// --- Check 7c: Haelt die ARIA-Rolle ihr Versprechen? ----------------------
+//
+// axe prueft, ob die Rollen stimmen — nicht, ob das Ding, das sich
+// role="listbox" nennt, auf Pfeiltasten reagiert. Befund 29.07.2026 in der
+// eigenen Komponentenbibliothek: 7 von 10 zusammengesetzten Widgets hatten
+// saubere Rollen und keine Tastaturbedienung, alle gruen bei axe. select.tsx
+// sind 411 Zeilen mit role=listbox/option — und null Pfeiltasten.
+//
+// Liest wie motion und Slop den Quelltext: Tastenlogik steht in
+// Event-Handlern, im gerenderten DOM sieht man sie nicht.
+function checkTastatur() {
+  const runner = path.join(SKILL_DIR, 'tastatur-check.mjs');
+  if (!fs.existsSync(runner)) { record('tastatur', true, 'tastatur-check.mjs nicht gefunden', true); return; }
+  if (!SRC) { record('tastatur', true, 'ohne --src kein Quellcode zum Pruefen', true); return; }
+  if (!fs.existsSync(SRC)) { record('tastatur', false, `--src existiert nicht: ${SRC}`); return; }
+  let out = '';
+  let code = 0;
+  try {
+    out = run('node', [runner, SRC, '--json']);
+  } catch (e) {
+    code = e.status ?? 2;
+    out = String(e.stdout || '');
+    if (code === 2) { record('tastatur', false, `tastatur-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); return; }
+  }
+  try {
+    const parsed = JSON.parse(out);
+    if (parsed.fehler) { record('tastatur', false, `tastatur-check: ${parsed.fehler}`); return; }
+    const befunde = liste(parsed, 'befunde', 'tastatur-check');
+    if (parsed.dateienGelesen === 0) {
+      record('tastatur', false, 'tastatur-check hat 0 Dateien gelesen — zeigt --src auf den richtigen Ordner?');
+      return;
+    }
+    const blocker = befunde.filter((b) => b.stufe === 'BLOCK');
+    const warn = befunde.filter((b) => b.stufe === 'WARN');
+    record('tastatur', blocker.length === 0,
+      blocker.length === 0
+        ? parsed.widgets === 0
+          ? 'keine zusammengesetzten Widgets — nichts zu pruefen'
+          : `${parsed.widgets} Widget(s) bedienbar${warn.length ? `, ${warn.length} Warnung(en)` : ''}`
+        : `${blocker.length} Rolle(n) ohne Tastatur: ${blocker.slice(0, 3).map((b) => `${b.datei} (${b.rolle})`).join(', ')}`);
+  } catch {
+    record('tastatur', false, `tastatur-check-Ausgabe unlesbar (exit ${code})`);
+  }
+}
+
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
   if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
@@ -751,6 +801,7 @@ checkCraft();
 checkFormular();
 checkImporte();
 checkMotion();
+checkTastatur();
 if (!has('no-shots')) checkSweep();
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
@@ -763,7 +814,19 @@ fs.writeFileSync(reportPath, JSON.stringify({
 }, null, 2));
 
 console.log(`\nReport: ${reportPath}`);
-if (skipped.length) console.log(`${skipped.length} Check(s) uebersprungen (Tool fehlt): ${skipped.map((r) => r.name).join(', ')}`);
+// Frueher stand hier pauschal "(Tool fehlt)". Das ist die falsche Faehrte: bei
+// Import-, Motion- und Slop-Check fehlt meist kein Werkzeug, sondern schlicht
+// `--src`. Wer "Tool fehlt" liest, sucht nach einer Installation, die es gar
+// nicht braucht. Der Grund steht in der SKIP-Zeile jedes Checks — hier wird er
+// zusammengefasst statt geraten.
+if (skipped.length) {
+  const wegenSrc = skipped.filter((r) => /--src/.test(r.detail || ''));
+  const rest = skipped.filter((r) => !wegenSrc.includes(r));
+  const teile = [];
+  if (wegenSrc.length) teile.push(`${wegenSrc.map((r) => r.name).join(', ')} (kein --src)`);
+  if (rest.length) teile.push(`${rest.map((r) => r.name).join(', ')} (Werkzeug fehlt)`);
+  console.log(`${skipped.length} Check(s) uebersprungen: ${teile.join(' | ')}`);
+}
 
 // Der Exit-Code steht in der Schlusszeile MIT DRIN.
 //
@@ -803,7 +866,7 @@ if (failed.length) {
 // motion gehoert dazu: er beantwortet eine Frage, die sonst keiner stellt —
 // ob die Bewegungen des Projekts EINE Sprache sprechen. Kein anderer Pruefer
 // vertritt ihn (gleiche Begruendung wie bei den fuenf anderen, 27.07.2026).
-const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular', 'motion'];
+const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular', 'motion', 'tastatur'];
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
 if (fehltGanz.length) {
