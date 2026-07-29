@@ -153,6 +153,44 @@ customElements.define('lead-form', LeadForm);
 <input id="e" type="text" name="f9" autocomplete="email" ${FELD}></form>`,
   },
   {
+    // Nachgetragen 29.07.2026. Die Eval prueft bisher nur die ANZAHL Blocker,
+    // nicht WELCHE Regel feuert — belegt waren damit faktisch F1 und F3. F6
+    // hatte keinen einzigen Fall, obwohl die Regel aus den
+    // completion_criteria stammt ("Kontaktdaten zuletzt").
+    name: 'kontakt-zuerst',
+    erwartet: { blocker: 0, exit: 0, ids: ['F6'] },
+    was: 'E-Mail an Position 1, Sachfragen danach (F6, nur WARN)',
+    html: `<form><label for="e">E-Mail</label>
+<input id="e" type="email" name="email" autocomplete="email" ${FELD}>
+<label for="q">Wie gross ist die Wohnung?</label>
+<input id="q" type="text" name="qm" ${FELD}>
+<button type="submit" style="min-height:44px">Senden</button></form>`,
+  },
+  {
+    // F4/F5 nachgetragen 29.07.2026. Beide feuerten am echten Pruefer sofort
+    // (direkt gemessen), hatten aber keinen Fall — die Eval baut ihre Felder
+    // ueber die Konstante FELD, und die erfuellt beide Regeln korrekt. Genau
+    // deshalb blieben sie unsichtbar: die gemeinsame Vorlage war zu gut.
+    name: 'feld-zu-flach-und-13px',
+    erwartet: { blocker: 0, exit: 0, ids: ['F4', 'F5'] },
+    was: '28px hohes Feld mit 13px Schrift (F4 + F5, beide WARN)',
+    html: `<form><label for="e">E-Mail</label>
+<input id="e" type="email" name="email" autocomplete="email"
+  style="font-size:13px;min-height:28px;width:20em">
+<button type="submit" style="min-height:44px">Senden</button></form>`,
+  },
+  {
+    // F0 ist der INFO-Fall "kein Formular auf dieser Seite". Er ist kein
+    // Fehler, sondern die ehrliche Aussage "nichts zu pruefen" — und muss
+    // trotzdem belegt sein, sonst faellt sein Ausfall nicht auf. Dann stuende
+    // dort naemlich gar nichts, und ein leerer Bericht liest sich wie ein
+    // bestandener.
+    name: 'ohne-formular',
+    erwartet: { blocker: 0, exit: 0, ids: ['F0'] },
+    was: 'Seite ohne jedes Eingabefeld (F0, INFO — nichts zu pruefen)',
+    html: '<h1>Impressum</h1><p>Angaben nach Paragraf 5 TMG.</p>',
+  },
+  {
     name: 'file-statt-email',
     erwartet: { blocker: 1, exit: 1 },
     was: 'Sol: type="file" auf einem E-Mail-Feld — war durch OHNE_TASTATUR verdeckt',
@@ -186,24 +224,56 @@ if (probe.status !== 0 || (probe.stdout || '').trim() !== 'formular') {
 console.log(`Formular-Pruefer — ${FAELLE.length} Faelle auf Port ${PORT}\n`);
 
 let rot = 0;
+const gesehen = new Set();   // welche Regel-IDs ueber alle Faelle wirklich feuerten
 for (const f of FAELLE) {
   const r = spawnSync('node', [PRUEFER, '--url', `http://localhost:${PORT}/${f.name}/`, '--json'],
     { encoding: 'utf8', timeout: 90000 });
   let blocker = null;
+  let ids = [];
   try {
-    blocker = JSON.parse(r.stdout || '').blockers.length;
+    const j = JSON.parse(r.stdout || '');
+    blocker = j.blockers.length;
+    // Bis 29.07.2026 zaehlte diese Eval nur die ANZAHL Blocker. Damit war
+    // belegt, DASS etwas anschlug — nicht WELCHE Regel. Von den neun Regeln
+    // (F0-F8) waren faktisch zwei geprueft (F1, F3); F6 hatte keinen Fall,
+    // obwohl die Regel aus den completion_criteria stammt. Dieselbe halbe
+    // Frage wie bei der Craft-Eval, dort am selben Tag behoben.
+    ids = [...(j.blockers || []), ...(j.warns || []), ...(j.infos || [])]
+      .map((b) => b.id).filter(Boolean);
   } catch { /* unlesbar -> bleibt null, faellt unten auf */ }
+  for (const id of ids) gesehen.add(id);
 
-  const ok = r.status === f.erwartet.exit && blocker === f.erwartet.blocker;
+  // `ids` im Fall: diese Regel MUSS dabei sein. Ohne die Angabe wird nur
+  // Anzahl und Exit geprueft (wie bisher).
+  const fehlendeIds = (f.erwartet.ids || []).filter((x) => !ids.includes(x));
+  const ok = r.status === f.erwartet.exit && blocker === f.erwartet.blocker
+    && fehlendeIds.length === 0;
   console.log(`${ok ? 'OK  ' : 'ROT '} ${f.name.padEnd(20)} exit=${r.status} blocker=${blocker}  ${f.was}`);
   if (!ok) {
     rot++;
     if (blocker === null) console.log(`       Ausgabe unlesbar: ${(r.stderr || '').split('\n')[0]}`);
+    else if (fehlendeIds.length) console.log(`       ${fehlendeIds.join(', ')} fehlt. Gemeldet: ${ids.join(', ') || '(nichts)'}`);
     else console.log(`       erwartet exit=${f.erwartet.exit} blocker=${f.erwartet.blocker}`);
-    console.log(f.erwartet.blocker === 0
+    console.log(f.erwartet.blocker === 0 && !fehlendeIds.length
       ? '       Fehlalarm: der Pruefer meckert ein Feld an, das kein Kontaktfeld ist.'
       : '       Uebersehen: ein kaputtes Kontaktfeld kaeme durchs Tor.');
   }
+}
+
+// Ehrliche Abdeckung — dieselbe Zahl, die der Craft-Eval gefehlt hat.
+// Gezaehlt werden nur IDs mit echter add()-Stelle im Pruefer.
+const alleIds = [...new Set(
+  (fs.readFileSync(PRUEFER, 'utf8').match(/add\('[A-Z]+',\s*'(F\d+)'/g) || [])
+    .map((t) => t.match(/'(F\d+)'$/)[1]),
+)];
+const offen = alleIds.filter((x) => !gesehen.has(x));
+console.log('\nAbdeckung:\n');
+console.log(`  ${alleIds.length} Regeln im Pruefer`);
+console.log(`  ${alleIds.length - offen.length} haben in diesem Lauf gefeuert`);
+console.log(`  ${offen.length} ohne Fixture: ${offen.join(', ') || '–'}`);
+if (offen.length) {
+  console.log('\n  Eine Regel, die in keinem Fall feuert, ist nicht belegt. Beim naechsten');
+  console.log('  Umbau faellt ihr Ausfall nicht auf.');
 }
 
 console.log(`\n${FAELLE.length - rot}/${FAELLE.length} wie erwartet.`);
