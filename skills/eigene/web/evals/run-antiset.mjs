@@ -135,6 +135,14 @@ sag(`Protokoll: ${PROTOKOLL}\n`);
 // und a4 reisst genau daran. Fuer echte Builds gilt weiter das Gate-Budget.
 const BUDGET = path.join(HIER, 'antiset-budget.json');
 
+// Zeitgrenze pro Fixture. Auf einer ausgelasteten Maschine reichten 300 s nicht:
+// spawnSync liefert dann `status: null`, und der Laeufer las das als "Exit
+// erwartet 0, bekommen null" — also als Qualitaetsbefund. Befund 29.07.2026:
+// bei Last 88 meldete der Lauf 0/14 mit dem Satz "Das Tor blockt echte
+// Importe", obwohl am Tor nichts kaputt war. Ein Testlauf, der Langsamkeit
+// nicht von Defekt unterscheidet, erfindet Befunde.
+const FRIST = Number(process.env.ANTISET_FRIST_MS || 900000);
+
 const torLauf = (n, strict) => spawnSync('node', [
   path.join(SKILL, 'scripts/g1-gate.mjs'),
   '--url', `http://localhost:${PORT}/${n}/`,
@@ -142,7 +150,22 @@ const torLauf = (n, strict) => spawnSync('node', [
   '--budget', BUDGET,
   '--no-shots',
   ...(strict ? ['--strict'] : []),
-], { encoding: 'utf8', timeout: 300000 });
+], { encoding: 'utf8', timeout: FRIST });
+
+// `status === null` heisst: kein Urteil. Entweder abgewuergt (Frist) oder per
+// Signal gestorben. Beides ist ein kaputter LAUF, kein Befund ueber die Seite —
+// und muss darum den ganzen Durchgang abbrechen, statt eine Zeile Rot zu setzen.
+const abbruchPruefen = (r, n) => {
+  if (r.status !== null) return;
+  const grund = r.error && r.error.code === 'ETIMEDOUT'
+    ? `ueber ${Math.round(FRIST / 1000)} s ohne Ergebnis (Maschine ueberlastet?)`
+    : `durch Signal ${r.signal || '?'} beendet`;
+  sag(`\nANTI-SET ABGEBROCHEN bei ${n}: ${grund}.`);
+  sag('Das ist kein Befund ueber das Tor. Frist hochsetzen und wiederholen:');
+  sag(`  ANTISET_FRIST_MS=1800000 node evals/run-antiset.mjs`);
+  sag(`  aktuelle Last: ${fs.readFileSync('/proc/loadavg', 'utf8').trim()}`);
+  process.exit(2);
+};
 
 // Check-Namen tragen die Route als Suffix (`craft/`), darum Praefix-Vergleich.
 const gerissenAus = (r) =>
@@ -155,6 +178,7 @@ for (const n of namen) {
   // Protokoll genau die Fixture, an der es haengt.
   fs.appendFileSync(PROTOKOLL, `.. laeuft: ${n}\n`);
   const r = torLauf(n, false);
+  abbruchPruefen(r, n);
   const gerissen = gerissenAus(r);
   const fehlend = erwartet.checks.filter((c) => !gerissen.includes(c));
   const zuviel = gerissen.filter((c) => !erwartet.checks.includes(c));
@@ -165,6 +189,7 @@ for (const n of namen) {
   let strictOk = true, strictStatus = null;
   if (erwartet.strict) {
     const s = torLauf(n, true);
+    abbruchPruefen(s, `${n} (--strict)`);
     strictStatus = s.status;
     strictOk = gerissenAus(s).includes('craft');
   }
@@ -207,8 +232,9 @@ for (const f of ROUTEN_FAELLE) {
     '--budget', BUDGET,
     '--no-shots',
     ...(f.routes ? ['--routes', f.routes] : []),
-  ], { encoding: 'utf8', timeout: 300000 });
+  ], { encoding: 'utf8', timeout: FRIST });
 
+  abbruchPruefen(lauf, f.was);
   const ok = lauf.status === f.exit;
   if (!ok) rot++;
   sag(`${ok ? 'OK  ' : 'ROT '} ${f.was.padEnd(24)} exit=${lauf.status}  ${f.warum}`);
@@ -255,8 +281,9 @@ for (const f of IMPORT_FAELLE) {
     '--src', dir,
     '--budget', BUDGET,
     '--no-shots',
-  ], { encoding: 'utf8', timeout: 300000 });
+  ], { encoding: 'utf8', timeout: FRIST });
 
+  abbruchPruefen(lauf, f.was);
   const gerissen = gerissenAus(lauf).includes('importe');
   const ok = lauf.status === f.exit && gerissen === f.reisst;
   if (!ok) rot++;
