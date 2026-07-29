@@ -117,8 +117,8 @@ den Bericht, welchen es genommen hat — Begründung unter „Quelle und Build s
 derselbe Ordner".
 
 Er bündelt Erreichbarkeit, Lighthouse (4 Kategorien), axe, tote Links, AI-Slop,
-Craft-Check, Formular-Check, Import-Check und den Screenshot-Sweep in einem
-einzigen Exit-Code:
+Craft-Check, Formular-Check, Import-Check, Motion-Check und den Screenshot-Sweep in
+einem einzigen Exit-Code:
 
 - **Exit 0** — bestanden. Nur dann darf „fertig" gesagt werden.
 - **Exit 1** — Qualität gerissen. Der Bericht nennt Kategorie und Ist/Soll.
@@ -127,10 +127,15 @@ einzigen Exit-Code:
 
 Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
 hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** ist auch nur
-**einer** der fünf Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft, Formular)
-überhaupt nicht gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein Rechner ohne
-installierte Werkzeuge jede beliebige Seite mit „G1 BESTANDEN — 0 Checks grün"
-durchgewinkt.
+**einer** der sechs Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft, Formular,
+Motion) überhaupt nicht gelaufen, endet es mit Exit 2 statt Exit 0. Sonst hätte ein
+Rechner ohne installierte Werkzeuge jede beliebige Seite mit „G1 BESTANDEN — 0 Checks
+grün" durchgewinkt.
+
+> Praktische Folge: **ohne `--src` ist kein grünes Tor mehr möglich.** Import- und
+> Motion-Check brauchen die Quelle; ohne sie stehen sie als `[SKIP]` da, und
+> übersprungen ist nicht bestanden. Wer nur `--url` übergibt, bekommt Exit 2 — nicht
+> als Schikane, sondern weil zwei Fragen dann schlicht ungestellt blieben.
 
 > Bis 27.07. reichten hier **zwei von vier**. Diese Schwelle war willkürlich: fehlten
 > Lighthouse und der Slop-Scan, meldeten axe und Craft allein ein grünes Tor — Tempo,
