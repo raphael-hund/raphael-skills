@@ -2,14 +2,21 @@
 /**
  * run-craft-check.mjs — loest jede Handwerks-Regel wirklich aus?
  *
- * Befund 29.07.2026: `craft-check.mjs` kennt 28 Regeln (M1-M25, T1-T10). Das
- * Anti-Set belegt davon 9 — gemessen, nicht geschaetzt, indem jede Fixture
- * einzeln durch den Pruefer lief:
+ * Befund 29.07.2026: `craft-check.mjs` hat 23 echte Pruefstellen. Das Anti-Set
+ * belegte davon 9 — gemessen, nicht geschaetzt, indem jede Fixture einzeln
+ * durch den Pruefer lief:
  *
  *   _basis T5 · a1 T1,T2,T5 · a2 T5,T8,T9 · a3 M13,T5 · a4 M17,T5
  *   a5 M11,T5 · a6 M24,T5 · a8 T5
  *
- * 19 Regeln hat also nie etwas ausgeloest. Das ist kein Beweis, dass sie falsch
+ * Die Zahl "28" (M1-M25 + T1-T10) stand zuerst hier und war falsch: sie kam aus
+ * einem grep ueber die ganze Datei und zaehlte Kommentar-Erwaehnungen mit. M7,
+ * M25 und T10 erschienen dadurch als "ungeprueft", obwohl es fuer sie gar keine
+ * add()-Stelle gibt — M25 ist laut Doktrin ausdruecklich "inhaltlich, nicht
+ * messbar". Eine Abdeckungszahl, die zu NIEDRIG luegt, kostet genauso Zeit wie
+ * eine, die zu hoch luegt: man sucht Fixtures fuer Regeln, die es nicht gibt.
+ *
+ * 14 Regeln hatten also nie etwas ausgeloest. Das ist kein Beweis, dass sie falsch
  * sind — aber auch keiner, dass sie funktionieren. Eine Regel ohne Fixture ist
  * eine Regel, von der niemand weiss, ob sie feuert; sie steht in der Liste, im
  * Bericht taucht sie nie auf, und beim naechsten Umbau des Pruefers faellt es
@@ -222,18 +229,21 @@ const NICHT_HIER = {
   T1: 'Indigo-Violett-Verlauf — Anti-Set a1',
   T2: 'Inter ueberall — braucht geladene Webfonts (Anti-Set a1)',
   T7: 'Springy-Hover — braucht echte Hover-Simulation (Anti-Set a5, WARN)',
-  // Verbleibende WARN-Regeln ohne Fixture. Die fuenf BLOCKER dieser Liste sind
-  // am 29.07.2026 nachgetragen (M3, M8, M9, M12, M16, M18) — ein Blocker, der
-  // nie feuert, faellt nicht auf, und einer, der falsch feuert, wird
-  // abgeschaltet. Bei WARN ist der Schaden geringer, aber die Liste bleibt
-  // sichtbar, damit "alles gruen" nicht nach voller Abdeckung aussieht.
+  // Verbleibende Regeln ohne Fixture. Die SECHS Blocker dieser Liste sind am
+  // 29.07.2026 nachgetragen (M3, M8, M9, M12, M16, M18) — ein Blocker, der nie
+  // feuert, faellt nicht auf, und einer, der falsch feuert, wird abgeschaltet.
+  // Bei WARN ist der Schaden geringer, aber die Liste bleibt sichtbar, damit
+  // "alles gruen" nicht nach voller Abdeckung aussieht.
+  //
+  // M7, M25 und T10 stehen hier NICHT mehr: sie haben im Pruefer keine
+  // add()-Stelle und sind damit keine ungepruefte Regeln, sondern gar keine.
+  // M25 ist laut Doktrin ausdruecklich "inhaltlich, nicht messbar", T10 steht
+  // nur in der Ueberschrift, M7 nirgends. Sie standen nur in der Liste, weil
+  // die Zaehlung Kommentare mitgriff.
   M1: 'nicht hergestellt (WARN, Typo-Skala: braucht >7 Schriftgroessen)',
   M2: 'nicht hergestellt (WARN, vertikaler Rhythmus)',
-  M7: 'keine eigene add()-Stelle im Pruefer mehr — Regel-ID verwaist',
   M19: 'nicht hergestellt (WARN, transition: all)',
   M20: 'INFO-Stufe, kein BLOCK/WARN — taucht im Bericht anders auf',
-  M25: 'keine eigene add()-Stelle (nur INFO zusammen mit M24)',
-  T10: 'keine eigene add()-Stelle im Pruefer mehr — Regel-ID verwaist',
 };
 
 function lauf(html) {
@@ -296,8 +306,21 @@ for (const [id, f] of Object.entries(FAELLE)) {
 
 // --- 3. Ehrliche Abdeckung ------------------------------------------------
 // Die Zahl, die im Bericht fehlte: wie viele der Regeln sind ueberhaupt belegt?
+// Gezaehlt werden nur IDs mit einer echten `add()`-Stelle.
+//
+// Die erste Fassung greppte JEDES Vorkommen von M\d/T\d in der Datei — auch aus
+// Kommentaren. Dadurch meldete der Bericht "28 Regeln" und fuehrte M7, M25 und
+// T10 als "ohne Fixture", obwohl es fuer sie gar keine Pruefstelle gibt: M25
+// steht laut Doktrin ausdruecklich als "inhaltlich, nicht messbar", T10 nur in
+// der Ueberschrift, M7 nirgends. Man haette Fixtures fuer Regeln gesucht, die
+// es nicht gibt — eine Abdeckungszahl, die zu niedrig LUEGT, kostet genauso
+// Zeit wie eine, die zu hoch luegt.
+//
+// Mehrfach-IDs wie add('INFO', 'M24/M25', ...) werden aufgeteilt.
 const alleIds = [...new Set(
-  fs.readFileSync(PRUEFER, 'utf8').match(/\b(?:M\d{1,2}|T\d{1,2})\b/g) || [],
+  (fs.readFileSync(PRUEFER, 'utf8').match(/add\('[A-Z]+',\s*'([MT][\d/]+)'/g) || [])
+    .map((t) => t.match(/'([MT][\d/]+)'$/)[1])
+    .flatMap((t) => t.split('/').map((x) => (/^\d/.test(x) ? `M${x}` : x))),
 )];
 const hier = Object.keys(FAELLE);
 const antiset = ['M13', 'T1', 'T2', 'T7', 'M11', 'M17', 'M24', 'T8', 'T9', 'T5'];
