@@ -108,5 +108,68 @@ if (stumm.length) {
   sag(`OK   ${libs.length} Libraries, jede mit einer Aussage`);
 }
 
-sag(`\n${rot === 0 ? 'Der Tresor beantwortet jede Library.' : `${rot} Fall/Faelle offen.`}`);
+// --- Gegenproben ----------------------------------------------------------
+// Bis 29.07.2026 hatte diese Eval KEINE einzige. Sie prueft, dass fuer jede
+// Library etwas kommt — nicht, dass Falsches abgelehnt wird. Das ist die halbe
+// Frage: ein Nachschlager, der auf alles eine Antwort hat, ist von einem, der
+// alles bejaht, nicht zu unterscheiden. Und der Tresor existiert genau fuer die
+// andere Richtung ("ein Import, der nicht in der Export-Zeile steht, existiert
+// nicht").
+//
+// Gefunden nicht durch Zufall, sondern durch systematisches Abklopfen aller 21
+// Evals auf dieselbe Luecke — nachdem sie zweimal einzeln aufgefallen war
+// (Craft-Eval, Formular-Eval am selben Tag).
+sag('\nGegenproben — der Nachschlager muss auch Nein sagen koennen:\n');
+
+const gegen = [
+  {
+    was: 'Library nicht im Tresor -> Exit != 0 und Hinweis',
+    pruef: () => {
+      const r = lauf('gibtesnichtxyz');
+      const aus = `${r.stdout || ''}${r.stderr || ''}`;
+      return r.status !== 0 && /nicht im Tresor/.test(aus);
+    },
+  },
+  {
+    was: 'echte Library nennt echte Namen (sonner -> toast)',
+    pruef: () => {
+      const aus = `${lauf('sonner').stdout || ''}`;
+      const zeile = (aus.match(/^Export:.*$/m) || [''])[0];
+      return /\btoast\b/.test(zeile);
+    },
+  },
+  {
+    was: 'ein erfundener Name steht NICHT in der Export-Zeile',
+    // Der eigentliche Zweck des Tresors. Waere die Zeile ein Sammelbecken, in
+    // dem alles vorkommt, koennte man jeden Namen "belegen".
+    pruef: () => {
+      const aus = `${lauf('sonner').stdout || ''}`;
+      const zeile = (aus.match(/^Export:.*$/m) || [''])[0];
+      return zeile.length > 0 && !/ToastProvider/.test(zeile);
+    },
+  },
+  {
+    // Erster Versuch verlangte hier Exit != 0 ("Nutzungshinweis statt stiller
+    // Erfolg") und schlug fehl. Das Werkzeug hatte recht, der Testfall nicht:
+    // ohne Argument listet es alle 30 Libraries mit Rolle und Version — eine
+    // brauchbare Antwort, kein stilles Durchwinken. Geprueft wird also, dass
+    // die Liste WIRKLICH kommt, nicht dass es sich beschwert.
+    was: 'ohne Argument: vollstaendige Tresor-Liste',
+    pruef: () => {
+      const r = spawnSync('node', [SKRIPT], { encoding: 'utf8', timeout: 30000 });
+      const aus = `${r.stdout || ''}${r.stderr || ''}`;
+      const zeilen = aus.split('\n').filter((z) => /^\S+\s+\S+\s+[\d.]+\s/.test(z));
+      return /Tresor:/.test(aus) && zeilen.length >= 20;
+    },
+  },
+];
+
+for (const g of gegen) {
+  let ok = false;
+  try { ok = g.pruef(); } catch { ok = false; }
+  if (!ok) rot++;
+  sag(`${ok ? 'OK  ' : 'ROT '} ${g.was}`);
+}
+
+sag(`\n${rot === 0 ? 'Der Tresor beantwortet jede Library — und lehnt ab, was er nicht kennt.' : `${rot} Fall/Faelle offen.`}`);
 process.exit(rot ? 1 : 0);
