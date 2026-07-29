@@ -63,8 +63,27 @@ tief) und nennt bei `gsap` die Namespace-API. Kommt es trotzdem nicht weiter,
 sagt es **UNPRUEFBAR** und nennt den Dateipfad — das ist eine Antwort, Schweigen
 ist keine.
 
+**Siebte Sonderform, gefunden am 29.07.2026: `@base-ui/react`.** Sie brachte zwei
+neue Formen auf einmal — die Typen liegen als `.d.mts` (der Resolver kannte nur
+`.d.ts`), und jedes Primitive wird per `export * as Select from …` gebündelt. Das
+sieht wie ein Stern-Reexport aus, erzeugt aber genau **einen** Namen, nämlich den,
+den man importiert. Ergebnis war `UNPRUEFBAR` für alle 42 Subpfade.
+
+Das war die unangenehmste Stelle für diese Lücke: `@base-ui/react` ist seit
+demselben Tag die Empfehlung für neun Widgets (siehe
+`ui-components/INDEX.md` — sieben von zehn eigenen Widgets sind per Tastatur
+nicht bedienbar). Der Tresor schwieg also bei genau der Library, auf die die Doku
+verweist — und ein Tresor, der bei der wichtigsten Empfehlung „weiß nicht" sagt,
+lädt zum Raten ein. Jetzt nennt er 53 Namen, darunter `Select`, `Popover`,
+`Tooltip`, `Tabs`, `Menu`.
+
+Weil `import-check` dieselbe Quelle liest, war damit auch **jeder base-ui-Import
+ungeprüft**. Gegenprobe nach dem Fix: `import { Select, Popover } from
+'@base-ui/react'` kommt durch, `GibtEsNichtInBaseUi` wird gemeldet.
+
 ```bash
-node evals/run-lib-lookup.mjs      # 6 Sonderformen + Flächentest über alle 30
+node evals/run-lib-lookup.mjs      # 7 Sonderformen + Flächentest über alle 30
+node evals/run-import-check.mjs    # 19 Fälle, beide Richtungen für base-ui
 ```
 
 Der Lauf ist in beide Richtungen belegt: mit dem Fix 0 offene Fälle, mit

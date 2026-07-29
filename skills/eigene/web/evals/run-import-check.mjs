@@ -113,11 +113,30 @@ const FAELLE = [
     code: `import { clsxx } from 'clsx';`,
     erwartet: ['clsxx'],
   },
+  {
+    // Bis 29.07.2026 meldete der Tresor @base-ui/react als UNPRUEFBAR: die
+    // Typen liegen als `.d.mts` (der Resolver kannte nur `.d.ts`) und jedes
+    // Primitive wird per `export * as Select from ...` gebuendelt — kein
+    // Stern-Reexport, sondern genau ein Name. Damit war die Library komplett
+    // ungeprueft, und zwar genau die, die die Komponenten-Doku seit demselben
+    // Tag fuer neun Widgets empfiehlt.
+    was: '@base-ui/react — .d.mts-Typen und export * as NAME',
+    code: `import { Select, GibtEsNichtInBaseUi } from '@base-ui/react';`,
+    erwartet: ['GibtEsNichtInBaseUi'],
+  },
 
   // --- falsches Rot: echte Importe duerfen NIE gemeldet werden ------------
   {
     was: 'echte sonner-Exporte',
     code: `import { Toaster, toast } from 'sonner';`,
+    erwartet: [],
+  },
+  {
+    // Die andere Richtung zum Fall oben: haette der Fix nur "gib bei base-ui
+    // auf" gelautet, waere der Fund-Fall gruen und dieser hier auch. Erst beide
+    // zusammen zeigen, dass die Namen wirklich gelesen werden.
+    was: 'echte base-ui-Primitives (Select/Popover/Tooltip)',
+    code: `import { Select, Popover, Tooltip } from '@base-ui/react';`,
     erwartet: [],
   },
   {

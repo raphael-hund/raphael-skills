@@ -37,6 +37,14 @@ const SONDERFAELLE = {
   'date-fns': { erwartet: 'addDays',      form: 'export * auf ~300 Einzeldateien' },
   clsx:       { erwartet: 'clsx',         form: 'export = (CommonJS-Default)' },
   gsap:       { erwartet: 'gsap',         form: '/// <reference> + declare namespace' },
+  // Zugefuegt 29.07.2026. Zwei Formen auf einmal, beide vorher unbekannt:
+  // base-ui legt seine Typen als `.d.mts` ab (der Resolver kannte nur `.d.ts`)
+  // UND buendelt jedes Primitive per `export * as Select from ...` — was kein
+  // Stern-Reexport ist, sondern genau einen Namen erzeugt. Ergebnis war
+  // "UNPRUEFBAR" fuer 42 Subpfade, also fuer jedes Primitive, das die
+  // Komponenten-Doku seit demselben Tag fuer neun Widgets empfiehlt. Ein Tresor,
+  // der bei der wichtigsten Empfehlung schweigt, laedt zum Raten ein.
+  '@base-ui/react': { erwartet: 'Select', form: 'export * as NAME + .d.mts-Typen' },
 };
 
 const lauf = (name) => spawnSync('node', [SKRIPT, name], { encoding: 'utf8', timeout: 30000 });

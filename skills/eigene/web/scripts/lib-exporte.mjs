@@ -99,7 +99,9 @@ export function typesFile(paket, unterpfad = '.') {
   // Ohne exports-Karte: `motion/react` liegt oft schlicht als `dist/react.d.ts`.
   if (unterpfad !== '.') {
     const rest = unterpfad.replace(/^\.\//, '');
-    kandidaten.push(`${rest}.d.ts`, `dist/${rest}.d.ts`, `${rest}/index.d.ts`, `dist/${rest}/index.d.ts`);
+    kandidaten.push(`${rest}.d.ts`, `dist/${rest}.d.ts`, `${rest}/index.d.ts`, `dist/${rest}/index.d.ts`,
+      // ESM-Pakete: dieselben Formen als `.d.mts` (siehe folgeZiel, 29.07.2026).
+      `${rest}.d.mts`, `dist/${rest}.d.mts`, `${rest}/index.d.mts`, `dist/${rest}/index.d.mts`);
   } else {
     kandidaten.push(...TYPE_KANDIDATEN);
   }
@@ -125,17 +127,33 @@ export function docs(paket) {
 // findet in der Datei keinen einzigen Namen — und haelt "nicht hingeschaut" für
 // "es gibt nichts". Genau die Verwechslung, gegen die der Tresor gebaut ist.
 export function folgeZiel(dts, ziel) {
-  const roh = ziel.replace(/\.js$/, '');
+  // `.mjs` gehoert hier genauso weg wie `.js`.
+  //
+  // Befund 29.07.2026: `@base-ui/react` leitet ausschliesslich per
+  // `export * from "./select/index.mjs"` weiter und legt seine Typen als
+  // `.d.mts` ab. Der Resolver kannte nur `.js`/`.d.ts`, fand also kein Ziel und
+  // meldete die ganze Library als UNPRUEFBAR — 42 Subpfade, kein einziger
+  // Exportname. Damit war der Import-Check auf genau der Library blind, die die
+  // Komponenten-Doku fuer neun Widgets empfiehlt (Tastatur-Befund desselben
+  // Tages). Ein Tresor, der bei der wichtigsten Empfehlung "weiss nicht" sagt,
+  // laedt zum Raten ein — und Raten von Importnamen ist der Fehler, gegen den
+  // er gebaut wurde.
+  const roh = ziel.replace(/\.m?js$/, '');
   // Relativ: neben der Typdatei nachsehen.
   if (roh.startsWith('.')) {
     const basis = dirname(dts);
     // `./add.ts` meint in einer .d.ts die Deklaration `add.d.ts`, nicht die
     // Quelldatei. `./animation.d.ts` (GSAP) ist schon fertig und darf nicht zu
     // `animation.d.ts.d.ts` werden.
-    const ohneTs = roh.replace(/\.d\.ts$|\.ts$/, '');
-    for (const k of [roh, `${roh}.d.ts`, `${ohneTs}.d.ts`, `${roh}/index.d.ts`, `${ohneTs}/index.d.ts`]) {
+    const ohneTs = roh.replace(/\.d\.m?ts$|\.m?ts$/, '');
+    for (const k of [
+      roh,
+      `${roh}.d.ts`, `${ohneTs}.d.ts`, `${roh}/index.d.ts`, `${ohneTs}/index.d.ts`,
+      // ESM-Pakete legen ihre Typen als `.d.mts` ab (base-ui, zunehmend andere).
+      `${roh}.d.mts`, `${ohneTs}.d.mts`, `${roh}/index.d.mts`, `${ohneTs}/index.d.mts`,
+    ]) {
       const p = resolve(basis, k);
-      if (existsSync(p) && p.endsWith('.ts')) return p;
+      if (existsSync(p) && /\.m?ts$/.test(p)) return p;
     }
     return null;
   }
@@ -148,7 +166,8 @@ export function folgeZiel(dts, ziel) {
   if (ueberKarte) return ueberKarte;
   // Rueckfall fuer Formen ohne exports-Karte: `zustand/vanilla.d.ts`.
   const nm = join(NM, roh);
-  for (const k of [`${nm}.d.ts`, join(nm, 'index.d.ts'), join(nm, 'dist', 'index.d.ts')]) {
+  for (const k of [`${nm}.d.ts`, join(nm, 'index.d.ts'), join(nm, 'dist', 'index.d.ts'),
+    `${nm}.d.mts`, join(nm, 'index.d.mts'), join(nm, 'dist', 'index.d.mts')]) {
     if (existsSync(k)) return k;
   }
   return null;
@@ -172,6 +191,19 @@ export function exporte(dts, tiefe = 0) {
       // Fremdpaket oder zu tief: ehrlich benennen statt still weglassen.
       offen.push(m[1]);
     }
+  }
+
+  // `export * as Select from "./index.parts.mjs"` ist KEINE Weiterleitung, die
+  // man verfolgen muesste — sie erzeugt genau EINEN Namen, `Select`, und das ist
+  // der Name, den man importiert (`import { Select } from "@base-ui/react/select"`).
+  //
+  // Befund 29.07.2026: base-ui benutzt fast nur diese Form. Ohne sie meldete der
+  // Tresor fuer `select`, `popover`, `tooltip`, `menu` und die uebrigen 38
+  // Subpfade keinen einzigen Namen — also fuer jedes Primitive, das die
+  // Komponenten-Doku empfiehlt. Der Stern davor ist irrefuehrend: hier wird
+  // nichts ausgebreitet, sondern gebuendelt.
+  for (const m of text.matchAll(/^export\s+\*\s+as\s+([A-Za-z0-9_$]+)\s+from\s+['"][^'"]+['"]/gm)) {
+    namen.add(m[1]);
   }
 
   for (const m of text.matchAll(/^export\s*\{([^}]+)\}/gm)) {
