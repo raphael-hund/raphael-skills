@@ -111,7 +111,17 @@ const FAELLE = {
   },
   M17: {
     was: 'outline:none ohne :focus-visible-Ersatz',
-    kopf: 'a.nf{outline:none}',
+    // Der Link ist ein blanker <a> im Fliesstext und damit kleiner als 40x40 —
+    // M16 hat sachlich recht. Ein Link nur zum Vergroessern aufzublasen wuerde
+    // den Fall verwaessern; darum der Begleiter ausdruecklich benannt.
+    // Gefunden von der Mitlaeufer-Pruefung am 29.07.2026, erster Lauf.
+    mit: ['M16'],
+    // Ein nackter Inline-Link ist zwangsweise kleiner als 40x40px — deshalb
+    // meldet dieselbe Fixture M16 mit. Zwei Wege dagegen: den Link auf
+    // Klickgroesse bringen, oder M16 als erwarteten Beifang nennen. Das erste
+    // ist sauberer, weil die Fixture dann WIRKLICH nur eine Sache falsch macht.
+    kopf: 'a.nf{outline:none;display:inline-flex;min-height:44px;min-width:44px;'
+      + 'align-items:center;padding:12px 24px}',
     body: '<a class="nf" href="#x">Ohne Fokusring</a>',
   },
   M11: {
@@ -212,6 +222,101 @@ const FAELLE = {
     body: '<div class="a1">A</div><div class="a2">B</div>'
       + '<div class="a3">C</div><div class="a4">D</div>',
   },
+  M3: {
+    was: 'Fliesstext breiter als 75 Zeichen',
+    // Ein 1400px breiter Absatz sprengt auf 390px zwangsweise das Raster —
+    // M13 hat sachlich recht und ist hier unvermeidbar. Wer eine zu breite
+    // Zeile baut, baut auch eine, die mobil nicht umbricht.
+    mit: ['M13'],
+    // 1600px Breite sprengt auch das Mobil-Raster (M13). Statt beides zu melden:
+    // genau so breit machen, dass der Satzspiegel reisst und das Raster haelt —
+    // 900px bei 16px Schrift sind rund 110 Zeichen, Ziel ist <= 75.
+    kopf: 'p.breit{max-width:900px;font-size:16px}',
+    body: '<p class="breit">' + 'Wir sanieren Wohnungen und Haeuser in Karlsruhe und Umgebung, '.repeat(6) + '</p>',
+  },
+  M16: {
+    was: 'Klickflaeche kleiner als 40x40px',
+    kopf: 'a.mini{display:inline-block;min-height:0;min-width:0;width:20px;height:20px;padding:0;border:0}',
+    body: '<a class="mini" href="#a">x</a>',
+  },
+  M18: {
+    was: 'Animation ohne prefers-reduced-motion',
+    // Das Geruest bringt den Reduced-Motion-Block mit; fuer diesen Fall muss er
+    // weg UND es muss ueberhaupt animiert werden.
+    kopfWeg: /@media \(prefers-reduced-motion:reduce\)\{\*\{transition:none!important;animation:none!important\}\}\n/,
+    // Die Regel greift ab DREI animierten Elementen (wie M11 bei drei
+    // Geisterkarten). Ein einziges bewegtes Element ist eine Entscheidung.
+    kopf: '.anim{transition:transform .2s cubic-bezier(0.23,1,0.32,1)}',
+    body: '<div class="anim">Eins</div><div class="anim">Zwei</div>'
+      + '<div class="anim">Drei</div><div class="anim">Vier</div>',
+  },
+  M19: {
+    was: 'transition-property: all',
+    kopf: '.alles{transition:all .2s cubic-bezier(0.23,1,0.32,1)}',
+    body: '<div class="alles">Alles</div>',
+  },
+  M1: {
+    was: 'zu viele verschiedene Textgroessen',
+    kopf: [...Array(12)].map((_, i) => `.t${i}{font-size:${11 + i}px}`).join(''),
+    body: [...Array(12)].map((_, i) => `<p class="t${i}">Groesse ${i}</p>`).join(''),
+  },
+  M8: {
+    was: 'flache Hierarchie (alle Groessen zu nah beieinander)',
+    // Die Regel liest ALLE Textelemente, nicht nur Ueberschriften, und
+    // verlangt einen Spannweiten-Faktor >= 1.8. Erster Versuch setzte nur
+    // h1/h2/h3/p und liess das <li>/<span> im Geruest bei anderer Groesse —
+    // damit war die Spannweite gross genug und die Regel schwieg zu Recht.
+    // Also der Stern: jede Textgroesse gleich, Faktor 1.0.
+    kopf: '*{font-size:17px!important}',
+    body: '<h2>Zwei</h2><h3>Drei</h3><p>Text</p>',
+  },
+  M9: {
+    was: 'Kind und Eltern mit demselben Radius',
+    kopf: '.aussen{border-radius:16px;padding:16px;border:1px solid var(--line)}'
+      + '.innen{border-radius:16px;padding:8px;background:#f4f4f5}',
+    body: '<div class="aussen"><div class="innen">Nicht konzentrisch</div></div>',
+  },
+  M12: {
+    was: 'ein einziger gap-Wert auf allen Containern',
+    kopf: '.g{display:flex;gap:16px;margin:8px 0}',
+    body: [...Array(6)].map(() => '<div class="g"><span>a</span><span>b</span></div>').join(''),
+  },
+  // --- Die drei verbleibenden WARN-Regeln, nachgetragen 29.07.2026 ----------
+  // Nach den sechs Blockern blieben vier Regeln ohne Fixture. Drei davon sind
+  // herstellbar; M20 ist ein bedingungsloser INFO ohne Schwelle und laeuft
+  // ohnehin bei jedem Lauf mit.
+  M1: {
+    was: 'mehr als sieben verschiedene Textgroessen',
+    mit: ['M2'],   // krumme Schriftgroessen erzeugen zwangsweise krumme Abstaende
+    // Die Schwelle steht bei > 7. Das Grundgeruest bringt schon einige mit,
+    // darum hier acht klar verschiedene dazu — sicherer als knapp ueber die
+    // Grenze zu zielen.
+    kopf: '.s1{font-size:11px}.s2{font-size:13px}.s3{font-size:15px}.s4{font-size:19px}'
+      + '.s5{font-size:23px}.s6{font-size:29px}.s7{font-size:37px}.s8{font-size:43px}',
+    // Der Text muss LAENGER als ein Zeichen sein: der Pruefer sammelt nur
+    // Elemente mit `textContent.trim().length > 1`. Erster Versuch nutzte
+    // '<p>a</p>' — acht Groessen auf der Seite, und M1 meldete nichts, weil
+    // kein einziges Element in die Messung kam. Direkt am Pruefer nachgemessen
+    // (dieselbe Seite mit zweistelligem Text: "9 verschiedene Textgroessen").
+    // Nicht die Regel war stumm, sondern mein Fixture unsichtbar.
+    body: '<p class="s1">aa</p><p class="s2">bb</p><p class="s3">cc</p><p class="s4">dd</p>'
+      + '<p class="s5">ee</p><p class="s6">ff</p><p class="s7">gg</p><p class="s8">hh</p>',
+  },
+  M2: {
+    was: 'Abstaende neben dem 4px-Raster',
+    // Verlangt sind >10 gemessene Abstaende, davon >25% nicht durch 4 teilbar.
+    // 13 Elemente mit krummen Werten reichen sicher.
+    kopf: '.o{margin-bottom:7px;padding-top:9px;padding-bottom:13px}',
+    body: Array.from({ length: 13 }, (_, i) => `<div class="o">Zeile ${i}</div>`).join(''),
+  },
+  M19: {
+    was: 'transition-property: all mit echter Dauer',
+    // Der Pruefer prueft ausdruecklich die DAUER mit: transitionProperty ist
+    // per Default "all", auch ohne jede Transition. Ohne `.3s` meldet die
+    // Regel jede statische Seite — deshalb steht die Dauer hier explizit.
+    kopf: '.ta{transition:all .3s ease;padding:4px}',
+    body: '<div class="ta">Alles animiert</div>',
+  },
   M24: {
     was: 'kein Bild ueber Icon-Groesse',
     // Der einzige Fall, der das Grundgeruest aendern muss: er ist die ABWESENHEIT
@@ -240,9 +345,6 @@ const NICHT_HIER = {
   // M25 ist laut Doktrin ausdruecklich "inhaltlich, nicht messbar", T10 steht
   // nur in der Ueberschrift, M7 nirgends. Sie standen nur in der Liste, weil
   // die Zaehlung Kommentare mitgriff.
-  M1: 'nicht hergestellt (WARN, Typo-Skala: braucht >7 Schriftgroessen)',
-  M2: 'nicht hergestellt (WARN, vertikaler Rhythmus)',
-  M19: 'nicht hergestellt (WARN, transition: all)',
   M20: 'INFO-Stufe, kein BLOCK/WARN — taucht im Bericht anders auf',
 };
 
@@ -300,8 +402,27 @@ for (const [id, f] of Object.entries(FAELLE)) {
   if (f.kopfWeg) html = html.replace(f.kopfWeg, '');
   const r = lauf(html);
   if (r.kaputt) { zeile(false, `${id}  ${f.was}`, `Pruefer kaputt: ${r.kaputt}`); continue; }
-  zeile(r.ids.includes(id), `${id}  ${f.was}`,
-    r.ids.includes(id) ? null : `${id} fehlt. Gemeldet wurde: ${r.ids.join(', ') || '(nichts)'}`);
+
+  // Zwei Fragen, nicht eine. Bis 29.07.2026 stand hier nur `ids.includes(id)`:
+  // "hat die Regel ausgeloest?". Was fehlte: "hat GENAU sie ausgeloest?"
+  //
+  // Eine Fixture, die drei Regeln reisst, war damit von einer praezisen nicht zu
+  // unterscheiden. Das faellt spaeter teuer auf — wenn eine Regel nur noch als
+  // Mitlaeufer einer anderen feuert, meldet die Eval weiter gruen. Das Anti-Set
+  // prueft diese zweite Haelfte seit Tagen ("reisst am erwarteten Check UND an
+  // keinem anderen"); hier fehlte sie.
+  //
+  // `mit` nennt erlaubte Begleiter ausdruecklich: manche Fehler ziehen einen
+  // zweiten zwangsweise nach sich (acht Schriftgroessen erhoehen auch die
+  // Spannweite). Wer den Begleiter hinschreibt, hat ihn bedacht — wer ihn
+  // stillschweigend duldet, weiss nichts.
+  const erlaubt = new Set([id, ...(f.mit || [])]);
+  const mitlaeufer = r.ids.filter((x) => !erlaubt.has(x));
+  const trifft = r.ids.includes(id);
+  zeile(trifft && mitlaeufer.length === 0, `${id}  ${f.was}`,
+    !trifft ? `${id} fehlt. Gemeldet wurde: ${r.ids.join(', ') || '(nichts)'}`
+      : mitlaeufer.length ? `reisst zusaetzlich: ${mitlaeufer.join(', ')} — Fixture zu grob oder \`mit\` erweitern`
+        : null);
 }
 
 // --- 3. Ehrliche Abdeckung ------------------------------------------------
@@ -329,7 +450,14 @@ const offen = alleIds.filter((x) => !belegt.has(x));
 
 console.log('\nAbdeckung (die Zahl, die vorher niemand nannte):\n');
 console.log(`  ${alleIds.length} Regeln im Pruefer`);
-console.log(`  ${belegt.size} belegt — ${hier.length} hier, ${antiset.length} im Anti-Set (Ueberschneidung moeglich)`);
+// `belegt.size` waere hier gelogen: die Menge enthaelt auch Namen, die der
+// Pruefer gar nicht (mehr) kennt — etwa Anti-Set-IDs, die inzwischen anders
+// heissen. Gezaehlt wird deshalb der Schnitt mit den echten Regeln des Pruefers.
+// Sonst stand da "23 belegt von 23 Regeln, 2 ohne Fixture", und das geht nicht auf.
+const wirklichBelegt = alleIds.filter((x) => belegt.has(x));
+const nurHier = alleIds.filter((x) => hier.includes(x));
+const nurAntiset = alleIds.filter((x) => antiset.includes(x) && !hier.includes(x));
+console.log(`  ${wirklichBelegt.length} belegt — ${nurHier.length} hier, ${nurAntiset.length} nur ueber das Anti-Set`);
 console.log(`  ${offen.length} ohne Fixture: ${offen.join(', ') || '–'}`);
 console.log('\n  Eine Regel ohne Fixture ist keine falsche Regel — nur eine, von der');
 console.log('  niemand weiss, ob sie feuert. Beim naechsten Umbau faellt ihr Ausfall');
