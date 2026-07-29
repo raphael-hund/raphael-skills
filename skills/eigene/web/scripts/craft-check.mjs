@@ -59,7 +59,14 @@ try {
     // ---- M1: Typo-Skala. Verwendete font-sizes einsammeln, Verhaeltnisse pruefen.
     const textEls = all.filter((el) => el.children.length === 0 && (el.textContent || '').trim().length > 1);
     const sizes = [...new Set(textEls.map((el) => Math.round(px(getComputedStyle(el).fontSize))))].sort((a, b) => a - b);
-    if (sizes.length > 1) {
+    // `sizes.length > 1` stand hier bis 29.07.2026 als Wache — und schloss damit
+    // genau den schlimmsten Fall aus: EINE Textgroesse fuer die ganze Seite,
+    // Ueberschrift wie Fliesstext. Das ist Faktor 1.0, flacher geht Hierarchie
+    // nicht, und der Pruefer schwieg dazu. Gefunden beim Bauen der Eval: der
+    // Testfall `*{font-size:17px}` loeste M8 nicht aus, obwohl er das Extrem
+    // dieser Regel ist. Ab EINER Groesse wird geprueft; die Spannweite ist dann
+    // 1.0 und die Meldung stimmt weiter.
+    if (sizes.length >= 1) {
       const spread = sizes[sizes.length - 1] / sizes[0];
       if (spread < 1.8) {
         add('BLOCK', 'M8', 'Hierarchie-Kontrast',
