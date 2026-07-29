@@ -93,6 +93,42 @@ Marketing-Landingpages) — Appica installieren statt selbst nachzubauen. Für
 alles andere bleibt shadcn+Radix der Default aus `radix-shadcn-tailwind-stack.md`,
 weil das die etablierte, breiter dokumentierte Kombination ist.
 
+## 3. shadcnuikit.com ist NICHT im Tresor — und warum nicht
+
+`shadcnuikit.com` (Shadcn UI Kit) wirkt auf den ersten Blick wie eine dritte
+Quelle: die öffentliche Registry unter `/r/registry.json` listet **875 Einträge**
+(512 `registry:component`, 363 `registry:block`), darunter 28 Illustrationen
+(`illustration1`–`illustration28`, verlinkt auf `/illustrations`).
+
+**Geprüft am 29.07.2026 — nutzbar ist davon nichts:**
+
+| Prüfung | Ergebnis |
+|---|---|
+| `GET /r/registry.json` | 200, 875 Einträge — aber jedes `files[].content` ist **leer** (0 Bytes) |
+| `GET /r/illustration1.json` | **404** `{"error":"Component, block, or example not found!"}` |
+| Lizenzseite (`/license`, `/docs/license`, `/terms`) | alle **404** |
+| `/pricing` | 200 — „Premium license", Einmalpreise von $129 bis $699 |
+
+Es ist ein **Bezahlprodukt**. Die Registry ist ein Schaufenster: Namen und
+Beschreibungen sind öffentlich, der Quellcode nicht. Wer `npx shadcn add` gegen
+diese URLs laufen lässt, bekommt einen 404, keine Komponente.
+
+**Regel:** Nicht in den Tresor spiegeln, nicht als Quelle in Kunden-Builds
+nennen, nicht aus dem Gedächtnis „nachbauen, wie es dort aussieht". Die Seite
+taugt als **Ideengeber** — man sieht dort, welche Blocktypen ein
+Dashboard-Kit üblicherweise abdeckt. Der Weg zur Umsetzung führt danach über
+den Tresor (`lib-lookup.mjs`) und die freien Registries oben, nicht über eine
+Kopie.
+
+Soll das Kit wirklich benutzt werden, ist das eine **Kaufentscheidung** und
+gehört als solche in `ops/review-inbox.md` — Geld ausgeben ist nichts, was ein
+Agent nebenbei entscheidet.
+
+**Illustrationen ohne Kauf:** dafür ist `references/bildgenerierung.md` da —
+GPT Image 2 ist laut Bildgenerierungs-Doktrin der beste Illustrator (2D/3D,
+auch ohne Referenz). Eine gekaufte Illustrations-Bibliothek löst ein Problem,
+das Raphaels Stack bereits gelöst hat.
+
 **Lizenz:** MIT, geprüft (`@appica/ui-react/LICENSE` + `package.json`). Damit
 gilt NICHT die reference-only-Regel aus `component-bibliotheken-radar.md` §2
 (die greift nur bei ungeklärter Lizenz) — Appica-Code darf mit eigenen Tokens
