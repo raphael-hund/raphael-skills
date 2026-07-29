@@ -163,6 +163,28 @@ for (const f of alleDateien) {
     // eigenen Pruefers (29.07.2026). Nur wo die Rolle wirklich ueber der Seite
     // schwebt, ist Escape die Erwartung: erkennbar an einem Portal, an
     // position:fixed oder an einem open/close-Zustand.
+    // K3: Tastenlogik, die nie laeuft. Befund 29.07.2026 — der Pruefer sucht
+    // Pfeiltasten-Handler und war damit zufrieden. Ein onKeyDown auf einem
+    // <div role="listbox"> OHNE tabIndex und ohne fokussierbares Kind feuert
+    // aber nie: das Element bekommt keinen Fokus. Ein Handler, der richtig
+    // aussieht und nie ausloest, ist schlimmer als keiner — er besteht jede
+    // Pruefung, auch die von K1 direkt darueber.
+    //
+    // Bewusst WARN, nicht BLOCK: ob ein Element Fokus bekommt, laesst sich am
+    // Quelltext nur SCHAETZEN. ref.focus(), autoFocus, ein fokussierbares Kind
+    // aus einer anderen Datei, ein Framework-Primitive — alles Wege, die dieses
+    // Skript nicht sieht. Bei einer Schaetzung ist Rot zu viel; Rot gehoert nur
+    // dorthin, wo die Antwort zaehlbar ist.
+    const fokusTraeger = /tabIndex|<button|<input|<select\b|<textarea|<a\s|href=|\.focus\(\)|autoFocus/
+      .test(umfeld);
+    if (!fokusTraeger) {
+      befunde.push({
+        id: 'K3', stufe: 'WARN', datei: rel, rolle,
+        was: `role="${rolle}" hat Tastenlogik, aber nichts, was Fokus bekommen kann`,
+        fix: 'tabIndex am Container ODER fokussierbare Kinder (Roving Tabindex) — sonst feuert der Handler nie',
+      });
+    }
+
     const schwebt = /createPortal|position:\s*fixed|\bfixed\s+inset|\[open,\s*setOpen\]|setOpen\(/.test(umfeld);
     if (OVERLAY.has(rolle) && schwebt && !/Escape|['"]Esc['"]/.test(umfeld)) {
       befunde.push({

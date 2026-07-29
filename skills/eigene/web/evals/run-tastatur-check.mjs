@@ -57,6 +57,21 @@ const FAELLE = [
     dateien: { 'a.tsx': 'export const M = () => <div role="menu"><div role="menuitem">X</div></div>;' },
   },
   {
+    // Befund 29.07.2026: der Pruefer sucht nach Pfeiltasten-Handlern und war
+    // damit zufrieden. Ein Handler auf einem <div> OHNE tabIndex und ohne
+    // fokussierbares Kind feuert aber nie — das Element kann keinen Fokus
+    // bekommen. Tastenlogik, die richtig aussieht und nie laeuft, ist
+    // schlimmer als gar keine: sie besteht jede Pruefung.
+    name: 'Pfeiltasten-Handler auf einem Element, das nie Fokus bekommt',
+    reisst: false, warntNur: 'K3',
+    dateien: {
+      'a.tsx': `export function S() {
+  const onKey = (e) => { if (e.key === "ArrowDown") n(); if (e.key === "ArrowUp") p(); };
+  return <div role="listbox" onKeyDown={onKey}><div role="option">A</div></div>;
+}`,
+    },
+  },
+  {
     // Der Fall, der die Ordner-Lockerung entlarvt hat: ein korrekt gebauter
     // Nachbar darf einen kaputten nicht freisprechen.
     name: 'kaputtes Widget neben einem korrekten im selben Ordner',
@@ -77,7 +92,7 @@ const FAELLE = [
     name: 'listbox mit Pfeil hoch und runter',
     reisst: false,
     dateien: {
-      'a.tsx': 'export const S = () => <ul role="listbox" onKeyDown={(e)=>{'
+      'a.tsx': 'export const S = () => <ul role="listbox" tabIndex={0} onKeyDown={(e)=>{'
         + 'if(e.key==="ArrowDown"){} if(e.key==="ArrowUp"){} if(e.key==="Escape"){}}} />;',
     },
   },
@@ -90,7 +105,7 @@ const FAELLE = [
       'use-keys.ts': 'export const useKeys = () => (e: KeyboardEvent) => {'
         + ' if (e.key === "ArrowDown") {} if (e.key === "ArrowUp") {} if (e.key === "Escape") {} };',
       'a.tsx': 'import { useKeys } from "./use-keys";\n'
-        + 'export const S = () => <ul role="listbox" onKeyDown={useKeys()} />;',
+        + 'export const S = () => <ul role="listbox" tabIndex={0} onKeyDown={useKeys()} />;',
     },
   },
   {
@@ -98,7 +113,8 @@ const FAELLE = [
     reisst: false,
     dateien: {
       'a.tsx': 'export const T = () => <div role="tablist" onKeyDown={(e)=>{'
-        + 'if(e.key==="ArrowLeft"){} if(e.key==="ArrowRight"){}}} />;',
+        + 'if(e.key==="ArrowLeft"){} if(e.key==="ArrowRight"){}}}>'
+        + '<button role="tab" tabIndex={0}>A</button></div>;',
     },
   },
   {
@@ -127,8 +143,32 @@ const FAELLE = [
     reisst: false, keineWarnung: true,
     dateien: {
       'a.tsx': 'export const R = () => (<div className="relative">'
-        + '<ul role="listbox" onKeyDown={(e)=>{if(e.key==="ArrowDown"){} if(e.key==="ArrowUp"){}}}>'
+        + '<ul role="listbox" tabIndex={0} onKeyDown={(e)=>{if(e.key==="ArrowDown"){} if(e.key==="ArrowUp"){}}}>'
         + '<li role="option">A</li></ul></div>);',
+    },
+  },
+];
+
+// Gegenprobe zum Fokus-Blocker: derselbe Handler auf einem Element, das sehr
+// wohl Fokus bekommt, ist korrekt und darf NICHT reissen. Ohne diesen Fall waere
+// der neue Blocker auch dadurch erfuellbar, dass er alles rot meldet.
+const FOKUS_OK = [
+  {
+    name: 'Pfeiltasten-Handler auf einem Element mit tabIndex',
+    dateien: {
+      'a.tsx': `export function S() {
+  const onKey = (e) => { if (e.key === "ArrowDown") n(); if (e.key === "ArrowUp") p(); };
+  return <div role="listbox" tabIndex={0} onKeyDown={onKey}><div role="option">A</div></div>;
+}`,
+    },
+  },
+  {
+    name: 'Handler am Container, Fokus auf den Kind-Buttons (Roving Tabindex)',
+    dateien: {
+      'a.tsx': `export function T() {
+  const onKey = (e) => { if (e.key === "ArrowLeft") p(); if (e.key === "ArrowRight") n(); };
+  return <div role="tablist" onKeyDown={onKey}><button role="tab" tabIndex={0}>A</button></div>;
+}`,
     },
   },
 ];
@@ -142,7 +182,7 @@ const WARNT = [
     dateien: {
       'a.tsx': 'import { createPortal } from "react-dom";\n'
         + 'export const S = () => { const [open, setOpen] = useState(false);\n'
-        + '  return open ? createPortal(<ul role="listbox" onKeyDown={(e)=>{'
+        + '  return open ? createPortal(<ul role="listbox" tabIndex={0} onKeyDown={(e)=>{'
         + 'if(e.key==="ArrowDown"){} if(e.key==="ArrowUp"){}}} />, document.body) : null; };',
     },
   },
