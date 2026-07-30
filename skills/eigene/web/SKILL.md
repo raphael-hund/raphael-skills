@@ -55,7 +55,7 @@ requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, u
 eval_scorecard:
   stand: 2026-07-30
   laeufe:
-    - "evals/run-antiset.mjs — 16 Faelle: reisst das Tor an jedem eingebauten Fehler?"
+    - "evals/run-antiset.mjs — 17 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 13 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-eval-umfang.mjs — 28 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
@@ -420,7 +420,7 @@ Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebun
 > Diese drei Läufe stammen vom 27./28.07., als das Tor vier Qualitäts-Prüfer hatte.
 > Seit dem Formular-Check sind es fünf; die Zeile „7 Checks grün" wäre heute eine
 > andere Zahl. Der belastbare, täglich wiederholte Beweis ist ohnehin das Anti-Set
-> (`node evals/run-antiset.mjs`, 16 Fälle) — es prüft jede Richtung einzeln, statt
+> (`node evals/run-antiset.mjs`, 17 Fälle) — es prüft jede Richtung einzeln, statt
 > einmalig eine Gesamtzahl festzuhalten. Der Beweis-Build hat selbst kein Formular
 > und kein Bild und würde heute an M24 reißen: er ist ein Zeitdokument, kein
 > Zielbild. Wer eine aktuelle Referenz braucht, nimmt `evals/antiset/_basis.html`.

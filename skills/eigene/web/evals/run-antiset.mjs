@@ -70,6 +70,16 @@ const ERWARTET = {
   // eine einzige Pfeiltaste. axe meldet daran nichts. Die Rolle ist ein
   // Versprechen an den Screenreader-Nutzer, das die Seite nicht einloest.
   'a9-tastatur-kaputt':     { checks: ['tastatur'],          was: 'role="tablist" mit sauberem ARIA, ohne Pfeiltasten (K1)' },
+  // Zugefuegt 30.07.2026, aus demselben Abgleich wie a9: alle 11 Pruefer, die
+  // im Tor ein Urteil faellen, gegen die Fixture-Liste gehalten. motion war der
+  // letzte ohne eigenen Fall — `motion` kam im Anti-Set nur als IMPORTNAME vor
+  // (`from 'motion/react'`), was wie Abdeckung aussieht und keine ist.
+  //
+  // Die Fixture traegt beide Blocker: drei verschiedene Ease-Kurven
+  // (M-motion-1) und eine Animation ohne @media (prefers-reduced-motion)
+  // (M-motion-3). Die Basis-Fixture hat den Reduced-Motion-Block korrekt —
+  // derselbe Lauf beweist damit beide Richtungen.
+  'a10-motion-kaputt':      { checks: ['motion'],            was: '3 Ease-Kurven + Animation ohne reduced-motion (M-motion-1/3)' },
 };
 
 const namen = Object.keys(ERWARTET);

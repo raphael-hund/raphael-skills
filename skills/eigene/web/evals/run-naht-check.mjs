@@ -246,13 +246,53 @@ console.log('\nJeder Pruefer haengt am Tor — sonst ist er Dekoration:\n');
     toteAusnahmen.length ? `entfernte Dateien noch ausgenommen: ${toteAusnahmen.join(', ')}` : null);
 }
 
+// --- Jeder urteilende Pruefer hat einen Anti-Set-Fall --------------------
+// Der Abschnitt darueber fragt: haengt jeder Pruefer am Tor? Diese Frage geht
+// eine Stufe weiter: wird er dort auch AUSGELOEST? Ein Pruefer, den das Tor
+// aufruft, der aber nie an einer kaputten Seite rot wird, ist nicht geprueft —
+// niemand weiss, ob er das Tor wirklich reissen kann.
+//
+// Gefunden 30.07.2026 durch genau diesen Abgleich: tastatur und motion hingen
+// beide im Tor und hatten keinen Fall. Bei motion war die Luecke getarnt —
+// das Wort kam im Anti-Set vor, aber als IMPORTNAME (`from 'motion/react'`).
+// Eine Textsuche haette "abgedeckt" gemeldet.
+console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
+{
+  // server = Erreichbarkeit (kein Qualitaetsurteil), importe/shot-sweep haben
+  // eigene Faelle ausserhalb der Fixture-Liste (import-* bzw. in
+  // run-kaputte-ausgaben.mjs). Sie hier zu verlangen waere ein Fehlalarm.
+  const OHNE_FIXTURE = new Set(['server', 'importe', 'shot-sweep']);
+  const gateQuelle = fs.readFileSync(path.join(SKRIPTE, 'g1-gate.mjs'), 'utf8');
+  const antiPfad = path.join(SKRIPTE, '..', 'evals', 'run-antiset.mjs');
+  const anti = fs.existsSync(antiPfad) ? fs.readFileSync(antiPfad, 'utf8') : '';
+
+  const urteiler = [...new Set([...gateQuelle.matchAll(/record\('([a-z0-9-]+)'/g)].map((m) => m[1]))];
+  // NUR die checks-Listen lesen, nicht die ganze Datei: sonst zaehlt jedes
+  // Vorkommen des Wortes als Abdeckung — genau die Tarnung von oben.
+  const abgedeckt = new Set(
+    [...anti.matchAll(/checks: \[([^\]]+)\]/g)]
+      .flatMap((m) => m[1].split(',').map((x) => x.trim().replace(/'/g, ''))),
+  );
+  const ohne = urteiler.filter((u) => !OHNE_FIXTURE.has(u) && !abgedeckt.has(u));
+  zeile(ohne.length === 0,
+    `${urteiler.length} urteilende Pruefer, ${OHNE_FIXTURE.size} bewusst ohne Fixture, ${ohne.length} ungedeckt`,
+    ohne.length ? `kein Anti-Set-Fall: ${ohne.join(', ')} — niemand weiss, ob sie das Tor reissen` : null);
+
+  // Und die Ausnahmeliste selbst: ein Eintrag fuer einen Pruefer, den es nicht
+  // mehr gibt, deckt spaeter eine echte Luecke zu.
+  const toteAusnahmen = [...OHNE_FIXTURE].filter((a) => !urteiler.includes(a));
+  zeile(toteAusnahmen.length === 0,
+    `${OHNE_FIXTURE.size} Ausnahmen, ${toteAusnahmen.length} zeigen auf keinen Pruefer`,
+    toteAusnahmen.length ? `entfallene Pruefer noch ausgenommen: ${toteAusnahmen.join(', ')}` : null);
+}
+
 // Gegenrichtung sichern: faellt ein ganzer Abschnitt still aus (frueher
 // `return`, leere Fundliste, verschluckte Ausnahme), zaehlt `gepruefte` einfach
 // weniger — und "9/9 wie erwartet" saehe wieder gruen aus. Die Untergrenze ist
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 11;
+const MINDESTENS = 13;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
