@@ -140,6 +140,47 @@ const FAELLE = {
       + '.raus{position:absolute;top:-40px;left:10px;width:120px;height:120px;background:#c33}',
     body: '<div class="clip"><div class="raus"></div></div>',
   },
+  // --- Die letzten vier, 30.07.2026 -----------------------------------------
+  // Sie standen als "brauchen Hover bzw. Scroll". Die Bedingungen gelesen statt
+  // geglaubt: keine davon simuliert eine Interaktion. Sie lesen CSS-Deklarationen
+  // (animation-name, transition-property, img:hover-REGEL im Quelltext) und
+  // Layout-Werte. Am Browser-Pfad nachgemessen loesen alle vier auf einer
+  // statischen Seite aus.
+  //
+  // Damit war die Liste dreimal in derselben Runde zu lang: 13 offen, davon 13
+  // erreichbar. "Braucht Hover" klang plausibel, weil die Regeln von Hover
+  // HANDELN — geprueft wird aber die Deklaration, nicht das Verhalten.
+  'bounce-easing': {
+    was: 'Animation mit bounce/elastic im Namen',
+    style: '@keyframes bounceIn{from{transform:scale(.9)}to{transform:scale(1)}}'
+      + '.b{animation:bounceIn .5s ease}',
+    body: '<div class="b">Bounce</div>',
+  },
+  'layout-transition': {
+    was: 'transition auf width/height statt transform/opacity',
+    style: '.lt{transition:width .3s ease,height .3s ease;background:#eee;padding:8px}',
+    body: '<div class="lt">Layout-Transition</div>',
+  },
+  'icon-tile-stack': {
+    was: 'Icon-Kachel ueber der Ueberschrift gestapelt',
+    style: '.tile{width:64px;height:64px;background:#e2e6ea;display:flex;'
+      + 'align-items:center;justify-content:center}.tile svg{width:24px;height:24px}'
+      + 'h3{font-size:20px;margin:8px 0 0}',
+    body: '<div><div class="tile"><svg viewBox="0 0 24 24"><rect width="24" height="24"/></svg>'
+      + '</div><h3>Bad sanieren</h3></div>',
+  },
+  'image-hover-transform': {
+    was: 'img:hover { transform } im Stylesheet',
+    // Anbieter-gebunden (--gemini). Ueber `detect.mjs` ohne Flag bleibt sie
+    // still; die Filterung sitzt in den Node-Engines, nicht im Browser. Diese
+    // Eval injiziert direkt, also greift kein Gating — genau deshalb ist sie
+    // hier ueberhaupt pruefbar.
+    style: 'img:hover{transform:scale(1.05)}',
+    body: '<img src="data:image/svg+xml;base64,'
+      + 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj4'
+      + '8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2NjYyIvPjwvc3ZnPg=="'
+      + ' alt="Werkstatt" width="200" height="200">',
+  },
   'tiny-text': {
     was: 'Fliesstext unter der Lesbarkeitsgrenze',
     style: '.klein{font-size:9px;max-width:none}',
@@ -342,6 +383,76 @@ const FAELLE = {
     // Hintergrund und nicht in Nav/Header.
     style: 'body{padding:0}p.rand{max-width:none;width:100%;margin:0}',
     body: '<p class="rand">Dieser Absatz laeuft ohne jeden Innenabstand bis an die Fensterkante, was auf keinem Bildschirm gut aussieht.</p>',
+  },
+  'icon-tile-stack': {
+    was: 'quadratische Icon-Kachel ueber jeder Ueberschrift',
+    // Bedingungen am Code gelesen: das Geschwister VOR der Ueberschrift ist
+    // fast quadratisch (Seitenverhaeltnis 0.7-1.4), hat sichtbaren Hintergrund
+    // oder Rahmen, ist KEIN Kreis (radius < halbe Breite), enthaelt ein Icon
+    // (svg), und liegt oberhalb der Ueberschrift.
+    style: '.kachel{width:48px;height:48px;background:#eef2ff;border-radius:10px;'
+      + 'display:flex;align-items:center;justify-content:center;margin-bottom:10px}',
+    body: '<div><div class="kachel"><svg width="20" height="20" viewBox="0 0 20 20">'
+      + '<rect width="20" height="20" fill="#1d4ed8"/></svg></div><h2>Festpreis</h2>'
+      + '<p>Text unter der Ueberschrift.</p></div>',
+  },
+  'hero-eyebrow-chip': {
+    was: 'getracktes Mini-Label ueber der Ueberschrift',
+    // Text 2-60 Zeichen, Schrift <= 14px, uppercase UND letter-spacing >= 1.6px
+    // (das ist die "klassische" Variante; die andere waere fett in Akzentfarbe).
+    style: '.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;'
+      + 'color:#5b6875;margin-bottom:8px}',
+    // Die Regel gilt NUR fuer h1 (`headingTag !== 'h1' -> return []`) — bei h2
+    // schweigt sie zu Recht, das war mein erster Versuch. Der Kicker muss also
+    // direkt vor einer h1 stehen; das Geruest bringt seine eigene h1 mit, hier
+    // kommt eine zweite mit Label davor.
+    body: '<div><p class="eyebrow">Meisterbetrieb</p><h1>Sanierung aus einer Hand</h1></div>',
+  },
+  'repeated-section-kickers': {
+    was: 'dasselbe Kicker-Muster ueber mehreren Abschnitten',
+    // Braucht mehrere Vorkommen desselben Musters (candidates.length >= minCount).
+    style: '.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;'
+      + 'color:#5b6875;margin-bottom:8px}',
+    body: [...Array(4)].map((_, i) =>
+      `<section><p class="eyebrow">Schritt ${i + 1}</p><h2>Abschnitt ${i + 1}</h2>`
+      + '<p>Erklaerender Text im Abschnitt.</p></section>').join(''),
+  },
+  'clipped-overflow-container': {
+    was: 'positioniertes Kind bricht aus einem overflow:hidden-Kasten',
+    // Der Kasten clippt (hidden), scrollt NICHT, und ein absolut positioniertes
+    // Kind ragt darueber hinaus.
+    style: '.clip{overflow:hidden;position:relative;height:80px;border:1px solid var(--line);'
+      + 'border-radius:8px;background:#f7f7f8}'
+      + '.raus{position:absolute;top:-30px;left:12px;width:120px;height:60px;background:#1d4ed8;color:#fff}',
+    body: '<div class="clip"><div class="raus">Ragt heraus</div>Inhalt im Kasten</div>',
+  },
+  'bounce-easing': {
+    was: 'Bounce-Animation auf einem Element',
+    // Der Browser-Zweig liest den animationName aus dem berechneten Stil und
+    // sucht bounce/elastic/wobble/jiggle/spring darin.
+    style: '@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}'
+      + '.huepf{animation:bounce 1s infinite;width:60px;height:60px;background:#1d4ed8;border-radius:8px}',
+    body: '<div class="huepf"></div>',
+  },
+  'layout-transition': {
+    was: 'Transition auf Layout-Eigenschaften (width/height/padding)',
+    // LAYOUT_TRANSITION_PROPS: width, height, padding, margin, max-height … —
+    // die animieren zu lassen erzwingt Reflow. Kein Hover noetig: die Regel
+    // liest transition-property, nicht den Zustand.
+    style: '.reflow{transition:width .3s ease,padding .3s ease;width:200px;padding:12px;'
+      + 'border:1px solid var(--line);border-radius:8px}',
+    body: '<div class="reflow">Animiert seine Breite</div>',
+  },
+  'image-hover-transform': {
+    was: 'img:hover { transform } im Stylesheet',
+    // Reine CSS-Textsuche im HTML — der Hover muss NICHT ausgeloest werden.
+    // Meine Annahme, diese drei brauchten echte Interaktion, war falsch;
+    // am Code nachgelesen lesen alle drei nur Stil-Werte.
+    style: 'img:hover{transform:scale(1.05)}',
+    body: '<img src="data:image/svg+xml;base64,'
+      + Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="200" height="140">'
+        + '<rect width="200" height="140" fill="#c8ccd0"/></svg>').toString('base64')
+      + '" alt="Werkstatt" width="200" height="140">',
   },
   'tight-leading': {
     was: 'Zeilenabstand zu eng fuer Fliesstext',
