@@ -236,10 +236,61 @@ function toolExists(bin) {
 // NICHT bestanden". Genau die richtige Einstufung: nichts geprueft.
 const PRUEFER_FRIST = Number(process.env.G1_FRIST_MS || 600000);
 
+// Nach einem Abbruch bleiben ENKELPROZESSE zurueck.
+//
+// Der Timeout schickt SIGTERM an das Werkzeug — nicht an das, was es selbst
+// gestartet hat. Lighthouse startet ein eigenes Chrome mit
+// `--user-data-dir=/tmp/lighthouse.XXXX` und raeumt es normalerweise am Ende
+// auf; stirbt es vorher, laeuft der Browser weiter und wird von systemd
+// adoptiert (PPID 1).
+//
+// Gemessen am 30.07.2026, direkt nach dem Einbau der Frist: 56 -> 65
+// Chrome-Prozesse durch EINEN abgebrochenen Lauf. Zu dem Zeitpunkt lagen
+// bereits 91 Chrome-Prozesse mit 6,2 GB auf der Maschine, sieben verwaiste
+// Lighthouse-Wurzeln aus einer halben Stunde Tor-Laeufen. Auf einem Server,
+// der schon ein OOM hatte, ist das kein Schoenheitsfehler.
+//
+// Ein Fix, der ein neues Leck aufreisst, ist keiner. Also nach jedem Abbruch
+// die Browser einsammeln, die zu DIESEM Lauf gehoeren — erkennbar am
+// user-data-dir, das Lighthouse pro Lauf neu anlegt.
+//
+// Bewusst eng: nur Prozesse, deren Profilordner unter /tmp/lighthouse. liegt
+// UND die verwaist sind (PPID 1). Fremde Browser-Agents laufen unter eigenem
+// Profilpfad und mit lebendem Elternprozess; sie werden nicht angefasst.
+// Pauschal `pkill chrome` waere hier grob fahrlaessig — auf dieser Maschine
+// laeuft ein fremder Browser-Agent seit 25 Stunden.
+function verwaisteBrowserAufraeumen() {
+  let liste = '';
+  try {
+    liste = execFileSync('ps', ['-eo', 'pid,ppid,args'], { encoding: 'utf8', timeout: 10000 });
+  } catch { return 0; }
+  const opfer = [];
+  for (const z of liste.split('\n')) {
+    if (!/--user-data-dir=\/tmp\/lighthouse\./.test(z)) continue;
+    const m = z.trim().match(/^(\d+)\s+(\d+)\s/);
+    if (m && m[2] === '1') opfer.push(m[1]);
+  }
+  for (const pid of opfer) {
+    try { process.kill(Number(pid), 'SIGKILL'); } catch { /* schon weg */ }
+  }
+  return opfer.length;
+}
+
 function run(bin, argv, opts = {}) {
-  return execFileSync(bin, argv, {
-    encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024, timeout: PRUEFER_FRIST, ...opts,
-  });
+  try {
+    return execFileSync(bin, argv, {
+      encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024, timeout: PRUEFER_FRIST, ...opts,
+    });
+  } catch (e) {
+    // Nur beim Abbruch aufraeumen. Ein normal beendetes Werkzeug hat seinen
+    // Browser selbst geschlossen; dann faende die Suche ohnehin nichts, aber
+    // ein `ps` pro Pruefer waere unnoetige Last.
+    if (e.signal === 'SIGTERM' || e.code === 'ETIMEDOUT') {
+      const weg = verwaisteBrowserAufraeumen();
+      if (weg) console.log(`  (${weg} verwaiste Browser nach Abbruch eingesammelt)`);
+    }
+    throw e;
+  }
 }
 
 // --- Check 1: Server erreichbar -------------------------------------------

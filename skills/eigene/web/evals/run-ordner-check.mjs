@@ -235,6 +235,26 @@ console.log('\nAbgestuerzte Pruefer duerfen nicht als Qualitaetsfehler gelten:\n
     kaputt.status === 2 && /Pruefer abgestuerzt/.test(ausK) ? null
       : `exit=${kaputt.status}, Schluss: ${(ausK.match(/^G1 .*$/m) || ['(keiner)'])[0]}`);
 
+  // Der Abbruch darf keine Browser-Leichen hinterlassen.
+  //
+  // Der Timeout schickt SIGTERM ans Werkzeug, nicht an dessen Kinder.
+  // Lighthouse startet ein eigenes Chrome und raeumt es nur auf, wenn es
+  // normal endet. Gemessen am 30.07.2026 direkt nach dem Einbau der Frist:
+  // 56 -> 65 Chrome-Prozesse durch EINEN abgebrochenen Lauf; auf der Maschine
+  // lagen da schon 91 Chromes mit 6,2 GB aus einer halben Stunde Tor-Laeufen.
+  // Ein Fix, der ein neues Leck aufreisst, ist keiner.
+  //
+  // Gezaehlt werden nur VERWAISTE Lighthouse-Profile (PPID 1). Fremde
+  // Browser-Agents haben einen eigenen Profilpfad und einen lebenden
+  // Elternprozess — ein pauschales `pkill chrome` waere hier grob fahrlaessig.
+  const leichen = () => {
+    const r = spawnSync('ps', ['-eo', 'pid,ppid,args'], { encoding: 'utf8', timeout: 10000 });
+    return (r.stdout || '').split('\n')
+      .filter((z) => /--user-data-dir=\/tmp\/lighthouse\./.test(z) && /^\s*\d+\s+1\s/.test(z)).length;
+  };
+  zeile(leichen() === 0, 'kein verwaister Browser nach dem Abbruch',
+    leichen() === 0 ? null : `${leichen()} Lighthouse-Chrome(s) mit PPID 1 uebrig`);
+
   // Gegenrichtung: ohne erzwungenen Abbruch darf dieser Weg NICHT greifen.
   // Ohne sie koennte die Huerde auf alles anschlagen und der Fall oben bestuende
   // trotzdem.
