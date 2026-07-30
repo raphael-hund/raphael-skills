@@ -889,6 +889,18 @@ if (failed.length) {
 // motion gehoert dazu: er beantwortet eine Frage, die sonst keiner stellt —
 // ob die Bewegungen des Projekts EINE Sprache sprechen. Kein anderer Pruefer
 // vertritt ihn (gleiche Begruendung wie bei den fuenf anderen, 27.07.2026).
+// Warum shot-sweep hier NICHT steht, obwohl er die Screenshot-Pflicht einloest:
+// er braucht ihn nicht. Diese Liste faengt Pruefer, die STILL ausfallen (Werkzeug
+// fehlt -> SKIP -> waere sonst ein gruenes Feld). Der Sweep faellt nicht still —
+// nachgemessen 30.07.2026, indem er absichtlich mit Exit 3 abgebrochen wurde:
+//
+//   [FAIL] shot-sweep — Sweep fehlgeschlagen: Command failed: node .../shot-sweep.mjs
+//   G1 GERISSEN (Exit 1) — 1 Check(s): shot-sweep
+//
+// Ein Ausfall wird also zum Qualitaetsfehler, nicht zu einem uebersprungenen
+// Feld. In QUALITAET aufgenommen wuerde er stattdessen Exit 2 erzwingen — das
+// waere sachlich falsch: ein abgestuerzter Browser ist kein Urteil ueber die
+// Seite. Die Frage ist damit geprueft, nicht offen.
 const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular', 'motion', 'tastatur'];
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
