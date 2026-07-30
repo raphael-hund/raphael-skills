@@ -14,6 +14,7 @@ sensitivity: internal
 loads:
   - references/loop2-ablauf.md
   - references/qa-faecher.md
+  - references/screenshot-kritik-loop.md
   - references/landingpage-struktur.md
   - references/informationsarchitektur.md
   - references/web-clone-playbook.md

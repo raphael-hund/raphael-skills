@@ -254,6 +254,40 @@ zeile(tot.length === 0, `${tot.length} Verweis(e) zeigen ins Leere`,
 // Zweite Frage, die eine Pfad-Pruefung allein nicht stellt: existieren die
 // Werkzeuge, die der Skill in seinen completion_criteria VERSPRICHT? Ein
 // Kriterium, das ein fehlendes Skript nennt, ist nie erfuellbar.
+// Dritte Frage: laedt der Skill auch, was er als verbindlich bezeichnet?
+//
+// `loads:` im Kopf bestimmt, was beim Aufruf mitkommt. Eine Datei, die im Text
+// als Pflicht steht, aber nicht in `loads:`, wird beim Arbeiten nicht gelesen —
+// sie ist da, sie stimmt, und sie wirkt nicht.
+//
+// Befund 30.07.2026: `references/screenshot-kritik-loop.md` stand zweimal in der
+// web-SKILL.md ("bei jeder visuellen Arbeit verbindlich") und fehlte in loads:.
+// Genau die Datei, die den Ablauf fuer die haerteste Regel des Skills beschreibt.
+//
+// Bewusst nur WARNUNG statt Fehler: nicht jede genannte Datei muss vorgeladen
+// werden — eine Referenz, die nur ein Sonderfall braucht, gehoert nicht in den
+// Kopf. Der Lauf nennt sie, die Entscheidung bleibt beim Menschen.
+console.log('\nWas der Text als verbindlich nennt, sollte in loads: stehen:\n');
+{
+  const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
+  const kopfEnde = roh.indexOf('\n---', 4);
+  const kopf = kopfEnde > 0 ? roh.slice(0, kopfEnde) : '';
+  const geladen = new Set([...kopf.matchAll(/references\/[a-z0-9./-]+\.(?:md|html)/g)].map((m) => m[0]));
+  const refOrdner = path.join(ZIEL, 'references');
+  const imOrdner = fs.existsSync(refOrdner)
+    ? fs.readdirSync(refOrdner).filter((f) => f.endsWith('.md')) : [];
+  // Nur Dateien, die der Text auch WIRKLICH nennt — eine ungenutzte Referenz im
+  // Ordner ist kein Befund, sondern Vorrat.
+  const rumpf = kopfEnde > 0 ? roh.slice(kopfEnde) : roh;
+  const genanntNichtGeladen = imOrdner
+    .filter((f) => !geladen.has(`references/${f}`) && rumpf.includes(f));
+  zeile(genanntNichtGeladen.length === 0,
+    `${geladen.size} Referenz(en) in loads:, ${imOrdner.length} im Ordner`,
+    genanntNichtGeladen.length
+      ? `im Text genannt, aber nicht geladen: ${genanntNichtGeladen.join(', ')}`
+      : null);
+}
+
 console.log('\nJedes Werkzeug aus den completion_criteria existiert:\n');
 {
   const skill = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
