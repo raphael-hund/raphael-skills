@@ -216,13 +216,43 @@ console.log('\nKlon-Tor und audit-clone benutzen denselben Feldnamen:\n');
     geschrieben.length ? null : 'die beiden reden aneinander vorbei');
 }
 
+// --- Jeder Pruefer haengt am Tor -----------------------------------------
+// Die bisherigen Naht-Pruefungen fragen: ruft das Tor eine Funktion auf, die es
+// gibt? Die andere Richtung fehlte: gibt es einen PRUEFER, den das Tor nie
+// aufruft? Ein neues Skript neben den anderen zu legen kostet nichts und wirkt
+// wie eine Verschaerfung — solange es niemand faehrt, ist es Dekoration.
+//
+// Werkzeuge sind ausgenommen: sie faellen kein Urteil, das gruen werden koennte.
+console.log('\nJeder Pruefer haengt am Tor — sonst ist er Dekoration:\n');
+{
+  const WERKZEUGE = new Set([
+    'g1-gate.mjs',      // das Tor selbst
+    'lib-lookup.mjs',   // Nachschlagewerk, faellt kein Urteil
+    'lib-exporte.mjs',  // Bibliothek fuer lib-lookup und import-check
+    'bilder.mjs',       // Asset-Verwaltung, kein Pruefer
+  ]);
+  const tor = fs.readFileSync(path.join(SKRIPTE, 'g1-gate.mjs'), 'utf8');
+  const alle = fs.readdirSync(SKRIPTE).filter((f) => f.endsWith('.mjs'));
+  const lose = alle.filter((f) => !WERKZEUGE.has(f) && !tor.includes(f));
+  zeile(lose.length === 0,
+    `${alle.length - WERKZEUGE.size} Pruefer, ${lose.length} nicht im Tor`,
+    lose.length ? `nie aufgerufen: ${lose.join(', ')} — entweder ins Tor haengen oder als Werkzeug eintragen` : null);
+
+  // Gegenrichtung: ein Eintrag in WERKZEUGE, den es gar nicht mehr gibt, macht
+  // die Ausnahmeliste zur Muellhalde und deckt spaeter echte Luecken zu.
+  const toteAusnahmen = [...WERKZEUGE].filter((w) => !alle.includes(w));
+  zeile(toteAusnahmen.length === 0,
+    `${WERKZEUGE.size} Werkzeug-Ausnahmen, ${toteAusnahmen.length} zeigen ins Leere`,
+    toteAusnahmen.length ? `entfernte Dateien noch ausgenommen: ${toteAusnahmen.join(', ')}` : null);
+}
+
 // Gegenrichtung sichern: faellt ein ganzer Abschnitt still aus (frueher
 // `return`, leere Fundliste, verschluckte Ausnahme), zaehlt `gepruefte` einfach
 // weniger — und "9/9 wie erwartet" saehe wieder gruen aus. Die Untergrenze ist
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 9;
+const MINDESTENS = 11;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
