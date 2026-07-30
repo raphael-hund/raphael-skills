@@ -173,50 +173,27 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
 > `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
 > **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (32 Fälle: 30 Regeln, Kontrollseite,
-> Gegenprobe im Datei-Modus). Belegt sind `tiny-text`, `all-caps-body`,
-> `justified-text`, `line-length`, `nested-cards`, `tight-leading`,
-> `wide-tracking`, `skipped-heading`, `single-font`, `cream-palette`,
-> `oversized-h1`, `cramped-padding`, `gray-on-color`,
-> `extreme-negative-tracking`, `flat-type-hierarchy`, `italic-serif-display`,
-> `text-overflow`, `low-contrast`, `side-tab`, `border-accent-on-rounded`,
-> `theater-slop-phrase`, `repeating-stripes-gradient`,
-> `gpt-thin-border-wide-shadow`, `dark-glow`, `ai-color-palette`,
-> `gradient-text`, `overused-font`, `monotonous-spacing`,
-> `codex-grid-background`, `body-text-viewport-edge`. Offen bleiben **7** der 37
-> Browser-Regeln — `icon-tile-stack`, `hero-eyebrow-chip`,
-> `repeated-section-kickers`, `bounce-easing`, `layout-transition`,
-> `image-hover-transform`, `clipped-overflow-container`. Die brauchen Hover,
-> Scroll oder eine bestimmte Element-Nachbarschaft,
-> namentlich im Bericht — die meisten brauchen mehr als eine statische Seite
-> (Hover, Scroll, dunkles Theme, echte Bilder).
+> `node evals/run-browser-detect-check.mjs` (39 Fälle). **Alle 37 Browser-Regeln
+> sind belegt, keine offen.** Zusammen mit dem Datei-Modus (13 von 13) ist damit
+> jede Regel des Detektors durch mindestens einen Testfall gedeckt.
 >
-> **Diese Regeln haben mehrstufige Schwellen, und die stehen nur im Code.**
-> `single-font` braucht ≥ 20 Textelemente auf der Seite, bevor der Block
-> überhaupt anläuft. `oversized-h1` verlangt **drei** Dinge gleichzeitig: ≥ 72px
-> Schrift, ≥ 40 Zeichen Text **und** ≥ 28 % Viewport-Höhe. `cramped-padding`
-> rechnet gegen die Schriftgröße (`max(4, fontSize × 0.3)`). Wer eine dieser
-> Regeln prüfen oder debuggen will, liest die Zahl in `rules/checks.mjs` nach —
-> raten kostet hier mehrere Anläufe (bei `oversized-h1` waren es drei, und der
-> zweite hatte 59 % Viewport-Höhe und meldete trotzdem nichts, weil die
-> Überschrift 29 statt 40 Zeichen hatte).
+> Der Weg dahin ging über sechs Runden, und in jeder war der Grund für einen
+> fehlenden Befund derselbe: **die Regel liest etwas anderes, als ihr Name
+> vermuten lässt.** Die Fälle, die beim Debuggen zuerst gebraucht werden:
 >
-> **Eine Fixture soll genau einen Fehler zeigen.** `gray-on-color` meldete beim
-> ersten Versuch `low-contrast` — mein Grau (`#6b7280`) war auf dem dunklen Blau
-> schlicht unlesbar. Zwei verschiedene Befunde in einer Testseite heißt: der
-> Testfall beweist nicht, was er behauptet. Helleres Grau auf demselben Blau
-> trennt sie.
+> | Regel | liest tatsächlich |
+> |---|---|
+> | `monotonous-spacing` | den **HTML-Text** (Tailwind-Klassen, `rem`) — nie `px` im Stylesheet |
+> | `image-hover-transform` | eine **CSS-Textsuche**, kein echter Hover nötig |
+> | `side-tab` / `border-accent-on-rounded` | `if/else` nach Kante: links/rechts vs. oben/unten |
+> | `hero-eyebrow-chip` | nur über einer **h1**, bei h2 schweigt sie |
+> | `single-font` / `overused-font` | erst ab **20 Textelementen** auf der Seite |
+> | `oversized-h1` | **drei** Bedingungen: ≥ 72px, ≥ 40 Zeichen, ≥ 28 % Viewport-Höhe |
 >
-> **`side-tab` und `border-accent-on-rounded` sind ein `if/else`, keine zwei
-> Sichten auf dasselbe:** links/rechts → `side-tab`, oben/unten →
-> `border-accent-on-rounded`. Ich hatte angenommen, ein Akzentstreifen links löse
-> beide aus, und einen Testfall darauf gebaut. Am Zweig nachgelesen war es
-> falsch — die Annahme, nicht der Code.
->
-> **`monotonous-spacing` liest den HTML-Text, nicht das DOM:** es greppt
-> Tailwind-Klassen (`p-4`, `gap-6`) und `rem`-Werte. Ein Stylesheet in `px`
-> sieht die Regel nicht. Wer hier einen Abstands-Befund erwartet und keinen
-> bekommt, hat vermutlich px im CSS statt Utility-Klassen im Markup.
+> Meine Annahme, `bounce-easing`, `layout-transition` und `image-hover-transform`
+> bräuchten echte Interaktion, war falsch — am Code nachgelesen lesen alle drei
+> nur Stil-Werte. Deshalb stand „braucht Hover/Scroll" zwei Runden lang als
+> Begründung im Bericht, obwohl es nie stimmte.
 >
 > **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
 > ```
