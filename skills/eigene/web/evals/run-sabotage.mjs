@@ -178,6 +178,23 @@ const SCHAEDEN = [
     zu: 'process.exit(0);',
   },
   {
+    // Nachgetragen 30.07.2026 beim Abgleich, welche Pruefer mit eigener Eval noch
+    // keinen Sabotage-Fall haben. Uebrig waren zwei: lib-lookup (deckt der
+    // lib-exporte-Fall bereits ab — dieselbe Quelle) und dieser hier.
+    //
+    // Der Pruefstand liefert den Build so aus wie die Produktion. Faellt seine
+    // cleanUrls-Regel aus, meldet der Link-Check erfundene tote Links — genau der
+    // Befund vom 28.07.2026 (SalsaFlow: 172 tote Links, kein einziger echt).
+    // Ein Werkzeug gegen falsches Rot, das selbst falsches Rot erzeugt.
+    kurz: 'pruefstand',
+    pruefer: 'scripts/pruefstand.mjs',
+    eval: 'evals/run-pruefstand.mjs',
+    was: 'cleanUrls abgeschaltet — /team liefert wieder 404 statt team.html',
+    von: 'const CLEAN_URLS = cfg.cleanUrls === true;',
+    zu: 'const CLEAN_URLS = false;',
+    beleg: 'cleanUrls: /team liefert team.html',
+  },
+  {
     kurz: 'shot-sweep',
     beleg: 'fehlen auf der Platte',
     pruefer: 'scripts/shot-sweep.mjs',
