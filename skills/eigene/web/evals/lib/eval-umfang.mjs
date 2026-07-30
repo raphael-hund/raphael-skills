@@ -20,6 +20,22 @@ export function fallzahl(evalOrdner, datei, cwd) {
       { encoding: 'utf8', timeout: 900000, cwd });
   } catch (e) {
     aus = `${e.stdout || ''}${e.stderr || ''}`;
+    // Exit 2 heisst im ganzen Skill "Werkzeug/Umgebung kaputt, NICHT geprueft" —
+    // dieselbe Trennung, die das G1-Tor zwischen Exit 1 und Exit 2 macht. Die
+    // Wache las bisher nur den Text und musste jeden neuen Abbruchgrund einzeln
+    // als Muster nachtragen. Am 30.07.2026 fiel formular-check durch, weil Port
+    // 5391 belegt war: Exit 2, klare eigene Meldung — und die Wache nannte es
+    // "keine Fallzahl gefunden", also einen Eval-Defekt. Der Exit-Code sagt es
+    // bereits; ihn zu ignorieren und stattdessen Formulierungen zu raten, ist
+    // die schwaechere Quelle.
+    if (e.status === 2) {
+      const grund = (aus.match(/^[^\n]*(?:belegt|antwortet nicht|nicht gefunden|nicht installiert|nicht moeglich)[^\n]*$/mi) || [])[0];
+      return {
+        zahl: null,
+        form: `UEBERSPRUNGEN (Exit 2 — ${grund ? grund.trim() : 'Umgebung nicht bereit'})`,
+        werkzeugFehlt: true,
+      };
+    }
     if (!aus) return { fehlerText: `Lauf abgebrochen: ${String(e.message).split('\n')[0]}` };
   }
   // Eine Eval, die selbst sagt "dieser Abschnitt misst nichts", hat ihre Faelle
@@ -112,7 +128,20 @@ export function umfangPruefen({ evalOrdner, standDatei, ausgenommen, cwd, aktual
   }
 
   if (aktualisieren || !fs.existsSync(standDatei)) {
-    fs.writeFileSync(standDatei, `${JSON.stringify(neu, null, 2)}\n`);
+    // Eine Eval, die gerade UEBERSPRUNGEN oder blind war, steht nicht in `neu` —
+    // ihr alter Sollstand wuerde beim Schreiben verschwinden. Danach meldet jede
+    // spaetere Zahl "neu aufgenommen", auch eine geschrumpfte: die Wache haette
+    // ihr Gedaechtnis genau fuer die Eval verloren, bei der sie nichts sah.
+    // Gemessen am 30.07.2026 an einem Testordner: Sollstand 12 einer blinden
+    // Eval war nach einem Lauf mit --aktualisieren spurlos weg.
+    // Nicht gemessene Werte bleiben deshalb stehen; nur echte Messungen
+    // ueberschreiben. Eintraege geloeschter Evals fallen weiter raus.
+    const behalten = {};
+    for (const datei of evals) {
+      if (datei in neu) behalten[datei] = neu[datei];
+      else if (alt[datei] !== undefined) behalten[datei] = alt[datei];
+    }
+    fs.writeFileSync(standDatei, `${JSON.stringify(behalten, null, 2)}\n`);
     console.log(`\n${aktualisieren ? 'Stand geschrieben' : 'Erster Lauf — Stand angelegt'}: ${standDatei}`);
   }
 
