@@ -58,7 +58,7 @@ eval_scorecard:
     - "evals/run-antiset.mjs — 15 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 13 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-eval-umfang.mjs — 25 Evals: hat jede noch ihre Faelle?"
-    - "evals/run-doku-zahlen.mjs — 20 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
@@ -1205,8 +1205,8 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
   > nicht *dass es eine außerhalb ist*. Jetzt wird der aufgelöste Pfad gegen
   > `<assets-dir>/<dateiname>` geprüft und bei Abweichung abgebrochen, **bevor**
   > der Index gespeichert wird — sonst wäre der Eintrag weg und die Datei noch
-  > da. `node evals/run-bilder-check.mjs` (9 Fälle: 5 Ausbruchsversuche, 4 Mal
-  > Normalbetrieb). Der zweite Teil ist der wichtigere: ein Wächter, der auch das
+  > da. `node evals/run-bilder-check.mjs` (12 Fälle: 5 Ausbruchsversuche über
+  > den Index, 3 über `--motiv`, 4 Mal Normalbetrieb). Der zweite Teil ist der wichtigere: ein Wächter, der auch das
   > Löschen im eigenen Ordner blockiert, wird ausgebaut statt repariert.
   > `add` ist von derselben Lücke nicht betroffen — dort entsteht der Dateiname
   > aus `slugify()`, das nur `\w` durchlässt, also keine Punkte und Schrägstriche.

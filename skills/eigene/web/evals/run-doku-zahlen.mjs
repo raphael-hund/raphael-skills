@@ -61,10 +61,28 @@ let md = fs.readFileSync(MD, 'utf8');
 // enthielt. Ein Test auf Text, den das Muster abgeschnitten hat, ist immer gruen.
 const MUSTER = /node evals\/(run-[a-z0-9-]+\.mjs)([^#\n]*)#\s*(\d+)\s*F(?:ä|ae)lle([^\n]*)/g;
 
+// Zweite Form, gefunden am 30.07.2026: nicht jede Fallzahl steht als
+// Kommentar hinter einem Befehl. Im Fliesstext heisst es
+// "`node evals/run-bilder-check.mjs` (9 Faelle: 5 Ausbruchsversuche, ...)".
+// Das MUSTER oben verlangt ein `#`, also fielen diese Stellen komplett durch —
+// run-bilder-check stand mit 9 in der Doku und faehrt 12. Eine Wache, die nur
+// eine Schreibweise kennt, meldet die andere nie.
+const MUSTER_FLIESS = /evals\/(run-[a-z0-9-]+\.mjs)`?\s*\((\d+)\s*F(?:ä|ae)lle([^)\n]*)/g;
+
 const funde = [];
+const gesehen = new Set();
 for (const m of md.matchAll(MUSTER)) {
   const [ganz, datei, zwischen, zahl, rest] = m;
   if (/--\S/.test(zwischen)) continue; // Teillauf, keine Umfangsaussage
+  funde.push({ ganz, datei, doku: Number(zahl), zahl, rest });
+  gesehen.add(datei);
+}
+for (const m of md.matchAll(MUSTER_FLIESS)) {
+  const [ganz, datei, zahl, rest] = m;
+  // Doppelt genannte Evals nur einmal pruefen — sonst zaehlt dieselbe Aussage
+  // zweimal und die Gesamtzahl bewegt sich, ohne dass etwas dazukam.
+  if (gesehen.has(datei)) continue;
+  gesehen.add(datei);
   funde.push({ ganz, datei, doku: Number(zahl), zahl, rest });
 }
 
