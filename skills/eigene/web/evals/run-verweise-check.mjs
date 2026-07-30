@@ -415,6 +415,76 @@ console.log('\nJede Datei importiert, was sie benutzt:\n');
   }
   zeile(fehlend.length === 0, `${dateienJs.length} Datei(en) auf fehlende Kernmodul-Importe geprueft`,
     fehlend.length ? `benutzt ohne Import: ${fehlend.join(' | ')}` : null);
+
+  // Zweite Haelfte: BENANNTE Importe (`spawnSync`, `readFileSync`).
+  //
+  // Die Pruefung oben faengt nur Namensraum-Objekte (os.tmpdir()). Von meinen
+  // zwei Fehlern am 30.07.2026 war das der zweite; der ERSTE war ein benannter
+  // Import — `spawnSync(...)` benutzt, aber nur `execFileSync` importiert.
+  // Gemessen: `spawnSync` aus dem Import von run-ordner-check entfernt, die
+  // Wache oben blieb gruen und `node --check` ebenfalls. Die haeufigere Haelfte
+  // war offen.
+  //
+  // Der Grund fuer die Zurueckhaltung war richtig: ein naiver Namensabgleich
+  // meldet jede lokale Funktion gleichen Namens. Die Loesung ist, nur Namen zu
+  // pruefen, die WIRKLICH aus einem Kernmodul stammen — und die kennt Node
+  // selbst. Keine Liste zum Pflegen, kein Raten.
+  //
+  // Ausgelassen werden Namen, die auch als lokale Funktion plausibel sind
+  // (`format`, `join`, `parse`, `resolve`, `inspect`): dort ueberwiegt die
+  // Fehlalarm-Gefahr den Nutzen.
+  const HEIKEL = new Set(['format', 'join', 'parse', 'resolve', 'inspect', 'types', 'promisify']);
+  const kernNamen = new Map();     // Name -> Modul
+  for (const mod of ['fs', 'os', 'path', 'child_process', 'crypto', 'zlib']) {
+    // eslint-disable-next-line no-await-in-loop
+    const m = await import(`node:${mod}`);
+    for (const [k, v] of Object.entries(m.default || m)) {
+      if (typeof v === 'function' && !HEIKEL.has(k) && !kernNamen.has(k)) kernNamen.set(k, mod);
+    }
+  }
+
+  const fehlendBenannt = [];
+  for (const f of dateienJs) {
+    const txt = fs.readFileSync(f, 'utf8');
+    // Kommentare UND Zeichenketten raus. Die Sabotage-Eval traegt fremden Code
+    // als Daten ("von: \"if (existsSync(p) ...\"") — das ist kein Aufruf in
+    // DIESER Datei, sondern ein Suchmuster fuer eine andere. Ohne diesen Filter
+    // meldete die Wache fuenf Treffer, alle falsch: drei aus Sabotage-Strings,
+    // einer aus einem dynamischen `await import()`, einer aus `os.type` als
+    // Wort in einer Zeichenkette.
+    //
+    // Ein Waechter mit fuenf Fehlalarmen beim ersten Lauf wird nicht gelesen,
+    // er wird geloescht — dieselbe Ueberlegung wie bei den 118 Fehlalarmen der
+    // Pfad-Pruefung weiter oben.
+    const code = txt.split('\n')
+      .filter((z) => !z.trim().startsWith('//') && !z.trim().startsWith('*'))
+      .join('\n')
+      .replace(/'(?:[^'\\]|\\.)*'/g, "''")
+      .replace(/"(?:[^"\\]|\\.)*"/g, '""')
+      .replace(/`(?:[^`\\]|\\.)*`/g, '``');
+    // Alles, was die Datei importiert ODER selbst definiert, ist erlaubt.
+    const bekannt = new Set();
+    for (const m of txt.matchAll(/import\s*\{([^}]+)\}\s*from/g)) {
+      for (const teil of m[1].split(',')) bekannt.add(teil.trim().split(/\s+as\s+/).pop());
+    }
+    // Dynamischer Import: `const { execFileSync } = await import('node:child_process')`.
+    // run-axe-check macht das, weil es das Modul erst spaet braucht. Der Name ist
+    // dann genauso importiert — nur eben nicht am Dateikopf.
+    for (const m of txt.matchAll(/(?:const|let)\s*\{([^}]+)\}\s*=\s*(?:await\s+)?(?:import|require)\s*\(/g)) {
+      for (const teil of m[1].split(',')) bekannt.add(teil.trim().split(':').pop().trim());
+    }
+    for (const m of code.matchAll(/(?:function|const|let|var)\s+(\w+)/g)) bekannt.add(m[1]);
+    for (const [name, mod] of kernNamen) {
+      if (bekannt.has(name)) continue;
+      // Nur als Aufruf am Zeilenanfang oder nach Zuweisung/Klammer — nicht als
+      // Methode (`obj.spawnSync()` gehoert dem Objekt, nicht dem Modul).
+      if (new RegExp(`(?<![.\\w])${name}\\s*\\(`).test(code)) {
+        fehlendBenannt.push(`${path.relative(ZIEL, f)}: ${name} (aus ${mod})`);
+      }
+    }
+  }
+  zeile(fehlendBenannt.length === 0, `${kernNamen.size} Kernmodul-Namen gegen ${dateienJs.length} Datei(en) geprueft`,
+    fehlendBenannt.length ? `benutzt ohne Import: ${fehlendBenannt.slice(0, 5).join(' | ')}` : null);
 }
 
 // --- Dateinamen im Fliesstext der Referenzen ----------------------------
