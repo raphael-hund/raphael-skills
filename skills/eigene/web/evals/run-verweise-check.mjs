@@ -634,5 +634,52 @@ for (const [name, wurzel] of [
     tot_.length ? `fehlt: ${tot_.join(', ')}` : null);
 }
 
+// --- Die G2-Rubrik liegt in einem ANDEREN Repo --------------------------
+// `references/loop2-ablauf.md` verspricht "Copy sektionsweise gegen Rubrik
+// `evals/rubrics/web.md`, Schwelle 0.7". Die Datei liegt nicht im Skill, sondern
+// im Betriebs-Repo — genau so, wie der eval-Skill es vorgibt ("Rubriken unter
+// evals/rubrics/ des jeweiligen Repos").
+//
+// Ein Verweis ueber Repo-Grenzen ist die zerbrechlichste Sorte: er faellt beim
+// Lesen nicht auf, und niemand aendert beide Seiten gleichzeitig. Geprueft wird
+// deshalb nicht nur, DASS die Datei existiert, sondern ob ihre Schwelle noch zu
+// der passt, die dieser Skill in seinen completion_criteria zusagt.
+console.log('\nDie G2-Rubrik im Betriebs-Repo passt zur Zusage:\n');
+{
+  const rubrik = path.join(REPO, 'evals', 'rubrics', 'web.md');
+  if (!fs.existsSync(rubrik)) {
+    zeile(false, 'evals/rubrics/web.md im Betriebs-Repo fehlt',
+      'loop2-ablauf.md verspricht G2 gegen diese Rubrik — ohne sie ist G2 unbelegt');
+  } else {
+    const txt = fs.readFileSync(rubrik, 'utf8');
+    const skill = fs.readFileSync(path.join(WEB, 'SKILL.md'), 'utf8');
+    const zusage = skill.match(/G2 auf jedem Ship-Copy-Block >= ([\d.,]+)/);
+    const inRubrik = txt.match(/Startschwelle \*\*([\d.,]+)\*\*/);
+    const norm = (x) => Number(String(x).replace(',', '.'));
+    zeile(!!zusage && !!inRubrik && norm(zusage[1]) === norm(inRubrik[1]),
+      `Schwelle: SKILL.md sagt ${zusage ? zusage[1] : '?'}, Rubrik sagt ${inRubrik ? inRubrik[1] : '?'}`,
+      zusage && inRubrik && norm(zusage[1]) === norm(inRubrik[1]) ? null
+        : 'zwei Repos, eine Zahl — beide nachziehen');
+    // "min. 4/5" muss zur Fragenzahl passen: eine Rubrik, die 5 Fragen
+    // ankuendigt und 6 stellt, verschiebt die Schwelle still.
+    // NUR die Pflichtfragen. Die Rubrik fuehrt unter "## Optional (nur wenn im
+    // Auftrag verlangt)" eine sechste ("Menschliche Sprache?"), die nicht in die
+    // Schwelle zaehlt. Erster Versuch zaehlte sie mit und meldete "angekuendigt
+    // 5, gezaehlt 6" — ein Fehlalarm aus einem Zaehler, der die Ueberschrift
+    // darueber ignoriert. Dieselbe Sorte wie die 118 Verweis-Fehlalarme: das
+    // Muster stimmte, der Kontext nicht.
+    const pflichtteil = txt.slice(
+      txt.indexOf('## Die Ja/Nein-Fragen'),
+      txt.indexOf('## Optional') >= 0 ? txt.indexOf('## Optional') : undefined,
+    );
+    const fragen = (pflichtteil.match(/^\d+\. \*\*/gm) || []).length;
+    const angekuendigt = txt.match(/(\d+) Ja\/Nein-Fragen/);
+    zeile(!angekuendigt || Number(angekuendigt[1]) === fragen,
+      `Fragen: angekuendigt ${angekuendigt ? angekuendigt[1] : '?'}, gezaehlt ${fragen}`,
+      !angekuendigt || Number(angekuendigt[1]) === fragen ? null
+        : 'die Rubrik zaehlt anders als sie ankuendigt');
+  }
+}
+
 console.log(`\n${fehler === 0 ? 'Alle Verweise' : 'NICHT alle Verweise'} loesen auf.`);
 if (fehler) process.exit(1);
