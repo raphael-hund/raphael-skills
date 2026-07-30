@@ -18,6 +18,13 @@ function parseArgs(argv) {
     else if (arg === "--project") out.project = argv[++i] || process.cwd();
     else if (arg === "--brand") out.brand = (argv[++i] || "").split(",").map((s) => s.trim()).filter(Boolean);
     else if (arg === "--out") out.out = argv[++i] || "CLONE_AUDIT.md";
+    // JSON-Ausgabe nachgetragen 29.07.2026. Bis dahin schrieb dieses Werkzeug
+    // NUR Markdown fuer menschliche Augen — und endete immer mit Exit 0, auch
+    // wenn es einen Google-Tracker im Klon gefunden hatte. Damit war der einzige
+    // Pruefer auf Tracking-Reste und Fremdmarken maschinell nicht auswertbar:
+    // klon-gate.mjs konnte seine Funde nicht lesen, kein Tor konnte an ihnen
+    // blocken. Ein Fund, den niemand abfragen kann, stoppt keine Auslieferung.
+    else if (arg === "--json") out.json = argv[++i] || "";
     else throw new Error(`Unexpected argument: ${arg}`);
   }
   return out;
@@ -145,6 +152,22 @@ try {
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, markdown(findings, project, files.length));
   console.log(output);
+
+  // Dieselben Funde maschinenlesbar. Das Feld heisst `blockers`, weil es genau
+  // das sind: Tracking-Code der fremden Seite, deren Markennamen, TODO-Reste —
+  // jeder davon stoppt einen Launch. `findings` bleibt als Alias, damit
+  // bestehende Leser nicht brechen.
+  if (args.json !== undefined) {
+    const jsonPfad = path.resolve(args.json || output.replace(/\.md$/i, "") + ".json");
+    fs.mkdirSync(path.dirname(jsonPfad), { recursive: true });
+    fs.writeFileSync(jsonPfad, `${JSON.stringify({
+      project,
+      scannedFiles: files.length,
+      blockers: findings,
+      findings,
+    }, null, 2)}\n`);
+    console.log(jsonPfad);
+  }
 } catch (error) {
   console.error(`audit-clone failed: ${error.message}`);
   process.exit(1);

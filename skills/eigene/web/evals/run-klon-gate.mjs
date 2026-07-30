@@ -147,9 +147,59 @@ for (const [was, argv] of bestehen) {
   zeile(r.code === 0, was, r.code === 0 ? null : `Exit ${r.code}: ${r.out.split('\n').filter(Boolean).slice(-2).join(' | ')}`);
 }
 
+// --- 4. Die echte Kette: audit-clone -> klon-gate ------------------------
+// Bis hierher fuettert die Eval selbstgebaute JSON-Dateien. Das prueft das Tor,
+// nicht die Verbindung. Und genau die war kaputt: audit-clone schrieb bis
+// 29.07.2026 NUR Markdown fuer menschliche Augen und endete immer mit Exit 0 —
+// auch mit einem Google-Tracker im Klon. klon-gate konnte seine Funde gar nicht
+// lesen. Ein Fund, den niemand abfragen kann, stoppt keine Auslieferung.
+console.log('\nDie echte Kette — audit-clone schreibt, klon-gate liest:\n');
+{
+  const AUDIT = path.join(HIER, '..', 'scripts', 'web-clone', 'audit-clone.mjs');
+  const projDreck = path.join(ordner, 'dreck');
+  const projRein = path.join(ordner, 'rein');
+  fs.mkdirSync(projDreck); fs.mkdirSync(projRein);
+  fs.writeFileSync(path.join(projDreck, 'index.html'),
+    '<!doctype html><html><head><script src="https://www.googletagmanager.com/gtag/js?id=G-X"></script>'
+    + '</head><body><p>TODO: Text ersetzen</p></body></html>');
+  fs.writeFileSync(path.join(projRein, 'index.html'),
+    '<!doctype html><html><body><p>Fertiger Text.</p></body></html>');
+
+  const auditLauf = (proj, name) => {
+    const md = path.join(ordner, `${name}.md`);
+    const js = path.join(ordner, `${name}.json`);
+    try {
+      execFileSync('node', [AUDIT, '--project', proj, '--out', md, '--json', js],
+        { encoding: 'utf8', timeout: 90000 });
+    } catch { /* audit endet immer 0; Fehler faellt unten auf */ }
+    return js;
+  };
+
+  const jsDreck = auditLauf(projDreck, 'a-dreck');
+  zeile(fs.existsSync(jsDreck), 'audit-clone schreibt ueberhaupt JSON (--json)',
+    fs.existsSync(jsDreck) ? null : 'keine JSON-Datei entstanden');
+
+  if (fs.existsSync(jsDreck)) {
+    const d = JSON.parse(fs.readFileSync(jsDreck, 'utf8'));
+    zeile(Array.isArray(d.blockers) && d.blockers.length > 0,
+      'Tracker + TODO landen als blockers im JSON',
+      Array.isArray(d.blockers) ? `${d.blockers.length} Blocker` : 'kein blockers-Feld');
+    const r = lauf(['--stufe', 'L2', '--diff', D.fast_gleich, '--audit', jsDreck]);
+    zeile(r.code === 1, 'klon-gate reisst am echten Audit eines dreckigen Klons',
+      r.code === 1 ? null : `Exit ${r.code}`);
+  }
+
+  const jsRein = auditLauf(projRein, 'a-rein');
+  if (fs.existsSync(jsRein)) {
+    const r = lauf(['--stufe', 'L2', '--diff', D.fast_gleich, '--audit', jsRein]);
+    zeile(r.code === 0, 'klon-gate besteht am echten Audit eines sauberen Klons',
+      r.code === 0 ? null : `Exit ${r.code}`);
+  }
+}
+
 fs.rmSync(ordner, { recursive: true, force: true });
 
-const gesamt = 1 + reissen.length + zwei.length + bestehen.length;
+const gesamt = 1 + reissen.length + zwei.length + bestehen.length + 4;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Das Klon-Tor urteilt nicht wie behauptet.');

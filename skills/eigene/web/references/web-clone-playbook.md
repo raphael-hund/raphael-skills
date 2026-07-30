@@ -86,6 +86,7 @@ Kundenkalibrierung — und nichts hat je nachgemessen, ob ein Klon sie erreicht.
 im `catch`-Block). Zwei Hälften derselben Frage, die sich nie begegnet sind.
 
 ```bash
+node scripts/web-clone/audit-clone.mjs --project . --out CLONE_AUDIT.md --json audit.json
 node scripts/web-clone/klon-gate.mjs --stufe L2 --diff visual-diff.json --audit audit.json
 ```
 
@@ -178,7 +179,12 @@ verfügbar ist (`npm install -D playwright` im jeweiligen Clone-Projekt):
   gehalten, siehe Komplexitätsskala oben.
 - `klon-gate.mjs` — das Annahme-Tor: Wiedergabetreue gegen L1–L6 plus
   Launch-Blocker aus dem Audit, in einem Exit-Code.
-- `audit-clone.mjs` — Scan auf Tracking-Reste/Fremdmarken/TODOs/riskante URLs vor Launch — deckt sich mit dem QA-Fächer-Schritt im Haupt-SKILL.md.
+- `audit-clone.mjs` — Scan auf Tracking-Reste/Fremdmarken/TODOs/riskante URLs vor
+  Launch — deckt sich mit dem QA-Fächer-Schritt im Haupt-SKILL.md. **`--json`
+  mitgeben**, sonst kann `klon-gate.mjs` die Funde nicht lesen. Bis 29.07.2026
+  schrieb das Werkzeug ausschließlich Markdown für menschliche Augen und endete
+  immer mit Exit 0 — auch mit einem gefundenen Google-Tracker im Klon. Ein Fund,
+  den niemand abfragen kann, stoppt keine Auslieferung.
 - `sourcemap-hunt.mjs`, `compare-recon.mjs`, `dna-scaffold.mjs`, `init-clone.mjs` — Zusatzwerkzeuge für Source-Map-Suche, automatisierten Vergleichsreport, Design-DNA-Grundgerüst, Projekt-Skeleton.
 
 ## WebGL/Canvas-Reverse-Engineering — nur als Prinzip, nicht als Fachwissen
