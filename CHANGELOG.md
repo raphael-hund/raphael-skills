@@ -10,6 +10,61 @@ CHANGELOG beschreibt das Repo drumherum (Vertrag, Validator, Marker).
 
 ---
 
+## 2026-07-30 — Zweite Haelfte: wer prueft die Pruefer?
+
+**TLDR:** 43 weitere Commits. Der erste Teil (unten) gab jeder Regel einen
+Testfall. Dieser Teil stellt die Frage eine Ebene hoeher — und sie war noetig:
+sechs Mal in zwei Tagen sah *nichts geprueft* aus wie *sauber geprueft*.
+
+**Zwei neue Wachen, in allen drei Skills**
+- **Sabotage** (`run-sabotage.mjs`): beschaedigt jeden Pruefer gezielt an EINER
+  Zeile und prueft, ob seine Eval reisst. Nicht "Datei kaputt" — das faengt jeder
+  Parser — sondern *still das falsche Urteil faellen*. Gefunden: `craft-check`
+  las den Schweregrad nicht (Blocker konnte zur Warnung werden, Eval blieb bei
+  22/22), `axe-run` und `shot-sweep` konnten ihren Exit-Code verlieren, ohne dass
+  etwas fehlte, und das G1-Tor haette auch mit **null** gelaufenen
+  Qualitaets-Pruefern geurteilt.
+- **Umfang** (`run-eval-umfang.mjs`, gemeinsamer Kern): haelt fest, wie viele
+  Faelle jede Eval mindestens melden muss. Anlass: die Fall-Liste einer Eval
+  geleert, und sie meldete "6/6 wie erwartet", Exit 0 — die Zahlen kamen aus dem
+  Verdrahtungs-Abschnitt, die Regel-Faelle waren still weg.
+
+**Sicherheit und Naht**
+- `mirror-site.mjs` liess die **fremde** Seite bestimmen, wohin geschrieben wird:
+  `/x/../../../root/.ssh/authorized_keys` landete dort. Quarantaene-Regel,
+  AGENTS.md Nr. 17.
+- `bilder.mjs reject` (die einzige unwiderruflich loeschende Stelle) loeschte
+  Dateien ausserhalb des Asset-Ordners.
+- Vier Mal dieselbe Naht: ein Werkzeug arbeitet korrekt, und seine Aussage kommt
+  nicht an. `visual-diff` rechnete eine Note aus, die niemand abfragte;
+  `audit-clone` fand einen Google-Tracker und schrieb ihn nur als Markdown;
+  `axe-run` und `shot-sweep` beim Exit-Code.
+
+**Vollstaendige Abdeckung, ehrlich ausgewiesen**
+- `detect.mjs` Datei-Modus 13/13, Browser-Pfad 37/37, `craft-check` 23/23,
+  `validate-workflow.py` 7/7. Wo etwas nicht erreichbar ist, steht der Grund
+  daneben statt einer Prozentzahl.
+- Der Browser-Pfad war nie geprueft **und nicht lauffaehig**: er verlangt
+  puppeteer, installiert ist playwright. Der injizierte Detektor selbst ist
+  browserneutral, die Eval laedt ihn direkt — der Sackgassen-Weg ist dokumentiert.
+
+**Was ich dabei ueber mich gelernt habe** (steht so in den Commits, weil es die
+naechste Runde spart)
+- Rund ein Dutzend Mal war mein Testfall zu schwach, nie der Pruefer. Meist weil
+  eine Schwelle nur im Code stand (`single-font` braucht 20 Textelemente,
+  `oversized-h1` drei Bedingungen gleichzeitig).
+- Viermal habe ich geprueft, wie etwas **geschrieben** ist, statt was dabei
+  **herauskommt** — und Fehlalarme gebaut. Einmal 118 auf einen Schlag.
+- Dreimal hiess "die Eval merkt es nicht" in Wahrheit "ich habe die falsche
+  gefragt".
+- Mein eigener Sabotage-Test mass eine Stunde lang nichts: `-k "not Sabotage"`
+  filtert bei unittest alle Tests weg, und "Ran 0 tests" gilt als Erfolg. Genau
+  das Muster, gegen das er gebaut war.
+- Eine Umfang-Wache mit Grenze 16 bei 17 Tests stellte ihren eigenen Puffer —
+  ein geloeschter Test waere durch ihre Existenz ausgeglichen worden.
+
+---
+
 ## 2026-07-29/30 — Webdesigner-Pro: jeder Pruefer hat jetzt einen Testfall
 
 **TLDR:** 79 Commits am `web`- und `design`-Skill. Kein neues Feature, sondern
