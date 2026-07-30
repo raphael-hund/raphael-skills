@@ -260,5 +260,36 @@ class SabotageTest(unittest.TestCase):
                          f"Diese Pruefer koennen still ausfallen, ohne dass ein Test reisst: {blind}")
 
 
+class UmfangTest(unittest.TestCase):
+    """Hat diese Datei ueberhaupt noch ihre Tests?
+
+    Dieselbe Wache wie `run-eval-umfang.mjs` in web und design, hier eine Ebene
+    kleiner. Der Sabotage-Test faengt zwar mit, wenn Tests verschwinden — aber er
+    meldet dann "check_multimodel_fleet ist ungeschuetzt", nicht "vier Tests
+    fehlen". Wer die Meldung liest, sucht am Validator statt an dieser Datei.
+
+    Die Zahl ist eine UNTERgrenze: neue Tests sind erwuenscht und sollen nicht
+    jedes Mal nachgetragen werden muessen. Sinkt sie, war es entweder eine
+    bewusste Loeschung (dann Zahl anpassen) oder eine Methode ist still
+    umbenannt/deaktiviert worden.
+    """
+
+    # 17 = der aktuelle Stand, inklusive dieser Wache selbst. Mit 16 haette sie
+    # ihren eigenen Test als Puffer gestellt: eine geloeschte Methode waere durch
+    # ihre eigene Existenz ausgeglichen worden.
+    MINDESTENS = 17
+
+    def test_mindestzahl_an_tests(self):
+        import unittest as ut
+        geladen = ut.defaultTestLoader.loadTestsFromModule(
+            __import__("test_validate_workflow"))
+        anzahl = geladen.countTestCases()
+        self.assertGreaterEqual(
+            anzahl, self.MINDESTENS,
+            f"nur noch {anzahl} Tests, erwartet mindestens {self.MINDESTENS} — "
+            "entweder bewusst geloescht (dann MINDESTENS anpassen) oder eine "
+            "Methode wurde still umbenannt/deaktiviert")
+
+
 if __name__ == "__main__":
     unittest.main()
