@@ -34,6 +34,31 @@ const SRC = get('src', '.');
 // gerade stand, und meldete darueber Exit 0 — ein gruenes Urteil ueber ein
 // Projekt, das nie angesehen wurde. Genau die Klasse Fehler, gegen die dieses
 // Skript gebaut ist: es sieht geprueft aus.
+// Dieselbe Ueberlegung fuer VERTIPPTE Flags. Der Streuner-Check oben faengt
+// `node import-check.mjs /pfad` — aber `--scr /pfad` (Dreher) rutschte durch:
+// `--scr` gilt als Flag, `/pfad` als sein Wert, und `--src` faellt still auf '.'
+// zurueck. Wieder ein gruenes Urteil ueber den falschen Ordner.
+//
+// Gemessen am 30.07.2026 beim Durchprobieren aller Werkzeuge mit `--help`:
+// import-check startete daraufhin eine echte Pruefung ueber 171 Dateien statt
+// Hilfe zu zeigen. g1-gate und shot-sweep haben eine solche Wache laengst
+// (3 bzw. 4 Stellen); dieses Skript war das einzige ohne.
+const ERLAUBT = ['src', 'json', 'help'];
+const fremd = args.filter((a) => a.startsWith('--') && !ERLAUBT.includes(a.slice(2)));
+if (fremd.length) {
+  console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
+  console.error(`Erlaubt: ${ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+  console.error('Ohne diese Wache faellt --src still auf "." zurueck und das Urteil');
+  console.error('gilt fuer den aktuellen Ordner statt fuers gemeinte Projekt.');
+  process.exit(2);
+}
+if (args.includes('--help')) {
+  console.log('Aufruf: node import-check.mjs --src <projektordner> [--json]');
+  console.log('Prueft, ob jeder Import aus dem Bibliotheks-Tresor wirklich existiert.');
+  console.log('Ohne --src wird der aktuelle Ordner geprueft.');
+  process.exit(0);
+}
+
 const streuner = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--src');
 if (streuner.length) {
   console.error(`Pfad ohne --src uebergeben: ${streuner.join(' ')}`);
