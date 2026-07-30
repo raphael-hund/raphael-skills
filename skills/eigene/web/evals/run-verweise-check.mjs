@@ -810,6 +810,110 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
     tot.length ? `zeigen ins Leere: ${tot.slice(0, 6).join(' | ')}` : null);
 }
 
+// --- Fremder Code braucht eine Attribution -------------------------------
+//
+// Ein `vendor/`-Ordner enthaelt fremden Code unter fremder Lizenz. Bei MIT und
+// Apache-2.0 ist die Attribution die BEDINGUNG der Nutzung — fehlt sie, ist die
+// Nutzung nicht gedeckt. Am 30.07.2026 gefunden: der web-Skill sagte in zwei
+// Referenzen "vollstaendige Attribution in VENDORING.md" zu, und die Datei gab
+// es nicht (114 vendorierte Dateien ohne Lizenztext).
+//
+// Zwei Orte zaehlen, beide gleichwertig: eine skill-eigene VENDORING.md oder
+// ein Eintrag im zentralen Protokoll des Repos. `ads` und `offers` haben keine
+// eigene Datei und sind trotzdem sauber — sie stehen in der Tabelle des
+// zentralen Protokolls. Wer nur nach der lokalen Datei sucht, meldet die beiden
+// faelschlich (mein erster Handlauf tat genau das).
+console.log('\nJeder vendor/-Ordner ist attributiert:\n');
+{
+  const zentralPfad = path.join(path.dirname(SKILLS), 'VENDORING.md');
+  const zentral = fs.existsSync(zentralPfad) ? fs.readFileSync(zentralPfad, 'utf8') : '';
+  // Fremdcode heisst nicht immer `vendor/`.
+  //
+  // Erste Fassung suchte nur nach Ordnern dieses Namens und meldete fuer den
+  // web-Skill "kein vendor/-Ordner — nichts zu attributieren". Er hat 114
+  // vendorierte Dateien, sie liegen in `references/ui-components/` (beUI v2,
+  // MIT). Ein Waechter, der den groessten Fremdcode-Bestand des Repos
+  // uebersieht, weil der Ordner anders heisst, ist genau der Pruefer, der
+  // nichts prueft und gruen meldet.
+  //
+  // Zweite Quelle deshalb: die eigene VENDORING.md nennt ihre Abschnitte mit
+  // Pfad ("## 1. `references/ui-components/`"). Was dort steht, ist per
+  // Definition Fremdcode.
+  const vendorOrdner = [];
+  for (const unter of ['references/vendor', 'vendor']) {
+    const p = path.join(ZIEL, unter);
+    if (fs.existsSync(p)) vendorOrdner.push(unter);
+  }
+  // Dritte Quelle: Herkunftsnachweise IM Fremdcode selbst.
+  //
+  // Zirkelschluss vermeiden. Die zweite Quelle liest die eigene VENDORING.md —
+  // fehlt die, findet die Wache keinen Fremdcode und meldet "nichts zu
+  // attributieren". Genau der Fall, den sie fangen soll: bei der Gegenprobe am
+  // 30.07.2026 verschwand mit der Datei auch der Befund. Eine Wache, deren
+  // einzige Quelle das ist, was sie prueft, kann nie rot werden.
+  //
+  // Fremdcode traegt seine Herkunft aber selbst: Lizenzkopfzeilen, "Copyright
+  // (c)", "@license", oder eine LICENSE-Datei im Ordner. Danach wird gesucht,
+  // unabhaengig vom Ordnernamen und unabhaengig von jeder Attributionsdatei.
+  const HERKUNFT_RE = /Copyright \(c\)|@license|SPDX-License-Identifier|Licensed under the/i;
+  const codeMitLizenz = [];
+  const suche = (rel, tiefe = 0) => {
+    if (tiefe > 3 || codeMitLizenz.length) return;
+    const abs = path.join(ZIEL, rel);
+    let eintraege;
+    try { eintraege = fs.readdirSync(abs, { withFileTypes: true }); } catch { return; }
+    for (const e of eintraege) {
+      if (e.name.startsWith('.') || e.name === 'node_modules') continue;
+      const r = path.join(rel, e.name);
+      if (e.isDirectory()) { suche(r, tiefe + 1); continue; }
+      if (/^LICENSE/i.test(e.name)) { codeMitLizenz.push(rel); return; }
+      if (!/\.(mjs|js|jsx|tsx?|css)$/.test(e.name)) continue;
+      try {
+        if (HERKUNFT_RE.test(fs.readFileSync(path.join(ZIEL, r), 'utf8').slice(0, 800))) {
+          codeMitLizenz.push(rel); return;
+        }
+      } catch { /* unlesbar */ }
+    }
+  };
+  for (const start of ['references', 'scripts']) suche(start);
+  // Gemessen am 30.07.2026: im web-Skill findet diese Suche NICHTS. Die 113
+  // beUI-Komponenten tragen keine Copyright-Zeile und der Ordner keine
+  // LICENSE-Datei — genau die Luecke, die die eigene VENDORING.md im Kopf
+  // beschreibt ("114 vendorierte Dateien lagen ohne den Lizenztext im Repo").
+  // Die dritte Quelle ist also nicht falsch gebaut, sie ist LEER. Sie bleibt
+  // trotzdem: sobald der Lizenztext nachgezogen wird, traegt sie, und bei
+  // kuenftigem Vendoring mit ordentlichen Kopfzeilen greift sie sofort.
+  //
+  // Solange sie leer ist, bleibt der Zirkelschluss bestehen: ohne
+  // Attributionsdatei findet die Wache keinen Fremdcode. Das ist gemeldet
+  // (ops/review-inbox.md), nicht versteckt — eine Wache, die ihre eigene
+  // Blindstelle verschweigt, ist schlimmer als keine.
+  for (const r of codeMitLizenz) if (!vendorOrdner.includes(r)) vendorOrdner.push(r);
+
+  const eigenePfad = path.join(ZIEL, 'VENDORING.md');
+  if (fs.existsSync(eigenePfad)) {
+    const txt = fs.readFileSync(eigenePfad, 'utf8');
+    for (const m of txt.matchAll(/^#{2,3} [0-9]+\.\s+`([^`]+)`/gm)) {
+      const rel = m[1].replace(/\/$/, '');
+      if (fs.existsSync(path.join(ZIEL, rel)) && !vendorOrdner.includes(rel)) vendorOrdner.push(rel);
+    }
+  }
+  if (!vendorOrdner.length) {
+    zeile(true, 'kein vendor/-Ordner — nichts zu attributieren');
+  } else {
+    const lokal = fs.existsSync(path.join(ZIEL, 'VENDORING.md'));
+    // Der Skillname im zentralen Protokoll, in Backticks oder als Ueberschrift.
+    const name = path.basename(ZIEL);
+    const imZentralen = new RegExp(`\`${name}\`|^### ${name}$|skills/${name}/`, 'm').test(zentral);
+    zeile(lokal || imZentralen,
+      `${vendorOrdner.length} vendor/-Ordner, Attribution: ${lokal ? 'eigene VENDORING.md' : ''}`
+        + `${lokal && imZentralen ? ' + ' : ''}${imZentralen ? 'zentrales Protokoll' : ''}`
+        || `${vendorOrdner.length} vendor/-Ordner`,
+      (lokal || imZentralen) ? null
+        : `fremder Code ohne Attribution: ${vendorOrdner.join(', ')} — bei MIT/Apache ist sie Bedingung der Nutzung`);
+  }
+}
+
 console.log('\nJeder Skill aus requires_skills: existiert:\n');
 {
   const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
