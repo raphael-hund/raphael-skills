@@ -81,6 +81,36 @@ ${body}
 // Nur Regeln, die sich mit einer statischen Seite herstellen lassen. Was fehlt,
 // steht unten in der Abdeckung — nicht verschwiegen.
 const FAELLE = {
+  // --- Drei aus der "offen"-Liste, nachgetragen 30.07.2026 ------------------
+  // Die Liste fuehrte sie als "braucht mehr als eine statische Seite". Am
+  // echten Browser-Pfad nachgemessen stimmte das fuer diese drei nicht — sie
+  // brauchen nur die richtige Seite. Eine Regel als unerreichbar zu fuehren,
+  // die es nicht ist, ist dieselbe Sorte Fehler wie eine erfundene Luecke:
+  // man hoert auf zu suchen.
+  'ai-color-palette': {
+    was: 'Indigo-Violett-Verlauf, im gerenderten DOM gemessen',
+    style: '.v{background:linear-gradient(90deg,#6366f1,#a855f7);padding:40px;color:#fff}',
+    body: '<div class="v">Verlauf</div>',
+    // Der Verlauf auf Weiss reisst zusaetzlich den Kontrast — sachlich richtig.
+    mit: ['low-contrast'],
+  },
+  'overused-font': {
+    was: 'Inter als Hauptschrift ueber 15% der Textelemente',
+    // Die Regel greift erst ab 20 Textelementen (Absicht: auf einer
+    // Drei-Zeilen-Seite ist "Hauptschrift" keine Aussage). Erster Versuch hatte
+    // drei und meldete nichts — das Fixture war zu klein, nicht die Regel stumm.
+    style: 'body{font-family:Inter,sans-serif}',
+    body: Array.from({ length: 24 },
+      (_, i) => `<p>Absatz ${i + 1} mit genug Text zum Messen.</p>`).join(''),
+    mit: ['single-font'],
+  },
+  'single-font': {
+    was: 'nur eine einzige Schrift auf der ganzen Seite',
+    style: 'body{font-family:Inter,sans-serif}',
+    body: Array.from({ length: 24 },
+      (_, i) => `<p>Absatz ${i + 1} mit genug Text zum Messen.</p>`).join(''),
+    mit: ['overused-font'],
+  },
   'tiny-text': {
     was: 'Fliesstext unter der Lesbarkeitsgrenze',
     style: '.klein{font-size:9px;max-width:none}',
@@ -240,6 +270,49 @@ const FAELLE = {
     style: 'body{background:#0b0f14;color:#e6e8ea}'
       + '.leucht{box-shadow:0 0 32px rgba(99,102,241,.55);border-radius:12px;padding:18px;background:#141a22}',
     body: '<div class="leucht">Leuchtender Kasten</div>',
+  },
+  'ai-color-palette': {
+    was: 'violette Ueberschriftenfarbe im DOM',
+    // Browser-Zweig: Chroma >= 50 UND Farbton 260-310 UND (h1/h2/h3 oder >= 20px).
+    // #7c3aed liegt bei Hue ~270.
+    style: 'h1{color:#7c3aed}',
+  },
+  'gradient-text': {
+    was: 'Verlauf in der Headline (background-clip: text)',
+    style: 'h1{background:linear-gradient(90deg,#1d4ed8,#0891b2);-webkit-background-clip:text;background-clip:text;color:transparent}',
+  },
+  'overused-font': {
+    was: 'Inter als Hauptschrift auf >= 15% der Textelemente',
+    // Zwei Bedingungen: >= 20 Textelemente auf der Seite, und die Schrift muss
+    // >= 15% davon tragen. Wie bei single-font laeuft der Block sonst nie an.
+    style: 'body{font-family:Inter,sans-serif}',
+    body: [...Array(22)].map((_, i) => `<p>Absatz Nummer ${i + 1} mit genug Text darin.</p>`).join(''),
+  },
+  'monotonous-spacing': {
+    was: 'ein Abstandswert dominiert alles',
+    // Die Regel liest NICHT das berechnete DOM, sondern greppt den HTML-Text:
+    // Tailwind-Klassen (p-4, gap-6 …) und `rem`-Werte in inline-Styles. Ein
+    // Stylesheet in px sieht sie nicht — erster Versuch nutzte `.m div{padding:16px}`
+    // und die Regel schwieg zu Recht. Ausserdem braucht sie >= 10 Werte, davon
+    // > 60% derselbe und <= 3 verschiedene.
+    body: '<div class="p-4 gap-4">'
+      + [...Array(12)].map((_, i) => `<div class="p-4 mb-4">Block ${i + 1}</div>`).join('')
+      + '</div>',
+  },
+  'codex-grid-background': {
+    was: 'Hairline-Raster als Hintergrund',
+    // hairlineCount >= 2 — zwei Verlaeufe mit haarfeinen Stops (typisches
+    // generiertes Gitter).
+    style: '.gitter{background-image:linear-gradient(to right,#eee 1px,transparent 1px),'
+      + 'linear-gradient(to bottom,#eee 1px,transparent 1px);background-size:24px 24px;height:160px}',
+    body: '<div class="gitter"></div>',
+  },
+  'body-text-viewport-edge': {
+    was: 'Fliesstext klebt am Viewport-Rand',
+    // widthRatio > 0.5 und links ODER rechts dicht am Rand, ohne eigenen
+    // Hintergrund und nicht in Nav/Header.
+    style: 'body{padding:0}p.rand{max-width:none;width:100%;margin:0}',
+    body: '<p class="rand">Dieser Absatz laeuft ohne jeden Innenabstand bis an die Fensterkante, was auf keinem Bildschirm gut aussieht.</p>',
   },
   'tight-leading': {
     was: 'Zeilenabstand zu eng fuer Fliesstext',

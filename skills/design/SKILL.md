@@ -173,7 +173,7 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
 > `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
 > **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (26 Fälle: 24 Regeln, Kontrollseite,
+> `node evals/run-browser-detect-check.mjs` (32 Fälle: 30 Regeln, Kontrollseite,
 > Gegenprobe im Datei-Modus). Belegt sind `tiny-text`, `all-caps-body`,
 > `justified-text`, `line-length`, `nested-cards`, `tight-leading`,
 > `wide-tracking`, `skipped-heading`, `single-font`, `cream-palette`,
@@ -181,7 +181,13 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `extreme-negative-tracking`, `flat-type-hierarchy`, `italic-serif-display`,
 > `text-overflow`, `low-contrast`, `side-tab`, `border-accent-on-rounded`,
 > `theater-slop-phrase`, `repeating-stripes-gradient`,
-> `gpt-thin-border-wide-shadow`, `dark-glow`. Offen bleiben 13 der 37 Browser-Regeln,
+> `gpt-thin-border-wide-shadow`, `dark-glow`, `ai-color-palette`,
+> `gradient-text`, `overused-font`, `monotonous-spacing`,
+> `codex-grid-background`, `body-text-viewport-edge`. Offen bleiben **7** der 37
+> Browser-Regeln — `icon-tile-stack`, `hero-eyebrow-chip`,
+> `repeated-section-kickers`, `bounce-easing`, `layout-transition`,
+> `image-hover-transform`, `clipped-overflow-container`. Die brauchen Hover,
+> Scroll oder eine bestimmte Element-Nachbarschaft,
 > namentlich im Bericht — die meisten brauchen mehr als eine statische Seite
 > (Hover, Scroll, dunkles Theme, echte Bilder).
 >
@@ -206,6 +212,11 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `border-accent-on-rounded`. Ich hatte angenommen, ein Akzentstreifen links löse
 > beide aus, und einen Testfall darauf gebaut. Am Zweig nachgelesen war es
 > falsch — die Annahme, nicht der Code.
+>
+> **`monotonous-spacing` liest den HTML-Text, nicht das DOM:** es greppt
+> Tailwind-Klassen (`p-4`, `gap-6`) und `rem`-Werte. Ein Stylesheet in `px`
+> sieht die Regel nicht. Wer hier einen Abstands-Befund erwartet und keinen
+> bekommt, hat vermutlich px im CSS statt Utility-Klassen im Markup.
 >
 > **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
 > ```
