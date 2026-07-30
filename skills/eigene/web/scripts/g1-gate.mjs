@@ -394,11 +394,6 @@ function slopZaehlen(parsed) {
   return null; // unbekanntes Format — nicht als 0 durchwinken
 }
 
-function slopNamen(parsed) {
-  const g = Array.isArray(parsed.findings) ? parsed.findings : [];
-  return g.slice(0, 5).map((x) => x.name || x.id || '?').join(', ');
-}
-
 // Der Scanner kennt keine Schweregrade: jede seiner 33 Regeln zaehlt gleich viel.
 // Damit wuerde ein "Kicker ueber der Ueberschrift" (in der Doktrin WARN) die
 // Auslieferung genauso stoppen wie ein Indigo-Violett-Verlauf (BLOCK). Die

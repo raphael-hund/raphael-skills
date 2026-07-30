@@ -49,7 +49,6 @@ const bauen = new Function('record', 'BUDGET', `
   ${schneide('const SLOP_BLOCK = new Set(', '\n]);\n')}
   ${schneide('const slopId =', '\n')}
   ${schneide('function slopZaehlen(', '\n}\n')}
-  ${schneide('function slopNamen(', '\n}\n')}
   ${schneide('function slopTeilen(', '\n}\n')}
   ${schneide('function slopMelden(', '\n}\n')}
   return slopMelden;

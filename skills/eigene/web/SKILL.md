@@ -263,6 +263,43 @@ Ein Fund ist ein Blocker, ein Nicht-Fund kein Freispruch.
 node evals/run-tastatur-check.mjs   # 17 Fälle: reißen, durchgehen, Overlay-Grenze, Verdrahtung
 ```
 
+### Jeder Fehler dieser Runde saß in der Naht, nicht im Werkzeug
+
+```bash
+node evals/run-naht-check.mjs
+```
+
+Drei Befunde vom 29./30.07.2026, alle dieselbe Sorte:
+
+- `visual-diff.mjs` rechnete eine Note von 5 bis 1 aus und endete **immer** mit
+  Exit 0 — niemand hielt die Zahl gegen etwas.
+- `audit-clone.mjs` fand vier Launch-Blocker (darunter einen Google-Tracker) und
+  schrieb sie nur als Markdown. Das Klon-Tor erwartete JSON, das es nie gab.
+- `slopNamen()` im G1-Tor war toter Code — von `slopTeilen()` abgelöst, aber
+  liegen geblieben. Die zugehörige Eval schnitt sie sogar heraus und prüfte sie:
+  eine Funktion, die das Tor nie aufruft.
+
+**Jedes einzelne Werkzeug funktionierte.** Kaputt war die Stelle, an der zwei sich
+berühren — und eine Eval mit selbstgebauten Eingaben sieht dort nie hin. Sie
+prüft ein Werkzeug, nie die Verbindung. Deshalb dieser Prüfer:
+
+| Was er prüft | Warum |
+|---|---|
+| kein toter Code in G1- und Klon-Tor | ein halb fertiger Umbau hat meist noch eine zweite Stelle |
+| jeder `checkX()` wird aufgerufen | `motion-check` war fertig und lief nie |
+| jeder Qualitäts-Prüfer steht in `QUALITAET` | sonst zählt das Tor ihn beim „ist überhaupt einer gelaufen?" nicht mit |
+| jede herausgeschnittene Funktion existiert noch | sonst prüft die Eval ihre eigene Kopie weiter |
+| jedes Werkzeug, dessen Urteil ein Tor liest, kann `--json` | ein Fund, den niemand abfragen kann, stoppt nichts |
+| Klon-Tor und `audit-clone` benutzen denselben Feldnamen | beide Seiten der Naht in einer Prüfung |
+
+> **Zwei eigene Fehlalarme beim Bauen**, beide aus Vermutungen darüber, wie
+> etwas *aussieht* statt was es *tut*: Der Prüfer suchte die nackte Zeile
+> `checkX();` und meldete `checkServer`/`checkSweep` als nie aufgerufen — die
+> werden bedingt aufgerufen (`if (!checkServer())`), und das ist richtig so.
+> Und er suchte alle Schnittmarken im G1-Tor, obwohl `run-clone-pfade` aus
+> `mirror-site.mjs` schneidet. Jetzt zählt er Vorkommen statt Schreibweisen und
+> liest nach, welche Datei eine Eval wirklich öffnet.
+
 ### 28 Handwerks-Regeln, 10 davon je einmal ausgelöst
 
 ```bash
