@@ -493,8 +493,25 @@ console.log('\nJede Datei importiert, was sie benutzt:\n');
       }
     }
   }
-  zeile(fehlendBenannt.length === 0, `${kernNamen.size} Kernmodul-Namen gegen ${dateienJs.length} Datei(en) geprueft`,
-    fehlendBenannt.length ? `benutzt ohne Import: ${fehlendBenannt.slice(0, 5).join(' | ')}` : null);
+  // Ein Skill ohne Code ist nicht "sauber", er ist ungeprueft.
+  //
+  // Am 30.07.2026 die Wache ueber zehn weitere Skills laufen lassen: alle zehn
+  // meldeten "sauber". Nachgemessen hatten alle zehn NULL Dateien — es sind
+  // reine Wissens-Skills, nur Markdown. Die Aussage "zehn Skills geprueft" war
+  // wertlos, und die Zeile las sich identisch zu einem echten Sauber-Befund.
+  //
+  // Genau das Kernthema dieses Skills, diesmal in meiner eigenen Pruefung:
+  // nichts geprueft sieht aus wie sauber geprueft. Dieselbe Falle wie beim
+  // Slop-Scan ueber 0 Dateien, beim leeren --src im G1-Tor und beim leeren
+  // Detektor-Ziel.
+  if (dateienJs.length === 0) {
+    zeile(true, `keine .mjs-Datei in diesem Skill — NICHTS geprueft (kein Sauber-Befund)`,
+      'reiner Wissens-Skill? Dann ist das richtig. Sonst zeigt ZIEL auf den falschen Ordner.');
+  } else {
+    zeile(fehlendBenannt.length === 0,
+      `${kernNamen.size} Kernmodul-Namen gegen ${dateienJs.length} Datei(en) geprueft`,
+      fehlendBenannt.length ? `benutzt ohne Import: ${fehlendBenannt.slice(0, 5).join(' | ')}` : null);
+  }
 }
 
 // --- Dateinamen im Fliesstext der Referenzen ----------------------------
