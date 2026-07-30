@@ -156,12 +156,21 @@ Farb-Detektor wirkungslos. Behoben; Beleg:
 node evals/run-detect-check.mjs
 ```
 
-9 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich: **7 von 46** Regeln
-haben einen Testfall, **33 sind über den Datei-Modus grundsätzlich nicht
-erreichbar** (sie liegen in `rules/checks.mjs` und brauchen ein gerendertes DOM —
-dort deckt sie `craft-check` im web-Skill ab), und **6 sind im Datei-Modus
-herstellbar und noch offen**. Diese Aufteilung ist der Punkt: „7 von 46" allein
-klingt schlecht, „7 von 13 erreichbaren" ist die Wahrheit.
+16 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **12 von
+46** Regeln haben einen Testfall, **33 sind über den Datei-Modus grundsätzlich
+nicht erreichbar** (sie liegen in `rules/checks.mjs` und brauchen ein gerendertes
+DOM — dort deckt sie `craft-check` im web-Skill ab), und **1 ist im Datei-Modus
+herstellbar und noch offen** (`aphoristic-cadence`). Diese Aufteilung ist der
+Punkt: „12 von 46" allein klingt mager, „12 von 13 erreichbaren" ist die Wahrheit.
+
+**Die vier `design-system-*`-Regeln brauchen eine `DESIGN.md`** im Projektordner
+und schweigen ohne sie — richtig so: ein Projekt ohne erklärtes System hat keine
+Abweichung, an der man es messen könnte. Das Frontmatter-Format ist genau
+vorgegeben: `typography` erwartet Rollen mit `fontFamily`/`fontSize`, keine
+Strings. Die Eval fährt beide Richtungen — eine Seite, die gegen die erklärte
+Skala verstößt (fremde Schrift, Radius 9px bei 4/12/16, 37px neben der Ramp), und
+eine, die ihr folgt und deshalb **nichts** melden darf. Ohne die zweite wären die
+Regeln auch dadurch „bestanden", dass sie auf alles anschlagen.
 
 Ablauf beider Scanner identisch (Scope -> Scan -> Triage -> Report -> Fix):
 1. **Scope**: Default = Frontend-Source, `node_modules`/`dist`/`.git`/Lockfiles

@@ -112,6 +112,27 @@ const FAELLE = {
       + '<section><span>02</span><h2>Festpreis</h2></section>'
       + '<section><span>03</span><h2>Uebergabe</h2></section>',
   },
+  'design-system-font': {
+    designMd: true,
+    was: 'Schriftart nicht in DESIGN.md erklaert',
+    style: 'h1{font-family:"Playfair Display",serif}',
+  },
+  'design-system-color': {
+    designMd: true,
+    was: 'Farbe nicht in DESIGN.md erklaert',
+    style: 'h1{color:#c026d3}',
+  },
+  'design-system-radius': {
+    designMd: true,
+    was: 'Radius neben der DESIGN.md-Skala (9px bei 4/12/16)',
+    style: '.k{border-radius:9px;border:1px solid var(--line);padding:8px}',
+    body: '<div class="k">Kasten</div>',
+  },
+  'design-system-font-size': {
+    designMd: true,
+    was: 'Schriftgroesse neben der Ramp (37px bei 14/16/48)',
+    style: 'h1{font-size:37px}',
+  },
   'bounce-easing': {
     was: 'Bounce-Animation',
     style: '@keyframes b{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}'
@@ -120,14 +141,47 @@ const FAELLE = {
   },
 };
 
-function lauf(html) {
+// Die vier design-system-*-Regeln vergleichen gegen eine DESIGN.md im
+// Projektordner. Ohne sie schweigen sie — richtig so: ein Projekt ohne erklaertes
+// System hat keine Abweichung, an der man es messen koennte. Getestet werden
+// koennen sie also nur MIT dieser Datei, und das Frontmatter-Format ist genau
+// vorgegeben: `typography` erwartet Rollen mit `fontFamily`/`fontSize`, keine
+// Strings. Erster Versuch schrieb `display: Fraunces` — zwei der vier Regeln
+// blieben stumm, und zwar zu Recht.
+const DESIGN_MD = `---
+typography:
+  display:
+    fontFamily: Fraunces, serif
+    fontSize: 48px
+  body:
+    fontFamily: Georgia, serif
+    fontSize: 16px
+  small:
+    fontFamily: Georgia, serif
+    fontSize: 14px
+colors:
+  ink: "#16202b"
+  mut: "#5b6875"
+  line: "#e2e6ea"
+rounded:
+  sm: 4px
+  md: 12px
+  lg: 16px
+---
+# Design-System der Eval
+`;
+
+function lauf(html, mitDesignMd = false) {
   const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'detect-eval-'));
   try {
     const datei = path.join(ordner, 'index.html');
     fs.writeFileSync(datei, html);
+    if (mitDesignMd) fs.writeFileSync(path.join(ordner, 'DESIGN.md'), DESIGN_MD);
     let roh = '';
     try {
-      roh = execFileSync('node', [DETECT, datei, '--json'], { encoding: 'utf8', timeout: 120000 });
+      // cwd auf den Testordner: von dort sucht der Detektor die DESIGN.md.
+      roh = execFileSync('node', [DETECT, datei, '--json'],
+        { encoding: 'utf8', timeout: 120000, cwd: ordner });
     } catch (e) {
       // Exit 2 = Funde. Das JSON steht trotzdem auf stdout.
       roh = String(e.stdout || '');
@@ -167,10 +221,31 @@ zeile(k.ids.length === 0, 'saubere Seite, 0 Anti-Patterns',
 console.log('\nJede Regel einzeln — die eigene ID MUSS im Bericht stehen:\n');
 for (const [schluessel, f] of Object.entries(FAELLE)) {
   const id = f.ist || schluessel;
-  const r = lauf(seite(f));
+  const r = lauf(seite(f), f.designMd === true);
   if (r.kaputt) { zeile(false, `${id}  ${f.was}`, `Detektor kaputt: ${r.kaputt}`); continue; }
   zeile(r.ids.includes(id), `${id}  ${f.was}`,
     r.ids.includes(id) ? null : `${id} fehlt. Gemeldet: ${r.ids.join(', ') || '(nichts)'}`);
+}
+
+// --- 2b. Gegenprobe zur DESIGN.md ----------------------------------------
+// Die vier design-system-Regeln koennen auch dadurch "bestehen", dass sie auf
+// ALLES anschlagen — dann waere jedes Projekt mit erklaertem System unbenutzbar.
+// Also: eine Seite, die ihrer eigenen DESIGN.md folgt, muss still bleiben.
+console.log('\nEine Seite, die ihrer DESIGN.md folgt, darf nichts melden:\n');
+{
+  // Der Kasten unten benutzt die Linienfarbe — die muss also in der DESIGN.md
+  // stehen. Erster Versuch hatte sie vergessen, und der Detektor meldete zu
+  // Recht `design-system-color: #e2e6ea`. Wieder ein unvollstaendiger Testfall,
+  // kein Fehler im Pruefer (wie schon bei M23/M4 in der Craft-Eval).
+  const treu = lauf(seite({
+    style: 'h1{font-family:Fraunces,serif;font-size:48px;color:#16202b}'
+      + '.k{border-radius:12px;border:1px solid #e2e6ea;padding:8px}'
+      + 'p{font-family:Georgia,serif;font-size:16px;color:#5b6875}',
+    body: '<div class="k">Kasten nach Skala</div>',
+  }), true);
+  const ds = treu.ids.filter((x) => x.startsWith('design-system'));
+  zeile(ds.length === 0, 'Fraunces/Georgia, 48px/16px, Radius 12px, erklaerte Farben',
+    ds.length ? `Fehlalarm: ${ds.join(', ')}` : null);
 }
 
 // --- 3. Ehrliche Abdeckung ------------------------------------------------
@@ -206,7 +281,7 @@ console.log('\n  Eine Regel ohne Fixture ist keine falsche Regel — nur eine, v
 console.log('  niemand weiss, ob sie feuert. Die Liste steht hier, damit sie nicht');
 console.log('  unsichtbar bleibt.');
 
-const gesamt = 1 + Object.keys(FAELLE).length;
+const gesamt = 1 + Object.keys(FAELLE).length + 1;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Der Detektor urteilt nicht wie behauptet — und er ist eine harte Ship-Bedingung.');
