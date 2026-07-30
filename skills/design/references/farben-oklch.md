@@ -1,7 +1,7 @@
 > Vendoriert aus jakubkrehel/skills (github.com/jakubkrehel/skills), Skill
 > `better-colors`, MIT-Lizenz. Kondensiert aus SKILL.md + color-conversion.md +
 > palette-generation.md + accessibility-contrast.md + gamut-and-tailwind.md.
-> Details: `../VENDORING-NOTE.md`.
+> Details: `../VENDORING.md`.
 
 # Farben in OKLCH
 

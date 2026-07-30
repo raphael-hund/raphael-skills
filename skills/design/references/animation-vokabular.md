@@ -1,6 +1,6 @@
 > Vendoriert aus emilkowalski/skills (github.com/emilkowalski/skills @ 6bf24434),
 > Skill `animation-vocabulary`, MIT-Lizenz. Fast unveraendert (Reverse-Lookup-
-> Glossar). Details: `../VENDORING-NOTE.md`.
+> Glossar). Details: `../VENDORING.md`.
 >
 > Nuetzlich, wenn im Design-Read/Review ein deutscher Begriff fuer einen
 > Motion-Effekt auftaucht und die exakte englische Fachbezeichnung gebraucht

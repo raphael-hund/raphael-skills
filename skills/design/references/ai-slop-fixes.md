@@ -1,5 +1,5 @@
 > Vendoriert aus kill-ai-slop (github.com/yetone/kill-ai-slop), Apache-2.0.
-> Details: `../VENDORING-NOTE.md`.
+> Details: `../VENDORING.md`.
 
 # Fix patterns
 

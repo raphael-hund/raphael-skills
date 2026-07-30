@@ -4,7 +4,7 @@
 > mit exakten Werten ab (0.96 statt 0.9, blur 4px statt 2px) — bei
 > Widerspruch zu Werten in `motion-doktrin.md`/`design-doktrin.md` gilt: die
 > exakteren Werte hier gewinnen, weil sie deterministisch pruefbar sind.
-> Details: `../VENDORING-NOTE.md`.
+> Details: `../VENDORING.md`.
 
 # UI-Polish-Details
 

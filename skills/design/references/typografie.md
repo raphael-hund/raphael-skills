@@ -3,7 +3,7 @@
 > + css-cheat-sheet.md + details-and-accessibility.md + spacing-and-sizing.md
 > + wrapping-and-punctuation.md (variable-fonts-and-opentype.md nur als
 > Kurzabschnitt — Deep-Dive fuer Kundenprojekte selten relevant).
-> Details: `../VENDORING-NOTE.md`.
+> Details: `../VENDORING.md`.
 
 # Web-Typografie
 
