@@ -743,6 +743,7 @@ echten, sauberen Lauf aus. Behoben über `design/scripts/rules.de.mjs` (Abschnit
 ```bash
 node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch Scanner
 node evals/run-slop-de-check.mjs     # 50 Fälle in 0,4s: Treffer, Gegenproben, Einstufung, Laufzeit
+node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 ```
 
 > **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
