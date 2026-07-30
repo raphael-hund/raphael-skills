@@ -368,7 +368,7 @@ const NICHT_HIER = {
   // M25 ist laut Doktrin ausdruecklich "inhaltlich, nicht messbar", T10 steht
   // nur in der Ueberschrift, M7 nirgends. Sie standen nur in der Liste, weil
   // die Zaehlung Kommentare mitgriff.
-  M20: 'INFO-Stufe, kein BLOCK/WARN — taucht im Bericht anders auf',
+  M20: 'INFO ohne Schwelle — laeuft bei jedem Lauf mit; belegt durch den Minimalfall oben',
 };
 
 function lauf(html, dazu = {}) {
@@ -392,7 +392,16 @@ function lauf(html, dazu = {}) {
     let d;
     try { d = JSON.parse(roh); } catch { return { kaputt: 'Ausgabe unlesbar', ids: [] }; }
     const ids = [...new Set([...(d.blockers || []), ...(d.warns || [])].map((x) => x.id))];
-    return { ids, roh: d };
+    // INFOs bleiben BEWUSST aus `ids`: die Mitlaeufer-Pruefung wuerde sonst jeden
+    // Fall roetlich melden, weil M24/M25 und M20 auf JEDER Seite als INFO
+    // erscheinen. Fuer Faelle, die eine INFO-Regel belegen sollen, gibt es
+    // `infoIds` — getrennt gehalten, statt die eine Liste zu verwaessern.
+    //
+    // Befund 30.07.2026: der M20-Fall meldete "(nichts)", weil `ids` INFOs gar
+    // nicht enthielt. Mein Testfall war unerfuellbar gebaut, die Regel lief die
+    // ganze Zeit (am echten Pruefer nachgemessen: minimale Seite -> M20 dabei).
+    const infoIds = [...new Set((d.infos || []).map((x) => x.id))];
+    return { ids, infoIds, roh: d };
   } finally {
     fs.rmSync(ordner, { recursive: true, force: true });
   }
@@ -463,6 +472,28 @@ for (const [id, f] of Object.entries(FAELLE)) {
         : null);
 }
 
+// --- 2b. Die eine Ausnahme muss ihre Ausnahme belegen ---------------------
+// M20 steht als einzige Regel ohne Fixture in NICHT_HIER, begruendet mit
+// "bedingungsloser INFO — laeuft ohnehin bei jedem Lauf mit". Diese Begruendung
+// war bisher Prosa.
+//
+// Am 30.07.2026 haben sich drei solche Begruendungen als falsch erwiesen: die
+// Browser-Eval fuehrte 13 Regeln als "braucht Hover/Scroll", alle 13 waren auf
+// einer statischen Seite herstellbar. Eine Begruendung, die plausibel klingt,
+// ist kein Beweis — besonders wenn sie zum Namen der Regel passt.
+//
+// Hier stimmt sie (nachgemessen: minimale Seite, nur ein <p>, M20 ist dabei).
+// Der Fall haelt das fest. Faellt M20 kuenftig aus, faellt es auf, statt in
+// einer Ausnahmeliste zu verschwinden.
+console.log('\nDie Ausnahme von der Fixture-Pflicht muss stimmen:\n');
+{
+  const minimal = seite({ body: '<p>Nur Text.</p>' });
+  const r = lauf(minimal);
+  const dabei = (r.infoIds || []).some((i) => i.split('/').includes('M20'));
+  zeile(dabei, 'M20 laeuft auch auf einer minimalen Seite mit (INFO ohne Schwelle)',
+    dabei ? null : `M20 fehlt — dann ist die Begruendung in NICHT_HIER falsch. INFO gemeldet: ${(r.infoIds || []).join(', ') || '(nichts)'}`);
+}
+
 // --- 3. Ehrliche Abdeckung ------------------------------------------------
 // Die Zahl, die im Bericht fehlte: wie viele der Regeln sind ueberhaupt belegt?
 // Gezaehlt werden nur IDs mit einer echten `add()`-Stelle.
@@ -483,7 +514,11 @@ const alleIds = [...new Set(
 )];
 const hier = Object.keys(FAELLE);
 const antiset = ['M13', 'T1', 'T2', 'T7', 'M11', 'M17', 'M24', 'T8', 'T9', 'T5'];
-const belegt = new Set([...hier, ...antiset]);
+// M20 hat keinen Eintrag in FAELLE, wird aber vom Minimalfall oben belegt (siehe
+// Abschnitt 2b). Ohne diese Zeile meldete die Abdeckung "1 ohne Fixture: M20",
+// obwohl der Beleg zwei Bildschirmzeilen darueber gruen steht — eine Zahl, die
+// der eigenen Ausgabe widerspricht.
+const belegt = new Set([...hier, ...antiset, 'M20']);
 const offen = alleIds.filter((x) => !belegt.has(x));
 
 console.log('\nAbdeckung (die Zahl, die vorher niemand nannte):\n');
