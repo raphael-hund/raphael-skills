@@ -369,6 +369,33 @@ console.log('\n  Eine Regel ohne Fixture ist keine falsche Regel — nur eine, v
 console.log('  niemand weiss, ob sie feuert. Die Liste steht hier, damit sie nicht');
 console.log('  unsichtbar bleibt.');
 
+// Die Gesamtrechnung ueber BEIDE Pfade — als Pruefung, nicht nur als Bericht.
+//
+// Die Zahlen oben stehen einzeln da und laden zu einem Trugschluss ein: "13 von
+// 46 belegt" klingt nach einer riesigen Luecke, "0 im Datei-Modus offen" nach
+// Vollstaendigkeit. Keins von beidem stimmt allein. Erst zusammen mit dem
+// Browser-Pfad ergibt sich das Bild, und das hat am 30.07.2026 niemand
+// nachgerechnet — ich musste es von Hand tun:
+//
+//   46 Regeln = 9 nur Datei-Pfad + 33 nur Browser-Pfad + 4 in beiden
+//
+// Solange die Rechnung aufgeht, ist keine Regel ungeprueft. Geht sie NICHT auf,
+// verschieben die zwei Evals die Verantwortung gegenseitig aufeinander und
+// keine deckt die Regel wirklich ab — genau die Luecke, die zwischen zwei
+// Pruefern entsteht und in keinem von beiden auffaellt.
+//
+// Geprueft wird hier nur die Erreichbarkeit, nicht ob die Browser-Eval ihre
+// Fixtures wirklich hat. Das misst sie selbst (37/37 am 30.07.2026); es hier
+// nachzubauen hiesse, ihre Fixture-Liste ein zweites Mal zu pflegen.
+{
+  const ungedeckt = alleIds.filter((id) => !belegt.has(id) && !NUR_IM_BROWSER.has(id));
+  zeile(ungedeckt.length === 0,
+    `alle ${alleIds.length} Registry-Regeln sind einem Pfad zugeordnet`,
+    ungedeckt.length
+      ? `${ungedeckt.length} in KEINEM Pfad erreichbar: ${ungedeckt.join(', ')}`
+      : null);
+}
+
 // Sicherung gegen die Gegenrichtung: wenn ein ganzer Abschnitt still ausfaellt
 // (fruehes `continue`, verschluckte Ausnahme), zaehlt `gepruefte` einfach
 // weniger — und "12/12 wie erwartet" saehe wieder gruen aus. Die Faelle aus der
