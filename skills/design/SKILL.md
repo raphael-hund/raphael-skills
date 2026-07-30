@@ -156,12 +156,24 @@ Farb-Detektor wirkungslos. Behoben; Beleg:
 node evals/run-detect-check.mjs
 ```
 
-16 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **12 von
-46** Regeln haben einen Testfall, **33 sind über den Datei-Modus grundsätzlich
-nicht erreichbar** (sie liegen in `rules/checks.mjs` und brauchen ein gerendertes
-DOM — dort deckt sie `craft-check` im web-Skill ab), und **1 ist im Datei-Modus
-herstellbar und noch offen** (`aphoristic-cadence`). Diese Aufteilung ist der
-Punkt: „12 von 46" allein klingt mager, „12 von 13 erreichbaren" ist die Wahrheit.
+17 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **13 von
+46** Regeln haben einen Testfall, und **33 sind über den Datei-Modus
+grundsätzlich nicht erreichbar** — sie liegen in `rules/checks.mjs` und brauchen
+ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
+
+> **Korrektur einer Behauptung, die hier stand:** „dort deckt `craft-check` sie
+> ab" war ungemessen und ist falsch. Nachgezählt: 37 Browser-Regeln, davon haben
+> **11 ein fachliches Pendant** in `craft-check` (T1↔`overused-font`,
+> T2↔`ai-color-palette`/`gradient-text`, T5↔`repeated-section-kickers`,
+> M8↔`flat-type-hierarchy`, M3↔`line-length`, M11↔`border-accent-on-rounded` …).
+> Zwei weitere deckt axe (`low-contrast`→`color-contrast`,
+> `skipped-heading`→`heading-order`). **Rund 24 sind wirklich nur über den
+> Browser-Pfad des design-Detektors zu holen** — darunter `nested-cards`,
+> `cream-palette`, `oversized-h1`, `tiny-text`, `all-caps-body`,
+> `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
+> `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
+> Der Browser-Pfad (`detect-antipatterns-browser.js`) hat weiterhin keine Eval;
+> das ist die nächste offene Stelle, nicht eine erledigte.
 
 **Die vier `design-system-*`-Regeln brauchen eine `DESIGN.md`** im Projektordner
 und schweigen ohne sie — richtig so: ein Projekt ohne erklärtes System hat keine

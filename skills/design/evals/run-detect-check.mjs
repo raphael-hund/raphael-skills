@@ -133,6 +133,15 @@ const FAELLE = {
     was: 'Schriftgroesse neben der Ramp (37px bei 14/16/48)',
     style: 'h1{font-size:37px}',
   },
+  'aphoristic-cadence': {
+    was: 'drei aphoristische Konstruktionen (Schwelle 3)',
+    // Die Regel sucht zwei Formen: "Not a X. Y." und "Satz. No/Just ..." — ab
+    // drei Treffern zusammen. Am Code nachgelesen, nicht geschaetzt: die
+    // Schwelle steht bei `count < 3`, und beide Muster brauchen einen
+    // Grossbuchstaben-Satzanfang nach dem Punkt.
+    body: '<p>Not a tool. A way of working. Not a template. A decision.</p>'
+      + '<p>Everything is configurable. Just three fields.</p>',
+  },
   'bounce-easing': {
     was: 'Bounce-Animation',
     style: '@keyframes b{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}'
