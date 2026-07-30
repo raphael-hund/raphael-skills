@@ -719,7 +719,18 @@ console.log('\nJeder Skill aus requires_skills: existiert:\n');
   const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
   const kopfEnde = roh.indexOf('\n---', 4);
   const kopf = kopfEnde > 0 ? roh.slice(0, kopfEnde) : '';
-  const zeileReq = (kopf.match(/^requires_skills:.*$/m) || [''])[0];
+  // Beide YAML-Formen, obwohl heute alle 20 Skills die einzeilige nutzen:
+  //   requires_skills: [eval@^0]     requires_skills:
+  //                                    - eval@^0
+  //
+  // `loads:` war auch einmal nur einzeilig — inzwischen stehen 8 einzeilige
+  // gegen 15 mehrzeilige, und genau dieser Wandel hat mich am 30.07.2026
+  // ZWEIMAL erwischt (beide Male meldete die Wache eine leere Grundmenge und
+  // daraus zehn Fehlalarme). Eine Annahme, die heute traegt, ist keine, die
+  // morgen traegt; sie kostet hier eine Zeile.
+  const zeileReq = (kopf.match(/^requires_skills:\s*\[[^\]]*\]/m)
+    || kopf.match(/^requires_skills:\s*\n(?:[ \t]+-[^\n]*\n)+/m)
+    || [''])[0];
   const namen = [...zeileReq.matchAll(/([a-z][a-z-]*)@/g)].map((m) => m[1]);
   const fehlend = namen.filter((n) =>
     !fs.existsSync(path.join(EIGENE, n, 'SKILL.md'))
