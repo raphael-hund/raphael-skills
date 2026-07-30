@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
   Vendoriert aus kill-ai-slop (github.com/yetone/kill-ai-slop), Apache-2.0.
-  Details: ../VENDORING-NOTE.md. Original: skill/scripts/scan.mjs.
+  Details: ../VENDORING.md. Original: skill/scripts/scan.mjs.
 
   kill-ai-slop scanner — dependency-free.
 

@@ -22,7 +22,7 @@ completion_criteria:
   - "SKILL.md hat gültiges Frontmatter mit name, version, description (endet auf Trigger-Zeile), class, scope, sensitivity, completion_criteria als Liste"
   - "python3 tools/validate-skill.py <pfad-zum-skill> läuft mit [OK] durch, ohne verbotene Phrasen"
   - "Jeder Schritt/jede Regel hat ein prüfbares Kriterium (checkbar: erfüllt vs. nicht erfüllt), keine vagen Formulierungen wie 'gründlich prüfen'"
-  - "Bei Übernahme eines Fremd-Skills: Sicherheits-Checkliste (Abschnitt unten) einmal durchlaufen, Ergebnis in VENDORING-NOTE.md des Ziel-Ordners festgehalten"
+  - "Bei Übernahme eines Fremd-Skills: Sicherheits-Checkliste (Abschnitt unten) einmal durchlaufen, Ergebnis in VENDORING.md des Ziel-Ordners festgehalten"
 ---
 
 # writing-skills — Neue Skills schreiben
@@ -130,7 +130,7 @@ bündelt, ist ein Framework, kein Skill; splitten.
 ## Sicherheits-/Qualitäts-Checkliste vor jeder Fremd-Skill-Übernahme
 
 Vor jedem Vendoring eines fremden Skills (egal wie gut die Quelle aussieht)
-einmal durchlaufen, Ergebnis in der VENDORING-NOTE.md des Ziel-Ordners
+einmal durchlaufen, Ergebnis in der VENDORING.md des Ziel-Ordners
 festhalten:
 
 1. **Quellen-Reputation prüfen** — Install-Zahl/Stars des Quell-Repos, ist

@@ -588,17 +588,61 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
     'state.json',
   ]);
   const refOrdner = path.join(ZIEL, 'references');
-  const mdDateien = fs.existsSync(refOrdner)
+  // Auch SKRIPT-Koepfe, nicht nur references/*.md.
+  //
+  // Vendorierte Skripte tragen ihren Herkunftsnachweis im Kopfkommentar
+  // ("Vendoriert aus kill-ai-slop ... Details: ../VENDORING.md"). Das ist
+  // dieselbe Zusage wie in einer Referenz — nur stand sie ausserhalb der
+  // Pruefung. Am 30.07.2026 gemessen: nach dem Umbenennen von
+  // VENDORING-NOTE.md auf die Repo-Konvention blieben FUENF tote Verweise in
+  // vier Dateien liegen, zwei davon in design/scripts/. Die Wache meldete
+  // Exit 0, weil sie Skripte gar nicht ansieht.
+  const skriptKoepfe = [];
+  for (const unter of ['scripts', 'evals']) {
+    const o = path.join(ZIEL, unter);
+    if (!fs.existsSync(o)) continue;
+    try {
+      for (const f of fs.readdirSync(o, { recursive: true })) {
+        if (typeof f !== 'string' || !/\.(mjs|js)$/.test(f)) continue;
+        if (f.includes('node_modules') || f.includes('vendor/')) continue;
+        // Diese Datei nicht: ihre Kommentare DOKUMENTIEREN vergangene
+        // Fehlalarme ("rules.ru.mjs", "OFFER.md", "shadcn-index.json") und
+        // nennen die Beispiele beim Namen. Ein Waechter, der seine eigene
+        // Begruendung als toten Verweis meldet, ist genau der Fehlalarm, den
+        // sie beschreibt — sofort beim ersten Lauf dreimal passiert.
+        if (path.basename(f) === 'run-verweise-check.mjs') continue;
+        skriptKoepfe.push(path.join(o, f));
+      }
+    } catch { /* unlesbar: uebergehen */ }
+  }
+  const mdDateien = (fs.existsSync(refOrdner)
     ? fs.readdirSync(refOrdner, { recursive: true })
       .filter((f) => typeof f === 'string' && f.endsWith('.md'))
       .map((f) => path.join(refOrdner, f))
-    : [];
+    : []).concat(skriptKoepfe);
 
   let gezaehlt = 0;
   const tot = [];
   for (const datei of mdDateien) {
     const txt = fs.readFileSync(datei, 'utf8');
-    for (const m of txt.matchAll(/`([a-z0-9][a-z0-9._/-]*\.(?:mjs|js|json|md|html))`/gi)) {
+    // Zwei Schreibweisen: in Backticks (Referenz-Prosa) und blank nach
+    // "Details:" / "siehe" (Skript-Koepfe). Die Gegenprobe am 30.07.2026 lief
+    // ins Leere, weil `scan-ai-slop.mjs` seinen Vendoring-Hinweis OHNE
+    // Backticks schreibt ("Details: ../VENDORING.md.") — die Erweiterung auf
+    // Skript-Koepfe brachte also echte Verweise dazu, aber nicht die, wegen
+    // derer ich sie gebaut hatte. Ein Test, der nicht anschlaegt, misst die
+    // Luecke; hier war es meine eigene.
+    const treffer = [...txt.matchAll(/`([a-z0-9][a-z0-9._/-]*\.(?:mjs|js|json|md|html))`/gi)];
+    // Kleinbuchstabe am Anfang verlangt: "Haupt-SKILL.md" im Satz "siehe
+    // Haupt-SKILL.md, Abschnitt Launch" ist eine UMSCHREIBUNG ("das
+    // Haupt-SKILL.md"), kein Dateiname — die Datei heisst SKILL.md.
+    // Ausserdem Endung .js ausgeschlossen: g1-gate schreibt "siehe
+    // evals/antiset-budget.json", und das Muster griff bis `.js` und liess das
+    // `on` stehen. Beide Fehlalarme am 30.07.2026 beim ersten Lauf.
+    for (const m of txt.matchAll(/(?:Details|siehe|Quelle|vgl\.):?\s+((?:\.\.?\/)?[a-z][a-z0-9._/-]*\.(?:mjs|json|md|html))(?![a-z0-9])/g)) {
+      treffer.push(m);
+    }
+    for (const m of treffer) {
       const ziel = m[1];
       const name = ziel.split('/').pop();
       if (LAUFZEIT.has(name)) continue;
@@ -697,6 +741,12 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
         }
         if (pfeilOk) continue;
       }
+      // Beispielname: "e.g. `scripts/build-sub-pages.js`", "z. B. `x.mjs`".
+      // Der Text erklaert eine KLASSE von Dateien, nicht eine bestimmte. Kam
+      // erst mit den Skript-Koepfen dazu (30.07.2026) — Kommentare in Code
+      // erklaeren haeufiger mit Beispielen als Referenz-Prosa.
+      if (/\b(?:e\.g\.|z\. ?B\.|zum Beispiel|etwa)\s*`?[^`\n]{0,30}$/i
+        .test(txt.slice(Math.max(0, m.index - 40), m.index))) continue;
       // Negativ-Befund: die Referenz nennt die Datei, um ihr FEHLEN als Mangel
       // zu beschreiben ("kein `SECURITY.md`"). Ein Waechter, der das als toten
       // Verweis meldet, verlangt, dass der Mangel behoben wird, den der Text
