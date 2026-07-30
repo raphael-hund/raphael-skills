@@ -166,5 +166,38 @@ console.log('\nJedes Werkzeug aus den completion_criteria existiert:\n');
     fehlend.length ? `fehlt: ${fehlend.join(', ')}` : (skripte.length ? null : 'keine gefunden — Muster pruefen'));
 }
 
+// --- Befehle in den Nachbar-Skills ---------------------------------------
+// Der web-Skill ist nicht allein: impeccable, taste, ui-ux und copywriting sind
+// Zeiger auf design. Wenn dort ein AUFRUF steht, muss er von seinem eigenen
+// Ordner aus laufen — nicht "richtig gemeint mit Zusatz im Fliesstext".
+//
+// Befund 30.07.2026: drei solche Befehle liefen nicht.
+//   ui-ux      python3 vendor/ui-ux-db/scripts/search.py …  ("im design-Verzeichnis")
+//   impeccable node scripts/detect.mjs                       (zweimal)
+// Beide trugen den Hinweis, wo sie gemeint sind — und scheiterten beim Kopieren
+// mit "No such file or directory". Ein Befehl in einem Skill soll laufen, nicht
+// erst uebersetzt werden.
+console.log('\nBefehle in den Nachbar-Skills laufen von dort aus:\n');
+for (const [skill, datei] of [
+  ['impeccable', 'SKILL.md'],
+  ['taste', 'SKILL.md'],
+  ['ui-ux', 'SKILL.md'],
+  ['copywriting', 'SKILL.md'],
+]) {
+  const pfad = path.join(EIGENE, skill, datei);
+  if (!fs.existsSync(pfad)) { zeile(false, `${skill}/${datei} fehlt`); continue; }
+  const txt = fs.readFileSync(pfad, 'utf8');
+  // Aufrufe der Form `node <pfad>` / `python3 <pfad>` in Backticks.
+  const befehle = [...txt.matchAll(/`(?:node|python3)\s+([A-Za-z0-9_.\/-]+\.(?:mjs|py))/g)]
+    .map((m) => m[1]);
+  const kaputt = befehle.filter((b) => {
+    if (b.startsWith('/')) return !fs.existsSync(b);
+    return !fs.existsSync(path.resolve(EIGENE, skill, b));
+  });
+  zeile(kaputt.length === 0,
+    `${skill}: ${befehle.length} Aufruf(e), alle vom eigenen Ordner aus lauffaehig`,
+    kaputt.length ? `laeuft nicht: ${[...new Set(kaputt)].join(', ')}` : null);
+}
+
 console.log(`\n${fehler === 0 ? 'Alle Verweise' : 'NICHT alle Verweise'} loesen auf.`);
 if (fehler) process.exit(1);

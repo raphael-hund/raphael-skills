@@ -30,7 +30,8 @@ Landing-Checklisten) lebt im **design**-Skill.
 Wenn dieser Skill feuert:
 
 1. **design laden** (falls nicht schon geschehen) und dort die **taste-Linie**
-   wählen: `references/taste-kern.md` + `references/design-doktrin.md`.
+   wählen: `design/references/taste-kern.md` +
+   `design/references/design-doktrin.md` (Pfade relativ zu `skills/`).
 2. **Design-Read ausgeben** (1 Zeile): Seitenart, Zielgruppe, Vibe, Richtung.
 3. Danach den Regeln in taste-kern.md folgen: Brief-Inference, Dials setzen,
    Design-System-Map, Landing-Checklisten.

@@ -32,8 +32,14 @@ Wenn dieser Skill feuert:
 1. **design laden** (falls nicht schon geschehen) und dort die **ui-ux-Linie**
    wählen: `references/ui-ux-db-nutzung.md` + `references/design-doktrin.md`.
 2. **Offline-DB abfragen** (kein Netz, reine Stdlib):
-   `python3 vendor/ui-ux-db/scripts/search.py "<thema>" --domain <style|color>`
-   im design-Skill-Verzeichnis. Erst `--design-system`, dann die Domain.
+   `python3 ../../design/vendor/ui-ux-db/scripts/search.py "<thema>" --domain <style|color>`
+   (aus einem Skill-Ordner heraus; absolut:
+   `/root/raphael-skills/skills/design/vendor/ui-ux-db/scripts/search.py`).
+   Erst `--design-system`, dann die Domain.
+   Der Pfad stand hier bis 30.07.2026 als `vendor/…` mit dem Zusatz "im
+   design-Skill-Verzeichnis" — fachlich richtig, aber wer die Zeile kopiert,
+   bekommt "No such file or directory". Ein Befehl in einem Skill soll laufen,
+   nicht erst uebersetzt werden.
 3. **Stack erkennen** (package.json etc.) und Empfehlungen daran binden.
 4. Karten sind hier legitime Datencontainer — aber nie verschachtelt.
 
