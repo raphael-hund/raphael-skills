@@ -78,7 +78,7 @@ erzwingt die Run-ID als Beweis.
    > `Math.random()` brechen Resume, `args` ohne defensives Parse crasht,
    > `JSON.stringify(...).slice(0, N)` kappt Daten still (3× real, R13/R15).
    > `python3 scripts/test_validate_workflow.py` deckt jetzt alle sieben ab
-   > (15 Tests statt 3), jeweils in **beide** Richtungen: `new Date(args.stamp)`
+   > (18 Tests statt 3), jeweils in **beide** Richtungen: `new Date(args.stamp)`
    > und `JSON.stringify(x)` ohne `.slice` müssen **durchgehen**, sonst wäre der
    > Validator auch durch „melde immer" erfüllbar und macht Zeitstempel
    > unmöglich.
