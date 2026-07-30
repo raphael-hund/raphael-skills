@@ -66,7 +66,9 @@ export function fallzahl(evalOrdner, datei, cwd) {
   // "17/17 gepruefte Doku-Zahlen stimmen." — dieselbe N/M-Struktur, aber ein
   // anderes Verb. Der Wachhund meldete sie deshalb als "keine Fallzahl", also
   // als geschrumpfte Eval. Sie war vollzaehlig; nur ihr Satzbau war neu.
-  const zahlen = aus.match(/^(\d+)\/(\d+) gepruefte Doku-Zahlen stimmen\./m);
+  // "gepruefte Doku-Zahlen" (web) und "Zahlen" (design) — zwei Wachen desselben
+  // Zwecks mit leicht verschiedenem Satzbau. Beide meinen dasselbe.
+  const zahlen = aus.match(/^(\d+)\/(\d+) (?:gepruefte Doku-)?Zahlen stimmen\./m);
   if (zahlen) return { zahl: Number(zahlen[2]), gruen: Number(zahlen[1]), form: 'Doku-Zahlen' };
 
   const libs = aus.match(/^(\d+) Libraries, jede/m);

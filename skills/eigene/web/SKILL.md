@@ -41,6 +41,12 @@ loads:
   - references/templates/statistics-page-template.html
   - references/agentur-merkmale.md
   - references/orchestrierung.md
+provenance: >
+  Eigener Skill; der fremde Anteil ist vendoriert und in VENDORING.md dieses
+  Skills belegt (beUI v2 / starc007, MIT, 114 Dateien, plus die weiteren dort
+  gelisteten Quellen). Die Datei entstand am 30.07.2026, nachdem die
+  Verweis-Pruefung fand, dass zwei Referenzen seit ihrer Entstehung eine
+  Attribution zusagten, die es nicht gab.
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
 # eval_scorecard — was dieser Skill belegen kann, nicht was er verspricht.
 # Jede Zeile ist ein Lauf, der Exit 0 liefern muss; die Zahlen haelt

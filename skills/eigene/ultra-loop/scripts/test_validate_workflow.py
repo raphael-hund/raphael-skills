@@ -277,7 +277,7 @@ class UmfangTest(unittest.TestCase):
     # 17 = der aktuelle Stand, inklusive dieser Wache selbst. Mit 16 haette sie
     # ihren eigenen Test als Puffer gestellt: eine geloeschte Methode waere durch
     # ihre eigene Existenz ausgeglichen worden.
-    MINDESTENS = 18
+    MINDESTENS = 19
 
     def test_skill_md_nennt_die_echte_zahl(self):
         """Die Zahl in SKILL.md muss zur Datei passen.
@@ -306,6 +306,33 @@ class UmfangTest(unittest.TestCase):
         self.assertEqual(
             int(treffer.group(1)), echt,
             f"SKILL.md sagt {treffer.group(1)} Tests, die Datei hat {echt}")
+
+    def test_scorecard_nennt_die_echte_zahl(self):
+        """Auch die eval_scorecard im Frontmatter muss zur Datei passen.
+
+        Sie ist der erste Ort, den ein fremder Agent liest, um zu wissen, wie
+        tief dieser Skill geprueft ist. Im web-Skill stand sie am Tag ihrer
+        Entstehung schon falsch (24 statt 25 Evals) — eine Zahl UEBER die
+        Pruefung, die selbst ungeprueft ist. Hier gleich mit Wache angelegt.
+        """
+        import re
+        import unittest as ut
+
+        md = MODULE_PATH.parent.parent / "SKILL.md"
+        if not md.exists():
+            self.skipTest(f"SKILL.md nicht gefunden: {md}")
+        text = md.read_text(encoding="utf-8")
+        treffer = re.search(
+            r"test_validate_workflow\.py — (\d+) Tests", text)
+        self.assertIsNotNone(
+            treffer,
+            "keine Test-Zahl in der eval_scorecard gefunden — umformuliert? "
+            "Dann dieses Muster anpassen, nicht die Pruefung entfernen")
+        echt = ut.defaultTestLoader.loadTestsFromModule(
+            __import__("test_validate_workflow")).countTestCases()
+        self.assertEqual(
+            int(treffer.group(1)), echt,
+            f"eval_scorecard sagt {treffer.group(1)} Tests, die Datei hat {echt}")
 
     def test_mindestzahl_an_tests(self):
         import unittest as ut

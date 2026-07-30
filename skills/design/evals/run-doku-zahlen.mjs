@@ -173,7 +173,27 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
       : 'dieselbe Zahl steht an zwei Orten — beide nachziehen');
 }
 
-const gesamt = 5;
+// --- 5. Die eval_scorecard im Frontmatter --------------------------------
+// Sie ist der erste Ort, den ein fremder Agent liest. Im web-Skill stand sie
+// am Tag ihrer Entstehung schon falsch (24 statt 25) — eine Zahl ueber die
+// Pruefung, die selbst ungeprueft ist. Hier gleich mit Wache angelegt.
+{
+  const dateien = fs.readdirSync(HIER).filter((f) => /^run-.*\.mjs$/.test(f)).length;
+  const genannt = (md.match(/^\s*- "evals\/run-/gm) || []).length;
+  zeile(genannt === dateien,
+    `Scorecard: nennt ${genannt} Evals, im Ordner liegen ${dateien}`,
+    genannt === dateien ? null : 'jede Eval gehoert in die Scorecard');
+
+  // Die drei Zahlen der Wachen selbst — sie messen sich hier gegenseitig.
+  const sab = md.match(/run-sabotage\.mjs — (\d+) F(?:ä|ae)lle/);
+  const r = lauf('run-sabotage.mjs');
+  const echtSab = r.kaputt ? null : gesamtzahl(r.aus);
+  zeile(sab && echtSab !== null && Number(sab[1]) === echtSab,
+    `Scorecard: sagt ${sab ? sab[1] : '?'} Sabotage-Faelle, Lauf faehrt ${echtSab ?? '?'}`,
+    sab && Number(sab[1]) === echtSab ? null : 'Zahl in der Scorecard nachziehen');
+}
+
+const gesamt = 7;
 console.log(`\n${gesamt - fehler}/${gesamt} Zahlen stimmen.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht liefern.');

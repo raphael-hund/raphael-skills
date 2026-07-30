@@ -35,7 +35,28 @@ loads:
   - references/component-bibliotheken-radar.md
   - references/wissens-router.md
   - references/stitch-workflow.md
+provenance: >
+  Fusion aus drei Upstream-Skills (impeccable, taste, ui-ux-pro-max), uebernommen
+  am 2026-07-19 aus --depth-1-Klonen unter /root/tools/vendor/. Herkunft, Commits,
+  Lizenzen und die entfernten Teile (Gemini-Bildgenerierung, imagegen-Pflicht)
+  stehen vollstaendig in VENDORING.md dieses Skills — diese Zeile ist nur der
+  Zeiger, nicht die Zweitfassung. Spaeter ergaenzt: emilkowalski-Motion- und
+  jakubkrehel-Detailskills, kill-ai-slop-Scanner.
 requires_skills: [impeccable@^0]
+# Wie tief ist dieser Skill geprueft? Die Zahlen sind an Laeufe gebunden —
+# evals/run-doku-zahlen.mjs reisst, wenn eine hier falsch wird.
+eval_scorecard:
+  stand: 2026-07-30
+  laeufe:
+    - "evals/run-detect-check.mjs — 17 Faelle: Datei-Modus, 13 von 13 Regeln belegt"
+    - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
+    - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
+    - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
+    - "evals/run-eval-umfang.mjs — 3 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"
+  grenzen:
+    - "Der URL-Modus von detect.mjs braucht puppeteer und laeuft auf diesem Rechner nicht — die Evals laden den Detektor per Playwright direkt in die Seite"
+    - "Ein gruener Lauf heisst 'die bekannten Slop-Muster sind raus', nicht 'das Design ist gut'"
 completion_criteria:
   - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
   - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
