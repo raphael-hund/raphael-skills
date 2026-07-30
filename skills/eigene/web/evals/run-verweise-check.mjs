@@ -639,7 +639,21 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
     // Ausserdem Endung .js ausgeschlossen: g1-gate schreibt "siehe
     // evals/antiset-budget.json", und das Muster griff bis `.js` und liess das
     // `on` stehen. Beide Fehlalarme am 30.07.2026 beim ersten Lauf.
-    for (const m of txt.matchAll(/(?:Details|siehe|Quelle|vgl\.):?\s+((?:\.\.?\/)?[a-z][a-z0-9._/-]*\.(?:mjs|json|md|html))(?![a-z0-9])/g)) {
+    // Das `i`-Flag ist noetig — und war die Ursache eines stillen Ausfalls.
+    //
+    // Gegen "siehe Haupt-SKILL.md" (eine Umschreibung, kein Dateiname) habe ich
+    // am 30.07.2026 den Anfang auf [a-z] verengt UND dabei das `i` entfernt.
+    // Damit traf das Muster gar nichts mehr: `VENDORING.md` faengt gross an.
+    // Die Gegenprobe schlug nicht an, und der eine sichtbare Fund
+    // (design-dna.md) kam aus der Backtick-Erkennung — er sah aus wie ein
+    // Beweis, dass die blanke Erkennung arbeitet. Sie tat es nicht.
+    //
+    // Loesung: `i` zurueck, Grossbuchstaben-Umschreibungen stattdessen ueber
+    // den Bindestrich ausschliessen (Haupt-SKILL.md, Teil-README.md). Ein
+    // Dateiname mit Grossbuchstaben MITTEN im Wort nach einem Bindestrich ist
+    // im Bestand immer eine Umschreibung.
+    for (const m of txt.matchAll(/(?:Details|siehe|Quelle|vgl\.):?\s+((?:\.\.?\/)?[A-Za-z][A-Za-z0-9._/-]*\.(?:mjs|json|md|html))(?![a-z0-9])/g)) {
+      if (/-[A-Z]/.test(path.basename(m[1]))) continue;   // "Haupt-SKILL.md
       treffer.push(m);
     }
     for (const m of treffer) {
@@ -648,6 +662,23 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       if (LAUFZEIT.has(name)) continue;
       gezaehlt++;
       const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO];
+      // Die eigene VENDORING.md ist KEINE fremde Herkunft.
+      //
+      // Vendoring-Koepfe nennen beides in zwei Zeilen: das Quell-Repo
+      // ("github.com/yetone/kill-ai-slop") und die eigene Attributionsdatei
+      // ("Details: ../VENDORING.md"). Die Herkunfts-Ausnahme unten sah das
+      // github.com im selben Satzfenster und verwarf den Verweis — also
+      // ausgerechnet die Zusage ueber den EIGENEN Baum, die stimmen muss.
+      //
+      // Am 30.07.2026 dreimal hintereinander als "Gegenprobe schlaegt nicht an"
+      // erschienen, bevor ich die Ausnahme als Ursache gemessen habe. Genau
+      // deshalb steht die Pruefung hier VOR den Ausnahmen.
+      if (/^(?:\.\.?\/)?VENDORING\.md$/.test(ziel)) {
+        if (!wurzeln.some((w) => fs.existsSync(path.join(w, ziel)))) {
+          tot.push(`${path.relative(ZIEL, datei)} -> ${ziel}`);
+        }
+        continue;
+      }
       if (wurzeln.some((w) => fs.existsSync(path.join(w, ziel)))) continue;
       // Fuenfter Weg: das Brain. Router-Tabellen wie design/references/
       // wissens-router.md nennen Wiki-Seiten mit blossem Dateinamen — sie
@@ -760,6 +791,21 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       tot.push(`${path.relative(ZIEL, datei)} -> ${ziel}`);
     }
   }
+  // Null Verweise ist kein Sauber-Befund, sondern eine Leermeldung.
+  //
+  // Beim Lauf ueber zwoelf Skills (30.07.2026) meldeten elf "sauber". Bei
+  // fuenf davon (taste, ui-ux, debug, watch, report) stand dahinter
+  // "0 Dateiverweise in 0 Referenz-Datei(en)" — mit [OK]. Dieselbe Falle, die
+  // ich in der Import-Wache zwei Runden vorher geschlossen habe, hier nur
+  // nicht mitgezogen: nichts geprueft sieht aus wie sauber geprueft.
+  //
+  // Zeiger-Skills wie taste haben wirklich keine eigenen Referenzen; dort ist
+  // das die richtige Antwort. Der gefaehrliche Fall ist der andere: ZIEL zeigt
+  // auf den falschen Ordner, und die Wache schweigt statt zu warnen.
+  if (gezaehlt === 0) {
+    zeile(true, `keine Dateiverweise gefunden (${mdDateien.length} Datei(en) gelesen) — NICHTS geprueft`,
+      'Zeiger-Skill ohne eigene Referenzen? Dann richtig. Sonst zeigt ZIEL auf den falschen Ordner.');
+  } else
   zeile(tot.length === 0, `${gezaehlt} Dateiverweise in ${mdDateien.length} Referenz-Datei(en)`,
     tot.length ? `zeigen ins Leere: ${tot.slice(0, 6).join(' | ')}` : null);
 }
