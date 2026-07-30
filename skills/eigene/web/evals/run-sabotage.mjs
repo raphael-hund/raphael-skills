@@ -191,31 +191,6 @@ const SCHAEDEN = [
   },
 ];
 
-// --- Nur EIN Sabotage-Lauf gleichzeitig ---------------------------------
-// Zwei Laeufe, die dieselbe Datei beschaedigen und wiederherstellen, ueberholen
-// sich: Lauf A schreibt das Original zurueck, waehrend Lauf B seinen Schaden
-// gerade eingebaut hat — danach traegt die Datei B's Schaden und niemand fuehlt
-// sich zustaendig. Am 30.07.2026 genau so passiert (craft-check.mjs blieb
-// zweimal auf WARN stehen, waehrend eine Parallel-Session denselben Lauf fuhr).
-//
-// Die Sperre ist eine Datei, kein Prozess-Check: sie ueberlebt auch, wenn ein
-// Lauf hart abgebrochen wird. Wer eine verwaiste Sperre findet, sieht Alter und
-// PID und kann entscheiden.
-const SPERRE = path.join(SKILL, 'evals', '.sabotage-laeuft');
-if (fs.existsSync(SPERRE)) {
-  const alt = fs.readFileSync(SPERRE, 'utf8').trim();
-  const alterMin = Math.round((Date.now() - fs.statSync(SPERRE).mtimeMs) / 60000);
-  console.error(`\nEs laeuft bereits ein Sabotage-Lauf (${alt}, seit ${alterMin} min).`);
-  console.error('Zwei gleichzeitige Laeufe lassen Pruefer beschaedigt zurueck.');
-  console.error(`Wenn das ein Ueberbleibsel ist: rm ${SPERRE}\n`);
-  process.exit(2);
-}
-fs.writeFileSync(SPERRE, `PID ${process.pid}`);
-const sperreLoesen = () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ } };
-process.on('exit', sperreLoesen);
-process.on('SIGINT', () => { sperreLoesen(); process.exit(130); });
-process.on('SIGTERM', () => { sperreLoesen(); process.exit(143); });
-
 let fehler = 0;
 const zeile = (ok, text, detail) => {
   if (!ok) fehler++;
