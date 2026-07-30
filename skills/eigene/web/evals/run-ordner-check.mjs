@@ -273,7 +273,18 @@ console.log('\nAbgestuerzte Pruefer duerfen nicht als Qualitaetsfehler gelten:\n
     const dreissigStunden = new Date(Date.now() - 30 * 60 * 60 * 1000);
     fs.utimesSync(alt, dreissigStunden, dreissigStunden);
 
-    lauf({});   // ein normaler Tor-Lauf raeumt beim Start auf
+    // EIN Lauf fuer beide Fragen. Vorher standen hier zwei identische
+    // `lauf({})` — einer fuer die Ordner-Alterung, einer als Gegenrichtung zur
+    // Absturz-Huerde. Beide brauchen dasselbe: einen normalen Tor-Durchlauf
+    // ohne Zeitgrenze. Gemessen am 30.07.2026 kostete diese Eval dadurch 236
+    // Sekunden, mehr als jede andere ausser craft-check; ein voller Tor-Lauf
+    // mit Lighthouse und Browser-Pruefern ist der teuerste Einzelschritt im
+    // ganzen Skill.
+    //
+    // Das ist kein Schoenheitsthema: eine Eval, deren Lauf zu lange dauert,
+    // wird beim naechsten Mal uebersprungen — und ein uebersprungener Pruefer
+    // ist genau das, wogegen dieser Skill gebaut ist.
+    const normal = lauf({});
 
     zeile(!fs.existsSync(alt), 'Laufordner aelter als 24h wird aufgeraeumt',
       fs.existsSync(alt) ? 'liegt noch da — /tmp waechst unbegrenzt' : null);
@@ -282,15 +293,14 @@ console.log('\nAbgestuerzte Pruefer duerfen nicht als Qualitaetsfehler gelten:\n
 
     fs.rmSync(alt, { recursive: true, force: true });
     fs.rmSync(neu, { recursive: true, force: true });
-  }
 
-  // Gegenrichtung: ohne erzwungenen Abbruch darf dieser Weg NICHT greifen.
-  // Ohne sie koennte die Huerde auf alles anschlagen und der Fall oben bestuende
-  // trotzdem.
-  const normal = lauf({});
-  zeile(normal.status !== 2 || !/Pruefer abgestuerzt/.test(`${normal.stdout}`),
-    'ohne Abbruch greift die Absturz-Huerde nicht',
-    `exit=${normal.status}`);
+    // Gegenrichtung: ohne erzwungenen Abbruch darf die Absturz-Huerde NICHT
+    // greifen. Ohne sie koennte sie auf alles anschlagen und der Abbruch-Fall
+    // oben bestuende trotzdem.
+    zeile(normal.status !== 2 || !/Pruefer abgestuerzt/.test(`${normal.stdout}`),
+      'ohne Abbruch greift die Absturz-Huerde nicht',
+      `exit=${normal.status}`);
+  }
 
   serverAus();
   fs.rmSync(p, { recursive: true, force: true });
