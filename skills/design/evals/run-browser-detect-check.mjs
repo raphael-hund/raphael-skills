@@ -196,6 +196,51 @@ const FAELLE = {
     style: '.raus{width:120px;overflow:hidden;white-space:nowrap;border:1px solid var(--line);padding:8px}',
     body: '<div class="raus">Ein deutlich zu langer Text fuer diesen schmalen Kasten hier drin</div>',
   },
+  'low-contrast': {
+    was: 'Text unter der Kontrast-Grenze',
+    style: 'p.blass{color:#b8bcc2;max-width:none}',
+    body: '<p class="blass">Dieser Text ist auf weissem Grund kaum zu lesen.</p>',
+  },
+  'side-tab': {
+    was: 'dicker Rahmen nur an einer Seite plus Radius',
+    // isSide + radius > 0. Ein farbiger Akzentstreifen links an einer
+    // abgerundeten Box — das typische "Tab am Rand"-Muster.
+    style: '.tab{border-left:4px solid #1d4ed8;border-radius:10px;padding:14px;background:#f7f7f8}',
+    body: '<div class="tab">Kasten mit Akzentstreifen links.</div>',
+  },
+  'border-accent-on-rounded': {
+    was: 'Akzentstreifen OBEN an einer abgerundeten Box',
+    // Die beiden Regeln sind ein if/else, nicht zwei Sichten auf dasselbe:
+    //   links/rechts  -> side-tab
+    //   oben/unten    -> border-accent-on-rounded  (radius > 0 und w >= 2)
+    // Erster Versuch nahm border-left und erwartete beide Namen. Das war meine
+    // Annahme, nicht der Code — am Zweig nachgelesen, dann korrigiert.
+    style: '.oben{border-top:4px solid #1d4ed8;border-radius:10px;padding:14px;background:#f7f7f8}',
+    body: '<div class="oben">Kasten mit Akzentstreifen oben.</div>',
+  },
+  'theater-slop-phrase': {
+    was: '"X theater" als Marketing-Floskel',
+    body: '<p>We are ending the meeting theater in your company for good.</p>',
+  },
+  'repeating-stripes-gradient': {
+    was: 'Streifenmuster als Flaechendekoration',
+    style: '.streifen{background:repeating-linear-gradient(45deg,#f0f0f2 0 10px,#fff 10px 20px);height:120px;border-radius:8px}',
+    body: '<div class="streifen"></div>',
+  },
+  'gpt-thin-border-wide-shadow': {
+    was: 'zwei duenne Rahmen plus weicher Schatten',
+    // visibleThinBorders.length >= 2 UND Schatten-Blur >= 16px.
+    style: '.gpt{border:1px solid #e2e6ea;box-shadow:0 8px 28px rgba(0,0,0,.14);border-radius:12px;padding:18px;background:#fff}'
+      + '.gpt2{border:1px solid #e2e6ea;box-shadow:0 8px 28px rgba(0,0,0,.14);border-radius:12px;padding:18px;background:#fff;margin-top:12px}',
+    body: '<div class="gpt">Erster Kasten</div><div class="gpt2">Zweiter Kasten</div>',
+  },
+  'dark-glow': {
+    was: 'farbiger Leuchtschatten auf dunklem Grund',
+    // Braucht dunklen Hintergrund und einen Schatten mit Blur > 4px in Farbe.
+    style: 'body{background:#0b0f14;color:#e6e8ea}'
+      + '.leucht{box-shadow:0 0 32px rgba(99,102,241,.55);border-radius:12px;padding:18px;background:#141a22}',
+    body: '<div class="leucht">Leuchtender Kasten</div>',
+  },
   'tight-leading': {
     was: 'Zeilenabstand zu eng fuer Fliesstext',
     style: 'p.eng{line-height:1.05}',

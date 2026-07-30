@@ -173,13 +173,15 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
 > `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
 > **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (19 Fälle: 17 Regeln, Kontrollseite,
+> `node evals/run-browser-detect-check.mjs` (26 Fälle: 24 Regeln, Kontrollseite,
 > Gegenprobe im Datei-Modus). Belegt sind `tiny-text`, `all-caps-body`,
 > `justified-text`, `line-length`, `nested-cards`, `tight-leading`,
 > `wide-tracking`, `skipped-heading`, `single-font`, `cream-palette`,
 > `oversized-h1`, `cramped-padding`, `gray-on-color`,
 > `extreme-negative-tracking`, `flat-type-hierarchy`, `italic-serif-display`,
-> `text-overflow`. Offen bleiben 20 der 37 Browser-Regeln,
+> `text-overflow`, `low-contrast`, `side-tab`, `border-accent-on-rounded`,
+> `theater-slop-phrase`, `repeating-stripes-gradient`,
+> `gpt-thin-border-wide-shadow`, `dark-glow`. Offen bleiben 13 der 37 Browser-Regeln,
 > namentlich im Bericht — die meisten brauchen mehr als eine statische Seite
 > (Hover, Scroll, dunkles Theme, echte Bilder).
 >
@@ -198,6 +200,12 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > schlicht unlesbar. Zwei verschiedene Befunde in einer Testseite heißt: der
 > Testfall beweist nicht, was er behauptet. Helleres Grau auf demselben Blau
 > trennt sie.
+>
+> **`side-tab` und `border-accent-on-rounded` sind ein `if/else`, keine zwei
+> Sichten auf dasselbe:** links/rechts → `side-tab`, oben/unten →
+> `border-accent-on-rounded`. Ich hatte angenommen, ein Akzentstreifen links löse
+> beide aus, und einen Testfall darauf gebaut. Am Zweig nachgelesen war es
+> falsch — die Annahme, nicht der Code.
 >
 > **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
 > ```
