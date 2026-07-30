@@ -90,6 +90,35 @@ const FAELLE = {
     was: 'derselbe Verlauf als Tailwind-Klassen',
     body: '<div class="bg-gradient-to-r from-purple-500 to-pink-500">Verlauf</div>',
   },
+  // --- Die zwei ungedeckten Zweige, nachgetragen 30.07.2026 ----------------
+  // `ai-color-palette` hat VIER Zweige im Detektor, die Eval hatte zwei
+  // Fixtures. Aufgefallen bei der Sabotage-Pruefung: sie schaltet EINEN Zweig ab
+  // und die Eval riss trotzdem — weil ein anderer Zweig weiter meldete. Ein
+  // Regelname mit mehreren Zweigen braucht pro Zweig einen Fall, sonst deckt ein
+  // Fall die Luecke des anderen zu.
+  //
+  // Beide verlangen eine UEBERSCHRIFT in derselben Zeile: eine violette Akzentfarbe
+  // irgendwo ist eine Entscheidung, eine violette Headline ist der Tell. Erster
+  // Versuch nutzte <p> und meldete nichts — Fixture falsch, nicht Detektor stumm.
+  'ai-color-palette-css-heading': {
+    ist: 'ai-color-palette',
+    was: 'violette Ueberschriftenfarbe in rohem CSS',
+    // Der Detektor verlangt Ueberschrift UND Farbe in DERSELBEN Zeile ("eine
+    // violette Akzentfarbe irgendwo ist eine Entscheidung, eine violette
+    // Headline ist der Tell"). Zwei Fehlversuche, beide gemessen:
+    //   `style: 'h1{color:#7c3aed}'` — CSS landet im <style>-Block, das <h1>
+    //     neun Zeilen tiefer im Body. Zwei Zeilen, keine Meldung.
+    //   `<h1 style="color:#7c3aed">` — der Regex verlangt `color:` am
+    //     Zeilenanfang oder nach `;{`, im style-Attribut steht ein `"` davor.
+    // Was greift: eine CSS-Regel mit font-size in derselben Zeile.
+    style: 'h1 { color: #7c3aed; font-size: 48px }',
+    body: '<h1>Violette Ueberschrift</h1>',
+  },
+  'ai-color-palette-tw-heading': {
+    ist: 'ai-color-palette',
+    was: 'Tailwind text-purple auf einer Ueberschrift',
+    body: '<h1 class="text-purple-500 text-4xl">Violett</h1>',
+  },
   'overused-font': {
     was: 'Inter als Schriftart',
     style: 'h1{font-family:Inter,sans-serif}',
