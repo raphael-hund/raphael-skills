@@ -195,6 +195,58 @@ console.log('\nDas Urteil muss die Pipe ueberleben:\n');
   fs.rmSync(p, { recursive: true, force: true });
 }
 
+// --- 7. Ein abgestuerzter Pruefer ist kein Qualitaetsurteil --------------
+// Bis 30.07.2026 hatte `run()` im Tor KEINE Zeitgrenze: die Pruefer begrenzen
+// nur die Navigation (page.goto, 45s), haengt einer danach, wartete das Tor
+// unbegrenzt mit. In dieser Umgebung passiert — ein Browser-Lauf hing 980
+// Sekunden und hielt seinen Port.
+//
+// Beim Einbau der Grenze fiel der schwerere Fehler auf: brechen die Pruefer ab,
+// meldete das Tor "G1 GERISSEN (Exit 1)". Exit 1 heisst "Qualitaet gerissen"
+// und schickt jemanden los, Fehler auf einer Seite zu suchen, die nie geprueft
+// wurde. Die Detailzeilen sagten den Grund ("kaputt: ETIMEDOUT") — nur der
+// Exit-Code log.
+//
+// Erzwungen wird der Abbruch ueber G1_FRIST_MS. Geprueft wird der EXIT-CODE,
+// nicht der Text: die Meldung war ja schon vorher richtig, falsch war das
+// Urteil.
+console.log('\nAbgestuerzte Pruefer duerfen nicht als Qualitaetsfehler gelten:\n');
+{
+  const p = projektBauen({ buildName: 'dist' });
+  serverAn(path.join(p, 'dist'));
+  const lauf = (env) => spawnSync('node', [GATE,
+    '--url', `http://localhost:${HAFEN}/`, '--src', p, '--build', path.join(p, 'dist'), '--no-shots'],
+  { encoding: 'utf8', timeout: 300000, env: { ...process.env, ...env } });
+
+  // Die Frist muss den SERVER-CHECK ueberleben und die Pruefer toeten.
+  //
+  // Erster Versuch nahm 1 ms — da stirbt schon das `curl` der Erreichbarkeit,
+  // und das Tor endet mit "Server nicht erreichbar — Gate kann nicht urteilen",
+  // ebenfalls Exit 2. Der Fall war gruen, MASS aber einen anderen Weg: mit
+  // stillgelegter Huerde bestand er unveraendert. Ein Test, der das richtige
+  // Ergebnis aus dem falschen Grund bekommt, ist kein Test.
+  // 1500 ms: curl kommt durch (Millisekunden), jeder Browser-Pruefer nicht.
+  const kaputt = lauf({ G1_FRIST_MS: '1500' });
+  const ausK = `${kaputt.stdout || ''}${kaputt.stderr || ''}`;
+  // Beweis mitpruefen: Exit 2 allein genuegt nicht, es muss AUS DIESEM GRUND
+  // kommen. Sonst faengt der Fall jeden beliebigen Exit-2-Weg ein.
+  zeile(kaputt.status === 2 && /Pruefer abgestuerzt/.test(ausK),
+    'alle Pruefer abgestuerzt -> Exit 2 (kein Urteil)',
+    kaputt.status === 2 && /Pruefer abgestuerzt/.test(ausK) ? null
+      : `exit=${kaputt.status}, Schluss: ${(ausK.match(/^G1 .*$/m) || ['(keiner)'])[0]}`);
+
+  // Gegenrichtung: ohne erzwungenen Abbruch darf dieser Weg NICHT greifen.
+  // Ohne sie koennte die Huerde auf alles anschlagen und der Fall oben bestuende
+  // trotzdem.
+  const normal = lauf({});
+  zeile(normal.status !== 2 || !/Pruefer abgestuerzt/.test(`${normal.stdout}`),
+    'ohne Abbruch greift die Absturz-Huerde nicht',
+    `exit=${normal.status}`);
+
+  serverAus();
+  fs.rmSync(p, { recursive: true, force: true });
+}
+
 // Die Summe zaehlt sich selbst.
 //
 // Sie stand hier als Handzahl. Bei run-bilder-check war so eine Formel

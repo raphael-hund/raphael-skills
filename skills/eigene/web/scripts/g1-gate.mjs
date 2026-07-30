@@ -216,8 +216,30 @@ function toolExists(bin) {
   try { execFileSync('which', [bin], { stdio: 'pipe' }); return true; } catch { return false; }
 }
 
+// Zeitgrenze pro Pruefer. Ohne sie wartet das Tor unbegrenzt.
+//
+// Die Pruefer setzen zwar Timeouts, aber nur auf die NAVIGATION (page.goto,
+// 45s). Haengt einer NACH dem Laden — Playwright wartet auf ein Element, ein
+// Port ist von einem fremden Lauf belegt, eine Animation wird nie fertig —,
+// laeuft er weiter, und `execFileSync` ohne timeout wartet mit.
+//
+// Am 30.07.2026 in dieser Umgebung passiert: ein Browser-Lauf hing 980
+// Sekunden und hielt dabei seinen Port; der wartende Lauf lief in einen
+// Playwright-Timeout und meldete "reisst, aber aus dem falschen Grund".
+//
+// 10 Minuten sind grosszuegig: der langsamste Pruefer (Lighthouse ueber vier
+// Kategorien) braucht auf diesem Rechner unter zwei. Ein Lauf, der laenger
+// braucht, haengt — er ist nicht langsam.
+//
+// Der Abbruch landet im catch des Aufrufers, und `e.status` ist bei einem
+// Timeout `null` -> `e.status ?? 2` macht daraus Exit 2, also "Pruefer kaputt,
+// NICHT bestanden". Genau die richtige Einstufung: nichts geprueft.
+const PRUEFER_FRIST = Number(process.env.G1_FRIST_MS || 600000);
+
 function run(bin, argv, opts = {}) {
-  return execFileSync(bin, argv, { encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024, ...opts });
+  return execFileSync(bin, argv, {
+    encoding: 'utf8', stdio: 'pipe', maxBuffer: 64 * 1024 * 1024, timeout: PRUEFER_FRIST, ...opts,
+  });
 }
 
 // --- Check 1: Server erreichbar -------------------------------------------
@@ -891,6 +913,35 @@ if (skipped.length) {
 // Das ist am 29.07.2026 zweimal an einem Tag passiert, beide Male mit dem
 // falschen Schluss "meldet Blocker und besteht trotzdem". Ein Urteil, das man
 // beim Weiterreichen verliert, muss auch im Text stehen.
+// Vor dem Exit-1-Urteil: sind ALLE Rot-Meldungen Abstuerze? Dann ist das kein
+// Qualitaetsurteil, sondern gar keins.
+//
+// Ein Pruefer, der GELAUFEN und dabei ABGESTUERZT ist, zaehlt in der Huerde
+// weiter unten als gelaufen (die fragt nur nach `!skipped`). Sein Rot wandert
+// bis hierher und wird zu "Qualitaet gerissen" — das schickt jemanden los,
+// Fehler auf einer Seite zu suchen, die nie geprueft wurde.
+//
+// Am 30.07.2026 sichtbar geworden, als die neue Zeitgrenze griff: vier Pruefer
+// mit ETIMEDOUT, Meldung "G1 GERISSEN (Exit 1) — 4 Check(s)". Die Detailzeilen
+// sagten den Grund ("craft-check kaputt: ETIMEDOUT") — nur der Exit-Code log.
+//
+// Erkennung ueber die Detailtexte statt ueber ein neues Flag: so erfasst sie
+// auch die Absturzarten, die es vor der Zeitgrenze schon gab (Pufferueberlauf,
+// unlesbares JSON, toter Server), ohne sechs record()-Aufrufe anzufassen, von
+// denen einer vergessen wuerde.
+//
+// Nur wenn KEIN echter Befund daneben steht. Sonst bleibt Exit 1 richtig: dann
+// ist nachweislich etwas an der Seite kaputt, und das ist die dringendere
+// Nachricht. Ein Tor, das bei einem Absturz einen echten Fund verschluckt,
+// waere schlimmer als die Fehleinstufung.
+const KAPUTT_RE = /kaputt|fehlgeschlagen|unlesbar|ETIMEDOUT|ENOBUFS|nicht erreichbar/i;
+if (failed.length && failed.every((r) => KAPUTT_RE.test(r.detail || ''))) {
+  console.log(`\nG1 KANN NICHT URTEILEN (Exit 2) — ${failed.length} Pruefer abgestuerzt, keiner mit Befund:`);
+  for (const r of failed) console.log(`  ${r.name}: ${r.detail}`);
+  console.log('Das ist kein Urteil ueber die Seite. Ursache beheben, dann erneut.');
+  process.exit(2);
+}
+
 if (failed.length) {
   console.log(`\nG1 GERISSEN (Exit 1) — ${failed.length} Check(s): ${failed.map((r) => r.name).join(', ')}`);
   process.exit(1);
@@ -942,6 +993,7 @@ if (fehltGanz.length) {
   console.log('Uebersprungen ist nicht bestanden. Werkzeug nachinstallieren bzw. --src setzen, dann erneut.');
   process.exit(2);
 }
+
 // Letzte Huerde: gruen fuer EINIGE Seiten ist kein gruen fuer die Website.
 //
 // Die erste Fassung fragte nur, ob --routes ueberhaupt gesetzt ist. Wer 2 von 28
