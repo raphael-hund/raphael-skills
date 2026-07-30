@@ -21,6 +21,7 @@
  * Exit 0 = jede Eval merkt ihren Schaden. Exit 1 = mindestens eine ist blind.
  */
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -30,9 +31,31 @@ const SKILL = path.join(HIER, '..');
 const nurArg = process.argv.indexOf('--nur');
 const NUR = nurArg >= 0 ? process.argv[nurArg + 1] : null;
 
+// Nur EIN Lauf gleichzeitig — dieselbe Sperre wie im web-Skill.
+//
+// Dieses Werkzeug beschaedigt echte Detektoren und stellt sie wieder her. Laufen
+// zwei Laeufe parallel, liest Lauf B den Detektor im sabotierten Zustand von
+// Lauf A als "Original" und schreibt genau den zurueck. Im web-Skill genau so
+// passiert (30.07.2026): craft-check.mjs blieb mit abgeschaltetem Blocker liegen.
+const SPERRE = path.join(os.tmpdir(), 'run-sabotage-design.lock');
+if (fs.existsSync(SPERRE)) {
+  const alt = fs.readFileSync(SPERRE, 'utf8').trim();
+  let laeuft = false;
+  try { process.kill(Number(alt), 0); laeuft = true; } catch { /* Leiche */ }
+  if (laeuft) {
+    console.error(`Ein design-Sabotage-Lauf laeuft bereits (PID ${alt}).`);
+    console.error('Zwei Laeufe wuerden sich beschaedigte Detektoren als Original zurueckschreiben.');
+    process.exit(2);
+  }
+  console.error(`Verwaiste Sperre von PID ${alt} — Lauf lebt nicht mehr, wird uebernommen.`);
+}
+fs.writeFileSync(SPERRE, String(process.pid));
+process.on('exit', () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ } });
+
 const SCHAEDEN = [
   {
     kurz: 'regex',
+    beleg: '\\[!!\\][^\\n]*ai-color-palette',
     pruefer: 'scripts/detector/engines/regex/detect-text.mjs',
     eval: 'evals/run-detect-check.mjs',
     // Der Befund vom 30.07.2026, der die Datei-Eval ueberhaupt ausgeloest hat:
@@ -44,6 +67,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'browser',
+    beleg: '\\[!!\\][^\\n]*tiny-text',
     // Nicht rules/checks.mjs! Das ist der NODE-Pfad. Der Browser-Pfad laeuft
     // ueber das generierte Bundle detect-antipatterns-browser.js — zwei getrennte
     // Kopien derselben Regeln. Erster Versuch am 30.07.2026 sabotierte checks.mjs
@@ -62,6 +86,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'slop-de',
+    beleg: '\\[!!\\][^\\n]*de-14',
     pruefer: 'scripts/rules.de.mjs',
     eval: '../eigene/web/evals/run-slop-de-check.mjs',
     // Der deutsche Regelsatz ist der einzige Schutz gegen deutsche
@@ -82,11 +107,11 @@ const zeile = (ok, text, detail) => {
 
 function laufEval(rel) {
   try {
-    execFileSync('node', [path.resolve(SKILL, rel)],
+    const aus = execFileSync('node', [path.resolve(SKILL, rel)],
       { encoding: 'utf8', timeout: 900000, cwd: path.dirname(path.resolve(SKILL, rel)) });
-    return 0;
+    return { code: 0, aus };
   } catch (e) {
-    return e.status ?? 1;
+    return { code: e.status ?? 1, aus: `${e.stdout || ''}${e.stderr || ''}` };
   }
 }
 
@@ -113,9 +138,19 @@ for (const s of SCHAEDEN) {
       zeile(false, `${s.kurz}: Datei unveraendert trotz Schreibversuch`);
       continue;
     }
-    const code = laufEval(s.eval);
-    zeile(code !== 0, `${s.kurz}: ${s.was}`,
-      code === 0 ? `${path.basename(s.eval)} meldet trotzdem Exit 0 — blind an dieser Stelle` : null);
+    const { code, aus } = laufEval(s.eval);
+    // Reissen genuegt nicht — die Eval muss den EINGEBAUTEN Schaden benennen.
+    //
+    // Im web-Skill hat genau diese Verschaerfung (30.07.2026) eine blind
+    // gewordene Eval gefangen, die vorher als bestanden durchlief: sie riss aus
+    // einem Nebengrund, nicht wegen des Schadens. `beleg` ist aus einem
+    // Protokoll-Lauf GEMESSEN, nicht geraten — bei den web-Belegen war das der
+    // Unterschied zwischen 12/12 und zwei Fehlschlaegen.
+    const trifft = !s.beleg || new RegExp(s.beleg, 'i').test(aus);
+    zeile(code !== 0 && trifft, `${s.kurz}: ${s.was}`,
+      code === 0
+        ? `${path.basename(s.eval)} meldet trotzdem Exit 0 — die Eval ist an dieser Stelle blind`
+        : (!trifft ? `${path.basename(s.eval)} reisst, aber ohne "${s.beleg}" — falscher Grund` : null));
   } finally {
     fs.writeFileSync(datei, original);
     const jetzt = fs.readFileSync(datei, 'utf8');
