@@ -33,10 +33,10 @@ function usage() {
   node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <Seitenname>]
 
 Nur im Modus "Optik nachbauen, Inhalte ersetzen". Beim originalgetreuen Nachbau braucht es keine DNA — dort ist der echte Quellcode die Wahrheit.
-Aufbau und Bedeutung der Felder: references/design-dna.md`);
+Aufbau und Bedeutung der Felder: references/design-dna-schema.md`);
 }
 
-// 完整 DNA 骨架（与 references/design-dna.md 对齐）
+// 完整 DNA 骨架（与 references/design-dna-schema.md 对齐）
 function skeleton(name) {
   const ts = () => ({ size: "", weight: "", line_height: "", tracking: "" });
   return {
@@ -208,7 +208,7 @@ function enrich(dna, recon) {
       : "")
     + "Vorausgefuellt aus der Aufnahme: font_families, surface.background und visual_effects stehen auf gemessenen Werten. " +
     "Welche Farbe primary, secondary oder accent ist, muss von Hand aus _recon_signals.color_candidates zugewiesen werden. " +
-    "Alle leeren Felder bleiben Handarbeit (siehe references/design-dna.md). Wenn alles stimmt, koennen _recon_signals und dieser Hinweis raus.";
+    "Alle leeren Felder bleiben Handarbeit (siehe references/design-dna-schema.md). Wenn alles stimmt, koennen _recon_signals und dieser Hinweis raus.";
   return dna;
 }
 
@@ -235,7 +235,7 @@ try {
     const s = dna._recon_signals;
     console.log(`   Vorausgefuellt: ${s.fonts.length} Schriften, ${s.color_candidates.length} Farbkandidaten, ${s.canvas_count} Canvas, three=${!!s.frameworks.three} gsap=${!!s.frameworks.gsap} lenis=${!!s.frameworks.lenis}`);
   }
-  console.log(`   Naechster Schritt: leere Felder von Hand fuellen und den Farben aus _recon_signals ihre Rolle geben. Aufbau → references/design-dna.md`);
+  console.log(`   Naechster Schritt: leere Felder von Hand fuellen und den Farben aus _recon_signals ihre Rolle geben. Aufbau → references/design-dna-schema.md`);
 } catch (e) {
   console.error(`dna-scaffold fehlgeschlagen: ${e.message}`);
   process.exit(1);

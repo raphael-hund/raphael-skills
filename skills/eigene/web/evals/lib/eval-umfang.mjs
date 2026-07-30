@@ -69,7 +69,10 @@ export function fallzahl(evalOrdner, datei, cwd) {
   // als geschrumpfte Eval. Sie war vollzaehlig; nur ihr Satzbau war neu.
   // "gepruefte Doku-Zahlen" (web) und "Zahlen" (design) — zwei Wachen desselben
   // Zwecks mit leicht verschiedenem Satzbau. Beide meinen dasselbe.
-  const zahlen = aus.match(/^(\d+)\/(\d+) (?:gepruefte Doku-)?Zahlen stimmen\./m);
+  // Der Punkt am Ende ist nicht garantiert: seit dem 30.07.2026 haengt
+  // run-doku-zahlen "(1 ohne Sollstand)" an. Mein eigener Zusatz hat das
+  // Muster gebrochen und die Eval als geschrumpft gemeldet.
+  const zahlen = aus.match(/^(\d+)\/(\d+) (?:gepruefte Doku-)?Zahlen stimmen/m);
   if (zahlen) return { zahl: Number(zahlen[2]), gruen: Number(zahlen[1]), form: 'Doku-Zahlen' };
 
   // Fuenfte Form: "23/24 Skills wie erwartet." — dieselbe N/M-Struktur, aber
@@ -77,6 +80,12 @@ export function fallzahl(evalOrdner, datei, cwd) {
   // "wie erwartet." am Zeilenende und trifft es deshalb nicht.
   const skills = aus.match(/^(\d+)\/(\d+) Skills wie erwartet\./m);
   if (skills) return { zahl: Number(skills[2]), gruen: Number(skills[1]), form: 'Skills' };
+
+  // Sechste Form: "55/55 Skripte wie erwartet." — wieder N/M, wieder eine
+  // andere Einheit. Beim vierten Mal ist klar: das Grundmuster sollte die
+  // Einheit offen lassen, statt jedes neue Wort einzeln zu lernen.
+  const einheit = aus.match(/^(\d+)\/(\d+) [A-Za-zÄÖÜäöü-]+ wie erwartet\./m);
+  if (einheit) return { zahl: Number(einheit[2]), gruen: Number(einheit[1]), form: 'N/M mit Einheit' };
 
   const libs = aus.match(/^(\d+) Libraries, jede/m);
   if (libs) return { zahl: Number(libs[1]), form: 'Libraries' };

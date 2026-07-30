@@ -11,7 +11,7 @@
 //   <dir>/third-party.json        第三方 host + 需自托管的 webfont CSS(typekit/google) 提示
 // 纪律: 只搬"真实请求到的"资产，不臆造路径。第三方 CDN(字体/wasm/视频)不自动改写——按 third-party.json 人工处理。
 //       后续手工: 自托管锁域名字体(典型 Typekit @import) → 改写 CSS @import 为本地 → 删追踪 → 从 site/ 作 web 根服务。
-//       完整配方见 references/static-mirror.md。
+//       完整配方见 references/web-clone-playbook.md。
 
 import { loadPlaywright, launchChromium } from "./lib/playwright-loader.mjs";
 import fs from "node:fs";
@@ -38,7 +38,7 @@ function usage() {
 
 Passt fuer: Astro / Vite SSG / Hugo — jede Site, die ihre Dateien fertig zum Herunterladen ausliefert (auch WebGL/Canvas-lastig).
 Passt NICHT fuer: echtes Server-Rendering oder datengetriebene SPAs — dort braucht es network-capture.mjs als API-Ersatz.
-Rezept und die naechsten Schritte (Schriften selbst hosten, Tracker raus, ausliefern) → references/static-mirror.md`);
+Rezept und die naechsten Schritte (Schriften selbst hosten, Tracker raus, ausliefern) → references/web-clone-playbook.md`);
 }
 
 // 同源资产 URL → 本地相对路径(去 query；目录结尾存 index.html)
@@ -155,6 +155,6 @@ if (abgewehrt.length) {
 }
 if (failed.length) console.log("  ⚠️ fehlgeschlagen:\n   " + failed.slice(0, 20).join("\n   "));
 console.log(`▸ Fremde Hosts: ${thirdHosts.join(", ") || "(keine)"}`);
-if (webfontCss.length) console.log(`▸ Webfont-CSS, das selbst gehostet werden muss (siehe static-mirror.md): \n   ${webfontCss.join("\n   ")}`);
+if (webfontCss.length) console.log(`▸ Webfont-CSS, das selbst gehostet werden muss (siehe references/web-clone-playbook.md): \n   ${webfontCss.join("\n   ")}`);
 console.log(`▸ Naechster Schritt: Schriften selbst hosten, CSS-@import umschreiben, Tracker entfernen → cd ${siteDir} && python3 -m http.server 8124`);
 await browser.close();
