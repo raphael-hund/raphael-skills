@@ -200,6 +200,20 @@ customElements.define('lead-form', LeadForm);
 ];
 
 const wurzel = fs.mkdtempSync('/tmp/formular-eval-');
+// Fixtures wegraeumen, egal wie der Lauf endet.
+//
+// Gemessen am 30.07.2026: 64 formular-eval-Ordner in /tmp, dazu 33 vom
+// budget-check — reine Testfixtures, kein Beweismaterial, das jemand nachlesen
+// wuerde. Diese Eval hat ZWEI Ausgaenge (Exit 1 bei Befund, Exit 0 am Ende);
+// ein rmSync an einer Stelle haette den anderen Weg offen gelassen.
+// `process.on('exit')` faengt beide und laeuft auch bei einer Ausnahme.
+//
+// Das Anti-Set raeumt bewusst NICHT auf: es nennt seinen Ordner im Protokoll,
+// damit man nach einem Fehlschlag die gebauten Seiten ansehen kann. Hier gibt
+// es nichts anzusehen.
+process.on('exit', () => {
+  try { fs.rmSync(wurzel, { recursive: true, force: true }); } catch { /* egal */ }
+});
 for (const f of FAELLE) {
   const d = path.join(wurzel, f.name);
   fs.mkdirSync(d, { recursive: true });

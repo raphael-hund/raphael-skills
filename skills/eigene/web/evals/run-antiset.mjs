@@ -93,6 +93,31 @@ for (const n of namen) {
 
 // Jede Fixture bekommt einen eigenen Ordner, weil --src einen Projektordner erwartet.
 const wurzel = fs.mkdtempSync('/tmp/antiset-');
+
+// Alte Laufordner altern lassen — aber den eigenen behalten.
+//
+// Dieser Lauf raeumt am Ende bewusst NICHT auf: er nennt seinen Ordner im
+// Protokoll, damit man nach einem Fehlschlag die gebauten Seiten ansehen kann.
+// Das ist richtig und bleibt so. Nur haelt niemand die alten davon ab, sich zu
+// stapeln — gemessen am 30.07.2026: 65 Ordner, 9,7 MB, aeltester vom 28.07.
+//
+// Dieselbe Loesung wie im G1-Tor: nach ALTER, nicht "beim Start den vorigen".
+// Wer zwei Anti-Sets parallel faehrt (auf verschiedenen Ports moeglich), wuerde
+// dem anderen sonst die Fixtures unter den Fuessen wegziehen — und der Lauf
+// meldete Fehler, die nur vom Aufraeumer kommen.
+{
+  const GRENZE = Date.now() - 24 * 60 * 60 * 1000;
+  try {
+    for (const name of fs.readdirSync('/tmp')) {
+      if (!name.startsWith('antiset-')) continue;
+      const p = path.join('/tmp', name);
+      if (p === wurzel) continue;
+      try {
+        if (fs.statSync(p).mtimeMs < GRENZE) fs.rmSync(p, { recursive: true, force: true });
+      } catch { /* fremder Besitzer oder gerade weg */ }
+    }
+  } catch { /* /tmp unlesbar: kein Grund, den Lauf zu stoppen */ }
+}
 // Mitkopiert wird alles, was die Fixtures nebenbei brauchen (Bilder). Wuerde nur
 // die HTML-Datei wandern, waere jedes Bild ein 404 — die Kontrolle wuerde an der
 // Link-Pruefung rot, und zwar aus einem Grund, den keine Fixture testen will.

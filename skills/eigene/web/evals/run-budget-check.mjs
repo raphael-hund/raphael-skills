@@ -70,6 +70,11 @@ const { budgetLaden, DEFAULT_BUDGET } = bauen(
 );
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'budget-check-'));
+// Fixtures wegraeumen, egal wie der Lauf endet — 33 Ordner lagen am 30.07.2026
+// in /tmp. Es sind Budget-JSONs zum Wegwerfen, kein Beweismaterial.
+process.on('exit', () => {
+  try { fs.rmSync(tmp, { recursive: true, force: true }); } catch { /* egal */ }
+});
 const datei = (name, inhalt) => {
   const p = path.join(tmp, name);
   fs.writeFileSync(p, typeof inhalt === 'string' ? inhalt : JSON.stringify(inhalt));
