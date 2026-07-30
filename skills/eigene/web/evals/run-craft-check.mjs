@@ -392,6 +392,12 @@ function lauf(html, dazu = {}) {
     let d;
     try { d = JSON.parse(roh); } catch { return { kaputt: 'Ausgabe unlesbar', ids: [] }; }
     const ids = [...new Set([...(d.blockers || []), ...(d.warns || [])].map((x) => x.id))];
+    // Zusaetzlich die Stufe merken. Bis 30.07.2026 warf diese Eval Blocker und
+    // Warnungen in EINEN Topf — und damit blieb der Schweregrad ungeprueft.
+    // Gemessen: `add('BLOCK', 'M3', …)` zu `add('WARN', 'M3', …)` geaendert, und
+    // die Eval meldete weiter 22/22. Ein Blocker, der heimlich zur Warnung wird,
+    // entscheidet aber genau die Frage, ob eine Seite ausgeliefert wird.
+    const blockIds = new Set((d.blockers || []).map((x) => x.id));
     // INFOs bleiben BEWUSST aus `ids`: die Mitlaeufer-Pruefung wuerde sonst jeden
     // Fall roetlich melden, weil M24/M25 und M20 auf JEDER Seite als INFO
     // erscheinen. Fuer Faelle, die eine INFO-Regel belegen sollen, gibt es
@@ -401,7 +407,7 @@ function lauf(html, dazu = {}) {
     // nicht enthielt. Mein Testfall war unerfuellbar gebaut, die Regel lief die
     // ganze Zeit (am echten Pruefer nachgemessen: minimale Seite -> M20 dabei).
     const infoIds = [...new Set((d.infos || []).map((x) => x.id))];
-    return { ids, infoIds, roh: d };
+    return { ids, blockIds, infoIds, roh: d };
   } finally {
     fs.rmSync(ordner, { recursive: true, force: true });
   }
@@ -520,6 +526,40 @@ const antiset = ['M13', 'T1', 'T2', 'T7', 'M11', 'M17', 'M24', 'T8', 'T9', 'T5']
 // der eigenen Ausgabe widerspricht.
 const belegt = new Set([...hier, ...antiset, 'M20']);
 const offen = alleIds.filter((x) => !belegt.has(x));
+
+// --- Die Stufe ist Teil der Regel, nicht nur ihr Name ------------------
+// Zehn der 23 Regeln sind BLOCK-Stufe: sie stoppen eine Auslieferung. Wird eine
+// davon still zur Warnung, laeuft die Seite durch — und keine Fixture merkt es,
+// solange nur nach der ID gefragt wird. Diese Liste steht deshalb hier und
+// nicht im Pruefer: sie ist die Erwartung, gegen die er gemessen wird.
+const BLOCKER = ['M3', 'M8', 'M9', 'M12', 'M16', 'M17', 'M18', 'M24', 'T2', 'T8'];
+console.log('\nJede BLOCK-Regel meldet auch wirklich BLOCK:\n');
+{
+  // Die Fixtures decken nicht alle zehn ab (T2 braucht Webfonts, M18/M24 haengen
+  // an ganzen Seiten) — geprueft wird, was herstellbar ist, und der Rest steht
+  // ehrlich daneben.
+  const pruefbar = BLOCKER.filter((id) => FAELLE[id] || Object.values(FAELLE).some((f) => f.ist === id));
+  const falsch = [];
+  for (const id of pruefbar) {
+    const f = FAELLE[id] || Object.values(FAELLE).find((x) => x.ist === id);
+    let html = seite(f);
+    if (f.ohneBild) html = html.replace(/<img[\s\S]*?>/, '');
+    if (f.kopfWeg) html = html.replace(f.kopfWeg, '');
+    const r = lauf(html);
+    if (!r.kaputt && !r.blockIds.has(id)) falsch.push(id);
+  }
+  // Der Text muss zum Urteil passen — "alle als BLOCK gemeldet" neben einem
+  // [!!] widerspricht sich und schickt den Leser in die falsche Richtung.
+  // Derselbe Fehler wie im Verweise-Pruefer, beide am 30.07.2026 gefunden,
+  // beide erst beim absichtlichen Kaputtmachen sichtbar geworden.
+  zeile(falsch.length === 0,
+    falsch.length === 0
+      ? `${pruefbar.length} von ${BLOCKER.length} Blocker-Regeln mit Fixture, alle als BLOCK gemeldet`
+      : `${falsch.length} von ${pruefbar.length} Blocker-Regeln melden nur WARN`,
+    falsch.length ? `melden nicht BLOCK: ${falsch.join(', ')}` : null);
+  const ohne = BLOCKER.filter((id) => !pruefbar.includes(id));
+  if (ohne.length) console.log(`         (ohne Fixture, Stufe ungeprueft: ${ohne.join(', ')})`);
+}
 
 console.log('\nAbdeckung (die Zahl, die vorher niemand nannte):\n');
 console.log(`  ${alleIds.length} Regeln im Pruefer`);
