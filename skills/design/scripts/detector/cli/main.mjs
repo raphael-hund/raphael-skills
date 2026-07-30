@@ -318,4 +318,20 @@ async function detectCli() {
   process.exit(0);
 }
 
+// Diese Datei heisst `main.mjs`, liegt in `cli/` und ist trotzdem ein MODUL:
+// der Einstiegspunkt ist `detector/detect-antipatterns.mjs`, der `detectCli`
+// hier importiert. Wer sie direkt aufruft, bekam bisher stille Exit 0 und keine
+// Zeile Ausgabe — auf einer Seite mit Indigo-Violett-Verlauf, Inter und
+// Em-Dash. Das sieht aus wie "nichts gefunden" und ist "nie gelaufen".
+//
+// Gefunden 30.07.2026 beim Suchen nach urteilenden Skripten ohne Eval. Der
+// Detektor selbst arbeitet korrekt (ueber den richtigen Einstieg: Exit 2, Fund
+// mit Datei, Zeile und Beleg) — kaputt war nur, was ein Fehlaufruf meldet.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  process.stderr.write(
+    'Diese Datei ist ein Modul, kein Werkzeug.\n'
+    + 'Einstiegspunkt: node scripts/detector/detect-antipatterns.mjs [--json] <pfad|url>\n');
+  process.exit(2);
+}
+
 export { formatFindings, handleStdin, confirm, printUsage, detectCli };
