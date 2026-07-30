@@ -39,7 +39,9 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const CLONE = path.join(HIER, '..', 'scripts', 'web-clone');
 
 let fehler = 0;
+let geprueft = 0;   // von zeile() hochgezaehlt
 const zeile = (ok, text, detail) => {
+  geprueft++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -155,7 +157,17 @@ for (const [werkzeug, fn] of Object.entries(bauNamen)) {
     raus.length ? `zeigt aus dem Ordner: ${raus.join(', ')}` : null);
 }
 
-const gesamt = ausbrueche.length + normal.length + 2 + Object.keys(bauNamen).length;
+// Die Summe zaehlt sich selbst.
+//
+// Sie stand hier als Handzahl. Bei run-bilder-check war so eine Formel
+// nachweislich falsch: gemeldet wurden 9/9, waehrend zwoelf Faelle liefen — drei
+// geprueft Faelle blieben unerwaehnt. Der Fehler macht nichts kaputt, er
+// VERSCHWEIGT eigene Arbeit, und er wird bei jedem Zusatz neu falsch, weil die
+// Zahl an einer Stelle steht, die niemand anfasst, wenn er einen Fall ergaenzt.
+//
+// Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
+// — die Bauart ist der Fehler, nicht erst sein Eintreten.
+const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Ein Klon-Werkzeug laesst die fremde Seite bestimmen, wohin geschrieben wird.');

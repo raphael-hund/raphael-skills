@@ -211,7 +211,9 @@ function lauf(dateien) {
 }
 
 let fehler = 0;
+let geprueft = 0;   // von zeile() hochgezaehlt
 const zeile = (ok, text, detail) => {
+  geprueft++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -264,7 +266,17 @@ console.log('\nVerdrahtung im G1-Tor:\n');
   for (const [text, ok] of proben) zeile(ok, text);
 }
 
-const gesamt = FAELLE.length + WARNT.length + 1 + 4;
+// Die Summe zaehlt sich selbst.
+//
+// Sie stand hier als Handzahl. Bei run-bilder-check war so eine Formel
+// nachweislich falsch: gemeldet wurden 9/9, waehrend zwoelf Faelle liefen — drei
+// geprueft Faelle blieben unerwaehnt. Der Fehler macht nichts kaputt, er
+// VERSCHWEIGT eigene Arbeit, und er wird bei jedem Zusatz neu falsch, weil die
+// Zahl an einer Stelle steht, die niemand anfasst, wenn er einen Fall ergaenzt.
+//
+// Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
+// — die Bauart ist der Fehler, nicht erst sein Eintreten.
+const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('Der Tastatur-Pruefer urteilt falsch — nicht ins Tor haengen.');
