@@ -25,10 +25,25 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
-const SKRIPTE = path.join(HIER, '..', 'scripts');
+// Jeder Skill mit einem scripts/-Ordner, nicht nur web. Der erste Entwurf sah
+// nur hierher — und uebersah, dass design eine EIGENE Kopie von
+// dna-scaffold.mjs haelt, die noch komplett auf Chinesisch ausgab (gefunden
+// 30.07.2026, einen Tag nachdem die web-Kopie uebersetzt war). Zwei Kopien
+// derselben Datei, eine geprueft, eine nicht: genau die Luecke, die ein
+// Pruefer mit festem Pfad offen laesst.
+const SKILLS_WURZEL = path.join(HIER, '..', '..', '..');
+const ORDNER = [];
+for (const wurzel of [path.join(HIER, '..', '..'), SKILLS_WURZEL]) {
+  if (!fs.existsSync(wurzel)) continue;
+  for (const e of fs.readdirSync(wurzel, { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name.startsWith('.')) continue;
+    const skripte = path.join(wurzel, e.name, 'scripts');
+    if (fs.existsSync(skripte) && !ORDNER.includes(skripte)) ORDNER.push(skripte);
+  }
+}
 
-if (!fs.existsSync(SKRIPTE)) {
-  console.error(`FEHLER: scripts/ nicht gefunden (${SKRIPTE}) — nicht geprueft.`);
+if (!ORDNER.length) {
+  console.error('FEHLER: kein scripts/-Ordner gefunden — nicht geprueft.');
   process.exit(2);
 }
 
@@ -50,7 +65,7 @@ function dateien(dir, raus = []) {
   return raus;
 }
 
-const alle = dateien(SKRIPTE);
+const alle = ORDNER.flatMap((o) => dateien(o));
 if (alle.length < 5) {
   console.error(`Nur ${alle.length} Skript(e) gefunden — der Lauf misst so nichts.`);
   process.exit(2);
@@ -73,7 +88,7 @@ for (const f of alle) {
   }
   if (treffer.length) {
     fehler++;
-    console.log(`  [!!]   ${path.relative(SKRIPTE, f)}: ${treffer.length} Zeile(n) fremdsprachige Ausgabe`);
+    console.log(`  [!!]   ${path.relative(SKILLS_WURZEL, f)}: ${treffer.length} Zeile(n) fremdsprachige Ausgabe`);
     for (const t of treffer.slice(0, 5)) console.log(`         ${t}`);
   }
 }

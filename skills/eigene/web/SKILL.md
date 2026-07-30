@@ -62,7 +62,7 @@ eval_scorecard:
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
-    - "evals/run-sprache-check.mjs — 26 Skripte: kann Raphael jeden Bericht lesen?"
+    - "evals/run-sprache-check.mjs — 55 Skripte aller Skills: kann Raphael jeden Bericht lesen?"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
     - "pruefstand.mjs ist nicht sabotage-geprueft — er faellt kein Urteil, das gruen werden koennte"
