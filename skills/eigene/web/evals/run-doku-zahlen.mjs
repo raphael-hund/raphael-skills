@@ -281,7 +281,12 @@ if (AKTUALISIEREN && ersetzt) {
   // ausdruecklich ausgenommenen.
   const dateien = fs.readdirSync(HIER).filter((f) => /^run-.*\.mjs$/.test(f)).length;
   const ausgenommen = (fs.readFileSync(path.join(HIER, 'run-eval-umfang.mjs'), 'utf8')
-    .match(/^\s*'run-[a-z-]+\.mjs':/gm) || []).length;
+    // `[a-z-]` verfehlt jeden Namen mit Ziffer (run-g1-check.mjs, run-eval2.mjs).
+    // Heute hat keine Eval eine Ziffer im Namen — aber die Nachbarmuster in
+    // dieser Datei kennen [a-z0-9-] laengst, und eine Ausnahme, die nicht
+    // gezaehlt wird, macht die Sollzahl still um eins zu gross. Gemessen:
+    // von drei Testnamen traf das alte Muster einen.
+    .match(/^\s*'run-[a-z0-9-]+\.mjs':/gm) || []).length;
   const evalAnzahl = dateien - ausgenommen;
 
   const dokuEvals = scorecardZahl(/run-eval-umfang\.mjs — (\d+) Evals/);
