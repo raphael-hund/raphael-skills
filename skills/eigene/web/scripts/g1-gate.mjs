@@ -797,7 +797,19 @@ checkFormular();
 checkImporte();
 checkMotion();
 checkTastatur();
-if (!has('no-shots')) checkSweep();
+// `--no-shots` schaltet den Screenshot-Sweep ab. Bis 30.07.2026 wortlos: der
+// Bericht meldete "10 Check(s) gruen" und der elfte fehlte einfach in der Liste.
+//
+// Die Screenshot-Pflicht ist eine harte Raphael-Regel ("Design wird NUR noch an
+// Screenshots entschieden"). Ein Flag, das sie aushebelt, darf nicht dieselbe
+// Schlusszeile erzeugen wie ein vollstaendiger Lauf — sonst liest der Naechste
+// ein Gruen, das die wichtigste Pruefung nie gesehen hat. Dasselbe Muster wie
+// beim gelockerten Budget: erkauftes Gruen muss dafuer geradestehen.
+if (has('no-shots')) {
+  record('shot-sweep', true, '--no-shots gesetzt — KEINE Screenshots geprueft', true);
+} else {
+  checkSweep();
+}
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
 const skipped = results.filter((r) => r.skipped);
@@ -815,11 +827,27 @@ console.log(`\nReport: ${reportPath}`);
 // nicht braucht. Der Grund steht in der SKIP-Zeile jedes Checks — hier wird er
 // zusammengefasst statt geraten.
 if (skipped.length) {
-  const wegenSrc = skipped.filter((r) => /--src/.test(r.detail || ''));
-  const rest = skipped.filter((r) => !wegenSrc.includes(r));
-  const teile = [];
-  if (wegenSrc.length) teile.push(`${wegenSrc.map((r) => r.name).join(', ')} (kein --src)`);
-  if (rest.length) teile.push(`${rest.map((r) => r.name).join(', ')} (Werkzeug fehlt)`);
+  // Jeder SKIP nennt SEINEN Grund, nicht einen von zwei vorgegebenen.
+  //
+  // Die erste Fassung kannte "kein --src" und "Werkzeug fehlt". Am 30.07.2026 kam
+  // `--no-shots` dazu und wurde als "Werkzeug fehlt" gemeldet — das Werkzeug war
+  // da, abgeschaltet hatte es der Aufrufer. Dieselbe falsche Faehrte wie vorher
+  // bei "(Tool fehlt)", nur eine Ebene weiter: eine feste Liste von Gruenden
+  // wird beim naechsten neuen Grund wieder falsch.
+  const grundVon = (r) => {
+    const d = r.detail || '';
+    if (/--no-shots/.test(d)) return 'per --no-shots abgeschaltet';
+    if (/--src/.test(d)) return 'kein --src';
+    if (/nicht gefunden|nicht installiert/.test(d)) return 'Werkzeug fehlt';
+    return d.split('—')[0].trim() || 'Grund unbekannt';
+  };
+  const nachGrund = new Map();
+  for (const r of skipped) {
+    const g = grundVon(r);
+    if (!nachGrund.has(g)) nachGrund.set(g, []);
+    nachGrund.get(g).push(r.name);
+  }
+  const teile = [...nachGrund].map(([g, namen]) => `${namen.join(', ')} (${g})`);
   console.log(`${skipped.length} Check(s) uebersprungen: ${teile.join(' | ')}`);
 }
 
