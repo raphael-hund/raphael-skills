@@ -121,7 +121,14 @@ export function umfangPruefen({ evalOrdner, standDatei, ausgenommen, cwd, aktual
     console.log('  Ihr Umfang ist damit UNGEPRUEFT, nicht bestaetigt — einzeln nachfahren.');
   }
 
-  console.log(`\n${evals.length - fehler - uebersprungen.length}/${evals.length - uebersprungen.length} gepruefte Evals mit vollem Umfang.`);
+  // Die Schlusszeile ist die Zeile, die man sich merkt — sie muss allein
+  // stimmen. Im design-Skill las sie "2/2 gepruefte Evals mit vollem Umfang":
+  // klingt vollstaendig, waehrend 3 von 5 Evals nie angefasst wurden (darunter
+  // die groesste mit 39 Faellen). Die Zahl der Ausnahmen steht zwar im Kopf,
+  // aber wer nur das Ende liest, haelt eine Teilpruefung fuer eine ganze.
+  const ausZahl = Object.keys(ausgenommen).length;
+  const anhang = ausZahl ? ` (${ausZahl} ausgenommen — einzeln fahren)` : '';
+  console.log(`\n${evals.length - fehler - uebersprungen.length}/${evals.length - uebersprungen.length} gepruefte Evals mit vollem Umfang${anhang}.`);
   if (fehler) {
     console.log('Eine Eval ist geschrumpft oder meldet keine Fallzahl mehr.');
     return 1;
