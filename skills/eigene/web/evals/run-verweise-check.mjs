@@ -300,6 +300,68 @@ console.log('\nWas der Text als verbindlich nennt, sollte in loads: stehen:\n');
 // ueber den Namen; `offers` steckt im Kundendossier `OFFER.md`. Eine Abhaengigkeit
 // zeigt sich an ihrer Wirkung, nicht an ihrer Nennung. Wer hier "aufraeumt",
 // entfernt eine Abhaengigkeit, die taeglich benutzt wird.
+// Fuenfte Frage: ruft irgendwer die Skripte auf, die im Skill liegen?
+//
+// Ein Skript ohne Aufrufer ist nicht kaputt, aber es ist eine Behauptung: es
+// steht da, als wuerde es gebraucht. Beim naechsten Umbau pflegt es jemand mit,
+// ohne dass sich etwas aendert.
+//
+// Befund 30.07.2026 (design-Skill): drei Dateien unter scripts/lib/ mit
+// insgesamt vier Exporten, null Nutzer — design-parser.mjs (parseDesignMd),
+// is-generated.mjs (isGeneratedFile), target-args.mjs (parseTargetPath,
+// parseTargetOptions). Geprueft mit UND ohne Dateiendung, weil ESM-Importe die
+// Endung weglassen duerfen.
+//
+// NUR WARNUNG, und bewusst nichts geloescht: das ist vendorierter Detektor-Code.
+// Die Doktrin ist eindeutig — fremden Dead Code nennen, nicht loeschen. Vielleicht
+// gehoert er zu einem Pfad, den dieser Skill nicht nutzt, das Upstream-Projekt
+// aber schon; ein Loeschen macht das naechste Vendoring-Update zum Konflikt.
+console.log('\nSkripte im Skill haben einen Aufrufer:\n');
+{
+  const skriptOrdner = path.join(ZIEL, 'scripts');
+  if (!fs.existsSync(skriptOrdner)) {
+    zeile(true, 'keine scripts/ — nichts zu pruefen');
+  } else {
+    const alle = [];
+    const geheDurch = (d) => {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        const pfad = path.join(d, e.name);
+        if (e.isDirectory()) geheDurch(pfad);
+        else if (e.name.endsWith('.mjs')) alle.push(pfad);
+      }
+    };
+    geheDurch(skriptOrdner);
+    // Alles lesen, was aufrufen KOENNTE: Skill-Doku und alle anderen Skripte.
+    const suchtext = [...dateien, ...alle].map((f) => {
+      try { return fs.readFileSync(f, 'utf8'); } catch { return ''; }
+    });
+    const ohneAufrufer = alle.filter((f) => {
+      const n = path.basename(f);
+      const ohneEndung = n.replace(/\.mjs$/, '');
+      return !suchtext.some((txt, i) =>
+        [...dateien, ...alle][i] !== f
+        && (txt.includes(n) || new RegExp(`['"\\./]${ohneEndung}['"]`).test(txt)));
+    }).map((f) => path.relative(skriptOrdner, f));
+    // Bekannter, bewusst geduldeter Bestand. Ein Wächter, der dauerhaft rot
+    // steht, wird abgeschaltet und nimmt die echten Befunde mit — dieselbe
+    // Ueberlegung wie bei den Falsch-Positiven im deutschen Regelsatz.
+    //
+    // Diese drei sind vendorierter Detektor-Code (30.07.2026 nachgemessen: vier
+    // Exporte, null Nutzer, mit und ohne Dateiendung geprueft). Sie bleiben
+    // liegen, weil fremder Dead Code genannt und nicht geloescht wird — ein
+    // Loeschen macht das naechste Vendoring-Update zum Konflikt.
+    const GEDULDET = new Set([
+      'lib/design-parser.mjs', 'lib/is-generated.mjs', 'lib/target-args.mjs',
+    ]);
+    const neu = ohneAufrufer.filter((f) => !GEDULDET.has(f));
+    const bekannt = ohneAufrufer.filter((f) => GEDULDET.has(f));
+    zeile(neu.length === 0,
+      `${alle.length} Skript(e), ${alle.length - ohneAufrufer.length} mit Aufrufer`
+        + (bekannt.length ? `, ${bekannt.length} bekannt ohne (vendoriert)` : ''),
+      neu.length ? `NEU ohne Aufrufer: ${neu.join(', ')}` : null);
+  }
+}
+
 console.log('\nJeder Skill aus requires_skills: existiert:\n');
 {
   const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
