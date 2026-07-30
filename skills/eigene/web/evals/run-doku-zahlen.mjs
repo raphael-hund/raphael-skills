@@ -1,0 +1,145 @@
+#!/usr/bin/env node
+/**
+ * run-doku-zahlen.mjs — stimmen die Fallzahlen in SKILL.md noch?
+ *
+ * SKILL.md verspricht neben jedem Eval-Aufruf eine Fallzahl:
+ *   node evals/run-craft-check.mjs   # 12 Faelle + Kontrolle
+ *
+ * Diese Zahl ist eine zweite Wahrheitsquelle. Sie veraltet still, weil nichts
+ * sie an die Evals bindet: wer einen Fall hinzufuegt, aendert die Eval, nicht
+ * den Prosa-Kommentar. Am 30.07.2026 gemessen — 6 von 14 Zahlen waren falsch,
+ * craft stand als "12 Faelle" in der Doku und lief mit 22.
+ *
+ * Warum das mehr ist als Kosmetik: Wer die Doku liest und "12 Faelle" erwartet,
+ * haelt einen Lauf mit 12 Faellen fuer vollstaendig — obwohl 10 fehlen. Die
+ * Umfang-Wache (run-eval-umfang.mjs) faengt genau diesen Fall, aber nur gegen
+ * ihren eigenen Sollstand. Wer stattdessen der Doku glaubt, bekommt keine
+ * Warnung. Eine falsche Zahl in der Doku ist dieselbe Klasse Fehler wie eine
+ * geratene Zahl im Pruefbericht: sie sieht gemessen aus.
+ *
+ * Quelle der Wahrheit ist evals/eval-umfang.json — der Sollstand, den die
+ * Umfang-Wache aus echten Laeufen schreibt. Diese Eval vergleicht nur; sie
+ * fuehrt keine Evals aus und braucht deshalb weder Browser noch Server.
+ *
+ * Aufruf:
+ *   node evals/run-doku-zahlen.mjs
+ *   node evals/run-doku-zahlen.mjs --aktualisieren   # Doku an die Messung anpassen
+ *
+ * Exit 0 = alle Zahlen stimmen, 1 = mindestens eine Zahl ist falsch,
+ * 2 = Sollstand oder SKILL.md fehlt (nicht geprueft, nicht bestanden).
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const HIER = path.dirname(fileURLToPath(import.meta.url));
+const SKILL = path.join(HIER, '..');
+const MD = path.join(SKILL, 'SKILL.md');
+const STAND = path.join(HIER, 'eval-umfang.json');
+const AKTUALISIEREN = process.argv.includes('--aktualisieren');
+
+for (const [p, was] of [[MD, 'SKILL.md'], [STAND, 'eval-umfang.json']]) {
+  if (!fs.existsSync(p)) {
+    console.error(`FEHLER: ${was} nicht gefunden: ${p}`);
+    console.error('Ohne beide Seiten ist nichts zu vergleichen — nicht geprueft.');
+    process.exit(2);
+  }
+}
+
+const stand = JSON.parse(fs.readFileSync(STAND, 'utf8'));
+let md = fs.readFileSync(MD, 'utf8');
+
+// "node evals/run-x.mjs [--flag wert]   # 12 Faelle ..." — die Zahl direkt hinter
+// dem Rautenzeichen. Zwischen Dateiname und # koennen Flags stehen (--nur M6),
+// die einen Teillauf zeigen; solche Zeilen sind KEINE Aussage ueber den
+// Gesamtumfang und werden uebersprungen.
+// Der Rest der Zeile hinter "Faelle" wird MITGELESEN (Gruppe 4). Ohne ihn endet
+// der Treffer bei "Faelle", und ein "+ Kontrolle" dahinter ist fuer jede Pruefung
+// unsichtbar — genau so ist mein erster Schutz ins Leere gelaufen: die Regel
+// stand da, sah richtig aus und testete einen String, der den Zusatz gar nicht
+// enthielt. Ein Test auf Text, den das Muster abgeschnitten hat, ist immer gruen.
+const MUSTER = /node evals\/(run-[a-z0-9-]+\.mjs)([^#\n]*)#\s*(\d+)\s*F(?:ä|ae)lle([^\n]*)/g;
+
+const funde = [];
+for (const m of md.matchAll(MUSTER)) {
+  const [ganz, datei, zwischen, zahl, rest] = m;
+  if (/--\S/.test(zwischen)) continue; // Teillauf, keine Umfangsaussage
+  funde.push({ ganz, datei, doku: Number(zahl), zahl, rest });
+}
+
+let fehler = 0;
+let ohneStand = 0;
+let ersetzt = 0;
+const zeile = (ok, text, detail) => {
+  if (!ok) fehler++;
+  console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
+  if (detail) console.log(`         ${detail}`);
+};
+
+console.log('\nDoku-Zahlen — verspricht SKILL.md noch den echten Umfang?\n');
+console.log(`${funde.length} Fallzahlen in SKILL.md, Sollstand mit ${Object.keys(stand).length} Eintraegen.\n`);
+
+for (const f of funde) {
+  const ist = stand[f.datei];
+  if (ist === undefined) {
+    // Kein Sollstand heisst NICHT "stimmt". Die Eval ist entweder ausgenommen
+    // (Browser/Laufzeit) oder neu — in beiden Faellen ist die Doku-Zahl
+    // ungeprueft. Sie als gruen zu melden waere derselbe Fehler wie ein
+    // Pruefer, der ohne Eingabe "bestanden" sagt.
+    ohneStand++;
+    zeile(true, `${f.datei}: Doku sagt ${f.doku} — UNGEPRUEFT (kein Sollstand)`);
+    continue;
+  }
+  if (ist === f.doku) {
+    zeile(true, `${f.datei}: ${f.doku} Faelle`);
+  } else if (/^\s*\+/.test(f.rest)) {
+    // "12 Faelle + Kontrolle" zaehlt einen Teil bewusst NEBEN der Zahl. Die
+    // gemessenen 22 enthalten die Kontrollfaelle bereits; stumpf ersetzt
+    // entstuende "22 Faelle + Kontrolle" — einmal mitgezaehlt, einmal
+    // danebengeschrieben. Die Wache waere gruen und der Satz falscher als
+    // vorher. Ein Korrekturwerkzeug, das den Pruefer zufriedenstellt und die
+    // Aussage verschlechtert, ist schlimmer als gar keins: danach liest den
+    // Satz niemand mehr.
+    // craft-check zeigt drei Zaehlweisen — 24 gedruckte Zeilen, 22 als
+    // Schlusszahl, 12 in der Doku. Welche gemeint ist, kann nur ein Mensch
+    // entscheiden.
+    zeile(false, `${f.datei}: Doku sagt ${f.doku}, gemessen sind ${ist}`,
+      'Zusatz nach der Zahl ("+ ...") — von Hand pruefen, --aktualisieren fasst das nicht an');
+  } else {
+    zeile(false, `${f.datei}: Doku sagt ${f.doku}, gemessen sind ${ist}`,
+      AKTUALISIEREN ? 'wird korrigiert' : 'mit --aktualisieren anpassen');
+    if (AKTUALISIEREN) {
+      md = md.replace(f.ganz, f.ganz.replace(new RegExp(`${f.zahl}(\\s*F(?:ä|ae)lle)`), `${ist}$1`));
+      ersetzt++;
+    }
+  }
+}
+
+if (AKTUALISIEREN && ersetzt) {
+  fs.writeFileSync(MD, md);
+  console.log(`\n${ersetzt} Zahl(en) in SKILL.md korrigiert.`);
+  // Nicht "Exit 0, fertig": von Hand zu pruefende Zeilen bleiben offen. Ein
+  // --aktualisieren, das gruen meldet, obwohl es Zeilen bewusst uebersprungen
+  // hat, waere genau das falsche Gruen, das diese Wache verhindern soll.
+  const offen = fehler - ersetzt;
+  if (offen) {
+    console.log(`${offen} Zeile(n) NICHT angefasst — Zusatz nach der Zahl, von Hand pruefen.`);
+    process.exit(1);
+  }
+  console.log('Der naechste Lauf muss gruen sein — sonst hat das Ersetzen nicht gegriffen.');
+  process.exit(0);
+}
+
+if (ohneStand) {
+  console.log(`\n  ${ohneStand} Doku-Zahl(en) ohne Sollstand — ungepruefte Versprechen.`);
+  console.log('  Betrifft ausgenommene Evals (Browser/Laufzeit): einzeln nachfahren.');
+}
+
+console.log(`\n${funde.length - fehler - ohneStand}/${funde.length - ohneStand} gepruefte Doku-Zahlen stimmen`
+  + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
+if (fehler) {
+  console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');
+  process.exit(1);
+}
+console.log('Wer der Doku glaubt, erwartet die richtige Zahl an Faellen.');
+process.exit(0);

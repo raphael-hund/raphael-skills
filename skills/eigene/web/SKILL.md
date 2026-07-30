@@ -261,7 +261,7 @@ Was er nicht kann: beurteilen, ob die Tastenlogik *richtig* ist — nur, ob sie 
 Ein Fund ist ein Blocker, ein Nicht-Fund kein Freispruch.
 
 ```bash
-node evals/run-tastatur-check.mjs   # 17 Fälle: reißen, durchgehen, Overlay-Grenze, Verdrahtung
+node evals/run-tastatur-check.mjs   # 18 Fälle: reißen, durchgehen, Overlay-Grenze, Verdrahtung
 ```
 
 ### Jeder Fehler dieser Runde saß in der Naht, nicht im Werkzeug
@@ -304,7 +304,7 @@ prüft ein Werkzeug, nie die Verbindung. Deshalb dieser Prüfer:
 ### 28 Handwerks-Regeln, 10 davon je einmal ausgelöst
 
 ```bash
-node evals/run-craft-check.mjs           # 12 Fälle + Kontrolle
+node evals/run-craft-check.mjs           # 22 Fälle, Kontrolle inbegriffen
 node evals/run-craft-check.mjs --nur M6  # eine Regel einzeln
 ```
 
@@ -335,7 +335,7 @@ lassen.
 > weil die Regel ab **drei** solchen Kästen feuert und mein Testfall einen hatte.
 
 ```bash
-node evals/run-formular-check.mjs      # 14 Fälle, jeder ändert genau einen Umstand
+node evals/run-formular-check.mjs      # 17 Fälle, jeder ändert genau einen Umstand
 ```
 
 **Was eine Heuristik falsch machen kann, macht sie auch — in beide Richtungen.**
@@ -666,7 +666,7 @@ Route im Manifest, mindestens ein Bild pro Route, und jede genannte Datei tatsä
 auf der Platte. Ein Dateiname im Manifest ist eine Behauptung — nachsehen kostet nichts.
 
 ```bash
-node evals/run-sweep-check.mjs       # 13 Fälle, weder Browser noch Server
+node evals/run-sweep-check.mjs       # 14 Fälle, weder Browser noch Server
 ```
 
 Sieben Manifeste, die reißen müssen. Drei, die durchgehen müssen — darunter derselbe
@@ -789,7 +789,7 @@ gilt „keine einzige Regel gelaufen" als kaputter Lauf. `g1-gate.mjs` liest die
 `regeln` mit — fehlt sie, ist die Ausgabe von einer alten Fassung und kein Bestanden.
 
 ```bash
-node evals/run-axe-check.mjs         # 7 Fälle, braucht einen Browser, aber keinen Server
+node evals/run-axe-check.mjs         # 8 Fälle, braucht einen Browser, aber keinen Server
 ```
 
 **Am echten Werkzeug gegengeprüft, beide Richtungen:** saubere Seite → `0 Violations,
@@ -843,7 +843,7 @@ und das Protokoll trägt die Prozessnummer.
 
 ```bash
 node scripts/g1-gate.mjs --url <url> --src . --build dist
-node evals/run-ordner-check.mjs      # 8 Fälle, startet seinen Server selbst
+node evals/run-ordner-check.mjs      # 9 Fälle, startet seinen Server selbst
 ```
 
 Bis 29.07. bekamen **alle** dateilesenden Prüfer dasselbe `--src`. Sie brauchen aber
