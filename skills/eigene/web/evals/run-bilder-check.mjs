@@ -30,7 +30,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -65,7 +65,9 @@ function reject(assets, key) {
 }
 
 let fehler = 0;
+let geprueft = 0;
 const zeile = (ok, text, detail) => {
+  geprueft++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -96,6 +98,52 @@ for (const [was, datei] of ausbrueche) {
       : `Exit ${r.code}, Opfer ${opferDa ? 'da' : 'WEG'}, Index-Eintrag ${eintragDa ? 'da' : 'entfernt'}`);
   } finally {
     fs.rmSync(wurzel, { recursive: true, force: true });
+  }
+}
+
+// --- 1b. Dieselbe Frage an die SCHREIB-Seite ------------------------------
+// Nachgetragen 30.07.2026. Die Eval deckte nur `reject` ab — die Stelle, die
+// loescht. `add` baut den Dateinamen aber ebenfalls aus einer Eingabe
+// (`--motiv`) und schreibt damit an einen berechneten Pfad. Wer eine Luecke an
+// der Loesch-Stelle schliesst, muss die Schreib-Stelle mitpruefen; es ist
+// dieselbe Frage, nur eine Ecke weiter.
+//
+// Ergebnis: dicht, aber aus einem anderen Grund als bei reject. Dort steht eine
+// ausdrueckliche Wache; hier faellt der Ausbruch durch slugify() weg, weil
+// [^\w]+ jeden Punkt und Schraegstrich zu einem Bindestrich macht. Das ist
+// belegt, nicht angenommen — und darum steht es jetzt als Testfall da: wer
+// slugify lockert (etwa um Punkte zu erlauben), reisst diesen Fall.
+console.log('\nDiese --motiv-Werte duerfen nicht aus dem Ordner schreiben:\n');
+{
+  const quelle = path.join(os.tmpdir(), `bilder-eval-quelle-${process.pid}.png`);
+  const ff = spawnSync('ffmpeg', ['-loglevel', 'error', '-f', 'lavfi',
+    '-i', 'color=c=red:s=8x8', '-frames:v', '1', '-y', quelle], { encoding: 'utf8' });
+  if (ff.status !== 0 || !fs.existsSync(quelle)) {
+    zeile(false, 'Testbild erzeugen (ffmpeg)', 'ohne Quellbild misst dieser Abschnitt nichts');
+  } else {
+    for (const [was, motiv] of [
+      ['relativ nach oben', '../../ausbruch'],
+      ['absoluter Pfad', '/tmp/ausbruch'],
+      ['getarnt', 'a/../../ausbruch'],
+    ]) {
+      const wurzel = fs.mkdtempSync(path.join(os.tmpdir(), 'bilder-add-'));
+      const assets = path.join(wurzel, 'assets');
+      fs.mkdirSync(assets, { recursive: true });
+      try {
+        const r = spawnSync('node', [SKRIPT, 'add', assets, quelle,
+          '--motiv', motiv, '--quelle', 'test'], { encoding: 'utf8', timeout: 120000 });
+        // Entscheidend ist nicht der Exit-Code, sondern WO die Datei landet:
+        // oberhalb des Asset-Ordners darf nichts Neues entstehen.
+        const oben = fs.readdirSync(wurzel).filter((x) => x !== 'assets');
+        const drin = fs.existsSync(assets) ? fs.readdirSync(assets) : [];
+        const ok = oben.length === 0 && drin.every((x) => !x.includes('/'));
+        zeile(ok, `${was}  (--motiv "${motiv}")`, ok ? null
+          : `oberhalb entstanden: ${oben.join(', ') || '–'} | Exit ${r.status}`);
+      } finally {
+        fs.rmSync(wurzel, { recursive: true, force: true });
+      }
+    }
+    fs.rmSync(quelle, { force: true });
   }
 }
 
@@ -153,7 +201,11 @@ console.log('\nDiese muessen wirklich loeschen — sonst ist das Werkzeug kaputt
   }
 }
 
-const gesamt = ausbrueche.length + 4;
+// Die Summe muss mitwachsen. Sie stand auf `ausbrueche.length + 4`, waehrend
+// zwoelf Faelle liefen — der Lauf meldete 9/9 und verschwieg drei geprueft
+// Faelle. Eine handgezaehlte Summe ist genau die Sorte Zahl, die beim naechsten
+// Zusatz still falsch wird; darum jetzt ein Zaehler, den jede `zeile()` erhoeht.
+const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('reject loescht falsch — das ist die einzige unwiderrufliche Stelle im Skill.');
