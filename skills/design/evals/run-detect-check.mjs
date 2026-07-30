@@ -32,7 +32,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -236,7 +236,18 @@ function lauf(html, mitDesignMd = false) {
 }
 
 let fehler = 0;
+// Selbst zaehlen, statt die Summe unten aus einer Formel zu rechnen.
+//
+// Bis 30.07.2026 stand dort `1 + Object.keys(FAELLE).length + 1`. Die Formel
+// kennt nur die Faelle aus der FAELLE-Tabelle; jeder von Hand geschriebene
+// Abschnitt lief mit, zaehlte aber nicht. Beim Zufuegen von drei Faellen fiel
+// es auf: sie standen als [OK] im Bericht, und die Summe blieb bei 19/19.
+// Ein Fehler in genau diesen Faellen wuerde `fehler` zwar hochzaehlen, aber die
+// Bezugsgroesse waere falsch — "18/19" statt "21/22", also ein Bericht, der
+// weniger Pruefungen behauptet, als er gemacht hat.
+let gepruefte = 0;
 const zeile = (ok, text, detail) => {
+  gepruefte++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -286,6 +297,45 @@ console.log('\nEine Seite, die ihrer DESIGN.md folgt, darf nichts melden:\n');
     ds.length ? `Fehlalarm: ${ds.join(', ')}` : null);
 }
 
+// --- 2c. Nichts gelesen darf nicht wie sauber aussehen -------------------
+// Gemessen am 30.07.2026: ein LEERER Ordner und diese geprueft saubere Seite
+// lieferten byte-identische Ausgabe — `[]` und Exit 0. Der `diff` zwischen
+// beiden Laeufen war leer. Wer "keine Anti-Patterns" liest, haelt die Seite
+// fuer geprueft, obwohl keine einzige Datei geoeffnet wurde. Ursachen im
+// Alltag: Pfad-Tippfehler im richtigen Elternordner, Quelle statt Build,
+// vergessenes Unterverzeichnis.
+//
+// Geprueft wird der Exit-Code, nicht der Meldungstext: ein Test auf den
+// Wortlaut waere auch gruen, wenn der Lauf danach trotzdem besteht — und
+// genau das Bestehen ist der Schaden.
+console.log('\nEin Ziel ohne pruefbare Dateien ist kein bestandener Lauf:\n');
+{
+  const leer = fs.mkdtempSync(path.join(os.tmpdir(), 'detect-leer-'));
+  const fehlt = path.join(leer, 'gibtsnicht');
+  const rufe = (ziel) => spawnSync('node', [DETECT, ziel, '--json'],
+    { encoding: 'utf8', timeout: 120000 });
+
+  const a = rufe(leer);
+  zeile(a.status === 2, 'leerer Ordner endet mit Exit 2',
+    a.status === 2 ? null
+      : `exit=${a.status}, Ausgabe: ${(a.stdout || '').trim().slice(0, 20) || '(leer)'} — nicht unterscheidbar von einer sauberen Seite`);
+
+  const b = rufe(fehlt);
+  zeile(b.status === 2, 'fehlendes Ziel endet mit Exit 2', b.status === 2 ? null : `exit=${b.status}`);
+
+  // Gegenrichtung: der Waechter darf echte Laeufe nicht abwuergen. Ohne diesen
+  // Fall koennte er auf ALLES anschlagen und beide Faelle oben bestehen.
+  const echt = fs.mkdtempSync(path.join(os.tmpdir(), 'detect-echt-'));
+  fs.writeFileSync(path.join(echt, 'index.html'),
+    '<!doctype html><html lang="de"><head><meta charset="utf-8"><title>T</title></head>'
+    + '<body><h1>Titel</h1><p>Ein normaler Absatz mit genug Text.</p></body></html>');
+  const c = rufe(echt);
+  zeile(c.status === 0, 'echte Datei laeuft weiter durch (Exit 0)', c.status === 0 ? null : `exit=${c.status}`);
+
+  fs.rmSync(leer, { recursive: true, force: true });
+  fs.rmSync(echt, { recursive: true, force: true });
+}
+
 // --- 3. Ehrliche Abdeckung ------------------------------------------------
 // Ohne diese Zahl sieht "6/6 gruen" nach voller Abdeckung aus — und das waere
 // dieselbe stille Luecke, die der Craft-Pruefer hatte (28 Regeln, 10 belegt).
@@ -319,8 +369,17 @@ console.log('\n  Eine Regel ohne Fixture ist keine falsche Regel — nur eine, v
 console.log('  niemand weiss, ob sie feuert. Die Liste steht hier, damit sie nicht');
 console.log('  unsichtbar bleibt.');
 
-const gesamt = 1 + Object.keys(FAELLE).length + 1;
-console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
+// Sicherung gegen die Gegenrichtung: wenn ein ganzer Abschnitt still ausfaellt
+// (fruehes `continue`, verschluckte Ausnahme), zaehlt `gepruefte` einfach
+// weniger — und "12/12 wie erwartet" saehe wieder gruen aus. Die Faelle aus der
+// FAELLE-Tabelle sind die bekannte Untergrenze; sie MUESSEN alle gelaufen sein.
+const MINDESTENS = Object.keys(FAELLE).length + 1;   // + Kontrolle
+if (gepruefte < MINDESTENS) {
+  console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
+  console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
+  process.exit(2);
+}
+console.log(`\n${gepruefte - fehler}/${gepruefte} wie erwartet.`);
 if (fehler) {
   console.log('Der Detektor urteilt nicht wie behauptet — und er ist eine harte Ship-Bedingung.');
   process.exit(1);

@@ -16,6 +16,57 @@ if (!detectorPath) {
   process.exit(1);
 }
 
+// --- Zeigt das Ziel ueberhaupt auf pruefbare Dateien? --------------------
+//
+// Gemessen am 30.07.2026: ein LEERER Ordner und eine geprueft saubere Seite
+// liefern byte-identische Ausgabe — `[]` und Exit 0. Der Aufrufer kann also
+// nicht unterscheiden, ob der Detektor nichts gefunden oder nichts gelesen hat.
+// Ein fehlender Ordner sagt wenigstens "Warning: cannot access", besteht aber
+// ebenfalls mit Exit 0.
+//
+// Typische Ursachen fuers stille Nichts: Pfad-Tippfehler im richtigen
+// Elternordner, Quelle statt Build (oder umgekehrt), vergessenes
+// Unterverzeichnis. In allen Faellen liest ein Mensch "keine Anti-Patterns"
+// und haelt die Seite fuer geprueft.
+//
+// Der Detektor selbst ist vendorierter Fremdcode (impeccable) und wird nicht
+// angefasst — die Unterscheidung gehoert in diesen Aufrufer, der uns gehoert.
+// Exit 2 heisst wie ueberall im Skill: Lauf kaputt, ausdruecklich KEIN Pass.
+const ENDUNGEN = ['.html', '.htm', '.css', '.jsx', '.tsx', '.vue', '.svelte', '.astro', '.js', '.ts'];
+const UEBERSPRINGEN = new Set(['node_modules', '.git', 'dist', '.next', '.output', 'coverage']);
+
+function zaehlePruefbare(wurzel, tiefe = 0) {
+  if (tiefe > 8) return 0;
+  let n = 0;
+  let einträge;
+  try { einträge = fs.readdirSync(wurzel, { withFileTypes: true }); } catch { return 0; }
+  for (const e of einträge) {
+    if (e.name.startsWith('.') || UEBERSPRINGEN.has(e.name)) continue;
+    if (e.isDirectory()) n += zaehlePruefbare(path.join(wurzel, e.name), tiefe + 1);
+    else if (ENDUNGEN.includes(path.extname(e.name).toLowerCase())) n += 1;
+    if (n > 0 && tiefe === 0) return n;   // einer genuegt als Beweis
+  }
+  return n;
+}
+
+// Nur echte Ziele pruefen: URLs kann der Detektor selbst holen, und Flags
+// (--json, --quiet) sind keine Pfade.
+const ZIELE = process.argv.slice(2).filter((a) => !a.startsWith('-') && !/^https?:\/\//i.test(a));
+for (const ziel of ZIELE) {
+  let stat;
+  try { stat = fs.statSync(ziel); } catch {
+    process.stderr.write(`Fehler: Ziel nicht gefunden: ${ziel}\n`);
+    process.stderr.write('Nichts gelesen — das ist kein bestandener Lauf.\n');
+    process.exit(2);
+  }
+  if (stat.isDirectory() && zaehlePruefbare(path.resolve(ziel)) === 0) {
+    process.stderr.write(`Fehler: keine pruefbare Datei unter ${ziel}\n`);
+    process.stderr.write(`Gesucht wurde nach: ${ENDUNGEN.join(' ')}\n`);
+    process.stderr.write('Zeigt der Pfad auf den richtigen Ordner? Nichts gelesen ist nicht sauber.\n');
+    process.exit(2);
+  }
+}
+
 const { detectCli } = await import(pathToFileURL(detectorPath));
 
 await detectCli();
