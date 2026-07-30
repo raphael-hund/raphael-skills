@@ -65,6 +65,21 @@ ${body}
 </body></html>`;
 
 const FAELLE = {
+  // Nachgetragen 30.07.2026. Die einzige Regel aus detect-text.mjs, die im
+  // Datei-Modus herstellbar war und keinen Fall hatte — belegt durch die
+  // Abdeckungszeile dieser Eval selbst, nicht geschaetzt.
+  //
+  // Die Regel hat ZWEI Varianten (leeres src, fehlendes src), also braucht sie
+  // zwei Faelle. Ein Fall haette die zweite Haelfte gruen aussehen lassen.
+  'broken-image': {
+    was: '<img> mit leerem src',
+    body: '<img src="" alt="Werkstatt">',
+  },
+  'broken-image-ohne-src': {
+    ist: 'broken-image',
+    was: '<img> ohne jedes src-Attribut',
+    body: '<img alt="Werkstatt" width="800" height="600">',
+  },
   'ai-color-palette': {
     was: 'Indigo→Violett-Verlauf in rohem CSS (der Befund)',
     style: '.v{background:linear-gradient(90deg,#6366f1,#a855f7)}',
