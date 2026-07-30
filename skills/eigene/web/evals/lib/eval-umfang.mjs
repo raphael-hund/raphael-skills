@@ -8,6 +8,7 @@
 // Warum es die Wache gibt, steht im aufrufenden Skript.
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
@@ -90,7 +91,43 @@ export function fallzahl(evalOrdner, datei, cwd) {
   return { fehlerText: 'keine Fallzahl in der Ausgabe gefunden' };
 }
 
+// Laeuft gerade eine Sabotage? Dann sind Pruefer-Dateien absichtlich beschaedigt.
+//
+// Die Sabotage-Evals sperren sich gegen EINANDER (sonst schreiben sie sich
+// gegenseitig kaputte Pruefer als "Original" zurueck). Kein anderer Lauf kannte
+// diese Sperre — und die Umfang-Wache faehrt 25 Evals nacheinander.
+//
+// Gemessen am 30.07.2026: mit `add('WARN', 'M3')` statt BLOCK im craft-Pruefer
+// meldet run-craft-check 21/22 statt 22/22. Die Umfang-Wache liest daraus
+// "geschrumpft" — ein Befund, der wie ein echter Qualitaetsfehler aussieht,
+// obwohl die Eval tadellos ist. Nicht als Absturz erkennbar, nicht als
+// Umgebungsproblem: als Fehler an der falschen Stelle.
+//
+// Exit 2 statt Exit 1, denn das ist kein Urteil ueber die Evals — es ist gar
+// keins. Dieselbe Trennung wie ueberall im Skill.
+function sabotageLaeuft(tmpdir) {
+  for (const name of ['run-sabotage.lock', 'run-sabotage-design.lock']) {
+    const p = path.join(tmpdir, name);
+    if (!fs.existsSync(p)) continue;
+    let pid;
+    try { pid = Number(fs.readFileSync(p, 'utf8').trim()); } catch { continue; }
+    if (!pid) continue;
+    // Eine Leiche ist keine laufende Sabotage. Die Sabotage-Eval selbst
+    // uebernimmt verwaiste Sperren; hier nur nachsehen, ob der Prozess lebt.
+    try { process.kill(pid, 0); return { name, pid }; } catch { /* tot */ }
+  }
+  return null;
+}
+
 export function umfangPruefen({ evalOrdner, standDatei, ausgenommen, cwd, aktualisieren }) {
+  const sab = sabotageLaeuft(os.tmpdir());
+  if (sab) {
+    console.error(`\nEin Sabotage-Lauf ist aktiv (${sab.name}, PID ${sab.pid}).`);
+    console.error('Waehrend dessen sind Pruefer-Dateien absichtlich beschaedigt —');
+    console.error('jede Fallzahl aus diesem Lauf waere ein Urteil ueber einen kaputten Pruefer.');
+    console.error('Erst den Sabotage-Lauf abwarten, dann erneut.');
+    return 2;
+  }
   const evals = fs.readdirSync(evalOrdner)
     .filter((f) => f.startsWith('run-') && f.endsWith('.mjs'))
     .filter((f) => !ausgenommen[f])
