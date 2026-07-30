@@ -1,7 +1,7 @@
-# VENDORING-NOTE — fremder Code und fremdes Wissen in diesem Skill
+# VENDORING — fremder Code und fremdes Wissen in diesem Skill
 
 Zwei Referenzen dieses Skills sagen seit ihrer Entstehung „vollständige
-Attribution in `VENDORING-NOTE.md` dieses Skills" zu. Die Datei gab es nicht —
+Attribution in `VENDORING.md` dieses Skills" zu. Die Datei gab es nicht —
 gefunden am 30.07.2026 durch die Verweis-Prüfung in
 `evals/run-verweise-check.mjs`.
 
