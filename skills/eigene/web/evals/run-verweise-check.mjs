@@ -273,7 +273,32 @@ console.log('\nWas der Text als verbindlich nennt, sollte in loads: stehen:\n');
   const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
   const kopfEnde = roh.indexOf('\n---', 4);
   const kopf = kopfEnde > 0 ? roh.slice(0, kopfEnde) : '';
-  const geladen = new Set([...kopf.matchAll(/references\/[a-z0-9./-]+\.(?:md|html)/g)].map((m) => m[0]));
+  // Nur der loads:-BLOCK, nicht der ganze Frontmatter-Kopf.
+  //
+  // Bis 30.07.2026 wurde der gesamte Kopf nach `references/...` durchsucht. Der
+  // taste-Skill hat `loads: []` — leer — und trotzdem meldete die Wache
+  // "references/taste-kern.md in loads:, aber NICHT VORHANDEN". Der Treffer
+  // stammte aus dem Feld `source:`, einer HERKUNFTSANGABE:
+  //
+  //   source: pointer — taste-Kern ist vendored im design-Skill
+  //     (skills/design/references/taste-kern.md aus Leonxlnx/taste-skill, MIT)
+  //
+  // Der Pfad ist vollstaendig und richtig; mein Muster griff nur den Endteil und
+  // suchte ihn im falschen Skill. Ein Waechter, der eine korrekte Quellenangabe
+  // als fehlende Datei meldet, bestraft die Sorgfalt — dieselbe Ueberlegung wie
+  // bei der Abgrenzungs-Erkennung in der Fliesstext-Pruefung weiter unten.
+  // YAML kennt beide Schreibweisen, und beide kommen im Bestand vor:
+  //   loads:                        loads: [references/a.md, references/b.md]
+  //     - references/a.md
+  // Mein erstes Muster kannte nur die mehrzeilige Form. copywriting nutzt die
+  // einzeilige — die Zaehlung fiel dort von 10 auf 0, und die Wache meldete
+  // prompt zehn "im Text genannt, aber nicht geladen". Ein Fehlalarm, der aus
+  // einer verschwundenen Grundmenge entsteht, sieht aus wie ein echter Befund.
+  // (Denselben Fehler hatte ich am 30.07.2026 schon einmal an dieser Stelle:
+  // ein sed erwartete mehrzeilig und meldete sechs Skills falsch.)
+  const loadsBlock = (kopf.match(/^loads:\s*\n((?:[ \t]+-[^\n]*\n)*)/m) || [])[1]
+    || (kopf.match(/^loads:\s*\[([^\]]*)\]/m) || [])[1] || '';
+  const geladen = new Set([...loadsBlock.matchAll(/references\/[a-z0-9./-]+\.(?:md|html)/g)].map((m) => m[0]));
   const refOrdner = path.join(ZIEL, 'references');
   const imOrdner = fs.existsSync(refOrdner)
     ? fs.readdirSync(refOrdner).filter((f) => f.endsWith('.md')) : [];
@@ -282,11 +307,26 @@ console.log('\nWas der Text als verbindlich nennt, sollte in loads: stehen:\n');
   const rumpf = kopfEnde > 0 ? roh.slice(kopfEnde) : roh;
   const genanntNichtGeladen = imOrdner
     .filter((f) => !geladen.has(`references/${f}`) && rumpf.includes(f));
-  zeile(genanntNichtGeladen.length === 0,
-    `${geladen.size} Referenz(en) in loads:, ${imOrdner.length} im Ordner`,
-    genanntNichtGeladen.length
-      ? `im Text genannt, aber nicht geladen: ${genanntNichtGeladen.join(', ')}`
-      : null);
+  // "10 in loads:, 4 im Ordner" las sich wie eine Luecke von sechs Dateien.
+  // Nachgemessen (30.07.2026, ads): alle zehn existieren — sechs liegen in
+  // Unterordnern (references/vendor/...), und `readdirSync` liest nur die
+  // oberste Ebene. Zwei Zahlen nebeneinander, die verschiedene Mengen zaehlen,
+  // laden zu genau dem Fehlschluss ein, den ich hier eine Stunde lang verfolgt
+  // habe. "oberste Ebene" dazuschreiben kostet vier Woerter.
+  //
+  // Wichtiger: die Pruefung fragte nur nach "genannt, aber nicht geladen".
+  // Die Gegenrichtung — GELADEN, aber nicht vorhanden — fehlte, und die ist
+  // die schlimmere: eine Referenz in loads:, die es nicht gibt, laedt beim
+  // Start ins Leere und niemand merkt es.
+  const geladenFehlt = [...geladen].filter((r) => !fs.existsSync(path.join(ZIEL, r)));
+  zeile(genanntNichtGeladen.length === 0 && geladenFehlt.length === 0,
+    `${geladen.size} Referenz(en) in loads:, ${imOrdner.length} direkt im Ordner (ohne Unterordner)`,
+    [
+      genanntNichtGeladen.length
+        ? `im Text genannt, aber nicht geladen: ${genanntNichtGeladen.join(', ')}` : null,
+      geladenFehlt.length
+        ? `in loads:, aber NICHT VORHANDEN: ${geladenFehlt.join(', ')}` : null,
+    ].filter(Boolean).join(' | ') || null);
 }
 
 // Vierte Frage: existiert jeder Skill aus `requires_skills:`?
