@@ -288,6 +288,38 @@ console.log('\nWas der Text als verbindlich nennt, sollte in loads: stehen:\n');
       : null);
 }
 
+// Vierte Frage: existiert jeder Skill aus `requires_skills:`?
+//
+// Ein Skill, der einen nicht vorhandenen verlangt, ist beim Laden kaputt — und
+// anders als bei `loads:` faellt das nicht durch einen Pfad auf, weil dort nur
+// Namen stehen.
+//
+// BEWUSST NICHT GEPRUEFT: ob der verlangte Skill im Text vorkommt. Am 30.07.2026
+// nachgemessen — sieben Skills schienen `eval` bzw. `offers` unbenutzt zu
+// fuehren, alle sieben Fehlalarm: `eval` wird ueber sein GATE G2 genutzt, nie
+// ueber den Namen; `offers` steckt im Kundendossier `OFFER.md`. Eine Abhaengigkeit
+// zeigt sich an ihrer Wirkung, nicht an ihrer Nennung. Wer hier "aufraeumt",
+// entfernt eine Abhaengigkeit, die taeglich benutzt wird.
+console.log('\nJeder Skill aus requires_skills: existiert:\n');
+{
+  const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
+  const kopfEnde = roh.indexOf('\n---', 4);
+  const kopf = kopfEnde > 0 ? roh.slice(0, kopfEnde) : '';
+  const zeileReq = (kopf.match(/^requires_skills:.*$/m) || [''])[0];
+  const namen = [...zeileReq.matchAll(/([a-z][a-z-]*)@/g)].map((m) => m[1]);
+  const fehlend = namen.filter((n) =>
+    !fs.existsSync(path.join(EIGENE, n, 'SKILL.md'))
+    && !fs.existsSync(path.join(SKILLS, n, 'SKILL.md')));
+  zeile(fehlend.length === 0,
+    // Der Text muss zum Befund passen. Erste Fassung sagte auch im Fehlerfall
+    // "alle vorhanden" und darunter "nicht gefunden: …" — eine Zeile, die sich
+    // selbst widerspricht, zwingt den Leser zu raten, welche Haelfte gilt.
+    !namen.length ? 'keine requires_skills: — nichts zu pruefen'
+      : fehlend.length ? `${namen.length} verlangte(r) Skill(s), ${fehlend.length} fehlt/fehlen`
+        : `${namen.length} verlangte(r) Skill(s), alle vorhanden`,
+    fehlend.length ? `nicht gefunden: ${fehlend.join(', ')}` : null);
+}
+
 console.log('\nJedes Werkzeug aus den completion_criteria existiert:\n');
 {
   const skill = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
