@@ -124,6 +124,12 @@ const zwei = [
   ['--diff existiert nicht', ['--stufe', 'L2', '--diff', '/tmp/gibt-es-nicht.json']],
   ['visual-diff.json kaputt', ['--stufe', 'L2', '--diff', D.kaputt]],
   ['vertipptes Flag faellt nicht auf den Default zurueck', ['--stufe', 'L2', '--diff', D.fast_gleich, '--audits', A.leer]],
+  // Der Audit ist die einzige Rechtspruefung dieses Tors. Ohne ihn stand bis
+  // zum 30.07.2026 "KLON-TOR BESTANDEN" — bei guter Treue reichte die allein.
+  // Ein Klon mit dem Analytics-Code der fremden Seite waere so ausgeliefert
+  // worden. Exit 2, nicht 1: der Audit ist nicht durchgefallen, er hat nicht
+  // geurteilt.
+  ['gute Treue ohne --audit ist kein Bestehen', ['--stufe', 'L2', '--diff', D.fast_gleich]],
   // L5 hat keine Pixel-Grenze; ohne --audit ist damit JEDER Pruefer
   // uebersprungen. Das darf nicht "bestanden" heissen.
   ['L5 ohne Audit — jeder Pruefer uebersprungen', ['--stufe', 'L5', '--diff', D.schlecht]],
@@ -138,9 +144,13 @@ for (const [was, argv] of zwei) {
 // Tor, das nie gruen wird, wird abgeschaltet.
 console.log('\nDiese muessen bestehen — sonst ist das Tor nur Schikane:\n');
 const bestehen = [
-  ['L1 mit 95% Treue', ['--stufe', 'L1', '--diff', D.fast_gleich]],
-  ['L2 mit 80% Treue (Grenze 70%)', ['--stufe', 'L2', '--diff', D.mittel]],
-  ['L4 mit 65% Treue (Grenze 50%)', ['--stufe', 'L4', '--diff', D.schlecht]],
+  // Diese drei pruefen die Treue-SCHWELLEN. Sie brauchen trotzdem ein leeres
+  // Audit-File: seit dem 30.07.2026 ist die Rechtspruefung Pflicht, und ohne
+  // sie endet das Tor mit Exit 2 ("kein Urteil"). Ohne das Argument wuerden sie
+  // nicht mehr die Schwelle messen, sondern die fehlende Pflichtangabe.
+  ['L1 mit 95% Treue', ['--stufe', 'L1', '--diff', D.fast_gleich, '--audit', A.leer]],
+  ['L2 mit 80% Treue (Grenze 70%)', ['--stufe', 'L2', '--diff', D.mittel, '--audit', A.leer]],
+  ['L4 mit 65% Treue (Grenze 50%)', ['--stufe', 'L4', '--diff', D.schlecht, '--audit', A.leer]],
   ['L2 mit gutem Diff und leerem Audit', ['--stufe', 'L2', '--diff', D.fast_gleich, '--audit', A.leer]],
   ['L5 mit leerem Audit — Treue uebersprungen, Audit urteilt', ['--stufe', 'L5', '--diff', D.schlecht, '--audit', A.leer]],
 ];

@@ -112,7 +112,15 @@ dem Analytics-Code der fremden Seite ist ein Rechtsproblem, kein
 Schönheitsfehler. Und wie im G1-Tor: sind **alle** Prüfer übersprungen (L5 ohne
 Audit), gibt es Exit 2 statt Grün — übersprungen ist kein Urteil.
 
-Belegt: `node evals/run-klon-gate.mjs` (21 Fälle — 8 müssen reißen, 7 sind
+**`--audit` ist Pflicht, nicht Kür** (seit 30.07.2026). Ohne ihn stand da
+„KLON-TOR BESTANDEN", sobald die Treue reichte — der Audit lief als SKIP mit,
+und ein SKIP verhinderte nichts. Gemessen: `--stufe L2 --diff` ohne `--audit`
+ergab `[PASS] treue`, `[SKIP] audit`, Exit 0. Ein Klon mit dem Analytics-Code
+der fremden Seite wäre so durchgegangen. Jetzt Exit 2 — nicht Exit 1, denn der
+Audit ist nicht durchgefallen, er hat nicht geurteilt. Ein echter
+Qualitätsfehler behält Vorrang: reißt die Treue, bleibt es Exit 1.
+
+Belegt: `node evals/run-klon-gate.mjs` (28 Fälle — 8 müssen reißen, 7 sind
 Exit 2, 5 müssen bestehen; dazu eine Prüfung, dass `visual-diff` weiterhin nicht
 selbst blockt, damit dieses Tor nicht unbemerkt überflüssig wird).
 

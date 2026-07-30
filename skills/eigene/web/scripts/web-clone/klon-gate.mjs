@@ -133,6 +133,30 @@ if (!auditDatei) {
 const gelaufen = befunde.filter((b) => !b.uebersprungen);
 const gerissen = befunde.filter((b) => !b.ok);
 
+// Der Audit ist die einzige Rechtspruefung dieses Tors. Ohne ihn stand da
+// "KLON-TOR BESTANDEN", waehrend der Analytics-Code der fremden Seite noch im
+// Klon lag — gemessen 30.07.2026 mit `--stufe L2 --diff` und ohne `--audit`:
+// [PASS] treue, [SKIP] audit, Exit 0.
+//
+// Der Kommentar oben sagte schon das Richtige ("ein Klon mit dem Analytics-Code
+// der fremden Seite ist ein Rechtsproblem, kein Schoenheitsfehler"), nur folgte
+// dem nichts: `gelaufen.length > 0` war durch die Treue allein erfuellt.
+//
+// Exit 2, nicht 1: der Audit ist nicht durchgefallen, er hat nicht geurteilt.
+// Dieselbe Trennung wie ueberall — uebersprungen ist nicht bestanden.
+const auditUebersprungen = befunde.some((b) => b.name === 'audit' && b.uebersprungen);
+if (auditUebersprungen && gerissen.length === 0) {
+  if (args.includes('--json')) {
+    // Im JSON steht `bestanden` sonst auf true — das liest ein Skript als gruen.
+    console.log(JSON.stringify({ hinweis: 'Audit fehlt — kein Urteil', bestanden: false }, null, 2));
+  } else {
+    console.log('KEIN URTEIL: ohne --audit ist die Rechtspruefung nicht gelaufen.\n');
+    console.log('  node scripts/web-clone/audit-clone.mjs --project <klon> --json <audit.json>');
+    console.log('  dann erneut mit --audit <audit.json>.\n');
+  }
+  process.exit(2);
+}
+
 if (args.includes('--json')) {
   console.log(JSON.stringify({
     stufe, diffDatei: path.resolve(diffDatei), befunde,

@@ -197,6 +197,25 @@ if (AKTUALISIEREN && ersetzt) {
   }
 }
 
+// --- Zahlen in den References ---------------------------------------------
+// SKILL.md ist nicht der einzige Ort mit Fallzahlen. Das Klon-Playbook nannte
+// "21 Faelle", waehrend die Eval 28 fuhr — dieselbe Klasse Fehler wie im
+// Frontmatter, nur eine Datei weiter. Wer die Zahl dort liest, haelt einen Lauf
+// mit 21 Faellen fuer vollstaendig.
+{
+  const playbook = path.join(SKILL, 'references', 'web-clone-playbook.md');
+  if (!fs.existsSync(playbook)) {
+    zeile(false, 'web-clone-playbook.md nicht gefunden — verschoben?');
+  } else {
+    const txt = fs.readFileSync(playbook, 'utf8');
+    const m = txt.match(/run-klon-gate\.mjs`? \((\d+) F(?:ä|ae)lle/);
+    const soll = stand['run-klon-gate.mjs'];
+    zeile(m && soll && Number(m[1]) === soll,
+      `web-clone-playbook.md: sagt ${m ? m[1] : '?'} Klon-Faelle, Sollstand kennt ${soll ?? '?'}`,
+      m && Number(m[1]) === soll ? null : 'Zahl im Playbook nachziehen');
+  }
+}
+
 // --- Die eval_scorecard im Frontmatter -----------------------------------
 // Sie ist der erste Ort, den ein fremder Agent liest, um zu wissen, wie tief
 // dieser Skill geprueft ist — und sie war beim Anlegen am 30.07.2026 schon
@@ -242,7 +261,7 @@ if (ohneStand) {
 }
 
 // +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
-console.log(`\n${funde.length + 5 - fehler - ohneStand}/${funde.length + 5 - ohneStand} gepruefte Doku-Zahlen stimmen`
+console.log(`\n${funde.length + 6 - fehler - ohneStand}/${funde.length + 6 - ohneStand} gepruefte Doku-Zahlen stimmen`
   + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');

@@ -58,7 +58,7 @@ eval_scorecard:
     - "evals/run-antiset.mjs — 15 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 13 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-eval-umfang.mjs — 25 Evals: hat jede noch ihre Faelle?"
-    - "evals/run-doku-zahlen.mjs — 19 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-doku-zahlen.mjs — 20 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
@@ -886,7 +886,7 @@ und das Protokoll trägt die Prozessnummer.
 
 ```bash
 node scripts/g1-gate.mjs --url <url> --src . --build dist
-node evals/run-ordner-check.mjs      # 9 Fälle, startet seinen Server selbst
+node evals/run-ordner-check.mjs      # 16 Fälle, startet seinen Server selbst
 ```
 
 Bis 29.07. bekamen **alle** dateilesenden Prüfer dasselbe `--src`. Sie brauchen aber
