@@ -9,7 +9,7 @@ Tooling-Tiefe (CodeQL/SARIF/Semgrep) bewusst nicht dupliziert — dafür Origina
 **Führungs-Regel (Dopplung mit OWASP-Checkliste vermeiden):** Dieses Playbook führt bei
 Fail-Open/Fail-Closed-Doktrin (Regel 1), Footgun-Konfiguration/CORS/Webhook-Signaturen
 (Regel 2) und npm-Supply-Chain-Tiefe (Regel 3) für den Web-Build-Schritt. Bei Code-Reviews
-von Formularen/API-Routes/Webhooks zusätzlich `code-review/references/owasp-checkliste.md`
+von Formularen/API-Routes/Webhooks zusätzlich `methodik/code-review/references/owasp-checkliste.md`
 laden — die dortigen A02/A03/A05/A08/A10-Einträge und die Airtable-Checkliste sind der
 Code-Review-Zusatzcheck, keine eigenständige Zweitquelle. Wird eine Regel hier geändert,
 owasp-checkliste.md gegenprüfen (und umgekehrt) statt beide getrennt driften zu lassen.

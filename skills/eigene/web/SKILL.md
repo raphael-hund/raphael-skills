@@ -945,8 +945,8 @@ Fehlalarm, 5 Einstufungs-Prüfungen, 30/30. Dieselbe Beispielseite: vorher
 > bleiben Lesearbeit im copywriting-Durchgang.
 
 **Feste Reihenfolge bei kombiniertem Design+Copy-Check (z.B. AI-Slop-Check über mehrere
-Seiten):** immer **design ZUERST** (Detektoren `node scripts/detect.mjs` + `node
-scripts/scan-ai-slop.mjs --rules=…/rules.de.mjs` je Exit 0), **danach copywriting G1→G2** auf denselben Seiten
+Seiten):** immer **design ZUERST** (Detektoren `node ../../design/scripts/detect.mjs` + `node
+../../design/scripts/scan-ai-slop.mjs --rules=../../design/scripts/rules.de.mjs` je Exit 0), **danach copywriting G1→G2** auf denselben Seiten
 — orchestriert über web als Dach-Skill. "Unklar" ist hier kein zulässiges Ergebnis;
 wenn wirklich kein Skill passt, erst dann als unklar zurückmelden.
 

@@ -9,7 +9,7 @@ shadcn als Brücke — hier wird das NICHT wiederholt).
 - `/root/tools/vendor/shadcn-improve/` — Skill `improve` (Audit→Plan→Execute-Loop
   für beliebige Codebasen, hier auf kopierte shadcn-Komponenten angewendet).
   Lizenz: MIT, Copyright 2026 shadcn (`LICENSE.md` im Vendor-Repo, Frontmatter
-  von `skills/improve/SKILL.md` bestätigt `license: MIT`).
+  von `skills/improve/SKILL.md` im Vendor-Repo bestätigt `license: MIT`).
 - `/root/tools/uikit-vault/registry/` — lokaler Registry-Index (`shadcn-index.json`,
   57 KB) + zweite Komponentenbibliothek Appica (`appica/llms.txt`,
   `appica/components.json`, `appica/docs/`). Appica-Paket `@appica/ui-react`:
