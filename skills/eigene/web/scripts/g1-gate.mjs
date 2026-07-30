@@ -79,6 +79,39 @@ function seitenImBuild(dir) {
 // Seite — in beide Richtungen, unreproduzierbar, und niemand haette es gemerkt.
 // Betrifft ebenso g1-report.json und die Screenshots.
 const OUT = get('out', fs.mkdtempSync(path.join(os.tmpdir(), 'g1-gate-')));
+
+// Alte Laufordner altern lassen.
+//
+// Jeder Lauf bekommt seit dem 28.07.2026 einen EIGENEN Ordner (gegen die
+// Kollision zweier gleichzeitiger Laeufe, siehe oben). Nur wegraeumen tut ihn
+// niemand: der Bericht soll ja lesbar bleiben, wenn das Tor fertig ist.
+//
+// Gemessen am 30.07.2026: 912 Ordner, 291 MB, aeltester vom 28.07. — in drei
+// Tagen. Dazu 44 Lighthouse-Profile mit 90 MB und 64 Anti-Set-Ordner. Kein
+// akutes Problem auf 344 GB frei, aber ein Wachstum ohne Grenze ist eins auf
+// Zeit, und ein voller /tmp macht jeden Pruefer kaputt.
+//
+// Bewusst NICHT beim Start des naechsten Laufs den vorigen loeschen: wer zwei
+// Tore parallel faehrt (Anti-Set tut das), wuerde dem anderen den Bericht unter
+// den Fuessen wegziehen. Stattdessen nach ALTER: was aelter als 24 Stunden ist,
+// hat seinen Zweck erfuellt.
+//
+// Nur eigene Ordner, erkennbar am Praefix, und nur direkt unter tmpdir.
+// Fehler beim Loeschen werden geschluckt — ein Aufraeumen, das den Lauf
+// abbricht, waere schlimmer als der belegte Platz.
+if (!get('out', null)) {
+  const GRENZE = Date.now() - 24 * 60 * 60 * 1000;
+  try {
+    for (const name of fs.readdirSync(os.tmpdir())) {
+      if (!name.startsWith('g1-gate-')) continue;
+      const p = path.join(os.tmpdir(), name);
+      if (p === OUT) continue;
+      try {
+        if (fs.statSync(p).mtimeMs < GRENZE) fs.rmSync(p, { recursive: true, force: true });
+      } catch { /* fremder Besitzer, gerade geloescht: egal */ }
+    }
+  } catch { /* tmpdir unlesbar: kein Grund, das Tor zu stoppen */ }
+}
 const SKILL_DIR = path.dirname(new URL(import.meta.url).pathname);
 // Zwei Pruefer brauchen den Quellcode statt der laufenden Seite: der
 // Import-Check und die Routen-Vollstaendigkeit ganz am Ende.

@@ -255,6 +255,35 @@ console.log('\nAbgestuerzte Pruefer duerfen nicht als Qualitaetsfehler gelten:\n
   zeile(leichen() === 0, 'kein verwaister Browser nach dem Abbruch',
     leichen() === 0 ? null : `${leichen()} Lighthouse-Chrome(s) mit PPID 1 uebrig`);
 
+  // Alte Laufordner muessen altern, frische bleiben.
+  //
+  // Jeder Lauf legt einen eigenen Ordner an (gegen die Kollision zweier
+  // gleichzeitiger Laeufe). Weggeraeumt hat ihn niemand: gemessen am
+  // 30.07.2026 lagen 912 Ordner mit 291 MB in /tmp, aeltester drei Tage alt.
+  // Auf 344 GB frei kein akutes Problem — aber ein Wachstum ohne Grenze ist
+  // eins auf Zeit, und ein voller /tmp macht JEDEN Pruefer kaputt.
+  //
+  // Beide Richtungen, weil ein Aufraeumer, der zu viel loescht, schlimmer ist
+  // als einer, der nichts tut: er nimmt einem parallelen Lauf den Bericht weg.
+  {
+    const alt = path.join(os.tmpdir(), 'g1-gate-EVALALT');
+    const neu = path.join(os.tmpdir(), 'g1-gate-EVALNEU');
+    fs.mkdirSync(alt, { recursive: true });
+    fs.mkdirSync(neu, { recursive: true });
+    const dreissigStunden = new Date(Date.now() - 30 * 60 * 60 * 1000);
+    fs.utimesSync(alt, dreissigStunden, dreissigStunden);
+
+    lauf({});   // ein normaler Tor-Lauf raeumt beim Start auf
+
+    zeile(!fs.existsSync(alt), 'Laufordner aelter als 24h wird aufgeraeumt',
+      fs.existsSync(alt) ? 'liegt noch da — /tmp waechst unbegrenzt' : null);
+    zeile(fs.existsSync(neu), 'frischer Laufordner bleibt liegen',
+      fs.existsSync(neu) ? null : 'geloescht — ein paralleler Lauf verliert seinen Bericht');
+
+    fs.rmSync(alt, { recursive: true, force: true });
+    fs.rmSync(neu, { recursive: true, force: true });
+  }
+
   // Gegenrichtung: ohne erzwungenen Abbruch darf dieser Weg NICHT greifen.
   // Ohne sie koennte die Huerde auf alles anschlagen und der Fall oben bestuende
   // trotzdem.
