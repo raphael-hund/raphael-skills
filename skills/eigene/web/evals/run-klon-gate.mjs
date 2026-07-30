@@ -211,6 +211,50 @@ fs.rmSync(ordner, { recursive: true, force: true });
 //
 // Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
 // — die Bauart ist der Fehler, nicht erst sein Eintreten.
+// --- Die Schwellen muessen mit dem Playbook uebereinstimmen ----------------
+// Im Tor steht "aus der L1-L6-Tabelle in web-clone-playbook.md, bewusst das
+// UNTERE Ende". Das war Prosa. Heute haben sich vier von fuenf solcher
+// Begruendungen als falsch oder unvollstaendig erwiesen — also nachgemessen:
+// die Zahlen stimmen (90/70/65/50, L5/L6 ohne Grenze).
+//
+// Ein Handvergleich hilft aber nur einmal. Aendert jemand das Playbook, ohne das
+// Tor anzufassen (oder umgekehrt), liefert das Tor Urteile nach einer Tabelle,
+// die es nicht mehr gibt — und niemand merkt es, weil beide fuer sich stimmig
+// aussehen. Darum prueft die Eval den Abgleich mit.
+console.log('\nDie Schwellen im Tor stammen aus dem Playbook:\n');
+{
+  const playbook = path.join(HIER, '..', 'references', 'web-clone-playbook.md');
+  const torQuelle = fs.readFileSync(TOR, 'utf8');
+  if (!fs.existsSync(playbook)) {
+    zeile(false, 'web-clone-playbook.md gefunden', 'ohne die Quelle ist der Abgleich nicht moeglich');
+  } else {
+    const md = fs.readFileSync(playbook, 'utf8');
+    // Aus dem Tor: L1: { min: 0.90, ... }
+    const imTor = {};
+    for (const m of torQuelle.matchAll(/\b(L[1-6]):\s*\{\s*min:\s*([\d.]+|null)/g)) {
+      imTor[m[1]] = m[2] === 'null' ? null : Number(m[2]);
+    }
+    // Aus dem Playbook: | L1 | >= 90 % |
+    const imPlaybook = {};
+    for (const m of md.matchAll(/\|\s*(L[1-6])\s*\|\s*≥\s*(\d+)\s*%/g)) {
+      imPlaybook[m[1]] = Number(m[2]) / 100;
+    }
+    const abweichung = [];
+    for (const stufe of ['L1', 'L2', 'L3', 'L4']) {
+      if (imTor[stufe] !== imPlaybook[stufe]) {
+        abweichung.push(`${stufe}: Tor ${imTor[stufe]} vs Playbook ${imPlaybook[stufe]}`);
+      }
+    }
+    zeile(Object.keys(imPlaybook).length >= 4 && abweichung.length === 0,
+      `L1-L4 stimmen mit der Tabelle ueberein (${['L1', 'L2', 'L3', 'L4'].map((x) => imTor[x]).join('/')})`,
+      abweichung.length ? abweichung.join(' | ')
+        : (Object.keys(imPlaybook).length < 4 ? 'Playbook-Tabelle nicht lesbar — Abgleich hat nichts geprueft' : null));
+    zeile(imTor.L5 === null && imTor.L6 === null,
+      'L5/L6 ohne Pixel-Grenze, wie im Playbook',
+      `Tor: L5=${imTor.L5}, L6=${imTor.L6}`);
+  }
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
