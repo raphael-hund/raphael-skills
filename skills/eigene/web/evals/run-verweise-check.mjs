@@ -362,6 +362,94 @@ console.log('\nSkripte im Skill haben einen Aufrufer:\n');
   }
 }
 
+// --- Dateinamen im Fliesstext der Referenzen ----------------------------
+// Die Wiki-Verweise oben sind [[doppelt eckig]]. Daneben nennen die Referenzen
+// Dateien in Backticks (`scripts/g1-gate.mjs`, `shadcn-index.json`) — die hat
+// bisher nichts geprueft. Am 30.07.2026 von Hand nachgemessen: 129 solcher
+// Verweise, und alle loesen auf. Der Wert liegt nicht im heutigen Ergebnis,
+// sondern darin, dass eine geloeschte oder umbenannte Datei ab jetzt auffaellt.
+//
+// Vier Wege der Aufloesung, weil ein Verweis auf verschiedene Arten gemeint
+// sein kann: relativ zur nennenden Datei, zum Skill, zum skills/-Baum, oder als
+// absoluter Pfad auf dieser Maschine. Meine erste Handmessung kannte nur die
+// ersten beiden und meldete deshalb `shadcn-index.json` als tot — die Datei
+// liegt unter /root/tools/uikit-vault/registry/ und wird im selben Satz mit
+// genau diesem Pfad genannt. Ein Waechter, der den Kontext nicht mitliest,
+// erfindet Befunde.
+console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
+{
+  // Erst nach einem Lauf vorhanden (Build-Ausgabe, Manifeste). Ihr Fehlen ist
+  // kein kaputter Verweis, sondern der Normalzustand vor dem ersten Lauf.
+  const LAUFZEIT = new Set([
+    'package.json', 'manifest.json', 'bilder-index.json', 'index.html',
+    'report.json', 'components.json', 'tsconfig.json',
+  ]);
+  const refOrdner = path.join(ZIEL, 'references');
+  const mdDateien = fs.existsSync(refOrdner)
+    ? fs.readdirSync(refOrdner, { recursive: true })
+      .filter((f) => typeof f === 'string' && f.endsWith('.md'))
+      .map((f) => path.join(refOrdner, f))
+    : [];
+
+  let gezaehlt = 0;
+  const tot = [];
+  for (const datei of mdDateien) {
+    const txt = fs.readFileSync(datei, 'utf8');
+    for (const m of txt.matchAll(/`([a-z0-9][a-z0-9._/-]*\.(?:mjs|js|json|md|html))`/gi)) {
+      const ziel = m[1];
+      const name = ziel.split('/').pop();
+      if (LAUFZEIT.has(name)) continue;
+      gezaehlt++;
+      const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO];
+      if (wurzeln.some((w) => fs.existsSync(path.join(w, ziel)))) continue;
+      // Als blosser Name irgendwo im Skill oder im skills/-Baum?
+      let gefunden = false;
+      for (const w of [ZIEL, SKILLS]) {
+        try {
+          if (fs.readdirSync(w, { recursive: true })
+            .some((f) => typeof f === 'string' && f.endsWith(name))) { gefunden = true; break; }
+        } catch { /* unlesbar: gilt als nicht gefunden */ }
+      }
+      if (gefunden) continue;
+      // Absoluter Pfad im Umfeld genannt? Dann ist der Verweis eine Kurzform.
+      // 300 Zeichen waren zu eng: shadcn-arbeitsweise.md nennt den absoluten
+      // Registry-Pfad einmal in Zeile 13 und die Datei danach mehrfach als
+      // Kurzform. Das Fenster muss den ganzen Abschnitt fassen, sonst gilt
+      // dieselbe Datei einmal als aufgeloest und dreimal als tot.
+      const umfeld = txt.slice(Math.max(0, m.index - 2000), m.index + 600);
+      const absolut = [...umfeld.matchAll(/\/root\/[a-z0-9._/-]+/gi)].map((x) => x[0]);
+      if (absolut.some((a) => fs.existsSync(a) || fs.existsSync(path.join(a, name)))) continue;
+      // Ausdrueckliche Abgrenzung: die Referenz nennt die Datei, um zu sagen,
+      // dass sie NICHT uebernommen wurde. rebuild-from-image.md macht das
+      // vorbildlich ("bewusst nicht uebernommen", "die Scripts selbst nicht
+      // vendoriert") und listet die Vendor-JSONs, die dazugehoeren. Solche
+      // Stellen sind das Gegenteil eines toten Verweises — sie dokumentieren
+      // eine Entscheidung. Wer sie als Fehler meldet, bestraft die sauber
+      // begruendete Abgrenzung und laesst die stille Luecke ungestraft.
+      if (/nicht (?:uebernommen|vendoriert|portiert|dabei)|kein portabler|ohne Bezug zu dieser Umgebung|nicht Teil dieses Skills/i
+        .test(umfeld)) continue;
+      // Fremde Herkunft: die Datei liegt in einem anderen Projekt und wird als
+      // QUELLE genannt ("aus offiziellem `video-layout.md`", "Vorlage",
+      // "Skill X + `PICKER.md`, MIT"). Sie soll hier gar nicht existieren.
+      const satz = txt.slice(Math.max(0, m.index - 200), m.index + 200);
+      if (/Quelle:|aus offiziellem|Vorlage|MIT\)|Upstream|github\.com|plugins\//i.test(satz)) continue;
+      // Negativ-Befund: die Referenz nennt die Datei, um ihr FEHLEN als Mangel
+      // zu beschreiben ("kein `SECURITY.md`"). Ein Waechter, der das als toten
+      // Verweis meldet, verlangt, dass der Mangel behoben wird, den der Text
+      // gerade beschreiben will.
+      if (new RegExp(`(?:kein|keine|ohne|fehlt|fehlende[sr]?)\\s+\`?${name.replace('.', '\\.')}`, 'i').test(satz)) continue;
+      // Ausgabe des Ablaufs: die Referenz beschreibt, was BEIM LAUF entsteht
+      // (Berichte, Audits, Teardowns). Diese Dateien im Skill zu verlangen
+      // hiesse, das Ergebnis vor der Arbeit zu fordern.
+      if (/^[A-Z][A-Z_]+\.md$/.test(name)
+        && /schreib|erzeug|entsteh|Ausgabe|liefer|zusaetzlich|Bedarf|Vergleichstabelle|dokumentier/i.test(satz)) continue;
+      tot.push(`${path.relative(ZIEL, datei)} -> ${ziel}`);
+    }
+  }
+  zeile(tot.length === 0, `${gezaehlt} Dateiverweise in ${mdDateien.length} Referenz-Datei(en)`,
+    tot.length ? `zeigen ins Leere: ${tot.slice(0, 6).join(' | ')}` : null);
+}
+
 console.log('\nJeder Skill aus requires_skills: existiert:\n');
 {
   const roh = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
