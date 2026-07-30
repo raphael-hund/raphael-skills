@@ -158,6 +158,44 @@ const FAELLE = {
     style: '.eng{border:1px solid var(--line);border-radius:8px;padding:2px 4px;font-size:20px;background:#f7f7f8}',
     body: '<div class="eng">Ein Kasten mit viel zu wenig Luft um den Text herum.</div>',
   },
+  'gray-on-color': {
+    was: 'grauer Text auf farbigem Grund',
+    // isGray: Textfarbe ohne Chroma (< 20), Luminanz 0.05-0.85. Der Grund muss
+    // Chroma >= 40 haben. #6b7280 auf #1d4ed8 erfuellt beides.
+    // Erster Versuch nahm #6b7280 auf #1d4ed8 — das meldete low-contrast statt
+    // gray-on-color, weil das Grau auf dem dunklen Blau schlicht unlesbar war.
+    // Zwei verschiedene Fehler; die Fixture soll GENAU einen zeigen. Helleres
+    // Grau auf demselben Blau erfuellt beides: Chroma < 20, Luminanz im Fenster
+    // 0.05-0.85, und der Kontrast reicht.
+    style: '.bunt{background:#1d4ed8;padding:20px;border-radius:12px}.bunt p{color:#d4d4d8;max-width:none}',
+    body: '<div class="bunt"><p>Grauer Text auf kraeftig blauem Grund liest sich schlecht.</p></div>',
+  },
+  'extreme-negative-tracking': {
+    was: 'Laufweite enger als -0.05em',
+    // Bedingungen: direkter Text, > 20 Zeichen, trackingEm <= -0.05.
+    // 44px * -0.06em = -2.64px.
+    style: 'h2.eng{font-size:44px;letter-spacing:-0.06em}',
+    body: '<h2 class="eng">Sanierung mit sehr enger Laufweite hier</h2>',
+  },
+  'flat-type-hierarchy': {
+    was: 'Groessen-Spannweite unter 2:1',
+    // Braucht >= 3 verschiedene Groessen und ein Verhaeltnis < 2.0 zwischen
+    // groesster und kleinster. 18/22/26 sind Faktor 1.44.
+    style: 'h1{font-size:26px}h2{font-size:22px}p{font-size:18px}',
+    body: '<h2>Zweite Ebene</h2><p>Ein Absatz Text.</p>',
+  },
+  'italic-serif-display': {
+    was: 'kursive Serif als Display-Ueberschrift',
+    // Nur h1 (oder h2 ab 48px), Schrift >= 48px, Serif — und kursiv.
+    style: 'h1{font-family:Georgia,serif;font-size:64px;font-style:italic}',
+  },
+  'text-overflow': {
+    was: 'Text laeuft aus dem Kasten (kein Scroll-Bereich)',
+    // delta = scrollWidth - clientWidth >= 16, und weder das Element noch ein
+    // Vorfahr darf overflow auto/scroll haben.
+    style: '.raus{width:120px;overflow:hidden;white-space:nowrap;border:1px solid var(--line);padding:8px}',
+    body: '<div class="raus">Ein deutlich zu langer Text fuer diesen schmalen Kasten hier drin</div>',
+  },
   'tight-leading': {
     was: 'Zeilenabstand zu eng fuer Fliesstext',
     style: 'p.eng{line-height:1.05}',

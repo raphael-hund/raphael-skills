@@ -173,11 +173,13 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
 > `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
 > **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (14 Fälle: 12 Regeln, Kontrollseite,
+> `node evals/run-browser-detect-check.mjs` (19 Fälle: 17 Regeln, Kontrollseite,
 > Gegenprobe im Datei-Modus). Belegt sind `tiny-text`, `all-caps-body`,
 > `justified-text`, `line-length`, `nested-cards`, `tight-leading`,
 > `wide-tracking`, `skipped-heading`, `single-font`, `cream-palette`,
-> `oversized-h1`, `cramped-padding`. Offen bleiben 25 der 37 Browser-Regeln,
+> `oversized-h1`, `cramped-padding`, `gray-on-color`,
+> `extreme-negative-tracking`, `flat-type-hierarchy`, `italic-serif-display`,
+> `text-overflow`. Offen bleiben 20 der 37 Browser-Regeln,
 > namentlich im Bericht — die meisten brauchen mehr als eine statische Seite
 > (Hover, Scroll, dunkles Theme, echte Bilder).
 >
@@ -190,6 +192,12 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > raten kostet hier mehrere Anläufe (bei `oversized-h1` waren es drei, und der
 > zweite hatte 59 % Viewport-Höhe und meldete trotzdem nichts, weil die
 > Überschrift 29 statt 40 Zeichen hatte).
+>
+> **Eine Fixture soll genau einen Fehler zeigen.** `gray-on-color` meldete beim
+> ersten Versuch `low-contrast` — mein Grau (`#6b7280`) war auf dem dunklen Blau
+> schlicht unlesbar. Zwei verschiedene Befunde in einer Testseite heißt: der
+> Testfall beweist nicht, was er behauptet. Helleres Grau auf demselben Blau
+> trennt sie.
 >
 > **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
 > ```
