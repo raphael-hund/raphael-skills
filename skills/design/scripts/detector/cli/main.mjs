@@ -193,6 +193,14 @@ async function detectCli() {
 
   if (helpMode) { printUsage(); process.exit(0); }
 
+  // Ziele, deren Scan gescheitert ist. Leeres Feld heisst "alles gescannt";
+
+  // sonst darf am Ende kein Gruen stehen. Muss HIER stehen, nicht im
+
+  // try-Block: die Auswertung passiert weiter unten, ausserhalb.
+
+  const scanFehler = [];
+
   let allFindings = [];
 
   if (!process.stdin.isTTY && targets.length === 0) {
@@ -210,7 +218,18 @@ async function detectCli() {
               ? (url) => browserDetector.detectUrl(url, scanOptions)
               : (url) => detectUrl(url, scanOptions);
             allFindings.push(...await scanner(target));
-          } catch (e) { process.stderr.write(`Error: ${e.message}\n`); }
+          } catch (e) {
+            // Ein gescheiterter URL-Scan war bisher eine Zeile auf stderr, und
+            // am Ende meldete die CLI Exit 0 — also "keine Funde".
+            //
+            // Nachgemessen 30.07.2026: `detect.mjs http://...` gibt auf diesem
+            // Rechner "puppeteer is required for URL scanning" aus UND endet
+            // mit Exit 0. Wer den Exit-Code auswertet (jedes Tor tut das), liest
+            // eine saubere Seite, wo gar nichts gescannt wurde. Genau die
+            // Verwechslung, gegen die dieser Detektor gebaut ist.
+            process.stderr.write(`Error: ${e.message}\n`);
+            scanFehler.push(`${target}: ${e.message}`);
+          }
           continue;
         }
 
@@ -312,6 +331,13 @@ async function detectCli() {
     if (jsonMode) process.stdout.write(formatFindings(allFindings, true) + '\n');
     else if (quietMode) process.stderr.write(formatFindingSummary(allFindings.length) + '\n');
     else process.stderr.write(formatFindings(allFindings, false) + '\n');
+    process.exit(2);
+  }
+  // Uebersprungen ist nicht bestanden — dieselbe Regel wie im G1-Tor.
+  if (scanFehler.length) {
+    process.stderr.write(
+      `\n${scanFehler.length} Ziel(e) konnten nicht gescannt werden — das ist KEIN sauberes Ergebnis:\n`
+      + scanFehler.map((z) => `  ${z}\n`).join(''));
     process.exit(2);
   }
   if (jsonMode) process.stdout.write('[]\n');
