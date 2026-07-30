@@ -848,7 +848,19 @@ function checkTastatur() {
 
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
-  if (!fs.existsSync(sweep)) { record('shot-sweep', true, 'shot-sweep.mjs nicht gefunden', true); return; }
+  // FEHLENDE DATEI ist etwas anderes als ABSTURZ. Ein Absturz wird unten zum
+  // FAIL (nachgemessen 30.07.2026 mit Exit 3) — das reicht. Eine fehlende Datei
+  // ergab dagegen SKIP, und weil shot-sweep aus gutem Grund keine Pflichtfamilie
+  // ist, wurde daraus Exit 0: gruenes Tor ohne einen einzigen Screenshot.
+  //
+  // Nachgerechnet 30.07.2026 an der Schlusslogik: sieben Familien gruen plus
+  // shot-sweep als SKIP -> fehltGanz 0, failed 0 -> Exit 0. Die Screenshot-
+  // Pflicht ist Raphaels harte Regel; ein Tor, das sie stillschweigend
+  // ueberspringt, sagt das Gegenteil von dem, was es bedeuten soll.
+  if (!fs.existsSync(sweep)) {
+    record('shot-sweep', false, `shot-sweep.mjs fehlt (${sweep}) — ohne ihn entsteht kein Screenshot`);
+    return;
+  }
   const shotDir = path.join(OUT, 'shots');
   try {
     run('node', [sweep, '--base', BASE, '--routes', ROUTES.join(','), '--out', shotDir, '--mobile']);
