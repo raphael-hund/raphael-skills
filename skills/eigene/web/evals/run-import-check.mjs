@@ -261,7 +261,41 @@ console.log('\nAufruf-Form — ein verworfener Pfad darf kein Urteil erzeugen:\n
   if (!ok) rot++;
 }
 
-const gesamt = FAELLE.length + (fs.existsSync(eigene) ? 1 : 0) + 1;
+// --- Lauf ueber null Dateien ----------------------------------------------
+// Ein leerer oder falsch angegebener Ordner ergab "Kein erfundener Import" und
+// Exit 0 — gruen ueber nichts. Die Unterscheidung, auf die es ankommt: null
+// DATEIEN ist immer ein Pfadfehler, null TRESOR-IMPORTE dagegen legitim (ein
+// Projekt darf ohne Library auskommen). Beide Richtungen werden geprueft.
+console.log('\nLeerer Ordner — gruen ueber nichts ist kein Ergebnis:\n');
+{
+  const leer = fs.mkdtempSync(path.join(os.tmpdir(), 'import-leer-'));
+  const lauf = (ordner) => {
+    try {
+      execFileSync('node', [PRUEFER, '--src', ordner], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+      return 0;
+    } catch (e) { return e.status ?? 1; }
+  };
+
+  const codeLeer = lauf(leer);
+  const okLeer = codeLeer === 1;
+  console.log(okLeer
+    ? '  [OK]   0 Dateien -> Exit 1, kein stilles "sauber"'
+    : `  [ROT]  0 Dateien -> Exit ${codeLeer}, erwartet 1`);
+  if (!okLeer) rot++;
+
+  // Gegenprobe: echter Code ohne Tresor-Import darf NICHT abbrechen.
+  fs.writeFileSync(path.join(leer, 'x.ts'), 'export const a = 1;\n');
+  const codeOhne = lauf(leer);
+  const okOhne = codeOhne === 0;
+  console.log(okOhne
+    ? '  [OK]   Datei ohne Tresor-Import -> Exit 0, kein Fehlalarm'
+    : `  [ROT]  Datei ohne Tresor-Import -> Exit ${codeOhne}, erwartet 0`);
+  if (!okOhne) rot++;
+
+  fs.rmSync(leer, { recursive: true, force: true });
+}
+
+const gesamt = FAELLE.length + (fs.existsSync(eigene) ? 1 : 0) + 3;
 console.log(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {
   console.log('Der Import-Pruefer urteilt falsch. Erst reparieren, dann damit bauen.');

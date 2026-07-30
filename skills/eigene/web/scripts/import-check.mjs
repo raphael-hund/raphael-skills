@@ -109,6 +109,22 @@ function libFuer(quelle) {
 const alle = dateien(SRC);
 const cache = new Map();
 const befunde = [];
+// Ein Lauf ueber null Dateien ist kein sauberes Ergebnis. Auf einem leeren oder
+// falsch angegebenen Ordner meldete dieses Skript "Kein erfundener Import" mit
+// Exit 0 — gruen ueber nichts. motion-check und tastatur-check fangen genau das
+// seit dem 29.07.2026 ab; hier fehlte es (gefunden 30.07.2026 beim Abklopfen
+// aller Skripte auf dieselbe Luecke).
+//
+// Wichtig ist die Unterscheidung: NULL DATEIEN ist immer ein Pfadfehler.
+// NULL TRESOR-IMPORTE ist dagegen legitim — ein Projekt darf ohne Library aus
+// dem Tresor auskommen. Nur der erste Fall bricht ab.
+if (alle.length === 0) {
+  const meldung = `import-check hat 0 Dateien gelesen — zeigt --src auf den richtigen Ordner? (${SRC})`;
+  if (JSON_OUT) console.log(JSON.stringify({ geprueft: 0, dateien: 0, befunde: [], fehler: meldung }, null, 2));
+  else console.error(meldung);
+  process.exit(1);
+}
+
 let geprueft = 0;
 
 for (const f of alle) {
