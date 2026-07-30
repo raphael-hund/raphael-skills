@@ -72,6 +72,12 @@ export function fallzahl(evalOrdner, datei, cwd) {
   const zahlen = aus.match(/^(\d+)\/(\d+) (?:gepruefte Doku-)?Zahlen stimmen\./m);
   if (zahlen) return { zahl: Number(zahlen[2]), gruen: Number(zahlen[1]), form: 'Doku-Zahlen' };
 
+  // Fuenfte Form: "23/24 Skills wie erwartet." — dieselbe N/M-Struktur, aber
+  // die Einheit ist ein Skill, kein Fall. Das Grundmuster oben verlangt genau
+  // "wie erwartet." am Zeilenende und trifft es deshalb nicht.
+  const skills = aus.match(/^(\d+)\/(\d+) Skills wie erwartet\./m);
+  if (skills) return { zahl: Number(skills[2]), gruen: Number(skills[1]), form: 'Skills' };
+
   const libs = aus.match(/^(\d+) Libraries, jede/m);
   if (libs) return { zahl: Number(libs[1]), form: 'Libraries' };
   if (/Alle Verweise loesen auf/.test(aus)) return { zahl: null, form: 'ohne Fallzahl' };

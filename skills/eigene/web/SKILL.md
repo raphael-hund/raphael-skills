@@ -57,9 +57,10 @@ eval_scorecard:
   laeufe:
     - "evals/run-antiset.mjs — 15 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 13 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
-    - "evals/run-eval-umfang.mjs — 25 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-eval-umfang.mjs — 26 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
+    - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
     - "pruefstand.mjs ist nicht sabotage-geprueft — er faellt kein Urteil, das gruen werden koennte"
