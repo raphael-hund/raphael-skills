@@ -174,5 +174,91 @@ class PrueferAbdeckungTest(unittest.TestCase):
         self.assertEqual(ohne, [], f"Pruefer ohne Test: {ohne}")
 
 
+class SabotageTest(unittest.TestCase):
+    """Merken die Tests, wenn der Validator kaputtgeht?
+
+    Die Frage hinter allen anderen — im web- und design-Skill hat genau diese
+    Messung drei blinde Stellen gefunden. Ein Testlauf, der gruen meldet,
+    beweist nicht, dass er etwas pruefen WUERDE; nur, dass heute nichts kaputt
+    ist.
+
+    Je Fall wird EINE Zeile im Validator so geaendert, dass ein Pruefer still
+    aufhoert zu urteilen (nicht "Datei kaputt" — das faengt jeder Parser). Danach
+    laufen alle uebrigen Tests dieser Datei; mindestens einer MUSS fehlschlagen.
+    Das Original wird immer zurueckgeschrieben, auch bei Absturz.
+    """
+
+    # (Name, Suchtext, Ersatz) — jeweils die Stelle, an der das Urteil faellt.
+    SCHAEDEN = [
+        ("check_nondeterminism", "        for m in re.finditer(pat, code):",
+         "        for m in []:"),
+        ("check_multimodel_fleet", "    for label, pattern in required:",
+         "    for label, pattern in []:"),
+        ("check_model_fable", "def check_model_fable(code, findings):",
+         "def check_model_fable(code, findings):\n    return"),
+        ("check_meta", '    if "name" not in body:', "    if False:"),
+        ("check_args_falle", '    if not re.search(r"\\bargs\\b", code):',
+         "    if True:"),
+        ("check_slice_falle", '    for m in re.finditer(r"JSON\\.stringify',
+         "    for m in []:  # "),
+    ]
+
+    def test_jeder_schaden_faellt_auf(self):
+        import subprocess
+        import sys
+
+        original = MODULE_PATH.read_text(encoding="utf-8")
+        blind = []
+        nicht_eingebaut = []
+        try:
+            for name, alt, neu in self.SCHAEDEN:
+                if alt not in original:
+                    # Kein Bestehen: der Schaden liess sich nicht einbauen, also
+                    # hat dieser Fall nichts gemessen. Beim Bauen im web-Skill ist
+                    # mir das zweimal passiert, und beide Male sah die Ausgabe
+                    # nach Erfolg aus.
+                    nicht_eingebaut.append(name)
+                    continue
+                MODULE_PATH.write_text(original.replace(alt, neu, 1), encoding="utf-8")
+                # NICHT `-k "not Sabotage"` — das filtert bei unittest ALLE Tests
+                # weg ("Ran 0 tests", Exit 0), und ein Lauf ohne Tests gilt als
+                # Erfolg. Damit hat dieser Test nach dem Bauen nichts gemessen:
+                # jeder Schaden sah bestanden aus. Nachgemessen am 30.07.2026,
+                # nachdem ich drei Schutz-Tests entfernte und die Sabotage
+                # trotzdem OK meldete. Genau das stille Gruen, gegen das dieser
+                # ganze Umbau laeuft — hier in meinem eigenen Test.
+                #
+                # Stattdessen die drei Testklassen namentlich, die den Validator
+                # gegen Eingaben pruefen. Und `Ran 0 tests` gilt als Fehler.
+                r = subprocess.run(
+                    [sys.executable, "-m", "unittest",
+                     "test_validate_workflow.MultiModelValidationTest",
+                     "test_validate_workflow.MetaValidationTest",
+                     "test_validate_workflow.NondeterminismTest",
+                     "test_validate_workflow.ArgsUndSliceTest",
+                     "-v"],
+                    capture_output=True, text=True, timeout=300,
+                    cwd=str(pathlib.Path(__file__).parent),
+                )
+                gelaufen = re.search(r"Ran (\d+) tests?", r.stderr or "")
+                if not gelaufen or int(gelaufen.group(1)) == 0:
+                    nicht_eingebaut.append(f"{name} (Unterlauf fuehrte 0 Tests aus)")
+                    continue
+                if r.returncode == 0:
+                    blind.append(name)
+        finally:
+            MODULE_PATH.write_text(original, encoding="utf-8")
+            # Und nachsehen, ob das geklappt hat: ein Sabotage-Lauf, der Schaden
+            # hinterlaesst, ist schlimmer als keiner.
+            self.assertEqual(MODULE_PATH.read_text(encoding="utf-8"), original,
+                             "validate-workflow.py liess sich NICHT wiederherstellen — "
+                             "sofort: git checkout -- scripts/validate-workflow.py")
+
+        self.assertEqual(nicht_eingebaut, [],
+                         f"Schaden liess sich nicht einbauen (Ankertext geaendert?): {nicht_eingebaut}")
+        self.assertEqual(blind, [],
+                         f"Diese Pruefer koennen still ausfallen, ohne dass ein Test reisst: {blind}")
+
+
 if __name__ == "__main__":
     unittest.main()
