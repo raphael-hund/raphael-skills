@@ -71,6 +71,21 @@ erzwingt die Run-ID als Beweis.
    `references/workflow-vorlage.md` bauen — Kritik-Flotte, Verifikation,
    Fix-Kette, Review. Vor dem Start: `python3 scripts/validate-workflow.py
    <script>` — rot (FAIL) = nicht starten, erst fixen. Run-ID notieren.
+
+   > **Der Validator hat sieben Prüfer; bis 30.07.2026 waren vier davon
+   > ungetestet** — ausgerechnet die, die vor den drei Fehlern schützen, die
+   > laut `workflow-vorlage.md` wirklich passiert sind: `Date.now()`/
+   > `Math.random()` brechen Resume, `args` ohne defensives Parse crasht,
+   > `JSON.stringify(...).slice(0, N)` kappt Daten still (3× real, R13/R15).
+   > `python3 scripts/test_validate_workflow.py` deckt jetzt alle sieben ab
+   > (15 Tests statt 3), jeweils in **beide** Richtungen: `new Date(args.stamp)`
+   > und `JSON.stringify(x)` ohne `.slice` müssen **durchgehen**, sonst wäre der
+   > Validator auch durch „melde immer" erfüllbar und macht Zeitstempel
+   > unmöglich.
+   >
+   > Ein Meta-Test prüft zusätzlich, dass **jede** `check_*`-Funktion in der
+   > Testdatei namentlich vorkommt. Ohne ihn fällt ein achter, ungetesteter
+   > Prüfer nicht auf — genau der Zustand, in dem vier von sieben waren.
 3. **Selbst verifizieren:** Funde der Kritiker nie ungeprüft übernehmen —
    jeden Kern-Fund mit eigenem Read/Bash-Beleg bestätigen (kein performatives
    Zustimmen). Bei echtem Streit zwischen Kritikern: llm-council-Muster
