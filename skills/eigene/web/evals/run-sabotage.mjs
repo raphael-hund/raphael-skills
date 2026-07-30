@@ -262,6 +262,32 @@ function laufEval(rel) {
 console.log('\nSabotage — merkt die Eval, wenn ihr Pruefer kaputtgeht?\n');
 console.log('Jeder Schaden ist EINE Zeile und faellt still das falsche Urteil.\n');
 
+// Notfall-Wiederherstellung fuer den Fall, dass der Lauf per SIGNAL stirbt.
+//
+// `finally` sieht nach vollstaendigem Schutz aus, greift bei SIGTERM/SIGINT aber
+// NICHT — dieselbe Falle wie bei den Servern (dort am 30.07.2026 belegt). Am
+// Minimalbeispiel nachgestellt: Datei beschaedigt, SIGTERM, Datei bleibt
+// beschaedigt. Der Kommentar am `finally` behauptete "auch wenn der Lauf
+// abgebrochen wird" — das war die Annahme, nicht die Messung.
+//
+// Realistisch ist der Fall gerade hier: dieser Lauf dauert ~15 Minuten, wird
+// also am ehesten per `timeout` oder Strg-C abgebrochen. Zurueck bleibt ein
+// BESCHAEDIGTER Pruefer — genau der Zustand, vor dem die Eval am Ende warnt
+// ("SOFORT git checkout"). Mir selbst zweimal in einer Sitzung passiert.
+let inArbeit = null;   // { datei, original } waehrend eines Schadens
+const notfallZurueck = () => {
+  if (!inArbeit) return;
+  try { fs.writeFileSync(inArbeit.datei, inArbeit.original); } catch { /* nichts mehr zu retten */ }
+  inArbeit = null;
+};
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => {
+    notfallZurueck();
+    try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ }
+    process.exit(2);
+  });
+}
+
 for (const s of SCHAEDEN) {
   if (NUR && NUR !== s.kurz) continue;
   const datei = path.join(SKILL, s.pruefer);
@@ -279,6 +305,8 @@ for (const s of SCHAEDEN) {
   }
 
   try {
+    // Ab hier weiss der Signal-Handler, was zurueckzuschreiben ist.
+    inArbeit = { datei, original };
     fs.writeFileSync(datei, original.replace(s.von, s.zu));
     // Gegenprobe, dass die Aenderung wirklich auf der Platte steht.
     if (fs.readFileSync(datei, 'utf8') === original) {
@@ -307,8 +335,10 @@ for (const s of SCHAEDEN) {
           ? `${path.basename(s.eval)} reisst, aber ohne "${s.beleg}" — falscher Grund`
           : null));
   } finally {
-    // Immer zurueck, auch wenn die Eval abstuerzt oder der Lauf abgebrochen wird.
+    // Immer zurueck, auch wenn die Eval abstuerzt. Bei einem SIGNAL greift
+    // `finally` NICHT — dafuer steht der Handler oben.
     fs.writeFileSync(datei, original);
+    inArbeit = null;
     // Und nachsehen, ob es geklappt hat. Am 30.07.2026 blieb craft-check.mjs
     // beschaedigt zurueck: der Schreibvorgang lief, aber eine parallele Aenderung
     // an derselben Datei kam dazwischen. Ein Sabotage-Lauf, der Schaden

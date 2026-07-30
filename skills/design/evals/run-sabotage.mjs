@@ -117,6 +117,26 @@ function laufEval(rel) {
 
 console.log('\nSabotage (design) — merkt die Eval, wenn ihr Detektor kaputtgeht?\n');
 
+// Notfall-Wiederherstellung, wenn der Lauf per SIGNAL stirbt.
+//
+// `finally` sieht nach vollstaendigem Schutz aus, greift bei SIGTERM/SIGINT aber
+// NICHT — am 30.07.2026 an einem Minimalbeispiel belegt: Datei beschaedigt,
+// SIGTERM, Datei bleibt beschaedigt. Dieser Lauf beschaedigt echte Detektoren;
+// wird er per `timeout` oder Strg-C abgebrochen, bleibt einer kaputt liegen.
+let inArbeit = null;
+const notfallZurueck = () => {
+  if (!inArbeit) return;
+  try { fs.writeFileSync(inArbeit.datei, inArbeit.original); } catch { /* nichts mehr zu retten */ }
+  inArbeit = null;
+};
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => {
+    notfallZurueck();
+    try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ }
+    process.exit(2);
+  });
+}
+
 for (const s of SCHAEDEN) {
   if (NUR && NUR !== s.kurz) continue;
   const datei = path.join(SKILL, s.pruefer);
@@ -133,6 +153,7 @@ for (const s of SCHAEDEN) {
   }
 
   try {
+    inArbeit = { datei, original };
     fs.writeFileSync(datei, original.replace(s.von, s.zu));
     if (fs.readFileSync(datei, 'utf8') === original) {
       zeile(false, `${s.kurz}: Datei unveraendert trotz Schreibversuch`);
@@ -153,6 +174,7 @@ for (const s of SCHAEDEN) {
         : (!trifft ? `${path.basename(s.eval)} reisst, aber ohne "${s.beleg}" — falscher Grund` : null));
   } finally {
     fs.writeFileSync(datei, original);
+    inArbeit = null;
     const jetzt = fs.readFileSync(datei, 'utf8');
     if (jetzt !== original) {
       console.error(`\n  !! ${s.pruefer} liess sich NICHT wiederherstellen.`);
