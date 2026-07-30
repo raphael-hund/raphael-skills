@@ -71,6 +71,7 @@ process.on('exit', () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /
 const SCHAEDEN = [
   {
     kurz: 'tastatur',
+    beleg: 'listbox ohne Pfeiltasten',
     pruefer: 'scripts/tastatur-check.mjs',
     eval: 'evals/run-tastatur-check.mjs',
     was: 'Blocker-Zweig abgeschaltet — meldet nie eine fehlende Tastaturbedienung',
@@ -79,6 +80,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'motion',
+    beleg: 'drei Kurven',
     pruefer: 'scripts/motion-check.mjs',
     eval: 'evals/run-motion-check.mjs',
     was: 'Kurven-Vielfalt wird nie zum Blocker',
@@ -87,6 +89,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'formular',
+    beleg: 'label-for',
     pruefer: 'scripts/formular-check.mjs',
     eval: 'evals/run-formular-check.mjs',
     was: 'F1 (falscher input-type) faellt von BLOCK auf WARN',
@@ -95,6 +98,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'craft',
+    beleg: 'melden nicht BLOCK: M3',
     pruefer: 'scripts/craft-check.mjs',
     eval: 'evals/run-craft-check.mjs',
     // Der Fall, der diesen Lauf ausgeloest hat: bis zum 30.07.2026 blieb die
@@ -105,6 +109,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'import',
+    beleg: 'erfundener Name aus sonner',
     pruefer: 'scripts/import-check.mjs',
     eval: 'evals/run-import-check.mjs',
     was: 'erfundene Importe werden gefunden, aber nicht gemeldet',
@@ -113,6 +118,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'lib-exporte',
+    beleg: 'export \\* auf relativen Pfad',
     pruefer: 'scripts/lib-exporte.mjs',
     eval: 'evals/run-lib-lookup.mjs',
     was: 'Typdatei-Aufloesung liefert nie ein Ziel',
@@ -121,6 +127,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'bilder',
+    beleg: '\\.\\./opfer\\.txt',
     pruefer: 'scripts/bilder.mjs',
     eval: 'evals/run-bilder-check.mjs',
     // Die einzige unwiderruflich loeschende Stelle im ganzen Skill. Ohne die
@@ -132,6 +139,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'gate-zaehlung',
+    beleg: 'fehltGanz',
     pruefer: 'scripts/g1-gate.mjs',
     // Zuerst auf run-kaputte-ausgaben.mjs gezeigt — die prueft aber die
     // Auswertung EINZELNER Werkzeug-Ausgaben, nicht das Gesamturteil. Sie blieb
@@ -148,6 +156,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'klon-gate',
+    beleg: 'Treue unter der Stufen-Grenze',
     pruefer: 'scripts/web-clone/klon-gate.mjs',
     eval: 'evals/run-klon-gate.mjs',
     // Die Wiedergabetreue gegen die Stufen-Grenze zu halten ist der ganze Zweck
@@ -158,6 +167,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'axe',
+    beleg: 'Exit 1 bei echten Violations',
     pruefer: 'scripts/axe-run.mjs',
     eval: 'evals/run-axe-check.mjs',
     // axe endet mit 1, wenn es Violations gibt. Wird daraus ein festes 0, meldet
@@ -169,6 +179,7 @@ const SCHAEDEN = [
   },
   {
     kurz: 'shot-sweep',
+    beleg: 'fehlen auf der Platte',
     pruefer: 'scripts/shot-sweep.mjs',
     eval: 'evals/run-sweep-check.mjs',
     // shot-sweep meldet fehlgeschlagene Routen ueber process.exitCode = 1.
@@ -180,6 +191,31 @@ const SCHAEDEN = [
   },
 ];
 
+// --- Nur EIN Sabotage-Lauf gleichzeitig ---------------------------------
+// Zwei Laeufe, die dieselbe Datei beschaedigen und wiederherstellen, ueberholen
+// sich: Lauf A schreibt das Original zurueck, waehrend Lauf B seinen Schaden
+// gerade eingebaut hat — danach traegt die Datei B's Schaden und niemand fuehlt
+// sich zustaendig. Am 30.07.2026 genau so passiert (craft-check.mjs blieb
+// zweimal auf WARN stehen, waehrend eine Parallel-Session denselben Lauf fuhr).
+//
+// Die Sperre ist eine Datei, kein Prozess-Check: sie ueberlebt auch, wenn ein
+// Lauf hart abgebrochen wird. Wer eine verwaiste Sperre findet, sieht Alter und
+// PID und kann entscheiden.
+const SPERRE = path.join(SKILL, 'evals', '.sabotage-laeuft');
+if (fs.existsSync(SPERRE)) {
+  const alt = fs.readFileSync(SPERRE, 'utf8').trim();
+  const alterMin = Math.round((Date.now() - fs.statSync(SPERRE).mtimeMs) / 60000);
+  console.error(`\nEs laeuft bereits ein Sabotage-Lauf (${alt}, seit ${alterMin} min).`);
+  console.error('Zwei gleichzeitige Laeufe lassen Pruefer beschaedigt zurueck.');
+  console.error(`Wenn das ein Ueberbleibsel ist: rm ${SPERRE}\n`);
+  process.exit(2);
+}
+fs.writeFileSync(SPERRE, `PID ${process.pid}`);
+const sperreLoesen = () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ } };
+process.on('exit', sperreLoesen);
+process.on('SIGINT', () => { sperreLoesen(); process.exit(130); });
+process.on('SIGTERM', () => { sperreLoesen(); process.exit(143); });
+
 let fehler = 0;
 const zeile = (ok, text, detail) => {
   if (!ok) fehler++;
@@ -189,11 +225,11 @@ const zeile = (ok, text, detail) => {
 
 function laufEval(rel) {
   try {
-    execFileSync('node', [path.join(SKILL, rel)],
+    const aus = execFileSync('node', [path.join(SKILL, rel)],
       { encoding: 'utf8', timeout: 900000, cwd: SKILL });
-    return 0;                       // Exit 0 = Eval fand alles in Ordnung
+    return { code: 0, aus };        // Exit 0 = Eval fand alles in Ordnung
   } catch (e) {
-    return e.status ?? 1;
+    return { code: e.status ?? 1, aus: `${e.stdout || ''}${e.stderr || ''}` };
   }
 }
 
@@ -223,11 +259,27 @@ for (const s of SCHAEDEN) {
       zeile(false, `${s.kurz}: Datei unveraendert trotz Schreibversuch`);
       continue;
     }
-    const code = laufEval(s.eval);
-    zeile(code !== 0, `${s.kurz}: ${s.was}`,
+    const { code, aus } = laufEval(s.eval);
+    // Reissen allein genuegt nicht — die Eval muss den EINGEBAUTEN Schaden
+    // benennen.
+    //
+    // Befund 30.07.2026: ich habe die Stufen-Trennung in run-craft-check
+    // absichtlich entfernt (genau den Fix, der den urspruenglichen Befund behoben
+    // hatte) — und der craft-Fall bestand weiter. Die Eval riss, aber aus einem
+    // anderen Grund: die M3-Fixture loest ohne Blocker ohnehin nicht mehr sauber
+    // aus. Ein Waechter, der nur "rot oder gruen" fragt, kann eine blind
+    // gewordene Eval nicht von einer wachsamen unterscheiden.
+    //
+    // `beleg` ist eine Zeichenfolge aus der erwarteten Fehlermeldung. Fehlt sie
+    // im Text, riss die Eval aus dem falschen Grund — und das ist derselbe
+    // Befund wie gar nicht zu reissen.
+    const trifft = !s.beleg || new RegExp(s.beleg, 'i').test(aus);
+    zeile(code !== 0 && trifft, `${s.kurz}: ${s.was}`,
       code === 0
         ? `${path.basename(s.eval)} meldet trotzdem Exit 0 — die Eval ist an dieser Stelle blind`
-        : null);
+        : (!trifft
+          ? `${path.basename(s.eval)} reisst, aber ohne "${s.beleg}" — falscher Grund`
+          : null));
   } finally {
     // Immer zurueck, auch wenn die Eval abstuerzt oder der Lauf abgebrochen wird.
     fs.writeFileSync(datei, original);
