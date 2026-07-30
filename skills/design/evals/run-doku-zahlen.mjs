@@ -135,7 +135,45 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
   }
 }
 
-const gesamt = 3;
+// --- 4. Der deutsche Regelsatz und seine Eval ---------------------------
+// design/SKILL.md und copywriting/references/floskel-verbote.md nennen BEIDE die
+// Fallzahl derselben Eval. Zwei Dateien, eine Wahrheit — und beide standen am
+// 30.07.2026 auf "30 Faelle inkl. 8 Gegenproben", waehrend die Eval 50 mit 14
+// fuhr. Eine Zahl, die an zwei Orten steht, veraltet doppelt so leicht.
+{
+  // NICHT ueber lauf(): das setzt den Pfad relativ zum evals-Ordner zusammen
+  // (`design/evals/../eigene/...`) und landet neben dem Skill statt daneben.
+  // Erster Versuch meldete deshalb "Eval faehrt null" — kein Befund ueber die
+  // Zahl, sondern ein Pfadfehler in der Wache selbst.
+  const slopDe = path.join(SKILL, '..', 'eigene', 'web', 'evals', 'run-slop-de-check.mjs');
+  let r;
+  try {
+    r = { aus: execFileSync('node', [slopDe], { encoding: 'utf8', timeout: 600000 }) };
+  } catch (e) {
+    const aus = `${e.stdout || ''}${e.stderr || ''}`;
+    r = aus ? { aus } : { kaputt: String(e.message).split('\n')[0] };
+  }
+  if (r.kaputt) {
+    console.error(`\nFEHLER: run-slop-de-check.mjs lief nicht (${r.kaputt}). Nicht geprueft.`);
+    process.exit(2);
+  }
+  const echt = gesamtzahl(r.aus);
+  const hier = md.match(/run-slop-de-check\.mjs \((\d+)\/\d+, inkl\. (\d+)/);
+  const floskel = path.join(SKILL, '..', 'eigene', 'copywriting', 'references', 'floskel-verbote.md');
+  const dort = fs.existsSync(floskel)
+    ? fs.readFileSync(floskel, 'utf8').match(/run-slop-de-check\.mjs`?, (\d+) F(?:ä|ae)lle inkl\. (\d+)/)
+    : null;
+
+  zeile(hier && Number(hier[1]) === echt,
+    `design/SKILL.md: sagt ${hier ? hier[1] : '?'}, Eval faehrt ${echt}`,
+    hier && Number(hier[1]) === echt ? null : 'Zahl nachziehen');
+  zeile(dort && Number(dort[1]) === echt,
+    `copywriting/floskel-verbote.md: sagt ${dort ? dort[1] : '?'}, Eval faehrt ${echt}`,
+    dort && Number(dort[1]) === echt ? null
+      : 'dieselbe Zahl steht an zwei Orten — beide nachziehen');
+}
+
+const gesamt = 5;
 console.log(`\n${gesamt - fehler}/${gesamt} Zahlen stimmen.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht liefern.');
