@@ -141,6 +141,16 @@ const server = spawnSync('bash', ['-c',
 const pid = (server.stdout || '').trim();
 const aufraeumen = () => { if (pid) spawnSync('kill', [pid]); };
 process.on('exit', aufraeumen);
+// `process.on('exit')` laeuft bei einem SIGNAL NICHT — und so werden diese
+// Evals abgebrochen (`timeout ... node evals/...`, Strg-C). Der Server
+// ueberlebt dann, wird von systemd adoptiert und haelt seinen Port; der
+// naechste Lauf misst gegen einen FREMDEN Server oder bricht ab. Am
+// 30.07.2026 an einem Minimalbeispiel nachgestellt: ohne Handler ueberlebt
+// der Server SIGTERM, mit Handler bleibt 0 uebrig.
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => { aufraeumen(); process.exit(2); });
+}
+
 
 // Beweis, dass DIESER Server antwortet und nicht ein fremder: eine Datei abfragen,
 // die es nur in diesem Wurzelordner gibt.

@@ -73,6 +73,18 @@ function serverAn(ordner) {
 }
 function serverAus() { if (server) { server.kill(); server = null; } }
 process.on('exit', serverAus);
+// `process.on('exit')` laeuft bei einem SIGNAL NICHT — und genau so werden
+// diese Evals abgebrochen, wenn jemand `timeout 600 node evals/...` faehrt oder
+// Strg-C drueckt. Der Server ueberlebt dann, wird von systemd adoptiert (PPID 1)
+// und haelt seinen Port fest; der naechste Lauf misst gegen einen FREMDEN
+// Server oder bricht mit "Port belegt" ab.
+//
+// Gemessen am 30.07.2026: drei verwaiste Testserver, ueber vier Stunden alt,
+// auf 5377/5378/5379. An einem Minimalbeispiel nachgestellt — ohne
+// Signal-Handler ueberlebt der Server SIGTERM, mit Handler bleibt 0 uebrig.
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => { serverAus(); process.exit(2); });
+}
 
 function torQuelle(argv) {
   const r = spawnSync('node', [GATE, ...argv], { encoding: 'utf8', timeout: 120000 });

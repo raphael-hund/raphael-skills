@@ -473,6 +473,16 @@ const aufraeumen = () => {
   fs.rmSync(ordner, { recursive: true, force: true });
 };
 process.on('exit', aufraeumen);
+// `process.on('exit')` laeuft bei einem SIGNAL NICHT — und so werden diese
+// Evals abgebrochen (`timeout ... node evals/...`, Strg-C). Der Server
+// ueberlebt dann, wird von systemd adoptiert und haelt seinen Port; der
+// naechste Lauf misst gegen einen FREMDEN Server oder bricht ab. Am
+// 30.07.2026 an einem Minimalbeispiel nachgestellt: ohne Handler ueberlebt
+// der Server SIGTERM, mit Handler bleibt 0 uebrig.
+for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
+  process.on(sig, () => { aufraeumen(); process.exit(2); });
+}
+
 await new Promise((r) => setTimeout(r, 1500));
 
 const script = fs.readFileSync(BROWSER_JS, 'utf8');
