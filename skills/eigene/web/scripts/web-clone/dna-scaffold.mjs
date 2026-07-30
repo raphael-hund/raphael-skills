@@ -119,12 +119,29 @@ function enrich(dna, recon) {
     ...((recon.sections || []).map((s) => s?.style?.fontFamily).filter(Boolean)),
   ]).map((f) => String(f).replace(/^["']|["']$/g, "").split(",")[0].trim()).filter(Boolean);
   signals.fonts = uniq(fontList);
+  // Was NICHT gemessen, sondern geschlossen wurde. Eine leere Liste ist die
+  // ehrliche Aussage "nichts abgeleitet".
+  const abgeleitet = [];
   if (signals.fonts.length) {
     const mono = signals.fonts.find((f) => /mono|code|consol|courier/i.test(f)) || "";
     const nonMono = signals.fonts.filter((f) => f !== mono);
     dna.design_system.typography.font_families.heading = nonMono[0] || "";
+    // Bei nur EINER gefundenen Schrift wird sie auch `body` — eine ABLEITUNG,
+    // keine abgegriffene Tatsache. Die Doktrin im Dateikopf sagt "绝不编造"
+    // (niemals erfinden). Die Ableitung darf bleiben (viele Seiten fahren
+    // wirklich eine Schrift), aber sie muss dastehen.
+    //
+    // Diese Datei ist die ZWEITE Kopie: derselbe Fix ging am 30.07.2026 in
+    // skills/design/scripts/dna-scaffold.mjs und blieb hier liegen. Gemessen,
+    // nicht vermutet — beide Fassungen leiteten ab, nur eine sagte es.
     dna.design_system.typography.font_families.body = nonMono[1] || nonMono[0] || "";
     dna.design_system.typography.font_families.mono = mono;
+    if (nonMono.length === 1) {
+      abgeleitet.push(
+        `typography.font_families.body = "${nonMono[0]}" ist ABGELEITET aus heading `
+        + "(die Aufklaerung fand nur eine Schrift) — pruefen, ob die Seite wirklich "
+        + "nur eine fuehrt");
+    }
   }
 
   // 颜色: CSS 变量里像颜色的 + sections 的 bg/color
@@ -177,8 +194,12 @@ function enrich(dna, recon) {
 
   // 把原始信号留在顶层供人工指派角色(不编造 primary/accent)
   dna._recon_signals = signals;
+  dna._abgeleitet = abgeleitet;
   dna._scaffold_note =
-    "best-effort 预填来自 recon。font_families/surface.background/visual_effects 已据真实信号填写；" +
+    (abgeleitet.length
+      ? `ACHTUNG: ${abgeleitet.length} Feld(er) sind ABGELEITET, nicht gemessen — siehe _abgeleitet. `
+      : "")
+    + "best-effort 预填来自 recon。font_families/surface.background/visual_effects 已据真实信号填写；" +
     "color 的 primary/secondary/accent 角色需人工从 _recon_signals.color_candidates 指派；" +
     "所有 \"\" 字段需人工 Analyze 补全(见 references/design-dna.md)。确认无误后可删除 _recon_signals 与本说明。";
   return dna;

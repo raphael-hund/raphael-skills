@@ -176,6 +176,44 @@ console.log('\nUnbrauchbare Aufklaerung darf nicht als Erfolg durchgehen:\n');
   }
 }
 
+// --- 6. Die zweite Kopie darf nicht auseinanderlaufen ---------------------
+// Dieselbe Datei liegt zweimal im Baum: hier und unter
+// eigene/web/scripts/web-clone/. Der Ableitungs-Fix ging am 30.07.2026 nur in
+// diese Fassung; die andere verschwieg die Ableitung weiter — gemessen, nicht
+// vermutet (body==heading in beiden, _abgeleitet nur hier).
+//
+// Ein Fix, der nur eine von zwei Kopien erreicht, ist schlimmer als keiner: er
+// erzeugt den Eindruck, das Problem sei erledigt. Darum prueft die Eval jetzt
+// mit, dass beide dieselbe Antwort geben.
+console.log('\nDie zweite Kopie im web-Skill muss dasselbe tun:\n');
+{
+  const zwilling = path.resolve(HIER, '..', '..', 'eigene', 'web', 'scripts',
+    'web-clone', 'dna-scaffold.mjs');
+  if (!fs.existsSync(zwilling)) {
+    zeile(true, 'keine zweite Kopie vorhanden — nichts abzugleichen');
+  } else {
+    const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'dna-zwilling-'));
+    try {
+      const rp = path.join(ordner, 'recon.json');
+      fs.writeFileSync(rp, JSON.stringify({ fonts: ['Barlow Condensed'], colors: [], frameworks: [] }));
+      const ziel = path.join(ordner, 'dna.json');
+      spawnSync('node', [zwilling, '--out', ziel, '--recon', rp, '--name', 'X'],
+        { encoding: 'utf8', timeout: 60000 });
+      const dna = fs.existsSync(ziel) ? JSON.parse(fs.readFileSync(ziel, 'utf8')) : null;
+      const fam = dna?.design_system?.typography?.font_families || {};
+      const abgeleitet = fam.body === fam.heading && fam.body !== '';
+      const vermerkt = (dna?._abgeleitet || []).length > 0;
+      zeile(!abgeleitet || vermerkt,
+        'web-clone/dna-scaffold.mjs vermerkt die Ableitung ebenfalls',
+        abgeleitet && !vermerkt
+          ? 'body wird abgeleitet, _abgeleitet ist leer — der Fix fehlt in dieser Kopie'
+          : null);
+    } finally {
+      fs.rmSync(ordner, { recursive: true, force: true });
+    }
+  }
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
