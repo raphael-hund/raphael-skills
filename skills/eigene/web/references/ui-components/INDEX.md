@@ -52,6 +52,13 @@ liegen in einem Unterordner (`swap/`, `button/`, `table/`, `wallet-card/`,
 | `bouncy-accordion.tsx` | Single-Open-Accordion mit gewichtetem Spring-Layout |
 | `magnetic.tsx` | Cursor-Magnet-Wrapper |
 | `smooth-scroll.tsx`, `scroll-progress.tsx`, `parallax.tsx`, `scroll-to.tsx`, `scroll-reveal.tsx` | Scroll-Motion-Gruppe (Lenis-Provider, Progress-Bar/-Ring, Parallax, Scroll-Reveal) |
+| `checkbox.tsx` | Checkbox mit gezeichnetem Häkchen und Indeterminate-Zustand |
+| `input.tsx` | Textfeld mit Fehler-Shake, roter Kante und eingeblendeter Meldung |
+| `loader.tsx` | Ladeanzeige in 9 Varianten (Spinner, Dots, Bars, Dot-Matrix, Dither, 4× ASCII) |
+| `expanding-arrow-button.tsx` | Button, dessen Pfeil bei Hover aus dem Label herauswächst |
+| `hold-action-button.tsx` | Gedrückthalten statt Klick — Fortschrittsring, löst erst am Ende aus |
+| `slide-action-button.tsx` | Zum Bestätigen schieben (Slide-to-Confirm), mit Zurückfedern |
+| `shader-background.tsx` | Animierte Shader-Flächen als Hintergrund (Farbfelder, Dithering; nicht jede Variante bewegt sich) |
 
 ## Zusammengesetzte Widgets (`motion/`, Kategorie "Blocks")
 
@@ -71,6 +78,9 @@ liegen in einem Unterordner (`swap/`, `button/`, `table/`, `wallet-card/`,
 | `otp-input.tsx` | Einmalcode-Input mit gleitendem Fokusring, Fehler-Shake |
 | `bloom-menu.tsx` | Button, der zu Menü aufblüht (Shared-Layout + Clip-Path) |
 | `availability-scheduler/` | Wochenverfügbarkeits-Editor mit Shared-Layout-Toggles |
+| `feedback-widget.tsx` | Feedback-Kasten mit Sende-Zustand, wartet auf die Antwort des Servers |
+| `knockout-bracket.tsx` | Turnierbaum mit Länderflaggen (K.-o.-Runden), 802 Zeilen |
+| `swap.tsx` | Einzeldatei-Variante des Swap-Widgets (`MultiChainSwap`) neben dem Ordner `swap/` |
 | `wallet-card/`, `table/`, `not-found/` | Weitere komplette Widget-Beispiele (Wallet-Karte, Daten-Tabelle mit Spalten-Resize/Sort/Reorder, 404-Varianten) |
 
 ## Wo diese Bibliothek NICHT die Antwort ist
