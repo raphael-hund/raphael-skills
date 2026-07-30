@@ -55,7 +55,11 @@ const NUR = nurArg >= 0 ? process.argv[nurArg + 1] : null;
 // Ein Grundgeruest, das selbst keine Regel reisst. Jeder Fall fuellt nur
 // `kopf` (extra CSS) und `body`. Ohne diese gemeinsame Basis testet man den
 // Rahmen mit, nicht die Regel.
-const seite = ({ kopf = '', body = '' }) => `<!doctype html>
+// `link` kommt VOR den <style>-Block. Ein `@import` in `kopf` waere wirkungslos:
+// dort steht es hinter dem Grundgeruest-CSS, und der Browser ignoriert jedes
+// @import, das nicht am Anfang des Blocks steht. Erster Versuch am 30.07.2026
+// tat genau das — der Fall meldete "(nichts)" und sah wie ein Pruefer-Fehler aus.
+const seite = ({ kopf = '', body = '', link = '' }) => `<!doctype html>
 <html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Craft-Eval</title>
@@ -69,6 +73,7 @@ const seite = ({ kopf = '', body = '' }) => `<!doctype html>
 <meta property="og:image" content="/og.png">
 <link rel="icon" href="data:,">
 <meta name="theme-color" content="#16202b">
+${link}
 <style>
 :root{--ink:#16202b;--mut:#5b6875;--line:#e2e6ea;--bg:#fff}
 *{box-sizing:border-box;margin:0}
@@ -317,6 +322,24 @@ const FAELLE = {
     kopf: '.ta{transition:all .3s ease;padding:4px}',
     body: '<div class="ta">Alles animiert</div>',
   },
+  'M18-extern': {
+    ist: 'M18',
+    was: 'Animation in einer EXTERNEN CSS-Datei, kein Reduced-Motion',
+    // Nachgetragen 30.07.2026. Alle bisherigen Faelle betten ihr CSS in einen
+    // <style>-Block ein; ein echter Build liefert eine .css-Datei. Der Pruefer
+    // liest dafuer document.styleSheets und faengt Cross-Origin-Fehler mit
+    // einem leeren catch ab — Verdacht war, dass externe Dateien dadurch
+    // unsichtbar bleiben und M18 falschen Alarm gibt.
+    //
+    // Nachgemessen: der Verdacht war UNBEGRUENDET. Mit Reduced-Motion in der
+    // externen Datei schweigt M18, ohne meldet es. Beide Richtungen am echten
+    // Pruefer geprueft. Der Fall steht hier, weil er das belegt — nicht weil
+    // etwas kaputt war.
+    kopfWeg: /@media \(prefers-reduced-motion:reduce\)\{\*\{transition:none!important;animation:none!important\}\}\n/,
+    dazu: { 'extern.css': '.e1,.e2,.e3{transition:opacity .3s ease}\n' },
+    link: '<link rel="stylesheet" href="extern.css">',
+    body: '<div class="e1">A</div><div class="e2">B</div><div class="e3">C</div>',
+  },
   M24: {
     was: 'kein Bild ueber Icon-Groesse',
     // Der einzige Fall, der das Grundgeruest aendern muss: er ist die ABWESENHEIT
@@ -348,11 +371,16 @@ const NICHT_HIER = {
   M20: 'INFO-Stufe, kein BLOCK/WARN — taucht im Bericht anders auf',
 };
 
-function lauf(html) {
+function lauf(html, dazu = {}) {
   const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'craft-eval-'));
   try {
     const datei = path.join(ordner, 'index.html');
     fs.writeFileSync(datei, html);
+    // Beidateien fuer Faelle, die ein EXTERNES Stylesheet brauchen. Alle
+    // bisherigen Faelle betten ihr CSS ein — ein echter Build tut das nie.
+    for (const [name, inhalt] of Object.entries(dazu)) {
+      fs.writeFileSync(path.join(ordner, name), inhalt);
+    }
     let roh = '';
     try {
       roh = execFileSync('node', [PRUEFER, '--url', `file://${datei}`, '--json'],
@@ -400,7 +428,7 @@ for (const [id, f] of Object.entries(FAELLE)) {
   // `kopfWeg` entfernt eine Zeile, die das Geruest zur Erfuellung braucht — so
   // wird die Abwesenheit einer Sache testbar, nicht nur ihre Anwesenheit.
   if (f.kopfWeg) html = html.replace(f.kopfWeg, '');
-  const r = lauf(html);
+  const r = lauf(html, f.dazu || {});
   if (r.kaputt) { zeile(false, `${id}  ${f.was}`, `Pruefer kaputt: ${r.kaputt}`); continue; }
 
   // Zwei Fragen, nicht eine. Bis 29.07.2026 stand hier nur `ids.includes(id)`:
@@ -416,11 +444,21 @@ for (const [id, f] of Object.entries(FAELLE)) {
   // zweiten zwangsweise nach sich (acht Schriftgroessen erhoehen auch die
   // Spannweite). Wer den Begleiter hinschreibt, hat ihn bedacht — wer ihn
   // stillschweigend duldet, weiss nichts.
-  const erlaubt = new Set([id, ...(f.mit || [])]);
+  // `f.ist` nennt die Regel, wenn der Schluessel ein anderer ist — zwei Faelle
+  // fuer dieselbe Regel brauchen zwei Schluessel ('M18' und 'M18-extern'), aber
+  // beide pruefen M18. Die Abdeckungszaehlung unten wertet `ist` seit Anfang aus,
+  // die Trefferpruefung hier tat es nicht: mein neuer Fall suchte nach der ID
+  // "M18-extern", die es im Pruefer gar nicht gibt (30.07.2026, Meldung
+  // "M18-extern fehlt. Gemeldet wurde: (nichts)").
+  //
+  // Eine Eval, die dasselbe Feld an zwei Stellen unterschiedlich liest, meldet
+  // Rot fuer einen korrekten Testfall — falscher Alarm aus Inkonsistenz.
+  const regel = f.ist || id;
+  const erlaubt = new Set([regel, ...(f.mit || [])]);
   const mitlaeufer = r.ids.filter((x) => !erlaubt.has(x));
-  const trifft = r.ids.includes(id);
+  const trifft = r.ids.includes(regel);
   zeile(trifft && mitlaeufer.length === 0, `${id}  ${f.was}`,
-    !trifft ? `${id} fehlt. Gemeldet wurde: ${r.ids.join(', ') || '(nichts)'}`
+    !trifft ? `${regel} fehlt. Gemeldet wurde: ${r.ids.join(', ') || '(nichts)'}`
       : mitlaeufer.length ? `reisst zusaetzlich: ${mitlaeufer.join(', ')} — Fixture zu grob oder \`mit\` erweitern`
         : null);
 }
