@@ -119,6 +119,27 @@ const SCHAEDEN = [
     von: 'if (fehltGanz.length) {',
     zu: 'if (false) {',
   },
+  {
+    kurz: 'klon-gate',
+    pruefer: 'scripts/web-clone/klon-gate.mjs',
+    eval: 'evals/run-klon-gate.mjs',
+    // Die Wiedergabetreue gegen die Stufen-Grenze zu halten ist der ganze Zweck
+    // dieses Tors. Faellt der Vergleich, besteht jeder Klon.
+    was: 'Wiedergabetreue besteht unabhaengig von der Stufen-Grenze',
+    von: "record('treue', treue >= q.min,",
+    zu: "record('treue', true,",
+  },
+  {
+    kurz: 'axe',
+    pruefer: 'scripts/axe-run.mjs',
+    eval: 'evals/run-axe-check.mjs',
+    // axe endet mit 1, wenn es Violations gibt. Wird daraus ein festes 0, meldet
+    // das Gate "axe bestanden" fuer jede Seite — und der A11y-Pruefer ist tot,
+    // ohne dass etwas fehlt.
+    was: 'axe endet immer mit 0, egal wie viele Violations',
+    von: 'process.exit(violations.length ? 1 : 0);',
+    zu: 'process.exit(0);',
+  },
 ];
 
 let fehler = 0;

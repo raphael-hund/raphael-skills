@@ -114,7 +114,40 @@ try {
   await browser.close();
 }
 
-console.log(`\n${FAELLE.length - rot}/${FAELLE.length} Faelle wie erwartet.`);
+// --- Der Exit-Code von axe-run.mjs -------------------------------------
+// Bis hierher prueft diese Eval, ob axe UEBERHAUPT Regeln laufen laesst. Was sie
+// nicht prueft: ob axe-run.mjs seine Funde auch als Exit-Code weitergibt. Befund
+// 30.07.2026 durch den Sabotage-Lauf — `process.exit(violations.length ? 1 : 0)`
+// zu `process.exit(0)` geaendert, und keine Eval merkte es. Damit meldet das Tor
+// "axe bestanden" fuer jede Seite: der A11y-Pruefer waere tot, ohne dass etwas
+// fehlt.
+//
+// Geprueft am echten Lauf gegen eine Seite mit garantierten Verstoessen (Bild
+// ohne alt, Link ohne Namen, kein lang-Attribut).
+console.log('');
+{
+  const { execFileSync } = await import('node:child_process');
+  const fsN = await import('node:fs');
+  const osN = await import('node:os');
+  const pathN = await import('node:path');
+  const AXE = pathN.join(pathN.dirname(new URL(import.meta.url).pathname), '..', 'scripts', 'axe-run.mjs');
+  const ordner = fsN.mkdtempSync(pathN.join(osN.tmpdir(), 'axe-exit-'));
+  const kaputt = pathN.join(ordner, 'kaputt.html');
+  fsN.writeFileSync(kaputt,
+    '<!doctype html><html><head><meta charset="utf-8"><title>t</title></head><body>'
+    + '<img src="data:,x"><a href="#"></a></body></html>');
+  let code = 0;
+  try {
+    execFileSync('node', [AXE, '--url', `file://${kaputt}`], { encoding: 'utf8', timeout: 180000 });
+  } catch (e) { code = e.status ?? 1; }
+  fsN.rmSync(ordner, { recursive: true, force: true });
+  const ok = code === 1;
+  if (!ok) rot++;
+  console.log(`${ok ? 'OK  ' : 'ROT '} axe-run.mjs endet mit Exit 1 bei echten Violations`);
+  if (!ok) console.log(`       bekam Exit ${code} — Funde erreichen das Tor nicht`);
+}
+
+console.log(`\n${FAELLE.length + 1 - rot}/${FAELLE.length + 1} Faelle wie erwartet.`);
 if (rot) {
   console.log('Der a11y-Pruefer kann still nichts pruefen. Erst reparieren, dann ausliefern.');
   process.exit(1);
