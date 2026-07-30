@@ -189,6 +189,24 @@ const REGEX_MATCHERS = [
   { id: 'ai-color-palette', regex: /\bfrom-(?:purple|violet|indigo)-(\d+)\b/g,
     test: (m, line) => /\bto-(?:purple|violet|indigo|blue|cyan|pink|fuchsia)-\d+\b/.test(line),
     fmt: (m) => `${m[0]} gradient` },
+  // --- Same palette in raw CSS ---
+  // Gap found 30.07.2026: `ai-color-palette` only had Tailwind branches. On a
+  // plain-CSS page with `linear-gradient(90deg, #6366f1, #a855f7)` — the exact
+  // indigo→violet tell — detect.mjs reported nothing, while scan-ai-slop.mjs
+  // flagged it as tell 01 on the same file. Two checkers, one page, one blind.
+  // Every other rule here already has both branches (see bounce-easing below);
+  // this one was simply missed. The hex list is the canonical Tailwind palette:
+  // indigo-500/600, violet-500/600, purple-500/600, fuchsia-500.
+  { id: 'ai-color-palette',
+    regex: /(?:linear|radial|conic)-gradient\([^)]*(#6366f1|#4f46e5|#8b5cf6|#7c3aed|#a855f7|#9333ea|#d946ef)[^)]*\)/gi,
+    test: () => true,
+    fmt: (m) => `indigo/violet gradient in CSS (${m[1]})` },
+  { id: 'ai-color-palette',
+    regex: /(?:^|[;{\s])color\s*:\s*(#6366f1|#4f46e5|#8b5cf6|#7c3aed|#a855f7|#9333ea)\b/gi,
+    // Only on a heading line: a violet accent somewhere is a choice, a violet
+    // headline is the tell. Same condition the Tailwind branch above uses.
+    test: (m, line) => /<h[1-3]|font-size\s*:\s*(?:[3-9]|\d\d)/i.test(line),
+    fmt: (m) => `violet heading color in CSS (${m[1]})` },
   // --- Bounce/elastic easing ---
   { id: 'bounce-easing', regex: /\banimate-bounce\b/g,
     test: () => true,

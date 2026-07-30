@@ -143,6 +143,26 @@ blind. Der Regelsatz ergaenzt `de-14` (Textstimme, im web-Gate ein Blocker),
 freigegebener Liste `copywriting/references/floskel-verbote.md`. Das web-Gate
 haengt ihn automatisch an und schreibt es ins Urteil, wenn er fehlt.
 
+**Der Detektor hatte 46 Regeln und keinen Test** (Befund 30.07.2026). Aufgefallen
+an einer Seite mit `linear-gradient(90deg, #6366f1, #a855f7)` und
+`font-family: Inter`: `detect.mjs` meldete **nur** die Schriftart,
+`scan-ai-slop.mjs` fand auf derselben Datei beides. Zwei Prüfer, eine Seite,
+einer blind — `ai-color-palette` hatte nur Tailwind-Zweige (`from-purple-500`)
+und keinen für rohes CSS. Jede andere Regel dort hat beide. Auf einer
+handgeschriebenen Landingpage ohne Tailwind war damit der wichtigste
+Farb-Detektor wirkungslos. Behoben; Beleg:
+
+```bash
+node evals/run-detect-check.mjs
+```
+
+9 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich: **7 von 46** Regeln
+haben einen Testfall, **33 sind über den Datei-Modus grundsätzlich nicht
+erreichbar** (sie liegen in `rules/checks.mjs` und brauchen ein gerendertes DOM —
+dort deckt sie `craft-check` im web-Skill ab), und **6 sind im Datei-Modus
+herstellbar und noch offen**. Diese Aufteilung ist der Punkt: „7 von 46" allein
+klingt schlecht, „7 von 13 erreichbaren" ist die Wahrheit.
+
 Ablauf beider Scanner identisch (Scope -> Scan -> Triage -> Report -> Fix):
 1. **Scope**: Default = Frontend-Source, `node_modules`/`dist`/`.git`/Lockfiles
    raus.
