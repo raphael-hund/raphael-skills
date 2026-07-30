@@ -10,6 +10,62 @@ CHANGELOG beschreibt das Repo drumherum (Vertrag, Validator, Marker).
 
 ---
 
+## 2026-07-29/30 — Webdesigner-Pro: jeder Pruefer hat jetzt einen Testfall
+
+**TLDR:** 79 Commits am `web`- und `design`-Skill. Kein neues Feature, sondern
+die Antwort auf eine Frage, die niemand gestellt hatte: *woher wissen wir, dass
+die Pruefer funktionieren?* Ergebnis: 27 Pruefläufe, alle gruen, und jede Regel
+in jedem Detektor durch mindestens einen Testfall belegt.
+
+**Neu integriert (nicht addiert, sondern verbunden)**
+- Deutscher AI-Slop-Regelsatz (`design/scripts/rules.de.mjs`): der vendorte
+  Scanner ist englisch und lief auf deutschen Seiten mit **0 Treffern, Exit 0**.
+  Muster sind die maschinell pruefbare Haelfte von Raphaels bereits
+  freigegebener `floskel-verbote.md` — beide Dateien verweisen jetzt
+  aufeinander.
+- Drei neue Tor-Pruefer: `motion-check` (spricht das Projekt EINE
+  Bewegungssprache? — drei Ease-Kurven im Bestand statt der zwei
+  dokumentierten), `tastatur-check` (7 von 10 Widgets trugen ARIA-Rollen ohne
+  Tastaturbedienung, alle gruen bei axe), `klon-gate` (der Klon-Weg hatte zwoelf
+  Werkzeuge und kein Annahmekriterium).
+- `naht-check`: prueft die Verbindungen statt der Werkzeuge. Jeder Fehler dieser
+  Runde sass in der Naht — `visual-diff` rechnete eine Note aus, die niemand
+  abfragte; `audit-clone` fand einen Google-Tracker und schrieb ihn nur als
+  Markdown; `slopNamen()` war toter Code, den eine Eval trotzdem prueft.
+
+**Sicherheit**
+- `bilder.mjs reject` (die einzige unwiderruflich loeschende Stelle im Skill)
+  loeschte Dateien **ausserhalb** des Asset-Ordners: `"datei": "../opfer.txt"`
+  im Index genuegte. Exit 0, brave Erfolgsmeldung, Datei weg.
+- `web-clone/mirror-site.mjs` liess die **fremde** Seite bestimmen, wohin
+  geschrieben wird: `/x/../../../root/.ssh/authorized_keys` landete dort.
+  Genau der Fall aus der Quarantaene-Regel (AGENTS.md Nr. 17).
+
+**Abdeckung, ehrlich ausgewiesen**
+- `craft-check` 23/23 Regeln, `detect.mjs` Datei-Modus 13/13, Browser-Pfad
+  37/37, `validate-workflow.py` 7/7 Pruefer. Vorher: 10 von 28 bzw. 4 von 46
+  bzw. 3 von 7 — und niemand konnte die Zahl nennen.
+- Der Tresor meldete `@base-ui/react` als UNPRUEFBAR, also genau die Library,
+  die die Komponenten-Doku fuer neun Widgets empfiehlt. Jetzt 53 Namen,
+  0 UNPRUEFBAR im ganzen Tresor.
+
+**Die Lehre, die jede Eval jetzt erzwingt**
+Ein Waechter braucht **beide** Richtungen. Reissen allein ist auch durch "melde
+immer" erfuellbar, und ein Pruefer, der korrekte Arbeit rot faerbt, wird nach dem
+dritten Fehlalarm abgeschaltet — dann schuetzt er auch im echten Fall nicht mehr.
+Gefunden habe ich das an eigenen Fehlalarmen: Escape von einem eingebetteten
+Rad-Picker verlangt, `useReducedMotion()` in JS nicht als Reduced Motion
+erkannt, `..-2f..` fuer einen Pfad-Ausbruch gehalten.
+
+Und: wer prueft, wie etwas **geschrieben** ist statt was dabei **herauskommt**,
+baut Fehlalarme. Rund ein Dutzend Mal war mein Testfall zu schwach, nie der
+Pruefer — meist weil eine Schwelle nur im Code stand (`single-font` braucht 20
+Textelemente, `oversized-h1` drei Bedingungen gleichzeitig, `monotonous-spacing`
+liest Markup statt DOM). Die Tabelle "welche Regel liest was" steht deshalb im
+`design`-SKILL.
+
+---
+
 ## 2026-07-20 — Karpathy-Deep-Dive: Council- und Autoresearch-Muster eingearbeitet
 
 **Geaendert**
