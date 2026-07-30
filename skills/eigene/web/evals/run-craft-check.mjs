@@ -570,7 +570,21 @@ console.log(`  ${alleIds.length} Regeln im Pruefer`);
 const wirklichBelegt = alleIds.filter((x) => belegt.has(x));
 const nurHier = alleIds.filter((x) => hier.includes(x));
 const nurAntiset = alleIds.filter((x) => antiset.includes(x) && !hier.includes(x));
-console.log(`  ${wirklichBelegt.length} belegt — ${nurHier.length} hier, ${nurAntiset.length} nur ueber das Anti-Set`);
+// Die Aufschluesselung muss die Gesamtzahl ERGEBEN, sonst ist sie eine dritte
+// Zahl neben zwei anderen. Gemessen am 30.07.2026: "23 belegt — 19 hier, 3 nur
+// ueber das Anti-Set". 19 + 3 = 22. Die fehlende war M20, belegt vom Minimalfall
+// in Abschnitt 2b und deshalb in `belegt`, aber in keiner der beiden Listen.
+//
+// Die Rechnung stimmte; nur die Anzeige verschwieg eine Kategorie. Das ist die
+// leisere Haelfte des Musters dieser Serie: keine falsche Zahl, sondern eine
+// Aufteilung, die sich nicht nachrechnen laesst. Wer nachrechnet, sucht den
+// Fehler dann in der Summe statt in der Darstellung.
+const sonstBelegt = wirklichBelegt.filter((x) => !nurHier.includes(x) && !nurAntiset.includes(x));
+console.log(`  ${wirklichBelegt.length} belegt — ${nurHier.length} hier, ${nurAntiset.length} nur ueber das Anti-Set`
+  + (sonstBelegt.length ? `, ${sonstBelegt.length} ueber Sonderfaelle (${sonstBelegt.join(', ')})` : ''));
+if (nurHier.length + nurAntiset.length + sonstBelegt.length !== wirklichBelegt.length) {
+  console.log('  ACHTUNG: die Aufschluesselung ergibt nicht die Gesamtzahl.');
+}
 console.log(`  ${offen.length} ohne Fixture: ${offen.join(', ') || '–'}`);
 console.log('\n  Eine Regel ohne Fixture ist keine falsche Regel — nur eine, von der');
 console.log('  niemand weiss, ob sie feuert. Beim naechsten Umbau faellt ihr Ausfall');
