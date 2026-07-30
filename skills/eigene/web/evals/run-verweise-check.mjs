@@ -363,6 +363,60 @@ console.log('\nSkripte im Skill haben einen Aufrufer:\n');
   }
 }
 
+// --- Benutzt jede Datei nur, was sie auch importiert? -------------------
+//
+// `node --check` prueft die GRAMMATIK, nicht die Bedeutung: ein fehlender
+// Import meldet "Syntax ok" und knallt erst zur Laufzeit — im schlimmsten Fall
+// mitten in einem 15-Minuten-Lauf, nach den ersten zwanzig gruenen Faellen.
+//
+// Mir am 30.07.2026 ZWEIMAL passiert: `spawnSync` benutzt, aber `execFileSync`
+// importiert; spaeter `os.tmpdir()` ohne `import os`. Beide Male sagte die
+// Syntaxpruefung "ok", beide Male fiel es nur beim Durchsehen der Import-Zeilen
+// auf. Eine Pruefung, die man von Hand macht, macht man irgendwann nicht mehr.
+//
+// Bewusst eng: nur die Node-Kernmodule als Namensraum-Objekt (fs.x(), os.x(),
+// path.x()). Benannte Importe zu pruefen hiesse, jede lokale Funktion mit
+// gleichem Namen als Fehlalarm zu melden — und ein Waechter mit Fehlalarmen
+// wird abgeschaltet.
+console.log('\nJede Datei importiert, was sie benutzt:\n');
+{
+  const KERN = ['fs', 'os', 'path', 'crypto', 'util', 'zlib'];
+  const dateienJs = [];
+  const sammle = (unter) => {
+    if (!fs.existsSync(unter)) return;
+    for (const e of fs.readdirSync(unter, { withFileTypes: true })) {
+      if (e.name === 'node_modules' || e.name.startsWith('.') || e.name === 'vendor') continue;
+      const p = path.join(unter, e.name);
+      if (e.isDirectory()) sammle(p);
+      else if (e.name.endsWith('.mjs')) dateienJs.push(p);
+    }
+  };
+  for (const u of ['scripts', 'evals']) sammle(path.join(ZIEL, u));
+
+  const fehlend = [];
+  for (const f of dateienJs) {
+    const txt = fs.readFileSync(f, 'utf8');
+    // Kommentare raus: sie nennen Modulnamen im Fliesstext ("os.tmpdir() ohne
+    // import os"), und ein Waechter, der seine eigene Begruendung als Befund
+    // liest, ist genau der Fehlalarm, den er verhindern soll.
+    const code = txt.split('\n')
+      .filter((z) => !z.trim().startsWith('//') && !z.trim().startsWith('*'))
+      .join('\n');
+    // Beide Anfuehrungsarten. Mein erster Handlauf kannte nur ' und meldete
+    // deshalb dna-scaffold.mjs als kaputt — die Datei nutzt ".
+    const importiert = new Set(
+      [...txt.matchAll(/import\s+(\w+)\s+from\s+['"]node:(\w+)['"]/g)].map((m) => m[1]),
+    );
+    for (const mod of KERN) {
+      if (new RegExp(`\\b${mod}\\.\\w+\\(`).test(code) && !importiert.has(mod)) {
+        fehlend.push(`${path.relative(ZIEL, f)}: ${mod}`);
+      }
+    }
+  }
+  zeile(fehlend.length === 0, `${dateienJs.length} Datei(en) auf fehlende Kernmodul-Importe geprueft`,
+    fehlend.length ? `benutzt ohne Import: ${fehlend.join(' | ')}` : null);
+}
+
 // --- Dateinamen im Fliesstext der Referenzen ----------------------------
 // Die Wiki-Verweise oben sind [[doppelt eckig]]. Daneben nennen die Referenzen
 // Dateien in Backticks (`scripts/g1-gate.mjs`, `shadcn-index.json`) — die hat
