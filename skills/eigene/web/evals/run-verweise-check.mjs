@@ -541,6 +541,55 @@ console.log('\nJeder Skill aus requires_skills: existiert:\n');
       : fehlend.length ? `${namen.length} verlangte(r) Skill(s), ${fehlend.length} fehlt/fehlen`
         : `${namen.length} verlangte(r) Skill(s), alle vorhanden`,
     fehlend.length ? `nicht gefunden: ${fehlend.join(', ')}` : null);
+
+  // Existenz allein reicht nicht: `design@^0` heisst "Hauptversion 0". Springt
+  // design auf 1.0.0, ist die Zusage gebrochen — und weil der Skill trotzdem
+  // daliegt, faellt es sonst nirgends auf. Genau die Sorte Naht, die diese
+  // Woche viermal offen war: beide Seiten funktionieren, nur ihre Verbindung
+  // stimmt nicht mehr.
+  const spanne = [...zeileReq.matchAll(/([a-z][a-z-]*)@\^(\d+)/g)];
+  const falsch = [];
+  for (const [, name, major] of spanne) {
+    const datei = [path.join(EIGENE, name, 'SKILL.md'), path.join(SKILLS, name, 'SKILL.md')]
+      .find((f) => fs.existsSync(f));
+    if (!datei) continue;                       // Fehlen meldet schon die Zeile oben
+    const v = fs.readFileSync(datei, 'utf8').match(/^version:\s*(\d+)\./m);
+    if (!v) { falsch.push(`${name} (keine version: im Kopf)`); continue; }
+    if (v[1] !== major) falsch.push(`${name}@^${major} verlangt, installiert ist ${v[1]}.x`);
+  }
+  zeile(falsch.length === 0,
+    falsch.length === 0
+      ? `${spanne.length} Versionsspanne(n), alle erfuellt`
+      : `${falsch.length} von ${spanne.length} Versionsspannen verletzt`,
+    falsch.length ? falsch.join(' | ') : null);
+
+  // Und die Gegenrichtung: die Nachbar-Skills haben eigene requires_skills.
+  // taste und ui-ux verlangen `design@^0`, copywriting `eval@^0` und
+  // `no-ai-slop@^0` — vier Zusagen, die bisher niemand gemessen hat. Wer nur
+  // sein eigenes Frontmatter prueft, sieht die halbe Abhaengigkeit.
+  const nachbarn = ['taste', 'ui-ux', 'impeccable', 'copywriting', 'no-ai-slop'];
+  const kaputt = [];
+  let geprueftGesamt = 0;
+  for (const skill of nachbarn) {
+    const datei = path.join(EIGENE, skill, 'SKILL.md');
+    if (!fs.existsSync(datei)) continue;
+    const txt = fs.readFileSync(datei, 'utf8');
+    const req = (txt.match(/^requires_skills:.*$/m) || [''])[0];
+    for (const [, name, major] of req.matchAll(/([a-z][a-z-]*)@\^(\d+)/g)) {
+      geprueftGesamt++;
+      const ziel = [path.join(EIGENE, name, 'SKILL.md'), path.join(SKILLS, name, 'SKILL.md')]
+        .find((f) => fs.existsSync(f));
+      if (!ziel) { kaputt.push(`${skill} verlangt ${name} — fehlt`); continue; }
+      const v = fs.readFileSync(ziel, 'utf8').match(/^version:\s*(\d+)\./m);
+      if (!v) { kaputt.push(`${skill} -> ${name}: keine version:`); continue; }
+      if (v[1] !== major) kaputt.push(`${skill} verlangt ${name}@^${major}, installiert ${v[1]}.x`);
+    }
+  }
+  zeile(kaputt.length === 0,
+    kaputt.length === 0
+      ? `${geprueftGesamt} Abhaengigkeit(en) in den Nachbar-Skills, alle erfuellt`
+      : `${kaputt.length} von ${geprueftGesamt} Abhaengigkeiten in Nachbar-Skills verletzt`,
+    kaputt.length ? kaputt.join(' | ') : null);
 }
 
 console.log('\nJedes Werkzeug aus den completion_criteria existiert:\n');
