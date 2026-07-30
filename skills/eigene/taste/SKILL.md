@@ -41,7 +41,7 @@ Wenn dieser Skill feuert:
 - Keine duplizierten Regeln — taste-kern.md im design-Skill ist die einzige
   Quelle (Single Source). Wer hier Inhalte kopiert, erzeugt Drift.
 - Keine imagegen-Pflicht — die wurde beim Vendoring entfernt (Bilder laufen
-  über `references/bildgenerierung.md` im web-Skill / Higgsfield-Policy).
+  über `eigene/web/references/bildgenerierung.md` / Higgsfield-Policy).
 - Keine App/Dashboard-Regeln — das ist die ui-ux-Linie (Skill `ui-ux`).
 
 ## Gotchas

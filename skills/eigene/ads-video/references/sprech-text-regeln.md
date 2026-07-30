@@ -41,7 +41,7 @@ Enterprise) gilt der `copywriting`-Skill als Primärquelle — hier nicht dupliz
 
 ## Claims-Verbote gehören dem ads-Router
 
-HWG/UWG- und Meta-Policy-Verbotsliste liegt in `references/claims-verbote.md` des
+HWG/UWG- und Meta-Policy-Verbotsliste liegt in `eigene/ads/references/claims-verbote.md` des
 `ads`-Router-Skills. `ads-video` schreibt Skripte, prüft sie aber nicht selbst final gegen
 die Verbotsliste — claims-qa läuft laut `ads`-Ablauf in einer **frischen Session, anderer
 Modellfamilie** (Sol), nie als Selbstprüfung des Autors (Regel 8). Beim Schreiben trotzdem

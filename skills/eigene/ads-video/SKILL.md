@@ -47,7 +47,7 @@ Pflicht-Voraussetzung (Loop-1-Dossier bzw. Agentur-Brain), kein optionaler Konte
    Lese-Pfad oben. Ohne belastbares ICP/Offer/Voice kein Skript-Entwurf — siehe Stopp-Regel.
 2. **Angle/Hook übernehmen, nicht selbst erfinden.** Das Angle bzw. der gewählte Hook-Typ
    kommt aus der Vorarbeit des `ads`-Routers (Schritte `angles`/`hooks` im dortigen
-   Ablauf, `references/hook-taxonomie.md`). `ads-video` macht keine eigene
+   Ablauf, `eigene/ads/references/hook-taxonomie.md`). `ads-video` macht keine eigene
    Strategie-/Angle-Arbeit — dafür ist der Router da. Fehlt ein freigegebenes Angle,
    beim Router/bei Raphael nachfragen statt eines zu raten.
 3. **Referenz-Skripte analysieren.** Bestehende Kunden-Skripte (Stil-Referenz-Pfad oben)
@@ -82,7 +82,7 @@ Grounding-Pflicht der Statics-Briefs im `ads`-Router.
 
 `ads-video` schreibt und produziert, prüft aber nicht final gegen Meta-Policy/HWG/UWG —
 das läuft laut `ads`-Ablauf als eigener Schritt (`claims-qa`, Sol, frische Session,
-`references/claims-verbote.md` des `ads`-Skills). Beim Schreiben trotzdem grob
+`eigene/ads/references/claims-verbote.md` des `ads`-Skills). Beim Schreiben trotzdem grob
 gegensteuern (siehe `sprech-text-regeln.md`).
 
 ## Gotchas

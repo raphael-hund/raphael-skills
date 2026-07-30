@@ -50,7 +50,7 @@ gemeinsam gewählt, jedes Konzept mit echter Grounding-Quelle statt erfundenem C
 ## Verhältnis zu ads
 
 `ads-statics` ist die Tiefe hinter Schritt 6 („statics") im Loop-3-Ablauf von `ads`
-(`references/loop3-ablauf.md` dort). `ads` bleibt der Einstieg für den gesamten Loop
+(`eigene/ads/references/loop3-ablauf.md` dort). `ads` bleibt der Einstieg für den gesamten Loop
 (Voice-of-Customer → Angles → Hooks → ... → Statics → Claims-QA → Schaltung); dieser Skill
 übernimmt nur den Statics-Schritt im Detail. Layout-Vorlagen (15 Templates) und das
 Kunden-Review-Artefakt bleiben im ads-Router und werden hier nur referenziert, nicht

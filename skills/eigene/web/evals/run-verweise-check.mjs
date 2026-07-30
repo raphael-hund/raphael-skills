@@ -71,6 +71,12 @@ const WURZELN = [
   ['im Skill', ZIEL],
   ['Nachbar-Skill (eigene/)', EIGENE],
   ['Skill-Wurzel', SKILLS],
+  // Ein Verweis kann das `skills/`-Praefix SELBST mitbringen
+  // (`skills/design/references/taste-kern.md`). Gegen SKILLS geprueft entstuende
+  // `skills/skills/design/...`. Beide Schreibweisen sind im Bestand ueblich und
+  // beide richtig — nur eine Wurzel kannte die Eval. Befund 30.07.2026 beim Lauf
+  // ueber alle 23 Skills.
+  ['Skills-Elternebene', path.dirname(SKILLS)],
   ['Betriebs-Repo', REPO],
   ['absolut', '/'],
 ];
@@ -168,7 +174,8 @@ for (const f of dateien) {
     // Der Pfad steht dann in Zeile 2, das Wort "Herkunft" in Zeile 1. Ein Test
     // auf die EINE Zeile findet ihn nicht — dritter Fehlalarm-Schub desselben
     // Laufs. Also die Vorzeile mitlesen.
-    const umfeld = `${alleZeilen[i - 1] || ''}\n${zeile_}`;
+    const umfeld = [alleZeilen[i - 3], alleZeilen[i - 2], alleZeilen[i - 1], zeile_]
+      .filter((x) => x !== undefined).join('\n');
     PFAD_RE.lastIndex = 0;
     let m;
     // Herkunftsangaben sind KEINE lokalen Verweise. "kondensiert aus
@@ -178,7 +185,18 @@ for (const f of dateien) {
     // Restmeldungen waren genau das (skills/cro, skills/ab-testing,
     // skills/improve, skills/site-architecture, skills/ops-and-setup/…).
     // Wer die "reparieren" will, erfindet Pfade fuer Repos, die es hier nie gab.
-    const istHerkunft = /Herkunft|Quelle|kondensiert|destilliert|vendoriert|Original|github\.com/i.test(umfeld);
+    // Auch ENGLISCH. Die vendorierten Dateien unter references/vendor/ tragen
+    // ihre Herkunft auf Englisch ("Vendored near-verbatim from
+    // coreyhaines31/marketingskills, `skills/ads/references/rsa-output-spec.md`
+    // (MIT license)"). Die deutsche Wortliste traf davon nichts — vierter
+    // Fehlalarm-Schub am 30.07.2026, diesmal ueber vier Skills verteilt
+    // (ads, ads-video, offers, seo).
+    //
+    // Und: der Pfad steht dort DREI Zeilen unter dem Wort "Vendored", nicht
+    // eine. Ein Zitat laeuft ueber so viele Zeilen, wie der Satz braucht.
+    const istHerkunft = /Herkunft|Quelle|kondensiert|destilliert|vendoriert|Original|github\.com/i
+      .test(umfeld)
+      || /vendored|adapted from|derived from|upstream|MIT licen[sc]e|near-verbatim/i.test(umfeld);
     while ((m = PFAD_RE.exec(zeile_)) !== null) {
       const p = m[1];
       if (AUSNAHMEN.some((a) => (typeof a === 'function' ? a(p, ZIEL) : a.test(p)))) continue;
@@ -242,8 +260,19 @@ console.log('\nJedes Werkzeug aus den completion_criteria existiert:\n');
   const kopf = skill.slice(0, skill.indexOf('\n---', 4));
   const skripte = [...new Set([...kopf.matchAll(/scripts\/([a-z0-9-]+\.mjs)/g)].map((m) => m[1]))];
   const fehlend = skripte.filter((s) => !fs.existsSync(path.join(ZIEL, 'scripts', s)));
-  zeile(fehlend.length === 0 && skripte.length > 0,
-    `${skripte.length} Skript(e) in den Kriterien genannt, alle vorhanden`,
+  // `skripte.length > 0` stand hier als Wache — sinnvoll fuer `web`, das neun
+  // Werkzeuge in seinen Kriterien nennt. Als ALLGEMEINE Regel ist sie falsch:
+  // ein Zeiger-Skill wie `taste` oder ein Prosa-Skill wie `handoff` hat keine
+  // Skripte, und "0 gefunden" ist dort die richtige Antwort, kein Fehler.
+  //
+  // Befund 30.07.2026 beim Lauf ueber alle 23 eigenen Skills: zehn meldeten
+  // Exit 1 bei tot=0 — der Exit-Code kam allein aus dieser Wache. Ein Werkzeug,
+  // das beim Uebertragen auf den zweiten Anwendungsfall Fehlalarm gibt, hat die
+  // Annahme des ersten fest eingebaut.
+  zeile(fehlend.length === 0,
+    skripte.length
+      ? `${skripte.length} Skript(e) in den Kriterien genannt, alle vorhanden`
+      : 'keine Skripte in den Kriterien genannt — nichts zu pruefen',
     fehlend.length ? `fehlt: ${fehlend.join(', ')}` : (skripte.length ? null : 'keine gefunden — Muster pruefen'));
 }
 
