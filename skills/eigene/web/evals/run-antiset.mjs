@@ -59,6 +59,17 @@ const ERWARTET = {
   // sie an etwas anderem als ai-slop, ist der neue Regelsatz laermig, nicht die
   // Fixture kaputt.
   'a8-deutsche-floskeln':   { checks: ['ai-slop'],           was: 'deutsche Werbefloskeln (de-14) — englische Regeln sahen sie nicht' },
+  // Zugefuegt 30.07.2026. Der tastatur-check haengt seit dem 29.07. im Tor und
+  // hatte hier keinen Fall — ausgerechnet der Pruefer, der in der eigenen
+  // Bibliothek 7 von 10 zusammengesetzten Widgets als unbedienbar entlarvte.
+  // Ein Pruefer im Tor ohne Anti-Set-Fall ist ein Pruefer, von dem niemand
+  // weiss, ob er das Tor wirklich rot macht.
+  //
+  // Die Fixture ist genau der Fehler, den er finden soll: ein `role="tablist"`
+  // mit sauberen ARIA-Attributen, sichtbarem Fokus und drei Panels — und ohne
+  // eine einzige Pfeiltaste. axe meldet daran nichts. Die Rolle ist ein
+  // Versprechen an den Screenreader-Nutzer, das die Seite nicht einloest.
+  'a9-tastatur-kaputt':     { checks: ['tastatur'],          was: 'role="tablist" mit sauberem ARIA, ohne Pfeiltasten (K1)' },
 };
 
 const namen = Object.keys(ERWARTET);

@@ -215,6 +215,33 @@ if (AKTUALISIEREN && ersetzt) {
   }
 }
 
+// --- Dritte Schreibweise: "(`node evals/x.mjs`, N Faelle)" ----------------
+// Im Fliesstext steht die Zahl auch NACH dem Dateinamen, durch ein Komma
+// getrennt. Gefunden 30.07.2026 ausgerechnet in einem Absatz UEBER veraltete
+// Zahlen: "Der belastbare, taeglich wiederholte Beweis ist ohnehin das
+// Anti-Set (`node evals/run-antiset.mjs`, 11 Faelle)" — bei 15, spaeter 16.
+// Dieselbe Datei nannte an anderer Stelle die richtige Zahl. Zwei Aussagen
+// ueber dieselbe Eval, eine falsch, keine gepruef.
+{
+  const m = md.match(/`node evals\/(run-[a-z0-9-]+\.mjs)`,\s*(\d+)\s*F(?:ä|ae)lle/);
+  if (!m) {
+    zeile(true, 'keine Zahl in der Form "`node evals/x.mjs`, N Faelle" — Form entfallen');
+  } else {
+    const soll = stand[m[1]];
+    if (soll === undefined) {
+      // Ausgenommene Eval (Browser, ueber 20 Minuten Laufzeit) — sie hat keinen
+      // Sollstand. Als Fehler zu melden waere falsch, als bestanden auch:
+      // dieselbe Trennung wie oben bei den anderen Doku-Zahlen.
+      ohneStand++;
+      zeile(true, `${m[1]} (Komma-Form): Doku sagt ${m[2]} — UNGEPRUEFT (kein Sollstand)`);
+    } else {
+      zeile(Number(m[2]) === soll,
+        `${m[1]} (Komma-Form): Doku sagt ${m[2]}, Sollstand kennt ${soll}`,
+        Number(m[2]) === soll ? null : 'Zahl in SKILL.md nachziehen');
+    }
+  }
+}
+
 // --- Zahlen in den References ---------------------------------------------
 // SKILL.md ist nicht der einzige Ort mit Fallzahlen. Das Klon-Playbook nannte
 // "21 Faelle", waehrend die Eval 28 fuhr — dieselbe Klasse Fehler wie im
@@ -279,7 +306,7 @@ if (ohneStand) {
 }
 
 // +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
-console.log(`\n${funde.length + 6 - fehler - ohneStand}/${funde.length + 6 - ohneStand} gepruefte Doku-Zahlen stimmen`
+console.log(`\n${funde.length + 7 - fehler - ohneStand}/${funde.length + 7 - ohneStand} gepruefte Doku-Zahlen stimmen`
   + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');
