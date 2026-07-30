@@ -111,6 +111,35 @@ const FAELLE = {
       (_, i) => `<p>Absatz ${i + 1} mit genug Text zum Messen.</p>`).join(''),
     mit: ['overused-font'],
   },
+  // --- Drei weitere aus der "offen"-Liste, 30.07.2026 -----------------------
+  // Auch diese standen als "braucht mehr als eine statische Seite". Am echten
+  // Browser-Pfad nachgemessen: alle drei brauchen nur die richtige Seite.
+  // Damit ist die Liste zum zweiten Mal in derselben Runde zu lang gewesen —
+  // eine Regel als unerreichbar zu fuehren, die es nicht ist, kostet genauso
+  // viel wie eine erfundene Luecke: man hoert auf zu suchen.
+  'hero-eyebrow-chip': {
+    was: 'getracktes Uppercase-Label ueber der H1',
+    // Verlangt ausdruecklich eine H1 — erster Versuch nutzte h2 und meldete
+    // nichts. Das Fixture war falsch, nicht die Regel stumm.
+    style: '.eyebrow{text-transform:uppercase;font-size:12px;letter-spacing:.14em;'
+      + 'color:#5b6875;margin:0}h1{font-size:48px;margin:4px 0 24px}',
+    body: '<p class="eyebrow">Sanierung</p><h1>Wohnungen in Karlsruhe</h1>'
+      + '<p>Nach dem Ortstermin bekommen Sie einen Festpreis.</p>',
+  },
+  'repeated-section-kickers': {
+    was: 'drei Uppercase-Kicker ueber drei Ueberschriften',
+    style: '.kicker{text-transform:uppercase;font-size:12px;letter-spacing:.14em;'
+      + 'color:#5b6875}h2{font-size:32px;margin:4px 0 24px}',
+    body: '<p class="kicker">Leistung</p><h2>Bad sanieren</h2>'
+      + '<p class="kicker">Leistung</p><h2>Kueche bauen</h2>'
+      + '<p class="kicker">Leistung</p><h2>Wohnung raeumen</h2>',
+  },
+  'clipped-overflow-container': {
+    was: 'overflow:hidden schneidet ein absolut positioniertes Kind ab',
+    style: '.clip{overflow:hidden;position:relative;height:80px;background:#eee;margin:16px 0}'
+      + '.raus{position:absolute;top:-40px;left:10px;width:120px;height:120px;background:#c33}',
+    body: '<div class="clip"><div class="raus"></div></div>',
+  },
   'tiny-text': {
     was: 'Fliesstext unter der Lesbarkeitsgrenze',
     style: '.klein{font-size:9px;max-width:none}',
