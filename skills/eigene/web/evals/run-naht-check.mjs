@@ -41,7 +41,18 @@ const SKRIPTE = path.join(HIER, '..', 'scripts');
 const CLONE = path.join(SKRIPTE, 'web-clone');
 
 let fehler = 0;
+// Selbst zaehlen statt unten eine Formel zu pflegen.
+//
+// Bis 30.07.2026 stand dort `2 + 2 + 1 + 7 + 1` — eine Zaehlung von Hand,
+// festgeschrieben zu einem Zeitpunkt, an dem sie stimmte. Gemessen ergab der
+// Lauf 15 gedruckte Pruefzeilen bei Schlusszahl 13/13: zwei Pruefungen liefen
+// und tauchten in der Bilanz nicht auf. Drei der Abschnitte drucken aus
+// SCHLEIFEN, deren Laenge vom Bestand abhaengt (Werkzeuge mit --json,
+// Gate-Dateien) — eine feste Zahl kann das nicht wissen und veraltet still,
+// weil sie plausibel bleibt.
+let gepruefte = 0;
 const zeile = (ok, text, detail) => {
+  gepruefte++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -205,8 +216,19 @@ console.log('\nKlon-Tor und audit-clone benutzen denselben Feldnamen:\n');
     geschrieben.length ? null : 'die beiden reden aneinander vorbei');
 }
 
-const gesamt = 2 + 2 + 1 + 7 + 1;
-console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
+// Gegenrichtung sichern: faellt ein ganzer Abschnitt still aus (frueher
+// `return`, leere Fundliste, verschluckte Ausnahme), zaehlt `gepruefte` einfach
+// weniger — und "9/9 wie erwartet" saehe wieder gruen aus. Die Untergrenze ist
+// die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
+// Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
+// Feldname) plus mindestens je eine aus den drei Schleifen.
+const MINDESTENS = 9;
+if (gepruefte < MINDESTENS) {
+  console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
+  console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
+  process.exit(2);
+}
+console.log(`\n${gepruefte - fehler}/${gepruefte} wie erwartet.`);
 if (fehler) {
   console.log('Eine Naht ist offen — die Werkzeuge stimmen, die Verbindung nicht.');
   process.exit(1);
