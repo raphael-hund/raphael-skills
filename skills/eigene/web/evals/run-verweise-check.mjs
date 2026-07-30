@@ -37,11 +37,38 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const WEB = path.join(HIER, '..');                    // skills/eigene/web
 const EIGENE = path.join(WEB, '..');                  // skills/eigene
 const SKILLS = path.join(EIGENE, '..');               // skills
+
+// Welcher Skill geprueft wird, ist ein Parameter — nicht festverdrahtet.
+//
+// Am 30.07.2026 habe ich die Verweise des design-Skills von Hand nachgezaehlt,
+// weil diese Eval nur `web` kannte. Ergebnis des Handlaufs: ein "toter" Verweis,
+// der keiner war — mein grep griff `references/floskel-verbote.md` und pruefte
+// gegen den design-Ordner, obwohl im Text `copywriting/references/...` steht.
+// Genau der Fehlalarm, den der Kopf dieser Datei schon dreimal beschreibt.
+//
+// Handarbeit wiederholt den Fehler; ein Parameter erledigt es einmal.
+//   node evals/run-verweise-check.mjs                  # web (Standard)
+//   node evals/run-verweise-check.mjs --skill design   # jeder andere
+const skillArg = process.argv.indexOf('--skill');
+const SKILL_NAME = skillArg >= 0 ? process.argv[skillArg + 1] : 'web';
+const ZIEL = SKILL_NAME === 'web' ? WEB
+  : (fs.existsSync(path.join(EIGENE, SKILL_NAME)) ? path.join(EIGENE, SKILL_NAME)
+    : path.join(SKILLS, SKILL_NAME));
+if (!fs.existsSync(path.join(ZIEL, 'SKILL.md'))) {
+  console.error(`Kein SKILL.md unter ${ZIEL} — Skill "${SKILL_NAME}" nicht gefunden.`);
+  process.exit(2);
+}
 const REPO = '/root/raphael-command-center';          // Betriebs-Repo
 
 // Reihenfolge egal — ein Pfad gilt als gut, sobald EINE Wurzel ihn aufloest.
+// Manche Verweise nennen eine Datei, die als `.example` daneben liegt
+// (`rules.ru.mjs` -> `rules.ru.mjs.example`, ausdruecklich "kept as a template").
+// Der Text beschreibt sie korrekt; nur der Dateiname im Fliesstext laesst die
+// Endung weg. Sechster Fehlalarm desselben Laufs.
+const AUCH_ALS_BEISPIEL = true;
+
 const WURZELN = [
-  ['im Skill', WEB],
+  ['im Skill', ZIEL],
   ['Nachbar-Skill (eigene/)', EIGENE],
   ['Skill-Wurzel', SKILLS],
   ['Betriebs-Repo', REPO],
@@ -92,14 +119,49 @@ const AUSNAHMEN = [
   // Dateien in FREMDEN Repos, die per Namen zitiert werden. Sie sollen hier
   // nicht existieren; der Zusatz "im Vendor-Repo" steht jeweils daneben.
   /^skills\/improve\//,
+  // Ebenso fremd: `skills/taste-skill/SKILL.md` steht in VENDORING.md als Angabe,
+  // WOHER der Skill kommt. Hier heisst der Ordner `eigene/taste`; der zitierte
+  // Pfad ist der des Ursprungs-Repos und soll gar nicht aufloesen.
+  /^skills\/taste-skill\//,
+  // Eine Datei, die als `.example` daneben liegt. `rules.ru.mjs` ist im Text
+  // ausdruecklich "a shipped Russian example (kept as a template, not wired in)"
+  // — vorhanden ist `rules.ru.mjs.example`. Der Fliesstext laesst die Endung weg,
+  // und das ist richtig so: die Datei HEISST rules.ru.mjs, sobald man sie nutzt.
+  //
+  // Bewusst eng: nur wenn die .example-Fassung wirklich existiert. Sonst waere es
+  // ein Filter, der jeden toten .mjs-Verweis verschluckt.
+  (pfad, ziel) => /\.mjs$/.test(pfad)
+    && fs.existsSync(path.join(ziel, `${pfad}.example`)),
 ];
 
-const dateien = markdownDateien(WEB);
+const dateien = markdownDateien(ZIEL);
 const gefunden = new Map();      // pfad -> [quelle:zeile]
 for (const f of dateien) {
-  const rel = path.relative(WEB, f);
+  const rel = path.relative(ZIEL, f);
   const alleZeilen = fs.readFileSync(f, 'utf8').split('\n');
+  // Codebloecke sind KEINE Verweisliste.
+  //
+  // Befund 30.07.2026 beim ersten Lauf gegen `design`: sieben "tote" Verweise,
+  // kein einziger echt. Fuenf davon standen in einem Verzeichnisbaum, dessen
+  // Wurzel zwei Zeilen darueber steht:
+  //
+  //     design/vendor/ui-ux-db/
+  //       scripts/search.py        # CLI
+  //
+  // Die Eval las `scripts/search.py` als eigenstaendigen Pfad — die Datei liegt
+  // korrekt unter vendor/. Ein Baum beschreibt eine Struktur, er verweist nicht.
+  // Wer hier "repariert", zerschiesst eine richtige Doku.
+  // Relativ zum ORDNER DER VERWEISENDEN DATEI, nicht nur zur Skill-Wurzel.
+  //
+  // `vendor/ui-ux-db/references/pro-rules.md` nennt `references/quick-reference.md`
+  // — die Datei liegt direkt daneben, der Verweis ist aus Sicht seines Ordners
+  // korrekt. Ein vendorierter Unterbaum hat seine eigene Wurzel; wer nur gegen
+  // die Skill-Wurzel prueft, erklaert jeden internen Verweis fuer tot.
+  const eigenerOrdner = path.dirname(f);
+  let imCodeblock = false;
   for (const [i, zeile_] of alleZeilen.entries()) {
+    if (/^\s*```/.test(zeile_)) { imCodeblock = !imCodeblock; continue; }
+    if (imCodeblock) continue;
     // Herkunftsangaben laufen oft ueber zwei Zeilen:
     //   **Herkunft:** kondensiert aus `coreyhaines/marketingskills`,
     //   `skills/cro/SKILL.md` (MIT-Lizenz).
@@ -119,7 +181,7 @@ for (const f of dateien) {
     const istHerkunft = /Herkunft|Quelle|kondensiert|destilliert|vendoriert|Original|github\.com/i.test(umfeld);
     while ((m = PFAD_RE.exec(zeile_)) !== null) {
       const p = m[1];
-      if (AUSNAHMEN.some((a) => a.test(p))) continue;
+      if (AUSNAHMEN.some((a) => (typeof a === 'function' ? a(p, ZIEL) : a.test(p)))) continue;
       if (istHerkunft) continue;
       if (!gefunden.has(p)) gefunden.set(p, []);
       gefunden.get(p).push(`${rel}:${i + 1}`);
@@ -127,8 +189,27 @@ for (const f of dateien) {
   }
 }
 
-function loest(p) {
-  for (const [name, wurzel] of WURZELN) {
+// `von` ist der Ordner der verweisenden Datei — als Wurzel VOR allen anderen.
+// Erster Versuch setzte ihn direkt in die Schleife: `loest()` ist eine eigene
+// Funktion und kannte die Variable nicht, beide Skills brachen mit
+// ReferenceError ab (30.07.2026). Ein Fix, der die Eval unbrauchbar macht,
+// faellt nur auf, wenn man sie danach laufen laesst.
+function loest(p, von = null) {
+  // Ein vendorierter Unterbaum hat seine EIGENE Wurzel. `pro-rules.md` liegt in
+  // vendor/ui-ux-db/references/ und nennt `references/quick-reference.md` — das
+  // ist relativ zu vendor/ui-ux-db/, nicht zum Ordner der Datei.
+  //
+  // Erster Versuch nahm den Dateiordner und suchte references/references/… —
+  // nachgemessen, nicht geraten. Darum werden vom Dateiordner aus auch die
+  // Elternordner mitprobiert, bis zur Skill-Wurzel.
+  const kette = [];
+  let cur = von;
+  while (cur && cur.startsWith(SKILLS) && cur !== SKILLS) {
+    kette.push([`relativ zu ${path.relative(SKILLS, cur) || '.'}`, cur]);
+    cur = path.dirname(cur);
+  }
+  const wurzeln = [...kette, ...WURZELN];
+  for (const [name, wurzel] of wurzeln) {
     if (fs.existsSync(path.resolve(wurzel, p))) return name;
   }
   return null;
@@ -138,7 +219,7 @@ console.log('\nVerweise-Check — zeigt jeder genannte Pfad auf etwas Echtes?\n'
 const tot = [];
 const proWurzel = new Map();
 for (const [p, stellen] of gefunden) {
-  const wo = loest(p);
+  const wo = loest(p, path.dirname(path.join(ZIEL, (stellen[0] || "").split(":")[0])));
   if (wo) proWurzel.set(wo, (proWurzel.get(wo) || 0) + 1);
   else tot.push([p, stellen]);
 }
@@ -157,10 +238,10 @@ zeile(tot.length === 0, `${tot.length} Verweis(e) zeigen ins Leere`,
 // Kriterium, das ein fehlendes Skript nennt, ist nie erfuellbar.
 console.log('\nJedes Werkzeug aus den completion_criteria existiert:\n');
 {
-  const skill = fs.readFileSync(path.join(WEB, 'SKILL.md'), 'utf8');
+  const skill = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
   const kopf = skill.slice(0, skill.indexOf('\n---', 4));
   const skripte = [...new Set([...kopf.matchAll(/scripts\/([a-z0-9-]+\.mjs)/g)].map((m) => m[1]))];
-  const fehlend = skripte.filter((s) => !fs.existsSync(path.join(WEB, 'scripts', s)));
+  const fehlend = skripte.filter((s) => !fs.existsSync(path.join(ZIEL, 'scripts', s)));
   zeile(fehlend.length === 0 && skripte.length > 0,
     `${skripte.length} Skript(e) in den Kriterien genannt, alle vorhanden`,
     fehlend.length ? `fehlt: ${fehlend.join(', ')}` : (skripte.length ? null : 'keine gefunden — Muster pruefen'));
