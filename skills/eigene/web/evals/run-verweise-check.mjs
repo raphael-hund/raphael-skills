@@ -199,5 +199,41 @@ for (const [skill, datei] of [
     kaputt.length ? `laeuft nicht: ${[...new Set(kaputt)].join(', ')}` : null);
 }
 
+// --- Die loads-Liste ist die schwerste Sorte Verweis -------------------
+// Was in `loads:` steht, wird beim Skill-Start automatisch gelesen. Ein toter
+// Eintrag dort ist schwerer als eine Textstelle: der Skill startet mit einer
+// fehlenden Wissensquelle, und niemand merkt es, weil nichts danach fragt.
+//
+// Gepruefte Skills: die vier Zeiger plus design und web selbst. `loads: []` ist
+// gueltig und haeufig (die Zeiger laden absichtlich nichts eigenes) — leer ist
+// kein Fehler, nur ein toter Pfad ist einer.
+console.log('\nJeder loads-Eintrag existiert:\n');
+for (const [name, wurzel] of [
+  ['web', WEB],
+  ['design', path.join(SKILLS, 'design')],
+  ['impeccable', path.join(EIGENE, 'impeccable')],
+  ['taste', path.join(EIGENE, 'taste')],
+  ['ui-ux', path.join(EIGENE, 'ui-ux')],
+  ['no-ai-slop', path.join(EIGENE, 'no-ai-slop')],
+  ['copywriting', path.join(EIGENE, 'copywriting')],
+]) {
+  const datei = path.join(wurzel, 'SKILL.md');
+  if (!fs.existsSync(datei)) { zeile(false, `${name}: SKILL.md fehlt`); continue; }
+  const txt = fs.readFileSync(datei, 'utf8');
+  const block = txt.match(/^loads:\s*(\[[^\]]*\]|(?:\n\s+-\s+\S+)+)/m);
+  if (!block) { zeile(false, `${name}: kein loads-Feld gefunden`); continue; }
+  const eintraege = [...block[1].matchAll(/[-\s[]\s*([A-Za-z0-9_][A-Za-z0-9_./-]+\.(?:md|html|json|mjs))/g)]
+    .map((m) => m[1]);
+  const tot_ = eintraege.filter((e) => !fs.existsSync(path.resolve(wurzel, e)));
+  // Der Text muss zum Urteil passen: "alle vorhanden" neben einem [!!] ist
+  // Unsinn und schickt den Leser in die falsche Richtung. Beim Bruchtest am
+  // 30.07.2026 stand genau das da.
+  zeile(tot_.length === 0,
+    tot_.length === 0
+      ? `${name}: ${eintraege.length} Eintrag/Eintraege, alle vorhanden`
+      : `${name}: ${tot_.length} von ${eintraege.length} Eintraegen fehlen`,
+    tot_.length ? `fehlt: ${tot_.join(', ')}` : null);
+}
+
 console.log(`\n${fehler === 0 ? 'Alle Verweise' : 'NICHT alle Verweise'} loesen auf.`);
 if (fehler) process.exit(1);
