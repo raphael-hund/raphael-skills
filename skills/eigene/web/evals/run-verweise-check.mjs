@@ -474,6 +474,16 @@ console.log('\nJede Datei importiert, was sie benutzt:\n');
       for (const teil of m[1].split(',')) bekannt.add(teil.trim().split(':').pop().trim());
     }
     for (const m of code.matchAll(/(?:function|const|let|var)\s+(\w+)/g)) bekannt.add(m[1]);
+    // Methoden in Objekten und Klassen: `async close() {`, `close() {`.
+    // Sie SIND die Definition des Namens, kein Aufruf eines fremden. Der
+    // design-Skill hat genau so einen Fall (detect-url.mjs, `async close()`),
+    // und die Wache meldete ihn als "close (aus fs)" — ein Name, den es in fs
+    // wirklich gibt, hier aber selbst definiert.
+    for (const m of code.matchAll(/(?:^|[{,;]|\basync)\s*(\w+)\s*\([^)]*\)\s*\{/gm)) bekannt.add(m[1]);
+    // Auch Parameternamen: `(close) => ...` waere sonst ein Treffer.
+    for (const m of code.matchAll(/\(([^)]*)\)\s*=>/g)) {
+      for (const t of m[1].split(',')) bekannt.add(t.trim().split(/[=:\s]/)[0]);
+    }
     for (const [name, mod] of kernNamen) {
       if (bekannt.has(name)) continue;
       // Nur als Aufruf am Zeilenanfang oder nach Zuweisung/Klammer — nicht als
