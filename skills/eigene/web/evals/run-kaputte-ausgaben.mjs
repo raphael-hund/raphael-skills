@@ -23,6 +23,9 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFileSync } from 'node:fs';
+import fs from 'node:fs';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const GATE = path.join(HIER, '..', 'scripts', 'g1-gate.mjs');
@@ -151,7 +154,61 @@ let zusatz = 0;
   }
 }
 
-const gesamt = KAPUTT.length + ECHT_LEER.length + zusatz;
+// --- compare-recon: leere Aufnahme darf keine Bestnote sein ---------------
+// Bis zum 30.07.2026 ergaben zwei leere recon-Dateien "Struktur getroffen:
+// 5/5, Bewegung/Bedienung: 5/5" und Exit 0. Zwei leere Listen sind
+// rechnerisch identisch — daraus wurde eine perfekte Note fuer einen Klon,
+// den niemand angesehen hat. Dieselbe Klasse wie die neun `parsed.x || []`
+// im G1-Tor, nur im Klon-Werkzeug.
+console.log('\nLeere Aufnahme — zwei leere Listen sind keine Uebereinstimmung:\n');
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'compare-recon-'));
+  const pruefer = path.join(HIER, '..', 'scripts', 'web-clone', 'compare-recon.mjs');
+  const leer = path.join(ordner, 'leer.json');
+  const echt = path.join(ordner, 'echt.json');
+  fs.writeFileSync(leer, '{}');
+  fs.writeFileSync(echt, JSON.stringify({
+    url: 'https://beispiel.de',
+    captures: [{
+      signals: {
+        headings: ['Titel', 'Leistungen', 'Kontakt'],
+        counts: { links: 12, images: 4, forms: 1, buttons: 3, inputs: 2, canvas: 0, video: 0 },
+      },
+      screenshot: 's.png',
+    }],
+  }));
+
+  const lauf = (a, b, name) => {
+    const ziel = path.join(ordner, `${name}.md`);
+    let code = 0;
+    try {
+      execFileSync('node', [pruefer, '--original', a, '--clone', b, '--out', ziel],
+        { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    } catch (e) { code = e.status ?? 1; }
+    const text = fs.existsSync(ziel) ? fs.readFileSync(ziel, 'utf8') : '';
+    return { code, text };
+  };
+
+  const a = lauf(leer, leer, 'leer');
+  const okLeer = a.code === 2 && /nicht gemessen/.test(a.text) && !/Struktur getroffen: \d\/5/.test(a.text);
+  console.log(okLeer
+    ? '  [OK]   leere Aufnahme -> Exit 2, keine Note im Bericht'
+    : `  [ROT]  leere Aufnahme -> Exit ${a.code}, Bericht enthaelt ${/\d\/5/.test(a.text) ? 'Noten' : 'keinen Hinweis'}`);
+  if (!okLeer) fehler++;
+
+  // Gegenprobe: echte Signale muessen weiterhin echte Noten ergeben, sonst
+  // ist der Vergleich nur noch ein Verweigerer.
+  const b = lauf(echt, echt, 'echt');
+  const okEcht = b.code === 0 && /Struktur getroffen: \d\/5/.test(b.text);
+  console.log(okEcht
+    ? '  [OK]   echte Aufnahme -> Exit 0, Noten im Bericht'
+    : `  [ROT]  echte Aufnahme -> Exit ${b.code}, keine Noten — Fehlalarm auf gutem Material`);
+  if (!okEcht) fehler++;
+
+  fs.rmSync(ordner, { recursive: true, force: true });
+}
+
+const gesamt = KAPUTT.length + ECHT_LEER.length + zusatz + 2;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('\nMindestens eine Ausgabe wurde falsch bewertet — das Tor kann falsches Gruen melden.');

@@ -79,17 +79,40 @@ function inferComplexity(signals) {
   return "L1";
 }
 
+// "Nichts gemessen" ist keine Note. Zwei leere Listen sind rechnerisch
+// identisch, und daraus wurde bis zum 30.07.2026 eine 5/5: eine leere
+// recon-Datei (abgestuerztes Werkzeug, falscher Pfad, `{}`) ergab
+// "Struktur getroffen: 5/5, Bewegung/Bedienung: 5/5, Exit 0" — Bestnote fuer
+// einen Klon, den niemand angesehen hat. Nachgemessen mit zwei `{}`-Dateien.
+//
+// Dieselbe Klasse wie die neun `parsed.x || []` im G1-Tor: der Rueckfall auf
+// eine leere Liste macht aus einem Absturz ein sauberes Ergebnis.
+const OHNE_DATEN = 'nicht gemessen (keine Signale in der recon-Datei)';
+
+// "/5" gehoert an eine Note, nicht an einen Satz. Erster Versuch schrieb
+// "nicht gemessen (...)/5" — sieht aus wie ein kaputter Platzhalter und liest
+// sich, als waere doch irgendwie bewertet worden.
+const note = (wert) => (wert === OHNE_DATEN ? wert : `${wert}/5`);
+
 function score(original, clone, visualDiff) {
   const o = firstSignals(original);
   const c = firstSignals(clone);
+  // Hat die Aufnahme ueberhaupt etwas gesehen? Ohne Ueberschriften und ohne
+  // Zaehlwerte ist jede daraus gerechnete Note geraten.
+  const hatSignale = (x) => Boolean(x.headings?.length) || Boolean(x.counts && Object.keys(x.counts).length);
+  const messbar = hatSignale(o) && hatSignale(c);
+
   const structureSimilarity = sequenceSimilarity(o.headings || [], c.headings || []);
-  const structure = Math.max(1, Math.round(structureSimilarity * 5));
-  const responsive = original.captures?.length === clone.captures?.length ? 4 : 2;
+  const structure = messbar ? Math.max(1, Math.round(structureSimilarity * 5)) : OHNE_DATEN;
+  const responsive = (original.captures?.length || clone.captures?.length)
+    ? (original.captures?.length === clone.captures?.length ? 4 : 2)
+    : OHNE_DATEN;
   const functionCounts = ["links", "forms", "buttons", "inputs"].map((key) => ratioScore(o.counts?.[key] || 0, c.counts?.[key] || 0));
-  const functional = Math.round(functionCounts.reduce((sum, value) => sum + value, 0) / functionCounts.length);
+  const functional = messbar ? Math.round(functionCounts.reduce((sum, value) => sum + value, 0) / functionCounts.length) : OHNE_DATEN;
   const motionCounts = ["canvas", "video"].map((key) => ratioScore(o.counts?.[key] || 0, c.counts?.[key] || 0));
-  const interaction = Math.round(motionCounts.reduce((sum, value) => sum + value, 0) / motionCounts.length);
+  const interaction = messbar ? Math.round(motionCounts.reduce((sum, value) => sum + value, 0) / motionCounts.length) : OHNE_DATEN;
   return {
+    _messbar: messbar,
     sourceEvidence: 3,
     structure,
     visual: visualDiff ? `${visualDiff.visualScore}/5` : "von Hand ansehen oder --visual-diff uebergeben",
@@ -203,11 +226,11 @@ ${counts.map((key) => `| ${key} | ${o.counts?.[key] || 0} | ${c.counts?.[key] ||
 
 ## Bewertung des Nachbaus
 - Belege aus der Quelle: ${scores.sourceEvidence}/5
-- Struktur getroffen: ${scores.structure}/5
+- Struktur getroffen: ${note(scores.structure)}
 - Optik getroffen: ${scores.visual}
-- Bewegung / Bedienung: ${scores.interaction}/5
-- Responsiv: ${scores.responsive}/5
-- Funktionen vollstaendig: ${scores.functional}/5
+- Bewegung / Bedienung: ${note(scores.interaction)}
+- Responsiv: ${note(scores.responsive)}
+- Funktionen vollstaendig: ${note(scores.functional)}
 - Inhalte ersetzt: ${scores.contentReplacement}
 - Rechts- und Deploy-Risiko: ${scores.legalRisk}
 
@@ -259,6 +282,18 @@ try {
     cloneInteractions,
   }));
   console.log(output);
+
+  // Exit 2 = "konnte nicht urteilen", nicht "bestanden". Dieselbe Trennung wie
+  // im G1- und im Klon-Tor. Bis zum 30.07.2026 endete auch ein Lauf ueber zwei
+  // leere recon-Dateien mit Exit 0 — wer das Skript in einer Kette aufruft,
+  // liest daraus "Vergleich fertig".
+  const signale = (x) => Boolean(x?.captures?.[0]?.signals?.headings?.length)
+    || Boolean(x?.captures?.[0]?.signals?.counts && Object.keys(x.captures[0].signals.counts).length);
+  if (!signale(original) || !signale(clone)) {
+    console.error('Keine Signale in mindestens einer recon-Datei — der Bericht enthaelt keine Noten.');
+    console.error('Zuerst recon-site.mjs auf beiden Seiten laufen lassen, dann erneut vergleichen.');
+    process.exit(2);
+  }
 } catch (error) {
   console.error(`compare-recon failed: ${error.message}`);
   process.exit(1);
