@@ -108,6 +108,39 @@ if (stumm.length) {
   sag(`OK   ${libs.length} Libraries, jede mit einer Aussage`);
 }
 
+// --- Rolle je Library -----------------------------------------------------
+// "Antwortet der Nachschlager?" ist nicht dieselbe Frage wie "findet ein Agent
+// die Library, wenn er sie braucht?". Der Weg dorthin geht ueber die Rolle
+// (`--task toasts` -> sonner). Eine Library ohne Rolle ist installiert, wird
+// vom Namen nach gefunden — und ist ueber die Aufgabe unsichtbar. Wer die
+// Aufgabe hat und den Namen nicht kennt, baut sie nach.
+//
+// Die Gegenrichtung ist genauso still: eine Rolle, deren Library aus
+// package.json geflogen ist, zeigt in der Aufgabentabelle auf nichts.
+{
+  const src = fs.readFileSync(path.join(HIER, '..', 'scripts', 'lib-lookup.mjs'), 'utf8');
+  const block = src.slice(src.indexOf('const ROLLEN'));
+  const rollen = new Set(
+    [...block.slice(0, block.indexOf('\n};')).matchAll(/^\s*'([^']+)':\s*\[/gm)].map((m) => m[1]),
+  );
+  const ohneRolle = libs.filter((l) => !rollen.has(l));
+  const ohneLib = [...rollen].filter((r) => !libs.includes(r));
+
+  if (ohneRolle.length) {
+    rot += 1;
+    sag(`ROT  ${ohneRolle.length} Library(s) ohne Rolle: ${ohneRolle.join(', ')}`);
+    sag('     ueber --task nicht auffindbar — Rolle in lib-lookup.mjs nachtragen');
+  }
+  if (ohneLib.length) {
+    rot += 1;
+    sag(`ROT  ${ohneLib.length} Rolle(n) ohne Library: ${ohneLib.join(', ')}`);
+    sag('     zeigt in der Aufgabentabelle auf nichts — Tresor oder Rolle nachziehen');
+  }
+  if (!ohneRolle.length && !ohneLib.length) {
+    sag(`OK   ${libs.length} Libraries, jede ueber ihre Aufgabe auffindbar`);
+  }
+}
+
 // --- Gegenproben ----------------------------------------------------------
 // Bis 29.07.2026 hatte diese Eval KEINE einzige. Sie prueft, dass fuer jede
 // Library etwas kommt — nicht, dass Falsches abgelehnt wird. Das ist die halbe
