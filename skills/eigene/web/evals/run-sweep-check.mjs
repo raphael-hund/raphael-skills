@@ -168,7 +168,52 @@ for (const f of WERFEN) {
   else sag('         still als "keine Maengel" durchgelassen');
 }
 
-const gesamt = REISSEN.length + DURCHLASSEN.length + WERFEN.length;
+// --- Der Exit-Code von shot-sweep.mjs selbst ---------------------------
+// Bis hierher prueft diese Eval die AUSWERTUNG des Manifests im Gate. Was sie
+// nicht prueft: ob shot-sweep seine fehlgeschlagenen Routen ueberhaupt als
+// Exit-Code weitergibt. Befund 30.07.2026 durch den Sabotage-Lauf —
+// `process.exitCode = 1` zu `= 0` geaendert, und keine Eval merkte es. Ein
+// Sweep, der nichts fotografiert hat, meldet dann Erfolg, und der Panel-Schritt
+// kritisiert Bilder, die es nicht gibt.
+//
+// Geprueft am echten Lauf gegen eine Route, die es nicht gibt (HTTP 404).
+sag('');
+{
+  const { execFileSync, spawn } = await import('node:child_process');
+  const fsN = await import('node:fs');
+  const osN = await import('node:os');
+  const pathN = await import('node:path');
+  const HIER_ = pathN.dirname(new URL(import.meta.url).pathname);
+  const SWEEP = pathN.join(HIER_, '..', 'scripts', 'shot-sweep.mjs');
+  const ordner = fsN.mkdtempSync(pathN.join(osN.tmpdir(), 'sweep-exit-'));
+  // Eine ECHTE Seite: shot-sweep meldet eine fast leere Seite selbst als Fehler
+  // ("leere Seite, 4 Zeichen Text") — dann waere der Exit-Code aus dem falschen
+  // Grund 1, und der Test bewiese nichts.
+  fsN.writeFileSync(pathN.join(ordner, 'index.html'),
+    '<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Sweep</title></head><body>'
+    + '<h1>Sanierung in Karlsruhe</h1>'
+    + '<p>Wir sanieren Wohnungen und Haeuser. Nach dem Ortstermin bekommen Sie einen '
+    + 'Festpreis, einen Ansprechpartner und ein Datum zum Einzug.</p>'
+    + '<p>Bad, Kueche, komplette Wohnungen — meist in elf Werktagen.</p></body></html>');
+  const PORT_ = Number(process.env.SWEEP_EXIT_PORT || 5453);
+  const server = spawn('python3', ['-m', 'http.server', String(PORT_)],
+    { cwd: ordner, stdio: 'ignore' });
+  await new Promise((r) => setTimeout(r, 1500));
+  let code = 0;
+  try {
+    execFileSync('node', [SWEEP, '--base', `http://localhost:${PORT_}`,
+      '--routes', '/,/gibt-es-nicht', '--out', pathN.join(ordner, 'out')],
+      { encoding: 'utf8', timeout: 300000 });
+  } catch (e) { code = e.status ?? 1; }
+  server.kill('SIGKILL');
+  fsN.rmSync(ordner, { recursive: true, force: true });
+  const ok = code === 1;
+  if (!ok) rot++;
+  sag(`${ok ? 'OK  ' : 'ROT '} shot-sweep.mjs endet mit Exit 1, wenn eine Route fehlschlaegt`);
+  if (!ok) sag(`       bekam Exit ${code} — ein Sweep ohne Bilder meldet Erfolg`);
+}
+
+const gesamt = REISSEN.length + DURCHLASSEN.length + WERFEN.length + 1;
 sag(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {
   sag('Ein Sweep ohne Bilder kommt als Gruen durch. Erst reparieren, dann ausliefern.');

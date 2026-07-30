@@ -29,6 +29,7 @@
  * Exit 0 = jede Eval merkt ihren Schaden. Exit 1 = mindestens eine ist blind.
  */
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -41,6 +42,32 @@ const NUR = nurArg >= 0 ? process.argv[nurArg + 1] : null;
 // Jeder Schaden ist EINE Zeile und trifft genau das, was der Pruefer entscheidet:
 // nicht "Datei kaputt machen" (das faengt jeder Parser), sondern "still das
 // falsche Urteil faellen". Das ist der Fall, der im Betrieb wirklich vorkommt.
+// Nur EIN Lauf gleichzeitig.
+//
+// Dieses Werkzeug beschaedigt echte Pruefer-Dateien und stellt sie danach wieder
+// her. Laufen zwei Laeufe gleichzeitig, liest Lauf B den Pruefer im sabotierten
+// Zustand von Lauf A als "Original" — und schreibt genau den beim Aufraeumen
+// zurueck. Am 30.07.2026 genau so passiert: craft-check.mjs blieb mit
+// `add('WARN', 'M3'` liegen, also mit abgeschaltetem Blocker.
+//
+// Der Abschluss-Check meldet den Schaden zwar (und hat es getan), aber melden
+// ist nicht verhindern. Ein Werkzeug, das fremde Dateien schreibt, gehoert
+// gesperrt, nicht beobachtet.
+const SPERRE = path.join(os.tmpdir(), 'run-sabotage.lock');
+if (fs.existsSync(SPERRE)) {
+  const alt = fs.readFileSync(SPERRE, 'utf8').trim();
+  let laeuft = false;
+  try { process.kill(Number(alt), 0); laeuft = true; } catch { /* Leiche */ }
+  if (laeuft) {
+    console.error(`Ein Sabotage-Lauf laeuft bereits (PID ${alt}).`);
+    console.error('Zwei Laeufe wuerden sich gegenseitig beschaedigte Pruefer als Original zurueckschreiben.');
+    process.exit(2);
+  }
+  console.error(`Verwaiste Sperre von PID ${alt} — der Lauf lebt nicht mehr, wird uebernommen.`);
+}
+fs.writeFileSync(SPERRE, String(process.pid));
+process.on('exit', () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ } });
+
 const SCHAEDEN = [
   {
     kurz: 'tastatur',
@@ -140,6 +167,17 @@ const SCHAEDEN = [
     von: 'process.exit(violations.length ? 1 : 0);',
     zu: 'process.exit(0);',
   },
+  {
+    kurz: 'shot-sweep',
+    pruefer: 'scripts/shot-sweep.mjs',
+    eval: 'evals/run-sweep-check.mjs',
+    // shot-sweep meldet fehlgeschlagene Routen ueber process.exitCode = 1.
+    // Faellt das weg, meldet ein Sweep, der NICHTS fotografiert hat, Erfolg —
+    // und der Panel-Schritt kritisiert Bilder, die es nicht gibt.
+    was: 'fehlgeschlagene Routen setzen keinen Exit-Code mehr',
+    von: '    process.exitCode = 1;',
+    zu: '    process.exitCode = 0;',
+  },
 ];
 
 let fehler = 0;
@@ -193,6 +231,17 @@ for (const s of SCHAEDEN) {
   } finally {
     // Immer zurueck, auch wenn die Eval abstuerzt oder der Lauf abgebrochen wird.
     fs.writeFileSync(datei, original);
+    // Und nachsehen, ob es geklappt hat. Am 30.07.2026 blieb craft-check.mjs
+    // beschaedigt zurueck: der Schreibvorgang lief, aber eine parallele Aenderung
+    // an derselben Datei kam dazwischen. Ein Sabotage-Lauf, der Schaden
+    // hinterlaesst, ist schlimmer als keiner — also sofort laut werden, nicht
+    // erst im Abschluss-Check am Ende.
+    const jetzt = fs.readFileSync(datei, 'utf8');
+    if (jetzt !== original) {
+      console.error(`\n  !! ${s.pruefer} liess sich NICHT wiederherstellen.`);
+      console.error(`     Sofort: git checkout -- ${s.pruefer}\n`);
+      fehler++;
+    }
   }
 }
 
