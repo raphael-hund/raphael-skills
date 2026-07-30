@@ -624,12 +624,29 @@ function checkImporte() {
     // Wie beim Formular-Check (F0): "nichts zu pruefen" muss anders klingen als
     // "geprueft und sauber". Eine reine HTML-Seite importiert nichts aus dem
     // Tresor — das ist kein bestandener Import-Check, das ist gar keiner.
+    // "0 Dateien gelesen" ist etwas anderes als "Dateien gelesen, keine
+    // Tresor-Importe". Der erste Fall heisst: --src zeigt auf einen Ordner ohne
+    // Quellcode (falscher Pfad mit Tippfehler im richtigen Elternordner, Build
+    // statt Quelle, vergessenes Unterverzeichnis). Der Pruefer hat dann NICHTS
+    // gelesen und meldete bisher denselben Satz wie eine echte HTML-Seite ohne
+    // Importe. Gemessen am 30.07.2026 an einem leeren Ordner: dateien 0,
+    // geprueft 0, Exit 0 — nichts geprueft, sieht aus wie sauber.
+    // Ein fehlender Ordner wird sauber mit Exit 2 abgefangen; ein LEERER nicht.
+    // Nur den TEXT zu aendern reicht nicht — der Check wuerde sonst weiter als
+    // gruen zaehlen und die neue Warnung stuende mitten in einer Erfolgsliste.
+    // Denselben Fehler hatte --no-shots: Grund korrekt benannt, Ergebnis
+    // trotzdem bestanden. SKIP ist hier der VIERTE Parameter von record();
+    // ein `null` als zweiter waere FAIL geworden — falscher Alarm statt
+    // ehrlicher Luecke.
     record('importe', b.length === 0,
       b.length === 0
-        ? parsed.geprueft === 0
-          ? 'kein Import aus dem Tresor — nichts zu pruefen'
-          : `${parsed.geprueft} Tresor-Import(e) in ${parsed.dateien} Datei(en), keiner erfunden`
-        : `${b.length} erfundene(r) Import: ${b.slice(0, 5).map((f) => `${f.name} aus ${f.quelle}`).join(', ')}`);
+        ? parsed.dateien === 0
+          ? 'KEINE Quelldatei unter --src gefunden — nichts gelesen, nicht geprueft'
+          : parsed.geprueft === 0
+            ? 'kein Import aus dem Tresor — nichts zu pruefen'
+            : `${parsed.geprueft} Tresor-Import(e) in ${parsed.dateien} Datei(en), keiner erfunden`
+        : `${b.length} erfundene(r) Import: ${b.slice(0, 5).map((f) => `${f.name} aus ${f.quelle}`).join(', ')}`,
+      parsed.dateien === 0);
   } catch {
     record('importe', false, `import-check-Ausgabe unlesbar (exit ${code})`);
   }
@@ -842,7 +859,18 @@ if (skipped.length) {
   const grundVon = (r) => {
     const d = r.detail || '';
     if (/--no-shots/.test(d)) return 'per --no-shots abgeschaltet';
-    if (/--src/.test(d)) return 'kein --src';
+    // Reihenfolge zaehlt: "KEINE Quelldatei unter --src gefunden" erwaehnt das
+    // Flag, obwohl es gesetzt WAR. Ein Muster, das auf die Nennung eines Flags
+    // reagiert statt auf seine Bedeutung, uebersetzt den Fall dann in sein
+    // Gegenteil — hier stand "kein --src", wo --src korrekt gesetzt und der
+    // Ordner nur leer war. Dritter Anlauf an dieser Zeile: sie ist der Ort, an
+    // dem ein Detailtext zu einer Kategorie gerundet wird, und jedes Runden
+    // kann daneben liegen. Die spezifischste Bedingung muss zuerst stehen.
+    if (/KEINE Quelldatei/.test(d)) return '--src zeigt auf Ordner ohne Quellcode';
+    // Beide echten Wortlaute gemessen, nicht geraten: "ohne --src kein
+    // Quellcode zum Pruefen" (importe) und "kein --src <projektordner>
+    // uebergeben" (ai-slop).
+    if (/ohne --src|kein --src </.test(d)) return 'kein --src';
     if (/nicht gefunden|nicht installiert/.test(d)) return 'Werkzeug fehlt';
     return d.split('—')[0].trim() || 'Grund unbekannt';
   };

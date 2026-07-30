@@ -62,6 +62,27 @@ const ERWARTET = {
 };
 
 const namen = Object.keys(ERWARTET);
+
+// Ein Lauf ohne Fixtures ist kein bestandener Lauf.
+//
+// Befund 30.07.2026: die ERWARTET-Liste geleert, und der Lauf meldete
+// "6/6 Faelle wie erwartet", Exit 0 — die sechs kamen aus den Routen- und
+// Import-Zusatzfaellen, die acht Fixtures waren still weg. Dieselbe Falle wie
+// beim Slop-Scan ueber 0 Dateien und bei den anderen Evals (siehe
+// run-eval-umfang.mjs): nichts geprueft sieht aus wie sauber geprueft.
+//
+// Die Zahl ist eine Untergrenze und bewusst hart verdrahtet: acht Fixtures gibt
+// es, weniger heisst, dass eine verschwunden ist. Kommt eine dazu, wird die Zahl
+// bewusst mit angehoben.
+const FIXTURES_MINDESTENS = 8;
+if (namen.length < FIXTURES_MINDESTENS) {
+  console.error(`\nNUR ${namen.length} Fixtures statt mindestens ${FIXTURES_MINDESTENS} — `
+    + 'die ERWARTET-Liste ist geschrumpft.');
+  console.error('Entweder wurde eine Fixture bewusst entfernt (dann FIXTURES_MINDESTENS anpassen)');
+  console.error('oder die Liste ist still leergelaufen. Ein Lauf ohne Fixtures prueft das Tor nicht.');
+  process.exit(2);
+}
+
 for (const n of namen) {
   const f = path.join(FIXTURES, `${n}.html`);
   if (!fs.existsSync(f)) {
@@ -291,6 +312,21 @@ const IMPORT_FAELLE = [
     code: `import { Toaster, toast } from 'sonner';\nimport { motion, AnimatePresence } from 'motion/react';\nexport const x = () => [Toaster, toast, motion, AnimatePresence];`,
     exit: 0, reisst: false, warum: 'echte Exporte, auch ueber den Subpfad motion/react',
   },
+  // Der stille Fall: --src zeigt auf einen Ordner OHNE Quellcode (Tippfehler im
+  // richtigen Elternordner, Build statt Quelle, vergessenes Unterverzeichnis).
+  // Bis 30.07.2026 meldete das Tor dafuer [PASS] importe — der Pruefer hatte
+  // null Dateien gelesen. Ein FEHLENDER Ordner war laengst mit Exit 2
+  // abgesichert; nur der leere rutschte durch. Der offensichtliche Fehlerfall
+  // war dicht, der stille nicht.
+  // Das Tor darf hier nicht rot werden (eine reine HTML-Seite ist erlaubt),
+  // aber auch nicht gruen behaupten, es haette Importe geprueft: erwartet wird
+  // ein SKIP mit eigenem Grund.
+  {
+    was: 'import-ohne-quellcode',
+    code: null, // absichtlich keine .tsx-Datei
+    exit: 0, reisst: false, skip: true,
+    warum: 'kein Quellcode unter --src — darf nicht als geprueft gelten',
+  },
 ];
 
 for (const f of IMPORT_FAELLE) {
@@ -299,7 +335,7 @@ for (const f of IMPORT_FAELLE) {
   fs.mkdirSync(dir, { recursive: true });
   fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(dir, 'index.html'));
   for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(dir, b));
-  fs.writeFileSync(path.join(dir, 'app.tsx'), f.code);
+  if (f.code !== null) fs.writeFileSync(path.join(dir, 'app.tsx'), f.code);
 
   const lauf = spawnSync('node', [
     path.join(SKILL, 'scripts/g1-gate.mjs'),
@@ -311,14 +347,26 @@ for (const f of IMPORT_FAELLE) {
 
   abbruchPruefen(lauf, f.was);
   const gerissen = gerissenAus(lauf).includes('importe');
-  const ok = lauf.status === f.exit && gerissen === f.reisst;
+  // Exit und "reisst nicht" allein wuerden den Fall ohne Quellcode auch bei
+  // einem falschen [PASS] bestehen lassen — genau dem Zustand, den er belegen
+  // soll. Deshalb wird der SKIP im Bericht namentlich verlangt.
+  const aus = `${lauf.stdout || ''}${lauf.stderr || ''}`;
+  const uebersprungen = /^\[SKIP\] importe/m.test(aus);
+  const skipOk = f.skip ? uebersprungen : !uebersprungen;
+  const ok = lauf.status === f.exit && gerissen === f.reisst && skipOk;
   if (!ok) rot++;
   sag(`${ok ? 'OK  ' : 'ROT '} ${f.was.padEnd(24)} exit=${lauf.status}  ${f.warum}`);
   if (!ok) {
     sag(`       Exit erwartet ${f.exit}, bekommen ${lauf.status}`);
-    sag(f.reisst
-      ? '       Ein erfundener Import kommt durchs Tor — der Build stirbt erst beim Kunden.'
-      : '       Das Tor blockt echte Importe. Nach dem dritten Fehlalarm schaltet es jemand ab.');
+    if (!skipOk) {
+      sag(f.skip
+        ? '       Kein [SKIP] importe im Bericht: das Tor behauptet, Importe geprueft zu haben, und hat null Dateien gelesen.'
+        : '       Unerwartetes [SKIP] importe: der Pruefer laeuft nicht, obwohl Quellcode da ist.');
+    } else {
+      sag(f.reisst
+        ? '       Ein erfundener Import kommt durchs Tor — der Build stirbt erst beim Kunden.'
+        : '       Das Tor blockt echte Importe. Nach dem dritten Fehlalarm schaltet es jemand ab.');
+    }
   }
 }
 
