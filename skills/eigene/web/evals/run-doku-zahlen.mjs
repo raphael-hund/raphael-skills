@@ -197,13 +197,52 @@ if (AKTUALISIEREN && ersetzt) {
   }
 }
 
+// --- Die eval_scorecard im Frontmatter -----------------------------------
+// Sie ist der erste Ort, den ein fremder Agent liest, um zu wissen, wie tief
+// dieser Skill geprueft ist — und sie war beim Anlegen am 30.07.2026 schon
+// falsch: "24 Evals" notiert, waehrend der Umfang-Waechter 25 zaehlte. Eine
+// Zahl ueber die Pruefung, die selbst ungeprueft ist, ist genau der Fehler,
+// den dieser Skill an sechs anderen Stellen gefunden hat.
+{
+  const scorecardZahl = (muster) => {
+    const m = md.match(muster);
+    return m ? Number(m[1]) : null;
+  };
+  // Sollwert ist NICHT die Zahl der Sollstand-Eintraege: der Sollstand speichert
+  // nur Evals mit einer festen Fallzahl, waehrend zwei Wachen (doku-zahlen,
+  // verweise-check) ohne Fallzahl laufen und trotzdem geprueft werden. Erster
+  // Versuch verglich gegen `Object.keys(stand)` und meldete deshalb "sagt 25,
+  // Sollstand kennt 23" — ein Fehlalarm gegen die falsche Groesse. Gemessen
+  // wird, was der Umfang-Waechter wirklich faehrt: alle run-*.mjs minus die
+  // ausdruecklich ausgenommenen.
+  const dateien = fs.readdirSync(HIER).filter((f) => /^run-.*\.mjs$/.test(f)).length;
+  const ausgenommen = (fs.readFileSync(path.join(HIER, 'run-eval-umfang.mjs'), 'utf8')
+    .match(/^\s*'run-[a-z-]+\.mjs':/gm) || []).length;
+  const evalAnzahl = dateien - ausgenommen;
+
+  const dokuEvals = scorecardZahl(/run-eval-umfang\.mjs — (\d+) Evals/);
+  zeile(dokuEvals === evalAnzahl,
+    `Scorecard: sagt ${dokuEvals ?? '?'} gepruefte Evals, der Waechter faehrt ${evalAnzahl}`,
+    dokuEvals === evalAnzahl ? null : 'Zahl in der eval_scorecard nachziehen');
+
+  // "N weitere Pruefer-Evals" — die drei Wachen sind einzeln genannt, der Rest
+  // pauschal. Zusammen muss es die Zahl der run-*.mjs-Dateien ergeben.
+  const weitere = scorecardZahl(/"(\d+) weitere Pruefer-Evals/);
+  const genannt = (md.match(/^\s*- "evals\/run-/gm) || []).length;
+  zeile(weitere !== null && weitere + genannt === dateien,
+    `Scorecard: ${genannt} einzeln + ${weitere ?? '?'} pauschal = ${weitere === null ? '?' : weitere + genannt}, `
+      + `im Ordner liegen ${dateien}`,
+    weitere !== null && weitere + genannt === dateien ? null
+      : 'Summe der Scorecard deckt den evals-Ordner nicht');
+}
+
 if (ohneStand) {
   console.log(`\n  ${ohneStand} Doku-Zahl(en) ohne Sollstand — ungepruefte Versprechen.`);
   console.log('  Betrifft ausgenommene Evals (Browser/Laufzeit): einzeln nachfahren.');
 }
 
 // +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
-console.log(`\n${funde.length + 3 - fehler - ohneStand}/${funde.length + 3 - ohneStand} gepruefte Doku-Zahlen stimmen`
+console.log(`\n${funde.length + 5 - fehler - ohneStand}/${funde.length + 5 - ohneStand} gepruefte Doku-Zahlen stimmen`
   + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');

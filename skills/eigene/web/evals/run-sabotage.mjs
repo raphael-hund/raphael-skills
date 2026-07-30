@@ -54,6 +54,7 @@ const NUR = nurArg >= 0 ? process.argv[nurArg + 1] : null;
 // ist nicht verhindern. Ein Werkzeug, das fremde Dateien schreibt, gehoert
 // gesperrt, nicht beobachtet.
 const SPERRE = path.join(os.tmpdir(), 'run-sabotage.lock');
+let verwaisterLauf = false;
 if (fs.existsSync(SPERRE)) {
   const alt = fs.readFileSync(SPERRE, 'utf8').trim();
   let laeuft = false;
@@ -64,6 +65,12 @@ if (fs.existsSync(SPERRE)) {
     process.exit(2);
   }
   console.error(`Verwaiste Sperre von PID ${alt} — der Lauf lebt nicht mehr, wird uebernommen.`);
+  // Aber nicht kommentarlos: ein Lauf, der mitten im Schaden abgebrochen wurde,
+  // hat einen Pruefer beschaedigt zurueckgelassen. Am 30.07.2026 genau so
+  // passiert — craft-check.mjs stand auf WARN statt BLOCK, und die verwaiste
+  // Sperre war der einzige Hinweis darauf. Wer sie nur uebernimmt, sabotiert
+  // gleich weiter auf einem schon kaputten Stand.
+  verwaisterLauf = true;
 }
 fs.writeFileSync(SPERRE, String(process.pid));
 process.on('exit', () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /* egal */ } });
@@ -222,6 +229,33 @@ function laufEval(rel) {
     return { code: 0, aus };        // Exit 0 = Eval fand alles in Ordnung
   } catch (e) {
     return { code: e.status ?? 1, aus: `${e.stdout || ''}${e.stderr || ''}` };
+  }
+}
+
+// Vor dem ersten Schaden nachsehen, ob alle Pruefer unveraendert sind. Sonst
+// misst dieser Lauf gegen einen Stand, den ein abgestuerzter Vorgaenger
+// hinterlassen hat — und meldet "Ankertext nicht gefunden" statt der Ursache.
+{
+  const dreckig = [];
+  for (const s of SCHAEDEN) {
+    const datei = path.join(SKILL, s.pruefer);
+    if (!fs.existsSync(datei)) continue;
+    const txt = fs.readFileSync(datei, 'utf8');
+    // Beides pruefen: Ersatz DA und Original WEG. Nur auf den Ersatz zu sehen
+    // meldet Fehlalarme, wenn er zufaellig auch im gesunden Code vorkommt —
+    // klon-gate.mjs hat `record('treue', true,` regulaer in der L5/L6-Zeile
+    // (dort gibt es keine Pixel-Grenze). Am 30.07.2026 beim ersten Lauf
+    // gemessen: eine saubere Datei als beschaedigt gemeldet.
+    if (txt.includes(s.zu) && !txt.includes(s.von)) dreckig.push(s.pruefer);
+  }
+  if (dreckig.length) {
+    console.error('\nEin Pruefer traegt schon einen Sabotage-Schaden:');
+    for (const d of dreckig) console.error(`  ${d}`);
+    console.error(verwaisterLauf
+      ? 'Ein frueherer Lauf wurde abgebrochen. Zuerst zuruecksetzen:'
+      : 'Unerwartet — zuerst nachsehen, woher das kommt, dann zuruecksetzen:');
+    console.error(`  git checkout -- ${dreckig.map((d) => `skills/eigene/web/${d}`).join(' ')}\n`);
+    process.exit(2);
   }
 }
 

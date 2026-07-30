@@ -42,6 +42,23 @@ loads:
   - references/agentur-merkmale.md
   - references/orchestrierung.md
 requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
+# eval_scorecard — was dieser Skill belegen kann, nicht was er verspricht.
+# Jede Zeile ist ein Lauf, der Exit 0 liefern muss; die Zahlen haelt
+# evals/run-doku-zahlen.mjs gegen die echten Laeufe (sonst veralten sie hier
+# genauso wie ueberall sonst).
+eval_scorecard:
+  stand: 2026-07-30
+  laeufe:
+    - "evals/run-antiset.mjs — 15 Faelle: reisst das Tor an jedem eingebauten Fehler?"
+    - "evals/run-sabotage.mjs — 13 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
+    - "evals/run-eval-umfang.mjs — 25 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-doku-zahlen.mjs — 19 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
+    - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
+  grenzen:
+    - "pruefstand.mjs ist nicht sabotage-geprueft — er faellt kein Urteil, das gruen werden koennte"
+    - "Ein gruener Lauf heisst 'die bekannten Fehler sind raus', nicht 'die Seite ist gut'"
+
 completion_criteria:
   - "`node scripts/g1-gate.mjs --url <url> --src <projekt> --build <dist>` endet mit Exit 0 (G1, hart — Lighthouse, axe, tote Links, Slop, Craft, Formular, Importe, Motion, Sweep in einem Exit-Code). `--src` ist Pflicht: ohne Quelle bleiben Import- und Motion-Check ungelaufen, und uebersprungen ist nicht bestanden"
   - "Dieser Lauf ohne `--budget`. Mit gelockertem Budget ist Exit 0 kein Bestehen, sondern ein Vorbehalt — die Schlusszeile sagt dann `BESTANDEN MIT GELOCKERTEM BUDGET` und die Lockerung braucht eine schriftliche Begruendung"

@@ -62,6 +62,13 @@ export function fallzahl(evalOrdner, datei, cwd) {
   // als "keine Fallzahl gefunden" — formal richtig, praktisch ein Fehlalarm: die
   // Eval protokolliert mit "OK  <was>" statt einer Schlusszahl. Eine Vermutung
   // ueber die FORM statt einer Messung des Inhalts.
+  // Vierte Form, gefunden am 30.07.2026: run-doku-zahlen schliesst mit
+  // "17/17 gepruefte Doku-Zahlen stimmen." — dieselbe N/M-Struktur, aber ein
+  // anderes Verb. Der Wachhund meldete sie deshalb als "keine Fallzahl", also
+  // als geschrumpfte Eval. Sie war vollzaehlig; nur ihr Satzbau war neu.
+  const zahlen = aus.match(/^(\d+)\/(\d+) gepruefte Doku-Zahlen stimmen\./m);
+  if (zahlen) return { zahl: Number(zahlen[2]), gruen: Number(zahlen[1]), form: 'Doku-Zahlen' };
+
   const libs = aus.match(/^(\d+) Libraries, jede/m);
   if (libs) return { zahl: Number(libs[1]), form: 'Libraries' };
   if (/Alle Verweise loesen auf/.test(aus)) return { zahl: null, form: 'ohne Fallzahl' };
