@@ -92,6 +92,33 @@ const SCHAEDEN = [
     von: "      if (existsSync(p) && /\\.m?ts$/.test(p)) return p;",
     zu: '      if (existsSync(p)) return null;',
   },
+  {
+    kurz: 'bilder',
+    pruefer: 'scripts/bilder.mjs',
+    eval: 'evals/run-bilder-check.mjs',
+    // Die einzige unwiderruflich loeschende Stelle im ganzen Skill. Ohne die
+    // Wache loescht `reject` Dateien ausserhalb des Asset-Ordners (Befund
+    // 29.07.2026, nachgemessen an /tmp/bt/opfer.txt).
+    was: 'Pfad-Wache beim Loeschen abgeschaltet',
+    von: '  if (f !== join(dir, basename(f)) || basename(f) !== removed.datei) {',
+    zu: '  if (false) {',
+  },
+  {
+    kurz: 'gate-zaehlung',
+    pruefer: 'scripts/g1-gate.mjs',
+    // Zuerst auf run-kaputte-ausgaben.mjs gezeigt — die prueft aber die
+    // Auswertung EINZELNER Werkzeug-Ausgaben, nicht das Gesamturteil. Sie blieb
+    // gruen, und der Sabotage-Lauf zeigte damit auf die falsche Eval. Die
+    // Zustaendigkeit liegt bei run-naht-check.mjs (Verbindungen und Huerden);
+    // dort ist die Pruefung seit dem 30.07.2026 drin.
+    eval: 'evals/run-naht-check.mjs',
+    // Das Tor zaehlt mit, ob ueberhaupt ein Qualitaets-Pruefer gelaufen ist.
+    // Faellt diese Huerde, meldet ein Rechner ohne installierte Werkzeuge
+    // "G1 BESTANDEN — 0 Checks gruen".
+    was: 'Tor urteilt auch ohne einen einzigen gelaufenen Qualitaets-Pruefer',
+    von: 'if (fehltGanz.length) {',
+    zu: 'if (false) {',
+  },
 ];
 
 let fehler = 0;

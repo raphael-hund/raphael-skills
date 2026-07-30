@@ -110,6 +110,22 @@ console.log('\nJeder checkX() im G1-Tor wird auch aufgerufen:\n');
   const fehlt = erwartet.filter((e) => !inListe.includes(e));
   zeile(fehlt.length === 0, `QUALITAET fuehrt alle ${erwartet.length} Qualitaets-Pruefer`,
     fehlt.length ? `fehlt in QUALITAET: ${fehlt.join(', ')}` : null);
+
+  // Die Liste allein nuetzt nichts — es muss auch die Huerde geben, die sie
+  // benutzt. Befund 30.07.2026 durch den Sabotage-Lauf: `if (fehltGanz.length)`
+  // zu `if (false)` geaendert, und keine einzige Eval merkte es. Damit wuerde ein
+  // Rechner ohne installierte Werkzeuge "G1 BESTANDEN — 0 Checks gruen" melden.
+  // Geprueft wird beides: dass die Huerde existiert und dass sie Exit 2 wirft
+  // (nicht 1 — "kann nicht urteilen" ist etwas anderes als "Qualitaet gerissen").
+  const huerde = txt.match(/if \(fehltGanz\.length\)\s*\{([\s\S]{0,400}?)\n\}/);
+  zeile(!!huerde, 'die Huerde `if (fehltGanz.length)` existiert',
+    huerde ? null : 'ohne sie urteilt das Tor auch mit 0 gelaufenen Pruefern');
+  if (huerde) {
+    zeile(/process\.exit\(2\)/.test(huerde[1]),
+      'sie endet mit Exit 2 (kann nicht urteilen), nicht mit 1',
+      /process\.exit\(2\)/.test(huerde[1]) ? null
+        : 'Exit 1 waere "Qualitaet gerissen" — das ist eine andere Aussage');
+  }
 }
 
 // --- 3. Keine Eval prueft eine Fassade ----------------------------------
