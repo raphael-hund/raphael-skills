@@ -145,7 +145,10 @@ const DEFAULT_BUDGET = {
   axeViolations: 0,          // hart: web/SKILL.md completion_criteria
   brokenLinks: 0,
   htmlErrors: 0,
-  slopScore: 0,              // scan-ai-slop.mjs Exit 1 = Slop gefunden
+  // scan-ai-slop.mjs endet IMMER mit Exit 0, auch bei Funden (nachgemessen
+  // 30.07.2026: sieben Treffer, Exit 0, in Text- wie JSON-Modus). Das Urteil
+  // faellt deshalb hier, aus dem JSON — nicht am Exit-Code des Scanners.
+  slopScore: 0,              // 0 Blocker erlaubt; Quelle ist das JSON, nicht der Exit
 };
 
 // Ein Budget kann Gruen erkaufen. Also muss es dafuer geradestehen.
@@ -499,7 +502,9 @@ function checkSlop() {
   try {
     melden(JSON.parse(run('node', argv)));
   } catch (e) {
-    // Exit 1 = Tells gefunden (kein kaputter Lauf). JSON steht trotzdem auf stdout.
+    // Der Scanner endet zwar immer mit 0 — aber `run()` wirft auch bei einem
+    // echten Absturz, und dann steht das JSON manchmal trotzdem auf stdout.
+    // Deshalb der zweite Versuch, bevor "Scan kaputt" gemeldet wird.
     try {
       melden(JSON.parse(String(e.stdout || '')));
     } catch {
