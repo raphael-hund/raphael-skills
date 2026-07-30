@@ -103,24 +103,75 @@ async function runVisualContrastFallback(page, serializedGroups, options, profil
 // Puppeteer detection (for URLs)
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Browsertreiber: Puppeteer zuerst, Playwright als Rueckfall.
+//
+// Befund 30.07.2026: der Browser-Pfad verlangte hart `import('puppeteer')`. Auf
+// diesem Rechner ist puppeteer nirgends installiert, playwright liegt in
+// /usr/lib/node_modules — und der ganze uebrige Skill benutzt playwright. Damit
+// war jede der rund 24 Regeln, die nur im gerenderten DOM messbar sind, ueber
+// den offiziellen Weg unerreichbar. Die Eval umging das per Direktinjektion; das
+// Werkzeug selbst blieb kaputt.
+//
+// Die Bindung ist duenn: `launch`, `setViewport` gegen `setViewportSize`,
+// `waitUntil: networkidle0` gegen `networkidle`. `page.evaluate`, `newPage` und
+// `page.close` sind in beiden gleich. Darum kein Umbau, sondern ein Adapter —
+// vendorierter Code bleibt vendoriert.
+//
+// `require` statt `import`, weil ein global installiertes Paket nicht im
+// Auflösungspfad dieser Datei liegt (derselbe Weg wie in
+// web/scripts/web-clone/lib/playwright-loader.mjs).
+async function ladeTreiber() {
+  try {
+    const pptr = await import('puppeteer');
+    return { art: 'puppeteer', mod: pptr.default || pptr };
+  } catch { /* weiter zu playwright */ }
+
+  const { createRequire } = await import('node:module');
+  for (const pfad of ['/usr/lib/node_modules/playwright', 'playwright']) {
+    try {
+      const req = createRequire('/usr/lib/node_modules/x.js');
+      const pw = req(pfad);
+      if (pw?.chromium) return { art: 'playwright', mod: pw };
+    } catch { /* naechster Kandidat */ }
+  }
+  throw new Error(
+    'Kein Browsertreiber gefunden. Erwartet wird puppeteer ODER playwright.\n'
+    + 'Installiert: npm install puppeteer  —  oder playwright global verfuegbar machen.');
+}
+
+// Startet den Browser und gibt eine Seite mit einheitlicher Oberflaeche zurueck.
+async function starteSeite(treiber, { launchArgs, viewport, url, waitUntil }) {
+  if (treiber.art === 'puppeteer') {
+    const browser = await treiber.mod.launch({ headless: true, args: launchArgs });
+    const page = await browser.newPage();
+    await page.setViewport(viewport);
+    await page.goto(url, { waitUntil, timeout: 30000 });
+    return { browser, page, eigen: true };
+  }
+  const browser = await treiber.mod.chromium.launch({ headless: true, args: launchArgs });
+  const page = await browser.newPage({ viewport });
+  // networkidle0/networkidle2 sind Puppeteer-Begriffe; Playwright kennt nur
+  // 'networkidle'. Alles andere ('load', 'domcontentloaded') ist gleich.
+  const pwWait = /^networkidle/.test(waitUntil) ? 'networkidle' : waitUntil;
+  await page.goto(url, { waitUntil: pwWait, timeout: 30000 });
+  return { browser, page, eigen: true };
+}
+
 async function detectUrl(url, options = {}) {
   const profile = options?.profile;
   const waitUntil = options?.waitUntil || 'networkidle0';
   const settleMs = Number.isFinite(options?.settleMs) ? options.settleMs : 0;
   const viewport = options?.viewport || { width: 1280, height: 800 };
   const externalBrowser = options?.browser || null;
-  let puppeteer;
+  let treiber;
   if (!externalBrowser) {
-    try {
-      puppeteer = await profileStepAsync(profile, {
-        engine: 'browser',
-        phase: 'setup',
-        ruleId: 'import-puppeteer',
-        target: url,
-      }, () => import('puppeteer'));
-    } catch {
-      throw new Error('puppeteer is required for URL scanning. Install: npm install puppeteer');
-    }
+    treiber = await profileStepAsync(profile, {
+      engine: 'browser',
+      phase: 'setup',
+      ruleId: 'import-browsertreiber',
+      target: url,
+    }, () => ladeTreiber());
   }
 
   // Read the browser detection script — reuse it instead of reimplementing
@@ -146,32 +197,35 @@ async function detectUrl(url, options = {}) {
   // Chrome can't initialize its sandbox there. Disable the sandbox only when
   // running in CI; local users keep the default hardened launch.
   const launchArgs = process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : [];
-  const browser = externalBrowser || await profileStepAsync(profile, {
-    engine: 'browser',
-    phase: 'load',
-    ruleId: 'launch-browser',
-    target: url,
-  }, () => puppeteer.default.launch({ headless: true, args: launchArgs }));
-  const page = await profileStepAsync(profile, {
-    engine: 'browser',
-    phase: 'load',
-    ruleId: 'new-page',
-    target: url,
-  }, () => browser.newPage());
+  let browser = externalBrowser;
+  let page;
+  if (externalBrowser) {
+    page = await profileStepAsync(profile, {
+      engine: 'browser', phase: 'load', ruleId: 'new-page', target: url,
+    }, () => browser.newPage());
+  }
   let results = [];
   try {
-    await profileStepAsync(profile, {
-      engine: 'browser',
-      phase: 'load',
-      ruleId: 'set-viewport',
-      target: url,
-    }, () => page.setViewport(viewport));
-    await profileStepAsync(profile, {
-      engine: 'browser',
-      phase: 'load',
-      ruleId: `goto:${waitUntil}`,
-      target: url,
-    }, () => page.goto(url, { waitUntil, timeout: 30000 }));
+    if (!externalBrowser) {
+      // Start, Viewport und Navigation in EINEM Schritt: die drei Aufrufe
+      // unterscheiden sich zwischen den Treibern und werden im Adapter
+      // uebersetzt (setViewport/setViewportSize, networkidle0/networkidle).
+      const gestartet = await profileStepAsync(profile, {
+        engine: 'browser', phase: 'load', ruleId: `launch+goto:${waitUntil}`, target: url,
+      }, () => starteSeite(treiber, { launchArgs, viewport, url, waitUntil }));
+      browser = gestartet.browser;
+      page = gestartet.page;
+    } else {
+      await profileStepAsync(profile, {
+        engine: 'browser', phase: 'load', ruleId: 'set-viewport', target: url,
+      }, () => (page.setViewport ? page.setViewport(viewport) : page.setViewportSize(viewport)));
+      await profileStepAsync(profile, {
+        engine: 'browser', phase: 'load', ruleId: `goto:${waitUntil}`, target: url,
+      }, () => page.goto(url, {
+        waitUntil: page.setViewport ? waitUntil : (/^networkidle/.test(waitUntil) ? 'networkidle' : waitUntil),
+        timeout: 30000,
+      }));
+    }
     if (settleMs > 0) {
       await profileStepAsync(profile, {
         engine: 'browser',
@@ -242,17 +296,11 @@ async function detectUrl(url, options = {}) {
 }
 
 async function createBrowserDetector(options = {}) {
-  let puppeteer;
-  try {
-    puppeteer = await import('puppeteer');
-  } catch {
-    throw new Error('puppeteer is required for URL scanning. Install: npm install puppeteer');
-  }
+  const treiber = await ladeTreiber();
   const launchArgs = options.launchArgs || (process.env.CI ? ['--no-sandbox', '--disable-setuid-sandbox'] : []);
-  const browser = options.browser || await puppeteer.default.launch({
-    headless: options.headless ?? true,
-    args: launchArgs,
-  });
+  const browser = options.browser || await (treiber.art === 'puppeteer'
+    ? treiber.mod.launch({ headless: options.headless ?? true, args: launchArgs })
+    : treiber.mod.chromium.launch({ headless: options.headless ?? true, args: launchArgs }));
   const ownsBrowser = !options.browser;
   const defaults = {
     waitUntil: options.waitUntil || 'load',
