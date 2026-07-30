@@ -59,6 +59,7 @@ if (!fs.existsSync(path.join(ZIEL, 'SKILL.md'))) {
   process.exit(2);
 }
 const REPO = '/root/raphael-command-center';          // Betriebs-Repo
+const BRAIN = '/root/raphael-brain';                   // Wissens-Repo (Router-Ziele)
 
 // Reihenfolge egal — ein Pfad gilt als gut, sobald EINE Wurzel ihn aufloest.
 // Manche Verweise nennen eine Datei, die als `.example` daneben liegt
@@ -383,6 +384,17 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
   const LAUFZEIT = new Set([
     'package.json', 'manifest.json', 'bilder-index.json', 'index.html',
     'report.json', 'components.json', 'tsconfig.json',
+    // Erkennungsmerkmale fremder Oekosysteme. ui-ux-db-nutzung.md listet sie
+    // auf, um aus einer Projektdatei den Stack zu erraten ("`composer.json`
+    // =Laravel"). Das ist eine Nennung, keine Wegbeschreibung — die Datei soll
+    // in einem KUNDENPROJEKT liegen, nicht hier.
+    'composer.json', 'Package.swift', 'go.mod', 'Gemfile', 'pubspec.yaml',
+    // Laufzeit-Zustand eines fremden Harness. eval/references/
+    // verifikations-vertrag.md stellt in einer Tabelle "Original vs. hier"
+    // gegenueber, was der Python-State-Machine-Harness schreibt und was
+    // stattdessen hier gilt. Die Datei gehoert zum Original und soll hier
+    // gerade NICHT existieren — das ist die Aussage der Tabelle.
+    'state.json',
   ]);
   const refOrdner = path.join(ZIEL, 'references');
   const mdDateien = fs.existsSync(refOrdner)
@@ -402,6 +414,29 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       gezaehlt++;
       const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO];
       if (wurzeln.some((w) => fs.existsSync(path.join(w, ziel)))) continue;
+      // Fuenfter Weg: das Brain. Router-Tabellen wie design/references/
+      // wissens-router.md nennen Wiki-Seiten mit blossem Dateinamen — sie
+      // liegen unter /root/raphael-brain/wiki/ bzw. raw/. Ohne diesen Weg
+      // meldet die Wache eine korrekt gefuellte Wissensseite als toten
+      // Verweis. Am 30.07.2026 an drei Faellen gemessen (morflax-device-
+      // mockup-workflow, feralui-gradient-workflow, typography-system):
+      // alle drei existieren, nur eben nicht im Skill-Baum.
+      if (fs.existsSync(BRAIN)) {
+        let imBrain = false;
+        // Auch die Wurzel: `raphael-brain/PROGRESS.md` liegt nicht unter wiki/
+        // oder raw/. Ohne diesen Fall meldet die Wache eine Datei als tot, die
+        // im Text sogar mit Repo-Praefix genannt wird.
+        if (fs.existsSync(path.join(BRAIN, name))) continue;
+        for (const unter of ['wiki', 'raw']) {
+          const b = path.join(BRAIN, unter);
+          if (!fs.existsSync(b)) continue;
+          try {
+            if (fs.readdirSync(b, { recursive: true })
+              .some((f) => typeof f === 'string' && f.endsWith(name))) { imBrain = true; break; }
+          } catch { /* unlesbar: gilt als nicht gefunden */ }
+        }
+        if (imBrain) continue;
+      }
       // Als blosser Name irgendwo im Skill oder im skills/-Baum?
       let gefunden = false;
       for (const w of [ZIEL, SKILLS]) {
@@ -431,8 +466,46 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       // Fremde Herkunft: die Datei liegt in einem anderen Projekt und wird als
       // QUELLE genannt ("aus offiziellem `video-layout.md`", "Vorlage",
       // "Skill X + `PICKER.md`, MIT"). Sie soll hier gar nicht existieren.
+      // "Kondensiert aus <repo>, `pfad`" kam erst beim Lauf ueber alle 29 Skills
+      // vor (ads, offers) — meine Muster stammten aus zwei Skills und waren an
+      // einem zu kleinen Ausschnitt gemessen.
       const satz = txt.slice(Math.max(0, m.index - 200), m.index + 200);
-      if (/Quelle:|aus offiziellem|Vorlage|MIT\)|Upstream|github\.com|plugins\//i.test(satz)) continue;
+      // `MIT licen[sc]e` klein geschrieben kommt in den englischen
+      // Vendor-Dateien vor (offers/references/vendor/coreyhaines-offers/) —
+      // dieselbe Herkunftsangabe, nur nicht auf Deutsch.
+      // ABER: eine Herkunftsangabe kann auf eine Datei IM EIGENEN SKILL zeigen —
+      // "MIT-Lizenz) — vollstaendige Attribution in `VENDORING.md` dieses
+      // Skills". Das ist eine Zusage ueber den eigenen Baum, kein Verweis in ein
+      // Fremdrepo, und sie muss stimmen. Am 30.07.2026 gemessen: `VENDORING.md`
+      // in `VENDORING-NOTE.md` umbenannt, und die Wache meldete Exit 0 — die
+      // Ausnahme griff auf das "MIT)" im selben Satz. Eine Ausnahme, die den
+      // halben Satz mitnimmt, deckt mehr ab als sie soll.
+      const zeigtHierher = /diese[sr]? Skills|hier im Skill|in diesem Skill|dieses Repos/i.test(satz);
+      if (!zeigtHierher
+        && /Quelle:|aus offiziellem|Vorlage|MIT\)|MIT licen[sc]e|Upstream|github\.com|plugins\/|[Kk]ondensiert aus|[UÜu]ebernommen aus|[Üü]bernommen aus/
+          .test(satz)) continue;
+      // Umbenannt: der Text nennt den ALTEN Namen und direkt dahinter mit Pfeil
+      // den neuen Ort. Die Zusage ist das Pfeil-Ziel, nicht der historische
+      // Name davor. ads/references/wissens-router.md macht das sechsmal:
+      //   `lead-qualitaet.md` (→ `messung/2026-07-20-lead-qualifizierung….md`)
+      // Das Pfeil-Ziel wurde geprueft und existiert; der alte Name liegt heute
+      // im Brain-Archiv. Wer hier "repariert", loescht eine Herkunftsangabe.
+      const danach = txt.slice(m.index, m.index + 220);
+      const pfeil = danach.match(/(?:→|->)\s*`([^`]+)`/);
+      if (pfeil) {
+        const zielName = pfeil[1].split('/').pop();
+        let pfeilOk = false;
+        for (const w of [path.dirname(datei), ZIEL, SKILLS, REPO, BRAIN]) {
+          if (fs.existsSync(path.join(w, pfeil[1]))) { pfeilOk = true; break; }
+        }
+        if (!pfeilOk && fs.existsSync(BRAIN)) {
+          try {
+            pfeilOk = fs.readdirSync(BRAIN, { recursive: true })
+              .some((f) => typeof f === 'string' && f.endsWith(zielName));
+          } catch { /* unlesbar */ }
+        }
+        if (pfeilOk) continue;
+      }
       // Negativ-Befund: die Referenz nennt die Datei, um ihr FEHLEN als Mangel
       // zu beschreiben ("kein `SECURITY.md`"). Ein Waechter, der das als toten
       // Verweis meldet, verlangt, dass der Mangel behoben wird, den der Text
