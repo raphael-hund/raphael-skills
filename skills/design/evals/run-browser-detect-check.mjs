@@ -113,6 +113,51 @@ const FAELLE = {
       + '.i{box-shadow:0 1px 2px rgba(0,0,0,.06);border-radius:12px;padding:14px;background:#f7f7f8}',
     body: '<div class="a"><h2>Aussen</h2><div class="i"><h3>Innen</h3><p>Text in der inneren Karte.</p></div></div>',
   },
+  'wide-tracking': {
+    was: 'Laufweite ueber 0.05em im Fliesstext',
+    // Schwelle am Code gelesen: letterSpacingPx / fontSize > 0.05.
+    // 17px * 0.08em sind 1.36px, also klar drueber.
+    style: 'p.weit{letter-spacing:0.08em}',
+    body: '<p class="weit">Ein Absatz mit deutlich zu weiter Laufweite liest sich zaeh, weil die Woerter auseinanderfallen.</p>',
+  },
+  'skipped-heading': {
+    was: 'Ueberschriften-Ebene uebersprungen (h1 -> h3)',
+    body: '<h3>Direkt zur dritten Ebene</h3><p>Text darunter.</p>',
+  },
+  'single-font': {
+    was: 'nur eine Schriftart auf der ganzen Seite',
+    // Zwei Bedingungen, beide am Code gelesen: die Seite braucht mindestens
+    // 20 Textelemente (`totalTextElements >= 20`), und danach darf nur EINE
+    // Schrift uebrig sein. Erster Versuch zog nur die H1 auf Georgia — drei
+    // Elemente, also lief der ganze Block nie an. Nicht die Regel war stumm,
+    // sondern die Seite zu klein.
+    style: 'h1{font-family:Georgia,serif}',
+    body: [...Array(22)].map((_, i) => `<p>Absatz Nummer ${i + 1} mit genug Text darin.</p>`).join(''),
+  },
+  'cream-palette': {
+    was: 'creme-/beigefarbener Seitenhintergrund',
+    // isCreamColor: alle Kanaele >= 209, warme Ordnung r>=g>=b, Waerme 6-48.
+    // #faf6ef ist 250/246/239 — Waerme 11, passt.
+    style: 'body{background:#faf6ef}',
+  },
+  'oversized-h1': {
+    was: 'H1 beherrscht den Viewport',
+    // DREI Bedingungen, alle am Code gelesen, nachdem zwei Anlaeufe schiefgingen:
+    //   fontSize >= 72px, Textlaenge >= 40 Zeichen, UND die H1 muss >= 28% der
+    //   Viewport-Hoehe (oder 25% der Flaeche) einnehmen.
+    // Zweiter Versuch hatte 150px und 59% Hoehe — gemessen im Browser — und
+    // meldete trotzdem nichts. Der Grund war die Textlaenge: 29 Zeichen bei
+    // Mindestens 40. Die Ueberschrift des Geruests ist zu kurz fuer diese Regel,
+    // also bringt der Fall seine eigene mit.
+    style: 'h1{font-size:150px;line-height:1.05;max-width:14ch}',
+    body: '<h1>Sanierung und Komplettumbau von Altbauwohnungen in Karlsruhe</h1>',
+  },
+  'cramped-padding': {
+    was: 'Innenabstand zu klein fuer die Schriftgroesse',
+    // vThresh = max(4, fontSize*0.3). Bei 20px sind das 6px; 2px liegt drunter.
+    style: '.eng{border:1px solid var(--line);border-radius:8px;padding:2px 4px;font-size:20px;background:#f7f7f8}',
+    body: '<div class="eng">Ein Kasten mit viel zu wenig Luft um den Text herum.</div>',
+  },
   'tight-leading': {
     was: 'Zeilenabstand zu eng fuer Fliesstext',
     style: 'p.eng{line-height:1.05}',

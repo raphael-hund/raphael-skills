@@ -173,12 +173,23 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
 > `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
 > **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (8 Fälle: 6 Regeln, Kontrollseite,
-> Gegenprobe im Datei-Modus). Damit sind `tiny-text`, `all-caps-body`,
-> `justified-text`, `line-length`, `nested-cards` und `tight-leading` zum ersten
-> Mal belegt. Offen bleiben 31 der 37 Browser-Regeln, namentlich im Bericht —
-> die meisten brauchen mehr als eine statische Seite (Hover, Scroll, dunkles
-> Theme, echte Bilder).
+> `node evals/run-browser-detect-check.mjs` (14 Fälle: 12 Regeln, Kontrollseite,
+> Gegenprobe im Datei-Modus). Belegt sind `tiny-text`, `all-caps-body`,
+> `justified-text`, `line-length`, `nested-cards`, `tight-leading`,
+> `wide-tracking`, `skipped-heading`, `single-font`, `cream-palette`,
+> `oversized-h1`, `cramped-padding`. Offen bleiben 25 der 37 Browser-Regeln,
+> namentlich im Bericht — die meisten brauchen mehr als eine statische Seite
+> (Hover, Scroll, dunkles Theme, echte Bilder).
+>
+> **Diese Regeln haben mehrstufige Schwellen, und die stehen nur im Code.**
+> `single-font` braucht ≥ 20 Textelemente auf der Seite, bevor der Block
+> überhaupt anläuft. `oversized-h1` verlangt **drei** Dinge gleichzeitig: ≥ 72px
+> Schrift, ≥ 40 Zeichen Text **und** ≥ 28 % Viewport-Höhe. `cramped-padding`
+> rechnet gegen die Schriftgröße (`max(4, fontSize × 0.3)`). Wer eine dieser
+> Regeln prüfen oder debuggen will, liest die Zahl in `rules/checks.mjs` nach —
+> raten kostet hier mehrere Anläufe (bei `oversized-h1` waren es drei, und der
+> zweite hatte 59 % Viewport-Höhe und meldete trotzdem nichts, weil die
+> Überschrift 29 statt 40 Zeichen hatte).
 >
 > **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
 > ```
