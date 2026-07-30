@@ -78,11 +78,11 @@ function markdown(findings, project, scannedFiles) {
     byType.get(finding.type).push(finding);
   }
   const types = [
-    ["tracking", "追踪脚本 / 统计像素"],
-    ["brand", "原站品牌残留"],
-    ["japanese", "日文残留"],
-    ["todo", "TODO / 占位内容"],
-    ["external", "外部依赖 / 外链风险"],
+    ["tracking", "Tracking-Skripte / Zaehl-Pixel"],
+    ["brand", "Marken-Reste der Originalseite"],
+    ["japanese", "Japanische Textreste"],
+    ["todo", "TODO / Platzhalter-Inhalte"],
+    ["external", "Externe Abhaengigkeiten / Links nach draussen"],
   ];
   const lines = [
     `# Clone Audit`,
@@ -97,19 +97,21 @@ function markdown(findings, project, scannedFiles) {
     const items = byType.get(type) || [];
     lines.push(`## ${title}`);
     if (!items.length) {
-      lines.push("- 未发现");
+      lines.push("- nichts gefunden");
       lines.push("");
       continue;
     }
     for (const item of items.slice(0, 200)) {
       lines.push(`- ${path.relative(project, item.file)}:${item.line} · ${item.label} · \`${item.match.replaceAll("`", "'")}\``);
     }
-    if (items.length > 200) lines.push(`- 还有 ${items.length - 200} 条未展开`);
+    if (items.length > 200) lines.push(`- ${items.length - 200} weitere, hier nicht ausgeklappt`);
     lines.push("");
   }
 
-  lines.push("## 结论");
-  lines.push(findings.length ? "- 需要处理上面的残留项后再声明可部署。" : "- 未发现明显残留项；仍需人工核查素材授权和视觉截图。");
+  lines.push("## Fazit");
+  lines.push(findings.length
+    ? "- Die Funde oben muessen weg, bevor irgendjemand \"kann ausgeliefert werden\" sagt."
+    : "- Keine offensichtlichen Reste. Bildrechte und Screenshots pruefen bleibt trotzdem Handarbeit.");
   return `${lines.join("\n")}\n`;
 }
 

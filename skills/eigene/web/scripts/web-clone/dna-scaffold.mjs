@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // dna-scaffold.mjs — 生成 design-dna.json 骨架，best-effort 从 recon-site.mjs 的输出预填。
 // 用法:
-//   node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <站名>]
+//   node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <Seitenname>]
 // 产物:
 //   <out>  完整 DNA 骨架；有 --recon 时预填字体/色候选/框架特效信号，其余留 "" 待人工 Analyze。
 // 纪律: 只搬侦察里"真实抓到"的信号，绝不编造。拿不准角色(primary/accent)的色值统一丢进 _recon_signals 供人工指派。
@@ -22,12 +22,12 @@ function parseArgs(argv) {
 }
 
 function usage() {
-  console.log(`dna-scaffold.mjs — 生成 design-dna.json 骨架并 best-effort 预填
+  console.log(`dna-scaffold.mjs — Geruest fuer design-dna.json anlegen und so weit wie moeglich vorausfuellen
 
-  node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <站名>]
+  node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <Seitenname>]
 
-只用在「视觉复刻 / 内容爆改」模式。忠实复刻分支不需要 DNA（真源码即真相）。
-schema 与字段含义见 references/design-dna.md。`);
+Nur im Modus "Optik nachbauen, Inhalte ersetzen". Beim originalgetreuen Nachbau braucht es keine DNA — dort ist der echte Quellcode die Wahrheit.
+Aufbau und Bedeutung der Felder: references/design-dna.md`);
 }
 
 // 完整 DNA 骨架（与 references/design-dna.md 对齐）
@@ -199,9 +199,9 @@ function enrich(dna, recon) {
     (abgeleitet.length
       ? `ACHTUNG: ${abgeleitet.length} Feld(er) sind ABGELEITET, nicht gemessen — siehe _abgeleitet. `
       : "")
-    + "best-effort 预填来自 recon。font_families/surface.background/visual_effects 已据真实信号填写；" +
-    "color 的 primary/secondary/accent 角色需人工从 _recon_signals.color_candidates 指派；" +
-    "所有 \"\" 字段需人工 Analyze 补全(见 references/design-dna.md)。确认无误后可删除 _recon_signals 与本说明。";
+    + "Vorausgefuellt aus der Aufnahme: font_families, surface.background und visual_effects stehen auf gemessenen Werten. " +
+    "Welche Farbe primary, secondary oder accent ist, muss von Hand aus _recon_signals.color_candidates zugewiesen werden. " +
+    "Alle leeren Felder bleiben Handarbeit (siehe references/design-dna.md). Wenn alles stimmt, koennen _recon_signals und dieser Hinweis raus.";
   return dna;
 }
 
@@ -217,19 +217,19 @@ try {
       const recon = JSON.parse(fs.readFileSync(path.resolve(args.recon), "utf8"));
       dna = enrich(dna, flattenRecon(recon));
     } catch (e) {
-      console.warn(`⚠️ 读 recon 失败(${e.message})，只输出空骨架。`);
+      console.warn(`⚠️ Aufnahme nicht lesbar (${e.message}) — es entsteht nur das leere Geruest.`);
     }
   }
   const outPath = path.resolve(args.out);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, `${JSON.stringify(dna, null, 2)}\n`);
-  console.log(`✅ design-dna 骨架已写入: ${outPath}`);
+  console.log(`✅ design-dna-Geruest geschrieben: ${outPath}`);
   if (dna._recon_signals) {
     const s = dna._recon_signals;
-    console.log(`   预填: 字体 ${s.fonts.length} 个 / 色候选 ${s.color_candidates.length} 个 / canvas ${s.canvas_count} / three=${!!s.frameworks.three} gsap=${!!s.frameworks.gsap} lenis=${!!s.frameworks.lenis}`);
+    console.log(`   Vorausgefuellt: ${s.fonts.length} Schriften, ${s.color_candidates.length} Farbkandidaten, ${s.canvas_count} Canvas, three=${!!s.frameworks.three} gsap=${!!s.frameworks.gsap} lenis=${!!s.frameworks.lenis}`);
   }
-  console.log(`   下一步: 人工 Analyze 补全 ""，并从 _recon_signals 指派颜色角色。schema → references/design-dna.md`);
+  console.log(`   Naechster Schritt: leere Felder von Hand fuellen und den Farben aus _recon_signals ihre Rolle geben. Aufbau → references/design-dna.md`);
 } catch (e) {
-  console.error(`dna-scaffold 失败: ${e.message}`);
+  console.error(`dna-scaffold fehlgeschlagen: ${e.message}`);
   process.exit(1);
 }
