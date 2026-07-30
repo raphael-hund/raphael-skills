@@ -172,8 +172,26 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > `cream-palette`, `oversized-h1`, `tiny-text`, `all-caps-body`,
 > `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
 > `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
-> Der Browser-Pfad (`detect-antipatterns-browser.js`) hat weiterhin keine Eval;
-> das ist die nächste offene Stelle, nicht eine erledigte.
+> **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
+> `node evals/run-browser-detect-check.mjs` (8 Fälle: 6 Regeln, Kontrollseite,
+> Gegenprobe im Datei-Modus). Damit sind `tiny-text`, `all-caps-body`,
+> `justified-text`, `line-length`, `nested-cards` und `tight-leading` zum ersten
+> Mal belegt. Offen bleiben 31 der 37 Browser-Regeln, namentlich im Bericht —
+> die meisten brauchen mehr als eine statische Seite (Hover, Scroll, dunkles
+> Theme, echte Bilder).
+>
+> **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
+> ```
+> $ node scripts/detect.mjs http://localhost:5392/
+> Error: puppeteer is required for URL scanning. Install: npm install puppeteer
+> ```
+> Installiert ist Playwright, das der ganze Rest des Skills benutzt.
+> `page.setViewport` (Puppeteer) gegen `setViewportSize` (Playwright) ist der
+> Unterschied — ein Austausch wäre ein Umbau am vendorten Detektor. Der injizierte
+> Detektor selbst ist browserneutral (`window.impeccableScan()`), also lädt die
+> Eval ihn per Playwright direkt in die Seite. Wer den URL-Modus von
+> `detect.mjs` braucht, muss puppeteer nachinstallieren; für die Prüfung der
+> Regeln ist das nicht nötig.
 
 **Die vier `design-system-*`-Regeln brauchen eine `DESIGN.md`** im Projektordner
 und schweigen ohne sie — richtig so: ein Projekt ohne erklärtes System hat keine
