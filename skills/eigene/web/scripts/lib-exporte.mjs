@@ -280,3 +280,20 @@ export function pruefbareNamen(quelle) {
   // Import hier ist erfunden" — das waere ein Urteil aus Unwissen. `null`.
   return benannt.length ? new Set(benannt) : null;
 }
+
+// Diese Datei ist ein MODUL, kein Werkzeug: `lib-lookup.mjs` und
+// `import-check.mjs` importieren die Funktionen hier. Ein Direktaufruf lief
+// bisher still mit Exit 0 durch — kein Fehler, keine Ausgabe, nichts getan.
+//
+// Das ist dieselbe Verwechslung wie bei detector/cli/main.mjs (30.07.2026):
+// "Exit 0, keine Ausgabe" liest sich wie "alles in Ordnung" und heisst
+// "nie gelaufen". Bei einer Datei mit "lib" im Namen ist die Gefahr kleiner als
+// bei einer namens main.mjs — aber der Unterschied kostet zwei Zeilen.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  process.stderr.write(
+    'lib-exporte.mjs ist ein Modul, kein Werkzeug.\n'
+    + 'Gemeint ist vermutlich eines davon:\n'
+    + '  node scripts/lib-lookup.mjs <library>          # wie heisst die API wirklich?\n'
+    + '  node scripts/import-check.mjs --src <ordner>   # existiert dieser Import?\n');
+  process.exit(2);
+}
