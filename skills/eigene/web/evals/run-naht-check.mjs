@@ -82,8 +82,20 @@ console.log('\nJeder checkX() im G1-Tor wird auch aufgerufen:\n');
   // und das ist richtig so. Erster Versuch meldete beide als "nie aufgerufen" —
   // ein Fehlalarm aus einer Vermutung darueber, wie ein Aufruf AUSSIEHT.
   // Gefragt ist, ob der Name ausserhalb seiner Definition ueberhaupt vorkommt.
+  // Kommentare fliegen VOR dem Zaehlen raus. Sonst gilt `// checkMotion();`
+  // als Aufruf: mit der Definition sind das zwei Vorkommen, und die Schwelle
+  // `<= 1` ist erfuellt.
+  //
+  // Selbst nachgemessen 30.07.2026: checkMotion() auskommentiert — der Pruefer
+  // laeuft dann nie — und diese Eval meldete weiter 13/13, Exit 0. Genau die
+  // Luecke, gegen die sie gebaut ist, hatte sie an sich selbst. Eine Naht-Pruefung,
+  // die einen gekappten Aufruf nicht sieht, prueft die Naht nicht.
+  const codeOhneKommentar = txt.split('\n')
+    .map((z) => z.replace(/\/\/.*$/, ''))
+    .join('\n')
+    .replace(/\/\*[\s\S]*?\*\//g, '');
   const nicht = checks.filter((c) => {
-    const alle = (txt.match(new RegExp(`\\b${c}\\s*\\(`, 'g')) || []).length;
+    const alle = (codeOhneKommentar.match(new RegExp(`\\b${c}\\s*\\(`, 'g')) || []).length;
     return alle <= 1;
   });
   zeile(nicht.length === 0, `${checks.length} Pruefer definiert, alle in der Ablaufliste`,
