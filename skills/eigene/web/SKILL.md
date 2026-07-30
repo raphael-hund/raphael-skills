@@ -234,9 +234,16 @@ node scripts/tastatur-check.mjs <projektordner>
 
 axe prüft, ob die ARIA-Rollen stimmen. Es prüft **nicht**, ob das Ding, das sich
 `role="listbox"` nennt, auf Pfeiltasten reagiert. In der eigenen
-Komponentenbibliothek gemessen: **7 von 10** zusammengesetzten Widgets haben saubere
+Komponentenbibliothek gemessen: **7 von 10** zusammengesetzten Widgets hatten saubere
 Rollen und keine Tastaturbedienung. `select.tsx` sind 411 Zeilen mit
-`role="listbox"`, `role="option"` und ARIA-Attributen — und null Pfeiltasten.
+`role="listbox"`, `role="option"` und ARIA-Attributen — und hatte null Pfeiltasten.
+
+**Alle sieben sind seit 29.07.2026 repariert** (Pfeiltasten, Home/End, Escape,
+Roving-Tabindex, Fokus folgt der Auswahl, Fokus-Rückgabe an den Auslöser).
+`node scripts/tastatur-check.mjs references/ui-components` meldet 0 Blocker bei
+10 gefundenen Widgets. Die Vergangenheitsform oben ist Absicht: der Befund bleibt
+dokumentiert, weil er erklärt, warum es diesen Prüfer gibt — aber wer nur diesen
+Abschnitt liest, soll nicht sieben offene Baustellen vermuten.
 
 Die Rolle ist ein **Versprechen** an Screenreader-Nutzer: *hier kommt eine Listbox,
 die kennst du.* Wer es gibt und die Tastatur nicht liefert, hat es schlimmer gemacht

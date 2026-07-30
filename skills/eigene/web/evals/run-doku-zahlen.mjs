@@ -31,6 +31,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SKILL = path.join(HIER, '..');
@@ -155,13 +156,54 @@ if (AKTUALISIEREN && ersetzt) {
   }
 }
 
+// --- Der Tastatur-Befund und sein Stand ---------------------------------
+// SKILL.md nennt "7 von 10 zusammengesetzten Widgets" und behauptet daneben, alle
+// sieben seien repariert. Beide Haelften sind messbar, und beide veralten: die 10
+// aendert sich mit jeder neuen Komponente, der Nullstand mit jedem Rueckschritt.
+//
+// Befund 30.07.2026: der Abschnitt nannte den Befund im PRAESENS ("haben saubere
+// Rollen und keine Tastaturbedienung") und sagte nirgends, dass die sieben
+// repariert sind. Wer nur diesen Abschnitt liest, vermutet sieben offene
+// Baustellen. Eine Doku, die einen behobenen Befund wie einen offenen darstellt,
+// kostet dieselbe Zeit wie eine falsche Zahl.
+{
+  const dokuWidgets = md.match(/\*\*(\d+) von (\d+)\*\* zusammengesetzten Widgets/);
+  let aus = '';
+  try {
+    aus = execFileSync('node',
+      [path.join(SKILL, 'scripts', 'tastatur-check.mjs'), path.join(SKILL, 'references', 'ui-components')],
+      { encoding: 'utf8', timeout: 300000 });
+  } catch (e) {
+    aus = `${e.stdout || ''}${e.stderr || ''}`;
+  }
+  const gefunden = aus.match(/(\d+) zusammengesetzte Widget/);
+  const blocker = aus.match(/(\d+) Blocker/);
+  if (!dokuWidgets) {
+    zeile(false, 'keine Aussage "N von M zusammengesetzten Widgets" in SKILL.md gefunden');
+  } else if (!gefunden) {
+    console.error('\nFEHLER: tastatur-check nennt keine Widget-Zahl — nicht geprueft.');
+    process.exit(2);
+  } else {
+    zeile(Number(dokuWidgets[2]) === Number(gefunden[1]),
+      `Widgets: SKILL.md sagt "von ${dokuWidgets[2]}", gefunden werden ${gefunden[1]}`,
+      Number(dokuWidgets[2]) === Number(gefunden[1]) ? null : 'Zahl in SKILL.md nachziehen');
+    // "Alle sieben sind repariert" ist nur wahr, solange 0 Blocker gemeldet werden.
+    const behauptetRepariert = /Alle sieben sind seit .* repariert/.test(md);
+    const nullBlocker = !blocker || Number(blocker[1]) === 0;
+    zeile(!behauptetRepariert || nullBlocker,
+      `Reparatur-Stand: SKILL.md sagt "alle repariert", Pruefer meldet ${blocker ? blocker[1] : 0} Blocker`,
+      behauptetRepariert && !nullBlocker
+        ? 'entweder ein Widget ist zurueckgefallen oder die Aussage muss weg' : null);
+  }
+}
+
 if (ohneStand) {
   console.log(`\n  ${ohneStand} Doku-Zahl(en) ohne Sollstand — ungepruefte Versprechen.`);
   console.log('  Betrifft ausgenommene Evals (Browser/Laufzeit): einzeln nachfahren.');
 }
 
 // +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
-console.log(`\n${funde.length + 1 - fehler - ohneStand}/${funde.length + 1 - ohneStand} gepruefte Doku-Zahlen stimmen`
+console.log(`\n${funde.length + 3 - fehler - ohneStand}/${funde.length + 3 - ohneStand} gepruefte Doku-Zahlen stimmen`
   + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');
