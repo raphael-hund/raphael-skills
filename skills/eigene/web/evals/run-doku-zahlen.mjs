@@ -130,12 +130,38 @@ if (AKTUALISIEREN && ersetzt) {
   process.exit(0);
 }
 
+// --- Regelzahlen, nicht nur Fallzahlen ----------------------------------
+// SKILL.md nennt auch, wie viele REGELN ein Pruefer hat ("craft-check.mjs hat
+// 23 echte Pruefstellen"). Die veraltet genauso wie eine Fallzahl — und tat es:
+// bis zum 30.07.2026 stand dort "28 Regeln (M1-M25, T1-T10)", eine Zahl aus
+// einem grep ueber die ganze Datei, die Kommentar-Erwaehnungen mitzaehlte.
+// Gemessen sind es 23 add()-Stellen. Eine Abdeckungszahl, die zu NIEDRIG luegt,
+// kostet genauso Zeit wie eine zu hohe: man sucht Fixtures fuer Regeln, die es
+// nicht gibt.
+{
+  const doku = md.match(/craft-check\.mjs`? hat \*\*(\d+) echte Pruefstellen/);
+  const quelle = fs.readFileSync(path.join(SKILL, 'scripts', 'craft-check.mjs'), 'utf8');
+  const echt = new Set(
+    [...quelle.matchAll(/add\('[A-Z]+', '([MT][0-9/]+)'/g)]
+      .flatMap((m) => m[1].split('/').map((x) => (/^\d/.test(x) ? `M${x}` : x))),
+  ).size;
+  if (!doku) {
+    zeile(false, 'keine Regelzahl zu craft-check.mjs in SKILL.md gefunden',
+      'umformuliert? Dann dieses Muster anpassen, nicht die Pruefung entfernen');
+  } else {
+    zeile(Number(doku[1]) === echt,
+      `craft-check.mjs: SKILL.md sagt ${doku[1]} Pruefstellen, gezaehlt sind ${echt}`,
+      Number(doku[1]) === echt ? null : 'Zahl in SKILL.md nachziehen');
+  }
+}
+
 if (ohneStand) {
   console.log(`\n  ${ohneStand} Doku-Zahl(en) ohne Sollstand — ungepruefte Versprechen.`);
   console.log('  Betrifft ausgenommene Evals (Browser/Laufzeit): einzeln nachfahren.');
 }
 
-console.log(`\n${funde.length - fehler - ohneStand}/${funde.length - ohneStand} gepruefte Doku-Zahlen stimmen`
+// +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
+console.log(`\n${funde.length + 1 - fehler - ohneStand}/${funde.length + 1 - ohneStand} gepruefte Doku-Zahlen stimmen`
   + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');

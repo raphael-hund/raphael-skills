@@ -308,23 +308,30 @@ node evals/run-craft-check.mjs           # 22 Fälle, Kontrolle inbegriffen
 node evals/run-craft-check.mjs --nur M6  # eine Regel einzeln
 ```
 
-`craft-check.mjs` kennt 28 Regeln (M1–M25, T1–T10). Wie viele davon jemals
-angeschlagen haben, wusste niemand — bis es gemessen wurde, indem jede Anti-Set-Fixture
-einzeln durch den Prüfer lief:
+`craft-check.mjs` hat **23 echte Pruefstellen**. Wie viele davon jemals angeschlagen
+haben, wusste niemand — bis es gemessen wurde, indem jede Anti-Set-Fixture einzeln
+durch den Prüfer lief:
 
 ```
 _basis T5 · a1 T1,T2,T5 · a2 T5,T8,T9 · a3 M13,T5
 a4 M17,T5 · a5 M11,T5 · a6 M24,T5 · a8 T5
 ```
 
-**Zehn Regeln belegt, achtzehn nie.** Das ist kein Beweis, dass sie falsch sind — aber
+**Neun Regeln belegt, vierzehn nie.** Das ist kein Beweis, dass sie falsch sind — aber
 auch keiner, dass sie funktionieren. Eine Regel ohne Fixture steht in der Liste, taucht
 im Bericht nie auf, und beim nächsten Umbau des Prüfers fällt ihr Ausfall nicht auf.
 
+> **Die Zahl 28 stand hier zuerst und war falsch.** Sie kam aus einem grep über die
+> ganze Datei und zählte Kommentar-Erwähnungen mit: M7, M25 und T10 erschienen als
+> „ungeprüft", obwohl es für sie gar keine `add()`-Stelle gibt — M25 ist laut Doktrin
+> ausdrücklich *„inhaltlich, nicht messbar"*. Eine Abdeckungszahl, die zu **niedrig**
+> lügt, kostet genauso Zeit wie eine, die zu hoch lügt: man sucht Fixtures für Regeln,
+> die es nicht gibt.
+
 Die Eval baut pro Regel eine winzige Seite mit **genau diesem einen** Fehler und läuft
-über `file://` — kein Server nötig, nur Chrome. Sie deckt jetzt 15 der 28 Regeln ab und
-**nennt die 13 offenen namentlich**, statt „12/12 grün" wie volle Abdeckung aussehen zu
-lassen.
+über `file://` — kein Server nötig, nur Chrome. Sie deckt inzwischen **alle 23** ab,
+prüft zusätzlich die BLOCK-Stufe der zehn Blocker-Regeln und **nennt jede Ausnahme
+namentlich**, statt eine runde Zahl wie volle Abdeckung aussehen zu lassen.
 
 > **Die Kontrollseite ist der wichtigste Fall, und sie steht zuerst.** Mein erstes
 > Grundgerüst meldete `M23` (fehlende `meta description`) und `M4` (keine Überschrift mit
