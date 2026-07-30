@@ -29,6 +29,20 @@ const JSON_OUT = args.includes('--json');
 const VAULT = process.env.UIKIT_VAULT || '/root/tools/uikit-vault';
 const SRC = get('src', '.');
 
+// Ein blanker Pfad ohne --src fiel bis zum 30.07.2026 still auf '.' zurueck.
+// `node import-check.mjs /pfad/zum/projekt` pruefte dann den Ordner, in dem man
+// gerade stand, und meldete darueber Exit 0 — ein gruenes Urteil ueber ein
+// Projekt, das nie angesehen wurde. Genau die Klasse Fehler, gegen die dieses
+// Skript gebaut ist: es sieht geprueft aus.
+const streuner = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--src');
+if (streuner.length) {
+  console.error(`Pfad ohne --src uebergeben: ${streuner.join(' ')}`);
+  console.error('So gemeint?  node import-check.mjs --src ' + streuner[0]);
+  console.error('Ohne --src wuerde der aktuelle Ordner geprueft — das waere ein Urteil');
+  console.error('ueber das falsche Projekt. Deshalb Abbruch statt Annahme.');
+  process.exit(2);
+}
+
 if (!existsSync(SRC)) {
   console.error(`Ordner fehlt: ${SRC}`);
   process.exit(2);

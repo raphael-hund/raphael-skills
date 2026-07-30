@@ -464,6 +464,12 @@ Läuft seit dem 29.07.2026 **im Tor mit** (`--src` genügt), einzeln aufrufbar m
 node scripts/import-check.mjs --src .
 ```
 
+**`--src` ist Pflicht, nicht Kür.** Ein blanker Pfad
+(`import-check.mjs /pfad/projekt`) wurde bis zum 30.07.2026 still verworfen:
+geprüft wurde der Ordner, in dem man gerade stand, und darüber kam Exit 0 —
+ein grünes Urteil über ein Projekt, das der Prüfer nie gesehen hat. Er bricht
+jetzt mit Exit 2 ab und nennt die richtige Form.
+
 Davor war er ein Angebot, kein Tor: die Regel „erst `lib-lookup`, dann
 importieren" stand als Prosa-Bitte da, obwohl sie maschinell prüfbar ist
 (Doktrin-Regel 11 — erzwingen statt erbitten). Er ist der einzige Prüfer, der

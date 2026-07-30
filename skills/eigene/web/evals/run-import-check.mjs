@@ -236,7 +236,32 @@ if (fs.existsSync(eigene)) {
   }
 }
 
-const gesamt = FAELLE.length + (fs.existsSync(eigene) ? 1 : 0);
+// --- Aufruf ohne --src ----------------------------------------------------
+// `node import-check.mjs /pfad/zum/projekt` sah aus wie ein Aufruf und war
+// keiner: der Pfad wurde still verworfen, geprueft wurde der aktuelle Ordner,
+// und darueber kam Exit 0. Ein gruenes Urteil ueber ein Projekt, das der
+// Pruefer nie gesehen hat — dieselbe Klasse Fehler, gegen die er gebaut ist.
+console.log('\nAufruf-Form — ein verworfener Pfad darf kein Urteil erzeugen:\n');
+{
+  const leer = fs.mkdtempSync(path.join(os.tmpdir(), 'import-arg-'));
+  let code = 0;
+  let aus = '';
+  try {
+    aus = execFileSync('node', [PRUEFER, leer], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (e) {
+    code = e.status ?? 1;
+    aus = `${e.stdout || ''}${e.stderr || ''}`;
+  }
+  fs.rmSync(leer, { recursive: true, force: true });
+  // Exit 2 = "nicht geprueft", nicht "bestanden" — dieselbe Trennung wie im Tor.
+  const ok = code === 2 && /--src/.test(aus);
+  console.log(ok
+    ? '  [OK]   Pfad ohne --src -> Exit 2 mit Hinweis, kein stilles Urteil'
+    : `  [ROT]  Pfad ohne --src -> Exit ${code}, erwartet 2 mit --src-Hinweis`);
+  if (!ok) rot++;
+}
+
+const gesamt = FAELLE.length + (fs.existsSync(eigene) ? 1 : 0) + 1;
 console.log(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {
   console.log('Der Import-Pruefer urteilt falsch. Erst reparieren, dann damit bauen.');
