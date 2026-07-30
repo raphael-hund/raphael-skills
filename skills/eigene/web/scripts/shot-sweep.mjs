@@ -9,7 +9,28 @@ import path from 'node:path';
 
 const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
-const BASE = get('base', 'http://localhost:5280').replace(/\/$/, '');
+
+// Ein vertipptes oder fremdes Flag darf nicht still auf den Default fallen —
+// sonst fotografiert dieses Skript klaglos eine ANDERE Seite und liefert dafuer
+// ein volles Manifest. Dasselbe Schutzmuster hat g1-gate.mjs; hier fehlte es.
+//
+// Gemessen am 30.07.2026: `--url http://localhost:59999/` ergab "navigating to
+// http://localhost:5280/" — das Flag hiess nur `--base`, `--url` fiel still auf
+// den Default zurueck. Von den vier Pruefern mit URL-Argument nehmen drei
+// (axe-run, craft-check, formular-check) `--url`; nur dieses Skript wich ab.
+// Wer die gewohnte Schreibweise benutzt, misst dann die falsche Seite und
+// bekommt Screenshots, die echt aussehen.
+const ERLAUBT = ['base', 'url', 'out', 'routes', 'mobile', 'hover'];
+const fremd = args.filter((a) => a.startsWith('--') && !ERLAUBT.includes(a.slice(2)));
+if (fremd.length) {
+  console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
+  console.error(`Erlaubt: ${ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+  process.exit(2);
+}
+
+// `--url` ist der Name, den die Doktrin und die anderen Pruefer benutzen;
+// `--base` bleibt als bisherige Schreibweise gueltig (das Tor ruft so auf).
+const BASE = get('base', get('url', 'http://localhost:5280')).replace(/\/$/, '');
 const OUT = get('out', '/tmp/shot-sweep');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim())
   .map((r) => (r.startsWith('/') ? r : `/${r}`));

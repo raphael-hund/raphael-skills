@@ -145,6 +145,40 @@ console.log('\nDas Flag selbst:\n');
     aus.includes('Unbekanntes Flag') ? 'wird als Tippfehler abgelehnt' : null);
 }
 
+// --- 5b. shot-sweep muss --url verstehen und Tippfehler ablehnen ---------
+// Von den vier Pruefern mit URL-Argument nehmen drei `--url`; shot-sweep hiess
+// als einziges `--base`. Ein `--url` fiel dort still auf den Default 5280
+// zurueck: das Skript fotografierte klaglos eine ANDERE Seite und lieferte ein
+// volles Manifest dazu. Gemessen am 30.07.2026 — `--url ...:59999` ergab
+// "navigating to http://localhost:5280/".
+//
+// Geprueft wird die Wirkung, nicht die Schreibweise im Code: das Manifest muss
+// die uebergebene Adresse tragen. Ein Test auf "steht --url in der Quelle?"
+// waere auch dann gruen, wenn der Wert nirgends ankommt.
+console.log('\nshot-sweep und sein Adress-Flag:\n');
+{
+  const sweep = path.join(HIER, '..', 'scripts', 'shot-sweep.mjs');
+  const ziel = fs.mkdtempSync(path.join(os.tmpdir(), 'sweep-flag-'));
+  const lauf = (argv) => spawnSync('node', [sweep, ...argv, '--out', ziel],
+    { encoding: 'utf8', timeout: 120000 });
+
+  // Adresse, an der nichts lauscht: der Lauf scheitert so oder so. Entscheidend
+  // ist allein, WELCHE Adresse im Manifest steht.
+  const tot = 'http://127.0.0.1:59997';
+  lauf(['--url', `${tot}/`]);
+  const mpfad = path.join(ziel, 'manifest.json');
+  const m = fs.existsSync(mpfad) ? JSON.parse(fs.readFileSync(mpfad, 'utf8')) : null;
+  zeile(m?.base === tot, '--url landet wirklich in der Zieladresse',
+    m ? `Manifest sagt: ${m.base}` : '(kein Manifest geschrieben)');
+
+  const tipp = lauf(['--urll', `${tot}/`]);
+  zeile(tipp.status === 2 && /Unbekanntes Flag/.test(`${tipp.stdout}${tipp.stderr}`),
+    'vertipptes Flag wird abgelehnt statt still ignoriert',
+    `exit=${tipp.status}`);
+
+  fs.rmSync(ziel, { recursive: true, force: true });
+}
+
 // --- 6. Der Exit-Code muss im Text stehen --------------------------------
 // Zweimal am 29.07.2026 ging er an einer Pipe verloren (`| grep`, `| tail`),
 // beide Male mit dem falschen Schluss "meldet Blocker und besteht trotzdem".
