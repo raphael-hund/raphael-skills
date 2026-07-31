@@ -246,6 +246,87 @@ console.log('\nJeder Pruefer haengt am Tor — sonst ist er Dekoration:\n');
     toteAusnahmen.length ? `entfernte Dateien noch ausgenommen: ${toteAusnahmen.join(', ')}` : null);
 }
 
+// --- Die Felder, die das Tor liest, gibt es in der ECHTEN Ausgabe ---------
+// Alle Pruefungen hier lesen QUELLTEXT gegen QUELLTEXT. Genau daran ist der
+// visual-diff-Fehler vorbeigekommen: das Tor las `diffRatio`, das Werkzeug
+// schrieb `diffPixelRatio`, und beide Namen standen irgendwo im Text.
+//
+// Diese Pruefung faehrt die Ordner-Pruefer wirklich und sieht in ihrer JSON
+// nach. Nur die drei ohne Browser — craft/formular/axe brauchen eine laufende
+// Seite und gehoeren ins Anti-Set, nicht in einen Sekundenlauf.
+console.log('\nDie vom Tor gelesenen Felder stehen in der echten Ausgabe:\n');
+{
+  const os = await import('node:os');
+  const { execFileSync } = await import('node:child_process');
+  const probe = fs.mkdtempSync(path.join(os.tmpdir(), 'naht-'));
+  fs.writeFileSync(path.join(probe, 'x.ts'), 'export const a = 1;\n');
+  fs.writeFileSync(path.join(probe, 's.css'),
+    '.a{transition:opacity .2s cubic-bezier(.4,0,.2,1)}\n'
+    + '@media (prefers-reduced-motion:reduce){*{transition:none}}\n');
+
+  const gate = fs.readFileSync(path.join(SKRIPTE, 'g1-gate.mjs'), 'utf8');
+  const WERKZEUGE = [
+    { skript: 'motion-check.mjs', name: 'motion', argv: [probe, '--json'] },
+    { skript: 'tastatur-check.mjs', name: 'tastatur', argv: [probe, '--json'] },
+    { skript: 'import-check.mjs', name: 'importe', argv: ['--src', probe, '--json'] },
+  ];
+
+  for (const w of WERKZEUGE) {
+    // Welche Felder liest das Tor im Abschnitt dieses Pruefers?
+    const abschnitt = gate.slice(gate.indexOf(`function check${w.name[0].toUpperCase()}${w.name.slice(1)}`));
+    const bereich = abschnitt.slice(0, abschnitt.indexOf('\n}\n') + 1) || abschnitt.slice(0, 3000);
+    const gelesen = [...new Set([...bereich.matchAll(/parsed\.(\w+)/g)].map((m) => m[1]))];
+
+    let echt = null;
+    try {
+      echt = JSON.parse(execFileSync('node', [path.join(SKRIPTE, w.skript), ...w.argv],
+        { encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] }));
+    } catch (e) {
+      try { echt = JSON.parse(e.stdout || ''); } catch { /* bleibt null */ }
+    }
+
+    if (!echt) {
+      zeile(false, `${w.skript}: keine lesbare JSON-Ausgabe`,
+        'ohne sie ist die Naht ungeprueft — nicht bestanden');
+      continue;
+    }
+    // Felder, die es NUR im Fehlerfall gibt, duerfen im Erfolgslauf fehlen.
+    // Erster Versuch meldete `fehler` als tote Naht — das Tor fragt dort aber
+    // genau richtig ab ("wenn gesetzt, dann ist der Pruefer kaputt"). Ein
+    // Waechter, der korrekten Code anklagt, wird nach dem dritten Fehlalarm
+    // abgeschaltet. Deshalb wird zusaetzlich der KAPUTT-Lauf gefahren: dort
+    // muessen diese Felder wirklich auftauchen.
+    const NUR_IM_FEHLERFALL = new Set(['fehler']);
+    const fehlend = gelesen.filter((g) => !(g in echt) && !NUR_IM_FEHLERFALL.has(g));
+    zeile(fehlend.length === 0,
+      `${w.skript}: Tor liest [${gelesen.join(', ') || 'nichts'}], echte Ausgabe hat [${Object.keys(echt).join(', ')}]`,
+      fehlend.length ? `fehlt in der echten Ausgabe: ${fehlend.join(', ')} — das Tor liest ins Leere` : null);
+  }
+
+  // Und die Gegenprobe fuer die Fehlerfall-Felder: auf einem LEEREN Ordner
+  // muessen motion und tastatur ihr `fehler`-Feld wirklich schreiben. Sonst
+  // liest das Tor dort ins Leere, und ein falscher Pfad kaeme als "sauber"
+  // durch — dieselbe Klasse wie die leere Aufnahme bei compare-recon.
+  {
+    const leer = fs.mkdtempSync(path.join(os.tmpdir(), 'naht-leer-'));
+    for (const skript of ['motion-check.mjs', 'tastatur-check.mjs']) {
+      let aus = null;
+      try {
+        execFileSync('node', [path.join(SKRIPTE, skript), leer, '--json'],
+          { encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
+      } catch (e) {
+        try { aus = JSON.parse(e.stdout || ''); } catch { /* bleibt null */ }
+      }
+      zeile(Boolean(aus && aus.fehler),
+        `${skript}: leerer Ordner -> ${aus?.fehler ? 'fehler-Feld gesetzt' : 'KEIN fehler-Feld'}`,
+        aus?.fehler ? null : 'das Tor prueft auf parsed.fehler — hier kaeme nichts an');
+    }
+    fs.rmSync(leer, { recursive: true, force: true });
+  }
+
+  fs.rmSync(probe, { recursive: true, force: true });
+}
+
 // --- Klon-Tor und visual-diff benutzen denselben Feldnamen ---------------
 // Dieselbe Naht wie bei audit-clone daneben, nur ungeprueft geblieben: das Tor
 // las `diffRatio`, das Werkzeug schreibt `diffPixelRatio`. Gemessen 30.07.2026
@@ -312,7 +393,7 @@ console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 14;
+const MINDESTENS = 19;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
