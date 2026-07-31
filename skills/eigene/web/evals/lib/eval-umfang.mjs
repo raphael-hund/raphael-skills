@@ -114,6 +114,12 @@ export function fallzahl(evalOrdner, datei, cwd) {
 
   const libs = aus.match(/^(\d+) Libraries, jede/m);
   if (libs) return { zahl: Number(libs[1]), form: 'Libraries' };
+  // Sonderregel fuer run-verweise-check: sie hatte als einzige Eval keine
+  // Bilanz-Zeile und musste am Schlusssatz erkannt werden. Seit dem
+  // 31.07.2026 zaehlt sie selbst ("25/25 Pruefungen wie erwartet"), und das
+  // Muster oben greift zuerst — die Zeile hier ist nur noch der Rueckfall,
+  // falls die Bilanz wieder verschwindet. Dann fehlt eine Fallzahl, und genau
+  // das soll sichtbar sein statt stillschweigend geraten.
   if (/Alle Verweise loesen auf/.test(aus)) return { zahl: null, form: 'ohne Fallzahl' };
   // Einrueckung und beide Markierungs-Konventionen zulassen.
   //
