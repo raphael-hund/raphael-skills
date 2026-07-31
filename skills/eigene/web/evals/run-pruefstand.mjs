@@ -23,6 +23,22 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const PRUEFSTAND = path.join(HIER, '..', 'scripts', 'pruefstand.mjs');
 const PORT = Number(process.env.PRUEFSTAND_TEST_PORT || 5387);
 
+// Beide Ports muessen frei sein. Ist einer fremdbelegt, startet der
+// Pruefstand dort nicht — die Eval befragte dann eine fremde Seite und gaebe
+// deren Antworten als eigene Messung aus. Gemessen 31.07.2026 an der
+// Schwester-Eval run-ordner-check: mit besetztem Port meldete sie 16/16
+// gruen, ohne dass ihr eigener Server je existierte.
+for (const p of [PORT, PORT + 1]) {
+  const r = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+    '-w', '%{http_code}', `http://127.0.0.1:${p}/`], { encoding: 'utf8' });
+  if ((r.stdout || '').trim() !== '000') {
+    console.error(`Port ${p} ist fremdbelegt — diese Eval kann nichts messen.`);
+    console.error('Sie liefe gegen eine fremde Seite. Anderen Port setzen:');
+    console.error('PRUEFSTAND_TEST_PORT=<frei>  (belegt werden <frei> und <frei>+1)');
+    process.exit(2);
+  }
+}
+
 // Ein Mini-Build, der jede Regel genau einmal ausloest.
 const wurzel = mkdtempSync('/tmp/pruefstand-test-');
 const dist = path.join(wurzel, 'dist');

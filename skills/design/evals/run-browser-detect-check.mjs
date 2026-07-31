@@ -36,7 +36,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -465,6 +465,24 @@ const FAELLE = {
 // file:// waere einfacher, aber der Detektor misst auch Dinge, die bei
 // file:// anders laufen (Fonts, Layout-Timing). Naeher am Ernstfall ist http.
 const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'browser-eval-'));
+// Antwortet der Port? '000' heisst "niemand da".
+const httpCode = () => {
+  const r = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+    '-w', '%{http_code}', `http://127.0.0.1:${PORT}/`], { encoding: 'utf8' });
+  return (r.stdout || '').trim();
+};
+
+// Fremdbelegung ZUERST pruefen: ist der Port besetzt, startet python3 gar
+// nicht, und die Eval befragte eine fremde Seite statt ihrer Fixtures.
+// Gemessen 31.07.2026 an der Schwester-Eval run-ordner-check: mit besetztem
+// Port meldete sie 16/16 gruen, ohne dass ihr eigener Server je existierte.
+if (httpCode() !== '000') {
+  console.error(`Port ${PORT} ist fremdbelegt — diese Eval kann nichts messen.`);
+  console.error('Sie liefe gegen eine fremde Seite und gaebe deren Ergebnis als');
+  console.error('eigenes aus. Anderen Port setzen: BROWSER_EVAL_PORT=<frei>');
+  process.exit(2);
+}
+
 const server = spawn('python3', ['-m', 'http.server', String(PORT)], {
   cwd: ordner, stdio: 'ignore', detached: false,
 });
@@ -483,7 +501,22 @@ for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
   process.on(sig, () => { aufraeumen(); process.exit(2); });
 }
 
-await new Promise((r) => setTimeout(r, 1500));
+// Aktiv warten statt blind 1500 ms: der feste Schlaf reicht auf dieser
+// Maschine, auf einer langsameren nicht — und ein Test, der zufaellig
+// durchfaellt, wird abgeschaltet statt repariert.
+{
+  let bereit = false;
+  for (let i = 0; i < 40 && !bereit; i += 1) {
+    if (httpCode() === '200') bereit = true;
+    else spawnSync('sleep', ['0.2']);
+  }
+  if (!bereit) {
+    server.kill('SIGKILL');
+    console.error(`Eigener Testserver auf ${PORT} antwortet nach 8s nicht.`);
+    console.error('Ohne ihn misst diese Eval nichts und saehe trotzdem sauber aus.');
+    process.exit(2);
+  }
+}
 
 const script = fs.readFileSync(BROWSER_JS, 'utf8');
 const browser = await chromium.launch();

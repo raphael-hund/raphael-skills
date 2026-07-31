@@ -65,11 +65,40 @@ function projektBauen({ buildName = 'dist' } = {}) {
 // genau das; nur die Gegenprobe hat es aufgedeckt.
 const HAFEN = Number(process.env.ORDNER_PORT || 5511);
 let server;
+// Antwortet der Port? Liefert den HTTP-Code als Text, '000' heisst "niemand da".
+function antwortet() {
+  const r = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+    '-w', '%{http_code}', `http://127.0.0.1:${HAFEN}/`], { encoding: 'utf8' });
+  return (r.stdout || '').trim();
+}
+
 function serverAn(ordner) {
   serverAus();
+  // Fremdbelegung ZUERST pruefen. Ist der Port besetzt, startet python3 gar
+  // nicht — der ganze Lauf misst dann die fremde Seite und meldet ihr Ergebnis
+  // als eigenes. Gemessen 31.07.2026: mit einem fremden Server auf 5511 ergab
+  // dieser Lauf 16/16 gruen, ohne dass ein eigener Server je existierte.
+  if (antwortet() !== '000') {
+    console.error(`Port ${HAFEN} ist fremdbelegt — diese Eval kann nichts messen.`);
+    console.error('Sie liefe gegen eine fremde Seite und gaebe deren Ergebnis als');
+    console.error('eigenes aus. Anderen Port setzen: ORDNER_PORT=<frei>');
+    process.exit(2);
+  }
+
   server = spawn('python3', ['-m', 'http.server', String(HAFEN), '--directory', ordner],
     { stdio: 'ignore' });
-  spawnSync('sleep', ['2']);
+
+  // Aktiv warten statt blind zwei Sekunden zu schlafen: der feste Schlaf
+  // reicht auf dieser Maschine, auf einer langsameren nicht — und ein Test,
+  // der zufaellig durchfaellt, wird abgeschaltet statt repariert.
+  for (let i = 0; i < 40; i += 1) {
+    if (antwortet() === '200') return;
+    spawnSync('sleep', ['0.2']);
+  }
+  serverAus();
+  console.error(`Eigener Testserver auf ${HAFEN} antwortet nach 8s nicht.`);
+  console.error('Ohne ihn misst diese Eval nichts und saehe trotzdem sauber aus.');
+  process.exit(2);
 }
 function serverAus() { if (server) { server.kill(); server = null; } }
 process.on('exit', serverAus);
