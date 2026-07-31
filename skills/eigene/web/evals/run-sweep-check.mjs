@@ -183,7 +183,7 @@ for (const f of WERFEN) {
 // Geprueft am echten Lauf gegen eine Route, die es nicht gibt (HTTP 404).
 sag('');
 {
-  const { execFileSync, spawn } = await import('node:child_process');
+  const { execFileSync, spawn, spawnSync } = await import('node:child_process');
   const fsN = await import('node:fs');
   const osN = await import('node:os');
   const pathN = await import('node:path');
@@ -200,20 +200,58 @@ sag('');
     + 'Festpreis, einen Ansprechpartner und ein Datum zum Einzug.</p>'
     + '<p>Bad, Kueche, komplette Wohnungen — meist in elf Werktagen.</p></body></html>');
   const PORT_ = Number(process.env.SWEEP_EXIT_PORT || 5453);
-  const server = spawn('python3', ['-m', 'http.server', String(PORT_)],
-    { cwd: ordner, stdio: 'ignore' });
-  await new Promise((r) => setTimeout(r, 1500));
+  let messbar = true;
+
+  // Vor dem Start pruefen, ob der Port frei ist. Ist er fremdbelegt, startet
+  // python3 gar nicht — der Test lief dann gegen die FREMDE Seite und meldete
+  // trotzdem gruen. Gemessen 31.07.2026: mit einem fremden Server auf 5453
+  // ergab dieser Lauf 13/13, obwohl der eigene Server nie existierte.
+  const belegt = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+    '-w', '%{http_code}', `http://127.0.0.1:${PORT_}/`], { encoding: 'utf8' });
+  if (belegt.stdout && belegt.stdout.trim() !== '000') {
+    sag(`ROT  Port ${PORT_} ist fremdbelegt — dieser Fall kann nicht messen`);
+    sag('       Ohne eigenen Server liefe der Test gegen eine fremde Seite');
+    sag('       und meldete ihr Ergebnis als eigenes. SWEEP_EXIT_PORT setzen.');
+    rot++;
+    messbar = false;
+  }
+
+  const server = messbar
+    ? spawn('python3', ['-m', 'http.server', String(PORT_)], { cwd: ordner, stdio: 'ignore' })
+    : null;
+
+  // Aktiv warten statt blind schlafen: 1500 ms reichen auf dieser Maschine,
+  // auf einer langsameren nicht — und ein Test, der zufaellig durchfaellt,
+  // wird abgeschaltet statt repariert.
+  let bereit = false;
+  for (let i = 0; messbar && i < 40 && !bereit; i += 1) {
+    const q = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+      '-w', '%{http_code}', `http://127.0.0.1:${PORT_}/`], { encoding: 'utf8' });
+    if (q.stdout && q.stdout.trim() === '200') bereit = true;
+    else spawnSync('sleep', ['0.2']);
+  }
+  if (messbar && !bereit) {
+    server.kill('SIGKILL');
+    fsN.rmSync(ordner, { recursive: true, force: true });
+    sag(`ROT  eigener Testserver auf ${PORT_} antwortet nicht — nichts gemessen`);
+    rot++;
+    messbar = false;
+  }
   let code = 0;
-  try {
+  if (messbar && bereit) try {
     execFileSync('node', [SWEEP, '--base', `http://localhost:${PORT_}`,
       '--routes', '/,/gibt-es-nicht', '--out', pathN.join(ordner, 'out')],
       { encoding: 'utf8', timeout: 300000 });
   } catch (e) { code = e.status ?? 1; }
-  server.kill('SIGKILL');
+  if (server) server.kill('SIGKILL');
   fsN.rmSync(ordner, { recursive: true, force: true });
-  const ok = code === 1;
-  if (!ok) rot++;
-  sag(`${ok ? 'OK  ' : 'ROT '} shot-sweep.mjs endet mit Exit 1, wenn eine Route fehlschlaegt`);
+  // Bei nicht messbarem Fall ist die Zeile oben schon rot gezaehlt — hier
+  // nicht doppelt zaehlen und nicht faelschlich gruen melden.
+  const ok = messbar && bereit && code === 1;
+  if (!ok && messbar && bereit) rot++;
+  // Bei nicht messbarem Fall steht der Grund schon oben. Eine zweite rote
+  // Zeile ueber dieselbe Ursache liest sich wie ein zweiter Defekt.
+  if (messbar && bereit) sag(`${ok ? 'OK  ' : 'ROT '} shot-sweep.mjs endet mit Exit 1, wenn eine Route fehlschlaegt`);
   if (!ok) sag(`       bekam Exit ${code} — ein Sweep ohne Bilder meldet Erfolg`);
 }
 
