@@ -128,6 +128,7 @@ const WERFEN = [
 ];
 
 let rot = 0;
+let gezaehlt = 0;
 const sag = (s) => console.log(s);
 const lauf = (f) => sweepMaengel(f.manifest, f.verlangt, tmp);
 
@@ -139,6 +140,7 @@ for (const f of REISSEN) {
   try { maengel = lauf(f); } catch (e) { fehler = e.message; }
   const ok = !fehler && maengel.length > 0;
   if (!ok) rot++;
+  gezaehlt += 1;
   sag(`  [${ok ? 'OK' : 'ROT'}]   ${f.was}`);
   if (fehler) sag(`         unerwarteter Absturz: ${fehler}`);
   else if (!ok) sag('         durchgelassen — kein einziger Mangel gemeldet');
@@ -152,6 +154,7 @@ for (const f of DURCHLASSEN) {
   try { maengel = lauf(f); } catch (e) { fehler = e.message; }
   const ok = !fehler && maengel.length === 0;
   if (!ok) rot++;
+  gezaehlt += 1;
   sag(`  [${ok ? 'OK' : 'ROT'}]   ${f.was}`);
   if (fehler) sag(`         unerwarteter Absturz: ${fehler}`);
   else if (!ok) sag(`         faelschlich gerissen: ${maengel.join(' | ')}`);
@@ -163,6 +166,7 @@ for (const f of WERFEN) {
   let geworfen = false, meldung = '';
   try { sweepMaengel(f.manifest, ['/'], tmp); } catch (e) { geworfen = true; meldung = e.message; }
   if (!geworfen) rot++;
+  gezaehlt += 1;
   sag(`  [${geworfen ? 'OK' : 'ROT'}]   ${f.was}`);
   if (geworfen) sag(`         ${meldung}`);
   else sag('         still als "keine Maengel" durchgelassen');
@@ -213,7 +217,28 @@ sag('');
   if (!ok) sag(`       bekam Exit ${code} — ein Sweep ohne Bilder meldet Erfolg`);
 }
 
-const gesamt = REISSEN.length + DURCHLASSEN.length + WERFEN.length + 1;
+// Selbst zaehlen statt Listen zu addieren.
+//
+// Hier stand `... + 1` fuer eine Zusatzpruefung, die es nicht (mehr) gibt:
+// gemessen am 31.07.2026 druckt der Lauf 13 Zeilen und behauptete 14. Die
+// Listen haben 7 + 3 + 3 Eintraege; die +1 zaehlte eine Pruefung, die
+// nirgends stattfindet. Ein zu HOHER Sollwert ist die stillere Haelfte des
+// Problems: die Eval meldet dauerhaft "13/14" und sieht aus, als fehle
+// dauerhaft etwas.
+//
+// Fuenfter Formel-Fall dieser Serie (detect-check, naht-check, craft-check,
+// doku-zahlen, jetzt sweep-check).
+// Untergrenze gegen die Gegenrichtung: faellt eine Zaehlstelle oder ein
+// ganzer Abschnitt aus, zaehlt `gezaehlt` einfach weniger und "10/10" saehe
+// gruen aus. Genau das trat bei der Gegenprobe am 31.07.2026 ein. Die drei
+// Listen sind die bekannte Untergrenze.
+const MINDESTENS = REISSEN.length + DURCHLASSEN.length + WERFEN.length;
+if (gezaehlt < MINDESTENS) {
+  sag(`\nNur ${gezaehlt} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
+  sag('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
+  process.exit(2);
+}
+const gesamt = gezaehlt;
 sag(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {
   sag('Ein Sweep ohne Bilder kommt als Gruen durch. Erst reparieren, dann ausliefern.');
