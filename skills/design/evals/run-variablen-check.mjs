@@ -146,6 +146,7 @@ function lauf(html) {
 console.log('\nCSS-Variablen — sieht jede Regel durch Tokens hindurch?\n');
 
 let fehler = 0;
+let geprueft = 0;   // jede gedruckte [OK]/[!!]-Zeile
 for (const p of PROBEN) {
   const idsRoh = lauf(seite(p.roh, p.body));
   const idsTok = lauf(seite(p.tokens, p.body));
@@ -153,6 +154,7 @@ for (const p of PROBEN) {
   // Erst die Voraussetzung: findet die Regel den Fall ueberhaupt in der rohen
   // Form? Sonst prueft der Vergleich unten zwei Nullen gegeneinander und
   // meldet gruen, weil beide Seiten gleich blind sind.
+  geprueft++;
   if (!idsRoh.includes(p.regel)) {
     console.log(`  [!!]   ${p.was}: ${p.regel} feuert nicht einmal auf rohem CSS`);
     console.log('         Die Probe trifft die Regel nicht mehr — Schwelle geaendert?');
@@ -174,12 +176,13 @@ for (const p of PROBEN) {
   const quelle = fs.readFileSync(
     path.join(HIER, '..', 'scripts', 'detector', 'engines', 'regex', 'detect-text.mjs'), 'utf8');
   const alle = [...new Set([...quelle.matchAll(/id: '([a-z0-9-]+)'/g)].map((m) => m[1]))];
-  const geprueft = new Set(PROBEN.map((p) => p.regel));
+  const mitProbe = new Set(PROBEN.map((p) => p.regel));
   // Bewusst ohne Probe, Begruendung im Kommentar bei der Probenliste.
   const OHNE_PROBE = new Set(['side-tab', 'border-accent-on-rounded', 'broken-image', 'gray-on-color']);
-  const offen = alle.filter((r) => !geprueft.has(r) && !OHNE_PROBE.has(r));
+  const offen = alle.filter((r) => !mitProbe.has(r) && !OHNE_PROBE.has(r));
   const toteAusnahmen = [...OHNE_PROBE].filter((r) => !alle.includes(r));
 
+  geprueft++;
   if (offen.length) {
     console.log(`  [!!]   ${offen.length} Regel(n) ohne Variablen-Probe: ${offen.join(', ')}`);
     console.log('         Entweder eine Probe bauen oder mit Begruendung ausnehmen.');
@@ -189,11 +192,15 @@ for (const p of PROBEN) {
     console.log('         Die Liste wird zur Muellhalde und deckt spaeter echte Luecken zu.');
     fehler++;
   } else {
-    console.log(`  [OK]   ${alle.length} Regeln im Datei-Modus, ${geprueft.size} mit Probe, ${OHNE_PROBE.size} begruendet ohne`);
+    console.log(`  [OK]   ${alle.length} Regeln im Datei-Modus, ${mitProbe.size} mit Probe, ${OHNE_PROBE.size} begruendet ohne`);
   }
 }
 
-console.log(`\n${PROBEN.length - fehler}/${PROBEN.length} Regeln sehen durch Tokens hindurch.`);
+// Selbst zaehlen statt PROBEN.length: die Abdeckungs-Wache oben ist eine
+// eigene Pruefung und fiel aus der Bilanz heraus. Der Umfang-Waechter las 9
+// Zeilen bei Schlusszahl "8/8" — dieselbe Formel-Alterung wie in vier anderen
+// Evals dieses Repos.
+console.log(`\n${geprueft - fehler}/${geprueft} Pruefungen wie erwartet.`);
 if (fehler) {
   console.log('Eine Regel funktioniert nur auf hingeschriebenem CSS — also nicht auf echten Projekten.');
   process.exit(1);

@@ -1,4 +1,6 @@
 {
-  "run-detect-check.mjs": 19,
-  "run-dna-scaffold-check.mjs": 10
+  "run-detect-check.mjs": 31,
+  "run-dna-scaffold-check.mjs": 10,
+  "run-doku-zahlen.mjs": 9,
+  "run-variablen-check.mjs": 9
 }
