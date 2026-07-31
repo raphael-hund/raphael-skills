@@ -277,6 +277,33 @@ zeile((gefunden.size > 0 || !pfadVerdacht) && tot.length === 0,
     ? 'Pfad-aehnliche Zeichen da, aber kein einziger Pfad erkannt — das Muster greift nicht mehr'
     : tot.length ? tot.slice(0, 12).map(([p, s]) => `${p}  (${s[0]})`).join('\n         ') : null);
 
+// Jede Eval ist irgendwo genannt. Eine, die niemand kennt, wird nicht
+// gefahren — dasselbe Muster wie beim Pruefer ohne Tor-Anschluss und beim
+// undokumentierten Flag, nur eine Ebene hoeher.
+//
+// Gefunden 31.07.2026: run-slop-build-check stand in keiner Zeile. Sie prueft
+// den schaerfsten Befund des Skills (der Slop-Scan war auf dem ausgelieferten
+// Buendel blind, waehrend er auf der Quelle tadellos lief). Drei weitere
+// standen nicht in SKILL.md, aber in ihrer Reference — das ist richtig so und
+// zaehlt.
+{
+  const evalOrdner = path.join(ZIEL, 'evals');
+  if (fs.existsSync(evalOrdner)) {
+    const md = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8');
+    const refOrdner = path.join(ZIEL, 'references');
+    const refs = fs.existsSync(refOrdner)
+      ? fs.readdirSync(refOrdner).filter((f) => f.endsWith('.md'))
+        .map((f) => fs.readFileSync(path.join(refOrdner, f), 'utf8')).join('\n')
+      : '';
+    const evals = fs.readdirSync(evalOrdner).filter((f) => /^run-.*\.mjs$/.test(f));
+    const stumm = evals.filter((e) => !md.includes(e) && !refs.includes(e));
+    zeile(evals.length > 0 && stumm.length === 0,
+      `${evals.length} Evals, ${stumm.length} nirgends genannt`,
+      evals.length === 0 ? 'kein evals/-Ordner gefunden — die Pruefung greift nicht'
+        : stumm.length ? `weder in SKILL.md noch in einer Reference: ${stumm.join(', ')}` : null);
+  }
+}
+
 // Zweite Frage, die eine Pfad-Pruefung allein nicht stellt: existieren die
 // Werkzeuge, die der Skill in seinen completion_criteria VERSPRICHT? Ein
 // Kriterium, das ein fehlendes Skript nennt, ist nie erfuellbar.

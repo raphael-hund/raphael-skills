@@ -751,6 +751,36 @@ sonst wäre das Tor nur in die andere Richtung kaputt. Drei unlesbare Manifeste,
 **Gegenprobe gefahren:** Die alte Urteilslogik, isoliert nachgebaut, lässt alle vier
 Manifeste aus der Tabelle als grün durch. Der Fund war echt, nicht behauptet.
 
+### Der Slop-Scan fand im Bündel nie etwas
+
+Das Tor scannt `dist/`, nicht die Quelle — dort steht der Text so, wie der
+Bundler ihn geschrieben hat. Und Bundler schreiben Nicht-ASCII als
+`\uXXXX`-Escape. Gemessen 29.07.2026 an derselben deutschen Floskelseite:
+
+```
+als Quelle    -> hits: 3   (de-14 gefunden)
+nach esbuild  -> hits: 0   (nichts gefunden)
+```
+
+Kein Zeichen am Text war anders, nur `ä` stand als `\u00e4`. Dazu kam eine
+zweite Bremse: Dateien über 512 KB wurden still übersprungen — und ein echtes
+React-Bündel ist immer größer. **Auf einer deutschen React-Seite hat der
+Slop-Scan also faktisch nie stattgefunden und trotzdem grün gemeldet.**
+
+Das ist die gefährlichste Bauform dieses Fehlers: nicht ein Prüfer, der etwas
+übersieht, sondern einer, der auf dem ausgelieferten Material grundsätzlich
+blind ist, während er auf der Quelle tadellos funktioniert. Wer ihn an der
+Quelle testet, bestätigt sich selbst.
+
+```bash
+node evals/run-slop-build-check.mjs   # 8 Fälle, weder Browser noch Server
+```
+
+Drei Fragen, jede in beide Richtungen: `\u00e4`-Text wird gefunden wie roher
+Text, ein Bündel über 512 KB wird gelesen statt übersprungen, und ein
+literaler Backslash vor `u` wird **nicht** umgedeutet (sonst wäre der Fix ein
+neuer Fehlalarm).
+
 ### „0 Links, 0 tot" hieß: linkinator hat nichts gesehen
 
 Derselbe Fehler, eine Zeile weiter oben im Tor. Der Aufruf trug `--silent` — und das
