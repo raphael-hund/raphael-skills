@@ -12,3 +12,11 @@ __pycache__/
 # Secrets (sollten nie hier landen, aber sicher ist sicher)
 .env
 *.env
+
+# Laufprotokolle der Evals — Ergebnis eines Laufs, nicht sein Gegenstand.
+# antiset-lauf-<pid>.log entsteht bei jedem Anti-Set-Lauf neu. Bisher nie
+# eingecheckt (nachgesehen 31.07.2026), aber auch nie ausgeschlossen: ein
+# `git add -A` haette sie mitgenommen, und dann liegen im Repo Protokolle
+# fremder Laeufe mit Pfaden aus /tmp.
+skills/*/evals/antiset-lauf-*.log
+skills/*/*/evals/antiset-lauf-*.log
