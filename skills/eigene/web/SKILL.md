@@ -57,7 +57,7 @@ eval_scorecard:
   laeufe:
     - "evals/run-antiset.mjs — 17 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 14 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
-    - "evals/run-eval-umfang.mjs — 34 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-eval-umfang.mjs — 35 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
@@ -69,6 +69,7 @@ eval_scorecard:
     - "evals/run-aufruffehler-check.mjs — 24 Werkzeuge: endet ein falscher Aufruf mit Exit 2?"
     - "evals/run-spuren-check.mjs — 3 Browser-Werkzeuge: bleibt nach dem Lauf ein Chrome-Profil liegen?"
     - "evals/run-browser-start-check.mjs — 6 Klon-Werkzeuge: findet jedes seinen Browser?"
+    - "evals/run-halbe-antwort-check.mjs — 3 Browser-Werkzeuge: urteilen sie ueber eine halb uebertragene Seite?"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
     - "pruefstand.mjs ist nicht sabotage-geprueft — er faellt kein Urteil, das gruen werden koennte"

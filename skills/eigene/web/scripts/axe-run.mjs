@@ -69,6 +69,31 @@ try {
   if (!res || !res.ok()) {
     throw new Error(`Navigation fehlgeschlagen: ${URL_} -> ${res ? res.status() : 'kein Response'}`);
   }
+
+  // Eine Antwort kann HTTP 200 melden und trotzdem unvollstaendig sein: der
+  // Server verspricht per Content-Length mehr, als er dann sendet, und schliesst
+  // die Verbindung mittendrin. Playwright meldet dafuer weiter res.ok() === true,
+  // und Chrome ergaenzt die fehlenden Tags selbst — im DOM sieht die halbe Seite
+  // aus wie eine ganze.
+  //
+  // Gemessen 31.07.2026 gegen einen Server, der 5000 Bytes ankuendigt und nach 44
+  // abbricht: craft-check meldete drei BLOCK-Befunde, formular-check "kein
+  // Formular auf dieser Seite". Beides sind Urteile ueber Text, der nie ankam —
+  // und "kein Formular" ist die gefaehrlichere Haelfte, weil sie gruen ist.
+  //
+  // res.body() ist der verlaessliche Nachweis: bei abgebrochener Uebertragung
+  // wirft es, bei vollstaendiger liefert es genau Content-Length viele Bytes.
+  try {
+    const roh = await res.body();
+    const versprochen = Number(res.headers()['content-length'] || 0);
+    if (versprochen && roh.length < versprochen) {
+      throw new Error(`Antwort unvollstaendig: ${roh.length} von ${versprochen} Bytes empfangen`);
+    }
+  } catch (e) {
+    if (/unvollstaendig/.test(e.message)) throw e;
+    throw new Error(`Antwort nicht lesbar (Uebertragung abgebrochen?): ${e.message.split('\n')[0]}`);
+  }
+
   await page.waitForTimeout(800);
 
   await page.addScriptTag({ path: axePath });
