@@ -27,6 +27,15 @@ function parseArgs(argv) {
     else if (a === "--scroll-step") o.scrollStep = parseInt(argv[++i] || "700", 10);
     else if (a === "--settle") o.settle = parseInt(argv[++i] || "2500", 10);
     else if (a === "--max-ms") o.maxMs = parseInt(argv[++i] || "90000", 10);
+    // Ohne diesen Zweig faellt ein unbekanntes Flag LAUTLOS raus: der
+    // Aufruf lief mit Standardwerten weiter, und das Werkzeug zeigte am
+    // Ende nur seine Hilfe, ohne zu sagen was falsch war. Gemessen
+    // 31.07.2026 — beide Werkzeuge dieser Datei-Familie hatten keinen.
+    else if (a.startsWith("-")) {
+      const e = new Error(`Unbekanntes Flag: ${a}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return o;
 }
@@ -72,10 +81,24 @@ function zielImOrdner(basis, rel) {
   return ziel === wurzel || ziel.startsWith(wurzel + path.sep) ? ziel : null;
 }
 
-const args = parseArgs(process.argv.slice(2));
+// parseArgs wirft bei unbekanntem Flag. Ohne dieses try steigt Node mit einem
+// Stacktrace und Exit 1 aus — ein Tippfehler saehe aus wie ein Absturz und
+// zaehlte als gerissene Qualitaet.
+let args;
+try {
+  args = parseArgs(process.argv.slice(2));
+} catch (e) {
+  console.error(`mirror-site: ${e.message}`);
+  process.exit(e.aufruffehler ? 2 : 1);
+}
 if (args.help || !args.url || !args.out) {
   usage();
-  process.exit(args.help ? 0 : 1);
+  // Fehlendes Pflichtargument ist ein AUFRUF-Fehler, kein Lauffehler:
+  // geprueft wurde nichts. Exit 1 hiesse in diesem Skill 'geprueft und
+  // durchgefallen' (web/SKILL.md); richtig ist Exit 2 'Werkzeug/Aufruf
+  // nicht bereit'. Gemessen 31.07.2026 beim Abklopfen aller 13
+  // web-clone-Werkzeuge: zehn meldeten 2, drei meldeten 1.
+  process.exit(args.help ? 0 : 2);
 }
 
 const origin = new URL(args.url).origin;

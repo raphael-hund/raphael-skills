@@ -17,6 +17,15 @@ function parseArgs(argv) {
     else if (a === "--recon") out.recon = argv[++i] || "";
     else if (a === "--out") out.out = argv[++i] || "";
     else if (a === "--name") out.name = argv[++i] || "";
+    // Ohne diesen Zweig faellt ein unbekanntes Flag LAUTLOS raus: der
+    // Aufruf lief mit Standardwerten weiter, und das Werkzeug zeigte am
+    // Ende nur seine Hilfe, ohne zu sagen was falsch war. Gemessen
+    // 31.07.2026 — beide Werkzeuge dieser Datei-Familie hatten keinen.
+    else if (a.startsWith("-")) {
+      const e = new Error(`Unbekanntes Flag: ${a}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -209,7 +218,12 @@ try {
   const args = parseArgs(process.argv.slice(2));
   if (args.help || !args.out) {
     usage();
-    process.exit(args.help ? 0 : 1);
+    // Fehlendes Pflichtargument ist ein AUFRUF-Fehler, kein Lauffehler:
+    // geprueft wurde nichts. Exit 1 hiesse in diesem Skill 'geprueft und
+    // durchgefallen' (web/SKILL.md); richtig ist Exit 2 'Werkzeug/Aufruf
+    // nicht bereit'. Gemessen 31.07.2026 beim Abklopfen aller 13
+    // web-clone-Werkzeuge: zehn meldeten 2, drei meldeten 1.
+    process.exit(args.help ? 0 : 2);
   }
   let dna = skeleton(args.name);
   if (args.recon) {
@@ -231,5 +245,8 @@ try {
   console.log(`   Naechster Schritt: leere Felder von Hand fuellen und den Farben aus _recon_signals ihre Rolle geben. Aufbau → ../../design/references/design-dna-schema.md`);
 } catch (e) {
   console.error(`dna-scaffold fehlgeschlagen: ${e.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet, sondern ein nicht
+  // ausgefuehrter Lauf. Siehe web/SKILL.md: Exit 1 = geprueft und
+  // durchgefallen, Exit 2 = gar nicht erst geprueft.
+  process.exit(e.aufruffehler ? 2 : 1);
 }

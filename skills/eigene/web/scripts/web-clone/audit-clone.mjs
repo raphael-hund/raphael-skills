@@ -25,7 +25,14 @@ function parseArgs(argv) {
     // klon-gate.mjs konnte seine Funde nicht lesen, kein Tor konnte an ihnen
     // blocken. Ein Fund, den niemand abfragen kann, stoppt keine Auslieferung.
     else if (arg === "--json") out.json = argv[++i] || "";
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -172,5 +179,7 @@ try {
   }
 } catch (error) {
   console.error(`audit-clone failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

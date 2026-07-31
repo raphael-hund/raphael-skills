@@ -30,7 +30,14 @@ function parseArgs(argv) {
     else if (arg === "--original-interactions") out.originalInteractions = argv[++i] || "";
     else if (arg === "--clone-interactions") out.cloneInteractions = argv[++i] || "";
     else if (arg === "--out") out.out = argv[++i] || "CLONE_REPORT.md";
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -296,5 +303,7 @@ try {
   }
 } catch (error) {
   console.error(`compare-recon failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

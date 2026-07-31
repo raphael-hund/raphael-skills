@@ -22,8 +22,26 @@ function parseArgs(argv) {
     else if (arg === "--url") out.url = argv[++i] || "";
     else if (arg === "--mode") out.mode = argv[++i] || "";
     else if (arg === "--level") out.level = argv[++i] || "";
+    else if (arg.startsWith("-")) {
+      // Gemessen 31.07.2026: ohne diese Zeile wurde `--tippfehler` zum
+      // PROJEKTNAMEN. Der Testlauf legte tatsaechlich
+      // /root/projects/website-clones/diesesflaggibtsnicht-clone an — ein
+      // vertipptes Flag erzeugte ein Projekt samt Ordnerstruktur. Der Slug-Zweig
+      // unten nimmt alles an, was nicht schon als Flag erkannt wurde; ein
+      // fuehrendes "-" ist nie ein Projektname.
+      const e = new Error(`Unbekanntes Flag: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
     else if (!out.slug) out.slug = arg;
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -132,5 +150,7 @@ try {
   console.log(project);
 } catch (error) {
   console.error(`init-clone failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }
