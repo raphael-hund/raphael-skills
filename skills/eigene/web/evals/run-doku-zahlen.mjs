@@ -242,7 +242,7 @@ if (AKTUALISIEREN && ersetzt) {
   } else {
     const soll = stand[m[1]];
     if (soll === undefined) {
-      // Ausgenommene Eval (Browser, ueber 20 Minuten Laufzeit) — sie hat keinen
+      // Ausgenommene Eval (Browser, gemessen 7:54 am 31.07.2026) — sie hat keinen
       // Sollstand. Als Fehler zu melden waere falsch, als bestanden auch:
       // dieselbe Trennung wie oben bei den anderen Doku-Zahlen.
       ohneStand++;

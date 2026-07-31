@@ -270,7 +270,10 @@ console.log('Jeder Schaden ist EINE Zeile und faellt still das falsche Urteil.\n
 // beschaedigt. Der Kommentar am `finally` behauptete "auch wenn der Lauf
 // abgebrochen wird" — das war die Annahme, nicht die Messung.
 //
-// Realistisch ist der Fall gerade hier: dieser Lauf dauert ~15 Minuten, wird
+// Realistisch ist der Fall gerade hier: dieser Lauf dauert 3-4 Minuten (gemessen
+// 31.07.2026: 3:31; die frueher hier stehenden ~15 Minuten waren geschaetzt und
+// nie nachgemessen — eine Prosa-Zahl, die eine Ausnahme begruendet und still
+// altert), wird
 // also am ehesten per `timeout` oder Strg-C abgebrochen. Zurueck bleibt ein
 // BESCHAEDIGTER Pruefer — genau der Zustand, vor dem die Eval am Ende warnt
 // ("SOFORT git checkout"). Mir selbst zweimal in einer Sitzung passiert.

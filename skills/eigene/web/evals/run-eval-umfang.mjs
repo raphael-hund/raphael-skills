@@ -39,9 +39,9 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 // Evals, die hier NICHT mitlaufen, mit Grund. Ohne diese Liste sieht "alle
 // geprueft" nach Vollstaendigkeit aus, obwohl drei fehlen.
 const AUSGENOMMEN = {
-  'run-sabotage.mjs': 'beschaedigt Pruefer und laeuft ~15 min — eigener Lauf',
+  'run-sabotage.mjs': 'beschaedigt Pruefer (gemessen 31.07.2026: 3:31) — eigener Lauf',
   'run-eval-umfang.mjs': 'diese Datei',
-  'run-antiset.mjs': 'braucht Browser + Server, laeuft ueber 20 min',
+  'run-antiset.mjs': 'braucht Browser + Server (gemessen 31.07.2026: 7:54)',
 };
 
 process.exit(umfangPruefen({
