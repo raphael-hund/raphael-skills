@@ -64,6 +64,11 @@ if (!URL_) { console.error('usage: formular-check.mjs --url <url> [--json] [--st
 
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 let abbruch = false;
+// Vor dem try deklariert: die Ausgabe steht NACH dem finally, und eine
+// Konstante aus dem try-Block ist dort nicht sichtbar (ReferenceError,
+// gemessen 31.07.2026).
+let ZIEL_URL = URL_;
+let UMGELEITET = false;
 let findings;
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -116,6 +121,19 @@ try {
     if (/unvollstaendig/.test(e.message)) throw e;
     throw new Error(`Antwort nicht lesbar (Uebertragung abgebrochen?): ${e.message.split('\n')[0]}`);
   }
+
+
+  // Weiterleitungen sichtbar machen. Der Server-Check des Tores akzeptiert
+  // 3xx als "erreichbar", und Playwright folgt der Kette stillschweigend —
+  // geprueft wird dann eine ANDERE Seite als die genannte. Gemessen
+  // 31.07.2026 gegen einen 302 auf /ziel: alle drei Werkzeuge berichteten
+  // ueber die angefragte URL, angesehen hatten sie das Ziel.
+  //
+  // Das ist kein Fehler, sondern normaler Web-Betrieb (http->https, / ->
+  // /de/). Aber wer den Bericht liest, muss wissen, welche Seite gemeint ist:
+  // sonst sucht er den Mangel auf der falschen.
+  ZIEL_URL = page.url();
+  UMGELEITET = ZIEL_URL.replace(/\/$/, '') !== URL_.replace(/\/$/, '');
 
   await page.waitForTimeout(700);
 
@@ -400,7 +418,9 @@ const infos = findings.filter((f) => f.level === 'INFO');
 if (AS_JSON) {
   console.log(JSON.stringify({ url: URL_, blockers, warns, infos }, null, 2));
 } else {
-  console.log(`formular-check — ${URL_}\n`);
+  console.log(`formular-check — ${URL_}`);
+  if (UMGELEITET) console.log(`  (weitergeleitet auf ${ZIEL_URL} — geprueft wurde diese Seite)`);
+  console.log();
   for (const f of [...blockers, ...warns, ...infos]) {
     console.log(`[${f.level}] ${f.id} ${f.marker}: ${f.msg}`);
     if (f.sample) console.log(`        ${f.sample}`);

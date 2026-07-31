@@ -143,9 +143,22 @@ try {
     process.exit(2);
   }
 
+  // Weiterleitungen sichtbar machen. Der Server-Check des Tores akzeptiert 3xx
+  // als "erreichbar", und Playwright folgt der Kette stillschweigend — geprueft
+  // wird dann eine ANDERE Seite als die genannte. Gemessen 31.07.2026 gegen
+  // einen 302 auf /ziel: alle drei Werkzeuge berichteten ueber die angefragte
+  // URL, angesehen hatten sie das Ziel.
+  //
+  // Das ist kein Fehler, sondern normaler Web-Betrieb (http->https, / -> /de/).
+  // Aber wer den Bericht liest, muss wissen, welche Seite gemeint ist: sonst
+  // sucht er den Mangel auf der falschen.
+  const ZIEL_URL = page.url();
+  const UMGELEITET = ZIEL_URL.replace(/\/$/, '') !== URL_.replace(/\/$/, '');
+
   if (AS_JSON) {
-    console.log(JSON.stringify({ url: URL_, violations, passes: (result.passes || []).length, regeln }, null, 2));
+    console.log(JSON.stringify({ url: URL_, geprueft: ZIEL_URL, umgeleitet: UMGELEITET, violations, passes: (result.passes || []).length, regeln }, null, 2));
   } else {
+    if (UMGELEITET) console.log(`(weitergeleitet auf ${ZIEL_URL} — geprueft wurde diese Seite)`);
     console.log(`${URL_}: ${violations.length} Violation(s), ${(result.passes || []).length} Passes, ${regeln} Regeln gelaufen`);
     for (const v of violations) {
       console.log(`  [${v.impact || '?'}] ${v.id} — ${v.help} (${v.nodes.length}x)`);
