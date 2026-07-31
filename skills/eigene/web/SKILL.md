@@ -642,6 +642,20 @@ eine Zeile entfernt wurde. Das ist die Bauform für jede Fixture:
 > **Eine Fixture ändert genau einen Umstand gegenüber `_basis.html`.** Reißt sie an
 > zwei Checks, weiß man nicht, welcher der beiden den Fehler wirklich sieht.
 
+**`--textseite` ist der Notausgang aus M24** (gefunden 31.07.2026: das Flag gab
+es seit Tagen und stand in keiner Zeile Doku). Ein Impressum, eine
+Datenschutzseite, AGB — die haben legitim kein Bild über Icon-Größe und würden
+sonst jedes Mal reißen:
+
+```bash
+node scripts/craft-check.mjs --url <url>/impressum --textseite
+```
+
+Bewusst ein Flag und keine Automatik: der Prüfer könnte an der URL raten
+(`/impressum`, `/datenschutz`), aber dann schaltet er sich auf jeder Seite ab,
+die zufällig so heißt. Wer die Ausnahme will, schreibt sie hin — dasselbe
+Prinzip wie bei `deslop-ignore` und beim gelockerten Budget.
+
 **Regel:** Wer einen BLOCK-Befund einbaut, baut im selben Zug die Fixture, die ihn
 auslöst, und trägt sie in `ERWARTET` ein. Ein Blocker ohne Fixture ist eine Behauptung.
 
@@ -1078,7 +1092,9 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    immer der Bibliotheks-Tresor, nicht der eigene Kopf:**
    `node scripts/lib-lookup.mjs --task <aufgabe>` sagt, welche der 30 lokal
    installierten Libraries diese Aufgabe löst, `node scripts/lib-lookup.mjs <name>`
-   nennt Version, Doku-Pfad und die **echten** Exportnamen. Regeln, Zuordnung und
+   nennt Version, Doku-Pfad und die **echten** Exportnamen. `--api` hängt die
+   rohen Typ-Zeilen an — der Weg, wenn nicht nur der Name, sondern die Signatur
+   gebraucht wird (auch dieses Flag stand bis zum 31.07.2026 in keiner Doku). Regeln, Zuordnung und
    Lizenzen → `references/bibliotheks-tresor.md`. Ein Import, der nicht in der
    `Export:`-Zeile steht, existiert nicht — das ersetzt jedes Raten aus dem
    Gedächtnis. Kommen die Komponenten aus shadcn oder Appica, gilt zusätzlich

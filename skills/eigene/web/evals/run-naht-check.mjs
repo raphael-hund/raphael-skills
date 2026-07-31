@@ -327,6 +327,46 @@ console.log('\nDie vom Tor gelesenen Felder stehen in der echten Ausgabe:\n');
   fs.rmSync(probe, { recursive: true, force: true });
 }
 
+// --- Jedes Flag ist irgendwo erklaert -------------------------------------
+// Ein Flag, das niemand kennt, ist genauso wirkungslos wie ein Pruefer, den
+// niemand aufruft — nur unauffaelliger, weil das Skript ja laeuft. Gefunden
+// 31.07.2026: `--textseite` (der einzige Weg, wie ein Impressum den
+// M24-Blocker besteht) und `--api` (rohe Typ-Zeilen aus dem Tresor) gab es
+// seit Tagen und standen in keiner Zeile Doku.
+//
+// Erklaert heisst: in SKILL.md, in einer Reference, oder im --help des
+// Skripts selbst. Wer eins davon hat, ist auffindbar.
+console.log('\nJedes Flag ist irgendwo erklaert:\n');
+{
+  const md = fs.readFileSync(path.join(SKRIPTE, '..', 'SKILL.md'), 'utf8');
+  const refs = (() => {
+    const ordner = path.join(SKRIPTE, '..', 'references');
+    if (!fs.existsSync(ordner)) return '';
+    return fs.readdirSync(ordner).filter((f) => f.endsWith('.md'))
+      .map((f) => fs.readFileSync(path.join(ordner, f), 'utf8')).join('\n');
+  })();
+
+  const unbekannt = [];
+  for (const datei of fs.readdirSync(SKRIPTE).filter((f) => f.endsWith('.mjs'))) {
+    const src = fs.readFileSync(path.join(SKRIPTE, datei), 'utf8');
+    // Nur die Flags, die das Skript wirklich abfragt.
+    const flags = [...new Set([
+      ...[...src.matchAll(/includes\('(--[a-z][a-z-]+)'\)/g)].map((m) => m[1]),
+      ...[...src.matchAll(/get\('([a-z][a-z-]+)'/g)].map((m) => `--${m[1]}`),
+    ])];
+    for (const f of flags) {
+      if (f === '--help') continue;               // universell, braucht keine Doku
+      // Im eigenen Kopf erklaert? Die ersten 40 Zeilen sind der Hilfetext.
+      const kopf = src.split('\n').slice(0, 40).join('\n');
+      if (kopf.includes(f) || md.includes(f) || refs.includes(f)) continue;
+      unbekannt.push(`${datei} ${f}`);
+    }
+  }
+  zeile(unbekannt.length === 0,
+    `${unbekannt.length} Flag(s) ohne Erklaerung`,
+    unbekannt.length ? `nirgends beschrieben: ${unbekannt.join(', ')} — wer sie nicht kennt, benutzt sie nie` : null);
+}
+
 // --- shot-sweep-Manifest: die Felder, auf die das Urteil sich stuetzt ------
 // Das Tor liest `routes[].route/shots/error` aus dem Manifest. Ein
 // umbenanntes Feld faellt nirgends auf: `!r.error` ist bei einem fehlenden
@@ -419,7 +459,7 @@ console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 20;
+const MINDESTENS = 21;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
