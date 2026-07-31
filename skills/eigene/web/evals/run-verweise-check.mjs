@@ -253,9 +253,28 @@ console.log('');
 // ins Leere" liest sich gleich gut, ob 66 Pfade geprueft wurden oder keiner —
 // und ein Muster, das nichts mehr findet, meldet dann gruen. Dieselbe Klasse
 // wie "0 Funktionen, alle benutzt" im Klon-Tor (31.07.2026).
-zeile(gefunden.size > 0 && tot.length === 0,
-  `${gefunden.size} Pfade geprueft, ${tot.length} zeigen ins Leere`,
-  gefunden.size === 0 ? 'kein einziger Pfad gefunden — das Muster greift nicht mehr'
+// "0 Pfade" heisst zweierlei, und nur eins davon ist ein Fehler:
+//   - der Skill NENNT keine Pfade (reine Prosa) -> richtig, kein Befund
+//   - das Muster greift nicht mehr -> Befund
+//
+// Die Bedingung `gefunden.size > 0` machte beide rot. Gemessen am 31.07.2026:
+// `debug` ist ein reiner Prosa-Skill (195 Zeilen, kein loads:, kein Werkzeug,
+// null Pfadnennungen) und wurde als kaputt gemeldet. Ein Waechter, der bei
+// Prosa-Skills dauerhaft rot steht, wird ignoriert und nimmt die echten Funde
+// mit — run-verweise-alle meldete dadurch 22/24 statt 23/24.
+//
+// Unterschieden wird an der QUELLE: hat die Datei ueberhaupt Zeichen, die wie
+// ein Pfad aussehen? Steht dort nichts Pfadaehnliches, gibt es nichts zu
+// finden. Steht etwas da und das Muster findet nichts, ist es kaputt.
+const pfadVerdacht = /(?:references|scripts|evals)\//.test(
+  fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8'),
+);
+zeile((gefunden.size > 0 || !pfadVerdacht) && tot.length === 0,
+  gefunden.size === 0 && !pfadVerdacht
+    ? 'keine Pfadnennung in diesem Skill — nichts zu pruefen (reine Prosa?)'
+    : `${gefunden.size} Pfade geprueft, ${tot.length} zeigen ins Leere`,
+  gefunden.size === 0 && pfadVerdacht
+    ? 'Pfad-aehnliche Zeichen da, aber kein einziger Pfad erkannt — das Muster greift nicht mehr'
     : tot.length ? tot.slice(0, 12).map(([p, s]) => `${p}  (${s[0]})`).join('\n         ') : null);
 
 // Zweite Frage, die eine Pfad-Pruefung allein nicht stellt: existieren die
