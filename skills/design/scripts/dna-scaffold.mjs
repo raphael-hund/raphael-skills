@@ -5,12 +5,17 @@
 // Funktioniert auch OHNE --recon (reines leeres Skelett) — recon-site.mjs
 // selbst ist NICHT Teil von design (das ist web's Aufgabe).
 //
-// dna-scaffold.mjs — 生成 design-dna.json 骨架，best-effort 从 recon-site.mjs 的输出预填。
-// 用法:
+// dna-scaffold.mjs — Geruest fuer design-dna.json anlegen, so weit wie moeglich
+// aus der Ausgabe von recon-site.mjs vorausgefuellt.
+// Aufruf:
 //   node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <Seitenname>]
-// 产物:
-//   <out>  完整 DNA 骨架；有 --recon 时预填字体/色候选/框架特效信号，其余留 "" 待人工 Analyze。
-// 纪律: 只搬侦察里"真实抓到"的信号，绝不编造。拿不准角色(primary/accent)的色值统一丢进 _recon_signals 供人工指派。
+// Ergebnis:
+//   <out>  vollstaendiges DNA-Geruest. Mit --recon sind Schriften, Farbkandidaten
+//          und Framework-/Effekt-Signale vorausgefuellt; alles andere bleibt ""
+//          und ist Handarbeit.
+// Regel: nur uebernehmen, was die Aufnahme WIRKLICH gesehen hat — nie erfinden.
+// Farben, deren Rolle (primary/accent) unklar ist, landen in _recon_signals und
+// werden von Hand zugewiesen.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -23,6 +28,15 @@ function parseArgs(argv) {
     else if (a === "--recon") out.recon = argv[++i] || "";
     else if (a === "--out") out.out = argv[++i] || "";
     else if (a === "--name") out.name = argv[++i] || "";
+    // Ohne diesen Zweig faellt ein unbekanntes Flag LAUTLOS raus: der
+    // Aufruf lief mit Standardwerten weiter, und das Werkzeug zeigte am
+    // Ende nur seine Hilfe, ohne zu sagen was falsch war. Gemessen
+    // 31.07.2026 — beide Werkzeuge dieser Datei-Familie hatten keinen.
+    else if (a.startsWith("-")) {
+      const e = new Error(`Unbekanntes Flag: ${a}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -216,7 +230,7 @@ try {
   const args = parseArgs(process.argv.slice(2));
   if (args.help || !args.out) {
     usage();
-    process.exit(args.help ? 0 : 1);
+    process.exit(args.help ? 0 : 2);
   }
   let dna = skeleton(args.name);
   if (args.recon) {
@@ -238,5 +252,5 @@ try {
   console.log(`   Naechster Schritt: leere Felder von Hand fuellen und den Farben aus _recon_signals ihre Rolle geben. Aufbau → references/design-dna-schema.md`);
 } catch (e) {
   console.error(`dna-scaffold fehlgeschlagen: ${e.message}`);
-  process.exit(1);
+  process.exit(e.aufruffehler ? 2 : 1);
 }
