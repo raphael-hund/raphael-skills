@@ -53,7 +53,8 @@ eval_scorecard:
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
     - "evals/run-variablen-check.mjs — 8 Regeln: sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
-    - "evals/run-eval-umfang.mjs — 3 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
+    - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"
   grenzen:
     - "Der URL-Modus von detect.mjs braucht puppeteer und laeuft auf diesem Rechner nicht — die Evals laden den Detektor per Playwright direkt in die Seite"

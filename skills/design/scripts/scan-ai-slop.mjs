@@ -26,6 +26,21 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, extname, join, relative, resolve } from "node:path";
 
 const args = process.argv.slice(2);
+
+// AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
+// `--help` war im Original kein bekanntes Flag. Es rutschte als Wurzelpfad
+// durch, der Scanner las den aktuellen Ordner und meldete
+// "scanned 0 files under . / No slop signals found." mit Exit 0 — gruen ueber
+// nichts, auf genau die Anfrage hin, die "zeig mir was du kannst" heisst.
+if (args.includes('--help') || args.includes('-h')) {
+  console.log('Aufruf: node scan-ai-slop.mjs [wurzel] [--json] [--no-color]');
+  console.log('        [--only=01,06] [--skip=19] [--exclude=pfad] [--rules=extra.mjs]');
+  console.log('Durchsucht Quellcode nach den Code-Signalen typischer KI-Optik.');
+  console.log('Endet IMMER mit Exit 0, auch bei Funden — das Urteil faellt der Aufrufer');
+  console.log('aus dem JSON (siehe web/scripts/g1-gate.mjs).');
+  console.log('Deutsche Floskeln braucht --rules=scripts/rules.de.mjs.');
+  process.exit(0);
+}
 const root = args.find((a) => !a.startsWith("-")) || ".";
 const asJson = args.includes("--json");
 const normalizeId = (value) => (/^\d+$/.test(value) ? value.padStart(2, "0") : value);
