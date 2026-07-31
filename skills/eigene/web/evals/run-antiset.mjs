@@ -125,6 +125,31 @@ for (const n of namen) {
   }
 }
 
+// Gegenrichtung: eine Fixture-DATEI ohne Eintrag laeuft nie. Sie liegt im
+// Ordner, sieht nach Abdeckung aus und wird von keinem Lauf angefasst.
+//
+// Genau das ist am 31.07.2026 passiert: beim Anheben von FIXTURES_MINDESTENS
+// verschwand der a10-motion-Eintrag aus dieser Liste, die Datei blieb liegen.
+// Die Untergrenze oben zaehlt EINTRAEGE und haette es gemerkt — aber beide
+// wurden im selben Zug geaendert, und dann stimmt die Zahl wieder. Aufgefallen
+// ist es erst der Naht-Wache, die von aussen fragt "hat jeder Pruefer einen
+// Fall?".
+//
+// Diese Pruefung braucht keinen zweiten Blickwinkel: sie vergleicht die beiden
+// Seiten direkt.
+{
+  const dateien = fs.readdirSync(FIXTURES)
+    .filter((f) => /^a\d+.*\.html$/.test(f))
+    .map((f) => f.replace(/\.html$/, ''));
+  const ohneEintrag = dateien.filter((d) => !namen.includes(d));
+  if (ohneEintrag.length) {
+    console.error(`\n${ohneEintrag.length} Fixture(s) ohne Eintrag in ERWARTET: ${ohneEintrag.join(', ')}`);
+    console.error('Sie liegen im Ordner und laufen nie — das sieht nach Abdeckung aus und ist keine.');
+    console.error('Entweder eintragen oder loeschen. Eine Datei, die nichts prueft, gehoert nicht hierher.\n');
+    process.exit(2);
+  }
+}
+
 // Jede Fixture bekommt einen eigenen Ordner, weil --src einen Projektordner erwartet.
 const wurzel = fs.mkdtempSync('/tmp/antiset-');
 
