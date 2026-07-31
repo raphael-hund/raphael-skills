@@ -53,11 +53,11 @@ requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, u
 # evals/run-doku-zahlen.mjs gegen die echten Laeufe (sonst veralten sie hier
 # genauso wie ueberall sonst).
 eval_scorecard:
-  stand: 2026-07-30
+  stand: 2026-07-31
   laeufe:
     - "evals/run-antiset.mjs — 17 Faelle: reisst das Tor an jedem eingebauten Fehler?"
-    - "evals/run-sabotage.mjs — 13 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
-    - "evals/run-eval-umfang.mjs — 30 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-sabotage.mjs — 14 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
+    - "evals/run-eval-umfang.mjs — 31 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
@@ -65,6 +65,7 @@ eval_scorecard:
     - "evals/run-sprache-check.mjs — 55 Skripte aller Skills: kann Raphael jeden Bericht lesen?"
     - "evals/run-struktur.mjs — faehrt die sechs Struktur-Wachen oben in EINEM Lauf (unter 1 Min, ohne Browser)"
     - "evals/run-zwillinge-check.mjs — doppelt vorhandene Dateien: laufen zwei Kopien auseinander?"
+    - "evals/run-hilfe-check.mjs — 7 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
     - "pruefstand.mjs ist nicht sabotage-geprueft — er faellt kein Urteil, das gruen werden koennte"

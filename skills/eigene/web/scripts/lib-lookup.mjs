@@ -158,6 +158,16 @@ function nachAufgabe(begriff) {
 }
 
 const args = process.argv.slice(2);
+// Ohne diese Wache landete `--help` in detail() und wurde als Library-Name
+// gesucht: '"--help" ist nicht im Tresor', Exit 1. Wer Hilfe sucht, bekam eine
+// Fehlermeldung ueber eine Library, die er nie gemeint hat (gemessen 31.07.2026
+// beim Durchprobieren aller Skripte mit --help).
+if (args.includes('--help') || args.includes('-h')) {
+  console.log('Aufruf: node lib-lookup.mjs [<library>] [--api]');
+  console.log('        node lib-lookup.mjs --task <begriff>');
+  console.log('Ohne Argument: vollstaendige Liste der Libraries im Tresor.');
+  process.exit(0);
+}
 if (!args.length) liste();
 else if (args[0] === '--task') nachAufgabe(args[1] || '');
 else detail(args[0], args.includes('--api'));

@@ -36,6 +36,16 @@ const URL_ = get('url', null);
 const AS_JSON = args.includes('--json');
 const STRICT = args.includes('--strict');
 
+// `--help` lief bis zum 31.07.2026 in denselben Zweig wie ein VERGESSENES
+// --url: richtige Zeile, aber auf stderr und mit Exit 2. Exit 2 heisst in
+// diesem Skill 'Werkzeug kaputt' — wer Hilfe anfordert, hat nichts falsch
+// gemacht und soll Exit 0 auf stdout bekommen.
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  console.log('usage: formular-check.mjs --url <url> [--json] [--strict]');
+  console.log('Prueft Formulare einer laufenden Seite auf Bedienbarkeit.');
+  console.log('Exit 0 = sauber, 1 = Befund, 2 = Werkzeug/Umgebung kaputt.');
+  process.exit(0);
+}
 if (!URL_) { console.error('usage: formular-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
 
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });

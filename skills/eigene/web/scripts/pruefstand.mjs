@@ -23,6 +23,17 @@ const get = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 ? args[i
 const has = (n) => args.includes(`--${n}`);
 
 const DIR = path.resolve(get('dir', 'dist'));
+// Vor der Port-Pruefung und vor jedem Ordnerzugriff: `--help` lief bis zum
+// 31.07.2026 durch bis 'Ordner fehlt: <aktueller Pfad>', Exit 2 — eine
+// Fehlermeldung ueber ein Verzeichnis statt der gesuchten Hilfe.
+if (args.includes('--help') || args.includes('-h')) {
+  console.log('Aufruf: node pruefstand.mjs --dir <ordner> [--port <1-65535>] [--routen]');
+  console.log('Startet einen lokalen Server ueber dem Build-Ordner.');
+  console.log('--routen gibt nur die gefundene Routenliste aus, ohne Server.');
+  console.log('Standard-Port: 5399.');
+  process.exit(0);
+}
+
 const PORT = Number(get('port', 5399));
 
 // Port pruefen, bevor Node ihn ablehnt.

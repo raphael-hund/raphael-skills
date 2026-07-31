@@ -37,6 +37,20 @@ if (unknown.length) {
   process.exit(2);
 }
 
+// 'help' stand seit jeher in KNOWN — also galt `--help` als gueltiges Flag und
+// wurde stillschweigend ignoriert: das Gate startete einen echten Lauf mit
+// Browser und Lighthouse, statt Hilfe zu zeigen. Ein erlaubtes Flag ohne
+// Wirkung ist schlimmer als ein unbekanntes, weil die Flag-Wache oben es
+// durchwinkt (gemessen 31.07.2026).
+if (args.includes('--help') || args.includes('-h')) {
+  console.log('Aufruf: node g1-gate.mjs [--url <basis>] [--routes a,b] [--src <ordner>]');
+  console.log('                          [--build <ordner>] [--budget <datei.json>]');
+  console.log('                          [--out <ordner>] [--strict] [--no-shots]');
+  console.log('Fuehrt alle Qualitaets-Pruefer gegen eine laufende Seite aus.');
+  console.log('Exit 0 = bestanden, 1 = Qualitaet gerissen, 2 = Tor selbst kaputt.');
+  process.exit(0);
+}
+
 // --url ist ein Alias fuer --base (die Doktrin nennt es --url, das Skript hiess --base).
 const BASE = get('base', get('url', 'http://localhost:5280')).replace(/\/$/, '');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim()).filter(Boolean)

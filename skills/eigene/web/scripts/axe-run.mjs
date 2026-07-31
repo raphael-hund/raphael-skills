@@ -20,6 +20,16 @@ const AS_JSON = args.includes('--json');
 // wcag2a/wcag2aa/wcag21aa = der Umfang, den axe-cli und pa11y als Standard fahren.
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'];
 
+// `--help` lief bis zum 31.07.2026 in denselben Zweig wie ein VERGESSENES
+// --url: richtige Zeile, aber auf stderr und mit Exit 2. Exit 2 heisst in
+// diesem Skill 'Werkzeug kaputt' — wer Hilfe anfordert, hat nichts falsch
+// gemacht und soll Exit 0 auf stdout bekommen.
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  console.log('usage: axe-run.mjs --url <url> [--json]');
+  console.log('Prueft eine laufende Seite mit axe-core auf Barrierefreiheit.');
+  console.log('Exit 0 = sauber, 1 = Befund, 2 = Werkzeug/Umgebung kaputt.');
+  process.exit(0);
+}
 if (!URL_) { console.error('usage: axe-run.mjs --url <url> [--json]'); process.exit(2); }
 
 // axe.min.js liegt nur als transitive Dependency vor — erste vorhandene nehmen.

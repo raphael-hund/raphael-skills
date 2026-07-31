@@ -26,6 +26,16 @@ const STRICT = args.includes('--strict');
 // nicht kaputt. Muss ausdruecklich gesetzt werden — siehe M24 weiter unten.
 const TEXTSEITE = args.includes('--textseite');
 
+// `--help` lief bis zum 31.07.2026 in denselben Zweig wie ein VERGESSENES
+// --url: richtige Zeile, aber auf stderr und mit Exit 2. Exit 2 heisst in
+// diesem Skill 'Werkzeug kaputt' — wer Hilfe anfordert, hat nichts falsch
+// gemacht und soll Exit 0 auf stdout bekommen.
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  console.log('usage: craft-check.mjs --url <url> [--json] [--strict]');
+  console.log('Prueft handwerkliche Details einer laufenden Seite.');
+  console.log('Exit 0 = sauber, 1 = Befund, 2 = Werkzeug/Umgebung kaputt.');
+  process.exit(0);
+}
 if (!URL_) { console.error('usage: craft-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
 
 // Die fuenf Fonts, die 2026 als KI-Herkunftssignal gelten (T1).
