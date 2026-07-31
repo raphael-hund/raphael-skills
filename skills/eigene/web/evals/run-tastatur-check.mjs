@@ -72,6 +72,36 @@ const FAELLE = [
     },
   },
   {
+    // Befund 31.07.2026, gefunden beim Gegentest der neuen Flaechenprobe: in
+    // tabs.tsx das `onKeyDown={aufTaste}` vom tablist entfernt — und der
+    // Pruefer blieb gruen. Er sucht die Tastennamen im Umfeld, und die stehen
+    // weiter in der Handler-Funktion, die jetzt niemand mehr aufruft.
+    //
+    // Das ist die haeufigste Art, wie Tastaturbedienung beim Umbauen
+    // verlorengeht: nicht der Handler wird geloescht, sondern seine Anmeldung.
+    name: 'Handler existiert, ist aber nirgends angemeldet',
+    reisst: true,
+    dateien: {
+      'a.tsx': `export function T() {
+  const aufTaste = (e) => { if (e.key === "ArrowLeft") p(); if (e.key === "ArrowRight") n(); };
+  return <div role="tablist"><button role="tab" tabIndex={0}>A</button></div>;
+}`,
+    },
+  },
+  {
+    // Gegenprobe zum Fall darueber: derselbe Code MIT Anmeldung muss gruen
+    // bleiben. Ohne diese Haelfte waere K4 auch dadurch "bestanden", dass er
+    // auf jedes Widget anschlaegt.
+    name: 'derselbe Handler, korrekt angemeldet',
+    reisst: false,
+    dateien: {
+      'a.tsx': `export function T() {
+  const aufTaste = (e) => { if (e.key === "ArrowLeft") p(); if (e.key === "ArrowRight") n(); };
+  return <div role="tablist" onKeyDown={aufTaste}><button role="tab" tabIndex={0}>A</button></div>;
+}`,
+    },
+  },
+  {
     // Der Fall, der die Ordner-Lockerung entlarvt hat: ein korrekt gebauter
     // Nachbar darf einen kaputten nicht freisprechen.
     name: 'kaputtes Widget neben einem korrekten im selben Ordner',
@@ -276,6 +306,37 @@ console.log('\nVerdrahtung im G1-Tor:\n');
 //
 // Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
 // — die Bauart ist der Fehler, nicht erst sein Eintreten.
+// --- Flaechenprobe auf der eigenen Bibliothek -----------------------------
+// 113 Dateien, von Hand geschrieben, mit ARIA-Rollen in zehn zusammengesetzten
+// Widgets. run-import-check faehrt sie seit Tagen als Stichprobe; dieser
+// Pruefer nicht -- dabei ist genau hier sein Befund entstanden (7 von 10
+// Widgets ohne Tastaturbedienung, alle grun bei axe).
+//
+// Ein Pruefer, der nur gegen gebaute Fixtures laeuft, sagt nichts darueber,
+// ob er auf echtem Code Fehlalarm schlaegt. Und ein Rueckfall in der
+// Bibliothek faellt sonst erst auf, wenn jemand die Datei kopiert.
+{
+  const bib = path.join(HIER, '..', 'references', 'ui-components');
+  if (!fs.existsSync(bib)) {
+    zeile(false, 'references/ui-components fehlt — Flaechenprobe nicht gelaufen');
+  } else {
+    let aus = '';
+    let code = 0;
+    try {
+      aus = execFileSync('node', [PRUEFER, bib], { encoding: 'utf8', timeout: 600000 });
+    } catch (e) {
+      aus = `${e.stdout || ''}${e.stderr || ''}`;
+      code = e.status ?? 1;
+    }
+    const widgets = aus.match(/(\d+) zusammengesetzte Widget/);
+    const genug = widgets && Number(widgets[1]) >= 5;
+    zeile(code === 0 && genug,
+      `eigene Bibliothek: Exit ${code}, ${widgets ? widgets[1] : '?'} Widgets geprueft`,
+      code !== 0 ? 'ein Widget ist zurueckgefallen — oder der Pruefer schlaegt auf gutem Code an'
+        : genug ? null : 'zu wenige Widgets gesehen — zeigt der Pfad noch richtig?');
+  }
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {

@@ -205,6 +205,35 @@ console.log('\nVerdrahtung im G1-Tor:\n');
 //
 // Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
 // — die Bauart ist der Fehler, nicht erst sein Eintreten.
+// --- Flaechenprobe auf der eigenen Bibliothek -----------------------------
+// Dieselbe Luecke wie beim Tastatur-Pruefer: gebaute Fixtures sagen nichts
+// darueber, ob der Pruefer auf echtem Code Fehlalarm schlaegt. Die Bibliothek
+// ist die groesste echte Stichprobe im Repo (95 Komponenten, alle mit Motion)
+// und war der Ort, an dem der Befund "drei Ease-Kurven statt zwei" entstand.
+//
+// Erwartet werden 0 BLOCKER, nicht 0 Warnungen: zwei Kurven (vendoriert plus
+// eigen) sind die dokumentierte Lage und stehen bewusst als WARN da.
+{
+  const bib = path.join(HIER, '..', 'references', 'ui-components');
+  if (!fs.existsSync(bib)) {
+    zeile(false, 'references/ui-components fehlt — Flaechenprobe nicht gelaufen');
+  } else {
+    let aus = '';
+    let code = 0;
+    try {
+      aus = execFileSync('node', [PRUEFER, bib], { encoding: 'utf8', timeout: 600000 });
+    } catch (e) {
+      aus = `${e.stdout || ''}${e.stderr || ''}`;
+      code = e.status ?? 1;
+    }
+    const zahlen = aus.match(/(\d+) Blocker, (\d+) Warnung/);
+    zeile(code === 0 && zahlen && Number(zahlen[1]) === 0,
+      `eigene Bibliothek: Exit ${code}, ${zahlen ? `${zahlen[1]} Blocker / ${zahlen[2]} Warnungen` : 'keine Zahlen gemeldet'}`,
+      code === 0 && zahlen && Number(zahlen[1]) === 0 ? null
+        : 'entweder ist eine Motion-Sprache zerfallen oder der Pruefer schlaegt auf gutem Code an');
+  }
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {

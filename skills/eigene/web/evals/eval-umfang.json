@@ -13,7 +13,7 @@
   "run-lib-lookup.mjs": 13,
   "run-lighthouse-check.mjs": 10,
   "run-link-check.mjs": 10,
-  "run-motion-check.mjs": 15,
+  "run-motion-check.mjs": 16,
   "run-naht-check.mjs": 20,
   "run-ordner-check.mjs": 16,
   "run-pruefstand.mjs": 10,
@@ -24,7 +24,7 @@
   "run-slop-de-check.mjs": 50,
   "run-sprache-check.mjs": 55,
   "run-sweep-check.mjs": 14,
-  "run-tastatur-check.mjs": 18,
+  "run-tastatur-check.mjs": 21,
   "run-verweise-alle.mjs": 24,
   "run-zwillinge-check.mjs": 2
 }

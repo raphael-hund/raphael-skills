@@ -157,6 +157,28 @@ for (const f of alleDateien) {
       });
       continue;
     }
+    // K4: Tastenlogik ohne Anschluss. Befund 31.07.2026 — in tabs.tsx das
+    // `onKeyDown={aufTaste}` vom <div role="tablist"> entfernt, und der
+    // Pruefer blieb gruen. Er sucht die Tastennamen im Umfeld; die stehen
+    // aber weiter in der Handler-Funktion, die jetzt niemand mehr aufruft.
+    // Eine Funktion, die ArrowLeft behandelt und nirgends haengt, ist
+    // dasselbe wie keine.
+    //
+    // Gesucht wird die VERDRAHTUNG: ein Tasten-Prop am Element, ein
+    // addEventListener, oder ein Hook, der beides fuer einen erledigt.
+    // Bewusst BLOCK wie K1 — anders als bei K3 ist das hier zaehlbar, nicht
+    // geschaetzt: entweder es steht eine Anmeldung im Umfeld oder nicht.
+    const verdrahtet = /onKeyDown|onKeyUp|onKeyPress|addEventListener\(\s*['"]key(down|up|press)['"]|useKeyboard|useHotkeys|useRovingTabIndex|useTypeahead/
+      .test(umfeld);
+    if (!verdrahtet) {
+      befunde.push({
+        id: 'K4', stufe: 'BLOCK', datei: rel, rolle,
+        was: `role="${rolle}" nennt Tasten, meldet sie aber nirgends an`,
+        fix: 'onKeyDown am Element (oder addEventListener/Hook) — sonst laeuft die Tastenlogik nie',
+      });
+      continue;
+    }
+
     // "listbox" heisst nicht automatisch Overlay. Ein eingebetteter Rad-Picker
     // (wheel-picker.tsx) ist dauerhaft sichtbarer Teil des Formulars — dort gibt
     // es nichts zu schliessen, und Escape zu fordern war ein Fehlalarm meines

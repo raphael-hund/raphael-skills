@@ -250,7 +250,7 @@ Dauer zur Distanz passt, ob sie unterbrechbar ist. Das steht in
 zählbar ist.
 
 ```bash
-node evals/run-motion-check.mjs   # 15 Fälle: 4 müssen reißen, 5 durchgehen, 6 Verdrahtung
+node evals/run-motion-check.mjs   # 16 Fälle: 4 müssen reißen, 5 durchgehen, 6 Verdrahtung
 ```
 
 ### axe prüft die Rolle, nicht das Versprechen
@@ -268,7 +268,18 @@ Rollen und keine Tastaturbedienung. `select.tsx` sind 411 Zeilen mit
 **Alle sieben sind seit 29.07.2026 repariert** (Pfeiltasten, Home/End, Escape,
 Roving-Tabindex, Fokus folgt der Auswahl, Fokus-Rückgabe an den Auslöser).
 `node scripts/tastatur-check.mjs references/ui-components` meldet 0 Blocker bei
-10 gefundenen Widgets. Die Vergangenheitsform oben ist Absicht: der Befund bleibt
+10 gefundenen Widgets — und dieser Lauf hängt seit dem 31.07.2026 als
+Flächenprobe in der Eval, nicht mehr nur in der Doku.
+
+**K4 (seit 31.07.2026): Handler da, Anmeldung weg.** Beim Gegentest dieser
+Flächenprobe fiel auf, dass der Prüfer die Tastennamen im *Umfeld* sucht.
+Entfernt man in `tabs.tsx` das `onKeyDown={aufTaste}` vom `role="tablist"`,
+steht `ArrowLeft` weiter in der Handler-Funktion — die jetzt niemand mehr
+aufruft. Der Prüfer blieb grün. Das ist die häufigste Art, wie
+Tastaturbedienung beim Umbauen verlorengeht: nicht der Handler wird gelöscht,
+sondern seine Anmeldung. K4 verlangt jetzt die Verdrahtung selbst (`onKeyDown`,
+`addEventListener`, oder ein Hook, der beides erledigt) und blockt — anders als
+K3, wo die Fokusfrage nur zu schätzen ist, ist das hier zählbar. Die Vergangenheitsform oben ist Absicht: der Befund bleibt
 dokumentiert, weil er erklärt, warum es diesen Prüfer gibt — aber wer nur diesen
 Abschnitt liest, soll nicht sieben offene Baustellen vermuten.
 
@@ -295,7 +306,7 @@ Was er nicht kann: beurteilen, ob die Tastenlogik *richtig* ist — nur, ob sie 
 Ein Fund ist ein Blocker, ein Nicht-Fund kein Freispruch.
 
 ```bash
-node evals/run-tastatur-check.mjs   # 18 Fälle: reißen, durchgehen, Overlay-Grenze, Verdrahtung
+node evals/run-tastatur-check.mjs   # 21 Fälle: reißen, durchgehen, Overlay-Grenze, Verdrahtung
 ```
 
 ### Jeder Fehler dieser Runde saß in der Naht, nicht im Werkzeug
