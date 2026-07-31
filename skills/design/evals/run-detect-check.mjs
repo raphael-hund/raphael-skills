@@ -266,6 +266,39 @@ if (k.kaputt) {
 zeile(k.ids.length === 0, 'saubere Seite, 0 Anti-Patterns',
   k.ids.length ? `meldet: ${k.ids.join(', ')}` : null);
 
+// Typo-Skala in CSS-Variablen — beide Richtungen.
+//
+// Befund 31.07.2026: die Regel `flat-type-hierarchy` las nur fest
+// geschriebene Groessen. Eine Seite mit ordentlicher Skala in Tokens
+// (`--t-3xl: 3.25rem`, benutzt als `font-size: var(--t-3xl)`) zeigte ihr nur
+// die vier Reste — gemeldet "11.5px … 16px, ratio 1.4:1", tatsaechlich 11.5px
+// bis 52px, ratio 4.5:1. Ein Fehlalarm auf genau der Seite, die das G1-Tor
+// gruen nennt: zwei Pruefer, eine Seite, widerspruechliches Urteil.
+//
+// Beide Faelle zusammen, weil ein Fix in eine Richtung hier besonders billig
+// waere: wer die Variablen einfach ignoriert, hat keinen Fehlalarm mehr und
+// findet auch keine echte flache Skala in Tokens.
+{
+  const gute = lauf(seite({
+    style: ':root{--t-s:0.72rem;--t-l:1.25rem;--t-3xl:3.25rem}'
+      + 'p{font-size:var(--t-s)}h2{font-size:var(--t-l)}h1{font-size:var(--t-3xl)}',
+    body: '<h1>Gross</h1><h2>Mittel</h2><p>Klein</p>',
+  }));
+  zeile(!gute.ids.includes('flat-type-hierarchy'),
+    'echte Skala in CSS-Variablen (0.72–3.25rem) -> kein Fehlalarm',
+    gute.ids.includes('flat-type-hierarchy') ? 'die Variablen werden nicht aufgeloest' : null);
+
+  const flache = lauf(seite({
+    style: ':root{--t-s:0.9rem;--t-m:1rem;--t-l:1.1rem}'
+      + 'p{font-size:var(--t-s)}h2{font-size:var(--t-m)}h1{font-size:var(--t-l)}',
+    body: '<h1>Gross</h1><h2>Mittel</h2><p>Klein</p>',
+  }));
+  zeile(flache.ids.includes('flat-type-hierarchy'),
+    'flache Skala in CSS-Variablen (0.9–1.1rem) -> gefunden',
+    flache.ids.includes('flat-type-hierarchy') ? null
+      : 'die Regel sieht durch Variablen hindurch nichts mehr');
+}
+
 // --- 2. Jede Regel einzeln ------------------------------------------------
 console.log('\nJede Regel einzeln — die eigene ID MUSS im Bericht stehen:\n');
 for (const [schluessel, f] of Object.entries(FAELLE)) {

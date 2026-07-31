@@ -173,6 +173,26 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
       : 'dieselbe Zahl steht an zwei Orten — beide nachziehen');
 }
 
+// --- Die Fallzahl von run-detect-check ------------------------------------
+// Sie steht an ZWEI Stellen (Scorecard und Fliesstext) und war an keiner
+// gebunden: beide sagten 17, waehrend die Eval 25 fuhr (31.07.2026). Dieselbe
+// Klasse wie im web-Skill, wo die Zahl an drei Orten stand.
+{
+  const r = lauf('run-detect-check.mjs');
+  if (r.kaputt) {
+    console.error(`\nFEHLER: run-detect-check.mjs lief nicht (${r.kaputt}). Nicht geprueft.`);
+    process.exit(2);
+  }
+  const echt = gesamtzahl(r.aus);
+  const inScorecard = md.match(/run-detect-check\.mjs — (\d+) F(?:ä|ae)lle/);
+  const imText = md.match(/^(\d+) F(?:ä|ae)lle plus Kontrollseite/m);
+  for (const [wo, treffer] of [['Scorecard', inScorecard], ['Fliesstext', imText]]) {
+    zeile(treffer && echt !== null && Number(treffer[1]) === echt,
+      `run-detect-check (${wo}): sagt ${treffer ? treffer[1] : '?'}, Lauf faehrt ${echt ?? '?'}`,
+      treffer && Number(treffer[1]) === echt ? null : 'Zahl nachziehen');
+  }
+}
+
 // --- 5. Die eval_scorecard im Frontmatter --------------------------------
 // Sie ist der erste Ort, den ein fremder Agent liest. Im web-Skill stand sie
 // am Tag ihrer Entstehung schon falsch (24 statt 25) — eine Zahl ueber die
@@ -193,7 +213,7 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
     sab && Number(sab[1]) === echtSab ? null : 'Zahl in der Scorecard nachziehen');
 }
 
-const gesamt = 7;
+const gesamt = 9;
 console.log(`\n${gesamt - fehler}/${gesamt} Zahlen stimmen.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht liefern.');
