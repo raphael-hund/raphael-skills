@@ -346,18 +346,54 @@ console.log('\nJedes Flag ist irgendwo erklaert:\n');
       .map((f) => fs.readFileSync(path.join(ordner, f), 'utf8')).join('\n');
   })();
 
+  // Auch die Klon-Werkzeuge: sie liegen einen Ordner tiefer und waeren sonst
+  // ausgenommen, ohne dass es jemand entscheidet. Geprueft 31.07.2026 — alle
+  // 13 erklaeren ihre Flags im eigenen Hilfetext, aber das war Glueck, keine
+  // Wache.
+  const dateien = [
+    ...fs.readdirSync(SKRIPTE).filter((f) => f.endsWith('.mjs')).map((f) => path.join(SKRIPTE, f)),
+    ...(fs.existsSync(CLONE)
+      ? fs.readdirSync(CLONE).filter((f) => f.endsWith('.mjs')).map((f) => path.join(CLONE, f))
+      : []),
+  ];
+
+  // Wo ein Flag als ERKLAERT gilt: in Kommentaren und in Hilfetexten. Beides
+  // muss getrennt geholt werden.
+  //
+  // Der Hilfetext steht in den Klon-Werkzeugen als mehrzeiliger
+  // Template-String (`console.log(\`Usage: ... --threshold 0.08\`)`). Ein
+  // zeilenweiser Filter sieht nur die erste Zeile und meldete deshalb 30
+  // dokumentierte Flags als unerklaert (31.07.2026) — ein Waechter, der
+  // korrekte Skripte anklagt, wird nach dem dritten Fehlalarm abgeschaltet.
+  const erklaerteStellen = (src) => {
+    const kommentare = src.split('\n').filter((z) => /^\s*(\/\/|\*|\/\*)/.test(z)).join('\n');
+    // Ganze Template-Strings und normale Strings aus console-Ausgaben.
+    const texte = [...src.matchAll(/console\.(?:log|error)\(\s*(`[\s\S]*?`|'[^']*'|"[^"]*")/g)]
+      .map((m) => m[1]).join('\n');
+    return `${kommentare}\n${texte}`;
+  };
+
   const unbekannt = [];
-  for (const datei of fs.readdirSync(SKRIPTE).filter((f) => f.endsWith('.mjs'))) {
-    const src = fs.readFileSync(path.join(SKRIPTE, datei), 'utf8');
+  for (const voll of dateien) {
+    const datei = path.relative(SKRIPTE, voll);
+    const src = fs.readFileSync(voll, 'utf8');
     // Nur die Flags, die das Skript wirklich abfragt.
     const flags = [...new Set([
       ...[...src.matchAll(/includes\('(--[a-z][a-z-]+)'\)/g)].map((m) => m[1]),
       ...[...src.matchAll(/get\('([a-z][a-z-]+)'/g)].map((m) => `--${m[1]}`),
+      // Dritte Schreibweise, in den vendorierten Klon-Werkzeugen ueblich:
+      // `else if (arg === "--original") ...`. Ohne sie waeren 13 Skripte
+      // scheinbar flaglos — eine Wache, die nichts sieht, meldet immer gruen.
+      ...[...src.matchAll(/arg === ["'](--[a-z][a-z-]+)["']/g)].map((m) => m[1]),
     ])];
     for (const f of flags) {
       if (f === '--help') continue;               // universell, braucht keine Doku
-      // Im eigenen Kopf erklaert? Die ersten 40 Zeilen sind der Hilfetext.
-      const kopf = src.split('\n').slice(0, 40).join('\n');
+      // Im eigenen Kopf erklaert? Nur KOMMENTARE und Hilfetext-Ausgaben zaehlen,
+      // nicht der Code. Erster Versuch nahm die ersten 40 Zeilen als Ganzes —
+      // und in den Klon-Werkzeugen steht dort der Argument-Parser selbst. Ein
+      // frisch eingebautes `arg === "--geheimflag"` galt damit als "erklaert",
+      // weil es sich selbst zitierte. Der Gegentest blieb gruen (31.07.2026).
+      const kopf = erklaerteStellen(src);
       if (kopf.includes(f) || md.includes(f) || refs.includes(f)) continue;
       unbekannt.push(`${datei} ${f}`);
     }
