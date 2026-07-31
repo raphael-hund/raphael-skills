@@ -63,13 +63,19 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
 if (!URL_) { console.error('usage: formular-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
 
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+let abbruch = false;
 let findings;
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   const res = await page.goto(URL_, { waitUntil: 'networkidle', timeout: 45000 });
+  // NICHT hier beenden: `process.exit()` im try-Block ueberspringt das
+  // finally, in dem browser.close() steht. Der Browser blieb offen und
+  // hinterliess sein Profil unter /tmp. Gemessen 31.07.2026 gegen einen
+  // toten Server: reproduzierbar +1 Profilordner pro Lauf.
+  // Werfen statt beenden — der catch unten macht daraus Exit 2, und das
+  // finally raeumt vorher auf.
   if (!res || !res.ok()) {
-    console.error(`Navigation fehlgeschlagen: ${URL_} -> ${res ? res.status() : 'kein Response'}`);
-    process.exit(2);
+    throw new Error(`Navigation fehlgeschlagen: ${URL_} -> ${res ? res.status() : 'kein Response'}`);
   }
   await page.waitForTimeout(700);
 
@@ -336,10 +342,16 @@ try {
   });
 } catch (e) {
   console.error(`formular-check kaputt: ${e.message}`);
-  process.exit(2);
+  // Auch hier NICHT beenden: `process.exit()` im catch ueberspringt das
+  // finally genauso wie im try. Gemessen 31.07.2026 mit einer
+  // Debug-Zeile im finally — sie erschien nie, und jeder Abbruch liess
+  // ein Chrome-Profil in /tmp liegen. Merken statt beenden; der Aufruf
+  // steht nach dem finally.
+  abbruch = true;
 } finally {
   await browser.close();
 }
+if (abbruch) process.exit(2);
 
 const blockers = findings.filter((f) => f.level === 'BLOCK');
 const warns = findings.filter((f) => f.level === 'WARN');
