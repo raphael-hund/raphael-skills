@@ -289,6 +289,34 @@ if (AKTUALISIEREN && ersetzt) {
     .match(/^\s*'run-[a-z0-9-]+\.mjs':/gm) || []).length;
   const evalAnzahl = dateien - ausgenommen;
 
+  // Die Umfang-Wache darf nicht behaupten, was sie nicht wissen kann.
+  //
+  // Ihr Schlusssatz lautete "Keine Eval hat still ihre Faelle verloren" — auch
+  // dann, wenn KEINE Eval einen Sollwert hatte. Gemessen am 30.07.2026:
+  // Stand-Datei geloescht -> 27 von 28 Evals "(neu aufgenommen)", 28/28,
+  // Exit 0, und genau dieser Satz. Wer die Datei loescht (sie sieht aus wie
+  // eine Zwischenablage), schreibt jede Schrumpfung als neuen Sollwert fest.
+  //
+  // Geprueft wird der QUELLTEXT, nicht ein Lauf. Erster Versuch startete die
+  // Wache als Unterprozess — sie faehrt 25 Evals und braucht sieben Minuten.
+  // Damit haette diese Eval, die sonst in Sekunden laeuft, die Laufzeit der
+  // langsamsten im Repo bekommen; am Ende liefen 40 Prozesse gleichzeitig um
+  // dieselben Browser und Ports. Eine Eval, die zu lange dauert, wird
+  // uebersprungen — genau das, wogegen dieser Skill gebaut ist.
+  //
+  // Die Quelltextpruefung ist schwaecher: sie belegt, dass die Saetze da sind,
+  // nicht dass sie feuern. Das steht hier, damit niemand mehr hineinliest.
+  {
+    const kern = fs.readFileSync(path.join(HIER, 'lib', 'eval-umfang.mjs'), 'utf8');
+    const nennt = /Evals hatten KEINEN Sollwert/.test(kern);
+    const bekannt = /verglichenen Evals hat still ihre Faelle verloren/.test(kern);
+    zeile(nennt && bekannt,
+      'Umfang-Wache nennt Evals ohne Sollwert und schraenkt ihren Schlusssatz ein',
+      nennt && bekannt ? null
+        : `im Quelltext fehlt: ${!nennt ? 'Hinweis auf fehlende Sollwerte' : ''}`
+          + `${!nennt && !bekannt ? ' + ' : ''}${!bekannt ? 'Einschraenkung im Schlusssatz' : ''}`);
+  }
+
   const dokuEvals = scorecardZahl(/run-eval-umfang\.mjs — (\d+) Evals/);
   zeile(dokuEvals === evalAnzahl,
     `Scorecard: sagt ${dokuEvals ?? '?'} gepruefte Evals, der Waechter faehrt ${evalAnzahl}`,

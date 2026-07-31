@@ -223,6 +223,35 @@ export function umfangPruefen({ evalOrdner, standDatei, ausgenommen, cwd, aktual
     console.log('Eine Eval ist geschrumpft oder meldet keine Fallzahl mehr.');
     return 1;
   }
-  console.log('Keine Eval hat still ihre Faelle verloren.');
+  // "Keine Eval hat still ihre Faelle verloren" setzt voraus, dass es einen
+  // Vergleichswert GAB. Neu aufgenommene Evals hatten keinen — ueber sie sagt
+  // der Lauf nichts.
+  //
+  // Gemessen am 30.07.2026: Sollstand geloescht -> 27 von 28 Evals melden
+  // "(neu aufgenommen)", der Lauf endet mit 28/28, Exit 0 und genau diesem
+  // Satz. Wer die Datei loescht (sie sieht aus wie eine Zwischenablage),
+  // schreibt damit jede Schrumpfung fest: eine Eval, die von 22 auf 12 Faelle
+  // gefallen ist, gilt danach mit 12 als Soll.
+  //
+  // Die 27 Warnzeilen stehen zwar da — aber die Schlusszeile ist die, die man
+  // sich merkt. Dieselbe Asymmetrie wie bei "2/2 gepruefte Evals", wo drei von
+  // fuenf ausgenommen waren: der Hinweis stand im Kopf, gemerkt hat man das
+  // Ende.
+  const neuAufgenommen = evals.filter((d) => alt[d] === undefined && neu[d] !== undefined).length;
+  if (neuAufgenommen) {
+    console.log(`${neuAufgenommen} von ${evals.length} Evals hatten KEINEN Sollwert — ueber sie sagt`);
+    console.log('dieser Lauf nichts. Erst der naechste kann eine Schrumpfung sehen.');
+    if (neuAufgenommen > evals.length / 2) {
+      console.log('Mehr als die Haelfte neu: fehlte die Stand-Datei? Dann ist jede bisherige');
+      console.log('Schrumpfung soeben als Sollwert festgeschrieben worden.');
+    }
+  }
+  // Nur die, die WIRKLICH gemessen wurden: `evals.length` zaehlt auch
+  // uebersprungene mit. Am 31.07.2026 stand deshalb "28/28 geprueft" ueber
+  // "Keine der 29 bekannten Evals" — zwei richtige Zahlen, die sich zu
+  // widersprechen scheinen, weil eine Eval (run-ordner-check, Browser fehlte)
+  // in der einen mitzaehlt und in der anderen nicht.
+  const verglichen = evals.filter((d) => alt[d] !== undefined && neu[d] !== undefined).length;
+  console.log(`Keine der ${verglichen} verglichenen Evals hat still ihre Faelle verloren.`);
   return 0;
 }
