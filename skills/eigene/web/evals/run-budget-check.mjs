@@ -87,6 +87,13 @@ const datei = (name, inhalt) => {
 const ABLEHNEN = [
   { was: 'vertippter Schluessel (axeViolation)', inhalt: { axeViolation: 99 } },
   { was: 'erfundener Schluessel',                inhalt: { egal: 1 } },
+  // Wertebereich, nicht nur Typ. Gemessen am 31.07.2026: beide liefen durch.
+  // `99` statt `0.99` macht die Anforderung unerfuellbar — das Tor meldete
+  // "performance=100 ... GERISSEN", also einen Qualitaetsfehler, wo ein
+  // Tippfehler stand. Ein Zaehlbudget unter null ist von keiner Seite
+  // erfuellbar.
+  { was: 'Lighthouse-Skala verwechselt (99 statt 0.99)', inhalt: { lighthousePerformance: 99 } },
+  { was: 'negatives Zaehlbudget',                 inhalt: { axeViolations: -5 } },
   { was: 'kaputtes JSON',                        inhalt: '{ kaputt' },
   { was: 'leere Datei',                          inhalt: '' },
   { was: 'JSON ist eine Liste',                  inhalt: [1, 2] },

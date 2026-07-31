@@ -226,6 +226,29 @@ function budgetLaden(datei) {
       console.error(`Budget "${k}" ist ${typeof v}, erwartet eine Zahl: ${datei}`);
       process.exit(2);
     }
+    // Wertebereich, nicht nur Typ.
+    //
+    // Lighthouse-Punktzahlen laufen von 0 bis 1 (`s.performance.score`), nicht
+    // von 0 bis 100. Wer `99` statt `0.99` schreibt, hat die Anforderung nicht
+    // verschaerft, sondern unerfuellbar gemacht — und wer `90` meint und `0.90`
+    // vergisst, merkt es nie, weil das Tor dann IMMER reisst.
+    //
+    // Gemessen am 31.07.2026: `{"lighthousePerformance": 99}` ergab
+    // "performance=100 ... GERISSEN". Das Tor rechnete in zwei Einheiten
+    // gleichzeitig und meldete einen Qualitaetsfehler, wo ein Tippfehler stand.
+    //
+    // Zaehlbudgets (Violations, tote Links) duerfen nicht negativ sein: ein
+    // Budget unter null ist von keiner Seite erfuellbar, `axeViolations: -5`
+    // lief bis dahin durch und riss dann am Check.
+    if (k.startsWith('lighthouse') && (v < 0 || v > 1)) {
+      console.error(`Budget "${k}" ist ${v} — Lighthouse-Punktzahlen laufen von 0 bis 1.`);
+      console.error(`Gemeint war vermutlich ${v > 1 && v <= 100 ? (v / 100).toFixed(2) : '0.90'}.`);
+      process.exit(2);
+    }
+    if (!k.startsWith('lighthouse') && v < 0) {
+      console.error(`Budget "${k}" ist ${v} — ein Zaehlbudget unter null ist nie erfuellbar: ${datei}`);
+      process.exit(2);
+    }
     budget[k] = v;
     // Lockerung heisst: mehr Verstoesse erlaubt bzw. niedrigere Punktzahl noetig.
     // Beide Richtungen haengen an derselben Frage — ist der Standard schaerfer?
