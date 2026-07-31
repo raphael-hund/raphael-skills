@@ -439,10 +439,25 @@ const REGEX_ANALYZERS = [
     if (!hasDarkBg) return [];
 
     // Check for colored box-shadow with blur > 4px
+    //
+    // Variablen aufloesen, sonst ist die Regel auf jedem Projekt blind, das
+    // seine Schatten in Tokens haelt. Gemessen 31.07.2026 an zwei identischen
+    // Seiten: `box-shadow: 0 0 60px rgba(99,102,241,.6)` wurde gefunden,
+    // dasselbe als `--glow: 0 0 60px rgba(99,102,241,.6)` + `var(--glow)`
+    // nicht. Genau dieselbe Luecke wie bei flat-type-hierarchy, nur eine Regel
+    // weiter — und Design-Systeme legen Schatten IMMER in Tokens ab.
+    const schattenVar = new Map();
+    const varRe = /(--[a-z0-9-]+)\s*:\s*([^;{}]*rgba?\([^)]*\)[^;{}]*)/gi;
+    let vm;
+    while ((vm = varRe.exec(content)) !== null) schattenVar.set(vm[1], vm[2]);
+
     const shadowRe = /box-shadow\s*:\s*([^;{}]+)/gi;
     let m;
     while ((m = shadowRe.exec(content)) !== null) {
-      const val = m[1];
+      let val = m[1];
+      // `box-shadow: var(--glow)` -> den hinterlegten Wert einsetzen.
+      const nutzt = val.match(/var\(\s*(--[a-z0-9-]+)/i);
+      if (nutzt && schattenVar.has(nutzt[1])) val = schattenVar.get(nutzt[1]);
       const colorMatch = val.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
       if (!colorMatch) continue;
       const [r, g, b] = [+colorMatch[1], +colorMatch[2], +colorMatch[3]];

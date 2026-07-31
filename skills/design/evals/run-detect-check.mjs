@@ -299,6 +299,35 @@ zeile(k.ids.length === 0, 'saubere Seite, 0 Anti-Patterns',
       : 'die Regel sieht durch Variablen hindurch nichts mehr');
 }
 
+// Schatten in CSS-Variablen — dieselbe Luecke, eine Regel weiter.
+//
+// Befund 31.07.2026, gefunden beim Nachklopfen aller Regeln, die rohe
+// CSS-Werte lesen: `box-shadow: 0 0 60px rgba(99,102,241,.6)` auf dunklem
+// Grund wurde gefunden, derselbe Wert als Token (`--glow: …` + `var(--glow)`)
+// nicht. Design-Systeme legen Schatten IMMER in Tokens ab — die Regel war auf
+// genau den Projekten blind, fuer die sie gebaut ist.
+{
+  const dunkel = 'body{background:#0a0a12;color:#eee}';
+  const glowVar = lauf(seite({
+    style: `:root{--glow:0 0 60px rgba(99,102,241,.6)}${dunkel}.k{box-shadow:var(--glow)}`,
+    body: '<div class="k">A</div>',
+  }));
+  zeile(glowVar.ids.includes('dark-glow'),
+    'farbiger Glow als CSS-Variable auf dunkler Seite -> gefunden',
+    glowVar.ids.includes('dark-glow') ? null : 'die Variable wird nicht aufgeloest');
+
+  // Gegenprobe: ein grauer Schatten ist kein Glow, auch nicht als Variable.
+  // Ohne sie waere die Regel auch dadurch "bestanden", dass sie auf jeden
+  // Schatten anschlaegt.
+  const grauVar = lauf(seite({
+    style: `:root{--s:0 4px 12px rgba(0,0,0,.12)}${dunkel}.k{box-shadow:var(--s)}`,
+    body: '<div class="k">A</div>',
+  }));
+  zeile(!grauVar.ids.includes('dark-glow'),
+    'grauer Schatten als CSS-Variable -> kein Fehlalarm',
+    grauVar.ids.includes('dark-glow') ? 'jeder Schatten gilt jetzt als Glow' : null);
+}
+
 // --- 2. Jede Regel einzeln ------------------------------------------------
 console.log('\nJede Regel einzeln — die eigene ID MUSS im Bericht stehen:\n');
 for (const [schluessel, f] of Object.entries(FAELLE)) {
@@ -347,6 +376,29 @@ console.log('\nEin Ziel ohne pruefbare Dateien ist kein bestandener Lauf:\n');
   const fehlt = path.join(leer, 'gibtsnicht');
   const rufe = (ziel) => spawnSync('node', [DETECT, ziel, '--json'],
     { encoding: 'utf8', timeout: 120000 });
+
+  // Tief verschachtelte Projekte muessen durchlaufen.
+  //
+  // Die Vorpruefung in detect.mjs zaehlt pruefbare Dateien, bevor der Detektor
+  // startet. Ihre Tiefengrenze war eine Annahme (8 Ebenen) — gemessen am
+  // 31.07.2026 lehnte sie ein Projekt mit neun Ebenen ab, obwohl der Detektor
+  // den Treffer dort SELBST findet. Eine Wache, die enger sieht als das
+  // Werkzeug dahinter, meldet Exit 2 fuer ein scanbares Projekt.
+  //
+  // Neun Ebenen sind nicht abwegig: monorepo/apps/web/src/components/ui/forms/
+  // fields/date/ ist schon acht.
+  {
+    const tief = fs.mkdtempSync(path.join(os.tmpdir(), 'detect-tief-'));
+    const pfad = path.join(tief, ...Array.from({ length: 12 }, (_, i) => `e${i}`));
+    fs.mkdirSync(pfad, { recursive: true });
+    fs.writeFileSync(path.join(pfad, 'seite.html'),
+      '<!doctype html><html lang="de"><head><meta charset="utf-8"><title>T</title></head>'
+      + '<body><h1>Titel</h1><p>Ein normaler Absatz mit genug Text.</p></body></html>');
+    const t = rufe(tief);
+    zeile(t.status === 0, 'Projekt mit 12 Ebenen laeuft durch',
+      t.status === 0 ? null : `exit=${t.status} — die Vorpruefung sieht enger als der Detektor`);
+    fs.rmSync(tief, { recursive: true, force: true });
+  }
 
   const a = rufe(leer);
   zeile(a.status === 2, 'leerer Ordner endet mit Exit 2',
