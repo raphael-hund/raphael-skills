@@ -52,6 +52,7 @@ eval_scorecard:
     - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
     - "evals/run-variablen-check.mjs — 8 Regeln: sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
+    - "evals/run-aufruffehler-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
     - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
@@ -71,7 +72,7 @@ gotchas:
   - "impeccable ist auf ganze Projektkontexte (PRODUCT.md/DESIGN.md, context.mjs) ausgelegt. In design nutzen wir NUR den Detektor-Kern deterministisch; der context.mjs-Setup-Flow ist NICHT Teil dieses Skills."
   - "ui-ux 'design'-Skill (Logo/CIP/Icon/Banner) haengt an GEMINI_API_KEY (bezahlt) — komplett ENTFERNT. Nur die Offline-DB (search.py, BM25, stdlib) ist vendored."
   - "taste imagegen-Teile (generate_image-Pflicht) ENTFERNT — hier: Bild-Slots + reale Quellen (picsum-seed), nie div-Fake-Screenshots."
-  - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift nur auf englischen Text). ERLEDIGT 29.07.2026: scripts/rules.de.mjs ergaenzt drei deutsche Tells (de-14 Textstimme = Blocker, de-15 Werbe-Interpunktion, de-16 Werbe-Leerformel), Muster aus copywriting/references/floskel-verbote.md. Immer mit --rules=scripts/rules.de.mjs scannen, wenn der Text deutsch ist; das web-Gate haengt ihn automatisch an. Beleg: web/evals/run-slop-de-check.mjs (50/50, inkl. 14 Falsch-Positiv-Faelle)."
+  - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift nur auf englischen Text). ERLEDIGT 29.07.2026: scripts/rules.de.mjs ergaenzt drei deutsche Tells (de-14 Textstimme = Blocker, de-15 Werbe-Interpunktion, de-16 Werbe-Leerformel), Muster aus copywriting/references/floskel-verbote.md. Immer mit --rules=scripts/rules.de.mjs scannen, wenn der Text deutsch ist; das web-Gate haengt ihn automatisch an. Beleg: web/evals/run-slop-de-check.mjs (59/59, inkl. 14 Falsch-Positiv-Faelle)."
   - "UI-Polish-Details (jakubkrehel) liefert exaktere Zahlenwerte (Scale 0.96 nicht 0.9, Blur 4px nicht 2px) als manche Faustregeln in design-doktrin.md/taste-kern.md. Bei Widerspruch gewinnt der exaktere, deterministisch pruefbare Wert aus ui-polish-details.md."
 ---
 

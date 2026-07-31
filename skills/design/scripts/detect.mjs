@@ -61,6 +61,27 @@ function zaehlePruefbare(wurzel, tiefe = 0) {
   return n;
 }
 
+// Ein unbekanntes Flag darf nicht lautlos verschwinden. Bis zum 31.07.2026
+// filterte die Zeile unten ALLES mit fuehrendem "-" heraus: `detect.mjs
+// --quatsch` gab keine Ausgabe und endete mit Exit 0. Ein Tippfehler sah damit
+// aus wie "geprueft und sauber" — bei einem Werkzeug, das eine harte
+// Ship-Bedingung ist.
+//
+// Die Liste stammt aus dem vendorierten Kern (detector/cli/main.mjs),
+// nachgelesen statt geraten.
+const FLAG_ERLAUBT = ['fast', 'gemini', 'gpt', 'help', 'json',
+  'no-config', 'no-design-system', 'no-inline-ignores', 'quiet', 'scope'];
+{
+  const fremd = process.argv.slice(2)
+    .filter((a) => a.startsWith('--'))
+    .filter((a) => !FLAG_ERLAUBT.includes(a.slice(2).split('=')[0]));
+  if (fremd.length) {
+    process.stderr.write(`Unbekanntes Flag: ${fremd.join(', ')}\n`);
+    process.stderr.write(`Erlaubt: ${FLAG_ERLAUBT.map((k) => `--${k}`).join(' ')}\n`);
+    process.exit(2);
+  }
+}
+
 // Nur echte Ziele pruefen: URLs kann der Detektor selbst holen, und Flags
 // (--json, --quiet) sind keine Pfade.
 const ZIELE = process.argv.slice(2).filter((a) => !a.startsWith('-') && !/^https?:\/\//i.test(a));
