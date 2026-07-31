@@ -2,6 +2,8 @@
 /*
   motion-check.mjs — spricht das Projekt EINE Motion-Sprache?
 
+    node motion-check.mjs <projektordner> [--json]
+
   WARUM ES DIESEN PRUEFER GIBT (Befund 29.07.2026)
   Die Motion-Doktrin entscheidet den Kurven-Konflikt in Prosa: vendorierte
   Komponenten behalten [0.16, 1, 0.3, 1], neuer eigener Code nimmt

@@ -112,6 +112,16 @@ for (const name of kandidaten) {
     zeile(false, `${name} --help`, `Ausgabe nennt "${dateiname}" nicht — gehoert die Hilfe zu diesem Werkzeug?`);
     continue;
   }
+  // Hilfe gehoert auf stdout. Wer sie auf stderr schreibt, zwingt jeden
+  // Aufrufer zu `2>&1` — und in einer Kette landet sie im Fehlerkanal, wo
+  // Werkzeuge nach Defekten suchen. Gefunden 31.07.2026: shot-sweep antwortete
+  // auf --help mit "Unbekanntes Flag: --help" auf stderr, Exit 2.
+  //
+  // Nur WARNEN, nicht reissen: lib-exporte.mjs erklaert auf stderr, dass es ein
+  // Modul und kein Werkzeug ist — das ist richtig so, es HAT keine Hilfe.
+  if (!(r.stdout || '').includes(dateiname)) {
+    console.log(`  [--]   ${name} --help schreibt auf stderr statt stdout`);
+  }
   zeile(true, `${name} --help`);
 }
 

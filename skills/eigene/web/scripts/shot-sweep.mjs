@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 // shot-sweep.mjs — Raphaels Screenshot-Standard (23.07.2026), deterministisch.
+//
+//   node shot-sweep.mjs --url <basis-url> --routes /,/preise --out <ordner> [--mobile] [--hover]
+//
 // First-Fold 1440x730, Rest 1440x1400, Scroll-Schritt 50%. NIEMALS fullPage/captureBeyondViewport
 // (das sind die R20-Schein-Fund-Quellen: fixed Elemente + leere Reveal-Flaechen).
 // Ausgabe: PNGs + manifest.json — das Manifest ist der Vertrag fuer Kritik-Agents.
@@ -21,7 +24,21 @@ const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i
 // Wer die gewohnte Schreibweise benutzt, misst dann die falsche Seite und
 // bekommt Screenshots, die echt aussehen.
 const ERLAUBT = ['base', 'url', 'out', 'routes', 'mobile', 'hover'];
-const fremd = args.filter((a) => a.startsWith('--') && !ERLAUBT.includes(a.slice(2)));
+
+// --help gehoert dazu und ist KEIN unbekanntes Flag. Bis zum 31.07.2026
+// antwortete dieses Skript darauf mit "Unbekanntes Flag: --help" und Exit 2 —
+// also mit einem Fehler auf die uebliche Frage nach der Bedienung. Der
+// Hilfe-Waechter sah es nicht, weil er nur Skripte mit einer Aufrufzeile im
+// Kopf prueft, und die fehlte hier ebenfalls. Beides jetzt da.
+const HILFE = 'Aufruf: node shot-sweep.mjs --url <basis-url> --routes /,/preise'
+  + ' --out <ordner> [--mobile] [--hover]';
+if (args.includes('--help')) {
+  console.log(HILFE);
+  console.log(`Erlaubt: ${ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+  process.exit(0);
+}
+
+const fremd = args.filter((a) => a.startsWith('--') && !ERLAUBT.includes(a.slice(2)) && a !== '--help');
 if (fremd.length) {
   console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
   console.error(`Erlaubt: ${ERLAUBT.map((k) => `--${k}`).join(' ')}`);
