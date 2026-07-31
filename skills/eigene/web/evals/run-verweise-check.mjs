@@ -249,8 +249,14 @@ for (const [name, n] of [...proWurzel].sort((a, b) => b[1] - a[1])) {
 }
 console.log('');
 
-zeile(tot.length === 0, `${tot.length} Verweis(e) zeigen ins Leere`,
-  tot.length ? tot.slice(0, 12).map(([p, s]) => `${p}  (${s[0]})`).join('\n         ') : null);
+// Die Zahl der GEPRUEFTEN Pfade gehoert in dieselbe Zeile. "0 Verweise zeigen
+// ins Leere" liest sich gleich gut, ob 66 Pfade geprueft wurden oder keiner —
+// und ein Muster, das nichts mehr findet, meldet dann gruen. Dieselbe Klasse
+// wie "0 Funktionen, alle benutzt" im Klon-Tor (31.07.2026).
+zeile(gefunden.size > 0 && tot.length === 0,
+  `${gefunden.size} Pfade geprueft, ${tot.length} zeigen ins Leere`,
+  gefunden.size === 0 ? 'kein einziger Pfad gefunden — das Muster greift nicht mehr'
+    : tot.length ? tot.slice(0, 12).map(([p, s]) => `${p}  (${s[0]})`).join('\n         ') : null);
 
 // Zweite Frage, die eine Pfad-Pruefung allein nicht stellt: existieren die
 // Werkzeuge, die der Skill in seinen completion_criteria VERSPRICHT? Ein

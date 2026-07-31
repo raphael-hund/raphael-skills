@@ -70,6 +70,11 @@ const ERWARTET = {
   // eine einzige Pfeiltaste. axe meldet daran nichts. Die Rolle ist ein
   // Versprechen an den Screenreader-Nutzer, das die Seite nicht einloest.
   'a9-tastatur-kaputt':     { checks: ['tastatur'],          was: 'role="tablist" mit sauberem ARIA, ohne Pfeiltasten (K1)' },
+  // Wieder eingetragen 31.07.2026: der Eintrag ging beim Anheben von
+  // FIXTURES_MINDESTENS verloren, die Fixture-Datei blieb liegen. Aufgefallen
+  // ist es der Naht-Wache ("kein Anti-Set-Fall: motion"), nicht dem Anti-Set
+  // selbst — dessen Untergrenze zaehlt DATEIEN, und die war noch da.
+  'a10-motion-kaputt':      { checks: ['motion'],            was: '3 Ease-Kurven + Animation ohne reduced-motion (M-motion-1/3)' },
   // Zugefuegt 30.07.2026, aus demselben Abgleich wie a9: alle 11 Pruefer, die
   // im Tor ein Urteil faellen, gegen die Fixture-Liste gehalten. motion war der
   // letzte ohne eigenen Fall — `motion` kam im Anti-Set nur als IMPORTNAME vor
@@ -79,7 +84,6 @@ const ERWARTET = {
   // (M-motion-1) und eine Animation ohne @media (prefers-reduced-motion)
   // (M-motion-3). Die Basis-Fixture hat den Reduced-Motion-Block korrekt —
   // derselbe Lauf beweist damit beide Richtungen.
-  'a10-motion-kaputt':      { checks: ['motion'],            was: '3 Ease-Kurven + Animation ohne reduced-motion (M-motion-1/3)' },
 };
 
 const namen = Object.keys(ERWARTET);
@@ -95,7 +99,16 @@ const namen = Object.keys(ERWARTET);
 // Die Zahl ist eine Untergrenze und bewusst hart verdrahtet: acht Fixtures gibt
 // es, weniger heisst, dass eine verschwunden ist. Kommt eine dazu, wird die Zahl
 // bewusst mit angehoben.
-const FIXTURES_MINDESTENS = 8;
+// Nachgezogen 31.07.2026: es sind inzwischen ZEHN Fixtures (a9-tastatur-kaputt,
+// a10-motion-kaputt kamen dazu). Der Kommentar oben verlangt ausdruecklich
+// "Kommt eine dazu, wird die Zahl bewusst mit angehoben" — zwei kamen dazu, die
+// Zahl blieb. Zwei Fixtures haetten still verschwinden koennen.
+//
+// Das ist die stille Haelfte einer Untergrenze: ein zu NIEDRIGER Sollwert
+// schlaegt nie Alarm. Er faellt nur auf, wenn jemand nachzaehlt. Genau
+// dieselbe Alterung wie bei naht-check (21 statt 27) — und wie dort gilt: die
+// Summe kann selbst zaehlen, die Untergrenze bleibt eine Behauptung.
+const FIXTURES_MINDESTENS = 10;
 if (namen.length < FIXTURES_MINDESTENS) {
   console.error(`\nNUR ${namen.length} Fixtures statt mindestens ${FIXTURES_MINDESTENS} — `
     + 'die ERWARTET-Liste ist geschrumpft.');
