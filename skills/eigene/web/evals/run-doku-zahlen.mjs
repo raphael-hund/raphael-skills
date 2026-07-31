@@ -89,7 +89,20 @@ for (const m of md.matchAll(MUSTER_FLIESS)) {
 let fehler = 0;
 let ohneStand = 0;
 let ersetzt = 0;
+// Selbst zaehlen statt eine Formel zu pflegen.
+//
+// Unten stand `funde.length + 7` — die 7 fuer Zusatzpruefungen ausserhalb der
+// funde-Tabelle. Am 31.07.2026 gemessen: 24 gedruckte Pruefzeilen bei
+// behaupteten 22. Zwei Pruefungen, die in derselben Sitzung dazukamen, fehlten
+// in der Bilanz; die 7 war nicht mitgewachsen.
+//
+// Vierter Fall dieser Art: run-detect-check (1 + FAELLE.length + 1),
+// run-naht-check (2+2+1+7+1, meldete 13 bei 15 Zeilen), craft-check
+// (19+3=22 gemeldet als 23). Eine feste Zahl in einer Bilanz veraltet still,
+// weil sie plausibel bleibt.
+let gepruefte = 0;
 const zeile = (ok, text, detail) => {
+  gepruefte++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -339,7 +352,15 @@ if (ohneStand) {
 }
 
 // +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
-console.log(`\n${funde.length + 7 - fehler - ohneStand}/${funde.length + 7 - ohneStand} gepruefte Doku-Zahlen stimmen`
+// Sicherung gegen die Gegenrichtung: faellt ein ganzer Abschnitt still aus,
+// zaehlt `gepruefte` einfach weniger und "12/12" saehe wieder gruen aus. Die
+// funde-Tabelle ist die bekannte Untergrenze.
+if (gepruefte < funde.length) {
+  console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${funde.length} erwartet.`);
+  console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
+  process.exit(2);
+}
+console.log(`\n${gepruefte - fehler - ohneStand}/${gepruefte - ohneStand} gepruefte Doku-Zahlen stimmen`
   + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');
