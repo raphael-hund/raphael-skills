@@ -120,7 +120,7 @@ der fremden Seite wäre so durchgegangen. Jetzt Exit 2 — nicht Exit 1, denn de
 Audit ist nicht durchgefallen, er hat nicht geurteilt. Ein echter
 Qualitätsfehler behält Vorrang: reißt die Treue, bleibt es Exit 1.
 
-Belegt: `node evals/run-klon-gate.mjs` (28 Fälle — 8 müssen reißen, 7 sind
+Belegt: `node evals/run-klon-gate.mjs` (29 Fälle — 8 müssen reißen, 7 sind
 Exit 2, 5 müssen bestehen; dazu eine Prüfung, dass `visual-diff` weiterhin nicht
 selbst blockt, damit dieses Tor nicht unbemerkt überflüssig wird).
 

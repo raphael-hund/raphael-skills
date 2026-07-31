@@ -51,6 +51,12 @@ const D = {
   fast_gleich: schreib('d95.json', { diffRatio: 0.05, meanAbsDiff: 0.03, score: 4 }),
   mittel: schreib('d80.json', { diffRatio: 0.20, meanAbsDiff: 0.09, score: 3 }),
   schlecht: schreib('d65.json', { diffRatio: 0.35, meanAbsDiff: 0.20, score: 1 }),
+  // Genau die Felder, die visual-diff.mjs wirklich schreibt (dort nachgelesen,
+  // Stand 30.07.2026): kein `diffRatio`, dafuer `diffPixelRatio`.
+  echtes_werkzeug: schreib('d-echt.json', {
+    threshold: 0.08, changedPixels: 1200, totalPixels: 100000,
+    diffPixelRatio: 0.012, meanAbsDiff: 0.008, rmse: 0.02, visualScore: 4.5,
+  }),
   ohne_feld: schreib('dohne.json', { score: 4 }),
   unplausibel: schreib('dneg.json', { diffRatio: -0.5 }),
   kaputt: schreib('dkaputt.json', '{ das ist kein json'),
@@ -148,6 +154,17 @@ const bestehen = [
   // Audit-File: seit dem 30.07.2026 ist die Rechtspruefung Pflicht, und ohne
   // sie endet das Tor mit Exit 2 ("kein Urteil"). Ohne das Argument wuerden sie
   // nicht mehr die Schwelle messen, sondern die fehlende Pflichtangabe.
+  // Die Fixtures oben schreiben `diffRatio`. Das echte visual-diff.mjs
+  // schreibt `diffPixelRatio` — und das Tor las bis zum 30.07.2026 nur den
+  // ersten Namen. Ergebnis: 28 gruene Eval-Faelle ueber ein Feld, das nie
+  // entsteht, waehrend JEDE echte Werkzeugausgabe das Tor riss ("KLON-TOR
+  // GERISSEN: treue" bei 1,2 % Abweichung).
+  //
+  // Wer seine Fixtures selbst baut, prueft seine eigene Annahme. Deshalb steht
+  // hier ab jetzt die Feldstruktur des echten Werkzeugs, nachgelesen in
+  // visual-diff.mjs statt geraten.
+  ['Feldname des ECHTEN visual-diff (diffPixelRatio) wird gelesen',
+    ['--stufe', 'L2', '--diff', D.echtes_werkzeug, '--audit', A.leer]],
   ['L1 mit 95% Treue', ['--stufe', 'L1', '--diff', D.fast_gleich, '--audit', A.leer]],
   ['L2 mit 80% Treue (Grenze 70%)', ['--stufe', 'L2', '--diff', D.mittel, '--audit', A.leer]],
   ['L4 mit 65% Treue (Grenze 50%)', ['--stufe', 'L4', '--diff', D.schlecht, '--audit', A.leer]],

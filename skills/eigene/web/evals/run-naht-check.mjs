@@ -246,6 +246,26 @@ console.log('\nJeder Pruefer haengt am Tor — sonst ist er Dekoration:\n');
     toteAusnahmen.length ? `entfernte Dateien noch ausgenommen: ${toteAusnahmen.join(', ')}` : null);
 }
 
+// --- Klon-Tor und visual-diff benutzen denselben Feldnamen ---------------
+// Dieselbe Naht wie bei audit-clone daneben, nur ungeprueft geblieben: das Tor
+// las `diffRatio`, das Werkzeug schreibt `diffPixelRatio`. Gemessen 30.07.2026
+// mit einer echten Ausgabe — "KLON-TOR GERISSEN: treue" bei 1,2 % Abweichung.
+// Die Treue-Pruefung war unbenutzbar, seit es sie gibt, und 28 gruene
+// Eval-Faelle deckten es zu, weil die Fixtures selbst gebaut waren.
+console.log('\nKlon-Tor liest das Feld, das visual-diff wirklich schreibt:\n');
+{
+  const tor = fs.readFileSync(path.join(CLONE, 'klon-gate.mjs'), 'utf8');
+  const werkzeug = fs.readFileSync(path.join(CLONE, 'visual-diff.mjs'), 'utf8');
+  // Was das Werkzeug in seine JSON legt (Kurzschreibweise `feld,` im Objekt
+  // oder `feld:`), auf die Verhaeltnis-Felder eingegrenzt.
+  const geschrieben = [...werkzeug.matchAll(/^\s{4,}(diff[A-Za-z]*Ratio)[,:]/gm)].map((m) => m[1]);
+  const gelesen = [...tor.matchAll(/diff\.(diff[A-Za-z]*Ratio)/g)].map((m) => m[1]);
+  const treffer = geschrieben.filter((g) => gelesen.includes(g));
+  zeile(geschrieben.length > 0 && treffer.length > 0,
+    `visual-diff schreibt [${geschrieben.join(', ') || 'keins'}], Tor liest [${[...new Set(gelesen)].join(', ') || 'keins'}]`,
+    treffer.length ? null : 'die beiden reden aneinander vorbei — jede echte Ausgabe reisst das Tor');
+}
+
 // --- Jeder urteilende Pruefer hat einen Anti-Set-Fall --------------------
 // Der Abschnitt darueber fragt: haengt jeder Pruefer am Tor? Diese Frage geht
 // eine Stufe weiter: wird er dort auch AUSGELOEST? Ein Pruefer, den das Tor
@@ -292,7 +312,7 @@ console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 13;
+const MINDESTENS = 14;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');

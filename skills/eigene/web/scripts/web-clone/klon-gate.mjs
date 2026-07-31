@@ -82,12 +82,22 @@ const record = (name, ok, detail, uebersprungen = false) =>
 // Fehlt das Feld, ist die Ausgabe nicht die von visual-diff — dann urteilt das
 // Tor nicht, sondern sagt das. "Feld fehlt" ist nicht "0 Abweichung".
 const q = STUFEN[stufe];
-if (typeof diff.diffRatio !== 'number' || Number.isNaN(diff.diffRatio)) {
-  record('treue', false, `visual-diff.json ohne brauchbares Feld "diffRatio" — falsche Datei oder abgebrochener Lauf?`);
-} else if (diff.diffRatio < 0 || diff.diffRatio > 1) {
-  record('treue', false, `diffRatio ausserhalb 0..1 (${diff.diffRatio}) — Ausgabe unplausibel`);
+// Beide Namen lesen. visual-diff.mjs schreibt `diffPixelRatio`, dieses Tor
+// suchte nur `diffRatio` — gemessen 30.07.2026 mit einer ECHTEN Ausgabe des
+// Werkzeugs: "KLON-TOR GERISSEN: treue", Exit 1, bei 1,2 % Abweichung. Die
+// Treue-Pruefung war damit unbenutzbar, seit es sie gibt.
+//
+// Warum die Eval das nicht fand: sie baut ihre Fixtures selbst und schrieb
+// `diffRatio` hinein. 28 gruene Faelle ueber ein Feld, das das echte Werkzeug
+// nie erzeugt. Genau die Naht, an der schon audit-clone und visual-diff
+// gesessen haben.
+const rohTreue = typeof diff.diffRatio === 'number' ? diff.diffRatio : diff.diffPixelRatio;
+if (typeof rohTreue !== 'number' || Number.isNaN(rohTreue)) {
+  record('treue', false, `visual-diff.json ohne brauchbares Feld "diffRatio"/"diffPixelRatio" — falsche Datei oder abgebrochener Lauf?`);
+} else if (rohTreue < 0 || rohTreue > 1) {
+  record('treue', false, `Abweichungsanteil ausserhalb 0..1 (${rohTreue}) — Ausgabe unplausibel`);
 } else {
-  const treue = 1 - diff.diffRatio;
+  const treue = 1 - rohTreue;
   if (q.min === null) {
     record('treue', true, `${stufe}: ${(treue * 100).toFixed(1)}% gemessen, keine Pixel-Grenze fuer diese Stufe (${q.was})`, true);
   } else {
