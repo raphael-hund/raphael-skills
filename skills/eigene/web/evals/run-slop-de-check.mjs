@@ -261,6 +261,58 @@ zeile(gateQuelle.includes('rules.de.mjs fehlt'),
 //
 // Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
 // — die Bauart ist der Fehler, nicht erst sein Eintreten.
+// --- 4. Der Regelsatz muss auch wirklich ankommen -------------------------
+// Alles oben prueft die MUSTER. Dieser Abschnitt prueft den WEG: der beste
+// deutsche Regelsatz nuetzt nichts, wenn der Aufruf ihn unterwegs verliert.
+//
+// Befund 31.07.2026: scan-ai-slop liest Wert-Flags ausschliesslich als
+// `--rules=<pfad>`. Wer `--rules <pfad>` mit Leerzeichen tippt, verliert den
+// Regelsatz KOMMENTARLOS — gemessen an einer Datei mit zwei deutschen Floskeln
+// fiel die Trefferzahl von 2 auf 1, Exit blieb 0. Der Lauf sah aus wie ein
+// deutscher Scan und war ein englischer.
+console.log('\nDer Weg zum Regelsatz — verliert der Aufruf ihn unterwegs?\n');
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'slop-de-weg-'));
+  fs.writeFileSync(path.join(ordner, 'a.js'),
+    'const t = "seamless und massgeschneiderte Loesungen";\n');
+
+  const zahl = (argv) => {
+    try {
+      const roh = execFileSync('node', [SCAN, ordner, ...argv, '--json'],
+        // stderr des Kindes schlucken: die erwarteten Fehlermeldungen der
+      // Flag-Wache gehoeren nicht ins Eval-Protokoll, sonst liest sich ein
+      // bestandener Fall wie ein Absturz.
+      { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+      return JSON.parse(roh).hits;
+    } catch (e) { return { fehler: e.status ?? 'kaputt' }; }
+  };
+
+  const mit = zahl([`--rules=${REGELN}`]);
+  const ohne = zahl([]);
+  zeile(typeof mit === 'number' && typeof ohne === 'number' && mit > ohne,
+    `--rules=<pfad> findet mehr als ohne (${JSON.stringify(mit)} statt ${JSON.stringify(ohne)})`,
+    typeof mit === 'number' && typeof ohne === 'number' && mit > ohne ? null
+      : 'Ohne diesen Unterschied belegt der naechste Fall nichts.');
+
+  const getrennt = zahl(['--rules', REGELN]);
+  zeile(typeof getrennt === 'object' && getrennt.fehler === 2,
+    '--rules <pfad> mit Leerzeichen wird abgelehnt (Exit 2), nicht still ignoriert',
+    typeof getrennt === 'object' && getrennt.fehler === 2 ? null
+      : typeof getrennt === 'number'
+        ? `lief durch und meldete ${getrennt} Treffer — der Regelsatz ging verloren`
+        : `Exit ${getrennt.fehler} statt 2`);
+
+  const vertippt = zahl(['--jsonn']);
+  zeile(typeof vertippt === 'object' && vertippt.fehler === 2,
+    'ein unbekanntes Flag wird abgelehnt (Exit 2), nicht stillschweigend ignoriert',
+    typeof vertippt === 'object' && vertippt.fehler === 2 ? null
+      : typeof vertippt === 'number'
+        ? `lief mit Standardwerten durch und meldete ${vertippt} Treffer`
+        : `Exit ${vertippt.fehler} statt 2`);
+
+  fs.rmSync(ordner, { recursive: true, force: true });
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {

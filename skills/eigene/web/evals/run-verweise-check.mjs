@@ -83,7 +83,13 @@ const WURZELN = [
 ];
 
 let fehler = 0;
+// Selbst zaehlen, statt die Zahl der Pruefungen zu behaupten. Diese Eval hatte
+// als einzige gar keine Bilanz-Zeile: der Umfang-Waechter musste sie ueber
+// eine Sonderregel erkennen ("Alle Verweise loesen auf") und stand deshalb auf
+// 24, waehrend 25 Pruefungen liefen. Faellt eine still aus, sieht man es nicht.
+let geprueft = 0;
 const zeile = (ok, text, detail) => {
+  geprueft++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -1184,5 +1190,6 @@ console.log('\nDie G2-Rubrik im Betriebs-Repo passt zur Zusage:\n');
   }
 }
 
-console.log(`\n${fehler === 0 ? 'Alle Verweise' : 'NICHT alle Verweise'} loesen auf.`);
+console.log(`\n${geprueft - fehler}/${geprueft} Pruefungen wie erwartet.`);
+console.log(`${fehler === 0 ? 'Alle Verweise' : 'NICHT alle Verweise'} loesen auf.`);
 if (fehler) process.exit(1);

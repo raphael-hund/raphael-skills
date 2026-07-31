@@ -41,6 +41,42 @@ if (args.includes('--help') || args.includes('-h')) {
   console.log('Deutsche Floskeln braucht --rules=scripts/rules.de.mjs.');
   process.exit(0);
 }
+// AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
+// Die Wert-Flags werden ausschliesslich in der Form `--name=wert` gelesen
+// (`flagValues` filtert auf `--${name}=`). Wer `--rules pfad.mjs` mit Leerzeichen
+// tippt, verliert den Regelsatz KOMMENTARLOS: gemessen an einer Datei mit zwei
+// deutschen Floskeln fiel `hits` von 2 auf 1, Exit blieb 0. Der Aufruf sah aus
+// wie ein Scan mit deutschen Regeln und war einer ohne.
+//
+// Dieselbe Falle gilt fuer --only, --skip und --exclude: dort verschwindet
+// nicht ein Regelsatz, sondern eine Einschraenkung — der Lauf prueft dann mehr
+// oder weniger, als der Aufrufer glaubt, und meldet es nie.
+//
+// Ein unbekanntes Flag (`--jsonn`) faellt in dieselbe Klasse: es wird
+// stillschweigend ignoriert, der Scan laeuft mit Standardwerten weiter.
+const WERT_FLAGS = ["only", "skip", "exclude", "rules"];
+const BEKANNT = ["json", "no-color", "help", "h", ...WERT_FLAGS];
+for (const a of args) {
+  if (!a.startsWith("--")) continue;
+  const name = a.slice(2).split("=")[0];
+  if (!BEKANNT.includes(name)) {
+    console.error(`Unbekanntes Flag: ${a}`);
+    // "h" ist die Kurzform -h, nicht --h. Ohne diese Unterscheidung nennt die
+    // Fehlermeldung ein Flag, das es nicht gibt.
+    const zeigen = BEKANNT.map((k) => (k.length === 1 ? `-${k}` : `--${k}`));
+    console.error(`Erlaubt: ${zeigen.join(" ")}`);
+    console.error("Ohne diese Wache liefe der Scan mit Standardwerten weiter und");
+    console.error("meldete ein Ergebnis, das zu einem anderen Aufruf gehoert.");
+    process.exit(2);
+  }
+  if (WERT_FLAGS.includes(name) && !a.includes("=")) {
+    console.error(`--${name} braucht seinen Wert mit Gleichheitszeichen: --${name}=<wert>`);
+    console.error(`Die Form "--${name} <wert>" wird nicht gelesen — der Wert ginge`);
+    console.error("verloren und der Scan liefe still mit anderen Einstellungen.");
+    process.exit(2);
+  }
+}
+
 const root = args.find((a) => !a.startsWith("-")) || ".";
 const asJson = args.includes("--json");
 const normalizeId = (value) => (/^\d+$/.test(value) ? value.padStart(2, "0") : value);
