@@ -79,6 +79,7 @@ completion_criteria:
   - "Formular-Reihenfolge: Kontaktdaten zuletzt (F6, WARN im Tor); Drop-off pro Slide gemessen (G1, hart)"
   - "G2 auf jedem Ship-Copy-Block >= 0.7"
   - "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate"
+  - "Wer an DIESEM SKILL etwas aendert (Pruefer, Referenz, Zahl, Komponente): `node evals/run-struktur.mjs` endet mit Exit 0. Sechs Wachen, unter einer Minute, ohne Browser — sie fangen genau die Fehler, die eine Skill-Aenderung typischerweise hinterlaesst (veraltete Zahl, toter Verweis, Pruefer ohne Anschluss, auseinandergelaufene Kopie, fehlender Katalog-Eintrag, fremdsprachige Ausgabe). Gilt NICHT fuer Kundenarbeit — dort zaehlt das G1-Tor."
   - "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch"
 ---
 
