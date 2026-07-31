@@ -73,14 +73,25 @@ for (const datei of [
   path.join(CLONE, 'klon-gate.mjs'),
 ]) {
   const txt = fs.readFileSync(datei, 'utf8');
-  const namen = [...txt.matchAll(/^function ([a-zA-Z][a-zA-Z0-9_]*)\s*\(/gm)].map((m) => m[1]);
+  // Beide Schreibweisen. Bis zum 31.07.2026 wurde nur `function name(` gesucht
+  // — klon-gate.mjs schreibt seine Helfer als `const name = (…) =>` und meldete
+  // deshalb "0 Funktionen, alle benutzt". Gruen ueber nichts.
+  const namen = [...new Set([
+    ...[...txt.matchAll(/^function ([a-zA-Z][a-zA-Z0-9_]*)\s*\(/gm)].map((m) => m[1]),
+    ...[...txt.matchAll(/^const ([a-zA-Z][a-zA-Z0-9_]*)\s*=\s*(?:async\s*)?\(/gm)].map((m) => m[1]),
+  ])];
   const tot = namen.filter((n) => {
     // Vorkommen als Aufruf zaehlen, die Definitionszeile abziehen.
     const alle = (txt.match(new RegExp(`\\b${n}\\s*\\(`, 'g')) || []).length;
     return alle <= 1;
   });
-  zeile(tot.length === 0, `${path.basename(datei)}: ${namen.length} Funktionen, alle benutzt`,
-    tot.length ? `nie aufgerufen: ${tot.join(', ')}` : null);
+  // Null gefundene Funktionen ist kein bestandener Lauf: dann hat die Suche
+  // nichts gesehen, nicht die Datei nichts gehabt. Genau so sah es hier fuenf
+  // Tage lang aus.
+  zeile(namen.length > 0 && tot.length === 0,
+    `${path.basename(datei)}: ${namen.length} Funktionen, ${tot.length ? `${tot.length} tot` : 'alle benutzt'}`,
+    namen.length === 0 ? 'keine einzige Funktion gefunden — die Suche greift nicht mehr'
+      : tot.length ? `nie aufgerufen: ${tot.join(', ')}` : null);
 }
 
 // --- 2. Jeder Pruefer wird aufgerufen ------------------------------------
