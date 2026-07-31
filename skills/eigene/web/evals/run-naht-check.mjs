@@ -327,6 +327,32 @@ console.log('\nDie vom Tor gelesenen Felder stehen in der echten Ausgabe:\n');
   fs.rmSync(probe, { recursive: true, force: true });
 }
 
+// --- shot-sweep-Manifest: die Felder, auf die das Urteil sich stuetzt ------
+// Das Tor liest `routes[].route/shots/error` aus dem Manifest. Ein
+// umbenanntes Feld faellt nirgends auf: `!r.error` ist bei einem fehlenden
+// Feld immer wahr, und `r.shots?.length` wird zu undefined — der Sweep
+// meldete dann "keine Maengel" ueber Screenshots, die es nicht gibt.
+//
+// Geprueft wird gegen die SCHREIBSTELLE im Werkzeug, nicht gegen einen
+// zweiten Lauf: shot-sweep braucht Browser und Server, das gehoert nicht in
+// einen Sekundenlauf. Von Hand mit echter Ausgabe gegengeprueft am
+// 31.07.2026 (Felder: base, createdAt, routes, viewports; routes[0]: error,
+// route, shots, status).
+console.log('\nDas Tor liest die Manifest-Felder, die shot-sweep schreibt:\n');
+{
+  const tor = fs.readFileSync(path.join(SKRIPTE, 'g1-gate.mjs'), 'utf8');
+  const sweep = fs.readFileSync(path.join(SKRIPTE, 'shot-sweep.mjs'), 'utf8');
+  const abschnitt = tor.slice(tor.indexOf('function sweepMaengel'));
+  const bereich = abschnitt.slice(0, abschnitt.indexOf('\n}\n') + 1);
+  const gelesen = [...new Set([...bereich.matchAll(/\br\.(\w+)/g)].map((m) => m[1]))]
+    // Array-/String-Methoden sind keine Manifest-Felder.
+    .filter((f) => !['map', 'filter', 'length', 'replace', 'join', 'slice'].includes(f));
+  const fehlend = gelesen.filter((g) => !new RegExp(`\\b${g}\\s*[,:]`).test(sweep));
+  zeile(gelesen.length > 0 && fehlend.length === 0,
+    `Tor liest [${gelesen.join(', ') || 'nichts'}], shot-sweep schreibt sie ${fehlend.length ? 'nicht alle' : 'alle'}`,
+    fehlend.length ? `nicht im Werkzeug gefunden: ${fehlend.join(', ')} — der Sweep urteilt ueber Felder, die es nicht gibt` : null);
+}
+
 // --- Klon-Tor und visual-diff benutzen denselben Feldnamen ---------------
 // Dieselbe Naht wie bei audit-clone daneben, nur ungeprueft geblieben: das Tor
 // las `diffRatio`, das Werkzeug schreibt `diffPixelRatio`. Gemessen 30.07.2026
@@ -393,7 +419,7 @@ console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 19;
+const MINDESTENS = 20;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
