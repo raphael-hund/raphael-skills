@@ -62,16 +62,29 @@ function zeile(ok, was, detail) {
   if (!ok && detail) console.log(`         ${detail}`);
 }
 
-const werkzeuge = fs.existsSync(KLONE)
-  ? fs.readdirSync(KLONE).filter((n) => n.endsWith('.mjs') && n !== 'playwright-loader.mjs').sort()
-  : [];
+// Auch scripts/ selbst, nicht nur die Klon-Werkzeuge. Beim Abklopfen aller 23
+// Werkzeuge am 31.07.2026 meldeten zwei aus scripts/ noch Exit 1: bilder.mjs
+// (unbekanntes Kommando) und lib-lookup.mjs (Library nicht im Tresor). Beides
+// Aufruffehler — das Werkzeug hat nichts angesehen. Ein Ordner, den diese Eval
+// nicht betritt, ist kein sauberer Ordner.
+//
+// lib-exporte.mjs bleibt draussen: es ist ein Modul, kein Werkzeug, und sagt
+// das auch (Exit 2 mit Verweis auf lib-lookup).
+const SKRIPTE = path.join(HIER, '..', 'scripts');
+const sammeln = (ordner, praefix) => (fs.existsSync(ordner)
+  ? fs.readdirSync(ordner)
+    .filter((n) => n.endsWith('.mjs') && n !== 'playwright-loader.mjs' && n !== 'lib-exporte.mjs')
+    .map((n) => `${praefix}${n}`)
+  : []);
+
+const werkzeuge = [...sammeln(SKRIPTE, ''), ...sammeln(KLONE, 'web-clone/')].sort();
 
 // Eine leere Liste sieht wie ein sauberer Lauf aus. Untergrenze deutlich unter
 // dem Ist-Stand (13 am 31.07.2026): sie faengt stilles Nichtstun, nicht jedes
 // geloeschte Werkzeug.
 const MINDESTENS = 8;
 if (werkzeuge.length < MINDESTENS) {
-  console.error(`Nur ${werkzeuge.length} Werkzeuge in ${KLONE} gefunden (erwartet mindestens ${MINDESTENS}).`);
+  console.error(`Nur ${werkzeuge.length} Werkzeuge gefunden (erwartet mindestens ${MINDESTENS}).`);
   console.error('Ohne sie prueft diese Eval nichts und meldete trotzdem gruen.');
   process.exit(2);
 }
@@ -82,7 +95,7 @@ console.log(`Aufruffehler-Check — ${werkzeuge.length} Werkzeuge in web-clone/\
 console.log('Ein unbekanntes Flag heisst: nichts geprueft. Also Exit 2, nicht 1:\n');
 
 for (const name of werkzeuge) {
-  const r = spawnSync('node', [path.join(KLONE, name), UNBEKANNT], {
+  const r = spawnSync('node', [path.join(SKRIPTE, name), UNBEKANNT], {
     encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 8 * 1024 * 1024,
   });
 

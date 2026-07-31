@@ -24,7 +24,17 @@ import { basename, extname, join, resolve } from "node:path";
 const CRF = "30";        // ffmpeg-Fallback: Qualitaet (niedriger = besser/groesser)
 const CPU_USED = "5";    // ffmpeg-Fallback: libaom Speed/Quality-Tradeoff (0 best … 8 schnell)
 
+// Zwei Sorten Abbruch, zwei Codes — dieselbe Trennung wie ueberall im Skill:
+//
+//   Exit 2  falsch AUFGERUFEN (Kommando fehlt, Argument fehlt, Datei nicht da).
+//           Das Werkzeug hat nichts getan und nichts beurteilt.
+//   Exit 1  echter BEFUND (Index kaputt, Eintrag zeigt aus dem Ordner heraus).
+//           Das Werkzeug hat gearbeitet und etwas gefunden.
+//
+// Bis zum 31.07.2026 war beides Exit 1. Wer `bilder.mjs --tippfehler` in eine
+// Kette haengt, bekam dasselbe Signal wie bei einem echten Sicherheitsbefund.
 function die(msg) { console.error("FEHLER: " + msg); process.exit(1); }
+function dieAufruf(msg) { console.error("FEHLER: " + msg); process.exit(2); }
 
 function have(bin) {
   try { execFileSync("sh", ["-c", `command -v ${bin}`], { stdio: "ignore" }); return true; }
@@ -97,9 +107,9 @@ function toAvif(src, outPath) {
 
 function cmdAdd(pos, flags) {
   const [dirArg, src] = pos;
-  if (!dirArg || !src) die("Nutzung: add <assets-dir> <quelle-bild> [--typ …]");
+  if (!dirArg || !src) dieAufruf("Nutzung: add <assets-dir> <quelle-bild> [--typ …]");
   const dir = resolve(dirArg);
-  if (!existsSync(src)) die("Quelle nicht gefunden: " + src);
+  if (!existsSync(src)) dieAufruf("Quelle nicht gefunden: " + src);
   mkdirSync(dir, { recursive: true });
   const idx = loadIndex(dir);
 
@@ -134,11 +144,11 @@ function cmdAdd(pos, flags) {
 
 function cmdReject(pos) {
   const [dirArg, key] = pos;
-  if (!dirArg || !key) die("Nutzung: reject <assets-dir> <id-oder-datei>");
+  if (!dirArg || !key) dieAufruf("Nutzung: reject <assets-dir> <id-oder-datei>");
   const dir = resolve(dirArg);
   const idx = loadIndex(dir);
   const i = idx.images.findIndex((im) => im.id === key || im.datei === key);
-  if (i === -1) die("Kein Index-Eintrag fuer: " + key);
+  if (i === -1) dieAufruf("Kein Index-Eintrag fuer: " + key);
   const [removed] = idx.images.splice(i, 1);
   // `removed.datei` kommt AUS DEM INDEX, und den schreiben Agenten. Bis
   // 29.07.2026 ging der Wert ungeprueft an join() — mit `"datei": "../opfer.txt"`
@@ -175,6 +185,14 @@ switch (cmd) {
   case "reject": cmdReject(pos); break;
   case "list": cmdList(pos); break;
   default:
+    // Ohne Kommando ist das die Hilfe (Exit 0, stdout). MIT einem unbekannten
+    // Kommando ist es ein Aufruffehler — Exit 2, nicht 1: das Werkzeug hat
+    // nichts angesehen und nichts beurteilt.
+    if (cmd) {
+      console.error(`Unbekanntes Kommando: ${cmd}`);
+      console.error("bilder.mjs <add|reject|list> …  (siehe references/bildgenerierung.md)");
+      process.exit(2);
+    }
     console.log("bilder.mjs <add|reject|list> …  (siehe references/bildgenerierung.md)");
-    process.exit(cmd ? 1 : 0);
+    process.exit(0);
 }

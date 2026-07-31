@@ -19,6 +19,20 @@ import { existsSync, readFileSync, statSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const args = process.argv.slice(2);
+
+// Ein unbekanntes Flag ist ein Aufruffehler und muss SO heissen. Bis zum
+// 31.07.2026 druckte dieses Skript darauf nur seine Aufrufzeile — die Meldung
+// las sich wie "Argument fehlt", und wer sich vertippt hat, sucht am falschen
+// Ende. Exit 2 war schon richtig, der Text nicht.
+const FLAG_ERLAUBT = ['dir', 'port', 'routen', 'help'];
+{
+  const fremd = args.filter((a) => a.startsWith('--') && !FLAG_ERLAUBT.includes(a.slice(2)));
+  if (fremd.length) {
+    console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
+    console.error(`Erlaubt: ${FLAG_ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+    process.exit(2);
+  }
+}
 const get = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 ? args[i + 1] : d; };
 const has = (n) => args.includes(`--${n}`);
 

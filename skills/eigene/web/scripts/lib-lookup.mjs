@@ -88,8 +88,11 @@ function liste() {
 function detail(name, mitApi) {
   const treffer = alleLibs().filter((n) => n === name || n.endsWith('/' + name) || n.includes(name));
   if (!treffer.length) {
+    // Exit 2, nicht 1: eine Library, die es nicht gibt, ist ein Aufruffehler —
+    // das Werkzeug hat nichts nachgeschlagen. Exit 1 bleibt dem echten Befund
+    // vorbehalten (Library gelistet, aber nicht installiert, oben).
     console.error(`"${name}" ist nicht im Tresor. Verfuegbar: node lib-lookup.mjs`);
-    process.exit(1);
+    process.exit(2);
   }
   for (const n of treffer) {
     const v = version(n);

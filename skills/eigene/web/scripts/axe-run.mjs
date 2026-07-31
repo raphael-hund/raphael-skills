@@ -14,6 +14,20 @@ import { chromium } from '/usr/lib/node_modules/playwright/index.mjs';
 import fs from 'node:fs';
 
 const args = process.argv.slice(2);
+
+// Ein unbekanntes Flag ist ein Aufruffehler und muss SO heissen. Bis zum
+// 31.07.2026 druckte dieses Skript darauf nur seine Aufrufzeile — die Meldung
+// las sich wie "Argument fehlt", und wer sich vertippt hat, sucht am falschen
+// Ende. Exit 2 war schon richtig, der Text nicht.
+const FLAG_ERLAUBT = ['url', 'json', 'help'];
+{
+  const fremd = args.filter((a) => a.startsWith('--') && !FLAG_ERLAUBT.includes(a.slice(2)));
+  if (fremd.length) {
+    console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
+    console.error(`Erlaubt: ${FLAG_ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+    process.exit(2);
+  }
+}
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const URL_ = get('url', null);
 const AS_JSON = args.includes('--json');
@@ -42,6 +56,7 @@ const axePath = CANDIDATES.find((p) => fs.existsSync(p));
 if (!axePath) { console.error('axe-core nicht gefunden'); process.exit(2); }
 
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+let code = 0;
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   const res = await page.goto(URL_, { waitUntil: 'networkidle', timeout: 45000 });
@@ -89,10 +104,20 @@ try {
       for (const n of v.nodes.slice(0, 3)) console.log(`      ${n.target.join(' ')}`);
     }
   }
-  process.exit(violations.length ? 1 : 0);
+  // NICHT hier beenden. `process.exit()` im try-Block ueberspringt das finally:
+  // der Browser blieb offen und hinterliess bei JEDEM Lauf ein Profil unter
+  // /tmp/com.google.Chrome.XXXXXX. Gemessen 31.07.2026: 2823 solcher Ordner auf
+  // dem Rechner, Zuwachs exakt +1 pro axe-run-Lauf; craft-check, formular-check
+  // und shot-sweep hinterliessen nichts — die beenden erst nach dem finally.
+  //
+  // Der Platz war nie das Problem (12 MB gesamt), die ANZAHL ist es: 2833
+  // Eintraege in /tmp verlangsamen jedes readdir, und die eigene
+  // g1-gate-Aufraeumung liest dieses Verzeichnis bei jedem Lauf.
+  code = violations.length ? 1 : 0;
 } catch (e) {
   console.error(`axe-Lauf kaputt: ${e.message}`);
-  process.exit(2);
+  code = 2;
 } finally {
   await browser.close();
 }
+process.exit(code);

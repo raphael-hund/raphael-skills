@@ -45,6 +45,20 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const args = process.argv.slice(2);
+
+// Ein unbekanntes Flag ist ein Aufruffehler und muss SO heissen. Bis zum
+// 31.07.2026 druckte dieses Skript darauf nur seine Aufrufzeile — die Meldung
+// las sich wie "Argument fehlt", und wer sich vertippt hat, sucht am falschen
+// Ende. Exit 2 war schon richtig, der Text nicht.
+const FLAG_ERLAUBT = ['json', 'help'];
+{
+  const fremd = args.filter((a) => a.startsWith('--') && !FLAG_ERLAUBT.includes(a.slice(2)));
+  if (fremd.length) {
+    console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
+    console.error(`Erlaubt: ${FLAG_ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+    process.exit(2);
+  }
+}
 const alsJson = args.includes('--json');
 const wurzel = args.find((a) => !a.startsWith('--'));
 

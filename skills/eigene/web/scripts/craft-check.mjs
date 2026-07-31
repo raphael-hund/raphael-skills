@@ -18,6 +18,20 @@
 import { chromium } from '/usr/lib/node_modules/playwright/index.mjs';
 
 const args = process.argv.slice(2);
+
+// Ein unbekanntes Flag ist ein Aufruffehler und muss SO heissen. Bis zum
+// 31.07.2026 druckte dieses Skript darauf nur seine Aufrufzeile — die Meldung
+// las sich wie "Argument fehlt", und wer sich vertippt hat, sucht am falschen
+// Ende. Exit 2 war schon richtig, der Text nicht.
+const FLAG_ERLAUBT = ['url', 'json', 'strict', 'textseite', 'help'];
+{
+  const fremd = args.filter((a) => a.startsWith('--') && !FLAG_ERLAUBT.includes(a.slice(2)));
+  if (fremd.length) {
+    console.error(`Unbekanntes Flag: ${fremd.join(', ')}`);
+    console.error(`Erlaubt: ${FLAG_ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+    process.exit(2);
+  }
+}
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const URL_ = get('url', null);
 const AS_JSON = args.includes('--json');
