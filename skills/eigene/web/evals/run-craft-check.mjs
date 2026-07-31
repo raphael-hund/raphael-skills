@@ -42,6 +42,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+// Temp-Ordner, die auch beim Abbruch verschwinden. Gemessen 31.07.2026:
+// ein abgebrochener Lauf liess je einen craft-eval- und einen
+// playwright-artifacts-Ordner liegen; auf dem Rechner lagen 10 bzw. 27.
+import { wegwerfOrdner, altlastWeg } from './lib/wegwerf.mjs';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const PRUEFER = path.join(HIER, '..', 'scripts', 'craft-check.mjs');
@@ -371,8 +375,14 @@ const NICHT_HIER = {
   M20: 'INFO ohne Schwelle — laeuft bei jedem Lauf mit; belegt durch den Minimalfall oben',
 };
 
+// Reste frueherer SIGKILL-Abbrueche — dagegen hilft kein Handler, nur der
+// naechste Lauf. playwright-artifacts- legt Playwright selbst an, wenn ein
+// Browser mitten in der Aufzeichnung stirbt.
+altlastWeg('craft-eval-', 6);
+altlastWeg('playwright-artifacts-', 6);
+
 function lauf(html, dazu = {}) {
-  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'craft-eval-'));
+  const ordner = wegwerfOrdner('craft-eval-');
   try {
     const datei = path.join(ordner, 'index.html');
     fs.writeFileSync(datei, html);

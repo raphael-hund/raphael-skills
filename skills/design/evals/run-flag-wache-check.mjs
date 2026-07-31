@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 /**
- * run-aufruffehler-check.mjs — verwechselt ein Werkzeug einen Tippfehler mit
+ * run-flag-wache-check.mjs — verwechselt ein Werkzeug einen Tippfehler mit
  * einem Befund?
+ *
+ * Umbenannt am 31.07.2026: der web-Skill hat eine gleichnamige Eval mit
+ * anderem Inhalt (sie prueft 24 web-Werkzeuge, diese hier 3 design-Werkzeuge).
+ * Zwei Dateien gleichen Namens mit verschiedenem Code sind genau das, wovor
+ * run-zwillinge-check warnt: wer die eine liest, glaubt die andere zu kennen.
  *
  * Exit 1 heisst in diesem Skill "geprueft und durchgefallen", Exit 2 heisst
  * "konnte nicht urteilen". Ein unbekanntes Flag gehoert eindeutig in die

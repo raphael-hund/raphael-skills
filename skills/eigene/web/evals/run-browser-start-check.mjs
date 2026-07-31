@@ -37,6 +37,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+// Temp-Ordner, die auch beim Abbruch verschwinden. Gemessen 31.07.2026:
+// drei abgebrochene Laeufe dieser Eval liessen zwei Fixture-Ordner liegen.
+import { wegwerfOrdner, wegwerfen, altlastWeg } from './lib/wegwerf.mjs';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const KLONE = path.join(HIER, '..', 'scripts', 'web-clone');
@@ -45,6 +48,10 @@ const PORT = Number(process.env.BROWSERSTART_PORT || 5409);
 
 // Woran man erkennt, dass es die BIBLIOTHEK war und nicht die Seite.
 const FEHLT_RE = /Playwright not found|Cannot find module|ERR_MODULE_NOT_FOUND|Executable doesn't exist/i;
+
+// Reste frueherer SIGKILL-Abbrueche — dagegen hilft kein Handler,
+// nur der naechste Lauf.
+altlastWeg('browserstart-', 6);
 
 let fehler = 0;
 let gezaehlt = 0;
@@ -82,7 +89,7 @@ if (werkzeuge.length < MINDESTENS) {
 // spawnSync-Aufrufs liefert HTTP-Code 000, und alle Werkzeuge liefen in
 // "page.goto: Timeout 45000ms exceeded". Das saehe aus wie ein kaputtes
 // Werkzeug und war ein kaputter Test.
-const SEITE = fs.mkdtempSync(path.join(os.tmpdir(), 'browserstart-seite-'));
+const SEITE = wegwerfOrdner('browserstart-seite-');
 fs.writeFileSync(path.join(SEITE, 'index.html'),
   '<!doctype html><html lang="de"><head><meta charset="utf-8">'
   + '<title>Browser-Start</title></head><body><h1>Seite</h1>'
@@ -106,14 +113,14 @@ for (let i = 0; i < 50 && !bereit; i += 1) {
 }
 if (!bereit) {
   server.kill('SIGKILL');
-  fs.rmSync(SEITE, { recursive: true, force: true });
+  wegwerfen(SEITE);
   console.error(`Kein Testserver auf Port ${PORT} — nach 10s keine Antwort.`);
   console.error('Ohne Seite startet kein Werkzeug einen Browser, und diese Eval');
   console.error('saehe sauber aus, ohne etwas zu messen.');
   process.exit(2);
 }
 
-const ZIEL = fs.mkdtempSync(path.join(os.tmpdir(), 'browserstart-'));
+const ZIEL = wegwerfOrdner('browserstart-ziel-');
 
 console.log(`Browser-Start-Check — ${werkzeuge.length} Werkzeuge mit playwright-loader\n`);
 console.log('Ein Werkzeug, das seine Bibliothek nicht findet, ist unbenutzbar:\n');
@@ -157,8 +164,8 @@ for (const name of werkzeuge) {
 }
 
 server.kill('SIGKILL');
-fs.rmSync(SEITE, { recursive: true, force: true });
-fs.rmSync(ZIEL, { recursive: true, force: true });
+wegwerfen(SEITE);
+wegwerfen(ZIEL);
 
 console.log(`\n${gezaehlt - fehler}/${gezaehlt} wie erwartet.`);
 if (fehler) {

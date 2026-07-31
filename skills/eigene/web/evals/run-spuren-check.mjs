@@ -34,6 +34,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+// Temp-Ordner, die auch beim Abbruch verschwinden. Gemessen 31.07.2026:
+// drei abgebrochene Laeufe dieser Eval liessen zwei Fixture-Ordner liegen.
+import { wegwerfOrdner, wegwerfen, altlastWeg } from './lib/wegwerf.mjs';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SKRIPTE = path.join(HIER, '..', 'scripts');
@@ -44,6 +47,10 @@ const PORT = Number(process.env.SPUREN_PORT || 5407);
 const PRAEFIXE = ['com.google.Chrome.', 'playwright_chromiumdev_profile-', 'lighthouse.'];
 
 const WERKZEUGE = ['axe-run.mjs', 'craft-check.mjs', 'formular-check.mjs'];
+
+// Reste frueherer SIGKILL-Abbrueche — dagegen hilft kein Handler,
+// nur der naechste Lauf.
+altlastWeg('spuren-seite-', 6);
 
 let fehler = 0;
 let gezaehlt = 0;
@@ -84,7 +91,7 @@ if (fehlend.length) {
 // spawnSync-Aufrufs liefert HTTP-Code 000. Die Werkzeuge liefen dann in
 // "page.goto: Timeout 45000ms exceeded" — und diese Eval meldete trotzdem
 // 6/6, weil sie nur Profilordner zaehlte und nie den Exit-Code ansah.
-const SEITE = fs.mkdtempSync(path.join(os.tmpdir(), 'spuren-seite-'));
+const SEITE = wegwerfOrdner('spuren-seite-');
 fs.writeFileSync(path.join(SEITE, 'index.html'),
   '<!doctype html><html lang="de"><head><meta charset="utf-8">'
   + '<title>Spuren-Check</title></head><body><h1>Seite</h1>'
@@ -106,7 +113,7 @@ for (let i = 0; i < 50 && !bereit; i += 1) {
 }
 if (!bereit) {
   server.kill('SIGKILL');
-  fs.rmSync(SEITE, { recursive: true, force: true });
+  wegwerfen(SEITE);
   console.error(`Kein Testserver auf Port ${PORT} — nach 10s keine Antwort.`);
   console.error('Ohne laufende Seite startet kein Werkzeug einen Browser,');
   console.error('und diese Eval saehe sauber aus, ohne etwas zu messen.');
@@ -152,7 +159,7 @@ for (const name of WERKZEUGE) {
 }
 
 server.kill('SIGKILL');
-fs.rmSync(SEITE, { recursive: true, force: true });
+wegwerfen(SEITE);
 
 console.log(`\n${gezaehlt - fehler}/${gezaehlt} wie erwartet.`);
 if (fehler) {

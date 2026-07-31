@@ -52,7 +52,7 @@ eval_scorecard:
     - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
     - "evals/run-variablen-check.mjs — 8 Regeln: sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
-    - "evals/run-aufruffehler-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
+    - "evals/run-flag-wache-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
     - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
