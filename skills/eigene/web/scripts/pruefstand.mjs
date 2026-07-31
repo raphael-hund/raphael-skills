@@ -25,6 +25,22 @@ const has = (n) => args.includes(`--${n}`);
 const DIR = path.resolve(get('dir', 'dist'));
 const PORT = Number(get('port', 5399));
 
+// Port pruefen, bevor Node ihn ablehnt.
+//
+// Gemessen am 31.07.2026: `--port abc`, `--port -1` und `--port 99999` endeten
+// mit einem 30-zeiligen Node-Stacktrace (RangeError ERR_SOCKET_BAD_PORT).
+// Fachlich richtig, praktisch unlesbar: wer den Aufruf vertippt, sieht eine
+// Fehlermeldung ueber `validatePort(options.port)` und sucht den Fehler im
+// Werkzeug statt in seiner Eingabe.
+//
+// Dieselbe Ueberlegung wie beim Budget im G1-Tor: ein Wertebereich, den das
+// Werkzeug kennt, gehoert VOR den Lauf — nicht in einen Stacktrace danach.
+if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
+  console.error(`Unbrauchbarer Port: ${get('port', '')}`);
+  console.error('Erlaubt sind ganze Zahlen von 1 bis 65535 (Standard: 5399).');
+  process.exit(2);
+}
+
 if (!existsSync(DIR)) {
   console.error(`Ordner fehlt: ${DIR}`);
   process.exit(2);

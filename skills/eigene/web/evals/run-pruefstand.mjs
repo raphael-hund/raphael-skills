@@ -15,7 +15,7 @@
 // Exit 0 = alle Faelle wie erwartet. Exit 1 = mindestens einer nicht.
 
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -39,6 +39,7 @@ writeFileSync(path.join(wurzel, 'vercel.json'), JSON.stringify({
   rewrites: [{ source: '/api/(.*)', destination: '/team.html' }],
 }, null, 2));
 
+let gezaehlt = 0;
 const FAELLE = [
   { was: 'cleanUrls: /team liefert team.html', pfad: '/team', status: 200, enthaelt: 'Team' },
   { was: 'Startseite', pfad: '/', status: 200, enthaelt: 'Start' },
@@ -95,6 +96,7 @@ for (const f of FAELLE) {
   const statusOk = res.status === f.status;
   const inhaltOk = !f.enthaelt || text.includes(f.enthaelt);
   const ok = statusOk && inhaltOk;
+  gezaehlt += 1;
   console.log(`${ok ? 'OK  ' : 'ROT '} ${f.pfad.padEnd(22)} ${res.status}  ${f.was}`);
   if (!ok) {
     rot++;
@@ -113,10 +115,34 @@ for (let i = 0; i < 60; i++) {
 }
 const ohne = await fetch(`http://localhost:${PORT + 1}/team`);
 const ohneOk = ohne.status === 404;
+gezaehlt += 1;
 console.log(`${ohneOk ? 'OK  ' : 'ROT '} ${'/team ohne vercel.json'.padEnd(22)} ${ohne.status}  cleanUrls bleibt AUS, wenn keine Konfig da ist`);
 if (!ohneOk) { rot++; console.log('       Der Pruefstand erfindet Routen, die Produktion nicht hat'); }
 
-console.log(`\n${FAELLE.length + 1 - rot}/${FAELLE.length + 1} wie erwartet.`);
+// Unbrauchbare Ports muessen VOR dem Lauf auffallen, nicht als Stacktrace.
+//
+// Gemessen am 31.07.2026: `--port abc`, `--port -1` und `--port 99999` endeten
+// mit 30 Zeilen Node-Stacktrace (RangeError ERR_SOCKET_BAD_PORT). Fachlich
+// richtig, praktisch unlesbar — wer sich vertippt, sucht den Fehler im
+// Werkzeug statt in seiner Eingabe.
+{
+  for (const [wert, was] of [['abc', 'keine Zahl'], ['-1', 'negativ'], ['99999', 'zu gross'], ['0', 'null']]) {
+    const r = spawnSync('node', [PRUEFSTAND, '--dir', dist, '--port', wert],
+      { encoding: 'utf8', timeout: 20000 });
+    const aus = `${r.stdout || ''}${r.stderr || ''}`;
+    const ok = r.status === 2 && /Unbrauchbarer Port/.test(aus);
+    if (!ok) rot++;
+    gezaehlt += 1;
+    console.log(`${ok ? 'OK  ' : 'ROT '} ${`Port ${wert} (${was})`.padEnd(22)} exit=${r.status}`);
+    if (!ok) console.log('       Stacktrace statt Klartext — der Leser sucht im falschen Werkzeug.');
+  }
+}
+
+// Selbst zaehlen statt `FAELLE.length + 1`: die feste 1 stand fuer den
+// vercel.json-Fall und kannte die vier Port-Faelle nicht. Sechster Formel-Fall
+// dieser Serie — eine Zahl neben einer Liste veraltet, sobald jemand daneben
+// etwas ergaenzt.
+console.log(`\n${gezaehlt - rot}/${gezaehlt} wie erwartet.`);
 if (rot) {
   console.log('Der Pruefstand misst nicht wie die Produktion. Erst reparieren, dann damit urteilen.');
   process.exit(1);
