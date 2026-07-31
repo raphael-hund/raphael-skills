@@ -43,6 +43,12 @@ const SKRIPTE = path.join(HIER, '..', 'scripts');
 const FRIST_MS = 180000;
 const PORT_HALB = Number(process.env.HALB_PORT || 5431);
 const PORT_GANZ = PORT_HALB + 1;
+// Gzip-Faelle: Content-Length zaehlt die Bytes AUF DER LEITUNG, res.body()
+// liefert sie ENTPACKT. Bei Stufe 0 (nur verpackt) ist die Leitung GROESSER
+// als der Inhalt — genau die Umkehrung, an der die erste Fassung der Wache
+// eine vollstaendige Seite ablehnte.
+const PORT_GZIP = PORT_HALB + 2;
+const PORT_GZIP_HALB = PORT_HALB + 3;
 
 const WERKZEUGE = ['axe-run.mjs', 'craft-check.mjs', 'formular-check.mjs'];
 
@@ -71,11 +77,11 @@ if (fehlend.length) {
   process.exit(2);
 }
 
-for (const p of [PORT_HALB, PORT_GANZ]) {
+for (const p of [PORT_HALB, PORT_GANZ, PORT_GZIP, PORT_GZIP_HALB]) {
   if (httpCode(p) !== '000') {
     console.error(`Port ${p} ist fremdbelegt — diese Eval kann nichts messen.`);
     console.error('Sie liefe gegen eine fremde Seite. Anderen Port setzen:');
-    console.error(`HALB_PORT=<frei>  (belegt werden <frei> und <frei>+1)`);
+    console.error(`HALB_PORT=<frei>  (belegt werden <frei> bis <frei>+3)`);
     process.exit(2);
   }
 }
@@ -114,8 +120,35 @@ class Ganz(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(GANZ)
     def log_message(self, *a): pass
+import gzip
+class Gzip0(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        # Stufe 0: verpackt, aber nicht komprimiert -> gzip GROESSER als roh.
+        packed = gzip.compress(GANZ, 0)
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Content-Encoding', 'gzip')
+        self.send_header('Content-Length', str(len(packed)))
+        self.end_headers()
+        self.wfile.write(packed)
+    def log_message(self, *a): pass
+class GzipHalb(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        packed = gzip.compress(GANZ)
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Content-Encoding', 'gzip')
+        self.send_header('Content-Length', str(len(packed)))
+        self.end_headers()
+        self.wfile.write(packed[:len(packed)//3])
+        self.wfile.flush()
+        time.sleep(1)
+        self.connection.close()
+    def log_message(self, *a): pass
 import threading
 threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_GANZ}), Ganz).serve_forever(), daemon=True).start()
+threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_GZIP}), Gzip0).serve_forever(), daemon=True).start()
+threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_GZIP_HALB}), GzipHalb).serve_forever(), daemon=True).start()
 http.server.HTTPServer(('127.0.0.1', ${PORT_HALB}), Halb).serve_forever()
 `;
 
@@ -164,6 +197,30 @@ for (const name of WERKZEUGE) {
   } else {
     zeile(ganz.status !== 2, `${name} urteilt bei vollstaendiger Antwort normal`,
       `Exit 2 auf einer gueltigen Seite — die Wache ist zu scharf: ${`${ganz.stderr || ''}`.trim().split('\n')[0].slice(0, 46)}`);
+  }
+
+  // Gzip, vollstaendig: Content-Length ist hier die Laenge AUF DER LEITUNG,
+  // res.body() liefert entpackt. Bei Stufe 0 ist die Leitung groesser — die
+  // erste Fassung der Wache lehnte deshalb eine vollstaendige Seite ab
+  // (gemessen 31.07.2026: "Antwort unvollstaendig: 314 von 337 Bytes").
+  const gz = laufen(name, PORT_GZIP);
+  if (gz.error && gz.error.code === 'ETIMEDOUT') {
+    zeile(false, `${name} (gzip vollstaendig)`, `keine Antwort binnen ${FRIST_MS / 1000}s`);
+  } else {
+    zeile(gz.status !== 2, `${name} akzeptiert vollstaendiges gzip (Leitung groesser als Inhalt)`,
+      `Exit 2 — Content-Length gegen entpackte Bytes verglichen: ${`${gz.stderr || ''}`.trim().split('\n')[0].slice(0, 46)}`);
+  }
+
+  // Gzip, abgebrochen: hier MUSS die Ablehnung weiter greifen. Sonst waere die
+  // Ausnahme oben ein Loch statt einer Korrektur.
+  const gzh = laufen(name, PORT_GZIP_HALB);
+  if (gzh.error && gzh.error.code === 'ETIMEDOUT') {
+    zeile(false, `${name} (gzip abgebrochen)`, `keine Antwort binnen ${FRIST_MS / 1000}s`);
+  } else {
+    zeile(gzh.status === 2, `${name} lehnt abgebrochenes gzip ab (Exit 2)`,
+      gzh.status === 0
+        ? 'Exit 0 — meldet die halbe gzip-Seite als sauber'
+        : `Exit ${gzh.status} — urteilt ueber einen abgebrochenen gzip-Strom`);
   }
 }
 

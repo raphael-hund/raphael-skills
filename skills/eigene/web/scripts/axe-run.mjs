@@ -85,8 +85,23 @@ try {
   // wirft es, bei vollstaendiger liefert es genau Content-Length viele Bytes.
   try {
     const roh = await res.body();
-    const versprochen = Number(res.headers()['content-length'] || 0);
-    if (versprochen && roh.length < versprochen) {
+    const kopf = res.headers();
+    const versprochen = Number(kopf['content-length'] || 0);
+    // Content-Length zaehlt die Bytes AUF DER LEITUNG, res.body() liefert sie
+    // ENTPACKT. Bei Content-Encoding sind das zwei verschiedene Zahlen, und
+    // ihr Vergleich sagt nichts ueber Vollstaendigkeit.
+    //
+    // Meist ist entpackt groesser, weshalb der Vergleich zufaellig gutging.
+    // Gemessen 31.07.2026 mit gzip auf Stufe 0 (nur verpackt, nicht
+    // komprimiert): 337 Bytes auf der Leitung, 314 entpackt — alle drei
+    // Werkzeuge lehnten eine vollstaendige, korrekt ausgelieferte Seite als
+    // unvollstaendig ab. Dieselbe Umkehrung tritt bei jeder schlecht
+    // komprimierbaren kleinen Antwort auf.
+    //
+    // Bei kodierter Antwort schuetzt allein, dass res.body() ueberhaupt
+    // gelingt: bei abgebrochener Uebertragung scheitert das Entpacken.
+    const kodiert = Boolean(kopf['content-encoding']);
+    if (!kodiert && versprochen && roh.length < versprochen) {
       throw new Error(`Antwort unvollstaendig: ${roh.length} von ${versprochen} Bytes empfangen`);
     }
   } catch (e) {
