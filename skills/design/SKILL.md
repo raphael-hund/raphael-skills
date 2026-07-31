@@ -51,7 +51,7 @@ eval_scorecard:
     - "evals/run-detect-check.mjs — 31 Faelle: Datei-Modus, 13 von 13 Regeln belegt, Typo-Skala in Variablen beide Richtungen"
     - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
-    - "evals/run-variablen-check.mjs — 3 Regeln: sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
+    - "evals/run-variablen-check.mjs — 5 Regeln: sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
     - "evals/run-eval-umfang.mjs — 3 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"

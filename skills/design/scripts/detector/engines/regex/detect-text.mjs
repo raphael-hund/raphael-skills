@@ -717,7 +717,24 @@ function runTextContentAnalyzers(content, filePath, options = {}) {
 function detectText(content, filePath, options = {}) {
   const profile = options?.profile;
   const findings = [];
-  const lines = content.split('\n');
+  // EINMAL zentral aufloesen statt in jeder Regel einzeln. Die Matcher lesen
+  // Zeilen; steht dort `font-family: var(--font)`, sieht keine Regel den Wert.
+  //
+  // Am 31.07.2026 in sechs Regeln nacheinander gefunden, jede einzeln
+  // repariert — bis der systematische Vergleich (run-variablen-check) zwei
+  // weitere zeigte: gradient-text und overused-font. Ab da ist der zentrale
+  // Schnitt die richtige Antwort: eine Stelle, alle Regeln.
+  //
+  // Zeilenweise ersetzt, damit die Zeilennummern im Bericht stimmen bleiben.
+  //
+  // Das ersetzt die drei lokalen Aufrufe NICHT. Gemessen: nimmt man sie heraus,
+  // fallen 2 von 5 Regeln im Variablen-Check und 4 Faelle im Detect-Check.
+  // Grund: die Matcher hier lesen ZEILEN, drei Regeln (flat-type-hierarchy,
+  // dark-glow, monotonous-spacing) laufen dagegen als eigene Funktionen ueber
+  // den ganzen Dateitext und bekommen diesen hier nie zu sehen. Beide Ebenen
+  // sind noetig — wer eine davon fuer ueberfluessig haelt, hat die andere
+  // gemessen.
+  const lines = varsAufloesen(content).split('\n');
   const ext = extFromFilePath(filePath);
 
   // Run regex matchers on the full file content (catches Tailwind classes, inline styles)

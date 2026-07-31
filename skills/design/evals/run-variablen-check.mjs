@@ -61,6 +61,25 @@ const PROBEN = [
     tokens: `:root{--s:16px}${Array.from({ length: 14 }, (_, i) => `.a${i}{padding:var(--s)}`).join('')}`,
     body: Array.from({ length: 14 }, (_, i) => `<div class="a${i}">x</div>`).join(''),
   },
+  // Diese beiden kamen dazu, als der systematische Vergleich zum ersten Mal
+  // lief (31.07.2026): die Einzelsuche hatte sie nicht erwischt, weil sie
+  // nicht Zahlenwerte lesen, sondern Schriftnamen und Verlaeufe. Sie waren
+  // der Anlass, die Aufloesung zentral zu machen statt Regel fuer Regel.
+  {
+    was: 'abgenutzte Schriftart',
+    regel: 'overused-font',
+    roh: '.b{font-family:Inter,sans-serif}',
+    tokens: ':root{--font:Inter,sans-serif}.b{font-family:var(--font)}',
+    body: '<div class="b">B</div>',
+  },
+  {
+    was: 'Verlauf im Text',
+    regel: 'gradient-text',
+    roh: '.c{background:linear-gradient(90deg,#6366f1,#a855f7);-webkit-background-clip:text;color:transparent}',
+    tokens: ':root{--v:linear-gradient(90deg,#6366f1,#a855f7)}'
+      + '.c{background:var(--v);-webkit-background-clip:text;color:transparent}',
+    body: '<div class="c">C</div>',
+  },
 ];
 
 const seite = (style, body) => `<!doctype html><html lang="de"><head><meta charset="utf-8">`
