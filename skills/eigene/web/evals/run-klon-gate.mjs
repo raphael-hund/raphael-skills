@@ -282,6 +282,47 @@ console.log('\nDie Schwellen im Tor stammen aus dem Playbook:\n');
   }
 }
 
+// --- Die ECHTE Kette, nicht nachgebaute Dateien ---------------------------
+// Alle Faelle oben schreiben ihre JSON selbst. Genau daran ist der
+// diffPixelRatio-Fehler vorbeigekommen: 28 gruene Faelle ueber ein Feld, das
+// das echte Werkzeug nie erzeugt. Ein Fall, der audit-clone WIRKLICH faehrt,
+// prueft die Naht statt der eigenen Annahme.
+console.log('\nDie echte Kette: audit-clone laeuft, das Tor liest sein Ergebnis:\n');
+{
+  const klon = fs.mkdtempSync(path.join(os.tmpdir(), 'klon-echt-'));
+  fs.writeFileSync(path.join(klon, 'index.html'),
+    '<html><body><script src="https://www.google-analytics.com/ga.js"></script>'
+    + '<p>TODO</p></body></html>');
+  // Eigene visual-diff-Datei im eigenen Ordner: die Fixtures oben liegen in
+  // einem Ordner, der bis hierhin schon aufgeraeumt sein kann. Erster Versuch
+  // meldete deshalb "Exit 2 — das Tor laesst einen Tracker durch", obwohl nur
+  // die Diff-Datei fehlte. Ein Befund ueber die falsche Ursache.
+  const diffJson = path.join(klon, 'visual-diff.json');
+  fs.writeFileSync(diffJson, JSON.stringify({
+    threshold: 0.08, changedPixels: 1200, totalPixels: 100000,
+    diffPixelRatio: 0.012, meanAbsDiff: 0.008, visualScore: 4.5,
+  }));
+  const auditJson = path.join(klon, 'audit.json');
+  let auditLief = true;
+  try {
+    execFileSync('node', [path.join(HIER, '..', 'scripts', 'web-clone', 'audit-clone.mjs'),
+      '--project', klon, '--out', path.join(klon, 'A.md'), '--json', auditJson],
+      { encoding: 'utf8', timeout: 120000, stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch { auditLief = fs.existsSync(auditJson); }
+
+  if (!auditLief) {
+    zeile(false, 'audit-clone lief nicht — die Kette ist ungeprueft, nicht bestanden');
+  } else {
+    // Der Tracker im Klon MUSS das Tor reissen. Kommt hier Exit 0, ist die
+    // Rechtspruefung wirkungslos, egal wie gruen die nachgebauten Faelle sind.
+    const r = lauf(['--stufe', 'L2', '--diff', diffJson, '--audit', auditJson]);
+    zeile(r.code === 1 && /audit/.test(r.out),
+      `echter Google-Tracker im Klon -> Exit ${r.code}`,
+      r.code === 1 ? null : 'das Tor laesst einen fremden Tracker durch');
+  }
+  fs.rmSync(klon, { recursive: true, force: true });
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
