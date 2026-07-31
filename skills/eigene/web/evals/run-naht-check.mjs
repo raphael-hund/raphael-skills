@@ -495,7 +495,16 @@ console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
 // die Zahl der Abschnitte, die nicht von einem Bestand abhaengen: sechs feste
 // Pruefungen (Ablaufliste, QUALITAET, Huerde, Exit-2-Art, Schnittmarken,
 // Feldname) plus mindestens je eine aus den drei Schleifen.
-const MINDESTENS = 21;
+// Nachgezogen 31.07.2026: eine Parallel-Session hat die Flag-Wache erweitert,
+// der Lauf druckt jetzt 27 Pruefzeilen statt 21. Die alte Grenze haette sechs
+// stille Ausfaelle durchgelassen.
+//
+// Genau der Grund, warum die SUMME oben selbst zaehlt: sie waechst mit. Die
+// Untergrenze kann das nicht, sie ist eine Behauptung ueber den Bestand — und
+// veraltet damit wie jede feste Zahl (fuenf Formel-Faelle in dieser Serie).
+// Bewusst konservativ: 24 statt 27, damit ein wegfallender Einzelfall nicht
+// sofort Alarm ausloest. Wer drei Pruefungen verliert, hat ein echtes Problem.
+const MINDESTENS = 24;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
