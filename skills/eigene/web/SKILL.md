@@ -155,6 +155,25 @@ Screenshot-Sweep in einem einzigen Exit-Code:
 - **Exit 2** — das Tor selbst ist kaputt (Server nicht erreichbar, Werkzeug fehlt).
   **Ausdrücklich kein Bestanden.** Ein Prüfer, der nicht laufen konnte, hat nichts geprüft.
 
+**Nachgemessen 31.07.2026 an zwei echten Seiten**, nicht an Fixtures. Eine mit
+absichtlich eingebauten Fehlern (Indigo-Violett-Verlauf in der Headline, Inter
+überall, deutsche Werbefloskeln, `border-radius: 9999px` an einer Karte,
+`type="text"` für ein E-Mail-Feld):
+
+```
+[FAIL] lighthouse/ — accessibility 96<100, seo 90<100
+[FAIL] axe/        — 2 Violations: landmark-one-main, region
+[FAIL] ai-slop     — 3 Blocker, 5 Warnungen
+[FAIL] craft/      — 5 Blocker: T2, T8, M23, M24, M13
+[FAIL] formular/   — 1 Blocker: F1
+G1 GERISSEN (Exit 1) — 5 Check(s)
+```
+
+Und dieselbe Kette über eine saubere Seite: `G1 BESTANDEN (Exit 0) — 10
+Check(s) grün.` Beide Richtungen zählen. Ein Tor, das nur rot kann, wird nach
+dem dritten Fehlalarm abgeschaltet — und fängt dann auch den echten Fall nicht
+mehr.
+
 Fehlende Werkzeuge meldet das Tor als SKIP, nie still als PASS. Wer einen SKIP sieht,
 hat ein ungeprüftes Feld — kein grünes. **Und das Tor zählt selbst mit:** ist auch nur
 **einer** der sieben Qualitäts-Prüfer (Lighthouse, axe, AI-Slop, Craft, Formular,
