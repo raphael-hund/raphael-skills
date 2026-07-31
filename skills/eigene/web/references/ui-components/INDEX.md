@@ -83,6 +83,30 @@ liegen in einem Unterordner (`swap/`, `button/`, `table/`, `wallet-card/`,
 | `swap.tsx` | Einzeldatei-Variante des Swap-Widgets (`MultiChainSwap`) neben dem Ordner `swap/` |
 | `wallet-card/`, `table/`, `not-found/` | Weitere komplette Widget-Beispiele (Wallet-Karte, Daten-Tabelle mit Spalten-Resize/Sort/Reorder, 404-Varianten) |
 
+## Der Slop-Scanner meldet hier 232 Treffer — und keiner ist echt
+
+Gemessen 31.07.2026: `scan-ai-slop.mjs` über diesen Ordner ergibt 232 Treffer
+in 114 Dateien, davon **11 in Blocker-Kategorien**. Wer das für bare Münze
+nimmt, baut eine funktionierende Bibliothek kaputt. Jeder einzelne nachgesehen:
+
+| Tell | Treffer | Warum es hier keiner ist |
+|---|---|---|
+| `19` max-radius | 91 | `rounded-full` an Pills, Icon-Buttons, Avataren. Die Regel meint Karten und Inputs — steht so in `ai-slop-detection.md`. |
+| `21`/`22` Ecken | 70 | Verschachtelte Radien in Komponenten, die genau dafür gebaut sind (Sheet im Sheet, Chip in Karte). |
+| `02` Verlauf-Headline | 1 | `text-shimmer.tsx` — ein Shimmer-Effekt *braucht* `bg-clip-text` mit Verlauf. Das ist der Zweck der Datei. |
+| `14` KI-Textstimme | 1 | Das Wort „seamless" in einem **Code-Kommentar**, nicht in Kundencopy. |
+| `24` KI-SVG-Icon | 9 | Fünf `<circle>` als Punktmuster in `expanding-arrow-button.tsx`. Ein gezeichnetes Icon, kein Füll-Ornament. |
+
+**Die Lehre ist nicht „der Scanner ist schlecht".** Er ist auf
+*Kundenseiten* geeicht, nicht auf eine Komponentenbibliothek. Dort ist
+`rounded-full` an einer Karte ein nicht getroffener Default; hier ist es die
+Entscheidung, die die Komponente ausmacht. Deshalb steht in der Doktrin, dass
+jeder Fund **triagiert** wird: Slop ist die Abwesenheit einer Entscheidung.
+
+Praktisch: den Scanner auf das **Kundenprojekt** fahren, nicht auf diesen
+Ordner. Wer ihn doch hier braucht, erwartet diese 232 und sucht das, was neu
+dazukommt.
+
 ## Wo diese Bibliothek NICHT die Antwort ist
 
 Für sieben Aufgaben steht hier eine handgeschriebene Komponente **und** im

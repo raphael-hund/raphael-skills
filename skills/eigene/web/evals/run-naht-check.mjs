@@ -33,6 +33,8 @@
  * Exit 0 = jede Naht haelt. Exit 1 = mindestens eine ist offen.
  */
 import fs from 'node:fs';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -256,8 +258,6 @@ console.log('\nJeder Pruefer haengt am Tor — sonst ist er Dekoration:\n');
 // Seite und gehoeren ins Anti-Set, nicht in einen Sekundenlauf.
 console.log('\nDie vom Tor gelesenen Felder stehen in der echten Ausgabe:\n');
 {
-  const os = await import('node:os');
-  const { execFileSync } = await import('node:child_process');
   const probe = fs.mkdtempSync(path.join(os.tmpdir(), 'naht-'));
   fs.writeFileSync(path.join(probe, 'x.ts'), 'export const a = 1;\n');
   fs.writeFileSync(path.join(probe, 's.css'),
