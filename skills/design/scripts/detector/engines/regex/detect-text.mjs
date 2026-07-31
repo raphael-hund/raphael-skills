@@ -62,6 +62,36 @@ function hexChannels(color) {
 }
 
 /**
+ * CSS-Variablen einmal aufloesen: `var(--x)` durch den hinterlegten Wert
+ * ersetzen.
+ *
+ * Warum das hier steht und nicht in jeder Regel einzeln: dieselbe Blindheit
+ * ist am 31.07.2026 DREIMAL aufgefallen — flat-type-hierarchy (Typo-Skala),
+ * dark-glow (Schatten) und monotonous-spacing (Abstaende). Jedes Mal
+ * funktionierte die Regel auf hingeschriebenem CSS und schwieg auf jedem
+ * Projekt mit Design-Tokens, also genau dort, wofuer sie gebaut ist.
+ *
+ * Der Browser-Pfad (rules/checks.mjs) hat das Problem nicht: getComputedStyle
+ * liefert aufgeloeste Werte. Nur der Datei-Modus liest rohen Text.
+ *
+ * Bewusst EINE Runde, nicht rekursiv: `--a: var(--b)` kommt vor, aber tiefer
+ * verschachtelte Ketten sind selten, und eine Endlosschleife bei
+ * `--a: var(--a)` waere schlimmer als ein verpasster Fund.
+ */
+export function varsAufloesen(content) {
+  const werte = new Map();
+  const varRe = /(--[a-z0-9-]+)\s*:\s*([^;{}]+)/gi;
+  let m;
+  while ((m = varRe.exec(content)) !== null) {
+    const wert = m[2].trim();
+    if (!/^var\(/i.test(wert)) werte.set(m[1], wert);
+  }
+  if (!werte.size) return content;
+  return content.replace(/var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)/gi,
+    (ganz, name) => (werte.has(name) ? werte.get(name) : ganz));
+}
+
+/**
  * Split one box-shadow layer into top-level tokens.
  *
  * Whitespace inside parens does not separate tokens: `rgb(0 0 0)` and
@@ -328,6 +358,10 @@ const REGEX_ANALYZERS = [
   },
   // Monotonous spacing (regex)
   (content, filePath) => {
+    // Dritter Fall derselben Blindheit (31.07.2026): 14 Bloecke mit
+    // `padding: 16px` wurden gefunden, dieselben 14 mit `padding: var(--s)`
+    // nicht — und Design-Systeme schreiben Abstaende immer so.
+    content = varsAufloesen(content);
     const vals = [];
     let m;
     const pxRe = /(?:padding|margin)(?:-(?:top|right|bottom|left))?\s*:\s*(\d+)px/gi;

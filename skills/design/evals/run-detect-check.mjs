@@ -328,6 +328,34 @@ zeile(k.ids.length === 0, 'saubere Seite, 0 Anti-Patterns',
     grauVar.ids.includes('dark-glow') ? 'jeder Schatten gilt jetzt als Glow' : null);
 }
 
+// Abstaende in CSS-Variablen — der dritte Fall derselben Blindheit.
+//
+// 14 Bloecke mit `padding: 16px` wurden als monotoner Rhythmus gefunden,
+// dieselben 14 mit `padding: var(--s)` nicht. Ab hier loest eine gemeinsame
+// Funktion (varsAufloesen) auf, statt es je Regel zu wiederholen.
+{
+  const bloecke = (klasse) => Array.from({ length: 14 }, (_, i) => `<div class="${klasse}${i}">x</div>`).join('');
+  const gleich = lauf(seite({
+    style: `:root{--s:16px}${Array.from({ length: 14 }, (_, i) => `.a${i}{padding:var(--s)}`).join('')}`,
+    body: bloecke('a'),
+  }));
+  zeile(gleich.ids.includes('monotonous-spacing'),
+    '14x derselbe Abstand als CSS-Variable -> gefunden',
+    gleich.ids.includes('monotonous-spacing') ? null : 'die Variable wird nicht aufgeloest');
+
+  // Gegenprobe: eine echte Abstands-Skala in Tokens ist kein monotoner
+  // Rhythmus. Ohne sie waere die Regel auch dadurch "bestanden", dass sie auf
+  // jedes Projekt mit Design-Tokens anschlaegt.
+  const variiert = lauf(seite({
+    style: ':root{--s1:8px;--s2:16px;--s3:32px;--s4:64px}'
+      + Array.from({ length: 14 }, (_, i) => `.b${i}{padding:var(--s${(i % 4) + 1})}`).join(''),
+    body: bloecke('b'),
+  }));
+  zeile(!variiert.ids.includes('monotonous-spacing'),
+    'echte Abstands-Skala in Variablen (8/16/32/64) -> kein Fehlalarm',
+    variiert.ids.includes('monotonous-spacing') ? 'jedes Token-Projekt gilt jetzt als monoton' : null);
+}
+
 // --- 2. Jede Regel einzeln ------------------------------------------------
 console.log('\nJede Regel einzeln — die eigene ID MUSS im Bericht stehen:\n');
 for (const [schluessel, f] of Object.entries(FAELLE)) {
