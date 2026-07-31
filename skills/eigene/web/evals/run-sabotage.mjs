@@ -77,6 +77,20 @@ process.on('exit', () => { try { fs.rmSync(SPERRE, { force: true }); } catch { /
 
 const SCHAEDEN = [
   {
+    kurz: 'lib-lookup',
+    was: 'Ablehnung erfundener Libraries abgeschaltet',
+    beleg: 'Library nicht im Tresor',
+    pruefer: 'scripts/lib-lookup.mjs',
+    eval: 'evals/run-lib-lookup.mjs',
+    // Der einzige Pruefer, der bis zum 31.07.2026 keinen Sabotage-Fall hatte.
+    // Sein Ablehnungszweig ("nicht im Tresor") ist die eigentliche Leistung:
+    // ohne ihn bekommt ein Modell auf jede erfundene Library eine Antwort.
+    // Eindeutig durch den Funktionskopf davor: '  if (!treffer.length) {'
+    // allein steht zweimal in der Datei (Zeile 90 und 149).
+    von: 'function detail(name, mitApi) {\n  const treffer = alleLibs().filter((n) => n === name || n.endsWith(\'/\' + name) || n.includes(name));\n  if (!treffer.length) {',
+    zu: 'function detail(name, mitApi) {\n  const treffer = alleLibs().filter((n) => n === name || n.endsWith(\'/\' + name) || n.includes(name));\n  if (false) {',
+  },
+  {
     kurz: 'tastatur',
     beleg: 'listbox ohne Pfeiltasten',
     pruefer: 'scripts/tastatur-check.mjs',
@@ -237,7 +251,19 @@ function laufEval(rel) {
 // hinterlassen hat — und meldet "Ankertext nicht gefunden" statt der Ursache.
 {
   const dreckig = [];
-  for (const s of SCHAEDEN) {
+  // Ein Fall ohne `was` druckt "kurz: undefined" — das liest sich wie ein Bug im
+// Pruefer statt wie ein unvollstaendiger Fall. Gefunden am 31.07.2026 am eigenen
+// frisch gebauten lib-lookup-Fall.
+const PFLICHT = ['kurz', 'was', 'pruefer', 'eval', 'von', 'zu'];
+for (const s of SCHAEDEN) {
+  const fehlt = PFLICHT.filter((k) => !s[k]);
+  if (fehlt.length) {
+    console.error(`Sabotage-Fall "${s.kurz || '(ohne Namen)'}" fehlt: ${fehlt.join(', ')}`);
+    process.exit(2);
+  }
+}
+
+for (const s of SCHAEDEN) {
     const datei = path.join(SKILL, s.pruefer);
     if (!fs.existsSync(datei)) continue;
     const txt = fs.readFileSync(datei, 'utf8');
@@ -297,6 +323,16 @@ for (const s of SCHAEDEN) {
   if (!fs.existsSync(datei)) { zeile(false, `${s.kurz}: ${s.pruefer} fehlt`); continue; }
 
   const original = fs.readFileSync(datei, 'utf8');
+  // Ein Anker, der zweimal im Pruefer steht, beschaedigt beim ersten
+  // `replace` eine womoeglich andere Stelle als gemeint — und der Fall belegt
+  // dann etwas anderes, als sein Text behauptet. Gefunden am 31.07.2026 beim
+  // Bau des lib-lookup-Falls: '  if (!treffer.length) {' steht dort an zwei
+  // Stellen (Zeile 90 und 149).
+  if (original.split(s.von).length - 1 > 1) {
+    zeile(false, `${s.kurz}: Anker steht mehrfach im Pruefer`,
+      `"${s.von.trim().slice(0, 50)}" kommt ${original.split(s.von).length - 1}x vor — nicht eindeutig`);
+    continue;
+  }
   if (!original.includes(s.von)) {
     // Wichtiger Fall: der Schaden liess sich gar nicht einbauen. Das ist KEIN
     // Bestehen — es heisst, dieser Lauf hat nichts gemessen. Beim Bauen ist mir
