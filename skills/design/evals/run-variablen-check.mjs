@@ -80,7 +80,49 @@ const PROBEN = [
       + '.c{background:var(--v);-webkit-background-clip:text;color:transparent}',
     body: '<div class="c">C</div>',
   },
+  // Diese drei liefen in einer Sammelprobe mit und hatten deshalb keinen
+  // eigenen Fall — die neue Abdeckungs-Wache unten hat das sofort gemeldet.
+  // "Ich hab's mal mitgetestet" ist kein Testfall: beim naechsten Umbau weiss
+  // niemand mehr, was mitgelaufen ist.
+  {
+    was: 'Indigo-Violett-Verlauf',
+    regel: 'ai-color-palette',
+    roh: '.v{background:linear-gradient(90deg,#6366f1,#a855f7)}',
+    tokens: ':root{--v:linear-gradient(90deg,#6366f1,#a855f7)}.v{background:var(--v)}',
+    body: '<div class="v">V</div>',
+  },
+  {
+    was: 'Bounce-Kurve',
+    regel: 'bounce-easing',
+    roh: '.d{transition:transform .3s cubic-bezier(.68,-.55,.27,1.55)}',
+    tokens: ':root{--b:cubic-bezier(.68,-.55,.27,1.55)}.d{transition:transform .3s var(--b)}',
+    body: '<div class="d">D</div>',
+  },
+  {
+    was: 'Layout-Transition',
+    regel: 'layout-transition',
+    roh: '.e{transition:width .3s ease}',
+    tokens: ':root{--t:.3s}.e{transition:width var(--t) ease}',
+    body: '<div class="e">E</div>',
+  },
 ];
+
+// Warum die restlichen vier keine Probe brauchen:
+//
+// Am 31.07.2026 nachgezaehlt: der Datei-Modus hat 9 benannte Regeln. Fuenf
+// davon lesen Werte, die in Tokens stehen koennen (oben). Die restlichen
+  // vier sind geprueft und brauchen keine Probe:
+  //
+//   side-tab, border-accent-on-rounded  — messen Kanten und Radien; mit
+//       Tokens gegengeprueft, beide Formen ergeben dasselbe Urteil.
+//   broken-image                        — liest ein src-Attribut, kein CSS.
+//   gray-on-color                       — reine Tailwind-Klassenregel,
+//       CSS-Variablen kommen darin nicht vor.
+  //
+// ai-color-palette, bounce-easing und layout-transition sind ueber die
+  // Sechser-Probe mitgelaufen (beide Formen identisch) und haengen an
+  // denselben zentralen Zeilen wie overused-font.
+
 
 const seite = (style, body) => `<!doctype html><html lang="de"><head><meta charset="utf-8">`
   + `<title>Probe</title><style>${style}</style></head><body>${body}</body></html>\n`;
@@ -123,6 +165,32 @@ for (const p of PROBEN) {
     ? `  [OK]   ${p.was}: ${p.regel} in beiden Formen gefunden`
     : `  [!!]   ${p.was}: ${p.regel} nur in roher Form — Tokens machen sie blind`);
   if (!ok) fehler++;
+}
+
+// Kommt eine Regel dazu, faellt sie hier auf. Ohne diese Wache waechst der
+// Detektor weiter, und der Vergleich prueft immer dieselben fuenf — genau die
+// Alterung, die diese Luecke sechs Runden lang am Leben hielt.
+{
+  const quelle = fs.readFileSync(
+    path.join(HIER, '..', 'scripts', 'detector', 'engines', 'regex', 'detect-text.mjs'), 'utf8');
+  const alle = [...new Set([...quelle.matchAll(/id: '([a-z0-9-]+)'/g)].map((m) => m[1]))];
+  const geprueft = new Set(PROBEN.map((p) => p.regel));
+  // Bewusst ohne Probe, Begruendung im Kommentar bei der Probenliste.
+  const OHNE_PROBE = new Set(['side-tab', 'border-accent-on-rounded', 'broken-image', 'gray-on-color']);
+  const offen = alle.filter((r) => !geprueft.has(r) && !OHNE_PROBE.has(r));
+  const toteAusnahmen = [...OHNE_PROBE].filter((r) => !alle.includes(r));
+
+  if (offen.length) {
+    console.log(`  [!!]   ${offen.length} Regel(n) ohne Variablen-Probe: ${offen.join(', ')}`);
+    console.log('         Entweder eine Probe bauen oder mit Begruendung ausnehmen.');
+    fehler++;
+  } else if (toteAusnahmen.length) {
+    console.log(`  [!!]   ${toteAusnahmen.length} Ausnahme(n) ohne Regel: ${toteAusnahmen.join(', ')}`);
+    console.log('         Die Liste wird zur Muellhalde und deckt spaeter echte Luecken zu.');
+    fehler++;
+  } else {
+    console.log(`  [OK]   ${alle.length} Regeln im Datei-Modus, ${geprueft.size} mit Probe, ${OHNE_PROBE.size} begruendet ohne`);
+  }
 }
 
 console.log(`\n${PROBEN.length - fehler}/${PROBEN.length} Regeln sehen durch Tokens hindurch.`);
