@@ -85,6 +85,21 @@ const TREFFER = [
   ['de-16', 'Das i-Tuepfelchen auf Ihrem Projekt.'],
   ['de-16', 'Wir entfesseln Ihr Potenzial.'],
   ['de-16', 'Wir bieten nahtlose Ablaeufe und einzigartige Qualitaet.'],
+  // --- Nachgetragen 31.07.2026 ------------------------------------------
+  // Gemessen: vier der 26 Muster in rules.de.mjs hatten keinen einzigen
+  // Testsatz — obwohl der Kopf dieser Datei "jedes Muster findet seinen
+  // Beispielsatz" verspricht. Alle vier funktionierten bei der Pruefung; das
+  // ist Glueck, kein Nachweis. Ein Muster ohne Testsatz kann beim naechsten
+  // Umbau still kaputtgehen, und die Eval bliebe gruen.
+  //
+  // Der Gedankenstrich in der ersten Zeile ist ein echter Halbgeviertstrich —
+  // das Muster verlangt ihn (oder Bindestrich) VOR "sondern". Die schon
+  // vorhandene Variante "nicht nur ..., sondern" ohne Strich trifft ein
+  // anderes Muster derselben Regel.
+  ['de-14', 'Wir liefern nicht nur Tempo — sondern auch Qualitaet.'],
+  ['de-16', 'Eine Marke voller Potenziale wartet auf Sie.'],
+  ['de-16', 'Jetzt das Potenzial entfesseln und durchstarten.'],
+  ['de-15', 'Wirklich?! Das haetten Sie nicht gedacht.'],
 ];
 
 // Steht in floskel-verbote.md, ist aber bewusst NICHT als Muster gebaut: eine
@@ -261,6 +276,35 @@ zeile(gateQuelle.includes('rules.de.mjs fehlt'),
 //
 // Geprueft 30.07.2026: in dieser Datei stimmte sie noch. Umgebaut wird trotzdem
 // — die Bauart ist der Fehler, nicht erst sein Eintreten.
+// --- 3b. Kein Muster ohne Testsatz ----------------------------------------
+// Der Kopf dieser Datei verspricht "jedes Muster findet seinen Beispielsatz".
+// Bis zum 31.07.2026 war das eine Behauptung: vier der 26 Muster hatten
+// keinen. Sie funktionierten zufaellig alle — aber ein Muster ohne Testsatz
+// kann beim naechsten Umbau still kaputtgehen, und die Eval bliebe gruen.
+//
+// Diese Wache dreht die Richtung um: nicht "laufen meine Saetze durch?",
+// sondern "hat jedes Muster einen Satz, der es auslöst?". Sie faellt beim
+// naechsten neu ergaenzten Muster sofort auf, nicht erst beim naechsten
+// Handzaehlen.
+console.log('\nJedes Muster braucht einen Beispielsatz — sonst prueft es niemand:\n');
+{
+  const saetze = TREFFER.map(([, satz]) => satz);
+  const ohne = [];
+  for (const t of REGELSATZ) {
+    for (const muster of t.patterns) {
+      // Globale Regexe merken sich ihre Position — ohne lastIndex-Reset
+      // liefert derselbe Ausdruck beim zweiten Satz false.
+      const trifft = saetze.some((satz) => { muster.lastIndex = 0; return muster.test(satz); });
+      if (!trifft) ohne.push(`${t.id}: ${String(muster).slice(0, 55)}`);
+    }
+  }
+  const gesamtMuster = REGELSATZ.reduce((n, t) => n + t.patterns.length, 0);
+  zeile(ohne.length === 0,
+    `alle ${gesamtMuster} Muster aus rules.de.mjs haben einen Beispielsatz in TREFFER`,
+    ohne.length === 0 ? null
+      : `${ohne.length} ohne Satz — ${ohne.slice(0, 3).join(' | ')}${ohne.length > 3 ? ' …' : ''}`);
+}
+
 // --- 4. Der Regelsatz muss auch wirklich ankommen -------------------------
 // Alles oben prueft die MUSTER. Dieser Abschnitt prueft den WEG: der beste
 // deutsche Regelsatz nuetzt nichts, wenn der Aufruf ihn unterwegs verliert.
