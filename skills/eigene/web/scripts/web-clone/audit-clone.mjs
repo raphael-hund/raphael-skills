@@ -11,7 +11,16 @@ Scans clone source files for tracking scripts, original-brand residue, Japanese 
 }
 
 function parseArgs(argv) {
-  const out = { project: process.cwd(), brand: [], out: "CLONE_AUDIT.md" };
+  // `project` bewusst OHNE Voreinstellung. Bis zum 31.07.2026 stand hier
+  // process.cwd(): `node audit-clone.mjs` ohne Argument scannte den Ordner, in
+  // dem man gerade stand, schrieb CLONE_AUDIT.md hinein und endete mit Exit 0.
+  // Gemessen — die Datei landete im scripts/-Ordner dieses Skills.
+  //
+  // Dasselbe Muster wie bei import-check (--src fiel still auf '.' zurueck):
+  // ein Bericht ueber das falsche Projekt sieht aus wie ein Bericht ueber das
+  // richtige. Bei einem Werkzeug, das fremde Tracker im Klon sucht, heisst das
+  // "keine Funde" ueber Code, den niemand angesehen hat.
+  const out = { project: "", brand: [], out: "CLONE_AUDIT.md" };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--help" || arg === "-h") out.help = true;
@@ -129,6 +138,11 @@ try {
     process.exit(0);
   }
 
+  if (!args.project) {
+    console.error("Fehler: --project fehlt.");
+    usage();
+    process.exit(2);
+  }
   const project = path.resolve(args.project);
   if (!fs.existsSync(project)) throw new Error(`Project not found: ${project}`);
 
