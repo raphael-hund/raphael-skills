@@ -90,7 +90,19 @@ export function fallzahl(evalOrdner, datei, cwd) {
   const libs = aus.match(/^(\d+) Libraries, jede/m);
   if (libs) return { zahl: Number(libs[1]), form: 'Libraries' };
   if (/Alle Verweise loesen auf/.test(aus)) return { zahl: null, form: 'ohne Fallzahl' };
-  const okZeilen = (aus.match(/^OK\s{2,}/gm) || []).length;
+  // Einrueckung und beide Markierungs-Konventionen zulassen.
+  //
+  // `^OK` verlangte Spalte 0. Gemessen am 31.07.2026: run-lib-lookup druckt
+  // "OK   <was>" ohne Einrueckung, der Pfad liefert 13 Faelle — richtig. Ruecke
+  // ich die Ausgabe kosmetisch um zwei Leerzeichen ein, liefert er 0, und die
+  // Wache meldet "keine Fallzahl gefunden" fuer eine intakte Eval.
+  //
+  // Der Bestand kennt zwei Konventionen nebeneinander: 18x "!!" fuer den
+  // Fehlerfall, 11x "ROT". Wer eine Eval von der einen auf die andere
+  // umstellt, darf die Wache nicht blenden. Beide zaehlen jetzt mit, und die
+  // Klammerform `  [OK]` ebenfalls — sonst haengt die Erkennung an einem
+  // Detail, das jede Formatierung kippt.
+  const okZeilen = (aus.match(/^\s*(?:\[(?:OK|!!|ROT)\]|OK|ROT)\s{2,}/gm) || []).length;
   if (okZeilen > 0) return { zahl: okZeilen, form: 'OK-Zeilen' };
 
   // "Werkzeug fehlt" ist etwas anderes als "Eval geschrumpft" — dieselbe
