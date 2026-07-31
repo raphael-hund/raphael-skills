@@ -55,7 +55,7 @@ requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, u
 eval_scorecard:
   stand: 2026-07-31
   laeufe:
-    - "evals/run-antiset.mjs — 17 Faelle: reisst das Tor an jedem eingebauten Fehler?"
+    - "evals/run-antiset.mjs — 18 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 14 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-eval-umfang.mjs — 35 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"

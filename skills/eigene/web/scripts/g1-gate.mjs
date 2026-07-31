@@ -369,6 +369,30 @@ function checkServer() {
     const code = run('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', `${BASE}${ROUTES[0]}`]).trim();
     if (!/^[23]/.test(code)) { record('server', false, `${BASE}${ROUTES[0]} -> HTTP ${code}`); return false; }
     record('server', true, `${BASE}${ROUTES[0]} -> HTTP ${code}`);
+
+    // ALLE Routen pruefen, nicht nur die erste. Bis zum 31.07.2026 sah das Tor
+    // nur ROUTES[0] an; eine weitere Route mit HTTP 404 lief ungeprueft in die
+    // Pruefer und erzeugte dort FAIL-Zeilen — dieselbe Kategorie wie echte
+    // Qualitaetsmaengel. Gemessen mit --routes "/,/weg": sieben FAILs, davon
+    // vier allein aus der toten Route. Ein Tippfehler in der Routenliste sah
+    // damit aus wie kaputtes Design.
+    //
+    // Der Unterschied zaehlt, weil das Tor zwei Ausgaenge hat: Exit 1 heisst
+    // "geprueft und durchgefallen", Exit 2 heisst "gar nicht erst pruefbar".
+    // Eine Route, die es nicht gibt, gehoert in die zweite Klasse.
+    const tot = [];
+    for (const r of ROUTES.slice(1)) {
+      let c = '000';
+      try {
+        c = run('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', `${BASE}${r}`]).trim();
+      } catch { c = '000'; }
+      if (!/^[23]/.test(c)) tot.push(`${r} -> ${c === '000' ? 'nicht erreichbar' : `HTTP ${c}`}`);
+    }
+    if (tot.length) {
+      record('routen', false, `${tot.length} von ${ROUTES.length} Routen antworten nicht: ${tot.join(', ')} — Tippfehler in --routes?`);
+      return false;
+    }
+    if (ROUTES.length > 1) record('routen', true, `alle ${ROUTES.length} Routen antworten`);
     return true;
   } catch (e) {
     record('server', false, `nicht erreichbar: ${e.message.split('\n')[0]}`);

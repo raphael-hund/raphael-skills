@@ -358,18 +358,44 @@ fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(mehr, 'index.html'
 fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(mehr, 'team.html'));
 for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(mehr, b));
 
+// Fuer den Fall 'tote-route-neben-mangel': ein Ordner, dessen Startseite einen
+// echten a11y-Mangel hat. Nur so unterscheidet der Fall die Routen-Vorpruefung
+// von der aelteren "alle Fehler sind Abstuerze"-Regel.
+const gemischt = path.join(wurzel, 'gemischt');
+fs.mkdirSync(gemischt, { recursive: true });
+fs.copyFileSync(path.join(FIXTURES, 'a4-a11y-kaputt.html'), path.join(gemischt, 'index.html'));
+fs.copyFileSync(path.join(FIXTURES, '_basis.html'), path.join(gemischt, 'team.html'));
+for (const b of BEIWERK) fs.copyFileSync(path.join(FIXTURES, b), path.join(gemischt, b));
+
 const ROUTEN_FAELLE = [
   { was: 'mehrseitig-ohne-routes',   routes: null,             exit: 2, warum: '2 Seiten im Build, --routes fehlt ganz' },
   { was: 'mehrseitig-halbe-routes',  routes: '/',              exit: 2, warum: 'nur "/" genannt, /team.html ungesehen' },
   { was: 'mehrseitig-alle-routes',   routes: '/,/team.html',   exit: 0, warum: 'alle Seiten genannt -> darf gruen werden' },
+  // Befund 31.07.2026: das Tor pruefte nur ROUTES[0] auf Erreichbarkeit. Eine
+  // weitere Route mit HTTP 404 lief ungeprueft in die Pruefer und erzeugte dort
+  // FAIL-Zeilen — dieselbe Kategorie wie echte Qualitaetsmaengel. Gemessen an
+  // einer Seite MIT Qualitaetsmaengeln: sieben FAILs, vier allein aus der toten
+  // Route, Urteil Exit 1. Ein Tippfehler in --routes sah aus wie kaputtes
+  // Design.
+  //
+  // WICHTIG fuer die Beweiskraft: die Fixture muss selbst einen Mangel haben.
+  // Auf der sauberen _basis.html war der Absturz der EINZIGE Fehler, und dann
+  // greift schon die aeltere every()-Regel ("alle Fehler sind Abstuerze ->
+  // Exit 2"). Ein Fall auf sauberer Fixture bleibt darum auch ohne die neue
+  // Routen-Vorpruefung gruen und belegt nichts — nachgemessen.
+  //
+  // Darum laeuft dieser Fall gegen a4-a11y-kaputt.html: dort steht ein echter
+  // Qualitaetsmangel neben der toten Route. Ohne Vorpruefung mischt sich beides
+  // zu Exit 1; mit ihr bricht das Tor vorher mit Exit 2 ab.
+  { was: 'tote-route-neben-mangel',  routes: '/,/gibtsnicht.html', exit: 2, ordner: 'gemischt', warum: 'tote Route neben echtem Mangel — das Tor darf kein Qualitaetsurteil faellen' },
 ];
 
 for (const f of ROUTEN_FAELLE) {
   sag(`\n.. laeuft: ${f.was}`);
   const lauf = spawnSync('node', [
     path.join(SKILL, 'scripts/g1-gate.mjs'),
-    '--url', `http://localhost:${PORT}/mehrseitig/`,
-    '--src', mehr,
+    '--url', `http://localhost:${PORT}/${f.ordner || 'mehrseitig'}/`,
+    '--src', f.ordner ? path.join(wurzel, f.ordner) : mehr,
     '--budget', BUDGET,
     '--no-shots',
     ...(f.routes ? ['--routes', f.routes] : []),
