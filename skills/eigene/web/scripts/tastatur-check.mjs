@@ -54,8 +54,18 @@ const args = process.argv.slice(2);
 const alsJson = args.includes('--json');
 const wurzel = args.find((a) => !a.startsWith('--'));
 
-if (!wurzel || args.includes('--help')) {
-  console.error('Aufruf: node tastatur-check.mjs <projektordner> [--json]');
+// --help ist kein Fehlerfall. Beide Faelle drucken dieselbe Zeile, aber sie
+// bedeuten Verschiedenes: wer --help tippt, hat bekommen was er wollte
+// (Exit 0, Hilfe auf stdout); wer den Ordner vergisst, hat einen Fehler
+// (Exit 2, Meldung auf stderr). Bis zum 31.07.2026 endeten beide mit Exit 2 —
+// in einer Kette liest das jedes Skript als "Pruefer kaputt".
+const hilfe = 'Aufruf: node tastatur-check.mjs <projektordner> [--json]';
+if (args.includes('--help')) {
+  console.log(hilfe);
+  process.exit(0);
+}
+if (!wurzel) {
+  console.error(hilfe);
   process.exit(2);
 }
 if (!fs.existsSync(wurzel) || !fs.statSync(wurzel).isDirectory()) {

@@ -54,13 +54,24 @@ function zeile(ok, was, detail) {
 }
 
 // Nur Skripte mit einer eigenen Aufrufzeile im Kopf haben eine CLI.
-const kandidaten = fs.readdirSync(SKRIPTE)
-  .filter((n) => n.endsWith('.mjs'))
-  .filter((n) => {
-    const kopf = fs.readFileSync(path.join(SKRIPTE, n), 'utf8').split('\n').slice(0, 25).join('\n');
-    return kopf.includes(`node ${n}`);
-  })
-  .sort();
+//
+// Auch scripts/web-clone/: 13 weitere Werkzeuge, die bis zum 31.07.2026 nicht
+// mitgeprueft wurden. Sie beantworten --help alle korrekt (von Hand
+// nachgesehen) — aber dasselbe galt fuer ihre Flags, bis der Flag-Waechter
+// aufgeweitet wurde und zwei undokumentierte fand. Ein Ordner, den keine Eval
+// betritt, ist kein sauberer Ordner, sondern ein ungeprüfter.
+const CLONE = path.join(SKRIPTE, 'web-clone');
+const sammeln = (ordner, praefix = '') => (fs.existsSync(ordner)
+  ? fs.readdirSync(ordner)
+    .filter((n) => n.endsWith('.mjs'))
+    .filter((n) => {
+      const kopf = fs.readFileSync(path.join(ordner, n), 'utf8').split('\n').slice(0, 25).join('\n');
+      return kopf.includes(`node ${n}`) || kopf.includes(`/${n}`);
+    })
+    .map((n) => `${praefix}${n}`)
+  : []);
+
+const kandidaten = [...sammeln(SKRIPTE), ...sammeln(CLONE, 'web-clone/')].sort();
 
 // Eine leere Kandidatenliste sieht wie ein sauberer Lauf aus — sie bedeutet
 // aber, dass die Kopf-Erkennung kaputt ist, nicht dass alles stimmt.
@@ -92,8 +103,13 @@ for (const name of kandidaten) {
   }
   // Die Hilfe muss den eigenen Namen nennen. Sonst koennte ein Werkzeug die
   // Hilfe eines anderen ausgeben und diese Eval merkte nichts.
-  if (!aus.includes(name)) {
-    zeile(false, `${name} --help`, `Ausgabe nennt "${name}" nicht — gehoert die Hilfe zu diesem Werkzeug?`);
+  // Gegen den DATEINAMEN vergleichen, nicht gegen den Pfad: die
+  // Klon-Werkzeuge heissen hier "web-clone/visual-diff.mjs", schreiben in
+  // ihrer Hilfe aber "node scripts/visual-diff.mjs". Der Ordner-Praefix ist
+  // unsere Buchhaltung, nicht ihre.
+  const dateiname = path.basename(name);
+  if (!aus.includes(dateiname)) {
+    zeile(false, `${name} --help`, `Ausgabe nennt "${dateiname}" nicht — gehoert die Hilfe zu diesem Werkzeug?`);
     continue;
   }
   zeile(true, `${name} --help`);
