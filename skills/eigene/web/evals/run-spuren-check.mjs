@@ -29,9 +29,8 @@
 // Exit 0 = kein Werkzeug hinterlaesst etwas. Exit 1 = mindestens eines schon.
 // Exit 2 = die Eval selbst kann nicht pruefen (kein Server, kein Werkzeug).
 
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
-import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -78,25 +77,41 @@ if (fehlend.length) {
   process.exit(2);
 }
 
-// Eine echte Seite, kein Fixture-Ordner: die Werkzeuge sollen wirklich einen
-// Browser starten. Genau der ist ja der Gegenstand.
-const server = http.createServer((_req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-  res.end('<!doctype html><html lang="de"><head><meta charset="utf-8">'
-    + '<title>Spuren-Check</title></head><body><h1>Seite</h1>'
-    + '<form><label for="a">Name</label><input id="a" name="a"></form>'
-    + '</body></html>');
-});
+// Der Testserver MUSS ein eigener Prozess sein. Ein http.createServer im
+// selben Prozess sieht funktionierend aus, kann aber nichts beantworten,
+// solange spawnSync laeuft — spawnSync blockiert die Event-Loop vollstaendig.
+// Gemessen 31.07.2026: curl gegen den eigenen Server waehrend eines
+// spawnSync-Aufrufs liefert HTTP-Code 000. Die Werkzeuge liefen dann in
+// "page.goto: Timeout 45000ms exceeded" — und diese Eval meldete trotzdem
+// 6/6, weil sie nur Profilordner zaehlte und nie den Exit-Code ansah.
+const SEITE = fs.mkdtempSync(path.join(os.tmpdir(), 'spuren-seite-'));
+fs.writeFileSync(path.join(SEITE, 'index.html'),
+  '<!doctype html><html lang="de"><head><meta charset="utf-8">'
+  + '<title>Spuren-Check</title></head><body><h1>Seite</h1>'
+  + '<form><label for="a">Name</label><input id="a" name="a"></form>'
+  + '</body></html>\n');
 
-await new Promise((gut, schlecht) => {
-  server.on('error', schlecht);
-  server.listen(PORT, '127.0.0.1', gut);
-}).catch((e) => {
-  console.error(`Kein Testserver auf Port ${PORT}: ${e.message}`);
-  console.error('Ohne laufende Seite startet kein Werkzeug einen Browser —');
-  console.error('dann misst diese Eval nichts und saehe trotzdem sauber aus.');
+const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'],
+  { cwd: SEITE, stdio: 'ignore', detached: false });
+
+// Warten, bis er wirklich antwortet. Ein `listen`-Callback des eigenen
+// Prozesses gibt es hier nicht mehr, und blind zu schlafen waere ein Test,
+// der auf langsamen Maschinen zufaellig durchfaellt.
+let bereit = false;
+for (let i = 0; i < 50 && !bereit; i += 1) {
+  const p = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+    '-w', '%{http_code}', `http://127.0.0.1:${PORT}/`], { encoding: 'utf8' });
+  if (p.stdout && p.stdout.trim() === '200') bereit = true;
+  else spawnSync('sleep', ['0.2']);
+}
+if (!bereit) {
+  server.kill('SIGKILL');
+  fs.rmSync(SEITE, { recursive: true, force: true });
+  console.error(`Kein Testserver auf Port ${PORT} — nach 10s keine Antwort.`);
+  console.error('Ohne laufende Seite startet kein Werkzeug einen Browser,');
+  console.error('und diese Eval saehe sauber aus, ohne etwas zu messen.');
   process.exit(2);
-});
+}
 
 console.log(`Spuren-Check — ${WERKZEUGE.length} Browser-Werkzeuge\n`);
 console.log('Ein Werkzeug, das seinen Browser nicht schliesst, laesst ein Profil liegen:\n');
@@ -111,6 +126,13 @@ for (const name of WERKZEUGE) {
   let r = laufen(name, `http://127.0.0.1:${PORT}/`);
   if (r.error && r.error.code === 'ETIMEDOUT') {
     zeile(false, `${name} (normaler Lauf)`, `keine Antwort binnen ${FRIST_MS / 1000}s`);
+  } else if (r.status === 2) {
+    // Ein abgestuerzter Lauf hinterlaesst oft NICHTS und saehe damit sauber
+    // aus. Genau so meldete diese Eval am 31.07.2026 sechs von sechs gruen,
+    // waehrend jeder "normale Lauf" in Wahrheit ein Timeout war. Ein Zaehler
+    // ohne Blick auf den Exit-Code misst die Abwesenheit von Arbeit.
+    zeile(false, `${name} (normaler Lauf) raeumt seinen Browser weg`,
+      `Exit 2 gegen eine gueltige Seite — der Lauf kam nie zustande: ${`${r.stderr || ''}`.trim().split('\n')[0].slice(0, 50)}`);
   } else {
     const zuwachs = profileZaehlen() - vorher;
     zeile(zuwachs <= 0, `${name} (normaler Lauf) raeumt seinen Browser weg`,
@@ -129,7 +151,8 @@ for (const name of WERKZEUGE) {
   }
 }
 
-server.close();
+server.kill('SIGKILL');
+fs.rmSync(SEITE, { recursive: true, force: true });
 
 console.log(`\n${gezaehlt - fehler}/${gezaehlt} wie erwartet.`);
 if (fehler) {

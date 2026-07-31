@@ -96,7 +96,12 @@ console.log('Ausgangspunkt (der Grund fuer dieses Tor):\n');
 {
   const txt = fs.readFileSync(DIFF, 'utf8');
   // process.exit(1) darf NUR im Fehlerpfad stehen, nicht an einer Schwelle.
-  const nurImCatch = /catch \(error\) \{[\s\S]{0,200}process\.exit\(1\)/.test(txt);
+  // Seit dem 31.07.2026 steht dort `process.exit(error.aufruffehler ? 2 : 1)`:
+  // ein vertipptes Flag endet mit 2 ('nichts geprueft'), ein echter
+  // Lauffehler weiter mit 1. Die Aussage dieser Pruefung bleibt dieselbe —
+  // im catch wird beendet, nicht an einer Schwelle. Das Muster war zu eng
+  // an den Wortlaut gebunden und meldete den eigenen Fix als Regression.
+  const nurImCatch = /catch \(error\) \{[\s\S]{0,400}process\.exit\((?:1|error\.aufruffehler \? 2 : 1)\)/.test(txt);
   const schwelle = /score\s*<|diffRatio\s*>[\s\S]{0,80}process\.exit/.test(txt);
   zeile(nurImCatch && !schwelle,
     'visual-diff.mjs blockt weiterhin nicht an der Note (nur Exit 1 bei Absturz)',
