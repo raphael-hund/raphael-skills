@@ -341,6 +341,20 @@ for (const rulesPath of rulesFiles) {
       console.error(`Rules file ${escapeTerminal(rulesPath)}: each tell needs a string id, a name, and a non-empty patterns array`);
       process.exit(1);
     }
+    // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
+    // Eine Zusatzregel mit einer schon vergebenen ID wurde bisher angehaengt.
+    // Beim Gruppieren gewinnt dann der ERSTE Eintrag mit dieser ID — die
+    // Treffer der Zusatzregel erscheinen unter fremdem Namen. Gemessen: eine
+    // eigene Regel mit id "01" und dem Muster /niemalsniemals/ meldete ihren
+    // Treffer als "indigo->violet gradient". Ein Befund, der auf die falsche
+    // Ursache zeigt, kostet beim Nachschauen mehr Zeit, als er spart — und im
+    // schlimmsten Fall wird die falsche Stelle repariert.
+    if (TELLS.some((t) => t.id === tell.id)) {
+      console.error(`Rules file ${escapeTerminal(rulesPath)}: id "${tell.id}" ist schon vergeben.`);
+      console.error("Zusatzregeln brauchen eine eigene ID (Konvention: Praefix wie de-14),");
+      console.error("sonst erscheinen ihre Treffer unter dem Namen der bestehenden Regel.");
+      process.exit(1);
+    }
     TELLS.push({
       id: tell.id,
       group: tell.group || "custom",

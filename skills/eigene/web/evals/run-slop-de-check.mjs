@@ -346,6 +346,25 @@ console.log('\nDer Weg zum Regelsatz — verliert der Aufruf ihn unterwegs?\n');
         ? `lief durch und meldete ${getrennt} Treffer — der Regelsatz ging verloren`
         : `Exit ${getrennt.fehler} statt 2`);
 
+  // Eine Zusatzregel mit schon vergebener ID wurde bis zum 31.07.2026
+  // angehaengt. Beim Gruppieren gewinnt dann der ERSTE Eintrag mit dieser ID:
+  // gemessen meldete eine eigene Regel mit id "01" und dem Muster
+  // /niemalsniemals/ ihren Treffer als "indigo->violet gradient". Ein Befund,
+  // der auf die falsche Ursache zeigt, fuehrt zur Reparatur der falschen
+  // Stelle. Genau der Weg, auf dem auch rules.de.mjs geladen wird — dort
+  // schuetzt bisher nur das de-Praefix.
+  const kollision = path.join(ordner, 'kollision.mjs');
+  fs.writeFileSync(kollision,
+    'export default [{ id: "01", group: "color", name: "GEKAPERT", fix: "-",\n'
+    + '  patterns: [/niemalsniemals/i] }];\n');
+  const gekapert = zahl([`--rules=${kollision}`]);
+  zeile(typeof gekapert === 'object' && gekapert.fehler === 1,
+    'eine Zusatzregel mit schon vergebener ID wird abgelehnt, nicht angehaengt',
+    typeof gekapert === 'object' && gekapert.fehler === 1 ? null
+      : typeof gekapert === 'number'
+        ? `lief durch (${gekapert} Treffer) — die Regel meldet unter fremdem Namen`
+        : `Exit ${gekapert.fehler} statt 1`);
+
   const vertippt = zahl(['--jsonn']);
   zeile(typeof vertippt === 'object' && vertippt.fehler === 2,
     'ein unbekanntes Flag wird abgelehnt (Exit 2), nicht stillschweigend ignoriert',
