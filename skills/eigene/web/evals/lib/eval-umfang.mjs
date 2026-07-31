@@ -46,7 +46,20 @@ export function fallzahl(evalOrdner, datei, cwd) {
   // Am 30.07.2026 genau so passiert: bilder-check konnte unter Fork-Mangel kein
   // Testbild erzeugen, meldete "9/10", die Wache daraus "nur noch 10 Faelle,
   // erwartet mindestens 12". Eine Zahl sieht gemessen aus. Diese war geraten.
-  const blind = aus.match(/^\s*\[!!\][^\n]*\n\s*(?:[^\n]*misst[^\n]*nichts[^\n]*)/m)
+  // Auch [ROT] und die klammerlose Form, nicht nur [!!].
+  //
+  // Der Bestand kennt zwei Konventionen: 18 Evals schreiben [!!], vier
+  // schreiben [ROT] (link-check, slop-check, sweep-check, budget-check). Die
+  // sechs Evals mit "misst nichts" nutzen heute alle [!!] — die Blind-Erkennung
+  // greift also. Aber alle vier ROT-Evals haben Leerlauf-Stellen (1 bis 5
+  // Stueck); meldet eine davon kuenftig "misst nichts", waere die Wache dort
+  // blind und wuerde eine unvollstaendige Fallzahl als geschrumpft lesen.
+  //
+  // Am 31.07.2026 hat mich dieselbe Zweigleisigkeit schon zweimal erwischt:
+  // beim Zaehlen der Pruefzeilen (13 statt 16) und im Rueckfallpfad dieser
+  // Datei (^OK verlangte Spalte 0). Eine Erkennung, die nur eine von zwei
+  // gelebten Schreibweisen kennt, ist eine Zeitbombe mit Anzuender.
+  const blind = aus.match(/^\s*\[(?:!!|ROT)\][^\n]*\n\s*(?:[^\n]*misst[^\n]*nichts[^\n]*)/m)
     || aus.match(/^[^\n]*misst (?:dieser Abschnitt|hier) nichts/m);
 
   const m = [...aus.matchAll(/^(\d+)\/(\d+)(?: Faelle)? wie erwartet\./gm)].pop();
@@ -74,6 +87,18 @@ export function fallzahl(evalOrdner, datei, cwd) {
   // Muster gebrochen und die Eval als geschrumpft gemeldet.
   const zahlen = aus.match(/^(\d+)\/(\d+) (?:gepruefte Doku-)?Zahlen stimmen/m);
   if (zahlen) return { zahl: Number(zahlen[2]), gruen: Number(zahlen[1]), form: 'Doku-Zahlen' };
+
+  // Sechste Form, gefunden am 31.07.2026: run-struktur.mjs (aus einer
+  // Parallel-Session) schliesst mit "6/6 Wachen gruen." — wieder dieselbe
+  // N/M-Struktur, wieder ein neues Substantiv. Die Wache meldete sie prompt
+  // als "keine Fallzahl in der Ausgabe gefunden", also als kaputte Eval.
+  //
+  // Statt eine siebte Sonderregel nachzutragen: ein allgemeines Muster fuer
+  // "N/M <Wort> <Zustand>". Es greift erst NACH den drei spezifischen oben,
+  // faengt also nur, was die nicht kennen. Der Preis ist ein etwas breiterer
+  // Griff — dafuer kostet die naechste neue Formulierung keinen Ausfall mehr.
+  const allgemein = aus.match(/^(\d+)\/(\d+)(?:\s+[A-Za-zÄÖÜäöüß-]+){1,3}\s+(?:gruen|stimmen|wie erwartet|bestanden|sauber)/m);
+  if (allgemein) return { zahl: Number(allgemein[2]), gruen: Number(allgemein[1]), form: 'N/M allgemein' };
 
   // Fuenfte Form: "23/24 Skills wie erwartet." — dieselbe N/M-Struktur, aber
   // die Einheit ist ein Skill, kein Fall. Das Grundmuster oben verlangt genau

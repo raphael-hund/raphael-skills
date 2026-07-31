@@ -23,10 +23,10 @@
   "run-slop-check.mjs": 9,
   "run-slop-de-check.mjs": 50,
   "run-sprache-check.mjs": 55,
+  "run-struktur.mjs": 6,
   "run-sweep-check.mjs": 13,
   "run-tastatur-check.mjs": 21,
   "run-verweise-alle.mjs": 24,
   "run-verweise-check.mjs": 24,
-  "run-zwillinge-check.mjs": 2,
-  "run-struktur.mjs": 6
+  "run-zwillinge-check.mjs": 2
 }
