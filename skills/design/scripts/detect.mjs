@@ -85,6 +85,27 @@ const FLAG_ERLAUBT = ['fast', 'gemini', 'gpt', 'help', 'json',
 // Nur echte Ziele pruefen: URLs kann der Detektor selbst holen, und Flags
 // (--json, --quiet) sind keine Pfade.
 const ZIELE = process.argv.slice(2).filter((a) => !a.startsWith('-') && !/^https?:\/\//i.test(a));
+const URLS = process.argv.slice(2).filter((a) => /^https?:\/\//i.test(a));
+
+// Gar kein Ziel ist kein sauberer Lauf. `node detect.mjs` allein gab bis zum
+// 31.07.2026 keine Zeile aus und endete mit Exit 0 — dieselbe Klasse wie das
+// verschluckte Flag eine Zeile darueber, nur ohne Tippfehler: wer den Pfad
+// vergisst, bekommt ein gruenes Ergebnis ueber nichts.
+//
+// Die drei Vorpruefungen unten (Ziel nicht gefunden, keine pruefbare Datei im
+// Ordner) sagen alle dasselbe: nichts gelesen ist nicht sauber. Nur der Fall
+// "nichts uebergeben" fehlte.
+// --help ist der eine Aufruf, der bewusst kein Ziel hat. Erster Versuch liess
+// ihn mitreissen (Exit 2 auf die Frage nach der Bedienung) — genau der Fehler,
+// den ich zwei Runden vorher in tastatur-check und shot-sweep behoben habe.
+const WILL_HILFE = process.argv.slice(2).some((a) => a === '--help' || a === '-h');
+if (!WILL_HILFE && !ZIELE.length && !URLS.length) {
+  process.stderr.write('Fehler: kein Ziel uebergeben.\n');
+  process.stderr.write('Aufruf: node detect.mjs <datei-oder-ordner|url> [--json] [--quiet]\n');
+  process.stderr.write('Nichts gelesen — das ist kein bestandener Lauf.\n');
+  process.exit(2);
+}
+
 for (const ziel of ZIELE) {
   let stat;
   try { stat = fs.statSync(ziel); } catch {

@@ -419,6 +419,26 @@ console.log('\nEin Ziel ohne pruefbare Dateien ist kein bestandener Lauf:\n');
   const rufe = (ziel) => spawnSync('node', [DETECT, ziel, '--json'],
     { encoding: 'utf8', timeout: 120000 });
 
+  // Gar kein Ziel: `node detect.mjs` allein gab bis zum 31.07.2026 keine Zeile
+  // aus und endete mit Exit 0. Wer den Pfad vergisst, bekam ein gruenes
+  // Ergebnis ueber nichts — dieselbe Klasse wie der leere Ordner darunter, nur
+  // ohne dass ueberhaupt ein Pfad im Spiel war.
+  {
+    const ohne = spawnSync('node', [DETECT], { encoding: 'utf8', timeout: 120000 });
+    zeile(ohne.status === 2,
+      `ohne Ziel -> Exit ${ohne.status}`,
+      ohne.status === 2 ? null : 'nichts uebergeben, nichts gelesen — das darf nie Exit 0 sein');
+
+    // Gegenprobe: --help hat bewusst kein Ziel und ist trotzdem kein Fehler.
+    // Erster Versuch liess ihn mitreissen (Exit 2 auf die Frage nach der
+    // Bedienung) — genau der Fehler, den tastatur-check und shot-sweep zwei
+    // Runden vorher hatten.
+    const hilfe = spawnSync('node', [DETECT, '--help'], { encoding: 'utf8', timeout: 120000 });
+    zeile(hilfe.status === 0,
+      `--help ohne Ziel -> Exit ${hilfe.status}`,
+      hilfe.status === 0 ? null : 'Hilfe ist kein Fehlerfall');
+  }
+
   // Tief verschachtelte Projekte muessen durchlaufen.
   //
   // Die Vorpruefung in detect.mjs zaehlt pruefbare Dateien, bevor der Detektor
