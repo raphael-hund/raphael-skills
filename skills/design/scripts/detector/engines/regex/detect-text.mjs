@@ -310,6 +310,7 @@ const REGEX_ANALYZERS = [
     const sizes = new Set();
     const REM = 16;
     let m;
+    content = varsAufloesen(content);
     const sizeRe = /font-size\s*:\s*([\d.]+)(px|rem|em)\b/gi;
     while ((m = sizeRe.exec(content)) !== null) {
       const px = m[2] === 'px' ? +m[1] : +m[1] * REM;
@@ -323,29 +324,14 @@ const REGEX_ANALYZERS = [
     const TW = { 'text-xs': 12, 'text-sm': 14, 'text-base': 16, 'text-lg': 18, 'text-xl': 20, 'text-2xl': 24, 'text-3xl': 30, 'text-4xl': 36, 'text-5xl': 48, 'text-6xl': 60, 'text-7xl': 72, 'text-8xl': 96, 'text-9xl': 128 };
     for (const [cls, px] of Object.entries(TW)) { if (new RegExp(`\\b${cls}\\b`).test(content)) sizes.add(px); }
 
-    // CSS-Variablen aufloesen. Ohne das sieht die Regel nur die fest
-    // geschriebenen Groessen — und eine Seite mit ordentlicher Skala in Tokens
-    // (`--t-3xl: 3.25rem`, benutzt als `font-size: var(--t-3xl)`) zeigt ihr
-    // nur die vier Reste. Gemessen 31.07.2026 an der Anti-Set-Kontrollseite:
-    // gemeldet "11.5px … 16px, ratio 1.4:1", tatsaechlich 11.5px bis 52px,
-    // ratio 4.5:1. Ein Fehlalarm auf genau der Seite, die das G1-Tor gruen
-    // nennt — zwei Pruefer, eine Seite, widerspruechliches Urteil.
-    const varWert = new Map();
-    const varRe = /(--[a-z0-9-]+)\s*:\s*([\d.]+)(px|rem|em)\b/gi;
-    while ((m = varRe.exec(content)) !== null) {
-      const px = m[3] === 'px' ? +m[2] : +m[2] * REM;
-      if (px > 0 && px < 200) {
-        // Groesster Wert gewinnt: dieselbe Variable wird in Media-Queries
-        // ueberschrieben, und die Skala reicht bis zum groessten Schritt.
-        const bisher = varWert.get(m[1]) || 0;
-        if (px > bisher) varWert.set(m[1], px);
-      }
-    }
-    const useRe = /font-size\s*:\s*var\(\s*(--[a-z0-9-]+)/gi;
-    while ((m = useRe.exec(content)) !== null) {
-      const px = varWert.get(m[1]);
-      if (px) sizes.add(Math.round(px * 10) / 10);
-    }
+    // Variablen ueber die gemeinsame Funktion: `font-size: var(--t-3xl)` wird
+    // zum hinterlegten Wert, bevor der Groessen-Regex darueber laeuft.
+    //
+    // Eine eigene Aufloesung stand hier zuerst, mit "groesster Wert gewinnt"
+    // fuer Variablen, die in Media-Queries ueberschrieben werden. Nachgemessen
+    // an der Kontrollseite: mit der gemeinsamen Funktion (letzter Wert) ergibt
+    // sich 11.5–36px, ratio 3.1:1 — ueber der 2.0-Schwelle, also derselbe
+    // Befund. Die Sonderlogik war eine Annahme, kein gemessener Bedarf.
 
     if (sizes.size < 3) return [];
     const sorted = [...sizes].sort((a, b) => a - b);
@@ -466,6 +452,12 @@ const REGEX_ANALYZERS = [
   },
   // Dark glow (page-level: dark bg + colored box-shadow with blur)
   (content, filePath) => {
+    // Aufloesen VOR der Hintergrund-Pruefung. Sie stand zuerst dahinter, und
+    // dann war die Regel weiter blind, sobald `background: var(--bg)` statt
+    // eines Hex-Werts dastand — vierter Fall derselben Klasse am selben Tag,
+    // diesmal in einer Regel, die ich eine Stunde vorher schon angefasst hatte.
+    content = varsAufloesen(content);
+
     // Check if page has a dark background
     const darkBgRe = /background(?:-color)?\s*:\s*(?:#(?:0[0-9a-f]|1[0-9a-f]|2[0-3])[0-9a-f]{4}\b|#(?:0|1)[0-9a-f]{2}\b|rgb\(\s*(\d{1,2})\s*,\s*(\d{1,2})\s*,\s*(\d{1,2})\s*\))/gi;
     const twDarkBg = /\bbg-(?:gray|slate|zinc|neutral|stone)-(?:9\d{2}|800)\b/;
@@ -473,25 +465,12 @@ const REGEX_ANALYZERS = [
     if (!hasDarkBg) return [];
 
     // Check for colored box-shadow with blur > 4px
-    //
-    // Variablen aufloesen, sonst ist die Regel auf jedem Projekt blind, das
-    // seine Schatten in Tokens haelt. Gemessen 31.07.2026 an zwei identischen
-    // Seiten: `box-shadow: 0 0 60px rgba(99,102,241,.6)` wurde gefunden,
-    // dasselbe als `--glow: 0 0 60px rgba(99,102,241,.6)` + `var(--glow)`
-    // nicht. Genau dieselbe Luecke wie bei flat-type-hierarchy, nur eine Regel
-    // weiter — und Design-Systeme legen Schatten IMMER in Tokens ab.
-    const schattenVar = new Map();
-    const varRe = /(--[a-z0-9-]+)\s*:\s*([^;{}]*rgba?\([^)]*\)[^;{}]*)/gi;
-    let vm;
-    while ((vm = varRe.exec(content)) !== null) schattenVar.set(vm[1], vm[2]);
-
+    // Design-Systeme legen Schatten IMMER in Tokens ab; ohne die Aufloesung
+    // oben war die Regel auf genau diesen Projekten blind.
     const shadowRe = /box-shadow\s*:\s*([^;{}]+)/gi;
     let m;
     while ((m = shadowRe.exec(content)) !== null) {
-      let val = m[1];
-      // `box-shadow: var(--glow)` -> den hinterlegten Wert einsetzen.
-      const nutzt = val.match(/var\(\s*(--[a-z0-9-]+)/i);
-      if (nutzt && schattenVar.has(nutzt[1])) val = schattenVar.get(nutzt[1]);
+      const val = m[1];
       const colorMatch = val.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
       if (!colorMatch) continue;
       const [r, g, b] = [+colorMatch[1], +colorMatch[2], +colorMatch[3]];

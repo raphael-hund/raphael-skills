@@ -48,7 +48,7 @@ requires_skills: [impeccable@^0]
 eval_scorecard:
   stand: 2026-07-30
   laeufe:
-    - "evals/run-detect-check.mjs — 30 Faelle: Datei-Modus, 13 von 13 Regeln belegt, Typo-Skala in Variablen beide Richtungen"
+    - "evals/run-detect-check.mjs — 31 Faelle: Datei-Modus, 13 von 13 Regeln belegt, Typo-Skala in Variablen beide Richtungen"
     - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
@@ -177,7 +177,7 @@ Farb-Detektor wirkungslos. Behoben; Beleg:
 node evals/run-detect-check.mjs
 ```
 
-30 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **13 von
+31 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **13 von
 46** Regeln haben einen Testfall, und **33 sind über den Datei-Modus
 grundsätzlich nicht erreichbar** — sie liegen in `rules/checks.mjs` und brauchen
 ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**

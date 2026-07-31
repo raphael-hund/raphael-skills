@@ -316,6 +316,20 @@ zeile(k.ids.length === 0, 'saubere Seite, 0 Anti-Patterns',
     'farbiger Glow als CSS-Variable auf dunkler Seite -> gefunden',
     glowVar.ids.includes('dark-glow') ? null : 'die Variable wird nicht aufgeloest');
 
+  // Auch der HINTERGRUND kommt aus einem Token. Die Aufloesung stand zuerst
+  // hinter der Hintergrund-Pruefung — dann war die Regel weiter blind, sobald
+  // `background: var(--bg)` dastand statt eines Hex-Werts. Vierter Fall
+  // derselben Klasse, in einer Regel, die eine Stunde vorher schon repariert
+  // schien.
+  const beidesVar = lauf(seite({
+    style: ':root{--bg:#0a0a12;--glow:0 0 60px rgba(99,102,241,.6)}'
+      + 'body{background:var(--bg);color:#eee}.k{box-shadow:var(--glow)}',
+    body: '<div class="k">A</div>',
+  }));
+  zeile(beidesVar.ids.includes('dark-glow'),
+    'dunkler Grund UND Glow beide als Variable -> gefunden',
+    beidesVar.ids.includes('dark-glow') ? null : 'die Aufloesung greift zu spaet in der Regel');
+
   // Gegenprobe: ein grauer Schatten ist kein Glow, auch nicht als Variable.
   // Ohne sie waere die Regel auch dadurch "bestanden", dass sie auf jeden
   // Schatten anschlaegt.
