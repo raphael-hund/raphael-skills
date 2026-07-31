@@ -37,7 +37,15 @@ if (!fs.existsSync(SKILLS)) {
 // Ausdruecklich erlaubte Namensgleichheit: die Wachen jedes Skills heissen
 // gleich und sind bewusst verschieden — jede misst ihren eigenen Skill.
 // Das ist keine Doppelung, sondern dasselbe Muster an mehreren Orten.
-const ERLAUBT = new Set(['run-doku-zahlen.mjs', 'run-eval-umfang.mjs', 'run-sabotage.mjs']);
+const ERLAUBT = new Set([
+  'run-doku-zahlen.mjs', 'run-eval-umfang.mjs', 'run-sabotage.mjs',
+  // Dazugekommen 31.07.2026: prueft in jedem Skill dessen EIGENE Werkzeuge auf
+  // brauchbare --help-Ausgabe. Die Werkzeugliste ist deshalb notwendig
+  // verschieden (design: detect/dna-scaffold/scan-ai-slop), und die Frist ist
+  // an die Laufzeit des jeweiligen Skripts angepasst. Gleicher Name, gleiche
+  // Frage, anderer Gegenstand — wie bei den drei Wachen darueber.
+  'run-hilfe-check.mjs',
+]);
 
 // Zeilen, die sich zwischen zwei Kopien unterscheiden DUERFEN: relative Pfade
 // zeigen je nach Ort woanders hin. dna-scaffold verweist auf
