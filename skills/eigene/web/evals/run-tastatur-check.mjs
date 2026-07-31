@@ -44,6 +44,7 @@ const FAELLE = [
   {
     name: 'listbox ohne Pfeiltasten (der Hauptfall)',
     reisst: true,
+    erwartet: 'K1',
     dateien: { 'a.tsx': 'export const S = () => <ul role="listbox"><li role="option">A</li></ul>;' },
   },
   {
@@ -253,8 +254,26 @@ console.log('\nTastatur-Check — haelt die ARIA-Rolle ihr Versprechen?\n');
 console.log('Diese muessen reissen:\n');
 for (const f of FAELLE.filter((x) => x.reisst)) {
   const { code, json } = lauf(f.dateien);
-  const passt = code === 1;
-  zeile(passt, f.name, passt ? null : `Exit ${code}, Blocker ${json?.block ?? '?'}`);
+  // Exit 1 allein genuegt nicht — die Eval muss wissen, WELCHE Regel gefeuert
+  // hat.
+  //
+  // Gemessen am 31.07.2026 ueber den Sabotage-Lauf: mit abgeschaltetem
+  // K1-Blocker-Zweig (`if (!erfuellt)` -> `if (false)`) meldete der Pruefer
+  // weiter Exit 1 — aber aus K4 statt K1. Die Eval blieb bei 21/21 und Exit 0,
+  // obwohl die Hauptregel tot war. Ein Pruefer, der aus dem falschen Grund rot
+  // wird, ist von einem wachsamen nicht zu unterscheiden, solange man nur den
+  // Exit-Code liest.
+  //
+  // `erwartet` ist optional: nur der Hauptfall nennt seine Regel. Ein Feld fuer
+  // jeden Fall zu verlangen hiesse, 21 IDs zu pflegen, von denen die meisten
+  // nichts belegen.
+  const ids = (json?.befunde || []).filter((b) => b.stufe === 'BLOCK').map((b) => b.id);
+  const grundOk = !f.erwartet || ids.includes(f.erwartet);
+  const passt = code === 1 && grundOk;
+  zeile(passt, f.name,
+    passt ? null
+      : code !== 1 ? `Exit ${code}, Blocker ${json?.block ?? '?'}`
+        : `reisst, aber an ${ids.join(',') || 'keiner Regel'} statt ${f.erwartet}`);
 }
 
 console.log('\nDiese muessen durchgehen — sonst ist der Waechter nur Laerm:\n');
