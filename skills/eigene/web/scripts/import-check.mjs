@@ -77,9 +77,20 @@ if (!existsSync(join(VAULT, 'package.json'))) {
   process.exit(2);
 }
 
-const TRESOR_LIBS = Object.keys(
-  JSON.parse(readFileSync(join(VAULT, 'package.json'), 'utf8')).dependencies || {}
-);
+// Die Existenz der package.json ist oben geprueft, ihre LESBARKEIT nicht.
+// Gemessen 01.08.2026 mit einer zerstoerten Datei: 12 Zeilen Stacktrace und
+// Exit 1 — in diesem Skill "geprueft und durchgefallen". Geprueft wurde nichts:
+// ohne Abhaengigkeitsliste weiss der Check gar nicht, welche Libraries es gibt.
+let TRESOR_LIBS;
+try {
+  TRESOR_LIBS = Object.keys(
+    JSON.parse(readFileSync(join(VAULT, 'package.json'), 'utf8')).dependencies || {}
+  );
+} catch (e) {
+  console.error(`Tresor-package.json unbrauchbar (${join(VAULT, 'package.json')}): ${e.message.split('\n')[0]}`);
+  console.error('Ohne die Abhaengigkeitsliste ist kein Import pruefbar.');
+  process.exit(2);
+}
 
 // --- Projektdateien einsammeln --------------------------------------------
 const ENDUNGEN = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs']);

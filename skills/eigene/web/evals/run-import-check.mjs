@@ -30,7 +30,7 @@
  * Exit 1 = mindestens ein Fall falsch behandelt.
  * Exit 2 = Tresor fehlt — dann ist nichts pruefbar.
  */
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -177,11 +177,17 @@ const FAELLE = [
 ];
 
 let rot = 0;
+// Selbst zaehlen statt zu rechnen. Die Schlusszeile stand auf
+// `FAELLE.length + (eigene ? 1 : 0) + 3` — eine feste Zahl in einer
+// Bilanzformel altert still, weil sie plausibel bleibt. Dieselbe Falle
+// steckte diese Session schon in fuenf anderen Evals.
+let gezaehlt = 0;
 console.log(`Import-Check-Pruefstand — ${FAELLE.length} Faelle gegen ${VAULT}\n`);
 
 for (const f of FAELLE) {
   const { code, daten } = lauf(f.code);
   if (!daten) {
+    gezaehlt++;
     console.log(`  [ROT]  ${f.was}`);
     console.log('         Ausgabe war kein lesbares JSON — der Pruefer selbst ist kaputt');
     rot++;
@@ -194,10 +200,12 @@ for (const f of FAELLE) {
   // das Gegenteil dessen, was die Ausgabe sagt.
   const codeOk = code === (soll.length ? 1 : 0);
   if (gleich && codeOk) {
+    gezaehlt++;
     console.log(`  [OK]   ${f.was}`);
     if (soll.length) console.log(`         gefangen: ${gemeldet.join(', ')}`);
   } else {
     rot++;
+    gezaehlt++;
     console.log(`  [ROT]  ${f.was}`);
     if (!gleich) console.log(`         erwartet [${soll.join(', ')}], gemeldet [${gemeldet.join(', ')}]`);
     if (!codeOk) console.log(`         Exit ${code}, erwartet ${soll.length ? 1 : 0}`);
@@ -220,18 +228,22 @@ if (fs.existsSync(eigene)) {
   }
   const MINDESTENS = 200;
   if (!daten) {
+    gezaehlt++;
     console.log('  [ROT]  Pruefer lieferte kein lesbares JSON');
     rot++;
   } else if (daten.befunde.length || code !== 0) {
+    gezaehlt++;
     console.log(`  [ROT]  ${daten.befunde.length} Fehlalarm(e) auf eigenem, funktionierendem Code`);
     for (const b of daten.befunde.slice(0, 5)) console.log(`         ${b.datei}:${b.zeile} "${b.name}" aus ${b.quelle}`);
     rot++;
   } else if (daten.geprueft < MINDESTENS) {
     // Ohne diese Schwelle waere ein Pruefer, der alles ueberspringt, hier gruen.
+    gezaehlt++;
     console.log(`  [ROT]  nur ${daten.geprueft} Importe geprueft, erwartet mindestens ${MINDESTENS}`);
     console.log('         Ein Pruefer, der nichts anschaut, hat immer recht.');
     rot++;
   } else {
+    gezaehlt++;
     console.log(`  [OK]   ${daten.geprueft} echte Importe in ${daten.dateien} Dateien, kein Fehlalarm`);
   }
 }
@@ -255,6 +267,7 @@ console.log('\nAufruf-Form — ein verworfener Pfad darf kein Urteil erzeugen:\n
   fs.rmSync(leer, { recursive: true, force: true });
   // Exit 2 = "nicht geprueft", nicht "bestanden" — dieselbe Trennung wie im Tor.
   const ok = code === 2 && /--src/.test(aus);
+  gezaehlt++;
   console.log(ok
     ? '  [OK]   Pfad ohne --src -> Exit 2 mit Hinweis, kein stilles Urteil'
     : `  [ROT]  Pfad ohne --src -> Exit ${code}, erwartet 2 mit --src-Hinweis`);
@@ -278,6 +291,7 @@ console.log('\nLeerer Ordner — gruen ueber nichts ist kein Ergebnis:\n');
 
   const codeLeer = lauf(leer);
   const okLeer = codeLeer === 1;
+  gezaehlt++;
   console.log(okLeer
     ? '  [OK]   0 Dateien -> Exit 1, kein stilles "sauber"'
     : `  [ROT]  0 Dateien -> Exit ${codeLeer}, erwartet 1`);
@@ -287,6 +301,7 @@ console.log('\nLeerer Ordner — gruen ueber nichts ist kein Ergebnis:\n');
   fs.writeFileSync(path.join(leer, 'x.ts'), 'export const a = 1;\n');
   const codeOhne = lauf(leer);
   const okOhne = codeOhne === 0;
+  gezaehlt++;
   console.log(okOhne
     ? '  [OK]   Datei ohne Tresor-Import -> Exit 0, kein Fehlalarm'
     : `  [ROT]  Datei ohne Tresor-Import -> Exit ${codeOhne}, erwartet 0`);
@@ -295,7 +310,34 @@ console.log('\nLeerer Ordner — gruen ueber nichts ist kein Ergebnis:\n');
   fs.rmSync(leer, { recursive: true, force: true });
 }
 
-const gesamt = FAELLE.length + (fs.existsSync(eigene) ? 1 : 0) + 3;
+// --- Unlesbarer Tresor ----------------------------------------------------
+// Die Existenz der Tresor-package.json wird geprueft, ihre LESBARKEIT stand
+// bis zum 01.08.2026 nicht: eine zerstoerte Datei ergab 12 Zeilen Stacktrace
+// und Exit 1 — in diesem Skill "geprueft und durchgefallen". Geprueft wurde
+// nichts; ohne Abhaengigkeitsliste weiss der Check gar nicht, welche
+// Libraries existieren.
+{
+  const tresor = fs.mkdtempSync(path.join(os.tmpdir(), 'import-check-tresor-'));
+  fs.writeFileSync(path.join(tresor, 'package.json'), '{ kaputt ohne Anfuehrungszeichen }');
+  const quelle = fs.mkdtempSync(path.join(os.tmpdir(), 'import-check-quelle-'));
+  fs.writeFileSync(path.join(quelle, 'a.tsx'), "import { toast } from 'sonner';\n");
+
+  const r = spawnSync('node', [PRUEFER, '--src', quelle],
+    { encoding: 'utf8', env: { ...process.env, UIKIT_VAULT: tresor } });
+  const aus = `${r.stdout || ''}${r.stderr || ''}`;
+  gezaehlt++;
+  const ok = r.status === 2 && /unbrauchbar|kein lesbares JSON/i.test(aus);
+  if (!ok) rot++;
+  console.log(ok
+    ? '  [OK]   unlesbare Tresor-package.json -> Exit 2 mit Klartext'
+    : `  [ROT]  unlesbare Tresor-package.json -> Exit ${r.status}, erwartet 2`);
+  if (!ok) console.log(`         ${aus.trim().split('\n')[0].slice(0, 70)}`);
+
+  fs.rmSync(tresor, { recursive: true, force: true });
+  fs.rmSync(quelle, { recursive: true, force: true });
+}
+
+const gesamt = gezaehlt;
 console.log(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {
   console.log('Der Import-Pruefer urteilt falsch. Erst reparieren, dann damit bauen.');

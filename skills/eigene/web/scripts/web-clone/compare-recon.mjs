@@ -43,7 +43,16 @@ function parseArgs(argv) {
 }
 
 function readJson(file) {
-  return JSON.parse(fs.readFileSync(file, "utf8"));
+  // Eine unlesbare Eingabedatei ist ein AUFRUF-Fehler, kein Vergleichsergebnis:
+  // verglichen wurde nichts. Ohne diese Markierung endete der Lauf mit Exit 1
+  // ("geprueft und durchgefallen"), gemessen 01.08.2026.
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch (err) {
+    const e = new Error(`${file} ist kein lesbares JSON: ${err.message.split("\n")[0]}`);
+    e.aufruffehler = true;
+    throw e;
+  }
 }
 
 function firstSignals(recon) {
