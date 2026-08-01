@@ -319,6 +319,54 @@ for (const s of SCHAEDEN) {
       ankerProbleme.push(`${s.kurz}: Ersatztext kommt im gesunden ${s.pruefer} vor — Marker einbauen (z.B. "// sabotage-marker-${s.kurz}").`);
     }
   }
+  // Dritte Vorpruefung: hat jeder Pruefer, der ein URTEIL faellt, auch einen
+  // Sabotage-Fall?
+  //
+  // Erster Versuch ging ueber die Namenskonvention evals/run-X.mjs ->
+  // scripts/X.mjs. Nachgemessen griff die bei 8 von 39 Evals: run-axe-check
+  // prueft axe-run.mjs, run-clone-pfade prueft mehrere Werkzeuge, run-antiset
+  // das ganze Tor. Eine Wache, die vier Fuenftel nicht sieht, ist keine.
+  //
+  // Diese Richtung stimmt: wer mit Exit 1 urteilt, kann still zum Durchwinker
+  // werden — und genau das soll der Sabotage-Lauf ausschliessen. Am 30.07.2026
+  // war so lib-lookup als einziger ohne Fall uebrig, sein Ablehnungszweig nie
+  // gegengeprueft.
+  {
+    const abgedeckt = new Set(SCHAEDEN.map((x) => x.pruefer));
+    const ohne = [];
+    for (const ordner of ['scripts', 'scripts/web-clone']) {
+      const voll = path.join(SKILL, ordner);
+      if (!fs.existsSync(voll)) continue;
+      for (const datei of fs.readdirSync(voll)) {
+        if (!datei.endsWith('.mjs')) continue;
+        const rel = `${ordner}/${datei}`;
+        if (abgedeckt.has(rel)) continue;
+        const txt = fs.readFileSync(path.join(voll, datei), 'utf8');
+        // "Urteilt" heisst: endet bei einem Befund mit Exit 1. Reine Werkzeuge
+        // (Server starten, Bilder holen) tun das nicht und brauchen keinen Fall.
+        // "Urteilt" heisst hier eng: der Exit-Code haengt an einer BEFUNDMENGE
+        // (`exit(befunde.length ? 1 : 0)`). Bewusst nicht breiter:
+        //   /process\.exit\(1\)/       trifft auch Startfehler — detect.mjs meldet
+        //                             so nur "Detektor nicht gefunden".
+        //   /\? 1 : 0/                trifft `error.aufruffehler ? 2 : 1` aus dem
+        //                             Aufruffehler-Fix und meldete 13 Werkzeuge.
+        // Beide Fassungen habe ich am 01.08.2026 gemessen und verworfen. Ein
+        // Muster, das ein Dutzend Fehlalarme liefert, wird abgeschaltet.
+        // Zwei Formen: `exit(befunde.length ? 1 : 0)` und — seit dem
+        // Browser-Aufraeum-Fix — `code = befunde.length ? 1 : 0` mit dem
+        // exit-Aufruf nach dem finally. Ohne die zweite Form blieb axe-run
+        // unerkannt, und die Gegenprobe (Fall entfernen) schlug nicht an.
+        const urteilt = /(?:exit\(|code\s*=\s*)\s*(?!error\.)[\w$]+(?:\.length)?\s*(?:>\s*0\s*)?\?\s*1\s*:\s*0/.test(txt);
+        if (urteilt) ohne.push(rel);
+      }
+    }
+    if (ohne.length) {
+      ankerProbleme.push(`${ohne.length} Pruefer faellen ein Urteil, haben aber keinen Sabotage-Fall:`);
+      for (const o of ohne) ankerProbleme.push(`    ${o}`);
+      ankerProbleme.push('    Ohne Gegenprobe kann ihre Eval blind werden, ohne dass es auffaellt.');
+    }
+  }
+
   if (ankerProbleme.length) {
     console.error('\nSabotage-Anker passen nicht mehr zum Pruefer:');
     for (const a of ankerProbleme) console.error(`  ${a}`);

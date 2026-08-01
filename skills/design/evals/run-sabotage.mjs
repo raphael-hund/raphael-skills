@@ -140,6 +140,38 @@ function laufEval(rel) {
       probleme.push(`${s.kurz}: Ersatztext kommt im gesunden ${s.pruefer} vor — Marker einbauen.`);
     }
   }
+  // Hat jeder Detektor, der ein URTEIL faellt, auch einen Sabotage-Fall?
+  // Uebernommen aus der web-Version. Die Richtung ist wichtig: nicht von den
+  // Evals aus (die Namenskonvention greift dort nur bei einem Fuenftel), sondern
+  // von den Werkzeugen — wer mit Exit 1 urteilt, kann still zum Durchwinker
+  // werden, und genau das soll dieser Lauf ausschliessen.
+  {
+    const abgedeckt = new Set(SCHAEDEN.map((x) => x.pruefer));
+    const ordner = path.join(SKILL, 'scripts');
+    if (fs.existsSync(ordner)) {
+      for (const datei of fs.readdirSync(ordner)) {
+        if (!datei.endsWith('.mjs')) continue;
+        const rel = `scripts/${datei}`;
+        if (abgedeckt.has(rel)) continue;
+        const txt = fs.readFileSync(path.join(ordner, datei), 'utf8');
+        // "Urteilt" heisst hier eng: der Exit-Code haengt an einer BEFUNDMENGE
+        // (`exit(befunde.length ? 1 : 0)`). Bewusst nicht breiter:
+        //   /process\.exit\(1\)/       trifft auch Startfehler — detect.mjs meldet
+        //                             so nur "Detektor nicht gefunden".
+        //   /\? 1 : 0/                trifft `error.aufruffehler ? 2 : 1` aus dem
+        //                             Aufruffehler-Fix und meldete 13 Werkzeuge.
+        // Beide Fassungen habe ich am 01.08.2026 gemessen und verworfen. Ein
+        // Muster, das ein Dutzend Fehlalarme liefert, wird abgeschaltet.
+        // Zwei Formen: `exit(befunde.length ? 1 : 0)` und — seit dem
+        // Browser-Aufraeum-Fix — `code = befunde.length ? 1 : 0` mit dem
+        // exit-Aufruf nach dem finally. Ohne die zweite Form blieb axe-run
+        // unerkannt, und die Gegenprobe (Fall entfernen) schlug nicht an.
+        const urteilt = /(?:exit\(|code\s*=\s*)\s*(?!error\.)[\w$]+(?:\.length)?\s*(?:>\s*0\s*)?\?\s*1\s*:\s*0/.test(txt);
+        if (urteilt) probleme.push(`${rel} faellt ein Urteil, hat aber keinen Sabotage-Fall — ohne Gegenprobe kann seine Eval blind werden.`);
+      }
+    }
+  }
+
   if (probleme.length) {
     console.error('\nSabotage-Anker passen nicht mehr zum Detektor:');
     for (const a of probleme) console.error(`  ${a}`);
