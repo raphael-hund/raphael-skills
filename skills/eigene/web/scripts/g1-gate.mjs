@@ -368,7 +368,31 @@ function checkServer() {
   try {
     const code = run('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', `${BASE}${ROUTES[0]}`]).trim();
     if (!/^[23]/.test(code)) { record('server', false, `${BASE}${ROUTES[0]} -> HTTP ${code}`); return false; }
-    record('server', true, `${BASE}${ROUTES[0]} -> HTTP ${code}`);
+    // Wohin fuehrt die Weiterleitung? Der Code allein sagt es nicht: 3xx gilt
+    // als "erreichbar", und alle Pruefer folgen der Kette anschliessend
+    // stillschweigend. Gemessen 01.08.2026 gegen einen 302 auf einen anderen
+    // Host: das Tor meldete "server PASS — HTTP 302" und bewertete danach eine
+    // FREMDE Domain, ohne das je zu erwaehnen. Ein gruenes Tor ueber die Seite
+    // eines anderen Anbieters ist das teuerste Missverstaendnis, das dieses
+    // Werkzeug produzieren kann.
+    let ziel = '';
+    if (/^3/.test(code)) {
+      try {
+        ziel = run('curl', ['-sL', '-o', '/dev/null', '-w', '%{url_effective}', `${BASE}${ROUTES[0]}`]).trim();
+      } catch { ziel = ''; }
+    }
+    if (ziel) {
+      const hostVon = (u) => { try { return new URL(u).host; } catch { return ''; } };
+      const start = hostVon(`${BASE}${ROUTES[0]}`);
+      const ende = hostVon(ziel);
+      if (start && ende && start !== ende) {
+        record('server', false, `${BASE}${ROUTES[0]} leitet auf einen anderen Host: ${ziel} — geprueft wuerde ${ende}, nicht ${start}`);
+        return false;
+      }
+      record('server', true, `${BASE}${ROUTES[0]} -> HTTP ${code}, weiter auf ${ziel}`);
+    } else {
+      record('server', true, `${BASE}${ROUTES[0]} -> HTTP ${code}`);
+    }
 
     // ALLE Routen pruefen, nicht nur die erste. Bis zum 31.07.2026 sah das Tor
     // nur ROUTES[0] an; eine weitere Route mit HTTP 404 lief ungeprueft in die

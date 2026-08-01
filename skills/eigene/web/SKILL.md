@@ -70,7 +70,7 @@ eval_scorecard:
     - "evals/run-spuren-check.mjs — 3 Browser-Werkzeuge: bleibt nach dem Lauf ein Chrome-Profil liegen?"
     - "evals/run-browser-start-check.mjs — 6 Klon-Werkzeuge: findet jedes seinen Browser?"
     - "evals/run-halbe-antwort-check.mjs — 12 Faelle: urteilen die Browser-Werkzeuge ueber eine halb uebertragene Seite (auch bei gzip)?"
-    - "evals/run-weiterleitung-check.mjs — 7 Faelle: nennt der Bericht die Seite, die wirklich geprueft wurde?"
+    - "evals/run-weiterleitung-check.mjs — 9 Faelle: nennt der Bericht die Seite, die wirklich geprueft wurde?"
     - "23 weitere Pruefer-Evals (craft, slop-de, tastatur, motion, formular, import, klon-gate …)"
   grenzen:
     - "pruefstand.mjs ist nicht sabotage-geprueft — er faellt kein Urteil, das gruen werden koennte"

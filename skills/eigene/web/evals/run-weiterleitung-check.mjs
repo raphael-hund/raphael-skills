@@ -41,6 +41,9 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SKRIPTE = path.join(HIER, '..', 'scripts');
 const FRIST_MS = 240000;
 const PORT = Number(process.env.WEITERLEITUNG_PORT || 5461);
+// Zweiter Server unter anderem Hostnamen (localhost statt 127.0.0.1) fuer den
+// Fall "Weiterleitung fuehrt aus der geprueften Domain heraus".
+const PORT_FREMD = PORT + 1;
 
 const WERKZEUGE = ['axe-run.mjs', 'craft-check.mjs', 'formular-check.mjs'];
 
@@ -56,9 +59,9 @@ function zeile(ok, was, detail) {
   if (!ok && detail) console.log(`         ${detail}`);
 }
 
-const httpCode = (pfad = '/') => {
+const httpCode = (pfad = '/', port = PORT) => {
   const r = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
-    '-w', '%{http_code}', `http://127.0.0.1:${PORT}${pfad}`], { encoding: 'utf8' });
+    '-w', '%{http_code}', `http://127.0.0.1:${port}${pfad}`], { encoding: 'utf8' });
   return (r.stdout || '').trim();
 };
 
@@ -69,10 +72,11 @@ if (fehlend.length) {
   process.exit(2);
 }
 
-if (httpCode() !== '000') {
+for (const p of [PORT, PORT_FREMD]) if (httpCode('/', p) !== '000') {
   console.error(`Port ${PORT} ist fremdbelegt — diese Eval kann nichts messen.`);
   console.error('Sie liefe gegen eine fremde Seite und gaebe deren Ergebnis als');
   console.error('eigenes aus. Anderen Port setzen: WEITERLEITUNG_PORT=<frei>');
+  console.error(`(belegt werden ${PORT} und ${PORT_FREMD})`);
   process.exit(2);
 }
 
@@ -95,6 +99,13 @@ class H(http.server.BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
     def do_GET(self):
         weg = self.path.rstrip('/') or '/'
+        if weg == '/fremd-weg':
+            # Anderer Hostname, damit der Host-Vergleich anschlaegt.
+            self.send_response(302)
+            self.send_header('Location', 'http://localhost:${PORT_FREMD}/dort')
+            self.send_header('Content-Length', '0')
+            self.end_headers()
+            return
         if weg == '/':
             self.send_response(302)
             self.send_header('Location', '/ziel')
@@ -109,6 +120,8 @@ class H(http.server.BaseHTTPRequestHandler):
     def log_message(self, *a): pass
 class S(socketserver.ThreadingMixIn, http.server.HTTPServer):
     daemon_threads = True
+import threading
+threading.Thread(target=lambda: S(('127.0.0.1', ${PORT_FREMD}), H).serve_forever(), daemon=True).start()
 S(('127.0.0.1', ${PORT}), H).serve_forever()
 `;
 
@@ -176,6 +189,41 @@ for (const name of WERKZEUGE) {
     daten
       ? `geprueft="${daten.geprueft}" umgeleitet=${daten.umgeleitet} — ein Werkzeug, das im Text warnt und im JSON schweigt, taeuscht jeden Automaten`
       : 'keine lesbare JSON-Ausgabe');
+}
+
+// --- 4. Das Tor und der Host-Wechsel --------------------------------------
+// Eine Weiterleitung INNERHALB der Domain ist harmlos. Eine, die auf einen
+// anderen Host fuehrt, ist es nicht: dann bewertet das Tor die Seite eines
+// fremden Anbieters und meldet das Ergebnis als eigenes.
+//
+// Gemessen 01.08.2026 gegen einen 302 auf einen anderen Hostnamen: das Tor
+// meldete "server PASS — HTTP 302" und lief durch, ohne den Wechsel je zu
+// erwaehnen. Ein gruenes Tor ueber eine fremde Seite ist das teuerste
+// Missverstaendnis, das dieses Werkzeug produzieren kann.
+console.log('\nDas Tor und der Host-Wechsel:\n');
+{
+  const gate = path.join(SKRIPTE, 'g1-gate.mjs');
+  const torLauf = (pfad) => spawnSync('node',
+    [gate, '--url', `http://127.0.0.1:${PORT}${pfad}`, '--no-shots'],
+    { encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 32 * 1024 * 1024 });
+
+  const fremd = torLauf('/fremd-weg');
+  const ausF = `${fremd.stdout || ''}${fremd.stderr || ''}`;
+  zeile(fremd.status === 2 && /anderen Host/i.test(ausF),
+    'g1-gate bricht ab, wenn die Weiterleitung den Host wechselt',
+    fremd.status === 2
+      ? 'Exit 2, aber ohne den Grund zu nennen — wer liest, sucht den Fehler woanders'
+      : `Exit ${fremd.status} — das Tor bewertet eine fremde Domain als eigene`);
+
+  // Gegenprobe im selben Lauf: die domaininterne Weiterleitung darf NICHT
+  // abbrechen. Sonst waere die Wache unbrauchbar, weil / -> /de/ Alltag ist.
+  const intern = torLauf('/');
+  const ausI = `${intern.stdout || ''}${intern.stderr || ''}`;
+  zeile(intern.status !== 2 && /weiter auf/i.test(ausI),
+    'g1-gate laeuft bei domaininterner Weiterleitung weiter und nennt das Ziel',
+    intern.status === 2
+      ? 'Exit 2 auf einer harmlosen Weiterleitung — die Wache ist zu scharf'
+      : 'laeuft, nennt aber das Ziel nicht — der Bericht meint dann die falsche Seite');
 }
 
 server.kill('SIGKILL');
