@@ -31,6 +31,8 @@ const args = process.argv.slice(2);
 const kaputteKodierung = [];
 // Dateien, die gar nicht erst geoeffnet werden konnten.
 const unlesbareDateien = [];
+// Schon betretene Ordner-Ziele — gegen Symlink-Kreise.
+const gesehenerOrdner = new Set();
 
 // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
 // `--help` war im Original kein bekanntes Flag. Es rutschte als Wurzelpfad
@@ -391,10 +393,35 @@ function walk(dir, files = []) {
     }
     const full = join(dir, e.name);
     if (isExcluded(full)) continue;
-    if (e.isDirectory()) {
+    // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: Symlinks melden bei
+    // readdirSync WEDER isDirectory NOCH isFile — der Typ gehoert zum Link,
+    // nicht zum Ziel. Sie fielen damit durch beide Zweige und blieben
+    // ungeprueft. Gemessen an einem Ordner mit drei Links: filesScanned 1
+    // statt 3, Schlusszeile "No slop signals found".
+    //
+    // Ein ausgeliefertes dist/ enthaelt durchaus Links (pnpm-Stores,
+    // Monorepo-Pakete, ein verlinktes public/). Was dort steht, geht mit
+    // online — geprueft wurde es nie.
+    let art = e;
+    if (e.isSymbolicLink()) {
+      try {
+        const ziel = statSync(full);
+        art = { isDirectory: () => ziel.isDirectory(), isFile: () => ziel.isFile() };
+      } catch (err) {
+        // Toter Link: nichts zu lesen, aber sichtbar machen statt schlucken.
+        unlesbareDateien.push(`${full} (Symlink ins Leere: ${err.code || "ENOENT"})`);
+        continue;
+      }
+    }
+    if (art.isDirectory()) {
       if (SKIP_DIRS.has(e.name) || resolve(full) === skillRoot) continue;
+      // Ein verlinkter Ordner kann auf einen Vorfahren zeigen — dann laeuft die
+      // Rekursion ewig. Gesehene Ziele merken.
+      const echt = realpathOr(full);
+      if (gesehenerOrdner.has(echt)) continue;
+      gesehenerOrdner.add(echt);
       walk(full, files);
-    } else if (e.isFile()) {
+    } else if (art.isFile()) {
       const base = e.name;
       if (/\.min\.(js|css)$/.test(base)) continue;
       if (/(package-lock|pnpm-lock|yarn\.lock)/.test(base)) continue;

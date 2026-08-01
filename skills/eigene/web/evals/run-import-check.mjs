@@ -374,6 +374,71 @@ console.log('\nLeerer Ordner — gruen ueber nichts ist kein Ergebnis:\n');
   fs.rmSync(ordner, { recursive: true, force: true });
 }
 
+// --- Symlinks -------------------------------------------------------------
+// Symlinks melden bei readdirSync WEDER isDirectory NOCH isFile — der Typ
+// gehoert zum Link, nicht zum Ziel. Bis zum 01.08.2026 fielen sie damit durch
+// beide Zweige, und ein toter Link liess statSync mit ENOENT abstuerzen:
+// Stacktrace, Exit 1, also "geprueft und durchgefallen" fuer einen Ordner, der
+// nie gelesen wurde.
+{
+  const wurzel = fs.mkdtempSync(path.join(os.tmpdir(), 'import-check-links-'));
+  const projekt = path.join(wurzel, 'projekt');
+  const aussen = path.join(wurzel, 'aussen');
+  fs.mkdirSync(projekt); fs.mkdirSync(aussen);
+  fs.writeFileSync(path.join(projekt, 'echt.tsx'), "import { toast } from 'sonner';\n");
+  fs.writeFileSync(path.join(aussen, 'fremd.tsx'), "import { erfunden } from 'sonner';\n");
+  fs.symlinkSync(path.join(aussen, 'fremd.tsx'), path.join(projekt, 'link.tsx'));
+  fs.symlinkSync(aussen, path.join(projekt, 'ordner-link'));
+
+  const lauf = () => spawnSync('node', [PRUEFER, '--src', projekt, '--json'], { encoding: 'utf8' });
+
+  const r = lauf();
+  let d = null;
+  try { d = JSON.parse(r.stdout || '{}'); } catch { /* bleibt null */ }
+  gezaehlt++;
+  // 3 Dateien: echt.tsx, link.tsx, ordner-link/fremd.tsx
+  const ok = Boolean(d) && d.dateien === 3;
+  if (!ok) rot++;
+  console.log(ok
+    ? '  [OK]   Symlinks werden gefolgt (3 Dateien statt 1)'
+    : `  [ROT]  ${d ? d.dateien : '?'} Datei(en) gefunden, erwartet 3 — Links uebersprungen`);
+
+  // Der erfundene Import liegt hinter einem Link. Ohne Folgen bleibt er
+  // unsichtbar, und das Urteil waere gruen ueber ungelesenen Code.
+  gezaehlt++;
+  const gefunden = Boolean(d) && (d.befunde || []).some((b) => b.name === 'erfunden');
+  if (!gefunden) rot++;
+  console.log(gefunden
+    ? '  [OK]   erfundener Import hinter einem Symlink faellt auf'
+    : '  [ROT]  erfundener Import hinter einem Symlink bleibt unsichtbar');
+
+  // Toter Link: Exit 2, kein Stacktrace.
+  fs.symlinkSync(path.join(wurzel, 'gibtsnicht.tsx'), path.join(projekt, 'tot.tsx'));
+  const r2 = lauf();
+  const aus2 = `${r2.stdout || ''}${r2.stderr || ''}`;
+  gezaehlt++;
+  const ok2 = r2.status === 2 && /Symlink ins Leere/i.test(aus2);
+  if (!ok2) rot++;
+  console.log(ok2
+    ? '  [OK]   toter Symlink -> Exit 2 mit Klartext'
+    : `  [ROT]  toter Symlink -> Exit ${r2.status}, erwartet 2 (Stacktrace?)`);
+  fs.rmSync(path.join(projekt, 'tot.tsx'));
+
+  // Kreis: ein Link auf den eigenen Vorfahren darf die Rekursion nicht ewig
+  // laufen lassen.
+  fs.symlinkSync(projekt, path.join(projekt, 'kreis'));
+  const r3 = spawnSync('node', [PRUEFER, '--src', projekt, '--json'],
+    { encoding: 'utf8', timeout: 60000 });
+  gezaehlt++;
+  const ok3 = !(r3.error && r3.error.code === 'ETIMEDOUT');
+  if (!ok3) rot++;
+  console.log(ok3
+    ? '  [OK]   Symlink-Kreis laeuft nicht endlos'
+    : '  [ROT]  Symlink-Kreis: kein Ende binnen 60s');
+
+  fs.rmSync(wurzel, { recursive: true, force: true });
+}
+
 const gesamt = gezaehlt;
 console.log(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {

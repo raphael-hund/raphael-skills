@@ -13,7 +13,7 @@
 // Exit 1 = mindestens ein Import existiert nicht.
 // Exit 2 = Pruefer selbst kaputt (Tresor fehlt, Ordner fehlt) — bewusst KEIN Pass.
 
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { join, extname, relative } from 'node:path';
 // Die Namensmenge kommt aus derselben Quelle, die lib-lookup.mjs anzeigt.
 // Vorher hatte dieses Skript eine eigene, schwaechere Aufloesung: jedes
@@ -96,15 +96,46 @@ try {
 const ENDUNGEN = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs']);
 const RAUS = new Set(['node_modules', '.git', 'dist', 'build', '.next', 'out', 'coverage']);
 
+// Dateien, die nicht geoeffnet werden konnten — beim Sammeln (toter Symlink)
+// wie beim Lesen (fehlende Rechte). Muss VOR dateien() stehen: die Funktion
+// schreibt hinein, und `const` wird nicht hochgezogen (gemessen 01.08.2026,
+// ReferenceError beim ersten Versuch).
+const unlesbar = [];
+const gesehen = new Set();
 function dateien(dir, gesammelt = []) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     if (e.name.startsWith('.') && e.name !== '.') continue;
     const p = join(dir, e.name);
-    if (e.isDirectory()) {
+    // Symlinks melden bei readdirSync WEDER isDirectory NOCH isFile — der
+    // Typ gehoert zum Link selbst, nicht zum Ziel. Ohne statSync auf das Ziel
+    // faellt ein verlinkter Ordner durch beide Zweige, und ein toter Link
+    // liess statSync unten mit ENOENT abstuerzen: Stacktrace, Exit 1, also
+    // "geprueft und durchgefallen" fuer einen Ordner, der nie gelesen wurde.
+    // Gemessen 01.08.2026 mit drei Links (tot, Datei nach aussen, Ordner).
+    let art = e;
+    if (e.isSymbolicLink()) {
+      try {
+        const ziel = statSync(p);
+        art = { isDirectory: () => ziel.isDirectory(), isFile: () => ziel.isFile() };
+      } catch (err) {
+        // Toter Link: nichts zu lesen, aber sichtbar machen statt schlucken.
+        unlesbar.push(`${relative(SRC, p)} (Symlink ins Leere: ${err.code || 'ENOENT'})`);
+        continue;
+      }
+    }
+    if (art.isDirectory()) {
       if (RAUS.has(e.name)) continue;
+      // Ein verlinkter Ordner kann auf einen Vorfahren zeigen — dann laeuft
+      // die Rekursion ewig. Gesehene Ziele merken.
+      let echt;
+      try { echt = realpathSync(p); } catch { continue; }
+      if (gesehen.has(echt)) continue;
+      gesehen.add(echt);
       dateien(p, gesammelt);
-    } else if (ENDUNGEN.has(extname(e.name)) && statSync(p).size < 2_000_000) {
-      gesammelt.push(p);
+    } else if (ENDUNGEN.has(extname(e.name))) {
+      let groesse;
+      try { groesse = statSync(p).size; } catch { continue; }
+      if (groesse < 2_000_000) gesammelt.push(p);
     }
   }
   return gesammelt;
@@ -145,8 +176,6 @@ function libFuer(quelle) {
 const alle = dateien(SRC);
 const cache = new Map();
 const befunde = [];
-// Dateien, die nicht geoeffnet werden konnten (siehe Kommentar unten).
-const unlesbar = [];
 // Ein Lauf ueber null Dateien ist kein sauberes Ergebnis. Auf einem leeren oder
 // falsch angegebenen Ordner meldete dieses Skript "Kein erfundener Import" mit
 // Exit 0 — gruen ueber nichts. motion-check und tastatur-check fangen genau das

@@ -466,6 +466,48 @@ console.log('\nEine Datei, die er nicht oeffnen kann, ist nicht geprueft:\n');
   fs.rmSync(ordner, { recursive: true, force: true });
 }
 
+// --- 7. Symlinks ----------------------------------------------------------
+// Symlinks melden bei readdirSync WEDER isDirectory NOCH isFile. Bis zum
+// 01.08.2026 fielen sie durch beide Zweige des Scanners: gemessen an einem
+// Ordner mit drei Links ergab das filesScanned 1 statt 3 und "No slop signals
+// found" — obwohl hinter zwei Links deutsche Floskeln standen.
+//
+// Ein ausgeliefertes dist/ enthaelt durchaus Links (pnpm-Stores,
+// Monorepo-Pakete, ein verlinktes public/). Was dort steht, geht mit online.
+console.log('\nSymlinks — was verlinkt ist, wird mit ausgeliefert:\n');
+{
+  const wurzel = fs.mkdtempSync(path.join(os.tmpdir(), 'slop-de-links-'));
+  const projekt = path.join(wurzel, 'projekt');
+  const aussen = path.join(wurzel, 'aussen');
+  fs.mkdirSync(projekt); fs.mkdirSync(aussen);
+  fs.writeFileSync(path.join(projekt, 'sauber.js'), 'const a = 1;\n');
+  fs.writeFileSync(path.join(aussen, 'floskel.js'),
+    'const t = "ma\u00dfgeschneiderte L\u00f6sungen";\n');
+  fs.symlinkSync(path.join(aussen, 'floskel.js'), path.join(projekt, 'link.js'));
+
+  const scan = () => {
+    try {
+      const roh = execFileSync('node', [SCAN, projekt, `--rules=${REGELN}`, '--json'],
+        { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+      return JSON.parse(roh);
+    } catch (e) { return { fehler: e.status ?? 'kaputt' }; }
+  };
+
+  const d = scan();
+  zeile(d.filesScanned === 2, `Symlink wird gefolgt (${d.filesScanned ?? '?'} Dateien statt 1)`,
+    'der Link fiel durch beide Zweige — sein Inhalt bleibt ungeprueft');
+  zeile(d.hits > 0, 'Floskel hinter dem Symlink faellt auf',
+    'gruen ueber Text, den der Scanner nie gelesen hat');
+
+  fs.symlinkSync(path.join(wurzel, 'gibtsnicht.js'), path.join(projekt, 'tot.js'));
+  const d2 = scan();
+  zeile(Array.isArray(d2.unlesbareDateien) && d2.unlesbareDateien.length === 1,
+    'toter Symlink wird gemeldet, nicht verschluckt',
+    `unlesbareDateien=${JSON.stringify(d2.unlesbareDateien)}`);
+
+  fs.rmSync(wurzel, { recursive: true, force: true });
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
