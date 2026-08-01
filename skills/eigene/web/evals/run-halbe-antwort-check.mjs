@@ -49,6 +49,10 @@ const PORT_GANZ = PORT_HALB + 1;
 // eine vollstaendige Seite ablehnte.
 const PORT_GZIP = PORT_HALB + 2;
 const PORT_GZIP_HALB = PORT_HALB + 3;
+// BOM-Fall: ein UTF-8-BOM (EF BB BF) zaehlt in Content-Length mit, wird von
+// Chrome beim Dekodieren aber entfernt — res.body() liefert 3 Bytes weniger.
+// Die Wache lehnte damit eine vollstaendige Seite als unvollstaendig ab.
+const PORT_BOM = PORT_HALB + 4;
 
 const WERKZEUGE = ['axe-run.mjs', 'craft-check.mjs', 'formular-check.mjs'];
 
@@ -77,11 +81,11 @@ if (fehlend.length) {
   process.exit(2);
 }
 
-for (const p of [PORT_HALB, PORT_GANZ, PORT_GZIP, PORT_GZIP_HALB]) {
+for (const p of [PORT_HALB, PORT_GANZ, PORT_GZIP, PORT_GZIP_HALB, PORT_BOM]) {
   if (httpCode(p) !== '000') {
     console.error(`Port ${p} ist fremdbelegt — diese Eval kann nichts messen.`);
     console.error('Sie liefe gegen eine fremde Seite. Anderen Port setzen:');
-    console.error(`HALB_PORT=<frei>  (belegt werden <frei> bis <frei>+3)`);
+    console.error(`HALB_PORT=<frei>  (belegt werden <frei> bis <frei>+4)`);
     process.exit(2);
   }
 }
@@ -145,7 +149,18 @@ class GzipHalb(http.server.BaseHTTPRequestHandler):
         time.sleep(1)
         self.connection.close()
     def log_message(self, *a): pass
+class MitBom(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        koerper = b'\\xef\\xbb\\xbf' + GANZ
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        # Content-Length zaehlt das BOM mit; Chrome entfernt es beim Dekodieren.
+        self.send_header('Content-Length', str(len(koerper)))
+        self.end_headers()
+        self.wfile.write(koerper)
+    def log_message(self, *a): pass
 import threading
+threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_BOM}), MitBom).serve_forever(), daemon=True).start()
 threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_GANZ}), Ganz).serve_forever(), daemon=True).start()
 threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_GZIP}), Gzip0).serve_forever(), daemon=True).start()
 threading.Thread(target=lambda: http.server.HTTPServer(('127.0.0.1', ${PORT_GZIP_HALB}), GzipHalb).serve_forever(), daemon=True).start()
@@ -154,7 +169,12 @@ http.server.HTTPServer(('127.0.0.1', ${PORT_HALB}), Halb).serve_forever()
 
 const SERVER_DATEI = path.join(ORDNER, 'server.py');
 fs.writeFileSync(SERVER_DATEI, SERVER_PY);
-const server = spawn('python3', [SERVER_DATEI], { stdio: 'ignore' });
+// stderr NICHT verwerfen: startet der Server nicht, ist seine Fehlermeldung
+// die einzige Spur. Mit stdio:'ignore' blieb nur "antwortet nach 10s nicht" —
+// wahr, aber ohne Grund (gemessen 01.08.2026, kostete sechs Fehlversuche).
+const serverLog = path.join(ORDNER, 'server.log');
+const server = spawn('python3', [SERVER_DATEI],
+  { stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')] });
 
 // Aktiv warten: der vollstaendige Port muss 200 liefern. Auf den halben zu
 // warten waere sinnlos — dort ist ein Abbruch ja das Gewollte.
@@ -166,6 +186,13 @@ for (let i = 0; i < 50 && !bereit; i += 1) {
 if (!bereit) {
   server.kill('SIGKILL');
   console.error(`Eigener Testserver auf ${PORT_GANZ} antwortet nach 10s nicht.`);
+  try {
+    const log = fs.readFileSync(serverLog, 'utf8').trim();
+    if (log) {
+      console.error('Der Server sagt dazu:');
+      for (const z of log.split('\n').slice(-4)) console.error(`  ${z}`);
+    }
+  } catch { /* kein Log — dann eben nicht */ }
   console.error('Ohne ihn misst diese Eval nichts und saehe trotzdem sauber aus.');
   process.exit(2);
 }
@@ -209,6 +236,19 @@ for (const name of WERKZEUGE) {
   } else {
     zeile(gz.status !== 2, `${name} akzeptiert vollstaendiges gzip (Leitung groesser als Inhalt)`,
       `Exit 2 — Content-Length gegen entpackte Bytes verglichen: ${`${gz.stderr || ''}`.trim().split('\n')[0].slice(0, 46)}`);
+  }
+
+  // BOM: vollstaendige Seite, aber Content-Length zaehlt 3 Bytes mehr als
+  // res.body() liefert. Muss durchlaufen — Windows-Editoren und alte
+  // CMS-Exporte schreiben das BOM bis heute, und genau solche Dateien landen
+  // in Kundenprojekten. Gemessen 01.08.2026: die erste Fassung der Wache
+  // lehnte sie ab ("Antwort unvollstaendig: 117 von 120 Bytes").
+  const bom = laufen(name, PORT_BOM);
+  if (bom.error && bom.error.code === 'ETIMEDOUT') {
+    zeile(false, `${name} (BOM)`, `keine Antwort binnen ${FRIST_MS / 1000}s`);
+  } else {
+    zeile(bom.status !== 2, `${name} akzeptiert eine Seite mit UTF-8-BOM`,
+      `Exit 2 — die 3 BOM-Bytes als Abbruch gedeutet: ${`${bom.stderr || ''}`.trim().split('\n')[0].slice(0, 46)}`);
   }
 
   // Gzip, abgebrochen: hier MUSS die Ablehnung weiter greifen. Sonst waere die

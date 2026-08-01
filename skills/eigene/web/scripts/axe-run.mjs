@@ -101,7 +101,20 @@ try {
     // Bei kodierter Antwort schuetzt allein, dass res.body() ueberhaupt
     // gelingt: bei abgebrochener Uebertragung scheitert das Entpacken.
     const kodiert = Boolean(kopf['content-encoding']);
-    if (!kodiert && versprochen && roh.length < versprochen) {
+    // Ein UTF-8-BOM (EF BB BF) zaehlt in Content-Length mit, wird von Chrome
+    // aber beim Dekodieren entfernt — res.body() liefert dann genau 3 Bytes
+    // weniger. Gemessen 01.08.2026 an einer BOM-Seite: 120 angekuendigt, 117
+    // empfangen, und die Wache lehnte eine vollstaendige Seite als
+    // unvollstaendig ab (Exit 2 statt Urteil).
+    //
+    // Windows-Editoren und alte CMS-Exporte schreiben das BOM bis heute. Genau
+    // solche Dateien landen in Kundenprojekten.    //
+    // Oeffnet diese Ausnahme ein Loch fuer echte 3-Byte-Abbrueche? Gemessen
+    // 01.08.2026 mit einem Server, der genau 3 Bytes zurueckhaelt: Chrome
+    // wartet vergeblich auf den Rest und laeuft ins Timeout — die Wache wird
+    // dort gar nicht erreicht. Der Fall endet mit Exit 2 aus anderem Grund.
+    const bomLuecke = versprochen - roh.length === 3 ? 3 : 0;
+    if (!kodiert && versprochen && roh.length + bomLuecke < versprochen) {
       throw new Error(`Antwort unvollstaendig: ${roh.length} von ${versprochen} Bytes empfangen`);
     }
   } catch (e) {
