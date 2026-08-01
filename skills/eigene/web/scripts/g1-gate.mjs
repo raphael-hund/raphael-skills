@@ -363,6 +363,36 @@ function run(bin, argv, opts = {}) {
   }
 }
 
+// Warum ein Fehler passierte, steht je nach Werkzeug woanders: manche schreiben
+// den Grund auf stderr, manche legen ihn ins JSON auf stdout (seit dem
+// 01.08.2026 etwa `nichtLesbar` in tastatur-check und motion-check). Bleibt
+// beides leer, liefert e.message nur "Command failed: node /langer/pfad/..." —
+// eine Meldung, die fast nur aus dem Kommandopfad besteht.
+//
+// Gemessen 01.08.2026 mit einem toten Symlink im --src: drei Pruefer meldeten
+// genau das. Der Nutzer sah einen abgeschnittenen Pfad und keinen Grund.
+function fehlerGrund(e) {
+  const err = String(e.stderr || '').trim();
+  if (err) return err.split('\n')[0].slice(0, 160);
+
+  // JSON auf stdout: die strukturierten Gruende der Pruefer.
+  try {
+    const d = JSON.parse(String(e.stdout || ''));
+    for (const feld of ['nichtLesbar', 'unlesbar', 'unlesbareDateien', 'kaputteKodierung']) {
+      const v = d[feld];
+      if (Array.isArray(v) && v.length) {
+        return `${v.length} Datei(en) nicht lesbar: ${v.slice(0, 2).join(', ')}${v.length > 2 ? ' …' : ''}`;
+      }
+    }
+    if (d.fehler) return String(d.fehler).slice(0, 160);
+  } catch { /* kein JSON — dann eben die Notbremse unten */ }
+
+  // Notbremse: der Kommandopfad ist die schlechteste Auskunft, aber besser als
+  // gar keine. Vorne abschneiden, damit der Grund am Ende sichtbar bleibt.
+  const m = String(e.message).split('\n')[0];
+  return m.length > 160 ? `…${m.slice(-157)}` : m;
+}
+
 // --- Check 1: Server erreichbar -------------------------------------------
 function checkServer() {
   try {
@@ -504,7 +534,7 @@ function checkAxe() {
       code = e.status ?? 2;
       out = String(e.stdout || '');
       if (code === 2) {
-        record(`axe${route}`, false, `axe-Lauf kaputt: ${String(e.stderr || e.message).split('\n')[0]}`);
+        record(`axe${route}`, false, `axe-Lauf kaputt: ${fehlerGrund(e)}`);
         continue;
       }
     }
@@ -566,7 +596,7 @@ function checkLinks() {
     try {
       auswerten(String(e.stdout || ''));
     } catch {
-      record('links', false, `linkinator-Lauf kaputt: ${String(e.message).split('\n')[0]}`);
+      record('links', false, `linkinator-Lauf kaputt: ${fehlerGrund(e)}`);
     }
   }
 }
@@ -725,7 +755,7 @@ function checkSlop() {
     try {
       melden(JSON.parse(String(e.stdout || '')));
     } catch {
-      record('ai-slop', false, `Slop-Scan kaputt: ${String(e.stderr || e.message).split('\n')[0]}`);
+      record('ai-slop', false, `Slop-Scan kaputt: ${fehlerGrund(e)}`);
     }
   }
 }
@@ -742,7 +772,7 @@ function checkCraft() {
     } catch (e) {
       code = e.status ?? 2;
       out = String(e.stdout || '');
-      if (code === 2) { record(`craft${route}`, false, `craft-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); continue; }
+      if (code === 2) { record(`craft${route}`, false, `craft-check kaputt: ${fehlerGrund(e)}`); continue; }
     }
     try {
       const parsed = JSON.parse(out);
@@ -778,7 +808,7 @@ function checkFormular() {
     } catch (e) {
       code = e.status ?? 2;
       out = String(e.stdout || '');
-      if (code === 2) { record(`formular${route}`, false, `formular-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); continue; }
+      if (code === 2) { record(`formular${route}`, false, `formular-check kaputt: ${fehlerGrund(e)}`); continue; }
     }
     try {
       const parsed = JSON.parse(out);
@@ -833,7 +863,7 @@ function checkImporte() {
   } catch (e) {
     code = e.status ?? 2;
     out = String(e.stdout || '');
-    if (code === 2) { record('importe', false, `import-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); return; }
+    if (code === 2) { record('importe', false, `import-check kaputt: ${fehlerGrund(e)}`); return; }
   }
   try {
     const parsed = JSON.parse(out);
@@ -889,7 +919,7 @@ function checkMotion() {
   } catch (e) {
     code = e.status ?? 2;
     out = String(e.stdout || '');
-    if (code === 2) { record('motion', false, `motion-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); return; }
+    if (code === 2) { record('motion', false, `motion-check kaputt: ${fehlerGrund(e)}`); return; }
   }
   try {
     const parsed = JSON.parse(out);
@@ -934,7 +964,7 @@ function checkTastatur() {
   } catch (e) {
     code = e.status ?? 2;
     out = String(e.stdout || '');
-    if (code === 2) { record('tastatur', false, `tastatur-check kaputt: ${String(e.stderr || e.message).split('\n')[0]}`); return; }
+    if (code === 2) { record('tastatur', false, `tastatur-check kaputt: ${fehlerGrund(e)}`); return; }
   }
   try {
     const parsed = JSON.parse(out);

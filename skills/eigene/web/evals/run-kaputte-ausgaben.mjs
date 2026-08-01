@@ -25,7 +25,7 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync } from 'node:fs';
 import fs from 'node:fs';
 import os from 'node:os';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn, spawnSync } from 'node:child_process';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const GATE = path.join(HIER, '..', 'scripts', 'g1-gate.mjs');
@@ -67,6 +67,17 @@ const ECHT_LEER = [
 ];
 
 let fehler = 0;
+// Selbst zaehlen statt zu rechnen. Die Schlusszeile stand auf
+// `KAPUTT.length + ECHT_LEER.length + zusatz + 2` — eine feste Zahl in einer
+// Bilanzformel altert still, weil sie plausibel bleibt. Dieselbe Falle steckte
+// diese Session schon in sechs anderen Evals.
+//
+// Gezaehlt wird an der DRUCKSTELLE, nicht an den Listen: diese Eval hat vier
+// verschiedene Meldeformen (Template mit Ternary im String, mehrzeiliges
+// Ternary, feste Strings). Ein Muster, das die Aufrufe erkennen soll, traf nur
+// 4 von 15 — die Kapselung trifft alle.
+let gezaehlt = 0;
+const sag = (text) => { gezaehlt++; console.log(text); };
 
 console.log('Kaputte Werkzeug-Ausgaben — keine davon darf "0 Probleme" bedeuten:\n');
 for (const f of KAPUTT) {
@@ -79,7 +90,7 @@ for (const f of KAPUTT) {
     erkannt = true;
     wie = e.message;
   }
-  console.log(`  ${erkannt ? '[OK]  ' : '[FAIL]'} ${f.was}\n         ${wie}`);
+  sag(`  ${erkannt ? '[OK]  ' : '[FAIL]'} ${f.was}\n         ${wie}`);
   if (!erkannt) fehler++;
 }
 
@@ -94,7 +105,7 @@ for (const f of ECHT_LEER) {
   } catch (e) {
     wie = `faelschlich abgelehnt: ${e.message}`;
   }
-  console.log(`  ${ok ? '[OK]  ' : '[FAIL]'} ${f.was}\n         ${wie}`);
+  sag(`  ${ok ? '[OK]  ' : '[FAIL]'} ${f.was}\n         ${wie}`);
   if (!ok) fehler++;
 }
 
@@ -121,7 +132,7 @@ let zusatz = 0;
   };
 
   if (!fam.length) {
-    console.log('  [ROT]  QUALITAET-Liste nicht im Tor gefunden — umbenannt?');
+    sag('  [ROT]  QUALITAET-Liste nicht im Tor gefunden — umbenannt?');
     fehler++;
     zusatz += 1;
   } else {
@@ -135,10 +146,10 @@ let zusatz = 0;
       ? urteil({ name: 'shot-sweep', ok: stelle[1] === 'true', skipped: stelle[1] === 'true' })
       : null;
     if (!stelle) {
-      console.log('  [ROT]  Stelle "shot-sweep.mjs fehlt" nicht im Tor gefunden — umgebaut?');
+      sag('  [ROT]  Stelle "shot-sweep.mjs fehlt" nicht im Tor gefunden — umgebaut?');
       fehler++;
     }
-    console.log(alsFail === 1
+    sag(alsFail === 1
       ? '  [OK]   fehlendes shot-sweep.mjs -> Exit 1, kein gruenes Tor'
       : `  [ROT]  fehlendes shot-sweep.mjs -> Exit ${alsFail}, erwartet 1`);
     if (alsFail !== 1) fehler++;
@@ -146,7 +157,7 @@ let zusatz = 0;
     // Und der Beleg, dass die alte Form wirklich gruen ergab — sonst waere
     // nicht zu sehen, dass dieser Fall ueberhaupt etwas misst.
     const alsSkip = urteil({ name: 'shot-sweep', ok: true, skipped: true });
-    console.log(alsSkip === 0
+    sag(alsSkip === 0
       ? '  [OK]   Gegenprobe: als SKIP waere es Exit 0 gewesen — der Fall misst etwas'
       : `  [ROT]  Gegenprobe unerwartet: SKIP ergibt Exit ${alsSkip}`);
     if (alsSkip !== 0) fehler++;
@@ -191,7 +202,7 @@ console.log('\nLeere Aufnahme — zwei leere Listen sind keine Uebereinstimmung:
 
   const a = lauf(leer, leer, 'leer');
   const okLeer = a.code === 2 && /nicht gemessen/.test(a.text) && !/Struktur getroffen: \d\/5/.test(a.text);
-  console.log(okLeer
+    sag(okLeer
     ? '  [OK]   leere Aufnahme -> Exit 2, keine Note im Bericht'
     : `  [ROT]  leere Aufnahme -> Exit ${a.code}, Bericht enthaelt ${/\d\/5/.test(a.text) ? 'Noten' : 'keinen Hinweis'}`);
   if (!okLeer) fehler++;
@@ -200,7 +211,7 @@ console.log('\nLeere Aufnahme — zwei leere Listen sind keine Uebereinstimmung:
   // ist der Vergleich nur noch ein Verweigerer.
   const b = lauf(echt, echt, 'echt');
   const okEcht = b.code === 0 && /Struktur getroffen: \d\/5/.test(b.text);
-  console.log(okEcht
+    sag(okEcht
     ? '  [OK]   echte Aufnahme -> Exit 0, Noten im Bericht'
     : `  [ROT]  echte Aufnahme -> Exit ${b.code}, keine Noten — Fehlalarm auf gutem Material`);
   if (!okEcht) fehler++;
@@ -208,7 +219,58 @@ console.log('\nLeere Aufnahme — zwei leere Listen sind keine Uebereinstimmung:
   fs.rmSync(ordner, { recursive: true, force: true });
 }
 
-const gesamt = KAPUTT.length + ECHT_LEER.length + zusatz + 2;
+// --- Nennt das Tor den GRUND, wenn ein Pruefer abstuerzt? -----------------
+// Bis zum 01.08.2026 nahm es dafuer e.stderr. Werkzeuge, die ihren Grund ins
+// JSON auf stdout legen (tastatur-check, motion-check, import-check seit den
+// Symlink-Faellen), hinterliessen ein leeres stderr — und die Meldung fiel auf
+// e.message zurueck: "Command failed: node /root/raphael-skills/.claude/..."
+//
+// Gemessen mit einem toten Symlink im --src: drei Pruefer meldeten genau das.
+// Der Nutzer sah einen abgeschnittenen Kommandopfad und keinen Grund.
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'kaputt-grund-'));
+  fs.writeFileSync(path.join(ordner, 'index.html'),
+    '<!doctype html><html lang="de"><head><meta charset="utf-8">'
+    + '<title>T</title></head><body><h1>S</h1></body></html>\n');
+  fs.writeFileSync(path.join(ordner, 'a.tsx'), 'export const A = () => null;\n');
+  fs.symlinkSync(path.join(ordner, 'gibtsnicht.tsx'), path.join(ordner, 'tot.tsx'));
+
+  const port = Number(process.env.KAPUTT_GRUND_PORT || 5493);
+  const srv = spawn('python3', ['-m', 'http.server', String(port), '--bind', '127.0.0.1'],
+    { cwd: ordner, stdio: 'ignore' });
+  let bereit = false;
+  for (let i = 0; i < 50 && !bereit; i += 1) {
+    const q = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+      '-w', '%{http_code}', `http://127.0.0.1:${port}/`], { encoding: 'utf8' });
+    if ((q.stdout || '').trim() === '200') bereit = true;
+    else spawnSync('sleep', ['0.2']);
+  }
+
+  if (!bereit) {
+    srv.kill('SIGKILL');
+    sag(`  [ROT]  Testserver auf ${port} kam nicht hoch — Fall nicht messbar`);
+    fehler++;
+  } else {
+    const r = spawnSync('node', [path.join(HIER, '..', 'scripts', 'g1-gate.mjs'),
+      '--url', `http://127.0.0.1:${port}/`, '--src', ordner, '--no-shots'],
+      { encoding: 'utf8', timeout: 600000, maxBuffer: 32 * 1024 * 1024 });
+    srv.kill('SIGKILL');
+    const aus = `${r.stdout || ''}${r.stderr || ''}`;
+    const zeilen = aus.split('\n').filter((z) => /\[FAIL\] (tastatur|motion|importe)/.test(z));
+    // Jede dieser Zeilen muss den Grund nennen, nicht den Kommandopfad.
+    const mitGrund = zeilen.filter((z) => /nicht lesbar|Symlink|ENOENT/i.test(z));
+    const nurPfad = zeilen.filter((z) => /Command failed: node \//.test(z));
+    const ok = zeilen.length >= 3 && mitGrund.length === zeilen.length && nurPfad.length === 0;
+    sag(ok
+      ? `  [OK]   Tor nennt den Grund statt des Kommandopfads (${zeilen.length} Pruefer)`
+      : `  [ROT]  ${nurPfad.length} von ${zeilen.length} Meldungen zeigen nur "Command failed: node /..."`);
+    if (!ok) fehler++;
+  }
+
+  fs.rmSync(ordner, { recursive: true, force: true });
+}
+
+const gesamt = gezaehlt;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
   console.log('\nMindestens eine Ausgabe wurde falsch bewertet — das Tor kann falsches Gruen melden.');
