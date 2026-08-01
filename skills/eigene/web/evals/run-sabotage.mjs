@@ -291,6 +291,41 @@ for (const s of SCHAEDEN) {
     // gemessen: eine saubere Datei als beschaedigt gemeldet.
     if (txt.includes(s.zu) && !txt.includes(s.von)) dreckig.push(s.pruefer);
   }
+  // Zweite Vorpruefung: existiert der Ankertext ueberhaupt noch — genau einmal?
+  //
+  // Am 01.08.2026 war der axe-Anker seit dem Browser-Aufraeum-Fix tot
+  // ('process.exit(violations.length ? 1 : 0);' gab es nicht mehr). Der Fall
+  // haette nur nichts mehr belegt — schlimmer war, dass sein `zu`-Text
+  // 'process.exit(0);' lautete und seit der --help-Wache in jedem Werkzeug
+  // regulaer vorkommt. Die Wache oben hielt das fuer einen Schadenrest und
+  // brach den GANZEN Lauf mit Exit 2 ab: 0 von 14 Faellen geprueft.
+  //
+  // Diese Pruefung faengt beide Haelften an der Wurzel und benennt sie
+  // getrennt — ein toter Anker ist etwas anderes als ein mehrdeutiger.
+  const ankerProbleme = [];
+  for (const s of SCHAEDEN) {
+    const datei = path.join(SKILL, s.pruefer);
+    if (!fs.existsSync(datei)) continue;
+    const txt = fs.readFileSync(datei, 'utf8');
+    const n = txt.split(s.von).length - 1;
+    if (n === 0) {
+      ankerProbleme.push(`${s.kurz}: Ankertext steht nicht mehr in ${s.pruefer} — umgebaut? Der Fall belegt nichts.`);
+    } else if (n > 1) {
+      ankerProbleme.push(`${s.kurz}: Ankertext steht ${n}x in ${s.pruefer} — nicht eindeutig, der Schaden traefe die erste Stelle.`);
+    }
+    // Der Ersatztext darf im gesunden Pruefer nicht vorkommen. Sonst haelt die
+    // Wache oben eine saubere Datei fuer beschaedigt.
+    if (txt.includes(s.zu)) {
+      ankerProbleme.push(`${s.kurz}: Ersatztext kommt im gesunden ${s.pruefer} vor — Marker einbauen (z.B. "// sabotage-marker-${s.kurz}").`);
+    }
+  }
+  if (ankerProbleme.length) {
+    console.error('\nSabotage-Anker passen nicht mehr zum Pruefer:');
+    for (const a of ankerProbleme) console.error(`  ${a}`);
+    console.error('Ohne passenden Anker belegt der Fall nichts — oder legt den Lauf still.');
+    process.exit(2);
+  }
+
   if (dreckig.length) {
     console.error('\nEin Pruefer traegt schon einen Sabotage-Schaden:');
     for (const d of dreckig) console.error(`  ${d}`);

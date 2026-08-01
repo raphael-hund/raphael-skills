@@ -115,6 +115,39 @@ function laufEval(rel) {
   }
 }
 
+// Vor dem ersten Schaden: passen die Anker ueberhaupt noch zu den Detektoren?
+//
+// Uebernommen aus der web-Version nach dem Befund vom 01.08.2026. Dort war ein
+// Anker seit einem Umbau tot, und sein Ersatztext ('process.exit(0);') kam im
+// gesunden Werkzeug regulaer vor. Die Rest-Wache hielt das fuer einen
+// Schadenrest und brach den GANZEN Lauf mit Exit 2 ab: 0 von 14 Faellen
+// geprueft. Diese Version hatte gar keine Vorpruefung — ein toter Anker waere
+// hier als "Ankertext nicht gefunden" mitten im Lauf aufgetaucht, ohne zu
+// sagen, dass der FALL das Problem ist und nicht der Detektor.
+{
+  const probleme = [];
+  for (const s of SCHAEDEN) {
+    const datei = path.join(SKILL, s.pruefer);
+    if (!fs.existsSync(datei)) { probleme.push(`${s.kurz}: ${s.pruefer} fehlt`); continue; }
+    const txt = fs.readFileSync(datei, 'utf8');
+    const n = txt.split(s.von).length - 1;
+    if (n === 0) {
+      probleme.push(`${s.kurz}: Ankertext steht nicht mehr in ${s.pruefer} — umgebaut? Der Fall belegt nichts.`);
+    } else if (n > 1) {
+      probleme.push(`${s.kurz}: Ankertext steht ${n}x in ${s.pruefer} — nicht eindeutig, der Schaden traefe die erste Stelle.`);
+    }
+    if (txt.includes(s.zu)) {
+      probleme.push(`${s.kurz}: Ersatztext kommt im gesunden ${s.pruefer} vor — Marker einbauen.`);
+    }
+  }
+  if (probleme.length) {
+    console.error('\nSabotage-Anker passen nicht mehr zum Detektor:');
+    for (const a of probleme) console.error(`  ${a}`);
+    console.error('Ohne passenden Anker belegt der Fall nichts — oder legt den Lauf still.');
+    process.exit(2);
+  }
+}
+
 console.log('\nSabotage (design) — merkt die Eval, wenn ihr Detektor kaputtgeht?\n');
 
 // Notfall-Wiederherstellung, wenn der Lauf per SIGNAL stirbt.
