@@ -63,7 +63,7 @@ eval_scorecard:
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
     - "evals/run-sprache-check.mjs — 55 Skripte aller Skills: kann Raphael jeden Bericht lesen?"
-    - "evals/run-struktur.mjs — faehrt die sechs Struktur-Wachen oben in EINEM Lauf (unter 1 Min, ohne Browser)"
+    - "evals/run-struktur.mjs — faehrt die sieben Struktur-Wachen oben in EINEM Lauf (43s gemessen 01.08.2026, ohne Browser)"
     - "evals/run-zwillinge-check.mjs — doppelt vorhandene Dateien: laufen zwei Kopien auseinander?"
     - "evals/run-hilfe-check.mjs — 23 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "evals/run-aufruffehler-check.mjs — 24 Werkzeuge: endet ein falscher Aufruf mit Exit 2?"

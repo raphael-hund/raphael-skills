@@ -378,6 +378,12 @@ const ROUTEN_FAELLE = [
   // Route, Urteil Exit 1. Ein Tippfehler in --routes sah aus wie kaputtes
   // Design.
   //
+  // Das checks-Feld ist hier kein Schmuck: run-naht-check liest genau diese
+  // Listen, um zu pruefen, ob jeder urteilende Pruefer im Anti-Set vorkommt.
+  // Ohne das Feld meldete es am 01.08.2026 "1 ungedeckt: routen" — obwohl der
+  // Fall existiert und greift. Eine Wache, die das Format nicht kennt, sieht
+  // die Abdeckung nicht.
+  //
   // WICHTIG fuer die Beweiskraft: die Fixture muss selbst einen Mangel haben.
   // Auf der sauberen _basis.html war der Absturz der EINZIGE Fehler, und dann
   // greift schon die aeltere every()-Regel ("alle Fehler sind Abstuerze ->
@@ -387,7 +393,7 @@ const ROUTEN_FAELLE = [
   // Darum laeuft dieser Fall gegen a4-a11y-kaputt.html: dort steht ein echter
   // Qualitaetsmangel neben der toten Route. Ohne Vorpruefung mischt sich beides
   // zu Exit 1; mit ihr bricht das Tor vorher mit Exit 2 ab.
-  { was: 'tote-route-neben-mangel',  routes: '/,/gibtsnicht.html', exit: 2, ordner: 'gemischt', warum: 'tote Route neben echtem Mangel — das Tor darf kein Qualitaetsurteil faellen' },
+  { checks: ['routen'], was: 'tote-route-neben-mangel',  routes: '/,/gibtsnicht.html', exit: 2, ordner: 'gemischt', warum: 'tote Route neben echtem Mangel — das Tor darf kein Qualitaetsurteil faellen' },
 ];
 
 for (const f of ROUTEN_FAELLE) {

@@ -2,7 +2,7 @@
 /**
  * run-struktur.mjs — alle Struktur-Wachen in einem Lauf.
  *
- * Der Skill hat 33 Evals. Sechs davon pruefen nicht das Ergebnis, sondern den
+ * Der Skill hat 39 Evals. Sieben davon pruefen nicht das Ergebnis, sondern den
  * Skill selbst: stimmen die Zahlen, loesen die Verweise auf, haengt jeder
  * Pruefer am Tor, laufen zwei Kopien auseinander, steht jede Komponente im
  * Katalog, kann Raphael jeden Bericht lesen.
@@ -30,6 +30,12 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const WACHEN = [
   ['run-doku-zahlen.mjs', 'verspricht die Doku den echten Umfang?'],
   ['run-verweise-check.mjs', 'loest jeder Pfad und jeder loads-Eintrag auf?'],
+  // Nachgetragen 01.08.2026. run-verweise-check prueft NUR den web-Skill;
+  // run-verweise-alle faehrt dieselbe Wache ueber alle 24 Skills der Familie.
+  // Sie lag ausserhalb dieses Sammellaufs, und wer ihn fuhr, hielt die Familie
+  // damit fuer geprueft. Gemessen: 29 Sekunden, kein Browser, kein Server —
+  // es gab keinen Grund, sie draussen zu lassen.
+  ['run-verweise-alle.mjs', 'zeigt in IRGENDEINEM Skill ein Verweis ins Leere?'],
   ['run-naht-check.mjs', 'haengt jeder Pruefer am Tor und wird er ausgeloest?'],
   ['run-zwillinge-check.mjs', 'laufen zwei Kopien derselben Datei auseinander?'],
   ['run-katalog-check.mjs', 'steht jede Komponente im Katalog?'],
