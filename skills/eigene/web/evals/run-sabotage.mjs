@@ -64,8 +64,16 @@ if (fs.existsSync(SPERRE)) {
   // seither mit Exit 2 ab ("Ein Lauf laeuft bereits, PID "), und niemand
   // konnte den Sabotage-Test mehr fahren.
   //
-  // Die Datei wird leer, wenn ein Lauf zwischen dem Anlegen und dem Schreiben
-  // der PID stirbt — oder wenn die Platte den Schreibvorgang nicht abschliesst.
+  // Woher eine leere Sperre kommt, war zuerst eine Vermutung ("Lauf stirbt
+  // zwischen Anlegen und PID-Schreiben"). Nachgemessen am 01.08.2026: falsch.
+  // writeFileSync schreibt Anlegen und Inhalt in einem Zug; 200 Durchlaeufe
+  // ergaben nie eine leere Datei. Die leere Sperre, die den Lauf blockierte,
+  // stammte aus meiner eigenen Gegenprobe (`: > lock`).
+  //
+  // Die Wache bleibt trotzdem: eine Sperre in /tmp kann von jedem Werkzeug
+  // und jeder Hand angefasst werden, und ihr Inhalt ist nicht garantiert. Ein
+  // unbrauchbarer Inhalt darf den Lauf nicht fuer immer stilllegen — das war
+  // der eigentliche Schaden, nicht seine Ursache.
   const pid = Number.parseInt(alt, 10);
   if (!Number.isInteger(pid) || pid <= 0) {
     console.error(`Sperre ohne brauchbare PID (Inhalt: "${alt}") — wird uebernommen.`);
@@ -384,6 +392,17 @@ for (const s of SCHAEDEN) {
     console.error('\nSabotage-Anker passen nicht mehr zum Pruefer:');
     for (const a of ankerProbleme) console.error(`  ${a}`);
     console.error('Ohne passenden Anker belegt der Fall nichts — oder legt den Lauf still.');
+    // Zwei Ursachen, zwei Wege zurueck — und die Meldung muss beide nennen,
+    // sonst raet der naechste Leser. Gemessen 01.08.2026 nach einem SIGKILL
+    // mitten im Lauf: Sperre und beschaedigte Datei blieben liegen, die
+    // Anker-Wache meldete sauber "Ankertext steht nicht mehr" — aber ohne
+    // Hinweis, dass hier ein ABBRUCH die Datei zerstoert hat und nicht ein
+    // Umbau den Anker.
+    console.error('');
+    console.error('Kam der Lauf zuvor durch einen Abbruch (SIGKILL, OOM, Stromausfall)');
+    console.error('zum Stehen? Dann traegt die Datei noch den Schaden. Zuruecksetzen:');
+    console.error('  git checkout -- skills/eigene/web/<datei>');
+    console.error('Wurde der Pruefer umgebaut? Dann den Anker in dieser Datei nachziehen.');
     process.exit(2);
   }
 
