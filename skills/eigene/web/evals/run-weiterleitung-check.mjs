@@ -127,7 +127,14 @@ S(('127.0.0.1', ${PORT}), H).serve_forever()
 
 const SERVER_DATEI = path.join(ORDNER, 'server.py');
 fs.writeFileSync(SERVER_DATEI, SERVER_PY);
-const server = spawn('python3', [SERVER_DATEI], { stdio: 'ignore' });
+// stderr NICHT verwerfen: startet der Server nicht, ist seine Fehlermeldung
+// die einzige Spur. Mit stdio:'ignore' bleibt nur "antwortet nach 10s nicht" —
+// wahr, aber ohne Grund. In der Schwester-Eval kostete genau das am
+// 01.08.2026 sechs Fehlversuche, bis ein Python-SyntaxError im verworfenen
+// stderr auftauchte.
+const serverLog = path.join(ORDNER, 'server.log');
+const server = spawn('python3', [SERVER_DATEI],
+  { stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')] });
 
 let bereit = false;
 for (let i = 0; i < 50 && !bereit; i += 1) {
@@ -137,6 +144,13 @@ for (let i = 0; i < 50 && !bereit; i += 1) {
 if (!bereit) {
   server.kill('SIGKILL');
   console.error(`Eigener Testserver auf ${PORT} antwortet nach 10s nicht.`);
+  try {
+    const log = fs.readFileSync(serverLog, 'utf8').trim();
+    if (log) {
+      console.error('Der Server sagt dazu:');
+      for (const z of log.split('\n').slice(-4)) console.error(`  ${z}`);
+    }
+  } catch { /* kein Log — dann eben nicht */ }
   console.error('Ohne ihn misst diese Eval nichts und saehe trotzdem sauber aus.');
   process.exit(2);
 }

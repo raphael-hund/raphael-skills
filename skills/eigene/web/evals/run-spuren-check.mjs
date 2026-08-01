@@ -98,8 +98,14 @@ fs.writeFileSync(path.join(SEITE, 'index.html'),
   + '<form><label for="a">Name</label><input id="a" name="a"></form>'
   + '</body></html>\n');
 
+// stderr NICHT verwerfen: startet der Server nicht (Port belegt, Rechte,
+// fehlendes Verzeichnis), ist seine Fehlermeldung die einzige Spur. Mit
+// stdio:'ignore' bleibt nur "antwortet nicht" — wahr, aber ohne Grund.
+// Gemessen 01.08.2026 in der Schwester-Eval: ein verworfener
+// Python-SyntaxError kostete sechs Fehlversuche.
+const serverLog = path.join(SEITE, 'server-run-spuren-check.log');
 const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'],
-  { cwd: SEITE, stdio: 'ignore', detached: false });
+  { cwd: SEITE, stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')], detached: false });
 
 // Warten, bis er wirklich antwortet. Ein `listen`-Callback des eigenen
 // Prozesses gibt es hier nicht mehr, und blind zu schlafen waere ein Test,
@@ -113,8 +119,20 @@ for (let i = 0; i < 50 && !bereit; i += 1) {
 }
 if (!bereit) {
   server.kill('SIGKILL');
-  wegwerfen(SEITE);
   console.error(`Kein Testserver auf Port ${PORT} — nach 10s keine Antwort.`);
+  // ERST lesen, DANN aufraeumen: wegwerfen(SEITE) loescht den Ordner samt
+  // Logdatei. Beim ersten Versuch stand es davor, und die Fehlermeldung des
+  // Servers war weg, bevor sie jemand las (gemessen 01.08.2026).
+  let serverGesagt = '';
+  try { serverGesagt = fs.readFileSync(serverLog, 'utf8').trim(); } catch { /* kein Log */ }
+  wegwerfen(SEITE);
+  try {
+    const log = serverGesagt;
+    if (log) {
+      console.error('Der Server sagt dazu:');
+      for (const z of log.split('\n').slice(-4)) console.error(`  ${z}`);
+    }
+  } catch { /* kein Log — dann eben nicht */ }
   console.error('Ohne laufende Seite startet kein Werkzeug einen Browser,');
   console.error('und diese Eval saehe sauber aus, ohne etwas zu messen.');
   process.exit(2);

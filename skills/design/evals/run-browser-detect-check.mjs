@@ -483,8 +483,14 @@ if (httpCode() !== '000') {
   process.exit(2);
 }
 
+// stderr NICHT verwerfen: startet der Server nicht (Port belegt, Rechte,
+// fehlendes Verzeichnis), ist seine Fehlermeldung die einzige Spur. Mit
+// stdio:'ignore' bleibt nur "antwortet nicht" — wahr, aber ohne Grund.
+// Gemessen 01.08.2026 in der Schwester-Eval: ein verworfener
+// Python-SyntaxError kostete sechs Fehlversuche.
+const serverLog = path.join(os.tmpdir(), 'server-run-browser-detect-check.log');
 const server = spawn('python3', ['-m', 'http.server', String(PORT)], {
-  cwd: ordner, stdio: 'ignore', detached: false,
+  cwd: ordner, stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')], detached: false,
 });
 const aufraeumen = () => {
   try { server.kill('SIGKILL'); } catch { /* egal */ }
@@ -513,6 +519,13 @@ for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
   if (!bereit) {
     server.kill('SIGKILL');
     console.error(`Eigener Testserver auf ${PORT} antwortet nach 8s nicht.`);
+  try {
+    const log = fs.readFileSync(serverLog, 'utf8').trim();
+    if (log) {
+      console.error('Der Server sagt dazu:');
+      for (const z of log.split('\n').slice(-4)) console.error(`  ${z}`);
+    }
+  } catch { /* kein Log — dann eben nicht */ }
     console.error('Ohne ihn misst diese Eval nichts und saehe trotzdem sauber aus.');
     process.exit(2);
   }

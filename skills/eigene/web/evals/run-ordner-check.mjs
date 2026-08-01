@@ -85,8 +85,14 @@ function serverAn(ordner) {
     process.exit(2);
   }
 
+  // stderr NICHT verwerfen: startet der Server nicht (Port belegt, Rechte,
+  // fehlendes Verzeichnis), ist seine Fehlermeldung die einzige Spur. Mit
+  // stdio:'ignore' bleibt nur "antwortet nicht" — wahr, aber ohne Grund.
+  // Gemessen 01.08.2026 in der Schwester-Eval: ein verworfener
+  // Python-SyntaxError kostete sechs Fehlversuche.
+  const serverLog = path.join(os.tmpdir(), 'server-run-ordner-check.log');
   server = spawn('python3', ['-m', 'http.server', String(HAFEN), '--directory', ordner],
-    { stdio: 'ignore' });
+    { stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')] });
 
   // Aktiv warten statt blind zwei Sekunden zu schlafen: der feste Schlaf
   // reicht auf dieser Maschine, auf einer langsameren nicht — und ein Test,
@@ -97,6 +103,13 @@ function serverAn(ordner) {
   }
   serverAus();
   console.error(`Eigener Testserver auf ${HAFEN} antwortet nach 8s nicht.`);
+  try {
+    const log = fs.readFileSync(serverLog, 'utf8').trim();
+    if (log) {
+      console.error('Der Server sagt dazu:');
+      for (const z of log.split('\n').slice(-4)) console.error(`  ${z}`);
+    }
+  } catch { /* kein Log — dann eben nicht */ }
   console.error('Ohne ihn misst diese Eval nichts und saehe trotzdem sauber aus.');
   process.exit(2);
 }
