@@ -1,7 +1,9 @@
 {
-  "run-detect-check.mjs": 31,
+  "run-detect-check.mjs": 33,
   "run-dna-scaffold-check.mjs": 10,
   "run-doku-zahlen.mjs": 9,
+  "run-flag-wache-check.mjs": 3,
+  "run-hilfe-check.mjs": 3,
   "run-variablen-check.mjs": 9,
-  "run-aufruffehler-check.mjs": 3
+  "run-verweise-design.mjs": 25
 }
