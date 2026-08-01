@@ -56,6 +56,7 @@ eval_scorecard:
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
     - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "evals/run-verweise-design.mjs — faehrt die gemeinsame Verweis-Wache fuer diesen Skill (Pfade, loads-Eintraege, fehlende Kernmodul-Importe)"
+    - "evals/run-struktur-design.mjs — faehrt die vier Struktur-Wachen oben in EINEM Lauf (65s gemessen 01.08.2026, ohne Browser)"
     - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"
   grenzen:

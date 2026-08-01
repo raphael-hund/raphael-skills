@@ -41,7 +41,20 @@ const SPERRE = path.join(os.tmpdir(), 'run-sabotage-design.lock');
 if (fs.existsSync(SPERRE)) {
   const alt = fs.readFileSync(SPERRE, 'utf8').trim();
   let laeuft = false;
-  try { process.kill(Number(alt), 0); laeuft = true; } catch { /* Leiche */ }
+  // Eine LEERE Sperrdatei blockiert sonst fuer immer: Number('') ist 0, und
+  // process.kill(0, 0) prueft die eigene Prozessgruppe — meldet also immer
+  // "laeuft". Gemessen 01.08.2026: eine leere Sperre lag herum, der Lauf brach
+  // seither mit Exit 2 ab ("Ein Lauf laeuft bereits, PID "), und niemand
+  // konnte den Sabotage-Test mehr fahren.
+  //
+  // Die Datei wird leer, wenn ein Lauf zwischen dem Anlegen und dem Schreiben
+  // der PID stirbt — oder wenn die Platte den Schreibvorgang nicht abschliesst.
+  const pid = Number.parseInt(alt, 10);
+  if (!Number.isInteger(pid) || pid <= 0) {
+    console.error(`Sperre ohne brauchbare PID (Inhalt: "${alt}") — wird uebernommen.`);
+  } else {
+    try { process.kill(pid, 0); laeuft = true; } catch { /* Leiche */ }
+  }
   if (laeuft) {
     console.error(`Ein design-Sabotage-Lauf laeuft bereits (PID ${alt}).`);
     console.error('Zwei Laeufe wuerden sich beschaedigte Detektoren als Original zurueckschreiben.');

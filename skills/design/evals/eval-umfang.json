@@ -4,6 +4,7 @@
   "run-doku-zahlen.mjs": 9,
   "run-flag-wache-check.mjs": 3,
   "run-hilfe-check.mjs": 3,
+  "run-struktur-design.mjs": 4,
   "run-variablen-check.mjs": 9,
   "run-verweise-design.mjs": 25
 }
