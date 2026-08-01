@@ -195,8 +195,20 @@ const SCHAEDEN = [
     // das Gate "axe bestanden" fuer jede Seite — und der A11y-Pruefer ist tot,
     // ohne dass etwas fehlt.
     was: 'axe endet immer mit 0, egal wie viele Violations',
-    von: 'process.exit(violations.length ? 1 : 0);',
-    zu: 'process.exit(0);',
+    // Anker nachgezogen 01.08.2026: seit dem Browser-Aufraeum-Fix beendet sich
+    // axe-run nicht mehr im try-Block, sondern merkt sich den Code und ruft
+    // process.exit NACH dem finally. Der alte Anker
+    // 'process.exit(violations.length ? 1 : 0);' existierte damit nicht mehr.
+    //
+    // Schlimmer als das Nichtfinden war der Rueckschlag auf die Vorab-Wache:
+    // sie sucht Reste frueherer Laeufe, indem sie nach `zu` im Pruefer schaut.
+    // `zu` war 'process.exit(0);' — und genau diese Zeile steht seit der
+    // --help-Wache voellig zu Recht in jedem Werkzeug. Die Eval brach mit
+    // Exit 2 ab ("Ein Pruefer traegt schon einen Sabotage-Schaden") und
+    // pruefte gar nichts mehr. Ein zu kurzer `zu`-Text ist deshalb nicht nur
+    // ungenau, er legt den ganzen Lauf lahm.
+    von: '  code = violations.length ? 1 : 0;',
+    zu: '  code = 0; // sabotage-marker-axe',
   },
   {
     // Nachgetragen 30.07.2026 beim Abgleich, welche Pruefer mit eigener Eval noch
