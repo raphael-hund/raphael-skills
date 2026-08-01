@@ -124,11 +124,21 @@ const OVERLAY = new Set(['listbox', 'combobox', 'menu', 'dialog']);
 
 const alleDateien = dateien(wurzel);
 const befunde = [];
+// Dateien, die nicht geoeffnet werden konnten. Sie zaehlen in der Kopfzeile
+// mit, sind aber ungeprueft — ohne diese Liste bliebe das still.
+const nichtLesbar = [];
 let widgets = 0;
 
 for (const f of alleDateien) {
   let text;
-  try { text = fs.readFileSync(f, 'utf8'); } catch { continue; }
+  // Ein Lesefehler wurde still verschluckt: der tote Symlink zaehlte in der
+  // Kopfzeile mit ("4 Dateien"), wurde aber nie geoeffnet. Gemessen
+  // 01.08.2026. Nicht nur Symlinks — auch fehlende Rechte, defekte Sektoren,
+  // Dateien die waehrend des Laufs verschwinden.
+  try { text = fs.readFileSync(f, 'utf8'); } catch (e) {
+    nichtLesbar.push(`${path.relative(wurzel, f)} (${e.code || 'Lesefehler'})`);
+    continue;
+  }
   const rel = path.relative(wurzel, f) || path.basename(f);
 
   // Rollen dieser Datei sammeln. `role="listbox"` und role={'listbox'} beide.
@@ -251,6 +261,18 @@ if (alleDateien.length === 0) {
   if (alsJson) console.log(JSON.stringify({ wurzel, dateienGelesen: 0, block: null, warn: null, fehler: meldung }, null, 2));
   else console.error(meldung);
   process.exit(1);
+}
+
+// Nicht lesbare Dateien VOR jedem Urteil: "keine zusammengesetzten Widgets"
+// gilt nur fuer die Dateien, die wirklich gelesen wurden. Der Pruefer hat zwei
+// Ausgabewege (JSON und Text) mit je eigenem exit — die Wache muss vor beiden
+// stehen, nicht in einem davon (erster Versuch landete im JSON-Zweig).
+if (nichtLesbar.length) {
+  console.error(`\n${nichtLesbar.length} Datei(en) konnten nicht gelesen werden:`);
+  for (const d of nichtLesbar.slice(0, 5)) console.error(`  ${d}`);
+  if (nichtLesbar.length > 5) console.error(`  ... und ${nichtLesbar.length - 5} weitere`);
+  console.error('Ueber sie sagt dieser Lauf nichts.');
+  process.exit(2);
 }
 
 if (alsJson) {

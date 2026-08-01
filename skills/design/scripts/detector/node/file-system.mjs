@@ -57,7 +57,20 @@ function buildImportGraph(files) {
   const graph = new Map();
 
   for (const file of files) {
-    const content = fs.readFileSync(file, 'utf-8');
+    // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: ungeschuetzt.
+    // Ein toter Symlink kommt durch die Sammelstelle (dort zaehlt nur die
+    // Endung, nicht der Dateityp) und liess readFileSync hier mit ENOENT
+    // abstuerzen: Stacktrace, Exit 1 — in diesem Skill "geprueft und
+    // durchgefallen" fuer ein Projekt, das nie gelesen wurde.
+    let content;
+    try {
+      content = fs.readFileSync(file, 'utf-8');
+    } catch {
+      // Nicht lesbar heisst: keine Importe beitragen. Der Graph bleibt ohne
+      // diese Datei richtig; das Melden uebernimmt der Aufrufer.
+      graph.set(file, new Set());
+      continue;
+    }
     const dir = path.dirname(file);
     const imports = new Set();
 

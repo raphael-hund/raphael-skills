@@ -91,6 +91,11 @@ const ENDUNGEN = new Set([
   '.vue', '.svelte', '.astro', '.html',
 ]);
 
+// Dateien, die nicht geoeffnet werden konnten — sie zaehlen mit, sind aber
+// ungeprueft. Muss VOR der Sammelstelle stehen: const wird nicht hochgezogen
+// (ReferenceError, zum zweiten Mal in dieser Session).
+const nichtLesbar = [];
+
 function dateien(unter) {
   const raus = [];
   for (const e of fs.readdirSync(unter, { withFileTypes: true })) {
@@ -126,7 +131,14 @@ const schluessel = (a, b, c, d) =>
 
 for (const f of alleDateien) {
   let text;
-  try { text = fs.readFileSync(f, 'utf8'); } catch { continue; }
+  // Ein Lesefehler wurde still verschluckt: die Datei zaehlte in der Kopfzeile
+  // mit, wurde aber nie geoeffnet. Gemessen 01.08.2026 mit einem toten Symlink
+  // — nicht nur die: auch fehlende Rechte, defekte Sektoren, Dateien die
+  // waehrend des Laufs verschwinden.
+  try { text = fs.readFileSync(f, 'utf8'); } catch (e) {
+    nichtLesbar.push(`${path.relative(wurzel, f) || path.basename(f)} (${e.code || 'Lesefehler'})`);
+    continue;
+  }
   const rel = path.relative(wurzel, f) || path.basename(f);
 
   // Reduced Motion hat ZWEI legitime Formen, und die zweite hatte ich beim
@@ -225,6 +237,16 @@ if (alleDateien.length === 0) {
   if (alsJson) console.log(JSON.stringify({ wurzel, dateienGelesen: 0, block: null, warn: null, fehler: meldung }, null, 2));
   else console.error(meldung);
   process.exit(1);
+}
+
+// Nicht lesbare Dateien VOR jedem Urteil. Der Pruefer hat zwei Ausgabewege
+// (JSON und Text) mit je eigenem exit — die Wache muss vor beiden stehen.
+if (nichtLesbar.length) {
+  console.error(`\n${nichtLesbar.length} Datei(en) konnten nicht gelesen werden:`);
+  for (const d of nichtLesbar.slice(0, 5)) console.error(`  ${d}`);
+  if (nichtLesbar.length > 5) console.error(`  ... und ${nichtLesbar.length - 5} weitere`);
+  console.error('Ueber sie sagt dieser Lauf nichts.');
+  process.exit(2);
 }
 
 if (alsJson) {

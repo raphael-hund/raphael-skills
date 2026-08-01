@@ -29,7 +29,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -354,6 +354,36 @@ console.log('\nVerdrahtung im G1-Tor:\n');
       code !== 0 ? 'ein Widget ist zurueckgefallen — oder der Pruefer schlaegt auf gutem Code an'
         : genug ? null : 'zu wenige Widgets gesehen — zeigt der Pfad noch richtig?');
   }
+}
+
+// --- Toter Symlink --------------------------------------------------------
+// Ein Lesefehler wurde bis zum 01.08.2026 still verschluckt: die Datei zaehlte
+// in der Kopfzeile mit ("N Dateien"), wurde aber nie geoeffnet. Der Pruefer
+// hat zwei Ausgabewege (JSON und Text) mit je eigenem exit — die Wache muss
+// vor beiden stehen, sonst greift sie nur auf einem.
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'tastatur-symlink-'));
+  fs.writeFileSync(path.join(ordner, 'echt.tsx'), 'export const A = () => null;\n');
+  fs.symlinkSync(path.join(ordner, 'gibtsnicht.tsx'), path.join(ordner, 'tot.tsx'));
+
+  const lauf = (extra = []) => spawnSync('node',
+    [path.join(HIER, '..', 'scripts', 'tastatur-check.mjs'), ordner, ...extra],
+    { encoding: 'utf8' });
+
+  for (const [was, extra] of [['Text', []], ['JSON', ['--json']]]) {
+    const r = lauf(extra);
+    const aus = `${r.stdout || ''}${r.stderr || ''}`;
+    zeile(r.status === 2 && /nicht gelesen werden/i.test(aus),
+      `toter Symlink -> Exit 2 (${was}-Modus)`,
+      `Exit ${r.status} — die Datei zaehlt mit, geprueft wurde sie nie`);
+  }
+
+  fs.rmSync(path.join(ordner, 'tot.tsx'));
+  const sauber = lauf();
+  zeile(sauber.status !== 2, 'ohne toten Symlink: normales Urteil',
+    'Exit 2 auf einem sauberen Ordner — die Wache ist zu scharf');
+
+  fs.rmSync(ordner, { recursive: true, force: true });
 }
 
 const gesamt = geprueft;

@@ -202,6 +202,10 @@ async function detectCli() {
   const scanFehler = [];
 
   let allFindings = [];
+  // Dateien, die nicht geoeffnet werden konnten (toter Symlink, fehlende
+  // Rechte, Symlink-Kreis). Sie zaehlen in der Dateiliste mit, sind aber
+  // ungeprueft — das muss am Ende sichtbar werden.
+  const nichtLesbar = [];
 
   if (!process.stdin.isTTY && targets.length === 0) {
     allFindings = await handleStdin(scanOptions);
@@ -293,11 +297,24 @@ async function detectCli() {
 
           for (const file of files) {
             const ext = path.extname(file).toLowerCase();
+            // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: ungeschuetzt.
+            // Ein toter Symlink kommt durch die Sammelstelle (dort zaehlt nur
+            // die Endung) und liess readFileSync mit ENOENT abstuerzen —
+            // Stacktrace, Exit 1, also "geprueft und durchgefallen" fuer ein
+            // Projekt, das nie gelesen wurde.
             let fileFindings;
-            if (HTML_EXTENSIONS.has(ext)) {
-              fileFindings = await detectHtml(file, scanOptions);
-            } else {
-              fileFindings = detectText(fs.readFileSync(file, 'utf-8'), file, scanOptions);
+            try {
+              if (HTML_EXTENSIONS.has(ext)) {
+                fileFindings = await detectHtml(file, scanOptions);
+              } else {
+                fileFindings = detectText(fs.readFileSync(file, 'utf-8'), file, scanOptions);
+              }
+            } catch (err) {
+              if (err && (err.code === 'ENOENT' || err.code === 'EACCES' || err.code === 'ELOOP')) {
+                nichtLesbar.push(`${file} (${err.code})`);
+                continue;
+              }
+              throw err;
             }
             // Annotate findings with import context
             const importers = importedByMap.get(file);
@@ -333,6 +350,13 @@ async function detectCli() {
     else process.stderr.write(formatFindings(allFindings, false) + '\n');
     process.exit(2);
   }
+  // Nicht lesbare Dateien gehoeren in dieselbe Klasse wie nicht scannbare
+  // Ziele: sie zaehlen in der Dateiliste mit, sind aber ungeprueft. Ohne diese
+  // Zeile blieben sie still — der Lauf meldete Exit 0 fuer ein Projekt, dessen
+  // Dateien er nie geoeffnet hat (gemessen 01.08.2026 mit einem toten Symlink,
+  // vorher sogar mit Stacktrace und Exit 1).
+  for (const d of nichtLesbar) scanFehler.push(`${d} — nicht lesbar, also nicht geprueft`);
+
   // Uebersprungen ist nicht bestanden — dieselbe Regel wie im G1-Tor.
   if (scanFehler.length) {
     process.stderr.write(
