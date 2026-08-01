@@ -515,7 +515,46 @@ console.log('\nJeder urteilende Pruefer wird im Anti-Set ausgeloest:\n');
 // veraltet damit wie jede feste Zahl (fuenf Formel-Faelle in dieser Serie).
 // Bewusst konservativ: 24 statt 27, damit ein wegfallender Einzelfall nicht
 // sofort Alarm ausloest. Wer drei Pruefungen verliert, hat ein echtes Problem.
-const MINDESTENS = 24;
+// --- Kennt das Tor die Fehlerfelder, die die Pruefer liefern? -------------
+// fehlerGrund() in g1-gate.mjs sucht den Absturzgrund der Reihe nach in
+// stderr, dann in vier benannten JSON-Feldern. Diese Namen sind eine
+// Verabredung zwischen Tor und Pruefern — und Verabredungen ueber Namen
+// brechen still: wer ein Feld umbenennt, bekommt keinen Fehler, sondern eine
+// Meldung, die wieder nur "Command failed: node /..." lautet.
+//
+// Beide Richtungen pruefen: kennt das Tor ein Feld, das niemand mehr liefert
+// (dann ist die Liste veraltet)? Liefert ein Pruefer ein Fehlerfeld, das das
+// Tor nicht kennt (dann geht sein Grund verloren)?
+console.log('\nDie Fehlerfelder, die das Tor sucht, muss auch jemand liefern:\n');
+{
+  const torText = fs.readFileSync(path.join(SKRIPTE, 'g1-gate.mjs'), 'utf8');
+  const m = torText.match(/for \(const feld of \[([^\]]+)\]\)/);
+  if (!m) {
+    zeile(false, 'fehlerGrund() nennt seine Feldliste',
+      'Die Stelle `for (const feld of [...])` fehlt — umgebaut? Dann diese Wache mitziehen.');
+  } else {
+    const gesucht = m[1].split(',').map((x) => x.trim().replace(/['"]/g, '')).filter(Boolean);
+
+    // Wer liefert welches Feld? Nur Werkzeuge, nicht das Tor selbst.
+    const werkzeuge = [];
+    for (const ordner of [SKRIPTE, CLONE,
+      path.join(SKRIPTE, '..', '..', '..', 'design', 'scripts')]) {
+      if (!fs.existsSync(ordner)) continue;
+      for (const datei of fs.readdirSync(ordner)) {
+        if (!datei.endsWith('.mjs') || datei === 'g1-gate.mjs') continue;
+        werkzeuge.push(path.join(ordner, datei));
+      }
+    }
+    const texte = werkzeuge.map((f) => fs.readFileSync(f, 'utf8'));
+
+    const verwaist = gesucht.filter((feld) => !texte.some((t) => t.includes(feld)));
+    zeile(verwaist.length === 0,
+      `alle ${gesucht.length} gesuchten Fehlerfelder werden von mindestens einem Werkzeug geliefert`,
+      `${verwaist.join(', ')} liefert niemand — umbenannt? Dann sucht das Tor ins Leere.`);
+  }
+}
+
+const MINDESTENS = 25;
 if (gepruefte < MINDESTENS) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${MINDESTENS} erwartet.`);
   console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
