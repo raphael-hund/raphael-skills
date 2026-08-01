@@ -184,7 +184,12 @@ const SCHAEDEN = [
     // dieses Tors. Faellt der Vergleich, besteht jeder Klon.
     was: 'Wiedergabetreue besteht unabhaengig von der Stufen-Grenze',
     von: "record('treue', treue >= q.min,",
-    zu: "record('treue', true,",
+    // Marker im zu-Text, weil "record('treue', true," im Pruefer legitim
+    // vorkommt: der Zweig q.min === null meldet ohne Pixel-Grenze immer true.
+    // Die Vorab-Wache haette das fuer einen Schadenrest gehalten und den
+    // ganzen Lauf mit Exit 2 abgebrochen — genau wie beim axe-Fall am
+    // 01.08.2026 geschehen.
+    zu: "record('treue', true, /* sabotage-marker-klon */",
   },
   {
     kurz: 'axe',
