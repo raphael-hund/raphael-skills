@@ -430,6 +430,42 @@ console.log('\nKodierung — eine Datei, die er nicht lesen kann, ist nicht gepr
   fs.rmSync(ordner, { recursive: true, force: true });
 }
 
+// --- 6. Unlesbare Datei ---------------------------------------------------
+// Der Scanner zaehlt jede gefundene Datei in filesScanned — auch die, die er
+// gar nicht oeffnen konnte. Gemessen 01.08.2026 mit chmod 000: filesScanned 2,
+// hits 0, Schlusszeile "No slop signals found". Ein Testat ueber eine Datei,
+// die nie gelesen wurde.
+console.log('\nEine Datei, die er nicht oeffnen kann, ist nicht geprueft:\n');
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'slop-de-rechte-'));
+  const zu = path.join(ordner, 'zu.js');
+  fs.writeFileSync(zu, 'const t = "ma\u00dfgeschneiderte L\u00f6sungen";\n');
+  fs.chmodSync(zu, 0o000);
+
+  const scan = () => {
+    try {
+      const roh = execFileSync('node', [SCAN, ordner, `--rules=${REGELN}`, '--json'],
+        { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+      return JSON.parse(roh);
+    } catch (e) { return { fehler: e.status ?? 'kaputt' }; }
+  };
+
+  const zu_ = scan();
+  zeile(Array.isArray(zu_.unlesbareDateien) && zu_.unlesbareDateien.length === 1,
+    'unlesbare Datei wird gemeldet, nicht als sauber gezaehlt',
+    zu_.hits === 0 && !(zu_.unlesbareDateien || []).length
+      ? 'still durchgelaufen — filesScanned zaehlt sie, geprueft wurde sie nie'
+      : `unlesbareDateien=${JSON.stringify(zu_.unlesbareDateien)}`);
+
+  fs.chmodSync(zu, 0o644);
+  const auf = scan();
+  zeile(Array.isArray(auf.unlesbareDateien) && auf.unlesbareDateien.length === 0 && auf.hits > 0,
+    'dieselbe Datei lesbar: keine Warnung, Floskel gefunden',
+    `hits=${auf.hits} unlesbar=${JSON.stringify(auf.unlesbareDateien)} — Fehlalarm oder Muster tot`);
+
+  fs.rmSync(ordner, { recursive: true, force: true });
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {

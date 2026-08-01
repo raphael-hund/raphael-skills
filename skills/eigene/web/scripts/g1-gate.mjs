@@ -646,6 +646,17 @@ function slopMelden(parsed, deDa) {
   // durch, das Tor meldete "PASS — 0 Slop-Tells". Dieselbe Datei in UTF-8 ergab
   // einen Treffer. Alte CMS-Exporte und Windows-Werkzeuge schreiben Latin-1 bis
   // heute, und betroffen sind ausgerechnet die deutschen Seiten.
+  // Dateien, die der Scanner gar nicht oeffnen konnte. Sie zaehlen in
+  // filesScanned mit, sind aber ungeprueft — gemessen 01.08.2026 mit chmod
+  // 000: das Tor meldete "PASS — 0 Slop-Tells" ueber eine Datei, die nie
+  // gelesen wurde.
+  const nichtGelesen = Array.isArray(parsed.unlesbareDateien) ? parsed.unlesbareDateien : [];
+  if (nichtGelesen.length) {
+    record('ai-slop', false,
+      `${nichtGelesen.length} Datei(en) nicht lesbar — ungeprueft trotz filesScanned: ${nichtGelesen.slice(0, 3).join(', ')}${nichtGelesen.length > 3 ? ' …' : ''}`);
+    return;
+  }
+
   const unlesbar = Array.isArray(parsed.kaputteKodierung) ? parsed.kaputteKodierung : [];
   if (unlesbar.length) {
     record('ai-slop', false,

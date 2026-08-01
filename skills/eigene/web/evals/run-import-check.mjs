@@ -337,6 +337,43 @@ console.log('\nLeerer Ordner — gruen ueber nichts ist kein Ergebnis:\n');
   fs.rmSync(quelle, { recursive: true, force: true });
 }
 
+// --- Unlesbare Datei ------------------------------------------------------
+// Ein Lesefehler wurde bis zum 01.08.2026 still verschluckt (`catch { continue }`).
+// Gemessen mit chmod 000: der Lauf meldete "Kein erfundener Import", Exit 0 —
+// ein Testat ueber eine Datei, die nie geoeffnet wurde.
+//
+// Nicht nur Rechte: defekter Sektor, weggezogener Netzmount, eine Datei die
+// waehrend des Laufs verschwindet. Selten, aber dann still.
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'import-check-rechte-'));
+  const zu = path.join(ordner, 'zu.tsx');
+  fs.writeFileSync(zu, "import { toast } from 'sonner';\n");
+  fs.chmodSync(zu, 0o000);
+
+  const r = spawnSync('node', [PRUEFER, '--src', ordner], { encoding: 'utf8' });
+  const aus = `${r.stdout || ''}${r.stderr || ''}`;
+  gezaehlt++;
+  const ok = r.status === 2 && /nicht gelesen werden/i.test(aus);
+  if (!ok) rot++;
+  console.log(ok
+    ? '  [OK]   unlesbare Datei -> Exit 2, kein stilles "sauber"'
+    : `  [ROT]  unlesbare Datei -> Exit ${r.status}, erwartet 2`);
+  if (!ok) console.log(`         ${aus.trim().split('\n').slice(-1)[0].slice(0, 66)}`);
+
+  // Gegenrichtung: lesbar gemacht, dann muss normal geurteilt werden. Eine
+  // Wache, die auch saubere Ordner ablehnt, wird abgeschaltet statt benutzt.
+  fs.chmodSync(zu, 0o644);
+  const r2 = spawnSync('node', [PRUEFER, '--src', ordner], { encoding: 'utf8' });
+  gezaehlt++;
+  const ok2 = r2.status !== 2;
+  if (!ok2) rot++;
+  console.log(ok2
+    ? '  [OK]   dieselbe Datei lesbar -> normales Urteil'
+    : '  [ROT]  lesbare Datei -> Exit 2, die Wache ist zu scharf');
+
+  fs.rmSync(ordner, { recursive: true, force: true });
+}
+
 const gesamt = gezaehlt;
 console.log(`\n${gesamt - rot}/${gesamt} wie erwartet.`);
 if (rot) {

@@ -145,6 +145,8 @@ function libFuer(quelle) {
 const alle = dateien(SRC);
 const cache = new Map();
 const befunde = [];
+// Dateien, die nicht geoeffnet werden konnten (siehe Kommentar unten).
+const unlesbar = [];
 // Ein Lauf ueber null Dateien ist kein sauberes Ergebnis. Auf einem leeren oder
 // falsch angegebenen Ordner meldete dieses Skript "Kein erfundener Import" mit
 // Exit 0 — gruen ueber nichts. motion-check und tastatur-check fangen genau das
@@ -165,7 +167,17 @@ let geprueft = 0;
 
 for (const f of alle) {
   let text;
-  try { text = readFileSync(f, 'utf8'); } catch { continue; }
+  // Ein Lesefehler wurde bis zum 01.08.2026 still verschluckt. Gemessen mit
+  // einer Datei ohne Leserechte (chmod 000): der Lauf meldete "Kein erfundener
+  // Import", Exit 0 — ein Testat ueber eine Datei, die nie geoeffnet wurde.
+  //
+  // Das passiert nicht nur bei Rechten: ein defekter Sektor, ein weggezogener
+  // Netzmount, eine Datei, die waehrend des Laufs geloescht wird. Selten, aber
+  // dann still — und still ist hier das Problem, nicht selten.
+  try { text = readFileSync(f, 'utf8'); } catch (e) {
+    unlesbar.push(`${relative(SRC, f)} (${e.code || e.message.split('\n')[0]})`);
+    continue;
+  }
   for (const { name, quelle, zeile } of importe(text)) {
     const lib = libFuer(quelle);
     if (!lib) continue;
@@ -184,7 +196,7 @@ for (const f of alle) {
 }
 
 if (JSON_OUT) {
-  console.log(JSON.stringify({ geprueft, dateien: alle.length, befunde }, null, 2));
+  console.log(JSON.stringify({ geprueft, dateien: alle.length, unlesbar, befunde }, null, 2));
 } else {
   console.log(`Import-Check — ${alle.length} Dateien, ${geprueft} Tresor-Imports geprueft`);
   if (!geprueft) console.log('Keine Library aus dem Tresor importiert — nichts zu pruefen.');
@@ -196,5 +208,15 @@ if (JSON_OUT) {
     ? `\n${befunde.length} erfundener Import. Der Build waere gestorben oder die Komponente zur Laufzeit undefined.`
     : '\nKein erfundener Import.');
 }
+
+// Unlesbare Dateien VOR dem Qualitaetsurteil: sie entwerten es. "Kein
+// erfundener Import" gilt nur fuer die Dateien, die wirklich gelesen wurden.
+if (unlesbar.length && !JSON_OUT) {
+  console.error(`\n${unlesbar.length} Datei(en) konnten nicht gelesen werden:`);
+  for (const u of unlesbar.slice(0, 5)) console.error(`  ${u}`);
+  if (unlesbar.length > 5) console.error(`  ... und ${unlesbar.length - 5} weitere`);
+  console.error('Ueber sie sagt dieser Lauf nichts — Rechte pruefen (ls -l).');
+}
+if (unlesbar.length) process.exit(2);
 
 process.exit(befunde.length ? 1 : 0);

@@ -29,6 +29,8 @@ const args = process.argv.slice(2);
 
 // Dateien, deren Bytes kein gueltiges UTF-8 sind (siehe Kommentar bei readFileSync).
 const kaputteKodierung = [];
+// Dateien, die gar nicht erst geoeffnet werden konnten.
+const unlesbareDateien = [];
 
 // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
 // `--help` war im Original kein bekanntes Flag. Es rutschte als Wurzelpfad
@@ -437,7 +439,15 @@ function scanFile(path) {
     // wirklich riesige (>8 MB, Quellkarten/Assets) bleiben aussen vor.
     if (st.size > 8 * 1024 * 1024) return [];
     text = readFileSync(path, "utf8");
-  } catch {
+  } catch (e) {
+    // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: der Lesefehler wurde
+    // still verschluckt, die Datei zaehlte trotzdem als "scanned". Gemessen
+    // mit chmod 000: filesScanned 2, hits 0, Schlusszeile "No slop signals
+    // found" — ein Testat ueber eine Datei, die nie geoeffnet wurde.
+    //
+    // Nicht nur Rechte: ein defekter Sektor, ein weggezogener Netzmount, eine
+    // Datei, die waehrend des Laufs verschwindet. Selten, aber dann still.
+    unlesbareDateien.push(`${path} (${e.code || String(e.message).split("\n")[0]})`);
     return [];
   }
 
@@ -563,6 +573,7 @@ if (asJson) {
         // U+FFFD, also greift kein deutsches Muster mehr. Ein Aufrufer, der
         // nur `hits` liest, haelt sie faelschlich fuer sauber.
         kaputteKodierung,
+        unlesbareDateien,
         groups: groups.length,
         hits: totalHits,
         findings: groups.map((g) => ({
@@ -588,6 +599,12 @@ const bold = (s) => c("1", s);
 // Kodierungs-Warnung VOR die Bilanzzeile: sie entwertet jedes "0 Tells"
 // darunter. Auf stderr, damit sie ein Aufrufer nicht mit einem Befund
 // verwechselt — es ist keine Aussage ueber die Seite, sondern ueber die Datei.
+if (unlesbareDateien.length) {
+  console.error(`\nWARNUNG: ${unlesbareDateien.length} Datei(en) konnten nicht gelesen werden.`);
+  for (const d of unlesbareDateien.slice(0, 5)) console.error(`  ${escapeTerminal(d)}`);
+  if (unlesbareDateien.length > 5) console.error(`  ... und ${unlesbareDateien.length - 5} weitere`);
+  console.error('Sie zaehlen zwar als gefunden, sind aber NICHT geprueft.');
+}
 if (kaputteKodierung.length) {
   console.error(`\nWARNUNG: ${kaputteKodierung.length} Datei(en) sind nicht als UTF-8 lesbar.`);
   for (const d of kaputteKodierung.slice(0, 5)) console.error(`  ${escapeTerminal(d)}`);
