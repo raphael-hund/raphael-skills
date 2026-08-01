@@ -82,7 +82,7 @@ node skills/design/scripts/scan-ai-slop.mjs <projekt> --rules=skills/design/scri
 `de-14` deutsche KI-Textstimme (Blocker im Web-Gate) · `de-15` Werbe-Interpunktion ·
 `de-16` Werbe-Leerformel. **Diese Datei bleibt die Quelle** — kommt hier eine
 Floskel dazu, gehört sie in den Regelsatz und in dessen Eval
-(`skills/eigene/web/evals/run-slop-de-check.mjs`, 59 Fälle inkl. 14 Gegenproben).
+(`skills/eigene/web/evals/run-slop-de-check.mjs`, 62 Fälle inkl. 14 Gegenproben).
 
 Nicht maschinell prüfbar und deshalb weiterhin Lesearbeit: die Schwellen pro
 Dokument (Em-Dash pro 500 Wörter, Ausrufezeichen pro 1000), die Satzrhythmus-
