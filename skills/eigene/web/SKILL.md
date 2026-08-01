@@ -483,7 +483,7 @@ SPA-Auffangregel hat er bewusst **nicht**: die macht aus jedem toten Link eine
 200-Antwort und schaltet die Link-Prüfung praktisch ab.
 
 ```bash
-node evals/run-pruefstand.mjs      # 10 Fälle, braucht keinen Browser
+node evals/run-pruefstand.mjs      # 14 Fälle, braucht keinen Browser
 ```
 
 Ein Werkzeug, das andere Werkzeuge vor Fehlalarm schützt, ist selbst die neue
@@ -731,7 +731,7 @@ hatte. Jetzt steht die Lockerung in der Kopfzeile, in der Schlusszeile und im
 `g1-report.json` (`budgetGelockert`).
 
 ```bash
-node evals/run-budget-check.mjs      # 23 Fälle, weder Browser noch Server
+node evals/run-budget-check.mjs      # 25 Fälle, weder Browser noch Server
 ```
 
 Elf Eingaben, die stoppen müssen. Sieben, die durchgehen müssen (inkl. `_`-Kommentare
@@ -872,7 +872,7 @@ echten, sauberen Lauf aus. Behoben über `design/scripts/rules.de.mjs` (Abschnit
 
 ```bash
 node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch Scanner
-node evals/run-slop-de-check.mjs     # 50 Fälle in 0,4s: Treffer, Gegenproben, Einstufung, Laufzeit
+node evals/run-slop-de-check.mjs     # 62 Fälle: Treffer, Gegenproben, Einstufung, Regelweg, Kodierung
 node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 node evals/run-eval-umfang.mjs       # hat jede Eval überhaupt noch ihre Fälle?
 ```
@@ -1068,8 +1068,8 @@ node ../../design/scripts/scan-ai-slop.mjs <projekt> \
 
 Fehlt die Datei, läuft der Scan englisch weiter, aber das Urteil sagt es an
 (`[nur englische Regeln — rules.de.mjs fehlt]`) statt still grün zu melden.
-Beleg: `evals/run-slop-de-check.mjs` — 17 Treffer-Fälle, 8 Gegenproben gegen
-Fehlalarm, 5 Einstufungs-Prüfungen, 30/30. Dieselbe Beispielseite: vorher
+Beleg: `evals/run-slop-de-check.mjs` — 33 Treffer-Fälle, 14 Gegenproben gegen
+Fehlalarm, dazu Einstufung, Regelweg und Kodierung, 62/62. Dieselbe Beispielseite: vorher
 „0 Slop-Tells / bestanden", jetzt „4 Blocker (deutsche KI-Textstimme)".
 
 > Ein grüner Scan heißt weiterhin nicht „klingt menschlich". Satzrhythmus,

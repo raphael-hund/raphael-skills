@@ -638,6 +638,21 @@ function slopMelden(parsed, deDa) {
   // das Gate machte daraus "0 Slop-Tells", bestanden. Ein --src, das auf den
   // Quellordner statt auf den Build zeigt, auf einen Tippfehler, auf ein leeres
   // dist/ — jedes davon war ein gruener Slop-Check ueber nichts.
+  // Dateien, die der Scanner nicht als UTF-8 lesen konnte. Ihre Umlaute wurden
+  // zu Ersatzzeichen, also greift dort kein deutsches Muster mehr — sie sind
+  // ungeprueft, egal was `hits` sagt.
+  //
+  // Gemessen 01.08.2026: eine Latin-1-Datei mit drei deutschen Floskeln lief
+  // durch, das Tor meldete "PASS — 0 Slop-Tells". Dieselbe Datei in UTF-8 ergab
+  // einen Treffer. Alte CMS-Exporte und Windows-Werkzeuge schreiben Latin-1 bis
+  // heute, und betroffen sind ausgerechnet die deutschen Seiten.
+  const unlesbar = Array.isArray(parsed.kaputteKodierung) ? parsed.kaputteKodierung : [];
+  if (unlesbar.length) {
+    record('ai-slop', false,
+      `${unlesbar.length} Datei(en) nicht als UTF-8 lesbar — dort greift kein deutsches Muster: ${unlesbar.slice(0, 3).join(', ')}${unlesbar.length > 3 ? ' …' : ''}`);
+    return;
+  }
+
   const gelesen = parsed.filesScanned;
   if (typeof gelesen === 'number' && gelesen === 0) {
     record('ai-slop', false,

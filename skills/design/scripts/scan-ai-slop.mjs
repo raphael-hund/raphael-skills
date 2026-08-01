@@ -27,6 +27,9 @@ import { dirname, extname, join, relative, resolve } from "node:path";
 
 const args = process.argv.slice(2);
 
+// Dateien, deren Bytes kein gueltiges UTF-8 sind (siehe Kommentar bei readFileSync).
+const kaputteKodierung = [];
+
 // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
 // `--help` war im Original kein bekanntes Flag. Es rutschte als Wurzelpfad
 // durch, der Scanner las den aktuellen Ordner und meldete
@@ -437,6 +440,22 @@ function scanFile(path) {
   } catch {
     return [];
   }
+
+  // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 01.08.2026:
+  // Die Datei wird als UTF-8 gelesen. Ist sie in Wahrheit Latin-1 kodiert,
+  // werden alle Umlaute zu U+FFFD, und die deutschen Muster greifen nicht mehr.
+  //
+  // Gemessen an derselben Zeile ("massgeschneiderte Loesungen fuer Ihr
+  // naechstes Level") in beiden Kodierungen: UTF-8 ein Treffer, Latin-1 null —
+  // und die Schlusszeile lautete "No slop signals found". Ein Testat ueber
+  // Text, den der Scanner nie gelesen hat.
+  //
+  // Das trifft nur deutsche Seiten. Genau die liefert Raphael aus, und genau
+  // die haben Umlaute in jeder zweiten Floskel. Alte CMS-Exporte und
+  // Windows-Werkzeuge schreiben Latin-1 bis heute.
+  if (text.includes("\uFFFD")) {
+    kaputteKodierung.push(path);
+  }
   text = loeseEscapes(text);
   const isCode = extname(path) !== ".md";
   const lines = text.split(/\r?\n/);
@@ -540,6 +559,10 @@ if (asJson) {
       {
         root,
         filesScanned: files.length,
+        // Dateien, die nicht als UTF-8 lesbar waren. Ihre Umlaute wurden zu
+        // U+FFFD, also greift kein deutsches Muster mehr. Ein Aufrufer, der
+        // nur `hits` liest, haelt sie faelschlich fuer sauber.
+        kaputteKodierung,
         groups: groups.length,
         hits: totalHits,
         findings: groups.map((g) => ({
@@ -562,6 +585,16 @@ const red = (s) => c("31", s);
 const dim = (s) => c("2", s);
 const bold = (s) => c("1", s);
 
+// Kodierungs-Warnung VOR die Bilanzzeile: sie entwertet jedes "0 Tells"
+// darunter. Auf stderr, damit sie ein Aufrufer nicht mit einem Befund
+// verwechselt — es ist keine Aussage ueber die Seite, sondern ueber die Datei.
+if (kaputteKodierung.length) {
+  console.error(`\nWARNUNG: ${kaputteKodierung.length} Datei(en) sind nicht als UTF-8 lesbar.`);
+  for (const d of kaputteKodierung.slice(0, 5)) console.error(`  ${escapeTerminal(d)}`);
+  if (kaputteKodierung.length > 5) console.error(`  ... und ${kaputteKodierung.length - 5} weitere`);
+  console.error('Ihre Umlaute wurden zu Ersatzzeichen — deutsche Muster greifen dort nicht.');
+  console.error('Diese Dateien sind NICHT geprueft, egal was unten steht.');
+}
 console.log(`\n${bold("kill-ai-slop")} — scanned ${files.length} files under ${escapeTerminal(root)}\n`);
 if (groups.length === 0) {
   console.log("No slop signals found. (Still trust your eyes — open the pages.)\n");

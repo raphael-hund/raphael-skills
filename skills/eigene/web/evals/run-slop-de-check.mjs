@@ -376,6 +376,60 @@ console.log('\nDer Weg zum Regelsatz — verliert der Aufruf ihn unterwegs?\n');
   fs.rmSync(ordner, { recursive: true, force: true });
 }
 
+// --- 5. Kodierung: liest der Scanner ueberhaupt deutschen Text? -----------
+// Alles oben prueft MUSTER und den WEG zum Regelsatz. Dieser Abschnitt prueft
+// die Voraussetzung: die Datei muss als UTF-8 lesbar sein. Ist sie Latin-1
+// kodiert, werden alle Umlaute zu U+FFFD, und kein deutsches Muster greift
+// mehr.
+//
+// Gemessen 01.08.2026 an derselben Zeile in beiden Kodierungen: UTF-8 ein
+// Treffer, Latin-1 null — mit der Schlusszeile "No slop signals found". Ein
+// Testat ueber Text, den der Scanner nie gelesen hat. Betroffen sind
+// ausgerechnet die deutschen Seiten; alte CMS-Exporte und Windows-Werkzeuge
+// schreiben Latin-1 bis heute.
+console.log('\nKodierung — eine Datei, die er nicht lesen kann, ist nicht geprueft:\n');
+{
+  const ordner = fs.mkdtempSync(path.join(os.tmpdir(), 'slop-de-kodierung-'));
+  const zeile1 = 'const t = "Wir bieten massgeschneiderte Loesungen fuer Ihr naechstes Level";\n'
+    .replace('massgeschneiderte', 'ma\u00dfgeschneiderte')
+    .replace('Loesungen', 'L\u00f6sungen')
+    .replace('fuer', 'f\u00fcr')
+    .replace('naechstes', 'n\u00e4chstes');
+  fs.writeFileSync(path.join(ordner, 'utf8.js'), zeile1, 'utf8');
+  fs.writeFileSync(path.join(ordner, 'latin1.js'), Buffer.from(zeile1, 'latin1'));
+
+  const scan = (datei) => {
+    const einzeln = fs.mkdtempSync(path.join(os.tmpdir(), 'slop-de-kod-einzeln-'));
+    fs.copyFileSync(path.join(ordner, datei), path.join(einzeln, datei));
+    try {
+      const roh = execFileSync('node', [SCAN, einzeln, `--rules=${REGELN}`, '--json'],
+        { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+      const d = JSON.parse(roh);
+      fs.rmSync(einzeln, { recursive: true, force: true });
+      return d;
+    } catch (e) {
+      fs.rmSync(einzeln, { recursive: true, force: true });
+      return { fehler: e.status ?? 'kaputt' };
+    }
+  };
+
+  const u = scan('utf8.js');
+  const l = scan('latin1.js');
+
+  zeile(u.hits > 0, `UTF-8-Datei liefert Treffer (${u.hits ?? '?'})`,
+    'ohne diesen Nachweis belegen die naechsten Faelle nichts');
+  zeile(Array.isArray(l.kaputteKodierung) && l.kaputteKodierung.length === 1,
+    'Latin-1-Datei wird als nicht-UTF-8 gemeldet',
+    l.hits === 0 && !(l.kaputteKodierung || []).length
+      ? 'still als sauber durchgelaufen — genau das Testat ueber ungelesenen Text'
+      : `kaputteKodierung=${JSON.stringify(l.kaputteKodierung)}`);
+  zeile(Array.isArray(u.kaputteKodierung) && u.kaputteKodierung.length === 0,
+    'UTF-8-Datei loest keine Kodierungs-Warnung aus',
+    'Fehlalarm — eine Warnung in jedem Lauf wird ueberlesen');
+
+  fs.rmSync(ordner, { recursive: true, force: true });
+}
+
 const gesamt = geprueft;
 console.log(`\n${gesamt - fehler}/${gesamt} wie erwartet.`);
 if (fehler) {
