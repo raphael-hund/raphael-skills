@@ -373,9 +373,19 @@ console.log('\nVerdrahtung im G1-Tor:\n');
   for (const [was, extra] of [['Text', []], ['JSON', ['--json']]]) {
     const r = lauf(extra);
     const aus = `${r.stdout || ''}${r.stderr || ''}`;
-    zeile(r.status === 2 && /nicht gelesen werden/i.test(aus),
-      `toter Symlink -> Exit 2 (${was}-Modus)`,
-      `Exit ${r.status} — die Datei zaehlt mit, geprueft wurde sie nie`);
+    // Der Grund steht je nach Modus woanders: im Text als Klartext, im JSON
+    // als Feld `nichtLesbar`. Beides muss auffindbar sein — ein Automat liest
+    // kein stderr, ein Mensch kein JSON-Feld. Bis zum 01.08.2026 lieferte der
+    // --json-Modus im Fehlerfall GAR KEIN JSON: die Wache beendete vor der
+    // Ausgabe, und der Automat bekam Klartext, wo er ein Objekt erwartete.
+    const grundDa = was === 'JSON'
+      ? (() => { try { return (JSON.parse(r.stdout || '{}').nichtLesbar || []).length > 0; } catch { return false; } })()
+      : /nicht gelesen werden/i.test(aus);
+    zeile(r.status === 2 && grundDa,
+      `toter Symlink -> Exit 2 mit Grund (${was}-Modus)`,
+      r.status === 2
+        ? 'Exit 2, aber der Grund fehlt in dieser Ausgabeform'
+        : `Exit ${r.status} — die Datei zaehlt mit, geprueft wurde sie nie`);
   }
 
   fs.rmSync(path.join(ordner, 'tot.tsx'));

@@ -239,22 +239,29 @@ if (alleDateien.length === 0) {
   process.exit(1);
 }
 
-// Nicht lesbare Dateien VOR jedem Urteil. Der Pruefer hat zwei Ausgabewege
-// (JSON und Text) mit je eigenem exit — die Wache muss vor beiden stehen.
+if (alsJson) {
+  console.log(JSON.stringify({
+    wurzel, dateienGelesen: alleDateien.length, nichtLesbar,
+    kurvenAnzahl: anzahl, block, warn, befunde,
+  }, null, 2));
+  // Erst das JSON ausgeben, DANN abbrechen: die Wache stand vorher davor und
+  // liess den --json-Modus voellig ohne JSON zurueck (gemessen 01.08.2026).
+  // Ein Automat bekam dann eine Klartext-Fehlermeldung, wo er ein Objekt
+  // erwartete — und das JSON-Feld `nichtLesbar` sah nie jemand.
+  if (nichtLesbar.length) process.exit(2);
+  process.exit(block > 0 ? 1 : 0);
+}
+
+// Nicht lesbare Dateien VOR jedem Text-Ausgang. Der Pruefer hat ZWEI davon:
+// "keine Befunde" (Exit 0) und die Befundliste (Exit 1). Beim ersten Umbau
+// stand die Wache nur vor dem zweiten — ein Ordner ohne Befunde meldete
+// weiterhin Exit 0, obwohl eine Datei ungelesen blieb (gemessen 01.08.2026).
 if (nichtLesbar.length) {
   console.error(`\n${nichtLesbar.length} Datei(en) konnten nicht gelesen werden:`);
   for (const d of nichtLesbar.slice(0, 5)) console.error(`  ${d}`);
   if (nichtLesbar.length > 5) console.error(`  ... und ${nichtLesbar.length - 5} weitere`);
   console.error('Ueber sie sagt dieser Lauf nichts.');
   process.exit(2);
-}
-
-if (alsJson) {
-  console.log(JSON.stringify({
-    wurzel, dateienGelesen: alleDateien.length,
-    kurvenAnzahl: anzahl, block, warn, befunde,
-  }, null, 2));
-  process.exit(block > 0 ? 1 : 0);
 }
 
 console.log(`\nmotion-check — ${alleDateien.length} Dateien unter ${wurzel}\n`);
