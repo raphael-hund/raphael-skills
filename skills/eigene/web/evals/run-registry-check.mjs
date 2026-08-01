@@ -41,8 +41,29 @@ for (const f of [shadcnDatei, appicaDatei, DOKU]) {
   }
 }
 
+// Eine Stelle zum Lesen, eine Stelle fuer die Fehlermeldung.
+const roheDaten = (datei) => {
+  try {
+    return JSON.parse(fs.readFileSync(datei, 'utf8'));
+  } catch (e) {
+    console.error(`${datei} ist kein lesbares JSON: ${e.message.split('\n')[0]}`);
+    console.error('Die Registry ist beschaedigt — diese Eval kann nichts messen.');
+    console.error('Neu erzeugen oder aus dem Tresor wiederherstellen.');
+    process.exit(2);
+  }
+};
+
 const namen = (datei) => {
-  const roh = JSON.parse(fs.readFileSync(datei, 'utf8'));
+  // JSON.parse wirft bei kaputter Datei einen SyntaxError, den niemand faengt:
+  // Node druckt 13 Zeilen Stacktrace und endet mit Exit 1. In diesem Skill
+  // heisst 1 aber "geprueft und durchgefallen" — geprueft wurde hier gar
+  // nichts, die Datei war nicht lesbar. Gemessen 01.08.2026 mit einer
+  // absichtlich zerstoerten shadcn-index.json.
+  //
+  // Die Existenzpruefung oben faengt nur den Fall "Datei fehlt". Eine halb
+  // geschriebene oder abgebrochene Registry-Datei existiert und ist trotzdem
+  // unbrauchbar — genau die Luecke zwischen "da" und "lesbar".
+  const roh = roheDaten(datei);
   const liste = Array.isArray(roh) ? roh : roh.components;
   if (!Array.isArray(liste)) throw new Error(`${datei}: keine Komponentenliste gefunden`);
   return liste.map((e) => (typeof e === 'string' ? e : e.name)).sort();
@@ -54,7 +75,10 @@ const nurAppica = appica.filter((n) => !shadcn.includes(n));
 const nurShadcn = shadcn.filter((n) => !appica.includes(n));
 
 const varianten = (e) => Object.keys(e.meta?.links || {}).sort().join('+');
-const shadcnRoh = JSON.parse(fs.readFileSync(shadcnDatei, 'utf8'));
+// Dieselbe Datei wie oben, nur roh statt als Namensliste. Ueber `roheDaten`
+// gelesen, damit die Lesbarkeits-Wache auch fuer diese Stelle gilt — sonst
+// haengt der Schutz daran, dass zufaellig zuerst die andere Stelle laeuft.
+const shadcnRoh = roheDaten(shadcnDatei);
 const zaehle = (form) => shadcnRoh.filter((e) => varianten(e) === form).length;
 
 const docsOrdner = path.join(REG, 'appica', 'docs');
