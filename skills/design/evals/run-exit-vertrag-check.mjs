@@ -53,7 +53,7 @@ const SKRIPTE = path.join(HIER, '..', 'scripts');
 const QA = path.join(HIER, '..', '..', 'eigene', 'web', 'references', 'qa-faecher.md');
 const FRIST_MS = 60000;
 
-altlastWeg('exit-vertrag-', 6);
+altlastWeg('exit-vertrag-design-', 6);
 
 let fehler = 0;
 let gezaehlt = 0;
@@ -86,7 +86,7 @@ if (fehlend.length) {
   process.exit(2);
 }
 
-const ORDNER = wegwerfOrdner('exit-vertrag-');
+const ORDNER = wegwerfOrdner('exit-vertrag-design-');
 const MIT_TELLS = path.join(ORDNER, 'tells');
 const SAUBER = path.join(ORDNER, 'sauber');
 fs.mkdirSync(MIT_TELLS, { recursive: true });

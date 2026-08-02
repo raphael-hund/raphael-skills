@@ -191,6 +191,26 @@ export function umfangPruefen({ evalOrdner, standDatei, ausgenommen, cwd, aktual
     .filter((f) => !ausgenommen[f])
     .sort();
 
+  // Findet der Filter nichts, laeuft die Schleife unten leer durch und die
+  // Bilanz meldet gruen — die stillste Form von kaputt, und ausgerechnet in
+  // der Wache, die "hat jede Eval noch ihre Faelle?" beantwortet.
+  //
+  // Befund 02.08.2026: jede aufrufende Eval hatte eine eigene Untergrenze,
+  // nur die GETEILTE Bibliothek nicht. Beide Skills haengen daran. Ein
+  // falscher evalOrdner, eine Umbenennung von "run-" auf etwas anderes, eine
+  // zu weite Ausnahmeliste — jedes davon haette hier gruen gemeldet.
+  //
+  // Die Grenze ist bewusst niedrig (der design-Skill hat 12, web 40): sie
+  // faengt "gar nichts", nicht "zu wenig". Wer sie hoeher setzt, macht sie zu
+  // einer zweiten Zahl, die altert.
+  const MINDESTENS = 5;
+  if (evals.length < MINDESTENS) {
+    console.error(`Nur ${evals.length} Evals in ${evalOrdner} gefunden (erwartet mindestens ${MINDESTENS}).`);
+    console.error('Zeigt evalOrdner auf den richtigen Pfad? Ist die Ausnahmeliste zu weit?');
+    console.error('Ohne Kandidaten prueft dieser Lauf nichts und saehe trotzdem sauber aus.');
+    return 2;
+  }
+
   let fehler = 0;
   const zeile = (ok, text, detail) => {
     if (!ok) fehler++;

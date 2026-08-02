@@ -123,6 +123,51 @@ zeile(eng.length === 0, `zwischen zwei Basis-Ports liegen mindestens ${MIN_LUFT}
   `${eng.join(' | ')} — zu wenig Luft: haengt jemand einen zweiten Server an die `
   + 'erste Eval, greift er in die zweite hinein');
 
+// 3. Dieselbe Frage fuer Wegwerf-Ordner. altlastWeg(praefix) loescht ALLES in
+//    /tmp, was mit dem Praefix beginnt — und "beginnt mit" heisst: ein Praefix,
+//    der Anfang eines anderen ist, raeumt dessen Ordner gleich mit weg.
+//
+//    Befund 02.08.2026: beide Skills nannten ihren Praefix 'exit-vertrag-'.
+//    Die Ordner selbst kollidieren nicht (mkdtemp haengt Zufall an), und die
+//    Sechs-Stunden-Grenze schuetzt den laufenden Lauf. Trotzdem falsch: wer
+//    'exit-vertrag-' aufraeumt, trifft beide Skills, und die eine Wache haftet
+//    fuer die Reste der anderen. Jetzt 'exit-vertrag-web-' und
+//    'exit-vertrag-design-' — und diese Regel haelt es fest.
+{
+  const praefixe = new Map();   // Praefix -> [Eval-Namen]
+  for (const unter of ['eigene/web/evals', 'design/evals']) {
+    const ordner = path.join(SKILLS, unter);
+    if (!fs.existsSync(ordner)) continue;
+    for (const name of fs.readdirSync(ordner).sort()) {
+      if (!name.startsWith('run-') || !name.endsWith('.mjs')) continue;
+      if (name === path.basename(fileURLToPath(import.meta.url))) continue;
+      const text = fs.readFileSync(path.join(ordner, name), 'utf8');
+      for (const m of text.matchAll(/(?:wegwerfOrdner|altlastWeg)\(\s*'([^']+)'/g)) {
+        if (!praefixe.has(m[1])) praefixe.set(m[1], new Set());
+        praefixe.get(m[1]).add(`${unter.split('/')[0]}/${name}`);
+      }
+    }
+  }
+  // Zwei Evals mit demselben Praefix — oder einer, der Anfang eines anderen
+  // ist. Beide Faelle fuehren dazu, dass eine Eval fremde Ordner loescht.
+  const kollision = [];
+  const liste = [...praefixe.entries()];
+  for (const [p, wer] of liste) {
+    if (wer.size > 1) kollision.push(`${p}: ${[...wer].join(' vs ')}`);
+  }
+  for (const [a, werA] of liste) {
+    for (const [b, werB] of liste) {
+      if (a === b || !b.startsWith(a)) continue;
+      // Innerhalb DERSELBEN Eval ist das gewollt (browserstart- und
+      // browserstart-seite- gehoeren zusammen und werden zusammen geraeumt).
+      const gemeinsam = [...werA].some((x) => werB.has(x));
+      if (!gemeinsam) kollision.push(`${a} ist Anfang von ${b}: ${[...werA].join('/')} raeumt ${[...werB].join('/')} mit weg`);
+    }
+  }
+  zeile(kollision.length === 0, `${praefixe.size} Wegwerf-Praefixe, keiner raeumt fremde Ordner`,
+    kollision.join(' | '));
+}
+
 console.log(`\n${gezaehlt - fehler}/${gezaehlt} Regeln der Port-Vergabe gelten.`);
 if (fehler) {
   console.log('Zwei Evals streiten sich um einen Port — der Abbruch sieht fremd aus.');

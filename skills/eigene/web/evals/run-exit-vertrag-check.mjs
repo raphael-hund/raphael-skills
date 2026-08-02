@@ -47,7 +47,7 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SKRIPTE = path.join(HIER, '..', 'scripts');
 const FRIST_MS = 120000;
 
-altlastWeg('exit-vertrag-', 6);
+altlastWeg('exit-vertrag-web-', 6);
 
 let fehler = 0;
 let gezaehlt = 0;
@@ -79,7 +79,7 @@ if (WERKZEUGE.length < MINDESTENS) {
   process.exit(2);
 }
 
-const ORDNER = wegwerfOrdner('exit-vertrag-');
+const ORDNER = wegwerfOrdner('exit-vertrag-web-');
 const QUELLE = path.join(ORDNER, 'src');
 fs.mkdirSync(QUELLE, { recursive: true });
 fs.writeFileSync(path.join(QUELLE, 'a.css'), '.a { color: #222; }\n');
