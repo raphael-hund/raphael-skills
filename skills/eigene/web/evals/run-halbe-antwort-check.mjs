@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // run-halbe-antwort-check.mjs — urteilt ein Werkzeug ueber eine halbe Seite?
+// LAUFZEIT: 70s (gemessen 02.08.2026) — vier Server-Varianten mal drei Werkzeuge, jedes mit Browser.
+// Wer das nicht weiss, haelt den Lauf fuer haengen geblieben.
 //
 //   node evals/run-halbe-antwort-check.mjs
 //

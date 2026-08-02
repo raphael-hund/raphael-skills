@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // run-weiterleitung-check.mjs — nennt der Bericht die Seite, die geprueft wurde?
+// LAUFZEIT: 66s (gemessen 02.08.2026) — drei Werkzeuge mal drei Wege, jedes mit Browser.
+// Wer das nicht weiss, haelt den Lauf fuer haengen geblieben.
 //
 //   node evals/run-weiterleitung-check.mjs
 //

@@ -414,7 +414,7 @@ namentlich**, statt eine runde Zahl wie volle Abdeckung aussehen zu lassen.
 > weil die Regel ab **drei** solchen Kästen feuert und mein Testfall einen hatte.
 
 ```bash
-node evals/run-formular-check.mjs      # 17 Fälle, jeder ändert genau einen Umstand
+node evals/run-formular-check.mjs      # 17 Fälle, jeder ändert genau einen Umstand (63s)
 ```
 
 **Was eine Heuristik falsch machen kann, macht sie auch — in beide Richtungen.**
@@ -973,7 +973,7 @@ und das Protokoll trägt die Prozessnummer.
 
 ```bash
 node scripts/g1-gate.mjs --url <url> --src . --build dist
-node evals/run-ordner-check.mjs      # 16 Fälle, startet seinen Server selbst
+node evals/run-ordner-check.mjs      # 16 Fälle, startet seinen Server selbst (123s)
 ```
 
 Bis 29.07. bekamen **alle** dateilesenden Prüfer dasselbe `--src`. Sie brauchen aber

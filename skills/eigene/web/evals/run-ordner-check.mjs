@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * run-ordner-check.mjs — liest jeder Pruefer den Ordner, fuer den er gebaut ist?
+ * LAUFZEIT: 123s, rund 2 Minuten (gemessen 02.08.2026) — startet fuer jeden Pruefer einen eigenen Server und Browser.
+ * Wer das nicht weiss, haelt den Lauf fuer haengen geblieben.
  *
  * Bis 29.07.2026 bekamen alle dateilesenden Pruefer dasselbe `--src`. Sie
  * brauchen aber Gegensaetzliches:

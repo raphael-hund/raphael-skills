@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * run-formular-check.mjs — prueft den Formular-Pruefer, nicht ein Formular.
+ * LAUFZEIT: 63s (gemessen 02.08.2026) — Browser-Lauf gegen jede Fixture.
+ * Wer das nicht weiss, haelt den Lauf fuer haengen geblieben.
  *
  * Der Pruefer erkennt Kontaktfelder an ihrer Beschriftung. Jede Heuristik hat
  * zwei Versagensarten, und beide muessen geprueft werden:
