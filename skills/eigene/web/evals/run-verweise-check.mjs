@@ -630,26 +630,43 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
 {
   // Erst nach einem Lauf vorhanden (Build-Ausgabe, Manifeste). Ihr Fehlen ist
   // kein kaputter Verweis, sondern der Normalzustand vor dem ersten Lauf.
+  // Welche Ausnahmen hat dieser Lauf tatsaechlich gebraucht? Eine Ausnahme,
+  // die niemand mehr ausloest, ist tote Nachsicht: sie steht als Erlaubnis da,
+  // deckt aber nichts mehr — und beim naechsten Mal traut sich niemand, sie
+  // anzufassen, weil unklar ist, wofuer sie war.
+  //
+  // Gemessen 02.08.2026: go.mod und Gemfile standen in der Liste, wurden aber
+  // in keiner Doku-Datei mehr genannt. Nachgeprueft durch Entfernen: beide
+  // Skills blieben gruen.
+  const LAUFZEIT_BENUTZT = new Set();
   const LAUFZEIT = new Set([
-    'package.json', 'manifest.json', 'bilder-index.json', 'index.html',
-    'report.json', 'components.json', 'tsconfig.json',
+    // Erst nach einem Lauf vorhanden (Build-Ausgabe, Manifeste). Ihr Fehlen ist
+    // kein kaputter Verweis, sondern der Normalzustand vor dem ersten Lauf.
+    'package.json', 'manifest.json', 'bilder-index.json', 'components.json',
+
     // Erkennungsmerkmale fremder Oekosysteme. ui-ux-db-nutzung.md listet sie
     // auf, um aus einer Projektdatei den Stack zu erraten ("`composer.json`
-    // =Laravel"). Das ist eine Nennung, keine Wegbeschreibung — die Datei soll
-    // in einem KUNDENPROJEKT liegen, nicht hier.
-    'composer.json', 'Package.swift', 'go.mod', 'Gemfile', 'pubspec.yaml',
-    // Dasselbe fuer DESIGN.md: design-doktrin.md und impeccable-detektoren.md
-    // nennen sie mit Bedingung ("wenn Projekt-DESIGN.md existiert", "eine
-    // DESIGN.md im Projekt aktiviert ..."). Sie im Skill zu verlangen hiesse,
-    // jedes Kundenprojekt schon hier zu haben. Gemessen 02.08.2026: zwei
-    // solche Nennungen hielten die Wache dauerhaft auf 24/25.
+    // = Laravel"). Das ist eine Nennung, keine Wegbeschreibung — die Datei
+    // soll in einem KUNDENPROJEKT liegen, nicht hier.
+    'composer.json',
+
+    // design-doktrin.md und impeccable-detektoren.md nennen DESIGN.md mit
+    // Bedingung ("wenn Projekt-DESIGN.md existiert", "eine DESIGN.md im
+    // Projekt aktiviert ..."). Sie im Skill zu verlangen hiesse, jedes
+    // Kundenprojekt schon hier zu haben.
     'DESIGN.md',
-    // Laufzeit-Zustand eines fremden Harness. eval/references/
-    // verifikations-vertrag.md stellt in einer Tabelle "Original vs. hier"
-    // gegenueber, was der Python-State-Machine-Harness schreibt und was
-    // stattdessen hier gilt. Die Datei gehoert zum Original und soll hier
-    // gerade NICHT existieren — das ist die Aussage der Tabelle.
+
+    // Wieder aufgenommen 02.08.2026: der eval-Skill nennt state.json in einer
+    // Tabelle "Original vs. hier" — die Datei gehoert zum fremden Harness und
+    // soll hier gerade NICHT existieren. Mein Streichen war voreilig: ich
+    // hatte nur web und design gemessen, run-verweise-alle prueft 24 Skills.
     'state.json',
+
+    // Am 02.08.2026 gestrichen, weil sie in KEINEM der beiden Skills mehr
+    // ausgeloest wurden — nachgemessen durch Entfernen, beide blieben gruen:
+    // Gemfile, Package.swift, go.mod, index.html, pubspec.yaml, report.json,
+    // state.json, tsconfig.json. Wer eine davon wieder braucht, traegt sie mit
+    // dem Satz ein, der sie noetig macht.
   ]);
   const refOrdner = path.join(ZIEL, 'references');
   // Auch SKRIPT-Koepfe, nicht nur references/*.md.
@@ -723,7 +740,7 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
     for (const m of treffer) {
       const ziel = m[1];
       const name = ziel.split('/').pop();
-      if (LAUFZEIT.has(name)) continue;
+      if (LAUFZEIT.has(name)) { LAUFZEIT_BENUTZT.add(name); continue; }
       gezaehlt++;
       const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO];
       // Die eigene VENDORING.md ist KEINE fremde Herkunft.
@@ -874,6 +891,20 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
   } else
   zeile(tot.length === 0, `${gezaehlt} Dateiverweise in ${mdDateien.length} Referenz-Datei(en)`,
     tot.length ? `zeigen ins Leere: ${tot.slice(0, 6).join(' | ')}` : null);
+
+  // Verwaiste Ausnahmen melden — aber NUR als eigene Zeile, nicht als Fehler
+  // der Verweis-Pruefung. Sie machen den Lauf nicht falsch, sie machen die
+  // Liste unehrlich.
+  //
+  // Bewusst mit WARN-Charakter statt Exit 1: eine Ausnahme kann fuer einen
+  // Skill verwaist sein und im anderen gebraucht werden — diese Wache laeuft
+  // je Skill. Wer aufraeumen will, prueft beide.
+  const verwaist = [...LAUFZEIT].filter((n) => !LAUFZEIT_BENUTZT.has(n));
+  if (verwaist.length) {
+    console.log(`  [i]    ${verwaist.length} von ${LAUFZEIT.size} Laufzeit-Ausnahmen in diesem Skill ungenutzt`);
+    console.log(`         ${verwaist.join(', ')}`);
+    console.log('         Kein Fehler — aber wer sie nicht mehr braucht, sollte sie streichen.');
+  }
 }
 
 // --- Fremder Code braucht eine Attribution -------------------------------
