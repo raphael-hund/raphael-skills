@@ -44,7 +44,7 @@ import { wegwerfOrdner, wegwerfen, altlastWeg } from './lib/wegwerf.mjs';
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const KLONE = path.join(HIER, '..', 'scripts', 'web-clone');
 const FRIST_MS = 240000;
-const PORT = Number(process.env.BROWSERSTART_PORT || 5409);
+const PORT = Number(process.env.BROWSERSTART_PORT || 5415);
 
 // Woran man erkennt, dass es die BIBLIOTHEK war und nicht die Seite.
 const FEHLT_RE = /Playwright not found|Cannot find module|ERR_MODULE_NOT_FOUND|Executable doesn't exist/i;

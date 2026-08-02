@@ -21,7 +21,7 @@ import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const PRUEFSTAND = path.join(HIER, '..', 'scripts', 'pruefstand.mjs');
-const PORT = Number(process.env.PRUEFSTAND_TEST_PORT || 5387);
+const PORT = Number(process.env.PRUEFSTAND_TEST_PORT || 5340);
 
 // Beide Ports muessen frei sein. Ist einer fremdbelegt, startet der
 // Pruefstand dort nicht — die Eval befragte dann eine fremde Seite und gaebe
