@@ -235,22 +235,41 @@ console.log('\nLeere Aufnahme — zwei leere Listen sind keine Uebereinstimmung:
   fs.writeFileSync(path.join(ordner, 'a.tsx'), 'export const A = () => null;\n');
   fs.symlinkSync(path.join(ordner, 'gibtsnicht.tsx'), path.join(ordner, 'tot.tsx'));
 
+  let messbar = true;
   const port = Number(process.env.KAPUTT_GRUND_PORT || 5493);
-  const srv = spawn('python3', ['-m', 'http.server', String(port), '--bind', '127.0.0.1'],
-    { cwd: ordner, stdio: 'ignore' });
+
+  // Ist der Port frei? Sonst startet python3 gar nicht, und das Tor liefe
+  // gegen die FREMDE Seite — der Fall meldete dann gruen ueber ein Ergebnis,
+  // das ihm nicht gehoert. Gemessen 02.08.2026: mit einem fremden Server auf
+  // 5493 lief diese Eval 16/16 durch, obwohl ihr Testserver nie existierte.
+  //
+  // Die uebrigen zehn Evals mit festem Port haben so eine Wache seit dem
+  // 31.07.2026; diese hier war die letzte ohne.
+  const belegt = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
+    '-w', '%{http_code}', `http://127.0.0.1:${port}/`], { encoding: 'utf8' });
+  if ((belegt.stdout || '').trim() !== '000') {
+    sag(`  [ROT]  Port ${port} ist fremdbelegt — dieser Fall kann nichts messen`);
+    sag(`         Das Tor liefe gegen eine fremde Seite und gaebe deren Ergebnis`);
+    sag(`         als eigenes aus. Anderen Port setzen: KAPUTT_GRUND_PORT=<frei>`);
+    fehler++;
+    fs.rmSync(ordner, { recursive: true, force: true });
+    messbar = false;
+  }
+  const srv = messbar ? spawn('python3', ['-m', 'http.server', String(port), '--bind', '127.0.0.1'],
+    { cwd: ordner, stdio: 'ignore' }) : null;
   let bereit = false;
-  for (let i = 0; i < 50 && !bereit; i += 1) {
+  for (let i = 0; messbar && i < 50 && !bereit; i += 1) {
     const q = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
       '-w', '%{http_code}', `http://127.0.0.1:${port}/`], { encoding: 'utf8' });
     if ((q.stdout || '').trim() === '200') bereit = true;
     else spawnSync('sleep', ['0.2']);
   }
 
-  if (!bereit) {
+  if (messbar && !bereit) {
     srv.kill('SIGKILL');
     sag(`  [ROT]  Testserver auf ${port} kam nicht hoch — Fall nicht messbar`);
     fehler++;
-  } else {
+  } else if (messbar) {
     const r = spawnSync('node', [path.join(HIER, '..', 'scripts', 'g1-gate.mjs'),
       '--url', `http://127.0.0.1:${port}/`, '--src', ordner, '--no-shots'],
       { encoding: 'utf8', timeout: 600000, maxBuffer: 32 * 1024 * 1024 });
