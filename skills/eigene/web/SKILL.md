@@ -63,7 +63,7 @@ eval_scorecard:
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
     - "evals/run-sprache-check.mjs — 55 Skripte aller Skills: kann Raphael jeden Bericht lesen?"
-    - "evals/run-struktur.mjs — faehrt die sieben Struktur-Wachen oben in EINEM Lauf (43s gemessen 01.08.2026, ohne Browser)"
+    - "evals/run-struktur.mjs — faehrt die sieben Struktur-Wachen oben in EINEM Lauf (13s, dreimal gemessen 02.08.2026, ohne Browser)"
     - "evals/run-zwillinge-check.mjs — doppelt vorhandene Dateien: laufen zwei Kopien auseinander?"
     - "evals/run-hilfe-check.mjs — 23 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "evals/run-aufruffehler-check.mjs — 24 Werkzeuge: endet ein falscher Aufruf mit Exit 2?"
@@ -875,6 +875,7 @@ node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch 
 node evals/run-slop-de-check.mjs     # 62 Fälle: Treffer, Gegenproben, Einstufung, Regelweg, Kodierung
 node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 node evals/run-eval-umfang.mjs       # hat jede Eval überhaupt noch ihre Fälle?
+                                     # fährt 36 Evals nacheinander: 13 Min (gemessen 02.08.2026)
 ```
 
 > **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
