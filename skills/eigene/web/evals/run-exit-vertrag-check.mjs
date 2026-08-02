@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // run-exit-vertrag-check.mjs — heisst der Exit-Code bei jedem Werkzeug dasselbe?
 //
-// LAUFZEIT: 55s (gemessen 02.08.2026) — elf Werkzeuge auf je drei Aufrufwegen.
+// LAUFZEIT: 75s (gemessen 02.08.2026) — elf Werkzeuge auf je vier Aufrufwegen.
 //
 //   node evals/run-exit-vertrag-check.mjs
 //
@@ -26,9 +26,11 @@
 //   1. Ziel existiert nicht -> NIE Exit 0, auf keinem der drei Aufrufwege
 //      (--dir, --src, positional). Welcher davon der richtige ist, ist je
 //      Werkzeug verschieden — und egal: falsch aufgerufen ist auch ungeprueft.
-//   2. Unbekanntes Flag -> Exit 2. Ein Werkzeug, das ein Flag stillschweigend
+//   2. Gar kein Argument -> nie Exit 0. Faellt ein Werkzeug still auf "."
+//      zurueck, urteilt es ueber den Ordner, in dem man zufaellig steht.
+//   3. Unbekanntes Flag -> Exit 2. Ein Werkzeug, das ein Flag stillschweigend
 //      verschluckt, prueft etwas anderes als bestellt.
-//   3. Ein toter Symlink im Zielordner erscheint in BEIDEN Ausgabewegen:
+//   4. Ein toter Symlink im Zielordner erscheint in BEIDEN Ausgabewegen:
 //      im Text fuer den Menschen und im JSON fuers Tor. Ein Werkzeug, das im
 //      Text warnt und im JSON schweigt, taeuscht jeden Automaten.
 //
@@ -100,6 +102,18 @@ fs.writeFileSync(path.join(SAUBER, 'a.css'), '.a { color: #222; }\n');
 fs.writeFileSync(path.join(SAUBER, 'a.jsx'),
   'export default function A(){ return <div className="a" />; }\n');
 
+// Der Ordner, aus dem der Test "gar kein Argument" laeuft. Er enthaelt eine
+// UNVERDAECHTIGE Quelldatei — bewusst nicht leer. Gemessen 02.08.2026: aus
+// einem wirklich leeren Ordner faellt import-check bei einem Rueckfall auf "."
+// in seine eigene "0 Dateien gelesen"-Wache und endet mit Exit 1. Das Kriterium
+// "nicht Exit 0" waere dort blind — die Gegenprobe blieb zweimal gruen,
+// obwohl die Sabotage sass. Mit einer sauberen Datei darin liefert der
+// Rueckfall genau das gefaehrliche Exit 0.
+const LEER = path.join(ORDNER, 'fremder-ordner');
+fs.mkdirSync(LEER, { recursive: true });
+fs.writeFileSync(path.join(LEER, 'fremd.jsx'),
+  'export default function F(){ return <div className="fremd" />; }\n');
+
 const GIBT_ES_NICHT = path.join(ORDNER, 'ziel-das-fehlt');
 
 const laufen = (name, args) => spawnSync('node', [path.join(SKRIPTE, name), ...args],
@@ -128,7 +142,35 @@ for (const name of WERKZEUGE) {
       + 'den es nicht gibt. Die stillste Form von kaputt.');
   }
 
-  // 2. Unbekanntes Flag -> Exit 2. Ein Werkzeug, das ein Flag verschluckt,
+  // 2. GAR KEIN Argument. Das ist ein anderer Fall als ein Pfad, den es nicht
+  //    gibt: dort hat der Aufrufer etwas gemeint und sich vertan, hier hat er
+  //    nichts gesagt. Faellt ein Werkzeug dann still auf "." zurueck, urteilt
+  //    es ueber den Ordner, in dem man zufaellig steht.
+  //
+  //    Befund 02.08.2026: `node import-check.mjs` ohne Pfad meldete aus
+  //    skills/eigene/web heraus "183 Dateien, 363 Tresor-Imports geprueft" mit
+  //    Befund — ein Bericht ueber das falsche Projekt, der aussieht wie einer
+  //    ueber das richtige. Das Werkzeug WUSSTE um die Falle und fing den Fall
+  //    "Pfad ohne --src" ab; der leere Aufruf fiel durch dieselbe Wache.
+  //
+  //    Ausgenommen sind Werkzeuge, deren leerer Aufruf eine ANTWORT ist statt
+  //    eines Laufs: bilder.mjs druckt seine Aufrufzeile, lib-lookup.mjs listet
+  //    den Tresor. Beide urteilen ueber nichts — das ist kein Mangel.
+  const ANTWORT_STATT_LAUF = new Set(['bilder.mjs', 'lib-lookup.mjs']);
+  if (!ANTWORT_STATT_LAUF.has(name)) {
+    // Aus einem LEEREN Ordner heraus, nicht aus dem Eval-Ordner. Gemessen
+    // 02.08.2026: die erste Fassung lief aus skills/eigene/web, wo
+    // import-check bei einem Rueckfall auf "." echte Befunde findet und mit
+    // Exit 1 endet — die Gegenprobe blieb gruen, obwohl die Sabotage sass.
+    // Erst aus einem leeren Ordner heraus faellt der Rueckfall als Exit 0 auf.
+    const leer = spawnSync('node', [path.join(SKRIPTE, name)],
+      { encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 16 * 1024 * 1024, cwd: LEER });
+    zeile(leer.status !== 0, `${name}: gar kein Argument -> nicht Exit 0`,
+      'Exit 0 ohne jedes Argument — geprueft wurde der Ordner, in dem man '
+      + 'zufaellig stand, und das Urteil gilt dem falschen Projekt');
+  }
+
+  // 3. Unbekanntes Flag -> Exit 2. Ein Werkzeug, das ein Flag verschluckt,
   //    prueft etwas anderes als bestellt und sagt es nicht.
   const quatsch = laufen(name, ['--dieses-flag-gibt-es-nicht', QUELLE]);
   zeile(quatsch.status === 2, `${name}: unbekanntes Flag -> Exit 2`,

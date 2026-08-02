@@ -55,8 +55,23 @@ if (fremd.length) {
 if (args.includes('--help')) {
   console.log('Aufruf: node import-check.mjs --src <projektordner> [--json]');
   console.log('Prueft, ob jeder Import aus dem Bibliotheks-Tresor wirklich existiert.');
-  console.log('Ohne --src wird der aktuelle Ordner geprueft.');
+  console.log('--src ist Pflicht: ohne es bricht der Lauf ab, statt still den');
+  console.log('aktuellen Ordner zu pruefen und darueber zu urteilen.');
   process.exit(0);
+}
+
+// Gar kein Argument ist derselbe Fehler wie ein Pfad ohne --src, nur stiller:
+// SRC faellt auf "." zurueck, und der Lauf urteilt ueber den Ordner, in dem man
+// zufaellig steht. Gemessen 02.08.2026 aus skills/eigene/web heraus: "183
+// Dateien, 363 Tresor-Imports geprueft" mit Befund — ein Bericht ueber das
+// falsche Projekt, der aussieht wie einer ueber das richtige. Die Wache
+// darunter fing den Streuner-Fall ab, diesen nicht.
+if (!args.length) {
+  console.error('Kein --src angegeben.');
+  console.error('Ohne --src wuerde der aktuelle Ordner geprueft — das waere ein Urteil');
+  console.error('ueber das falsche Projekt. Deshalb Abbruch statt Annahme.');
+  console.error('  node import-check.mjs --src <projektordner>');
+  process.exit(2);
 }
 
 const streuner = args.filter((a, i) => !a.startsWith('--') && args[i - 1] !== '--src');

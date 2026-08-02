@@ -61,7 +61,7 @@ eval_scorecard:
     - "evals/run-eval-umfang.mjs — 38 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 4 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (rund 9 Min)"
-    - "evals/run-exit-vertrag-check.mjs — 25 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (55s)"
+    - "evals/run-exit-vertrag-check.mjs — 34 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (75s)"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
