@@ -60,6 +60,7 @@ eval_scorecard:
     - "evals/run-laufzeit-check.mjs — 4 Angaben: stimmen die dokumentierten Laufzeiten noch? (266s)"
     - "evals/run-eval-umfang.mjs — 37 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-zahlen-gegen-lauf.mjs — 4 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (rund 9 Min)"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"

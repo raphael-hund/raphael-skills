@@ -51,7 +51,7 @@ eval_scorecard:
     - "evals/run-detect-check.mjs — 35 Faelle: Datei-Modus, 13 von 13 Regeln belegt, Typo-Skala in Variablen beide Richtungen"
     - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
-    - "evals/run-variablen-check.mjs — 8 Regeln: sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
+    - "evals/run-variablen-check.mjs — 9 Faelle: 8 Regeln — sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
     - "evals/run-flag-wache-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
     - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
     - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
@@ -59,6 +59,7 @@ eval_scorecard:
     - "evals/run-struktur-design.mjs — faehrt die vier Struktur-Wachen oben in EINEM Lauf (65s gemessen 01.08.2026, ohne Browser)"
     - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-zahlen-gegen-lauf.mjs — 4 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (120s)"
   grenzen:
     - "Der URL-Modus von detect.mjs braucht puppeteer und laeuft auf diesem Rechner nicht — die Evals laden den Detektor per Playwright direkt in die Seite"
     - "Ein gruener Lauf heisst 'die bekannten Slop-Muster sind raus', nicht 'das Design ist gut'"

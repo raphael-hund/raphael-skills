@@ -49,6 +49,7 @@ const AUSGENOMMEN = {
   'run-sabotage.mjs': 'beschaedigt Pruefer (gemessen 31.07.2026: 3:31) — eigener Lauf',
   'run-eval-umfang.mjs': 'diese Datei',
   'run-antiset.mjs': 'braucht Browser + Server (gemessen 31.07.2026: 7:54)',
+  'run-zahlen-gegen-lauf.mjs': 'faehrt selbst vier Evals — hier liefe jede doppelt',
 };
 
 process.exit(umfangPruefen({
