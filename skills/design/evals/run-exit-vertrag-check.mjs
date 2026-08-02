@@ -142,6 +142,23 @@ for (const { name, beiFund, beiFehlendemZiel, immerNull } of WERKZEUGE) {
       ? 'Exit 0 fuer einen Ordner, den es nicht gibt — die stillste Form von kaputt'
       : `Exit ${weg.status} statt ${beiFehlendemZiel} — der gemessene Vertrag hat sich verschoben`);
 
+  // 4. GAR KEIN Argument: immer Exit 2, unabhaengig vom Werkzeug. Das ist ein
+  //    anderer Fall als ein Pfad, den es nicht gibt — dort hat der Aufrufer
+  //    etwas gemeint und sich vertan, hier hat er nichts gesagt.
+  //
+  //    Befund 31.07.2026: `node scan-ai-slop.mjs` ohne Pfad scannte den Ordner,
+  //    in dem man gerade stand ("scanned 30 files under ."), meldete Funde und
+  //    endete mit Exit 0. Ein Bericht ueber das falsche Projekt, der aussieht
+  //    wie einer ueber das richtige. Dasselbe Muster wie import-check (--src)
+  //    und audit-clone (--project) im web-Skill.
+  const ohne = spawnSync('node', [path.join(SKRIPTE, name)],
+    { encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 8 * 1024 * 1024 });
+  zeile(ohne.status === 2, `${name}: gar kein Argument -> Exit ${ohne.status}`,
+    ohne.status === 2 ? null
+      : ohne.status === 0
+        ? 'Exit 0 ohne jedes Ziel — dann wurde ein Standardordner gescannt, nicht das Projekt'
+        : `Exit ${ohne.status} — ein unvollstaendiger Aufruf ist kein Qualitaetsurteil`);
+
   // 4. Nur fuer Werkzeuge, die IMMER 0 liefern: keine Doku darf ihren
   //    Exit-Code zum Bestehenskriterium machen.
   if (immerNull && fs.existsSync(QA)) {

@@ -84,7 +84,23 @@ for (const a of args) {
   }
 }
 
-const root = args.find((a) => !a.startsWith("-")) || ".";
+// Kein stiller Rueckfall auf ".". `node scan-ai-slop.mjs` ohne Pfad scannte
+// bis zum 31.07.2026 den Ordner, in dem man gerade stand — gemessen: "scanned
+// 30 files under ." im scripts/-Ordner dieses Skills, mit Funden und Exit 0.
+//
+// Dasselbe Muster wie bei import-check (--src) und audit-clone (--project):
+// ein Bericht ueber das falsche Verzeichnis sieht aus wie einer ueber das
+// richtige. Das G1-Tor uebergibt den Pfad immer; gefaehrlich ist der Aufruf
+// von Hand, und genau der soll auffallen statt still zu wirken.
+const rootArg = args.find((a) => !a.startsWith("-"));
+if (!rootArg) {
+  console.error("Fehler: kein Projektordner uebergeben.");
+  console.error("Aufruf: node scan-ai-slop.mjs <projekt-root> [--json] [--rules=<datei>]");
+  console.error("Ohne Pfad wuerde der aktuelle Ordner gescannt — das waere ein Bericht");
+  console.error("ueber das falsche Projekt. Deshalb Abbruch statt Annahme.");
+  process.exit(2);
+}
+const root = rootArg;
 const asJson = args.includes("--json");
 const normalizeId = (value) => (/^\d+$/.test(value) ? value.padStart(2, "0") : value);
 const flagValues = (name) =>
