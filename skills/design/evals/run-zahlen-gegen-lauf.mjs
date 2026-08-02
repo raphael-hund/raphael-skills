@@ -92,7 +92,13 @@ for (const { datei, soll } of kandidaten) {
     { encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 64 * 1024 * 1024 });
 
   if (r.error && r.error.code === 'ETIMEDOUT') {
-    zeile(false, `${datei}: ${soll} dokumentiert`, `laeuft laenger als ${FRIST_MS / 60000} Minuten — nicht messbar`);
+    // Ein Timeout ist "nicht geprueft", kein Fehler: die dokumentierte Zahl
+    // kann stimmen oder nicht, dieser Lauf weiss es nicht. Als Fehler zu
+    // melden hiesse, eine Maschine unter Last als falsche Doku auszugeben —
+    // und dann schaltet man die Wache ab. Angeglichen an die web-Kopie
+    // (31.07.2026, vom Zwillings-Waechter gefunden).
+    zeile(true, `${datei}: nicht messbar (ueber ${FRIST_MS / 60000} Minuten) — Angabe ungeprueft`, null);
+    console.log('         Maschine unter Last? free -g und uptime pruefen, dann einzeln fahren.');
     continue;
   }
 

@@ -18,7 +18,7 @@
   "run-lighthouse-check.mjs": 10,
   "run-link-check.mjs": 10,
   "run-motion-check.mjs": 16,
-  "run-naht-check.mjs": 27,
+  "run-naht-check.mjs": 29,
   "run-ordner-check.mjs": 16,
   "run-pruefstand.mjs": 14,
   "run-registry-check.mjs": 9,

@@ -45,6 +45,12 @@ const ERLAUBT = new Set([
   // an die Laufzeit des jeweiligen Skripts angepasst. Gleicher Name, gleiche
   // Frage, anderer Gegenstand — wie bei den drei Wachen darueber.
   'run-hilfe-check.mjs',
+  // Ebenfalls dazugekommen 31.07.2026: prueft in jedem Skill dessen EIGENE
+  // Werkzeuge auf die Exit-Code-Trennung. Die Listen und die erwarteten Codes
+  // sind notwendig verschieden (design: 3 Werkzeuge, web: 11), und die
+  // web-Kopie deckt zusaetzlich web-clone/ ab. 152 abweichende Code-Zeilen —
+  // das sind zwei eigenstaendige Evals mit gleichem Namen, keine Kopie.
+  'run-exit-vertrag-check.mjs',
 ]);
 
 // Zeilen, die sich zwischen zwei Kopien unterscheiden DUERFEN: relative Pfade

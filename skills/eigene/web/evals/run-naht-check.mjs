@@ -460,6 +460,41 @@ console.log('\nKlon-Tor liest das Feld, das visual-diff wirklich schreibt:\n');
     treffer.length ? null : 'die beiden reden aneinander vorbei — jede echte Ausgabe reisst das Tor');
 }
 
+// --- Jedes Werkzeug steht in einer Exit-Vertrags-Eval ---------------------
+// Zwei Evals teilen sich die Arbeit: run-exit-vertrag-check nimmt scripts/,
+// run-aufruffehler-check die web-clone/-Werkzeuge. Zusammen decken sie am
+// 31.07.2026 alle 25 ab — aber die Aufteilung steht nirgends, und ein neues
+// Werkzeug faellt zwischen beide, ohne dass etwas meldet.
+//
+// Geprueft wird gegen die QUELLTEXTE der Evals, nicht gegen ihre Ausgabe: die
+// Listen dort sind die Entscheidung, wer welches Werkzeug nimmt.
+console.log('\nJedes Werkzeug steht in einer Exit-Vertrags-Eval:\n');
+{
+  const EVALS = ['run-exit-vertrag-check.mjs', 'run-aufruffehler-check.mjs']
+    .map((n) => path.join(SKRIPTE, '..', 'evals', n))
+    .filter((p) => fs.existsSync(p));
+
+  if (EVALS.length < 2) {
+    zeile(false, `nur ${EVALS.length} von 2 Exit-Vertrags-Evals gefunden`,
+      'umbenannt oder zusammengefuehrt? Diese Liste muss mitgezogen werden');
+  } else {
+    const text = EVALS.map((p) => fs.readFileSync(p, 'utf8')).join('\n');
+    const werkzeuge = [
+      ...fs.readdirSync(SKRIPTE).filter((n) => n.endsWith('.mjs')),
+      ...(fs.existsSync(CLONE)
+        ? fs.readdirSync(CLONE).filter((n) => n.endsWith('.mjs')).map((n) => `web-clone/${n}`)
+        : []),
+    ];
+    // Ein Werkzeug gilt als gedeckt, wenn sein Name in einer der beiden Evals
+    // vorkommt — als eigener Eintrag oder ueber das Einlesen seines Ordners.
+    const liestOrdner = /readdirSync\((?:SKRIPTE|KLONE)\)/.test(text);
+    const offen = werkzeuge.filter((w) => !text.includes(path.basename(w)) && !liestOrdner);
+    zeile(offen.length === 0,
+      `${werkzeuge.length} Werkzeuge, ${offen.length} in keiner Exit-Vertrags-Eval`,
+      offen.length ? `ungedeckt: ${offen.join(', ')} — ihr Exit-Code ist eine Behauptung` : null);
+  }
+}
+
 // --- Jeder urteilende Pruefer hat einen Anti-Set-Fall --------------------
 // Der Abschnitt darueber fragt: haengt jeder Pruefer am Tor? Diese Frage geht
 // eine Stufe weiter: wird er dort auch AUSGELOEST? Ein Pruefer, den das Tor
