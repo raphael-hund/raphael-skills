@@ -51,6 +51,13 @@ const ERLAUBT = new Set([
   // web-Kopie deckt zusaetzlich web-clone/ ab. 152 abweichende Code-Zeilen —
   // das sind zwei eigenstaendige Evals mit gleichem Namen, keine Kopie.
   'run-exit-vertrag-check.mjs',
+  // Und 02.08.2026 dazu: beide fahren die Evals ihres EIGENEN Skills nach, und
+  // deren Laufzeiten sind grundverschieden. Im web-Skill mussten run-antiset
+  // (20+ Min) und run-sabotage (15) ausgenommen werden, sonst lief die Wache
+  // in jedes Zeitlimit. In design dauern dieselben Fragen zusammen 75 Sekunden
+  // — dort waere die Ausnahme ein blinder Fleck ohne Gegenwert. Gemessen:
+  // design-sabotage 35s, browser-detect 31s.
+  'run-zahlen-gegen-lauf.mjs',
 ]);
 
 // Zeilen, die sich zwischen zwei Kopien unterscheiden DUERFEN: relative Pfade
