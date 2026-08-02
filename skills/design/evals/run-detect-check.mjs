@@ -462,6 +462,42 @@ console.log('\nEin Ziel ohne pruefbare Dateien ist kein bestandener Lauf:\n');
     fs.rmSync(tief, { recursive: true, force: true });
   }
 
+  // Die Grenze selbst: was passiert JENSEITS von 20 Ebenen?
+  //
+  // Sie bleibt (sie schuetzt gegen Endlos-Symlinks), aber die Meldung log:
+  // "keine pruefbare Datei unter <pfad>" — obwohl welche da sind, nur tiefer.
+  // Wer das liest, sucht den Fehler im Pfad statt in der Tiefe. Gemessen
+  // 02.08.2026: 19 Ebenen laufen durch, 21 nicht.
+  {
+    const bau = (ebenen) => {
+      const w = fs.mkdtempSync(path.join(os.tmpdir(), 'detect-grenze-'));
+      const pfad = path.join(w, ...Array.from({ length: ebenen }, (_, i) => `e${i}`));
+      fs.mkdirSync(pfad, { recursive: true });
+      fs.writeFileSync(path.join(pfad, 'seite.html'),
+        '<!doctype html><html lang="de"><head><meta charset="utf-8"><title>T</title></head>'
+        + '<body><h1>Titel</h1><p>Ein normaler Absatz mit genug Text.</p></body></html>');
+      return w;
+    };
+
+    const zuTief = bau(22);
+    const rTief = rufe(zuTief);
+    const ausTief = `${rTief.stdout || ''}${rTief.stderr || ''}`;
+    zeile(/20 Verzeichnisebenen/.test(ausTief),
+      'jenseits der Tiefengrenze nennt die Meldung die Grenze',
+      'meldet nur "keine pruefbare Datei" — wer das liest, sucht den Fehler im Pfad');
+    fs.rmSync(zuTief, { recursive: true, force: true });
+
+    // Gegenrichtung: innerhalb der Grenze darf der Hinweis NICHT erscheinen.
+    // Ein Hinweis in jedem Bericht wird ueberlesen.
+    const flach = bau(3);
+    const rFlach = rufe(flach);
+    const ausFlach = `${rFlach.stdout || ''}${rFlach.stderr || ''}`;
+    zeile(!/20 Verzeichnisebenen/.test(ausFlach),
+      'innerhalb der Grenze schweigt der Hinweis',
+      'meldet die Tiefengrenze, wo sie nie erreicht wurde');
+    fs.rmSync(flach, { recursive: true, force: true });
+  }
+
   const a = rufe(leer);
   zeile(a.status === 2, 'leerer Ordner endet mit Exit 2',
     a.status === 2 ? null

@@ -47,8 +47,12 @@ const UEBERSPRINGEN = new Set(['node_modules', '.git', 'dist', '.next', '.output
 // fields/date/ ist schon acht. Die Grenze steht jetzt bei 20 — tief genug fuer
 // jeden realen Baum, flach genug gegen Endlos-Symlinks. Sie kostet nichts,
 // weil die Zaehlung beim ERSTEN Treffer abbricht.
+// Wurde die Tiefengrenze wirklich erreicht? Nur dann darf die Fehlermeldung
+// von ihr sprechen — sonst schickt sie jeden auf die falsche Faehrte.
+let grenzeErreicht = false;
+
 function zaehlePruefbare(wurzel, tiefe = 0) {
-  if (tiefe > 20) return 0;
+  if (tiefe > 20) { grenzeErreicht = true; return 0; }
   let n = 0;
   let einträge;
   try { einträge = fs.readdirSync(wurzel, { withFileTypes: true }); } catch { return 0; }
@@ -117,6 +121,16 @@ for (const ziel of ZIELE) {
     process.stderr.write(`Fehler: keine pruefbare Datei unter ${ziel}\n`);
     process.stderr.write(`Gesucht wurde nach: ${ENDUNGEN.join(' ')}\n`);
     process.stderr.write('Zeigt der Pfad auf den richtigen Ordner? Nichts gelesen ist nicht sauber.\n');
+    // Gemessen 02.08.2026: bei 21 Verzeichnisebenen bricht die Zaehlung ab und
+    // meldet "keine pruefbare Datei" — obwohl welche da sind. Wer das liest,
+    // sucht den Fehler im Pfad statt in der Tiefe. Die Grenze selbst bleibt
+    // (sie schuetzt gegen Endlos-Symlinks), aber sie muss sich zu erkennen
+    // geben. Nachgemessen: 19 Ebenen laufen durch, 21 nicht.
+    if (grenzeErreicht) {
+      process.stderr.write('\nHINWEIS: Die Suche brach bei 20 Verzeichnisebenen ab.\n');
+      process.stderr.write('Liegen die Dateien tiefer, hat der Detektor sie nie gesehen.\n');
+      process.stderr.write('Dann direkt auf den Unterordner zeigen statt auf die Wurzel.\n');
+    }
     process.exit(2);
   }
 }

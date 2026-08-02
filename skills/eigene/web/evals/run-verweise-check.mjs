@@ -638,6 +638,12 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
     // =Laravel"). Das ist eine Nennung, keine Wegbeschreibung — die Datei soll
     // in einem KUNDENPROJEKT liegen, nicht hier.
     'composer.json', 'Package.swift', 'go.mod', 'Gemfile', 'pubspec.yaml',
+    // Dasselbe fuer DESIGN.md: design-doktrin.md und impeccable-detektoren.md
+    // nennen sie mit Bedingung ("wenn Projekt-DESIGN.md existiert", "eine
+    // DESIGN.md im Projekt aktiviert ..."). Sie im Skill zu verlangen hiesse,
+    // jedes Kundenprojekt schon hier zu haben. Gemessen 02.08.2026: zwei
+    // solche Nennungen hielten die Wache dauerhaft auf 24/25.
+    'DESIGN.md',
     // Laufzeit-Zustand eines fremden Harness. eval/references/
     // verifikations-vertrag.md stellt in einer Tabelle "Original vs. hier"
     // gegenueber, was der Python-State-Machine-Harness schreibt und was
@@ -733,7 +739,8 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       // deshalb steht die Pruefung hier VOR den Ausnahmen.
       if (/^(?:\.\.?\/)?VENDORING\.md$/.test(ziel)) {
         if (!wurzeln.some((w) => fs.existsSync(path.join(w, ziel)))) {
-          tot.push(`${path.relative(ZIEL, datei)} -> ${ziel}`);
+
+      tot.push(`${path.relative(ZIEL, datei)} -> ${ziel}`);
         }
         continue;
       }
@@ -847,6 +854,7 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       if (/^[A-Z][A-Z_]+\.md$/.test(name)
         && /schreib|erzeug|entsteh|Ausgabe|liefer|zusaetzlich|Bedarf|Vergleichstabelle|dokumentier/i.test(satz)) continue;
       tot.push(`${path.relative(ZIEL, datei)} -> ${ziel}`);
+
     }
   }
   // Null Verweise ist kein Sauber-Befund, sondern eine Leermeldung.
