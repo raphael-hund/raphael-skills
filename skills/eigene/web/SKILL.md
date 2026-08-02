@@ -460,7 +460,7 @@ Drei Läufe belegen, dass das Tor unterscheidet — dieselbe Seite, drei Umgebun
 > Diese drei Läufe stammen vom 27./28.07., als das Tor vier Qualitäts-Prüfer hatte.
 > Seit dem Formular-Check sind es fünf; die Zeile „7 Checks grün" wäre heute eine
 > andere Zahl. Der belastbare, täglich wiederholte Beweis ist ohnehin das Anti-Set
-> (`node evals/run-antiset.mjs`, 17 Fälle) — es prüft jede Richtung einzeln, statt
+> (`node evals/run-antiset.mjs`, 18 Fälle) — es prüft jede Richtung einzeln, statt
 > einmalig eine Gesamtzahl festzuhalten. Der Beweis-Build hat selbst kein Formular
 > und kein Bild und würde heute an M24 reißen: er ist ein Zeitdokument, kein
 > Zielbild. Wer eine aktuelle Referenz braucht, nimmt `evals/antiset/_basis.html`.

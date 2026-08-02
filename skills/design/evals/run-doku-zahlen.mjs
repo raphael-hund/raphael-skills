@@ -41,7 +41,12 @@ if (!fs.existsSync(MD)) {
 const md = fs.readFileSync(MD, 'utf8');
 
 let fehler = 0;
+// Selbst zaehlen statt eine feste Zahl zu behaupten. Die Bilanz stand auf
+// einer festen 9 — achte Eval dieser Session mit dieser Falle. Eine feste
+// Zahl in einer Bilanzformel altert still, weil sie plausibel bleibt.
+let gezaehlt = 0;
 const zeile = (ok, text, detail) => {
+  gezaehlt++;
   if (!ok) fehler++;
   console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
   if (detail) console.log(`         ${detail}`);
@@ -213,7 +218,39 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
     sab && Number(sab[1]) === echtSab ? null : 'Zahl in der Scorecard nachziehen');
 }
 
-const gesamt = 9;
+// --- Dieselbe Eval, zwei verschiedene Zahlen ------------------------------
+// Jede Pruefung oben vergleicht eine Doku-Zahl mit einem echten Lauf. Keine
+// sieht, ob DIESELBE Zahl an zwei Stellen VERSCHIEDEN dasteht: jede fuer sich
+// kann stimmen, wenn sie zu verschiedenen Zeiten gemessen wurden.
+//
+// Gemessen 02.08.2026 im web-Skill: "37 Evals" in der Scorecard, "36 Evals
+// nacheinander" in der Kommandozeile. Die zweite stammte vom Vortag. Eine
+// Zahl, die an zwei Stellen steht, altert an einer davon zuerst.
+console.log('\nDieselbe Sache, dieselbe Zahl:\n');
+{
+  const doku = fs.readFileSync(MD, 'utf8');
+  const gefunden = new Map();
+  // Ueber Zeilengrenzen: in Kommandozeilen steht der Name oben, die Zahl in
+  // der Fortsetzung darunter.
+  const re = /(run-[a-z-]+\.mjs)[\s\S]{0,120}?(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
+  for (const m of doku.matchAll(re)) {
+    // "Faelle" und "Fälle" meinen dasselbe — ohne diese Zusammenfassung
+    // gelten sie als zwei Schluessel, und ein Widerspruch zwischen beiden
+    // Schreibweisen faellt nie auf (gemessen 02.08.2026: 35 vs 30 blieb
+    // unentdeckt, weil die eine Stelle "Fälle" und die andere "Faelle"
+    // schrieb).
+    const wort = m[3] === 'Fälle' ? 'Faelle' : m[3];
+    const k = `${m[1]} / ${wort}`;
+    if (!gefunden.has(k)) gefunden.set(k, new Set());
+    gefunden.get(k).add(Number(m[2]));
+  }
+  const streit = [...gefunden.entries()].filter(([, z]) => z.size > 1);
+  zeile(streit.length === 0,
+    `${gefunden.size} Zahl-Nennungen mit Eval-Bezug, keine widerspricht sich`,
+    streit.map(([k, z]) => `${k}: ${[...z].sort((a, b) => a - b).join(' vs ')}`).join(' | '));
+}
+
+const gesamt = gezaehlt;
 console.log(`\n${gesamt - fehler}/${gesamt} Zahlen stimmen.`);
 if (fehler) {
   console.log('SKILL.md verspricht einen Umfang, den die Evals nicht liefern.');

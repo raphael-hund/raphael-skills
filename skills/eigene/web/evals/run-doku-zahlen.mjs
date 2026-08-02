@@ -354,6 +354,43 @@ if (ohneStand) {
 // +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
 // Sicherung gegen die Gegenrichtung: faellt ein ganzer Abschnitt still aus,
 // zaehlt `gepruefte` einfach weniger und "12/12" saehe wieder gruen aus. Die
+// --- Dieselbe Eval, zwei verschiedene Zahlen ------------------------------
+// Die Pruefungen oben vergleichen jede Doku-Zahl mit einem echten Lauf. Sie
+// sehen aber nicht, ob DIESELBE Zahl an zwei Stellen VERSCHIEDEN dasteht:
+// jede fuer sich kann gegen einen Lauf stimmen, wenn sie zu verschiedenen
+// Zeiten gemessen wurden.
+//
+// Gemessen 02.08.2026: SKILL.md nannte "37 Evals" in der Scorecard und
+// "36 Evals nacheinander" in der Kommandozeile — dieselbe Menge, zwei Zahlen.
+// Die zweite stammte vom Vortag, als eine Eval weniger existierte. Eine Zahl,
+// die an zwei Stellen steht, altert an einer davon zuerst.
+console.log('\nDieselbe Sache, dieselbe Zahl:\n');
+{
+  const doku = fs.readFileSync(MD, 'utf8');
+  const gefunden = new Map();
+  // "run-x.mjs ... 37 Evals" — Dateiname und Zahlwort im selben Abschnitt.
+  // Ueber Zeilengrenzen hinweg suchen: in Kommandozeilen steht der Dateiname
+  // in der einen Zeile und die Zahl in der Fortsetzung darunter. Ein Muster,
+  // das an \n haltmacht, sieht genau die Stelle nicht, an der der Widerspruch
+  // vom 02.08.2026 stand (gemessen: die Gegenprobe griff erst danach).
+  const re = /(run-[a-z-]+\.mjs)[\s\S]{0,120}?(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
+  for (const m of doku.matchAll(re)) {
+    // "Faelle" und "Fälle" meinen dasselbe — ohne diese Zusammenfassung
+    // gelten sie als zwei Schluessel, und ein Widerspruch zwischen beiden
+    // Schreibweisen faellt nie auf (gemessen 02.08.2026: 35 vs 30 blieb
+    // unentdeckt, weil die eine Stelle "Fälle" und die andere "Faelle"
+    // schrieb).
+    const wort = m[3] === 'Fälle' ? 'Faelle' : m[3];
+    const schluessel = `${m[1]} / ${wort}`;
+    if (!gefunden.has(schluessel)) gefunden.set(schluessel, new Set());
+    gefunden.get(schluessel).add(Number(m[2]));
+  }
+  const streit = [...gefunden.entries()].filter(([, z]) => z.size > 1);
+  zeile(streit.length === 0,
+    `${gefunden.size} Zahl-Nennungen mit Eval-Bezug, keine widerspricht sich`,
+    streit.map(([k, z]) => `${k}: ${[...z].sort((a, b) => a - b).join(' vs ')}`).join(' | '));
+}
+
 // funde-Tabelle ist die bekannte Untergrenze.
 if (gepruefte < funde.length) {
   console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${funde.length} erwartet.`);
