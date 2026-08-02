@@ -366,24 +366,61 @@ if (ohneStand) {
 // die an zwei Stellen steht, altert an einer davon zuerst.
 console.log('\nDieselbe Sache, dieselbe Zahl:\n');
 {
-  const doku = fs.readFileSync(MD, 'utf8');
+  // Auch die Eval-KOEPFE, nicht nur SKILL.md. Gemessen 02.08.2026: die
+  // Korrektur "36 -> 37 Evals" landete gestern nur in der Doku, waehrend der
+  // Kopf von run-eval-umfang.mjs weiter 36 nannte. Eine Wache, die nur eine
+  // Datei liest, findet den halben Widerspruch.
+  let doku = fs.readFileSync(MD, 'utf8');
+  for (const datei of fs.readdirSync(HIER).sort()) {
+    if (!datei.startsWith('run-') || !datei.endsWith('.mjs')) continue;
+    // Nur der Kopf: im Rumpf stehen Testdaten und historische Befunde, die
+    // absichtlich alte Zahlen nennen.
+    const kopf = fs.readFileSync(path.join(HIER, datei), 'utf8').slice(0, 3000);
+    // Historische Befunde ueberspringen: "Befund 30.07.2026: keine der 26
+    // Evals ..." nennt absichtlich eine alte Zahl. Sie ist kein Widerspruch,
+    // sondern der Grund, warum es die Wache gibt. Erkennbar an Datum oder
+    // Vergangenheitsform im selben Absatz.
+    // Beispielzeilen aus der Doku ueberspringen: "node evals/run-x.mjs
+    // # 12 Faelle" im Kopf ZITIERT die Doku, es ist keine eigene Behauptung.
+    // Erkennbar an der Einrueckung nach dem Sternchen plus dem #-Kommentar
+    // (gemessen 02.08.2026: sie erzeugte den einzigen verbleibenden Fehlalarm).
+    const kopfOhneBeispiel = kopf.replace(/^ \*\s{3,}node [^\n]*$/gm, '');
+    const ohneHistorie = kopfOhneBeispiel
+      .split(/\n\s*\*?\s*\n/)
+      // Nur ECHTE Historie ausnehmen, nicht jede datierte Messung. "Befund
+      // 30.07.2026: keine der 26 Evals ..." beschreibt einen alten Zustand;
+      // "LAUFZEIT: 782s (gemessen 02.08.2026). Sie faehrt 37 Evals" ist eine
+      // aktuelle Behauptung und muss geprueft werden.
+      //
+      // Erster Versuch nahm jedes "gemessen <Datum>" aus — damit fiel genau die
+      // Stelle durch, wegen der es die Wache gibt (gemessen 02.08.2026: die
+      // Gegenprobe blieb gruen).
+      .filter((abs) => !/Befund \d{2}\.\d{2}\.\d{4}|stand auf|nannte|hiess frueher|Zaehlweisen|Erster Versuch|Vorher/i.test(abs))
+      .join('\n\n');
+    doku += `\n${ohneHistorie}`;
+  }
   const gefunden = new Map();
   // "run-x.mjs ... 37 Evals" — Dateiname und Zahlwort im selben Abschnitt.
   // Ueber Zeilengrenzen hinweg suchen: in Kommandozeilen steht der Dateiname
   // in der einen Zeile und die Zahl in der Fortsetzung darunter. Ein Muster,
   // das an \n haltmacht, sieht genau die Stelle nicht, an der der Widerspruch
   // vom 02.08.2026 stand (gemessen: die Gegenprobe griff erst danach).
-  const re = /(run-[a-z-]+\.mjs)[\s\S]{0,120}?(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
+  // Fenster eng halten und KEINEN zweiten Dateinamen ueberspringen: mit 120
+  // Zeichen ohne diese Sperre ordnete das Muster eine Zahl dem falschen
+  // Dateinamen zu — "run-bilder-check.mjs (12 Faelle)" landete bei
+  // run-craft-check, weil dessen Name 80 Zeichen vorher stand. Ein Waechter,
+  // der Befunde erfindet, wird abgeschaltet (gemessen 02.08.2026).
+  const re = /(run-[a-z-]+\.mjs)((?:(?!run-[a-z-]+\.mjs)[\s\S]){0,120}?)(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
   for (const m of doku.matchAll(re)) {
     // "Faelle" und "Fälle" meinen dasselbe — ohne diese Zusammenfassung
     // gelten sie als zwei Schluessel, und ein Widerspruch zwischen beiden
     // Schreibweisen faellt nie auf (gemessen 02.08.2026: 35 vs 30 blieb
     // unentdeckt, weil die eine Stelle "Fälle" und die andere "Faelle"
     // schrieb).
-    const wort = m[3] === 'Fälle' ? 'Faelle' : m[3];
+    const wort = m[4] === 'Fälle' ? 'Faelle' : m[4];
     const schluessel = `${m[1]} / ${wort}`;
     if (!gefunden.has(schluessel)) gefunden.set(schluessel, new Set());
-    gefunden.get(schluessel).add(Number(m[2]));
+    gefunden.get(schluessel).add(Number(m[3]));
   }
   const streit = [...gefunden.entries()].filter(([, z]) => z.size > 1);
   zeile(streit.length === 0,

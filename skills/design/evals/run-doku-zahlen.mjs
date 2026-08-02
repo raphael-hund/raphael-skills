@@ -228,21 +228,38 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
 // Zahl, die an zwei Stellen steht, altert an einer davon zuerst.
 console.log('\nDieselbe Sache, dieselbe Zahl:\n');
 {
-  const doku = fs.readFileSync(MD, 'utf8');
+  // Auch die Eval-KOEPFE, nicht nur SKILL.md — sonst findet die Wache nur den
+  // halben Widerspruch. Historische Befunde und zitierte Doku-Beispiele
+  // bleiben aussen vor: sie nennen absichtlich alte Zahlen.
+  let doku = fs.readFileSync(MD, 'utf8');
+  for (const datei of fs.readdirSync(HIER).sort()) {
+    if (!datei.startsWith('run-') || !datei.endsWith('.mjs')) continue;
+    const kopf = fs.readFileSync(path.join(HIER, datei), 'utf8').slice(0, 3000);
+    const ohneBeispiel = kopf.replace(/^ \*\s{3,}node [^\n]*$/gm, '');
+    doku += `\n${ohneBeispiel
+      .split(/\n\s*\*?\s*\n/)
+      .filter((abs) => !/Befund \d{2}\.\d{2}\.\d{4}|stand auf|nannte|hiess frueher|Zaehlweisen|Erster Versuch|Vorher/i.test(abs))
+      .join('\n\n')}`;
+  }
   const gefunden = new Map();
   // Ueber Zeilengrenzen: in Kommandozeilen steht der Name oben, die Zahl in
   // der Fortsetzung darunter.
-  const re = /(run-[a-z-]+\.mjs)[\s\S]{0,120}?(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
+  // Fenster eng halten und KEINEN zweiten Dateinamen ueberspringen: mit 120
+  // Zeichen ohne diese Sperre ordnete das Muster eine Zahl dem falschen
+  // Dateinamen zu — "run-bilder-check.mjs (12 Faelle)" landete bei
+  // run-craft-check, weil dessen Name 80 Zeichen vorher stand. Ein Waechter,
+  // der Befunde erfindet, wird abgeschaltet (gemessen 02.08.2026).
+  const re = /(run-[a-z-]+\.mjs)((?:(?!run-[a-z-]+\.mjs)[\s\S]){0,120}?)(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
   for (const m of doku.matchAll(re)) {
     // "Faelle" und "Fälle" meinen dasselbe — ohne diese Zusammenfassung
     // gelten sie als zwei Schluessel, und ein Widerspruch zwischen beiden
     // Schreibweisen faellt nie auf (gemessen 02.08.2026: 35 vs 30 blieb
     // unentdeckt, weil die eine Stelle "Fälle" und die andere "Faelle"
     // schrieb).
-    const wort = m[3] === 'Fälle' ? 'Faelle' : m[3];
+    const wort = m[4] === 'Fälle' ? 'Faelle' : m[4];
     const k = `${m[1]} / ${wort}`;
     if (!gefunden.has(k)) gefunden.set(k, new Set());
-    gefunden.get(k).add(Number(m[2]));
+    gefunden.get(k).add(Number(m[3]));
   }
   const streit = [...gefunden.entries()].filter(([, z]) => z.size > 1);
   zeile(streit.length === 0,
