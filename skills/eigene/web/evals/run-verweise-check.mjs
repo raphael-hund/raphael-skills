@@ -741,6 +741,45 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       const ziel = m[1];
       const name = ziel.split('/').pop();
       if (LAUFZEIT.has(name)) { LAUFZEIT_BENUTZT.add(name); continue; }
+
+      // Umzugs-Notiz: `alter-name.md` (→ NEU: `neuer/pfad.md`)
+      //
+      // Der alte Name steht nur noch als Herkunftsangabe da, damit wer ihn
+      // sucht den neuen Ort findet. Ihn im Skill zu verlangen hiesse, die alte
+      // Datei nie loeschen zu duerfen.
+      //
+      // Gemessen 02.08.2026 im ads-Skill: fuenf solche Zeilen hielten
+      // run-verweise-alle seit Tagen auf 22/24. Alle genannten Brain-Seiten
+      // existieren — nur unter ihrem neuen Pfad, den dieselbe Zeile nennt.
+      //
+      // Bewusst eng: der NEUE Pfad muss im selben Abschnitt stehen UND
+      // existieren. Ohne die zweite Haelfte waere das ein Freibrief fuer jede
+      // Zeile, in der zufaellig "NEU:" vorkommt.
+      {
+        const umher = txt.slice(Math.max(0, m.index - 100), m.index + 300);
+        // Zwei Schreibweisen im Bestand: "(→ NEU: `pfad`)" und kuerzer
+          // "(→ `pfad`)". Beide meinen dasselbe.
+          const umzug = umher.match(/→\s*(?:NEU:\s*)?`([^`]+)`/);
+        if (umzug) {
+          const neuerPfad = umzug[1];
+          // Die Brain-Seiten liegen thematisch sortiert unter
+          // wiki/craft/<thema>/. Der Router nennt nur den Teil ab dem Thema
+          // ("grundlagen/2026-07-20-...md"), weil er im ads-Kontext steht.
+          // Ohne diese Wurzeln fand die Pruefung drei existierende Seiten
+          // nicht (gemessen 02.08.2026).
+          const brainWurzeln = [BRAIN, path.join(BRAIN, 'wiki')];
+          const craft = path.join(BRAIN, 'wiki', 'craft');
+          if (fs.existsSync(craft)) {
+            for (const thema of fs.readdirSync(craft)) {
+              brainWurzeln.push(path.join(craft, thema));
+            }
+          }
+          const da = [path.dirname(datei), ZIEL, SKILLS, REPO, ...brainWurzeln]
+            .some((w) => fs.existsSync(path.join(w, neuerPfad)));
+          if (da) continue;
+        }
+      }
+
       gezaehlt++;
       const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO];
       // Die eigene VENDORING.md ist KEINE fremde Herkunft.
@@ -818,6 +857,7 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       // vor (ads, offers) — meine Muster stammten aus zwei Skills und waren an
       // einem zu kleinen Ausschnitt gemessen.
       const satz = txt.slice(Math.max(0, m.index - 200), m.index + 200);
+
       // `MIT licen[sc]e` klein geschrieben kommt in den englischen
       // Vendor-Dateien vor (offers/references/vendor/coreyhaines-offers/) —
       // dieselbe Herkunftsangabe, nur nicht auf Deutsch.
