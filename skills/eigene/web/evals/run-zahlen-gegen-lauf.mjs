@@ -68,6 +68,15 @@ const kandidaten = [];
 const md = fs.readFileSync(MD, 'utf8');
 for (const m of md.matchAll(/(?:evals\/)?(run-[a-z-]+\.mjs)\s+—\s+(\d+)\s+(?:Faelle|Fälle|Regeln)/g)) {
   if (m[1] === SELBST || m[1] === 'run-eval-umfang.mjs') continue;
+  // Die beiden schweren Laeufe bleiben draussen. run-antiset braucht ueber 20
+  // Minuten (Browser plus Server je Fixture), run-sabotage etwa 15 — zusammen
+  // sprengen sie jede vertretbare Frist, und beide melden ihre Fallzahl in
+  // ihrer eigenen Schlusszeile, die run-eval-umfang gegen den Sollstand haelt.
+  //
+  // Gemessen 02.08.2026: mit ihnen lief diese Eval ueber 30 Minuten und wurde
+  // abgeschnitten; die Doku versprach "rund 9 Min". Ohne sie sind es 5,5
+  // (port 15s, halbe-antwort 223s, weiterleitung 63s, exit-vertrag 31s).
+  if (m[1] === 'run-antiset.mjs' || m[1] === 'run-sabotage.mjs') continue;
   if (kandidaten.some((k) => k.datei === m[1])) continue;
   kandidaten.push({ datei: m[1], soll: Number(m[2]) });
 }
