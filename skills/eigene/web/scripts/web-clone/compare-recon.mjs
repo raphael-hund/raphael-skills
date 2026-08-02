@@ -278,7 +278,11 @@ try {
   const args = parseArgs(process.argv.slice(2));
   if (args.help || !args.original || !args.clone) {
     usage();
-    process.exit(args.help ? 0 : 1);
+    // Exit 2, nicht 1: ein fehlendes Pflichtargument heisst "nichts geprueft",
+    // nicht "geprueft und durchgefallen". Dieselbe Trennung wie in beiden Toren
+    // und in den zehn Werkzeugen, die sie am 31.07.2026 bekommen haben.
+    // --help bleibt 0 — die Hilfe ist kein Fehlerfall.
+    process.exit(args.help ? 0 : 2);
   }
 
   const original = readJson(args.original);

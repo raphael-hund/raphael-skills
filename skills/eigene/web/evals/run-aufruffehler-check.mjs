@@ -134,6 +134,51 @@ console.log('\nEin abgelehnter Aufruf darf nichts hinterlassen:\n');
   }
 }
 
+// --- Fehlendes Pflichtargument ist derselbe Fall ---------------------------
+// Ein unbekanntes Flag und ein vergessenes Pflichtargument sagen beide: dieser
+// Aufruf war falsch, geprueft wurde nichts. Bis zum 31.07.2026 endeten
+// visual-diff und compare-recon dabei mit Exit 1 — also mit dem Code fuer
+// "geprueft und durchgefallen". In einer Kette liest das jedes Skript als
+// echten Befund.
+//
+// Nur die Werkzeuge mit erkennbarer Pflichtangabe: wer ohne Argument seine
+// Uebersicht zeigt (bilder.mjs, lib-lookup.mjs), tut das mit Recht.
+console.log('\nEin fehlendes Pflichtargument ist auch ein Aufruffehler:\n');
+{
+  const MIT_PFLICHT = [
+    'axe-run.mjs', 'craft-check.mjs', 'formular-check.mjs', 'motion-check.mjs',
+    'tastatur-check.mjs',
+    // import-check und shot-sweep bleiben draussen: sie HABEN eine sinnvolle
+    // Voreinstellung und arbeiten ohne Argument wirklich (Quellordner '.',
+    // Standard-URL). Nachgemessen — import-check meldete "2 erfundene Importe",
+    // shot-sweep schrieb ein Manifest. Ihr Exit 1 ist ein echtes Urteil, kein
+    // Aufruffehler. Bei import-check ist der stille Rueckfall auf '.' getrennt
+    // abgesichert (Pfad ohne --src -> Exit 2, siehe run-import-check).
+    'web-clone/audit-clone.mjs', 'web-clone/visual-diff.mjs',
+    'web-clone/compare-recon.mjs', 'web-clone/klon-gate.mjs',
+    'web-clone/dna-scaffold.mjs',
+  ].filter((n) => fs.existsSync(path.join(SKRIPTE, n)));
+
+  if (MIT_PFLICHT.length < 8) {
+    zeile(false, `nur ${MIT_PFLICHT.length} Werkzeuge mit Pflichtangabe gefunden`,
+      'umbenannt oder verschoben? Diese Liste muss mitgezogen werden');
+  }
+
+  for (const name of MIT_PFLICHT) {
+    const r = spawnSync('node', [path.join(SKRIPTE, name)], {
+      encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 8 * 1024 * 1024,
+    });
+    if (r.error && r.error.code === 'ETIMEDOUT') {
+      zeile(false, `${name} (ohne Argument)`, `keine Antwort binnen ${FRIST_MS / 1000}s`);
+      continue;
+    }
+    zeile(r.status === 2, `${name} (ohne Argument) -> Exit ${r.status}`,
+      r.status === 2 ? null
+        : r.status === 1 ? 'Exit 1 heisst "geprueft und durchgefallen" — geprueft wurde nichts'
+          : `Exit ${r.status} — ein unvollstaendiger Aufruf darf nie als bestanden gelten`);
+  }
+}
+
 console.log(`\n${gezaehlt - fehler}/${gezaehlt} wie erwartet.`);
 if (fehler) {
   console.log('Ein falscher Aufruf wird nicht ueberall als solcher behandelt.');
