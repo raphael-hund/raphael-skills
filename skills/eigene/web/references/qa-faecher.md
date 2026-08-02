@@ -4,7 +4,9 @@ Vier Fächer laufen parallel, jeweils eigener Agent (gemischte Modellfamilien). 
 dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung.
 
 **AI-Slop-Sequenz (fest, kein optionaler Zusatzschritt):** design ZUERST (Fach 2, `detect.mjs`
-+ `scan-ai-slop.mjs` je Exit 0) → **danach copywriting G1→G2** auf denselben Seiten (Fach 1,
+Exit 0 **und** `scan-ai-slop.mjs` mit 0 Treffern — der Scanner endet IMMER mit Exit 0,
+auch bei Funden, deshalb zaehlt bei ihm die Trefferzahl aus dem `--json`-Feld `hits`,
+nie sein Exit-Code; nachgemessen 02.08.2026) → **danach copywriting G1→G2** auf denselben Seiten (Fach 1,
 Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 
 ## Fach 1 — Conversion
