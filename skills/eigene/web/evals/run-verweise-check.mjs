@@ -781,7 +781,13 @@ console.log('\nDateinamen im Fliesstext der Referenzen loesen auf:\n');
       }
 
       gezaehlt++;
-      const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO];
+      // BRAIN gehoert dazu: die Skills verweisen auf Belege im Wissens-Repo
+      // ("Aus `raw/evidence/2026-07-23-.../analyse.md`"). Der Pfad-Abschnitt
+      // weiter oben kennt BRAIN seit jeher, dieser hier nicht — gemessen
+      // 02.08.2026 an ads-video: die Datei EXISTIERT unter BRAIN, wurde aber
+      // als toter Verweis gemeldet. Zwei Abschnitte derselben Wache mit
+      // verschiedenen Wurzeln sind eine Einladung fuer genau solche Befunde.
+      const wurzeln = [path.dirname(datei), ZIEL, SKILLS, REPO, BRAIN];
       // Die eigene VENDORING.md ist KEINE fremde Herkunft.
       //
       // Vendoring-Koepfe nennen beides in zwei Zeilen: das Quell-Repo
