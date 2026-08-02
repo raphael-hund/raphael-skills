@@ -73,7 +73,15 @@ function zaehlePruefbare(wurzel, tiefe = 0) {
 //
 // Die Liste stammt aus dem vendorierten Kern (detector/cli/main.mjs),
 // nachgelesen statt geraten.
-const FLAG_ERLAUBT = ['fast', 'gemini', 'gpt', 'help', 'json',
+//
+// `fast` steht bewusst NICHT in der --help-Ausgabe: der vendorierte Kern nimmt
+// es nur noch aus Rueckwaerts-Vertraeglichkeit an, ignoriert es und sagt das
+// auch ("--fast is deprecated and ignored", detector/cli/main.mjs). Ein
+// veraltetes Flag zu bewerben, waere schlechter als es zu verschweigen — wer
+// es liest, benutzt es und bekommt eine Warnung statt der erwarteten Wirkung.
+// Die Wache dafuer ist evals/run-flag-hilfe-check.mjs im web-Skill; sie kennt
+// diese Ausnahme ueber das Wort VERALTET in dieser Zeile.
+const FLAG_ERLAUBT = ['fast', 'gemini', 'gpt', 'help', 'json',   // fast = VERALTET
   'no-config', 'no-design-system', 'no-inline-ignores', 'quiet', 'scope'];
 {
   const fremd = process.argv.slice(2)

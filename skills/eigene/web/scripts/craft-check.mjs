@@ -45,12 +45,18 @@ const TEXTSEITE = args.includes('--textseite');
 // diesem Skill 'Werkzeug kaputt' — wer Hilfe anfordert, hat nichts falsch
 // gemacht und soll Exit 0 auf stdout bekommen.
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
-  console.log('usage: craft-check.mjs --url <url> [--json] [--strict]');
+  console.log('usage: craft-check.mjs --url <url> [--json] [--strict] [--textseite]');
   console.log('Prueft handwerkliche Details einer laufenden Seite.');
   console.log('Exit 0 = sauber, 1 = Befund, 2 = Werkzeug/Umgebung kaputt.');
+  // --textseite gehoert in die Hilfe, weil ein Befund es ausdruecklich
+  // EMPFIEHLT ("reiner Rechtstext? dann --textseite"). Wer daraufhin die Hilfe
+  // aufruft, fand das Flag dort bis 02.08.2026 nicht — und hielt den Rat fuer
+  // einen Tippfehler.
+  console.log('--textseite  schaltet M24 (Bildwelt fehlt) ab — fuer Impressum,');
+  console.log('             Datenschutz und andere reine Textseiten.');
   process.exit(0);
 }
-if (!URL_) { console.error('usage: craft-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
+if (!URL_) { console.error('usage: craft-check.mjs --url <url> [--json] [--strict] [--textseite]'); process.exit(2); }
 
 // Die fuenf Fonts, die 2026 als KI-Herkunftssignal gelten (T1).
 const KI_FONTS = ['inter', 'space grotesk', 'geist', 'manrope', 'plus jakarta sans'];

@@ -41,6 +41,22 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// Was hier NICHT nachgefahren wird, mit Grund und Messwert — dieselbe Form
+// wie in run-eval-umfang. Eine Liste ohne Zahlen altert unbemerkt: sie sieht
+// noch begruendet aus, wenn der Grund laengst weggefallen ist.
+//
+// Beide melden ihre Fallzahl in der eigenen Schlusszeile, die der
+// Umfang-Waechter gegen den Sollstand haelt. Sie hier ein zweites Mal zu
+// fahren pruefte nichts Neues und sprengte jede Frist.
+//
+// Im design-Skill gibt es diese Ausnahme bewusst NICHT: dort dauern dieselben
+// Fragen zusammen 75 Sekunden (sabotage 35s, browser-detect 31s), und eine
+// Ausnahme waere ein blinder Fleck ohne Gegenwert.
+const AUSGENOMMEN = {
+  'run-antiset.mjs': 'braucht Browser + Server je Fixture (gemessen 02.08.2026: ueber 20 Min)',
+  'run-sabotage.mjs': 'beschaedigt Pruefer nacheinander (gemessen 02.08.2026: rund 15 Min)',
+};
+
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const MD = path.join(HIER, '..', 'SKILL.md');
 const FRIST_MS = 900_000;
@@ -76,7 +92,7 @@ for (const m of md.matchAll(/(?:evals\/)?(run-[a-z-]+\.mjs)\s+—\s+(\d+)\s+(?:F
   // Gemessen 02.08.2026: mit ihnen lief diese Eval ueber 30 Minuten und wurde
   // abgeschnitten; die Doku versprach "rund 9 Min". Ohne sie sind es 5,5
   // (port 15s, halbe-antwort 223s, weiterleitung 63s, exit-vertrag 31s).
-  if (m[1] === 'run-antiset.mjs' || m[1] === 'run-sabotage.mjs') continue;
+  if (AUSGENOMMEN[m[1]]) continue;
   if (kandidaten.some((k) => k.datei === m[1])) continue;
   kandidaten.push({ datei: m[1], soll: Number(m[2]) });
 }
