@@ -14,7 +14,7 @@
  * ein Urteil oder schreiben eine Datei; dieses hier hatte keine.
  *
  * Der Befund: bei EINER gefundenen Schrift setzt das Skelett sie fuer ZWEI
- * Rollen (`heading` UND `body`, Zeile 132: `nonMono[1] || nonMono[0]`). Das ist
+ * Rollen (`heading` UND `body`, Zeile 158: `nonMono[1] || nonMono[0]`). Das ist
  * eine Ableitung, keine abgegriffene Tatsache — und der Begleittext behauptet
  * „已据真实信号填写" (nach echten Signalen gefuellt), ohne die Ableitung zu
  * nennen. Wer die Datei liest, haelt zwei Zuordnungen fuer gemessen, wo eine

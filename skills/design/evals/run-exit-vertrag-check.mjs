@@ -68,7 +68,7 @@ function zeile(ok, was, detail) {
 // Der gemessene Ist-Zustand vom 02.08.2026. Aendert ein Update das Verhalten,
 // schlaegt diese Wache an — und dann wird hier entschieden, nicht geraten.
 // beiFehlendemZiel: hier steht bewusst NICHT ueberall die 2. scan-ai-slop.mjs
-// endet mit 1 (Zeile 578: "Scan root must be an existing directory"). Das ist
+// endet mit 1 (Zeile 593: "Scan root must be an existing directory"). Das ist
 // vendorierter Code, und VENDORING.md warnt ausdruecklich davor, ihn
 // anzufassen — jede Aenderung wird beim naechsten Update zum Konflikt. Beide
 // Codes bedeuten "kein sauberer Lauf", die 1 ist hier also nicht gefaehrlich,

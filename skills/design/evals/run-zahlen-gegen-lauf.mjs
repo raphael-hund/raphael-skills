@@ -95,8 +95,10 @@ for (const { datei, soll } of kandidaten) {
     // Ein Timeout ist "nicht geprueft", kein Fehler: die dokumentierte Zahl
     // kann stimmen oder nicht, dieser Lauf weiss es nicht. Als Fehler zu
     // melden hiesse, eine Maschine unter Last als falsche Doku auszugeben —
-    // und dann schaltet man die Wache ab. Angeglichen an die web-Kopie
-    // (31.07.2026, vom Zwillings-Waechter gefunden).
+    // und dann schaltet man die Wache ab. Angeglichen an die web-Kopie, wo der
+    // Fall am 02.08.2026 auftrat: run-antiset riss die Frist, weil ein fremder
+    // Prozess 2,9 GB bei Load 444 belegte, und die Wache meldete "1/5
+    // Fallzahlen stimmen" — vier davon waren nie gelaufen.
     zeile(true, `${datei}: nicht messbar (ueber ${FRIST_MS / 60000} Minuten) — Angabe ungeprueft`, null);
     console.log('         Maschine unter Last? free -g und uptime pruefen, dann einzeln fahren.');
     continue;
