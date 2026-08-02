@@ -110,11 +110,22 @@ const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '1
 
 // Warten, bis er wirklich antwortet — blind zu schlafen waere ein Test, der
 // auf langsamen Maschinen zufaellig durchfaellt.
+// Eine Kennungsdatei beweist, dass UNSER Server antwortet — nicht ein fremder
+// auf demselben Port. "HTTP 200" allein genuegt nicht: gemessen 02.08.2026 mit
+// einem fremden Server auf 5409 lief diese Eval 6/6 durch, obwohl ihr eigener
+// Server nie startete. Sie mass die fremde Seite und gab deren Ergebnis als
+// eigenes aus.
+//
+// run-antiset und run-formular-check machen das seit jeher so; diese beiden
+// waren die letzten mit dem schwaecheren Nur-200-Check.
+const kennung = `probe-${process.pid}.txt`;
+fs.writeFileSync(path.join(SEITE, kennung), 'browserstart');
+
 let bereit = false;
 for (let i = 0; i < 50 && !bereit; i += 1) {
-  const p = spawnSync('curl', ['-s', '-o', '/dev/null', '-m', '2',
-    '-w', '%{http_code}', `http://127.0.0.1:${PORT}/`], { encoding: 'utf8' });
-  if (p.stdout && p.stdout.trim() === '200') bereit = true;
+  const p = spawnSync('curl', ['-fsS', '-m', '2',
+    `http://127.0.0.1:${PORT}/${kennung}`], { encoding: 'utf8' });
+  if (p.status === 0 && (p.stdout || '').trim() === 'browserstart') bereit = true;
   else spawnSync('sleep', ['0.2']);
 }
 if (!bereit) {
