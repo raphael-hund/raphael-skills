@@ -95,8 +95,17 @@ for (const { datei, soll } of kandidaten) {
   const r = spawnSync('node', [pfad],
     { encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 64 * 1024 * 1024 });
 
+  // Ein Timeout ist KEIN Befund gegen die Zahl — er sagt nur, dass diese
+  // Wache sie nicht messen konnte. Gemessen 02.08.2026: run-antiset braucht
+  // normal 7:54, riss hier aber die 15-Minuten-Frist. Der Grund lag nicht am
+  // Werkzeug, sondern an der Maschine: ein fremder Prozess belegte 2,9 GB bei
+  // Load 444 und 0 GB freiem Speicher. Die erste Fassung meldete daraufhin
+  // "1/5 Fallzahlen stimmen" — vier davon waren nie gelaufen. Ein Waechter,
+  // der Ueberlast als Qualitaetsmangel meldet, schickt jeden auf die falsche
+  // Spur. Deshalb: gleiche Behandlung wie Exit 2 — ungeprueft, nicht falsch.
   if (r.error && r.error.code === 'ETIMEDOUT') {
-    zeile(false, `${datei}: ${soll} dokumentiert`, `laeuft laenger als ${FRIST_MS / 60000} Minuten — nicht messbar`);
+    zeile(true, `${datei}: nicht messbar (ueber ${FRIST_MS / 60000} Minuten) — Angabe ungeprueft`, null);
+    console.log('         Maschine unter Last? free -g und uptime pruefen, dann einzeln fahren.');
     continue;
   }
 

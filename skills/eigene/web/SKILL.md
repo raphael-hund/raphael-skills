@@ -58,9 +58,10 @@ eval_scorecard:
     - "evals/run-antiset.mjs — 18 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 14 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-laufzeit-check.mjs — 4 Angaben: stimmen die dokumentierten Laufzeiten noch? (266s)"
-    - "evals/run-eval-umfang.mjs — 37 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-eval-umfang.mjs — 38 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 4 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (rund 9 Min)"
+    - "evals/run-exit-vertrag-check.mjs — 25 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (55s)"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
@@ -877,7 +878,7 @@ node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch 
 node evals/run-slop-de-check.mjs     # 62 Fälle: Treffer, Gegenproben, Einstufung, Regelweg, Kodierung
 node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 node evals/run-eval-umfang.mjs       # hat jede Eval überhaupt noch ihre Fälle?
-                                     # fährt 37 Evals nacheinander: 13 Min (gemessen 02.08.2026)
+                                     # fährt 38 Evals nacheinander: 13 Min (gemessen 02.08.2026)
 ```
 
 > **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
