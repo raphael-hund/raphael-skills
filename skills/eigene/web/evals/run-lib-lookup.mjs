@@ -50,7 +50,11 @@ const SONDERFAELLE = {
 const lauf = (name) => spawnSync('node', [SKRIPT, name], { encoding: 'utf8', timeout: 30000 });
 
 let rot = 0;
-const sag = (z) => console.log(z);
+// Selbstzaehlend am DRUCKORT, nicht als feste Zahl weiter unten: eine Bilanz
+// mit einer getippten Gesamtzahl altert still, sobald jemand einen Fall
+// ergaenzt. Diese Session hat das an acht Evals gesehen.
+let gezaehlt = 0;
+const sag = (z) => { if (/^(OK|ROT)/.test(z)) gezaehlt++; console.log(z); };
 
 sag('Tresor-Nachschlager — Sonderformen der Typdateien\n');
 
@@ -204,5 +208,9 @@ for (const g of gegen) {
   sag(`${ok ? 'OK  ' : 'ROT '} ${g.was}`);
 }
 
-sag(`\n${rot === 0 ? 'Der Tresor beantwortet jede Library — und lehnt ab, was er nicht kennt.' : `${rot} Fall/Faelle offen.`}`);
+sag(`\n${gezaehlt - rot}/${gezaehlt} Pruefungen wie erwartet.`);
+// Ohne diese Zeile hat die Eval keine Bilanz — und run-zahlen-gegen-lauf kann
+// ihre dokumentierte Fallzahl nie gegen den echten Lauf halten. Befund
+// 02.08.2026: sie war die einzige Eval beider Skills ohne "<n>/<m>".
+sag(`${rot === 0 ? 'Der Tresor beantwortet jede Library — und lehnt ab, was er nicht kennt.' : `${rot} Fall/Faelle offen.`}`);
 process.exit(rot ? 1 : 0);
