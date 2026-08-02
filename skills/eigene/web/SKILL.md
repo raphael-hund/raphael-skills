@@ -876,7 +876,7 @@ node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch 
 node evals/run-slop-de-check.mjs     # 62 Fälle: Treffer, Gegenproben, Einstufung, Regelweg, Kodierung
 node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 node evals/run-eval-umfang.mjs       # hat jede Eval überhaupt noch ihre Fälle?
-                                     # fährt 36 Evals nacheinander: 13 Min (gemessen 02.08.2026)
+                                     # fährt 37 Evals nacheinander: 13 Min (gemessen 02.08.2026)
 ```
 
 > **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
