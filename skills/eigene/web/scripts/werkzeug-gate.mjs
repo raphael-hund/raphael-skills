@@ -196,13 +196,24 @@ if (!existsSync(tablePath)) {
     `Werkzeugtabelle fehlt (${tablePath}) — Schritt 5d im web-Skill ist die Freigabe fuer den Build`
   );
 } else {
-  // HTML-Kommentare raus: eine auskommentierte ("verworfene") Zeile darf kein
+  // Auskommentiertes und Beispiel-Bloecke raus: eine verworfene Zeile darf kein
   // Paket legitimieren.
-  const table = readFileSync(tablePath, "utf8").replace(/<!--[\s\S]*?-->/g, "");
+  const table = readFileSync(tablePath, "utf8")
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/^```[\s\S]*?^```/gm, "");
   const lines = table.split("\n").map((line) => line.trim());
-  const dataRows = lines.filter(
+
+  // Nur der ERSTE zusammenhaengende Tabellenblock ist die Werkzeugtabelle.
+  // Eine zweite Tabelle weiter unten ("## Verworfen", "## Alternativen, die wir
+  // nicht genommen haben") dokumentiert Entscheidungen GEGEN etwas und darf
+  // nichts legitimieren.
+  const start = lines.findIndex((line) => line.startsWith("|"));
+  let end = start;
+  while (end >= 0 && end < lines.length && lines[end].startsWith("|")) end++;
+  const tableBlock = start === -1 ? [] : lines.slice(start, end);
+
+  const dataRows = tableBlock.filter(
     (line) =>
-      line.startsWith("|") &&
       !/^\|[\s|:-]+\|?$/.test(line) && // Trennzeile
       !line.includes("Router-Anker") // Kopfzeile
   );

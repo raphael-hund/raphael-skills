@@ -176,10 +176,32 @@ echo '{"dependencies":{"react":"19","next":"15","lucide-react":"^0.4","motion":"
 printf '<!--\n| verworfen | gsap | wollten wir doch nicht | x | `#motion` |\n-->\n' >> "$TMP/htmlcomment/art-direction.md"
 run "Bypass Paket im HTML-Kommentar" 1 "$TMP/htmlcomment"
 
+
+# --- 22. Bypass: verworfene Zeile im Markdown-Code-Fence -> rot --------------
+cp -r "$TMP/good" "$TMP/fence"
+echo '{"dependencies":{"react":"19","next":"15","lucide-react":"^0.4","motion":"^11","gsap":"^3"}}' > "$TMP/fence/package.json"
+printf '\nVerworfene Variante zur Doku:\n\n```markdown\n| verworfen | gsap | wollten wir nicht | x | `#motion` |\n```\n' >> "$TMP/fence/art-direction.md"
+run "Bypass Zeile im Code-Fence" 1 "$TMP/fence"
+
+# --- 23. Bypass: zweite Tabelle unter "## Verworfen" -> rot ------------------
+cp -r "$TMP/good" "$TMP/verworfen"
+echo '{"dependencies":{"react":"19","next":"15","lucide-react":"^0.4","motion":"^11","gsap":"^3"}}' > "$TMP/verworfen/package.json"
+printf '\n## Verworfen (bewusst NICHT gewaehlt)\n\n| Bedarf | Werkzeug | Grund | Gate | Router-Anker |\n| Motion | gsap | zu schwer | x | `#motion` |\n' >> "$TMP/verworfen/art-direction.md"
+run "Bypass zweite Tabelle Verworfen" 1 "$TMP/verworfen"
+
+# --- 24. Gegenprobe: Begruendung IN der Zelle bleibt gruen -------------------
+mkdir -p "$TMP/begruendung/src"
+echo '{"dependencies":{"react":"19","next":"15","lucide-react":"^0.4","motion":"^11"}}' > "$TMP/begruendung/package.json"
+clean_component "$TMP/begruendung/src/faq.tsx"
+printf '| Bedarf | Werkzeug | Befehl | Gate | Router-Anker |\n' > "$TMP/begruendung/art-direction.md"
+printf '| Icons | Lucide | `npm i lucide-react` | ein Set | `#icons` |\n' >> "$TMP/begruendung/art-direction.md"
+printf '| Motion | motion (statt gsap, weil kleiner) | `npm i motion` | useReducedMotion | `#motion` |\n' >> "$TMP/begruendung/art-direction.md"
+run "Begruendung in der Zelle (muss gruen)" 0 "$TMP/begruendung"
+
 echo
 if [ "$fails" -eq 0 ]; then
-  echo "Werkzeug-Gate-Fixtures: OK (21/21)"
+  echo "Werkzeug-Gate-Fixtures: OK (24/24)"
   exit 0
 fi
-echo "Werkzeug-Gate-Fixtures: FAIL ($fails von 21)"
+echo "Werkzeug-Gate-Fixtures: FAIL ($fails von 24)"
 exit 1

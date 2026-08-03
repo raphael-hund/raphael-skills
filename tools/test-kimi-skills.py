@@ -97,7 +97,7 @@ def check_frontmatter(c: Checks, registry: dict[str, dict]) -> None:
             bridge = REPO_ROOT / "kimi" / "skills" / name
             c.check(bridge.is_symlink(), f"{name}: canonical repository bridge is not a symlink")
             if bridge.is_symlink():
-                c.check(os.readlink(bridge) == "../../skills/eigene/web", f"{name}: canonical repository bridge target drift")
+                c.check(os.readlink(bridge) == sync.canonical_bridge_target(entry), f"{name}: canonical repository bridge target drift")
             c.check((bridge / "SKILL.md").resolve() == path.resolve(), f"{name}: bridge does not resolve to canonical source")
             c.check(not sync.validate_canonical_link(name, entry), f"{name}: canonical-link validator failed")
         elif entry["mode"] != "source-adapter" and path.is_file():
