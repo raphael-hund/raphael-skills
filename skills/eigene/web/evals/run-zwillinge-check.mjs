@@ -73,7 +73,10 @@ function sammeln(dir, raus = new Map()) {
     if (e.name === 'node_modules' || e.name === 'ui-components' || e.name.startsWith('.')) continue;
     const p = path.join(dir, e.name);
     if (e.isDirectory()) sammeln(p, raus);
-    else if (e.name.endsWith('.mjs')) {
+    // Auch .py und .sh: zwei Kopien laufen in jeder Sprache auseinander.
+    // Heute gibt es keine doppelten Python-Dateien (nachgezaehlt 03.08.2026)
+    // — genau deshalb faellt es auf, wenn welche dazukommen.
+    else if (/\.(mjs|py|sh)$/.test(e.name)) {
       if (!raus.has(e.name)) raus.set(e.name, []);
       raus.get(e.name).push(p);
     }
@@ -84,7 +87,8 @@ function sammeln(dir, raus = new Map()) {
 // Nur der Code: Kommentarzeilen und Leerzeilen raus.
 const nurCode = (datei) => fs.readFileSync(datei, 'utf8')
   .split('\n')
-  .filter((z) => !/^\s*(\/\/|\*|\/\*)/.test(z) && z.trim() !== '')
+  // Kommentar-Zeichen aller drei Sprachen: // und * (JS), # (Python/Shell).
+  .filter((z) => !/^\s*(\/\/|\*|\/\*|#)/.test(z) && z.trim() !== '')
   // Pfadzeilen auf einen Platzhalter ziehen statt sie zu loeschen: faellt eine
   // in EINER Kopie ganz weg, bleibt der Unterschied sichtbar.
   .map((z) => (PFADZEILE.test(z) ? z.replace(PFADZEILE, '<PFAD>') : z))
