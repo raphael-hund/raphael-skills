@@ -39,6 +39,19 @@ const FRIST_MS = 30000;
 // eigener Kommandozeile. Es direkt aufzurufen ist kein sinnvoller Fall.
 const KEINE_CLI = new Set(['rules.de.mjs']);
 
+// Die Ausnahmeliste selbst pruefen: ein Eintrag fuer eine Datei, die es nicht
+// mehr gibt, macht sie zur Muellhalde und deckt spaeter eine echte Luecke zu.
+// Dieselbe Wache haengt an jeder anderen Ausnahmeliste beider Skills.
+{
+  const tot = [...KEINE_CLI].filter((n) => !fs.existsSync(path.join(SKRIPTE, n)));
+  if (tot.length) {
+    console.error(`\n${tot.length} Ausnahme(n) ohne Datei: ${tot.join(', ')}`);
+    console.error('Entfernt oder umbenannt? Die Liste muss mitgezogen werden — sonst');
+    console.error('steht dort spaeter eine Begruendung fuer etwas, das es nicht gibt.\n');
+    process.exit(2);
+  }
+}
+
 const werkzeuge = fs.existsSync(SKRIPTE)
   ? fs.readdirSync(SKRIPTE).filter((n) => n.endsWith('.mjs') && !KEINE_CLI.has(n)).sort()
   : [];

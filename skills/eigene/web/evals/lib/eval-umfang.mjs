@@ -186,6 +186,23 @@ export function umfangPruefen({ evalOrdner, standDatei, ausgenommen, cwd, aktual
     console.error('Erst den Sabotage-Lauf abwarten, dann erneut.');
     return 2;
   }
+  // Die Ausnahmeliste selbst pruefen, BEVOR gefiltert wird. Ein Eintrag fuer
+  // eine Eval, die es nicht mehr gibt, macht sie zur Muellhalde: die
+  // Begruendung liest sich noch plausibel, waehrend der Grund laengst weg ist.
+  // Und beim naechsten Mal traut sich niemand mehr, einen Eintrag zu streichen.
+  //
+  // Hier zentral, weil beide Skills dieselbe Funktion aufrufen — die Wache
+  // einzeln in jeden Aufrufer zu schreiben waere die vierte Kopie derselben
+  // zehn Zeilen.
+  const toteAusnahmen = Object.keys(ausgenommen)
+    .filter((f) => !fs.existsSync(path.join(evalOrdner, f)));
+  if (toteAusnahmen.length) {
+    console.error(`\n${toteAusnahmen.length} Ausnahme(n) ohne Datei: ${toteAusnahmen.join(', ')}`);
+    console.error('Entfernt oder umbenannt? Die Liste im Aufrufer muss mitgezogen werden.');
+    console.error('Nicht geprueft ist nicht bestanden.\n');
+    return 2;
+  }
+
   const evals = fs.readdirSync(evalOrdner)
     .filter((f) => f.startsWith('run-') && f.endsWith('.mjs'))
     .filter((f) => !ausgenommen[f])
