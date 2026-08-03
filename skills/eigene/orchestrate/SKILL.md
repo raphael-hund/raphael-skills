@@ -83,8 +83,9 @@ Gauntlet-Runden). Kombinieren statt künstlich trennen.
 
 ## Schritt 2 — Rollen und Flotte
 
-- **Leader** = Cockpit (Fable, Fallback Opus 1M; **nie als Subagent**): zerlegt,
-  dispatcht, destilliert, verifiziert am Ende selbst. Nur an 2–3 Checkpoints.
+- **Leader** = Cockpit (Fable, Fallback Opus 1M): zerlegt, dispatcht,
+  destilliert, verifiziert am Ende selbst. Nur an 2–3 Checkpoints. (Fable/Opus
+  als Worker: nur über `fable-architekt`/`opus-builder`, s. u.)
 - **Worker:**
   - `luna-worker` — Mechanik, Tests, Recherche, begrenzte Umbauten
     (**Default-Nicht-Claude-Worker**, Max-Effort im Gateway erzwungen)

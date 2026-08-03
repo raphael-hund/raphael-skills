@@ -112,7 +112,7 @@
     },
     {
       "name": "orchestrate-gauntlet",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "path": "skills/eigene/orchestrate-gauntlet/SKILL.md",
       "description": "Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter Graph, mit überlappender Cross-Family-Besetzung (Opus, Luna, Sol, Terra, Haiku, Grok auf max; Kimi K3 auf high; Fable bewusst auf low/medium) plus zwei festen Tandems — Sol+Opus fürs Urteil, Kimi+Fable als austauschbares Denk-Paar — und einem Kritiker, der NIE aus der Familie des Builders kommt. Läuft als Dauerlauf über Stunden: Welle für Welle, immer wieder neu, bis die Zugewinne klein sind. Trigger: \"/orchestrate-gauntlet\", \"Gauntlet\", \"Gauntlet-Loop\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"so krass wie möglich\", \"maximaler Modus\", \"alle Modelle drauf\", \"lauf über Nacht\", \"Dauerlauf\"."
     },

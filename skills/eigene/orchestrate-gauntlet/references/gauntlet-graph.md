@@ -25,7 +25,7 @@ STAND:     gauntlet/<name>/workbench.md
 | id | Stück | Builder (agentType) | Kritiker (andere Familie!) | write_set | Output |
 |---|---|---|---|---|---|
 | n1 | Hero-Sektion | kimi-worker | sol-pruefer | src/hero.* | gerenderter Screenshot |
-| n2 | Preis-Sektion | kimi-worker | sonnet-worker | src/pricing.* | gerenderter Screenshot |
+| n2 | Preis-Sektion | kimi-worker | opus-builder | src/pricing.* | gerenderter Screenshot |
 | n3 | Build + Tests | luna-worker | haiku-worker | tests/* | Testausgabe |
 
 ## Routen
@@ -68,6 +68,9 @@ export const meta = {
 
 const stuecke = typeof args === 'string' ? JSON.parse(args) : (args || [])
 const LATTE = 'gauntlet/<name>/latte/'   // PFAD, nie Inline-Dump
+// PFLICHT: beide vor dem ersten agent()-Call definieren — sonst ReferenceError.
+const FROZEN_RULES = `<die Frozen Rules aus der Graph-Datei, woertlich>`
+const GATES = '<exakter Shell-Befehl der Gates, z. B. npm run build && npm test>'
 
 const VERDIKT = { type:'object', additionalProperties:false, properties:{
   gewinner: { enum:['LATTE','UNSERES'] },

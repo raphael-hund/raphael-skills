@@ -103,6 +103,17 @@ Faustregel: alles unter ~7 Stunden → Session-Cron. Darüber → systemd vorsch
 Sessions sterben mitten drin, ein Workflow bricht zwischen Fix und Commit ab.
 Deshalb beginnt jede Welle mit:
 
+0. **Wave-Lock nehmen** — Überlappende Cron-Fires sind real. Vor allem anderen:
+   ```bash
+   LOCK=gauntlet/<name>/.wave.lock
+   if [ -f "$LOCK" ] && [ $(( $(date +%s) - $(stat -c %Y "$LOCK") )) -lt 3600 ]; then
+     echo "Welle laeuft schon (Lock juenger als 60 Min) — diese Welle SOFORT beenden."; exit 0
+   fi
+   touch "$LOCK"   # am Wellen-Ende IMMER loeschen: rm -f "$LOCK"
+   ```
+   Ein Lock älter als 60 Minuten gilt als Leiche einer toten Welle und wird
+   überschrieben. Das Lock-Ende (`rm`) gehört in den Abschluss-Schritt der
+   Welle, auch bei Fehlern.
 1. `git status` lesen — unbestätigte Reste einer abgebrochenen Vorwelle
    einordnen: committen (wenn erkennbar fertig und verifiziert) oder verwerfen
    (wenn halb/unklar). Als `ABGEBROCHEN W<N>` protokollieren.
@@ -156,13 +167,13 @@ BUDGET:   <rahmen>
 - Offene Lücke: —
 
 ### preise
-- Runde: 6 · Builder: sonnet-worker (gewechselt von kimi-worker in W2) · Kritiker: luna-worker
+- Runde: 6 · Builder: grok-worker (gewechselt von kimi-worker in W2) · Kritiker: luna-worker
 - Verdikt: LATTE ❌
 - Offene Lücke: "Preistabelle bricht auf 390px um, Referenz stapelt sauber"
 - Screenshot: gauntlet/<name>/shots/preise-r6.png
 
 ## Ausfälle
-- W2: kimi-Quota 429 → mit sonnet-worker weitergefahren, Regel 8 über sol-pruefer gewahrt.
+- W2: kimi-Quota 429 → mit grok-worker weitergefahren, Regel 8 über sol-pruefer gewahrt.
 ```
 
 ## Was der Loop NIE tut

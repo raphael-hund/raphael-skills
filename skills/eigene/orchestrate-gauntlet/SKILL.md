@@ -1,6 +1,6 @@
 ---
 name: orchestrate-gauntlet
-version: 2.1.0
+version: 2.2.0
 description: >
   Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine
   inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter
@@ -41,6 +41,7 @@ completion_criteria:
   - "Gestoppt wurde begründet (Zugewinn klein / Budget / Ansage) — nicht bei einer festen Rundenzahl"
   - "Bei Dauerlauf: Abbruchbedingung stand VOR dem ersten Fire fest, der Cron-Job ist mit ID protokolliert, und jede Welle hat eine eigene Run-ID im workbench.md"
   - "Effort ist je Auftrag explizit gesetzt (max überall, Kimi high, Fable low/medium) — nie geerbt"
+  - "Die Welle lief in Breite: geplante Agentenzahl vorab genannt, bei Substanz-Werkstücken ≥10 Agenten (Ziel 20–100+), jedes isolierbare Teilproblem hat seinen eigenen Luna-Goal-Agenten"
 ---
 
 # orchestrate-gauntlet — Graph + Gauntlet über alle Familien
@@ -125,6 +126,29 @@ verschiedenen Familien** dasselbe Stück, ein Kritiker aus einer dritten Familie
 wählt per Blind-A/B. Die verlierende Variante wird nicht weggeworfen — ihre beste
 Idee wandert als Lücken-Ansage in die Gewinner-Variante.
 
+## Breite-Mandat: viele Agenten, nicht wenige (Raphael 03.08.2026)
+
+Der Gauntlet ist ein **Flotten**-Modus. Eine Welle mit 1–2 Subagents ist ein
+Fehlbild — richtig sind **20 bis 100+ Agenten pro Welle**, so schnell UND so
+gründlich wie möglich:
+
+- **Je Stück ein eigenes Paar** (Builder + Kritiker) — bei 10 Stücken sind das
+  allein 20 Agenten, parallel über `pipeline()`.
+- **Luna-Schwarm als Motor:** jedes isolierbare Teilproblem (ein Test, ein
+  Fix, ein Verify-Skript, eine Datei) bekommt seinen EIGENEN `luna-worker`
+  auf max mit eigenem 5-Teile-Goal — nicht ein Luna für alles.
+- **Massen-Arbeit fächern:** Referenzen sichten, Screenshots vergleichen,
+  Lint-Runden → je Einheit ein `haiku-worker`/`grok-worker`, 20–60 parallel
+  sind normal (jeder schreibt eine ANDERE Datei — `write_set` disjunkt).
+- **Duelle kosten nichts extra an Zeit:** zwei Builder parallel + ein Kritiker
+  ist EIN Zeitschritt, nicht drei.
+- Die Workflow-Engine queued selbst (~10 laufen gleichzeitig, Rest wartet) —
+  100 Agenten übergeben ist okay, sie verhungern nicht.
+- **Selbstkontrolle je Welle:** vor dem Start die geplante Agentenzahl nennen.
+  Unter 10 bei einem Substanz-Werkstück → Zerlegung ist zu grob, feiner
+  schneiden. Die RAM-Grenze (4–6 gleichzeitig) gilt für Worktree-Threads,
+  nicht für Workflow-Agenten — die Engine drosselt selbst.
+
 ## Ablauf
 
 ### 1. Messlatte setzen
@@ -192,7 +216,7 @@ Nicht-Claude-Worker.
 
 ### 5. Glätten nach jeder Welle
 
-Ein **frischer** Agent (`sonnet-worker`) zieht die unabhängig verbesserten
+Ein **frischer** Agent (`opus-builder`, ersatzweise `luna-worker`) zieht die unabhängig verbesserten
 Stücke zu einem Ganzen zusammen: Abstände, Typo, Ton, Namensgebung.
 Kein Redesign — nur Angleich. Ohne diesen Schritt wirkt das Ergebnis
 zusammengestückelt, obwohl jedes Stück für sich gut ist.
@@ -249,7 +273,8 @@ nicht die Lösung innerhalb eines Nodes.
   Urteil, kein plausibles.
 - **Builder-Familie ≠ Kritiker-Familie**, je Stück belegt.
 - **Kein Gate ohne externen Anker** im Graph.
-- **Nie Fable/Opus als Subagent**; Kimi immer K3, nie HighSpeed.
+- **Fable/Opus nur über `fable-architekt`/`opus-builder`** (nie roher
+  `model:`-Override; Fable auf low/medium); Kimi immer K3, nie HighSpeed.
 - **Rot-Klassen bleiben rot:** nichts geht live, nichts wird veröffentlicht,
   keine Kundennachricht — Ausgabe bleibt lokal bis zur Signatur.
 - **Screenshot-Pflicht** bei allem Visuellen: der Kritiker prüft gerenderte
