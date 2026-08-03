@@ -12,8 +12,10 @@
 #             (On-Screen-Text trägt die Botschaft).
 set -euo pipefail
 
-usage() {
-  cat >&2 <<'EOF'
+# Der Hilfetext einmal, zwei Wege hinaus: usage_text schreibt auf stdout
+# (fuer --help), usage auf stderr mit Exit 2 (fuer den falschen Aufruf).
+usage_text() {
+  cat <<'EOF'
 usage: watch-extract.sh <video-url> [arbeits-verzeichnis]
 
 beispiel:
@@ -22,8 +24,22 @@ beispiel:
 
 Ohne Arbeits-Verzeichnis wird /tmp/watch.XXXXXX angelegt.
 EOF
+}
+
+usage() {
+  usage_text >&2
   exit 2
 }
+
+# --help ist kein Fehlerfall: Hilfe auf stdout, Exit 0. Ohne diesen Zweig
+# reichte "--help" bis zu yt-dlp durch, und der Aufrufer bekam DESSEN Hilfe
+# (Exit 1) statt der von watch-extract. Gemessen 03.08.2026.
+case "${1:-}" in
+  --help|-h)
+    usage_text
+    exit 0
+    ;;
+esac
 
 [ "$#" -ge 1 ] || usage
 URL="$1"

@@ -58,7 +58,7 @@ eval_scorecard:
     - "evals/run-antiset.mjs — 18 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 14 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-laufzeit-check.mjs — 4 Angaben: stimmen die dokumentierten Laufzeiten noch? (266s)"
-    - "evals/run-eval-umfang.mjs — 43 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-eval-umfang.mjs — 44 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 6 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (5,5 Min, gemessen 02.08.2026)"
     - "evals/run-exit-vertrag-check.mjs — 34 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (75s)"
@@ -75,6 +75,7 @@ eval_scorecard:
     - "evals/run-struktur.mjs — faehrt die sieben Struktur-Wachen oben in EINEM Lauf (13s, dreimal gemessen 02.08.2026, ohne Browser)"
     - "evals/run-zwillinge-check.mjs — doppelt vorhandene Dateien: laufen zwei Kopien auseinander?"
     - "evals/run-hilfe-check.mjs — 23 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
+    - "evals/run-hilfe-alle.mjs — 11 Werkzeuge der uebrigen Skills (.sh/.py): beantwortet jedes --help?"
     - "evals/run-aufruffehler-check.mjs — 25 Werkzeuge, 35 Pruefungen: endet ein falscher Aufruf mit Exit 2?"
     - "evals/run-spuren-check.mjs — 3 Browser-Werkzeuge: bleibt nach dem Lauf ein Chrome-Profil liegen?"
     - "evals/run-browser-start-check.mjs — 6 Klon-Werkzeuge: findet jedes seinen Browser?"
@@ -908,7 +909,7 @@ node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch 
 node evals/run-slop-de-check.mjs     # 62 Fälle: Treffer, Gegenproben, Einstufung, Regelweg, Kodierung
 node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 node evals/run-eval-umfang.mjs       # hat jede Eval überhaupt noch ihre Fälle?
-                                     # fährt 43 Evals nacheinander: 13 Min (gemessen 02.08.2026)
+                                     # fährt 44 Evals nacheinander: 13 Min (gemessen 02.08.2026)
 ```
 
 > **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
