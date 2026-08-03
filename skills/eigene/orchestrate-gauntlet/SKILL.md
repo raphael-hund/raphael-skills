@@ -1,12 +1,13 @@
 ---
 name: orchestrate-gauntlet
-version: 1.0.0
+version: 1.1.0
 description: >
   Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine
   inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter
-  Graph, mit einer festen Cross-Family-Besetzung (Luna max, Sonnet, Haiku,
-  Terra, Sol, Kimi K3, Grok 4.5) und einem Kritiker, der NIE aus der Familie
-  des Builders kommt. Jedes Stück läuft seinen eigenen Bauen-Richten-Loop.
+  Graph, mit einer überlappenden Cross-Family-Besetzung (Luna max, Sol, Terra,
+  Sonnet, Haiku, Kimi K3, Grok 4.5 — jede Familie kann mehrere Rollen) und einem
+  Kritiker, der NIE aus der Familie des Builders kommt. Jedes Stück läuft seinen
+  eigenen Bauen-Richten-Loop; bei hohem Einsatz duellieren zwei Familien.
   Trigger: "/orchestrate-gauntlet", "Gauntlet", "Gauntlet-Loop", "gegen eine
   Messlatte bauen", "bis es richtig gut ist", "so krass wie möglich",
   "maximaler Modus", "alle Modelle drauf".
@@ -17,7 +18,8 @@ source: >
   Muster „Gauntlet Loop" von Matt Shumer (somethingbig.ai/gauntlet-loop) —
   Ideen-Merge, kein Vendoring (keine Lizenzdatei), komplett neu formuliert.
   Graph-Ebene aus shannholmberg Graph-Engineering (paraphrasiert). Besetzung
-  aus Raphael-Ansage 03.08.2026 plus last30days-Recherche zum Modell-Stand
+  aus Raphael-Ansage 03.08.2026 ("die dürfen sich auch überlappen") plus
+  last30days-Recherche zum Modell-Stand
   (r/LocalLLaMA 1.903 pts, BridgeMind/TheAIGRID-Vergleichsläufe, 08/2026).
 loads:
   - references/besetzung.md
@@ -28,6 +30,7 @@ completion_criteria:
   - "Der Graph liegt als Datei vor (gauntlet/<name>.graph.md) mit Nodes, Routen, Checkpoints, Gates und Frozen Rules"
   - "Mindestens ein Gate ist ein externer Anker (Test, Lint, Screenshot-Diff, Build) — kein reines Agenten-Urteil"
   - "Je Stück ist Builder-Familie ≠ Kritiker-Familie, und das ist im Protokoll je Runde belegt"
+  - "Die Besetzung wurde in references/besetzung.md nachgeschlagen, nicht geraten — Erst-/Zweit-/Drittwahl je Stück ist bewusst gewählt"
   - "Jeder Kritiker urteilte am echten Artefakt (Screenshot/Testausgabe) und gab GEWINNER + genau EINE größte Lücke + BELEG zurück"
   - "Mindestens drei Modellfamilien waren im Lauf aktiv (oder der Ausfall ist benannt)"
   - "workbench.md ist fortgeschrieben: je Stück Screenshot, Verdikt, offene Lücke, Rundenzahl"
@@ -60,26 +63,36 @@ Bauen-Richten-Loop, bis der Abstand zur Latte klein ist.
 Der Gauntlet kostet ein Vielfaches. Für Mechanik mit binärem Gate (Migration,
 Bugfix) ist er falsch.
 
-## Die Besetzung (fest vorgegeben, Details in references/besetzung.md)
+## Die Besetzung (überlappend — Details in references/besetzung.md)
 
-| agentType | Familie | Rolle im Gauntlet |
-|---|---|---|
-| `luna-worker` | GPT | **Motor.** Läuft auf Max-Effort mit einem Goal je Stück: baut, testet, schließt Lücken, wiederholt. Der Default-Builder für alles Mechanische. |
-| `terra-bulk` | GPT | Architektur, Volumen, Multi-File-Umbau |
-| `sonnet-worker` | Claude | Solider Bau, Integration, Glättung |
-| `haiku-worker` | Claude | Massen-Lesen, Vergleiche vorbereiten, billige Verify-Schleifen |
-| `kimi-worker` | Kimi K3 | **Frontend und deutsche Texte.** Kimi K3 führt aktuell die Frontend-Arena an — bei UI/Web ist er erste Wahl, nicht Ausweichlösung. |
-| `grok-worker` | Grok 4.5 | Tempo und Volumen, Tool-Use, vierte Perspektive |
-| `sol-pruefer` | GPT | Urteil, Chairman, finale Abnahme |
-| `kimi-recherche` | Kimi K3 | Lesende Gegenprobe |
+**Grundsatz: die Rollen überlappen sich.** Kein Modell hat ein Monopol. Jede
+Familie kann mehrere Dinge, und für fast jede Aufgabe gibt es mehrere taugliche
+Besetzungen — das macht den Lauf ausfallsicher, erlaubt echte Varianten-Duelle
+und hält Regel 8 (Builder ≠ Kritiker) immer erfüllbar.
 
-**Kreatives (Texte, Frontend-Feinschliff, 3D/visuelle Ideen)** läuft über
-`kimi-worker` plus Cockpit-Urteil. **Opus wird nicht als Subagent gestartet** —
-Cockpit-Modelle bleiben Cockpit (Doktrin), und Raphael arbeitet nicht direkt auf
-Opus. Direkte Ansprache läuft über **Grok 4.5** im Cockpit-Preset.
+| agentType | Familie | Stärke | Kann außerdem |
+|---|---|---|---|
+| `luna-worker` | GPT | **Motor.** Max-Effort, Goal je Stück: Mechanik, Tests, Fix-Schleifen, Backend | Kritiker (Mechanik/Zahlen), Glätter, Rechercheur |
+| `terra-bulk` | GPT | Architektur, Migration, Multi-File-Volumen | Kritiker (Konsistenz über viele Dateien) |
+| `sol-pruefer` | GPT | Urteil, Chairman, finale Abnahme | **auch Builder**: harte Code-Fälle, Terminal-/Agent-Arbeit, Planung |
+| `sonnet-worker` | Claude | Solider Bau, Integration, Glättung | Kritiker (Code + Text), Rechercheur |
+| `haiku-worker` | Claude | Massen-Lesen, Boilerplate, billige Schleifen | **auch Builder** (mechanische Edits), Kritiker (Screenshot-/Datei-Vergleich) |
+| `kimi-worker` | Kimi K3 | Frontend/UI, DE-Texte, Kreatives, 3D — führt die Frontend-Arena an | Kritiker (Design/Ton), Glätter, Riesen-Kontext |
+| `grok-worker` | Grok 4.5 | Tempo und Volumen, Prototypen, Tool-Use | Kritiker (vierte Perspektive), Builder für Masse |
+| `kimi-recherche` | Kimi K3 | Lesende Gegenprobe, Latten-Suche | Kritiker ohne Schreibrechte |
 
-**Kritiker-Paarung (hart):** Builder-Familie ≠ Kritiker-Familie. Die
-Paarungstabelle steht in `references/besetzung.md` — sie ist nicht optional.
+**Cockpit (Fable/Opus)** zerlegt, entscheidet, destilliert und fällt das
+Letzt-Urteil über das geglättete Ganze — wird aber **nie als Subagent gestartet**.
+Raphaels direkte Ansprache läuft über **Grok 4.5**, nicht über Opus.
+
+Erst-/Zweit-/Drittwahl je Werkstück-Typ, die vollständige Kritiker-Matrix und
+die Zwei-Familien-Duelle stehen in `references/besetzung.md`. **Nachschlagen,
+nicht raten** — besonders die Kritiker-Paarung.
+
+**Varianten-Duell (Tournament):** bei hohem Einsatz bauen **zwei Builder aus
+verschiedenen Familien** dasselbe Stück, ein Kritiker aus einer dritten Familie
+wählt per Blind-A/B. Die verlierende Variante wird nicht weggeworfen — ihre beste
+Idee wandert als Lücken-Ansage in die Gewinner-Variante.
 
 ## Ablauf
 
@@ -201,4 +214,8 @@ nicht die Lösung innerhalb eines Nodes.
   geteilte Dateien bekommen EINEN Owner am Ende.
 - **Familien-Ausfall verschweigen** → fällt eine Familie aus (Quota, Seat), wird
   das im Protokoll benannt und mit den verbleibenden weitergefahren, nie
-  abgebrochen.
+  abgebrochen. Weil jede Rolle mehrfach besetzt ist, kostet ein Ausfall
+  Auswahl, nie den Lauf.
+- **Immer dieselbe Besetzung fahren** → die Überlappung ist da, um genutzt zu
+  werden. Wenn ein Stück zweimal am selben Kritiker scheitert, die Zweitwahl
+  aus einer anderen Familie ansetzen statt eine dritte Runde mit demselben Paar.
