@@ -41,7 +41,7 @@ completion_criteria:
   - "Gestoppt wurde begründet (Zugewinn klein / Budget / Ansage) — nicht bei einer festen Rundenzahl"
   - "Bei Dauerlauf: Abbruchbedingung stand VOR dem ersten Fire fest, der Cron-Job ist mit ID protokolliert, und jede Welle hat eine eigene Run-ID im workbench.md"
   - "Effort ist je Auftrag explizit gesetzt (max überall, Kimi high, Fable low/medium) — nie geerbt"
-  - "Die Welle lief in Breite: geplante Agentenzahl vorab genannt, bei Substanz-Werkstücken ≥10 Agenten (Ziel 20–100+), jedes isolierbare Teilproblem hat seinen eigenen Luna-Goal-Agenten"
+  - "Agentenzahl je Welle vorab genannt und begründet: so viele wie die Aufgabe braucht — unabhängige Arbeit läuft parallel (keine künstliche Deckelung), jedes isolierbare Teilproblem hat seinen eigenen Goal-Agenten"
 ---
 
 # orchestrate-gauntlet — Graph + Gauntlet über alle Familien
@@ -126,28 +126,34 @@ verschiedenen Familien** dasselbe Stück, ein Kritiker aus einer dritten Familie
 wählt per Blind-A/B. Die verlierende Variante wird nicht weggeworfen — ihre beste
 Idee wandert als Lücken-Ansage in die Gewinner-Variante.
 
-## Breite-Mandat: viele Agenten, nicht wenige (Raphael 03.08.2026)
+## Breite-Mandat: so viele Agenten, wie die Aufgabe braucht (Raphael 03.08.2026)
 
-Der Gauntlet ist ein **Flotten**-Modus. Eine Welle mit 1–2 Subagents ist ein
-Fehlbild — richtig sind **20 bis 100+ Agenten pro Welle**, so schnell UND so
-gründlich wie möglich:
+**Die Aufgabe bestimmt die Zahl — nicht eine Quote.** Reicht ein Agent, läuft
+einer. Braucht die Welle 20 oder 100, laufen 20 oder 100. Der Fehler ist nicht
+„zu wenige Agenten", sondern **künstliche Deckelung**: Arbeit sequenziell
+abarbeiten, die parallel laufen könnte, oder ein Agent für zehn isolierbare
+Teilprobleme.
 
-- **Je Stück ein eigenes Paar** (Builder + Kritiker) — bei 10 Stücken sind das
-  allein 20 Agenten, parallel über `pipeline()`.
+Die Prüffrage vor jeder Welle: **„Was hiervon ist unabhängig?"** Alles
+Unabhängige läuft parallel:
+
+- **Je Stück ein eigenes Paar** (Builder + Kritiker) — 10 Stücke = 20 Agenten,
+  parallel über `pipeline()`. Ein Stück = ein Paar.
 - **Luna-Schwarm als Motor:** jedes isolierbare Teilproblem (ein Test, ein
   Fix, ein Verify-Skript, eine Datei) bekommt seinen EIGENEN `luna-worker`
   auf max mit eigenem 5-Teile-Goal — nicht ein Luna für alles.
 - **Massen-Arbeit fächern:** Referenzen sichten, Screenshots vergleichen,
-  Lint-Runden → je Einheit ein `haiku-worker`/`grok-worker`, 20–60 parallel
-  sind normal (jeder schreibt eine ANDERE Datei — `write_set` disjunkt).
-- **Duelle kosten nichts extra an Zeit:** zwei Builder parallel + ein Kritiker
-  ist EIN Zeitschritt, nicht drei.
+  Lint-Runden → je Einheit ein `haiku-worker`/`grok-worker`; 20–60 parallel
+  sind normal, wenn die Einheiten da sind (jeder auf einer ANDEREN Datei —
+  `write_set` disjunkt).
+- **Duelle kosten keine Zeit extra:** zwei Builder parallel + ein Kritiker ist
+  EIN Zeitschritt.
 - Die Workflow-Engine queued selbst (~10 laufen gleichzeitig, Rest wartet) —
-  100 Agenten übergeben ist okay, sie verhungern nicht.
-- **Selbstkontrolle je Welle:** vor dem Start die geplante Agentenzahl nennen.
-  Unter 10 bei einem Substanz-Werkstück → Zerlegung ist zu grob, feiner
-  schneiden. Die RAM-Grenze (4–6 gleichzeitig) gilt für Worktree-Threads,
-  nicht für Workflow-Agenten — die Engine drosselt selbst.
+  100 Agenten übergeben ist okay. Die RAM-Grenze (4–6 gleichzeitig) gilt für
+  Worktree-Threads, nicht für Workflow-Agenten.
+- **Selbstkontrolle je Welle:** geplante Agentenzahl vorab nennen und in einem
+  Satz begründen, warum sie zur Zerlegung passt — nach oben wie nach unten.
+  Läuft Arbeit sequenziell, die unabhängig wäre, ist die Welle falsch gebaut.
 
 ## Ablauf
 
