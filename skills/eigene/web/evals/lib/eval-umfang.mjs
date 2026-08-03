@@ -35,6 +35,10 @@ export function fallzahl(evalOrdner, datei, cwd) {
       // Original zurueck). Ohne dieses Wort stand im Bericht "Umgebung nicht
       // bereit" — richtig, aber unbrauchbar: der Leser sucht nach einem
       // fehlenden Werkzeug statt nach dem Lauf nebenan.
+      //
+      // Gegen die ECHTE Meldung geprueft, nicht gegen eine nachgebaute:
+      // "Ein Sabotage-Lauf laeuft bereits (PID 4029986)." — genau so kommt sie
+      // aus run-sabotage.mjs, wenn die Sperre greift (Exit 2).
       const grund = (aus.match(/^[^\n]*(?:belegt|laeuft bereits|Sperre|antwortet nicht|nicht gefunden|nicht installiert|nicht moeglich)[^\n]*$/mi) || [])[0];
       return {
         zahl: null,
