@@ -1,14 +1,16 @@
 ---
 name: orchestrate
-version: 0.4.0
+version: 0.5.0
 description: >
   Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen,
   Cross-Model- und Cross-Harness-Dispatch (Luna, Sol, Terra, Sonnet, Haiku,
   Kimi) explizit setzen, Sub-Actions parallel fahren, nie eine Familie allein
   bauen und prüfen lassen. Für Streitfragen: adversariales Distill-Muster oder
-  Council. Trigger: "delegieren", "parallelisieren", "Subagenten",
+  Council. Für Qualitätsarbeit: Gauntlet-Loop gegen eine inspizierbare
+  Messlatte. Trigger: "delegieren", "parallelisieren", "Subagenten",
   "Task aufteilen", "orchestrieren", "Council", "Zweitmeinungs-Rat",
-  "Cross-Model", "Cross-Harness", "Flotte".
+  "Cross-Model", "Cross-Harness", "Flotte", "Gauntlet", "Gauntlet-Loop",
+  "gegen eine Messlatte bauen", "bis es richtig gut ist".
 class: O
 scope: agency
 sensitivity: internal
@@ -16,6 +18,7 @@ loads:
   - references/dispatch.md
   - references/council.md
   - references/cross-model-harness.md
+  - references/gauntlet-loop.md
 requires_skills: [eval@^0]
 completion_criteria:
   - "Jeder Subagent-Auftrag nennt agentType ODER (MODELL + EFFORT) explizit — nie geerbt"
@@ -24,6 +27,7 @@ completion_criteria:
   - "Kleine Tasks solo erledigt (nicht delegiert)"
   - "Bei adversarialem Distill-Muster: der Leader hat nie selbst den finalen Plan geschrieben, nur destilliert"
   - "Bei Council-Muster: Peer-Ranking lief anonymisiert mit randomisierter Zuordnung; Chairman-Verdikt enthält Konsens, Dissens, Empfehlung und genau einen ersten Schritt"
+  - "Bei Gauntlet-Loop: eine inspizierbare Messlatte liegt als Datei vor, Builder und Kritiker sind verschiedene Familien, jeder Kritiker urteilte am echten Artefakt (Screenshot/Testausgabe) und gab genau EINE größte Lücke zurück, und der Stand steht in workbench.md"
   - "Die Harness-Wahl steht im Auftrag (claude-agent / mcp-codex / mcp-kimi / codex-native / kimi-native) und passt zur laufenden Session (Desktop/Web = nur MCP)"
 ---
 
@@ -52,11 +56,13 @@ Sol/Sonnet prüfen, niemand prüft die eigene Arbeit.
 | `dynamic-workflow` | Genau EIN Workflow-Run mit Script |
 | `ultra-loop` | Dauer-Cron, jede Runde ein Workflow |
 | `codex-first` / `kimi-first` | Ein Paket an **eine** Fremdfamilie, Claude reviewt |
-| `eval` | Ein fertiges Artefakt gegen eine Rubrik |
+| `eval` | Ein fertiges Artefakt gegen eine Rubrik, einmal |
 
 Orchestrate entscheidet *wer* und *wie*; dynamic-workflow und ultra-loop führen
 die Flotte aus. codex-first/kimi-first sind ein **Baustein** in der Flotte,
-kein Ersatz für sie.
+kein Ersatz für sie. Der **Gauntlet-Loop** (unten) ist die Qualitäts-Schleife
+über einem Werkstück: `eval` misst einmal, der Gauntlet verbessert so lange,
+bis der Abstand zur Latte klein ist.
 
 ## Rollen
 
@@ -147,6 +153,39 @@ Schritt. Der Chairman darf gegen die Mehrheit entscheiden. Abgrenzung:
 **eval-Panel judgt ein Artefakt, Council wählt zwischen Antworten** —
 Council-Ergebnisse laufen vor Ship trotzdem durch eval. Ablauf und
 Billig-Variante: `references/council.md`.
+
+## Gauntlet-Loop (für Qualitätsarbeit gegen eine Messlatte)
+
+Wenn nicht „fertig werden“ das Ziel ist, sondern **richtig gut werden** (Website,
+Creative, Text, Prototyp, Referenz-Implementierung): **zerlegen → bauen →
+richten → wiederholen.**
+
+1. **Messlatte** festlegen — konkret und **inspizierbar** (echte Screenshots
+   einer Best-in-Class-Seite, die Referenz-Anzeige, eine Testsuite, ein
+   Latenz-Budget). „Mach es großartig“ scheitert immer. Keine Latte da? Dann
+   ist ihre Suche der erste Subagent-Auftrag. Sie darf unerreichbar sein — sie
+   verhindert nur, dass jemand bei „ganz okay für KI“ stehenbleibt.
+2. **Zerlegen** in die kleinsten Stücke, die **einzeln verbessert und einzeln
+   bewertet** werden können.
+3. **Je Stück ein Paar:** Builder (`kimi-worker`/`sonnet-worker`/`luna-worker`/
+   `terra-bulk`) und ein eigener Kritiker **aus einer anderen Familie**
+   (`sol-pruefer`/`kimi-recherche`/`sonnet-worker`), beide mit frischem Kontext.
+4. **Kritiker-Kontrakt:** urteilt am **echten Artefakt** (gerenderter Screenshot,
+   laufende Seite, echte Testausgabe) — nie an der Zusammenfassung des Builders.
+   Blind A/B gegen die Latte, wo möglich. Rückgabe: `GEWINNER:` · **genau EINE**
+   größte Lücke · `BELEG:`. Verliert unser Stück, geht es mit dieser einen Lücke
+   zurück an den Builder.
+5. **Nach jeder Welle glätten** — ein frischer Agent gleicht die unabhängig
+   verbesserten Stücke zu einem Ganzen an (kein Redesign).
+6. **Stand sichtbar:** `workbench.md` im Arbeitsordner (Screenshot, Verdikt,
+   offene Lücke je Stück), damit Raphael vom Handy schauen kann.
+7. **Stopp** ohne feste Rundenzahl: wenn die Zugewinne klein werden oder das
+   Budget endet. „Noch nicht fertig“ ist der Normalzustand beim Stoppen.
+
+**Ziel nennen, Route offen lassen** — Architektur, Zerlegung und Rundenzahl
+vorschreiben ersetzt das Urteil des Modells durch das eigene. Ausführung über
+`dynamic-workflow` bzw. `ultra-loop`; Rot-Klassen bleiben rot (nichts geht live).
+Prompt-Gerüst, Latten-Tabelle und Fallen: `references/gauntlet-loop.md`.
 
 ## Subagent-Grundregeln
 

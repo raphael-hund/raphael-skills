@@ -118,9 +118,9 @@
     },
     {
       "name": "orchestrate",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Cross-Model- und Cross-Harness-Dispatch (Luna, Sol, Terra, Sonnet, Haiku, Kimi) explizit setzen, Sub-Actions parallel fahren, nie eine Familie allein bauen und prüfen lassen. Für Streitfragen: adversariales Distill-Muster oder Council. Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\", \"Flotte\"."
+      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Cross-Model- und Cross-Harness-Dispatch (Luna, Sol, Terra, Sonnet, Haiku, Kimi) explizit setzen, Sub-Actions parallel fahren, nie eine Familie allein bauen und prüfen lassen. Für Streitfragen: adversariales Distill-Muster oder Council. Für Qualitätsarbeit: Gauntlet-Loop gegen eine inspizierbare Messlatte. Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\", \"Flotte\", \"Gauntlet\", \"Gauntlet-Loop\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\"."
     },
     {
       "name": "read-book",
