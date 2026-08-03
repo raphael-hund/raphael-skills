@@ -1,9 +1,9 @@
 ---
 name: orchestrate
-version: 1.0.0
+version: 1.1.0
 description: >
   DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle
-  Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi;
+  Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok;
   Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf,
   Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei
   Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt
@@ -72,7 +72,7 @@ niemand prüft die eigene Arbeit.
 | **EINMAL** | ein abgegrenzter Auftrag, Pfad unbekannt | ein Workflow-Run mit Flotte (Schritt 3) |
 | **LOOP** | Dauerbetrieb, Runde für Runde besser | Cron + jede Runde ein Workflow (Schritt 5) |
 | **GRAPH** | Arbeit kehrt wieder (wöchentlich, je Kunde) | Karte vorab zeichnen, dann fahren (Schritt 6) |
-| **GAUNTLET** | Qualität ist das Ziel, nicht Fertigwerden | gegen Messlatte bauen bis der Abstand klein ist (Schritt 7) |
+| **GAUNTLET** | Qualität ist das Ziel, nicht Fertigwerden | gegen Messlatte bauen bis der Abstand klein ist (Schritt 7); Maximal-Ausbau: `orchestrate-gauntlet` |
 | **COUNCIL** | echte Streitfrage, mehrere plausible Antworten | 3 Familien, anonymes Ranking, Chairman (Schritt 8) |
 
 Faustregeln: **Loop** = du gibst Ziel und Latte, der Agent wählt den Weg.
@@ -93,6 +93,7 @@ Gauntlet-Runden). Kombinieren statt künstlich trennen.
   - `haiku-worker` — Massen-Lesen, Parsen, billige Klassifikation
   - `kimi-worker` — Frontend-Code, deutsche Marketing-/Verkaufstexte (immer K3)
   - `kimi-recherche` — lesende Dritt-Familie, Gegenperspektive
+  - `grok-worker` — Grok 4.5, vierte Familie: Tempo/Volumen, Tool-Use, Zweitblick
 - **Verifier** (andere Familie, frische Session): `sol-pruefer` (Beschluss B1);
   bei Codex-Ausfall `claude-sonnet-5` plus Panel A auf Kimi (Regel 8).
 
@@ -107,9 +108,12 @@ Isolierbare Sub-Actions gehen zuerst an `luna-worker`, nicht ans Cockpit.
 Router-Kurzform: klein → selbst · Urteil → Cockpit · Bau → `sonnet-worker` ·
 Massen-Lesen → `haiku-worker` · Mechanik/Tests → `luna-worker` · Bulk →
 `terra-bulk` · Frontend/DE-Text → `kimi-worker` · Ship-Review → `sol-pruefer` ·
-Zweitmeinung → `kimi-recherche` · Browser → Kimi steuert.
+Zweitmeinung → `kimi-recherche` · schnelle Masse/vierte Perspektive → `grok-worker` ·
+Browser → Kimi steuert.
 Quota-Fehler = weiterlaufen, das Gateway rotiert; sichtbarer Nicht-Fallback ist
-ein Vorfall. Grok/xAI bleibt gesperrt bis Signatur.
+ein Vorfall. Grok 4.5 ist seit 03.08.2026 als Route freigegeben (CLIProxy 8317,
+xAI-OAuth) — Cockpit-Preset für Raphaels direkte Ansprache und `grok-worker` als
+vierte Familie.
 
 ## Schritt 3 — Einmal-Lauf (EINMAL)
 
@@ -219,7 +223,9 @@ Wenn nicht Fertigwerden das Ziel ist, sondern **richtig gut werden**:
 
 **Ziel nennen, Route offen lassen** — Architektur, Zerlegung und Rundenzahl
 vorzuschreiben ersetzt das Urteil des Modells durch das eigene.
-Details: `references/gauntlet-loop.md`.
+Details: `references/gauntlet-loop.md`. **Maximal-Ausbau** (Graph + feste
+Cross-Family-Besetzung + Goal-Loop je Stück):
+[`orchestrate-gauntlet`](/root/raphael-skills/skills/eigene/orchestrate-gauntlet/SKILL.md).
 
 ## Schritt 8 — Council und adversariales Distill (Streitfragen)
 

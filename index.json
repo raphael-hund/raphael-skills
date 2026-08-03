@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 41,
+  "skill_count": 42,
   "skills": [
     {
       "name": "design",
@@ -111,10 +111,16 @@
       "description": "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger-Worte: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\"."
     },
     {
-      "name": "orchestrate",
+      "name": "orchestrate-gauntlet",
       "version": "1.0.0",
+      "path": "skills/eigene/orchestrate-gauntlet/SKILL.md",
+      "description": "Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter Graph, mit einer festen Cross-Family-Besetzung (Luna max, Sonnet, Haiku, Terra, Sol, Kimi K3, Grok 4.5) und einem Kritiker, der NIE aus der Familie des Builders kommt. Jedes Stück läuft seinen eigenen Bauen-Richten-Loop. Trigger: \"/orchestrate-gauntlet\", \"Gauntlet\", \"Gauntlet-Loop\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"so krass wie möglich\", \"maximaler Modus\", \"alle Modelle drauf\"."
+    },
+    {
+      "name": "orchestrate",
+      "version": "1.1.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
+      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
     },
     {
       "name": "read-book",
