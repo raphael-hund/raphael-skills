@@ -267,9 +267,13 @@ Ehrlich getrennt von dem, was oben wirklich läuft:
   Ein Cron, der freigibt, wird es nie geben; nur einer, der den Report erzeugt.
 - **Automatische Sensitivity-Vererbung** — die Regel steht in `_candidates/README.md`,
   ein Skript prüft sie noch nicht. Bis dahin ist sie Handarbeit beim Verdichten.
-- **Lokale Transkription** (Whisper) — bewusst draußen. Ohne sie bleibt der ganze
-  Bereich Call-/Meeting-Mitschnitt beim bestehenden `fathom_sync`; der Weg über eine
-  externe Multimodal-API verstößt gegen Regel 15/TB2.
+- **Lokale Transkription** (Whisper) — seit 03.08.2026 verfügbar über
+  [`ops/bin/transkribieren`](/root/raphael-command-center/ops/bin/transkribieren)
+  (whisper.cpp, 100 % lokal, kein Egress — Regel 15/TB2 gewahrt). Damit kann ein
+  Call-Mitschnitt selbst eingespeist werden: transkribieren, dann `einspeisen` mit
+  Präfix `call-`. `fathom_sync` bleibt der Weg für alles, was dort ohnehin anfällt.
+  Noch offen ist die Automatik — es gibt keinen Wächter, der neue Audiodateien von
+  allein aufgreift.
 
 ---
 

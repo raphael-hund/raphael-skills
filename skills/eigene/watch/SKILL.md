@@ -160,9 +160,15 @@ Freigabe).
 - **Alles bleibt in /tmp.** Downloads nie ins Skill-Repo, Kundenrepo oder Git legen.
   /tmp ist flüchtig — Ergebnisse, die bleiben sollen, sofort als Markdown-Notiz
   (Breakdown + Pfade) sichern.
-- **Kein Whisper installiert.** whisper.cpp wäre F1-signaturpflichtig. Fallbacks sind
-  bewusst Teil des Designs: YouTube Auto-Subs, IG/TikTok Frames-only. Wer unbedingt
-  lokal transkribieren will: erst Freigabe über `ops/review-inbox.md`.
+- **Whisper ist da, aber nicht die erste Wahl.** Seit 03.08.2026 liegt whisper.cpp
+  unter `/root/tools/whisper.cpp`, bedient über
+  [`ops/bin/transkribieren`](/root/raphael-command-center/ops/bin/transkribieren).
+  Trotzdem gilt: **erst Auto-Subs, dann Whisper.** Ein Durchlauf kostet auf diesem
+  VPS mehrere Minuten pro Minute Audio (Speicherdruck, siehe Kommentar im Skript),
+  Auto-Subs kosten Sekunden. Whisper nur, wenn Captions fehlen, falsch sind oder
+  die Quelle keine hat (Loom/Zoom/lokale Datei).
+  Aufruf: `ops/bin/transkribieren <datei> small de` — Ergebnis als `.txt` + `.srt`
+  neben der Quelle. `medium` nur bei schlechter Aufnahmequalität.
 - **Auto-Subs können fehlen oder schlecht sein** (keine Captions, falsche Sprache).
   Dann ehrlich „kein Transkript" melden und Frames-only arbeiten — nichts erfinden.
 - **Untertitel-Format-Fallstrick:** wird `yt-dlp` je direkt statt über den
