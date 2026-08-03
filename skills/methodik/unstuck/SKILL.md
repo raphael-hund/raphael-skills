@@ -35,7 +35,7 @@ korrigieren; Regel 14: „fertig" ist eine Umgebungstatsache) und die Autonomie-
 
 | Situation | Zuständig |
 |---|---|
-| Code tut etwas Falsches, Test rot, Regression, Absturz, Performance-Einbruch | **`debug`** (eigene/debug) — dort: enger pass/fail-Loop, Root Cause, Fix |
+| Code tut etwas Falsches, Test rot, Regression, Absturz, Performance-Einbruch | **[`debug`](/root/raphael-skills/skills/eigene/debug/SKILL.md)** — dort: enger pass/fail-Loop, Root Cause, Fix |
 | Externe Wand: Login/2FA, Rechte, Quota, Anbieter blockt IP, Tool fehlt, Doku behauptet „unmöglich", Weg scheint versperrt | **`unstuck`** (hier) |
 | Ein Plan/eine Entscheidung ist unklar, aber nichts ist blockiert | `grill` |
 | Die Wand ist ein Bug **hinter** einer externen Wand | erst `unstuck` (Zugang herstellen), dann `debug` |

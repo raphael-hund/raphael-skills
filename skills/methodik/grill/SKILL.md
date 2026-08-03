@@ -51,3 +51,13 @@ Klarheit herrscht — bevor irgendetwas umgesetzt wird.
   Zeit — erst selbst suchen.
 - Grillen endet mit einer expliziten Bestätigung, nicht mit einem impliziten "passt schon" —
   ohne klares Okay keine Umsetzung.
+
+## Nachbarn
+
+- [`idea-filter`](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md) — wenn eine
+  Geschäftsidee ein festes Verdikt entlang fester Dimensionen braucht statt eines offenen
+  Gesprächs.
+- [`brainstorm`](/root/raphael-skills/skills/methodik/brainstorm/SKILL.md) — wenn das
+  Ergebnis eine schriftliche Design-Spec sein soll, nicht nur gemeinsames Verständnis.
+- [`llm-council`](/root/.claude/skills/llm-council/SKILL.md) — derselbe Stresstest, aber
+  von mehreren Modellfamilien parallel statt im Dialog.

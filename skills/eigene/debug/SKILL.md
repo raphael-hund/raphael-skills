@@ -1,12 +1,13 @@
 ---
 name: debug
-version: 0.2.1
+version: 0.2.2
 description: >
   Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix
   vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause,
   dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4
-  probiert. Trigger: "debug", "diagnose", "warum schlägt der Test fehl", "geht nicht",
-  "kaputt", "Regression", "langsam geworden".
+  probiert. Trigger: "debug", "diagnose", "warum schlägt der Test fehl", "kaputt",
+  "geht nicht" (nur wenn Code/Test falsch läuft — bei externer Wand: unstuck),
+  "Regression", "langsam geworden".
 class: M
 scope: agency
 sensitivity: internal
@@ -34,7 +35,7 @@ korrigieren), 14 (fertig = Umgebungstatsache), Karpathy-Prinzip 4 (Goal-Driven E
 unerwartetes Verhalten im eigenen oder fremden Code. Es gibt einen Zustand, den man
 reproduzieren und dessen Ursache man finden kann.
 
-`unstuck` (`methodik/unstuck`) greift bei **externen Wänden**, die kein Fehlverhalten
+`unstuck` ([methodik/unstuck/SKILL.md](/root/raphael-skills/skills/methodik/unstuck/SKILL.md)) greift bei **externen Wänden**, die kein Fehlverhalten
 sind: Login/2FA, fehlende Rechte, Quota/Rate-Limit, IP-Block, fehlendes Werkzeug, „die
 API kann das angeblich nicht". Dort gibt es keine Root Cause zu finden, sondern einen
 Weg herum — und den Pflicht-Schnellpfad, bevor „geht nicht" an Raphael gemeldet wird.

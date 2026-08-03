@@ -10,6 +10,24 @@ CHANGELOG beschreibt das Repo drumherum (Vertrag, Validator, Marker).
 
 ---
 
+## 2026-08-03 — Konsolidierung 03.08. (Querverweise + Ablage-Kanon)
+
+**Geaendert**
+
+- Wissens-Pipeline: `brain` bekommt die Zulieferer-Tabelle; `read-book`, `watch`,
+  `research` verweisen zurueck statt zu duplizieren. Ablage-Schema vereinheitlicht
+  (`raw/<typ>-<JJJJ-MM-TT>-<slug>.md`, Kandidat ohne Praefix), Gate-Aufrufe in
+  `read-book` lauffaehig gemacht.
+- Ideen-Strecke: `idea-filter` → `brainstorm` → `plan` durchverlinkt, `grill` und
+  `offers` bekommen Rueckverweise, `brain`/`sichten` kennt `_candidates/ideen/`.
+- Skill-Meta: Router "Drei Ecken" in `writing-skills`, fehlende Kanten
+  `writing-skills` ↔ `extract-approach` geschlossen.
+- Autonomie: `debug`-Trigger "geht nicht" gegen `unstuck` abgegrenzt (0.2.2),
+  `ultra-loop` Bail-out fuehrt erst nach `unstuck` (0.4.1, `requires_skills`),
+  `handoff` warnt vor ungepruefter "ging nicht"-Uebergabe.
+
+---
+
 ## 2026-08-03 — `brain` neu (makerskills-Ideen-Merge, Schritt 2.3 inkl. Fundament)
 
 **Neu**

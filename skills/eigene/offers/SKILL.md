@@ -66,3 +66,7 @@ beim Anbieter liegt — als Baustein von Loop 1 (offer-architect).
   wenigen Fälle, die einlösen, schaden öffentlich mehr als der Umsatz bringt; Bonus-
   Inflation (viele "Boni im Wert von X" auf ein günstiges Produkt) — erfahrene Käufer sehen
   das sofort. (Kondensiert aus coreyhaines31/marketingskills skills/offers/SKILL.md.)
+- Kommt die Anfrage aus einer Ideen-Bewertung, gehört das Ergebnis zurück in Dimension 4
+  (Monetarisierung) von
+  [`idea-filter`](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md) — ein
+  Offer-Entwurf ersetzt kein Verdikt.

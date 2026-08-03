@@ -1,6 +1,6 @@
 ---
 name: ultra-loop
-version: 0.4.0
+version: 0.4.1
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
@@ -19,7 +19,7 @@ loads:
   - references/workflow-vorlage.md
   - references/runden-protokoll.md
   - references/retro-muster.md
-requires_skills: [orchestrate@^0, eval@^0]
+requires_skills: [orchestrate@^0, eval@^0, unstuck@^0]
 completion_criteria:
   - "Cron-Job existiert (CronList zeigt ihn) und der Prompt enthält das Workflow-Pflicht-Mandat"
   - "Jede Runde mit Substanz-Arbeit hat einen Workflow-Run (Run-ID im Runden-Protokoll) — keine Solo-Runden außer Kleinst-Fixes"
@@ -120,8 +120,11 @@ erzwingt die Run-ID als Beweis.
   „Stand-Datei hat keinen offenen Punkt mehr", oder N Runden ohne belegbaren
   Fund. Erreicht = `CronDelete`, nicht weiterdrehen.
 - **Bail-out bei Wiederholungsfehler:** dreimal dieselbe Runde am selben Punkt
-  gescheitert → Loop anhalten und den Blocker im Protokoll benennen, nicht
-  Versuch Nr. 4 fahren (debug-Regel).
+  gescheitert → erst prüfen, ob der Blocker eine externe Wand ist (Quota, Seat,
+  Login, fehlendes Tool): dann
+  [unstuck](/root/raphael-skills/skills/methodik/unstuck/SKILL.md) fahren statt
+  abbrechen. Bleibt es dabei → Loop anhalten und den Blocker im Protokoll
+  benennen, nicht Versuch Nr. 4 fahren (debug-Regel).
 - **5-Minuten-Cache-Klippe:** der Prompt-Cache lebt nur ~5 Minuten. Ein Intervall
   von 20–30 Minuten trifft IMMER einen kalten Cache — der stabile Teil (Doktrin,
   Skill, Stand-Datei) wird jede Runde neu bezahlt. Konsequenz: pro Fire EINE

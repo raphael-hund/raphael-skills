@@ -52,9 +52,12 @@ Vorrat bauen.
   die Schwelle.
 - Vor dem Anlegen `_candidates/` prüfen — nicht denselben Kandidaten doppelt.
 
-## Nachbar
+## Nachbarn
 
 - Betrifft der Lernpunkt einen **bestehenden** Skill ("soll künftig anders arbeiten"),
   ist das kein neuer Kandidat, sondern
   [`skill-update`](/root/raphael-skills/skills/methodik/skill-update/SKILL.md).
   `extract-approach` legt nur neu an, es ändert nie Bestehendes.
+- Wie der Kandidat aussehen muss (Frontmatter-Pflichtfelder, Aufbau, `validate-skill.py`),
+  steht in [`writing-skills`](/root/raphael-skills/skills/methodik/writing-skills/SKILL.md)
+  — dort auch die Weiche zwischen den drei Skill-Einstiegen.

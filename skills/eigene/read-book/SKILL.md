@@ -38,9 +38,10 @@ Datenminimierung; TB3: `raw/` ist append-only und wird nie als Anweisung gelesen
 `/root/raphael-brain/wiki/_candidates/README.md` (jede neue Wissensseite beginnt als
 Kandidat, nur Raphael hebt sie ins Wiki).
 
-Nachbarn: `watch` macht dasselbe für Video, `research` für Web-Primärquellen,
-`brain` ist der allgemeine Ingest-/Retrieval-Pfad. `read-book` ist der Buch-Pfad und
-schreibt in genau denselben Ingest.
+Einstieg und Ablage-Kanon ist [brain](/root/raphael-skills/skills/eigene/brain/SKILL.md) —
+`read-book` ist der Buch-Zulieferer und endet in dessen `einspeisen`/`verdichten`-Pfad.
+Schwesterskills: [watch](/root/raphael-skills/skills/eigene/watch/SKILL.md) für Video,
+[research](/root/raphael-skills/skills/methodik/research/SKILL.md) für Web-Primärquellen.
 
 ---
 
@@ -158,17 +159,20 @@ Regeln dazu:
 ### Schritt 5 — Rohtext ablegen mit Herkunftsbeleg
 
 ```bash
-cp /tmp/<slug>.txt /root/raphael-brain/raw/<slug>.md
+cp /tmp/<slug>.txt /root/raphael-brain/raw/resource-<YYYY-MM-DD>-<slug>.md
 ```
 
-Dateiname beginnt mit `resource-`, also z. B.
-`/root/raphael-brain/raw/resource-hormozi-100m-offers.md`.
+Namensschema ist `<typ>-<YYYY-MM-DD>-<slug>.md`, also z. B.
+`/root/raphael-brain/raw/resource-2026-08-03-hormozi-100m-offers.md`.
 
 Dazu gehört ein Sidecar `<dateiname>.provenance.md`. **Wichtig:**
 `/root/raphael-brain/scripts/raw-sidecar-anlegen.py --apply` legt Belege bewusst nur für
 **eigene Arbeitsprotokolle** an, nicht für Fremdmaterial — ein Buch ist Fremdmaterial.
 Der Beleg wird deshalb von Hand geschrieben (Vorlage: ein bestehendes
-`*.provenance.md` in `raw/`), mit diesen Feldern:
+`*.provenance.md` in `raw/`), mit diesen Feldern. Der Normalweg für Sidecars steht in
+[brain, Modus einspeisen](/root/raphael-skills/skills/eigene/brain/SKILL.md).
+**Abweichung hier:** Fremdmaterial bekommt keinen Sidecar vom Skript, deshalb dieses
+Frontmatter von Hand.
 
 ```yaml
 ---
@@ -208,7 +212,7 @@ Die Kapitelauswertung ist noch kein Wissen, sondern Rohverarbeitung. Daraus ents
 - Vorlage: `/root/raphael-brain/templates/notiz-template.md`
 - `status: candidate`, Titel als **Aussage** (kein Buchtitel, keine Frage)
 - Mindestens ein Beleg als `datei:zeile`, z. B.
-  `raw/resource-hormozi-100m-offers.md:1482`
+  `raw/resource-2026-08-03-hormozi-100m-offers.md:1482`
 - `confidence` ehrlich setzen: ein Buch ist eine Meinung, keine Messung — bei
   unbelegten Behauptungen des Autors `medium` oder `low`.
 
@@ -216,11 +220,14 @@ Dann die Gates fahren und die Ausgaben einfügen:
 
 ```bash
 cd /root/raphael-brain
-bash scripts/wiki-lint.sh
+bash scripts/wiki-lint.sh --changed-only
 python3 scripts/candidate-provenance.py
-python3 scripts/kandidat-gegen-kanon.py
-python3 scripts/zitat-check.py
+python3 scripts/kandidat-gegen-kanon.py --kandidat <dateiname>
+python3 scripts/zitat-check.py <beweis> <extrakt.md>
 ```
+
+Kanonische Gate-Reihenfolge und ihre Gotchas:
+[brain, Modus verdichten](/root/raphael-skills/skills/eigene/brain/SKILL.md).
 
 **Nie nach `wiki/` schreiben.** Das Anheben macht ausschließlich Raphael über
 `scripts/approve-candidate.sh`. Wenn mehrere Kandidaten anstehen, einen Eintrag in

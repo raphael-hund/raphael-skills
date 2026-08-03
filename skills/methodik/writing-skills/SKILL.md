@@ -229,8 +229,17 @@ Die Notiz hält fest, was später niemand mehr rekonstruieren kann:
   referenziert statt neu gebaut. Verhindert Wildwuchs paralleler
   Fast-Duplikate.
 
-## Nachbar
+## Drei Ecken — welcher Skill wann
 
+Skill-Arbeit hat genau drei Einstiege: **neuer Skill aus gelebter Arbeit →
+[`extract-approach`](/root/raphael-skills/skills/eigene/extract-approach/SKILL.md);
+Form und Vertrag eines Skills → `writing-skills` (diese Datei); Lernpunkt in Bestehendes
+nachziehen → [`skill-update`](/root/raphael-skills/skills/methodik/skill-update/SKILL.md).**
+Im Zweifel: ändert sich ein bestehender Skill, ist es nie `extract-approach`.
+
+- [`extract-approach`](/root/raphael-skills/skills/eigene/extract-approach/SKILL.md) legt
+  aus 2× wiederholter Arbeit einen **neuen** Kandidaten in `_candidates/` an. Dessen
+  Frontmatter und Aufbau richten sich nach dem Schema oben.
 - [`skill-update`](/root/raphael-skills/skills/methodik/skill-update/SKILL.md) trägt einen
   einzelnen Lernpunkt in alle betroffenen bestehenden Skills nach. `writing-skills` regelt
   dabei nur die **Form** (Frontmatter, Aufbau, Vendoring-Prüfung), nie welcher Inhalt

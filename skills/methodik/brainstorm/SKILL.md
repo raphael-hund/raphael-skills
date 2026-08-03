@@ -33,6 +33,13 @@ Freigabe der Spec durch den Nutzer. Das gilt unabhängig von der wahrgenommenen
 Einfachheit des Vorhabens. Die Spec darf kurz sein (ein paar Sätze reichen bei
 trivialen Fällen), aber sie muss präsentiert und freigegeben werden.
 
+## Davor / danach
+
+Geht es um eine Geschäfts- oder Angebotsidee (lohnt sich das überhaupt?), läuft erst
+[`idea-filter`](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md) — dieser Skill
+setzt das Verdikt "Build" bereits voraus und klärt nur noch das Wie. Nach der Freigabe
+folgt [`plan`](/root/raphael-skills/skills/methodik/plan/SKILL.md).
+
 ## Ablauf
 
 1. **Kontext erkunden** — vorhandene Dateien, Docs, letzte Commits ansehen.

@@ -17,7 +17,7 @@ completion_criteria:
   - "Jede Behauptung in der Ergebnisdatei ist mit ihrer Primärquelle belegt"
   - "Quellen sind Primärquellen (offizielle Docs/Source/Specs/First-Party-API), keine Sekundär-Zusammenfassung"
   - "Vor Abschluss lief eine Gap-Round: Lücken/Widersprüche/Einzelquellen-Behauptungen aufgelistet und, wo möglich, geschlossen"
-  - "Markdown-Datei liegt an der Stelle, an der das Projekt vergleichbare Notizen bereits sammelt (oder Ablageort ist explizit benannt)"
+  - "Markdown-Datei liegt unter /root/raphael-command-center/ops/research/<datum>-<thema>/BRIEF.md; soll der Befund ins Brain, liegt zusätzlich ein Kandidat in /root/raphael-brain/wiki/_candidates/"
 ---
 
 # research — Primärquellen-Recherche im Hintergrund
@@ -77,6 +77,11 @@ Korpus entsteht statt Wegwerf-Dateien:
   Verweis auf den Archivpfad — nicht zwei divergierende Volltexte.
 - Kundenmaterial bleibt im Kundenrepo (TB4); ins Archiv nur die verallgemeinerte
   Sachfrage ohne Kundennamen.
+- Soll ein Befund **bleibendes Wissen** werden (nicht nur Projekt-Beleg), endet der Lauf
+  im Brain: BRIEF.md nach `/root/raphael-brain/raw/` sichern und als Kandidat verdichten —
+  Ablauf: [brain](/root/raphael-skills/skills/eigene/brain/SKILL.md), Modi `einspeisen`
+  und `verdichten`. Für Web-Recherche gilt dort zusätzlich der Skeptiker-Schritt
+  (andere Modellfamilie, Regel 8).
 
 ## Beschaffungs-Fallback-Kette
 

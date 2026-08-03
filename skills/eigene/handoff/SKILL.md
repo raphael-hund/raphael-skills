@@ -56,3 +56,7 @@ Modellwechsel) verlustfrei weitermacht — denn nur Git-getrackte Dateien zähle
 - Fehlende Fallen/Sackgassen-Sektion kostet die nächste Session Zeit: bereits gescheiterte
   Ansätze sind die teuerste, am schlechtesten wiederherstellbare Information — Code zeigt
   das Was, nur der Handoff kennt das Warum und was schon nicht ging.
+- **"Ging nicht" gehört erst nach dem Schnellpfad in den Brief** — eine als unmöglich
+  übergebene Wand wird von der nächsten Session als Tatsache geerbt. Vorher
+  [unstuck](/root/raphael-skills/skills/methodik/unstuck/SKILL.md) fahren und die
+  Winkel-Liste mit übergeben; ohne Liste ist es eine Vermutung, kein Stand.

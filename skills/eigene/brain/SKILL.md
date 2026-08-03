@@ -34,9 +34,18 @@ completion_criteria:
 **Lies zuerst:** `/root/raphael-brain/AGENTS.md` (Karte, Schreib-Doktrin, Kandidaten-Pflicht)
 und `/root/raphael-brain/wiki/_candidates/README.md` (Freigabe-Regel, Sensitivity-Vererbung).
 
-Nachbarn, damit nichts doppelt läuft: `research` und `last30days` holen **externes**
-Wissen — `brain` ist die **interne** Seite. `read-book` und `watch` speisen über genau
-diesen Ingest ein. `idea-filter` legt seine Ergebnisse ebenfalls als Kandidat ab.
+Zulieferer speisen alle in genau diesen Ingest ein — `brain` ist der eine Einstieg:
+
+| Quelle | Skill | landet in |
+|---|---|---|
+| Buch, PDF, EPUB | [read-book](/root/raphael-skills/skills/eigene/read-book/SKILL.md) | `raw/resource-<datum>-<slug>.md` + Kandidat |
+| Video, Reel, Call-Aufzeichnung | [watch](/root/raphael-skills/skills/eigene/watch/SKILL.md) | `raw/resource-\|call-\|note-<datum>-<slug>.md` + Kandidat |
+| Web-Sachfrage, Primärquellen | [research](/root/raphael-skills/skills/methodik/research/SKILL.md) | `ops/research/<datum>-<thema>/BRIEF.md`, Verdichtung als Kandidat |
+| Stimmungsbild der letzten 30 Tage | [last30days](/root/raphael-skills/skills/imported/last30days/SKILL.md) | Ergebnis nach `raw/`, dann Kandidat |
+| Idee/Entscheidung | [idea-filter](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md) | Kandidat |
+
+Ablage-Konvention (Präfixe, Sidecar, `_candidates`) steht **nur hier** bzw. in
+`/root/raphael-brain/AGENTS.md`. Zulieferer verweisen darauf, statt sie zu wiederholen.
 
 ---
 
@@ -215,6 +224,9 @@ Umgebungstatsache, keine Behauptung).
 
 Ziel: Raphael kann in einem Durchgang entscheiden. Der Agent entscheidet **nichts**.
 
+0. Zur Triage gehört auch der Unterordner `wiki/_candidates/ideen/` — Ideen-Briefe aus
+   [idea-filter](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md) (`type: idea-brief`);
+   dort wird der Ordner-Index `README.md` mitgepflegt.
 1. Kandidaten auflisten, **älteste zuerst** (`ls -t` rückwärts bzw. nach Datum im Namen).
 2. Je Kandidat **genau eine Zeile**: Titel · Alter in Tagen · stärkster Beleg
    (`datei:zeile`) · Seiten, die ihn bereits zitieren · Empfehlung.
