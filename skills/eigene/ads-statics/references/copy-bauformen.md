@@ -21,12 +21,12 @@ kombinieren sich in jedem Brief (siehe `brief-schema.md`).
 3. **Maximal zwei Textstufen plus CTA.** Headline (gross) → Subline/Proof-Stack (klein) →
    CTA. Lange Copy funktioniert nur getarnt als natives Format (siehe Bauform 4).
 4. **Nativer Rahmen als Trojaner.** Die am längsten laufenden Statics sehen aus wie Content,
-   nicht wie Werbung — koppelt direkt an S2/S4 in `visual-styles.md`.
+   nicht wie Werbung — koppelt direkt an F3/F4 in `visual-styles.md` (Legacy S2/S4).
 5. **Proof-Stack: 3-5 Belege in Miniatur.** Mehrere kurze, unabhängig prüfbare Belege
    (Zahl + Anzahl Kunden + Rating + benannter Mechanismus) in einer Static. Ein Beleg ist
    eine Behauptung, drei Belege sind ein Muster.
 6. **Greifbarer Gegenstand macht die Zahl echt.** Physisches Requisit (Schild, Trophäe) mit
-   Name + Zahl + Datum wirkt wie eine Urkunde, nicht wie ein Claim — koppelt an S5.
+   Name + Zahl + Datum wirkt wie eine Urkunde, nicht wie ein Claim — koppelt an F7 (Legacy S3/S5).
 
 **Zusatz-Regel:** Zeitlich-lokale Verankerung (Ort, Datum, Jahr) erhöht Prüfbarkeit.
 Sprache bleibt Betriebsergebnis („Anfragen", „Auslastung"), nie Marketingmechanik.
@@ -40,7 +40,7 @@ Ansprache.** Spezifität im Callout (Grösse + Merkmal + Ziel) ist der Erfolgsfa
 die Breite der Ansprache.
 
 **Ergänzung zu Bauform 3 — Text-Only als eigene Variante.** Siehe `visual-styles.md`
-(S1-Ergänzung).
+(F2-Ergänzung, Legacy S1).
 
 ## Primary-Text-Skelette (für die ganze Beschreibung, nicht nur den Hook)
 

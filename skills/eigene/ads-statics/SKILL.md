@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 0.1.0
+version: 0.2.0
 description: >
   Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs,
   Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: "Statics bauen",
@@ -24,6 +24,7 @@ completion_criteria:
   - "jeder Static-Brief hat Angle × Visual Style × Copy-Bauform × Grounding-Quelle ausgefüllt"
   - "kein Brief ohne Grounding-Quelle ausgeliefert (harter Blocker, kein Statusfeld-Trick)"
   - "Welle hat vorab eine definierte Stopp-Regel (Entscheidungsmetrik + Mindestlaufzeit), bevor produziert wird"
+  - "Brief besteht den Marc-Evers-Reduktionscheck: eine Zielgruppe, eine Kernzahl mit Zeitraum, ein Beweis, eine Handlung; jede Box trägt höchstens eine Behauptung"
 ---
 
 # ads-statics — Angle × Visual-Style-Briefs für statische Ads
@@ -47,6 +48,27 @@ completion_criteria:
 Aus Angle + Kunden-Wissen produzierbare Static-Briefs bauen: Visual Style und Copy-Bauform
 gemeinsam gewählt, jedes Konzept mit echter Grounding-Quelle statt erfundenem Claim.
 
+## Marc-Evers-Reduktionsprinzip (Pflicht-Gate vor dem Brief)
+
+Der Marc-Evers-Befund ist eine Bau- und Testregel, kein Copy-Template:
+
+1. **Eine Zielgruppe:** Rolle und nötige Schwelle zuerst nennen; Anfänger/Anti-ICP nicht
+   erst nach der Erklärung aussortieren.
+2. **Eine Kernzahl mit Zeitraum:** eine große, belegte Zahl sichtbar machen; weitere Zahlen
+   nur, wenn sie den einen Beweis verständlicher machen.
+3. **Ein Beweis:** Review, echter Vorgang, verifizierter Screen oder zugestimmtes Foto;
+   Beweis nicht durch eine zweite Behauptung ersetzen.
+4. **Eine Handlung:** genau eine nächste Aktion und eine dazu passende CTA-Zone.
+5. **Eine Box = eine Behauptung:** Die Karte muss scanbar sein; mehrere kleine Claims in
+   derselben Box sind kein Proof-Stack, sondern unklare Messung.
+6. **Static testet die Botschaft billig; Video vertieft ein validiertes Concept.** Der Static-
+   Brief darf nicht schon die ganze Video-Erklärung nachbauen.
+7. **Native-Look vor Design-Politur, aber nicht vor Wahrheit:** Story-Bubbles, echte Screens
+   und rohe Fotos dürfen unperfekt wirken; Claims, Zahlen und Proof bleiben redaktionell echt.
+
+Vor dem Status „sofort produzierbar" abhaken: 1 Zielgruppe | 1 Kernzahl + Zeitraum |
+1 Beweis | 1 Handlung. Fehlt ein Beweis, greift zusätzlich der Grounding-Blocker.
+
 ## Verhältnis zu ads
 
 `ads-statics` ist die Tiefe hinter Schritt 6 („statics") im Loop-3-Ablauf von `ads`
@@ -65,7 +87,9 @@ kopiert: `../ads/references/vendor/coreyhaines-ads/static-ad-templates-en.md`.
    (Referenz-Framing-Pflicht: jeder Angle steht an einem belegten Long-Runner oder eigenen
    Gewinner-Ad, nie freihändig erfunden).
 3. **Je Angle Visual Style + Copy-Bauform wählen (Matrix).** `references/visual-styles.md`
-   für den Rahmen, `references/copy-bauformen.md` für die Textform. Eine Zelle = eine Ad;
+   für F1–F8 (S1–S5 sind Legacy-Aliase), `references/copy-bauformen.md` für die Textform.
+   Vor der Auswahl den Marc-Evers-Reduktionscheck durchführen: eine Zielgruppe, eine
+   Kernzahl mit Zeitraum, ein Beweis, eine Handlung. Eine Zelle = eine Ad;
    Botschaft fix pro Angle, Rahmen fix pro Style — keine Misch-Copy, sonst misst die
    Testwelle zwei Variablen gleichzeitig. Über alle 15 Layout-Vorlagen des ads-Routers
    zyklen statt auf 2-3 Favoriten zu clustern.
@@ -80,8 +104,9 @@ kopiert: `../ads/references/vendor/coreyhaines-ads/static-ad-templates-en.md`.
    die eigentliche Bildproduktion an `design` mit der geltenden Bildgenerierung-Policy:
    GPT Image 2 als Standard (Referenzen + Illustrationen), Referenz-Doktrin (inhaltliche +
    stilistische Referenzen als Add Image, Rollen im Prompt benennen), KI-Menschen nur als
-   A/B-Test mit hartem Uncanny-Check, Beweis-Kontexte (S3/S4 aus visual-styles.md) **nie
-   KI-generiert**. Nach jedem Render: Screenshot-Pflicht vor Auslieferung.
+   A/B-Test mit hartem Uncanny-Check, Beweis-Kontexte F4 (Chat) und F7 (Award-/UGC-Foto;
+   Legacy S4/S3/S5) **nie KI-generiert**. F6-Dashboard-Screens nur als Proof, wenn der
+   Screen echt und verifiziert ist. Nach jedem Render: Screenshot-Pflicht vor Auslieferung.
 
 ## Welle & Stopp-Regel
 
@@ -92,6 +117,26 @@ für zu schwache Filterung). Ohne vorab festgelegte Stopp-Regel keine Welle star
 wiederholtes Peeken und Abbruch beim ersten guten Ergebnis produziert Falsch-Positive.
 Die harten Gates vor Schaltung (Claims-QA, Nennungs-Zustimmungen, Tracking) bleiben bei
 `ads` (Schaltung = Signatur + Budget-Egress-Gate, nie autonom).
+
+**Mindestbudget je Anzeige — sonst misst die Welle nichts** (am MAKE-Konto gerechnet,
+02.08.2026). Ein Lead ist ein seltenes Ereignis; wie oft eine voellig normale Anzeige
+trotzdem leer ausgeht, folgt aus Spend und CPL:
+
+| Spend je Anzeige | Anteil ohne Lead (CPL 39-59 CHF) |
+|---|---|
+| 12 CHF | **74-82 %** |
+| 30 CHF | 46-60 % |
+| **100 CHF** | **8-18 %** |
+
+Unter ~30 CHF ist ein Nullergebnis eine Aussage ueber das Budget, nicht ueber die Anzeige.
+**Erst ab rund 100 CHF wird "kein Lead" aussagekraeftig.** Am MAKE-Bestand nachgemessen:
+Statics bekamen im Median 12 CHF, Videos 45 CHF — der scheinbare Formatnachteil der
+Statics war fast vollstaendig ein Budget-Unterschied. Ab 100 CHF liegen beide gleichauf
+(70 % gegen 73 % Trefferquote).
+
+**Folge fuer die Wellenbreite:** Wellenbudget durch 100 CHF teilen ergibt die Zahl der
+gleichzeitig testbaren Zellen. Bei 230 CHF/Woche sind das **zwei** — oder vier bei knapp
+zwei Wochen Laufzeit. Mehr Zellen erzeugen mehr Zahlen, aber keine zusaetzliche Erkenntnis.
 
 ## Gotchas
 
@@ -108,5 +153,17 @@ Die harten Gates vor Schaltung (Claims-QA, Nennungs-Zustimmungen, Tracking) blei
   die plattforminterne Metrik allein.
 - **Mehr Headline-/Hook-Varianten schlagen mehr Body-Varianten** bei gleichem Zeitbudget —
   siehe `copy-bauformen.md`.
-- **S3/S4-Zellen ohne echtes Material sind kein Kompromiss.** Kein Stock-Ersatz, keine
-  Mock-Chats — Zelle wartet, bis Material da ist.
+- **F4/F6/F7-Zellen ohne echtes Material sind kein Kompromiss** (Legacy S3/S4/S5). Kein
+  Stock-Ersatz, keine Mock-Chats, kein KI-Proof — Zelle wartet, bis Material da ist.
+- **Reduktion ist kein Stilgeschmack.** Eine Zielgruppe, eine Kernzahl, ein Beweis, eine
+  Handlung; eine Box trägt eine Behauptung. Sind diese vier Teile nicht prüfbar, geht der
+  Brief zurück in die Material-/Angle-Klärung.
+- **Native/unpoliert heißt nicht absichtliche Tippfehler.** Den Marc-Look als Authentizität
+  übernehmen, für MAKE aber die Klartext-Voice und korrekte Schreibweise halten.
+- **Hook ohne Mittelteil ist kein Gewinner.** Benefit/Belief zuerst, danach Proof oder
+  Einwandbehandlung und genau eine CTA; keine Feature-Laundry-List.
+- **Das Export-Headline-Feld kann leer sein.** Onscreen-Copy und Primary Text müssen die
+  Botschaft selbstständig tragen und ge-groundet sein.
+- **Ein Claim ohne Beleg wird gestrichen, nicht abgeschwächt.** Belegt am MAKE-Fall
+  03.08.2026: „Platz 1 in 60 Tagen, garantiert" braucht das Garantie-Dokument; eine
+  weichgespülte Fassung derselben Zusage ist kein Fix, sondern derselbe Claim.
