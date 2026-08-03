@@ -32,15 +32,25 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 // derselben Datei, eine geprueft, eine nicht: genau die Luecke, die ein
 // Pruefer mit festem Pfad offen laesst.
 const SKILLS_WURZEL = path.join(HIER, '..', '..', '..');
-const ORDNER = [];
-for (const wurzel of [path.join(HIER, '..', '..'), SKILLS_WURZEL]) {
-  if (!fs.existsSync(wurzel)) continue;
+
+// JEDEN scripts/-Ordner suchen, egal wie tief. Der erste Entwurf sah genau
+// eine Ebene (skills/*/scripts und skills/eigene/*/scripts) und uebersah
+// skills/imported/last30days/scripts — ein Skill, der eine Ebene weiter unten
+// liegt. Gemessen 03.08.2026: 55 gepruefte Skripte, 56 im Repo.
+//
+// Eine Zaehlung, die eine Ebene nicht kennt, meldet trotzdem eine runde Zahl.
+function scriptOrdner(wurzel, raus = []) {
+  if (!fs.existsSync(wurzel)) return raus;
   for (const e of fs.readdirSync(wurzel, { withFileTypes: true })) {
-    if (!e.isDirectory() || e.name.startsWith('.')) continue;
-    const skripte = path.join(wurzel, e.name, 'scripts');
-    if (fs.existsSync(skripte) && !ORDNER.includes(skripte)) ORDNER.push(skripte);
+    if (!e.isDirectory() || e.name.startsWith('.') || e.name === 'node_modules') continue;
+    const p = path.join(wurzel, e.name);
+    if (e.name === 'scripts') { if (!raus.includes(p)) raus.push(p); continue; }
+    scriptOrdner(p, raus);
   }
+  return raus;
 }
+
+const ORDNER = scriptOrdner(SKILLS_WURZEL);
 
 if (!ORDNER.length) {
   console.error('FEHLER: kein scripts/-Ordner gefunden — nicht geprueft.');

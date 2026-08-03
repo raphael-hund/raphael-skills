@@ -58,7 +58,7 @@ eval_scorecard:
     - "evals/run-antiset.mjs — 18 Faelle: reisst das Tor an jedem eingebauten Fehler?"
     - "evals/run-sabotage.mjs — 14 Faelle: merkt jede Eval, wenn ihr Pruefer kaputtgeht?"
     - "evals/run-laufzeit-check.mjs — 4 Angaben: stimmen die dokumentierten Laufzeiten noch? (266s)"
-    - "evals/run-eval-umfang.mjs — 42 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-eval-umfang.mjs — 43 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 6 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (5,5 Min, gemessen 02.08.2026)"
     - "evals/run-exit-vertrag-check.mjs — 34 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (75s)"
@@ -67,6 +67,7 @@ eval_scorecard:
     - "evals/run-lib-lookup.mjs — 13 Faelle: beantwortet der Tresor jede Library und lehnt Unbekanntes ab?"
     - "evals/run-flag-hilfe-check.mjs — 16 Faelle: nennt --help jedes Flag, das das Werkzeug kennt? (16s)"
     - "evals/run-schnellablehnung-check.mjs — 20 Faelle: antwortet ein Werkzeug, ohne erst den Browser zu laden? (20s)"
+    - "evals/run-referenz-verweise-check.mjs — 1 Fall: loesen die 18 Verweise ZWISCHEN References auf? (2s)"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
@@ -331,7 +332,8 @@ kommt trotzdem nicht durch. axe meldet dazu 0 Violations, weil die Rollen ja sti
 | Overlays (`listbox`, `menu`, `dialog`) | Escape schließt | WARN |
 
 > **Ein Nachbar ist kein Beleg.** Die erste Fassung zählte den ganzen Ordner als
-> Nachweis. In dieser Bibliothek liegen 60 Komponenten flach nebeneinander, und
+> Nachweis. In dieser Bibliothek lagen damals 60 Komponenten flach nebeneinander
+> (heute mehr — die Zahl war eine Momentaufnahme, nicht die Aussage), und
 > `command-palette.tsx` belegt Pfeiltasten — damit galt die Bedingung für alle 60 als
 > erfüllt, und der Prüfer meldete „alles gut" über sieben kaputte Widgets. Jetzt zählt
 > die Datei **plus das, was sie tatsächlich importiert**: ein ausgelagerter
@@ -906,7 +908,7 @@ node evals/run-slop-check.mjs        # 9 Fälle, weder Browser noch Server noch 
 node evals/run-slop-de-check.mjs     # 62 Fälle: Treffer, Gegenproben, Einstufung, Regelweg, Kodierung
 node evals/run-sabotage.mjs          # merken die Evals, wenn ihr Prüfer kaputtgeht?
 node evals/run-eval-umfang.mjs       # hat jede Eval überhaupt noch ihre Fälle?
-                                     # fährt 42 Evals nacheinander: 13 Min (gemessen 02.08.2026)
+                                     # fährt 43 Evals nacheinander: 13 Min (gemessen 02.08.2026)
 ```
 
 > **Evals starten einen Prozess, nicht fünfzig.** Die erste Fassung von
