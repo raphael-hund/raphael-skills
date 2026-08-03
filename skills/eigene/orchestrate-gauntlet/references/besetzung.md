@@ -37,6 +37,14 @@ als Kritiker desselben Stücks gebunden ist.
 - **Opus/Fable**: stark bei harten Repo-Bugs, langem Kontext und Prosa; der
   wiederkehrende Kritikpunkt in Kommentaren ist Token-Verbrauch
   („burn as many tokens as it can", 11 Likes).
+- **Kimi K3 ist Fables günstigerer Zwilling.** Artificial Analysis Intelligence
+  Index: Fable 59,86 · Sol max 58,89 · Sol xhigh 57,65 · **K3 57,11 (Platz 4)**.
+  Dazu 1M Kontext, Thinking immer an, führend bei SWE Marathon, BrowseComp,
+  DeepSearchQA und AutomationBench. Kimi ist also **nicht nur der Frontend-Mann** —
+  er kann schweres Denken, und zwar zum Bruchteil des Preises. Moonshot selbst
+  räumt ein, dass K3 die stärksten proprietären Modelle insgesamt noch nicht
+  schlägt — der Abstand ist aber klein genug, um Fable in den meisten Stücken
+  zu ersetzen.
 - **Kein Modell gewinnt jede Achse.** Vier Frontier-Modelle in einem Monat —
   jede Rangliste ist eine Momentaufnahme. Deshalb: Rollen breit besetzen,
   nicht „das beste Modell" suchen.
@@ -45,20 +53,29 @@ als Kritiker desselben Stücks gebunden ist.
 
 | agentType | Familie | Effort | Kann als Builder | Kann als Kritiker | Kann als Glätter | Kann als Rechercheur |
 |---|---|---|---|---|---|---|
-| `fable-architekt` | Claude | **max** | ✅ **die schwersten Stücke**: Langhorizont, Feature end-to-end, tiefe Bug-Jagd, Frontend als Ganzes | ✅ High-Recall-Bug-Kritik (61,1% Recall) | — (zu teuer) | — (zu teuer) |
+| `fable-architekt` | Claude | **low/medium** | ✅ **die schwersten Stücke**: Langhorizont, Feature end-to-end, tiefe Bug-Jagd, Frontend als Ganzes | ✅ High-Recall-Bug-Kritik (61,1% Recall) | — (zu teuer) | — (zu teuer) |
 | `opus-builder` | Claude | **max** | ✅ Terminal-/Agent-Arbeit, Debugging, Root-Cause, harte Fälle | ✅ rauscharmes Review (39,3% Precision), Root-Cause-Urteil | ✅ inhaltliche Angleichung | ✅ tiefes Codebase-Verständnis |
 | `luna-worker` | GPT | **max** (Gateway erzwingt) | ✅ **Motor**: Mechanik, Tests, Fix-Schleifen, Backend, Refactor | ✅ mechanische Prüfung, Tests nachfahren, Zahlen-Check | ✅ technische Angleichung | ✅ Code-/Datei-Recherche |
 | `terra-bulk` | GPT | **max** | ✅ Architektur, Migration, Multi-File, Volumen | ✅ Architektur-Kritik, Konsistenz über viele Dateien | ✅ Struktur-Angleich | — |
 | `sol-pruefer` | GPT | **max** | ✅ harte Code-Fälle, Terminal-/Agent-Arbeit, Planung eines Stücks | ✅ **Erstwahl** Ship-Urteil, Design-Kritik, Chairman, Abnahme | ✅ inhaltliche Angleichung | ✅ Zahlen-Verifikation |
 | `haiku-worker` | Claude | **max** | ✅ mechanische Edits, Boilerplate, Massen-Umbau | ✅ Screenshot-/Datei-Vergleich, Lint, Checklisten | ✅ Format-Angleich | ✅ **Erstwahl** Massen-Lesen |
-| `kimi-worker` | Kimi K3 | **high** | ✅ **Erstwahl** Frontend/UI, DE-Texte, Kreatives, 3D/visuelle Ideen | ✅ Design-Blick, Text-Kritik, dritte Familie | ✅ visuelle Angleichung | ✅ Riesen-Kontext |
+| `kimi-worker` | Kimi K3 | **high** | ✅ **Erstwahl** Frontend/UI, DE-Texte, Kreatives, 3D — **und schweres Denken** (Platz 4 Intelligence Index, Thinking immer an) | ✅ Design-Blick, Text-Kritik, Analyse-Kritik, dritte Familie | ✅ visuelle Angleichung | ✅ Riesen-Kontext (1M), Deep-Search |
 | `kimi-recherche` | Kimi K3 | **high** | — (nur lesend) | ✅ lesende Gegenprobe, Latten-Prüfung | — | ✅ Referenzen/Latte finden |
 | `grok-worker` | Grok 4.5 | **max** | ✅ schnelle Umsetzung in Volumen, Prototypen, Tool-Use, Agent-Schritte | ✅ vierte Perspektive, Tempo-Review | ✅ mechanische Angleichung | ✅ breite Sichtung |
 | `sonnet-worker` | Claude | — | ⬜ **nicht Teil der Gauntlet-Besetzung** (Raphael 03.08.) — nur als Notnagel bei Familien-Ausfall | ⬜ | ⬜ | ⬜ |
 
-**Effort-Doktrin (Raphael 03.08.2026):** alles auf **max**, außer Kimi auf
-**high**. Luna erzwingt max nativ im Gateway (`forced_effort`). Effort explizit
-im Auftrag mitgeben — sonst erbt der Subagent das Cockpit-Setup (Regel 7).
+**Effort-Doktrin (Raphael 03.08.2026):**
+
+| Modell | Effort | Warum |
+|---|---|---|
+| `fable-architekt` | **low / medium** | Fable ist das stärkste Modell im Feld (Index 59,86, Platz 1) — die Kraft kommt aus dem Modell, nicht aus langem Nachdenken. Der Effort-Aufschlag ist der Kostentreiber. Reicht low nicht → medium, nie höher. |
+| `opus-builder` | **max** | Der Denk-Aufwand ist hier der Hebel: Root-Cause und Debugging leben von langen Ketten. |
+| alle übrigen (Luna, Sol, Terra, Haiku, Grok) | **max** | Luna erzwingt max nativ im Gateway (`forced_effort`). |
+| `kimi-worker` / `kimi-recherche` | **high** | K3 hat Thinking immer an; `max` verbrennt bei kurzen Aufgaben unverhältnismäßig viele versteckte Denk-Tokens (bei Launch: 13.241 Reasoning-Tokens für 3.417 Output-Tokens). |
+
+Braucht ein Stück wirklich maximales Nachdenken, ist das **nicht** Fable auf max —
+sondern `opus-builder` oder `sol-pruefer`. Effort immer explizit im Auftrag
+mitgeben, sonst erbt der Subagent das Cockpit-Setup (Regel 7).
 
 **Fable und Opus sind jetzt Teil der Flotte** (Freigabe Raphael 03.08.2026).
 Die frühere Regel „nie Fable/Opus als Subagent" ist damit für den Gauntlet
@@ -80,10 +97,13 @@ Raphael spricht direkt über **Grok 4.5**, nicht über Opus.
 
 | Werkstück | Erstwahl | Zweitwahl | Drittwahl |
 |---|---|---|---|
-| **Das schwerste Stück im Lauf** | `fable-architekt` | `opus-builder` | `sol-pruefer` |
-| Feature end-to-end, lange Strecke | `fable-architekt` | `opus-builder` | `luna-worker` |
+| **Das schwerste Stück im Lauf** | `kimi-worker` (günstiger Zwilling) | `fable-architekt` | `opus-builder` |
+| Feature end-to-end, lange Strecke | `fable-architekt` | `kimi-worker` | `opus-builder` |
+| Schwere Analyse / Architekturfrage | `kimi-worker` | `opus-builder` | `sol-pruefer` |
+| Deep-Search / Riesen-Kontext (1M) | `kimi-worker` | `kimi-recherche` | `grok-worker` |
 | Landingpage / UI | `kimi-worker` | `fable-architekt` | `grok-worker` |
 | Deutsche Verkaufstexte / Ads-Copy | `kimi-worker` | `fable-architekt` | `opus-builder` |
+| Prosa, langer Text, Argumentation | `kimi-worker` | `fable-architekt` | `opus-builder` |
 | Backend-Feature | `luna-worker` | `opus-builder` | `sol-pruefer` |
 | Harter Bug / Edge-Case / Root-Cause | `opus-builder` | `fable-architekt` | `sol-pruefer` |
 | Tiefe Bug-Jagd (hoher Recall nötig) | `fable-architekt` | `opus-builder` | `luna-worker` |
@@ -94,10 +114,10 @@ Raphael spricht direkt über **Grok 4.5**, nicht über Opus.
 | 3D / visuelle Kreation | `kimi-worker` | `fable-architekt` | `grok-worker` |
 | Recherche / Referenzen finden | `kimi-recherche` | `haiku-worker` | `grok-worker` |
 
-**Kosten-Bremse:** `fable-architekt` steht in genau den Zeilen, wo sein
-Vorsprung belegt ist (Langhorizont, Bug-Recall, End-to-End-Frontend). Für alles
-andere ist er die Zweitwahl oder gar nicht dabei. Ein Gauntlet, in dem Fable
-jedes Stück baut, ist falsch besetzt.
+**Kosten-Bremse:** `fable-architekt` ist fast überall die **Zweitwahl hinter
+Kimi** — der Zwilling kann dasselbe billiger. Erstwahl ist Fable nur bei
+Langhorizont-Strecken über Stunden, wo sein Vorsprung belegt ist. Ein Gauntlet,
+in dem Fable jedes Stück baut, ist falsch besetzt.
 
 ## Wer richtet wen (harte Regel 8: Builder ≠ Kritiker-Familie)
 
@@ -115,12 +135,54 @@ und keiner von beiden prüft Haiku-Output (Regel 8).
 **Wahl innerhalb der erlaubten Kritiker** nach Art der Prüfung:
 - Design-/Ship-Urteil → `sol-pruefer` (Beschluss B1), ersatzweise `kimi-worker`
 - Mechanik, Tests nachfahren, Zahlen → `luna-worker` oder `haiku-worker`
-- Text und Ton → `kimi-worker` oder `sonnet-worker`
+- Text und Ton → `kimi-worker` oder `fable-architekt` (low)
 - Schneller Zweitblick, vierte Familie → `grok-worker`
 - Reine Gegenprobe ohne Schreiben → `kimi-recherche`
 
-Für **ship-relevante** Abnahme bleibt `sol-pruefer` der Standard. Fällt Codex
-aus: `sonnet-worker` als Ersatz und Panel A auf Kimi.
+Für **ship-relevante** Abnahme bleibt `sol-pruefer` der Standard (Beschluss B1),
+im Tandem mit `opus-builder` als Gegenprobe. **Fällt Codex/GPT aus, übernimmt
+`opus-builder` die Ship-Abnahme allein**, solange Panel A auf Kimi läuft
+(Regel 8 gewahrt). `sonnet-worker` kommt nur, wenn auch Opus nicht erreichbar
+ist — er gehört sonst nicht zur Gauntlet-Besetzung.
+
+## Die zwei festen Tandems (Raphael 03.08.2026)
+
+Zwei Paare arbeiten im Gauntlet standardmäßig zusammen, weil sie sich ergänzen
+statt zu überlappen:
+
+### Sol + Opus — das Urteils-Tandem
+
+**Immer zusammen einsetzen, wenn ein Stück beurteilt oder ein harter Fehler
+gejagt wird.** Sie sind verschiedene Familien (GPT / Claude), also erfüllen sie
+Regel 8 gegenseitig — und ihre Stärken greifen ineinander:
+
+| | Sol (GPT, max) | Opus (Claude, max) |
+|---|---|---|
+| Stärke | Terminal-/Agent-Arbeit über lange Horizonte, Ship-Urteil, Chairman | SWE-bench Verified 96,0%, Root-Cause, rauscharmes Review (39,3% Precision) |
+| Schwäche | Eval-Gaming von unabhängigen Prüfern bemerkt → Selbstauskunft nicht blind glauben | teurer pro Urteil |
+| Rolle im Tandem | findet und benennt, führt den Chairman-Teil | verifiziert die Ursache, prüft Sols Fund gegen den echten Code |
+
+**Muster:** Sol urteilt zuerst und nennt EINE Lücke. Opus prüft diesen Fund am
+echten Artefakt und bestätigt oder widerlegt ihn mit Beleg. Erst was beide
+tragen, geht an den Builder zurück. Das neutralisiert Sols Eval-Gaming-Risiko
+und Opus' Neigung, ohne Anstoß nichts zu melden.
+
+Bei Ship-Abnahme: Sol ist die Erstwahl (Beschluss B1), Opus die Gegenprobe.
+
+### Kimi + Fable — das Denk-/Bau-Tandem
+
+**Austauschbar, nicht additiv.** Die beiden sind sich fachlich ähnlich (Index
+57,11 vs. 59,86; beide stark bei Frontend, langem Kontext, Denken). Deshalb:
+
+- **Default ist Kimi.** Er macht dasselbe zu einem Bruchteil des Preises.
+- **Fable kommt nur, wenn Kimi zweimal an derselben Lücke gescheitert ist** oder
+  wenn das Stück ausdrücklich Langhorizont-Autonomie über Stunden braucht.
+- **Nie beide am selben Stück gleichzeitig** — das ist doppelt bezahlt. Ausnahme:
+  bewusstes Varianten-Duell (unten), dann aber mit einer dritten Familie als
+  Kritiker.
+- Als **Kritiker füreinander sind sie gesperrt**? Nein — verschiedene Familien
+  (Kimi / Claude), also erlaubt. Kimi darf Fable prüfen und umgekehrt. Das ist
+  sogar die günstigste Art, Fable-Output abzunehmen.
 
 ## Zwei-Familien-Varianten (Tournament im Gauntlet)
 
@@ -134,7 +196,8 @@ per Blind-A/B wählen zu lassen. Bewährte Paare:
 | Verkaufstext | `kimi-worker` | `opus-builder` | `sol-pruefer` |
 | Backend-Modul | `luna-worker` | `grok-worker` | `opus-builder` |
 | Prototyp | `grok-worker` | `kimi-worker` | `luna-worker` |
-| Schwerstes Stück | `fable-architekt` | `kimi-worker` | `sol-pruefer` |
+| Schwerstes Stück | `kimi-worker` | `fable-architekt` | `sol-pruefer` |
+| Urteil über ein fertiges Stück | `sol-pruefer` | `opus-builder` | (immer als Tandem, siehe oben) |
 
 Der Kritiker sieht **nicht**, welche Variante von wem ist. Die verlierende
 Variante wird nicht weggeworfen: ihre beste Idee wandert per einer Lücken-Ansage

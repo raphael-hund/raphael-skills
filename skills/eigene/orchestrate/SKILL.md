@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-version: 1.1.0
+version: 1.2.0
 description: >
   DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle
   Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok;
@@ -101,7 +101,9 @@ Gauntlet-Runden). Kombinieren statt künstlich trennen.
 Bauen und Prüfen nie dieselbe Familie; `model:'opus'|'sonnet'|'haiku'` allein
 zählt **nicht** — GPT/Kimi starten nur über `agentType` oder natives Harness.
 Isolierbare Sub-Actions gehen zuerst an `luna-worker`, nicht ans Cockpit.
-**Nie Fable/Opus als Subagent.** Zuteilung je Aufgabenklasse, Harness-Wahl
+**Fable/Opus nur über `agentType:'fable-architekt'` / `'opus-builder'`**
+(Freigabe 03.08.2026, teuer — Einsatzregeln in orchestrate-gauntlet), nie als
+roher `model:`-Override. Zuteilung je Aufgabenklasse, Harness-Wahl
 (Terminal/Desktop-MCP/Codex-nativ/Kimi-nativ) und Degraded-Pfade:
 `references/cross-model-harness.md`. Auftragskontrakt: `references/dispatch.md`.
 
@@ -248,7 +250,8 @@ Planer-Agenten. **Der Leader schreibt nie selbst den finalen Plan.**
 
 - **Kein Solo bei Substanz.** Nur <5-Min-Kleinstarbeit läuft ohne Flotte —
   und wird explizit als SOLO begründet.
-- **Nie Fable/Opus als Subagent.**
+- **Fable/Opus nur über die Agenten `fable-architekt`/`opus-builder`** (mit
+  deren Leitplanken), nie als roher `model:`-Override; Fable auf low/medium.
 - **Kein Reward-Hacking:** keine Checks aufweichen, keine Tests löschen oder
   überspringen, nichts erfinden, um grün zu werden. Gleichstand nach Änderung
   = revertieren.

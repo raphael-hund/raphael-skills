@@ -1,12 +1,13 @@
 ---
 name: orchestrate-gauntlet
-version: 2.0.0
+version: 2.1.0
 description: >
   Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine
   inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter
-  Graph, mit überlappender Cross-Family-Besetzung (Fable, Opus, Luna, Sol,
-  Terra, Haiku, Grok auf max; Kimi K3 auf high — jede Familie kann mehrere
-  Rollen) und einem Kritiker, der NIE aus der Familie des Builders kommt.
+  Graph, mit überlappender Cross-Family-Besetzung (Opus, Luna, Sol, Terra,
+  Haiku, Grok auf max; Kimi K3 auf high; Fable bewusst auf low/medium) plus
+  zwei festen Tandems — Sol+Opus fürs Urteil, Kimi+Fable als austauschbares
+  Denk-Paar — und einem Kritiker, der NIE aus der Familie des Builders kommt.
   Läuft als Dauerlauf über Stunden: Welle für Welle, immer wieder neu, bis die
   Zugewinne klein sind.
   Trigger: "/orchestrate-gauntlet", "Gauntlet", "Gauntlet-Loop", "gegen eine
@@ -39,7 +40,7 @@ completion_criteria:
   - "Nach jeder Welle lief ein Glättungs-Schritt; das Ergebnis wirkt als ein Stück"
   - "Gestoppt wurde begründet (Zugewinn klein / Budget / Ansage) — nicht bei einer festen Rundenzahl"
   - "Bei Dauerlauf: Abbruchbedingung stand VOR dem ersten Fire fest, der Cron-Job ist mit ID protokolliert, und jede Welle hat eine eigene Run-ID im workbench.md"
-  - "Effort ist je Auftrag explizit gesetzt (max überall, Kimi high) — nie geerbt"
+  - "Effort ist je Auftrag explizit gesetzt (max überall, Kimi high, Fable low/medium) — nie geerbt"
 ---
 
 # orchestrate-gauntlet — Graph + Gauntlet über alle Familien
@@ -76,26 +77,41 @@ und hält Regel 8 (Builder ≠ Kritiker) immer erfüllbar.
 
 | agentType | Familie | Effort | Stärke | Kann außerdem |
 |---|---|---|---|---|
-| `fable-architekt` | Claude | max | **Die schwersten Stücke.** Langhorizont-autonome Arbeit, Feature end-to-end, tiefe Bug-Jagd (61,1% Recall), Frontend als Ganzes | Kritiker mit hohem Bug-Recall |
+| `fable-architekt` | Claude | **low/medium** | **Langhorizont über Stunden.** Feature end-to-end, tiefe Bug-Jagd (61,1% Recall). Stärkstes Modell im Feld (Index 59,86) — Kraft kommt aus dem Modell, nicht aus Effort | Kritiker mit hohem Bug-Recall |
 | `opus-builder` | Claude | max | Terminal-/Agent-Arbeit, Debugging, Root-Cause; SWE-bench Verified 96,0% | Kritiker (rauscharm), Glätter, Rechercheur |
 | `luna-worker` | GPT | max | **Motor.** Goal je Stück: Mechanik, Tests, Fix-Schleifen, Backend | Kritiker (Mechanik/Zahlen), Glätter |
 | `terra-bulk` | GPT | max | Architektur, Migration, Multi-File-Volumen | Kritiker (Konsistenz über viele Dateien) |
 | `sol-pruefer` | GPT | max | Ship-Urteil, Chairman, finale Abnahme | **auch Builder**: harte Code-Fälle, Planung |
 | `haiku-worker` | Claude | max | Massen-Lesen, Boilerplate, billige Schleifen | **auch Builder** (mechanische Edits), Kritiker (Screenshot-Vergleich) |
-| `kimi-worker` | Kimi K3 | high | Frontend/UI, DE-Texte, Kreatives, 3D — führt die Frontend-Arena an | Kritiker (Design/Ton), Glätter |
+| `kimi-worker` | Kimi K3 | high | Frontend/UI, DE-Texte, Kreatives, 3D — **und schweres Denken**: Platz 4 im Intelligence Index (57,11), 1M Kontext, Thinking immer an | Kritiker (Design/Ton/Analyse), Glätter, Deep-Search |
 | `grok-worker` | Grok 4.5 | max | Tempo und Volumen, Prototypen, Tool-Use | Kritiker (vierte Perspektive) |
 | `kimi-recherche` | Kimi K3 | high | Lesende Gegenprobe, Latten-Suche | Kritiker ohne Schreibrechte |
 
-**Effort:** alles auf **max**, außer Kimi auf **high** (Raphael 03.08.2026).
-Immer explizit im Auftrag mitgeben — sonst erbt der Subagent das Cockpit-Setup.
-`sonnet-worker` gehört nicht zur Gauntlet-Besetzung; nur Notnagel bei Ausfall.
+**Effort (Raphael 03.08.2026):** alles auf **max** — außer **Kimi auf high**
+(Thinking ist immer an, max verbrennt versteckte Denk-Tokens) und **Fable auf
+low/medium**. Fable ist stark genug ohne Denk-Aufschlag; genau der Aufschlag
+macht ihn unbezahlbar. Braucht ein Stück wirklich maximales Nachdenken, ist das
+`opus-builder` oder `sol-pruefer` auf max — nicht Fable auf max.
+Immer explizit im Auftrag mitgeben. `sonnet-worker` ist nur Notnagel bei Ausfall.
 
-**Fable und Opus sind Teil der Flotte** (Freigabe 03.08.2026 — die frühere
-Regel „nie Fable/Opus als Subagent" gilt im Gauntlet nicht mehr). Sie sind aber
-teuer: `fable-architekt` nur für das schwerste Stück und den Dauerlauf, wo sein
-Vorsprung belegt ist. Ein Gauntlet, in dem Fable jedes Stück baut, ist falsch
-besetzt. Beide zählen als **Claude-Familie** für Regel 8 — Fable prüft nie Opus,
-keiner von beiden prüft Haiku.
+### Die zwei festen Tandems
+
+**Sol + Opus = Urteil.** Immer zusammen, wenn beurteilt oder ein harter Fehler
+gejagt wird. Sol findet und benennt EINE Lücke, Opus verifiziert sie am echten
+Code mit Beleg. Erst was beide tragen, geht zurück an den Builder. Das
+neutralisiert Sols Eval-Gaming-Risiko. Verschiedene Familien → Regel 8 erfüllt.
+
+**Kimi + Fable = austauschbares Denk-Paar, nicht additiv.** Beide sind stark bei
+Denken, Frontend und langem Kontext (Index 57,11 vs. 59,86). **Default ist
+Kimi** — dasselbe zum Bruchteil des Preises. Fable kommt erst, wenn Kimi zweimal
+an derselben Lücke scheitert oder das Stück echte Langhorizont-Autonomie über
+Stunden braucht. Nie beide gleichzeitig am selben Stück. Als Kritiker
+füreinander sind sie erlaubt (verschiedene Familien) — das ist die günstigste
+Art, Fable-Output abzunehmen.
+
+**Fable und Opus sind Teil der Flotte** (Freigabe 03.08.2026). Beide zählen als
+**Claude-Familie** für Regel 8 — Fable prüft nie Opus, keiner von beiden prüft
+Haiku.
 
 **Cockpit** zerlegt, entscheidet, destilliert und fällt das Letzt-Urteil über
 das geglättete Ganze. Raphaels direkte Ansprache läuft über **Grok 4.5**.
