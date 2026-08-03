@@ -171,6 +171,15 @@ eigene Referenz-Anzeige, eine Testsuite, ein Latenz-Budget, ein Referenztext.
 - Sie darf unerreichbar sein. Ihr Zweck ist, dass niemand bei „ganz okay für
   KI" stehenbleibt.
 
+### 1b. Arbeitsordner wählen (bevor irgendetwas geschrieben wird)
+
+`gauntlet/` gehört in einen Ordner, in dem die Session **schreiben darf und
+soll** — Standard: `<projekt>/scratch/gauntlet/` des Werkstück-Repos.
+**Nie in Kunden-Plan-/Vault-Ordner schreiben** (`/root/clients/...` ist oft
+read-only für die Session — belegter EACCES-Fall 03.08.); Kundenmaterial wird
+gelesen, Arbeitsdateien (Graph, Mandat, workbench, Screenshots, Locks) liegen
+im Projekt-`scratch/`. Vor Welle 1 einmal `touch`-testen.
+
 ### 2. Graph zeichnen (vor dem ersten Bau)
 
 Nodes, Routen, Checkpoints, Gates, Frozen Rules — Format in
