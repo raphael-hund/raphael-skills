@@ -40,7 +40,7 @@ Modellfamilien erstellt): `claims-batch1.md`, `claims-batch2.md` ebendort.
   8-10k$/Monat (ype9PrgRR-w.txt:738-739) — kommerzielles Interesse beim
   Bewerten von Ratschlaegen mitdenken.
 
-## Gegenstimmen (Guardrail, nicht als Fakt uebernehmen)
+## Externe Kommentare (nur Kontext — im Modus ohne Gewicht, Raphael-Doktrin: Hamzas Lehre gilt)
 
 Oeffentliche Kritik nennt wiederkehrend: Widersprueche um Materialismus,
 Geschlechterrollen, Kursverkauf, Guru-Abhaengigkeit:
