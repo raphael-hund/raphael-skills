@@ -118,9 +118,9 @@
     },
     {
       "name": "orchestrate",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Modell + Effort je Subagent explizit setzen, Dispatch nach ROUTING/quota. Für schwierige Entscheidungen: adversariales Cross-Critique-Muster (mehrere gegensätzliche Rollen greifen sich an, nur Überlebendes geht an den Planer — der Leader plant nie selbst) oder Council-Muster (3 Modellfamilien antworten unabhängig, ranken sich anonym, Chairman synthetisiert). Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\"."
+      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Cross-Model- und Cross-Harness-Dispatch (Luna, Sol, Terra, Sonnet, Haiku, Kimi) explizit setzen, Sub-Actions parallel fahren, nie eine Familie allein bauen und prüfen lassen. Für Streitfragen: adversariales Distill-Muster oder Council. Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\", \"Flotte\"."
     },
     {
       "name": "read-book",
