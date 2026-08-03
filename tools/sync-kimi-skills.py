@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Build and install deterministic Kimi Code 0.28.1 skill adapters.
+"""Build, verify, and install deterministic Kimi Code skill packages.
 
 The canonical Raphael skills remain under ``skills/**/SKILL.md``.  Source
-adapters in ``kimi/skills`` are intentionally tiny: they point at the
-canonical source and document the Kimi tool mapping.  Six Kimi-native skills
-are supplied by a separate owner and are checked, never generated, here.
+adapters in ``kimi/skills`` are intentionally tiny, while ``canonical-link``
+packages are verified without generation. Six Kimi-native skills are supplied
+by a separate owner and are checked, never generated, here.
 
 Usage::
 
@@ -42,7 +42,7 @@ TARGET_VERSION = "kimi-code-0.28.1"
 NATIVE_KIMI_AGENT = {"dynamic-workflow", "orchestrate", "sdd", "ultra-loop", "kimi-first"}
 NATIVE_KIMI_REVIEW = {"kimi-sol"}
 NATIVE_KIMI = NATIVE_KIMI_AGENT | NATIVE_KIMI_REVIEW
-VALID_MODES = {"source-adapter", "native-kimi-agent", "native-kimi-review"}
+VALID_MODES = {"source-adapter", "canonical-link", "native-kimi-agent", "native-kimi-review"}
 
 KIMI_TOOLS = (
     "AskUserQuestion",
@@ -124,11 +124,13 @@ def load_codex_registry() -> dict[str, dict[str, Any]]:
     return result
 
 
-def _native_mode(name: str) -> str:
+def _native_mode(name: str, codex_entry: dict[str, Any]) -> str:
     if name in NATIVE_KIMI_AGENT:
         return "native-kimi-agent"
     if name in NATIVE_KIMI_REVIEW:
         return "native-kimi-review"
+    if codex_entry.get("mode") == "canonical-link":
+        return "canonical-link"
     return "source-adapter"
 
 
@@ -143,7 +145,7 @@ def load_registry() -> dict[str, dict[str, Any]]:
 
     ``kimi/compatibility.json`` deliberately stores the stable source/mode
     mapping.  Rationale, triggers, aliases, and dependency notes are inherited
-    from the Codex inventory so the 36-name set has one deterministic source of
+    from the Codex inventory so the shared name set has one deterministic source of
     truth while the Kimi registry remains small and reviewable.
     """
     data = _load_json(REGISTRY_PATH, "Kimi registry")
@@ -179,7 +181,7 @@ def load_registry() -> dict[str, dict[str, Any]]:
         source = entry.get("source")
         mode = entry.get("mode")
         expected_source = _expected_source(name, source_entry)
-        expected_mode = _native_mode(name)
+        expected_mode = _native_mode(name, source_entry)
         if source != expected_source:
             raise RuntimeError(f"{name}: source {source!r} != {expected_source!r}")
         if mode != expected_mode or mode not in VALID_MODES:
@@ -323,7 +325,11 @@ def render_adapter(name: str, entry: dict[str, Any], source_description: str) ->
 
 
 def _native_expected_paths(registry: dict[str, dict[str, Any]]) -> list[Path]:
-    return [KIMI_SKILLS_ROOT / name / "SKILL.md" for name, entry in registry.items() if entry["mode"] != "source-adapter"]
+    return [
+        KIMI_SKILLS_ROOT / name / "SKILL.md"
+        for name, entry in registry.items()
+        if entry["mode"] in {"native-kimi-agent", "native-kimi-review"}
+    ]
 
 
 def _source_entries(registry: dict[str, dict[str, Any]]) -> dict[str, tuple[Path, dict[str, Any]]]:
@@ -404,6 +410,42 @@ def validate_kimi_skill(path: Path, expected_name: str, *, strict_platform: bool
         errors.append("description contains ASCII angle brackets")
     if len(text.split("---", 2)[-1].strip()) < 20:
         errors.append("skill body is unexpectedly empty")
+    return errors
+
+
+def canonical_bridge_target(entry: dict[str, Any]) -> str:
+    canonical_dir = (REPO_ROOT / entry["source"]).parent
+    return os.path.relpath(canonical_dir, KIMI_SKILLS_ROOT)
+
+
+def validate_canonical_link(name: str, entry: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    bridge = KIMI_SKILLS_ROOT / name
+    expected_target = canonical_bridge_target(entry)
+    if not bridge.is_symlink():
+        return [f"repository bridge is not a symlink: {bridge}"]
+    actual_target = os.readlink(bridge)
+    if actual_target != expected_target:
+        errors.append(f"repository bridge target {actual_target!r} instead of {expected_target!r}")
+
+    canonical_skill = REPO_ROOT / entry["source"]
+    if not canonical_skill.is_file():
+        errors.append(f"canonical SKILL.md missing: {canonical_skill}")
+        return errors
+    if (bridge / "SKILL.md").resolve() != canonical_skill.resolve():
+        errors.append("repository bridge does not resolve to the canonical SKILL.md")
+
+    skill_result = validate_skill_file(canonical_skill)
+    errors.extend(skill_result.errors)
+    frontmatter = extract_frontmatter(canonical_skill.read_text(encoding="utf-8")) or []
+    fields = parse_top_level_keys(frontmatter)
+    if set(fields) != {"name", "description", "metadata"}:
+        errors.append(f"canonical frontmatter keys {sorted(fields)} instead of ['description', 'metadata', 'name']")
+    if _plain_scalar(fields.get("name", {}).get("raw", "")) != name:
+        errors.append(f"canonical name is not {name!r}")
+    description = _collapse(fields.get("description", {}).get("raw", ""))
+    if not 1 <= len(description) <= 1024:
+        errors.append("canonical description must be 1..1024 characters")
     return errors
 
 
@@ -524,6 +566,10 @@ def check_outputs(registry: dict[str, dict[str, Any]], sources: dict[str, tuple[
                 for error in validate_kimi_skill(path, name):
                     print(f"INVALID Kimi skill {path}: {error}")
                     ok = False
+        elif entry["mode"] == "canonical-link":
+            for error in validate_canonical_link(name, entry):
+                print(f"INVALID canonical link {name}: {error}")
+                ok = False
         else:
             path = KIMI_SKILLS_ROOT / name / "SKILL.md"
             if not path.is_file():
@@ -571,6 +617,15 @@ def build(*, check: bool = False, dry_run: bool = False) -> int:
         ok, _ = check_outputs(registry, sources)
         print("Kimi adapter check: " + ("OK" if ok else "FAIL"))
         return 0 if ok else 1
+    canonical_invalid = False
+    for name, entry in sorted(registry.items()):
+        if entry["mode"] != "canonical-link":
+            continue
+        for error in validate_canonical_link(name, entry):
+            print(f"INVALID canonical link {name}: {error}")
+            canonical_invalid = True
+    if canonical_invalid:
+        return 1
     expected = expected_files(registry, sources)
     stale = stale_adapter_paths(registry)
     if dry_run:

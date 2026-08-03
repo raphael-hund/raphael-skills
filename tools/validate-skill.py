@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """validate-skill.py — dependency-free SKILL.md frontmatter linter.
 
-Prueft, dass jede SKILL.md ein YAML-Frontmatter mit den Pflichtfeldern
-`name`, `version`, `description`, `class`, `scope`, `sensitivity`,
-`completion_criteria` (v5-Plan 9.1) hat und dass diese nicht leer sind.
+Prueft das bestehende Raphael-Frontmatter oder das portable Agent-Skills-
+Frontmatter (`name`, `description`, string-valued `metadata`). Portable
+Raphael-Felder werden aus namespaced Metadata normalisiert, sodass Index und
+Abhaengigkeitspruefung fuer beide Formen denselben Vertrag sehen.
 Die Werte von class/scope/sensitivity werden weich geprueft (unbekannt = nur
 Warnung), empfohlene Felder fehlen = nur Warnung. Nutzt NUR die Python-
 Standardbibliothek (kein PyYAML, kein Netz) — laeuft ueberall, auch im
@@ -17,6 +18,7 @@ Exit-Code 0 = alle SKILL.md gueltig. Exit-Code 1 = mindestens ein Fehler.
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -39,6 +41,26 @@ RECOMMENDED_FIELDS = ["provenance", "eval_scorecard", "expires", "loads", "requi
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 NAME_RE = re.compile(r"^[a-z][a-z0-9-]*$")
 TOP_KEY_RE = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*):\s*(.*)$")
+METADATA_KEY_RE = re.compile(r"^\s+([A-Za-z0-9][A-Za-z0-9_-]*):\s*(.*)$")
+PORTABLE_TOP_LEVEL_FIELDS = {"name", "description", "metadata"}
+PORTABLE_METADATA_FIELDS = {
+    "raphael-version": "version",
+    "raphael-class": "class",
+    "raphael-scope": "scope",
+    "raphael-sensitivity": "sensitivity",
+    "raphael-loads": "loads",
+    "raphael-requires-skills": "requires_skills",
+    "raphael-completion-criteria": "completion_criteria",
+}
+PORTABLE_JSON_LIST_FIELDS = {
+    "raphael-loads",
+    "raphael-requires-skills",
+    "raphael-completion-criteria",
+}
+LOCAL_RESOURCE_RE = re.compile(
+    r"(?<![A-Za-z0-9_./-])((?:references|scripts|assets)/[A-Za-z0-9._@/+:-]+)"
+)
+REPO_RESOURCE_RE = re.compile(r"(/root/raphael-skills/[A-Za-z0-9._@/+:-]+)")
 
 # Erlaubte Werte fuer die leichten Label-Felder. Unbekannte Werte geben nur
 # eine WARNUNG (nicht rot), damit aeltere Skills gruen bleiben (additive Haertung).
@@ -143,6 +165,104 @@ def parse_top_level_keys(fm_lines: list[str]) -> dict[str, dict]:
     return result
 
 
+def _parse_quoted_metadata_scalar(raw: str) -> tuple[str | None, str | None]:
+    value = raw.strip()
+    if len(value) < 2 or value[0] != value[-1] or value[0] not in ("'", '"'):
+        return None, "muss ein gequoteter String sein"
+    if value[0] == "'":
+        return value[1:-1].replace("''", "'"), None
+    try:
+        parsed = json.loads(value)
+    except json.JSONDecodeError as exc:
+        return None, f"ungueltiger gequoteter String: {exc}"
+    if not isinstance(parsed, str):
+        return None, "muss ein String sein"
+    return parsed, None
+
+
+def parse_metadata_strings(fm_lines: list[str]) -> tuple[dict[str, str], list[str]]:
+    values: dict[str, str] = {}
+    errors: list[str] = []
+    metadata_line: int | None = None
+    for index, line in enumerate(fm_lines):
+        if re.match(r"^metadata:\s*$", line):
+            metadata_line = index
+            break
+    if metadata_line is None:
+        return values, errors
+
+    for line in fm_lines[metadata_line + 1:]:
+        if line and not line[0].isspace():
+            break
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        match = METADATA_KEY_RE.match(line)
+        if match is None:
+            errors.append(f"metadata-Zeile nicht als String-Feld lesbar: {line.strip()!r}")
+            continue
+        key, raw = match.groups()
+        if key in values:
+            errors.append(f"metadata-Schluessel doppelt: {key}")
+            continue
+        parsed, error = _parse_quoted_metadata_scalar(raw)
+        if error is not None:
+            errors.append(f"metadata.{key} {error}")
+            continue
+        assert parsed is not None
+        values[key] = parsed
+    return values, errors
+
+
+def _json_string_list(value: str, label: str, sf: SkillFile) -> list[str]:
+    try:
+        parsed = json.loads(value)
+    except json.JSONDecodeError as exc:
+        sf.fail(f"metadata.{label} ist kein gueltiges JSON-Array: {exc}")
+        return []
+    if not isinstance(parsed, list) or any(not isinstance(item, str) or not item for item in parsed):
+        sf.fail(f"metadata.{label} muss ein JSON-Array aus nicht-leeren Strings sein")
+        return []
+    return parsed
+
+
+def _validate_portable_resources(
+    path: Path,
+    text: str,
+    metadata: dict[str, str],
+    sf: SkillFile,
+) -> None:
+    repo_root = Path(__file__).resolve().parent.parent
+    loads = _json_string_list(metadata.get("raphael-loads", "[]"), "raphael-loads", sf)
+    for declared in loads:
+        candidate = Path(declared)
+        if candidate.is_absolute() or ".." in candidate.parts:
+            sf.fail(f"raphael-loads enthaelt unportablen Pfad: {declared}")
+            continue
+        resolved = path.parent / candidate
+        if not resolved.exists():
+            sf.fail(f"raphael-loads verweist auf fehlende Ressource: {declared}")
+
+    referenced = set(LOCAL_RESOURCE_RE.findall(text))
+    for raw_declared in sorted(referenced):
+        declared = raw_declared.rstrip(".,;:")
+        candidate = Path(declared)
+        if ".." in candidate.parts:
+            sf.fail(f"Markdown-Ressource verlaesst den Skill: {declared}")
+            continue
+        if not (path.parent / candidate).exists():
+            sf.fail(f"Markdown verweist auf fehlende lokale Ressource: {declared}")
+
+    for raw_declared in sorted(set(REPO_RESOURCE_RE.findall(text))):
+        declared = raw_declared.rstrip(".,;:")
+        candidate = Path(declared)
+        try:
+            candidate.relative_to(repo_root)
+        except ValueError:
+            continue
+        if not candidate.exists():
+            sf.fail(f"Markdown verweist auf fehlende Repository-Ressource: {declared}")
+
+
 def validate_skill_file(path: Path) -> SkillFile:
     sf = SkillFile(path)
     try:
@@ -157,6 +277,22 @@ def validate_skill_file(path: Path) -> SkillFile:
         return sf
 
     fields = parse_top_level_keys(fm_lines)
+    if "metadata" in fields:
+        unexpected = sorted(set(fields) - PORTABLE_TOP_LEVEL_FIELDS)
+        if unexpected:
+            sf.fail(f"portables Frontmatter hat unerlaubte Top-Level-Felder: {unexpected}")
+        metadata, metadata_errors = parse_metadata_strings(fm_lines)
+        for error in metadata_errors:
+            sf.fail(error)
+        normalized = dict(fields)
+        for metadata_key, field_name in PORTABLE_METADATA_FIELDS.items():
+            if metadata_key in metadata:
+                normalized[field_name] = {"raw": metadata[metadata_key], "nonempty": bool(metadata[metadata_key])}
+        fields = normalized
+        for metadata_key in sorted(PORTABLE_JSON_LIST_FIELDS - {"raphael-loads"}):
+            if metadata_key in metadata:
+                _json_string_list(metadata[metadata_key], metadata_key, sf)
+        _validate_portable_resources(path, text, metadata, sf)
     sf.fields = {k: v["raw"] for k, v in fields.items()}
 
     for req in REQUIRED_FIELDS:
