@@ -178,8 +178,45 @@ function cmdList(pos) {
   console.log(`\n${idx.images.length} Bild(er).`);
 }
 
+function hilfe() {
+  console.log("bilder.mjs <add|reject|list> …  (siehe references/bildgenerierung.md)");
+  console.log("Flags fuer add: --typ --motiv --style --modell --ref --prompt --quelle");
+  // Kein zweiter Doppelstrich in dieser Ausgabe: die Wache
+  // run-flag-hilfe-check liest jedes --wort als angebotenes Flag, und ein
+  // Tippfehler-BEISPIEL sieht fuer sie aus wie ein erfundenes Angebot
+  // (gemessen 03.08.2026, ihr eigener Fehlalarm auf diese Zeile).
+  console.log("Ein unbekanntes Flag bricht ab (Exit 2) — ein vertipptes motiv");
+  console.log("legte den Eintrag sonst still mit motiv \"TBD\" an.");
+}
+
 const [cmd, ...rest] = process.argv.slice(2);
+
+// `--help` galt bis 03.08.2026 als "Unbekanntes Kommando" und endete mit
+// Exit 2 — die Hilfe kam nur beim Aufruf GANZ ohne Argument. Wer das Werkzeug
+// zum ersten Mal anfasst, tippt aber --help, und bekam einen Fehler auf die
+// Frage "was kannst du?". Dieselbe Klasse wie bei scan-ai-slop am 31.07.
+if (cmd === '--help' || cmd === '-h') { hilfe(); process.exit(0); }
+
 const { flags, pos } = parseFlags(rest);
+
+// parseFlags nimmt JEDES --wort entgegen und legt es in `flags` ab. Wer sich
+// vertippt ("--motv Kueche"), bekommt kein Wort der Warnung: der Eintrag wird
+// mit motiv "TBD" angelegt, und der Tippfehler faellt erst auf, wenn jemand
+// den Index liest. `bilder.mjs list --erfunden x` lief sogar mit Exit 0 durch
+// und las den aktuellen Ordner (gemessen 03.08.2026).
+//
+// Dieselbe Klasse wie beim Kommando unten — deshalb dieselbe Antwort: Exit 2,
+// weil das Werkzeug nichts angesehen und nichts beurteilt hat.
+const FLAG_ERLAUBT = ['typ', 'motiv', 'style', 'modell', 'ref', 'prompt', 'quelle'];
+{
+  const fremd = Object.keys(flags).filter((k) => !FLAG_ERLAUBT.includes(k));
+  if (fremd.length) {
+    console.error(`Unbekanntes Flag: ${fremd.map((k) => `--${k}`).join(', ')}`);
+    console.error(`Erlaubt: ${FLAG_ERLAUBT.map((k) => `--${k}`).join(' ')}`);
+    process.exit(2);
+  }
+}
+
 switch (cmd) {
   case "add": cmdAdd(pos, flags); break;
   case "reject": cmdReject(pos); break;
@@ -193,6 +230,6 @@ switch (cmd) {
       console.error("bilder.mjs <add|reject|list> …  (siehe references/bildgenerierung.md)");
       process.exit(2);
     }
-    console.log("bilder.mjs <add|reject|list> …  (siehe references/bildgenerierung.md)");
+    hilfe();
     process.exit(0);
 }

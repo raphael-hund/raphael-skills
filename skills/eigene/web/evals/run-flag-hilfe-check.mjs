@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // run-flag-hilfe-check.mjs — nennt --help jedes Flag, das das Werkzeug kennt?
 //
-// LAUFZEIT: 14s (gemessen 02.08.2026) — sieben Werkzeuge beider Skills,
+// LAUFZEIT: 16s (gemessen 03.08.2026) — acht Werkzeuge beider Skills,
 // je ein --help-Aufruf.
 //
 //   node evals/run-flag-hilfe-check.mjs
 //
 // WARUM (Befund 02.08.2026)
-// Sieben Werkzeuge beider Skills fuehren eine Liste erlaubter Flags
+// Acht Werkzeuge beider Skills fuehren eine Liste erlaubter Flags
 // (`FLAG_ERLAUBT`) und brechen bei allem anderen mit Exit 2 ab. Das ist richtig — ein verschlucktes
 // Flag prueft etwas anderes als bestellt.
 //
@@ -95,7 +95,7 @@ for (const ort of ORTE) {
 }
 
 // Eine leere Liste sieht wie ein sauberer Lauf aus. Untergrenze unter dem
-// Ist-Stand (7 am 02.08.2026), damit sie stilles Nichtstun faengt.
+// Ist-Stand (8 am 03.08.2026), damit sie stilles Nichtstun faengt.
 const MINDESTENS = 4;
 if (werkzeuge.length < MINDESTENS) {
   console.error(`Nur ${werkzeuge.length} Werkzeuge mit Flag-Liste gefunden (erwartet mindestens ${MINDESTENS}).`);
