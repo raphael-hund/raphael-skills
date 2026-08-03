@@ -31,7 +31,10 @@ completion_criteria:
 `/root/raphael-command-center/ops/quota.yaml`,
 `/root/raphael-command-center/ops/MODELL-MATRIX.md` (Modelle & Effort;
 ersetzt das beim Aufräumen 274a4ff gelöschte KLARER-PLAN.md Kap. 3 —
-Historie bei Bedarf: `git show 274a4ff^:KLARER-PLAN.md`).
+Historie bei Bedarf: `git show 274a4ff^:KLARER-PLAN.md`),
+`/root/raphael-command-center/ops/HARNESS-ROUTER-MATRIX.md` (NEU 03.08.:
+Harness-Ebene — welches Cockpit/Werkzeug, Router-Entscheidungsbaum,
+T3-/Codex-/Grok-Regeln).
 
 ## Zweck (1 Satz)
 
@@ -61,6 +64,24 @@ niemand prüft die eigene Arbeit.
    Aktionen. Untrusted rein ODER mächtig raus, nie beides in einer Session.
 8. **Roast-at-Delivery (Regel 18)** — vor jeder Auslieferung ein benannter adversarialer
    Schritt (frische Session, andere Familie) zerreißt das fertige Stück.
+
+## Router-Entscheidungsbaum (NEU 03.08.2026 — Reihenfolge zählt)
+
+1. Klein/inline (<5 Min) → selbst machen.
+2. Denken/Entscheiden/Urteil → Cockpit (Fable high; Fallback Opus 1M).
+3. Normale Bau-Arbeit → `sonnet-worker`; Massen-Lesen/billige Mechanik → `haiku-worker`.
+4. Mechanik/Tests/Recherche, Claude-Quota schonen → `luna-worker` (**Luna bevorzugt**,
+   Raphael-Ansage 03.08.); Architektur/Bulk → `terra-bulk`.
+5. Frontend-Code / deutsche Verkaufstexte → `kimi-worker` (immer K3).
+6. Ship-Review → `sol-pruefer`; bei Codex-Ausfall Ersatz `claude-sonnet-5`,
+   Panel A auf Kimi (Regel 8 gewahrt).
+7. Dritte-Familie-Zweitmeinung → `kimi-recherche`.
+8. Computer-Use/Browser → Kimi steuert (Tools nur in Claude-Sessions).
+
+Quota-Fehler = weiterlaufen lassen, das Gateway rotiert selbst; sichtbarer
+Nicht-Fallback ist ein Vorfall. Grok/xAI bleibt gesperrt bis Signatur.
+Harness-Ebene (Claude Code vs. Codex vs. T3 vs. Hermes): siehe
+HARNESS-ROUTER-MATRIX.md.
 
 ## Adversariales Distill-Muster (für wichtige Entscheidungen)
 
