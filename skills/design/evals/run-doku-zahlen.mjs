@@ -213,7 +213,21 @@ console.log('\nDoku-Zahlen (design) — verspricht SKILL.md noch den echten Umfa
   const sab = md.match(/run-sabotage\.mjs — (\d+) F(?:ä|ae)lle/);
   const r = lauf('run-sabotage.mjs');
   const echtSab = r.kaputt ? null : gesamtzahl(r.aus);
-  zeile(sab && echtSab !== null && Number(sab[1]) === echtSab,
+
+  // "Konnte nicht messen" ist nicht "Zahl falsch". Der Sabotage-Lauf hat eine
+  // Sperre gegen zwei gleichzeitige Laeufe (sonst schreiben sie sich
+  // beschaedigte Detektoren als Original zurueck). Greift sie, kommt Exit 2
+  // und keine Zahl — und diese Wache meldete dann "Scorecard sagt 4, Lauf
+  // faehrt ?" als FEHLER. Gemessen 02.08.2026, waehrend nebenan der
+  // Umfang-Waechter lief: die Zahl stimmte, nur messen liess sie sich nicht.
+  //
+  // Eine Wache, die eine belegte Sperre als falsche Doku ausgibt, schickt den
+  // naechsten Leser auf eine Zahlenjagd, die es nicht gibt.
+  const gesperrt = /laeuft bereits|Sperre/i.test(r.aus || '');
+  if (gesperrt || (echtSab === null && !r.kaputt)) {
+    zeile(true, `Scorecard: sagt ${sab ? sab[1] : '?'} Sabotage-Faelle — UNGEPRUEFT (Lauf gesperrt oder ohne Zahl)`);
+    console.log('         Ein zweiter Sabotage-Lauf ist blockiert. Einzeln nachfahren.');
+  } else zeile(sab && echtSab !== null && Number(sab[1]) === echtSab,
     `Scorecard: sagt ${sab ? sab[1] : '?'} Sabotage-Faelle, Lauf faehrt ${echtSab ?? '?'}`,
     sab && Number(sab[1]) === echtSab ? null : 'Zahl in der Scorecard nachziehen');
 }
