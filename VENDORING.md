@@ -21,6 +21,23 @@ der Web-Recherche-Kandidatenliste freigegeben (siehe „Vendoring-Runde 3" unten
 NICHT vendored (nur als Doku-Verweis erlaubt, kein Code übernommen): steipete/agent-scripts,
 anthropics/skills, SkillSpector.
 
+### Frontend-Referenzbibliothek — 2026-08-02
+
+`skills/eigene/web/references/frontend-referenzbibliothek.md` basiert auf der
+oeffentlichen Link-Sammlung [A Large Resource Library for AI-Built React and
+React Native Interfaces](https://x.com/LexnLin/status/2083898950755471520)
+von Leon Lin. Die strukturierte Artikelfassung wurde ueber einen oeffentlichen,
+unauthentifizierten Endpunkt gelesen; AgentReach pruefte vorher die verfuegbaren
+Web-/Social-Routen. Es wurden keine privaten Browserdaten oder Sitzungswerte
+verwendet.
+
+Uebernommen wurden nur Ressourcennamen, oeffentliche Ziel-URLs und die grobe
+Kategorisierung, kein Code und keine laengeren Textpassagen. Der Mobbin-
+Affiliate-Link aus der Quelle wurde auf `https://mobbin.com/` neutralisiert.
+Jeder Eintrag bleibt ein Recherche-Kandidat: Lizenz, Attribution,
+Wartungszustand, Paketidentitaet, Accessibility und Supply-Chain-Risiko muessen
+vor Projektverwendung an der offiziellen Quelle neu geprueft werden.
+
 **FREIGABE Runde 5 — bestätigt durch Raphael am 2026-07-21 (pauschal „setz alles fertig um"):** trailofbits-skills, claude-code-owasp, webdesigner-pro sind reguläre Allowlist-Quellen. **Fortbestehende CC-BY-SA-Auflage** (lizenzrechtlich, unabhängig von der Freigabe): `security-audit-playbook.md` bleibt NUR-INTERN; bei externer Weitergabe muss sie unter CC-BY-SA-4.0 mit Namensnennung laufen — vor Weitergabe erneut prüfen. Ursprünglicher Vermerk:
 **trailofbits-skills**, **claude-code-owasp** (agamm), **webdesigner-pro** — vendoriert unter
 „Vendoring-Runde 5" unten, aber bisher nicht von Raphael als benannte Quelle freigegeben (Regel
@@ -1050,3 +1067,20 @@ verweisen auf `floskel-verbote.md`, keine Dopplung.
 **Fazit:** no-ai-slop schließt die englische Muster-Lücke, impeccable die Kommando-/
 Floor-Lücke. Deutsche Copy bleibt copywriting-Domäne.
 
+### Ideen-Merge makerskills — 2026-08-03
+
+**Kein Vendoring, nur Ideen-Merge.** Quelle: `coreyhaines31/makerskills` (GitHub, öffentliches
+Repo) — steht NICHT auf der Vendoring-Whitelist; es wurde bewusst kein Code und kein Skill-Text
+übernommen, sondern nur Konzepte neu in eigene Worte geschrieben (Analyse:
+`raphael-command-center/ops/research/2026-08-03-makerskills-eval/PLAN.md`).
+
+Betroffene eigene Skills (alle selbst geschrieben, Attribution der Idee):
+- `eigene/brain/` — Konzept-Anregung aus `second-brain` + `company-brain` (Modi, raw-Objekttypen,
+  superseded_by, Sensitivity-Vererbung); Umsetzung komplett auf unsere Skripte/_candidates-Doktrin.
+- `eigene/idea-filter/` — Verdikt-Disziplin mit vier Ausgängen inkl. Kill-Archiv aus `business-brainstorm`.
+- `eigene/read-book/` — Lücken-Idee aus `read-book` (Bücher/PDF kapitelweise), 100 % lokal neu gebaut.
+- `methodik/unstuck/` — Sackgassen-Verfahren aus `unstuck`.
+- `methodik/skill-update/` — UPDATE-Modus-Idee aus `skillify`.
+- `eigene/watch/` 0.3.0 — Quellenbreite, Szenenwechsel-Kadenz, Tiefenstufen aus `watch-video`.
+- Kleinst-Merges: Idempotenz/Bail-out (`loopify`), Recherche-Archiv (`deep-research`),
+  Wayback-Fallback (`social-fetch`).

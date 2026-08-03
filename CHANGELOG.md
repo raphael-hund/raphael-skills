@@ -10,6 +10,81 @@ CHANGELOG beschreibt das Repo drumherum (Vertrag, Validator, Marker).
 
 ---
 
+## 2026-08-03 — `brain` neu (makerskills-Ideen-Merge, Schritt 2.3 inkl. Fundament)
+
+**Neu**
+
+- `skills/eigene/brain/` 0.1.0: der eine Einstieg ins Second Brain mit sechs Modi
+  (`einspeisen`, `verdichten`, `abrufen`, `pruefen`, `sichten`, `verbinden`), jeder
+  auf die real vorhandenen Skripte in `/root/raphael-brain/scripts/` verdrahtet.
+  Harte Regel prominent: Agenten schreiben nur nach `wiki/_candidates/` bzw. `raw/`,
+  das Anheben ins Wiki macht allein Raphael per `approve-candidate.sh --yes`.
+  Nicht gebautes ist als "geplant" ausgewiesen (Sichtungs-Timer, Sensitivity-Pruefung,
+  lokales Whisper).
+
+**Fundament ausserhalb des Skill-Repos** (gleicher Auftrag, andere Repos)
+
+- `raphael-brain`: neue raw-Objektordner `customer-language/`, `recurring-questions/`,
+  `sales-objections/` (je mit README), raw-Typ-Praefix-Konvention in `AGENTS.md`,
+  `superseded_by` + optionales `sensitivity` in `templates/notiz-template.md`,
+  Vererbungsregel in `wiki/_candidates/README.md`, neuer `superseded_by`-Check in
+  `scripts/wiki-lint.sh`.
+- `raphael-command-center`: `ops/brain-soll-seiten.md` (Backlog der Soll-Seiten) und
+  `ops/schedule/brain-sichtung.md` (Cron-Vorschlag, ausdruecklich NICHT installiert).
+
+**Geaendert**
+
+- Symlink `/root/.claude/skills/brain` und `index.json` (43 Skills) nachgezogen.
+
+## 2026-08-03 — `unstuck` und `read-book` neu (makerskills-Ideen-Merge, Schritte 2.5/2.6)
+
+**Neu**
+
+- `skills/methodik/unstuck/` 0.1.0: Verfahren fuer Sackgassen, die kein Bug sind
+  (Klassen A-D, mindestens 10 Winkel vor der Bewertung, Pflicht-Schnellpfad vor
+  jeder "geht nicht"-Meldung an Raphael).
+- `skills/eigene/read-book/` 0.1.0: Buch/PDF/EPUB kapitelweise, 100 % lokal
+  (pdftotext/ebook-convert), Ablage `raw/resource-*` + Herkunftsbeleg,
+  Verdichtung nur als Kandidat in `wiki/_candidates/`.
+
+**Geaendert**
+
+- `skills/eigene/debug/` 0.2.0 → 0.2.1: Abgrenzungsabschnitt zu `unstuck`
+  (kaputt vs. zu).
+- Symlinks in `/root/.claude/skills/` und `index.json` (42 Skills) nachgezogen.
+
+## 2026-08-02 — `web` als ein kanonisches Cross-Runtime-Paket
+
+**Geaendert**
+
+- `skills/eigene/web/` 0.7.0 → 0.8.0: portables Agent-Skills-Frontmatter mit
+  `name`, `description` und string-valued `metadata`; feste Runtime-/Modellrollen
+  durch Faehigkeitsrollen ersetzt; echte Design-Abhaengigkeitspfade und die
+  bisher im Load-Inventar fehlende Screenshot-Kritik-Referenz korrigiert.
+- Codex-UI-Metadaten liegen jetzt im kanonischen Paket. `codex/skills/web` und
+  `kimi/skills/web` sind exakte relative Verzeichnis-Symlinks auf dieselbe
+  Source; der neue Registry-Modus `canonical-link` erzeugt keine Adapterdatei
+  und prueft die Bridge fail-closed.
+- Neue AgentReach-gestuetzte
+  `references/frontend-referenzbibliothek.md` mit der vollstaendigen,
+  kategorisierten Kandidatenliste aus Leon Lins oeffentlichem Artikel,
+  neutralisiertem Mobbin-Link sowie Lizenz-, Aktualitaets- und
+  Supply-Chain-Auswahlregeln.
+- Repository-Validator und Index-Builder verstehen Legacy- und portable
+  Frontmatter; `tools/test-shared-web.py` prueft Symlinkziel, Realpath,
+  Bytegleichheit, SHA-256, Ressourcen und Adapterfreiheit.
+- Claude-/Kimi-Inventare wurden auf die aktuelle 39er Raphael-Registry
+  abgeglichen; der zuvor fehlende Kimi-`graph`-Eintrag ist enthalten. Hermes
+  laedt `web` ohne Kopie ueber `skills.external_dirs`.
+
+**Sicherheit**
+
+- Fuer die X-Quelle wurde nur ein oeffentlicher, unauthentifizierter
+  Artikel-Endpunkt verwendet. Sitzungsdaten aus dem Auftragsanhang wurden weder
+  fuer Recherche noch fuer Installation eingesetzt.
+
+---
+
 ## 2026-07-20 — Karpathy-Deep-Dive: Council- und Autoresearch-Muster eingearbeitet
 
 **Geaendert**

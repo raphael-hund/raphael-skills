@@ -58,8 +58,45 @@ Suchrunde, kein Gap-Round) · **standard** (Standardablauf oben) · **deep**
    Widersprüche offen? Eine weitere Suchrunde gezielt gegen diese Lücken fahren, wiederholen
    bis sauber oder explizit "nicht auffindbar" vermerken.
 5. Befunde in einer einzigen Markdown-Datei festhalten, jede Behauptung mit ihrer Quelle.
-6. Ablageort: dort, wo das Projekt vergleichbare Notizen bereits sammelt (bestehende
-   Konvention nutzen). Gibt es keine, einen sinnvollen Ort wählen und explizit benennen.
+6. Ablageort: siehe „Recherche-Archiv" — Kopie im Archiv ist Pflicht, die Arbeitskopie
+   liegt zusätzlich dort, wo das Projekt vergleichbare Notizen sammelt.
+
+## Recherche-Archiv (Pflicht)
+
+Jeder Lauf legt sein Brief unter einem festen Archivpfad ab, damit ein wachsender
+Korpus entsteht statt Wegwerf-Dateien:
+
+```
+/root/raphael-command-center/ops/research/<JJJJ-MM-TT>-<thema-kurz>/BRIEF.md
+```
+
+- **Vor dem Suchen** dort nachsehen (`ls`/`grep` über `ops/research/`): existiert schon
+  ein Brief zur Frage, wird er gelesen und fortgeschrieben statt neu recherchiert.
+- Ein Ordner pro Lauf, `BRIEF.md` ist die Ergebnisdatei; Rohmaterial daneben.
+- Braucht ein Projekt die Notiz an seinem eigenen Ort, kommt dorthin ein kurzer
+  Verweis auf den Archivpfad — nicht zwei divergierende Volltexte.
+- Kundenmaterial bleibt im Kundenrepo (TB4); ins Archiv nur die verallgemeinerte
+  Sachfrage ohne Kundennamen.
+
+## Beschaffungs-Fallback-Kette
+
+Kommt eine Quelle nicht herein, in dieser Reihenfolge weiterrücken — nicht abbrechen
+und nicht „nicht verfügbar" melden, bevor die Kette durch ist:
+
+1. **Offizielle API / First-Party-Endpunkt** (bevorzugt, stabilstes Format).
+2. **Browser/Fetch** auf die HTML-Seite (WebFetch, `agent-reach`).
+3. **Wayback Machine** (`https://web.archive.org/web/<url>`) — deckt 404, Paywall-Wände
+   und seit der Recherche geänderte Seiten ab; im Brief immer den Snapshot-Zeitstempel
+   mitzitieren, nicht so tun, als wäre es der Live-Stand.
+4. **Bezahlte API** (z. B. Apify) — kostet Geld, deshalb letzter Schritt und nur mit
+   vorhandenem Key.
+
+- **Reddit zwingend über Apify.** Die VPS-IP ist bei Reddit geblockt; direkter Abruf
+  und Browser-Fetch scheitern reproduzierbar. Immer den Apify-Reddit-Actor nutzen.
+- Welche Route für eine Plattform gerade trägt, sagt `agent-reach doctor --json` —
+  erst prüfen, dann losschicken.
+- Jede Stufe, die genutzt wurde, gehört in die Quellenangabe (Live-Abruf vs. Archiv-
+  Snapshot vs. Scraper-Ausgabe sind unterschiedlich starke Belege).
 
 ## Gotchas
 

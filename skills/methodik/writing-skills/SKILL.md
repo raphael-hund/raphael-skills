@@ -1,6 +1,6 @@
 ---
 name: writing-skills
-version: 0.2.0
+version: 0.3.0
 description: >
   Beschreibt, wie in diesem Repo neue Skills geschrieben werden:
   Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter →
@@ -23,6 +23,8 @@ completion_criteria:
   - "python3 tools/validate-skill.py <pfad-zum-skill> läuft mit [OK] durch, ohne verbotene Phrasen"
   - "Jeder Schritt/jede Regel hat ein prüfbares Kriterium (checkbar: erfüllt vs. nicht erfüllt), keine vagen Formulierungen wie 'gründlich prüfen'"
   - "Bei Übernahme eines Fremd-Skills: Sicherheits-Checkliste (Abschnitt unten) einmal durchlaufen, Ergebnis in VENDORING-NOTE.md des Ziel-Ordners festgehalten"
+  - "Vor jedem Vendoring: Lizenz-Ampel bestimmt (gruen/gelb/rot) und Drei-Eimer-Liste (verbatim/anpassen/ergaenzen) Raphael zur Freigabe vorgelegt; bei roter Ampel wurde kein Wortlaut uebernommen"
+  - "VENDORING-NOTE.md enthaelt Commit-SHA, SPDX-Kennung und Upgrade-Pfad (git ls-remote HEAD gegen gepinnten SHA)"
 ---
 
 # writing-skills — Neue Skills schreiben
@@ -127,6 +129,36 @@ Freitext-Anweisungen. **Primitive komponieren, nicht Workflows bündeln:**
 ein Skill = eine Disziplin — ein Skill, der Design+Planung+Umsetzung+Test
 bündelt, ist ein Framework, kein Skill; splitten.
 
+## Lizenz-Ampel — Vorprüfung vor allem anderen
+
+Erster Blick ins Quell-Repo, noch vor dem Lesen des Skills:
+
+| Ampel | Befund | Erlaubt |
+|---|---|---|
+| grün | `LICENSE`-Datei vorhanden, permissiv (MIT, Apache-2.0, BSD, ISC, CC0) | Vendoring inkl. wörtlicher Übernahme, Attribution Pflicht |
+| gelb | Copyleft (GPL/AGPL) oder Lizenz nur im README behauptet, kein `LICENSE`-File | kein Vendoring ohne Raphaels Entscheidung; Ideen-Merge erlaubt |
+| **rot** | **kein `LICENSE`-File** oder ausdrücklich "all rights reserved" | **kein einziges Zeichen übernehmen — nur Ideen, in eigenen Worten neu geschrieben** |
+
+Rot heißt nicht "nicht nutzbar": Der fachliche Gedanke darf übernommen werden, der
+Wortlaut nicht. Der Ziel-Skill wird dann von Grund auf neu geschrieben und trägt im
+`source:`-Feld "Ideen-Merge, kein Vendoring" plus Quelle und Commit-SHA.
+
+## Drei-Eimer-Klassifikation — Pflicht-Freigabeschritt vor jedem Vendoring
+
+Bevor eine Zeile Fremdinhalt in dieses Repo wandert, wird der Quell-Skill Abschnitt für
+Abschnitt in genau drei Eimer sortiert und die Sortierung Raphael zur Freigabe vorgelegt:
+
+1. **verbatim** — wird wörtlich übernommen (nur bei grüner Ampel). Jeder verbatim-Block
+   braucht eine Begründung, warum Umschreiben ihn verschlechtern würde.
+2. **anpassen** — Gedanke übernehmen, Wortlaut an unsere Pfade, Doktrin und Sprache
+   angleichen (macOS→Linux, fremde Repo-Struktur→unsere, direktes Wiki-Schreiben→
+   `_candidates/`).
+3. **ergänzen** — fehlt im Original und muss von uns dazugeschrieben werden (Gates,
+   Belegpflicht, Freigabewege, `completion_criteria`).
+
+Ohne diese Sortierung wird nichts vendoriert. Sie ist das Freigabe-Artefakt: Raphael
+signiert die Eimer-Liste, nicht den fertigen Skill-Ordner.
+
 ## Sicherheits-/Qualitäts-Checkliste vor jeder Fremd-Skill-Übernahme
 
 Vor jedem Vendoring eines fremden Skills (egal wie gut die Quelle aussieht)
@@ -147,6 +179,20 @@ festhalten:
    instructions", versteckte Direktiven in scheinbaren Daten).
 5. Namen auf Typosquatting eines bekannten Skills prüfen.
 6. Auf einen Commit/eine Revision pinnen (Provenance-Feld), nie "latest".
+
+### Pflichtinhalt der `VENDORING-NOTE.md` im Ziel-Ordner
+
+Die Notiz hält fest, was später niemand mehr rekonstruieren kann:
+
+- **Quelle + Commit-SHA** — Repo-URL, Pfad im Repo, voller SHA (nie Branch/„latest").
+- **SPDX-Kennung** der Quell-Lizenz (`MIT`, `Apache-2.0`, `NOASSERTION` bei roter Ampel)
+  plus die Ampelstufe aus der Vorprüfung.
+- **Drei-Eimer-Liste** mit Freigabedatum — was verbatim, was angepasst, was ergänzt wurde.
+- **Ergebnis der Sicherheits-Checkliste** (Punkte 1–6, je eine Zeile).
+- **Nicht übernommen** — was bewusst draußen blieb und warum.
+- **Upgrade-Pfad** — der Befehl, mit dem geprüft wird, ob die Quelle sich bewegt hat:
+  `git ls-remote <repo-url> HEAD` gegen den gepinnten SHA. Weicht er ab, läuft die
+  Drei-Eimer-Sortierung erneut auf dem Diff; ein automatischer Nachzug findet nie statt.
 
 ## Ablauf
 
@@ -182,3 +228,10 @@ festhalten:
   Referenzdatei, Sub-Skill) schon etwas Passendes, wird es importiert/
   referenziert statt neu gebaut. Verhindert Wildwuchs paralleler
   Fast-Duplikate.
+
+## Nachbar
+
+- [`skill-update`](/root/raphael-skills/skills/methodik/skill-update/SKILL.md) trägt einen
+  einzelnen Lernpunkt in alle betroffenen bestehenden Skills nach. `writing-skills` regelt
+  dabei nur die **Form** (Frontmatter, Aufbau, Vendoring-Prüfung), nie welcher Inhalt
+  wohin gehört.

@@ -14,13 +14,16 @@ set -euo pipefail
 
 usage() {
   cat >&2 <<'EOF'
-usage: watch-extract.sh <video-url> [arbeits-verzeichnis]
+usage: watch-extract.sh <video-url|lokaler-pfad> [arbeits-verzeichnis]
 
 beispiel:
   watch-extract.sh "https://www.youtube.com/watch?v=..."
   watch-extract.sh "https://www.tiktok.com/@user/video/..." /tmp/r-watch-meinreel
+  watch-extract.sh /pfad/zur/zoom-aufnahme.mp4 /tmp/r-watch-call
 
-Ohne Arbeits-Verzeichnis wird /tmp/watch.XXXXXX angelegt.
+Ist das erste Argument eine existierende Datei, wird der Download uebersprungen
+(Riverside/Zoom/Loom-Exporte, eigene Aufnahmen). Ohne Arbeits-Verzeichnis wird
+/tmp/watch.XXXXXX angelegt.
 EOF
   exit 2
 }
@@ -30,11 +33,25 @@ URL="$1"
 WORK="${2:-$(mktemp -d "${TMPDIR:-/tmp}/watch.XXXXXX")}"
 mkdir -p "$WORK"
 
-for tool in yt-dlp ffmpeg; do
+# Lokale Datei? Dann wird kein yt-dlp gebraucht.
+LOCAL=0
+[ -f "$URL" ] && LOCAL=1
+
+REQUIRED_TOOLS="ffmpeg"
+[ "$LOCAL" -eq 1 ] || REQUIRED_TOOLS="yt-dlp ffmpeg"
+for tool in $REQUIRED_TOOLS; do
   command -v "$tool" >/dev/null 2>&1 || { echo "Fehler: '$tool' nicht im PATH." >&2; exit 127; }
 done
 
 VIDEO="$WORK/video.mp4"
+
+if [ "$LOCAL" -eq 1 ]; then
+  # --- Lokale Datei: Download ueberspringen ----------------------------------
+  # Kein Kopieren/Konvertieren — ffmpeg liest direkt von der Quelle.
+  # Transkript gibt es hier nicht (kein Whisper, siehe SKILL.md) -> Frames-only.
+  VIDEO="$URL"
+  echo "Lokale Datei erkannt — Download uebersprungen: $VIDEO"
+else
 
 # --- Download (+ Auto-Subs bei YouTube) -------------------------------------
 # Subs sind best effort: schlägt der Sub-Download fehl (z. B. HTTP 429 Rate-Limit),
@@ -63,6 +80,8 @@ esac
 # Echter Dateiname auflösen (Extension kann durch Merge variieren)
 [ -f "$VIDEO" ] || VIDEO="$(ls "$WORK"/video.* | grep -v -E '\.(json3|srt|vtt)$' | head -1)"
 [ -f "$VIDEO" ] || { echo "Fehler: kein Video heruntergeladen." >&2; exit 1; }
+
+fi
 
 DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$VIDEO" 2>/dev/null || echo '?')"
 echo "Video: $VIDEO (Dauer: ${DUR%.*} s)"

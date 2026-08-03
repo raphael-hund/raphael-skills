@@ -109,6 +109,26 @@ erzwingt die Run-ID als Beweis.
   UND im Script defensiv parsen (`typeof args === 'string' ? JSON.parse(args)
   : args`) — der häufigste Workflow-Crash.
 
+## Loop-Hygiene (Idempotenz, Abbruch, Cache)
+
+- **Der Runden-Körper muss idempotent sein.** Zweimal dieselbe Runde = derselbe
+  Endzustand, kein Doppel-Eintrag im Protokoll, kein zweiter Commit derselben
+  Änderung. Vor dem Schreiben prüfen, ob der Fix schon drin ist (`git status`,
+  Grep auf die Zielzeile) — Cron-Fires überlappen, Sessions sterben mitten drin.
+- **Jede Schleife braucht eine Abbruchbedingung, bevor sie startet.** Mindestens
+  eine davon im Mandat festschreiben: Rundenlimit (z. B. 20), Zeitfenster,
+  „Stand-Datei hat keinen offenen Punkt mehr", oder N Runden ohne belegbaren
+  Fund. Erreicht = `CronDelete`, nicht weiterdrehen.
+- **Bail-out bei Wiederholungsfehler:** dreimal dieselbe Runde am selben Punkt
+  gescheitert → Loop anhalten und den Blocker im Protokoll benennen, nicht
+  Versuch Nr. 4 fahren (debug-Regel).
+- **5-Minuten-Cache-Klippe:** der Prompt-Cache lebt nur ~5 Minuten. Ein Intervall
+  von 20–30 Minuten trifft IMMER einen kalten Cache — der stabile Teil (Doktrin,
+  Skill, Stand-Datei) wird jede Runde neu bezahlt. Konsequenz: pro Fire EINE
+  Runde mit Substanz statt vieler Mini-Fires, stabilen Kontext nach vorn
+  (Regel 12), und keine Intervall-Verkürzung „für mehr Durchsatz" — die kostet
+  nur Tokens.
+
 ## Stoppen
 
 `CronDelete <job-id>` (steht im Protokoll-Kopf). Der Loop stirbt sonst mit der

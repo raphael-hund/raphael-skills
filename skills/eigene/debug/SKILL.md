@@ -1,6 +1,6 @@
 ---
 name: debug
-version: 0.2.0
+version: 0.2.1
 description: >
   Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix
   vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause,
@@ -27,6 +27,18 @@ completion_criteria:
 
 **Lies zuerst:** `/root/raphael-command-center/AGENTS.md` Regel 4 (zurückspulen statt
 korrigieren), 14 (fertig = Umgebungstatsache), Karpathy-Prinzip 4 (Goal-Driven Execution).
+
+## Abgrenzung zu `unstuck`
+
+`debug` greift, wenn **etwas kaputt ist**: Bug, roter Test, Regression, Absturz,
+unerwartetes Verhalten im eigenen oder fremden Code. Es gibt einen Zustand, den man
+reproduzieren und dessen Ursache man finden kann.
+
+`unstuck` (`methodik/unstuck`) greift bei **externen Wänden**, die kein Fehlverhalten
+sind: Login/2FA, fehlende Rechte, Quota/Rate-Limit, IP-Block, fehlendes Werkzeug, „die
+API kann das angeblich nicht". Dort gibt es keine Root Cause zu finden, sondern einen
+Weg herum — und den Pflicht-Schnellpfad, bevor „geht nicht" an Raphael gemeldet wird.
+Sitzt ein Bug hinter einer solchen Wand: erst `unstuck` (Zugang), dann `debug` (Ursache).
 
 ## Das Eiserne Gesetz
 

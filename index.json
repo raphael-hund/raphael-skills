@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 38,
+  "skill_count": 43,
   "skills": [
     {
       "name": "design",
@@ -27,6 +27,12 @@
       "description": "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach"
     },
     {
+      "name": "brain",
+      "version": "0.1.0",
+      "path": "skills/eigene/brain/SKILL.md",
+      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage für Raphaels Freigabe) und `verbinden` (Verlinkungs-Vorschläge als Diff). Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\"."
+    },
+    {
       "name": "codex-first",
       "version": "0.1.0",
       "path": "skills/eigene/codex-first/SKILL.md",
@@ -40,7 +46,7 @@
     },
     {
       "name": "debug",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "path": "skills/eigene/debug/SKILL.md",
       "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
     },
@@ -58,7 +64,7 @@
     },
     {
       "name": "extract-approach",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "path": "skills/eigene/extract-approach/SKILL.md",
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
@@ -73,6 +79,12 @@
       "version": "0.2.0",
       "path": "skills/eigene/handoff/SKILL.md",
       "description": "Feuert vor jedem /clear und am Session-Ende: schreibt einen Übergabe-Brief, damit die nächste Session ohne Verlust weiterarbeitet. Fakten statt Anweisungen (State, not instructions), inkl. Fallen/Sackgassen-Sektion und Secret-Redaktion. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\"."
+    },
+    {
+      "name": "idea-filter",
+      "version": "0.1.0",
+      "path": "skills/eigene/idea-filter/SKILL.md",
+      "description": "Bewertet eine Geschäfts-/Produktidee entlang von neun festen Dimensionen gegen Raphaels tatsächliches Portfolio (ICP, Angebot, Voice, Kunden) und endet immer in genau einem von vier Verdikten — Build, Sleep on it, Pass oder Angle klauen. Erzwingt Belege statt Bauchgefühl und legt jede bewertete Idee als Kandidat ab, auch die abgelehnten. Trigger: \"Idee bewerten\", \"lohnt sich das\", \"Geschäftsidee prüfen\", \"soll ich das bauen\", \"idea-filter\", \"Ideen filtern\"."
     },
     {
       "name": "impeccable",
@@ -111,6 +123,12 @@
       "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Modell + Effort je Subagent explizit setzen, Dispatch nach ROUTING/quota. Für schwierige Entscheidungen: adversariales Cross-Critique-Muster (mehrere gegensätzliche Rollen greifen sich an, nur Überlebendes geht an den Planer — der Leader plant nie selbst) oder Council-Muster (3 Modellfamilien antworten unabhängig, ranken sich anonym, Chairman synthetisiert). Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\"."
     },
     {
+      "name": "read-book",
+      "version": "0.1.0",
+      "path": "skills/eigene/read-book/SKILL.md",
+      "description": "Feuert, wenn ein Buch, PDF, EPUB oder ein längeres Dokument inhaltlich ausgewertet werden soll: extrahiert den Text 100 % lokal (pdftotext / ebook-convert), arbeitet Kapitel für Kapitel und liefert je Kapitel TL;DR, Konzepte, Zitate mit Seitenzahl, Action Items und Frameworks. Legt das Rohmaterial mit Präfix `resource-` in /root/raphael-brain/raw/ ab (inkl. Herkunftsbeleg) und die Verdichtung als Kandidat in wiki/_candidates/ — nie direkt ins Wiki. Keine externen API-Aufrufe. Trigger: \"lies das Buch\", \"PDF auswerten\", \"EPUB zusammenfassen\", \"Buchnotizen\", \"read-book\", \"was steht in diesem Buch\", \"Kapitelzusammenfassung\", \"Buch ins Brain\"."
+    },
+    {
       "name": "report",
       "version": "0.1.0",
       "path": "skills/eigene/report/SKILL.md",
@@ -142,15 +160,15 @@
     },
     {
       "name": "watch",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "path": "skills/eigene/watch/SKILL.md",
-      "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
+      "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok, Loom, Vimeo, Riverside, Zoom oder eine lokale Datei) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
     },
     {
       "name": "web",
-      "version": "0.7.0",
+      "version": "0.8.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
+      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten und kuratierte Frontend-Referenzen. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },
     {
       "name": "last30days",
@@ -207,6 +225,12 @@
       "description": "Führt einen Umsetzungsplan aus, indem pro Task ein frischer Subagent dispatcht, gefolgt von Spec- und Qualitätsreview, plus finaler Gesamt-Review am Ende. Trennt Kontexte sauber (idealerweise per Worktree-Isolation), hält Fortschritt in einem Ledger fest statt im Gesprächsgedächtnis, und pflegt zwischen Sessions einen lebenden Backlog statt verwaister Pläne. Trigger: \"Plan umsetzen\", \"Subagent pro Task\", \"Tasks ausführen\", \"subagent-driven development\"."
     },
     {
+      "name": "skill-update",
+      "version": "0.1.0",
+      "path": "skills/methodik/skill-update/SKILL.md",
+      "description": "Nimmt einen einzelnen Lernpunkt (\"das hätte anders laufen sollen\") und trägt ihn in ALLE betroffenen bestehenden Skills nach — statt ihn in einem Skill zu vergraben oder als neuen Skill anzulegen. Zwingt den Lernpunkt zuerst in eine Pflichtform, sucht dann dreistufig über das Skill-Repo, unterscheidet Skill-Regel von Prinzip und legt jede Datei einzeln zur Freigabe vor. Trigger: \"Skill anpassen\", \"Lernpunkt einarbeiten\", \"das soll der Skill künftig anders machen\", \"Skills nachziehen\", \"skill-update\"."
+    },
+    {
       "name": "tdd",
       "version": "0.1.0",
       "path": "skills/methodik/tdd/SKILL.md",
@@ -225,8 +249,14 @@
       "description": "Verdichtet den bereits geführten Gesprächs- und Codebase-Kontext zu einer Spec (PRD) — kein neues Interview, reine Synthese des Bekannten. Trigger: \"Spec schreiben\", \"PRD bauen\", \"aus dem Gespräch eine Spec machen\", \"to-spec\"."
     },
     {
+      "name": "unstuck",
+      "version": "0.1.0",
+      "path": "skills/methodik/unstuck/SKILL.md",
+      "description": "Feuert, wenn die Arbeit an einer Wand steht, die KEIN Bug ist: Login/2FA verlangt, API-Limit erreicht, Werkzeug fehlt, Anbieter blockt, Weg scheint versperrt — und IMMER als Pflicht-Schnellpfad, bevor eine \"geht nicht\"/\"ist nicht möglich\"-Meldung an Raphael geht. Klassifiziert die Sackgasse (falsche Annahme / falsches Framing / Gatekeeper / Werkzeug), sammelt mindestens 10 Winkel, bevor bewertet wird, und erzwingt so die Autonomie-Doktrin \"Raphael ist der ALLERLETZTE Ausweg\". Trigger: \"geht nicht\", \"ich komme nicht weiter\", \"steckt fest\", \"keine Möglichkeit\", \"blockiert\", \"unstuck\", \"gibt es einen anderen Weg\", \"bin in einer Sackgasse\"."
+    },
+    {
       "name": "writing-skills",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "path": "skills/methodik/writing-skills/SKILL.md",
       "description": "Beschreibt, wie in diesem Repo neue Skills geschrieben werden: Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter → SKILL.md-Schritte → references/), unser Pflicht-Frontmatter-Schema und wann validate-skill.py grün sein muss. Ergänzt um die TDD-Testdisziplin aus superpowers, die zwei Skill-Archetypen (Capability- vs. Process-Primitive) und eine Sicherheits-/Qualitäts-Checkliste für jedes vendorierte Fremd-Skill. Trigger: \"neuen Skill schreiben\", \"SKILL.md anlegen\", \"Skill überarbeiten\", \"Skill erstellen\", \"Frontmatter-Schema\", \"Fremd-Skill vendorieren\"."
     }

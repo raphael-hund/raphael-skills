@@ -1,6 +1,6 @@
 ---
 name: extract-approach
-version: 0.1.0
+version: 0.1.1
 description: >
   "skillify this" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht:
   extrahiert es als Skill-Kandidat nach _candidates/. Trigger: "skillify this",
@@ -51,3 +51,10 @@ Vorrat bauen.
 - Erst Schmerz, dann Werkzeug (Regel 10): einmal ≠ Muster. Zwei echte Wiederholungen sind
   die Schwelle.
 - Vor dem Anlegen `_candidates/` prüfen — nicht denselben Kandidaten doppelt.
+
+## Nachbar
+
+- Betrifft der Lernpunkt einen **bestehenden** Skill ("soll künftig anders arbeiten"),
+  ist das kein neuer Kandidat, sondern
+  [`skill-update`](/root/raphael-skills/skills/methodik/skill-update/SKILL.md).
+  `extract-approach` legt nur neu an, es ändert nie Bestehendes.
