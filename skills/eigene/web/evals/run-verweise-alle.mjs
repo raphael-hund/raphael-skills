@@ -31,14 +31,24 @@ const PRUEFER = path.join(HIER, 'run-verweise-check.mjs');
 // Schwaeche wie die Doku-Zahlen — sie veraltet still, wenn ein Skill dazukommt.
 const EIGENE = path.join(HIER, '..', '..');
 const SKILLS = path.join(EIGENE, '..');
+// Rekursiv suchen, nicht nur zwei Ebenen tief. Bis zum 03.08.2026 sah diese
+// Schleife `skills/*` und `skills/eigene/*` — `skills/imported/last30days`
+// fiel heraus und wurde nie geprueft. Beim ersten Lauf danach: drei echte
+// Befunde (falscher Skript-Pfad an neun Stellen, eine Reference ohne
+// loads-Eintrag, ein vendoriertes Skript scheinbar ohne Aufrufer).
+//
+// Eine Suche, die eine Ebene nicht kennt, meldet trotzdem eine runde Zahl.
 const gefunden = new Set(['web']);
-for (const wurzel of [EIGENE, SKILLS]) {
-  if (!fs.existsSync(wurzel)) continue;
+const sammle = (wurzel) => {
   for (const e of fs.readdirSync(wurzel, { withFileTypes: true })) {
-    if (!e.isDirectory() || e.name.startsWith('.')) continue;
-    if (fs.existsSync(path.join(wurzel, e.name, 'SKILL.md'))) gefunden.add(e.name);
+    if (!e.isDirectory() || e.name.startsWith('.') || e.name === 'node_modules') continue;
+    const p = path.join(wurzel, e.name);
+    if (fs.existsSync(path.join(p, 'SKILL.md'))) { gefunden.add(e.name); continue; }
+    sammle(p);
   }
-}
+};
+if (fs.existsSync(SKILLS)) sammle(SKILLS);
+void EIGENE;
 const SKILLS_LISTE = [...gefunden].sort();
 
 if (SKILLS_LISTE.length < 2) {

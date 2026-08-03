@@ -51,9 +51,25 @@ const SKILLS = path.join(EIGENE, '..');               // skills
 //   node evals/run-verweise-check.mjs --skill design   # jeder andere
 const skillArg = process.argv.indexOf('--skill');
 const SKILL_NAME = skillArg >= 0 ? process.argv[skillArg + 1] : 'web';
-const ZIEL = SKILL_NAME === 'web' ? WEB
-  : (fs.existsSync(path.join(EIGENE, SKILL_NAME)) ? path.join(EIGENE, SKILL_NAME)
-    : path.join(SKILLS, SKILL_NAME));
+// Skill-Ordner rekursiv suchen, nicht nur zwei Ebenen tief. Bis zum
+// 03.08.2026 kannte diese Aufloesung genau `skills/<name>` und
+// `skills/eigene/<name>` — `skills/imported/last30days` war damit nicht
+// ansprechbar, und die Sammel-Eval darueber fand ihn erst gar nicht.
+//
+// Dieselbe Ein-Ebenen-Blindheit wie im Sprachpruefer am selben Tag: eine
+// Suche, die eine Ebene nicht kennt, meldet trotzdem eine runde Zahl.
+function skillOrdner(wurzel, name) {
+  const direkt = path.join(wurzel, name);
+  if (fs.existsSync(path.join(direkt, 'SKILL.md'))) return direkt;
+  for (const e of fs.readdirSync(wurzel, { withFileTypes: true })) {
+    if (!e.isDirectory() || e.name.startsWith('.') || e.name === 'node_modules') continue;
+    const treffer = skillOrdner(path.join(wurzel, e.name), name);
+    if (treffer) return treffer;
+  }
+  return null;
+}
+
+const ZIEL = SKILL_NAME === 'web' ? WEB : (skillOrdner(SKILLS, SKILL_NAME) || path.join(SKILLS, SKILL_NAME));
 if (!fs.existsSync(path.join(ZIEL, 'SKILL.md'))) {
   console.error(`Kein SKILL.md unter ${ZIEL} — Skill "${SKILL_NAME}" nicht gefunden.`);
   process.exit(2);
@@ -272,9 +288,20 @@ console.log('');
 // Unterschieden wird an der QUELLE: hat die Datei ueberhaupt Zeichen, die wie
 // ein Pfad aussehen? Steht dort nichts Pfadaehnliches, gibt es nichts zu
 // finden. Steht etwas da und das Muster findet nichts, ist es kaputt.
-const pfadVerdacht = /(?:references|scripts|evals)\//.test(
-  fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8'),
-);
+// Herkunftsangaben zaehlen NICHT als Pfadnennung. `source:` und
+// `provenance:` nennen fremde Repos ("shadcn/improve skills/improve/
+// references/audit-playbook.md") — das ist eine Quellenangabe, kein Verweis
+// auf eine Datei in DIESEM Skill.
+//
+// Gefunden 03.08.2026, als die Sammel-Eval erstmals rekursiv suchte: drei
+// Skills unter skills/methodik/ meldeten "Pfad-aehnliche Zeichen da, aber
+// kein einziger Pfad erkannt". Sie haben gar keine eigenen Pfade — nur eine
+// Herkunftszeile. Ein Fehlalarm, der die Wache unglaubwuerdig macht.
+const mdOhneHerkunft = fs.readFileSync(path.join(ZIEL, 'SKILL.md'), 'utf8')
+  .split('\n')
+  .filter((z) => !/^\s*(source|provenance|upstream):/.test(z))
+  .join('\n');
+const pfadVerdacht = /(?:references|scripts|evals)\//.test(mdOhneHerkunft);
 zeile((gefunden.size > 0 || !pfadVerdacht) && tot.length === 0,
   gefunden.size === 0 && !pfadVerdacht
     ? 'keine Pfadnennung in diesem Skill — nichts zu pruefen (reine Prosa?)'
@@ -430,15 +457,35 @@ console.log('\nSkripte im Skill haben einen Aufrufer:\n');
       }
     };
     geheDurch(skriptOrdner);
+
+    // Aufrufer koennen in JEDER Sprache stehen, nicht nur in .mjs. Der
+    // last30days-Skill ruft sein vendoriertes bird-search.mjs aus Python
+    // heraus auf (`Path(__file__).parent / "vendor" / "bird-search" /
+    // "bird-search.mjs"`), und diese Wache meldete es als "ohne Aufrufer" —
+    // ein Fehlalarm, der zum Loeschen eines benutzten Werkzeugs einlaedt.
+    const fremdsprachig = [];
+    const geheDurchAlle = (d) => {
+      for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+        if (e.name === 'node_modules' || e.name.startsWith('.')) continue;
+        const pfad = path.join(d, e.name);
+        if (e.isDirectory()) geheDurchAlle(pfad);
+        else if (/\.(py|sh|ts|js|json)$/.test(e.name)) fremdsprachig.push(pfad);
+      }
+    };
+    geheDurchAlle(skriptOrdner);
+
     // Alles lesen, was aufrufen KOENNTE: Skill-Doku und alle anderen Skripte.
-    const suchtext = [...dateien, ...alle].map((f) => {
+    const quellen = [...dateien, ...alle, ...fremdsprachig];
+    const suchtext = quellen.map((f) => {
       try { return fs.readFileSync(f, 'utf8'); } catch { return ''; }
     });
     const ohneAufrufer = alle.filter((f) => {
       const n = path.basename(f);
       const ohneEndung = n.replace(/\.mjs$/, '');
+      // Auch der zusammengesetzte Pfad zaehlt: Python setzt ihn aus Teilen
+      // zusammen, der Dateiname steht dann in eigenen Anfuehrungszeichen.
       return !suchtext.some((txt, i) =>
-        [...dateien, ...alle][i] !== f
+        quellen[i] !== f
         && (txt.includes(n) || new RegExp(`['"\\./]${ohneEndung}['"]`).test(txt)));
     }).map((f) => path.relative(skriptOrdner, f));
     // Bekannter, bewusst geduldeter Bestand. Ein Wächter, der dauerhaft rot
