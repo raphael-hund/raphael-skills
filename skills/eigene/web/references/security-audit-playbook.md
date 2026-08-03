@@ -23,7 +23,12 @@ diese zwei Sätze sind Rationalisierungen, keine Argumente.
 
 ## Regel 1 — Fail-Open erkennen (Kundendaten/Secrets)
 
-Quelle: `plugins/insecure-defaults/skills/insecure-defaults/SKILL.md` + `references/examples.md`.
+Quelle: `plugins/insecure-defaults/skills/insecure-defaults/SKILL.md` + dessen
+`references/examples.md`. Die vier Quellvermerke in dieser Datei nennen eine
+fremde Plugin-Sammlung, die auf diesem Rechner nicht liegt — sie belegen die
+Herkunft der Regeln, sie sind kein Verweis zum Nachschlagen. Der relative Pfad
+stand bis 03.08.2026 ohne dieses "dessen" da und las sich wie ein Verweis in
+den eigenen references-Ordner.
 
 **Prüffrage:** Was passiert, wenn eine Config/ENV-Variable fehlt — stürzt die App ab
 (fail-secure, sicher) oder läuft sie mit einem Default weiter (fail-open, Finding)?

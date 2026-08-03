@@ -28,6 +28,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// ADRESSE: ueberall 127.0.0.1, nie localhost. Auf diesem Rechner loest
+// localhost zu ::1 auf (IPv6). curl faellt still auf IPv4 zurueck und
+// meldet 200 — Chrome nicht. Gemessen 03.08.2026: die Vorab-Probe mit
+// curl war gruen, und jeder Browser-Lauf danach endete mit
+// ERR_CONNECTION_REFUSED. Im Bericht stand nur "Ausgabe unlesbar", was
+// wie ein kaputtes Werkzeug aussieht und eine kaputte Adresse war.
+
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const PRUEFER = path.join(HIER, '..', 'scripts', 'formular-check.mjs');
 const PORT = Number(process.env.FORMULAR_PORT || 5391);
@@ -240,7 +247,7 @@ for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
 // Beweis, dass DIESER Server antwortet und nicht ein fremder auf demselben Port.
 const kennung = `probe-${process.pid}.txt`;
 fs.writeFileSync(path.join(wurzel, kennung), 'formular');
-const probe = spawnSync('curl', ['-fsS', '-m', '5', `http://localhost:${PORT}/${kennung}`], { encoding: 'utf8' });
+const probe = spawnSync('curl', ['-fsS', '-m', '5', `http://127.0.0.1:${PORT}/${kennung}`], { encoding: 'utf8' });
 if (probe.status !== 0 || (probe.stdout || '').trim() !== 'formular') {
   console.error(`Port ${PORT} antwortet nicht mit unserem Server (belegt?).`);
   console.error('Anderen Port setzen: FORMULAR_PORT=5392 node evals/run-formular-check.mjs');
@@ -252,7 +259,7 @@ console.log(`Formular-Pruefer — ${FAELLE.length} Faelle auf Port ${PORT}\n`);
 let rot = 0;
 const gesehen = new Set();   // welche Regel-IDs ueber alle Faelle wirklich feuerten
 for (const f of FAELLE) {
-  const r = spawnSync('node', [PRUEFER, '--url', `http://localhost:${PORT}/${f.name}/`, '--json'],
+  const r = spawnSync('node', [PRUEFER, '--url', `http://127.0.0.1:${PORT}/${f.name}/`, '--json'],
     { encoding: 'utf8', timeout: 90000 });
   let blocker = null;
   let ids = [];

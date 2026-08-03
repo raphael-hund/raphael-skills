@@ -32,6 +32,13 @@ import path from 'node:path';
 import { spawnSync, spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
+// ADRESSE: ueberall 127.0.0.1, nie localhost. Auf diesem Rechner loest
+// localhost zu ::1 auf (IPv6). curl faellt still auf IPv4 zurueck und
+// meldet 200 — Chrome nicht. Gemessen 03.08.2026: die Vorab-Probe mit
+// curl war gruen, und jeder Browser-Lauf danach endete mit
+// ERR_CONNECTION_REFUSED. Im Bericht stand nur "Ausgabe unlesbar", was
+// wie ein kaputtes Werkzeug aussieht und eine kaputte Adresse war.
+
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SKILL = path.join(HIER, '..');
 const GATE = path.join(SKILL, 'scripts', 'g1-gate.mjs');
@@ -177,7 +184,7 @@ console.log('\nDer Kern — die Floskel steht NUR in der Quelle:\n');
 {
   const p = projektBauen({ buildName: 'dist' });
   serverAn(path.join(p, 'dist'));
-  const aus = torQuelle(['--url', `http://localhost:${HAFEN}/`, '--src', p, '--no-shots']);
+  const aus = torQuelle(['--url', `http://127.0.0.1:${HAFEN}/`, '--src', p, '--no-shots']);
   const slopZeile = (aus.match(/^\[(?:PASS|FAIL)\] ai-slop.*$/m) || [''])[0];
   const meldetFloskel = /de-14|naechste level|nächste level/i.test(slopZeile);
   zeile(!meldetFloskel, 'Slop-Scan meldet die Quell-Floskel NICHT',
@@ -185,7 +192,7 @@ console.log('\nDer Kern — die Floskel steht NUR in der Quelle:\n');
 
   // Gegenprobe: zeigt man den Build absichtlich auf die Quelle, MUSS sie kommen.
   // Sonst prueft der Fall oben gar nichts.
-  const aus2 = torQuelle(['--url', `http://localhost:${HAFEN}/`, '--src', p, '--build', path.join(p, 'src'), '--no-shots']);
+  const aus2 = torQuelle(['--url', `http://127.0.0.1:${HAFEN}/`, '--src', p, '--build', path.join(p, 'src'), '--no-shots']);
   const slopZeile2 = (aus2.match(/^\[(?:PASS|FAIL)\] ai-slop.*$/m) || [''])[0];
   zeile(/de-14|deutsche/i.test(slopZeile2), 'Gegenprobe: auf die Quelle gezeigt, findet er sie sehr wohl',
     slopZeile2 || '(keine ai-slop-Zeile — dann misst der Fall darueber nichts)');
@@ -206,7 +213,7 @@ console.log('\nDas Flag selbst:\n');
 // als einziges `--base`. Ein `--url` fiel dort still auf den Default 5280
 // zurueck: das Skript fotografierte klaglos eine ANDERE Seite und lieferte ein
 // volles Manifest dazu. Gemessen am 30.07.2026 — `--url ...:59999` ergab
-// "navigating to http://localhost:5280/".
+// "navigating to http://127.0.0.1:5280/".
 //
 // Geprueft wird die Wirkung, nicht die Schreibweise im Code: das Manifest muss
 // die uebergebene Adresse tragen. Ein Test auf "steht --url in der Quelle?"
@@ -243,7 +250,7 @@ console.log('\nDas Urteil muss die Pipe ueberleben:\n');
 {
   const p = projektBauen({ buildName: 'dist' });
   serverAn(path.join(p, 'dist'));
-  const aus = torQuelle(['--url', `http://localhost:${HAFEN}/`, '--src', p, '--no-shots']);
+  const aus = torQuelle(['--url', `http://127.0.0.1:${HAFEN}/`, '--src', p, '--no-shots']);
   const schluss = (aus.match(/^G1 (?:GERISSEN|BESTANDEN|KANN NICHT URTEILEN).*$/m) || [''])[0];
   zeile(/\(Exit [012]\)/.test(schluss), 'Schlusszeile nennt den Exit-Code',
     schluss || '(keine Schlusszeile gefunden)');
@@ -271,7 +278,7 @@ console.log('\nAbgestuerzte Pruefer duerfen nicht als Qualitaetsfehler gelten:\n
   const p = projektBauen({ buildName: 'dist' });
   serverAn(path.join(p, 'dist'));
   const lauf = (env) => spawnSync('node', [GATE,
-    '--url', `http://localhost:${HAFEN}/`, '--src', p, '--build', path.join(p, 'dist'), '--no-shots'],
+    '--url', `http://127.0.0.1:${HAFEN}/`, '--src', p, '--build', path.join(p, 'dist'), '--no-shots'],
   { encoding: 'utf8', timeout: 300000, env: { ...process.env, ...env } });
 
   // Die Frist muss den SERVER-CHECK ueberleben und die Pruefer toeten.

@@ -17,6 +17,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// ADRESSE: ueberall 127.0.0.1, nie localhost. Auf diesem Rechner loest
+// localhost zu ::1 auf (IPv6). curl faellt still auf IPv4 zurueck und
+// meldet 200 — Chrome nicht. Gemessen 03.08.2026: die Vorab-Probe mit
+// curl war gruen, und jeder Browser-Lauf danach endete mit
+// ERR_CONNECTION_REFUSED. Im Bericht stand nur "Ausgabe unlesbar", was
+// wie ein kaputtes Werkzeug aussieht und eine kaputte Adresse war.
+
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SKILL = path.resolve(HIER, '..');
 const FIXTURES = path.join(HIER, 'antiset');
@@ -215,7 +222,7 @@ for (const sig of ['SIGTERM', 'SIGINT', 'SIGHUP']) {
 // die es nur in diesem Wurzelordner gibt.
 const kennung = `probe-${process.pid}.txt`;
 fs.writeFileSync(path.join(wurzel, kennung), 'antiset');
-const probe = spawnSync('curl', ['-fsS', '-m', '5', `http://localhost:${PORT}/${kennung}`], { encoding: 'utf8' });
+const probe = spawnSync('curl', ['-fsS', '-m', '5', `http://127.0.0.1:${PORT}/${kennung}`], { encoding: 'utf8' });
 if (probe.status !== 0 || (probe.stdout || '').trim() !== 'antiset') {
   console.error(`Port ${PORT} antwortet nicht mit unserem Server (belegt?).`);
   console.error('Anderen Port setzen: ANTISET_PORT=5322 node evals/run-antiset.mjs');
@@ -260,7 +267,7 @@ const FRIST = Number(process.env.ANTISET_FRIST_MS || 900000);
 
 const torLauf = (n, strict) => spawnSync('node', [
   path.join(SKILL, 'scripts/g1-gate.mjs'),
-  '--url', `http://localhost:${PORT}/${n}/`,
+  '--url', `http://127.0.0.1:${PORT}/${n}/`,
   '--src', path.join(wurzel, n),
   '--budget', BUDGET,
   '--no-shots',
@@ -400,7 +407,7 @@ for (const f of ROUTEN_FAELLE) {
   sag(`\n.. laeuft: ${f.was}`);
   const lauf = spawnSync('node', [
     path.join(SKILL, 'scripts/g1-gate.mjs'),
-    '--url', `http://localhost:${PORT}/${f.ordner || 'mehrseitig'}/`,
+    '--url', `http://127.0.0.1:${PORT}/${f.ordner || 'mehrseitig'}/`,
     '--src', f.ordner ? path.join(wurzel, f.ordner) : mehr,
     '--budget', BUDGET,
     '--no-shots',
@@ -465,7 +472,7 @@ for (const f of IMPORT_FAELLE) {
 
   const lauf = spawnSync('node', [
     path.join(SKILL, 'scripts/g1-gate.mjs'),
-    '--url', `http://localhost:${PORT}/${f.was}/`,
+    '--url', `http://127.0.0.1:${PORT}/${f.was}/`,
     '--src', dir,
     '--budget', BUDGET,
     '--no-shots',
