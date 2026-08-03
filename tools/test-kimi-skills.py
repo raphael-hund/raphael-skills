@@ -64,14 +64,13 @@ def run(command: list[str], home: Path, *, extra_env: dict[str, str] | None = No
 def check_registry(c: Checks, registry: dict[str, dict]) -> None:
     codex = json.loads(CODEX_COMPAT_PATH.read_text(encoding="utf-8"))["skills"]
     kimi_json = json.loads(KIMI_COMPAT_PATH.read_text(encoding="utf-8"))
-    c.check(len(codex) == 36, f"Codex inventory expected 36, found {len(codex)}")
-    c.check(len(registry) == 36, f"Kimi registry expected 36, found {len(registry)}")
+    c.check(len(registry) == len(codex), f"Kimi/Codex inventory count differs: {len(registry)} vs {len(codex)}")
     mapped = {name: entry.get("codex_name", name) for name, entry in registry.items()}
     c.check(set(mapped.values()) == set(codex) and len(set(mapped.values())) == len(mapped), "Kimi registry is not bijective with Codex inventory")
     c.check(kimi_json.get("target") == "kimi-code-0.28.1", "Kimi target is not pinned to 0.28.1")
     for name, entry in registry.items():
         mode = entry["mode"]
-        expected_mode = "native-kimi-agent" if name in NATIVE_AGENT else "native-kimi-review" if name in NATIVE_REVIEW else "source-adapter"
+        expected_mode = sync._native_mode(name, codex[mapped[name]])
         c.check(mode == expected_mode, f"{name}: mode {mode!r}, expected {expected_mode!r}")
         codex_name = mapped[name]
         c.check(entry["source"] == (f"kimi/skills/{name}/SKILL.md" if name in NATIVE_AGENT | NATIVE_REVIEW else codex[codex_name]["source"]), f"{name}: source mismatch")
@@ -94,7 +93,14 @@ def check_frontmatter(c: Checks, registry: dict[str, dict]) -> None:
     for name, entry in registry.items():
         path = REPO_ROOT / entry["source"]
         c.check(path.is_file(), f"registered native/source path missing: {path}")
-        if entry["mode"] != "source-adapter" and path.is_file():
+        if entry["mode"] == "canonical-link":
+            bridge = REPO_ROOT / "kimi" / "skills" / name
+            c.check(bridge.is_symlink(), f"{name}: canonical repository bridge is not a symlink")
+            if bridge.is_symlink():
+                c.check(os.readlink(bridge) == "../../skills/eigene/web", f"{name}: canonical repository bridge target drift")
+            c.check((bridge / "SKILL.md").resolve() == path.resolve(), f"{name}: bridge does not resolve to canonical source")
+            c.check(not sync.validate_canonical_link(name, entry), f"{name}: canonical-link validator failed")
+        elif entry["mode"] != "source-adapter" and path.is_file():
             c.check(sync.validate_native_skill(name, path, entry["mode"]) == [], f"invalid native Kimi skill: {path}")
     c.check(not sync.stale_adapter_paths(registry), "unregistered Kimi skill directory present")
     codex_first = (REPO_ROOT / "kimi" / "skills" / "codex-first" / "SKILL.md").read_text(encoding="utf-8")
