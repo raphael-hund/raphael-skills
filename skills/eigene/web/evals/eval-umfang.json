@@ -26,7 +26,7 @@
   "run-slop-build-check.mjs": 8,
   "run-slop-check.mjs": 9,
   "run-slop-de-check.mjs": 62,
-  "run-sprache-check.mjs": 55,
+  "run-sprache-check.mjs": 163,
   "run-spuren-check.mjs": 6,
   "run-struktur.mjs": 6,
   "run-sweep-check.mjs": 13,

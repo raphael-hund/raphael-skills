@@ -71,7 +71,7 @@ eval_scorecard:
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
-    - "evals/run-sprache-check.mjs — 55 Skripte aller Skills: kann Raphael jeden Bericht lesen?"
+    - "evals/run-sprache-check.mjs — 163 Skripte aller Skills (.mjs/.py/.sh): kann Raphael jeden Bericht lesen?"
     - "evals/run-struktur.mjs — faehrt die sieben Struktur-Wachen oben in EINEM Lauf (13s, dreimal gemessen 02.08.2026, ohne Browser)"
     - "evals/run-zwillinge-check.mjs — doppelt vorhandene Dateien: laufen zwei Kopien auseinander?"
     - "evals/run-hilfe-check.mjs — 23 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
