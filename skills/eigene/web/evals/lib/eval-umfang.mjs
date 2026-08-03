@@ -30,7 +30,12 @@ export function fallzahl(evalOrdner, datei, cwd) {
     // bereits; ihn zu ignorieren und stattdessen Formulierungen zu raten, ist
     // die schwaechere Quelle.
     if (e.status === 2) {
-      const grund = (aus.match(/^[^\n]*(?:belegt|antwortet nicht|nicht gefunden|nicht installiert|nicht moeglich)[^\n]*$/mi) || [])[0];
+      // "laeuft bereits" ergaenzt 02.08.2026: der Sabotage-Lauf sperrt sich
+      // gegen einen zweiten (sonst schreiben beide beschaedigte Pruefer als
+      // Original zurueck). Ohne dieses Wort stand im Bericht "Umgebung nicht
+      // bereit" — richtig, aber unbrauchbar: der Leser sucht nach einem
+      // fehlenden Werkzeug statt nach dem Lauf nebenan.
+      const grund = (aus.match(/^[^\n]*(?:belegt|laeuft bereits|Sperre|antwortet nicht|nicht gefunden|nicht installiert|nicht moeglich)[^\n]*$/mi) || [])[0];
       return {
         zahl: null,
         form: `UEBERSPRUNGEN (Exit 2 — ${grund ? grund.trim() : 'Umgebung nicht bereit'})`,
