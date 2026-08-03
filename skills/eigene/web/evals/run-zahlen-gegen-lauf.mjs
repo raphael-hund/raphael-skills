@@ -97,6 +97,19 @@ for (const m of md.matchAll(/(?:evals\/)?(run-[a-z-]+\.mjs)\s+—\s+(\d+)\s+(?:F
   kandidaten.push({ datei: m[1], soll: Number(m[2]) });
 }
 
+// Die Ausnahmeliste selbst pruefen: ein Eintrag fuer eine Eval, die es nicht
+// mehr gibt, macht sie zur Muellhalde und deckt spaeter eine echte Luecke zu.
+// Dieselbe Wache haengt an jeder anderen Ausnahmeliste in diesem Skill.
+{
+  const tot = Object.keys(AUSGENOMMEN).filter((n) => !fs.existsSync(path.join(HIER, n)));
+  if (tot.length) {
+    console.error(`\n${tot.length} Ausnahme(n) ohne Datei: ${tot.join(', ')}`);
+    console.error('Entfernt oder umbenannt? Die Liste muss mitgezogen werden — sonst');
+    console.error('steht dort spaeter eine Begruendung fuer etwas, das es nicht gibt.\n');
+    process.exit(2);
+  }
+}
+
 // Eine leere Liste sieht wie ein sauberer Lauf aus. Untergrenze unter dem
 // Ist-Stand (4 am 02.08.2026), damit sie stilles Nichtstun faengt.
 const MINDESTENS = 3;

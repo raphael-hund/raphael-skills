@@ -60,12 +60,12 @@ eval_scorecard:
     - "evals/run-laufzeit-check.mjs — 4 Angaben: stimmen die dokumentierten Laufzeiten noch? (266s)"
     - "evals/run-eval-umfang.mjs — 41 Evals: hat jede noch ihre Faelle?"
     - "evals/run-doku-zahlen.mjs — 22 Zahlen: verspricht SKILL.md den echten Umfang?"
-    - "evals/run-zahlen-gegen-lauf.mjs — 5 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (5,5 Min, gemessen 02.08.2026)"
+    - "evals/run-zahlen-gegen-lauf.mjs — 6 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (5,5 Min, gemessen 02.08.2026)"
     - "evals/run-exit-vertrag-check.mjs — 34 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (75s)"
     - "evals/run-zeilenverweise-check.mjs — 2 Verweise: zeigt \"Zeile 593\" noch auf das Gemeinte? (2s)"
     - "evals/run-port-vergabe-check.mjs — 3 Regeln: teilen sich zwei Evals Port oder Wegwerf-Praefix? (2s)"
     - "evals/run-lib-lookup.mjs — 13 Faelle: beantwortet der Tresor jede Library und lehnt Unbekanntes ab?"
-    - "evals/run-flag-hilfe-check.mjs — 14 Faelle: nennt --help jedes Flag, das das Werkzeug kennt? (14s)"
+    - "evals/run-flag-hilfe-check.mjs — 16 Faelle: nennt --help jedes Flag, das das Werkzeug kennt? (16s)"
     - "evals/run-verweise-check.mjs — jeder Pfad, jeder loads-Eintrag, jede Versionsspanne"
     - "evals/run-verweise-alle.mjs — 24 Skills: zeigt irgendwo ein Verweis ins Leere?"
     - "evals/run-katalog-check.mjs — 95 Komponenten: steht jede im Katalog, gibt es jede genannte?"
@@ -379,6 +379,29 @@ prüft ein Werkzeug, nie die Verbindung. Deshalb dieser Prüfer:
 > Und er suchte alle Schnittmarken im G1-Tor, obwohl `run-clone-pfade` aus
 > `mirror-site.mjs` schneidet. Jetzt zählt er Vorkommen statt Schreibweisen und
 > liest nach, welche Datei eine Eval wirklich öffnet.
+
+**Die Naht zwischen Werkzeug und Messbefehl** ist dieselbe Klasse — und sie hat
+eine Falle, die in dieser Session zweimal zuschlug:
+
+```bash
+# FALSCH: $? ist der Status von basename, nicht von node
+node werkzeug.mjs --x /tmp >/dev/null 2>&1; echo "$(basename $f): EXIT=$?"
+
+# RICHTIG: Status zuerst sichern
+node werkzeug.mjs --x /tmp >/dev/null 2>&1
+s=$?
+echo "$(basename $f): EXIT=$s"
+```
+
+Gemessen 03.08.2026: sechs Werkzeuge schienen ein erfundenes Flag mit Exit 0 zu
+schlucken. Die Wache `run-exit-vertrag-check.mjs` meldete für dieselben
+Werkzeuge Exit 2. Nicht die Wache log — der Messbefehl. Jede
+Kommando­substitution in der `echo`-Zeile setzt `$?` neu, und `basename` gelingt
+immer.
+
+Merksatz für jede Handmessung: **widerspricht eine Handmessung einer laufenden
+Wache, ist zuerst die Handmessung verdächtig.** Die Wache lief hundertmal, der
+Befehl einmal.
 
 ### 28 Handwerks-Regeln, 10 davon je einmal ausgelöst
 
