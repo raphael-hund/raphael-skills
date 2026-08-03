@@ -85,6 +85,32 @@ if (kandidaten.length < MINDESTENS) {
   process.exit(2);
 }
 
+// Wer wird AUSSORTIERT? Die Untergrenze oben faengt "gar nichts", nicht
+// "einer fehlt". Genau der Fall trat am 03.08.2026 ein: bilder.mjs hatte keine
+// Aufrufzeile im Kopf, fiel damit still aus der Liste — und `--help` endete
+// dort monatelang mit "Unbekanntes Kommando" und Exit 2, ohne dass diese Eval
+// je Alarm schlug. Sie meldete 23/23 und meinte 23 von 25.
+//
+// Ein Werkzeug ohne CLI ist in Ordnung (lib-exporte.mjs ist ein Modul und sagt
+// das selbst). Aber die Liste gehoert in den Bericht, damit niemand "alle
+// geprueft" liest, wo "alle erkannten geprueft" gemeint ist.
+{
+  const alle = [];
+  for (const [ordner, praefix] of [[SKRIPTE, ''], [CLONE, 'web-clone/']]) {
+    if (!fs.existsSync(ordner)) continue;
+    for (const n of fs.readdirSync(ordner)) {
+      if (n.endsWith('.mjs')) alle.push(`${praefix}${n}`);
+    }
+  }
+  const raus = alle.filter((n) => !kandidaten.includes(n)).sort();
+  if (raus.length) {
+    console.log(`  [i]    ${raus.length} ohne Aufrufzeile im Kopf, deshalb nicht geprueft:`);
+    console.log(`         ${raus.join(', ')}`);
+    console.log('         Modul ohne CLI? dann richtig. Sonst Aufrufzeile ergaenzen.');
+    console.log('');
+  }
+}
+
 console.log(`Hilfe-Check — ${kandidaten.length} Werkzeuge mit CLI\n`);
 
 for (const name of kandidaten) {

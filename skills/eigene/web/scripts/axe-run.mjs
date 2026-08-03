@@ -10,7 +10,12 @@
 //
 // Exit 0 = keine Violations. Exit 1 = Violations gefunden. Exit 2 = Lauf kaputt.
 
-import { chromium } from '/usr/lib/node_modules/playwright/index.mjs';
+// Playwright wird erst NACH der Flag-Wache geladen (dynamischer import weiter
+// unten): ein statischer import laeuft in JavaScript immer zuerst, und dieser
+// hier kostet 12 bis 36 Sekunden — nur um danach ein falsch getipptes Flag
+// abzulehnen. Gemessen 03.08.2026: run-aufruffehler-check meldete deshalb
+// "keine Antwort binnen 30s — arbeitet, statt abzulehnen" fuer vier
+// Browser-Werkzeuge. Sie lehnten korrekt ab, nur zu spaet.
 import fs from 'node:fs';
 
 const args = process.argv.slice(2);
@@ -55,6 +60,7 @@ const CANDIDATES = [
 const axePath = CANDIDATES.find((p) => fs.existsSync(p));
 if (!axePath) { console.error('axe-core nicht gefunden'); process.exit(2); }
 
+const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 let code = 0;
 try {

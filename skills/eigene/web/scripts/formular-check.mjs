@@ -28,7 +28,9 @@
 // Der Vercel-Skill dazu holt seine Regeln live per WebFetch; hier sind genau die
 // maschinell pruefbaren davon fest verdrahtet, damit das Tor ohne Netz urteilt.
 
-import { chromium } from '/usr/lib/node_modules/playwright/index.mjs';
+// Playwright erst NACH der Flag-Wache laden (dynamischer import unten): ein
+// statischer import laeuft immer zuerst und kostet 12-36s, nur um danach ein
+// falsch getipptes Flag abzulehnen (Befund 03.08.2026, siehe axe-run.mjs).
 
 const args = process.argv.slice(2);
 
@@ -61,6 +63,8 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
   process.exit(0);
 }
 if (!URL_) { console.error('usage: formular-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
+
+const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
 
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 let abbruch = false;

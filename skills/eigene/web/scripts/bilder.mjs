@@ -1,5 +1,16 @@
 #!/usr/bin/env node
 // bilder.mjs — Bild-Assets in AVIF halten + Index pflegen (web-Skill).
+//
+//   node bilder.mjs add <bild> <asset-ordner> --typ ... --motiv ...
+//   node bilder.mjs list <asset-ordner>
+//   node bilder.mjs reject <bild>
+//
+// Die Aufrufzeile steht hier, weil run-hilfe-check.mjs seine Kandidaten daran
+// erkennt: "node <dateiname>" in den ersten 25 Zeilen. Ohne sie fiel dieses
+// Werkzeug bis 03.08.2026 aus der Pruefung — und genau in dem Zeitraum
+// beantwortete `bilder.mjs --help` die Frage "was kannst du?" mit
+// "Unbekanntes Kommando" und Exit 2, ohne dass eine Wache es meldete.
+//
 // Deterministisch, keine npm-Abhaengigkeiten, nutzt ffmpeg (libaom-av1 still-picture).
 //
 // Ein Asset-Ordner pro Projekt, z. B. client-<name>/web/assets/, darin bilder-index.json.

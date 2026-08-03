@@ -6,7 +6,9 @@
 // First-Fold 1440x730, Rest 1440x1400, Scroll-Schritt 50%. NIEMALS fullPage/captureBeyondViewport
 // (das sind die R20-Schein-Fund-Quellen: fixed Elemente + leere Reveal-Flaechen).
 // Ausgabe: PNGs + manifest.json — das Manifest ist der Vertrag fuer Kritik-Agents.
-import { chromium } from '/usr/lib/node_modules/playwright/index.mjs';
+// Playwright erst NACH der Flag-Wache laden (dynamischer import unten): ein
+// statischer import laeuft immer zuerst und kostet 12-36s, nur um danach ein
+// falsch getipptes Flag abzulehnen (Befund 03.08.2026, siehe axe-run.mjs).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -189,6 +191,7 @@ async function sweepRoute(browser, route, vp, label, manifest) {
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
+  const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
   const browser = await chromium.launch({ headless: true, channel: 'chrome' });
   const manifest = { base: BASE, createdAt: new Date().toISOString(), viewports: { fold: FOLD, deep: DEEP, scrollStep: '50%' }, routes: [] };
   for (const r of ROUTES) await sweepRoute(browser, r, FOLD, 'desktop', manifest);
