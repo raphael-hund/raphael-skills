@@ -1,45 +1,21 @@
 ---
 name: web
-version: 0.7.0
 description: >
   Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
   Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
-  nachbauen, Bild-Rebuild, UI-Motion-Komponenten. Trigger: "Website bauen",
-  "Landingpage", "Sitemap", "Website-QA", "CRO", "Design polieren",
-  "Slop entfernen", "Referenzseite nachbauen", "Website clonen",
-  "Popup/Lead-Magnet", "Screenshot nachbauen", "aus Bild bauen".
-class: F
-scope: agency
-sensitivity: internal
-loads:
-  - references/loop2-ablauf.md
-  - references/qa-faecher.md
-  - references/landingpage-struktur.md
-  - references/informationsarchitektur.md
-  - references/web-clone-playbook.md
-  - references/rebuild-from-image.md
-  - references/bildgenerierung.md
-  - references/ui-components/INDEX.md
-  - references/motion-doktrin.md
-  - references/ui-layouts-catalog.md
-  - references/cro-diagnose.md
-  - references/experiment-programm.md
-  - references/conversion-elemente.md
-  - references/code-qualitaets-checkliste.md
-  - references/security-audit-playbook.md
-  - references/domain-safe-browsing-checkliste.md
-  - references/readonly-db-rolle.md
-  - references/design-systeme-vergleich.md
-  - references/radix-shadcn-tailwind-stack.md
-  - references/remotion-produktionsweg.md
-  - references/templates/statistics-page-template.html
-requires_skills: [copywriting@^0, design@^0, eval@^0, impeccable@^0, taste@^0, ui-ux@^0]
-completion_criteria:
-  - "Lighthouse/axe = 0 Fehler (G1, hart)"
-  - "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)"
-  - "G2 auf jedem Ship-Copy-Block >= 0.7"
-  - "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate"
-  - "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch"
+  nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router
+  (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. Trigger: "Website bauen", "Landingpage", "Sitemap",
+  "Website-QA", "CRO", "Design polieren", "Slop entfernen",
+  "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
+  "Screenshot nachbauen", "aus Bild bauen".
+metadata:
+  raphael-version: "0.10.0"
+  raphael-class: "F"
+  raphael-scope: "agency"
+  raphael-sensitivity: "internal"
+  raphael-loads: '["references/loop2-ablauf.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/templates/statistics-page-template.html"]'
+  raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","impeccable@^0","taste@^0","ui-ux@^0"]'
+  raphael-completion-criteria: '["Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node scripts/werkzeug-gate.mjs <projekt> Exit 0)"]'
 ---
 
 # web — Loop 2: Website
@@ -59,6 +35,19 @@ ui-ux = App/product-Linie — beide zeigen auf die Linien im design-Skill).
 Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und aus echten
 Analytics verbessern.
 
+## Portabilitätsvertrag
+
+- Die **aktuelle Koordination** hält Plan, Entscheidungen, Freigaben und Abschlussbeweis.
+- Rollen wie Strategie, Copy, Umsetzung, visuelle Kritik oder unabhängiger Review
+  beschreiben Fähigkeiten, keine fest verdrahteten Anbieter oder Modelle.
+- Jede Rolle wird nur an Werkzeuge gebunden, die der aktuelle Host tatsächlich
+  bereitstellt. Fehlende Werkzeuge niemals erfinden oder als ausgeführt darstellen.
+- Neue nutzereigene Hintergrundaufgaben oder getrennte Arbeitskontexte nur anlegen,
+  wenn der Nutzer das ausdrücklich verlangt; interne, begrenzte Delegation bleibt
+  innerhalb der Regeln des aktuellen Hosts.
+- Sicherheits-, Egress-, Screenshot- und Abschluss-Gates gelten in jedem Runtime-Kontext
+  unverändert.
+
 ## Screenshot-Pflicht (Raphael-Regel, hart — gilt fuer jede sichtbare Aenderung)
 
 **Design wird NUR noch an Screenshots entschieden (Raphael 23.07.). Desktop zuerst.**
@@ -66,9 +55,9 @@ Fuer WEB-Seiten/URL-Routen ist `scripts/shot-sweep.mjs` das Standard-Werkzeug: F
 exakt 1440×730, danach 1440×1400 im 50-%-Schritt, echte Scroll-Events, NIEMALS
 fullPage/captureBeyondViewport. Bei PDFs/Folien/Creatives gilt weiterhin: rendern
 (z. B. pdftoppm) und jedes PNG per Read ansehen. Das Skript schreibt ein
-`manifest.json` — Kritik-Agents bekommen ausschliesslich dieses Manifest + die PNGs,
+`manifest.json` — Kritik-Rollen bekommen ausschliesslich dieses Manifest + die PNGs,
 keine selbst geratenen Pfade. Der vollstaendige Ablauf
-(Sweep → eigenes Ansehen → Panel Sol/Sonnet/Kimi → verifizierte Fixliste → Fix →
+(Sweep → eigenes Ansehen → unabhängiges Kritik-Panel → verifizierte Fixliste → Fix →
 Re-Sweep-Vergleich) steht in `references/screenshot-kritik-loop.md` und ist bei
 jeder visuellen Arbeit verbindlich.
 
@@ -78,7 +67,7 @@ einzeln ansehen: Freisteller wirklich freigestellt (kein Hintergrund-Kasten),
 richtiges Produkt/Motiv, Stil passt zu den Nachbar-Assets (sonst Higgsfield
 `image_background_remover` bzw. neu generieren). Fehler fixen -> ERNEUT Sweep.
 Erst fertig melden, wenn der letzte Zyklus sauber war. Diese Pflicht in jeden
-Subagent-Prompt fuer visuelle Arbeit explizit hineinschreiben (inkl. absoluter
+Delegations-Prompt fuer visuelle Arbeit explizit hineinschreiben (inkl. absoluter
 Pfade zum Skript und zum out-Verzeichnis). Bei PDF-Export zusaetzlich
 `pdffonts <datei.pdf>` laufen lassen: Nur die CI-Fonts duerfen eingebettet sein
 (Fallback auf Arimo/Roboto/Arial = Webfont war beim Headless-Render nicht da ->
@@ -100,18 +89,21 @@ zwischen zwei Skills springen, aber Design auch nie hier neu erfinden. So teilt 
 
 | Aufgabe | r-design-Linie | Referenz in design |
 |---|---|---|
-| Landing/Kampagne/Portfolio (Design IST das Produkt) | **taste-Linie** | `references/taste-kern.md` |
-| App/Dashboard/Tool (Design DIENT dem Produkt) | **ui-ux-Linie** (Offline-DB) | `references/ui-ux-db-nutzung.md` |
-| Finale Design-QA (immer, hart) | **impeccable-Detektoren** | `references/impeccable-detektoren.md` |
-| Konflikte/Doktrin (Typo/Farbe/Layout) | fusionierte Regeln | `references/design-doktrin.md` |
+| Landing/Kampagne/Portfolio (Design IST das Produkt) | **taste-Linie** | `/root/raphael-skills/skills/design/references/taste-kern.md` |
+| App/Dashboard/Tool (Design DIENT dem Produkt) | **ui-ux-Linie** (Offline-DB) | `/root/raphael-skills/skills/design/references/ui-ux-db-nutzung.md` |
+| Finale Design-QA (immer, hart) | **impeccable-Detektoren** | `/root/raphael-skills/skills/design/references/impeccable-detektoren.md` |
+| Konflikte/Doktrin (Typo/Farbe/Layout) | fusionierte Regeln | `/root/raphael-skills/skills/design/references/design-doktrin.md` |
 
 Regel: In den Schritten `art-direction` und `qa-faecher` (Fach 2 Design) **design laden
 und befolgen**. impeccable = Exit 0 ist harte Ship-Bedingung. Herkunft der Design-Regeln
-(impeccable/taste/ui-ux-pro-max, Lizenzen) steht in `design/VENDORING.md`.
+(impeccable/taste/ui-ux-pro-max, Lizenzen) steht in
+`/root/raphael-skills/skills/design/VENDORING.md`.
 
 **Feste Reihenfolge bei kombiniertem Design+Copy-Check (z.B. AI-Slop-Check über mehrere
-Seiten):** immer **design ZUERST** (Detektoren `node scripts/detect.mjs` + `node
-scripts/scan-ai-slop.mjs` je Exit 0), **danach copywriting G1→G2** auf denselben Seiten
+Seiten):** immer **design ZUERST** (Detektoren
+`node /root/raphael-skills/skills/design/scripts/detect.mjs` +
+`node /root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs` je Exit 0),
+**danach copywriting G1→G2** auf denselben Seiten
 — orchestriert über web als Dach-Skill. "Unklar" ist hier kein zulässiges Ergebnis;
 wenn wirklich kein Skill passt, erst dann als unklar zurückmelden.
 
@@ -131,13 +123,16 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
 
 ## Ablauf (Detail in references/loop2-ablauf.md)
 
-1. **strategy** — Ziel, Zielgruppe, Konversionspfad (Fable, Checkpoint Raphael).
-2. **sitemap** — Seitenstruktur + Sektionsplan (Sonnet). Landing → Struktur aus
+1. **strategy** — Ziel, Zielgruppe, Konversionspfad (Strategie-Rolle, Checkpoint Raphael).
+2. **sitemap** — Seitenstruktur + Sektionsplan (Informationsarchitektur-Rolle). Landing → Struktur aus
    `references/landingpage-struktur.md` (eine Aktion, Reihenfolge nach Überzeugungskraft).
    Mehrseitige Website (kein Ads-Landing) → `references/informationsarchitektur.md`
    (Seitenhierarchie, Navigation, URL-Struktur, internes Verlinken).
-3. **copy** — Copy sektionsweise (Sonnet, Brand-Voice + Proof über copywriting). G1-Stil → G2.
+3. **copy** — Copy sektionsweise (Copy-Rolle, Brand-Voice + Proof über copywriting). G1-Stil → G2.
 4. **art-direction** — **verweist auf design.** G1 = impeccable-46-Regeln (`npx impeccable detect --json`).
+   Braucht die Art Direction **UI-/Landing-Inspiration** (Galerien, Mobbin, Refero)
+   → zuerst `references/tool-usecase-router.md` §1 (eine Quelle wählen), nicht die
+   ganze Inspirationsliste aus der Referenzbibliothek.
    Soll eine bestehende Referenzseite als Vorlage/Stil dienen ("baue mir etwas Ähnliches
    wie X", "clone diese Landingpage") → **zuerst** `references/web-clone-playbook.md` laden
    (Entscheidungsbaum, Lizenz-Check, Komplexitätsskala L1–L6) **bevor** Art Direction beginnt.
@@ -159,7 +154,23 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht
    verwechseln mit den **Design-Referenz-Mockups** aus `imagegen-web`/`imagegen-mobile`
    (ein Mockup pro Sektion) — die Tabelle „Abgrenzung" in `bildgenerierung.md` trennt das.
-5. **components** — Komponenten-Spezifikation aus Art Direction. Copy-paste-fertige
+5. **components** — Komponenten-Spezifikation aus Art Direction. Vier Schritte,
+   in dieser Reihenfolge, kein Überspringen:
+   **5a Bedarfsliste** — jede Sektion durchgehen und notieren, was sie braucht
+   (Interaktion? Icon? Motion? Hintergrund? Video? Schrift?).
+   **5b Router ziehen** — `references/tool-usecase-router.md` laden und pro Bedarf
+   **genau eine** Zeile ziehen (Default + Install/Use + Gate).
+   **5c Abweichung nur belegt** — Nicht-Default braucht einen Satz Grund **und**
+   einen AgentReach-Beleg (Datum, geprüfte URL, Lizenzstand) in derselben Zeile.
+   **5d Werkzeugtabelle schreiben** — Ergebnis als Tabelle nach
+   `client-<name>/web/art-direction.md` (Spalten: Bedarf | Werkzeug | Befehl |
+   Gate | Router-Anker | geprüft-am). **Diese Tabelle ist die Freigabe für
+   Schritt 6** — ohne sie beginnt kein Build und kein `npm i`.
+   Die Antwort nennt diese Defaults —
+   **nicht** die 160er-Kandidatenliste. `references/frontend-referenzbibliothek.md`
+   nur öffnen, wenn eine Router-Zeile ausdrücklich dorthin zeigt; höchstens
+   3 URLs daraus zitieren, nie eine ganze Kategorie;
+   nie die gesamte Liste installieren oder in den Kontext kippen. Copy-paste-fertige
    Motion-Komponenten (Buttons, Modals, Tabs, Command-Palette, …) → `references/ui-components/INDEX.md`
    + Motion-Doktrin (wann/wie animieren, Reduced-Motion-Pflicht) → `references/motion-doktrin.md`.
    Weitere Komponenten-Ideen (Glass/Mesh-Gradient/3D) nur als Vokabular →
@@ -170,7 +181,14 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    `references/radix-shadcn-tailwind-stack.md`. Braucht das Projekt ein
    Hero-/Teaser-Video oder eine React-basierte Video-Composition (kein
    normales CSS-Motion) → `references/remotion-produktionsweg.md`.
-6. **build** — Umsetzung (Terra/Sol, Cross-Vendor `/codex:review`). Bei echtem Custom-Code
+6. **build** — **Kein `npm i`, kein `npx … add`, kein Vendorieren ohne passende
+   Zeile in der Werkzeugtabelle aus 5d.** Fällt beim Bauen ein neuer Bedarf auf:
+   zurück in den Router, Zeile nachziehen, dann installieren. Umsetzung durch eine
+   Implementierungs-Rolle nach den in
+   `components` gewählten Router-Defaults (`references/tool-usecase-router.md`);
+   Install nur gezielt (z.B. `npx shadcn@latest add accordion`, `npm i lucide-react`),
+   nie Blind-Install ganzer Libraries. Danach unabhängiger
+   Cross-Provider-Review durch einen getrennten Kontext. Bei echtem Custom-Code
    zusätzlich `references/code-qualitaets-checkliste.md` gegen AI-Slop prüfen. Formular-
    Backends, Kundendaten-Handling, npm-Abhängigkeiten (Formular/Tracking/Payment) →
    `references/security-audit-playbook.md` (Fail-Open-Defaults, Footgun-Configs,
@@ -181,11 +199,14 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    nachladen (A02/A03/A05/A08/A10-Einträge, DSGVO-Consent des Formularfelds prüfen).
    Braucht der
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
-   Schreibzugriff für Agenten).
+   Schreibzugriff für ausführende Rollen).
 7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).
-   G1 Lighthouse/axe = 0, hart. Fach 2 Design laeuft ab jetzt als Screenshot-Kritik-Loop
+   G1 Lighthouse/axe = 0, hart. Fach 4 enthält zusätzlich das **Werkzeug-Gate**
+   (`node scripts/werkzeug-gate.mjs <projekt>`): ein Icon-System, kein
+   `framer-motion`-Import, `useReducedMotion` in jeder kopierten Motion-Datei,
+   keine Dependency ohne Zeile in der Werkzeugtabelle — rot = kein Launch. Fach 2 Design laeuft ab jetzt als Screenshot-Kritik-Loop
    nach references/screenshot-kritik-loop.md.
-   (Panel: sol-pruefer=Code+Befundliste, sonnet-worker=Screenshots, kimi-recherche=Screenshots.)
+   (Panel: eine Code-Ursachenprüfung plus zwei unabhängige visuelle Prüfungen.)
    Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
    Sequenz aus "Look & QA": design ZUERST, **danach copywriting G1→G2 als fester zweiter
    Schritt** (nicht optional) — Details in `references/qa-faecher.md`. Optional Persona-QA
@@ -195,15 +216,16 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
 8. **Launch** — **Signatur + Deploy-Egress-Gate.** Nie autonom. Neue/junge Domain →
    vorher `references/domain-safe-browsing-checkliste.md` durchgehen (Google-Safe-Browsing-Flag
    verhindern). Bei Referenz-Nachbau: Lizenz-Check aus `web-clone-playbook.md` muss geklärt sein.
-9. **cro-learn** — CRO aus echten Analytics (Sonnet, G4). Für ein laufendes Test-Programm
+9. **cro-learn** — CRO aus echten Analytics (Analyse-Rolle, G4). Für ein laufendes Test-Programm
    statt Einzelfixes → `references/experiment-programm.md` (ICE-Score, Experiment-Playbook).
 
 ## Loop-2-Ablauf (verbindlich)
 
-Strategie (Fable, Checkpoint Raphael) → Sitemap + Copy sektionsweise (Sonnet, Voice+Proof;
-G1-Stil → G2) → Art Direction (design, G1 impeccable) → Build (Terra/Sol, Cross-Vendor
-`/codex:review`) → QA-Fächer parallel (G1 Lighthouse/axe = 0, hart) → Launch (Signatur +
-Deploy-Egress-Gate) → CRO-Learning aus echten Analytics (Sonnet, G4).
+Strategie (Strategie-Rolle, Checkpoint Raphael) → Sitemap + Copy sektionsweise
+(Informationsarchitektur-/Copy-Rolle, Voice+Proof; G1-Stil → G2) → Art Direction
+(design, G1 impeccable) → Build (Implementierungs-Rolle + unabhängiger Review) →
+QA-Fächer parallel (G1 Lighthouse/axe = 0, hart) → Launch (Signatur +
+Deploy-Egress-Gate) → CRO-Learning aus echten Analytics (Analyse-Rolle, G4).
 
 ## Statistik-/Linkbait-Seite als Vorlage
 
@@ -214,10 +236,21 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
 
 ## Gotchas
 
+- **Frontend-Tools über `tool-usecase-router.md`, nicht über Link-Dumps.**
+  Jeder Bedarf (Icons, FAQ, Motion, Stock, …) bekommt Default + Install/Use + Gate.
+  `frontend-referenzbibliothek.md` ist nur Anhang nach dem Router — wer sie ohne
+  gezogene Router-Zeile öffnet, arbeitet falsch herum.
+  160 URLs in die Antwort kippen = Regelverstoß.
+- **Das Motion-Paket heißt `motion`, der Import `motion/react`.** `npm i framer-motion`
+  bricht alle vendorierten Komponenten aus `references/ui-components/` (alle 75
+  Motion-Importe dort lauten `from "motion/react"`).
+- **Genau EIN Icon-System pro Projekt, Default Lucide** — shadcn und die 31
+  Icon-Importe der vendorierten Komponenten nutzen bereits `lucide-react`.
+  Ein zweites Set ist doppelte Bundle-Last und optischer Bruch.
 - **Lighthouse/axe = 0 ist hart** — kein "fast fertig". Fertig = Environment-Tatsache (Regel 14).
 - Art Direction nie selbst erfinden — Design läuft über **design** (Details in Sektion
   "Look & QA" oben, nicht doppelt hier).
-- Build läuft Cross-Vendor geprüft: wer baut (Terra/Sol) ist nicht wer reviewt.
+- Build läuft unabhängig geprüft: wer baut, ist nicht wer reviewt.
 - Deploy = Rot-Klasse: nie autonom, immer Egress-Gate (Domain-Whitelist) + Signatur.
 - CRO-Behauptungen nur aus echten Analytics (G4), nie aus Judge-Scores.
 - **"Auf GitHub öffentlich" ≠ "frei nutzbar"** — beim Nachbauen einer Referenzseite immer

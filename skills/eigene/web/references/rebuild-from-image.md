@@ -100,7 +100,7 @@ Rasterbild verstecken statt im DOM.
 
 ### 3. Deterministischer Rebuild-Prompt — der Build-Handoff
 
-Der Builder (Terra/Sol) bekommt **nur**, nicht das Bild zur freien
+Die Implementierungs-Rolle bekommt **nur**, nicht das Bild zur freien
 Neuinterpretation:
 
 - die Region-Map aus Schritt 2 (Sections, IDs, Reihenfolge, Tokens)
@@ -171,7 +171,8 @@ neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
   `asset-plan.json`, `final-evidence.json`) gegen ein Higgsfield-Setup
   prüfen. Der *Inhalt* dieser Gates (Wahrheitsmodell, Renderstrategie-Matrix,
   Fidelity-Achsen) ist oben eingearbeitet — die Scripts selbst nicht vendoriert.
-- **`agents/openai.yaml`** — Agent-Definition für einen fremden Runner, ohne Bezug zu dieser Umgebung.
+- **fremde Runner-Metadaten** — nicht aus dem Vendor-Paket übernommen; die
+  kanonische Skill-Metadatei wird unabhängig für diesen Skill gepflegt.
 
 ## Abgrenzung zu wdp-rebuild-prompt-vertrag.md — nicht doppelt lesen
 

@@ -9,13 +9,13 @@ Pflicht-Check, nicht als Design-Quelle.
 ### 0. Wiederkehrender Health-Sweep (optional, nur für Live-Kundenseiten, per Cron)
 
 Unterschied zum Rest dieser Datei: DAS hier läuft nicht auf expliziten Auftrag,
-sondern regelmäßig im Hintergrund über einen Cron-Job (nie als Hermes-Loop, nie
-als versteckte Schleife — Cron ist einziger Zeitplan-Besitzer, siehe AGENTS.md).
+sondern regelmäßig im Hintergrund über einen Cron-Job (nie als versteckte
+Runtime-Schleife — Cron ist einziger Zeitplan-Besitzer, siehe AGENTS.md).
 Erst Gesundheit (Konsole-Fehler, 404s, Ladezeit, Mobile-Viewport), dann Ästhetik.
 
 1. Cron ruft `shot-sweep.mjs` auf denselben Kern-Routen einer Live-Kundenseite
    auf (z. B. täglich), Output in `state/health-sweeps/<datum>/`.
-2. Ein billiges Modell (Haiku) vergleicht den neuen Sweep NUR gegen den
+2. Eine kostengünstige Vergleichs-Rolle vergleicht den neuen Sweep NUR gegen den
    Besucher-Blick-Katalog (Schritt 2 unten) und schreibt Auffälligkeiten
    in ein Ledger: `state/screenshot-ledger.md` — eine Zeile pro Beobachtung
    (Datum, Route, Befund, Screenshot-Pfad). Kein Fix, keine Bewertung, nur
@@ -33,16 +33,16 @@ Cron-Vorschlag (Raphael muss freigeben, nicht Teil dieser Synthese-Datei):
 täglich außerhalb der Stoßzeiten, ein Job pro aktivem Kundenprojekt mit
 Live-Website.
 
-**WICHTIG:** Kein Cron wird von einem Agent selbst angelegt. Dauerbetrieb nur
+**WICHTIG:** Kein Cron wird von einer ausführenden Rolle selbst angelegt. Dauerbetrieb nur
 mit Raphael-Einzelfreigabe pro Kunde + Kostenlimit.
 
 ### 1. Sweep
 `node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> [--hover ...] [--mobile]`
 - First Fold 1440×730, Rest 1440×1400, Schritt 50 %. Niemals fullPage.
-- Das Skript schreibt `manifest.json` — NUR dieses Manifest wird an Agents gegeben.
+- Das Skript schreibt `manifest.json` — NUR dieses Manifest wird an die Kritik-Rollen gegeben.
 
 ### 2. Selbst ansehen (Pflicht, nicht delegierbar)
-Der ausfuehrende Agent liest JEDES PNG per Read. Befundliste schreiben:
+Die ausführende Rolle öffnet JEDES PNG mit dem verfügbaren Bildlese-Werkzeug. Befundliste schreiben:
 `befund: <shot-datei> | <was falsch ist> | <vermutete Ursache>`.
 Erst wer selbst gesehen hat, darf das Panel rufen.
 
@@ -60,27 +60,27 @@ Regel dazu (Raphael, 24.07.2026): Diese Dinge muessen von ALLEINE auffallen — 
 sie nicht ansagen muessen. Ein Sweep ohne diesen Katalog gilt als nicht angesehen.
 
 ### 3. Kritik-Panel (3 Rollen, parallel, frische Kontexte)
-| Rolle | Agent | Liest | Auftrag |
+| Rolle | Fähigkeit | Liest | Auftrag |
 |---|---|---|---|
-| Code-Kritik („Zoll") | `sol-pruefer` | Die zum Befund gehoerenden Source-Dateien + die Befundliste (KEIN Manifest noetig — er prueft Code gegen Befund, nicht Screenshots) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
-| Visuelle Kritik A („Opus-Register") | `sonnet-worker` | manifest.json + alle Shot-PNGs (per Read) | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
-| Visuelle Kritik B (Kimi) | `kimi-recherche` | manifest.json + alle Shot-PNGs (per Read) | „Zweite, unabhaengige Sicht: Was wirkt wie KI-Slop, was ist inkonsistent ueber die Seiten? Befund + Shot-Datei als Beleg." |
+| Code-Kritik („Zoll") | unabhängige Code-Ursachenprüfung | Die zum Befund gehoerenden Source-Dateien + die Befundliste (KEIN Manifest noetig — sie prueft Code gegen Befund, nicht Screenshots) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
+| Visuelle Kritik A | erste unabhängige visuelle Prüfung | manifest.json + alle Shot-PNGs | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
+| Visuelle Kritik B | zweite unabhängige visuelle Prüfung | manifest.json + alle Shot-PNGs | „Zweite, unabhaengige Sicht: Was wirkt wie KI-Slop, was ist inkonsistent ueber die Seiten? Befund + Shot-Datei als Beleg." |
 
-Judge-Prompt-Form: IMMER „pass/fail + eingefuegter Beweis", NIE „erklaere dein Denken"
-(Fable-Gotcha, Regel 19). Jeder Befund ohne Shot-Beleg gilt als nicht gefunden.
+Judge-Prompt-Form: IMMER „pass/fail + eingefuegter Beweis", NIE eine Aufforderung,
+internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefunden.
 
 ### 4. Verifizierte Fixliste
-Der Cockpit-Agent merged: nur Befunde, die (a) von >=2 Panel-Mitgliedern ODER
+Die aktuelle Koordination merged: nur Befunde, die (a) von >=2 Panel-Mitgliedern ODER
 (b) vom eigenen Auge + 1 Panel-Mitglied getragen werden, kommen auf die Fixliste.
-Sol-Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
+Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
 
 ### 5. Fix (Worker nach Doktrin)
-Salsaflow-Frontend: `kimi-worker`. Der Fix-Prompt enthaelt: Fixliste MIT Shot-Belegen
+Die Implementierungs-Rolle erhält: Fixliste MIT Shot-Belegen
 (Dateipfade der relevanten PNGs pro Befund), betroffene Dateien, Verify-Kommandos
 (Build/TS + Re-Sweep), Screenshot-Pflicht.
 
 ### 6. Re-Sweep + Vergleich
-Gleiche Routes, gleiche Spec, NEUES out-Verzeichnis. Der Cockpit-Agent vergleicht
+Gleiche Routes, gleiche Spec, NEUES out-Verzeichnis. Die aktuelle Koordination vergleicht
 vorher/nachher pro Befund Shot fuer Shot. Nicht behoben → zurueck auf die Liste mit
 Kommentar. Dann ALLE Seiten erneut pruefen (Nebenwirkungen), nicht nur die gefixte.
 

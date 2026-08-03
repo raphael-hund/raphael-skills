@@ -52,6 +52,12 @@ Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 ## Fach 4 — Technik
 - G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO), Link-Check, HTML-validate.
 - Meta/OG/Schema vorhanden, Canonical korrekt, keine Broken Links, responsive.
+- **G1 Werkzeug-Gate (hart):** `node scripts/werkzeug-gate.mjs <projekt> --tabelle
+  <pfad>/art-direction.md` = Exit 0. Prueft deterministisch: genau EIN Icon-System,
+  null `framer-motion`-Importe (vendorierte Komponenten nutzen `motion/react`),
+  `useReducedMotion` in jeder animierenden Datei, keine Dependency ohne Zeile in
+  der Werkzeugtabelle aus Schritt 5d. Rot = kein Launch, wie jedes andere G1-Fach.
+  "Router wurde gelesen" ist keine gueltige Antwort auf dieses Gate.
 
 ## Optional — Persona-QA
 Je eine Perspektive: Beginner · Engineer · Business-Owner. Findet Blindstellen, die die
