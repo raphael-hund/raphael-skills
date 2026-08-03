@@ -1,7 +1,0 @@
-Anti-Set — 11 Fixtures auf Port 5321
-Protokoll: /root/raphael-skills/.claude/worktrees/web-designer-superskill/skills/eigene/web/evals/antiset-lauf-1855110.log
-
-Aufgeraeumt: 2 verwaiste Chrome-Wurzel(n) aus frueheren Abbruechen beendet.
-ROT  _basis                   exit=2  Kontrolle: muss sauber durchgehen
-       Exit erwartet 0, bekommen 2
-       zusaetzlich gerissen: lighthouse, axe

@@ -20,3 +20,10 @@ __pycache__/
 # fremder Laeufe mit Pfaden aus /tmp.
 skills/*/evals/antiset-lauf-*.log
 skills/*/*/evals/antiset-lauf-*.log
+
+# Punkt-Logs aus Hintergrundlaeufen: `node evals/run-x.mjs > evals/.x.log`.
+# Gemessen 03.08.2026: `git add -A skills/` nahm ein solches Log mit in einen
+# Commit — 49 Zeilen Lauf-Ausgabe mit Playwright-Stacktrace, mitten im
+# Eval-Ordner. Ein Log im Repo ist keine Doku, es altert ab der ersten Sekunde.
+skills/*/evals/.*.log
+skills/*/*/evals/.*.log
