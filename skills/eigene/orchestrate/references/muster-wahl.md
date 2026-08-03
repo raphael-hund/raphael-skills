@@ -5,7 +5,7 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 
 | Aufgaben-Form | Muster | Skelett |
 |---|---|---|
-| Viele gleichartige Einheiten bearbeiten (N Dateien umbauen, N Seiten schreiben, N Repos sichten) | **Fan-out-Pipeline** | `pipeline(items, schreib(sonnet-worker/kimi-worker), pruef(luna-worker/haiku-worker), fixWennRot(sonnet-worker))` — je Einheit eigene Datei, geteilte Dateien zentral am Ende; Sol nimmt die Stichprobe ab. Bei einem Publish-/Live-Node am Ende ist der `pruef()`-Schritt der Selbst-QA-Schritt vor Veröffentlichung — nie direkt von Schreiber zu Publish ohne ihn. Für Codex-/Kimi-Adapter, die das private CLAUDE.md nicht erben, muss der Loop-/Workflow-Prompt den Baustein „long horizon session, human is away“ sowie Autonomie, Nicht-Stoppen bis Gate/Budget und die Rot-Klassen explizit enthalten. |
+| Viele gleichartige Einheiten bearbeiten (N Dateien umbauen, N Seiten schreiben, N Repos sichten) | **Fan-out-Pipeline** | `pipeline(items, schreib(luna-worker/kimi-worker/grok-worker), pruef(grok-worker/luna-worker), fixWennRot(luna-worker))` — je Einheit eigene Datei, geteilte Dateien zentral am Ende; Sol nimmt die Stichprobe ab. Bei einem Publish-/Live-Node am Ende ist der `pruef()`-Schritt der Selbst-QA-Schritt vor Veröffentlichung — nie direkt von Schreiber zu Publish ohne ihn. Für Codex-/Kimi-Adapter, die das private CLAUDE.md nicht erben, muss der Loop-/Workflow-Prompt den Baustein „long horizon session, human is away“ sowie Autonomie, Nicht-Stoppen bis Gate/Budget und die Rot-Klassen explizit enthalten. |
 | Qualität eines bestehenden Stands prüfen/heben | **Kritik-Flotte** | `sol-pruefer`=Urteil, `kimi-recherche`=Gegenperspektive, `luna-worker`=Mechanik parallel; Sonnet/Haiku ergänzen → je Fund Verify (Default: widerlegt) → passender Fixer → Sol-Abnahme |
 | Echte Streitfrage / Architektur-Entscheidung | **Council** | Sol, Kimi und Claude mit Gegensatz-Linsen (First-Principles / Executor / Outsider), anonym als Antwort A/B/C, 2 Peer-Rankings (erst Einzelbewertung, dann `FINAL RANKING:`), Sol-Chairman (5 Abschnitte: einig / Streit / blinde Flecken / Empfehlung / eine erste Handlung) — dann SOFORT umsetzen |
 | Unbekanntes Terrain erkunden (Web, Codebase, Vendor-Repo) | **Recherche-Sweep** | mehrere Sucher mit VERSCHIEDENEN Zugängen parallel (Community-Meinung / Doku / Code lesen / Gegenprobe), danach Synthese-Agent; Warnliste ist Pflicht-Output |
@@ -19,8 +19,10 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 - **`kimi-recherche` / `kimi-worker`** — Pflicht: unabhängige dritte
   Modellfamilie; Gegenprobe bzw. Frontend/deutscher Text.
 - **`luna-worker`** — Pflicht: Mechanik, Tests, klar begrenzte Umbauten.
-- **`sonnet-worker`** — Schreiben, Integrieren, Destillieren.
-- **`haiku-worker`** — Massen-Lesen, einfache Verify-/Lint-Aufgaben.
+- **`grok-worker`** — schnelle Masse, Prototypen, vierte Perspektive (bevorzugt).
+- **`terra-bulk`** — Architektur, Multi-File-Volumen (bevorzugt).
+- **`sonnet-worker`** — nur Notnagel bei Familien-Ausfall (Raphael: unbeliebt).
+- **`haiku-worker`** — nur stumpfes Massen-Lesen, letzte Wahl (Raphael: unbeliebt).
 - **Fable/Opus** laufen nur über `agentType:'fable-architekt'` bzw.
   `'opus-builder'` (Freigabe 03.08.2026, teuer — siehe orchestrate-gauntlet).
   Rohes `model:'fable'` umgeht die Leitplanken und ist weiter tabu.

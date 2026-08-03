@@ -108,11 +108,12 @@ roher `model:`-Override. Zuteilung je Aufgabenklasse, Harness-Wahl
 (Terminal/Desktop-MCP/Codex-nativ/Kimi-nativ) und Degraded-Pfade:
 `references/cross-model-harness.md`. Auftragskontrakt: `references/dispatch.md`.
 
-Router-Kurzform: klein → selbst · Urteil → Cockpit · Bau → `sonnet-worker` ·
-Massen-Lesen → `haiku-worker` · Mechanik/Tests → `luna-worker` · Bulk →
-`terra-bulk` · Frontend/DE-Text → `kimi-worker` · Ship-Review → `sol-pruefer` ·
-Zweitmeinung → `kimi-recherche` · schnelle Masse/vierte Perspektive → `grok-worker` ·
-Browser → Kimi steuert.
+Router-Kurzform (Familien-Präferenz Raphael 03.08.: Luna/Terra/Grok zuerst,
+Sonnet/Haiku unbeliebt): klein → selbst · Urteil → Cockpit · Mechanik/Tests/Bau
+→ `luna-worker` · Bulk/Architektur → `terra-bulk` · schnelle Masse/Prototypen →
+`grok-worker` · Frontend/DE-Text/Denken → `kimi-worker` · Ship-Review →
+`sol-pruefer` · Zweitmeinung → `kimi-recherche` · stumpfes Massen-Lesen →
+`haiku-worker` (letzte Wahl) · Sonnet nur Notnagel · Browser → Kimi steuert.
 Quota-Fehler = weiterlaufen, das Gateway rotiert; sichtbarer Nicht-Fallback ist
 ein Vorfall. Grok 4.5 ist seit 03.08.2026 als Route freigegeben (CLIProxy 8317,
 xAI-OAuth) — Cockpit-Preset für Raphaels direkte Ansprache und `grok-worker` als
@@ -120,6 +121,14 @@ vierte Familie.
 
 ## Schritt 3 — Einmal-Lauf (EINMAL)
 
+0. **Erst der Plan, dann die Flotte.** Bei mehrstufiger Arbeit zuerst einen
+   sichtbaren Plan anlegen (TaskCreate je Etappe oder nummerierte Liste) und
+   die Etappen **nacheinander** abarbeiten — parallelisiert wird INNERHALB
+   einer Etappe, nicht über Etappen hinweg. Belegtes Gut-Muster (Session
+   7ac23a32, 03.08.): Plan mit 3 Etappen, dann je Etappe Batches parallel
+   über Luna/Grok/Kimi rotiert, jede Etappe fertig bevor die nächste beginnt.
+   Falsch: alles gleichzeitig starten und hoffen, dass sich die Abhängigkeiten
+   von selbst sortieren.
 1. **Zerlegen** (30 Sekunden): Arbeits-Liste, Fertig-Kriterium, Gates, Tabus.
 2. **Muster wählen** nach `references/muster-wahl.md` — Fan-out-Pipeline,
    Kritik-Flotte, Council, Recherche-Sweep, Vendor-Kette, Loop-until-dry,

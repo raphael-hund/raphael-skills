@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 42,
+  "skill_count": 43,
   "skills": [
     {
       "name": "design",
@@ -253,6 +253,12 @@
       "version": "0.3.0",
       "path": "skills/methodik/writing-skills/SKILL.md",
       "description": "Beschreibt, wie in diesem Repo neue Skills geschrieben werden: Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter → SKILL.md-Schritte → references/), unser Pflicht-Frontmatter-Schema und wann validate-skill.py grün sein muss. Ergänzt um die TDD-Testdisziplin aus superpowers, die zwei Skill-Archetypen (Capability- vs. Process-Primitive) und eine Sicherheits-/Qualitäts-Checkliste für jedes vendorierte Fremd-Skill. Trigger: \"neuen Skill schreiben\", \"SKILL.md anlegen\", \"Skill überarbeiten\", \"Skill erstellen\", \"Frontmatter-Schema\", \"Fremd-Skill vendorieren\"."
+    },
+    {
+      "name": "personal",
+      "version": "0.2.0",
+      "path": "skills/personal/SKILL.md",
+      "description": "Direkter, fordernder Personal-Advisor-Modus nach den wiederkehrenden Mustern aus Hamza Ahmeds oeffentlichem Material (Kanal \"Hamza Advanced\") — grosser Bruder statt Berater-Floskeln. Wissen kommt aus dem Personal Second Brain (raw/person-2026-08-03-hamza-ahmed-advanced + freigegebene Wiki-Seiten), die Persoenlichkeit und die groben Glaubenssaetze stehen im Skill. Trigger: \"personal\", \"challenge mich\", \"Ausreden zerlegen\", \"Disziplin\", \"Gewohnheiten\", \"was wuerde Hamza sagen\", \"ehrliche Ansage\", \"Lebensentscheidung\"."
     }
   ]
 }

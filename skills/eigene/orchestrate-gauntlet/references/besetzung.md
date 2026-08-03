@@ -109,10 +109,10 @@ Raphael spricht direkt über **Grok 4.5**, nicht über Opus.
 | Tiefe Bug-Jagd (hoher Recall nötig) | `fable-architekt` | `opus-builder` | `luna-worker` |
 | Große Migration / Multi-File | `terra-bulk` | `luna-worker` | `grok-worker` |
 | Prototyp, viele Varianten schnell | `grok-worker` | `luna-worker` | `kimi-worker` |
-| Mechanik, Boilerplate, Massen-Edit | `haiku-worker` | `luna-worker` | `grok-worker` |
-| Tests schreiben und grün fahren | `luna-worker` | `haiku-worker` | `grok-worker` |
+| Mechanik, Boilerplate, Massen-Edit | `luna-worker` | `grok-worker` | `haiku-worker` |
+| Tests schreiben und grün fahren | `luna-worker` | `grok-worker` | `terra-bulk` |
 | 3D / visuelle Kreation | `kimi-worker` | `fable-architekt` | `grok-worker` |
-| Recherche / Referenzen finden | `kimi-recherche` | `haiku-worker` | `grok-worker` |
+| Recherche / Referenzen finden | `kimi-recherche` | `grok-worker` | `luna-worker` |
 
 **Kosten-Bremse:** `fable-architekt` ist fast überall die **Zweitwahl hinter
 Kimi** — der Zwilling kann dasselbe billiger. Erstwahl ist Fable nur bei

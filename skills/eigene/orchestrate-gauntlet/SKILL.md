@@ -71,6 +71,10 @@ Bugfix) ist er falsch.
 
 ## Die Besetzung (überlappend — Details in references/besetzung.md)
 
+**Familien-Präferenz (Raphael):** Luna, Terra und Grok zuerst — die
+GPT-Familie und Grok sind die Lieblings-Worker. Kimi für Frontend/Texte/Denken.
+Sonnet ist raus (Notnagel), Haiku nur für stumpfes Massen-Lesen.
+
 **Grundsatz: die Rollen überlappen sich.** Kein Modell hat ein Monopol. Jede
 Familie kann mehrere Dinge, und für fast jede Aufgabe gibt es mehrere taugliche
 Besetzungen — das macht den Lauf ausfallsicher, erlaubt echte Varianten-Duelle
@@ -83,7 +87,7 @@ und hält Regel 8 (Builder ≠ Kritiker) immer erfüllbar.
 | `luna-worker` | GPT | max | **Motor.** Goal je Stück: Mechanik, Tests, Fix-Schleifen, Backend | Kritiker (Mechanik/Zahlen), Glätter |
 | `terra-bulk` | GPT | max | Architektur, Migration, Multi-File-Volumen | Kritiker (Konsistenz über viele Dateien) |
 | `sol-pruefer` | GPT | max | Ship-Urteil, Chairman, finale Abnahme | **auch Builder**: harte Code-Fälle, Planung |
-| `haiku-worker` | Claude | max | Massen-Lesen, Boilerplate, billige Schleifen | **auch Builder** (mechanische Edits), Kritiker (Screenshot-Vergleich) |
+| `haiku-worker` | Claude | max | nur noch stumpfes Massen-Lesen, wenn Luna/Grok verschwendet wären | Screenshot-Datei-Vergleich |
 | `kimi-worker` | Kimi K3 | high | Frontend/UI, DE-Texte, Kreatives, 3D — **und schweres Denken**: Platz 4 im Intelligence Index (57,11), 1M Kontext, Thinking immer an | Kritiker (Design/Ton/Analyse), Glätter, Deep-Search |
 | `grok-worker` | Grok 4.5 | max | Tempo und Volumen, Prototypen, Tool-Use | Kritiker (vierte Perspektive) |
 | `kimi-recherche` | Kimi K3 | high | Lesende Gegenprobe, Latten-Suche | Kritiker ohne Schreibrechte |

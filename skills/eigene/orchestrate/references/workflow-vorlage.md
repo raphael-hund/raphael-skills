@@ -38,8 +38,8 @@ const kritik = await parallel([
     agentType:'kimi-recherche', schema:FUNDE}),
   () => agent(PROMPT_MECHANIK, {label:'kritik:luna', phase:'Kritik',
     agentType:'luna-worker', effort:'low', schema:FUNDE}),
-  () => agent(PROMPT_INHALT, {label:'kritik:sonnet', phase:'Kritik',
-    agentType:'sonnet-worker', schema:FUNDE}),
+  () => agent(PROMPT_INHALT, {label:'kritik:grok', phase:'Kritik',
+    agentType:'grok-worker', schema:FUNDE}),
 ])
 const alle = kritik.filter(Boolean).flatMap(k => k.funde)
   .filter(f => f.schwere !== 'NICE')          // NICE nur protokollieren
@@ -55,7 +55,7 @@ const fixes = await pipeline(alle,
   async (v, f) => v && v.real
     ? agent(`Fixe chirurgisch: ${JSON.stringify(f)}. Nichts erfinden, nichts
         kürzen, keine Checks aufweichen. Gib {done, notes} zurück.`,
-        {label:`fix:${f.wo}`, phase:'Fix', agentType:'sonnet-worker',
+        {label:`fix:${f.wo}`, phase:'Fix', agentType:'luna-worker',
          schema:{type:'object',additionalProperties:false,
                  properties:{done:{type:'boolean'},notes:{type:'string'}},required:['done','notes']}})
     : { skipped: f }
@@ -73,13 +73,13 @@ return { kritik_funde: alle.length, fixes, review }
 ## Varianten
 
 - **Massen-Umbau über N Dateien** (je Datei ein Schreiber + Prüfer):
-  `pipeline(dateien, schreib(sonnet-worker/kimi-worker),
-  pruef(luna-worker/haiku-worker), fixWennRot(sonnet-worker))` — Schreiber
+  `pipeline(dateien, schreib(luna-worker/kimi-worker/grok-worker),
+  pruef(grok-worker/luna-worker), fixWennRot(luna-worker))` — Schreiber
   schreiben je EINE eigene Datei (kein Race). Danach Sol-Stichprobe (jede
   ~8. Datei voll lesen, git diff gegen Substanzverlust/Erfindung).
-- **Vendoring-Runde:** je Repo ein Sonnet- oder Kimi-Agent (clone → Lizenz →
+- **Vendoring-Runde:** je Repo ein Luna- oder Kimi-Agent (clone → Lizenz →
   Red-Flags → destillieren in bestehende Skill-References — nie
-  Masseninstall), danach Luna-/Haiku-Validate und Sol-Abnahme.
+  Masseninstall), danach Grok-/Luna-Validate und Sol-Abnahme.
 - **Streitfall:** llm-council-Muster — N Antworten parallel, anonymes
   Peer-Ranking („Antwort A/B/C", drei Fragen: stärkste? größter blinder Fleck?
   was übersahen ALLE?), Chairman-Synthese. Statt Nutzer-Rückfrage.
