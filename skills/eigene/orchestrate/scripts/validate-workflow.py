@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pre-Flight-Validator fuer ultra-loop-Workflow-Scripts (.js).
+"""Pre-Flight-Validator fuer orchestrate-Workflow-Scripts (.js).
 
 HERKUNFT: uebernommen aus
   /root/tools/vendor/alirezarezvani-skills/engineering/workflow-builder/skills/workflow-builder/scripts/validate_workflow.py
@@ -26,7 +26,7 @@ runden-protokoll.md), gegenueber dem Original:
     agent()-Prompts — die "Slice-Falle" aus workflow-vorlage.md (3x real
     passiert, R13/R15): stiller Datenverlust an Folge-Agenten statt Datei+Pfad.
   - check_model_fable: NEU. FAIL bei Fable als `model` oder `agentType` —
-    ultra-loop/SKILL.md verbietet Fable-Subagents explizit (NIE Fable).
+    orchestrate/SKILL.md (Betriebsart LOOP) verbietet Fable-Subagents explizit (NIE Fable).
   - check_multimodel_fleet: seit 28.07.2026 WARN (nicht FAIL) bei
     Claude-only-Flotten. Grenze der Heuristik: sie sieht nur, OB irgendwo
     eine Nicht-Claude-Familie vorkommt — nicht, ob ausgerechnet der
@@ -162,14 +162,14 @@ def check_nondeterminism(code, findings):
 
 
 def check_model_fable(code, findings):
-    """ultra-loop/SKILL.md: NIE Fable-Subagents.
+    """orchestrate/SKILL.md (Betriebsart LOOP): NIE Fable-Subagents.
 
     Bekannte Grenze: dies ist eine Heuristik auf dem Quelltext, keine harte
     Garantie. Sie erkennt nur das woertliche Literal model:'fable'
     (case-insensitiv, faengt also auch 'Fable'/'FABLE'). Verschleierung durch
     Variablen-Concat (z.B. `const m='fa'+'ble'; agent('p',{model:m})`) kann
     dieser statische Check prinzipbedingt nicht erfassen. Die Cockpit-
-    Letztverifikation (siehe ultra-loop/SKILL.md, Abschnitt zur finalen
+    Letztverifikation (siehe orchestrate/SKILL.md (Betriebsart LOOP), Abschnitt zur finalen
     Pruefung vor dem Merge) ist die eigentliche Grenze gegen sowas — dieser
     Check ist nur eine fruehe Advisory-Warnung, kein hartes Gate.
 

@@ -107,22 +107,6 @@
     "langsam geworden"
    ]
   },
-  "dynamic-workflow": {
-   "source": "skills/eigene/dynamic-workflow/SKILL.md",
-   "mode": "native-thread",
-   "rationale": "Codex has a native thread workflow contract for this orchestration primitive.",
-   "triggers": [
-    "/dynamic-workflow",
-    "dynamic workflow",
-    "als Workflow machen",
-    "mach das mit Subagents",
-    "starte einen Workflow dafür",
-    "fächere das auf"
-   ],
-   "trigger_aliases": {
-    "mach das mit Subagents": "mach das mit Sub-Tasks"
-   }
-  },
   "eval": {
    "source": "skills/eigene/eval/SKILL.md",
    "mode": "source-adapter",
@@ -144,22 +128,6 @@
     "das haben wir schon mal so gemacht",
     "daraus einen Skill machen"
    ]
-  },
-  "graph": {
-   "source": "skills/eigene/graph/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Adapter build: graph draws the map first and then runs it as a workflow script. Kept as source-adapter because NATIVE_THREAD_SKILLS is a hand-curated list (dynamic-workflow, orchestrate, sdd, ultra-loop) — adding graph there is a design decision for Raphael, not a repair.",
-   "triggers": [
-    "/graph",
-    "starte einen Graphen",
-    "Graph Engineering",
-    "baue eine Agenten-Pipeline",
-    "State-Machine für diese Arbeit",
-    "wiederkehrende Pipeline aufsetzen"
-   ],
-   "trigger_aliases": {
-    "baue eine Agenten-Pipeline": "baue eine Sub-Task-Pipeline"
-   }
   },
   "handoff": {
    "source": "skills/eigene/handoff/SKILL.md",
@@ -274,19 +242,6 @@
     "interne Verlinkung"
    ]
   },
-  "ultra-loop": {
-   "source": "skills/eigene/ultra-loop/SKILL.md",
-   "mode": "native-thread",
-   "rationale": "Represent the durable improvement loop with Codex's native thread and automation contract.",
-   "triggers": [
-    "/ultra-loop",
-    "Loop mit Workflows",
-    "Dauer-Verbesserungs-Loop",
-    "selbstkritischer Loop",
-    "loop der sich verbessert",
-    "ultracode-Loop"
-   ]
-  },
   "watch": {
    "source": "skills/eigene/watch/SKILL.md",
    "mode": "source-adapter",
@@ -301,8 +256,8 @@
   },
   "web": {
    "source": "skills/eigene/web/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Route the website strategy, build, QA, and CRO workflow to its authoritative source.",
+   "mode": "canonical-link",
+   "rationale": "Expose the portable canonical web package byte-identically through a verified repository bridge.",
    "triggers": [
     "Website bauen",
     "Landingpage",
@@ -316,11 +271,6 @@
     "Popup/Lead-Magnet",
     "Screenshot nachbauen",
     "aus Bild bauen"
-   ],
-   "codex_notes": [
-    "Resolve shared design files to /root/raphael-skills/skills/design/references/taste-kern.md, /root/raphael-skills/skills/design/references/ui-ux-db-nutzung.md, /root/raphael-skills/skills/design/references/impeccable-detektoren.md, and /root/raphael-skills/skills/design/references/design-doktrin.md.",
-    "Resolve scripts/detect.mjs to /root/raphael-skills/skills/design/scripts/detect.mjs and scripts/scan-ai-slop.mjs to /root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs.",
-    "Resolve the security checklist to /root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md."
    ]
   },
   "last30days": {

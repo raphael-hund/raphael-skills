@@ -1,12 +1,18 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 43,
+  "skill_count": 41,
   "skills": [
     {
       "name": "design",
       "version": "0.4.0",
       "path": "skills/design/SKILL.md",
       "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie, Layout/Struktur, Barrierefreiheit (A11y), Interface-Texte (Microcopy) und UI-Polish-Details als eigene References bei Bedarf nachladen; fuer \"review den ganzen Screen/Flow\" den konsolidierten Interface-Review fahren (eine Fund-Tabelle, ein Verdikt). Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Layout/Spacing/Ausrichtung\", \"Breakpoints/Responsive\", \"RTL\", \"Barrierefreiheit/A11y/WCAG\", \"Tastaturbedienung\", \"Screenreader\", \"Fokusring\", \"Hit-Area/Touch-Target\", \"Microcopy/Button-Label/ Fehlermeldung/Empty State\", \"voller Interface-Review\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
+    },
+    {
+      "name": "ads-copy",
+      "version": "1.0.0",
+      "path": "skills/eigene/ads-copy/SKILL.md",
+      "description": "Feuert für den Primary Text einer Meta-Ad — den Fliesstext über/unter dem Creative, plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads von 10 Werbetreibenden (Marc Evers, Speedscaling, SEOLabs, Neuhaus Digital, Pascal Harting, Dr. Matt Shiver, Charlie Morgan, Ben Heath, Enpal, Tim Krasenbrink) statt aus dem Gefühl. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\", \"Text zur Anzeige\", \"Ad Copy\". Für Video-Skripte siehe ads-video, für Statics-Briefs ads-statics, für den Loop-3-Ablauf ads."
     },
     {
       "name": "ads-statics",
@@ -51,12 +57,6 @@
       "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"kaputt\", \"geht nicht\" (nur wenn Code/Test falsch läuft — bei externer Wand: unstuck), \"Regression\", \"langsam geworden\"."
     },
     {
-      "name": "dynamic-workflow",
-      "version": "0.2.0",
-      "path": "skills/eigene/dynamic-workflow/SKILL.md",
-      "description": "Erzwingt für EINE Aufgabe die Ausführung als dynamischer Workflow (Workflow-Tool) mit Subagent-Flotte — nie Solo-Arbeit des Cockpits. Zerlegt die Aufgabe, wählt das passende Orchestrierungs-Muster (Fan-out/Pipeline/Kritik/Council), baut das Script nach Vorlage, startet, verifiziert die Kern-Ergebnisse selbst. Trigger: \"/dynamic-workflow\", \"dynamic workflow\", \"als Workflow machen\", \"mach das mit Subagents\", \"starte einen Workflow dafür\", \"fächere das auf\"."
-    },
-    {
       "name": "eval",
       "version": "0.3.2",
       "path": "skills/eigene/eval/SKILL.md",
@@ -67,12 +67,6 @@
       "version": "0.1.1",
       "path": "skills/eigene/extract-approach/SKILL.md",
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
-    },
-    {
-      "name": "graph",
-      "version": "0.1.0",
-      "path": "skills/eigene/graph/SKILL.md",
-      "description": "Startet einen Agenten-Graphen: die Karte (Nodes → Routen → Checkpoints → Gates) wird VOR dem Lauf gezeichnet, dann automatisch als Workflow-Script mit Subagent-Flotte ausgeführt — inkl. automatischem Setup der Agenten und des Kontextes je Node. Trigger: \"/graph\", \"starte einen Graphen\", \"Graph Engineering\", \"baue eine Agenten-Pipeline\", \"State-Machine für diese Arbeit\", \"wiederkehrende Pipeline aufsetzen\"."
     },
     {
       "name": "handoff",
@@ -118,9 +112,9 @@
     },
     {
       "name": "orchestrate",
-      "version": "0.5.0",
+      "version": "1.0.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "Feuert für Mehr-Agenten-Arbeit: Aufgabe in Leader/Worker/Verifier zerlegen, Cross-Model- und Cross-Harness-Dispatch (Luna, Sol, Terra, Sonnet, Haiku, Kimi) explizit setzen, Sub-Actions parallel fahren, nie eine Familie allein bauen und prüfen lassen. Für Streitfragen: adversariales Distill-Muster oder Council. Für Qualitätsarbeit: Gauntlet-Loop gegen eine inspizierbare Messlatte. Trigger: \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"orchestrieren\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\", \"Flotte\", \"Gauntlet\", \"Gauntlet-Loop\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\"."
+      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
     },
     {
       "name": "read-book",
@@ -151,12 +145,6 @@
       "version": "0.1.0",
       "path": "skills/eigene/ui-ux/SKILL.md",
       "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
-    },
-    {
-      "name": "ultra-loop",
-      "version": "0.4.1",
-      "path": "skills/eigene/ultra-loop/SKILL.md",
-      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Cross-Vendor-Flotte (Sol/Kimi/Luna plus Sonnet/Haiku) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
     },
     {
       "name": "watch",

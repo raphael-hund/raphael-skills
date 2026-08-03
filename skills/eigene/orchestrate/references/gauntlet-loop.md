@@ -27,7 +27,7 @@ kostet ein Vielfaches.
 
 Abgrenzung: `eval` misst **ein** Artefakt gegen eine Rubrik, einmal.
 Der Gauntlet-Loop ist die **Schleife**, die das Artefakt so lange verbessert,
-bis es die Latte fast erreicht. `ultra-loop` ist die Dauer-Cron-Version über ein
+bis es die Latte fast erreicht. Betriebsart LOOP ist die Dauer-Cron-Version über ein
 ganzes Repo; der Gauntlet zielt auf **ein** Werkstück mit **einer** Latte.
 
 ## Die Messlatte (der wichtigste Teil)
@@ -122,7 +122,7 @@ STOPP:       wenn die Zugewinne klein werden oder das Budget endet
 
 ## Umsetzung bei uns
 
-- **Ausführung:** über `dynamic-workflow` (ein Durchgang) oder `ultra-loop`
+- **Ausführung:** über orchestrate-Betriebsart EINMAL bzw. LOOP
   (Dauerbetrieb). `pipeline(stücke, build, kritik, fixWennVerloren)` ist das
   Grundgerüst; `parallel()` nur, wenn eine Stufe wirklich alle Stücke braucht.
 - **Effort:** für ernste Läufe hoch fahren (Cockpit `ultracode`/max) — der

@@ -38,7 +38,7 @@ Beim Kompilieren der Karte baut das Cockpit pro Node den Prompt aus:
 Nichts davon fragt Raphael — die Karte enthält alles.
 
 **Long-Horizon-Hinweis (bei Codex/Kimi-Workern Pflicht, bei Claude-Workern
-empfohlen):** wortgleich zur ultra-loop-Klausel — "long horizon session,
+empfohlen):** wortgleich zur Long-Horizon-Klausel in orchestrate/SKILL.md — "long horizon session,
 human is away": autonom weiterarbeiten, bis Gates grün oder Budget/Rundenlimit
 erreicht; bei Unsicherheit nicht stoppen und nicht auf Rückfrage warten;
 Rot-Klassen bleiben bindend. Grund: Codex/Kimi-Adapter erben das private

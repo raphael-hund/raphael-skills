@@ -39,10 +39,6 @@
    "source": "skills/design/SKILL.md",
    "mode": "source-adapter"
   },
-  "dynamic-workflow": {
-   "source": "kimi/skills/dynamic-workflow/SKILL.md",
-   "mode": "native-kimi-agent"
-  },
   "eval": {
    "source": "skills/eigene/eval/SKILL.md",
    "mode": "source-adapter"
@@ -130,17 +126,13 @@
    "source": "skills/methodik/to-spec/SKILL.md",
    "mode": "source-adapter"
   },
-  "ultra-loop": {
-   "source": "kimi/skills/ultra-loop/SKILL.md",
-   "mode": "native-kimi-agent"
-  },
   "watch": {
    "source": "skills/eigene/watch/SKILL.md",
    "mode": "source-adapter"
   },
   "web": {
    "source": "skills/eigene/web/SKILL.md",
-   "mode": "source-adapter"
+   "mode": "canonical-link"
   },
   "raphael-writing-skills": {
    "codex_name": "writing-skills",

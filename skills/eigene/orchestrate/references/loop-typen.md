@@ -1,23 +1,47 @@
-# Loop-Typen — welcher der vier Loop/Graph-Skills, wann
+# Betriebsarten — welche wann, und woran man sie unterscheidet
 
-| Skill | Typ (Taxonomie) | Wer entscheidet den Weg | Trigger | Dauer | Wann |
-|---|---|---|---|---|---|
-| `goal-loop` | goal-loop (Ralph-Kontrakt) | Agent, bis Stop-Bedingung erfüllt | `/goal` | eine Session, bis erreicht/Budget | >30 Min mechanische Arbeit MIT verifizierbarem Stop (Tests grün, Coverage-Ziel) |
-| `dynamic-workflow` | turn-loop / Einzel-Workflow | DU (Zerlegung), Agent (Ausführung je Node) | "mach das als Workflow" | ein Durchgang | EINE Aufgabe, die eine Subagent-Flotte braucht (Fan-out/Kritik/Council) |
-| `ultra-loop` | time-loop (Cron) | Agent wählt pro Runde den nächsten Punkt | Cron alle 20-30 Min | Tage, bis CronDelete | Dauer-Verbesserung eines Repos/Skill-Sets ohne festen Endpunkt |
-| `graph` | proactive/auto-loop (vorgezeichnet) | DU zeichnest Nodes/Routen vorab | `/graph` | wiederkehrend (jeder Lauf = ein Input) | Wiederkehrende Pipeline (Content, Offerten, Reports) mit fester Schrittfolge |
+Alle Betriebsarten leben in **einem** Skill (orchestrate). Unterschieden werden
+sie an einer Frage: **wer entscheidet den Weg — du oder der Agent?**
 
-**Gemeinsame Bausteine aller vier** (die "Contract"-Ebene der Fremd-Taxonomie
-ist bei uns nicht pro Loop neu erfunden, sondern zentral):
-- **Contract** = das Mandat/die Mission beim Start (Schritt 1 in ultra-loop,
-  Schritt 1 in dynamic-workflow, Frozen Rules im Graph-Header).
-- **Verifiers** = `eval`-Skill (G1-G4) für alle vier gleich.
-- **Isolation/Budget** = Worktrees + Rundenlimits (max 3 in Graph-Loops),
-  Cron-Session-only-Regel für Dauer-Loops.
-- **Memory/Hooks** = Runden-Protokoll (`ultra-loop`) bzw. Karten-Header
-  (`graph`) statt eigener Hook-Logik pro Loop-Typ.
+| Betriebsart | Wer entscheidet den Weg | Dauer | Wann |
+|---|---|---|---|
+| **SOLO** | du, komplett | Minuten | <5 Min, eine Datei, kein Urteil nötig |
+| **EINMAL** | du zerlegst, der Agent löst die Stücke | ein Durchgang | EINE Aufgabe, die eine Subagent-Flotte braucht (Fan-out, Kritik, Recherche-Sweep) |
+| **LOOP** | der Agent wählt pro Runde den nächsten Punkt | Tage, bis `CronDelete` | Dauer-Verbesserung eines Repos/Skill-Sets ohne festen Endpunkt |
+| **GRAPH** | du zeichnest Nodes und Routen vorab | wiederkehrend, ein Lauf = ein Input | Wiederkehrende Pipeline (Content, Offerten, Reports) mit fester Schrittfolge |
+| **GAUNTLET** | du setzt nur die Messlatte, der Agent den Weg | bis die Zugewinne klein werden | Qualität ist das Ziel, nicht Fertigwerden |
+| **COUNCIL** | niemand — es wird erst entschieden | ein Durchgang | echte Streitfrage mit mehreren plausiblen Antworten |
 
-Faustregel: fester Endpunkt bekannt UND wiederkehrend → `graph`. Fester
-Endpunkt bekannt, einmalig → `goal-loop` (mechanisch) oder `dynamic-workflow`
-(braucht Flotte). Kein fester Endpunkt, offene Dauer-Verbesserung →
-`ultra-loop`.
+**Mechanische Sonderform:** klar verifizierbarer Stop (Tests grün,
+Coverage-Ziel) und >30 Min mechanische Arbeit → der Autonomer-Lauf-Kontrakt aus
+`dispatch.md` (5 Teile: Objective, Constraints, Validation Command, Stop
+Condition, Documentation). Braucht keine Flotte, nur einen Worker mit hartem
+Gate.
+
+## Faustregeln
+
+- Fester Endpunkt bekannt **und** wiederkehrend → **GRAPH**.
+- Fester Endpunkt bekannt, einmalig → **EINMAL** (mit Flotte) bzw.
+  Autonomer-Lauf-Kontrakt (mechanisch).
+- Kein fester Endpunkt, offene Dauer-Verbesserung → **LOOP**.
+- Es gibt eine externe Referenz, die klar besser ist als unser Stand →
+  **GAUNTLET**.
+- Die Frage ist „welche Antwort“, nicht „wie baue ich“ → **COUNCIL**.
+
+## Gemeinsame Bausteine (einmal zentral, nicht je Betriebsart neu)
+
+- **Contract** = das Mandat beim Start: Ziel, Gates, Tabus, Abbruchbedingung.
+  Bei GRAPH heißen die unverrückbaren Teile *Frozen Rules* und wandern wörtlich
+  in jeden Node-Prompt.
+- **Verifiers** = `eval`-Skill (G1–G4), für alle Betriebsarten gleich.
+- **Isolation/Budget** = Worktrees plus Rundenlimits (Default 3 bei
+  Graph-Rückrouten), Session-only-Cron bei LOOP.
+- **Memory** = Runden-Protokoll (`runden-protokoll.md`) bei LOOP,
+  Karten-Header bei GRAPH, `workbench.md` bei GAUNTLET — nie eigene Hook-Logik
+  je Betriebsart.
+
+## Loop-in-Node
+
+Ein GRAPH-Node darf intern eine Schleife sein (Kritiker schickt Drafts zurück,
+bis die Rubrik klar ist). Ein LOOP darf pro Runde einen GAUNTLET fahren.
+Mischformen sind der Normalfall — die Betriebsart benennt nur die äußere Hülle.

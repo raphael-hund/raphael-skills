@@ -1,4 +1,4 @@
-# Workflow-Vorlage für ultra-loop-Runden
+# Workflow-Vorlage (orchestrate — Betriebsarten EINMAL und LOOP)
 
 Jede Substanz-Runde baut ihr Script aus diesem Grundmuster. Anpassen, nicht
 blind kopieren — aber die markierten Pflicht-Teile bleiben.
@@ -89,7 +89,7 @@ return { kritik_funde: alle.length, fixes, review }
   ALLE Ergebnisse von N-1 zusammen braucht (Dedup, Früh-Abbruch).
 - `meta` = pures Literal. Kein `Date.now()`, kein `Math.random()`.
 - Vor jedem Workflow-Start: `python3
-  /root/raphael-skills/skills/eigene/ultra-loop/scripts/validate-workflow.py
+  /root/raphael-skills/skills/eigene/orchestrate/scripts/validate-workflow.py
   <script>` laufen lassen — prüft `meta`-Literal, Date.now/Math.random/new
   Date, Args-Falle, Slice-Falle und `model:'fable'`. Rot (FAIL) = nicht
   starten.

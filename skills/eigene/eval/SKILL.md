@@ -94,7 +94,7 @@ braucht konkrete Voraussetzungen, unter denen der Fund tatsächlich auftritt
 
 ## Verifikations-Vertrag (Verified nur mit Beweis)
 
-Bei jedem "fertig"/"verifiziert"-Anspruch (Runden-Abschluss, Close, Waiver, Retry-Cap/Eskalation): `references/verifikations-vertrag.md` — destilliertes agent-harness-Prinzip, auf G1/G2 und ultra-loop-Runden gemappt.
+Bei jedem "fertig"/"verifiziert"-Anspruch (Runden-Abschluss, Close, Waiver, Retry-Cap/Eskalation): `references/verifikations-vertrag.md` — destilliertes agent-harness-Prinzip, auf G1/G2 und orchestrate-LOOP-Runden gemappt.
 
 ## rubric-author
 
@@ -108,7 +108,7 @@ Rubriken schreiben: 3–6 binäre, überprüfbare Ja/Nein-Fragen mit Beweis-Anke
   (Regel 19). Prompt-Vorlagen in `references/judge-prompts.md`.
 - **Verifier = möglichst andere Modellfamilie, frische Session.** Fable prüft nie Fable (Regel 8).
   Seit 25.07.2026 Empfehlung statt hartes Gate (Anbieter-Ausfälle): geht keine Fremd-Familie,
-  Ausnahme im Protokoll vermerken — siehe ultra-loop/SKILL.md "Flotten-Wahl ist frei".
+  Ausnahme im Protokoll vermerken — siehe orchestrate/SKILL.md (Cross-Model-Regel).
 - **G1 vor G2, immer.** Kein Judge auf einem Output, der die deterministischen Checks nicht
   besteht — Judge-Tokens sind teuer und die Antwort steht schon fest.
 - Mehr als 6 Rubrik-Fragen werden gegamed — kurz halten.
