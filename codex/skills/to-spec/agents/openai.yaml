@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex To Spec"
-  short_description: "Codex adapter for the to-spec skill"
-  default_prompt: "Use $to-spec for this task."

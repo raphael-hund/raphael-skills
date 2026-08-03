@@ -4,7 +4,7 @@ Skill-übergreifende Vorgehensweisen (Dev-Kern), vendored aus superpowers (obra)
 mattpocock/skills und auf unser Schema gebracht. Herkunft + Kollisions-Entscheidungen:
 `/root/raphael-skills/VENDORING.md` Abschnitt 1.
 
-Aktueller Bestand (12):
+Aktueller Bestand (13):
 
 | Skill | Zweck (1 Satz) |
 |---|---|
@@ -19,6 +19,7 @@ Aktueller Bestand (12):
 | `tickets` | Plan/Spec → vertikale Tracer-Bullet-Tickets mit Blocking-Kanten. |
 | `handoff-ext` | Übergabe an eine FREMDE Instanz (Subagent/Tool/Person); vgl. `eigene/handoff`. |
 | `research` | Recherche gegen Primärquellen, Ergebnis als zitierte Notiz. |
+| `skill-update` | Einen Lernpunkt in ALLE betroffenen bestehenden Skills nachziehen (Pflichtform, 3-stufige Suche, Einzelfreigabe). |
 | `writing-skills` | Wie man in DIESEM Repo neue -Skills schreibt (+ `references/tdd-fuer-skills.md`). |
 
 Bauordnung wie jeder Skill: `SKILL.md` mit Pflicht-Frontmatter

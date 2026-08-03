@@ -1,28 +1,8 @@
----
-name: sdd
-version: 0.2.0
-description: >
-  Führt einen Umsetzungsplan aus, indem pro Task ein frischer Subagent
-  dispatcht, gefolgt von Spec- und Qualitätsreview, plus finaler
-  Gesamt-Review am Ende. Trennt Kontexte sauber (idealerweise per
-  Worktree-Isolation), hält Fortschritt in einem Ledger fest statt im
-  Gesprächsgedächtnis, und pflegt zwischen Sessions einen lebenden Backlog
-  statt verwaister Pläne. Trigger: "Plan umsetzen", "Subagent pro Task",
-  "Tasks ausführen", "subagent-driven development".
-class: M
-scope: agency
-sensitivity: internal
-source: fusion — superpowers (obra) skills/subagent-driven-development @ d884ae04 + shadcn/improve skills/improve/references/closing-the-loop.md
-completion_criteria:
-  - "Jeder Task hat Implementierung + Review mit beiden Verdikten (Spec-Konformität, Code-Qualität)"
-  - "Kritische/wichtige Findings sind gefixt und re-geprüft, bevor der nächste Task startet"
-  - "Finaler Gesamt-Review über den ganzen Branch ist durchgeführt, Ledger vollständig"
-  - "Jeder Reviewer-Fund wurde vom Koordinator selbst im Diff verifiziert, nie blind aus dem Subagent-Report übernommen"
----
+<!-- source: fusion — superpowers (obra) skills/subagent-driven-development @ d884ae04 + shadcn/improve skills/improve/references/closing-the-loop.md — konsolidiert in plan 1.0.0 am 03.08.2026 -->
 
 # sdd — Subagent-getriebene Umsetzung
 
-**Voraussetzung:** ein fertiger Umsetzungsplan (siehe plan) mit weitgehend
+**Voraussetzung:** ein fertiger Umsetzungsplan (Stufe PLAN) mit weitgehend
 unabhängigen Tasks, Ausführung in dieser Session.
 
 **Kernprinzip:** frischer Subagent pro Task + Task-Review (Spec-Konformität +

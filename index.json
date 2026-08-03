@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 43,
+  "skill_count": 38,
   "skills": [
     {
       "name": "design",
@@ -171,12 +171,6 @@
       "description": "Recherchiert, was Leute in den letzten 30 Tagen wirklich über ein Thema sagen — Posts und Engagement aus Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub und dem Web, inkl. doctor-Health-Check. Vendored aus last30days-skill (mvanhorn). VORAUSSETZUNG: SCRAPECREATORS_API_KEY (ohne Key laufen nur keyless/degradierte Quellen). Trigger: \"last30days\", \"was sagen Leute über\", \"Trend-/Ad-Library-Scan\", \"Recency-Recherche\"."
     },
     {
-      "name": "brainstorm",
-      "version": "0.2.0",
-      "path": "skills/methodik/brainstorm/SKILL.md",
-      "description": "Verwandelt eine Idee durch geführten Dialog in eine geprüfte Design-Spec, bevor auch nur eine Zeile Code geschrieben wird. Fragt einzeln nach, schlägt 2-3 Ansätze mit Trade-offs vor, lässt die Spec vom Nutzer freigeben und übergibt danach an plan. Jeder Vorschlag braucht ein Zitat aus Codebase/Gespräch — generische Ideen ohne Beleg sind Rauschen, keine Option. Trigger: \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"bevor wir loslegen\", \"Anforderungen klären\"."
-    },
-    {
       "name": "code-review",
       "version": "0.2.1",
       "path": "skills/methodik/code-review/SKILL.md",
@@ -189,12 +183,6 @@
       "description": "Schließt einen Entwicklungs-Branch sauber ab: Tests verifizieren, Umgebung erkennen, genau die passenden Optionen anbieten (Merge, PR, Behalten, Verwerfen), gewählten Weg ausführen, Workspace aufräumen. Trigger: \"Branch abschließen\", \"fertig implementiert\", \"mergen oder PR\", \"finishing a development branch\"."
     },
     {
-      "name": "grill",
-      "version": "0.1.0",
-      "path": "skills/methodik/grill/SKILL.md",
-      "description": "Bohrt einen Plan, eine Entscheidung oder eine Idee rigoros durch, bis ein gemeinsames Verständnis steht — eine Frage nach der anderen, mit Empfehlung, Fakten selbst recherchiert statt erfragt. Kein Umsetzen vor Bestätigung. Trigger: \"grillen\", \"grill mich\", \"Plan stresstesten\", \"Entscheidung durchleuchten\"."
-    },
-    {
       "name": "handoff-ext",
       "version": "0.1.0",
       "path": "skills/methodik/handoff-ext/SKILL.md",
@@ -202,21 +190,15 @@
     },
     {
       "name": "plan",
-      "version": "0.2.0",
+      "version": "1.0.0",
       "path": "skills/methodik/plan/SKILL.md",
-      "description": "Verwandelt eine freigegebene Spec in einen bissgroßen Umsetzungsplan mit exakten Dateipfaden, vollständigem Code je Schritt und TDD-Zyklus — für einen Umsetzer, der die Codebasis nicht kennt. Jeder Schritt endet an einem Verify-Kommando, jeder Plan trägt einen Drift-Check und explizite STOP-Bedingungen statt Freestyle bei Unstimmigkeiten. Trigger: \"Umsetzungsplan\", \"Plan schreiben\", \"Spec in Tasks zerlegen\", \"implementation plan\"."
+      "description": "DER Planungs-Skill — einer für alles Planen. Führt von der rohen Idee bis zum umsetzbaren Plan und wählt selbst die Stufe: GRILL (Entscheidung durchbohren), SPEC (Idee zur freigegebenen Spec), PLAN (Spec zum bissgroßen Umsetzungsplan), TICKETS (in Tracer-Bullet-Tickets schneiden), UMSETZUNG (Subagent je Task). Ersetzt brainstorm, grill, to-spec, tickets und sdd. Trigger: \"planen\", \"Plan machen\", \"plane das\", \"Umsetzungsplan\", \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"Spec schreiben\", \"PRD\", \"grillen\", \"grill mich\", \"Entscheidung durchleuchten\", \"Tickets schreiben\", \"Backlog bauen\", \"Plan umsetzen\", \"Tasks ausführen\"."
     },
     {
       "name": "research",
       "version": "0.2.0",
       "path": "skills/methodik/research/SKILL.md",
       "description": "Recherchiert eine Sachfrage gegen vertrauenswürdige Primärquellen (Docs, Source Code, Specs, First-Party-APIs) im Hintergrund und hält die Befunde als zitierte Markdown-Datei fest. Die Recherche-Frage selbst wird zuerst scharf formuliert (Ziel + Entscheidung, 3-6 Unterfragen, Quellenhierarchie) und vor Abschluss läuft eine Gap-Round-Selbstkritik. Trigger: \"recherchieren\", \"Doku nachschlagen\", \"API-Fakten sammeln\", \"Hintergrund-Recherche\"."
-    },
-    {
-      "name": "sdd",
-      "version": "0.2.0",
-      "path": "skills/methodik/sdd/SKILL.md",
-      "description": "Führt einen Umsetzungsplan aus, indem pro Task ein frischer Subagent dispatcht, gefolgt von Spec- und Qualitätsreview, plus finaler Gesamt-Review am Ende. Trennt Kontexte sauber (idealerweise per Worktree-Isolation), hält Fortschritt in einem Ledger fest statt im Gesprächsgedächtnis, und pflegt zwischen Sessions einen lebenden Backlog statt verwaister Pläne. Trigger: \"Plan umsetzen\", \"Subagent pro Task\", \"Tasks ausführen\", \"subagent-driven development\"."
     },
     {
       "name": "skill-update",
@@ -229,18 +211,6 @@
       "version": "0.1.0",
       "path": "skills/methodik/tdd/SKILL.md",
       "description": "Test-Driven Development als eiserne Regel: erst der fehlschlagende Test, dann minimaler Code, dann Refactor. Kein Produktionscode ohne vorher gesehenen Fehlschlag. Trigger: \"TDD\", \"Test-Driven Development\", \"Red-Green-Refactor\", \"Feature implementieren\", \"Bugfix schreiben\"."
-    },
-    {
-      "name": "tickets",
-      "version": "0.2.0",
-      "path": "skills/methodik/tickets/SKILL.md",
-      "description": "Zerlegt einen Plan, eine Spec oder das laufende Gespräch in tracer-bullet Tickets — vertikale Slices mit expliziten Blocking-Kanten statt horizontaler Layer-Schnitte. Priorisiert per Tiebreaker (Unblocker zuerst, Security-Funde mit hoher Konfidenz vorziehen, \"nicht wert\" ist ein gültiges Verdikt). Trigger: \"Tickets schreiben\", \"in Tickets aufteilen\", \"Backlog bauen\", \"to-tickets\"."
-    },
-    {
-      "name": "to-spec",
-      "version": "0.1.0",
-      "path": "skills/methodik/to-spec/SKILL.md",
-      "description": "Verdichtet den bereits geführten Gesprächs- und Codebase-Kontext zu einer Spec (PRD) — kein neues Interview, reine Synthese des Bekannten. Trigger: \"Spec schreiben\", \"PRD bauen\", \"aus dem Gespräch eine Spec machen\", \"to-spec\"."
     },
     {
       "name": "unstuck",

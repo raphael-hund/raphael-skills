@@ -1,22 +1,4 @@
----
-name: tickets
-version: 0.2.0
-description: >
-  Zerlegt einen Plan, eine Spec oder das laufende Gespräch in tracer-bullet
-  Tickets — vertikale Slices mit expliziten Blocking-Kanten statt
-  horizontaler Layer-Schnitte. Priorisiert per Tiebreaker (Unblocker zuerst,
-  Security-Funde mit hoher Konfidenz vorziehen, "nicht wert" ist ein
-  gültiges Verdikt). Trigger: "Tickets schreiben", "in Tickets aufteilen",
-  "Backlog bauen", "to-tickets".
-class: M
-scope: agency
-sensitivity: internal
-source: fusion — mattpocock/skills skills/engineering/to-tickets @ 9603c1cc + shadcn/improve skills/improve/references/audit-playbook.md (Priorisierungs-Rubrik)
-completion_criteria:
-  - "Jedes Ticket ist ein vertikaler Slice (Schema bis UI/Test), keine horizontale Layer-Scheibe"
-  - "Jedes Ticket nennt seine Blocked-by-Kante oder 'None — kann sofort starten'"
-  - "Granularität und Kanten wurden dem User zur Bestätigung vorgelegt, bevor veröffentlicht wurde"
----
+<!-- source: fusion — mattpocock/skills skills/engineering/to-tickets @ 9603c1cc + shadcn/improve skills/improve/references/audit-playbook.md (Priorisierungs-Rubrik) — konsolidiert in plan 1.0.0 am 03.08.2026 -->
 
 # tickets — Plan in Tracer-Bullet-Tickets zerlegen
 

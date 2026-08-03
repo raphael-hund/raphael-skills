@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build and install the Codex skill adapters.
+"""Build, verify, and install the Codex skill packages.
 
 The source ``skills/**/SKILL.md`` files remain canonical.  This utility only
-generates the small, source-pointing adapters under ``codex/skills`` and their
-OpenAI manifests.  It deliberately has no prune operation: directories that
+generates source-pointing adapters under ``codex/skills`` and verifies
+``canonical-link`` packages without writing through their bridges. It
+deliberately has no prune operation: directories that
 are not in ``codex/compatibility.json`` are reported as stale and left alone.
 
 Usage::
@@ -40,10 +41,10 @@ REGISTRY_PATH = CODEX_ROOT / "compatibility.json"
 # This is intentionally stable.  Adapters may be checked out elsewhere, but
 # the source file they point at is always this canonical Raphael skills tree.
 CANONICAL_REPO = "/root/raphael-skills"
-NATIVE_THREAD_SKILLS = {"dynamic-workflow", "orchestrate", "sdd", "ultra-loop"}
+NATIVE_THREAD_SKILLS = {"orchestrate", "plan"}
 NATIVE_EXTERNAL_SKILLS = {"kimi-sol"}
 NATIVE_SKILLS = NATIVE_THREAD_SKILLS | NATIVE_EXTERNAL_SKILLS
-VALID_MODES = {"source-adapter", "native-thread", "native-external-review"}
+VALID_MODES = {"source-adapter", "canonical-link", "native-thread", "native-external-review"}
 
 # Tokens which describe the source harness rather than Codex.  The generated
 # description must not advertise any of these stale platform concepts.  The
@@ -146,7 +147,7 @@ def load_registry() -> dict[str, dict[str, Any]]:
             raise RuntimeError(f"{name}: source muss ein repo-relativer Pfad sein.")
         if not isinstance(mode, str) or mode not in VALID_MODES:
             raise RuntimeError(
-                f"{name}: mode muss source-adapter, native-thread oder "
+                f"{name}: mode muss source-adapter, canonical-link, native-thread oder "
                 "native-external-review sein."
             )
         if not isinstance(rationale, str) or not rationale.strip():
@@ -173,7 +174,7 @@ def load_registry() -> dict[str, dict[str, Any]]:
 
 
 def inspect_sources(registry: dict[str, dict[str, Any]]) -> dict[str, tuple[Path, dict[str, Any]]]:
-    """Validate and index the 31 canonical source skills plus native entries."""
+    """Validate and index canonical source skills plus native entries."""
     found: dict[str, tuple[Path, dict[str, Any]]] = {}
     duplicate_paths: set[str] = set()
     for path in source_files():
@@ -205,9 +206,12 @@ def inspect_sources(registry: dict[str, dict[str, Any]]) -> dict[str, tuple[Path
         rel = path.relative_to(REPO_ROOT).as_posix()
         if entry["source"] != rel:
             raise RuntimeError(f"{name}: Registry source {entry['source']!r} != {rel!r}.")
-        expected_mode = "native-thread" if name in NATIVE_THREAD_SKILLS else "source-adapter"
-        if entry["mode"] != expected_mode:
-            raise RuntimeError(f"{name}: mode muss {expected_mode!r} sein.")
+        if name in NATIVE_THREAD_SKILLS:
+            expected_modes = {"native-thread"}
+        else:
+            expected_modes = {"source-adapter", "canonical-link"}
+        if entry["mode"] not in expected_modes:
+            raise RuntimeError(f"{name}: mode muss einer von {sorted(expected_modes)!r} sein.")
     for name in NATIVE_EXTERNAL_SKILLS:
         entry = registry.get(name)
         if entry is None:
@@ -324,7 +328,7 @@ def expected_files(
 def native_paths(registry: dict[str, dict[str, Any]]) -> list[Path]:
     paths: list[Path] = []
     for name, entry in registry.items():
-        if entry["mode"] != "source-adapter":
+        if entry["mode"] in {"native-thread", "native-external-review"}:
             paths.extend((CODEX_SKILLS_ROOT / name / "SKILL.md", CODEX_SKILLS_ROOT / name / "agents" / "openai.yaml"))
     return paths
 
@@ -395,6 +399,48 @@ def validate_openai_manifest(path: Path, expected_name: str) -> list[str]:
     return errors
 
 
+def canonical_bridge_target(entry: dict[str, Any]) -> str:
+    canonical_dir = (REPO_ROOT / entry["source"]).parent
+    return os.path.relpath(canonical_dir, CODEX_SKILLS_ROOT)
+
+
+def validate_canonical_link(name: str, entry: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    bridge = CODEX_SKILLS_ROOT / name
+    expected_target = canonical_bridge_target(entry)
+    if not bridge.is_symlink():
+        return [f"repository bridge ist kein Symlink: {bridge}"]
+    actual_target = os.readlink(bridge)
+    if actual_target != expected_target:
+        errors.append(f"repository bridge target {actual_target!r} statt {expected_target!r}")
+
+    canonical_skill = REPO_ROOT / entry["source"]
+    if not canonical_skill.is_file():
+        errors.append(f"kanonische SKILL.md fehlt: {canonical_skill}")
+        return errors
+    if (bridge / "SKILL.md").resolve() != canonical_skill.resolve():
+        errors.append("repository bridge loest nicht auf die kanonische SKILL.md auf")
+
+    skill_result = validate_skill_file(canonical_skill)
+    errors.extend(skill_result.errors)
+    frontmatter = extract_frontmatter(canonical_skill.read_text(encoding="utf-8")) or []
+    fields = parse_top_level_keys(frontmatter)
+    if set(fields) != {"name", "description", "metadata"}:
+        errors.append(f"kanonische Frontmatter-Keys {sorted(fields)} statt ['description', 'metadata', 'name']")
+    if _plain_scalar(fields.get("name", {}).get("raw", "")) != name:
+        errors.append(f"kanonischer name ist nicht {name!r}")
+    description = _collapse(fields.get("description", {}).get("raw", ""))
+    if not 1 <= len(description) <= 1024:
+        errors.append("kanonische description muss 1..1024 Zeichen lang sein")
+
+    manifest = canonical_skill.parent / "agents" / "openai.yaml"
+    if not manifest.is_file():
+        errors.append(f"kanonisches OpenAI manifest fehlt: {manifest}")
+    else:
+        errors.extend(validate_openai_manifest(manifest, name))
+    return errors
+
+
 def stale_adapter_paths(registry: dict[str, dict[str, Any]]) -> list[Path]:
     if not CODEX_SKILLS_ROOT.exists():
         return []
@@ -424,6 +470,12 @@ def check_outputs(
             print(f"MISSING native file: {path}")
             ok = False
     for name in sorted(registry):
+        entry = registry[name]
+        if entry["mode"] == "canonical-link":
+            for error in validate_canonical_link(name, entry):
+                print(f"INVALID canonical link {name}: {error}")
+                ok = False
+            continue
         skill = CODEX_SKILLS_ROOT / name / "SKILL.md"
         manifest = CODEX_SKILLS_ROOT / name / "agents" / "openai.yaml"
         if skill.exists():
@@ -486,6 +538,15 @@ def build(*, check: bool = False, dry_run: bool = False) -> int:
         ok, _ = check_outputs(registry, sources)
         print("Codex adapter check: " + ("OK" if ok else "FAIL"))
         return 0 if ok else 1
+    canonical_invalid = False
+    for name, entry in sorted(registry.items()):
+        if entry["mode"] != "canonical-link":
+            continue
+        for error in validate_canonical_link(name, entry):
+            print(f"INVALID canonical link {name}: {error}")
+            canonical_invalid = True
+    if canonical_invalid:
+        return 1
     if dry_run:
         for path, content in expected.items():
             state = "unchanged" if path.exists() and path.read_text(encoding="utf-8") == content else "write"

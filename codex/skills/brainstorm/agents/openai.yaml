@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Brainstorm"
-  short_description: "Codex adapter for the brainstorm skill"
-  default_prompt: "Use $brainstorm for this task."

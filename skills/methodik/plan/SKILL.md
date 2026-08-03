@@ -1,131 +1,168 @@
 ---
 name: plan
-version: 0.2.0
+version: 1.0.0
 description: >
-  Verwandelt eine freigegebene Spec in einen bissgroßen Umsetzungsplan mit
-  exakten Dateipfaden, vollständigem Code je Schritt und TDD-Zyklus — für
-  einen Umsetzer, der die Codebasis nicht kennt. Jeder Schritt endet an
-  einem Verify-Kommando, jeder Plan trägt einen Drift-Check und explizite
-  STOP-Bedingungen statt Freestyle bei Unstimmigkeiten. Trigger:
-  "Umsetzungsplan", "Plan schreiben", "Spec in Tasks zerlegen",
-  "implementation plan".
+  DER Planungs-Skill — einer für alles Planen. Führt von der rohen Idee bis
+  zum umsetzbaren Plan und wählt selbst die Stufe: GRILL (Entscheidung
+  durchbohren), SPEC (Idee zur freigegebenen Spec), PLAN (Spec zum
+  bissgroßen Umsetzungsplan), TICKETS (in Tracer-Bullet-Tickets schneiden),
+  UMSETZUNG (Subagent je Task). Ersetzt brainstorm, grill, to-spec, tickets
+  und sdd. Trigger: "planen", "Plan machen", "plane das", "Umsetzungsplan",
+  "brainstorm", "Idee ausarbeiten", "Design-Spec", "Spec schreiben", "PRD",
+  "grillen", "grill mich", "Entscheidung durchleuchten", "Tickets schreiben",
+  "Backlog bauen", "Plan umsetzen", "Tasks ausführen".
 class: M
 scope: agency
 sensitivity: internal
-source: fusion — superpowers (obra) skills/writing-plans @ d884ae04 + shadcn/improve skills/improve/references/plan-template.md
+source: >
+  Konsolidierung 03.08.2026 (Raphael: "EIN Skill für Planung"): vereinigt
+  brainstorm 0.2.0, grill 0.1.0, plan 0.2.0, to-spec 0.1.0, tickets 0.2.0
+  und sdd 0.2.0. Ursprungs-Herkunft je Teil in den references vermerkt
+  (superpowers/obra, mattpocock, shadcn/improve — alle bereits vendored/
+  fusioniert).
 loads:
+  - references/grill-fragen.md
+  - references/spec-dialog.md
+  - references/spec-verdichten.md
   - references/plan-template-vorlage.md
+  - references/tickets-schneiden.md
+  - references/umsetzung-subagents.md
   - references/reihenfolge.md
 completion_criteria:
-  - "Plan-Datei mit Kopf (Ziel, Architektur, Tech-Stack, Global Constraints) geschrieben"
-  - "Jeder Task hat exakte Dateipfade, vollständigen Code, Testschritte, Commit-Schritt"
-  - "Jeder Task nennt einen Drift-Check (Planned-at-SHA) und mindestens eine STOP-Bedingung"
-  - "Selbstprüfung durchgeführt: Spec-Abdeckung, Platzhalter-Scan, Typkonsistenz — Lücken behoben"
+  - "Die Stufe ist genannt und begründet (GRILL / SPEC / PLAN / TICKETS / UMSETZUNG) — inklusive Einstiegspunkt, wenn frühere Stufen übersprungen wurden"
+  - "Bei SPEC: Spec-Datei geschrieben, committet und vom Nutzer explizit freigegeben, bevor Code entsteht"
+  - "Bei PLAN: jeder Task hat exakte Dateipfade, vollständigen Code, Verify-Kommando, Drift-Check (Planned-at-SHA) und mindestens eine STOP-Bedingung — keine Platzhalter"
+  - "Bei TICKETS: jedes Ticket ist ein vertikaler Slice mit Blocked-by-Kante; Granularität wurde dem Nutzer vorgelegt"
+  - "Bei UMSETZUNG: jeder Task hat Implementierung plus Review mit beiden Verdikten; Reviewer-Funde selbst im Diff verifiziert"
+  - "Bei GRILL: eine Frage nach der anderen, je Frage eine Empfehlung; Umsetzung erst nach expliziter Bestätigung"
 ---
 
-# plan — Spec zu Umsetzungsplan
+# plan — der eine Planungs-Skill
 
-**Voraussetzung:** eine bereits freigegebene Spec (siehe brainstorm). Ohne
-Spec oder Anforderungen nicht anwenden — dorthin zurückgehen.
+**Zweck (1 Satz):** Von der rohen Idee bis zur laufenden Umsetzung in fünf
+Stufen — jede Stufe hat ein prüfbares Artefakt, und nichts wird gebaut, bevor
+die Stufe davor freigegeben ist.
 
-**Zweck:** einen Umsetzungsplan schreiben, als hätte der Umsetzer null Kontext
-zur Codebasis und fragwürdigen Geschmack. Alles dokumentieren, was er braucht:
-welche Dateien pro Task, welcher Code, wie getestet wird. Der Plan zerfällt in
-bissgroße Tasks. Prinzipien: DRY, YAGNI, TDD, häufige Commits.
+## Die Pipeline
 
-Speicherort: sinnvoller Projektpfad, z. B. `docs/plans/YYYY-MM-DD-<feature>.md`,
-sofern nicht anders vorgegeben.
+```
+Idee → [GRILL] → [SPEC] → [PLAN] → [TICKETS] → [UMSETZUNG]
+        klären    festhalten  zerlegen   schneiden    bauen lassen
+```
 
-## Umfangsprüfung
+Nicht jedes Vorhaben braucht alle fünf. **Einstieg dort, wo der Kontext schon
+steht — Ansage in einem Satz, welche Stufen übersprungen werden und warum.**
 
-Deckt die Spec mehrere unabhängige Teilsysteme ab, hätte das schon bei
-brainstorm in Teilprojekte zerlegt werden müssen. Falls nicht geschehen: hier
-vorschlagen, in getrennte Pläne aufzuteilen — je Teilsystem ein eigener Plan,
-der für sich funktionierendes, testbares Ergebnis liefert.
+## Stufe wählen (immer zuerst, immer ansagen)
 
-## Dateistruktur zuerst
+| Stufe | Wann | Artefakt |
+|---|---|---|
+| **GRILL** | Annahmen unklar, Entscheidung strittig, „grill mich" | bestätigtes gemeinsames Verständnis |
+| **SPEC** | Idee ist da, das Wie ist offen | freigegebene Spec-Datei |
+| **PLAN** | Spec (oder klare Anforderungen) liegen vor | Umsetzungsplan mit Tasks |
+| **TICKETS** | Plan soll auf Tracker/Backlog oder mehrere Sessions verteilt werden | Tracer-Bullet-Tickets mit Kanten |
+| **UMSETZUNG** | Plan liegt vor, jetzt bauen | fertige Tasks, jeweils reviewt |
 
-Vor der Task-Definition festlegen, welche Dateien entstehen/geändert werden
-und wofür jede zuständig ist. Hier fallen die Zerlegungsentscheidungen.
+Faustregeln:
+- Gespräch hat schon alles geklärt → **SPEC überspringen ist falsch**, aber
+  das Interview entfällt: direkt verdichten (`references/spec-verdichten.md`).
+- Geschäftsidee („lohnt sich das?") → erst
+  [`idea-filter`](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md),
+  dieser Skill setzt „Build" voraus.
+- Mehrere plausible Antworten mit Streitwert → Council in
+  [`orchestrate`](/root/raphael-skills/skills/eigene/orchestrate/SKILL.md),
+  nicht hier diskutieren.
+- Kleinst-Änderung (<5 Min, eine Datei): Kurz-Spec in zwei Sätzen im Chat,
+  Freigabe, machen — keine Dateien-Zeremonie.
 
-- Klare Grenzen, definierte Schnittstellen, eine Verantwortung pro Datei.
-- Zusammen geänderte Dateien gehören zusammen — nach Verantwortung splitten,
-  nicht nach technischer Schicht.
-- In bestehenden Codebasen: etablierten Mustern folgen, nicht eigenmächtig
-  umstrukturieren — außer eine gerade bearbeitete Datei ist bereits unhandlich.
+## Die fünf Stufen (Kurzform — Details in den references)
 
-## Task-Zuschnitt
+### GRILL — Entscheidung durchbohren (`references/grill-fragen.md`)
 
-Ein Task ist die kleinste Einheit mit eigenem Testzyklus, die ein eigenes
-Freigabe-Gate verdient. Setup, Konfiguration, Doku-Schritte gehören in den
-Task, dessen Ergebnis sie brauchen. Nur dort splitten, wo ein Reviewer einen
-Task sinnvoll ablehnen könnte, während er den Nachbarn freigibt. Jeder Task
-endet mit einem eigenständig testbaren Ergebnis.
+Entscheidungsbaum aufspannen, dann **eine Frage nach der anderen**, jede mit
+eigener Empfehlung. Fakten (grep/ls/Doku) selbst nachschlagen — nur echte
+Entscheidungen (Geschmack, Priorität, Risiko) gehören Raphael. Keine
+Fragenbatches. Endet mit expliziter Bestätigung, nie mit „passt schon".
 
-**Schritte sind atomar (2-5 Minuten je Schritt):** "Test schreiben" →
-"Test laufen lassen, Fehlschlag prüfen" → "Minimalen Code schreiben" →
-"Test laufen lassen, Erfolg prüfen" → "Committen".
+### SPEC — Idee zur freigegebenen Spec (`references/spec-dialog.md`)
 
-## Plan-Kopf (Pflicht)
+Kontext erkunden → Umfang prüfen (mehrere Teilsysteme? erst zerlegen) →
+klärende Fragen einzeln → 2–3 Ansätze mit Trade-offs und **Evidenz-Pflicht**
+(jeder Vorschlag braucht ein Zitat aus Codebase/Gespräch — generische Ideen
+sind Rauschen) → Design abschnittsweise präsentieren → Spec schreiben und
+committen (`docs/specs/YYYY-MM-DD-<thema>.md`) → Selbstprüfung (Platzhalter,
+Konsistenz, Umfang, Mehrdeutigkeit) → **Freigabe abwarten**.
 
-Jeder Plan beginnt mit: Titel, Ziel (ein Satz), Architektur (2-3 Sätze),
-Tech-Stack, und einem Abschnitt **Global Constraints** — projektweite
-Vorgaben aus der Spec (Versionsuntergrenzen, Namenskonventionen, Plattform-
-Anforderungen), Werte wörtlich aus der Spec übernommen. Diese gelten implizit
-für jeden Task.
+**Hartes Gate: kein Code, kein Scaffolding vor der Freigabe** — auch bei
+scheinbar trivialen Vorhaben. Ist der Kontext schon im Gespräch geklärt:
+Verdichtungs-Variante ohne neues Interview (`references/spec-verdichten.md`,
+7-Abschnitte-PRD, Test-Seams mit Raphael abgleichen).
 
-## Task-Struktur
+### PLAN — Spec zum Umsetzungsplan (`references/plan-template-vorlage.md`)
 
-Pro Task: **Dateien** (Create/Modify mit exakten Pfaden, ggf. Zeilenbereich;
-Test-Datei), **Interfaces** (was der Task aus früheren Tasks konsumiert — exakte
-Signaturen; was er produziert — exakte Funktionsnamen/Typen für spätere Tasks,
-denn der Umsetzer eines Tasks sieht nur diesen Task). Danach die Schritte:
-Test schreiben (voller Code) → Fehlschlag verifizieren (Kommando + erwartete
-Meldung) → minimale Implementierung (voller Code) → Erfolg verifizieren
-(Kommando + erwartete Ausgabe) → Commit (exakte `git add`/`git commit`-Zeilen).
+Für einen Umsetzer schreiben, der **null Kontext** zur Codebasis hat:
+Dateistruktur zuerst, dann bissgroße Tasks (atomare 2–5-Minuten-Schritte,
+TDD-Zyklus, Commit je Task). Plan-Kopf mit Ziel, Architektur, Tech-Stack,
+Global Constraints. Jeder Task: exakte Pfade, vollständiger Code, Interfaces
+zu Nachbar-Tasks, Verify-Kommando.
 
-**Drift-Check + STOP-Bedingungen (Pflicht pro Plan):** den Plan mit
-"Planned at: Commit `<SHA>`" stempeln. Erster Schritt jedes Umsetzers ist
-`git diff --stat <Planned-at-SHA>..HEAD -- <In-Scope-Pfade>` — hat sich ein
-im Plan zitierter Codeausschnitt seither geändert, ist das selbst eine
-STOP-Bedingung, kein Grund zu improvisieren. Jeder Plan nennt außerdem
-explizite STOP-Bedingungen ("stoppen und melden, wenn X eintritt") statt den
-Umsetzer bei Unstimmigkeit raten zu lassen. Vorlage inkl. Scope-In/Out,
-Done-Criteria-Checkliste und Verify-Tabelle:
-`references/plan-template-vorlage.md`.
+**Pflicht je Plan:** Drift-Check (`Planned at: <SHA>`; geänderter zitierter
+Code = STOP, nicht improvisieren) und explizite STOP-Bedingungen.
+**Plan-Fehler, nie akzeptabel:** TBD/TODO, „Fehlerbehandlung ergänzen" ohne
+Code, „wie Task N" statt wiederholtem Code, referenzierte aber nirgends
+definierte Typen. Selbstprüfung: Spec-Abdeckung, Platzhalter-Scan,
+Typkonsistenz über Tasks hinweg.
 
-## Keine Platzhalter
+### TICKETS — in Tracer-Bullets schneiden (`references/tickets-schneiden.md`)
 
-Jeder Schritt braucht den tatsächlichen Inhalt, den der Umsetzer benötigt. Das
-sind **Plan-Fehler**, niemals akzeptabel: "TBD"/"TODO"/"später implementieren";
-"angemessene Fehlerbehandlung ergänzen" ohne Code; "Tests wie oben" ohne echten
-Testcode; "ähnlich wie Task N" statt den Code zu wiederholen (Tasks werden
-womöglich nicht in Reihenfolge gelesen); Schritte, die beschreiben statt zeigen;
-Verweise auf Typen/Funktionen, die in keinem Task definiert sind.
+Vertikale Slices (Schema→API→UI→Test), je Slice für sich demonstrierbar und
+in ein frisches Kontextfenster passend. Jedes Ticket nennt seine
+**Blocked-by-Kante** oder „None — kann sofort starten". Tiebreaker: Unblocker
+zuerst, Security hoch, „nicht wert" ist ein gültiges Verdikt.
+Wide Refactors nie vertikal zwingen → Expand → Migrate-Batches → Contract.
+Granularität und Kanten Raphael vorlegen, dann veröffentlichen.
 
-## Selbstprüfung nach dem Schreiben
+### UMSETZUNG — Subagent je Task (`references/umsetzung-subagents.md`)
 
-Mit frischem Blick gegen die Spec prüfen — eigenständig, kein Sub-Dispatch:
+Frischer Subagent pro Task (isolierter Kontext, idealerweise Worktree),
+danach Task-Review mit **zwei Verdikten** (Spec-Konformität + Code-Qualität)
+durch eine **andere Modellfamilie**. Status-Protokoll DONE /
+DONE_WITH_CONCERNS / NEEDS_CONTEXT / BLOCKED; Verdikt-Tabelle APPROVE /
+REVISE (max 2 Runden) / BLOCK. Fortschritt im **Ledger** auf der Platte, nie
+nur im Gesprächsgedächtnis. Finaler Gesamt-Review über den Branch, dann
+[`finish`](/root/raphael-skills/skills/methodik/finish/SKILL.md).
 
-1. **Spec-Abdeckung:** jeden Abschnitt/jede Anforderung der Spec durchgehen —
-   gibt es dafür einen Task? Lücken auflisten und mit Task schließen.
-2. **Platzhalter-Scan:** Plan gegen die Liste oben durchsuchen, beheben.
-3. **Typkonsistenz:** stimmen Typen, Signaturen, Namen über spätere Tasks
-   hinweg überein? Eine Funktion `clearLayers()` in Task 3, aber
-   `clearFullLayers()` in Task 7 ist ein Bug.
+**Worker-Wahl nach der Familien-Präferenz** (orchestrate/besetzung):
+Mechanik → `luna-worker` · Masse/Prototyp → `grok-worker` · Bulk →
+`terra-bulk` · Frontend/DE-Text/Denken → `kimi-worker` · Review →
+`sol-pruefer`+`opus-builder`-Tandem. Modell + Effort je Dispatch explizit.
 
-Gefundene Probleme direkt inline beheben, keine erneute Prüfrunde nötig.
+## Etappen nacheinander (Kopplung an orchestrate)
 
-## Übergabe zur Umsetzung
+Planen liefert die Etappen, orchestrate fährt die Flotte: Etappen laufen
+**nacheinander**, parallelisiert wird **innerhalb** einer Etappe. Bei
+Substanz-Umsetzung mit Flotte übernimmt `orchestrate` (Betriebsart EINMAL/
+GAUNTLET) die Ausführung — dieser Skill bleibt der Planungs-Einstieg und
+liefert den Plan, gegen den gebaut wird.
 
-Nach dem Speichern Umsetzungsweg anbieten: **Subagent-getrieben** (siehe
-sdd) — frischer Subagent je Task, schnelle Iteration, empfohlen bei
-weitgehend unabhängigen Tasks — oder **Inline-Ausführung** in der laufenden
-Session mit Checkpoints zur Prüfung, wenn Tasks eng gekoppelt sind oder eine
-Session-übergreifende Übergabe nicht gewünscht ist.
+## Kernprinzipien (gelten in jeder Stufe)
 
-## Framework-Reihenfolge
+- **Eine Frage nach der anderen** — nie Fragenkataloge.
+- **Evidenz-Pflicht** — Vorschläge ohne Beleg aus Codebase/Gespräch sind Rauschen.
+- **YAGNI** — Unnötiges aus jedem Design streichen.
+- **Freigabe-Gates** — jede Stufe endet an einem prüfbaren Artefakt plus
+  Raphael-Okay, bevor die nächste beginnt.
+- **Auf der Platte, nicht im Kopf** — Spec, Plan, Ledger sind Dateien.
+- **Zurückspulen statt diskutieren** — passt eine Stufe nicht, zurück zur
+  vorherigen, nicht flicken.
 
-`plan` ist Teil einer Drei-Framework-Sequenz: erst `grill` (Ausrichtung),
-dann `superpowers` ODER `gstack` für den Bau (nie beide parallel auf
-denselben Task). Details: `references/reihenfolge.md`.
+## Gotchas
+
+- Der frühere Drei-Framework-Vergleich (grill → superpowers ODER gstack)
+  steht in `references/reihenfolge.md`.
+- gstack-Planungs-Skills (`gstack-autoplan`, `gstack-plan-*-review`) sind ein
+  eigenes, parallel installiertes System — nicht mischen; für Raphael-Repos
+  gilt dieser Skill.
+- `marketing-plan` ist Marketing-Strategie, kein Software-Plan — anderes Feld.
+- Reviewer nie vorgeben, was er nicht flaggen soll; Findings unvoreingenommen.
+- Nie auf main/master umsetzen ohne ausdrückliche Zustimmung.

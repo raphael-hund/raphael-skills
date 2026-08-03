@@ -284,18 +284,6 @@
     "Recency-Recherche"
    ]
   },
-  "brainstorm": {
-   "source": "skills/methodik/brainstorm/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Make evidence-backed discovery and design-spec formation invocable in Codex.",
-   "triggers": [
-    "brainstorm",
-    "Idee ausarbeiten",
-    "Design-Spec",
-    "bevor wir loslegen",
-    "Anforderungen klären"
-   ]
-  },
   "code-review": {
    "source": "skills/methodik/code-review/SKILL.md",
    "mode": "source-adapter",
@@ -317,17 +305,6 @@
     "fertig implementiert",
     "mergen oder PR",
     "finishing a development branch"
-   ]
-  },
-  "grill": {
-   "source": "skills/methodik/grill/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Provide rigorous one-question-at-a-time decision stress testing at the Codex boundary.",
-   "triggers": [
-    "grillen",
-    "grill mich",
-    "Plan stresstesten",
-    "Entscheidung durchleuchten"
    ]
   },
   "handoff-ext": {
@@ -367,21 +344,6 @@
     "Hintergrund-Recherche"
    ]
   },
-  "sdd": {
-   "source": "skills/methodik/sdd/SKILL.md",
-   "mode": "native-thread",
-   "rationale": "Use native Codex threads to execute and review each task in a plan.",
-   "triggers": [
-    "Plan umsetzen",
-    "Subagent pro Task",
-    "Tasks ausführen",
-    "subagent-driven development"
-   ],
-   "trigger_aliases": {
-    "Subagent pro Task": "Codex-Task pro Task",
-    "subagent-driven development": "Codex-task-driven development"
-   }
-  },
   "tdd": {
    "source": "skills/methodik/tdd/SKILL.md",
    "mode": "source-adapter",
@@ -392,28 +354,6 @@
     "Red-Green-Refactor",
     "Feature implementieren",
     "Bugfix schreiben"
-   ]
-  },
-  "tickets": {
-   "source": "skills/methodik/tickets/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose vertical-slice ticket decomposition and explicit dependency edges.",
-   "triggers": [
-    "Tickets schreiben",
-    "in Tickets aufteilen",
-    "Backlog bauen",
-    "to-tickets"
-   ]
-  },
-  "to-spec": {
-   "source": "skills/methodik/to-spec/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Provide conversation-to-PRD synthesis while preserving the source scope and checks.",
-   "triggers": [
-    "Spec schreiben",
-    "PRD bauen",
-    "aus dem Gespräch eine Spec machen",
-    "to-spec"
    ]
   },
   "writing-skills": {

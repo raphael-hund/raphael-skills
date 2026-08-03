@@ -15,10 +15,6 @@
    "source": "skills/eigene/ads-video/SKILL.md",
    "mode": "source-adapter"
   },
-  "brainstorm": {
-   "source": "skills/methodik/brainstorm/SKILL.md",
-   "mode": "source-adapter"
-  },
   "code-review": {
    "source": "skills/methodik/code-review/SKILL.md",
    "mode": "source-adapter"
@@ -49,10 +45,6 @@
   },
   "finish": {
    "source": "skills/methodik/finish/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "grill": {
-   "source": "skills/methodik/grill/SKILL.md",
    "mode": "source-adapter"
   },
   "handoff": {
@@ -106,24 +98,12 @@
    "source": "skills/methodik/research/SKILL.md",
    "mode": "source-adapter"
   },
-  "sdd": {
-   "source": "kimi/skills/sdd/SKILL.md",
-   "mode": "native-kimi-agent"
-  },
   "seo": {
    "source": "skills/eigene/seo/SKILL.md",
    "mode": "source-adapter"
   },
   "tdd": {
    "source": "skills/methodik/tdd/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "tickets": {
-   "source": "skills/methodik/tickets/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "to-spec": {
-   "source": "skills/methodik/to-spec/SKILL.md",
    "mode": "source-adapter"
   },
   "watch": {

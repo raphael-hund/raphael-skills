@@ -1,20 +1,4 @@
----
-name: to-spec
-version: 0.1.0
-description: >
-  Verdichtet den bereits geführten Gesprächs- und Codebase-Kontext zu einer
-  Spec (PRD) — kein neues Interview, reine Synthese des Bekannten. Trigger:
-  "Spec schreiben", "PRD bauen", "aus dem Gespräch eine Spec machen",
-  "to-spec".
-class: M
-scope: agency
-sensitivity: internal
-source: vendored from mattpocock/skills skills/engineering/to-spec @ 9603c1cc
-completion_criteria:
-  - "Spec folgt allen sieben Abschnitten der Vorlage (Problem/Solution/User Stories/Implementation/Testing/Out of Scope/Further Notes)"
-  - "Kein Abschnitt enthält Datei-Pfade oder Code-Schnipsel außer belegten Prototyp-Ausnahmen"
-  - "Testseams wurden vor dem Schreiben mit dem User abgeglichen"
----
+<!-- source: vendored from mattpocock/skills skills/engineering/to-spec @ 9603c1cc — konsolidiert in plan 1.0.0 am 03.08.2026 -->
 
 # to-spec — Gespräch zur Spec verdichten
 

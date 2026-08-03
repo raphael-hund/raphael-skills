@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Web"
-  short_description: "Codex adapter for the web skill"
-  default_prompt: "Use $web for this task."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Grill"
-  short_description: "Codex adapter for the grill skill"
-  default_prompt: "Use $grill for this task."

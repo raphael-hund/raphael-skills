@@ -1,23 +1,4 @@
----
-name: brainstorm
-version: 0.2.0
-description: >
-  Verwandelt eine Idee durch geführten Dialog in eine geprüfte Design-Spec, bevor
-  auch nur eine Zeile Code geschrieben wird. Fragt einzeln nach, schlägt 2-3
-  Ansätze mit Trade-offs vor, lässt die Spec vom Nutzer freigeben und übergibt
-  danach an plan. Jeder Vorschlag braucht ein Zitat aus Codebase/Gespräch —
-  generische Ideen ohne Beleg sind Rauschen, keine Option. Trigger:
-  "brainstorm", "Idee ausarbeiten", "Design-Spec", "bevor wir loslegen",
-  "Anforderungen klären".
-class: M
-scope: agency
-sensitivity: internal
-source: fusion — superpowers (obra) skills/brainstorming @ d884ae04 + shadcn/improve skills/improve/references/audit-playbook.md (Grounding rule, Kategorie "Direction")
-completion_criteria:
-  - "Spec-Datei geschrieben und committet (Pfad genannt)"
-  - "Nutzer hat die geschriebene Spec explizit freigegeben"
-  - "Kein Code, kein Scaffolding, keine Implementierung vor der Freigabe erfolgt"
----
+<!-- source: fusion — superpowers (obra) skills/brainstorming @ d884ae04 + shadcn/improve skills/improve/references/audit-playbook.md (Grounding rule, Kategorie "Direction") — konsolidiert in plan 1.0.0 am 03.08.2026 -->
 
 # brainstorm — Idee zur freigegebenen Spec
 

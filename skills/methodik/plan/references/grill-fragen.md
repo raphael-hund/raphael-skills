@@ -1,21 +1,4 @@
----
-name: grill
-version: 0.1.0
-description: >
-  Bohrt einen Plan, eine Entscheidung oder eine Idee rigoros durch, bis ein
-  gemeinsames Verständnis steht — eine Frage nach der anderen, mit
-  Empfehlung, Fakten selbst recherchiert statt erfragt. Kein Umsetzen vor
-  Bestätigung. Trigger: "grillen", "grill mich", "Plan stresstesten",
-  "Entscheidung durchleuchten".
-class: M
-scope: agency
-sensitivity: internal
-source: vendored from mattpocock/skills skills/productivity/grilling @ 9603c1cc
-completion_criteria:
-  - "Jede offene Verzweigung des Entscheidungsbaums wurde einzeln gestellt und beantwortet"
-  - "Zu jeder Frage lag eine Empfehlung vor, bevor die Antwort kam"
-  - "Umsetzung startete erst nach expliziter Bestätigung, nicht vorher"
----
+<!-- source: vendored from mattpocock/skills skills/productivity/grilling @ 9603c1cc — konsolidiert in plan 1.0.0 am 03.08.2026 -->
 
 # grill — Plan/Entscheidung durchgrillen
 

@@ -93,7 +93,7 @@ Verdikt ist **Pass**. Keine Ausnahme, keine Verrechnung mit starken anderen Note
 
 | Verdikt | Bedeutung | Folge |
 |---|---|---|
-| **Build** | tragfähig und jetzt dran | Vier-Augen (Schritt 6), dann [`brainstorm`](/root/raphael-skills/skills/methodik/brainstorm/SKILL.md) → [`plan`](/root/raphael-skills/skills/methodik/plan/SKILL.md) |
+| **Build** | tragfähig und jetzt dran | Vier-Augen (Schritt 6), dann [`plan` (Stufe SPEC)](/root/raphael-skills/skills/methodik/plan/SKILL.md) → [`plan`](/root/raphael-skills/skills/methodik/plan/SKILL.md) |
 | **Sleep on it** | plausibel, eine Kernfrage offen | offene Frage benennen + Revisit-Vorschlag in `ops/schedule/` |
 | **Pass** | trägt nicht | Grabstein-Brief mit `status: rejected` und Ablehnungsgrund |
 | **Angle klauen** | Idee trägt nicht, ein Teil davon schon | den brauchbaren Teil benennen und dorthin verweisen, wo er hingehört |
@@ -129,9 +129,9 @@ Verdikt "Build" hat Geldfolge. Deshalb (AGENTS.md Regel 8):
 
 ## Nachbarn
 
-- [`brainstorm`](/root/raphael-skills/skills/methodik/brainstorm/SKILL.md) — produkt-/
+- [`plan` (Stufe SPEC)](/root/raphael-skills/skills/methodik/plan/SKILL.md) — produkt-/
   codeseitige Ausarbeitung, wenn das Verdikt "Build" steht.
-- [`grill`](/root/raphael-skills/skills/methodik/grill/SKILL.md) — offener Stresstest
+- [`plan` (Stufe GRILL)](/root/raphael-skills/skills/methodik/plan/SKILL.md) — offener Stresstest
   ohne feste Dimensionen, wenn die Idee noch keine Form hat.
 - [`offers`](/root/raphael-skills/skills/eigene/offers/SKILL.md) — liefert Dimension 4
   (Monetarisierung) zu.
