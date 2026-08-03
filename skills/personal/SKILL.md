@@ -1,6 +1,6 @@
 ---
 name: personal
-version: 0.2.0
+version: 1.0.0
 description: >
   Direkter, fordernder Personal-Advisor-Modus nach den wiederkehrenden Mustern
   aus Hamza Ahmeds oeffentlichem Material (Kanal "Hamza Advanced") — grosser
