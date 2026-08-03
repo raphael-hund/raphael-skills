@@ -1,16 +1,17 @@
 ---
 name: orchestrate-gauntlet
-version: 1.1.0
+version: 2.0.0
 description: >
   Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine
   inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter
-  Graph, mit einer überlappenden Cross-Family-Besetzung (Luna max, Sol, Terra,
-  Sonnet, Haiku, Kimi K3, Grok 4.5 — jede Familie kann mehrere Rollen) und einem
-  Kritiker, der NIE aus der Familie des Builders kommt. Jedes Stück läuft seinen
-  eigenen Bauen-Richten-Loop; bei hohem Einsatz duellieren zwei Familien.
+  Graph, mit überlappender Cross-Family-Besetzung (Fable, Opus, Luna, Sol,
+  Terra, Haiku, Grok auf max; Kimi K3 auf high — jede Familie kann mehrere
+  Rollen) und einem Kritiker, der NIE aus der Familie des Builders kommt.
+  Läuft als Dauerlauf über Stunden: Welle für Welle, immer wieder neu, bis die
+  Zugewinne klein sind.
   Trigger: "/orchestrate-gauntlet", "Gauntlet", "Gauntlet-Loop", "gegen eine
   Messlatte bauen", "bis es richtig gut ist", "so krass wie möglich",
-  "maximaler Modus", "alle Modelle drauf".
+  "maximaler Modus", "alle Modelle drauf", "lauf über Nacht", "Dauerlauf".
 class: O
 scope: agency
 sensitivity: internal
@@ -24,6 +25,7 @@ source: >
 loads:
   - references/besetzung.md
   - references/gauntlet-graph.md
+  - references/dauerlauf.md
 requires_skills: [orchestrate@^1, eval@^0]
 completion_criteria:
   - "Die Messlatte existiert als Datei (Screenshots/URLs/Referenztext/Testsuite) und hängt in JEDEM Kritiker-Prompt"
@@ -36,6 +38,8 @@ completion_criteria:
   - "workbench.md ist fortgeschrieben: je Stück Screenshot, Verdikt, offene Lücke, Rundenzahl"
   - "Nach jeder Welle lief ein Glättungs-Schritt; das Ergebnis wirkt als ein Stück"
   - "Gestoppt wurde begründet (Zugewinn klein / Budget / Ansage) — nicht bei einer festen Rundenzahl"
+  - "Bei Dauerlauf: Abbruchbedingung stand VOR dem ersten Fire fest, der Cron-Job ist mit ID protokolliert, und jede Welle hat eine eigene Run-ID im workbench.md"
+  - "Effort ist je Auftrag explizit gesetzt (max überall, Kimi high) — nie geerbt"
 ---
 
 # orchestrate-gauntlet — Graph + Gauntlet über alle Familien
@@ -70,20 +74,31 @@ Familie kann mehrere Dinge, und für fast jede Aufgabe gibt es mehrere taugliche
 Besetzungen — das macht den Lauf ausfallsicher, erlaubt echte Varianten-Duelle
 und hält Regel 8 (Builder ≠ Kritiker) immer erfüllbar.
 
-| agentType | Familie | Stärke | Kann außerdem |
-|---|---|---|---|
-| `luna-worker` | GPT | **Motor.** Max-Effort, Goal je Stück: Mechanik, Tests, Fix-Schleifen, Backend | Kritiker (Mechanik/Zahlen), Glätter, Rechercheur |
-| `terra-bulk` | GPT | Architektur, Migration, Multi-File-Volumen | Kritiker (Konsistenz über viele Dateien) |
-| `sol-pruefer` | GPT | Urteil, Chairman, finale Abnahme | **auch Builder**: harte Code-Fälle, Terminal-/Agent-Arbeit, Planung |
-| `sonnet-worker` | Claude | Solider Bau, Integration, Glättung | Kritiker (Code + Text), Rechercheur |
-| `haiku-worker` | Claude | Massen-Lesen, Boilerplate, billige Schleifen | **auch Builder** (mechanische Edits), Kritiker (Screenshot-/Datei-Vergleich) |
-| `kimi-worker` | Kimi K3 | Frontend/UI, DE-Texte, Kreatives, 3D — führt die Frontend-Arena an | Kritiker (Design/Ton), Glätter, Riesen-Kontext |
-| `grok-worker` | Grok 4.5 | Tempo und Volumen, Prototypen, Tool-Use | Kritiker (vierte Perspektive), Builder für Masse |
-| `kimi-recherche` | Kimi K3 | Lesende Gegenprobe, Latten-Suche | Kritiker ohne Schreibrechte |
+| agentType | Familie | Effort | Stärke | Kann außerdem |
+|---|---|---|---|---|
+| `fable-architekt` | Claude | max | **Die schwersten Stücke.** Langhorizont-autonome Arbeit, Feature end-to-end, tiefe Bug-Jagd (61,1% Recall), Frontend als Ganzes | Kritiker mit hohem Bug-Recall |
+| `opus-builder` | Claude | max | Terminal-/Agent-Arbeit, Debugging, Root-Cause; SWE-bench Verified 96,0% | Kritiker (rauscharm), Glätter, Rechercheur |
+| `luna-worker` | GPT | max | **Motor.** Goal je Stück: Mechanik, Tests, Fix-Schleifen, Backend | Kritiker (Mechanik/Zahlen), Glätter |
+| `terra-bulk` | GPT | max | Architektur, Migration, Multi-File-Volumen | Kritiker (Konsistenz über viele Dateien) |
+| `sol-pruefer` | GPT | max | Ship-Urteil, Chairman, finale Abnahme | **auch Builder**: harte Code-Fälle, Planung |
+| `haiku-worker` | Claude | max | Massen-Lesen, Boilerplate, billige Schleifen | **auch Builder** (mechanische Edits), Kritiker (Screenshot-Vergleich) |
+| `kimi-worker` | Kimi K3 | high | Frontend/UI, DE-Texte, Kreatives, 3D — führt die Frontend-Arena an | Kritiker (Design/Ton), Glätter |
+| `grok-worker` | Grok 4.5 | max | Tempo und Volumen, Prototypen, Tool-Use | Kritiker (vierte Perspektive) |
+| `kimi-recherche` | Kimi K3 | high | Lesende Gegenprobe, Latten-Suche | Kritiker ohne Schreibrechte |
 
-**Cockpit (Fable/Opus)** zerlegt, entscheidet, destilliert und fällt das
-Letzt-Urteil über das geglättete Ganze — wird aber **nie als Subagent gestartet**.
-Raphaels direkte Ansprache läuft über **Grok 4.5**, nicht über Opus.
+**Effort:** alles auf **max**, außer Kimi auf **high** (Raphael 03.08.2026).
+Immer explizit im Auftrag mitgeben — sonst erbt der Subagent das Cockpit-Setup.
+`sonnet-worker` gehört nicht zur Gauntlet-Besetzung; nur Notnagel bei Ausfall.
+
+**Fable und Opus sind Teil der Flotte** (Freigabe 03.08.2026 — die frühere
+Regel „nie Fable/Opus als Subagent" gilt im Gauntlet nicht mehr). Sie sind aber
+teuer: `fable-architekt` nur für das schwerste Stück und den Dauerlauf, wo sein
+Vorsprung belegt ist. Ein Gauntlet, in dem Fable jedes Stück baut, ist falsch
+besetzt. Beide zählen als **Claude-Familie** für Regel 8 — Fable prüft nie Opus,
+keiner von beiden prüft Haiku.
+
+**Cockpit** zerlegt, entscheidet, destilliert und fällt das Letzt-Urteil über
+das geglättete Ganze. Raphaels direkte Ansprache läuft über **Grok 4.5**.
 
 Erst-/Zweit-/Drittwahl je Werkstück-Typ, die vollständige Kritiker-Matrix und
 die Zwei-Familien-Duelle stehen in `references/besetzung.md`. **Nachschlagen,
@@ -172,12 +187,37 @@ zusammengestückelt, obwohl jedes Stück für sich gut ist.
 offene Lücke, Rundenzahl, Builder/Kritiker-Paarung. Raphael schaut vom Handy,
 ohne den Lauf zu unterbrechen.
 
-### 7. Stoppen
+### 7. Dauerlauf — der Loop startet immer wieder neu
 
-Kein festes Rundenlimit für den Gesamtlauf. Schluss ist, wenn die Zugewinne
-erkennbar klein werden, das Budget endet, oder Raphael es sagt.
+**Der Gauntlet ist kein Einmal-Lauf.** Er läuft über Stunden: Welle für Welle,
+per Cron alle 20–30 Minuten, bis die Abbruchbedingung greift. Vollständige
+Mechanik in `references/dauerlauf.md`. Das Wichtigste:
+
+1. **Mandat als Datei** (`gauntlet/<name>/mandat.md`): Werkstück, Latte, Gates,
+   Tabu, Abbruch, Budget.
+2. **Abbruchbedingung steht VOR dem ersten Fire fest** — sonst wird nicht
+   gestartet. Mindestens eine: Plateau (2 Wellen ohne dass ein Verdikt von
+   `LATTE` auf `UNSERES` kippt), Wellenlimit, Zeitfenster, alle Stücke gewonnen,
+   Budget erreicht.
+3. **Cron anlegen** (session-only, Minute NICHT auf :00/:30 — z. B. `17,47`).
+   Der Prompt trägt: Mandat lesen, Workflow-Pflicht, Besetzung nachschlagen,
+   Stand fortschreiben, Abbruch prüfen, Long-Horizon-Klausel.
+4. **Welle 1 sofort fahren**, nicht auf den ersten Fire warten.
+5. **Jede Welle beginnt mit `git status`** — Reste einer abgebrochenen Vorwelle
+   einordnen, bevor neue Arbeit startet. Der Runden-Körper ist idempotent:
+   zweimal dieselbe Welle = derselbe Endzustand.
+6. **Erreicht der Loop die Abbruchbedingung → `CronDelete`**, Abschluss ins
+   `workbench.md`. Nicht weiterdrehen, weil noch Zeit ist.
+
+**Bail-out:** dreimal am selben Punkt gescheitert → erst `unstuck` (externe
+Wand?), dann **Besetzung wechseln** (Zweitwahl aus anderer Familie — dafür ist
+die Überlappung da), erst dann anhalten.
+
 **„Noch nicht fertig" ist der Normalzustand beim Stoppen** — und wird als
 solcher protokolliert.
+
+Über 7 Stunden hinaus: systemd-Timer + `claude -p --resume` vorschlagen
+(Session-Crons sterben mit der Session). Bauen erst nach Raphaels Freigabe.
 
 ## Ziel nennen, Route offen lassen
 

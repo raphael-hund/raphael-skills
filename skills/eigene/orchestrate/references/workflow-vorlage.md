@@ -29,7 +29,8 @@ const FUNDE = { type: 'object', additionalProperties: false, properties: {
 
 phase('Kritik')
 // PFLICHT: Cross-Vendor-Flotte per agentType. `model:` allein startet nur
-// Claude-Workflowmodelle und zaehlt NICHT als Multi-Modell. NIE Fable.
+// Claude-Workflowmodelle und zaehlt NICHT als Multi-Modell. Fable/Opus nur ueber
+// agentType 'fable-architekt'/'opus-builder', nie als rohes model:'fable'.
 const kritik = await parallel([
   () => agent(PROMPT_DESIGN, {label:'kritik:sol', phase:'Kritik',
     agentType:'sol-pruefer', schema:FUNDE}),

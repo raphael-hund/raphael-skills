@@ -51,7 +51,14 @@ const mechanic = await agent('check', {agentType:'haiku-worker'})
             any("Pflicht-Flotte" in message for message in messages), messages
         )
 
-    def test_rejects_fable_agent_type_and_model(self):
+    def test_rejects_raw_fable_model_override(self):
+        """Rohes model:'fable' umgeht die Agenten-Definition und bleibt ein WARN.
+
+        Seit der Freigabe 03.08.2026 laufen Fable und Opus im Gauntlet ueber die
+        agentTypes 'fable-architekt' / 'opus-builder' — dort stehen die
+        Leitplanken (Bounded Task, kein Reward-Hacking, Selbstbenotungs-Verbot).
+        Ein roher model-Override umgeht genau die.
+        """
         for body in (
             "const x = await agent('x', {model:'fable'})",
             "const x = await agent('x', {agentType:'fable-worker'})",
@@ -59,7 +66,22 @@ const mechanic = await agent('check', {agentType:'haiku-worker'})
             with self.subTest(body=body):
                 messages = self.messages(body)
                 self.assertTrue(
-                    any("Fable-Subagents" in message for message in messages),
+                    any("agentType" in message and "fable-architekt" in message
+                        for message in messages),
+                    messages,
+                )
+
+    def test_accepts_freigegebene_fable_und_opus_agent_types(self):
+        """Die freigegebenen agentTypes duerfen NICHT als Fable-Verstoss gelten."""
+        for body in (
+            "const x = await agent('x', {agentType:'fable-architekt'})",
+            "const x = await agent('x', {agentType:'opus-builder'})",
+        ):
+            with self.subTest(body=body):
+                messages = self.messages(body)
+                self.assertFalse(
+                    any("umgeht die Agenten-Definition" in message
+                        for message in messages),
                     messages,
                 )
 

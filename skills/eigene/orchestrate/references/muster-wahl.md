@@ -21,7 +21,9 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 - **`luna-worker`** — Pflicht: Mechanik, Tests, klar begrenzte Umbauten.
 - **`sonnet-worker`** — Schreiben, Integrieren, Destillieren.
 - **`haiku-worker`** — Massen-Lesen, einfache Verify-/Lint-Aufgaben.
-- **NIE Fable-Subagents** (Raphael-Regel; Fable nur als Cockpit).
+- **Fable/Opus** laufen nur über `agentType:'fable-architekt'` bzw.
+  `'opus-builder'` (Freigabe 03.08.2026, teuer — siehe orchestrate-gauntlet).
+  Rohes `model:'fable'` umgeht die Leitplanken und ist weiter tabu.
 
 Im Workflow-Script diese Rollen mit `agentType:'…'` starten. `model:'opus'`,
 `model:'sonnet'` und `model:'haiku'` sind reine Claude-Overrides und zählen

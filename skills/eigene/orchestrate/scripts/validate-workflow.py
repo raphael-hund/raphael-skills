@@ -26,7 +26,11 @@ runden-protokoll.md), gegenueber dem Original:
     agent()-Prompts — die "Slice-Falle" aus workflow-vorlage.md (3x real
     passiert, R13/R15): stiller Datenverlust an Folge-Agenten statt Datei+Pfad.
   - check_model_fable: NEU. FAIL bei Fable als `model` oder `agentType` —
-    orchestrate/SKILL.md (Betriebsart LOOP) verbietet Fable-Subagents explizit (NIE Fable).
+    Fable/Opus sind seit 03.08.2026 im Gauntlet erlaubt (Raphael-Freigabe) und
+    laufen dort ueber die agentTypes fable-architekt / opus-builder. Ein rohes
+    model:'fable' im Workflow-Script bleibt trotzdem ein WARN: es umgeht die
+    Agenten-Definition mit ihren Leitplanken (Bounded Task, kein Reward-Hacking,
+    Selbstbenotungs-Verbot).
   - check_multimodel_fleet: seit 28.07.2026 WARN (nicht FAIL) bei
     Claude-only-Flotten. Grenze der Heuristik: sie sieht nur, OB irgendwo
     eine Nicht-Claude-Familie vorkommt — nicht, ob ausgerechnet der
@@ -162,7 +166,7 @@ def check_nondeterminism(code, findings):
 
 
 def check_model_fable(code, findings):
-    """orchestrate/SKILL.md (Betriebsart LOOP): NIE Fable-Subagents.
+    """model:'fable' als roher Override umgeht die Agenten-Definition.
 
     Bekannte Grenze: dies ist eine Heuristik auf dem Quelltext, keine harte
     Garantie. Sie erkennt nur das woertliche Literal model:'fable'
@@ -180,14 +184,19 @@ def check_model_fable(code, findings):
     false-positiv FAIL auf legitimen Prompt-Text.
     """
     masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
+    # Freigegebene agentTypes (Raphael 03.08.2026): sie TRAGEN die Leitplanken,
+    # deshalb duerfen sie hier nicht als Verstoss anschlagen.
+    ERLAUBT = ("fable-architekt", "opus-builder")
     patterns = (
         r"model\s*:\s*['\"]fable['\"]",
-        r"agentType\s*:\s*['\"][^'\"]*fable[^'\"]*['\"]",
+        r"agentType\s*:\s*['\"]([^'\"]*fable[^'\"]*)['\"]",
     )
     for pattern in patterns:
         for m in re.finditer(pattern, masked, re.I):
+            if m.groups() and m.group(1).lower() in ERLAUBT:
+                continue
             findings.append((FAIL, _lineno(code, m.start()),
-                             "Fable-Subagents sind verboten — Fable bleibt das Cockpit; Worker laufen ueber Sol/Kimi/Luna/Sonnet/Haiku."))
+                             "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen im Gauntlet ueber agentType 'fable-architekt' bzw. 'opus-builder' (Freigabe 03.08.2026) — dort stehen die Leitplanken."))
 
 
 def check_multimodel_fleet(code, findings):

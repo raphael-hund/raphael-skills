@@ -43,22 +43,36 @@ als Kritiker desselben Stücks gebunden ist.
 
 ## Was jede Familie kann (Überlappung explizit)
 
-| agentType | Familie | Kann als Builder | Kann als Kritiker | Kann als Glätter | Kann als Rechercheur |
-|---|---|---|---|---|---|
-| `luna-worker` (max) | GPT | ✅ Mechanik, Tests, Fix-Schleifen, Backend, Refactor, Datenarbeit | ✅ mechanische Prüfung, Tests nachfahren, Zahlen-Check | ✅ technische Angleichung | ✅ Code-/Datei-Recherche |
-| `terra-bulk` | GPT | ✅ Architektur, Migration, Multi-File, Volumen | ✅ Architektur-Kritik, Konsistenz über viele Dateien | ✅ Struktur-Angleich | — |
-| `sol-pruefer` | GPT | ✅ harte Code-Fälle, Terminal-/Agent-Arbeit, Planung eines Stücks | ✅ **Erstwahl** Urteil, Design-Kritik, Chairman, Abnahme | ✅ inhaltliche Angleichung | ✅ Zahlen-Verifikation |
-| `sonnet-worker` | Claude | ✅ solider Bau, Features, Integration, Text-Drafts | ✅ Code-Review, Text-Kritik, Zweitmeinung | ✅ **Erstwahl** Glättung | ✅ Codebase-Verständnis |
-| `haiku-worker` | Claude | ✅ mechanische Edits, Boilerplate, Massen-Umbau | ✅ Screenshot-/Datei-Vergleich, Lint, Checklisten | ✅ Format-Angleich | ✅ **Erstwahl** Massen-Lesen |
-| `kimi-worker` | Kimi K3 | ✅ **Erstwahl** Frontend/UI, DE-Texte, Kreatives, 3D/visuelle Ideen | ✅ Design-Blick, Text-Kritik, dritte Familie | ✅ visuelle Angleichung | ✅ Riesen-Kontext |
-| `kimi-recherche` | Kimi K3 | — (nur lesend) | ✅ lesende Gegenprobe, Latten-Prüfung | — | ✅ Referenzen/Latte finden |
-| `grok-worker` | Grok 4.5 | ✅ schnelle Umsetzung in Volumen, Prototypen, Tool-Use, Agent-Schritte | ✅ vierte Perspektive, Tempo-Review | ✅ mechanische Angleichung | ✅ breite Sichtung |
-| **Cockpit** (Fable/Opus) | Claude | ❌ nie als Subagent | ✅ **nur im Cockpit**: Letzt-Urteil, Zerlegung, Destillat | ❌ | ✅ im Cockpit |
+| agentType | Familie | Effort | Kann als Builder | Kann als Kritiker | Kann als Glätter | Kann als Rechercheur |
+|---|---|---|---|---|---|---|
+| `fable-architekt` | Claude | **max** | ✅ **die schwersten Stücke**: Langhorizont, Feature end-to-end, tiefe Bug-Jagd, Frontend als Ganzes | ✅ High-Recall-Bug-Kritik (61,1% Recall) | — (zu teuer) | — (zu teuer) |
+| `opus-builder` | Claude | **max** | ✅ Terminal-/Agent-Arbeit, Debugging, Root-Cause, harte Fälle | ✅ rauscharmes Review (39,3% Precision), Root-Cause-Urteil | ✅ inhaltliche Angleichung | ✅ tiefes Codebase-Verständnis |
+| `luna-worker` | GPT | **max** (Gateway erzwingt) | ✅ **Motor**: Mechanik, Tests, Fix-Schleifen, Backend, Refactor | ✅ mechanische Prüfung, Tests nachfahren, Zahlen-Check | ✅ technische Angleichung | ✅ Code-/Datei-Recherche |
+| `terra-bulk` | GPT | **max** | ✅ Architektur, Migration, Multi-File, Volumen | ✅ Architektur-Kritik, Konsistenz über viele Dateien | ✅ Struktur-Angleich | — |
+| `sol-pruefer` | GPT | **max** | ✅ harte Code-Fälle, Terminal-/Agent-Arbeit, Planung eines Stücks | ✅ **Erstwahl** Ship-Urteil, Design-Kritik, Chairman, Abnahme | ✅ inhaltliche Angleichung | ✅ Zahlen-Verifikation |
+| `haiku-worker` | Claude | **max** | ✅ mechanische Edits, Boilerplate, Massen-Umbau | ✅ Screenshot-/Datei-Vergleich, Lint, Checklisten | ✅ Format-Angleich | ✅ **Erstwahl** Massen-Lesen |
+| `kimi-worker` | Kimi K3 | **high** | ✅ **Erstwahl** Frontend/UI, DE-Texte, Kreatives, 3D/visuelle Ideen | ✅ Design-Blick, Text-Kritik, dritte Familie | ✅ visuelle Angleichung | ✅ Riesen-Kontext |
+| `kimi-recherche` | Kimi K3 | **high** | — (nur lesend) | ✅ lesende Gegenprobe, Latten-Prüfung | — | ✅ Referenzen/Latte finden |
+| `grok-worker` | Grok 4.5 | **max** | ✅ schnelle Umsetzung in Volumen, Prototypen, Tool-Use, Agent-Schritte | ✅ vierte Perspektive, Tempo-Review | ✅ mechanische Angleichung | ✅ breite Sichtung |
+| `sonnet-worker` | Claude | — | ⬜ **nicht Teil der Gauntlet-Besetzung** (Raphael 03.08.) — nur als Notnagel bei Familien-Ausfall | ⬜ | ⬜ | ⬜ |
 
-**Cockpit-Regel:** Fable und Opus arbeiten **im Cockpit**, nicht als Subagent.
-Sie zerlegen, entscheiden, destillieren und fällen das Letzt-Urteil über das
-geglättete Ganze — sie werden aber nie per `agentType` gestartet. Raphael spricht
-direkt über **Grok 4.5** (`claude-raphael-grok`, Route `grok-4.5`), nicht über Opus.
+**Effort-Doktrin (Raphael 03.08.2026):** alles auf **max**, außer Kimi auf
+**high**. Luna erzwingt max nativ im Gateway (`forced_effort`). Effort explizit
+im Auftrag mitgeben — sonst erbt der Subagent das Cockpit-Setup (Regel 7).
+
+**Fable und Opus sind jetzt Teil der Flotte** (Freigabe Raphael 03.08.2026).
+Die frühere Regel „nie Fable/Opus als Subagent" ist damit für den Gauntlet
+aufgehoben. Sie bleiben aber **teuer** — Einsatzregel:
+
+- `fable-architekt` nur für das **schwerste Stück** und für den Dauerlauf über
+  Stunden (dort liegt sein Vorsprung: „je länger und komplexer die Aufgabe,
+  desto größer Fables Vorsprung"). Nie für Mechanik oder Boilerplate.
+- `opus-builder` für Substanz-Stücke, Debugging und Root-Cause — etwa halb so
+  teuer wie Fable bei fast gleicher Frontier-Leistung.
+- Beide zählen als **Claude-Familie** für Regel 8: sie dürfen keinen
+  Claude-Builder abnehmen.
+
+Raphael spricht direkt über **Grok 4.5**, nicht über Opus.
 
 **Verboten:** Kimi HighSpeed, Kimi K2.7.
 
@@ -66,25 +80,37 @@ direkt über **Grok 4.5** (`claude-raphael-grok`, Route `grok-4.5`), nicht über
 
 | Werkstück | Erstwahl | Zweitwahl | Drittwahl |
 |---|---|---|---|
-| Landingpage / UI | `kimi-worker` | `sonnet-worker` | `grok-worker` |
-| Deutsche Verkaufstexte / Ads-Copy | `kimi-worker` | `sonnet-worker` | `sol-pruefer` (als Builder) |
-| Backend-Feature | `luna-worker` | `sonnet-worker` | `sol-pruefer` |
-| Harter Bug / Edge-Case | `sol-pruefer` (als Builder) | `luna-worker` | `sonnet-worker` |
+| **Das schwerste Stück im Lauf** | `fable-architekt` | `opus-builder` | `sol-pruefer` |
+| Feature end-to-end, lange Strecke | `fable-architekt` | `opus-builder` | `luna-worker` |
+| Landingpage / UI | `kimi-worker` | `fable-architekt` | `grok-worker` |
+| Deutsche Verkaufstexte / Ads-Copy | `kimi-worker` | `fable-architekt` | `opus-builder` |
+| Backend-Feature | `luna-worker` | `opus-builder` | `sol-pruefer` |
+| Harter Bug / Edge-Case / Root-Cause | `opus-builder` | `fable-architekt` | `sol-pruefer` |
+| Tiefe Bug-Jagd (hoher Recall nötig) | `fable-architekt` | `opus-builder` | `luna-worker` |
 | Große Migration / Multi-File | `terra-bulk` | `luna-worker` | `grok-worker` |
 | Prototyp, viele Varianten schnell | `grok-worker` | `luna-worker` | `kimi-worker` |
 | Mechanik, Boilerplate, Massen-Edit | `haiku-worker` | `luna-worker` | `grok-worker` |
-| Tests schreiben und grün fahren | `luna-worker` | `haiku-worker` | `sonnet-worker` |
-| 3D / visuelle Kreation | `kimi-worker` | `grok-worker` | `sonnet-worker` |
+| Tests schreiben und grün fahren | `luna-worker` | `haiku-worker` | `grok-worker` |
+| 3D / visuelle Kreation | `kimi-worker` | `fable-architekt` | `grok-worker` |
 | Recherche / Referenzen finden | `kimi-recherche` | `haiku-worker` | `grok-worker` |
+
+**Kosten-Bremse:** `fable-architekt` steht in genau den Zeilen, wo sein
+Vorsprung belegt ist (Langhorizont, Bug-Recall, End-to-End-Frontend). Für alles
+andere ist er die Zweitwahl oder gar nicht dabei. Ein Gauntlet, in dem Fable
+jedes Stück baut, ist falsch besetzt.
 
 ## Wer richtet wen (harte Regel 8: Builder ≠ Kritiker-Familie)
 
 | Builder | Familie | Erlaubte Kritiker (alle gleichwertig) |
 |---|---|---|
-| `kimi-worker` | Kimi | `sol-pruefer` · `luna-worker` · `sonnet-worker` · `haiku-worker` · `grok-worker` |
-| `luna-worker` / `terra-bulk` / `sol-pruefer` | GPT | `kimi-worker` · `kimi-recherche` · `sonnet-worker` · `haiku-worker` · `grok-worker` |
-| `sonnet-worker` / `haiku-worker` | Claude | `sol-pruefer` · `luna-worker` · `kimi-recherche` · `kimi-worker` · `grok-worker` |
-| `grok-worker` | Grok | `sol-pruefer` · `luna-worker` · `sonnet-worker` · `haiku-worker` · `kimi-recherche` |
+| `kimi-worker` | Kimi | `sol-pruefer` · `luna-worker` · `terra-bulk` · `opus-builder` · `fable-architekt` · `haiku-worker` · `grok-worker` |
+| `luna-worker` / `terra-bulk` / `sol-pruefer` | GPT | `kimi-worker` · `kimi-recherche` · `opus-builder` · `fable-architekt` · `haiku-worker` · `grok-worker` |
+| `fable-architekt` / `opus-builder` / `haiku-worker` | Claude | `sol-pruefer` · `luna-worker` · `terra-bulk` · `kimi-worker` · `kimi-recherche` · `grok-worker` |
+| `grok-worker` | Grok | `sol-pruefer` · `luna-worker` · `opus-builder` · `fable-architekt` · `haiku-worker` · `kimi-recherche` |
+
+**Achtung Claude-Familie:** `fable-architekt`, `opus-builder` und
+`haiku-worker` sind **dieselbe Familie**. Fable prüft nie Opus, Opus nie Fable,
+und keiner von beiden prüft Haiku-Output (Regel 8).
 
 **Wahl innerhalb der erlaubten Kritiker** nach Art der Prüfung:
 - Design-/Ship-Urteil → `sol-pruefer` (Beschluss B1), ersatzweise `kimi-worker`
@@ -104,10 +130,11 @@ per Blind-A/B wählen zu lassen. Bewährte Paare:
 
 | Stück | Builder A | Builder B | Kritiker (dritte Familie) |
 |---|---|---|---|
-| Hero-Sektion | `kimi-worker` | `sonnet-worker` | `sol-pruefer` |
-| Verkaufstext | `kimi-worker` | `sol-pruefer` | `sonnet-worker` |
-| Backend-Modul | `luna-worker` | `grok-worker` | `sonnet-worker` |
+| Hero-Sektion | `kimi-worker` | `fable-architekt` | `sol-pruefer` |
+| Verkaufstext | `kimi-worker` | `opus-builder` | `sol-pruefer` |
+| Backend-Modul | `luna-worker` | `grok-worker` | `opus-builder` |
 | Prototyp | `grok-worker` | `kimi-worker` | `luna-worker` |
+| Schwerstes Stück | `fable-architekt` | `kimi-worker` | `sol-pruefer` |
 
 Der Kritiker sieht **nicht**, welche Variante von wem ist. Die verlierende
 Variante wird nicht weggeworfen: ihre beste Idee wandert per einer Lücken-Ansage
@@ -116,7 +143,8 @@ in die Gewinner-Variante.
 ## Ausfall-Pfade
 
 1. **GPT tot** (Seat widerrufen / `degraded-gpt.flag`): Luna/Terra/Sol →
-   `sonnet-worker` und `grok-worker` als Builder, `kimi-*` sichert Regel 8.
+   `opus-builder` und `grok-worker` als Builder, `kimi-*` sichert Regel 8.
+   Ship-Abnahme übernimmt `opus-builder`, solange Panel A auf Kimi läuft.
 2. **Kimi-Quota:** nur K3; Ausfall benennen, mit Claude/GPT/Grok weiterfahren.
 3. **Grok-Seat weg:** die drei Kernfamilien tragen weiter; im Protokoll nennen.
 4. **Claude-Seats voll:** Gateway rotiert 1→4, danach Kimi als Abo-Fallback.
@@ -135,6 +163,12 @@ in die Gewinner-Variante.
    ```
    Ohne `Authorization`-Header antwortet das Gateway `{"error":"Missing API key"}`
    — das ist kein Ausfall der Route.
+7. **`unknown provider for model`:** die Preset-Namen (`fable[1m]`, `opus[1m]`)
+   sind NICHT die Gateway-Routen. Die echten IDs holt man sich mit
+   `curl -s http://127.0.0.1:8317/v1/models -H "Authorization: Bearer $GWKEY"`.
+   Gültig sind u. a. `claude-fable-5`, `claude-opus-5`, `claude-sonnet-5`,
+   `claude-haiku-4-5-20251001`, `gpt-5.6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`,
+   `kimi-k3`, `grok-4.5` (alle am 03.08.2026 live geprüft).
 
 **Immer gilt:** ein Familien-Ausfall wird im `workbench.md` protokolliert, nie
 verschwiegen und nie als Grund zum Abbrechen benutzt. Weil jede Rolle mehrfach
