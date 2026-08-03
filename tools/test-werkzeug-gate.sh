@@ -169,10 +169,17 @@ printf '| Icons | Lucide | `npm i lucide-react` | ein Set | `#icons` |\n' >> "$T
 printf '| Motion | gsap | `npm i gsap` | prefers-reduced-motion | `#motion` |\n' >> "$TMP/gsapok/art-direction.md"
 run "gsap MIT reduced-motion (muss gruen)" 0 "$TMP/gsapok"
 
+
+# --- 21. Bypass: Paket nur in auskommentierter ("verworfener") Zeile -> rot --
+cp -r "$TMP/good" "$TMP/htmlcomment"
+echo '{"dependencies":{"react":"19","next":"15","lucide-react":"^0.4","motion":"^11","gsap":"^3"}}' > "$TMP/htmlcomment/package.json"
+printf '<!--\n| verworfen | gsap | wollten wir doch nicht | x | `#motion` |\n-->\n' >> "$TMP/htmlcomment/art-direction.md"
+run "Bypass Paket im HTML-Kommentar" 1 "$TMP/htmlcomment"
+
 echo
 if [ "$fails" -eq 0 ]; then
-  echo "Werkzeug-Gate-Fixtures: OK (20/20)"
+  echo "Werkzeug-Gate-Fixtures: OK (21/21)"
   exit 0
 fi
-echo "Werkzeug-Gate-Fixtures: FAIL ($fails von 20)"
+echo "Werkzeug-Gate-Fixtures: FAIL ($fails von 21)"
 exit 1

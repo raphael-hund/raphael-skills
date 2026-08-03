@@ -196,7 +196,9 @@ if (!existsSync(tablePath)) {
     `Werkzeugtabelle fehlt (${tablePath}) — Schritt 5d im web-Skill ist die Freigabe fuer den Build`
   );
 } else {
-  const table = readFileSync(tablePath, "utf8");
+  // HTML-Kommentare raus: eine auskommentierte ("verworfene") Zeile darf kein
+  // Paket legitimieren.
+  const table = readFileSync(tablePath, "utf8").replace(/<!--[\s\S]*?-->/g, "");
   const lines = table.split("\n").map((line) => line.trim());
   const dataRows = lines.filter(
     (line) =>
