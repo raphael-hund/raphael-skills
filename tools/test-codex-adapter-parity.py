@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import os
 import re
 import subprocess
 import sys
@@ -37,7 +38,8 @@ LOCAL_DEPS = {
             "code-qualitaets-checkliste", "security-audit-playbook",
             "domain-safe-browsing-checkliste", "readonly-db-rolle",
             "design-systeme-vergleich", "radix-shadcn-tailwind-stack",
-            "remotion-produktionsweg",
+            "remotion-produktionsweg", "screenshot-kritik-loop",
+            "frontend-referenzbibliothek",
         )),
         "references/ui-components/INDEX.md",
         "references/templates/statistics-page-template.html",
@@ -114,18 +116,29 @@ def main() -> int:
                 errors.append(f"{name}: source/adapter frontmatter name drift")
         except AssertionError as exc:
             errors.append(f"{name}: {exc}")
-        absolute_source = str(source.resolve())
-        if absolute_source not in adapter_text:
-            errors.append(f"{name}: adapter does not point at canonical source")
-        if "Codex dependency map:" not in adapter_text:
-            errors.append(f"{name}: Codex dependency map missing")
+        if name == "web":
+            if not adapter_dir.is_symlink():
+                errors.append("web: repository bridge is not a symlink")
+            elif os.readlink(adapter_dir) != "../../skills/eigene/web":
+                errors.append(f"web: repository bridge target drift: {os.readlink(adapter_dir)!r}")
+            if adapter.resolve() != source.resolve() or adapter.read_bytes() != source.read_bytes():
+                errors.append("web: repository bridge is not byte-identical to canonical source")
+            if "Codex dependency map:" in adapter_text or "Codex source adapter" in adapter_text:
+                errors.append("web: legacy adapter prose remains in canonical content")
+        else:
+            absolute_source = str(source.resolve())
+            if absolute_source not in adapter_text:
+                errors.append(f"{name}: adapter does not point at canonical source")
+            if "Codex dependency map:" not in adapter_text:
+                errors.append(f"{name}: Codex dependency map missing")
 
         for dep in LOCAL_DEPS[name]:
             expect_path(source.parent / dep, f"{name} local dependency {dep}", errors)
         for logical, resolved in SHARED_DEPS[name].items():
             expect_path(resolved, f"{name} shared dependency {logical}", errors)
-            if str(resolved) not in adapter_text:
-                errors.append(f"{name}: adapter does not resolve shared dependency {logical}")
+            dependency_text = source_text if name == "web" else adapter_text
+            if str(resolved) not in dependency_text:
+                errors.append(f"{name}: package does not resolve shared dependency {logical}")
 
         if QUICK_VALIDATE.is_file():
             checked = subprocess.run(

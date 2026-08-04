@@ -1,7 +1,8 @@
 # raphael-skills
 
-Können-Repo. Eine Sammlung, per Symlink in alle Harnesses (4× Claude-Profile,
-Codex, Kimi) verteilt — ein Skill-Bestand, mehrere Cockpits. Quelle der Doktrin
+Können-Repo. Eine Sammlung, per Symlink oder explizitem externen Skill-Pfad in
+Claude Code, Codex, Kimi Code und Hermes Agent verteilt — ein Skill-Bestand,
+mehrere Laufzeiten. Quelle der Doktrin
 ist `raphael-command-center/AGENTS.md`; dieses Repo liefert nur die Skills selbst.
 
 ## Struktur
@@ -33,13 +34,16 @@ Werkzeug").
 
 ## Codex-Varianten installieren
 
-Codex liest die persoenlichen Varianten aus `$HOME/.agents/skills`. Die
-Original-Skills unter `skills/` bleiben dabei die inhaltliche Quelle; der
-Adapter-Build erzeugt nur Codex-konformes Frontmatter und UI-Metadaten unter
-`codex/skills/`. Dadurch bleiben References und Scripts an genau einer Stelle.
+Codex liest die persoenlichen Varianten aus `$HOME/.agents/skills`. Die meisten
+Original-Skills unter `skills/` erhalten kleine Codex-Adapter. `web` ist die
+bewusste Ausnahme: `skills/eigene/web/` ist ein portables Komplettpaket mit
+eigenem `agents/openai.yaml`; `codex/skills/web` ist nur der relative
+Repository-Bridge-Symlink `../../skills/eigene/web`. Der Modus
+`canonical-link` erzeugt keine Datei, sondern prueft Bridge, Frontmatter,
+Ressourcen und UI-Metadaten, ohne durch den Symlink zu schreiben.
 
 ```bash
-# 27 Source-Adapter bauen und alle 32 Varianten pruefen
+# Source-Adapter bauen und alle 39 Varianten inklusive canonical-link pruefen
 python3 tools/sync-codex-skills.py
 python3 tools/sync-codex-skills.py --check
 
@@ -57,7 +61,7 @@ python3 tools/test-codex-live-catalog.py
 
 ### Claude Code
 
-Die 31 kanonischen Raphael-Skills sind bereits Claude-native; `kimi-sol`
+Die 38 kanonischen Raphael-Sources sind bereits Claude-native; `kimi-sol`
 besitzt eine eigene Claude-Variante. Der Installer verlinkt immer das ganze
 Skill-Verzeichnis (inklusive References und Scripts), ueberschreibt keine
 fremden Eintraege und folgt keinen Symlink-Komponenten im Zielpfad.
@@ -81,10 +85,11 @@ Vier Orchestrierungs-Skills sind native Codex-Varianten:
 sichtbare, user-owned Codex-Tasks/Threads. `dynamic-workflow` startet keine
 interne Agenten-Flotte. `kimi-sol` ist ein zusaetzlicher nativer,
 fail-closed External-Review-Pfad; ein kostenpflichtiger Kimi-Aufruf braucht
-jedes Mal eine frische ausdrueckliche Freigabe. Die uebrigen 27 Adapter lesen
-vor der Arbeit ihre kanonische Source-SKILL.md vollstaendig.
+jedes Mal eine frische ausdrueckliche Freigabe. 33 Source-Adapter lesen vor
+der Arbeit ihre kanonische Source-SKILL.md vollstaendig; `web` wird als ein
+byte-identisches kanonisches Paket geladen.
 
-Der Installer verwaltet ausschliesslich die 32 Namen aus
+Der Installer verwaltet ausschliesslich die 39 Namen aus
 `codex/compatibility.json`. Fremde Eintraege bleiben unberuehrt. Ein belegter
 Pfad oder ein abweichender/beschaedigter Symlink unter demselben Namen ist ein
 harter Konflikt: Der Lauf bricht ohne Teilinstallation ab; Laufzeitfehler
@@ -121,8 +126,8 @@ python3 tools/sync-codex-upstream-skills.py --check
 python3 tools/test-codex-upstream-skills.py
 ```
 
-Damit sind 32 Raphael-Varianten, 14 Superpowers-Skills und 54 gstack-Skills
-verfuegbar: insgesamt 100 Codex-Skills aus diesen drei Bestaenden. Nach einer
+Damit sind 39 Raphael-Varianten, 14 Superpowers-Skills und 54 gstack-Skills
+verfuegbar: insgesamt 107 Codex-Skills aus diesen drei Bestaenden. Nach einer
 Plugin- oder Skill-Pack-Erstinstallation Codex einmal neu starten, damit eine
 bereits laufende Task ihre Skill-Liste neu laedt.
 
@@ -130,8 +135,9 @@ bereits laufende Task ihre Skill-Liste neu laedt.
 
 Kimi Code 0.28.1 scannt User-Skills unter `$KIMI_CODE_HOME/skills` (standardmaessig
 `$HOME/.kimi-code/skills`) vor dem gemeinsamen `$HOME/.agents/skills`-Bestand.
-Die 32 Raphael-Namen bekommen deshalb eine Kimi-spezifische, hoeher priorisierte
-Variante: 26 kleine Source-Adapter und sechs native Kimi-Skills
+Die 39 Raphael-Namen bekommen deshalb eine Kimi-spezifische, hoeher priorisierte
+Variante: 32 kleine Source-Adapter, das byte-identische kanonische `web`-Paket
+ueber `kimi/skills/web -> ../../skills/eigene/web` und sechs native Kimi-Skills
 (`dynamic-workflow`, `orchestrate`, `sdd`, `ultra-loop`, `kimi-first` und
 `kimi-sol`). Die Source-Adapter lesen weiterhin die kanonische Source vollstaendig;
 die nativen Varianten verwenden Kimis echte `TodoList`-, `Agent`-,
@@ -170,12 +176,27 @@ python3 tools/sync-kimi-upstream-skills.py --check
 python3 tools/test-kimi-upstream-skills.py
 ```
 
-Damit stehen auch Kimi 32 Raphael-Varianten, 14 Superpowers-Plugin-Skills und
-54 gstack-Skills zur Verfuegung: dieselben 100 Eintraege aus den drei Bestaenden.
+Damit stehen auch Kimi 39 Raphael-Varianten, 14 Superpowers-Plugin-Skills und
+54 gstack-Skills zur Verfuegung: dieselben 107 Eintraege aus den drei Bestaenden.
 Die Raphael-Variante heisst in Kimi `raphael-writing-skills`; der unveraenderte
 Superpowers-Skill behaelt `writing-skills`. So bleiben beide trotz Kimis
 Namensprioritaet sichtbar. Nach Installation in einer laufenden Kimi-Session
 `/reload` oder `/new` verwenden.
+
+### Hermes Agent
+
+Hermes bekommt keine Kopie und keinen vierten Adapter. In
+`$HOME/.hermes/config.yaml` wird nur das kanonische Paket registriert:
+
+```yaml
+skills:
+  external_dirs:
+    - /root/raphael-skills/skills/eigene/web
+```
+
+So entdeckt Hermes genau einen `web`-Skill, waehrend References, Scripts und
+Metadata aus demselben Verzeichnis wie in den anderen Laufzeiten kommen. Nach
+einer Aenderung `/reload-skills` oder eine neue Session verwenden.
 
 ## r-Namespace
 

@@ -1,18 +1,24 @@
 ---
 name: design
-version: 0.3.3
+version: 0.4.0
 description: >
   Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max +
   kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills).
   Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/
   Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber
   die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner.
-  Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als
-  eigene References bei Bedarf nachladen. Trigger: "Landingpage bauen",
+  Motion/Animation, Farben (OKLCH), Typografie, Layout/Struktur,
+  Barrierefreiheit (A11y), Interface-Texte (Microcopy) und UI-Polish-Details
+  als eigene References bei Bedarf nachladen; fuer "review den ganzen
+  Screen/Flow" den konsolidierten Interface-Review fahren (eine Fund-Tabelle,
+  ein Verdikt). Trigger: "Landingpage bauen",
   "Dashboard designen", "UI review", "Design polieren", "sieht nach AI aus",
   "Slop entfernen", "Farben/Typo/Layout fixen", "Animation/Motion pruefen",
-  "Kontrast/OKLCH", "Referenz-Site als Stilvorlage", "Stitch",
-  "Screen in Stitch bauen", "Design mit Google Stitch".
+  "Kontrast/OKLCH", "Layout/Spacing/Ausrichtung", "Breakpoints/Responsive",
+  "RTL", "Barrierefreiheit/A11y/WCAG", "Tastaturbedienung", "Screenreader",
+  "Fokusring", "Hit-Area/Touch-Target", "Microcopy/Button-Label/
+  Fehlermeldung/Empty State", "voller Interface-Review", "Referenz-Site als
+  Stilvorlage", "Stitch", "Screen in Stitch bauen", "Design mit Google Stitch".
 class: F
 scope: agency
 sensitivity: internal
@@ -31,6 +37,9 @@ loads:
   - references/farben-oklch.md
   - references/typografie.md
   - references/ui-polish-details.md
+  - references/layout-struktur.md
+  - references/barrierefreiheit.md
+  - references/interface-texte.md
   - references/design-dna-schema.md
   - references/component-bibliotheken-radar.md
   - references/wissens-router.md
@@ -50,6 +59,15 @@ gotchas:
   - "taste imagegen-Teile (generate_image-Pflicht) ENTFERNT — hier: Bild-Slots + reale Quellen (picsum-seed), nie div-Fake-Screenshots."
   - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift auf englischen Text). Fuer deutsche Ads/Web-Copy siehe copywriting — dort liegt die deutsche Entfloskelungs-Referenz. TODO fuer einen spaeteren Agenten: eine rules.de.mjs nach dem Vorbild von scripts/rules.ru.mjs.example bauen, die deutsche Slop-Phrasen per --rules=scripts/rules.de.mjs zusaetzlich scannt."
   - "UI-Polish-Details (jakubkrehel) liefert exaktere Zahlenwerte (Scale 0.96 nicht 0.9, Blur 4px nicht 2px) als manche Faustregeln in design-doktrin.md/taste-kern.md. Bei Widerspruch gewinnt der exaktere, deterministisch pruefbare Wert aus ui-polish-details.md."
+  - "Quellen-Konflikt Hit-Area: ui-polish-details.md nannte 44x44px als Minimum, barrierefreiheit.md (WCAG 2.5.8 AA) nennt 24x24px. ENTSCHIEDEN: beide gelten mit unterschiedlicher Bedeutung — 24x24px ist die harte Konformitaets-Untergrenze (darunter = Fehler, ausser WCAG-Ausnahme greift), 44x44px (Touch) bzw. 40x40px (Desktop) ist das Komfort-/Qualitaetsziel fuer primaere Controls. Kleine Controls nie blind als Fehler melden, erst die WCAG-Ausnahmen pruefen."
+  - "Wertkorrektur Hell/Dunkel-Grenze (jakubkrehel a673333): frueher L > 0.6 = heller Hintergrund, jetzt L > 0.73 (APCA-Crossover auf neutralen Hintergruenden). ENTSCHIEDEN: 0.73 gilt in farben-oklch.md. Im Band 0.6-0.73 wirkt der Hintergrund hell, weisser Text punktet aber noch besser — dort messen statt schaetzen."
+  - "Wertkorrektur WCAG-Grosstext (jakubkrehel a673333): frueher >=18px/>=14px bold, jetzt >=24px/>=18.5px bold (WCAG definiert in Punkt: 18pt = 24px, 14pt bold = 18.5px). ENTSCHIEDEN: die px-Umrechnung in farben-oklch.md gewinnt; die alten 18px waren eine falsche pt->px-Gleichsetzung."
+  - "Quellen-Konflikt Kontrast-Fix: alte Regel 'nur L anpassen, Chroma-Effekt vernachlaessigbar' ist zu grob. ENTSCHIEDEN: L zuerst, C/H moeglichst halten, C bei Gamut-Problemen reduzieren — und danach das gerenderte Paar NEU messen. Ausserdem: Kontrast-Funde melden statt Farben ungefragt zu aendern (Projektfarben sind eine Design-Entscheidung)."
+  - "Quellen-Konflikt Exit-Easing: ui-polish-details.md nannte frueher ease-in fuer Exits (aus better-ui @ f8a1574). ENTSCHIEDEN: ease-out fuer Enter UND Exit (better-ui @ a673333). Und: gar keine Exit-Animation ist NICHT mehr pauschal falsch — bei haeufigen Interaktionen, fehlendem Informationsgehalt oder reduced-motion ist sofortiges Entfernen richtig."
+  - "Quellen-Konflikt Tailwind-transition: frueher stand hier, Tailwinds nacktes 'transition' mappe auf 'all'. FALSCH — es mappt auf eine kuratierte Default-Liste. Verboten bleibt 'transition-all' bzw. CSS 'transition: all'; trotzdem immer exakte Properties benennen."
+  - "Wertkorrektur will-change/clip-path: clip-path galt als GPU-komponierbar, ist es aber nur in neuerem Chromium und cross-browser nicht verlaesslich. ENTSCHIEDEN: nicht darauf bauen (ui-polish-details.md)."
+  - "Quellen-Konflikt font-synthesis: frueher 'font-synthesis: none' pauschal setzen. ENTSCHIEDEN (better-typography @ a673333): erst die gebrauchten Schnitte laden; 'none' nur nach Pruefung des kompletten Fallback-Stacks setzen, sonst loescht es Betonung. Stoert nur ein Modus, die Longhand (font-synthesis-weight/-style) nehmen."
+  - "Abgrenzung Interface-Texte vs. copywriting: interface-texte.md deckt NUR UI-Microcopy ab (Button-Labels, Fehlermeldungen, Empty States, Toggles, Platzhalter). Deutsche Verkaufs-/Marketing-Copy, Brand-Voice und Entfloskelung bleiben bei den Skills copywriting und no-ai-slop — dort NICHT hineinregieren."
 ---
 
 # design — Anti-Slop Frontend (Router)
@@ -166,11 +184,75 @@ stimmig? Motion motiviert? Bilder real?).
 | Voller Motion-Audit ueber ein Repo | `references/motion-audit-workflow.md` (nur hier laden, nicht bei jedem UI-Task) |
 | Farben/Kontrast/OKLCH/Tailwind-Theme | `references/farben-oklch.md` |
 | Typografie (Scale, Heading-Hierarchie, iOS-Zoom-Fix) | `references/typografie.md` |
-| Buttons/Formulare: hover/focus/error-States + A11y | `wiki/craft/webdesign/interaction-states-and-accessibility.md` (zuerst), `references/ui-polish-details.md` nur ergaenzend |
-| Feinschliff-Details (Radius, Shadows, Icon-Motion, Hit-Areas) | `references/ui-polish-details.md` |
+| Layout/Struktur: Gruppierung, Ausrichtung, Spacing zwischen Controls, Breakpoints, Container-Queries, Full-Bleed, RTL/logische Properties, i18n-Wachstum | `references/layout-struktur.md` |
+| Barrierefreiheit: Fokusringe, Tastatur/APG, Fokus-Trap, ARIA/Semantik, Formular-Labels + Fehler, Screenreader/Live-Regionen, Alt-Text, Hit-Areas (WCAG), reduced-motion, 200%-Zoom | `references/barrierefreiheit.md` |
+| Interface-Texte (Microcopy): Button-Labels, Fehlermeldungen, Empty States, Toggle-Labels, Platzhalter, Linktext, Flow-Vokabular | `references/interface-texte.md` (deutsche Verkaufs-/Marketing-Copy bleibt bei `copywriting`) |
+| Buttons/Formulare: hover/focus/error-States + A11y | `wiki/craft/webdesign/interaction-states-and-accessibility.md` (zuerst), dann `references/barrierefreiheit.md`, `references/ui-polish-details.md` nur ergaenzend |
+| Feinschliff-Details (Radius, Shadows, Icon-Motion, Icons, Hit-Areas) | `references/ui-polish-details.md` |
 | Referenz-Site als Stilvorlage destillieren (nicht 1:1 klonen) | `references/design-dna-schema.md` + `scripts/dna-scaffold.mjs` |
 | Externe Component-/Motion-Bibliothek pruefen statt neu erfinden | `references/component-bibliotheken-radar.md` |
 | Vertiefte, belegte Web-Substanz (States/A11y, Farb-/Typo-System, Motion-Polish, Anti-Slop-QA, Referenz-Auswahl) | `references/wissens-router.md` (liest `wiki/craft/webdesign/`) |
+
+## Voller Interface-Review (mehrere Domaenen auf einmal)
+
+Fuer "review das ganze Interface / diesen Screen / diesen Flow" — nicht fuer
+einen Einzelfix. Sechs Einzel-Audits hintereinander sind kein Review; es
+gibt EIN konsolidiertes Urteil.
+
+**Modus zuerst festlegen und den Scope ansagen** (welcher Screen/Flow/Repo):
+
+| Modus | Abdeckung | Fund-Limit |
+|---|---|---|
+| `quick` | Hauptpfad und meistgenutzte Zustaende; nur `HIGH` und `MEDIUM` melden | 5 |
+| `full` (Default) | ganzer Scope ueber alle Domaenen, inkl. empty/loading/error/schmale Breite | 15 |
+
+Ist der Scope zu gross, um ihn glaubhaft zu pruefen: auf den
+meistgenutzten vollstaendigen Flow eingrenzen und die Grenze **ansagen**.
+Nie den Eindruck erwecken, ungeprueftes Terrain sei geprueft.
+
+**Reihenfolge (fundamentale Fehler zuerst, damit Politur sie nicht
+verdeckt):**
+
+1. `references/barrierefreiheit.md`
+2. `references/layout-struktur.md`
+3. `references/interface-texte.md`
+4. `references/typografie.md`
+5. `references/farben-oklch.md`
+6. `references/ui-polish-details.md`
+
+Danach die deterministische QA (beide Scanner, siehe oben) — sie ersetzt
+keine Domaene, sie belegt sie.
+
+**Regeln fuer die Funde:**
+
+- **Ein Fund braucht einen Beleg**: `pfad/zur/datei:zeile` plus die aktuelle
+  Umsetzung. Kein Code-Fund allein aus dem optischen Eindruck, kein
+  optischer Fund allein aus dem Code, wenn erst die Laufzeit entscheidet.
+- **Eine Ursache = ein Fund.** Alle betroffenen Stellen in dieselbe Zeile,
+  nicht eine Zeile je Vorkommen. Den Bericht nicht bis ans Limit auffuellen —
+  ein kurzer Bericht ist ein gueltiges Ergebnis.
+- **Zustaendigkeit**: decken zwei Referenzen dasselbe ab, gehoert der Fund zu
+  der, die die Regel besitzt; Nebenwirkungen in die Begruendung. Einmal melden.
+- **Severity**: `HIGH` blockiert eine Aufgabe, fuehrt in die Irre, versteckt
+  Inhalt/Controls, riskiert Datenverlust oder ist ein wiederkehrender
+  System-Fehler · `MEDIUM` schadet Verstaendnis, Effizienz, Anpassbarkeit
+  oder Konsistenz spuerbar · `LOW` isolierte Politur (nur in `full`).
+  Innerhalb einer Stufe nach Reichweite sortieren: ein Token-/
+  Komponenten-Fix schlaegt dasselbe Symptom in einem Blatt-Element.
+- **Zurueckhaltung sichtbar machen**: 1–3 (`quick`) bzw. 2–5 (`full`)
+  gepruefte, aber **bewusst verworfene** Kandidaten auflisten (Regel erlaubt
+  den Ist-Zustand, Beleg reicht nicht, Projekt-Konvention ist Absicht, oder
+  der Umbau kostet mehr Komplexitaet als er bringt). Keine erfundenen Fueller.
+- **Read-only per Default.** Ein Review-Auftrag aendert keinen Code, ausser
+  die Umsetzung wurde mitbestellt. Wird umgesetzt, bleibt der Bericht der
+  Aenderungs-Scope und die Pruefungen laufen danach erneut.
+- **Nicht geprueft heisst "nicht geprueft"** — Domaene ausdruecklich so
+  markieren, nie stillschweigend als abgedeckt behandeln. Eine Pruefluecke
+  wird nie in einen Fund umgedeutet.
+
+**Verdikt am Ende, genau eines:** `Block` (mind. ein `HIGH` offen) ·
+`Needs changes` (nur `MEDIUM`/`LOW` offen) · `Approve` (nichts Umsetzbares
+offen UND die behauptete Abdeckung belegt). Kein "Approve" mit offenen Funden.
 
 ## Doktrin ist bindend
 `references/design-doktrin.md` enthaelt die fusionierten Regeln (dedupliziert,
@@ -181,5 +263,8 @@ Bei Widerspruch zwischen Quellen gilt die dort dokumentierte Entscheidung.
 Kein Backend/Non-UI. Native Apps (iOS/Android): impeccable-Register-Refs waeren
 noetig — hier nur Web abgedeckt. Datentabellen/Wizards: ui-ux-DB gibt Muster,
 aber spezialisierte Libs (TanStack/AG Grid) bleiben Sache des Projekts.
-Deutsche Copy-Slop-Tells (Floskeln, KI-Voice) gehoeren zu copywriting, nicht
-hierher — die kill-ai-slop-Detektoren sind englischsprachig.
+Deutsche Copy-Slop-Tells (Floskeln, KI-Voice) und jede Verkaufs-/Marketing-Copy
+gehoeren zu copywriting bzw. no-ai-slop, nicht hierher — die
+kill-ai-slop-Detektoren sind englischsprachig. Hier liegt nur die
+UI-Microcopy (`references/interface-texte.md`): Button-Labels,
+Fehlermeldungen, Empty States, Toggle-Labels, Platzhalter.

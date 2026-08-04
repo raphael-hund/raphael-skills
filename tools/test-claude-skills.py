@@ -32,7 +32,8 @@ def invoke(home: Path, *args: str) -> subprocess.CompletedProcess[str]:
 
 def main() -> int:
     inventory = sync.load_inventory()
-    assert len(inventory) == 36
+    expected_count = sync.read_json(sync.CODEX_REGISTRY_PATH)["skills"]
+    assert len(inventory) == len(expected_count)
     assert inventory["dynamic-workflow"] == ROOT / "skills" / "eigene" / "dynamic-workflow"
     assert inventory["kimi-sol"] == ROOT / "claude" / "skills" / "kimi-sol"
 
@@ -68,7 +69,7 @@ def main() -> int:
         assert redirected.returncode != 0
         assert not list(outside.iterdir())
 
-    print("Claude skill installer tests: OK (36 skills, no-clobber, idempotent, no-follow)")
+    print(f"Claude skill installer tests: OK ({len(inventory)} skills, no-clobber, idempotent, no-follow)")
     return 0
 
 

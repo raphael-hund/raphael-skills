@@ -28,7 +28,7 @@ loads:
   - references/vendor/claude-ads/quellen-und-benchmarks.md
   - references/vendor/claude-ads/experimente-und-monitoring.md
   - references/vendor/claude-ads/automatisierungs-tiers.md
-requires_skills: [copywriting@^0, offers@^0, eval@^0, ads-video@^0, ads-statics@^0]
+requires_skills: [copywriting@^0, offers@^0, eval@^0, ads-copy@^0, ads-video@^0, ads-statics@^0]
 completion_criteria:
   - "0 verbotene Claims im Live-Set (claims-qa Block, Sol frische Session)"
   - "G1-Stil grün, dann G2 >= 0.7 auf jedem Ship-Output (Gate-Definition: references/loop3-ablauf.md → Abschnitt Gates, Rubrik evals/rubrics/ads.md)"
@@ -105,7 +105,9 @@ nicht automatisch bei E-Com.
    `references/hook-taxonomie.md`. Stil über `copywriting`. G1-Stil → G2.
 4. **video-scripts** — Skripte pro gewähltem Hook. **→ Skill `ads-video` mit
    `kunde=<slug>`** (Delegation, siehe Strategie-Regel oben: erst nach Statics-Gewinner).
-5. **ad-copy** — Primary Text / Headline / Description (Sonnet). G1 → G2.
+5. **ad-copy** — Primary Text / Headline / Description. **→ Skill `ads-copy`**
+   (Delegation). Dort liegen die an 105 echten Ads gemessenen Bauformen und ein
+   Prüfskript, das Hook-Länge, Absatzbau und Gedankenstriche hart abweist. G1 → G2.
 6. **statics** — Briefs für statische Creatives. **→ Skill `ads-statics` mit `kunde=<slug>`**
    (Delegation) → verweist dort weiter auf `design` fürs Visuelle. Layout-Vorlagen in
    `references/vendor/coreyhaines-ads/static-ad-templates-en.md` (15 Templates, über alle
@@ -121,8 +123,16 @@ nicht automatisch bei E-Com.
    **Pixel-Regel (hart, vor Launch):** Tracking/Events VOR dem ersten Live-Schalten
    einrichten; Lead-Event NUR bei qualifizierter Antwort feuern (nicht bei jedem
    Formular-Submit); auf das tiefste Funnel-Event optimieren (Booking, nicht Klicks).
-   Details in `references/loop3-ablauf.md` (Pixel-Conditioning).
+   **Ausnahme:** tritt das tiefste Event zu selten ein (wenige qualifizierte Calls/Woche),
+   auf ein früheres High-Intent-Event optimieren und tiefere Events im Hintergrund
+   mitsenden; Conversion-Volumen nicht über zu viele Kampagnen/Ad Sets zersplittern
+   (Beleg: `wiki/craft/ads/messung/erweitert-tracking-qualifizierung.md`). Konkretes
+   Setup (Qualifizierungsfragen, Conditional Logic, getrennte Danke-Seiten, CAPI):
+   ebendort. Weitere Details in `references/loop3-ablauf.md` (Pixel-Conditioning).
 9. **perf-analyse** — Performance vs. echte KPI → nächste Testwelle (Sonnet, G4).
+   Vor jeder Optimierung Engpass diagnostizieren; ziehen Ads die falschen Leute an,
+   ist das zuerst ein Anzeigen-Problem, nicht ein Landingpage-Problem
+   (Beleg: `wiki/craft/ads/strategie/ads-reihenfolge-und-diagnose.md`).
    Testwellen-Auswertung folgt der Signifikanz-Disziplin in
    `references/vendor/claude-ads/experimente-und-monitoring.md` (Stopp-Regel vorab,
    kein Peeking, Snapshot-Vergleichbarkeit prüfen). Konto-Health-Checks/Audits nutzen
@@ -135,7 +145,8 @@ nicht automatisch bei E-Com.
 |---|---|---|
 | Voice-of-Customer aus Transkripten | Kimi (1M) | G1 |
 | Angles | Fable | Checkpoint Raphael |
-| Hooks / Ad-Copy | Sonnet-Worker (Reuse je Kunde) | G1 Stil → G2 |
+| Hooks | Sonnet-Worker (Reuse je Kunde) | G1 Stil → G2 |
+| Primary Text / Headline | → Skill `ads-copy` | `scripts/pruefen.py` Exit 0 |
 | Video-Skripte | → Skill `ads-video` | wie dort definiert |
 | Statics-Briefs | → Skill `ads-statics` | wie dort definiert |
 | Claims-QA (Meta-Policy + HWG/UWG) | Sol, frische Session | belegt / riskant / verboten |
@@ -155,6 +166,19 @@ nicht automatisch bei E-Com.
 - **Andromeda-Budget-Klumpen ist KEIN Fehler (Stand 2025).** Wenn Meta bei ~12 aktiven
   Ads fast das ganze Budget auf eine Anzeige legt, ist das erwartetes Matching — nicht
   manuell umverteilen. (Andromeda-Details + Datumshinweis in loop3-ablauf.md.)
+- **Adsets nach Konzepten bauen: ein Konzept = Angle × Offer × Persona, pro Adset genau
+  ein Konzept, nie mischen.** Andromeda belohnt klare Intent auf Adset-Ebene („it gets
+  confused and over-generalizes delivery"); skaliert wird das Gewinner-Konzept, nicht die
+  Einzel-Ad (Beleg: `wiki/craft/ads/strategie/erweitert-konzept-targeting.md`).
+- **Das Creative diktiert das Targeting, nicht umgekehrt.** Qualifizierung (Umsatz, Rolle)
+  explizit in den Ad-Text schreiben, nicht nur ins Targeting — filtert unqualifizierte
+  Klicks vor dem Klick; gleicher Mechanismus wie die Link-CTR-Regel unten.
+- **Erschöpfte Gewinner nicht löschen, sondern reaktivieren (Graveyard Ad Set).** Fatigued
+  Winner (≥5× Ziel-Cost-per-Call ausgegeben, früher KPI) per Post-ID in ein Graveyard Ad
+  Set mit Cost-per-Result-Goal; erst nach 3–5× Zielkosten neu beurteilen
+  (Beleg: `wiki/craft/ads/strategie/retargeting-graveyard.md`). Dort auch: Retargeting als
+  günstigster Weg zu qualifizierten Leads (setzt bestehenden Traffic voraus — Einordnung
+  beachten, ersetzt den MAKE-Testing-Standard nicht).
 - **Negative Kommentare sind kein Abschalt-Signal.** Nie nach Kommentarstimmung ab-/anschalten
   oder Kommentare löschen — nur nach CPL/Ergebnis entscheiden. Bissige Kommentare als
   Ad-Rohstoff recyceln (Kommentar einblenden → Beweis-Sequenz).
@@ -189,8 +213,13 @@ nicht automatisch bei E-Com.
   Volatilität für ein Signal gehalten (Beleg: gleiche Quelle wie oben). Bei sehr kleinem
   Budget/wenig Conversions reicht auch das 3-7-Tage-Fenster oft nicht — dann länger
   beobachten statt trotzdem zu entscheiden.
-- **Statics-first-Sequenz ist kein MAKE-Standard, sondern ein Einzelfall-Beleg für neue
-  Angles.** MAKEs laufender Standard ist Static+Video desselben Angles gleichzeitig im
-  selben Testing-Ad-Set (siehe Strategie-Regel oben) — die sequenzielle Statics-vor-Video-
-  Idee stammt aus einer unabhängigen Quelle mit unverifizierten Eigenangaben und ersetzt den
-  MAKE-Standard nicht, sie ergänzt ihn nur für brandneue, ungetestete Angles.
+- **Statics-first-Sequenz ist kein MAKE-Standard, aber inzwischen zweifach belegt (zwei
+  unabhängige Coach-Quellen, Eigenangaben).** MAKEs laufender Standard bleibt Static+Video
+  desselben Angles gleichzeitig im selben Testing-Ad-Set (siehe Strategie-Regel oben) —
+  die sequenzielle Statics-vor-Video-Idee ergänzt ihn für brandneue, ungetestete Angles:
+  Konzepte mit günstigen Statics validieren, Gewinner dann in UGC/Founder/Testimonial-
+  Formate hochskalieren (Beleg: `wiki/craft/ads/strategie/erweitert-creative-testing.md`).
+- **Ein Ad / ein Hook / ein Angle testen und bei Einbruch das Offer verwerfen = Kardinal-
+  fehler.** Erst Creatives über Avatare und Angles multiplizieren, bevor das Offer stirbt.
+  Volumen gewinnt nur über einer Mindest-Qualitätslatte; den Gewinner vor Launch kann
+  niemand vorhersagen (gleiche Belegseite wie oben).

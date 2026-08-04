@@ -1,8 +1,11 @@
 # SKILL-VERTRAG — was jede SKILL.md haben muss
 
-**TLDR:** Jede `SKILL.md` beginnt mit einem YAML-Kopf. Sieben Felder sind
-Pflicht: `name`, `version`, `description`, `class`, `scope`, `sensitivity`,
-`completion_criteria`. Der Name ist der einfache Disziplin-Name ohne Praefix (z. B. `seo`, `design`), die Klasse ist einer von
+**TLDR:** Jede `SKILL.md` beginnt mit einem YAML-Kopf. Semantisch sind sieben
+Felder Pflicht: `name`, `version`, `description`, `class`, `scope`,
+`sensitivity`, `completion_criteria`. Bestehende Skills fuehren sie direkt als
+Top-Level-Felder; portable Cross-Runtime-Skills duerfen die Raphael-Felder als
+gequotete Strings unter `metadata` tragen. Der Name ist der einfache
+Disziplin-Name ohne Praefix (z. B. `seo`, `design`), die Klasse ist einer von
 sieben Buchstaben, und "fertig" ist immer eine pruefbare Tatsache. Das Skript
 `tools/validate-skill.py` prueft das. Dieses Dokument erklaert die Regeln so
 einfach, dass ein Fuenfjaehriger sie versteht.
@@ -18,7 +21,7 @@ Trust-Grenzen). Namensraum-Marker: `.skill-namespace` (leer — Skills tragen se
 
 ---
 
-## 1. Die sieben Pflichtfelder
+## 1. Die sieben semantischen Pflichtfelder
 
 Fehlt eines oder ist es leer, ist die SKILL.md **rot** (Fehler, Exit-Code 1).
 
@@ -37,6 +40,43 @@ Fehlt eines oder ist es leer, ist die SKILL.md **rot** (Fehler, Exit-Code 1).
 
 `completion_criteria` soll eine Liste sein (mit `- ` Eintraegen), kein
 Fliesstext-Satz. Sonst ist "fertig" keine pruefbare Tatsache.
+
+### Portable Agent-Skills-Form
+
+Ein Skill, der unveraendert in mehreren Agent-Runtimes geladen wird, verwendet
+oben nur die gemeinsame Schnittmenge:
+
+```yaml
+---
+name: web
+description: >
+  Wann dieser portable Skill aktiviert werden soll.
+metadata:
+  raphael-version: "0.8.0"
+  raphael-class: "F"
+  raphael-scope: "agency"
+  raphael-sensitivity: "internal"
+  raphael-loads: '["references/ablauf.md"]'
+  raphael-requires-skills: '["design@^0"]'
+  raphael-completion-criteria: '["Lighthouse/axe = 0 Fehler"]'
+---
+```
+
+Regeln fuer diese Form:
+
+- Top-Level sind `name`, `description` und `metadata`; keine Raphael-Sonderfelder
+  daneben.
+- Jeder `metadata`-Wert ist ein **gequoteter String**. Listen werden als
+  gueltiges JSON-Array innerhalb dieses Strings gespeichert.
+- `tools/validate-skill.py` normalisiert die namespaced Werte wieder auf die
+  sieben semantischen Felder. `tools/build-index.py` schreibt dadurch denselben
+  Indexvertrag wie bei der Legacy-Form.
+- `canonical-link` in einer Runtime-Registry erzeugt nichts. Der Modus prueft
+  den exakten relativen Verzeichnis-Symlink, die kanonische `SKILL.md` und ihre
+  Ressourcen. Builder duerfen nie durch diese Bridge schreiben.
+- `skills/eigene/web/` ist das erste Paket mit diesem Vertrag; Codex und Kimi
+  zeigen per Repository-Bridge darauf, Claude direkt und Hermes per
+  `skills.external_dirs`.
 
 ---
 

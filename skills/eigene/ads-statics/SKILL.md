@@ -62,7 +62,9 @@ Der Marc-Evers-Befund ist eine Bau- und Testregel, kein Copy-Template:
 5. **Eine Box = eine Behauptung:** Die Karte muss scanbar sein; mehrere kleine Claims in
    derselben Box sind kein Proof-Stack, sondern unklare Messung.
 6. **Static testet die Botschaft billig; Video vertieft ein validiertes Concept.** Der Static-
-   Brief darf nicht schon die ganze Video-Erklärung nachbauen.
+   Brief darf nicht schon die ganze Video-Erklärung nachbauen. Validierte Static-Gewinner
+   gehen danach in UGC/Founder/Testimonial-Formate, nicht in noch mehr Static-Varianten
+   (Beleg: wiki/craft/ads/strategie/erweitert-creative-testing.md).
 7. **Native-Look vor Design-Politur, aber nicht vor Wahrheit:** Story-Bubbles, echte Screens
    und rohe Fotos dürfen unperfekt wirken; Claims, Zahlen und Proof bleiben redaktionell echt.
 
@@ -92,7 +94,10 @@ kopiert: `../ads/references/vendor/coreyhaines-ads/static-ad-templates-en.md`.
    Kernzahl mit Zeitraum, ein Beweis, eine Handlung. Eine Zelle = eine Ad;
    Botschaft fix pro Angle, Rahmen fix pro Style — keine Misch-Copy, sonst misst die
    Testwelle zwei Variablen gleichzeitig. Über alle 15 Layout-Vorlagen des ads-Routers
-   zyklen statt auf 2-3 Favoriten zu clustern.
+   zyklen statt auf 2-3 Favoriten zu clustern. Die Zelle sitzt dabei auf einem belegten
+   Konzept (Angle × Offer × Persona aus dem Kunden-Dossier); diese drei Konzept-Variablen
+   bleiben pro Welle fix — Style und Bauform sind die Test-Variablen, nie das Konzept
+   (Beleg: wiki/craft/ads/strategie/erweitert-konzept-targeting.md).
 4. **Briefs nach Schema bauen** (`references/brief-schema.md`). Text-Feinschliff (Hook,
    Primary Text, Onscreen-Copy) läuft über `copywriting` — dieser Skill liefert die
    Struktur, nicht den fertigen Stil.
@@ -155,6 +160,9 @@ zwei Wochen Laufzeit. Mehr Zellen erzeugen mehr Zahlen, aber keine zusaetzliche 
   siehe `copy-bauformen.md`.
 - **F4/F6/F7-Zellen ohne echtes Material sind kein Kompromiss** (Legacy S3/S4/S5). Kein
   Stock-Ersatz, keine Mock-Chats, kein KI-Proof — Zelle wartet, bis Material da ist.
+- **Ein Nullergebnis nach einer Welle heißt nicht, dass das Offer tot ist.** Erst Creatives
+  über Avatare und Angles multiplizieren (ein Dream Outcome × viele Avatare/Angles), bevor
+  das Offer verworfen wird (Beleg: wiki/craft/ads/strategie/erweitert-creative-testing.md).
 - **Reduktion ist kein Stilgeschmack.** Eine Zielgruppe, eine Kernzahl, ein Beweis, eine
   Handlung; eine Box trägt eine Behauptung. Sind diese vier Teile nicht prüfbar, geht der
   Brief zurück in die Material-/Angle-Klärung.

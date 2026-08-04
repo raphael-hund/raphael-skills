@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Validate and install the Raphael skill inventory for Claude Code.
 
-The 31 canonical repository skills are already Claude-native, so this helper
-links their complete source directories instead of copying or rewriting them.
+Canonical repository skills are already Claude-native, so this helper links
+the complete source directories from the shared registry instead of copying or rewriting them.
 Only ``kimi-sol`` has a small Claude-specific native override.  Installation
 is no-clobber and keeps the destination directory open via ``O_NOFOLLOW``.
 """
@@ -55,14 +55,14 @@ def load_inventory() -> dict[str, Path]:
     required = {"schema_version", "helper_id", "target", "inventory_source", "expected_count", "native_overrides"}
     if set(registry) != required or registry["schema_version"] != 1 or registry["helper_id"] != "raphael.claude-skills":
         raise SyncError("unsupported Claude registry")
-    if registry["expected_count"] != 36 or registry["inventory_source"] != "../codex/compatibility.json":
+    if not isinstance(registry["expected_count"], int) or registry["expected_count"] < 1 or registry["inventory_source"] != "../codex/compatibility.json":
         raise SyncError("Claude registry inventory contract is invalid")
     overrides = registry["native_overrides"]
     if overrides != {"kimi-sol": "claude/skills/kimi-sol/SKILL.md"}:
         raise SyncError("Claude native override registry is invalid")
     codex = read_json(CODEX_REGISTRY_PATH).get("skills")
-    if not isinstance(codex, dict) or len(codex) != 36:
-        raise SyncError("Codex inventory must contain exactly 36 skills")
+    if not isinstance(codex, dict) or len(codex) != registry["expected_count"]:
+        raise SyncError(f"Codex inventory must contain exactly {registry['expected_count']} skills")
 
     inventory: dict[str, Path] = {}
     for name, entry in codex.items():

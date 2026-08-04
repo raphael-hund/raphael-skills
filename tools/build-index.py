@@ -34,21 +34,21 @@ def _load_validator():
 
 
 _validator = _load_validator()
-extract_frontmatter = _validator.extract_frontmatter
-parse_top_level_keys = _validator.parse_top_level_keys
 validate_skill_file = _validator.validate_skill_file
+scalar_value = _validator._scalar_value
 
 
 def build_entry(path: Path) -> dict:
-    text = path.read_text(encoding="utf-8")
-    fm_lines = extract_frontmatter(text) or []
-    fields = parse_top_level_keys(fm_lines)
+    skill = validate_skill_file(path)
+    if not skill.ok:
+        raise ValueError(f"invalid skill {path}: {'; '.join(skill.errors)}")
+    fields = skill.fields
     rel_path = path.relative_to(REPO_ROOT).as_posix()
     return {
-        "name": fields.get("name", {}).get("raw", "").strip(),
-        "version": fields.get("version", {}).get("raw", "").strip(),
+        "name": scalar_value(fields.get("name", "")),
+        "version": scalar_value(fields.get("version", "")),
         "path": rel_path,
-        "description": fields.get("description", {}).get("raw", "").strip(),
+        "description": fields.get("description", "").strip(),
     }
 
 

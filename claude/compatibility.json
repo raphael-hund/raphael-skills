@@ -3,7 +3,7 @@
  "helper_id": "raphael.claude-skills",
  "target": "claude-code>=2.1",
  "inventory_source": "../codex/compatibility.json",
- "expected_count": 36,
+ "expected_count": 39,
  "native_overrides": {
   "kimi-sol": "claude/skills/kimi-sol/SKILL.md"
  }

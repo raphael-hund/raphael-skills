@@ -116,16 +116,15 @@ def check_registry_and_sources(c: Checks, registry: dict[str, dict]) -> tuple[di
         c.check(sf.ok, f"source validation failed: {path}: {sf.errors}")
         fm = sync.parse_top_level_keys(sync.extract_frontmatter(path.read_text(encoding="utf-8")) or [])
         source_names.append(fm.get("name", {}).get("raw", "").strip())
-    c.check(len(source_paths) == 35, f"expected 35 source SKILL.md files, found {len(source_paths)}")
     c.check(len(source_names) == len(set(source_names)), "source skill names are not unique")
     source_registry = {
         name for name, entry in registry.items()
         if entry.get("mode") != "native-external-review"
     }
+    c.check(len(source_paths) == len(source_registry), f"source/registry count differs: {len(source_paths)} vs {len(source_registry)}")
     c.check(set(source_names) == source_registry, "registry/source name sets differ")
-    c.check(len(registry) == 36, f"expected 36 registry entries, found {len(registry)}")
     for name, entry in registry.items():
-        c.check(entry.get("mode") in {"source-adapter", "native-thread", "native-external-review"}, f"{name}: invalid mode")
+        c.check(entry.get("mode") in {"source-adapter", "canonical-link", "native-thread", "native-external-review"}, f"{name}: invalid mode")
         c.check(bool(entry.get("rationale", "").strip()), f"{name}: empty rationale")
         triggers = entry.get("triggers")
         c.check(isinstance(triggers, list) and bool(triggers), f"{name}: empty trigger array")
@@ -135,6 +134,8 @@ def check_registry_and_sources(c: Checks, registry: dict[str, dict]) -> tuple[di
             expected_mode = "native-thread"
         elif name in NATIVE_EXTERNAL:
             expected_mode = "native-external-review"
+        elif name == "web":
+            expected_mode = "canonical-link"
         else:
             expected_mode = "source-adapter"
         c.check(entry.get("mode") == expected_mode, f"{name}: wrong mode (expected {expected_mode})")
@@ -176,6 +177,15 @@ def check_generated(c: Checks, registry: dict[str, dict], sources: dict[str, Pat
             for trigger in entry["triggers"]:
                 normalized = sync.normalize_trigger(name, trigger, entry)
                 c.check(normalized in desc, f"{name}: normalized trigger absent from description: {normalized!r}")
+        elif entry["mode"] == "canonical-link":
+            c.check(skill_dir.is_symlink(), f"{name}: canonical repository bridge is not a symlink")
+            if skill_dir.is_symlink():
+                c.check(os.readlink(skill_dir) == "../../skills/eigene/web", f"{name}: canonical repository bridge target drift")
+            source_file = REPO_ROOT / entry["source"]
+            c.check(skill_file.resolve() == source_file.resolve(), f"{name}: bridge does not resolve to canonical source")
+            c.check(skill_file.read_bytes() == source_file.read_bytes(), f"{name}: bridge bytes differ from canonical source")
+            c.check(not sync.validate_canonical_link(name, entry), f"{name}: canonical-link validator failed")
+            c.check("Codex source adapter" not in adapter_text, f"{name}: adapter prose remains")
         elif entry["mode"] == "native-thread":
             native_dir = skill_dir
             native_texts = [
@@ -259,7 +269,7 @@ def check_install_contract(c: Checks, registry: dict[str, dict]) -> None:
             c.check(target.is_symlink(), f"installed manifest name is not a symlink: {name}")
             if target.is_symlink():
                 c.check(Path(target).exists(), f"installed symlink is broken: {name}")
-                c.check(os.readlink(target) == str((REPO_ROOT / "codex" / "skills" / name).resolve()), f"{name}: symlink target is not direct adapter path")
+                c.check(os.readlink(target) == str(REPO_ROOT / "codex" / "skills" / name), f"{name}: symlink target is not direct repository skill path")
         again = run(command, home)
         c.check(again.returncode == 0, f"idempotent install failed: {again.stdout}{again.stderr}")
 

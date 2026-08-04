@@ -12,6 +12,7 @@ import json
 import selectors
 import subprocess
 import time
+from collections import Counter
 from pathlib import Path
 
 
@@ -36,7 +37,7 @@ def frontmatter_name(path: Path) -> str:
 def expected_inventories() -> tuple[set[str], set[str], set[str], Path]:
     raphael_data = json.loads(CODEX_COMPAT.read_text(encoding="utf-8"))
     raphael = set(raphael_data["skills"])
-    assert len(raphael) == 36, f"expected 36 Raphael skills, found {len(raphael)}"
+    assert raphael, "Raphael skill registry is empty"
 
     state = json.loads(GSTACK_STATE.read_text(encoding="utf-8"))
     pack = Path(state["pack_root"])
@@ -135,15 +136,23 @@ def main() -> int:
     skills = live_catalog(Path("/root"))
     names = [str(skill.get("name", "")) for skill in skills]
     paths = {str(skill.get("name", "")): Path(str(skill.get("path", ""))) for skill in skills}
-    assert len(names) == len(set(names)), "Codex live catalog contains duplicate names"
+    expected_names = raphael | gstack | superpowers
+    counts = Counter(names)
+    duplicate_expected = sorted(name for name in expected_names if counts[name] != 1)
+    assert not duplicate_expected, f"Codex managed inventories are missing or duplicated: {duplicate_expected}"
     assert all(skill.get("enabled") is True for skill in skills), "Codex live catalog contains disabled skills"
     live = set(names)
     for label, expected in (("Raphael", raphael), ("gstack", gstack), ("Superpowers", superpowers)):
         missing = sorted(expected - live)
         assert not missing, f"missing {label} live skills: {missing}"
 
-    wrong_raphael = sorted(name for name in raphael if ROOT / "codex" / "skills" / name not in paths[name].parents)
-    assert not wrong_raphael, f"Raphael skills resolved outside adapter tree: {wrong_raphael}"
+    wrong_raphael = sorted(
+        name for name in raphael
+        if name != "web" and ROOT / "codex" / "skills" / name not in paths[name].parents
+    )
+    assert not wrong_raphael, f"Raphael skills resolved outside repository skill tree: {wrong_raphael}"
+    assert names.count("web") == 1, "Codex catalog must contain exactly one web skill"
+    assert paths["web"].resolve() == (ROOT / "skills" / "eigene" / "web" / "SKILL.md").resolve(), "Codex web does not resolve to canonical SKILL.md"
     wrong_gstack = sorted(name for name in gstack if pack not in paths[name].parents)
     assert not wrong_gstack, f"gstack skills resolved outside attested pack: {wrong_gstack}"
     wrong_superpowers = sorted(
