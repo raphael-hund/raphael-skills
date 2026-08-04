@@ -80,8 +80,9 @@ bestehenden Body gesetzt, bricht meist die Prämissen-Brücke; On-Ramp beim Hook
 
 ## Ergänzungen aus IG-Bookmarks-Konsolidierung (04.08.2026, Beleg: wiki/craft/hooks/erweitert-hooks.md)
 
-- **Vier Hook-Ebenen pro Video-Ad**, nicht drei: was auf dem Screen steht, was gesagt wird,
-  was gezeigt wird — plus der **Primary Text** als eigene vierte Hook-Fläche.
+- **Vierte Hook-Ebene: der Primary Text.** Die drei Video-Komponenten oben (Visual, gesprochene
+  Zeile, Caption) bleiben der Rahmen — der Primary Text über der Ad ist eine zusätzliche,
+  eigene Hook-Fläche außerhalb des Videos und wird beim Hook-Schreiben mitgeplant.
 - **Die zweite Zeile ist so wichtig wie der Hook** — der On-Ramp beginnt schon im Text, nicht
   erst in Sekunde 3.
 - **Desire-Hook statt Info-Hook.** Info-Hooks ("3 Dinge, die…") ziehen Viewer, die nie kaufen;
