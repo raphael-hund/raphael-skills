@@ -1,6 +1,6 @@
 ---
 name: "taste"
-description: "Feuert bei Landing/Marketing/Portfolio/Editorial-Flächen, wenn der Look \"besonders\", \"premium\", \"nicht nach Template\" aussehen soll — die Landing-/Brand-Linie des design-Systems. Trigger: \"Landingpage designen\", \"Premium-Look\", \"nicht nach Baukasten aussehen\", \"Brand-Fläche\", \"Hero gestalten\", \"Portfolio\", \"Editorial\", \"taste\", \"mehr Geschmack ins Design\""
+description: "Feuert bei Landing/Marketing/Portfolio/Editorial-Flächen, wenn der Look \"besonders\", \"premium\", \"nicht nach Template\" aussehen soll — die Landing-/Brand-Linie des design-Systems. Trigger: \"Landingpage designen\", \"Premium-Look\", \"nicht nach Baukasten aussehen\", \"Brand-Fläche\", \"Hero gestalten\", \"Portfolio\", \"Editorial\", \"taste\", \"mehr Geschmack ins Design\"."
 ---
 
 # taste — Codex source adapter

@@ -15,6 +15,16 @@
     "Farben/Typo/Layout fixen",
     "Animation/Motion pruefen",
     "Kontrast/OKLCH",
+    "Layout/Spacing/Ausrichtung",
+    "Breakpoints/Responsive",
+    "RTL",
+    "Barrierefreiheit/A11y/WCAG",
+    "Tastaturbedienung",
+    "Screenreader",
+    "Fokusring",
+    "Hit-Area/Touch-Target",
+    "Microcopy/Button-Label/Fehlermeldung/Empty State",
+    "voller Interface-Review",
     "Referenz-Site als Stilvorlage",
     "Stitch",
     "Screen in Stitch bauen",
@@ -435,6 +445,136 @@
     "Datentabelle",
     "UI-UX",
     "Produkt-UI"
+   ]
+  },
+  "ads-copy": {
+   "source": "skills/eigene/ads-copy/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Keep the measured Meta primary-text, headline, and description patterns available as one Codex capability.",
+   "triggers": [
+    "Primary Text schreiben",
+    "Ad-Text",
+    "Anzeigentext",
+    "Copy unter der Ad",
+    "Text zur Anzeige",
+    "Ad Copy"
+   ]
+  },
+  "ads-research": {
+   "source": "skills/eigene/ads-research/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Expose the Meta Ad Library competitor scan and structural evaluation through the Codex skill loader.",
+   "triggers": [
+    "Konkurrenz-Ads ziehen",
+    "Ad Library",
+    "was schaltet eine Firma",
+    "Swipe-File bauen",
+    "Marktscan Ads",
+    "welche Ads laufen lange"
+   ]
+  },
+  "brain": {
+   "source": "skills/eigene/brain/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Route all Second-Brain modes (einspeisen bis verbinden) to the canonical skill text.",
+   "triggers": [
+    "ins Brain",
+    "einspeisen",
+    "Brain aufräumen",
+    "was weiß ich über",
+    "Kandidaten sichten",
+    "Wissen verdichten",
+    "Brain prüfen",
+    "brain",
+    "Notiz ablegen",
+    "Second Brain"
+   ]
+  },
+  "idea-filter": {
+   "source": "skills/eigene/idea-filter/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Keep the nine-dimension idea evaluation with its four fixed verdicts invocable in Codex.",
+   "triggers": [
+    "Idee bewerten",
+    "lohnt sich das",
+    "Geschäftsidee prüfen",
+    "soll ich das bauen",
+    "idea-filter",
+    "Ideen filtern"
+   ]
+  },
+  "orchestrate-gauntlet": {
+   "source": "skills/eigene/orchestrate-gauntlet/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Expose the maximal gauntlet loop against an inspectable bar through the Codex adapter.",
+   "triggers": [
+    "/orchestrate-gauntlet",
+    "Gauntlet",
+    "Gauntlet-Loop",
+    "gegen eine Messlatte bauen",
+    "bis es richtig gut ist",
+    "so krass wie möglich",
+    "maximaler Modus",
+    "alle Modelle drauf",
+    "lauf über Nacht",
+    "Dauerlauf"
+   ]
+  },
+  "read-book": {
+   "source": "skills/eigene/read-book/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Keep local chapter-by-chapter book and document digestion available without source duplication.",
+   "triggers": [
+    "lies das Buch",
+    "PDF auswerten",
+    "EPUB zusammenfassen",
+    "Buchnotizen",
+    "read-book",
+    "was steht in diesem Buch",
+    "Kapitelzusammenfassung",
+    "Buch ins Brain"
+   ]
+  },
+  "personal": {
+   "source": "skills/personal/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Route the personal-advisor mode with its Second-Brain knowledge base to the canonical skill text.",
+   "triggers": [
+    "personal",
+    "challenge mich",
+    "Ausreden zerlegen",
+    "Disziplin",
+    "Gewohnheiten",
+    "was wuerde Hamza sagen",
+    "ehrliche Ansage",
+    "Lebensentscheidung"
+   ]
+  },
+  "skill-update": {
+   "source": "skills/methodik/skill-update/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Make the single-lesson propagation into all affected skills directly invocable in Codex.",
+   "triggers": [
+    "Skill anpassen",
+    "Lernpunkt einarbeiten",
+    "das soll der Skill künftig anders machen",
+    "Skills nachziehen",
+    "skill-update"
+   ]
+  },
+  "unstuck": {
+   "source": "skills/methodik/unstuck/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Keep the mandatory dead-end classification and ten-angle search before any 'geht nicht' message.",
+   "triggers": [
+    "geht nicht",
+    "ich komme nicht weiter",
+    "steckt fest",
+    "keine Möglichkeit",
+    "blockiert",
+    "unstuck",
+    "gibt es einen anderen Weg",
+    "bin in einer Sackgasse"
    ]
   }
  }

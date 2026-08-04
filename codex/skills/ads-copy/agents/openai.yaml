@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Ads Copy"
+  short_description: "Codex adapter for the ads-copy skill"
+  default_prompt: "Use $ads-copy for this task."

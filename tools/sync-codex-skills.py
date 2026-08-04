@@ -41,7 +41,7 @@ REGISTRY_PATH = CODEX_ROOT / "compatibility.json"
 # This is intentionally stable.  Adapters may be checked out elsewhere, but
 # the source file they point at is always this canonical Raphael skills tree.
 CANONICAL_REPO = "/root/raphael-skills"
-NATIVE_THREAD_SKILLS = {"orchestrate", "plan"}
+NATIVE_THREAD_SKILLS = {"orchestrate"}
 NATIVE_EXTERNAL_SKILLS = {"kimi-sol"}
 NATIVE_SKILLS = NATIVE_THREAD_SKILLS | NATIVE_EXTERNAL_SKILLS
 VALID_MODES = {"source-adapter", "canonical-link", "native-thread", "native-external-review"}
@@ -231,28 +231,31 @@ def normalize_trigger(name: str, trigger: str, entry: dict[str, Any]) -> str:
 
 
 def adapter_description(name: str, source_description: str, entry: dict[str, Any]) -> str:
-    base = sanitize_description(source_description)
-    # The registry is the audited trigger inventory.  Remove the source's
-    # free-form trigger tail before appending that inventory, avoiding duplicate
-    # trigger lists and keeping long descriptions below Codex's hard limit.
-    base = re.split(r"\bTrigger(?:-Worte)?:", base, maxsplit=1, flags=re.IGNORECASE)[0].rstrip(" .")
-    triggers = []
-    for trigger in entry["triggers"]:
-        normalized = normalize_trigger(name, trigger, entry)
-        if normalized and normalized not in triggers:
-            triggers.append(normalized)
-    suffix = "Trigger: " + ", ".join(json.dumps(t, ensure_ascii=False) for t in triggers)
-    # Preserve every trigger deterministically even when a future source
-    # description grows beyond the OpenAI 1024-character limit.
-    if base:
-        room = 1024 - len(suffix) - 2
-        if room < 1:
-            raise RuntimeError(f"{name}: Triggerliste überschreitet 1024 Zeichen.")
-        base = base[:room].rstrip()
-        result = f"{base}. {suffix}"
+    # The canonical description (including its free-form trigger tail) is the
+    # adapter description.  The registry trigger inventory stays as audited
+    # metadata.  Only when the sanitized canonical text exceeds Codex's hard
+    # 1024-character limit do we fall back to the composed form: canonical
+    # text without its trigger tail plus the registry trigger inventory.
+    full = _collapse(sanitize_description(source_description))
+    if 1 <= len(full) <= 1024:
+        result = full
     else:
-        result = suffix
-    result = _collapse(result)
+        base = re.split(r"\bTrigger(?:-Worte)?:", full, maxsplit=1, flags=re.IGNORECASE)[0].rstrip(" .")
+        triggers = []
+        for trigger in entry["triggers"]:
+            normalized = normalize_trigger(name, trigger, entry)
+            if normalized and normalized not in triggers:
+                triggers.append(normalized)
+        suffix = "Trigger: " + ", ".join(json.dumps(t, ensure_ascii=False) for t in triggers)
+        if base:
+            room = 1024 - len(suffix) - 2
+            if room < 1:
+                raise RuntimeError(f"{name}: Triggerliste überschreitet 1024 Zeichen.")
+            base = base[:room].rstrip()
+            result = f"{base}. {suffix}"
+        else:
+            result = suffix
+        result = _collapse(result)
     stale = _has_stale_token(result)
     if stale:
         raise RuntimeError(f"{name}: stale Plattformtoken in Description: {stale!r}.")
@@ -362,7 +365,7 @@ def validate_codex_skill(path: Path, expected_name: str) -> list[str]:
     name = _plain_scalar(fields.get("name", {}).get("raw", ""))
     if name != expected_name:
         errors.append(f"name {name!r} statt {expected_name!r}")
-    description = _collapse(fields.get("description", {}).get("raw", ""))
+    description = _collapse(_plain_scalar(fields.get("description", {}).get("raw", "")))
     if not 1 <= len(description) <= 1024:
         errors.append("description muss 1..1024 Zeichen lang sein")
     if "<" in description or ">" in description:

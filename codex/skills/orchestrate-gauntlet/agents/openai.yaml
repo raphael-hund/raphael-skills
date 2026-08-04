@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Orchestrate Gauntlet"
+  short_description: "Codex adapter for the orchestrate-gauntlet skill"
+  default_prompt: "Use $orchestrate-gauntlet for this task."

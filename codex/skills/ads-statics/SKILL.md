@@ -1,6 +1,6 @@
 ---
 name: "ads-statics"
-description: "Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs, Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"Angle-Matrix für Creatives\""
+description: "Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs, Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"Angle-Matrix für Creatives\". Ergänzt ads (Loop 3, Schritt 6 „statics\") um die Tiefe der Visual-Style- und Copy-Bauform-Wahl; Bild-Erzeugung selbst bleibt bei design/Bildgenerierung-Policy."
 ---
 
 # ads-statics — Codex source adapter

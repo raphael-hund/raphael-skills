@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Personal"
+  short_description: "Codex adapter for the personal skill"
+  default_prompt: "Use $personal for this task."

@@ -1,6 +1,6 @@
 ---
 name: "report"
-description: "Feuert für Kundenreports: baut Berichte NUR aus belegbaren, echten Zahlen — jede Zahl mit Quelle, sonst Block. Trigger: \"Report bauen\", \"Kundenbericht\", \"Weekly\", \"Performance-Report\", \"Ergebnisse zusammenfassen\""
+description: "Feuert für Kundenreports: baut Berichte NUR aus belegbaren, echten Zahlen — jede Zahl mit Quelle, sonst Block. Trigger: \"Report bauen\", \"Kundenbericht\", \"Weekly\", \"Performance-Report\", \"Ergebnisse zusammenfassen\"."
 ---
 
 # report — Codex source adapter

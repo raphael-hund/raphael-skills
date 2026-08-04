@@ -1,6 +1,6 @@
 ---
 name: "code-review"
-description: "Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern (frischer parallel contributor, präzise Diff-Grenze statt Session-Historie), und wie Feedback danach behandelt wird — verifizieren statt performativ zustimmen, gezielt zurückfragen, technisch begründet widersprechen. Jeder Fund bekommt eine von drei Eskalationsstufen (auto-fix/no-op/ask-user), Reviews starten mit der erklärten Absicht des Autors, nicht nur dem Diff. Für tiefere Reviews steht optional die Zwei-Achsen-Methode (Standards vs. Spec, mit Fowler-Smell-Baseline) und ein 9-Kategorien-Audit-Playbook als Referenz bereit. Trigger: \"Code Review\", \"review anfordern\", \"Feedback bekommen\", \"PR review\", \"vor dem Merge prüfen\""
+description: "Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern (frischer parallel contributor, präzise Diff-Grenze statt Session-Historie), und wie Feedback danach behandelt wird — verifizieren statt performativ zustimmen, gezielt zurückfragen, technisch begründet widersprechen. Jeder Fund bekommt eine von drei Eskalationsstufen (auto-fix/no-op/ask-user), Reviews starten mit der erklärten Absicht des Autors, nicht nur dem Diff. Für tiefere Reviews steht optional die Zwei-Achsen-Methode (Standards vs. Spec, mit Fowler-Smell-Baseline) und ein 9-Kategorien-Audit-Playbook als Referenz bereit. Trigger: \"Code Review\", \"review anfordern\", \"Feedback bekommen\", \"PR review\", \"vor dem Merge prüfen\"."
 ---
 
 # code-review — Codex source adapter

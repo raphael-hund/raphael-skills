@@ -1,6 +1,6 @@
 ---
 name: "onboard"
-description: "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\""
+description: "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger-Worte: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\"."
 ---
 
 # onboard — Codex source adapter

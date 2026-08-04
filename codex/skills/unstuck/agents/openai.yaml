@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Unstuck"
+  short_description: "Codex adapter for the unstuck skill"
+  default_prompt: "Use $unstuck for this task."

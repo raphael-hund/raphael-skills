@@ -1,6 +1,6 @@
 ---
 name: "tdd"
-description: "Test-Driven Development als eiserne Regel: erst der fehlschlagende Test, dann minimaler Code, dann Refactor. Kein Produktionscode ohne vorher gesehenen Fehlschlag. Trigger: \"TDD\", \"Test-Driven Development\", \"Red-Green-Refactor\", \"Feature implementieren\", \"Bugfix schreiben\""
+description: "Test-Driven Development als eiserne Regel: erst der fehlschlagende Test, dann minimaler Code, dann Refactor. Kein Produktionscode ohne vorher gesehenen Fehlschlag. Trigger: \"TDD\", \"Test-Driven Development\", \"Red-Green-Refactor\", \"Feature implementieren\", \"Bugfix schreiben\"."
 ---
 
 # tdd — Codex source adapter

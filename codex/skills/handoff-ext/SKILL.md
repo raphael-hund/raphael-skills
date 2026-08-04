@@ -1,6 +1,6 @@
 ---
 name: "handoff-ext"
-description: "Verdichtet das laufende Gespräch zu einem kompakten Übergabe-Dokument für eine andere Instanz, einen parallel contributors oder eine externe Person, die weiterarbeiten soll — mit Redaktion sensibler Daten und Verweis statt Duplikat auf bestehende Artefakte. Trigger: \"Handoff für eine andere Instanz\", \"an eine andere Instanz übergeben\", \"externe Übergabe\", \"handoff-ext\""
+description: "Verdichtet das laufende Gespräch zu einem kompakten Übergabe-Dokument für eine andere Instanz, einen parallel contributors oder eine externe Person, die weiterarbeiten soll — mit Redaktion sensibler Daten und Verweis statt Duplikat auf bestehende Artefakte. Trigger: \"Handoff für einen anderen Agenten\", \"an parallel contributors übergeben\", \"externe Übergabe\", \"handoff-ext\"."
 ---
 
 # handoff-ext — Codex source adapter

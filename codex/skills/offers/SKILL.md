@@ -1,6 +1,6 @@
 ---
 name: "offers"
-description: "Feuert für Angebots-Design: Offer-Stack, Preislogik, Risiko-Umkehr, Value-Equation (Hormozi). Trigger: \"Angebot bauen\", \"Offer\", \"Preis festlegen\", \"Garantie\", \"Bonus-Stack\", \"Value Proposition schärfen\""
+description: "Feuert für Angebots-Design: Offer-Stack, Preislogik, Risiko-Umkehr, Value-Equation (Hormozi). Trigger: \"Angebot bauen\", \"Offer\", \"Preis festlegen\", \"Garantie\", \"Bonus-Stack\", \"Value Proposition schärfen\"."
 ---
 
 # offers — Codex source adapter

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Read Book"
+  short_description: "Codex adapter for the read-book skill"
+  default_prompt: "Use $read-book for this task."

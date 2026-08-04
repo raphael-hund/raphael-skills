@@ -1,6 +1,6 @@
 ---
 name: "eval"
-description: "Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel, rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet nie selbst \"fertig\" — eine andere Instanz verifiziert per striktem Verdikt-Vertrag, jede Einstufung braucht einen konkreten Beleg statt einer Vermutung. Trigger: \"evaluieren\", \"Gate fahren\", \"Judge\", \"Rubrik schreiben\", \"QA-Score\""
+description: "Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel, rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet nie selbst \"fertig\" — eine andere Instanz verifiziert per striktem Verdikt-Vertrag, jede Einstufung braucht einen konkreten Beleg statt einer Vermutung. Trigger: \"evaluieren\", \"Gate fahren\", \"Judge\", \"Rubrik schreiben\", \"QA-Score\"."
 ---
 
 # eval — Codex source adapter
