@@ -50,7 +50,8 @@ Greift, sobald Freisteller, Layer-Stapel oder eigene Hintergrund-Grafiken im Spi
 Pass nur, wenn alle fünf Punkte stimmen:
 - **(A) Kanten sauber:** Alpha ohne Halo/Restrand, Motiv nirgends angeschnitten — Köpfe
   von Personen niemals (harte Regel, Personen-Crops immer per Screenshot prüfen).
-- **(B) Trim eng:** Bild endet am letzten Motiv-Pixel (Alpha-Trim, siehe
+- **(B) Trim eng:** links/rechts endet das Bild am letzten Motiv-Pixel (Alpha-Trim);
+  oben/unten ist bewusster Raum für Schatten/optische Balance erlaubt (siehe
   `bildgenerierung.md`, Abschnitt "freistellen + eng zuschneiden"). Abstand kommt aus
   dem CSS, nie aus dem Bild.
 - **(C) Layer logisch:** Überdeckungsreihenfolge nachvollziehbar, `z-index`-Stufen in

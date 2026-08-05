@@ -157,14 +157,17 @@ dem, was wir machen, und wirkt billig-generisch. Dagegen wird **hart** gegengest
 - **NICHT** das Color-Grading benutzen: weder die Parameter `colors` /
   `background_color` erzwingen noch das separate `color_grading_lut`-Modell. Farbe
   wird im Prompt beschrieben, nicht per Grading-Feature aufgezwungen.
-- **Illustrationen/Vektor:** `--model-type vector` (bzw. `utility_vector`).
+- **Kein Illustrations-Weg:** stilisierte Illustration läuft IMMER über GPT Image 2
+  (markenspezifisch) bzw. `#illustration-flat` (generisch) — Recraft bleibt der
+  Realismus-Weg. `--model-type vector`/`utility_vector` nur für rein technische
+  Vektor-Utilities, nie als Illustrations-Alias.
 
 **Rezept:**
 ```bash
 hf generate cost recraft_v4_1 --prompt "…"
 hf generate create recraft_v4_1 \
   --prompt '<JSON-Prompt, siehe Vorlage>' \
-  --model-type standard \                # oder: vector (Illustration)
+  --model-type standard \                # vector = nur technische Vektor-Utilities, NICHT Illustration
   --aspect-ratio 16:9 --resolution 2k --wait
 ```
 Params (`recraft_v4_1`): `aspect_ratio` · `resolution` (1k,2k → **2k**, mehr geht
@@ -188,7 +191,7 @@ Recraft ohne Struktur = generischer cinematic Slop. Diesen JSON-Block als Prompt
 {
   "subject": "<was genau, konkret>",
   "composition": "<Bildausschnitt, Perspektive, Platz für Text/Overlay>",
-  "style": "<z. B. clean product photography / flat 2D illustration / 3D render>",
+  "style": "<z. B. clean product photography / cinematic photo / photoreal 3D render>",
   "palette": "<echte Marken-/Shooting-Farben, exakt benannt>",
   "lighting": "<soft daylight / studio softbox / … — flat und natürlich>",
   "background": "<beschrieben, nicht per background_color erzwungen>",
@@ -274,9 +277,10 @@ zusammensetzen. Fünf Regeln:
    [motion-doktrin.md](./motion-doktrin.md). Zusätzlich ist ein flaches Composite-Bild
    als Pflicht-Asset zu erzeugen; es dient als statischer Fallback für Nutzer ohne
    Motion. Den Einbau prüft das [Grafik-Assets-Gate](./qa-faecher.md).
-5. **Trim und CSS-Abstand anwenden.** Jeden Layer nach der Freistellung eng auf seinen
-   letzten Motiv-Pixel trimmen. Abstand und Positionierung kommen aus dem CSS, nie aus
-   dem Asset-Canvas oder transparenten Rand.
+5. **Trim und CSS-Abstand anwenden.** Jeden Layer nach der Freistellung nach der
+   Freisteller-Regel oben trimmen: links/rechts IMMER hart bis zur Alpha-Grenze;
+   oben/unten gilt dieselbe Ausnahme wie beim Freistellen (Schatten/optische Balance,
+   Brain-SOP). Abstand und Positionierung kommen aus dem CSS, nie aus dem Asset-Canvas.
 
 *(Idee sinngemäß nach Leon Lin, „How To Actually Design With AI", X-Post vom
 12.07.2026 — eigene Formulierung, keine Übernahme.)*
