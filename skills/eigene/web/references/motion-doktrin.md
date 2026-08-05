@@ -6,7 +6,7 @@ und Web-App-Builds, inklusive Accessibility-Pflicht. Ergänzt die
 
 **Herkunft:** kondensiert aus `starc007/ui-components` ("beUI v2"),
 `app/docs/motion-patterns/motion-patterns.tsx` — MIT-Lizenz, Details in
-`VENDORING-NOTE.md`.
+`VENDORING.md` im Repo-Root (`/root/raphael-skills/VENDORING.md`).
 
 ## Vier Fragen vor jeder Animation
 

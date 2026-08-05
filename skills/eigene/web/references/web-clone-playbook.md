@@ -5,7 +5,8 @@ Landingpage) als Vorlage für ein neues Projekt dienen soll — "baue mir etwas
 Ähnliches wie Website X", "clone diese Landingpage als Baseline".
 
 **Herkunft:** kondensiert aus `claude-skill-web-clone` (Jane / @xiaoerzhan,
-MIT-Lizenz) — vollständige Attribution in `VENDORING-NOTE.md` dieses Skills.
+MIT-Lizenz) — vollständige Attribution in `VENDORING.md` im Repo-Root
+(`/root/raphael-skills/VENDORING.md`).
 Pfade auf Raphaels Linux-Umgebung umgeschrieben, chinesische Originalprosa
 ins Deutsche übertragen und auf Agentur-Alltag (SMB-Websites, keine
 WebGL-Exoten) gekürzt.

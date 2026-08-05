@@ -6,8 +6,8 @@ bauen: hier nachschlagen, Datei kopieren, `import`-Pfade an Raphaels Projekt
 anpassen.
 
 **Herkunft:** `starc007/ui-components` ("beUI v2"), MIT-Lizenz (Copyright
-Saurabh Chauhan, 2026) — vollständige Attribution in `VENDORING-NOTE.md`
-dieses Skills. Code unverändert vendoriert, nur diese INDEX.md ist neu
+Saurabh Chauhan, 2026) — vollständige Attribution in `VENDORING.md`
+im Repo-Root (`/root/raphael-skills/VENDORING.md`). Code unverändert vendoriert, nur diese INDEX.md ist neu
 (deutsche Übersetzung der Original-Katalogtabelle aus dem Repo).
 
 **Wie laden:** Diese INDEX.md gibt den Überblick. Den Code einer konkreten
