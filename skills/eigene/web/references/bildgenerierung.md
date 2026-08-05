@@ -50,7 +50,8 @@ Referenzen vorhanden?
 │         ├── Inhaltliche Referenz (was ist zu sehen)
 │         └── Visuelle/stilistische Referenz (wie soll es aussehen)
 └── NEIN → Was für ein Bild?
-          ├── Illustration / stilisiert (2D/3D) → GPT Image 2  ← bester Illustrator
+          ├── Illustration / stilisiert (2D/3D, markenspezifisch — sonst greift
+          │     `#illustration-flat`, siehe Scope-Grenze oben) → GPT Image 2  ← bester Illustrator
           └── echt fotorealistisch              → Recraft V4.1 (recraft_v4_1)
                 mit striktem JSON-Prompting, ohne Color-Grading
                 ⚠ KEINE Nahaufnahme-Gesichter echter Menschen — nur Distanz / beiläufig
@@ -88,7 +89,7 @@ eigene Formulierung, keine Übernahme.)*
 `--image-references` (Alias `--image`) übergeben — mehrfach wiederholen für mehrere
 Bilder. Genau das ist das „Add Image 1 / Add Image 2 / …"-Prinzip.
 
-**GPT Image 2 ist außerdem der beste Illustrator.** Jede stilisierte Illustration
+**GPT Image 2 ist außerdem der beste Illustrator.** Jede **markenspezifische** stilisierte Illustration
 (2D, 3D-Render, Icon-Szenen, „geile Illustrationen") läuft über GPT Image 2 — **auch
 ohne Referenz**. Recraft ist dafür die falsche Wahl (das ist der Realismus-Weg unten).
 Mit Stil-Referenz (bestehende Illustrationen) wird es noch treffsicherer, aber
