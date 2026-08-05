@@ -174,10 +174,11 @@ neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
 - **fremde Runner-Metadaten** — nicht aus dem Vendor-Paket übernommen; die
   kanonische Skill-Metadatei wird unabhängig für diesen Skill gepflegt.
 
-## Abgrenzung zu wdp-rebuild-prompt-vertrag.md — nicht doppelt lesen
+## Abgrenzung zu rebuild-prompt-vertrag.md — nicht doppelt lesen
 
-Der zuvor hier vorgemerkte Brain-Kandidat ist inzwischen im Second-Brain-Wiki
-angelegt: `wiki/_candidates/2026-07-20-wdp-rebuild-prompt-vertrag.md`. Er
+Der zuvor hier vorgemerkte Brain-Kandidat ist inzwischen freigegeben im
+Second-Brain-Wiki: `wiki/craft/webdesign/2026-07-20-rebuild-prompt-vertrag.md`
+(voller Pfad: `/root/raphael-brain/wiki/craft/webdesign/2026-07-20-rebuild-prompt-vertrag.md`). Er
 vertieft nur Schritt 3 dieses Dokuments (Region-Map + Renderstrategie →
 deterministischer Build-Handoff) zu einer eigenständigen, werkzeugunabhängigen
 Vertrags-Anatomie (feste Reihenfolge, Verbatim-Blöcke, exakte px-Werte,
