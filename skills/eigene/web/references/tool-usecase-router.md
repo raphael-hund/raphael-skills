@@ -79,6 +79,7 @@ Frage lautet nie „welches Tool", sondern **welches Medium** die Fläche brauch
 | **E** | Szene, die nach dieser Marke aussehen muss, oder fotorealistisch? | `#bilder` → `bildgenerierung.md` |
 | **F** | Vektor mit mehreren Teilen, die einzeln animiert werden sollen? | `#svg-custom` |
 | **G** | Partikel, GPU, 3D, echte Tiefe? | `#webgl` — nur mit vorher notiertem Performance-Budget |
+| **H** | Zeitbasierte Erzählung, echte Bewegung, Produktdemo? | `#video` — für einfache Deko/Transitions gilt weiter A–F zuerst |
 
 - Von oben nach unten lesen, die **erste** passende Zeile gewinnt.
 - Zwei Zeilen wirken passend → die billigere nehmen (A vor B vor D vor E vor G).

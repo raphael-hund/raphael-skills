@@ -37,6 +37,11 @@ wiederverwenden: `hf upload list`.
 
 ## Der Entscheidungsbaum (verbindlich)
 
+**Scope-Grenze:** Diese Datei gilt erst, wenn der Grafik-Medium-Entscheidungsbaum
+(`tool-usecase-router.md#grafik-baum`) auf `#bilder` gezeigt hat — also bei Marken-Look
+oder Fotorealismus. Flache, generische Illustrationen (Marke egal) laufen über
+`#illustration-flat` (Bibliothek, z. B. unDraw), nicht über KI-Generierung.
+
 **Erste Frage immer: Gibt es Referenzen?**
 
 ```

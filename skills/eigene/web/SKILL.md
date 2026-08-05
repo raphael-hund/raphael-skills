@@ -149,7 +149,9 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    playbook.md zuerst, rebuild-from-image.md nur für Bildteile ohne
    erreichbaren Source.
    Sobald **echte Bild-Assets** gebraucht werden (Hero-Foto, Produkt-Shot, Szene,
-   2D/3D-Illustration) → `references/bildgenerierung.md` laden: Standard-Werkzeug ist
+   2D/3D-Illustration) → zuerst den Grafik-Medium-Entscheidungsbaum
+   (`references/tool-usecase-router.md#grafik-baum`) laufen lassen; nur wenn er auf
+   `#bilder` zeigt (Marken-Look/Fotorealismus) → `references/bildgenerierung.md` laden: Standard-Werkzeug ist
    die **Higgsfield CLI**, mit festem Entscheidungsbaum — **Referenz vorhanden →
    GPT Image 2** (`--image-references` = „Add Image 1/2/…", für inhaltliche UND
    stilistische Referenzen; GPT Image 2 ist auch der beste **Illustrator**, 2D/3D auch
