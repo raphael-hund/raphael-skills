@@ -29,6 +29,16 @@ liegen in einem Unterordner (`swap/`, `button/`, `table/`, `wallet-card/`,
 | `marquee.tsx` | Endlos-Scroll horizontal/vertikal, Pause bei Hover |
 | `tabs.tsx` | Pill-/Segment-/Underline-Tabs mit Spring-`layoutId`-Indikator |
 | `switch.tsx` | Toggle mit Spring-Thumb und Press-Feedback |
+| `checkbox.tsx` | Checkbox mit gezeichnetem Häkchen-Pfad, auch Indeterminate-Zustand |
+| `radio.tsx` | Radio-Gruppe (Context-basiert) mit animiertem Auswahlpunkt |
+| `input.tsx` | Textfeld mit Fehler-Shake, rotem Rand und Fehlermeldung |
+| `loader.tsx` | Loader in mehreren Varianten (Spinner, Dots, …), skaliert über eine Basisgröße |
+| `drawer.tsx` | Seitliches Drawer-Panel mit Backdrop, Klick-zum-Schließen |
+| `expanding-arrow-button.tsx` | Button, dessen Pfeil bei Hover ausfährt |
+| `hold-action-button.tsx` | Gedrückt-halten-Button für destruktive Aktionen (Füll-Fortschritt) |
+| `slide-action-button.tsx` | Slide-to-confirm-Button (Schieberegler als Bestätigung) |
+| `shader-background.tsx` | GPU-Shader-Hintergrund in mehreren Varianten (Paper-Shaders) — Reduced-Motion-Gate aus `../frontend-referenzbibliothek.md` `#webgl` beachten |
+| `cylinder-carousel.tsx` | 3D-Zylinder-Karussell (konkav/konvex) mit Momentum |
 | `select.tsx`, `select-morph.tsx` | Komposierbare Select-Primitives; `MorphSelect` mit Shared-Layout-Variante |
 | `range-slider.tsx` | Range-Slider mit Tick-Punkten, Drag + Tastatur |
 | `wheel-picker.tsx` | iOS-artiges Picker-Wheel mit Momentum-Physik |
@@ -59,7 +69,9 @@ liegen in einem Unterordner (`swap/`, `button/`, `table/`, `wallet-card/`,
 |---|---|
 | `infinite-masonry.tsx` | Virtualisiertes Masonry mit variabler Kartenhöhe, Infinite-Loading |
 | `notification-stack.tsx` | Notification-Karten, die von Stapel zu Liste aufspringen |
-| `swap/` | Cross-Chain-Swap-Widget mit Chain-/Token-Auswahl (Krypto-spezifisch, Struktur trotzdem als Muster für "Umtausch-Formular" nutzbar) |
+| `swap.tsx` + `swap/` | Cross-Chain-Swap-Widget (Einstieg `swap.tsx`, Teile im Unterordner) mit Chain-/Token-Auswahl (Krypto-spezifisch, Struktur trotzdem als Muster für "Umtausch-Formular" nutzbar) |
+| `feedback-widget.tsx` | Feedback-Formular-Widget mit Sende-Zustand (async Submit) |
+| `knockout-bracket.tsx` | Turnierbaum (K.-o.-Runden) mit Länderflaggen via flagcdn.com |
 | `dynamic-island.tsx` | iOS-artige Island-Pill, morpht zwischen Live-Views |
 | `command-palette.tsx` | ⌘K-Palette mit Fuzzy-Filter |
 | `expandable-action-bar.tsx` | Icon-Aktionen, die bei Hover/Fokus zu Labels aufklappen |
