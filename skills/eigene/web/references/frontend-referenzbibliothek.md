@@ -373,14 +373,8 @@ Accessibility-APIs, Gesten, Reanimated-Version und Release-Aktivität prüfen.
 
 ## Projektbezogener AgentReach-Check
 
-Vor einer Empfehlung oder Installation:
-
-1. `agent-reach doctor --json` ausführen und den aktiven öffentlichen Web-/
-   Search-Kanal verwenden.
-2. Kandidaten-Website und offizielle Doku öffnen; bei Code zusätzlich das
-   offizielle Repository und die Lizenzdatei prüfen.
-3. Datum, geprüfte URL, Lizenzstand, letzte gepflegte Version und offene
-   Unsicherheit im Projekt-Log notieren.
-4. Scheitert die Prüfung oder bleibt die Lizenz unklar, nichts installieren
-   und einen besser belegten Kandidaten aus derselben Router-Zeile wählen
-   (`tool-usecase-router.md`).
+Die kanonische AgentReach-Regel — einschließlich öffentlichem Kanal,
+Projekt-Log und Fallback — steht in
+[`tool-usecase-router.md`](tool-usecase-router.md#agentreach-pflicht-vor-install-kurz).
+Für diese Kandidatenliste gilt sie unverändert; die Prüfschritte werden hier
+nicht wiederholt.

@@ -357,13 +357,15 @@ Buttons, Zustände, Listen.
 
 ## AgentReach-Pflicht vor Install (kurz)
 
-```bash
-agent-reach doctor --json
-# dann öffentliche Doku/Repo/Lizenz der GEWÄHLTEN Quelle öffnen
-```
+Vor jeder Empfehlung oder Installation `agent-reach doctor --json` ausführen
+und den aktiven öffentlichen Web-/Search-Kanal verwenden. Danach die
+öffentliche Website und offizielle Doku der gewählten Quelle öffnen; bei Code
+zusätzlich offizielles Repository und Lizenzdatei prüfen.
 
-Log im Projekt: Datum, URL, Lizenz, Version/Release, Unsicherheit.
-Scheitert der Check → Alternative aus derselben Router-Zeile, nicht Blind-Install.
+Im Projekt-Log festhalten: Datum, URL, Lizenzstand, Version/Release und jede
+offene Unsicherheit. Scheitert der Check oder bleibt die Lizenz unklar, nichts
+installieren, sondern eine besser belegte Alternative aus derselben
+Router-Zeile wählen.
 
 Vollständige Kandidatenlisten: `frontend-referenzbibliothek.md`.
 Stack-Details: `radix-shadcn-tailwind-stack.md`.
