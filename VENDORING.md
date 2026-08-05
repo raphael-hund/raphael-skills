@@ -554,14 +554,16 @@ brand-voice` (Tribe AI, MIT-Lizenz). Vendoriert nach:
 ## Bewusst NICHT übernommen
 
 - Keine Discovery-Agenten, keine MCP-Connectoren, keine Commands — siehe
-  `copywriting/VENDORING-NOTE.md` für die vollständige Begründung (gilt hier gleich,
+  den Abschnitt „copywriting (aus VENDORING-NOTE.md konsolidiert)" weiter oben in
+  dieser Datei für die vollständige Begründung (gilt hier gleich,
   da onboard denselben Quell-Skill nur referenziert, nicht dupliziert).
 - Die eigentliche inhaltliche Vorlage liegt bei `copywriting` (dort, wo auch die Voice
   geladen/angewendet wird) — `onboard` verweist nur darauf, um Doppelung zu vermeiden.
 
 ## Red-Flag-Prüfung
 
-Siehe `copywriting/VENDORING-NOTE.md` — identischer Quell-Skill, identisches Ergebnis:
+Siehe Abschnitt „copywriting (aus VENDORING-NOTE.md konsolidiert)" weiter oben —
+identischer Quell-Skill, identisches Ergebnis:
 keine Hooks, keine Telemetrie, kein Auto-Update, keine Prompt-Injection. Lizenz MIT.
 
 ## Telemetrie / Env-Hinweise

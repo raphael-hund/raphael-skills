@@ -30,6 +30,14 @@ beide Register-Linien) **und** `impeccable` (Kommandosprache + Craft-Floor)
 **sowie** `taste` und `ui-ux` (Register-Router: taste = Landing/brand-Linie,
 ui-ux = App/product-Linie — beide zeigen auf die Linien im design-Skill).
 
+## Worker-Präferenz (Raphael 05.08.2026)
+
+Kimi K3 wird in diesem Skill **viel genutzt**: Frontend-Umsetzung
+(HTML/CSS/React/Tailwind, UI-Komponenten) und deutsche Verkaufstexte laufen
+bevorzugt über `kimi-worker` (neben Opus als erster Wahl laut Modell-Matrix),
+Gegenperspektive/3.-Familie-Verify über `kimi-recherche`. Immer K3, nie
+HighSpeed/K2.7. Gilt für die Rollen Copy, Build-Frontend und Review-Gegenstimme.
+
 ## Zweck (1 Satz)
 
 Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und aus echten
