@@ -242,7 +242,10 @@ sich mit den normalen Margins/Paddings des Layouts addiert — die Illustration
 wirkt dann verloren und die Abstände sind unkontrollierbar. Der Abstand gehört
 ins CSS, NIE ins Bild. (Beim Generieren darf/soll das Motiv trotzdem mit viel
 Luft angefragt werden — damit nichts angeschnitten wird; der Rand fliegt danach
-im Trim-Schritt raus.) Danach wie immer: AVIF mit Alpha + `bilder.mjs add`
+im Trim-Schritt raus.) **Ausnahme oben/unten:** Bei Freistellern mit Schatten oder
+nötiger optischer Balance darf oben/unten bewusst etwas Raum bleiben — links/rechts
+wird IMMER hart bis zur Alpha-Grenze getrimmt (Brain-SOP
+`/root/raphael-brain/wiki/craft/webdesign/2026-07-20-higgsfield-freisteller-ohne-transparenten-leerraum.md`). Danach wie immer: AVIF mit Alpha + `bilder.mjs add`
 (`transparenz: true`).
 
 ## Layering-Workflow (Tiefe, Motion, Fallback)
