@@ -268,7 +268,9 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
 - Motion-Komponenten aus `ui-components/` nie ohne `useReducedMotion()`-Äquivalent
   einbauen — die globale CSS-Media-Query stoppt keine JS-Animationen.
 - **Bild-Assets über die Higgsfield CLI, nach `references/bildgenerierung.md`** —
-  Referenz vorhanden **oder Illustration (2D/3D)** → **GPT Image 2**; Recraft nur für
+  Referenz vorhanden **oder markenspezifische Illustration (2D/3D)** → **GPT Image 2**
+  (generische, Marke-irrelevante Illustration läuft über `#illustration-flat` im
+  Grafik-Baum, nicht über KI); Recraft nur für
   **echt fotorealistische** Bilder ohne Referenz (JSON-Prompt gegen den Filmlook,
   **kein** Color-Grading, **keine** Nahaufnahme-Gesichter echter Menschen — nur
   Distanz/beiläufig). Nano Banana nur als Nano Banana 2 für Previews. Bei Kundenseiten
