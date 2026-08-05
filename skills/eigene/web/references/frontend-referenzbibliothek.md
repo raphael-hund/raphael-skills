@@ -128,10 +128,12 @@ Barrierefreiheit, SSR-Kompatibilität und Wartungsaktivität prüfen.
 - [HyperUI](https://www.hyperui.dev/)
 - [Meraki UI](https://merakiui.com/)
 - [daisyUI](https://daisyui.com/)
-- [tsParticles](https://particles.js.org/)
-- [Vanta.js](https://www.vantajs.com/)
 - [Three.js](https://threejs.org/)
 - [OGL](https://oframe.github.io/ogl/)
+
+Partikel- und Effekt-Hintergründe (tsParticles, Vanta.js) sind keine UI-Kits und
+stehen deshalb nicht hier. Siehe `tool-usecase-router.md` `#background` oder
+`#webgl` mit Reduced-Motion-Gate.
 
 ## Shader, WebGL und Creative Coding
 
@@ -215,6 +217,11 @@ Produktion übernehmen und SVGs vor Einbau auf eingebettete Skripte/Links prüfe
 Pro Asset Lizenz, erlaubte Bearbeitung, Attribution, Texturauflösung,
 Dateigröße, LOD und Herkunft der zugrunde liegenden Scans/Modelle prüfen.
 
+Zwei Bedarfe in einer Kategorie: Subtle Patterns und Transparent Textures sind
+UI-Kachel-Muster für Hintergründe → Alternativen zur Router-Zeile `#background`.
+ambientCG, Poly Haven und die übrigen Einträge sind PBR-/3D-Material →
+Alternativen zur Router-Zeile `#texturen`.
+
 - [Texturelabs](https://texturelabs.org/)
 - [Transparent Textures](https://www.transparenttextures.com/)
 - [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/)
@@ -226,9 +233,9 @@ Dateigröße, LOD und Herkunft der zugrunde liegenden Scans/Modelle prüfen.
 - [Kenney](https://kenney.nl/)
 - [Quaternius](https://quaternius.com/)
 
-## Bilder, Videos und Illustrationen
+## Inhaltsfotos und KI-Bilder
 
-**Bedarf:** Inhalts-Bilder, Illustrationen und Bewegtbild auf der fertigen Seite.
+**Bedarf:** Foto, Produkt oder Szene auf der fertigen Seite.
 **Default (Router):** Higgsfield nach `bildgenerierung.md` → `hf generate create gpt_image_2 …`  [`#bilder`]
 **Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
 **Gate:** jedes Bild AVIF + Zeile in `bilder-index.json`; bei Personen Model-Release
@@ -242,6 +249,22 @@ Kundenbeweis ausgeben.
 - [Unsplash](https://unsplash.com/)
 - [Pexels](https://www.pexels.com/)
 - [Pixabay](https://pixabay.com/)
+
+## 2D-Illustration-Kits
+
+**Bedarf:** Flache Vektor-Illustrationen für Sektionen, leere Zustände und Erklärbilder.
+**Default (Router):** siehe Router-Zeile für flache Illustration  [`#illustration-flat`]
+**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Gate:** Lizenz gelesen und notiert; Farben auf Marken-Tokens gezogen. Für die
+projektweite Auswahl gilt ausschließlich der Router-Eintrag `#illustration-flat`.
+**Nie:** Attributionspflicht übersehen; die Auswahlregel aus dem Router durch keine
+lokale Ausnahme ersetzen.
+
+
+Diese Kits haben sehr unterschiedliche Lizenzen — von frei bis Abo mit
+Attribution. Pro Kit vor Übernahme klären, ob Bearbeitung, Umfärben und
+Kundennutzung erlaubt sind.
+
 - [unDraw](https://undraw.co/)
 - [ManyPixels](https://www.manypixels.co/)
 - [Storyset](https://storyset.com/)
@@ -251,6 +274,19 @@ Kundenbeweis ausgeben.
 - [DrawKit](https://www.drawkit.com/)
 - [IRA Design](https://iradesign.io/)
 - [Illustrations.co](https://illlustrations.co/)
+
+## Motion-Assets und Stock-Video
+
+**Bedarf:** Bewegtbild, Lottie-Mikroanimation oder interaktives 3D auf der Seite.
+**Default (Router):** Lottie sparsam **oder** kurzer stummer Loop; schwere Videos über den Remotion-Weg  [`#video`]
+**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Gate:** Autoplay nur stumm; Reduced Motion liefert Standbild; Dateien selbst gehostet
+**Nie:** externe Lottie-CDN ohne Fallback; Spline-Hero auf schwachem Mobilgerät ohne Poster
+
+
+Dateigröße, Abspielverhalten und Lizenz pro Clip prüfen. Stock-Clips sind kein
+Beleg für echte Kundenarbeit.
+
 - [LottieFiles](https://lottiefiles.com/)
 - [Spline](https://spline.design/)
 - [Rive](https://rive.app/)

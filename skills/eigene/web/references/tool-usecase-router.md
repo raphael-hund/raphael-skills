@@ -54,9 +54,36 @@ Install läuft:
    reicht — Details in `radix-shadcn-tailwind-stack.md` und `motion-doktrin.md`.
 6. **Reduced Motion + A11y-Gate** bei jeder Motion-/Overlay-Komponente
    (`useReducedMotion` oder CSS-Äquivalent, Tastatur, Fokus, Kontrast).
-7. **Bilder/Illustrationen** laufen weiter über `bildgenerierung.md`
-   (Higgsfield). Stock ist nur Fallback, wenn der Brief echte Fotos/Stock will
-   oder KI-Bilder verboten sind.
+7. **Bilder/Illustrationen:** zuerst den Grafik-Medium-Entscheidungsbaum
+   (`#grafik-baum`) durchgehen. KI-Inhaltsassets laufen weiter **ausschließlich**
+   über `bildgenerierung.md` (Higgsfield). Stock- und Illustrations-Bibliotheken
+   nur, wenn der Baum dorthin zeigt oder der Brief echte Fotos/Stock verlangt
+   bzw. KI-Bilder verbietet.
+
+## 0. Grafik-Medium-Entscheidungsbaum
+
+**Anker:** `#grafik-baum` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
+
+*Gedanklicher Anstoß: Leon Lin, X-Post „How To Actually Design With AI", 2026;
+Ressourcenpost 02.08.2026. Formulierung und Regeln sind hauseigen.*
+
+Vor jedem Bild-, Icon- oder Hintergrund-Bedarf zuerst hier entlanggehen. Die
+Frage lautet nie „welches Tool", sondern **welches Medium** die Fläche braucht.
+
+| | Frage | Antwort → Ziel |
+|---|---|---|
+| **A** | Nur Form, Farbe, Zustand — kein Motiv? | CSS/Tailwind, keine Datei. `#background` Stufe 1 |
+| **B** | Organische Fläche: Welle, Blob, Mesh, Trenner zwischen Sektionen? | Generator-Export. `#background` Stufe 2 — Defaults Haikei, Get Waves, fffuel, Shape Divider |
+| **C** | Kleines Bedienzeichen, 24px, Strichstärke wie die UI? | `#icons` (Lucide) |
+| **D** | Flache, generische Szene (Empty State, Onboarding, Feature) — Marke egal? | `#illustration-flat` |
+| **E** | Szene, die nach dieser Marke aussehen muss, oder fotorealistisch? | `#bilder` → `bildgenerierung.md` |
+| **F** | Vektor mit mehreren Teilen, die einzeln animiert werden sollen? | `#svg-custom` |
+| **G** | Partikel, GPU, 3D, echte Tiefe? | `#webgl` — nur mit vorher notiertem Performance-Budget |
+
+- Von oben nach unten lesen, die **erste** passende Zeile gewinnt.
+- Zwei Zeilen wirken passend → die billigere nehmen (A vor B vor D vor E vor G).
+- Jede Antwort landet als eigene Zeile in der Werkzeugtabelle, mit dem Anker des
+  Ziels, nicht mit `#grafik-baum`.
 
 ## Schnellwahl — Messlatte-Szenario
 
@@ -71,6 +98,15 @@ Auftrag: *„Landingpage mit Motion-Hero, Icons, Stock-Foto, FAQ-Accordion“*
 
 Verboten in diesem Szenario: Magic UI + Aceternity + daisyUI + Three.js parallel
 „zum Ausprobieren“; 160 Links zitieren; ganze shadcn-Bibliothek adden.
+
+Auftrag: *„Empty-State + Feature-Icons + Hero-Blob-SVG + FAQ“*
+
+| Bedarf | Default | Install / Use | Gate |
+|---|---|---|---|
+| Empty-State | unDraw (`#illustration-flat`) | SVG exportieren, lokal versionieren, Farbe auf Kunden-Token | Lizenznotiz im Log; eine Illu-Bibliothek; kein Standardmotiv als Kundenbeweis |
+| Feature-Icons | Baum-Frage C vs. D: reines Strichzeichen → Lucide; farbige Mini-Szene → `#illustration-flat`, markenspezifisch → `#bilder` | `npm i lucide-react` **oder** SVG aus der gewählten Illu-Bibliothek | Entscheidung steht als Zeile in der Werkzeugtabelle; nicht beides im selben Grid mischen |
+| Hero-Blob-SVG | `#background` Stufe 1 CSS; erst bei Nein Stufe 2 Haikei-Export | CSS-Gradient in Tailwind; sonst SVG exportieren und committen | Kontrast Text/Hintergrund; kein Generator-Runtime im Bundle |
+| FAQ | shadcn/Radix Accordion (`#faq`) | `npx shadcn@latest add accordion` | Tastatur, `aria-expanded` |
 
 ## Router nach Bedarf (Loop-2-Bindung)
 
@@ -148,6 +184,26 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 | **Gate** | einheitliche Stroke/Größe; dekorative Icons `aria-hidden`; Markenlogos ≠ Icon-Set (Simple Icons nur für Marken-Markierungen mit Markenrecht) |
 | **Nie** | Lucide + Phosphor + Icons8 mischen; Icons8-Premium ohne Lizenz |
 
+**Abgrenzung:** Ein Feature-Grid mit farbigen Mini-Illustrationen (Icon *mit
+Szene*, mehrfarbig, größer als UI-Maß) ist **kein** Lucide-Fall. Solche Flächen
+laufen über `#illustration-flat` — oder über `#bilder`, wenn der Brief eine
+markenspezifische Bildsprache verlangt. Lucide bleibt UI-Chrome: Navigation,
+Buttons, Zustände, Listen.
+
+### 4b. Illustration-Kits (flache, generische Szenen)
+
+**Anker:** `#illustration-flat` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
+
+| | |
+|---|---|
+| **Bedarf** | Empty State, Onboarding-Schritt, Feature-Illustration — generischer Stil ist ausdrücklich in Ordnung |
+| **Loop** | `art-direction` → `components` / `build` |
+| **Default** | unDraw (SVG, Farbe auf den Kunden-Token gestellt) |
+| **Install/Use** | SVG exportieren, in `public/` oder als Komponente **lokal versionieren**, Lizenznotiz ins Projekt-Log; kein Hotlink auf die Anbieter-CDN |
+| **Alternativen** | Storyset, Open Doodles, Humaaans, Blush, DrawKit, Illustrations.co — **maximal eine** Bibliothek pro Projekt |
+| **Gate** | Lizenz gelesen und notiert; Stil passt zur Design-DNA; kein Bibliotheks-Standardmotiv als Kundenbeweis oder Referenz-Beleg |
+| **Nie** | Library-Default nehmen, wenn der Brief eine Marken-Illustration verlangt → dann `#bilder`; zwei Illu-Bibliotheken mischen |
+
 ### 5. Motion-UI / Micro-Interactions
 
 **Anker:** `#motion` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
@@ -180,15 +236,39 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 
 **Anker:** `#background` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
 
+**Stufen — erst hoch, wenn die Stufe darunter ein klares Nein ist:**
+
+| Stufe | Mittel | Gilt wenn |
+|---|---|---|
+| 1 | Gradient/Pattern rein aus CSS + Kunden-Token | Farbverlauf oder einfaches Muster reicht |
+| 2 | Exportiertes Wave-/Blob-/Mesh-SVG (Haikei, fffuel, Get Waves) | Stufe 1 kann die organische Form nicht |
+| 3 | Shape Divider zwischen zwei Sektionen (optional) | ein Sektionsübergang soll gebrochen werden |
+| 4 | Fotoähnliche Fläche → `#bilder` | der Hintergrund ist eigentlich ein Bild |
+| 5 | Heavy/GPU → `#webgl` | Bewegung/Tiefe, die SVG nicht leistet |
+
 | | |
 |---|---|
 | **Bedarf** | Dekorativer Hintergrund ohne schwere 3D-Pipeline |
 | **Loop** | `art-direction` → `build` |
-| **Default** | CSS/Tailwind Gradients + ggf. SVG-Pattern (Hero Patterns / eigenes SVG) |
+| **Default** | **CSS zuerst** (Stufe 1). Generator erst, wenn Stufe 1 begründet nicht reicht |
 | **Install/Use** | Generator (Haikei, fffuel, Get Waves, Mesh Gradient …) → **SVG/CSS exportieren und committen**; Generator-Skript nicht in Produktion |
-| **Alternativen** | BGJar, SVG Backgrounds, MagicPattern, Coolors nur für Palette |
-| **Gate** | SVG auf eingebettete Skripte prüfen; Dateigröße; Kontrast Text/Hintergrund |
+| **Alternativen** | BGJar, SVG Backgrounds, MagicPattern, Coolors nur für Palette; tsParticles/Vanta.js **nur** wenn der Brief einen Partikel-Hintergrund verlangt |
+| **Gate** | SVG auf eingebettete Skripte prüfen; Dateigröße; Kontrast Text/Hintergrund; bei tsParticles/Vanta zusätzlich Reduced-Motion-Fallback (statische Fläche) |
 | **Nie** | Generator-Runtime in den Client bundlen; unlizenzierte PNG-Texturen |
+
+### 7b. Custom-SVG / Layered-SVG
+
+**Anker:** `#svg-custom` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
+
+| | |
+|---|---|
+| **Bedarf** | Mehrteilige Vektorgrafik, deren Teile einzeln auf Hover/Scroll reagieren sollen — oder eine Icon-Marke |
+| **Loop** | `art-direction` → `components` / `build` |
+| **Default** | Von Hand gebautes, einfaches SVG mit benannten Gruppen. Komplexe Generierung nur mit Quiver, und erst nach Lizenzcheck |
+| **Install/Use** | SVG nach `public/` **oder** als React-Komponente inlinen; Teile über CSS-Klassen bzw. `motion` ansteuern; Reduced Motion ist Pflicht |
+| **Alternativen** | Statisches SVG ohne Layer, wenn die Bewegung nicht trägt; Lottie (`#video`) bei erzählender Animation |
+| **Gate** | kein `<script>` und keine externen Fonts/Referenzen im SVG; Dateigröße geprüft; `aria-hidden` wenn rein dekorativ, sonst `role="img"` + Titel |
+| **Nie** | Fremd-SVG mit unklarer Lizenz inlinen; Layer-Animation ohne `prefers-reduced-motion` |
 
 ### 8. Shader / WebGL / 3D-Hero
 

@@ -45,6 +45,23 @@ Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 - Landing → taste-Kern; App/Dashboard → ui-ux-DB.
 - Immer ZUERST vor Fach 1 Voice-/Floskel-Check laufen lassen (siehe AI-Slop-Sequenz oben).
 
+### Grafik-Assets-Gate
+Greift, sobald Freisteller, Layer-Stapel oder eigene Hintergrund-Grafiken im Spiel sind.
+Pass nur, wenn alle fünf Punkte stimmen:
+- **(A) Kanten sauber:** Alpha ohne Halo/Restrand, Motiv nirgends angeschnitten — Köpfe
+  von Personen niemals (harte Regel, Personen-Crops immer per Screenshot prüfen).
+- **(B) Trim eng:** Bild endet am letzten Motiv-Pixel (Alpha-Trim, siehe
+  `bildgenerierung.md`, Abschnitt "freistellen + eng zuschneiden"). Abstand kommt aus
+  dem CSS, nie aus dem Bild.
+- **(C) Layer logisch:** Überdeckungsreihenfolge nachvollziehbar, `z-index`-Stufen in
+  `art-direction.md` des Projekts dokumentiert.
+- **(D) Mobile-Fallback da:** statische Variante oder Poster für Reduced-Motion vorhanden.
+- **(E) Screenshot nach Einbau:** Asset im echten Web-Kontext sichtbar, kein Broken Image,
+  Farben stimmen mit der Quelle überein.
+
+Fail = ein Punkt offen → zurück in den Bildgenerierungs-/Freisteller-Schritt, nicht im
+Layout nachbessern.
+
 ## Fach 3 — A11y
 - G1: axe = 0 Fehler (hart). Farbkontrast AA, Fokus-Reihenfolge, Alt-Texte, Labels.
 - Tastatur-Navigation vollständig, ARIA korrekt (nicht überladen).

@@ -58,6 +58,25 @@ Auflösung finaler Assets → immer 4k oder 2k, nie 1k.
 Referenz. Recraft ist der **Realismus-Spezialist** — nur ranholen, wenn es echt
 fotorealistisch aussehen muss.
 
+### 4-Felder-Kontext-Checkliste (Pflicht vor jedem Generate)
+
+Vor **jedem** `hf generate create` müssen diese vier Felder **schriftlich** stehen —
+im Brief, im Prompt oder im Job-Kommentar. Ohne Kontext kommt Beliebigkeit heraus:
+
+| Feld | Was da stehen muss |
+|---|---|
+| **Colors** | Markenpalette — Hex-Codes oder Token-Namen (z. B. `--brand-700`), nicht „passend zur Marke" |
+| **Style** | Register: editorial, minimalistisch, playful, fotorealistisch, künstlerisch … |
+| **Composition** | Fokus-Punkt, Blickrichtung, Anordnung der Elemente — nicht „mach ein schönes Bild" |
+| **Use case** | Wofür konkret: Hero-Foto, Produkt-Shot, Empty-State-Szene, Feature-Illustration … |
+
+**Pass:** alle vier Felder schriftlich vorhanden → generieren.
+**Fail:** ein Feld fehlt → zurück zur Art Direction (`design`), **kein Generate ohne
+Kontext**. Die Felder wandern anschließend in den Bild-Index (`style`, `motiv`, `typ`).
+
+*(Idee sinngemäß nach Leon Lin, „How To Actually Design With AI", X-Post 2026 —
+eigene Formulierung, keine Übernahme.)*
+
 ### 1. Referenzen vorhanden → GPT Image 2 (`gpt_image_2`)
 
 **Sobald es eine Referenz gibt, ist GPT Image 2 der Default.** Referenzen werden per
@@ -225,6 +244,37 @@ ins CSS, NIE ins Bild. (Beim Generieren darf/soll das Motiv trotzdem mit viel
 Luft angefragt werden — damit nichts angeschnitten wird; der Rand fliegt danach
 im Trim-Schritt raus.) Danach wie immer: AVIF mit Alpha + `bilder.mjs add`
 (`transparenz: true`).
+
+## Layering-Workflow (Tiefe, Motion, Fallback)
+
+Kommt **nach** dem Freisteller: mehrere fertige Assets zu einer Szene mit Tiefe
+zusammensetzen. Fünf Regeln:
+
+1. **Nur bei echtem Bedarf trennen.** Vorder-, Mittel- und Hintergrund werden nur dann
+   als getrennte Assets erzeugt, wenn der Brief **Tiefe, Parallax oder Layer-Motion**
+   verlangt. Reine Deko rechtfertigt keine Layer-Trennung — ein Bild reicht.
+2. **Stacking vorher festlegen.** Vor der Generierung benannte Ebenen und ihre
+   `z-index`-Stufen definieren: Der Hintergrund liegt hinten (niedrigste Stufe), der
+   Mittelgrund darüber und der Vordergrund oben (höchste Stufe). Diese Reihenfolge
+   dokumentieren; die Umsetzung prüft das [Grafik-Assets-Gate](./qa-faecher.md).
+3. **Transparenz und Überdeckungen prüfen.** Freigestellte Layer bleiben Alpha-Assets.
+   Vor dem Einbau Alpha-Kanten auf saubere Ränder ohne Halo prüfen und jede
+   Überdeckung im zusammengesetzten Stack kontrollieren; die Umsetzung prüft das
+   [Grafik-Assets-Gate](./qa-faecher.md).
+4. **Reduced-Motion-Zustand und statischen Fallback bereitstellen.** Umsetzung nach der
+   [motion-doktrin.md](./motion-doktrin.md). Zusätzlich ist ein flaches Composite-Bild
+   als Pflicht-Asset zu erzeugen; es dient als statischer Fallback für Nutzer ohne
+   Motion. Den Einbau prüft das [Grafik-Assets-Gate](./qa-faecher.md).
+5. **Trim und CSS-Abstand anwenden.** Jeden Layer nach der Freistellung eng auf seinen
+   letzten Motiv-Pixel trimmen. Abstand und Positionierung kommen aus dem CSS, nie aus
+   dem Asset-Canvas oder transparenten Rand.
+
+*(Idee sinngemäß nach Leon Lin, „How To Actually Design With AI", X-Post vom
+12.07.2026 — eigene Formulierung, keine Übernahme.)*
+
+Die projektspezifische Layer-Ordnung (welche Ebenen eine Szene überhaupt hat) steht im
+Asset-Kompositions-Abschnitt der Art Direction des Kunden:
+`/root/clients/client-<name>/web/art-direction.md`.
 
 ## Bild-Index + AVIF — Pflicht bei JEDEM Bild
 

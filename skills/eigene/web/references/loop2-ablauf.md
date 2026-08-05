@@ -5,6 +5,24 @@
 strategy → sitemap → copy → art-direction (design) → components → build → qa-faecher →
 Launch (Signatur) → cro-learn.
 
+## strategy — Unterschritt „Meaning-Capture-Artefakt"
+
+Vor `sitemap`. Artefakt-Ort: `client-<name>/web/strategy.md`, Abschnitt `Meaning`.
+Vier Pflicht-Fragen, schriftlich beantwortet:
+
+- **(A) Für wen ist das?** — Zielgruppe konkret, keine Sammelbegriffe.
+- **(B) Welches Problem löst es?** — Nutzenaussage in einem Satz.
+- **(C) Welches Gefühl soll es kommunizieren?** — ein Vibe-Wort (premium, spielerisch,
+  vertrauenswürdig, technisch, experimentell, …).
+- **(D) Was soll es repräsentieren?** — Marken-Bedeutung, Werte.
+
+Regel: aufschreiben, nicht denken. Die KI darf hier **nur Fragen stellen, nicht designen**.
+
+*verify:* Pass = alle vier Fragen in `strategy.md` schriftlich beantwortet.
+Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
+
+*source:* Prinzip paraphrasiert nach Leon Lin, „How To Actually Design With AI" (2026).
+
 ## Gates
 
 - **G1 (immer zuerst):** impeccable-46, Lighthouse = 0, axe = 0, Link-Check, HTML-validate.

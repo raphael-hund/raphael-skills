@@ -13,7 +13,7 @@ metadata:
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: '["references/loop2-ablauf.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/templates/statistics-page-template.html"]'
+  raphael-loads: '["references/loop2-ablauf.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","impeccable@^0","taste@^0","ui-ux@^0"]'
   raphael-completion-criteria: '["Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node scripts/werkzeug-gate.mjs <projekt> Exit 0)"]'
 ---
@@ -132,7 +132,11 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
 4. **art-direction** — **verweist auf design.** G1 = impeccable-46-Regeln (`npx impeccable detect --json`).
    Braucht die Art Direction **UI-/Landing-Inspiration** (Galerien, Mobbin, Refero)
    → zuerst `references/tool-usecase-router.md` §1 (eine Quelle wählen), nicht die
-   ganze Inspirationsliste aus der Referenzbibliothek.
+   ganze Inspirationsliste aus der Referenzbibliothek. Tool-Use-Case-Router ($#grafik-baum$ für Medien-Wahl).
+   Wenn Brief UI-Inspiration braucht: §1 $#inspiration$ ziehen (eine Quelle, 3–7 Screenshots).
+   Wenn fertige Design-Referenzseite vorhanden: web-clone-playbook.md zuerst, rebuild-from-image.md nur für Bildteile.
+   Für Premium-Landing-Flächen zusätzlich `references/lexlin-design-prinzipien.md` laden
+   (15 Arbeitsregeln, Hero-Konstruktion, Dials) — Ergänzung zum vendorten taste-kern.
    Soll eine bestehende Referenzseite als Vorlage/Stil dienen ("baue mir etwas Ähnliches
    wie X", "clone diese Landingpage") → **zuerst** `references/web-clone-playbook.md` laden
    (Entscheidungsbaum, Lizenz-Check, Komplexitätsskala L1–L6) **bevor** Art Direction beginnt.
