@@ -1,18 +1,24 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 38,
+  "skill_count": 41,
   "skills": [
     {
       "name": "design",
-      "version": "0.4.0",
+      "version": "0.3.3",
       "path": "skills/design/SKILL.md",
-      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie, Layout/Struktur, Barrierefreiheit (A11y), Interface-Texte (Microcopy) und UI-Polish-Details als eigene References bei Bedarf nachladen; fuer \"review den ganzen Screen/Flow\" den konsolidierten Interface-Review fahren (eine Fund-Tabelle, ein Verdikt). Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Layout/Spacing/Ausrichtung\", \"Breakpoints/Responsive\", \"RTL\", \"Barrierefreiheit/A11y/WCAG\", \"Tastaturbedienung\", \"Screenreader\", \"Fokusring\", \"Hit-Area/Touch-Target\", \"Microcopy/Button-Label/ Fehlermeldung/Empty State\", \"voller Interface-Review\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
+      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als eigene References bei Bedarf nachladen. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
     },
     {
       "name": "ads-copy",
       "version": "1.0.0",
       "path": "skills/eigene/ads-copy/SKILL.md",
       "description": "Feuert für den Primary Text einer Meta-Ad — den Fliesstext über/unter dem Creative, plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads von 10 Werbetreibenden (Marc Evers, Speedscaling, SEOLabs, Neuhaus Digital, Pascal Harting, Dr. Matt Shiver, Charlie Morgan, Ben Heath, Enpal, Tim Krasenbrink) statt aus dem Gefühl. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\", \"Text zur Anzeige\", \"Ad Copy\". Für Video-Skripte siehe ads-video, für Statics-Briefs ads-statics, für den Loop-3-Ablauf ads."
+    },
+    {
+      "name": "ads-research",
+      "version": "0.1.0",
+      "path": "skills/eigene/ads-research/SKILL.md",
+      "description": "Zieht echte laufende Konkurrenz-Ads ueber die Meta Ad Library API (ads_archive, Graph v26.0) und wertet sie nach Struktur aus: Hook-Typ, Story-Aufbau, Szenen-Takt, Beweisform, CTA. Laufzeit ist der Performance-Proxy — was ueber 30 Tage laeuft, funktioniert. Trigger: \"Konkurrenz-Ads ziehen\", \"Ad Library\", \"was schaltet <Firma>\", \"Swipe-File bauen\", \"Marktscan Ads\", \"welche Ads laufen lange\". Liefert Rohmaterial fuer ads (Angles), ads-video (Skripte) und ads-copy (Primary Text) — schreibt selbst keine Creatives."
     },
     {
       "name": "ads-statics",
@@ -52,9 +58,9 @@
     },
     {
       "name": "debug",
-      "version": "0.2.2",
+      "version": "0.2.0",
       "path": "skills/eigene/debug/SKILL.md",
-      "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"kaputt\", \"geht nicht\" (nur wenn Code/Test falsch läuft — bei externer Wand: unstuck), \"Regression\", \"langsam geworden\"."
+      "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
     },
     {
       "name": "eval",
@@ -64,7 +70,7 @@
     },
     {
       "name": "extract-approach",
-      "version": "0.1.1",
+      "version": "0.1.0",
       "path": "skills/eigene/extract-approach/SKILL.md",
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
@@ -153,6 +159,12 @@
       "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
     },
     {
+      "name": "visual-aaa",
+      "version": "1.0.0",
+      "path": "skills/eigene/visual-aaa/SKILL.md",
+      "description": "Harter Qualitäts-Gate für ALLE visuellen Deliverables (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. Trigger: \"visual-aaa\", \"visuell prüfen\", \"AAA-Qualität\", \"Screenshot-Gate\", \"PDF-QA\", \"Folien prüfen\", \"visuell fertig\", \"Triple-A Check\", \"harsh critic\", \"Pixel-QA\"."
+    },
+    {
       "name": "watch",
       "version": "0.3.0",
       "path": "skills/eigene/watch/SKILL.md",
@@ -226,9 +238,15 @@
     },
     {
       "name": "personal",
-      "version": "0.2.0",
+      "version": "1.0.0",
       "path": "skills/personal/SKILL.md",
       "description": "Direkter, fordernder Personal-Advisor-Modus nach den wiederkehrenden Mustern aus Hamza Ahmeds oeffentlichem Material (Kanal \"Hamza Advanced\") — grosser Bruder statt Berater-Floskeln. Wissen kommt aus dem Personal Second Brain (raw/person-2026-08-03-hamza-ahmed-advanced + freigegebene Wiki-Seiten), die Persoenlichkeit und die groben Glaubenssaetze stehen im Skill. Trigger: \"personal\", \"challenge mich\", \"Ausreden zerlegen\", \"Disziplin\", \"Gewohnheiten\", \"was wuerde Hamza sagen\", \"ehrliche Ansage\", \"Lebensentscheidung\"."
+    },
+    {
+      "name": "raphael-chrome",
+      "version": "0.1.0",
+      "path": "skills/raphael-chrome/SKILL.md",
+      "description": "Steuert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit Logins und Passwort-Autofill. Nutzen für Browser-Arbeit, Trello/Airtable/Google-UI, API-Keys aus Web-Oberflächen holen, Screenshots, Klicks. Prefer this over Orca computer-use for websites. Triggers: chrome, browser, trello login, airtable, CDP, 9222, Passwort autofill, website klicken."
     }
   ]
 }

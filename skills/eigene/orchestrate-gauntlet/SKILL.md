@@ -27,11 +27,12 @@ loads:
   - references/besetzung.md
   - references/gauntlet-graph.md
   - references/dauerlauf.md
-requires_skills: [orchestrate@^1, eval@^0]
+requires_skills: [orchestrate@^1, eval@^0, visual-aaa@^1]
 completion_criteria:
   - "Die Messlatte existiert als Datei (Screenshots/URLs/Referenztext/Testsuite) und hängt in JEDEM Kritiker-Prompt"
   - "Der Graph liegt als Datei vor (gauntlet/<name>.graph.md) mit Nodes, Routen, Checkpoints, Gates und Frozen Rules"
   - "Mindestens ein Gate ist ein externer Anker (Test, Lint, Screenshot-Diff, Build) — kein reines Agenten-Urteil"
+  - "Visuelle Stücke (PDF/A4/Folien/Landing/Ads): visual-aaa durchlaufen — visual-g1.py Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid; DoneClaim ohne Manifest verboten"
   - "Je Stück ist Builder-Familie ≠ Kritiker-Familie, und das ist im Protokoll je Runde belegt"
   - "Die Besetzung wurde in references/besetzung.md nachgeschlagen, nicht geraten — Erst-/Zweit-/Drittwahl je Stück ist bewusst gewählt"
   - "Jeder Kritiker urteilte am echten Artefakt (Screenshot/Testausgabe) und gab GEWINNER + genau EINE größte Lücke + BELEG zurück"

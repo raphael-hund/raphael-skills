@@ -8,7 +8,7 @@ Harness (init/next/record/verify/close als CLI-Kommandos, JSON-State-Datei,
 atomare Writes). **Wir portieren den Code nicht** — unser Loop ist
 Cockpit-getrieben (Claude Code als Dauer-Cockpit, kein Python-Prozess, der
 Tasks disponiert). Übernommen ist das **Prinzip**, paraphrasiert und auf
-unsere Welt (G1/G2-Gates, orchestrate-LOOP-Runden) adaptiert.
+unsere Welt (G1/G2-Gates, ultra-loop-Runden) adaptiert.
 
 ## Kernregeln
 
@@ -57,7 +57,7 @@ unabhängig vom Task-Fortschritt. Die Retry-Logik verlangt außerdem
 Ansatzwechsel: "attempt %d/%d failed — change the approach before
 retrying (same command + same input = same failure)".
 
-Bei uns: orchestrate-LOOP-Runden und G3-Mutationsläufe stoppen bei Plateau
+Bei uns: ultra-loop-Runden und G3-Mutationsläufe stoppen bei Plateau
 (3 Experimente ohne Verbesserung), nicht endlos. Ein Fix-Agent, der
 nach X Versuchen nicht verifiziert bekommt, eskaliert an Raphael/das
 Council statt einen Erfolg zu behaupten, den niemand geprüft hat.
@@ -72,8 +72,9 @@ Council statt einen Erfolg zu behaupten, den niemand geprüft hat.
 | `close` refuse (Exit 4) ohne verified/waived        | Runde gilt nicht als FERTIG, solange ein Kern-Ergebnis unverifiziert+ungewaived ist |
 | `--waive <id> --reason <warum>`                     | begründete Ausnahme im Runden-Protokoll (PROGRESS.md), nie stillschweigend |
 | `max_attempts` → `escalated`                        | Eskalation an Raphael/Council statt Fake-Success nach X Fehlversuchen |
-| `max_loop_iterations` global                        | LOOP-Plateau-Stopp (3 Experimente ohne Verbesserung) |
-| JSON-State-Datei als Beweis-Log (`state.json`, atomarer Write) | Run-ID (z. B. `wf_70891d18`) im orchestrate-LOOP-Runden-Protokoll als Beweis, dass ein Lauf stattfand |
+| `max_loop_iterations` global                        | ultra-loop-Plateau-Stopp (3 Experimente ohne Verbesserung) |
+| JSON-State-Datei als Beweis-Log (`state.json`, atomarer Write) | Run-ID (z. B. `wf_70891d18`) im ultra-loop-Runden-Protokoll als Beweis, dass ein Lauf stattfand |
+| (visuell, ergänzt 06.08.2026) Worker „sieht gut aus“ | **Kein DoneClaim** ohne `visual-ship.json` (`schema=visual-aaa/ship/v1`, `ok=true`, `g1_exit=0`, `self_read=true`, Critic `pass`+`HIGH` pro Seite) — Skill `visual-aaa`, Validate: `scripts/validate-ship-manifest.py` |
 
 ## Beispiel aus dieser Session
 
@@ -95,8 +96,8 @@ geschlossen — sie wird geprüft, als falsch erkannt und protokolliert
   Claude Code selbst orchestriert, entscheidet, ruft Tools — es gibt
   keinen externen Disponenten-Prozess, der Tasks aus einem Plan zieht.
 - **Kein `goal_compiler.py`-Keyword-Scoring.** Task-Zerlegung passiert
-  bei uns durch das Cockpit/den Workflow selbst (orchestrate EINMAL,
-  orchestrate LOOP), nicht durch deterministisches Tokenisieren eines Goal-
+  bei uns durch das Cockpit/den Workflow selbst (dynamic-workflow,
+  ultra-loop), nicht durch deterministisches Tokenisieren eines Goal-
   Strings gegen ein Skill-Manifest.
 - **Keine atomaren `os.replace`-State-Writes.** Unser Beweis-Log ist
   `PROGRESS.md` (git-versioniert, für Menschen lesbar) statt einer

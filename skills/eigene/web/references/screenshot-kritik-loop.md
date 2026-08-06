@@ -4,6 +4,14 @@
 kein Code-Lesen als Ersatz fuer das Ansehen. Desktop zuerst (1440) — Mobile folgt als
 Pflicht-Check, nicht als Design-Quelle.
 
+**Harter Ship-Gate (seit 06.08.2026):** Kunden-PDF/A4-HTML/Folien/Ads-Statics und
+jedes Premium-Web-Ship enden erst über Skill
+[`visual-aaa`](/root/raphael-skills/skills/eigene/visual-aaa/SKILL.md):
+Render → Self-Read → `visual-g1.py` Exit 0 → Agent `visual-kritiker` (andere Familie)
+→ `visual-ship.json` valid. „Fertig“ ohne dieses Manifest ist verboten (eval
+Verifikations-Vertrag). Dieser Loop hier bleibt der Web-Sweep-Ablauf; `visual-aaa`
+ist der DoneClaim-Blocker.
+
 ## Ablauf (immer diese Reihenfolge)
 
 ### 0. Wiederkehrender Health-Sweep (optional, nur für Live-Kundenseiten, per Cron)
