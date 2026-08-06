@@ -9,9 +9,18 @@ import path from 'node:path';
 
 const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
-// Default 5280 ist historisch und FAST IMMER falsch — Anfänger: immer --base setzen
-// (siehe references/anfaenger-pfad.md §2 und SKILL.md Gotchas).
-const BASE = get('base', 'http://localhost:5280').replace(/\/$/, '');
+// --base ist PFLICHT (kein stiller Default mehr). Historischer Default 5280
+// erzeugte leere Shots bei Anfängern — siehe anfaenger-pfad.md §2 + SKILL Gotchas.
+const baseRaw = get('base', null);
+if (!baseRaw) {
+  console.error(`shot-sweep: --base <url> ist Pflicht (z. B. --base http://127.0.0.1:3000).
+Kein Default-Port — früher localhost:5280 war fast immer falsch.
+Beispiel:
+  node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \\
+    --base http://127.0.0.1:3310 --out /tmp/shots --routes /`);
+  process.exit(2);
+}
+const BASE = String(baseRaw).replace(/\/$/, '');
 const OUT = get('out', '/tmp/shot-sweep');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim())
   .map((r) => (r.startsWith('/') ? r : `/${r}`));

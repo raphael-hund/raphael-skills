@@ -9,13 +9,13 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.12.2"
+  raphael-version: "0.12.3"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","impeccable@^0","taste@^0","ui-ux@^0"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (Default-Port 5280 ist fast immer falsch)", "Premium/Ship: screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Rollen aus agent-roster.md (agentType/Familie) — Build und Review unterschiedliche Familien"]'
+  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "Premium/Ship: screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Rollen aus agent-roster.md (agentType/Familie) — Build und Review unterschiedliche Familien"]'
 ---
 
 # web — Loop 2: Website
@@ -34,7 +34,8 @@ Detail-Ablauf und Gates: `references/loop2-ablauf.md`.
 (Dossier Loop 1), `/root/raphael-brain/wiki/hot.md`.  
 Alles Visuelle → Skill **design** (nicht hier neu erfinden).
 
-**Lädt mit:** `design` + `impeccable` + `taste` + `ui-ux` (Linien im design-Skill).
+**Mitgeladene Skills (keine Dateien):** `design`, `impeccable`, `taste`, `ui-ux`
+— Linien/Detektoren liegen im **design**-Skill, nicht unter `web/references/`.
 
 ## Zweck (1 Satz)
 
@@ -72,6 +73,7 @@ Frontend + DE-Verkaufstext: **`opus-builder`** → Fallback **`kimi-worker`** (K
 | CRO Bestandsseite | `references/cro-diagnose.md` |
 | A/B-Programm | `references/experiment-programm.md` |
 | Security Formulare/Supply-Chain | `references/security-audit-playbook.md` |
+| Custom-Code gegen AI-Slop (nach Build) | `references/code-qualitaets-checkliste.md` |
 | Junge Domain vor Launch | `references/domain-safe-browsing-checkliste.md` |
 | Statistik-Linkbait HTML | `references/templates/statistics-page-template.html` |
 | 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
@@ -97,7 +99,7 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 ```
 
 - Fold 1440×730, dann 1440×1400 @ 50 % Scroll — **nie** fullPage / captureBeyondViewport.
-- Default-`--base` im Skript ist `localhost:5280` → **immer** echte Dev-URL setzen.
+- **`--base` Pflicht** (ohne Flag: Exit 2). Früherer Default-Port 5280 entfällt.
 - Jedes PNG per Read ansehen; nach jedem Fix **alle** betroffenen Routen erneut.
 - Kritik bekommt nur `manifest.json` + PNGs. Ablauf: `screenshot-kritik-loop.md`.
 
@@ -131,7 +133,7 @@ Detail: `landingpage-struktur.md`.
    Assets → Grafik-Baum im Router, dann ggf. `bildgenerierung.md`.  
    `imagegen-web`/`imagegen-mobile` = **kein Default** (nur Host+Router).
 5. **components** — 5a Bedarf → 5b Router-Zeile → 5c Abweichung belegt → **5d Werkzeugtabelle** in `art-direction.md`. Ohne Tabelle kein `npm i`.
-6. **build** — nur Tabellen-Zeilen installieren; Review = andere Familie. Security/OWASP bei Formularen/Consent.
+6. **build** — nur Tabellen-Zeilen installieren; Review = andere Familie. Security/OWASP bei Formularen/Consent. Echtes Custom-UI → `code-qualitaets-checkliste.md`.
 7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs`.
 8. **Launch** — Signatur + Deploy-Egress-Gate. Nie autonom. Junge Domain → Safe-Browsing-Checkliste.
 9. **cro-learn** — nur echte Analytics (G4).
@@ -144,7 +146,7 @@ QA 1–4 ‖ dann SEO+Trust → Launch (Signatur) → cro-learn.
 ## Gotchas
 
 - **Anfänger lädt alles** → falsch. Nur `anfaenger-pfad.md` §1.
-- **`shot-sweep` ohne `--base`** → oft leere Shots (Port 5280).
+- **`shot-sweep` ohne `--base`** → Exit 2 (Usage); nie ohne echte Dev-URL.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill (Mac-Pfade). Nie routen; Kanon = `web` + `design`.
 - **Design-G1** nur `node …/design/scripts/detect.mjs`, nie `npx impeccable detect`.
 - **Tools** über `tool-usecase-router.md`, nicht Link-Dumps (max 3 URLs aus Bibliothek).

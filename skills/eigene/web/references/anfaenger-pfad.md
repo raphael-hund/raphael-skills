@@ -1,7 +1,8 @@
 # Anfänger-Pfad — web-Skill in 5 Minuten
 
-**Zweck:** Ein Agent (oder Raphael), der den Skill zum ersten Mal nutzt, weiß
-sofort **welche 2–4 Dateien** er laden muss — nicht alle 30 References.
+**Zweck:** Ein Agent, der den Skill zum ersten Mal nutzt, weiß sofort **welche
+2–4 Dateien** er laden muss — nicht alle 30 References. (Cockpit-Detail-Ablauf
+danach: `loop2-ablauf.md`.)
 
 **Regel:** SKILL.md = Dach und Gates. Detail nur in der Datei aus der Tabelle
 unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
@@ -12,7 +13,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
-| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `loop2-ablauf.md` → design-Skill (taste) → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0 |
+| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `loop2-ablauf.md` → Skill **design** (taste) → `tool-usecase-router.md` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
 | **Nur Design/Look polieren** | design-Skill + `screenshot-kritik-loop.md` + `shot-sweep.mjs` | Sweep + PNGs gelesen + Fixliste leer |
 | **Ship / Launch-Check** | `qa-faecher.md` → `agentur-rubrik.md` → `agent-roster.md` | Fächer 1–6 grün, Rubrik 1–25 oder Ausnahme |
@@ -20,7 +21,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Referenzseite nachbauen** (URL) | `web-clone-playbook.md` **zuerst** (Lizenz!) → dann Clone-Scripts | Lizenz-Check schriftlich vor Code |
 | **Screenshot/Bild nachbauen** | `rebuild-from-image.md` → `bildgenerierung.md` nur für echte Assets | Pixel-Check 1440/768/390 |
 | **Bilder generieren** | `tool-usecase-router.md` #grafik-baum → nur bei `#bilder` → `bildgenerierung.md` | AVIF + `bilder-index.json` |
-| **Komponenten/Tools wählen** | `tool-usecase-router.md` → Werkzeugtabelle in `art-direction.md` | `werkzeug-gate.mjs` Exit 0 |
+| **Komponenten/Tools wählen** (oder vor jedem `npm i`) | `tool-usecase-router.md` → **Werkzeugtabelle** in `client-<name>/web/art-direction.md` (Spalten: Bedarf\|Werkzeug\|Befehl\|Gate\|Router-Anker\|geprüft-am) | `werkzeug-gate.mjs` Exit 0 — ohne Tabelle kein Install |
 | **Motion-Komponente einbauen** | `motion-doktrin.md` → `ui-components/INDEX.md` | `motion/react`, `useReducedMotion` |
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
@@ -35,7 +36,7 @@ Site nur auf expliziten Raphael-Auftrag.
 ## 2. Absolute Pflicht in jedem visuellen Auftrag
 
 1. **Dev-URL kennen** (z. B. `http://127.0.0.1:3310`).
-2. **Sweep mit `--base`** — Default im Skript ist `localhost:5280` und fast immer falsch:
+2. **Sweep mit `--base`** — ohne `--base` bricht das Skript mit Exit 2 ab (kein stiller Falsch-Port mehr):
 
 ```bash
 node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
@@ -92,7 +93,7 @@ Outputs: `client-<name>/web/strategy.md`, `sitemap.md`, `copy/`, `art-direction.
 ## 5. Top-10 Anfänger-Fallen (sofort vermeiden)
 
 1. **Alle References laden** → Context tot. Nur Tabelle §1.
-2. **`--base` vergessen** bei shot-sweep → leere/falsche Shots auf Port 5280.
+2. **`--base` vergessen** bei shot-sweep → Exit 2 mit Usage (früher: stille Shots auf 5280).
 3. **`fullPage: true`** / captureBeyondViewport → verbotene Shot-Doktrin.
 4. **`npx impeccable detect`** → falsche Regeln; nur lokales `detect.mjs`.
 5. **`npm i framer-motion`** → muss `motion` / Import `motion/react` sein.

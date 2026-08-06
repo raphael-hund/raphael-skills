@@ -38,7 +38,7 @@ mit Raphael-Einzelfreigabe pro Kunde + Kostenlimit.
 
 ### 1. Sweep
 `node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> [--hover ...] [--mobile]`
-- **`--base` ist Pflicht** mit der echten Dev-/Live-URL. Skript-Default `localhost:5280` ist historisch und fast immer falsch (Anfänger-Falle #2 in `anfaenger-pfad.md`).
+- **`--base` ist Pflicht** mit der echten Dev-/Live-URL. Ohne Flag: Exit 2 + Usage (Anfänger-Falle #2 in `anfaenger-pfad.md`; stiller Port-5280-Default ist entfernt).
 - First Fold 1440×730, Rest 1440×1400, Schritt 50 %. Niemals fullPage.
 - Das Skript schreibt `manifest.json` — NUR dieses Manifest wird an die Kritik-Rollen gegeben.
 
