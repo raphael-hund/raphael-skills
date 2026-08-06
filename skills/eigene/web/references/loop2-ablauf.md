@@ -1,5 +1,8 @@
 # Loop 2 — Ablauf im Detail
 
+**Anfänger zuerst:** Auftrag wählen und nur nötige Dateien laden →
+`anfaenger-pfad.md`. Diese Datei ist der Detail-Ablauf **nach** der Wahl.
+
 ## Reihenfolge
 
 strategy → sitemap → copy → art-direction (design) → components → build → qa-faecher →
@@ -41,7 +44,7 @@ Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
   160-Link-Dumps. *verify:* Werkzeugtabelle in `client-<name>/web/art-direction.md`
   existiert, jede Zeile mit Router-Anker.
 - `build`: *verify:* keine Dependency ohne Tabellenzeile —
-  `node scripts/werkzeug-gate.mjs <projekt>` Exit 0.
+  `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt>` Exit 0.
 - Wer baut, ist nie wer reviewt; der Review läuft in einem unabhängigen Kontext
   und nach Möglichkeit über einen anderen Anbieter. Rollen: `agent-roster.md`.
 - Assembly-Line: Copy → frischer Build-Kontext → frischer QA-Kontext. Kontext ist

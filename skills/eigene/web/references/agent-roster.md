@@ -6,6 +6,7 @@ Output. Keine implizite Vererbung. Host-Portabilität: Rollen beschreiben
 Rolle, verfügbares Äquivalent laut MODELL-MATRIX.
 
 **Wann laden:** vor jedem Multi-Agent-Lauf in strategy/copy/build/qa.
+**Anfänger:** zuerst `anfaenger-pfad.md` (Auftrag wählen), Roster erst bei Multi-Agent.
 
 ## Roster
 

@@ -9,6 +9,8 @@ import path from 'node:path';
 
 const args = process.argv.slice(2);
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
+// Default 5280 ist historisch und FAST IMMER falsch — Anfänger: immer --base setzen
+// (siehe references/anfaenger-pfad.md §2 und SKILL.md Gotchas).
 const BASE = get('base', 'http://localhost:5280').replace(/\/$/, '');
 const OUT = get('out', '/tmp/shot-sweep');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim())

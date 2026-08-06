@@ -78,7 +78,7 @@ Layout nachbessern.
 ## Fach 4 — Technik
 - G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO), Link-Check, HTML-validate.
 - Meta/OG/Schema vorhanden, Canonical korrekt, keine Broken Links, responsive.
-- **G1 Werkzeug-Gate (hart):** `node scripts/werkzeug-gate.mjs <projekt> --tabelle
+- **G1 Werkzeug-Gate (hart):** `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle
   <pfad>/art-direction.md` = Exit 0. Prueft deterministisch: genau EIN Icon-System,
   null `framer-motion`-Importe (vendorierte Komponenten nutzen `motion/react`),
   `useReducedMotion` in jeder animierenden Datei, keine Dependency ohne Zeile in

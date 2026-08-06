@@ -30,7 +30,7 @@ Install läuft:
   Lizenzstand) in derselben Zeile.
 - **Kein Paket in `package.json` ohne Zeile in dieser Tabelle.**
 - Geprüft wird das am Ende deterministisch:
-  `node scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md`
+  `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md`
   — echte Tabellenzeilen mit gültigem Router-Anker · genau ein Icon-System
   (auch bei Subpath-Importen) · kein `framer-motion` · Reduced Motion in jeder
   animierenden Datei, **egal welche Animations-Bibliothek** (motion, gsap,

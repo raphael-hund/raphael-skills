@@ -303,7 +303,8 @@ Zwei feste Regeln:
    Referenzbilder), **prompt**, **quelle** (`generiert`/`geliefert`), **transparenz**
    (true/false, automatisch erkannt), **erstellt**, **status**.
 
-Das erledigt deterministisch das Helferskript `scripts/bilder.mjs` (keine
+Das erledigt deterministisch das Helferskript
+`/root/raphael-skills/skills/eigene/web/scripts/bilder.mjs` (keine
 npm-Abhängigkeiten). Konvertierung: **`avifenc`** (libavif) — erhält **Transparenz**
 (Pflicht für freigestellte Bilder aus dem Background-Remover), erkennt Alpha
 automatisch und schreibt `transparenz: true/false` in den Index. Fehlt `avifenc`
@@ -314,12 +315,12 @@ Alpha**, also für freigestellte Bilder unbedingt `avifenc` installiert lassen.
 DIR=/root/clients/client-<name>/web/assets   # ein Index pro Projekt
 
 # Bild aufnehmen: konvertiert nach AVIF + trägt in den Index ein
-node scripts/bilder.mjs add "$DIR" ./roh/hero.png \
+node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh/hero.png \
   --typ "Hero-Foto" --motiv "Werkstatt bei Tageslicht" \
   --style "clean, neutraler Grade" --modell gpt_image_2 \
   --ref "shooting-01.jpg,shooting-02.jpg" --quelle generiert --datum 2026-07-21
 
-node scripts/bilder.mjs list "$DIR"     # Index als Tabelle
+node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs list "$DIR"     # Index als Tabelle
 ```
 
 Fehlen `--typ/--motiv/--style/--datum`, stehen sie als `TBD` im Index und **müssen**
@@ -331,7 +332,7 @@ und Buchhaltung macht das Skript.
 Sagt Raphael, ein von mir erstelltes Bild taugt nichts:
 
 ```bash
-node scripts/bilder.mjs reject "$DIR" <id-oder-datei>
+node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs reject "$DIR" <id-oder-datei>
 ```
 
 Das **löscht die AVIF-Datei komplett** und **entfernt den Index-Eintrag** in einem
@@ -353,7 +354,8 @@ Nie nur die Datei löschen und den Index stehen lassen (oder umgekehrt).
 8. **Auflösung: 4k oder 2k** (GPT 4k, Recraft max 2k). Nie 1k für Finals.
 9. **Nano Banana nur als Nano Banana 2 (`nano_banana_flash`) für Previews.**
 10. Vorab **immer** `hf generate cost`; Jobs mit `--wait` bzw. `hf generate wait` abholen.
-11. **Jedes** Bild (generiert wie geliefert) sofort → **AVIF** via `scripts/bilder.mjs add`.
+11. **Jedes** Bild (generiert wie geliefert) sofort → **AVIF** via
+    `/root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add`.
 12. **Jedes** Bild steht im **Index** (`bilder-index.json`): typ/motiv/style/modell/refs/quelle.
 13. **„Bild ist scheiße" → `bilder.mjs reject`**: Datei komplett löschen + Index-Eintrag raus.
 
