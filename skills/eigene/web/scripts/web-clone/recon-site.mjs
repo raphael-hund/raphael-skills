@@ -207,7 +207,7 @@ try {
     const signals = await collectSignals(page);
     const screenshotName = `${args.label}-${width}.png`;
     const screenshotPath = path.join(screenshotsDir, screenshotName);
-    await page.screenshot({ path: screenshotPath, fullPage: true });
+    await page.screenshot({ path: screenshotPath, fullPage: false /* viewport only — never fullPage (shot doctrine) */ });
     captures.push({
       viewport: { width, height: 900 },
       screenshot: path.relative(outDir, screenshotPath),

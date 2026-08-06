@@ -223,7 +223,7 @@ async function captureAction(page, outDir, index, action, before) {
   const after = await hashSnapshot(page, await snapshot(page));
   const screenshotName = `${String(index + 1).padStart(2, "0")}-${safeFileName(`${action.type}-${action.target || action.selector || "page"}`)}-${shortHash(JSON.stringify(action))}.png`;
   const screenshotPath = path.join(outDir, "screenshots", screenshotName);
-  await page.screenshot({ path: screenshotPath, fullPage: true });
+  await page.screenshot({ path: screenshotPath, fullPage: false /* viewport only — never fullPage (shot doctrine) */ });
   return {
     ...action,
     before,
@@ -251,7 +251,7 @@ try {
   const seedPage = await freshPage(browser, args, network, consoleErrors);
   const initial = await hashSnapshot(seedPage, await snapshot(seedPage));
   const discovered = await candidates(seedPage);
-  await seedPage.screenshot({ path: path.join(outDir, "screenshots", "00-initial.png"), fullPage: true });
+  await seedPage.screenshot({ path: path.join(outDir, "screenshots", "00-initial.png"), fullPage: false /* viewport only — never fullPage (shot doctrine) */ });
   await seedPage.close();
 
   const actions = [

@@ -15,7 +15,7 @@ Drei verschiedene Dinge, oft verwechselt. Erst einordnen, dann arbeiten:
 | Ich brauche… | Werkzeug | Nicht verwechseln mit |
 |---|---|---|
 | **Inhalts-Bild** auf der fertigen Seite (Hero-Foto, Produkt, Szene, Illustration) | **Higgsfield CLI** (dieses Dokument) | keine Design-Mockups, echte Assets |
-| **Design-Referenz-Mockup** je Sektion (wie soll die Sektion aussehen) | Image-first: `lexlin-design-prinzipien.md` + `rebuild-from-image.md` (ein Bild PRO Sektion; kein separates `imagegen-web`-Skill) | erzeugt Layout-Vorlagen, keine Endkunden-Assets |
+| **Design-Referenz-Mockup** je Sektion (wie soll die Sektion aussehen) | Image-first: `lexlin-design-prinzipien.md` + `rebuild-from-image.md` (ein Bild PRO Sektion). `imagegen-web` nur wenn Host-Skill + Router-Zeile — kein Default | erzeugt Layout-Vorlagen, keine Endkunden-Assets |
 | **UI selbst als Code** (Layout, Komponenten, Motion, Anti-Slop-QA) | **design** | kein Bildgenerator |
 | Allgemeine Marketing-Bild-Werkzeugkunde (Nicht-Higgsfield-Fälle, Web-Optimierung) | **image** (vendored) | Fallback/Nachschlagewerk |
 | Marken-/Logo-/Identity-Boards | **brandkit** | ganze Brand-Systeme, kein Einzel-Asset |

@@ -9,7 +9,7 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.12.0"
+  raphael-version: "0.12.1"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
@@ -178,9 +178,10 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht verwechseln mit
    **Design-Referenz-Mockups** (ein Bild pro Sektion als Layout-Vorlage):
    Methodik `lexlin-design-prinzipien.md` (Image-first) → danach
-   `rebuild-from-image.md` + Assets über `bildgenerierung.md`. Es gibt **keinen**
-   `imagegen-web`/`imagegen-mobile`-Skill in diesem Stack — die Tabelle
-   „Abgrenzung" in `bildgenerierung.md` trennt Mockup vs. Endkunden-Asset.
+   `rebuild-from-image.md` + Assets über `bildgenerierung.md`.
+   `imagegen-web`/`imagegen-mobile` sind **kein Default** in diesem Stack
+   (Mockup vs. Endkunden-Asset: Tabelle in `bildgenerierung.md`); nur laden,
+   wenn der Host den Skill hat und der Router ihn ausdrücklich verlangt.
 5. **components** — Komponenten-Spezifikation aus Art Direction. Vier Schritte,
    in dieser Reihenfolge, kein Überspringen:
    **5a Bedarfsliste** — jede Sektion durchgehen und notieren, was sie braucht

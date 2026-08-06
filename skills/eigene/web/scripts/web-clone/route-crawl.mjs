@@ -174,7 +174,7 @@ try {
       const data = await collectPage(page);
       const screenshotName = routeFileName(current.url);
       const screenshotPath = path.join(screenshotsDir, screenshotName);
-      await page.screenshot({ path: screenshotPath, fullPage: true });
+      await page.screenshot({ path: screenshotPath, fullPage: false /* viewport only — never fullPage (shot doctrine) */ });
 
       routes.push({
         url: current.url,

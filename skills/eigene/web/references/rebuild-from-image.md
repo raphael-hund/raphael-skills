@@ -175,7 +175,7 @@ neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
   Ablaufschritt. Wird ein generiertes Asset für eine dekorative Fläche
   gebraucht, läuft das über `references/bildgenerierung.md` (Higgsfield CLI /
   GPT Image 2 / Recraft), nicht über den Vendor-Pfad und nicht über ein
-  separates `imagegen-web`-Skill (existiert hier nicht).
+  separates `imagegen-web`-Skill als Default (nur Host+Router, kein Pflichtpfad).
 - **`contract-gate.mjs` / `render-strategy.mjs` / `higgsfield-doctor.mjs`** —
   Node-Scripts, die Vendor-JSON-Contracts (`site-contract.json`,
   `asset-plan.json`, `final-evidence.json`) gegen ein Higgsfield-Setup
