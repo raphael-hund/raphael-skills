@@ -2,6 +2,12 @@
 
 Jeder Eintrag: **Symptom → harte Regel → G1-Check (falls vorhanden) → Fix-Hinweis.**
 
+## Critic-Disziplin
+
+- Critic darf **pass** nur nach echtem PNG-Read.
+- Bei Widerspruch Self-Read ↔ Critic (z. B. „Schuhe fehlen“, obwohl sie sichtbar sind): **Re-Critic round N+1** mit gezielter Frage, nicht blind fixen.
+- Default fail gilt — erfundene False-Positives protokollieren (round fail → round pass + Beleg).
+
 ## F1 — Köpfe / Personen angeschnitten
 
 - **Symptom:** Gesicht, Schädel, Schulterlinie am Rahmen abgeschnitten.
