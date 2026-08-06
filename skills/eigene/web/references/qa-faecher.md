@@ -1,7 +1,9 @@
 # QA-Fächer (parallel, Schwarm gemischt)
 
-Vier Fächer laufen parallel, jeweils eigener Agent (gemischte Modellfamilien). G1 zuerst,
-dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung.
+Sechs Fächer: 1–4 parallel (gemischte Modellfamilien), danach 5 SEO und 6 Trust
+(können parallel zueinander laufen, brauchen aber fertige Routes/Content).
+G1 zuerst, dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung.
+Rollen: `agent-roster.md`. AAA-Raster: `agentur-rubrik.md`.
 
 **AI-Slop-Sequenz (fest, kein optionaler Zusatzschritt):** design ZUERST (Fach 2, `detect.mjs`
 + `scan-ai-slop.mjs` je Exit 0) → **danach copywriting G1→G2** auf denselben Seiten (Fach 1,
@@ -40,9 +42,15 @@ Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
   halbierte die Conversion.*
 
 ## Fach 2 — Design (→ design)
-- G1: `npx impeccable detect --json` = 0 Findings (46 deterministische Regeln).
+- G1: `node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>` = Exit 0
+  **und** `node /root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs <projekt-root>`
+  triagiert (keine offenen P0-Slop-Funde). Niemals `npx impeccable detect` — das
+  trifft die unpatchte npm-Version, nicht die lokalen Regeln.
 - Visuelle Hierarchie, Kontrast, Rhythmus/Spacing, konsistente Tokens.
-- Landing → taste-Kern; App/Dashboard → ui-ux-DB.
+- Landing → taste-Kern + `lexlin-design-prinzipien.md` / `damien-design-methodik.md`;
+  App/Dashboard → ui-ux-DB.
+- Premium/Ship: Screenshot-Kritik-Loop inkl. **Blind-A/B** (`screenshot-kritik-loop.md`
+  Schritt 3b) und Stichprobe gegen `agentur-rubrik.md` Visual-Zeilen.
 - Immer ZUERST vor Fach 1 Voice-/Floskel-Check laufen lassen (siehe AI-Slop-Sequenz oben).
 
 ### Grafik-Assets-Gate
@@ -77,9 +85,28 @@ Layout nachbessern.
   der Werkzeugtabelle aus Schritt 5d. Rot = kein Launch, wie jedes andere G1-Fach.
   "Router wurde gelesen" ist keine gueltige Antwort auf dieses Gate.
 
+## Fach 5 — SEO
+- G1: pro indexierbarer Route unique title (≤60), meta (≤160), clean slug, genau eine H1,
+  Canonical, keine Broken Links (Teil von Lighthouse/HTML-Scan = 0 Fehler).
+- G1 Index: Marketing-Routen liefern crawlbaren HTML-Inhalt (SSR/SSG/Prerender) — reines
+  Client-Empty-Shell ohne Inhalt = Fail.
+- G2: `seo`-Skill (Loop 4) ziehen wenn Content-Seiten/Blog/Local — Keyword-Intent,
+  Information-Gain, Schema-Tiefe; nicht nur Lighthouse-SEO-Subscore.
+- Checkliste: `agentur-rubrik.md` Zeilen 11–17. Fail → kein Launch für öffentliche URLs.
+
+## Fach 6 — Trust
+- G1: Impressum + Datenschutz erreichbar und vollständig (DE); 404-Route gebrandet,
+  Status 404, `noindex`, klarer Rückweg.
+- G1 Proof: jede sichtbare Zahl/Logo/Testimonial ist in `PROOF.md`/Dossier belegt —
+  erfundene Claims = Fail (nicht „später belegen“).
+- G2: Testimonials Video/Screenshot+Identität (Fach-1-Regeln); keine KI-Personen in
+  Beweis-Kontexten ohne Raphael-Freigabe; Partner-Logos nur freigegeben; Consent vor
+  nicht-essentiellem Tracking wo nötig (`security-audit-playbook.md`).
+- Checkliste: `agentur-rubrik.md` Zeilen 18–25. Fail → kein Launch (wie Fach 5).
+
 ## Optional — Persona-QA
 Je eine Perspektive: Beginner · Engineer · Business-Owner. Findet Blindstellen, die die
 Fach-QA übersieht. Kein Gate, nur Zusatzsignal.
 
 ## Regel
-Kein Launch, solange ein G1-Fach rot ist. Findings → `client-<name>/wiki/qa-<datum>.md`.
+Kein Launch, solange ein G1-Fach (1–6) rot ist. Findings → `client-<name>/wiki/qa-<datum>.md`.

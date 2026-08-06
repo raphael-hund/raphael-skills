@@ -160,9 +160,9 @@
     },
     {
       "name": "web",
-      "version": "0.8.0",
+      "version": "0.12.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten und kuratierte Frontend-Referenzen. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
+      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },
     {
       "name": "last30days",

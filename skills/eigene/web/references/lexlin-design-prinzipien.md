@@ -62,9 +62,46 @@ Brief zuerst in Sektionen zerlegen. Dann pro Sektion:
 - **C** — nie den ganzen Brief in ein einziges Prompt geben.
 - **D** — Vorteil: bessere KI-Qualitaet und volle Kontrolle ueber jede Sektion.
 
+### Image-first (vierte Methode, Premium-Frontend)
+
+**Quelle:** Leon Lin, X 2026 (Posts 2048791596137632126, 2050179260892029179) —
+Ideen-Merge, kein Zitat.
+
+Wenn Coding-Agenten allein zu generischen Landings tendieren: **visuelle
+Design-Phase vor Code** trennen.
+
+1. **Ein Bild pro Sektion** generieren (nicht ein Fullpage als einzige Vorlage).
+2. Mehrere Runs / Chats; beste Hero/Feature/CTA-Teile mischen.
+3. Assets aus den Bildern **generate and extract** (nicht nur croppen), BG
+   entfernen, dann AVIF/WebP ins Projekt (`bildgenerierung.md` / `bilder.mjs`).
+4. Coding-Agent: Sektion fuer Sektion — Referenzbild + extrahierte Assets +
+   Dateinamen + Stack; **Assets nicht neu erfinden**.
+5. Screenshot → gezieltes Feedback (Alignment, Spacing, Responsiveness, Brand,
+   Smoothness) → naechste Sektion.
+
+Abgrenzung: Bild = Vorlage ohne URL → zusaetzlich `rebuild-from-image.md`.
+URL-Clone → `web-clone-playbook.md` zuerst. Image-Skills (optional, extern):
+Leonxlnx taste-skill `imagegen-skills/frontend-web` und `frontend-mobile` (MIT).
+
+### Inspiration-Qualitaet
+
+Schlechte Referenzlisten produzieren generische Sites. Inspiration kuratieren
+(warum Layout/Spacing/Typo gut ist), in Ordnern (Hero, Pricing, Cards…), nie
+ganze Designs klonen. Ressourcen-Tweet + Router statt Link-Dump im Build.
+
+## Komplement: Damien Ghader
+
+Fuer Design-System-Schichten (Foundations→Components→Composition), Brandbook-
+Spec mit Hex/Grid, Ultra-Premium-Prompt-Skelett (Product·Stack·Aesthetic) und
+SEO/Conversion-Section-Order: **`damien-design-methodik.md`** laden. LexLin =
+Taste/Dials/Sektionsbau; Damien = System + Prompt-Architektur.
+
 ## Referenzen
 
 - taste-skill Repo: https://github.com/Leonxlnx/taste-skill (MIT, vendored als taste-kern.md)
 - SKILL.md raw: https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/taste-skill/SKILL.md
 - Profil: https://x.com/LexnLin
 - Ressourcen-Tweet (Basis der frontend-referenzbibliothek.md): https://x.com/LexnLin/status/2083898950755471520
+- Image-to-code: https://x.com/LexnLin/status/2048791596137632126
+- Image-to-code Beispiel: https://x.com/LexnLin/status/2050179260892029179
+- Methoden-Post: https://x.com/LexnLin/status/2076422557180608888

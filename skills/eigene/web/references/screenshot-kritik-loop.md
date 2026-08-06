@@ -69,9 +69,38 @@ sie nicht ansagen muessen. Ein Sweep ohne diesen Katalog gilt als nicht angesehe
 Judge-Prompt-Form: IMMER „pass/fail + eingefuegter Beweis", NIE eine Aufforderung,
 internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefunden.
 
+### 3b. Blind-A/B vs. Weltklasse-Referenz (Pflicht bei Ship / Premium / Gauntlet)
+
+Das Panel allein bewertet nur die eigene Seite. Self-Preference-Bias bleibt.
+Deshalb zusaetzlich (frische Session, andere Modellfamilie als Builder):
+
+1. **Kandidat-Shots** aus dem aktuellen Sweep (First Fold + 1–2 Key-Sections).
+2. **1–2 Referenz-Shots** derselben Seitentyp-Klasse (Awwwards/Land-book-Niveau
+   oder Raphael-gewaehlte Best-in-Class). Lizenz: nur intern vergleichen, nicht
+   klonen — `web-clone-playbook.md` Iron Rule bleibt.
+3. **Paarweise Runs (hart):** Jeder Richter-Lauf bewertet **genau ein Paar**
+   (ein Kandidat-Shot vs. ein Referenz-Shot als A/B). Mehrere Shots = mehrere
+   getrennte Runs, kein Mehrbild-Dump in einem Prompt.
+4. Dateien **anonymisieren** (`shot-a.png`, `shot-b.png`). Labels „unsere
+   Seite“ / Markennamen entfernen. **Positions-Tausch:** in der Haelfte der
+   Laeufe Kandidat als A, sonst als B (Bias-Kontrolle).
+5. Richter-Prompt (nur pass/fail-Form):
+   - Pro Achse aus `agentur-rubrik.md` (Visual / Usability / Creativity / Content-Trust):
+     `besser A | besser B | unentschieden` + **ein** Satz Beleg am Bild.
+   - Am Ende: `GEWINNER: A|B|unentschieden` · **genau EINE** groesste Luecke des
+     Verlierers · `BELEG: <dateiname>`.
+   - Kein „erklaere deinen Gedankengang“.
+6. Kandidat verliert klar auf Visual oder Usability → groesste Luecke auf die
+   Fixliste (P0), nicht „Geschmackssache“.
+7. Optional Gauntlet: wiederholen bis Zugewinn klein oder max. Kritik-Zyklen
+   (unten) erreicht — Messlatte bleibt die Referenz, nicht „ok fuer KI“.
+
+Rollen-Mapping: `agent-roster.md` → Blind-A/B-Richter.
+
 ### 4. Verifizierte Fixliste
 Die aktuelle Koordination merged: nur Befunde, die (a) von >=2 Panel-Mitgliedern ODER
 (b) vom eigenen Auge + 1 Panel-Mitglied getragen werden, kommen auf die Fixliste.
+Blind-A/B-Luecken (Kandidat verliert) zaehlen wie Panel-Mehrheit.
 Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
 
 ### 5. Fix (Worker nach Doktrin)
@@ -84,10 +113,16 @@ Gleiche Routes, gleiche Spec, NEUES out-Verzeichnis. Die aktuelle Koordination v
 vorher/nachher pro Befund Shot fuer Shot. Nicht behoben → zurueck auf die Liste mit
 Kommentar. Dann ALLE Seiten erneut pruefen (Nebenwirkungen), nicht nur die gefixte.
 
-### 7. Abschluss
+### 7. Abschluss + Abbruchkriterium
 „Fertig" heisst: Fixliste leer ODER jeder Restpunkt hat einen begruendeten
 „bewusst so"-Eintrag. Abschluss-Report listet pro Befund: vorher-Shot, nachher-Shot,
 Status. Screenshots sind der Beweis, nicht Prosa.
+
+**Max. 3 Zyklen** Panel/Blind → Fix → Re-Sweep. Danach keine Runde 4:
+- Panel-Divergenz &gt;20 % der Befunde (keine 2er-Mehrheit) → Eskalation Cockpit.
+- Blind-A/B weiter klar verloren und kein messbarer Shot-Fortschritt → Raphael
+  oder Richtungswechsel (Art Direction), nicht weiteres Pixel-Schleifen.
+
 
 ## Verbote (hart)
 - Kein fullPage-Screenshot, kein captureBeyondViewport (R20-Schein-Funde = Fullpage-Artefakte:

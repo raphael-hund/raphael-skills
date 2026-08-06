@@ -39,6 +39,9 @@ async function sweepRoute(browser, route, vp, label, manifest) {
   // Slug: '/' -> '__', fuehrenden Slash strippen — '/a/b' und '/a_b' kollidieren so nicht.
   const slug = route === '/' ? 'home'
     : route.replace(/^\/+/, '').replace(/\//g, '__').replace(/[^\w.-]+/g, '_');
+  // Hängende RSC-Prefetches (Next.js <link prefetch> auf 404-Routen) blockieren
+  // networkidle unendlich — diese Requests aborten, sonst timed der Sweep aus.
+  await page.route('**/*_rsc=*', (route) => route.abort().catch(() => {}));
   try {
     const res = await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' }).catch((e) => {
       console.log(`NAV-ERR ${route}: ${e.message}`);
@@ -56,10 +59,12 @@ async function sweepRoute(browser, route, vp, label, manifest) {
     // SPA-Catch-Alls liefern oft 200 + NotFound-Seite: als ehrlichen Fehler markieren,
     // sonst sweepen wir lautlos eine 404-Huelse. Heuristik: <title> mit 404/not found,
     // sonst schlanker Fallback ueber Body-Text.
-    let isNotFound = /\b(404|not found|nicht gefunden)\b/i.test(await page.title());
+    // "404" nur standalone werten — UIDs wie CHE-404.305.274 sind kein NotFound.
+    const notFoundRe = /(?<![\d.-])404(?![\d.-])|not found|nicht gefunden|page not found|seite nicht gefunden/i;
+    let isNotFound = notFoundRe.test(await page.title());
     if (!isNotFound) {
       const bodyText = await page.evaluate(() => (document.body?.innerText || '').slice(0, 600));
-      isNotFound = /\b(404|page not found|seite nicht gefunden)\b/i.test(bodyText);
+      isNotFound = notFoundRe.test(bodyText);
     }
     if (res.ok() && isNotFound) {
       entry.error = 'not-found page served with HTTP 200 (SPA catch-all)';

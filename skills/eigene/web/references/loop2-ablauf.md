@@ -25,12 +25,17 @@ Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
 
 ## Gates
 
-- **G1 (immer zuerst):** impeccable-46, Lighthouse = 0, axe = 0, Link-Check, HTML-validate.
-- **G2:** Copy sektionsweise gegen Rubrik `evals/rubrics/web.md`, Schwelle 0.7.
+- **G1 (immer zuerst):** `node …/design/scripts/detect.mjs` Exit 0 (nie `npx impeccable detect`),
+  Lighthouse = 0, axe = 0, Link-Check, HTML-validate, Werkzeug-Gate, SEO-Head-Mindestmaß,
+  Trust-Legal (Impressum/Datenschutz/404) — Details `qa-faecher.md` Fächer 1–6.
+- **G2:** Copy sektionsweise gegen Rubrik `evals/rubrics/web.md`, Schwelle 0.7;
+  Premium/Ship: Blind-A/B (`screenshot-kritik-loop.md` 3b) + Stichprobe `agentur-rubrik.md`.
 - **G4 (Outcome):** echte Analytics (CVR, Scroll, Bounce) → CRO-Learning, korrigiert Rubriken.
 
 ## Build-Regeln
 
+- `art-direction`: Tokens/Components vor Pages (`damien-design-methodik.md`);
+  Sektion für Sektion / Image-first (`lexlin-design-prinzipien.md`).
 - `components`: zuerst `tool-usecase-router.md` (Default+Install/Use+Gate),
   danach optional `frontend-referenzbibliothek.md` nur für Alternativen — keine
   160-Link-Dumps. *verify:* Werkzeugtabelle in `client-<name>/web/art-direction.md`
@@ -38,7 +43,7 @@ Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
 - `build`: *verify:* keine Dependency ohne Tabellenzeile —
   `node scripts/werkzeug-gate.mjs <projekt>` Exit 0.
 - Wer baut, ist nie wer reviewt; der Review läuft in einem unabhängigen Kontext
-  und nach Möglichkeit über einen anderen Anbieter.
+  und nach Möglichkeit über einen anderen Anbieter. Rollen: `agent-roster.md`.
 - Assembly-Line: Copy → frischer Build-Kontext → frischer QA-Kontext. Kontext ist
   Verbrauchsgut; den passenden Reset-/Neustart-Mechanismus des aktuellen Hosts nutzen.
 

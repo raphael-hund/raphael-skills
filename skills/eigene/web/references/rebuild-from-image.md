@@ -45,6 +45,15 @@ liegenden Seitenbereiche. Fremde Logos, Wasserzeichen, Personen,
 Bewertungen und Zertifikate werden nicht neu erfunden oder aus dem Bild
 herausgelöst — das ist Copy-/Rechte-Territorium, kein Design-Territorium.
 
+## Image-first-Workflow (LexLin) — wenn die Bilder erst erzeugt werden
+
+Wenn es noch **kein** Kunden-Screenshot gibt, sondern Design-Mockups per
+Image-Gen (ein Bild pro Sektion) gebaut und danach codiert werden sollen:
+Methodik in `lexlin-design-prinzipien.md` → Abschnitt **Image-first**. Danach
+gelten ab Schritt 2 unten dieselben Regeln (observed/inferred/unknown, Sektion
+für Sektion, Screenshot-Feedback). Assets: generate-and-extract, nicht nur
+croppen; Einbau über `bildgenerierung.md`.
+
 ## Ablauf in fünf Schritten
 
 ### 1. Intake — Bild-Herkunft festnageln, bevor irgendwas gebaut wird
@@ -164,8 +173,9 @@ neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
 - **Higgsfield-Asset-Pipeline** (`image_decompose`, `outpaint`, `gpt_image_2`,
   `recraft_v4_1`, Upscale-Modelle) — Vendor-Abo-Bindung, kein portabler
   Ablaufschritt. Wird ein generiertes Asset für eine dekorative Fläche
-  gebraucht, läuft das über den normalen `image`/`imagegen-web`-Weg dieser
-  Umgebung, nicht über den Vendor-Pfad.
+  gebraucht, läuft das über `references/bildgenerierung.md` (Higgsfield CLI /
+  GPT Image 2 / Recraft), nicht über den Vendor-Pfad und nicht über ein
+  separates `imagegen-web`-Skill (existiert hier nicht).
 - **`contract-gate.mjs` / `render-strategy.mjs` / `higgsfield-doctor.mjs`** —
   Node-Scripts, die Vendor-JSON-Contracts (`site-contract.json`,
   `asset-plan.json`, `final-evidence.json`) gegen ein Higgsfield-Setup

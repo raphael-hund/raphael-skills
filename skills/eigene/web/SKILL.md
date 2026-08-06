@@ -9,13 +9,13 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.10.0"
+  raphael-version: "0.12.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: '["references/loop2-ablauf.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/templates/statistics-page-template.html"]'
+  raphael-loads: '["references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","impeccable@^0","taste@^0","ui-ux@^0"]'
-  raphael-completion-criteria: '["Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node scripts/werkzeug-gate.mjs <projekt> Exit 0)"]'
+  raphael-completion-criteria: '["Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "Premium/Ship: screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Rollen aus agent-roster.md (agentType/Familie) — Build und Review unterschiedliche Familien"]'
 ---
 
 # web — Loop 2: Website
@@ -32,11 +32,10 @@ ui-ux = App/product-Linie — beide zeigen auf die Linien im design-Skill).
 
 ## Worker-Präferenz (Raphael 05.08.2026)
 
-Kimi K3 wird in diesem Skill **viel genutzt**: Frontend-Umsetzung
-(HTML/CSS/React/Tailwind, UI-Komponenten) und deutsche Verkaufstexte laufen
-bevorzugt über `kimi-worker` (neben Opus als erster Wahl laut Modell-Matrix),
-Gegenperspektive/3.-Familie-Verify über `kimi-recherche`. Immer K3, nie
-HighSpeed/K2.7. Gilt für die Rollen Copy, Build-Frontend und Review-Gegenstimme.
+**Primary/Fallback (fest):** Frontend-Umsetzung (HTML/CSS/React/Tailwind,
+UI-Komponenten) und deutsche Verkaufstexte → **`opus-builder` (Primary)** →
+Fallback **`kimi-worker`** (K3 only). Gegenperspektive/3.-Familie-Verify →
+`kimi-recherche`. Nie HighSpeed/K2.7. Rollen-Mapping: `agent-roster.md`.
 
 ## Zweck (1 Satz)
 
@@ -134,17 +133,28 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
 1. **strategy** — Ziel, Zielgruppe, Konversionspfad (Strategie-Rolle, Checkpoint Raphael).
 2. **sitemap** — Seitenstruktur + Sektionsplan (Informationsarchitektur-Rolle). Landing → Struktur aus
    `references/landingpage-struktur.md` (eine Aktion, Reihenfolge nach Überzeugungskraft).
-   Mehrseitige Website (kein Ads-Landing) → `references/informationsarchitektur.md`
+   Mehrseitige Website (kein Ads-Landing) → **`references/sitemap-section-planung.md`
+   (PFLICHT-Arbeitsablauf + Ausgabeformat: volle Sitemap in Ausbaustufen inkl.
+   Nicht-bauen-Liste → Layer/Pattern-Vokabular → Section-Plan je Seite mit
+   konkretem Inhalt → Querschnitt → Bau-Reihenfolge mit Gates; Abnahme-Checkliste
+   dort ist bindend — „5 Seiten mit Sektionslisten" ist KEIN fertiger Plan)**;
+   IA-Wissen dazu aus `references/informationsarchitektur.md`
    (Seitenhierarchie, Navigation, URL-Struktur, internes Verlinken).
 3. **copy** — Copy sektionsweise (Copy-Rolle, Brand-Voice + Proof über copywriting). G1-Stil → G2.
-4. **art-direction** — **verweist auf design.** G1 = impeccable-46-Regeln (`npx impeccable detect --json`).
+4. **art-direction** — **verweist auf design.** G1 = lokale Detektoren
+   (`node /root/raphael-skills/skills/design/scripts/detect.mjs` Exit 0 —
+   **nie** `npx impeccable detect`).
    Braucht die Art Direction **UI-/Landing-Inspiration** (Galerien, Mobbin, Refero)
    → zuerst `references/tool-usecase-router.md` §1 (eine Quelle wählen), nicht die
    ganze Inspirationsliste aus der Referenzbibliothek. Tool-Use-Case-Router ($#grafik-baum$ für Medien-Wahl).
    Wenn Brief UI-Inspiration braucht: §1 $#inspiration$ ziehen (eine Quelle, 3–7 Screenshots).
    Wenn fertige Design-Referenzseite vorhanden: web-clone-playbook.md zuerst, rebuild-from-image.md nur für Bildteile.
    Für Premium-Landing-Flächen zusätzlich `references/lexlin-design-prinzipien.md` laden
-   (15 Arbeitsregeln, Hero-Konstruktion, Dials) — Ergänzung zum vendorten taste-kern.
+   (15 Arbeitsregeln, Hero, Dials, Image-first) **und**
+   `references/damien-design-methodik.md` (Foundations→Components→Composition,
+   Brandbook-Spec, Ultra-Premium-Prompt-Skelett) — Ergänzung zum vendorten taste-kern.
+   Design-System-first: Tokens/Components bevor Pages (Damien); Sektion für Sektion
+   (LexLin). Multi-Agent-Rollen: `references/agent-roster.md`.
    Soll eine bestehende Referenzseite als Vorlage/Stil dienen ("baue mir etwas Ähnliches
    wie X", "clone diese Landingpage") → **zuerst** `references/web-clone-playbook.md` laden
    (Entscheidungsbaum, Lizenz-Check, Komplexitätsskala L1–L6) **bevor** Art Direction beginnt.
@@ -165,9 +175,12 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    stilistische Referenzen; GPT Image 2 ist auch der beste **Illustrator**, 2D/3D auch
    ohne Referenz), **nur echt fotorealistisch ohne Referenz → Recraft V4.1** mit
    JSON-Prompting, ohne Color-Grading und ohne Nahaufnahme-Gesichter echter Menschen,
-   **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht
-   verwechseln mit den **Design-Referenz-Mockups** aus `imagegen-web`/`imagegen-mobile`
-   (ein Mockup pro Sektion) — die Tabelle „Abgrenzung" in `bildgenerierung.md` trennt das.
+   **Nano Banana 2 nur für Previews**, Finals in 4k/2k. Nicht verwechseln mit
+   **Design-Referenz-Mockups** (ein Bild pro Sektion als Layout-Vorlage):
+   Methodik `lexlin-design-prinzipien.md` (Image-first) → danach
+   `rebuild-from-image.md` + Assets über `bildgenerierung.md`. Es gibt **keinen**
+   `imagegen-web`/`imagegen-mobile`-Skill in diesem Stack — die Tabelle
+   „Abgrenzung" in `bildgenerierung.md` trennt Mockup vs. Endkunden-Asset.
 5. **components** — Komponenten-Spezifikation aus Art Direction. Vier Schritte,
    in dieser Reihenfolge, kein Überspringen:
    **5a Bedarfsliste** — jede Sektion durchgehen und notieren, was sie braucht
@@ -191,7 +204,7 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    `references/ui-layouts-catalog.md`. Welches Design-System zum Brief passt
    (Radix/shadcn/Tailwind, Fluent, Carbon, Polaris, Atlassian, Material, …) →
    `references/design-systeme-vergleich.md`. Raphaels Default-Stack für eigene
-   Agenturprojekte (Next.js + Tailwind + Radix/shadcn + Framer Motion) →
+   Agenturprojekte (Next.js + Tailwind + Radix/shadcn + `motion`/`motion/react`) →
    `references/radix-shadcn-tailwind-stack.md`. Braucht das Projekt ein
    Hero-/Teaser-Video oder eine React-basierte Video-Composition (kein
    normales CSS-Motion) → `references/remotion-produktionsweg.md`.
@@ -214,13 +227,17 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
    Braucht der
    Build Datenbankzugriff zur Content-Prüfung → `references/readonly-db-rolle.md` (nie
    Schreibzugriff für ausführende Rollen).
-7. **qa-faecher** — QA parallel: **Conversion · Design · A11y · Technik** (Schwarm gemischt).
+7. **qa-faecher** — QA: **Conversion · Design · A11y · Technik · SEO · Trust**
+   (1–4 parallel, 5–6 danach/parallel zueinander; Rollen `agent-roster.md`).
    G1 Lighthouse/axe = 0, hart. Fach 4 enthält zusätzlich das **Werkzeug-Gate**
    (`node scripts/werkzeug-gate.mjs <projekt>`): ein Icon-System, kein
    `framer-motion`-Import, `useReducedMotion` in jeder kopierten Motion-Datei,
-   keine Dependency ohne Zeile in der Werkzeugtabelle — rot = kein Launch. Fach 2 Design laeuft ab jetzt als Screenshot-Kritik-Loop
-   nach references/screenshot-kritik-loop.md.
-   (Panel: eine Code-Ursachenprüfung plus zwei unabhängige visuelle Prüfungen.)
+   keine Dependency ohne Zeile in der Werkzeugtabelle — rot = kein Launch.
+   Fach 2 Design: Screenshot-Kritik-Loop (`screenshot-kritik-loop.md`) —
+   Panel (Code-Ursache + zwei visuelle Prüfungen); bei Premium/Ship zusätzlich
+   Blind-A/B Schritt 3b gegen Weltklasse-Referenz; max. 3 Fix-Zyklen.
+   Fach 5 SEO + Fach 6 Trust: `qa-faecher.md` + `agentur-rubrik.md` (AAA-Raster
+   Visual/SEO/Trust, nicht WCAG AAA).
    Bei kombiniertem Design+Copy-Check (AI-Slop) gilt die feste
    Sequenz aus "Look & QA": design ZUERST, **danach copywriting G1→G2 als fester zweiter
    Schritt** (nicht optional) — Details in `references/qa-faecher.md`. Optional Persona-QA
@@ -237,9 +254,12 @@ Kurz — eine Landingpage für Ads-Traffic ist **eine Aktion**, kein Website-Men
 
 Strategie (Strategie-Rolle, Checkpoint Raphael) → Sitemap + Copy sektionsweise
 (Informationsarchitektur-/Copy-Rolle, Voice+Proof; G1-Stil → G2) → Art Direction
-(design, G1 impeccable) → Build (Implementierungs-Rolle + unabhängiger Review) →
-QA-Fächer parallel (G1 Lighthouse/axe = 0, hart) → Launch (Signatur +
-Deploy-Egress-Gate) → CRO-Learning aus echten Analytics (Analyse-Rolle, G4).
+(design, G1 `detect.mjs`) → **components** (Router + Werkzeugtabelle 5d, ohne
+Tabelle kein Build) → Build (Implementierungs-Rolle + unabhängiger Review) →
+QA-Fächer: 1–4 parallel, dann 5 SEO + 6 Trust (G1 Lighthouse/axe = 0, hart;
+SEO/Trust blocken Launch) →
+Launch (Signatur + Deploy-Egress-Gate) → CRO-Learning aus echten Analytics
+(Analyse-Rolle, G4).
 
 ## Statistik-/Linkbait-Seite als Vorlage
 
@@ -250,6 +270,11 @@ Print-Styles. Unverändert übernehmen, nur Inhalte/Branding ersetzen.
 
 ## Gotchas
 
+- **`webdesigner-pro` unter `/root/.claude/skills/webdesigner-pro` ist Fremdskill**
+  (Mac-Second-Brain-Pfade, nicht Teil von raphael-skills/AGENTS). Nie routen;
+  höchstens Ideen lesen (Truth-Contract, 404-Gate). Kanon = dieser `web`-Skill + `design`.
+- **Design-G1 nur `node …/design/scripts/detect.mjs`**, nie `npx impeccable detect --json`
+  (unpatchte npm-Regeln ≠ lokale Doktrin).
 - **Frontend-Tools über `tool-usecase-router.md`, nicht über Link-Dumps.**
   Jeder Bedarf (Icons, FAQ, Motion, Stock, …) bekommt Default + Install/Use + Gate.
   `frontend-referenzbibliothek.md` ist nur Anhang nach dem Router — wer sie ohne
