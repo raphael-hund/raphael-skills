@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 SYNC_PATH = REPO_ROOT / "tools" / "sync-kimi-skills.py"
 KIMI_COMPAT_PATH = REPO_ROOT / "kimi" / "compatibility.json"
 CODEX_COMPAT_PATH = REPO_ROOT / "codex" / "compatibility.json"
-NATIVE_AGENT = {"dynamic-workflow", "orchestrate", "sdd", "ultra-loop", "kimi-first"}
+NATIVE_AGENT = {"dynamic-workflow", "orchestrate", "sdd", "kimi-first"}
 NATIVE_REVIEW = {"kimi-sol"}
 NO_LEGACY_THREAD_WORDING = re.compile(r"\bcodex[- ](?:thread|task)s?\b", re.IGNORECASE)
 KIMI_0281_TODO_FIELDS = {"title", "status"}
@@ -128,7 +128,7 @@ def check_native_runtime_contracts(c: Checks) -> None:
         c.check("resume_agent_ids" in lowered and "resume" in lowered, f"{name}: Agent/AgentSwarm resume contract missing")
         c.check(bool(re.search(r"do not (?:call|use).*agent.*agentswarm", lowered, re.DOTALL)), f"{name}: descendant dispatch prohibition missing")
 
-    for name in {"dynamic-workflow", "orchestrate", "sdd", "ultra-loop"}:
+    for name in {"dynamic-workflow", "orchestrate", "sdd"}:
         lowered = texts[name].lower()
         c.check("best_effort_authorized" in lowered and "resume" in lowered, f"{name}: task-scoped best-effort resume latch missing")
 

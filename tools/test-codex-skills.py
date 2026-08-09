@@ -21,7 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 SYNC_PATH = REPO_ROOT / "tools" / "sync-codex-skills.py"
 COMPAT_PATH = REPO_ROOT / "codex" / "compatibility.json"
 CANONICAL_REPO = "/root/raphael-skills"
-NATIVE_THREAD = {"dynamic-workflow", "orchestrate", "sdd", "ultra-loop"}
+NATIVE_THREAD = {"dynamic-workflow", "orchestrate", "sdd"}
 NATIVE_EXTERNAL = {"kimi-sol"}
 BANNED_NATIVE_TOKENS = (
     "spawn_agent",

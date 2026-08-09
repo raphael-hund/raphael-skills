@@ -34,7 +34,7 @@ def main() -> int:
     inventory = sync.load_inventory()
     expected_count = sync.read_json(sync.CODEX_REGISTRY_PATH)["skills"]
     assert len(inventory) == len(expected_count)
-    assert inventory["dynamic-workflow"] == ROOT / "skills" / "eigene" / "dynamic-workflow"
+    assert inventory["ultra-loop"] == ROOT / "skills" / "eigene" / "ultra-loop"
     assert inventory["kimi-sol"] == ROOT / "claude" / "skills" / "kimi-sol"
 
     with tempfile.TemporaryDirectory(prefix="claude-skills-") as td:

@@ -39,7 +39,7 @@ CODEX_REGISTRY_PATH = REPO_ROOT / "codex" / "compatibility.json"
 CANONICAL_REPO = "/root/raphael-skills"
 TARGET_VERSION = "kimi-code-0.28.1"
 
-NATIVE_KIMI_AGENT = {"dynamic-workflow", "orchestrate", "sdd", "ultra-loop", "kimi-first"}
+NATIVE_KIMI_AGENT = {"dynamic-workflow", "orchestrate", "sdd", "kimi-first"}
 NATIVE_KIMI_REVIEW = {"kimi-sol"}
 NATIVE_KIMI = NATIVE_KIMI_AGENT | NATIVE_KIMI_REVIEW
 VALID_MODES = {"source-adapter", "canonical-link", "native-kimi-agent", "native-kimi-review"}

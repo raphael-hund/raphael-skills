@@ -138,6 +138,10 @@
   "ui-ux": {
    "source": "skills/eigene/ui-ux/SKILL.md",
    "mode": "source-adapter"
+  },
+  "ultra-loop": {
+   "source": "skills/eigene/ultra-loop/SKILL.md",
+   "mode": "source-adapter"
   }
  }
 }
