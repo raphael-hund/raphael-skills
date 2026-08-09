@@ -14,11 +14,11 @@ Rolle, verfügbares Äquivalent laut MODELL-MATRIX.
 |---|---|---|---|---|---|
 | Strategie | Cockpit (Fable/Opus) oder `sol-worker` | high (Gateway-Force gilt) | ICP/OFFER/PROOF/VOICE + hot.md | 1 Ziel, 1 Pfad, offene Fragen | Deploy, Copy final |
 | Sitemap/IA | `luna-worker` | medium-Ziel / Gateway oft max | Strategie-Output + sitemap-section-planung.md | volle Sitemap + Section-Plan (Gate-Checkliste) | Design-Tokens erfinden |
-| Copy | `opus-builder` → Fallback `kimi-worker` | medium (Opus) / high (Kimi-Force) | Voice+Proof+Section-Plan | sektionsweise Copy, Claims↔Proof | Design-CSS |
-| Art Direction | Cockpit + design-Skill | high | Dossier + lexlin + damien-methodik + Referenzen | art-direction.md inkl. Tokens + Dials | npm i |
+| Copy | `opus-builder` oder `kimi-worker` | medium (Opus) / high (Kimi) | Voice+Proof+Section-Plan | sektionsweise Copy, Claims↔Proof | Design-CSS |
+| Art Direction | Cockpit + design-Skill | high | Dossier + Design-Brief + Referenzen mit Rolle | art-direction.md inkl. Tokens + Dials | npm i |
 | Components-Spec | `luna-worker` | medium-Ziel / Gateway oft max | art-direction + tool-usecase-router | Werkzeugtabelle 5d | Install ohne Tabelle |
-| Frontend-Build | `opus-builder` → `kimi-worker` | medium (Opus) / high (Kimi-Force) | Werkzeugtabelle + Tokens + Section-Brief | Code + lokaler Dev-Beweis | Review eigener Arbeit |
-| Motion | `kimi-worker` / `luna-worker` | high/max (Gateway) | motion-doktrin + Storyboard | animierte Sections + reduced-motion | framer-motion-Paketname |
+| Frontend-Build | `opus-builder` für 3D/art-directed Polish; `kimi-worker` für Frontend + langen Designkontext | medium (Opus) / high (Kimi) | gehashtes Design-Brief + Werkzeugtabelle + Tokens + Section-Brief + `web`/`design` | Code + lokaler Dev-Beweis | Review eigener Arbeit |
+| Motion/3D | `opus-builder` oder `kimi-worker`; Luna nur für klar spezifizierte Mechanik | medium/high | Design-Brief + motion-doktrin + Storyboard | animierte Sections + reduced-motion | ungefragter Stackwechsel |
 | Shot-Sweep | ausführende Rolle / `luna-worker` | low-Ziel / Gateway oft max | shot-sweep.mjs Pfade | manifest.json + PNGs | fullPage |
 | Code-Kritik („Zoll“) | `luna-worker` oder `sol-worker` | high/max (Gateway) | Befunde + Source | datei:zeile pass/fail | Design-Meinung ohne Code |
 | Visuelle Kritik A | `kimi-recherche` oder `grok-worker` | high (Gateway-Force) | manifest + PNGs | Befund+Shot-Pfad | Code schreiben |
