@@ -124,7 +124,7 @@
     },
     {
       "name": "orchestrate",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "path": "skills/eigene/orchestrate/SKILL.md",
       "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok, Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
     },

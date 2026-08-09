@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-version: 1.3.0
+version: 1.3.1
 description: >
   DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle
   Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok,
@@ -44,7 +44,7 @@ completion_criteria:
   - "Bei Workflow-Lauf: validate-workflow.py lief PASS vor dem Start und die Run-ID ist genannt"
   - "Kern-Ergebnisse wurden vom Cockpit selbst mit eigenem Read/Bash-Beleg nachverifiziert — kein blindes Übernehmen von Agenten-Reports"
   - "Bei LOOP: Abbruchbedingung stand vor dem Start fest und das Runden-Protokoll ist fortgeschrieben"
-  - "Bei jeder Substanz-Runde erzeugten Subagenten zuerst einen echten mehrstufigen PLAN; jeder Plan-Step läuft über mindestens einen explizit beauftragten Subagenten und abhängige Steps sind sequentiell nachvollziehbar"
+  - "Bei jeder Substanz-Runde erzeugten Subagenten zuerst einen echten PLAN mit mindestens zwei Steps; jeder Plan-Step läuft über mindestens einen explizit beauftragten Subagenten und abhängige Steps sind sequentiell nachvollziehbar"
   - "LOOP setzt Kimi, Grok, Sol, Terra, Luna, Opus, Sonnet und Haiku mit echten Rollen ein; fehlt eine Familie wegen eines belegten Routenausfalls, stehen Beleg und Ersatz im Runden-Protokoll"
   - "Bei mindestens einem sinnvoll zerlegbaren LOOP-Step definierte ein Lead eigene Child-Aufträge; der Workflow startete diese Child-Subagenten als sichtbare Runtime-Aufrufe in Wellen und gab ihre echten Ergebnisse zur Lead-Synthese zurück"
   - "Parallelität bleibt innerhalb eines Plan-Steps; mehr als 6 gleichzeitig läuft in Wellen (bindende RAM-Grenze)"
@@ -183,8 +183,8 @@ Gates.
    TABU (Fremd-Baustellen, `git add -A`, Reward-Hacking), **Abbruchbedingung**
    (Rundenlimit, Zeitfenster, „keine offenen Punkte mehr“, N Runden ohne Fund).
 2. **Plan zuerst:** Vor jeder Substanz-Runde erzeugen Subagenten einen echten
-   mehrstufigen `PLAN`. Jeder Plan-Step hat ein Ziel, Abhängigkeiten, mindestens
-   einen expliziten Subagenten und ein Gate. Abhängige Steps laufen sequentiell;
+   `PLAN` mit mindestens zwei Steps. Jeder Plan-Step hat ein Ziel, Abhängigkeiten,
+   mindestens einen expliziten Subagenten und ein Gate. Abhängige Steps laufen sequentiell;
    Parallelität findet nur innerhalb eines Steps statt. Mehr als 6 gleichzeitig
    wird in Wellen gefahren (bindende RAM-Grenze). Das Cockpit koordiniert und
    verifiziert, erledigt aber keinen Plan-Step solo.

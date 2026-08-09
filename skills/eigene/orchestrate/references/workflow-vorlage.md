@@ -57,7 +57,7 @@ const CONTRACT = [
 ].join('\n')
 const PLAN_SCHEMA = {
   type: 'object', additionalProperties: false,
-  properties: { steps: { type: 'array', minItems: 1, items: {
+  properties: { steps: { type: 'array', minItems: 2, items: {
     type: 'object', additionalProperties: false,
     properties: {
       id: { type: 'string', minLength: 1 }, ziel: { type: 'string', minLength: 1 },
@@ -181,7 +181,7 @@ function assertKnown(type, where) {
   if (!AGENT_TYPES.includes(type)) throw new Error(`Unbekannter AgentType in ${where}: ${type}`)
 }
 function validatePlan(plan) {
-  if (!plan || !Array.isArray(plan.steps) || plan.steps.length < 1) throw new Error('PLAN_SCHEMA: kein Step')
+  if (!plan || !Array.isArray(plan.steps) || plan.steps.length < 2) throw new Error('PLAN_SCHEMA: weniger als zwei Steps')
   const seen = new Set()
   const covered = new Set()
   for (const step of plan.steps) {
@@ -286,8 +286,9 @@ for (const step of plan.steps) {
   )
   let owners = []
   let nested = []
+  let leadPlan = null
   if (step.nested) {
-    const leadPlan = await callAgent(step.lead_agent_type, promptFor(step, dependencies, 'Nested-Lead-Plan',
+    leadPlan = await callAgent(step.lead_agent_type, promptFor(step, dependencies, 'Nested-Lead-Plan',
       `Definiere exakt einen vollständigen Child-Auftrag pro Eintrag aus ${JSON.stringify(step.child_agent_types)}. Starte selbst keine Agenten: Der Workflow muss die Child-Aufrufe und ihre Parallelität direkt sehen. Jeder Auftrag braucht eindeutige child_task_id, passenden child_agent_type, konkrete child_task und ein zu anderen Children disjunktes write_set.`),
       { label: `step:${step.id}:lead-plan`, phase: 'Steps ausführen', step_id: step.id,
         replacement_types: LEAD_TYPES.filter(
@@ -336,7 +337,20 @@ for (const step of plan.steps) {
   const verifyReplacementTypes = AGENT_TYPES.filter(
     type => !ownerProviderFamilies.has(PROVIDER_FAMILY[type]),
   )
-  const verify = await callAgent(step.verify_agent_type, promptFor(step, [...dependencies, { id: step.id, owner_results: owners }], 'Unabhängiger Verify',
+  const verifyInput = [{ id: step.id, owner_results: owners }]
+  if (step.nested) {
+    verifyInput.push({
+      child_plan: leadPlan.output.child_tasks,
+      child_runtime_results: nested.map(item => ({
+        child_task_id: item.child_task_id, child_call_id: item.child_call_id,
+        planned_child_agent_type: item.planned_child_agent_type,
+        child_agent_type: item.child_agent_type, wave: item.wave,
+        child_task: item.child_task, write_set: item.write_set,
+        child_result: item.child_result, beleg: item.beleg,
+      })),
+    })
+  }
+  const verify = await callAgent(step.verify_agent_type, promptFor(step, [...dependencies, ...verifyInput], 'Unabhängiger Verify',
     `Prüfe das echte Ergebnis gegen das Gate. Bei Nested-Steps prüfe die direkt geloggten Child-Runtime-Aufrufe, child_call_id, echte Wellen, disjunkte write_sets und exakte Child-Anzahlen. Gib nur PASS oder FAIL mit einem nichtleeren eingefügten Beleg zurück.`),
     { label: `verify:${step.id}`, phase: 'Verify', step_id: step.id,
       replacement_types: verifyReplacementTypes, schema: VERIFY_SCHEMA })
