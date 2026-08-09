@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 41,
+  "skill_count": 42,
   "skills": [
     {
       "name": "design",
@@ -124,9 +124,9 @@
     },
     {
       "name": "orchestrate",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
+      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok, Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
     },
     {
       "name": "read-book",
@@ -157,6 +157,12 @@
       "version": "0.1.0",
       "path": "skills/eigene/ui-ux/SKILL.md",
       "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
+    },
+    {
+      "name": "ultra-loop",
+      "version": "1.0.0",
+      "path": "skills/eigene/ultra-loop/SKILL.md",
+      "description": "Dünner Router für /ultra-loop: lädt ausschließlich orchestrate und delegiert an dessen Betriebsart LOOP. Die kanonische Dauer-Verbesserungs-Mechanik lebt nur dort. Trigger: \"/ultra-loop\", \"Ultra-Loop\", \"Dauer-Verbesserungs-Loop\"."
     },
     {
       "name": "visual-aaa",

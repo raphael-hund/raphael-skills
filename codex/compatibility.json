@@ -520,6 +520,16 @@
     "Dauerlauf"
    ]
   },
+  "ultra-loop": {
+   "source": "skills/eigene/ultra-loop/SKILL.md",
+   "mode": "source-adapter",
+   "rationale": "Expose the thin /ultra-loop router while keeping LOOP semantics canonical in orchestrate.",
+   "triggers": [
+    "/ultra-loop",
+    "Ultra-Loop",
+    "Dauer-Verbesserungs-Loop"
+   ]
+  },
   "read-book": {
    "source": "skills/eigene/read-book/SKILL.md",
    "mode": "source-adapter",

@@ -1,10 +1,10 @@
 ---
 name: orchestrate
-version: 1.2.0
+version: 1.3.0
 description: >
   DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle
-  Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok;
-  Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf,
+  Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok,
+  Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf,
   Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei
   Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt
   dynamic-workflow, ultra-loop und graph. Trigger: "orchestrieren",
@@ -44,6 +44,11 @@ completion_criteria:
   - "Bei Workflow-Lauf: validate-workflow.py lief PASS vor dem Start und die Run-ID ist genannt"
   - "Kern-Ergebnisse wurden vom Cockpit selbst mit eigenem Read/Bash-Beleg nachverifiziert — kein blindes Übernehmen von Agenten-Reports"
   - "Bei LOOP: Abbruchbedingung stand vor dem Start fest und das Runden-Protokoll ist fortgeschrieben"
+  - "Bei jeder Substanz-Runde erzeugten Subagenten zuerst einen echten mehrstufigen PLAN; jeder Plan-Step läuft über mindestens einen explizit beauftragten Subagenten und abhängige Steps sind sequentiell nachvollziehbar"
+  - "LOOP setzt Kimi, Grok, Sol, Terra, Luna, Opus, Sonnet und Haiku mit echten Rollen ein; fehlt eine Familie wegen eines belegten Routenausfalls, stehen Beleg und Ersatz im Runden-Protokoll"
+  - "Bei mindestens einem sinnvoll zerlegbaren LOOP-Step definierte ein Lead eigene Child-Aufträge; der Workflow startete diese Child-Subagenten als sichtbare Runtime-Aufrufe in Wellen und gab ihre echten Ergebnisse zur Lead-Synthese zurück"
+  - "Parallelität bleibt innerhalb eines Plan-Steps; mehr als 6 gleichzeitig läuft in Wellen (bindende RAM-Grenze)"
+  - "Im LOOP gibt es nie einen Fable-Subagenten"
   - "Bei GRAPH: mindestens ein Gate ist ein externer Anker (Test, Lint, Screenshot-Diff, Live-Signal)"
   - "Bei GAUNTLET: inspizierbare Messlatte liegt als Datei vor, Builder und Kritiker sind verschiedene Familien, Kritik erfolgte am echten Artefakt und lieferte genau EINE größte Lücke"
   - "Bei COUNCIL: anonymes Peer-Ranking; Chairman-Verdikt nennt Konsens, Dissens, Empfehlung und genau einen ersten Schritt"
@@ -98,9 +103,11 @@ Gauntlet-Runden). Kombinieren statt künstlich trennen.
 - **Verifier** (andere Familie, frische Session): `sol-pruefer` (Beschluss B1);
   bei Codex-Ausfall `claude-sonnet-5` plus Panel A auf Kimi (Regel 8).
 
-**Cross-Model-Regel:** mindestens **zwei Modellfamilien** je Substanz-Lauf;
-Bauen und Prüfen nie dieselbe Familie; `model:'opus'|'sonnet'|'haiku'` allein
-zählt **nicht** — GPT/Kimi starten nur über `agentType` oder natives Harness.
+**Cross-Model-Regel:** mindestens **zwei Providerfamilien** je Substanz-Lauf;
+Bauen und Prüfen nie dieselbe Providerfamilie. Für dieses Gate zählen
+Luna/Sol/Terra als **GPT**, Opus/Sonnet/Haiku als **Claude**, dazu Kimi und Grok;
+die acht AgentTypes behalten trotzdem eigene LOOP-Rollen. `model:'opus'|'sonnet'|'haiku'`
+allein zählt **nicht** — GPT/Kimi starten nur über `agentType` oder natives Harness.
 Isolierbare Sub-Actions gehen zuerst an `luna-worker`, nicht ans Cockpit.
 **Fable/Opus nur über `agentType:'fable-architekt'` / `'opus-builder'`**
 (Freigabe 03.08.2026, teuer — Einsatzregeln in orchestrate-gauntlet), nie als
@@ -156,6 +163,14 @@ Auftrag gehört in den Prompt; Rückgabe ist Ergebnis oder kurze Zusammenfassung
 nie ein Rohdump. Parallele Schreiber nur auf getrennten Dateien; geteilte
 Dateien (Index, SKILL.md) bekommen EINEN Owner am Ende.
 
+**Verschachtelte Delegation:** Ein Lead definiert die eigenen Child-Aufträge mit
+vollständigem Kontrakt (agentType, ROLLE, HARNESS, AUFGABE, INPUT, OUTPUT, GATE,
+TRUST und `write_set`). Der Workflow startet jeden Child danach selbst als sichtbaren
+`agent()`-Runtime-Aufruf, fährt mehr als 6 Children in echten nummerierten Wellen und
+gibt die echten Child-Ergebnisse an eine frische Lead-Synthese zurück. Hidden Dispatch
+im undurchsichtigen Lead-Aufruf ist verboten: Nur so sind Lead→Child→Ergebnis und die
+RAM-Grenze technisch prüfbar. `terra-bulk` und `luna-worker` bleiben Leaf-Worker.
+
 **Long-Horizon-Klausel** (Pflicht bei Codex-/Kimi-Adaptern, die das private
 CLAUDE.md nicht erben): „long horizon session, human is away“ — autonom
 weiterarbeiten bis Gates grün oder Budget/Rundenlimit erreicht, bei Unsicherheit
@@ -167,16 +182,31 @@ Gates.
 1. **Mandat klären:** WAS wird verbessert, welche GATES bleiben grün, was ist
    TABU (Fremd-Baustellen, `git add -A`, Reward-Hacking), **Abbruchbedingung**
    (Rundenlimit, Zeitfenster, „keine offenen Punkte mehr“, N Runden ohne Fund).
-2. **Cron anlegen** (CronCreate, 20–30 Min, session-only). Der Prompt trägt:
-   Workflow-Pflicht, Flotte per `agentType`, Stand-Datei lesen+fortschreiben,
-   Commit-Regel, „EINEN Punkt tief und fertig“, Long-Horizon-Klausel.
-3. **Runde 1 sofort fahren**, nicht auf den ersten Fire warten.
-4. **Runden-Mechanik:** Working-Tree prüfen (Reste einordnen) → Stand lesen →
-   Workflow starten → selbst verifizieren → chirurgisch fixen → Gates grün →
-   nur bearbeitete Pfade committen (**nie `git add -A`**; vor Push den
-   ahead-Stand prüfen, fremde ungepushte Commits nicht mitschleifen) →
-   Protokoll nach `references/runden-protokoll.md`.
-5. **Stoppen:** `CronDelete <job-id>`. Sessionübergreifend → systemd-Timer +
+2. **Plan zuerst:** Vor jeder Substanz-Runde erzeugen Subagenten einen echten
+   mehrstufigen `PLAN`. Jeder Plan-Step hat ein Ziel, Abhängigkeiten, mindestens
+   einen expliziten Subagenten und ein Gate. Abhängige Steps laufen sequentiell;
+   Parallelität findet nur innerhalb eines Steps statt. Mehr als 6 gleichzeitig
+   wird in Wellen gefahren (bindende RAM-Grenze). Das Cockpit koordiniert und
+   verifiziert, erledigt aber keinen Plan-Step solo.
+3. **Familien und Delegation besetzen:** Jede LOOP-Runde setzt Kimi, Grok, Sol,
+   Terra, Luna, Opus, Sonnet und Haiku mit echten Rollen ein. Bei echtem
+   Routenausfall darf eine Familie fehlen, aber nur mit Beleg und Ersatz im
+   Runden-Protokoll. Ein geeigneter Lead definiert für mindestens einen sinnvoll
+   zerlegbaren Plan-Step eigene Child-Aufträge. Der Workflow startet die Children
+   sichtbar und wellenbegrenzt; danach synthetisiert ein Lead ihre echten Ergebnisse.
+   `terra-bulk` und `luna-worker` bleiben Leaf-Worker. **Nie Fable-Subagent im LOOP.**
+4. **Cron anlegen** (CronCreate, 20–30 Min, session-only). Der Prompt trägt:
+   Workflow-Pflicht, den Subagenten-PLAN vor der Flotte, Flotte per `agentType`,
+   Stand-Datei lesen+fortschreiben, Commit-Regel, „EINEN Punkt tief und fertig“,
+   Long-Horizon-Klausel und den Nachweis der verschachtelten Delegation.
+5. **Runde 1 sofort fahren**, nicht auf den ersten Fire warten.
+6. **Runden-Mechanik:** Working-Tree prüfen (Reste einordnen) → Stand lesen →
+   Subagenten-PLAN erzeugen → abhängige Plan-Steps nacheinander ausführen →
+   selbst verifizieren → chirurgisch fixen → Gates grün → nur bearbeitete Pfade
+   committen (**nie `git add -A`**; vor Push den ahead-Stand prüfen, fremde
+   ungepushte Commits nicht mitschleifen) → Protokoll nach
+   `references/runden-protokoll.md`.
+7. **Stoppen:** `CronDelete <job-id>`. Sessionübergreifend → systemd-Timer +
    `claude -p --resume` vorschlagen, nicht Session-Cron.
 
 **Loop-Hygiene:** Runden-Körper idempotent (zweimal dieselbe Runde = derselbe
