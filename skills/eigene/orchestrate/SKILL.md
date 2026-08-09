@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-version: 1.3.1
+version: 1.3.2
 description: >
   DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle
   Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok,

@@ -17,3 +17,6 @@ Codex mapping:
 - Never pretend that a missing tool exists.
 - Create new or background threads only when the user explicitly requests them.
 - Keep every source safety and completion requirement authoritative.
+
+Codex dependency map:
+- Resolve the `orchestrate` dependency for LOOP mode directly to `/root/raphael-skills/skills/eigene/orchestrate/SKILL.md`; do not use the native Codex `orchestrate` skill as the LOOP semantics source.

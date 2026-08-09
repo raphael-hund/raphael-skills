@@ -53,6 +53,7 @@ const CONTRACT = [
   'GATE: exakter Prüfweg und eingefügter Beleg',
   'TRUST: Ergebnis bleibt untrusted bis zur unabhängigen Prüfung',
   'write_set: bei parallelen Schreibern disjunkt',
+  'DISPATCH: Starte weder Agent noch AgentSwarm oder sonstige Subagents; ausschließlich der Workflow startet sichtbare agent()-Aufrufe',
   'Kein Reward-Hacking, keine gelöschten oder aufgeweichten Checks',
 ].join('\n')
 const PLAN_SCHEMA = {
@@ -84,7 +85,7 @@ const STEP_SCHEMA = {
   type: 'object', additionalProperties: false,
   properties: {
     result: { type: 'string', minLength: 1 }, beleg: { type: 'string', minLength: 1 },
-    nested_delegations: { type: 'array', items: { type: 'object', additionalProperties: false,
+    nested_delegations: { type: 'array', maxItems: 0, items: { type: 'object', additionalProperties: false,
       properties: {
         child_agent_type: { type: 'string', minLength: 1 },
         child_agent_id: { type: 'string', minLength: 1 },
@@ -97,6 +98,11 @@ const STEP_SCHEMA = {
   },
   required: ['result', 'beleg', 'nested_delegations'],
 }
+const CHILD_TASK_FIELDS = [
+  'child_task_id', 'child_agent_type', 'rolle', 'harness', 'child_task',
+  'input', 'output', 'gate', 'trust', 'write_set',
+]
+const CHILD_TASK_FIELD_SET = new Set(CHILD_TASK_FIELDS)
 const LEAD_PLAN_SCHEMA = {
   type: 'object', additionalProperties: false,
   properties: {
@@ -105,9 +111,15 @@ const LEAD_PLAN_SCHEMA = {
       properties: {
         child_task_id: { type: 'string', minLength: 1 },
         child_agent_type: { type: 'string', minLength: 1 },
+        rolle: { type: 'string', minLength: 1 },
+        harness: { type: 'string', minLength: 1 },
         child_task: { type: 'string', minLength: 1 },
+        input: { type: 'string', minLength: 1 },
+        output: { type: 'string', minLength: 1 },
+        gate: { type: 'string', minLength: 1 },
+        trust: { type: 'string', minLength: 1 },
         write_set: { type: 'array', items: { type: 'string', minLength: 1 } },
-      }, required: ['child_task_id', 'child_agent_type', 'child_task', 'write_set'],
+      }, required: CHILD_TASK_FIELDS,
     } },
   },
   required: ['result', 'beleg', 'child_tasks'],
@@ -135,6 +147,18 @@ const attempts = []
 function replacementCandidate(type, allowedTypes) {
   return allowedTypes.find(candidate => candidate !== type && FAMILY[candidate] !== FAMILY[type]) || null
 }
+function plannedOwnerTypes(step) {
+  return step.nested ? [step.lead_agent_type, ...step.child_agent_types] : step.agent_types
+}
+function verifierReplacementType(step) {
+  const ownerProviderFamilies = new Set(plannedOwnerTypes(step).map(type => PROVIDER_FAMILY[type]))
+  const verifyProviderFamily = PROVIDER_FAMILY[step.verify_agent_type]
+  const allowedTypes = AGENT_TYPES.filter(type =>
+    PROVIDER_FAMILY[type] !== verifyProviderFamily
+    && !ownerProviderFamilies.has(PROVIDER_FAMILY[type]),
+  )
+  return replacementCandidate(step.verify_agent_type, allowedTypes)
+}
 async function callAgent(agentType, prompt, options) {
   const { step_id, replacement_types = AGENT_TYPES, ...agentOptions } = options
   async function invoke(type, label) {
@@ -150,12 +174,19 @@ async function callAgent(agentType, prompt, options) {
   attempts.push(attempt)
   if (attempt.output !== null) return attempt
   const replacementType = replacementCandidate(agentType, replacement_types)
-  if (!replacementType) throw new Error(`Route ohne zulässigen Ersatz: ${agentType}`)
+  if (!replacementType) {
+    log(`ROUTE_FAILURE_BLOCKED ${JSON.stringify({ primary: attempt })}`)
+    throw new Error(`Route ohne zulässigen Ersatz: ${agentType}`)
+  }
   const replacement = await invoke(replacementType, `${agentOptions.label}:replacement`)
   attempt.replacement_agent_type = replacement.agent_type
   attempt.replacement_result = replacement
   attempts.push(replacement)
-  if (replacement.output === null) throw new Error(`Primary und Ersatz fehlgeschlagen: ${agentType} → ${replacement.agent_type}`)
+  if (replacement.output === null) {
+    log(`ROUTE_FAILURE_BLOCKED ${JSON.stringify({ primary: attempt, replacement })}`)
+    throw new Error(`Primary und Ersatz fehlgeschlagen: ${agentType} → ${replacement.agent_type}`)
+  }
+  log(`ROUTE_FAILURE_RECOVERED ${JSON.stringify({ primary: attempt, replacement })}`)
   return replacement
 }
 function currentRouteFailures() {
@@ -180,10 +211,14 @@ async function runInWaves(tasks) {
 function assertKnown(type, where) {
   if (!AGENT_TYPES.includes(type)) throw new Error(`Unbekannter AgentType in ${where}: ${type}`)
 }
+function hasText(value) {
+  return typeof value === 'string' && value.trim().length > 0
+}
 function validatePlan(plan) {
   if (!plan || !Array.isArray(plan.steps) || plan.steps.length < 2) throw new Error('PLAN_SCHEMA: weniger als zwei Steps')
   const seen = new Set()
   const covered = new Set()
+  let hasNestedStep = false
   for (const step of plan.steps) {
     if (!step.id || !step.ziel || !Array.isArray(step.depends_on) || !Array.isArray(step.agent_types)
       || step.agent_types.length < 1 || typeof step.nested !== 'boolean'
@@ -193,18 +228,21 @@ function validatePlan(plan) {
     for (const type of step.agent_types) { assertKnown(type, `${step.id}.agent_types`); covered.add(type) }
     assertKnown(step.verify_agent_type, `${step.id}.verify_agent_type`); covered.add(step.verify_agent_type)
     if (step.nested) {
+      hasNestedStep = true
       if (!LEAD_TYPES.includes(step.lead_agent_type) || step.agent_types.length !== 1
         || step.agent_types[0] !== step.lead_agent_type) throw new Error(`Ungültiger Lead/Owner: ${step.id}`)
       if (step.child_agent_types.length < 1) throw new Error(`Nested-Step ohne Child: ${step.id}`)
       for (const type of step.child_agent_types) { assertKnown(type, `${step.id}.child_agent_types`); covered.add(type) }
       covered.add(step.lead_agent_type)
     } else if (step.lead_agent_type !== '' || step.child_agent_types.length > 0) throw new Error(`Lead/Child bei nicht-nested Step: ${step.id}`)
-    const ownerTypes = step.nested ? [step.lead_agent_type, ...step.child_agent_types] : step.agent_types
+    const ownerTypes = plannedOwnerTypes(step)
     if (ownerTypes.some(type => PROVIDER_FAMILY[type] === PROVIDER_FAMILY[step.verify_agent_type])) {
       throw new Error(`Verify-Providerfamilie ist Owner-/Lead-/Child-Familie: ${step.id}`)
     }
+    if (!verifierReplacementType(step)) throw new Error(`Keine unabhängige Verifier-Ersatzroute: ${step.id}`)
     seen.add(step.id)
   }
+  if (!hasNestedStep) throw new Error('PLAN_SCHEMA: kein Nested-Step')
   for (const type of AGENT_TYPES) if (!covered.has(type)) throw new Error(`AgentType fehlt im PLAN: ${type}`)
 }
 function validateChildPlan(step, leadPlan) {
@@ -219,9 +257,19 @@ function validateChildPlan(step, leadPlan) {
   const childTaskIds = new Set()
   const writePaths = new Set()
   for (const child of leadPlan.output.child_tasks) {
+    if (!child || typeof child !== 'object' || Array.isArray(child)) {
+      throw new Error(`Child-Plan ungültig: ${step.id}`)
+    }
+    const childKeys = Object.keys(child)
+    if (childKeys.length !== CHILD_TASK_FIELDS.length
+      || childKeys.some(key => !CHILD_TASK_FIELD_SET.has(key))) {
+      throw new Error(`Child-Plan ungültig: ${step.id}`)
+    }
     assertKnown(child.child_agent_type, `${step.id}.child_tasks`)
-    if (!plannedCounts.has(child.child_agent_type) || !child.child_task_id.trim()
-      || childTaskIds.has(child.child_task_id) || !child.child_task.trim()
+    if (!plannedCounts.has(child.child_agent_type) || !hasText(child.child_task_id)
+      || childTaskIds.has(child.child_task_id) || !hasText(child.rolle) || !hasText(child.harness)
+      || !hasText(child.child_task) || !hasText(child.input) || !hasText(child.output)
+      || !hasText(child.gate) || !hasText(child.trust)
       || !Array.isArray(child.write_set)) throw new Error(`Child-Plan ungültig: ${step.id}`)
     childTaskIds.add(child.child_task_id)
     actualCounts.set(child.child_agent_type, (actualCounts.get(child.child_agent_type) || 0) + 1)
@@ -250,6 +298,7 @@ function validateNestedDelegations(step, leadPlan, lead, nested) {
       || !item.call || !attempts.includes(item.call) || item.call.output === null
       || item.call.step_id !== step.id || item.child_agent_type !== item.call.agent_type
       || item.child_result !== item.call.output.result || item.beleg !== item.call.output.beleg
+      || item.call.output.nested_delegations.length !== 0
       || PROVIDER_FAMILY[item.child_agent_type] === PROVIDER_FAMILY[step.verify_agent_type]) {
       throw new Error(`Nested-Runtime-Beleg ungültig: ${step.id}`)
     }
@@ -269,7 +318,7 @@ const panel = await runInWaves(AGENT_TYPES.map(agentType => ({ run: () => callAg
 const synthesisStep = { id: 'plan-synthesis', ziel: 'Echten Missionsplan synthetisieren', depends_on: ['plan-panel'],
   agent_types: ['opus-builder'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-pruefer', gate: 'PLAN_SCHEMA und Familienabdeckung erfüllt' }
 const synthesisPrompt = promptFor(synthesisStep, panel, 'Plan-Synthese',
-  `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle acht AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; dieser dispatcht Children später über sein Agent-Tool.`)
+  `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder und mindestens ein Step muss nested=true sein. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle acht AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Lass in jedem Step zusätzlich mindestens einen AgentType aus einer weiteren Providerfamilie frei, die sowohl von allen Ownern als auch vom primären Verifier verschieden ist. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; der Workflow startet dessen Children später sichtbar.`)
 const synthesis = await callAgent('opus-builder', synthesisPrompt,
   { label: 'plan-synthesis:opus', phase: 'Planen', step_id: synthesisStep.id, replacement_types: LEAD_TYPES, schema: PLAN_SCHEMA })
 const plan = synthesis.output
@@ -281,23 +330,25 @@ const nested_delegations = []
 phase('Steps ausführen')
 for (const step of plan.steps) {
   const dependencies = step.depends_on.map(id => ({ id, result: step_results[id] }))
-  const ownerReplacementTypes = AGENT_TYPES.filter(
-    type => PROVIDER_FAMILY[type] !== PROVIDER_FAMILY[step.verify_agent_type],
+  const reservedVerifierType = verifierReplacementType(step)
+  const reservedVerifierProviderFamily = PROVIDER_FAMILY[reservedVerifierType]
+  const ownerReplacementTypes = AGENT_TYPES.filter(type =>
+    PROVIDER_FAMILY[type] !== PROVIDER_FAMILY[step.verify_agent_type]
+    && PROVIDER_FAMILY[type] !== reservedVerifierProviderFamily,
   )
   let owners = []
   let nested = []
   let leadPlan = null
   if (step.nested) {
     leadPlan = await callAgent(step.lead_agent_type, promptFor(step, dependencies, 'Nested-Lead-Plan',
-      `Definiere exakt einen vollständigen Child-Auftrag pro Eintrag aus ${JSON.stringify(step.child_agent_types)}. Starte selbst keine Agenten: Der Workflow muss die Child-Aufrufe und ihre Parallelität direkt sehen. Jeder Auftrag braucht eindeutige child_task_id, passenden child_agent_type, konkrete child_task und ein zu anderen Children disjunktes write_set.`),
+      `Definiere exakt einen vollständigen Child-Auftrag pro Eintrag aus ${JSON.stringify(step.child_agent_types)}. Starte selbst keine Agenten: Der Workflow muss die Child-Aufrufe und ihre Parallelität direkt sehen. Jeder Auftrag braucht eindeutige child_task_id, passenden child_agent_type, rolle, harness, konkrete child_task, input, output, gate, trust und ein zu anderen Children disjunktes write_set.`),
       { label: `step:${step.id}:lead-plan`, phase: 'Steps ausführen', step_id: step.id,
-        replacement_types: LEAD_TYPES.filter(
-          type => PROVIDER_FAMILY[type] !== PROVIDER_FAMILY[step.verify_agent_type],
-        ), schema: LEAD_PLAN_SCHEMA })
+        replacement_types: ownerReplacementTypes.filter(type => LEAD_TYPES.includes(type)),
+        schema: LEAD_PLAN_SCHEMA })
     const childTasks = validateChildPlan(step, leadPlan)
     nested = await runInWaves(childTasks.map((child, index) => ({ run: async () => {
       const childCall = await callAgent(child.child_agent_type, promptFor(step, dependencies, 'Nested-Child',
-        `Führe nur diesen Child-Auftrag aus: ${child.child_task}. write_set: ${JSON.stringify(child.write_set)}. Du bist ein Leaf-Child: Starte keine weiteren Agenten. Liefere Ergebnis und Gate-Beleg; nested_delegations bleibt leer.`),
+        `Führe ausschließlich diesen vollständigen Child-Auftrag aus: ${JSON.stringify(child)}. Du bist ein Leaf-Child: Starte keine weiteren Agenten. Liefere Ergebnis und Gate-Beleg; nested_delegations bleibt leer.`),
         { label: `step:${step.id}:child:${index + 1}:${child.child_agent_type}`,
           phase: 'Steps ausführen', step_id: step.id,
           replacement_types: ownerReplacementTypes, schema: STEP_SCHEMA })
@@ -315,9 +366,8 @@ for (const step of plan.steps) {
       [...dependencies, { child_runtime_results: nested }], 'Nested-Lead-Synthese',
       'Synthetisiere ausschließlich die direkt vom Workflow gestarteten Child-Ergebnisse. Erfinde keine Delegation. Liefere das Step-Ergebnis und den Gate-Beleg; nested_delegations bleibt leer.'),
       { label: `step:${step.id}:lead-synthesis`, phase: 'Steps ausführen', step_id: step.id,
-        replacement_types: LEAD_TYPES.filter(
-          type => PROVIDER_FAMILY[type] !== PROVIDER_FAMILY[step.verify_agent_type],
-        ), schema: STEP_SCHEMA })
+        replacement_types: ownerReplacementTypes.filter(type => LEAD_TYPES.includes(type)),
+        schema: STEP_SCHEMA })
     owners = [lead]
     validateNestedDelegations(step, leadPlan, lead, nested)
   } else {
@@ -329,14 +379,9 @@ for (const step of plan.steps) {
   }
   const expectedOwners = step.nested ? 1 : step.agent_types.length
   if (owners.length !== expectedOwners || owners.some(owner => !owner || !owner.output
-    || !owner.output.result.trim() || !owner.output.beleg.trim())) throw new Error(`Owner-Gate rot: ${step.id}`)
-  const ownerProviderFamilies = new Set([
-    ...owners.map(owner => PROVIDER_FAMILY[owner.agent_type]),
-    ...nested.map(item => item.call.provider_family),
-  ])
-  const verifyReplacementTypes = AGENT_TYPES.filter(
-    type => !ownerProviderFamilies.has(PROVIDER_FAMILY[type]),
-  )
+    || !owner.output.result.trim() || !owner.output.beleg.trim()
+    || owner.output.nested_delegations.length !== 0)) throw new Error(`Owner-Gate rot: ${step.id}`)
+  const verifyReplacementTypes = [reservedVerifierType]
   const verifyInput = [{ id: step.id, owner_results: owners }]
   if (step.nested) {
     verifyInput.push({

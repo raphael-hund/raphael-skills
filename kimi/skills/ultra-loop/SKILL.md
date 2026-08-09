@@ -26,3 +26,6 @@ Compatibility mapping:
 - `WebSearch` → the surfaced Kimi `WebSearch` capability.
 - `Skill` → the surfaced Kimi `Skill` capability.
 Use a capability only when the current Kimi host actually surfaces it; never invent an unavailable tool or silently substitute another one. Keep every source safety and completion requirement authoritative.
+
+Shared absolute dependency map (shared paths; not platform-specific):
+- Resolve the `orchestrate` dependency for LOOP mode directly to `/root/raphael-skills/skills/eigene/orchestrate/SKILL.md`; do not use the native Kimi `orchestrate` skill as the LOOP semantics source.

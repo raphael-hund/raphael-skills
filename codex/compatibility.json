@@ -528,6 +528,9 @@
     "/ultra-loop",
     "Ultra-Loop",
     "Dauer-Verbesserungs-Loop"
+   ],
+   "codex_notes": [
+    "Resolve the `orchestrate` dependency for LOOP mode directly to `/root/raphael-skills/skills/eigene/orchestrate/SKILL.md`; do not use the native Codex `orchestrate` skill as the LOOP semantics source."
    ]
   },
   "read-book": {

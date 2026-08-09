@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Deterministic checks for the native Codex visible-task skill contracts.
+"""Deterministic checks for Codex orchestration and ultra-loop routing.
 
-This test is deliberately stdlib-only.  It parses both SKILL.md files as text
-and exercises a tiny in-memory backend for queue reconciliation, lifecycle
-transitions, cursor de-duplication, and idempotent resume.  It never calls a
-Codex tool, creates a real task, writes a ledger, or changes global state.
+This test is deliberately stdlib-only. It checks the native Codex orchestrate
+contract, the thin ultra-loop adapter's canonical LOOP dependency, and a tiny
+in-memory backend for lifecycle and resume behavior. It never calls a Codex
+tool, creates a real task, writes a ledger, or changes global state.
 """
 from __future__ import annotations
 
@@ -15,23 +15,10 @@ import sys
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-SKILLS = {
-    "dynamic-workflow": REPO_ROOT / "codex" / "skills" / "dynamic-workflow" / "SKILL.md",
-    "ultra-loop": REPO_ROOT / "codex" / "skills" / "ultra-loop" / "SKILL.md",
-}
-
-REQUIRED_TOOLS = (
-    "list_projects",
-    "get_project",
-    "create_thread",
-    "list_threads",
-    "read_thread",
-    "wait_threads",
-    "send_message_to_thread",
-    "set_thread_title",
-    "archive_thread",
-    "set_thread_archived",
-)
+NATIVE_ORCHESTRATE = REPO_ROOT / "codex" / "skills" / "orchestrate" / "SKILL.md"
+ULTRA_LOOP_ADAPTER = REPO_ROOT / "codex" / "skills" / "ultra-loop" / "SKILL.md"
+CANONICAL_ROUTER = REPO_ROOT / "skills" / "eigene" / "ultra-loop" / "SKILL.md"
+CANONICAL_LOOP = REPO_ROOT / "skills" / "eigene" / "orchestrate" / "SKILL.md"
 
 # These are forbidden route names, not words that a native skill may use as a
 # conceptual API.  Boundary matching keeps send_message_to_thread allowed.
@@ -47,30 +34,28 @@ BANNED_ROUTE_PATTERNS = (
 )
 
 CONTRACT_PATTERNS = (
-    r"CAPABILITY_UNAVAILABLE",
+    r"list_projects",
+    r"create_thread",
+    r"list_threads",
+    r"read_thread",
+    r"wait_threads",
+    r"send_message_to_thread",
     r"clientThreadId",
     r"threadId",
     r"hostId",
     r"afterCursor",
     r"cursor",
     r"status",
-    r"verification",
-    r"write_set",
-    r"scope",
     r"projectless",
     r"nonblocking",
     r"\bmodel\b",
     r"\bthinking\b",
-    r"best_effort_authorized",
-    r"30(?:[_` ]*000)?[^\n]{0,20}60(?:[_` ]*000)?",
+    r"30\s*[–-]\s*60",
     r"timeoutMs",
-    r"at most 8|hoechstens 8|höchstens 8",
+    r"höchstens acht|hoechstens acht|at most eight",
     r"::created-thread\{threadId=",
     r"::created-thread\{clientThreadId=",
-    r"disposable",
-    r"smoke_test",
-    r"archive_thread",
-    r"set_thread_archived",
+    r"Verifier-Thread",
 )
 
 
@@ -84,88 +69,78 @@ class Checks:
 
     def report(self) -> int:
         if self.failures:
-            print("Codex visible-task skill tests: FAIL")
+            print("Codex orchestration skill tests: FAIL")
             for failure in self.failures:
                 print(f"  - {failure}")
             return 1
-        print("Codex visible-task skill tests: OK")
+        print("Codex orchestration skill tests: OK")
         return 0
 
 
 def check_static_contracts(checks: Checks) -> None:
-    for name, path in SKILLS.items():
+    paths = {
+        "orchestrate": NATIVE_ORCHESTRATE,
+        "ultra-loop adapter": ULTRA_LOOP_ADAPTER,
+        "canonical ultra-loop router": CANONICAL_ROUTER,
+        "canonical orchestrate": CANONICAL_LOOP,
+    }
+    for name, path in paths.items():
         checks.check(path.is_file(), f"{name}: SKILL.md missing: {path}")
-        if not path.is_file():
-            continue
-        text = path.read_text(encoding="utf-8")
-        lowered = text.lower()
-        for pattern in BANNED_ROUTE_PATTERNS:
-            checks.check(
-                re.search(pattern, lowered) is None,
-                f"{name}: forbidden route term/call present: {pattern}",
-            )
-        for pattern in CONTRACT_PATTERNS:
-            checks.check(
-                re.search(pattern, text, re.IGNORECASE) is not None,
-                f"{name}: required contract missing: {pattern}",
-            )
-        checks.check(
-            re.search(r"2\s*[–-]\s*6", text) is not None,
-            f"{name}: DAG must be bounded to 2–6 nodes",
-        )
-        checks.check(
-            "user-owned" in lowered and "codex" in lowered,
-            f"{name}: visible user-owned Codex task wording missing",
-        )
-        checks.check(
-            "list_threads" in text
-            and ("before" in lowered or "vor jedem" in lowered or "vor dem" in lowered)
-            and "create" in lowered,
-            f"{name}: live reconciliation before create missing",
-        )
-        checks.check(
-            ("never" in lowered or "nie" in lowered or "niemals" in lowered)
-            and ("dupl" in lowered or "duplik" in lowered),
-            f"{name}: duplicate-free resume wording missing",
-        )
-        checks.check(
-            "approval" in lowered or "freigabe" in lowered,
-            f"{name}: user-owned approval/input wording missing",
-        )
+    if not all(path.is_file() for path in paths.values()):
+        return
 
-    dynamic = SKILLS["dynamic-workflow"].read_text(encoding="utf-8")
-    ultra = SKILLS["ultra-loop"].read_text(encoding="utf-8")
+    native = NATIVE_ORCHESTRATE.read_text(encoding="utf-8")
+    lowered = native.lower()
+    for pattern in BANNED_ROUTE_PATTERNS:
+        checks.check(
+            re.search(pattern, lowered) is None,
+            f"orchestrate: forbidden route term/call present: {pattern}",
+        )
+    for pattern in CONTRACT_PATTERNS:
+        checks.check(
+            re.search(pattern, native, re.IGNORECASE) is not None,
+            f"orchestrate: required contract missing: {pattern}",
+        )
     checks.check(
-        re.search(r"genau einen run|exactly one run", dynamic, re.IGNORECASE) is not None,
-        "dynamic-workflow: exactly-one-run contract missing",
+        "user-owned" in lowered and "codex" in lowered,
+        "orchestrate: visible user-owned Codex task wording missing",
     )
     checks.check(
-        "keine unbeauftragte wiederholung" in dynamic.lower(),
-        "dynamic-workflow: unrequested repeat prohibition missing",
+        "list_threads" in native and "gleiche später" in lowered,
+        "orchestrate: queued-to-live reconciliation wording missing",
     )
     checks.check(
-        "runde 1 startet sofort" in ultra.lower(),
-        "ultra-loop: immediate round-one contract missing",
+        "wiederhole keine finalen" in lowered,
+        "orchestrate: duplicate-free final output wording missing",
     )
     checks.check(
-        "jede runde nutzt sichtbare, user-owned" in ultra.lower()
-        and "keinen tasklosen" in ultra.lower()
-        and "solo" not in ultra.lower()
-        and "ohne tasks" not in ultra.lower(),
-        "ultra-loop: every round must use visible tasks without a taskless bypass",
+        "approval" in lowered or "freigabe" in lowered,
+        "orchestrate: user-owned approval/input wording missing",
+    )
+
+    adapter = ULTRA_LOOP_ADAPTER.read_text(encoding="utf-8")
+    router = CANONICAL_ROUTER.read_text(encoding="utf-8")
+    canonical = CANONICAL_LOOP.read_text(encoding="utf-8")
+    checks.check(
+        "/root/raphael-skills/skills/eigene/ultra-loop/SKILL.md" in adapter,
+        "ultra-loop: canonical router path missing",
     )
     checks.check(
-        "automation_update" in ultra and "recurring" in ultra.lower(),
-        "ultra-loop: recurring automation capability gate missing",
+        "Codex dependency map:" in adapter
+        and "/root/raphael-skills/skills/eigene/orchestrate/SKILL.md" in adapter,
+        "ultra-loop: absolute canonical orchestrate dependency missing",
     )
     checks.check(
-        "ausdruecklichem" in ultra.lower() and "tool vorhanden" in ultra.lower(),
-        "ultra-loop: explicit recurring-request/tool-availability gate missing",
+        "do not use the native Codex `orchestrate` skill" in adapter,
+        "ultra-loop: native Codex orchestrate exclusion missing",
     )
     checks.check(
-        "nicht global persistent" in dynamic.lower()
-        and "nicht global persistent" in ultra.lower(),
-        "task-scoped best-effort non-persistence wording missing",
+        "requires_skills: [orchestrate@^1]" in router,
+        "ultra-loop: canonical router dependency contract missing",
+    )
+    checks.check(
+        "## Schritt 5 — Dauer-Loop (LOOP)" in canonical,
+        "orchestrate: canonical LOOP contract missing",
     )
 
 
