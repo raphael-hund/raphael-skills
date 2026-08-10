@@ -127,9 +127,34 @@ for (const rel of ALLE) {
   zeile(true, `${rel} --help`);
 }
 
-console.log(`\n${gezaehlt - fehler}/${gezaehlt} Werkzeuge beantworten --help.`);
+// --- Unbekanntes Flag: Exit 2, nicht arbeiten ------------------------------
+// Dieselbe Frage wie im Exit-Vertrag von web und design, hier fuer die
+// uebrigen Skills. Befund 03.08.2026: watch-extract.sh nahm ein unbekanntes
+// Flag als Video-URL und reichte es an yt-dlp weiter, das 20 Sekunden lang
+// erfolglos aufloeste. Wer sich vertippt, bekam eine fremde Fehlermeldung
+// nach einer halben Minute statt einer eigenen sofort.
+console.log('\nEin unbekanntes Flag heisst: nichts getan. Also Exit 2:\n');
+for (const rel of ALLE) {
+  const voll = path.join(SKILLS, rel);
+  const interpreter = rel.endsWith('.py') ? 'python3' : 'bash';
+  const r = spawnSync(interpreter, [voll, '--diesesflaggibtsnichtxyz'], {
+    encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 8 * 1024 * 1024,
+    cwd: path.dirname(voll),
+  });
+  if (r.error && r.error.code === 'ETIMEDOUT') {
+    zeile(false, `${rel} (unbekanntes Flag)`,
+      `arbeitet ${FRIST_MS / 1000}s weiter, statt abzulehnen — es haelt das Flag fuer eine Eingabe`);
+    continue;
+  }
+  zeile(r.status === 2, `${rel} (unbekanntes Flag) -> Exit ${r.status}`,
+    r.status === 2 ? null
+      : r.status === 0 ? 'Exit 0 — ein abgelehnter Aufruf darf nie als bestanden gelten'
+        : `Exit ${r.status} heisst "geprueft und durchgefallen" — geprueft wurde nichts`);
+}
+
+console.log(`\n${gezaehlt - fehler}/${gezaehlt} Pruefungen wie erwartet (${ALLE.length} Werkzeuge, je --help und unbekanntes Flag).`);
 if (fehler) {
   console.log('Ein Werkzeug, das seine eigene Hilfe als Defekt meldet, laesst jede Kette stolpern.');
   process.exit(1);
 }
-console.log('Jedes Werkzeug erklaert sich selbst.');
+console.log('Jedes Werkzeug erklaert sich selbst und lehnt ab, was es nicht kennt.');

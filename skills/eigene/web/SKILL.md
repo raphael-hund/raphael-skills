@@ -75,7 +75,7 @@ eval_scorecard:
     - "evals/run-struktur.mjs — faehrt die sieben Struktur-Wachen oben in EINEM Lauf (13s, dreimal gemessen 02.08.2026, ohne Browser)"
     - "evals/run-zwillinge-check.mjs — doppelt vorhandene Dateien: laufen zwei Kopien auseinander?"
     - "evals/run-hilfe-check.mjs — 23 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
-    - "evals/run-hilfe-alle.mjs — 11 Werkzeuge der uebrigen Skills (.sh/.py): beantwortet jedes --help?"
+    - "evals/run-hilfe-alle.mjs — 22 Pruefungen an 11 Werkzeugen der uebrigen Skills (.sh/.py): --help und unbekanntes Flag"
     - "evals/run-aufruffehler-check.mjs — 25 Werkzeuge, 35 Pruefungen: endet ein falscher Aufruf mit Exit 2?"
     - "evals/run-spuren-check.mjs — 3 Browser-Werkzeuge: bleibt nach dem Lauf ein Chrome-Profil liegen?"
     - "evals/run-browser-start-check.mjs — 6 Klon-Werkzeuge: findet jedes seinen Browser?"

@@ -41,6 +41,18 @@ case "${1:-}" in
     ;;
 esac
 
+# Ein unbekanntes Flag ist kein Video. Ohne diesen Zweig landete "--tippfehler"
+# als URL bei yt-dlp, das dann 20 Sekunden lang erfolglos aufloeste — gemessen
+# 03.08.2026 (Exit 124 nach Timeout). Wer sich vertippt, soll das sofort
+# erfahren, nicht nach einer halben Minute mit einer fremden Fehlermeldung.
+case "${1:-}" in
+  -*)
+    echo "Unbekanntes Flag: $1" >&2
+    echo "Erlaubt: --help. Sonst wird eine Video-URL erwartet." >&2
+    exit 2
+    ;;
+esac
+
 [ "$#" -ge 1 ] || usage
 URL="$1"
 WORK="${2:-$(mktemp -d "${TMPDIR:-/tmp}/watch.XXXXXX")}"
