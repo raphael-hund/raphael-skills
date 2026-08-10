@@ -12,7 +12,10 @@ Motion, Shader, Stock-Media oder React-Native-UI gebraucht werden.
 
 **Kandidaten-URLs** stehen nur in `frontend-referenzbibliothek.md`. Hier gibt
 es **keine Galerie-Dumps**. Ein Agent, der die 160 Links in die Antwort kippt,
-verletzt diesen Router.
+verletzt diesen Router. Nach Wahl dieses Router-Falls kann
+`node scripts/resource-access.mjs show "<Name>"` genau einen Katalogeintrag
+(URL + sicheren Modus) nachschlagen; es wählt keinen Default und führt nie
+Installationen aus.
 
 ## Ergebnis: die Werkzeugtabelle (Pflichtartefakt)
 

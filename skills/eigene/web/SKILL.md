@@ -9,7 +9,7 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.12.3"
+  raphael-version: "0.12.4"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
@@ -76,6 +76,7 @@ Frontend + DE-Verkaufstext: **`opus-builder`** → Fallback **`kimi-worker`** (K
 | Custom-Code gegen AI-Slop (nach Build) | `references/code-qualitaets-checkliste.md` |
 | Junge Domain vor Launch | `references/domain-safe-browsing-checkliste.md` |
 | Statistik-Linkbait HTML | `references/templates/statistics-page-template.html` |
+| Genau eine Ressource nach Router-Wahl (URL, Metadaten, kein Install; exakte Groß-/Kleinschreibung) | `node scripts/resource-access.mjs show "<exakter Name>"` |
 | 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
 
 Vollständige Auftrag→Datei-Matrix inkl. „nicht laden“: `anfaenger-pfad.md`.
@@ -132,7 +133,7 @@ Detail: `landingpage-struktur.md`.
    URL-Vorlage → `web-clone-playbook.md` zuerst. Bild-Vorlage → `rebuild-from-image.md`.  
    Assets → Grafik-Baum im Router, dann ggf. `bildgenerierung.md`.  
    `imagegen-web`/`imagegen-mobile` = **kein Default** (nur Host+Router).
-5. **components** — 5a Bedarf → 5b Router-Zeile → 5c Abweichung belegt → **5d Werkzeugtabelle** in `art-direction.md`. Ohne Tabelle kein `npm i`.
+5. **components** — 5a Bedarf → 5b Router-Zeile → 5c einzelne Kandidaten bei Bedarf mit `scripts/resource-access.mjs show "<Name>"` nachschlagen (nie die gesamte Liste) → Abweichung belegt → **5d Werkzeugtabelle** in `art-direction.md`. Ohne Tabelle kein `npm i`.
 6. **build** — nur Tabellen-Zeilen installieren; Review = andere Familie. Security/OWASP bei Formularen/Consent. Echtes Custom-UI → `code-qualitaets-checkliste.md`.
 7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs`.
 8. **Launch** — Signatur + Deploy-Egress-Gate. Nie autonom. Junge Domain → Safe-Browsing-Checkliste.
