@@ -5,6 +5,15 @@ const require = createRequire(import.meta.url);
 export function loadPlaywright() {
   const candidates = [
     "playwright",
+    // Global installiert — der Pfad, den die uebrigen Browser-Werkzeuge des
+    // Skills (craft-check, axe-run, formular-check, shot-sweep) fest
+    // verdrahtet haben. Gemessen 31.07.2026: er ist der EINZIGE, der auf
+    // diesem Rechner existiert. Ohne ihn meldeten alle sechs
+    // Browser-Klon-Werkzeuge "Playwright not found" und waren unbenutzbar,
+    // waehrend dieselbe Bibliothek zwei Ordner weiter taeglich lief.
+    "/usr/lib/node_modules/playwright",
+    // Lokale Vendor-Kopie, falls das Klon-Repo einmal eigene Abhaengigkeiten
+    // mitbringt. Existiert auf diesem Rechner nicht — bleibt als Fallback.
     "/root/tools/vendor/claude-skill-web-clone/node_modules/playwright",
   ];
   for (const candidate of candidates) {

@@ -80,6 +80,51 @@ ohne geklärte Lizenz geht nicht live.
 | L5 | WebGL/Canvas/Three.js | 30–95 % | Mit Source hoch erreichbar, ohne Source erst technisch aufschlüsseln |
 | L6 | SaaS/E-Commerce/Login-System | Nur Anzeigeschicht | Server-Business-Logik, Auth, Payment werden **nie** versprochen |
 
+**Diese Prozente waren bis 29.07.2026 reine Prosa.** Sie standen hier zur
+Kundenkalibrierung — und nichts hat je nachgemessen, ob ein Klon sie erreicht.
+`visual-diff.mjs` rechnet gleichzeitig eine Note von 5 bis 1 aus und endet danach
+**immer** mit Exit 0, egal wie schlecht sie ist (`process.exit(1)` steht dort nur
+im `catch`-Block). Zwei Hälften derselben Frage, die sich nie begegnet sind.
+
+```bash
+node scripts/web-clone/audit-clone.mjs --project . --out CLONE_AUDIT.md --json audit.json
+node scripts/web-clone/klon-gate.mjs --stufe L2 --diff visual-diff.json --audit audit.json
+```
+
+Das Tor hält die gemessene Wiedergabetreue gegen die **Untergrenze** der Stufe —
+bewusst das untere Ende des Bereichs oben: die Tabelle beschreibt, was üblich
+erreichbar ist, das Tor fragt nach dem Minimum davon.
+
+| Stufe | Tor verlangt |
+|---|---|
+| L1 | ≥ 90 % |
+| L2 | ≥ 70 % |
+| L3 | ≥ 65 % |
+| L4 | ≥ 50 % |
+| L5 / L6 | keine Pixel-Grenze — ehrlich als `[SKIP]` |
+
+`--stufe` wird **nicht geraten**: sie entscheidet, was der Klon leisten muss.
+Fehlt sie, endet das Tor mit Exit 2. Dasselbe gilt für ein fehlendes
+`diffRatio` — „Feld fehlt" ist nicht „0 Abweichung", und ein vertipptes Flag
+fällt nicht still auf den Default zurück.
+
+**Ohne `--audit` ist der Blocker-Check `[SKIP]`, nicht bestanden.** Ein Klon mit
+dem Analytics-Code der fremden Seite ist ein Rechtsproblem, kein
+Schönheitsfehler. Und wie im G1-Tor: sind **alle** Prüfer übersprungen (L5 ohne
+Audit), gibt es Exit 2 statt Grün — übersprungen ist kein Urteil.
+
+**`--audit` ist Pflicht, nicht Kür** (seit 30.07.2026). Ohne ihn stand da
+„KLON-TOR BESTANDEN", sobald die Treue reichte — der Audit lief als SKIP mit,
+und ein SKIP verhinderte nichts. Gemessen: `--stufe L2 --diff` ohne `--audit`
+ergab `[PASS] treue`, `[SKIP] audit`, Exit 0. Ein Klon mit dem Analytics-Code
+der fremden Seite wäre so durchgegangen. Jetzt Exit 2 — nicht Exit 1, denn der
+Audit ist nicht durchgefallen, er hat nicht geurteilt. Ein echter
+Qualitätsfehler behält Vorrang: reißt die Treue, bleibt es Exit 1.
+
+Belegt: `node evals/run-klon-gate.mjs` (30 Fälle — 8 müssen reißen, 7 sind
+Exit 2, 5 müssen bestehen; dazu eine Prüfung, dass `visual-diff` weiterhin nicht
+selbst blockt, damit dieses Tor nicht unbemerkt überflüssig wird).
+
 **Nie versprechen:** Login, Payment, Bestellprozesse, Such-/Empfehlungslogik,
 Server-seitige Business-Logik, proprietäre APIs, urheberrechtlich geschütztes
 Material.
@@ -138,8 +183,17 @@ verfügbar ist (`npm install -D playwright` im jeweiligen Clone-Projekt):
 - `route-crawl.mjs` — Mehrseiten-Sitemap crawlen (Screenshots pro Route).
 - `interaction-probe.mjs` — Hover/Click/Scroll/Drag-Zustände automatisiert erfassen.
 - `mirror-site.mjs` — vollständiges Asset-Mirroring für statisch gebaute Seiten.
-- `visual-diff.mjs` — Pixel-Diff Original vs. Clone.
-- `audit-clone.mjs` — Scan auf Tracking-Reste/Fremdmarken/TODOs/riskante URLs vor Launch — deckt sich mit dem QA-Fächer-Schritt im Haupt-SKILL.md.
+- `visual-diff.mjs` — Pixel-Diff Original vs. Clone. **Urteilt nicht selbst**
+  (immer Exit 0) — die Zahl wird von `klon-gate.mjs` gegen die Stufen-Grenze
+  gehalten, siehe Komplexitätsskala oben.
+- `klon-gate.mjs` — das Annahme-Tor: Wiedergabetreue gegen L1–L6 plus
+  Launch-Blocker aus dem Audit, in einem Exit-Code.
+- `audit-clone.mjs` — Scan auf Tracking-Reste/Fremdmarken/TODOs/riskante URLs vor
+  Launch — deckt sich mit dem QA-Fächer-Schritt im Haupt-SKILL.md. **`--json`
+  mitgeben**, sonst kann `klon-gate.mjs` die Funde nicht lesen. Bis 29.07.2026
+  schrieb das Werkzeug ausschließlich Markdown für menschliche Augen und endete
+  immer mit Exit 0 — auch mit einem gefundenen Google-Tracker im Klon. Ein Fund,
+  den niemand abfragen kann, stoppt keine Auslieferung.
 - `sourcemap-hunt.mjs`, `compare-recon.mjs`, `dna-scaffold.mjs`, `init-clone.mjs` — Zusatzwerkzeuge für Source-Map-Suche, automatisierten Vergleichsreport, Design-DNA-Grundgerüst, Projekt-Skeleton.
 
 ## WebGL/Canvas-Reverse-Engineering — nur als Prinzip, nicht als Fachwissen

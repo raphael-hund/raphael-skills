@@ -19,7 +19,23 @@ loads:
   - references/workflow-vorlage.md
   - references/runden-protokoll.md
   - references/retro-muster.md
+provenance: >
+  Eigene Praxis (Skill-Harvest-/Router-Umbau-Session 2026-07-20), Muster
+  paraphrasiert aus goal-loop (Ralph-Loop-Kontrakt), autoresearch
+  (Baseline-Mutation-Score) und llm-council (anonymes Peer-Ranking bei Streit).
+  Kein fremder Code uebernommen — siehe auch das source-Feld unten.
 requires_skills: [orchestrate@^0, eval@^0]
+# Wie tief ist dieser Skill geprueft? Die Zahl ist an einen Lauf gebunden —
+# UmfangTest in scripts/test_validate_workflow.py reisst, wenn sie faellt.
+eval_scorecard:
+  stand: 2026-07-30
+  laeufe:
+    - "scripts/test_validate_workflow.py — 19 Tests: alle sieben Validator-Regeln, jede in beide Richtungen"
+    - "darin SabotageTest: merkt der Test es, wenn der Validator kaputtgeht?"
+    - "darin UmfangTest: hat die Testdatei noch alle 19 Tests?"
+  grenzen:
+    - "Geprueft ist der Workflow-VALIDATOR, nicht der Loop selbst — ob eine Runde etwas Sinnvolles findet, misst kein Test"
+    - "Der Loop startet echte Subagent-Flotten; ein gruener Testlauf sagt nichts ueber deren Ergebnis"
 completion_criteria:
   - "Cron-Job existiert (CronList zeigt ihn) und der Prompt enthält das Workflow-Pflicht-Mandat"
   - "Jede Runde mit Substanz-Arbeit hat einen Workflow-Run (Run-ID im Runden-Protokoll) — keine Solo-Runden außer Kleinst-Fixes"
@@ -72,6 +88,21 @@ erzwingt die Run-ID als Beweis.
    `references/workflow-vorlage.md` bauen — Kritik-Flotte, Verifikation,
    Fix-Kette, Review. Vor dem Start: `python3 scripts/validate-workflow.py
    <script>` — rot (FAIL) = nicht starten, erst fixen. Run-ID notieren.
+
+   > **Der Validator hat sieben Prüfer; bis 30.07.2026 waren vier davon
+   > ungetestet** — ausgerechnet die, die vor den drei Fehlern schützen, die
+   > laut `workflow-vorlage.md` wirklich passiert sind: `Date.now()`/
+   > `Math.random()` brechen Resume, `args` ohne defensives Parse crasht,
+   > `JSON.stringify(...).slice(0, N)` kappt Daten still (3× real, R13/R15).
+   > `python3 scripts/test_validate_workflow.py` deckt jetzt alle sieben ab
+   > (19 Tests statt 3), jeweils in **beide** Richtungen: `new Date(args.stamp)`
+   > und `JSON.stringify(x)` ohne `.slice` müssen **durchgehen**, sonst wäre der
+   > Validator auch durch „melde immer" erfüllbar und macht Zeitstempel
+   > unmöglich.
+   >
+   > Ein Meta-Test prüft zusätzlich, dass **jede** `check_*`-Funktion in der
+   > Testdatei namentlich vorkommt. Ohne ihn fällt ein achter, ungetesteter
+   > Prüfer nicht auf — genau der Zustand, in dem vier von sieben waren.
 3. **Selbst verifizieren:** Funde der Kritiker nie ungeprüft übernehmen —
    jeden Kern-Fund mit eigenem Read/Bash-Beleg bestätigen (kein performatives
    Zustimmen). Bei echtem Streit zwischen Kritikern: llm-council-Muster

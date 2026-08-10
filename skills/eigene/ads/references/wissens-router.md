@@ -74,7 +74,7 @@ Diese datierten Seiten in `wiki/craft/ads/` (bzw. die eigenen Konto-Seiten unter
 | voc-mine / angles (Voice-of-Customer → Winkel) | `2026-07-20-voice-of-customer-angle-produktions-pipeline.md` |
 | angles: Awareness-Stufe & Funnel-Zuordnung | `creative/2026-07-20-referenz-awareness-funnel-zuordnung.md` |
 | angles: bewährte Nische auf neue übertragen (Make) | `creative/2026-07-20-referenz-nischen-transfer-make.md` |
-| video-scripts: Skript-Struktur / Skripte für sophisticated ICP | `creative/2026-07-20-referenz-video-skript-struktur.md`, `creative/2026-07-20-video-ad-skripte-sophisticated-icp.md` |
+| video-scripts: Skript-Struktur / Skripte für sophisticated ICP | `creative/2026-07-20-referenz-video-skript-struktur.md` — die fertigen MAKE-Skripte liegen **nicht im Wiki**, sondern kanonisch unter `/root/clients/client-make/ads/skripte/` (Kundenmaterial, Doktrin-Trennung) |
 | ad-copy: Offer-/Garantie-/CTA-Muster | `creative/2026-07-20-referenz-offer-garantie-cta-muster.md` |
 | statics: Muster & Konzept-Prinzipien | `creative/2026-07-20-referenz-static-ad-muster.md`, `creative/2026-07-20-static-ad-konzept-prinzipien.md` |
 | Schaltung/Pixel-Regel: Lead-Qualifizierung Pixel/CAPI | `messung/2026-07-20-lead-qualifizierung-pixel-conversions-api.md` |

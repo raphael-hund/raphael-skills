@@ -21,7 +21,14 @@ function parseArgs(argv) {
     else if (arg === "--out") out.out = argv[++i] || "visual-diff.json";
     else if (arg === "--diff") out.diff = argv[++i] || "";
     else if (arg === "--threshold") out.threshold = Number(argv[++i] || "0.08");
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -127,7 +134,11 @@ try {
   const args = parseArgs(process.argv.slice(2));
   if (args.help || !args.original || !args.clone) {
     usage();
-    process.exit(args.help ? 0 : 1);
+    // Exit 2, nicht 1: ein fehlendes Pflichtargument heisst "nichts geprueft",
+    // nicht "geprueft und durchgefallen". Dieselbe Trennung wie in beiden Toren
+    // und in den zehn Werkzeugen, die sie am 31.07.2026 bekommen haben.
+    // --help bleibt 0 — die Hilfe ist kein Fehlerfall.
+    process.exit(args.help ? 0 : 2);
   }
 
   const { chromium } = loadPlaywright();
@@ -157,5 +168,7 @@ try {
   console.log(path.resolve(args.out));
 } catch (error) {
   console.error(`visual-diff failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

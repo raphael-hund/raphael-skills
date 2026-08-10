@@ -30,7 +30,14 @@ function parseArgs(argv) {
     else if (arg === "--label") out.label = argv[++i] || "site";
     else if (arg === "--widths") out.widths = (argv[++i] || "").split(",").map((n) => Number(n.trim())).filter(Boolean);
     else if (arg === "--wait") out.waitMs = Number(argv[++i] || "1200");
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -231,5 +238,7 @@ try {
   console.log(jsonFile);
 } catch (error) {
   console.error(`recon-site failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

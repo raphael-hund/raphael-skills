@@ -8,6 +8,7 @@ import {
   useId,
   useMemo,
   useState,
+  type KeyboardEvent,
   type ReactNode,
 } from "react";
 import { EASE_OUT } from "@/lib/ease";
@@ -91,10 +92,41 @@ const listClasses: Record<Variant, string> = {
   segment: "inline-flex items-center gap-0 rounded-lg bg-card p-0.5",
 };
 
+// Tastaturbedienung fuer das tablist-Pattern (WAI-ARIA). Bis 29.07.2026 fehlte
+// sie ganz: die Rollen waren gesetzt, axe meldete gruen, und mit der Tastatur
+// kam man nicht durch die Tabs. Eine Rolle ist ein Versprechen — role="tablist"
+// sagt dem Screenreader-Nutzer "hier gilt Pfeil links/rechts".
+//
+// Bewusst am Container statt an jedem Trigger: die Liste kennt ihre Tabs ueber
+// das DOM, damit kein Registrierungs-Zustand im Context mitgeschleppt werden
+// muss. Deaktivierte Tabs werden uebersprungen, die Auswahl laeuft im Kreis
+// (Pattern: automatische Aktivierung, weil die Panels ohnehin gemountet sind).
 export function TabsList({ children, className }: { children: ReactNode; className?: string }) {
   const { variant } = useTabs();
+
+  const aufTaste = (e: KeyboardEvent<HTMLDivElement>) => {
+    const tasten = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (!tasten.includes(e.key)) return;
+    const liste = e.currentTarget;
+    const tabs = [...liste.querySelectorAll<HTMLButtonElement>('[role="tab"]')]
+      .filter((t) => !t.disabled);
+    if (!tabs.length) return;
+    const jetzt = tabs.indexOf(document.activeElement as HTMLButtonElement);
+    if (jetzt < 0) return;
+
+    let ziel = jetzt;
+    if (e.key === 'ArrowRight') ziel = (jetzt + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') ziel = (jetzt - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') ziel = 0;
+    else ziel = tabs.length - 1;
+
+    e.preventDefault();          // sonst scrollt Home/End die Seite
+    tabs[ziel].focus();
+    tabs[ziel].click();          // automatische Aktivierung: Fokus = Auswahl
+  };
+
   return (
-    <div role="tablist" className={cn(listClasses[variant], className)}>
+    <div role="tablist" onKeyDown={aufTaste} className={cn(listClasses[variant], className)}>
       {children}
     </div>
   );
@@ -121,6 +153,11 @@ export function TabsTrigger({
         type="button"
         role="tab"
         aria-selected={active}
+        // Roving Tabindex: nur der aktive Tab ist mit Tab erreichbar, innerhalb
+        // der Liste bewegt man sich mit den Pfeiltasten. Ohne das tabbt man
+        // durch JEDEN Tab einzeln — bei acht Tabs acht Anschlaege, um an den
+        // Inhalt zu kommen.
+        tabIndex={active ? 0 : -1}
         onClick={() => setValue(value)}
         className={cn(
           "relative isolate px-3 pb-2.5 pt-1 -mb-px text-sm font-medium transition-colors min-h-[44px] inline-flex items-center",
@@ -164,6 +201,11 @@ export function TabsTrigger({
         type="button"
         role="tab"
         aria-selected={active}
+        // Roving Tabindex: nur der aktive Tab ist mit Tab erreichbar, innerhalb
+        // der Liste bewegt man sich mit den Pfeiltasten. Ohne das tabbt man
+        // durch JEDEN Tab einzeln — bei acht Tabs acht Anschlaege, um an den
+        // Inhalt zu kommen.
+        tabIndex={active ? 0 : -1}
         onClick={() => setValue(value)}
         className={cn(
           "relative z-10 inline-flex items-center justify-center whitespace-nowrap bg-transparent px-3.5 py-1.5 text-sm font-medium outline-none",

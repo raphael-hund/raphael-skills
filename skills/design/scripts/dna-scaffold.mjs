@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 // Vendoriert aus claude-skill-web-clone (github.com/Jane-xiaoer/claude-skill-web-clone),
 // MIT-Lizenz; Schema urspruenglich adaptiert von github.com/zanwei/design-dna (MIT).
-// Details: ../VENDORING-NOTE.md. Original: scripts/dna-scaffold.mjs.
+// Details: ../VENDORING.md. Original: scripts/dna-scaffold.mjs.
 // Funktioniert auch OHNE --recon (reines leeres Skelett) — recon-site.mjs
 // selbst ist NICHT Teil von design (das ist web's Aufgabe).
 //
-// dna-scaffold.mjs — 生成 design-dna.json 骨架，best-effort 从 recon-site.mjs 的输出预填。
-// 用法:
-//   node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <站名>]
-// 产物:
-//   <out>  完整 DNA 骨架；有 --recon 时预填字体/色候选/框架特效信号，其余留 "" 待人工 Analyze。
-// 纪律: 只搬侦察里"真实抓到"的信号，绝不编造。拿不准角色(primary/accent)的色值统一丢进 _recon_signals 供人工指派。
+// dna-scaffold.mjs — Geruest fuer design-dna.json anlegen, so weit wie moeglich
+// aus der Ausgabe von recon-site.mjs vorausgefuellt.
+// Aufruf:
+//   node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <Seitenname>]
+// Ergebnis:
+//   <out>  vollstaendiges DNA-Geruest. Mit --recon sind Schriften, Farbkandidaten
+//          und Framework-/Effekt-Signale vorausgefuellt; alles andere bleibt ""
+//          und ist Handarbeit.
+// Regel: nur uebernehmen, was die Aufnahme WIRKLICH gesehen hat — nie erfinden.
+// Farben, deren Rolle (primary/accent) unklar ist, landen in _recon_signals und
+// werden von Hand zugewiesen.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -23,20 +28,29 @@ function parseArgs(argv) {
     else if (a === "--recon") out.recon = argv[++i] || "";
     else if (a === "--out") out.out = argv[++i] || "";
     else if (a === "--name") out.name = argv[++i] || "";
+    // Ohne diesen Zweig faellt ein unbekanntes Flag LAUTLOS raus: der
+    // Aufruf lief mit Standardwerten weiter, und das Werkzeug zeigte am
+    // Ende nur seine Hilfe, ohne zu sagen was falsch war. Gemessen
+    // 31.07.2026 — beide Werkzeuge dieser Datei-Familie hatten keinen.
+    else if (a.startsWith("-")) {
+      const e = new Error(`Unbekanntes Flag: ${a}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
 
 function usage() {
-  console.log(`dna-scaffold.mjs — 生成 design-dna.json 骨架并 best-effort 预填
+  console.log(`dna-scaffold.mjs — Geruest fuer design-dna.json anlegen und so weit wie moeglich vorausfuellen
 
-  node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <站名>]
+  node scripts/dna-scaffold.mjs --out <design-dna.json> [--recon <label-recon.json>] [--name <Seitenname>]
 
-只用在「视觉复刻 / 内容爆改」模式。忠实复刻分支不需要 DNA（真源码即真相）。
-schema 与字段含义见 references/design-dna.md。`);
+Nur im Modus "Optik nachbauen, Inhalte ersetzen". Beim originalgetreuen Nachbau braucht es keine DNA — dort ist der echte Quellcode die Wahrheit.
+Aufbau und Bedeutung der Felder: references/design-dna-schema.md`);
 }
 
-// 完整 DNA 骨架（与 references/design-dna.md 对齐）
+// 完整 DNA 骨架（与 references/design-dna-schema.md 对齐）
 function skeleton(name) {
   const ts = () => ({ size: "", weight: "", line_height: "", tracking: "" });
   return {
@@ -125,12 +139,30 @@ function enrich(dna, recon) {
     ...((recon.sections || []).map((s) => s?.style?.fontFamily).filter(Boolean)),
   ]).map((f) => String(f).replace(/^["']|["']$/g, "").split(",")[0].trim()).filter(Boolean);
   signals.fonts = uniq(fontList);
+  // Was NICHT gemessen, sondern geschlossen wurde. Steht am Ende im Skelett;
+  // eine leere Liste ist die ehrliche Aussage "nichts abgeleitet".
+  const abgeleitet = [];
   if (signals.fonts.length) {
     const mono = signals.fonts.find((f) => /mono|code|consol|courier/i.test(f)) || "";
     const nonMono = signals.fonts.filter((f) => f !== mono);
     dna.design_system.typography.font_families.heading = nonMono[0] || "";
+    // Bei nur EINER gefundenen Schrift wird sie auch `body`. Das ist eine
+    // ABLEITUNG, keine abgegriffene Tatsache — und die Doktrin im Dateikopf
+    // sagt "绝不编造" (niemals erfinden). Die Ableitung selbst ist vertretbar:
+    // viele Seiten fahren wirklich eine Schrift. Nicht vertretbar war, sie zu
+    // verschweigen, waehrend der Begleittext "已据真实信号填写" behauptet.
+    //
+    // Befund 30.07.2026 (evals/run-dna-scaffold-check.mjs): recon mit einer
+    // Schrift ergab zwei Zuordnungen, und wer die Datei liest, haelt beide fuer
+    // gemessen. Darum wird der Fall jetzt vermerkt statt geglaettet.
     dna.design_system.typography.font_families.body = nonMono[1] || nonMono[0] || "";
     dna.design_system.typography.font_families.mono = mono;
+    if (nonMono.length === 1) {
+      abgeleitet.push(
+        `typography.font_families.body = "${nonMono[0]}" ist ABGELEITET aus heading `
+        + "(die Aufklaerung fand nur eine Schrift) — pruefen, ob die Seite wirklich "
+        + "nur eine fuehrt");
+    }
   }
 
   // 颜色: CSS 变量里像颜色的 + sections 的 bg/color
@@ -183,10 +215,14 @@ function enrich(dna, recon) {
 
   // 把原始信号留在顶层供人工指派角色(不编造 primary/accent)
   dna._recon_signals = signals;
+  dna._abgeleitet = abgeleitet;
   dna._scaffold_note =
-    "best-effort 预填来自 recon。font_families/surface.background/visual_effects 已据真实信号填写；" +
-    "color 的 primary/secondary/accent 角色需人工从 _recon_signals.color_candidates 指派；" +
-    "所有 \"\" 字段需人工 Analyze 补全(见 references/design-dna.md)。确认无误后可删除 _recon_signals 与本说明。";
+    (abgeleitet.length
+      ? `ACHTUNG: ${abgeleitet.length} Feld(er) sind ABGELEITET, nicht gemessen — siehe _abgeleitet. `
+      : "")
+    + "Vorausgefuellt aus der Aufnahme: font_families, surface.background und visual_effects stehen auf gemessenen Werten. " +
+    "Welche Farbe primary, secondary oder accent ist, muss von Hand aus _recon_signals.color_candidates zugewiesen werden. " +
+    "Alle leeren Felder bleiben Handarbeit (siehe references/design-dna-schema.md). Wenn alles stimmt, koennen _recon_signals und dieser Hinweis raus.";
   return dna;
 }
 
@@ -194,7 +230,7 @@ try {
   const args = parseArgs(process.argv.slice(2));
   if (args.help || !args.out) {
     usage();
-    process.exit(args.help ? 0 : 1);
+    process.exit(args.help ? 0 : 2);
   }
   let dna = skeleton(args.name);
   if (args.recon) {
@@ -202,19 +238,19 @@ try {
       const recon = JSON.parse(fs.readFileSync(path.resolve(args.recon), "utf8"));
       dna = enrich(dna, flattenRecon(recon));
     } catch (e) {
-      console.warn(`⚠️ 读 recon 失败(${e.message})，只输出空骨架。`);
+      console.warn(`⚠️ Aufnahme nicht lesbar (${e.message}) — es entsteht nur das leere Geruest.`);
     }
   }
   const outPath = path.resolve(args.out);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, `${JSON.stringify(dna, null, 2)}\n`);
-  console.log(`✅ design-dna 骨架已写入: ${outPath}`);
+  console.log(`✅ design-dna-Geruest geschrieben: ${outPath}`);
   if (dna._recon_signals) {
     const s = dna._recon_signals;
-    console.log(`   预填: 字体 ${s.fonts.length} 个 / 色候选 ${s.color_candidates.length} 个 / canvas ${s.canvas_count} / three=${!!s.frameworks.three} gsap=${!!s.frameworks.gsap} lenis=${!!s.frameworks.lenis}`);
+    console.log(`   Vorausgefuellt: ${s.fonts.length} Schriften, ${s.color_candidates.length} Farbkandidaten, ${s.canvas_count} Canvas, three=${!!s.frameworks.three} gsap=${!!s.frameworks.gsap} lenis=${!!s.frameworks.lenis}`);
   }
-  console.log(`   下一步: 人工 Analyze 补全 ""，并从 _recon_signals 指派颜色角色。schema → references/design-dna.md`);
+  console.log(`   Naechster Schritt: leere Felder von Hand fuellen und den Farben aus _recon_signals ihre Rolle geben. Aufbau → references/design-dna-schema.md`);
 } catch (e) {
-  console.error(`dna-scaffold 失败: ${e.message}`);
-  process.exit(1);
+  console.error(`dna-scaffold fehlgeschlagen: ${e.message}`);
+  process.exit(e.aufruffehler ? 2 : 1);
 }

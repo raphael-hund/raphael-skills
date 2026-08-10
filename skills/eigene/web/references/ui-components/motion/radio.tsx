@@ -7,7 +7,10 @@ import {
   useContext,
   useId,
   useMemo,
+  useEffect,
+  useRef,
   useState,
+  type KeyboardEvent,
   type ReactNode,
 } from "react";
 import { SPRING_LAYOUT, SPRING_PRESS } from "@/lib/ease";
@@ -63,11 +66,57 @@ export function RadioGroup({
     [current, layoutId, setValue],
   );
 
+  // Tastaturbedienung fuer das radiogroup-Pattern (WAI-ARIA). Bis 29.07.2026
+  // fehlte sie: role="radio" war gesetzt, aria-checked stimmte, axe war gruen —
+  // und mit der Tastatur liess sich nichts auswaehlen. Bei einer Radiogruppe
+  // ist das besonders bitter, weil ein natives <input type="radio"> das seit
+  // jeher kann; der Nachbau hat eine Faehigkeit weggenommen.
+  //
+  // Alle vier Pfeile, weil die Gruppe waagerecht ODER senkrecht steht. Die
+  // Auswahl folgt dem Fokus (so schreibt es das Pattern fuer radiogroup vor,
+  // anders als bei Tabs mit manueller Aktivierung).
+
+  // Leere Gruppe erreichbar halten: ist nichts ausgewaehlt, steht jeder Knopf
+  // auf tabIndex=-1 und die Gruppe fiele aus der Tab-Reihenfolge. Das Pattern
+  // verlangt in diesem Fall den ERSTEN Knopf als Einstieg.
+  const gruppeRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const g = gruppeRef.current;
+    if (!g) return;
+    const knoepfe = [...g.querySelectorAll<HTMLButtonElement>('[data-roving]')];
+    if (!knoepfe.length) return;
+    if (knoepfe.some((b) => b.tabIndex === 0)) return;   // Auswahl vorhanden
+    const ersterAktiver = knoepfe.find((b) => !b.disabled);
+    if (ersterAktiver) ersterAktiver.tabIndex = 0;
+  }, [current]);
+
+  const aufTaste = (e: KeyboardEvent<HTMLDivElement>) => {
+    const vor = ['ArrowDown', 'ArrowRight'];
+    const zurueck = ['ArrowUp', 'ArrowLeft'];
+    if (![...vor, ...zurueck].includes(e.key)) return;
+    const gruppe = e.currentTarget;
+    const knoepfe = [...gruppe.querySelectorAll<HTMLButtonElement>('[role="radio"]')]
+      .filter((b) => !b.disabled);
+    if (!knoepfe.length) return;
+    const jetzt = knoepfe.indexOf(document.activeElement as HTMLButtonElement);
+    if (jetzt < 0) return;
+
+    const ziel = vor.includes(e.key)
+      ? (jetzt + 1) % knoepfe.length
+      : (jetzt - 1 + knoepfe.length) % knoepfe.length;
+
+    e.preventDefault();          // sonst scrollt die Seite mit
+    knoepfe[ziel].focus();
+    knoepfe[ziel].click();       // Auswahl folgt dem Fokus
+  };
+
   return (
     <MotionConfig transition={reduce ? { duration: 0 } : SPRING_LAYOUT}>
       <RadioCtx.Provider value={contextValue}>
         <div
+          ref={gruppeRef}
           role="radiogroup"
+          onKeyDown={aufTaste}
           className={cn(
             "flex gap-3",
             orientation === "vertical" ? "flex-col" : "flex-row flex-wrap",
@@ -116,6 +165,16 @@ export function RadioGroupItem({
         type="button"
         role="radio"
         aria-checked={selected}
+        // Roving Tabindex: die Gruppe ist EIN Halt in der Tab-Reihenfolge, nicht
+        // fuenf. Innerhalb bewegt man sich mit den Pfeilen. Genauso verhaelt
+        // sich ein natives <input type="radio">.
+        //
+        // `data-roving` markiert die Knoepfe fuer den Container: ist NICHTS
+        // ausgewaehlt, haette sonst kein einziger tabIndex=0 und die Gruppe
+        // waere per Tastatur gar nicht erreichbar — ein Fix, der schlimmer ist
+        // als der Fehler. Der Container setzt dann den ersten auf 0.
+        data-roving=""
+        tabIndex={selected ? 0 : -1}
         disabled={disabled}
         onClick={() => !disabled && setValue(value)}
         whileTap={reduce || disabled ? undefined : { scale: 0.92 }}

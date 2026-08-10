@@ -62,6 +62,36 @@ function hexChannels(color) {
 }
 
 /**
+ * CSS-Variablen einmal aufloesen: `var(--x)` durch den hinterlegten Wert
+ * ersetzen.
+ *
+ * Warum das hier steht und nicht in jeder Regel einzeln: dieselbe Blindheit
+ * ist am 31.07.2026 DREIMAL aufgefallen — flat-type-hierarchy (Typo-Skala),
+ * dark-glow (Schatten) und monotonous-spacing (Abstaende). Jedes Mal
+ * funktionierte die Regel auf hingeschriebenem CSS und schwieg auf jedem
+ * Projekt mit Design-Tokens, also genau dort, wofuer sie gebaut ist.
+ *
+ * Der Browser-Pfad (rules/checks.mjs) hat das Problem nicht: getComputedStyle
+ * liefert aufgeloeste Werte. Nur der Datei-Modus liest rohen Text.
+ *
+ * Bewusst EINE Runde, nicht rekursiv: `--a: var(--b)` kommt vor, aber tiefer
+ * verschachtelte Ketten sind selten, und eine Endlosschleife bei
+ * `--a: var(--a)` waere schlimmer als ein verpasster Fund.
+ */
+export function varsAufloesen(content) {
+  const werte = new Map();
+  const varRe = /(--[a-z0-9-]+)\s*:\s*([^;{}]+)/gi;
+  let m;
+  while ((m = varRe.exec(content)) !== null) {
+    const wert = m[2].trim();
+    if (!/^var\(/i.test(wert)) werte.set(m[1], wert);
+  }
+  if (!werte.size) return content;
+  return content.replace(/var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)/gi,
+    (ganz, name) => (werte.has(name) ? werte.get(name) : ganz));
+}
+
+/**
  * Split one box-shadow layer into top-level tokens.
  *
  * Whitespace inside parens does not separate tokens: `rgb(0 0 0)` and
@@ -189,6 +219,24 @@ const REGEX_MATCHERS = [
   { id: 'ai-color-palette', regex: /\bfrom-(?:purple|violet|indigo)-(\d+)\b/g,
     test: (m, line) => /\bto-(?:purple|violet|indigo|blue|cyan|pink|fuchsia)-\d+\b/.test(line),
     fmt: (m) => `${m[0]} gradient` },
+  // --- Same palette in raw CSS ---
+  // Gap found 30.07.2026: `ai-color-palette` only had Tailwind branches. On a
+  // plain-CSS page with `linear-gradient(90deg, #6366f1, #a855f7)` — the exact
+  // indigo→violet tell — detect.mjs reported nothing, while scan-ai-slop.mjs
+  // flagged it as tell 01 on the same file. Two checkers, one page, one blind.
+  // Every other rule here already has both branches (see bounce-easing below);
+  // this one was simply missed. The hex list is the canonical Tailwind palette:
+  // indigo-500/600, violet-500/600, purple-500/600, fuchsia-500.
+  { id: 'ai-color-palette',
+    regex: /(?:linear|radial|conic)-gradient\([^)]*(#6366f1|#4f46e5|#8b5cf6|#7c3aed|#a855f7|#9333ea|#d946ef)[^)]*\)/gi,
+    test: () => true,
+    fmt: (m) => `indigo/violet gradient in CSS (${m[1]})` },
+  { id: 'ai-color-palette',
+    regex: /(?:^|[;{\s])color\s*:\s*(#6366f1|#4f46e5|#8b5cf6|#7c3aed|#a855f7|#9333ea)\b/gi,
+    // Only on a heading line: a violet accent somewhere is a choice, a violet
+    // headline is the tell. Same condition the Tailwind branch above uses.
+    test: (m, line) => /<h[1-3]|font-size\s*:\s*(?:[3-9]|\d\d)/i.test(line),
+    fmt: (m) => `violet heading color in CSS (${m[1]})` },
   // --- Bounce/elastic easing ---
   { id: 'bounce-easing', regex: /\banimate-bounce\b/g,
     test: () => true,
@@ -262,6 +310,7 @@ const REGEX_ANALYZERS = [
     const sizes = new Set();
     const REM = 16;
     let m;
+    content = varsAufloesen(content);
     const sizeRe = /font-size\s*:\s*([\d.]+)(px|rem|em)\b/gi;
     while ((m = sizeRe.exec(content)) !== null) {
       const px = m[2] === 'px' ? +m[1] : +m[1] * REM;
@@ -274,6 +323,16 @@ const REGEX_ANALYZERS = [
     }
     const TW = { 'text-xs': 12, 'text-sm': 14, 'text-base': 16, 'text-lg': 18, 'text-xl': 20, 'text-2xl': 24, 'text-3xl': 30, 'text-4xl': 36, 'text-5xl': 48, 'text-6xl': 60, 'text-7xl': 72, 'text-8xl': 96, 'text-9xl': 128 };
     for (const [cls, px] of Object.entries(TW)) { if (new RegExp(`\\b${cls}\\b`).test(content)) sizes.add(px); }
+
+    // Variablen ueber die gemeinsame Funktion: `font-size: var(--t-3xl)` wird
+    // zum hinterlegten Wert, bevor der Groessen-Regex darueber laeuft.
+    //
+    // Eine eigene Aufloesung stand hier zuerst, mit "groesster Wert gewinnt"
+    // fuer Variablen, die in Media-Queries ueberschrieben werden. Nachgemessen
+    // an der Kontrollseite: mit der gemeinsamen Funktion (letzter Wert) ergibt
+    // sich 11.5–36px, ratio 3.1:1 — ueber der 2.0-Schwelle, also derselbe
+    // Befund. Die Sonderlogik war eine Annahme, kein gemessener Bedarf.
+
     if (sizes.size < 3) return [];
     const sorted = [...sizes].sort((a, b) => a - b);
     const ratio = sorted[sorted.length - 1] / sorted[0];
@@ -285,6 +344,10 @@ const REGEX_ANALYZERS = [
   },
   // Monotonous spacing (regex)
   (content, filePath) => {
+    // Dritter Fall derselben Blindheit (31.07.2026): 14 Bloecke mit
+    // `padding: 16px` wurden gefunden, dieselben 14 mit `padding: var(--s)`
+    // nicht — und Design-Systeme schreiben Abstaende immer so.
+    content = varsAufloesen(content);
     const vals = [];
     let m;
     const pxRe = /(?:padding|margin)(?:-(?:top|right|bottom|left))?\s*:\s*(\d+)px/gi;
@@ -389,6 +452,12 @@ const REGEX_ANALYZERS = [
   },
   // Dark glow (page-level: dark bg + colored box-shadow with blur)
   (content, filePath) => {
+    // Aufloesen VOR der Hintergrund-Pruefung. Sie stand zuerst dahinter, und
+    // dann war die Regel weiter blind, sobald `background: var(--bg)` statt
+    // eines Hex-Werts dastand — vierter Fall derselben Klasse am selben Tag,
+    // diesmal in einer Regel, die ich eine Stunde vorher schon angefasst hatte.
+    content = varsAufloesen(content);
+
     // Check if page has a dark background
     const darkBgRe = /background(?:-color)?\s*:\s*(?:#(?:0[0-9a-f]|1[0-9a-f]|2[0-3])[0-9a-f]{4}\b|#(?:0|1)[0-9a-f]{2}\b|rgb\(\s*(\d{1,2})\s*,\s*(\d{1,2})\s*,\s*(\d{1,2})\s*\))/gi;
     const twDarkBg = /\bbg-(?:gray|slate|zinc|neutral|stone)-(?:9\d{2}|800)\b/;
@@ -396,6 +465,8 @@ const REGEX_ANALYZERS = [
     if (!hasDarkBg) return [];
 
     // Check for colored box-shadow with blur > 4px
+    // Design-Systeme legen Schatten IMMER in Tokens ab; ohne die Aufloesung
+    // oben war die Regel auf genau diesen Projekten blind.
     const shadowRe = /box-shadow\s*:\s*([^;{}]+)/gi;
     let m;
     while ((m = shadowRe.exec(content)) !== null) {
@@ -646,7 +717,24 @@ function runTextContentAnalyzers(content, filePath, options = {}) {
 function detectText(content, filePath, options = {}) {
   const profile = options?.profile;
   const findings = [];
-  const lines = content.split('\n');
+  // EINMAL zentral aufloesen statt in jeder Regel einzeln. Die Matcher lesen
+  // Zeilen; steht dort `font-family: var(--font)`, sieht keine Regel den Wert.
+  //
+  // Am 31.07.2026 in sechs Regeln nacheinander gefunden, jede einzeln
+  // repariert — bis der systematische Vergleich (run-variablen-check) zwei
+  // weitere zeigte: gradient-text und overused-font. Ab da ist der zentrale
+  // Schnitt die richtige Antwort: eine Stelle, alle Regeln.
+  //
+  // Zeilenweise ersetzt, damit die Zeilennummern im Bericht stimmen bleiben.
+  //
+  // Das ersetzt die drei lokalen Aufrufe NICHT. Gemessen: nimmt man sie heraus,
+  // fallen 2 von 5 Regeln im Variablen-Check und 4 Faelle im Detect-Check.
+  // Grund: die Matcher hier lesen ZEILEN, drei Regeln (flat-type-hierarchy,
+  // dark-glow, monotonous-spacing) laufen dagegen als eigene Funktionen ueber
+  // den ganzen Dateitext und bekommen diesen hier nie zu sehen. Beide Ebenen
+  // sind noetig — wer eine davon fuer ueberfluessig haelt, hat die andere
+  // gemessen.
+  const lines = varsAufloesen(content).split('\n');
   const ext = extFromFilePath(filePath);
 
   // Run regex matchers on the full file content (catches Tailwind classes, inline styles)

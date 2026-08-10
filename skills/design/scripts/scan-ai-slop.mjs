@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
   Vendoriert aus kill-ai-slop (github.com/yetone/kill-ai-slop), Apache-2.0.
-  Details: ../VENDORING-NOTE.md. Original: skill/scripts/scan.mjs.
+  Details: ../VENDORING.md. Original: skill/scripts/scan.mjs.
 
   kill-ai-slop scanner — dependency-free.
 
@@ -26,7 +26,81 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, extname, join, relative, resolve } from "node:path";
 
 const args = process.argv.slice(2);
-const root = args.find((a) => !a.startsWith("-")) || ".";
+
+// Dateien, deren Bytes kein gueltiges UTF-8 sind (siehe Kommentar bei readFileSync).
+const kaputteKodierung = [];
+// Dateien, die gar nicht erst geoeffnet werden konnten.
+const unlesbareDateien = [];
+// Schon betretene Ordner-Ziele — gegen Symlink-Kreise.
+const gesehenerOrdner = new Set();
+
+// AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
+// `--help` war im Original kein bekanntes Flag. Es rutschte als Wurzelpfad
+// durch, der Scanner las den aktuellen Ordner und meldete
+// "scanned 0 files under . / No slop signals found." mit Exit 0 — gruen ueber
+// nichts, auf genau die Anfrage hin, die "zeig mir was du kannst" heisst.
+if (args.includes('--help') || args.includes('-h')) {
+  console.log('Aufruf: node scan-ai-slop.mjs [wurzel] [--json] [--no-color]');
+  console.log('        [--only=01,06] [--skip=19] [--exclude=pfad] [--rules=extra.mjs]');
+  console.log('Durchsucht Quellcode nach den Code-Signalen typischer KI-Optik.');
+  console.log('Endet IMMER mit Exit 0, auch bei Funden — das Urteil faellt der Aufrufer');
+  console.log('aus dem JSON (siehe web/scripts/g1-gate.mjs).');
+  console.log('Deutsche Floskeln braucht --rules=scripts/rules.de.mjs.');
+  process.exit(0);
+}
+// AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
+// Die Wert-Flags werden ausschliesslich in der Form `--name=wert` gelesen
+// (`flagValues` filtert auf `--${name}=`). Wer `--rules pfad.mjs` mit Leerzeichen
+// tippt, verliert den Regelsatz KOMMENTARLOS: gemessen an einer Datei mit zwei
+// deutschen Floskeln fiel `hits` von 2 auf 1, Exit blieb 0. Der Aufruf sah aus
+// wie ein Scan mit deutschen Regeln und war einer ohne.
+//
+// Dieselbe Falle gilt fuer --only, --skip und --exclude: dort verschwindet
+// nicht ein Regelsatz, sondern eine Einschraenkung — der Lauf prueft dann mehr
+// oder weniger, als der Aufrufer glaubt, und meldet es nie.
+//
+// Ein unbekanntes Flag (`--jsonn`) faellt in dieselbe Klasse: es wird
+// stillschweigend ignoriert, der Scan laeuft mit Standardwerten weiter.
+const WERT_FLAGS = ["only", "skip", "exclude", "rules"];
+const BEKANNT = ["json", "no-color", "help", "h", ...WERT_FLAGS];
+for (const a of args) {
+  if (!a.startsWith("--")) continue;
+  const name = a.slice(2).split("=")[0];
+  if (!BEKANNT.includes(name)) {
+    console.error(`Unbekanntes Flag: ${a}`);
+    // "h" ist die Kurzform -h, nicht --h. Ohne diese Unterscheidung nennt die
+    // Fehlermeldung ein Flag, das es nicht gibt.
+    const zeigen = BEKANNT.map((k) => (k.length === 1 ? `-${k}` : `--${k}`));
+    console.error(`Erlaubt: ${zeigen.join(" ")}`);
+    console.error("Ohne diese Wache liefe der Scan mit Standardwerten weiter und");
+    console.error("meldete ein Ergebnis, das zu einem anderen Aufruf gehoert.");
+    process.exit(2);
+  }
+  if (WERT_FLAGS.includes(name) && !a.includes("=")) {
+    console.error(`--${name} braucht seinen Wert mit Gleichheitszeichen: --${name}=<wert>`);
+    console.error(`Die Form "--${name} <wert>" wird nicht gelesen — der Wert ginge`);
+    console.error("verloren und der Scan liefe still mit anderen Einstellungen.");
+    process.exit(2);
+  }
+}
+
+// Kein stiller Rueckfall auf ".". `node scan-ai-slop.mjs` ohne Pfad scannte
+// bis zum 31.07.2026 den Ordner, in dem man gerade stand — gemessen: "scanned
+// 30 files under ." im scripts/-Ordner dieses Skills, mit Funden und Exit 0.
+//
+// Dasselbe Muster wie bei import-check (--src) und audit-clone (--project):
+// ein Bericht ueber das falsche Verzeichnis sieht aus wie einer ueber das
+// richtige. Das G1-Tor uebergibt den Pfad immer; gefaehrlich ist der Aufruf
+// von Hand, und genau der soll auffallen statt still zu wirken.
+const rootArg = args.find((a) => !a.startsWith("-"));
+if (!rootArg) {
+  console.error("Fehler: kein Projektordner uebergeben.");
+  console.error("Aufruf: node scan-ai-slop.mjs <projekt-root> [--json] [--rules=<datei>]");
+  console.error("Ohne Pfad wuerde der aktuelle Ordner gescannt — das waere ein Bericht");
+  console.error("ueber das falsche Projekt. Deshalb Abbruch statt Annahme.");
+  process.exit(2);
+}
+const root = rootArg;
 const asJson = args.includes("--json");
 const normalizeId = (value) => (/^\d+$/.test(value) ? value.padStart(2, "0") : value);
 const flagValues = (name) =>
@@ -290,6 +364,20 @@ for (const rulesPath of rulesFiles) {
       console.error(`Rules file ${escapeTerminal(rulesPath)}: each tell needs a string id, a name, and a non-empty patterns array`);
       process.exit(1);
     }
+    // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 31.07.2026:
+    // Eine Zusatzregel mit einer schon vergebenen ID wurde bisher angehaengt.
+    // Beim Gruppieren gewinnt dann der ERSTE Eintrag mit dieser ID — die
+    // Treffer der Zusatzregel erscheinen unter fremdem Namen. Gemessen: eine
+    // eigene Regel mit id "01" und dem Muster /niemalsniemals/ meldete ihren
+    // Treffer als "indigo->violet gradient". Ein Befund, der auf die falsche
+    // Ursache zeigt, kostet beim Nachschauen mehr Zeit, als er spart — und im
+    // schlimmsten Fall wird die falsche Stelle repariert.
+    if (TELLS.some((t) => t.id === tell.id)) {
+      console.error(`Rules file ${escapeTerminal(rulesPath)}: id "${tell.id}" ist schon vergeben.`);
+      console.error("Zusatzregeln brauchen eine eigene ID (Konvention: Praefix wie de-14),");
+      console.error("sonst erscheinen ihre Treffer unter dem Namen der bestehenden Regel.");
+      process.exit(1);
+    }
     TELLS.push({
       id: tell.id,
       group: tell.group || "custom",
@@ -321,10 +409,35 @@ function walk(dir, files = []) {
     }
     const full = join(dir, e.name);
     if (isExcluded(full)) continue;
-    if (e.isDirectory()) {
+    // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: Symlinks melden bei
+    // readdirSync WEDER isDirectory NOCH isFile — der Typ gehoert zum Link,
+    // nicht zum Ziel. Sie fielen damit durch beide Zweige und blieben
+    // ungeprueft. Gemessen an einem Ordner mit drei Links: filesScanned 1
+    // statt 3, Schlusszeile "No slop signals found".
+    //
+    // Ein ausgeliefertes dist/ enthaelt durchaus Links (pnpm-Stores,
+    // Monorepo-Pakete, ein verlinktes public/). Was dort steht, geht mit
+    // online — geprueft wurde es nie.
+    let art = e;
+    if (e.isSymbolicLink()) {
+      try {
+        const ziel = statSync(full);
+        art = { isDirectory: () => ziel.isDirectory(), isFile: () => ziel.isFile() };
+      } catch (err) {
+        // Toter Link: nichts zu lesen, aber sichtbar machen statt schlucken.
+        unlesbareDateien.push(`${full} (Symlink ins Leere: ${err.code || "ENOENT"})`);
+        continue;
+      }
+    }
+    if (art.isDirectory()) {
       if (SKIP_DIRS.has(e.name) || resolve(full) === skillRoot) continue;
+      // Ein verlinkter Ordner kann auf einen Vorfahren zeigen — dann laeuft die
+      // Rekursion ewig. Gesehene Ziele merken.
+      const echt = realpathOr(full);
+      if (gesehenerOrdner.has(echt)) continue;
+      gesehenerOrdner.add(echt);
       walk(full, files);
-    } else if (e.isFile()) {
+    } else if (art.isFile()) {
       const base = e.name;
       if (/\.min\.(js|css)$/.test(base)) continue;
       if (/(package-lock|pnpm-lock|yarn\.lock)/.test(base)) continue;
@@ -335,15 +448,68 @@ function walk(dir, files = []) {
   return files;
 }
 
+// Bundler schreiben Nicht-ASCII als \uXXXX-Escape. Derselbe Satz, den der Scanner
+// in der Quelle findet ("naechste Level" mit echtem ä), steht im Build als
+// "nächste Level" — und keine Regel trifft mehr. Befund 29.07.2026: eine
+// deutsche Floskelseite ergab in der Quelle 3 Treffer, nach esbuild 0.
+//
+// Fuer die Suche wird darum eine entschaerfte Zweitfassung mitgelesen. Nur
+// \uXXXX wird aufgeloest, nichts anderes — der Text bleibt sonst Zeichen fuer
+// Zeichen gleich, damit Zeilennummern und Ausschnitte weiter stimmen.
+function loeseEscapes(text) {
+  if (!text.includes("\\u")) return text;              // Normalfall: nichts zu tun
+  return text.replace(/\\+u([0-9a-fA-F]{4})/g, (ganz, hex) => {
+    // Ungerade Anzahl Backslashes = echtes Escape. Gerade = ein literaler
+    // Backslash vor einem harmlosen "u", den wir nicht anfassen duerfen.
+    const slashes = ganz.length - 5;
+    if (slashes % 2 === 0) return ganz;
+    // KEINE Auffuellung. Der erste Versuch schob fuenf Leerzeichen hinter das
+    // Zeichen, um die Spalten zu halten — damit wurde aus "Geschaeft" ein
+    // "Gesch ä     ft" und keine Regel traf mehr. Spaltentreue ist wertlos,
+    // wenn der Text dabei zerfaellt; Zeilennummern bleiben ohnehin richtig,
+    // weil kein Zeilenumbruch entsteht.
+    return "\\".repeat(slashes - 1) + String.fromCharCode(parseInt(hex, 16));
+  });
+}
+
 function scanFile(path) {
   let text;
   try {
     const st = statSync(path);
-    if (st.size > 512 * 1024) return []; // skip large/generated files
+    // Frueher: >512 KB still ueberspringen. Ein echtes React-dist/ besteht aus
+    // genau solchen Buendeln — der Scanner las dort nie den ausgelieferten Text
+    // und meldete trotzdem "0 Tells". Grosse Dateien werden jetzt gelesen; nur
+    // wirklich riesige (>8 MB, Quellkarten/Assets) bleiben aussen vor.
+    if (st.size > 8 * 1024 * 1024) return [];
     text = readFileSync(path, "utf8");
-  } catch {
+  } catch (e) {
+    // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: der Lesefehler wurde
+    // still verschluckt, die Datei zaehlte trotzdem als "scanned". Gemessen
+    // mit chmod 000: filesScanned 2, hits 0, Schlusszeile "No slop signals
+    // found" — ein Testat ueber eine Datei, die nie geoeffnet wurde.
+    //
+    // Nicht nur Rechte: ein defekter Sektor, ein weggezogener Netzmount, eine
+    // Datei, die waehrend des Laufs verschwindet. Selten, aber dann still.
+    unlesbareDateien.push(`${path} (${e.code || String(e.message).split("\n")[0]})`);
     return [];
   }
+
+  // AENDERUNG GEGENUEBER DEM ORIGINAL (kill-ai-slop, Apache-2.0), 01.08.2026:
+  // Die Datei wird als UTF-8 gelesen. Ist sie in Wahrheit Latin-1 kodiert,
+  // werden alle Umlaute zu U+FFFD, und die deutschen Muster greifen nicht mehr.
+  //
+  // Gemessen an derselben Zeile ("massgeschneiderte Loesungen fuer Ihr
+  // naechstes Level") in beiden Kodierungen: UTF-8 ein Treffer, Latin-1 null —
+  // und die Schlusszeile lautete "No slop signals found". Ein Testat ueber
+  // Text, den der Scanner nie gelesen hat.
+  //
+  // Das trifft nur deutsche Seiten. Genau die liefert Raphael aus, und genau
+  // die haben Umlaute in jeder zweiten Floskel. Alte CMS-Exporte und
+  // Windows-Werkzeuge schreiben Latin-1 bis heute.
+  if (text.includes("\uFFFD")) {
+    kaputteKodierung.push(path);
+  }
+  text = loeseEscapes(text);
   const isCode = extname(path) !== ".md";
   const lines = text.split(/\r?\n/);
 
@@ -446,6 +612,11 @@ if (asJson) {
       {
         root,
         filesScanned: files.length,
+        // Dateien, die nicht als UTF-8 lesbar waren. Ihre Umlaute wurden zu
+        // U+FFFD, also greift kein deutsches Muster mehr. Ein Aufrufer, der
+        // nur `hits` liest, haelt sie faelschlich fuer sauber.
+        kaputteKodierung,
+        unlesbareDateien,
         groups: groups.length,
         hits: totalHits,
         findings: groups.map((g) => ({
@@ -468,6 +639,22 @@ const red = (s) => c("31", s);
 const dim = (s) => c("2", s);
 const bold = (s) => c("1", s);
 
+// Kodierungs-Warnung VOR die Bilanzzeile: sie entwertet jedes "0 Tells"
+// darunter. Auf stderr, damit sie ein Aufrufer nicht mit einem Befund
+// verwechselt — es ist keine Aussage ueber die Seite, sondern ueber die Datei.
+if (unlesbareDateien.length) {
+  console.error(`\nWARNUNG: ${unlesbareDateien.length} Datei(en) konnten nicht gelesen werden.`);
+  for (const d of unlesbareDateien.slice(0, 5)) console.error(`  ${escapeTerminal(d)}`);
+  if (unlesbareDateien.length > 5) console.error(`  ... und ${unlesbareDateien.length - 5} weitere`);
+  console.error('Sie zaehlen zwar als gefunden, sind aber NICHT geprueft.');
+}
+if (kaputteKodierung.length) {
+  console.error(`\nWARNUNG: ${kaputteKodierung.length} Datei(en) sind nicht als UTF-8 lesbar.`);
+  for (const d of kaputteKodierung.slice(0, 5)) console.error(`  ${escapeTerminal(d)}`);
+  if (kaputteKodierung.length > 5) console.error(`  ... und ${kaputteKodierung.length - 5} weitere`);
+  console.error('Ihre Umlaute wurden zu Ersatzzeichen — deutsche Muster greifen dort nicht.');
+  console.error('Diese Dateien sind NICHT geprueft, egal was unten steht.');
+}
 console.log(`\n${bold("kill-ai-slop")} — scanned ${files.length} files under ${escapeTerminal(root)}\n`);
 if (groups.length === 0) {
   console.log("No slop signals found. (Still trust your eyes — open the pages.)\n");

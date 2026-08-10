@@ -47,7 +47,7 @@ ohne dass etwas seine eigene Arbeit prüft.
    - Am Ship-Pfad wird **jeder** Output gejudgt (kein Sampling); Sampling nur intern.
    - **Abgrenzung:** das Panel judgt EIN Artefakt gegen eine Rubrik. Offene
      Entscheidungsfragen mit mehreren Kandidaten-Antworten gehören ins Council-Muster
-     (anonymes Peer-Ranking + Chairman): `orchestrate` → `references/council.md`.
+     (anonymes Peer-Ranking + Chairman): `orchestrate` → `eigene/orchestrate/references/council.md`.
 3. **G3 Skill-Regression** — Baseline vs. Held-out, nur wenn ein Skill beteiligt ist.
    Zum aktiven **Verbessern** eines Skills (nicht nur Absichern): Mutations-Loop nach
    Karpathys Autoresearch-Disziplin — erst Baseline messen, dann **genau eine** Änderung

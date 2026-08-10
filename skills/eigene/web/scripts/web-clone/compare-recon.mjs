@@ -30,13 +30,29 @@ function parseArgs(argv) {
     else if (arg === "--original-interactions") out.originalInteractions = argv[++i] || "";
     else if (arg === "--clone-interactions") out.cloneInteractions = argv[++i] || "";
     else if (arg === "--out") out.out = argv[++i] || "CLONE_REPORT.md";
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
 
 function readJson(file) {
-  return JSON.parse(fs.readFileSync(file, "utf8"));
+  // Eine unlesbare Eingabedatei ist ein AUFRUF-Fehler, kein Vergleichsergebnis:
+  // verglichen wurde nichts. Ohne diese Markierung endete der Lauf mit Exit 1
+  // ("geprueft und durchgefallen"), gemessen 01.08.2026.
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch (err) {
+    const e = new Error(`${file} ist kein lesbares JSON: ${err.message.split("\n")[0]}`);
+    e.aufruffehler = true;
+    throw e;
+  }
 }
 
 function firstSignals(recon) {
@@ -79,25 +95,48 @@ function inferComplexity(signals) {
   return "L1";
 }
 
+// "Nichts gemessen" ist keine Note. Zwei leere Listen sind rechnerisch
+// identisch, und daraus wurde bis zum 30.07.2026 eine 5/5: eine leere
+// recon-Datei (abgestuerztes Werkzeug, falscher Pfad, `{}`) ergab
+// "Struktur getroffen: 5/5, Bewegung/Bedienung: 5/5, Exit 0" — Bestnote fuer
+// einen Klon, den niemand angesehen hat. Nachgemessen mit zwei `{}`-Dateien.
+//
+// Dieselbe Klasse wie die neun `parsed.x || []` im G1-Tor: der Rueckfall auf
+// eine leere Liste macht aus einem Absturz ein sauberes Ergebnis.
+const OHNE_DATEN = 'nicht gemessen (keine Signale in der recon-Datei)';
+
+// "/5" gehoert an eine Note, nicht an einen Satz. Erster Versuch schrieb
+// "nicht gemessen (...)/5" — sieht aus wie ein kaputter Platzhalter und liest
+// sich, als waere doch irgendwie bewertet worden.
+const note = (wert) => (wert === OHNE_DATEN ? wert : `${wert}/5`);
+
 function score(original, clone, visualDiff) {
   const o = firstSignals(original);
   const c = firstSignals(clone);
+  // Hat die Aufnahme ueberhaupt etwas gesehen? Ohne Ueberschriften und ohne
+  // Zaehlwerte ist jede daraus gerechnete Note geraten.
+  const hatSignale = (x) => Boolean(x.headings?.length) || Boolean(x.counts && Object.keys(x.counts).length);
+  const messbar = hatSignale(o) && hatSignale(c);
+
   const structureSimilarity = sequenceSimilarity(o.headings || [], c.headings || []);
-  const structure = Math.max(1, Math.round(structureSimilarity * 5));
-  const responsive = original.captures?.length === clone.captures?.length ? 4 : 2;
+  const structure = messbar ? Math.max(1, Math.round(structureSimilarity * 5)) : OHNE_DATEN;
+  const responsive = (original.captures?.length || clone.captures?.length)
+    ? (original.captures?.length === clone.captures?.length ? 4 : 2)
+    : OHNE_DATEN;
   const functionCounts = ["links", "forms", "buttons", "inputs"].map((key) => ratioScore(o.counts?.[key] || 0, c.counts?.[key] || 0));
-  const functional = Math.round(functionCounts.reduce((sum, value) => sum + value, 0) / functionCounts.length);
+  const functional = messbar ? Math.round(functionCounts.reduce((sum, value) => sum + value, 0) / functionCounts.length) : OHNE_DATEN;
   const motionCounts = ["canvas", "video"].map((key) => ratioScore(o.counts?.[key] || 0, c.counts?.[key] || 0));
-  const interaction = Math.round(motionCounts.reduce((sum, value) => sum + value, 0) / motionCounts.length);
+  const interaction = messbar ? Math.round(motionCounts.reduce((sum, value) => sum + value, 0) / motionCounts.length) : OHNE_DATEN;
   return {
+    _messbar: messbar,
     sourceEvidence: 3,
     structure,
-    visual: visualDiff ? `${visualDiff.visualScore}/5` : "需人工看截图或传 --visual-diff",
+    visual: visualDiff ? `${visualDiff.visualScore}/5` : "von Hand ansehen oder --visual-diff uebergeben",
     interaction,
     responsive,
     functional,
-    contentReplacement: "需人工看文案残留",
-    legalRisk: "需人工核查 license / 素材",
+    contentReplacement: "von Hand pruefen: Textreste des Originals",
+    legalRisk: "von Hand pruefen: Lizenz und Bildrechte",
   };
 }
 
@@ -117,8 +156,8 @@ function routePath(url) {
 
 function routesSection(files, evidence) {
   if (!evidence.originalRoutes || !evidence.cloneRoutes) {
-    return `## 路由覆盖
-- 未提供 route-crawl 结果。多页面站需要传 --original-routes / --clone-routes。
+    return `## Routen-Abdeckung
+- Kein route-crawl-Ergebnis uebergeben. Mehrseitige Sites brauchen --original-routes / --clone-routes.
 `;
   }
   const originalSet = new Set((evidence.originalRoutes.routes || []).map((route) => routePath(route.url)));
@@ -127,14 +166,14 @@ function routesSection(files, evidence) {
   const missing = Array.from(originalSet).filter((item) => !cloneSet.has(item));
   const extra = Array.from(cloneSet).filter((item) => !originalSet.has(item));
   const coverage = originalSet.size ? Math.round((matched.length / originalSet.size) * 100) : 100;
-  return `## 路由覆盖
-- 原站路由: ${originalSet.size}
-- 克隆路由: ${cloneSet.size}
-- 覆盖率: ${coverage}%
-- 原站 route map: ${files.originalRoutes}
-- 克隆 route map: ${files.cloneRoutes}
-- 缺失路由: ${missing.join(", ") || "无"}
-- 额外路由: ${extra.join(", ") || "无"}
+  return `## Routen-Abdeckung
+- Routen im Original: ${originalSet.size}
+- Routen im Klon: ${cloneSet.size}
+- Abdeckung: ${coverage}%
+- Routen-Karte Original: ${files.originalRoutes}
+- Routen-Karte Klon: ${files.cloneRoutes}
+- Fehlende Routen: ${missing.join(", ") || "keine"}
+- Zusaetzliche Routen: ${extra.join(", ") || "keine"}
 `;
 }
 
@@ -144,8 +183,8 @@ function changedActionCount(interactions) {
 
 function interactionSection(files, evidence) {
   if (!evidence.originalInteractions || !evidence.cloneInteractions) {
-    return `## 交互覆盖
-- 未提供 interaction-probe 结果。交互站需要传 --original-interactions / --clone-interactions。
+    return `## Bedien-Abdeckung
+- Kein interaction-probe-Ergebnis uebergeben. Interaktive Sites brauchen --original-interactions / --clone-interactions.
 `;
   }
   const originalActions = evidence.originalInteractions.actions || [];
@@ -156,16 +195,16 @@ function interactionSection(files, evidence) {
   const cloneCanvas = evidence.cloneInteractions.discovered?.canvases?.length || 0;
   const originalInteractive = evidence.originalInteractions.discovered?.interactive?.length || 0;
   const cloneInteractive = evidence.cloneInteractions.discovered?.interactive?.length || 0;
-  return `## 交互覆盖
-- 原站可见交互目标: ${originalInteractive}
-- 克隆可见交互目标: ${cloneInteractive}
-- 原站 canvas 目标: ${originalCanvas}
-- 克隆 canvas 目标: ${cloneCanvas}
-- 原站 changed actions: ${originalChanged}/${originalActions.length}
-- 克隆 changed actions: ${cloneChanged}/${cloneActions.length}
-- 原站 interaction probe: ${files.originalInteractions}
-- 克隆 interaction probe: ${files.cloneInteractions}
-- 判断: ${originalChanged === cloneChanged && originalCanvas === cloneCanvas ? "交互数量信号接近，仍需看截图确认状态质量。" : "交互数量信号不一致，需要检查缺失状态或过度实现。"}
+  return `## Bedien-Abdeckung
+- Sichtbare Bedienelemente im Original: ${originalInteractive}
+- Sichtbare Bedienelemente im Klon: ${cloneInteractive}
+- Canvas-Elemente im Original: ${originalCanvas}
+- Canvas-Elemente im Klon: ${cloneCanvas}
+- Wirksame Aktionen im Original: ${originalChanged}/${originalActions.length}
+- Wirksame Aktionen im Klon: ${cloneChanged}/${cloneActions.length}
+- Bedien-Messung Original: ${files.originalInteractions}
+- Bedien-Messung Klon: ${files.cloneInteractions}
+- Einschaetzung: ${originalChanged === cloneChanged && originalCanvas === cloneCanvas ? "Anzahl der Interaktionen passt ungefaehr; ob die Zustaende gut aussehen, zeigt erst der Screenshot." : "Anzahl der Interaktionen weicht ab: entweder fehlen Zustaende oder es wurde mehr gebaut als im Original."}
 `;
 }
 
@@ -178,17 +217,17 @@ function report(files, original, clone, evidence) {
   const cloneFlags = boolList(c.frameworks);
   const counts = ["sections", "links", "images", "video", "canvas", "forms", "buttons", "inputs", "interactive", "scripts"];
 
-  return `# ${original.label || "original"} vs ${clone.label || "clone"} · 克隆评估报告
+  return `# ${original.label || "original"} vs ${clone.label || "clone"} · Bericht zur Klon-Bewertung
 
-## 结论
-- 原站 URL: ${original.url}
-- 克隆 URL: ${clone.url}
-- 自动推断复杂度: ${complexity}
-- 复刻模式建议: ${complexity === "L5" ? "技术拆解 / 忠实复刻优先" : complexity === "L6" ? "展示层视觉复刻" : "视觉复刻 / 内容爆改"}
-- 自动报告边界: 结构、数量、框架、console 可自动比；传入 visual-diff 后可纳入像素差异分。内容残留和法务仍需审计。
+## Fazit
+- Original-URL: ${original.url}
+- Klon-URL: ${clone.url}
+- Automatisch geschaetzte Stufe: ${complexity}
+- Empfohlener Modus: ${complexity === "L5" ? "Technik auseinandernehmen, Originaltreue zuerst" : complexity === "L6" ? "nur die sichtbare Schicht nachbauen" : "Optik nachbauen, Inhalte komplett ersetzen"}
+- Was dieser Bericht NICHT kann: Struktur, Anzahlen, Framework und Konsole vergleicht er selbst; mit --visual-diff kommt der Pixel-Unterschied dazu. Textreste des Originals und die Rechtsfrage bleiben Handarbeit.
 
-## 技术信号
-| 项目 | 原站 | 克隆站 |
+## Technische Signale
+| Punkt | Original | Klon |
 |---|---|---|
 | title | ${o.title || ""} | ${c.title || ""} |
 | lang | ${o.lang || ""} | ${c.lang || ""} |
@@ -196,42 +235,42 @@ function report(files, original, clone, evidence) {
 | scrollHeight | ${o.scrollHeight || 0} | ${c.scrollHeight || 0} |
 | h1 | ${line(o.h1)} | ${line(c.h1)} |
 
-## 数量对比
-| 指标 | 原站 | 克隆站 | 自动评分 |
+## Zahlen im Vergleich
+| Kennzahl | Original | Klon | Automatische Note |
 |---|---:|---:|---:|
 ${counts.map((key) => `| ${key} | ${o.counts?.[key] || 0} | ${c.counts?.[key] || 0} | ${ratioScore(o.counts?.[key] || 0, c.counts?.[key] || 0)}/5 |`).join("\n")}
 
-## 复刻评分
-- 源证据: ${scores.sourceEvidence}/5
-- 结构保真: ${scores.structure}/5
-- 视觉保真: ${scores.visual}
-- 动效/交互: ${scores.interaction}/5
-- 响应式: ${scores.responsive}/5
-- 功能完整: ${scores.functional}/5
-- 内容替换: ${scores.contentReplacement}
-- 法务/部署风险: ${scores.legalRisk}
+## Bewertung des Nachbaus
+- Belege aus der Quelle: ${scores.sourceEvidence}/5
+- Struktur getroffen: ${note(scores.structure)}
+- Optik getroffen: ${scores.visual}
+- Bewegung / Bedienung: ${note(scores.interaction)}
+- Responsiv: ${note(scores.responsive)}
+- Funktionen vollstaendig: ${note(scores.functional)}
+- Inhalte ersetzt: ${scores.contentReplacement}
+- Rechts- und Deploy-Risiko: ${scores.legalRisk}
 
 ## Console
-- 原站 console errors: ${original.console?.errors?.length || 0}
-- 克隆 console errors: ${clone.console?.errors?.length || 0}
-- 原站 page errors: ${original.console?.pageErrors?.length || 0}
-- 克隆 page errors: ${clone.console?.pageErrors?.length || 0}
+- Konsolen-Fehler im Original: ${original.console?.errors?.length || 0}
+- Konsolen-Fehler im Klon: ${clone.console?.errors?.length || 0}
+- Seiten-Fehler im Original: ${original.console?.pageErrors?.length || 0}
+- Seiten-Fehler im Klon: ${clone.console?.pageErrors?.length || 0}
 
 ${routesSection(files, evidence)}
 
 ${interactionSection(files, evidence)}
 
-## 截图证据
-- 原站侦察: ${files.original}
-- 克隆侦察: ${files.clone}
-- 像素差异: ${files.visualDiff || "未提供"}
-- 像素差异率: ${evidence.visualDiff ? evidence.visualDiff.diffPixelRatio : "未提供"}
-- 原站截图: ${(original.captures || []).map((capture) => capture.screenshot).join(", ")}
-- 克隆截图: ${(clone.captures || []).map((capture) => capture.screenshot).join(", ")}
+## Belege aus Screenshots
+- Aufnahme Original: ${files.original}
+- Aufnahme Klon: ${files.clone}
+- Pixel-Unterschied: ${files.visualDiff || "nicht uebergeben"}
+- Anteil abweichender Pixel: ${evidence.visualDiff ? evidence.visualDiff.diffPixelRatio : "nicht uebergeben"}
+- Screenshots Original: ${(original.captures || []).map((capture) => capture.screenshot).join(", ")}
+- Screenshots Klon: ${(clone.captures || []).map((capture) => capture.screenshot).join(", ")}
 
-## 已知缺口
-- 未传入 visual-diff 时，视觉保真需要打开截图人工确认。
-- 法务、素材授权、品牌替换完整度需要人工核查。
+## Bekannte Luecken
+- Ohne --visual-diff laesst sich die Optik nur durch Ansehen der Screenshots beurteilen.
+- Recht, Bildlizenzen und ob wirklich jede Fremdmarke ersetzt wurde: bleibt Handarbeit.
 `;
 }
 
@@ -239,7 +278,11 @@ try {
   const args = parseArgs(process.argv.slice(2));
   if (args.help || !args.original || !args.clone) {
     usage();
-    process.exit(args.help ? 0 : 1);
+    // Exit 2, nicht 1: ein fehlendes Pflichtargument heisst "nichts geprueft",
+    // nicht "geprueft und durchgefallen". Dieselbe Trennung wie in beiden Toren
+    // und in den zehn Werkzeugen, die sie am 31.07.2026 bekommen haben.
+    // --help bleibt 0 — die Hilfe ist kein Fehlerfall.
+    process.exit(args.help ? 0 : 2);
   }
 
   const original = readJson(args.original);
@@ -259,7 +302,21 @@ try {
     cloneInteractions,
   }));
   console.log(output);
+
+  // Exit 2 = "konnte nicht urteilen", nicht "bestanden". Dieselbe Trennung wie
+  // im G1- und im Klon-Tor. Bis zum 30.07.2026 endete auch ein Lauf ueber zwei
+  // leere recon-Dateien mit Exit 0 — wer das Skript in einer Kette aufruft,
+  // liest daraus "Vergleich fertig".
+  const signale = (x) => Boolean(x?.captures?.[0]?.signals?.headings?.length)
+    || Boolean(x?.captures?.[0]?.signals?.counts && Object.keys(x.captures[0].signals.counts).length);
+  if (!signale(original) || !signale(clone)) {
+    console.error('Keine Signale in mindestens einer recon-Datei — der Bericht enthaelt keine Noten.');
+    console.error('Zuerst recon-site.mjs auf beiden Seiten laufen lassen, dann erneut vergleichen.');
+    process.exit(2);
+  }
 } catch (error) {
   console.error(`compare-recon failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

@@ -162,7 +162,7 @@ signiert die Eimer-Liste, nicht den fertigen Skill-Ordner.
 ## Sicherheits-/Qualitäts-Checkliste vor jeder Fremd-Skill-Übernahme
 
 Vor jedem Vendoring eines fremden Skills (egal wie gut die Quelle aussieht)
-einmal durchlaufen, Ergebnis in der VENDORING-NOTE.md des Ziel-Ordners
+einmal durchlaufen, Ergebnis in der VENDORING.md des Ziel-Ordners
 festhalten:
 
 1. **Quellen-Reputation prüfen** — Install-Zahl/Stars des Quell-Repos, ist

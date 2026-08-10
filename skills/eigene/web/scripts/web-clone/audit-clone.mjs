@@ -11,14 +11,37 @@ Scans clone source files for tracking scripts, original-brand residue, Japanese 
 }
 
 function parseArgs(argv) {
-  const out = { project: process.cwd(), brand: [], out: "CLONE_AUDIT.md" };
+  // `project` bewusst OHNE Voreinstellung. Bis zum 31.07.2026 stand hier
+  // process.cwd(): `node audit-clone.mjs` ohne Argument scannte den Ordner, in
+  // dem man gerade stand, schrieb CLONE_AUDIT.md hinein und endete mit Exit 0.
+  // Gemessen — die Datei landete im scripts/-Ordner dieses Skills.
+  //
+  // Dasselbe Muster wie bei import-check (--src fiel still auf '.' zurueck):
+  // ein Bericht ueber das falsche Projekt sieht aus wie ein Bericht ueber das
+  // richtige. Bei einem Werkzeug, das fremde Tracker im Klon sucht, heisst das
+  // "keine Funde" ueber Code, den niemand angesehen hat.
+  const out = { project: "", brand: [], out: "CLONE_AUDIT.md" };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === "--help" || arg === "-h") out.help = true;
     else if (arg === "--project") out.project = argv[++i] || process.cwd();
     else if (arg === "--brand") out.brand = (argv[++i] || "").split(",").map((s) => s.trim()).filter(Boolean);
     else if (arg === "--out") out.out = argv[++i] || "CLONE_AUDIT.md";
-    else throw new Error(`Unexpected argument: ${arg}`);
+    // JSON-Ausgabe nachgetragen 29.07.2026. Bis dahin schrieb dieses Werkzeug
+    // NUR Markdown fuer menschliche Augen — und endete immer mit Exit 0, auch
+    // wenn es einen Google-Tracker im Klon gefunden hatte. Damit war der einzige
+    // Pruefer auf Tracking-Reste und Fremdmarken maschinell nicht auswertbar:
+    // klon-gate.mjs konnte seine Funde nicht lesen, kein Tor konnte an ihnen
+    // blocken. Ein Fund, den niemand abfragen kann, stoppt keine Auslieferung.
+    else if (arg === "--json") out.json = argv[++i] || "";
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -71,11 +94,11 @@ function markdown(findings, project, scannedFiles) {
     byType.get(finding.type).push(finding);
   }
   const types = [
-    ["tracking", "追踪脚本 / 统计像素"],
-    ["brand", "原站品牌残留"],
-    ["japanese", "日文残留"],
-    ["todo", "TODO / 占位内容"],
-    ["external", "外部依赖 / 外链风险"],
+    ["tracking", "Tracking-Skripte / Zaehl-Pixel"],
+    ["brand", "Marken-Reste der Originalseite"],
+    ["japanese", "Japanische Textreste"],
+    ["todo", "TODO / Platzhalter-Inhalte"],
+    ["external", "Externe Abhaengigkeiten / Links nach draussen"],
   ];
   const lines = [
     `# Clone Audit`,
@@ -90,19 +113,21 @@ function markdown(findings, project, scannedFiles) {
     const items = byType.get(type) || [];
     lines.push(`## ${title}`);
     if (!items.length) {
-      lines.push("- 未发现");
+      lines.push("- nichts gefunden");
       lines.push("");
       continue;
     }
     for (const item of items.slice(0, 200)) {
       lines.push(`- ${path.relative(project, item.file)}:${item.line} · ${item.label} · \`${item.match.replaceAll("`", "'")}\``);
     }
-    if (items.length > 200) lines.push(`- 还有 ${items.length - 200} 条未展开`);
+    if (items.length > 200) lines.push(`- ${items.length - 200} weitere, hier nicht ausgeklappt`);
     lines.push("");
   }
 
-  lines.push("## 结论");
-  lines.push(findings.length ? "- 需要处理上面的残留项后再声明可部署。" : "- 未发现明显残留项；仍需人工核查素材授权和视觉截图。");
+  lines.push("## Fazit");
+  lines.push(findings.length
+    ? "- Die Funde oben muessen weg, bevor irgendjemand \"kann ausgeliefert werden\" sagt."
+    : "- Keine offensichtlichen Reste. Bildrechte und Screenshots pruefen bleibt trotzdem Handarbeit.");
   return `${lines.join("\n")}\n`;
 }
 
@@ -113,6 +138,11 @@ try {
     process.exit(0);
   }
 
+  if (!args.project) {
+    console.error("Fehler: --project fehlt.");
+    usage();
+    process.exit(2);
+  }
   const project = path.resolve(args.project);
   if (!fs.existsSync(project)) throw new Error(`Project not found: ${project}`);
 
@@ -145,7 +175,25 @@ try {
   fs.mkdirSync(path.dirname(output), { recursive: true });
   fs.writeFileSync(output, markdown(findings, project, files.length));
   console.log(output);
+
+  // Dieselben Funde maschinenlesbar. Das Feld heisst `blockers`, weil es genau
+  // das sind: Tracking-Code der fremden Seite, deren Markennamen, TODO-Reste —
+  // jeder davon stoppt einen Launch. `findings` bleibt als Alias, damit
+  // bestehende Leser nicht brechen.
+  if (args.json !== undefined) {
+    const jsonPfad = path.resolve(args.json || output.replace(/\.md$/i, "") + ".json");
+    fs.mkdirSync(path.dirname(jsonPfad), { recursive: true });
+    fs.writeFileSync(jsonPfad, `${JSON.stringify({
+      project,
+      scannedFiles: files.length,
+      blockers: findings,
+      findings,
+    }, null, 2)}\n`);
+    console.log(jsonPfad);
+  }
 } catch (error) {
   console.error(`audit-clone failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

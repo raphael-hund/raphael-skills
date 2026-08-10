@@ -6,7 +6,9 @@ G1 zuerst, dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung
 Rollen: `agent-roster.md`. AAA-Raster: `agentur-rubrik.md`.
 
 **AI-Slop-Sequenz (fest, kein optionaler Zusatzschritt):** design ZUERST (Fach 2, `detect.mjs`
-+ `scan-ai-slop.mjs` je Exit 0) → **danach copywriting G1→G2** auf denselben Seiten (Fach 1,
+Exit 0 **und** `scan-ai-slop.mjs` mit 0 Treffern — der Scanner endet IMMER mit Exit 0,
+auch bei Funden, deshalb zaehlt bei ihm die Trefferzahl aus dem `--json`-Feld `hits`,
+nie sein Exit-Code; nachgemessen 02.08.2026) → **danach copywriting G1→G2** auf denselben Seiten (Fach 1,
 Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 
 ## Fach 1 — Conversion
@@ -16,6 +18,19 @@ Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
 - Reibung raus: Formularfelder minimal, Einwände vorweggenommen.
 
 ### Harte QA-Regeln Formular (G1, blockieren den Launch)
+
+**Zuerst der Prüfer, dann der Blick.** `node scripts/formular-check.mjs --url <url>`
+(im G1-Tor enthalten) misst, was messbar ist: falscher `input-type` (F1, BLOCK),
+Einfüge-Sperre (F3, BLOCK), fehlendes `autocomplete` (F2), Feldhöhe (F4),
+iOS-Zoom bei Schrift unter 16px (F5), Kontaktdaten zu früh (F6), Absende-Knopf
+(F7). **Die Lücke war real:** axe und craft-check ließen ein E-Mail-Feld mit
+`type="text"` beide durch (gemessen 29.07.) — das kostet auf einer Landingpage
+mehr Leads als jeder Kontrastfehler, den beide zuverlässig finden.
+
+Was das Skript **nicht** kann, bleibt Handarbeit: es liest Feldnamen, nicht die
+Fragen dahinter. F6 erkennt „E-Mail steht vor einer Sachfrage", aber nicht, ob
+die Sachfrage überhaupt qualifiziert.
+
 - **Reihenfolge = Mikro-Commitments, Kontaktdaten IMMER zuletzt:** Identifikation
   ("Welche Beschreibung passt zu dir?") → Qualifizierung (Branche, Team-Größe,
   **Website-URL** statt Firmenname) → **erst zuletzt** Kontaktdaten (Name → E-Mail →

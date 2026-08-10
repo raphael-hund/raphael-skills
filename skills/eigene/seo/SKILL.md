@@ -20,7 +20,7 @@ source: >
   distribb-skill (kein LICENSE, nur Paraphrase/Ideen, keine wörtliche
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
   AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract) —
-  Details siehe VENDORING-NOTE.md und VENDORING.md Runde 6
+  Details siehe VENDORING.md (Runde 6)
 loads:
   - references/wissens-router.md
   - references/loop4-ablauf.md
@@ -156,6 +156,6 @@ ads koordinieren.
   vor G2 — nicht roh ausliefern.
 - Refresh-Trigger = echter Ranking-Decay (G4), nicht Kalender.
 - **Vendorierte Studien-Zahlen (E-E-A-T/Local/GEO/SXO) sind kein eigener Beleg.** Sie stammen aus
-  Drittstudien im Quell-Repo (siehe `VENDORING-NOTE.md`) und dienen der eigenen Priorisierung —
+  Drittstudien im Quell-Repo (siehe `VENDORING.md`) und dienen der eigenen Priorisierung —
   in einen Kundenreport gehört nur der eigene Export (GSC/GBP-Insights/SERP-Ausriss), nie die
   fremde Studienzahl als eigene Kennzahl (Belegpflicht).

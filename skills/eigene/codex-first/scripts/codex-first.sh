@@ -13,8 +13,12 @@
 # Flags werden hier bewusst NICHT gesetzt.
 set -euo pipefail
 
-usage() {
-  cat >&2 <<'EOF'
+# Der Hilfetext einmal, zwei Wege hinaus: usage_text auf stdout (fuer --help,
+# Exit 0), usage auf stderr mit Exit 2 (fuer den falschen Aufruf). Bis zum
+# 03.08.2026 endete auch --help mit Exit 2 — in einer Kette liest das jedes
+# Skript als "Werkzeug kaputt".
+usage_text() {
+  cat <<'EOF'
 usage: codex-first.sh <sol|terra|luna> <repo-pfad> [prompt...]
        (ohne prompt-Argumente wird der Prompt von stdin gelesen)
 
@@ -22,8 +26,19 @@ beispiele:
   codex-first.sh terra /root/clients/client-acme "Migriere src/ von v1 auf v2 API."
   echo "Fixe den Off-by-one in pager.ts" | codex-first.sh sol /root/clients/client-acme
 EOF
+}
+
+usage() {
+  usage_text >&2
   exit 2
 }
+
+case "${1:-}" in
+  --help|-h)
+    usage_text
+    exit 0
+    ;;
+esac
 
 [ "$#" -ge 2 ] || usage
 PROFILE="$1"; REPO="$2"; shift 2

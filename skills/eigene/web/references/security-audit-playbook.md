@@ -9,7 +9,7 @@ Tooling-Tiefe (CodeQL/SARIF/Semgrep) bewusst nicht dupliziert — dafür Origina
 **Führungs-Regel (Dopplung mit OWASP-Checkliste vermeiden):** Dieses Playbook führt bei
 Fail-Open/Fail-Closed-Doktrin (Regel 1), Footgun-Konfiguration/CORS/Webhook-Signaturen
 (Regel 2) und npm-Supply-Chain-Tiefe (Regel 3) für den Web-Build-Schritt. Bei Code-Reviews
-von Formularen/API-Routes/Webhooks zusätzlich `code-review/references/owasp-checkliste.md`
+von Formularen/API-Routes/Webhooks zusätzlich `methodik/code-review/references/owasp-checkliste.md`
 laden — die dortigen A02/A03/A05/A08/A10-Einträge und die Airtable-Checkliste sind der
 Code-Review-Zusatzcheck, keine eigenständige Zweitquelle. Wird eine Regel hier geändert,
 owasp-checkliste.md gegenprüfen (und umgekehrt) statt beide getrennt driften zu lassen.
@@ -23,7 +23,12 @@ diese zwei Sätze sind Rationalisierungen, keine Argumente.
 
 ## Regel 1 — Fail-Open erkennen (Kundendaten/Secrets)
 
-Quelle: `plugins/insecure-defaults/skills/insecure-defaults/SKILL.md` + `references/examples.md`.
+Quelle: `plugins/insecure-defaults/skills/insecure-defaults/SKILL.md` + dessen
+`references/examples.md`. Die vier Quellvermerke in dieser Datei nennen eine
+fremde Plugin-Sammlung, die auf diesem Rechner nicht liegt — sie belegen die
+Herkunft der Regeln, sie sind kein Verweis zum Nachschlagen. Der relative Pfad
+stand bis 03.08.2026 ohne dieses "dessen" da und las sich wie ein Verweis in
+den eigenen references-Ordner.
 
 **Prüffrage:** Was passiert, wenn eine Config/ENV-Variable fehlt — stürzt die App ab
 (fail-secure, sicher) oder läuft sie mit einem Default weiter (fail-open, Finding)?

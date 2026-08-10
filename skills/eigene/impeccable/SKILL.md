@@ -39,7 +39,8 @@ präzisen Kommando-Sprache und einem nicht verhandelbaren Qualitäts-Floor.
 (Doktrin, taste-/ui-ux-Linien, deterministische Detektoren). impeccable ist die
 **Arbeits- und QA-Sprache**: die 23 Kommandos, mit denen man eine Fläche
 benennt, angreift und abnimmt. Wenn design geladen ist, lädt impeccable mit —
-als Vokabular, nicht als Ersatz. Finale QA bleibt `node scripts/detect.mjs`
+als Vokabular, nicht als Ersatz. Finale QA bleibt
+`node ../../design/scripts/detect.mjs`
 Exit 0 aus design.
 
 ## Zwei Register, vier Modi
@@ -135,7 +136,7 @@ nicht Abschwächen.
    (Tokens, Theme, CSS, Komponente, Asset) lesen, bevor editiert wird.
 4. **Craft-Floor direkt vor dem Editieren laden** (`references/craft-floor-de.md`).
 5. **Nach dem Editieren:** Craft-Floor-Check (8 Punkte) + deterministische
-   Detektoren aus design (`node scripts/detect.mjs` Exit 0).
+   Detektoren aus design (`node ../../design/scripts/detect.mjs` Exit 0).
 6. **Nie Drift als Nebeneffekt reparieren.** Ein `CONTEXT_STALE`-Fund wird
    gemeldet, nicht still behoben.
 

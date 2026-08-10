@@ -22,8 +22,26 @@ function parseArgs(argv) {
     else if (arg === "--url") out.url = argv[++i] || "";
     else if (arg === "--mode") out.mode = argv[++i] || "";
     else if (arg === "--level") out.level = argv[++i] || "";
+    else if (arg.startsWith("-")) {
+      // Gemessen 31.07.2026: ohne diese Zeile wurde `--tippfehler` zum
+      // PROJEKTNAMEN. Der Testlauf legte tatsaechlich
+      // /root/projects/website-clones/diesesflaggibtsnicht-clone an — ein
+      // vertipptes Flag erzeugte ein Projekt samt Ordnerstruktur. Der Slug-Zweig
+      // unten nimmt alles an, was nicht schon als Flag erkannt wurde; ein
+      // fuehrendes "-" ist nie ein Projektname.
+      const e = new Error(`Unbekanntes Flag: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
     else if (!out.slug) out.slug = arg;
-    else throw new Error(`Unexpected argument: ${arg}`);
+    else {
+      // Aufruffehler, kein Lauffehler: der Handler unten macht daraus
+      // Exit 2 ('Werkzeug/Aufruf nicht bereit') statt Exit 1
+      // ('Qualitaet gerissen'). Siehe web/SKILL.md.
+      const e = new Error(`Unexpected argument: ${arg}`);
+      e.aufruffehler = true;
+      throw e;
+    }
   }
   return out;
 }
@@ -38,65 +56,65 @@ function cleanSlug(input) {
 }
 
 function notesTemplate({ name, url, mode, level }) {
-  return `# ${name} · 克隆笔记
+  return `# ${name} · Klon-Notizen
 
-## 源信息
-- 原站 URL: ${url}
-- 源码仓库: 
-- 原作者: 
-- 许可证: 
-- 致谢要求: 
+## Woher
+- Original-URL: ${url}
+- Quellcode-Repo: 
+- Urheber: 
+- Lizenz: 
+- Verlangte Namensnennung: 
 
-## 技术栈
-- 框架 / 关键库 / Node 版本: 
+## Technik
+- Framework / wichtige Libraries / Node-Version: 
 
-## 复刻前预判
-- 复杂度等级: ${level}
-- 推荐模式: ${mode}
-- 可高保真的部分: 
-- 需要近似或替代的部分: 
-- 不克隆的部分: 
-- 主要风险: 
+## Einschaetzung vor dem Nachbau
+- Schwierigkeitsstufe: ${level}
+- Empfohlener Modus: ${mode}
+- Was originalgetreu machbar ist: 
+- Was nur angenaehert oder ersetzt wird: 
+- Was gar nicht geklont wird: 
+- Groesste Risiken: 
 
-## 跑起来
+## Starten
 \`\`\`bash
 cd ~/projects/website-clones/${name}
 python3 -m http.server 8123
 \`\`\`
 
-## 改了什么（对照原版）
+## Was geaendert wurde (gegenueber dem Original)
 - 
 
-## 原站 vs 克隆站
-| 模块 | 原站表现 | 克隆实现 | 差异 / 取舍 | 证据 |
+## Original gegen Klon
+| Bereich | Original | Klon | Unterschied / bewusste Entscheidung | Beleg |
 |---|---|---|---|---|
-| 首屏 |  |  |  |  |
-| 导航 |  |  |  |  |
-| 核心动效 |  |  |  |  |
-| 内容区块 |  |  |  |  |
-| 移动端 |  |  |  |  |
+| Erster Bildschirm |  |  |  |  |
+| Navigation |  |  |  |  |
+| Kern-Animationen |  |  |  |  |
+| Inhaltsbloecke |  |  |  |  |
+| Mobil |  |  |  |  |
 
-## 复刻评分
-- 源证据: /5
-- 结构保真: /5
-- 视觉保真: /5
-- 动效/交互: /5
-- 响应式: /5
-- 功能完整: /5
-- 内容替换: /5
-- 法务/部署风险: /5
-- 总评: 
+## Bewertung des Nachbaus
+- Belege aus der Quelle: /5
+- Struktur getroffen: /5
+- Optik getroffen: /5
+- Bewegung / Bedienung: /5
+- Responsiv: /5
+- Funktionen vollstaendig: /5
+- Inhalte ersetzt: /5
+- Rechts- und Deploy-Risiko: /5
+- Gesamt: 
 
-## 替换地图（要换什么改哪）
-- 文字 -> 文件 行
-- 图片/媒体 -> 目录
-- 配色 -> CSS 变量 / theme
-- 3D 模型 / 字体 -> 
+## Austausch-Karte (was wird wo geaendert)
+- Texte -> Datei, Zeile
+- Bilder/Medien -> Ordner
+- Farben -> CSS-Variablen / Theme
+- 3D-Modelle / Schriften -> 
 
-## 验证
-- [ ] 本地跑通、console 0 error
-- [ ] 截图对照原站（RECON/screenshots/）
-- 验证不了的点（如实记，别伪造）: 
+## Nachweis
+- [ ] Laeuft lokal, 0 Fehler in der Konsole
+- [ ] Screenshots gegen das Original gehalten (RECON/screenshots/)
+- Was sich NICHT pruefen liess (ehrlich eintragen, nichts erfinden): 
 `;
 }
 
@@ -132,5 +150,7 @@ try {
   console.log(project);
 } catch (error) {
   console.error(`init-clone failed: ${error.message}`);
-  process.exit(1);
+  // Ein vertipptes Flag ist keine gerissene Qualitaet. Exit 1 hiesse
+  // 'geprueft und durchgefallen' — geprueft wurde aber nichts.
+  process.exit(error.aufruffehler ? 2 : 1);
 }

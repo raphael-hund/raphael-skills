@@ -25,8 +25,34 @@ Ist das erste Argument eine existierende Datei, wird der Download uebersprungen
 (Riverside/Zoom/Loom-Exporte, eigene Aufnahmen). Ohne Arbeits-Verzeichnis wird
 /tmp/watch.XXXXXX angelegt.
 EOF
+}
+
+usage() {
+  usage_text >&2
   exit 2
 }
+
+# --help ist kein Fehlerfall: Hilfe auf stdout, Exit 0. Ohne diesen Zweig
+# reichte "--help" bis zu yt-dlp durch, und der Aufrufer bekam DESSEN Hilfe
+# (Exit 1) statt der von watch-extract. Gemessen 03.08.2026.
+case "${1:-}" in
+  --help|-h)
+    usage_text
+    exit 0
+    ;;
+esac
+
+# Ein unbekanntes Flag ist kein Video. Ohne diesen Zweig landete "--tippfehler"
+# als URL bei yt-dlp, das dann 20 Sekunden lang erfolglos aufloeste — gemessen
+# 03.08.2026 (Exit 124 nach Timeout). Wer sich vertippt, soll das sofort
+# erfahren, nicht nach einer halben Minute mit einer fremden Fehlermeldung.
+case "${1:-}" in
+  -*)
+    echo "Unbekanntes Flag: $1" >&2
+    echo "Erlaubt: --help. Sonst wird eine Video-URL erwartet." >&2
+    exit 2
+    ;;
+esac
 
 [ "$#" -ge 1 ] || usage
 URL="$1"

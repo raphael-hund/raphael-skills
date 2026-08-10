@@ -193,7 +193,19 @@ async function detectCli() {
 
   if (helpMode) { printUsage(); process.exit(0); }
 
+  // Ziele, deren Scan gescheitert ist. Leeres Feld heisst "alles gescannt";
+
+  // sonst darf am Ende kein Gruen stehen. Muss HIER stehen, nicht im
+
+  // try-Block: die Auswertung passiert weiter unten, ausserhalb.
+
+  const scanFehler = [];
+
   let allFindings = [];
+  // Dateien, die nicht geoeffnet werden konnten (toter Symlink, fehlende
+  // Rechte, Symlink-Kreis). Sie zaehlen in der Dateiliste mit, sind aber
+  // ungeprueft — das muss am Ende sichtbar werden.
+  const nichtLesbar = [];
 
   if (!process.stdin.isTTY && targets.length === 0) {
     allFindings = await handleStdin(scanOptions);
@@ -210,7 +222,18 @@ async function detectCli() {
               ? (url) => browserDetector.detectUrl(url, scanOptions)
               : (url) => detectUrl(url, scanOptions);
             allFindings.push(...await scanner(target));
-          } catch (e) { process.stderr.write(`Error: ${e.message}\n`); }
+          } catch (e) {
+            // Ein gescheiterter URL-Scan war bisher eine Zeile auf stderr, und
+            // am Ende meldete die CLI Exit 0 — also "keine Funde".
+            //
+            // Nachgemessen 30.07.2026: `detect.mjs http://...` gibt auf diesem
+            // Rechner "puppeteer is required for URL scanning" aus UND endet
+            // mit Exit 0. Wer den Exit-Code auswertet (jedes Tor tut das), liest
+            // eine saubere Seite, wo gar nichts gescannt wurde. Genau die
+            // Verwechslung, gegen die dieser Detektor gebaut ist.
+            process.stderr.write(`Error: ${e.message}\n`);
+            scanFehler.push(`${target}: ${e.message}`);
+          }
           continue;
         }
 
@@ -274,11 +297,24 @@ async function detectCli() {
 
           for (const file of files) {
             const ext = path.extname(file).toLowerCase();
+            // AENDERUNG GEGENUEBER DEM ORIGINAL, 01.08.2026: ungeschuetzt.
+            // Ein toter Symlink kommt durch die Sammelstelle (dort zaehlt nur
+            // die Endung) und liess readFileSync mit ENOENT abstuerzen —
+            // Stacktrace, Exit 1, also "geprueft und durchgefallen" fuer ein
+            // Projekt, das nie gelesen wurde.
             let fileFindings;
-            if (HTML_EXTENSIONS.has(ext)) {
-              fileFindings = await detectHtml(file, scanOptions);
-            } else {
-              fileFindings = detectText(fs.readFileSync(file, 'utf-8'), file, scanOptions);
+            try {
+              if (HTML_EXTENSIONS.has(ext)) {
+                fileFindings = await detectHtml(file, scanOptions);
+              } else {
+                fileFindings = detectText(fs.readFileSync(file, 'utf-8'), file, scanOptions);
+              }
+            } catch (err) {
+              if (err && (err.code === 'ENOENT' || err.code === 'EACCES' || err.code === 'ELOOP')) {
+                nichtLesbar.push(`${file} (${err.code})`);
+                continue;
+              }
+              throw err;
             }
             // Annotate findings with import context
             const importers = importedByMap.get(file);
@@ -314,8 +350,38 @@ async function detectCli() {
     else process.stderr.write(formatFindings(allFindings, false) + '\n');
     process.exit(2);
   }
+  // Nicht lesbare Dateien gehoeren in dieselbe Klasse wie nicht scannbare
+  // Ziele: sie zaehlen in der Dateiliste mit, sind aber ungeprueft. Ohne diese
+  // Zeile blieben sie still — der Lauf meldete Exit 0 fuer ein Projekt, dessen
+  // Dateien er nie geoeffnet hat (gemessen 01.08.2026 mit einem toten Symlink,
+  // vorher sogar mit Stacktrace und Exit 1).
+  for (const d of nichtLesbar) scanFehler.push(`${d} — nicht lesbar, also nicht geprueft`);
+
+  // Uebersprungen ist nicht bestanden — dieselbe Regel wie im G1-Tor.
+  if (scanFehler.length) {
+    process.stderr.write(
+      `\n${scanFehler.length} Ziel(e) konnten nicht gescannt werden — das ist KEIN sauberes Ergebnis:\n`
+      + scanFehler.map((z) => `  ${z}\n`).join(''));
+    process.exit(2);
+  }
   if (jsonMode) process.stdout.write('[]\n');
   process.exit(0);
+}
+
+// Diese Datei heisst `main.mjs`, liegt in `cli/` und ist trotzdem ein MODUL:
+// der Einstiegspunkt ist `detector/detect-antipatterns.mjs`, der `detectCli`
+// hier importiert. Wer sie direkt aufruft, bekam bisher stille Exit 0 und keine
+// Zeile Ausgabe — auf einer Seite mit Indigo-Violett-Verlauf, Inter und
+// Em-Dash. Das sieht aus wie "nichts gefunden" und ist "nie gelaufen".
+//
+// Gefunden 30.07.2026 beim Suchen nach urteilenden Skripten ohne Eval. Der
+// Detektor selbst arbeitet korrekt (ueber den richtigen Einstieg: Exit 2, Fund
+// mit Datei, Zeile und Beleg) — kaputt war nur, was ein Fehlaufruf meldet.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  process.stderr.write(
+    'Diese Datei ist ein Modul, kein Werkzeug.\n'
+    + 'Einstiegspunkt: node scripts/detector/detect-antipatterns.mjs [--json] <pfad|url>\n');
+  process.exit(2);
 }
 
 export { formatFindings, handleStdin, confirm, printUsage, detectCli };

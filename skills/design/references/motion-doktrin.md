@@ -1,7 +1,7 @@
 > Vendoriert aus emilkowalski/skills (github.com/emilkowalski/skills @ 6bf24434),
 > MIT-Lizenz. Fusion aus `emil-design-eng`, `review-animations` (+STANDARDS.md).
 > Die im Original enthaltene Kurs-Werbung ("check out Emil's course") wurde
-> entfernt. Details: `../VENDORING-NOTE.md`.
+> entfernt. Details: `../VENDORING.md`.
 
 # Motion-Doktrin
 

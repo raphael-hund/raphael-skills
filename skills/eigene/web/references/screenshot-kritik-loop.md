@@ -134,6 +134,23 @@ Die aktuelle Koordination merged: nur Befunde, die (a) von >=2 Panel-Mitgliedern
 Blind-A/B-Luecken (Kandidat verliert) zaehlen wie Panel-Mehrheit.
 Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
 
+**Belegter Lauf (27.07.2026, Beweis-Build).** Das Tor hatte die Seite freigegeben:
+Lighthouse 98/100/100/100, 0 axe-Verstoesse, 0 Craft-Blocker, 0 Slop-Blocker.
+Das Panel fand darauf vier Dinge, die kein Exit-Code sieht:
+
+| Befund | Schwere | vom eigenen Auge bestaetigt |
+|---|---|---|
+| kein einziges Foto auf einer Handwerker-Seite | BLOCK | ja |
+| Zitat schwebt ohne Anker in ~280px Leerraum | WARN | ja |
+| Footer ohne Impressum/Datenschutz | WARN | ja |
+| kein Signature-Moment, sauber aber austauschbar | INFO | ja |
+
+Das ist der Grund, warum Schritt 3 existiert. Ein gruenes Tor heisst „nichts ist
+kaputt", nicht „das ist eine 10.000-Euro-Seite". Die BLOCK-Meldung „kein Bild"
+kann kein Skript stellen: die Merkmale M24 (Bildwelt) und M25 (Proof) sind in
+`agentur-merkmale.md` ausdruecklich als INFO gefuehrt, weil sie nur ein Auge
+beurteilen kann. Genau dort schlug das Panel zu.
+
 ### 5. Fix (Worker nach Doktrin)
 Die Implementierungs-Rolle erhält: Fixliste MIT Shot-Belegen
 (Dateipfade der relevanten PNGs pro Befund), betroffene Dateien, Verify-Kommandos

@@ -13,7 +13,9 @@
 //      Standard fuer Kritik-Sweeps, damit keine leeren Reveal-Flaechen entstehen.
 //
 // Ausgabe: PNGs + manifest.json — das Manifest ist der Vertrag fuer Kritik-Agents.
-import { chromium } from '/usr/lib/node_modules/playwright/index.mjs';
+// Playwright erst NACH der Flag-Wache laden (dynamischer import unten): ein
+// statischer import laeuft immer zuerst und kostet 12-36s, nur um danach ein
+// falsch getipptes Flag abzulehnen (Befund 03.08.2026, siehe axe-run.mjs).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -291,6 +293,7 @@ async function sweepRoute(browser, route, vp, label, manifest) {
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
+  const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
   const browser = await chromium.launch({ headless: true, channel: 'chrome' });
   const manifest = {
     base: BASE, createdAt: new Date().toISOString(), static: STATIC,

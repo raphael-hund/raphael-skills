@@ -1,0 +1,444 @@
+#!/usr/bin/env node
+/**
+ * run-doku-zahlen.mjs — stimmen die Fallzahlen in SKILL.md noch?
+ *
+ * SKILL.md verspricht neben jedem Eval-Aufruf eine Fallzahl:
+ *   node evals/run-craft-check.mjs   # 12 Faelle + Kontrolle
+ *
+ * Diese Zahl ist eine zweite Wahrheitsquelle. Sie veraltet still, weil nichts
+ * sie an die Evals bindet: wer einen Fall hinzufuegt, aendert die Eval, nicht
+ * den Prosa-Kommentar. Am 30.07.2026 gemessen — 6 von 14 Zahlen waren falsch,
+ * craft stand als "12 Faelle" in der Doku und lief mit 22.
+ *
+ * Warum das mehr ist als Kosmetik: Wer die Doku liest und "12 Faelle" erwartet,
+ * haelt einen Lauf mit 12 Faellen fuer vollstaendig — obwohl 10 fehlen. Die
+ * Umfang-Wache (run-eval-umfang.mjs) faengt genau diesen Fall, aber nur gegen
+ * ihren eigenen Sollstand. Wer stattdessen der Doku glaubt, bekommt keine
+ * Warnung. Eine falsche Zahl in der Doku ist dieselbe Klasse Fehler wie eine
+ * geratene Zahl im Pruefbericht: sie sieht gemessen aus.
+ *
+ * Quelle der Wahrheit ist evals/eval-umfang.json — der Sollstand, den die
+ * Umfang-Wache aus echten Laeufen schreibt. Diese Eval vergleicht nur; sie
+ * fuehrt keine Evals aus und braucht deshalb weder Browser noch Server.
+ *
+ * Aufruf:
+ *   node evals/run-doku-zahlen.mjs
+ *   node evals/run-doku-zahlen.mjs --aktualisieren   # Doku an die Messung anpassen
+ *
+ * Exit 0 = alle Zahlen stimmen, 1 = mindestens eine Zahl ist falsch,
+ * 2 = Sollstand oder SKILL.md fehlt (nicht geprueft, nicht bestanden).
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+
+const HIER = path.dirname(fileURLToPath(import.meta.url));
+const SKILL = path.join(HIER, '..');
+const MD = path.join(SKILL, 'SKILL.md');
+const STAND = path.join(HIER, 'eval-umfang.json');
+const AKTUALISIEREN = process.argv.includes('--aktualisieren');
+
+for (const [p, was] of [[MD, 'SKILL.md'], [STAND, 'eval-umfang.json']]) {
+  if (!fs.existsSync(p)) {
+    console.error(`FEHLER: ${was} nicht gefunden: ${p}`);
+    console.error('Ohne beide Seiten ist nichts zu vergleichen — nicht geprueft.');
+    process.exit(2);
+  }
+}
+
+const stand = JSON.parse(fs.readFileSync(STAND, 'utf8'));
+let md = fs.readFileSync(MD, 'utf8');
+
+// "node evals/run-x.mjs [--flag wert]   # 12 Faelle ..." — die Zahl direkt hinter
+// dem Rautenzeichen. Zwischen Dateiname und # koennen Flags stehen (--nur M6),
+// die einen Teillauf zeigen; solche Zeilen sind KEINE Aussage ueber den
+// Gesamtumfang und werden uebersprungen.
+// Der Rest der Zeile hinter "Faelle" wird MITGELESEN (Gruppe 4). Ohne ihn endet
+// der Treffer bei "Faelle", und ein "+ Kontrolle" dahinter ist fuer jede Pruefung
+// unsichtbar — genau so ist mein erster Schutz ins Leere gelaufen: die Regel
+// stand da, sah richtig aus und testete einen String, der den Zusatz gar nicht
+// enthielt. Ein Test auf Text, den das Muster abgeschnitten hat, ist immer gruen.
+const MUSTER = /node evals\/(run-[a-z0-9-]+\.mjs)([^#\n]*)#\s*(\d+)\s*F(?:ä|ae)lle([^\n]*)/g;
+
+// Zweite Form, gefunden am 30.07.2026: nicht jede Fallzahl steht als
+// Kommentar hinter einem Befehl. Im Fliesstext heisst es
+// "`node evals/run-bilder-check.mjs` (9 Faelle: 5 Ausbruchsversuche, ...)".
+// Das MUSTER oben verlangt ein `#`, also fielen diese Stellen komplett durch —
+// run-bilder-check stand mit 9 in der Doku und faehrt 12. Eine Wache, die nur
+// eine Schreibweise kennt, meldet die andere nie.
+const MUSTER_FLIESS = /evals\/(run-[a-z0-9-]+\.mjs)`?\s*\((\d+)\s*F(?:ä|ae)lle([^)\n]*)/g;
+
+const funde = [];
+const gesehen = new Set();
+for (const m of md.matchAll(MUSTER)) {
+  const [ganz, datei, zwischen, zahl, rest] = m;
+  if (/--\S/.test(zwischen)) continue; // Teillauf, keine Umfangsaussage
+  funde.push({ ganz, datei, doku: Number(zahl), zahl, rest });
+  gesehen.add(datei);
+}
+for (const m of md.matchAll(MUSTER_FLIESS)) {
+  const [ganz, datei, zahl, rest] = m;
+  // Doppelt genannte Evals nur einmal pruefen — sonst zaehlt dieselbe Aussage
+  // zweimal und die Gesamtzahl bewegt sich, ohne dass etwas dazukam.
+  if (gesehen.has(datei)) continue;
+  gesehen.add(datei);
+  funde.push({ ganz, datei, doku: Number(zahl), zahl, rest });
+}
+
+let fehler = 0;
+let ohneStand = 0;
+let ersetzt = 0;
+// Selbst zaehlen statt eine Formel zu pflegen.
+//
+// Unten stand `funde.length + 7` — die 7 fuer Zusatzpruefungen ausserhalb der
+// funde-Tabelle. Am 31.07.2026 gemessen: 24 gedruckte Pruefzeilen bei
+// behaupteten 22. Zwei Pruefungen, die in derselben Sitzung dazukamen, fehlten
+// in der Bilanz; die 7 war nicht mitgewachsen.
+//
+// Vierter Fall dieser Art: run-detect-check (1 + FAELLE.length + 1),
+// run-naht-check (2+2+1+7+1, meldete 13 bei 15 Zeilen), craft-check
+// (19+3=22 gemeldet als 23). Eine feste Zahl in einer Bilanz veraltet still,
+// weil sie plausibel bleibt.
+let gepruefte = 0;
+const zeile = (ok, text, detail) => {
+  gepruefte++;
+  if (!ok) fehler++;
+  console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
+  if (detail) console.log(`         ${detail}`);
+};
+
+console.log('\nDoku-Zahlen — verspricht SKILL.md noch den echten Umfang?\n');
+console.log(`${funde.length} Fallzahlen in SKILL.md, Sollstand mit ${Object.keys(stand).length} Eintraegen.\n`);
+
+for (const f of funde) {
+  const ist = stand[f.datei];
+  if (ist === undefined) {
+    // Kein Sollstand heisst NICHT "stimmt". Die Eval ist entweder ausgenommen
+    // (Browser/Laufzeit) oder neu — in beiden Faellen ist die Doku-Zahl
+    // ungeprueft. Sie als gruen zu melden waere derselbe Fehler wie ein
+    // Pruefer, der ohne Eingabe "bestanden" sagt.
+    ohneStand++;
+    zeile(true, `${f.datei}: Doku sagt ${f.doku} — UNGEPRUEFT (kein Sollstand)`);
+    continue;
+  }
+  if (ist === f.doku) {
+    zeile(true, `${f.datei}: ${f.doku} Faelle`);
+  } else if (/^\s*\+/.test(f.rest)) {
+    // "12 Faelle + Kontrolle" zaehlt einen Teil bewusst NEBEN der Zahl. Die
+    // gemessenen 22 enthalten die Kontrollfaelle bereits; stumpf ersetzt
+    // entstuende "22 Faelle + Kontrolle" — einmal mitgezaehlt, einmal
+    // danebengeschrieben. Die Wache waere gruen und der Satz falscher als
+    // vorher. Ein Korrekturwerkzeug, das den Pruefer zufriedenstellt und die
+    // Aussage verschlechtert, ist schlimmer als gar keins: danach liest den
+    // Satz niemand mehr.
+    // craft-check zeigt drei Zaehlweisen — 24 gedruckte Zeilen, 22 als
+    // Schlusszahl, 12 in der Doku. Welche gemeint ist, kann nur ein Mensch
+    // entscheiden.
+    zeile(false, `${f.datei}: Doku sagt ${f.doku}, gemessen sind ${ist}`,
+      'Zusatz nach der Zahl ("+ ...") — von Hand pruefen, --aktualisieren fasst das nicht an');
+  } else {
+    zeile(false, `${f.datei}: Doku sagt ${f.doku}, gemessen sind ${ist}`,
+      AKTUALISIEREN ? 'wird korrigiert' : 'mit --aktualisieren anpassen');
+    if (AKTUALISIEREN) {
+      md = md.replace(f.ganz, f.ganz.replace(new RegExp(`${f.zahl}(\\s*F(?:ä|ae)lle)`), `${ist}$1`));
+      ersetzt++;
+    }
+  }
+}
+
+if (AKTUALISIEREN && ersetzt) {
+  fs.writeFileSync(MD, md);
+  console.log(`\n${ersetzt} Zahl(en) in SKILL.md korrigiert.`);
+  // Nicht "Exit 0, fertig": von Hand zu pruefende Zeilen bleiben offen. Ein
+  // --aktualisieren, das gruen meldet, obwohl es Zeilen bewusst uebersprungen
+  // hat, waere genau das falsche Gruen, das diese Wache verhindern soll.
+  const offen = fehler - ersetzt;
+  if (offen) {
+    console.log(`${offen} Zeile(n) NICHT angefasst — Zusatz nach der Zahl, von Hand pruefen.`);
+    process.exit(1);
+  }
+  console.log('Der naechste Lauf muss gruen sein — sonst hat das Ersetzen nicht gegriffen.');
+  process.exit(0);
+}
+
+// --- Regelzahlen, nicht nur Fallzahlen ----------------------------------
+// SKILL.md nennt auch, wie viele REGELN ein Pruefer hat ("craft-check.mjs hat
+// 23 echte Pruefstellen"). Die veraltet genauso wie eine Fallzahl — und tat es:
+// bis zum 30.07.2026 stand dort "28 Regeln (M1-M25, T1-T10)", eine Zahl aus
+// einem grep ueber die ganze Datei, die Kommentar-Erwaehnungen mitzaehlte.
+// Gemessen sind es 23 add()-Stellen. Eine Abdeckungszahl, die zu NIEDRIG luegt,
+// kostet genauso Zeit wie eine zu hohe: man sucht Fixtures fuer Regeln, die es
+// nicht gibt.
+{
+  const doku = md.match(/craft-check\.mjs`? hat \*\*(\d+) echte Pruefstellen/);
+  const quelle = fs.readFileSync(path.join(SKILL, 'scripts', 'craft-check.mjs'), 'utf8');
+  const echt = new Set(
+    [...quelle.matchAll(/add\('[A-Z]+', '([MT][0-9/]+)'/g)]
+      .flatMap((m) => m[1].split('/').map((x) => (/^\d/.test(x) ? `M${x}` : x))),
+  ).size;
+  if (!doku) {
+    zeile(false, 'keine Regelzahl zu craft-check.mjs in SKILL.md gefunden',
+      'umformuliert? Dann dieses Muster anpassen, nicht die Pruefung entfernen');
+  } else {
+    zeile(Number(doku[1]) === echt,
+      `craft-check.mjs: SKILL.md sagt ${doku[1]} Pruefstellen, gezaehlt sind ${echt}`,
+      Number(doku[1]) === echt ? null : 'Zahl in SKILL.md nachziehen');
+  }
+}
+
+// --- Der Tastatur-Befund und sein Stand ---------------------------------
+// SKILL.md nennt "7 von 10 zusammengesetzten Widgets" und behauptet daneben, alle
+// sieben seien repariert. Beide Haelften sind messbar, und beide veralten: die 10
+// aendert sich mit jeder neuen Komponente, der Nullstand mit jedem Rueckschritt.
+//
+// Befund 30.07.2026: der Abschnitt nannte den Befund im PRAESENS ("haben saubere
+// Rollen und keine Tastaturbedienung") und sagte nirgends, dass die sieben
+// repariert sind. Wer nur diesen Abschnitt liest, vermutet sieben offene
+// Baustellen. Eine Doku, die einen behobenen Befund wie einen offenen darstellt,
+// kostet dieselbe Zeit wie eine falsche Zahl.
+{
+  const dokuWidgets = md.match(/\*\*(\d+) von (\d+)\*\* zusammengesetzten Widgets/);
+  let aus = '';
+  try {
+    aus = execFileSync('node',
+      [path.join(SKILL, 'scripts', 'tastatur-check.mjs'), path.join(SKILL, 'references', 'ui-components')],
+      { encoding: 'utf8', timeout: 300000 });
+  } catch (e) {
+    aus = `${e.stdout || ''}${e.stderr || ''}`;
+  }
+  const gefunden = aus.match(/(\d+) zusammengesetzte Widget/);
+  const blocker = aus.match(/(\d+) Blocker/);
+  if (!dokuWidgets) {
+    zeile(false, 'keine Aussage "N von M zusammengesetzten Widgets" in SKILL.md gefunden');
+  } else if (!gefunden) {
+    console.error('\nFEHLER: tastatur-check nennt keine Widget-Zahl — nicht geprueft.');
+    process.exit(2);
+  } else {
+    zeile(Number(dokuWidgets[2]) === Number(gefunden[1]),
+      `Widgets: SKILL.md sagt "von ${dokuWidgets[2]}", gefunden werden ${gefunden[1]}`,
+      Number(dokuWidgets[2]) === Number(gefunden[1]) ? null : 'Zahl in SKILL.md nachziehen');
+    // "Alle sieben sind repariert" ist nur wahr, solange 0 Blocker gemeldet werden.
+    const behauptetRepariert = /Alle sieben sind seit .* repariert/.test(md);
+    const nullBlocker = !blocker || Number(blocker[1]) === 0;
+    zeile(!behauptetRepariert || nullBlocker,
+      `Reparatur-Stand: SKILL.md sagt "alle repariert", Pruefer meldet ${blocker ? blocker[1] : 0} Blocker`,
+      behauptetRepariert && !nullBlocker
+        ? 'entweder ein Widget ist zurueckgefallen oder die Aussage muss weg' : null);
+  }
+}
+
+// --- Dritte Schreibweise: "(`node evals/x.mjs`, N Faelle)" ----------------
+// Im Fliesstext steht die Zahl auch NACH dem Dateinamen, durch ein Komma
+// getrennt. Gefunden 30.07.2026 ausgerechnet in einem Absatz UEBER veraltete
+// Zahlen: "Der belastbare, taeglich wiederholte Beweis ist ohnehin das
+// Anti-Set (`node evals/run-antiset.mjs`, 11 Faelle)" — bei 15, spaeter 16.
+// Dieselbe Datei nannte an anderer Stelle die richtige Zahl. Zwei Aussagen
+// ueber dieselbe Eval, eine falsch, keine gepruef.
+{
+  const m = md.match(/`node evals\/(run-[a-z0-9-]+\.mjs)`,\s*(\d+)\s*F(?:ä|ae)lle/);
+  if (!m) {
+    zeile(true, 'keine Zahl in der Form "`node evals/x.mjs`, N Faelle" — Form entfallen');
+  } else {
+    const soll = stand[m[1]];
+    if (soll === undefined) {
+      // Ausgenommene Eval (Browser, gemessen 7:54 am 31.07.2026) — sie hat keinen
+      // Sollstand. Als Fehler zu melden waere falsch, als bestanden auch:
+      // dieselbe Trennung wie oben bei den anderen Doku-Zahlen.
+      ohneStand++;
+      zeile(true, `${m[1]} (Komma-Form): Doku sagt ${m[2]} — UNGEPRUEFT (kein Sollstand)`);
+    } else {
+      zeile(Number(m[2]) === soll,
+        `${m[1]} (Komma-Form): Doku sagt ${m[2]}, Sollstand kennt ${soll}`,
+        Number(m[2]) === soll ? null : 'Zahl in SKILL.md nachziehen');
+    }
+  }
+}
+
+// --- Zahlen in den References ---------------------------------------------
+// SKILL.md ist nicht der einzige Ort mit Fallzahlen. Das Klon-Playbook nannte
+// "21 Faelle", waehrend die Eval 28 fuhr — dieselbe Klasse Fehler wie im
+// Frontmatter, nur eine Datei weiter. Wer die Zahl dort liest, haelt einen Lauf
+// mit 21 Faellen fuer vollstaendig.
+{
+  const playbook = path.join(SKILL, 'references', 'web-clone-playbook.md');
+  if (!fs.existsSync(playbook)) {
+    zeile(false, 'web-clone-playbook.md nicht gefunden — verschoben?');
+  } else {
+    const txt = fs.readFileSync(playbook, 'utf8');
+    const m = txt.match(/run-klon-gate\.mjs`? \((\d+) F(?:ä|ae)lle/);
+    const soll = stand['run-klon-gate.mjs'];
+    zeile(m && soll && Number(m[1]) === soll,
+      `web-clone-playbook.md: sagt ${m ? m[1] : '?'} Klon-Faelle, Sollstand kennt ${soll ?? '?'}`,
+      m && Number(m[1]) === soll ? null : 'Zahl im Playbook nachziehen');
+  }
+}
+
+// --- Die eval_scorecard im Frontmatter -----------------------------------
+// Sie ist der erste Ort, den ein fremder Agent liest, um zu wissen, wie tief
+// dieser Skill geprueft ist — und sie war beim Anlegen am 30.07.2026 schon
+// falsch: "24 Evals" notiert, waehrend der Umfang-Waechter 25 zaehlte. Eine
+// Zahl ueber die Pruefung, die selbst ungeprueft ist, ist genau der Fehler,
+// den dieser Skill an sechs anderen Stellen gefunden hat.
+{
+  const scorecardZahl = (muster) => {
+    const m = md.match(muster);
+    return m ? Number(m[1]) : null;
+  };
+  // Sollwert ist NICHT die Zahl der Sollstand-Eintraege: der Sollstand speichert
+  // nur Evals mit einer festen Fallzahl, waehrend zwei Wachen (doku-zahlen,
+  // verweise-check) ohne Fallzahl laufen und trotzdem geprueft werden. Erster
+  // Versuch verglich gegen `Object.keys(stand)` und meldete deshalb "sagt 25,
+  // Sollstand kennt 23" — ein Fehlalarm gegen die falsche Groesse. Gemessen
+  // wird, was der Umfang-Waechter wirklich faehrt: alle run-*.mjs minus die
+  // ausdruecklich ausgenommenen.
+  const dateien = fs.readdirSync(HIER).filter((f) => /^run-.*\.mjs$/.test(f)).length;
+  const ausgenommen = (fs.readFileSync(path.join(HIER, 'run-eval-umfang.mjs'), 'utf8')
+    // `[a-z-]` verfehlt jeden Namen mit Ziffer (run-g1-check.mjs, run-eval2.mjs).
+    // Heute hat keine Eval eine Ziffer im Namen — aber die Nachbarmuster in
+    // dieser Datei kennen [a-z0-9-] laengst, und eine Ausnahme, die nicht
+    // gezaehlt wird, macht die Sollzahl still um eins zu gross. Gemessen:
+    // von drei Testnamen traf das alte Muster einen.
+    .match(/^\s*'run-[a-z0-9-]+\.mjs':/gm) || []).length;
+  const evalAnzahl = dateien - ausgenommen;
+
+  // Die Umfang-Wache darf nicht behaupten, was sie nicht wissen kann.
+  //
+  // Ihr Schlusssatz lautete "Keine Eval hat still ihre Faelle verloren" — auch
+  // dann, wenn KEINE Eval einen Sollwert hatte. Gemessen am 30.07.2026:
+  // Stand-Datei geloescht -> 27 von 28 Evals "(neu aufgenommen)", 28/28,
+  // Exit 0, und genau dieser Satz. Wer die Datei loescht (sie sieht aus wie
+  // eine Zwischenablage), schreibt jede Schrumpfung als neuen Sollwert fest.
+  //
+  // Geprueft wird der QUELLTEXT, nicht ein Lauf. Erster Versuch startete die
+  // Wache als Unterprozess — sie faehrt 25 Evals und braucht sieben Minuten.
+  // Damit haette diese Eval, die sonst in Sekunden laeuft, die Laufzeit der
+  // langsamsten im Repo bekommen; am Ende liefen 40 Prozesse gleichzeitig um
+  // dieselben Browser und Ports. Eine Eval, die zu lange dauert, wird
+  // uebersprungen — genau das, wogegen dieser Skill gebaut ist.
+  //
+  // Die Quelltextpruefung ist schwaecher: sie belegt, dass die Saetze da sind,
+  // nicht dass sie feuern. Das steht hier, damit niemand mehr hineinliest.
+  {
+    const kern = fs.readFileSync(path.join(HIER, 'lib', 'eval-umfang.mjs'), 'utf8');
+    const nennt = /Evals hatten KEINEN Sollwert/.test(kern);
+    const bekannt = /verglichenen Evals hat still ihre Faelle verloren/.test(kern);
+    zeile(nennt && bekannt,
+      'Umfang-Wache nennt Evals ohne Sollwert und schraenkt ihren Schlusssatz ein',
+      nennt && bekannt ? null
+        : `im Quelltext fehlt: ${!nennt ? 'Hinweis auf fehlende Sollwerte' : ''}`
+          + `${!nennt && !bekannt ? ' + ' : ''}${!bekannt ? 'Einschraenkung im Schlusssatz' : ''}`);
+  }
+
+  const dokuEvals = scorecardZahl(/run-eval-umfang\.mjs — (\d+) Evals/);
+  zeile(dokuEvals === evalAnzahl,
+    `Scorecard: sagt ${dokuEvals ?? '?'} gepruefte Evals, der Waechter faehrt ${evalAnzahl}`,
+    dokuEvals === evalAnzahl ? null : 'Zahl in der eval_scorecard nachziehen');
+
+  // "N weitere Pruefer-Evals" — die drei Wachen sind einzeln genannt, der Rest
+  // pauschal. Zusammen muss es die Zahl der run-*.mjs-Dateien ergeben.
+  const weitere = scorecardZahl(/"(\d+) weitere Pruefer-Evals/);
+  const genannt = (md.match(/^\s*- "evals\/run-/gm) || []).length;
+  zeile(weitere !== null && weitere + genannt === dateien,
+    `Scorecard: ${genannt} einzeln + ${weitere ?? '?'} pauschal = ${weitere === null ? '?' : weitere + genannt}, `
+      + `im Ordner liegen ${dateien}`,
+    weitere !== null && weitere + genannt === dateien ? null
+      : 'Summe der Scorecard deckt den evals-Ordner nicht');
+}
+
+if (ohneStand) {
+  console.log(`\n  ${ohneStand} Doku-Zahl(en) ohne Sollstand — ungepruefte Versprechen.`);
+  console.log('  Betrifft ausgenommene Evals (Browser/Laufzeit): einzeln nachfahren.');
+}
+
+// +1 fuer die Regelzahl-Pruefung oben, die kein `funde`-Eintrag ist.
+// Sicherung gegen die Gegenrichtung: faellt ein ganzer Abschnitt still aus,
+// zaehlt `gepruefte` einfach weniger und "12/12" saehe wieder gruen aus. Die
+// --- Dieselbe Eval, zwei verschiedene Zahlen ------------------------------
+// Die Pruefungen oben vergleichen jede Doku-Zahl mit einem echten Lauf. Sie
+// sehen aber nicht, ob DIESELBE Zahl an zwei Stellen VERSCHIEDEN dasteht:
+// jede fuer sich kann gegen einen Lauf stimmen, wenn sie zu verschiedenen
+// Zeiten gemessen wurden.
+//
+// Gemessen 02.08.2026: SKILL.md nannte "37 Evals" in der Scorecard und
+// "36 Evals nacheinander" in der Kommandozeile — dieselbe Menge, zwei Zahlen.
+// Die zweite stammte vom Vortag, als eine Eval weniger existierte. Eine Zahl,
+// die an zwei Stellen steht, altert an einer davon zuerst.
+console.log('\nDieselbe Sache, dieselbe Zahl:\n');
+{
+  // Auch die Eval-KOEPFE, nicht nur SKILL.md. Gemessen 02.08.2026: die
+  // Korrektur "36 -> 37 Evals" landete gestern nur in der Doku, waehrend der
+  // Kopf von run-eval-umfang.mjs weiter 36 nannte. Eine Wache, die nur eine
+  // Datei liest, findet den halben Widerspruch.
+  let doku = fs.readFileSync(MD, 'utf8');
+  for (const datei of fs.readdirSync(HIER).sort()) {
+    if (!datei.startsWith('run-') || !datei.endsWith('.mjs')) continue;
+    // Nur der Kopf: im Rumpf stehen Testdaten und historische Befunde, die
+    // absichtlich alte Zahlen nennen.
+    const kopf = fs.readFileSync(path.join(HIER, datei), 'utf8').slice(0, 3000);
+    // Historische Befunde ueberspringen: "Befund 30.07.2026: keine der 26
+    // Evals ..." nennt absichtlich eine alte Zahl. Sie ist kein Widerspruch,
+    // sondern der Grund, warum es die Wache gibt. Erkennbar an Datum oder
+    // Vergangenheitsform im selben Absatz.
+    // Beispielzeilen aus der Doku ueberspringen: "node evals/run-x.mjs
+    // # 12 Faelle" im Kopf ZITIERT die Doku, es ist keine eigene Behauptung.
+    // Erkennbar an der Einrueckung nach dem Sternchen plus dem #-Kommentar
+    // (gemessen 02.08.2026: sie erzeugte den einzigen verbleibenden Fehlalarm).
+    const kopfOhneBeispiel = kopf.replace(/^ \*\s{3,}node [^\n]*$/gm, '');
+    const ohneHistorie = kopfOhneBeispiel
+      .split(/\n\s*\*?\s*\n/)
+      // Nur ECHTE Historie ausnehmen, nicht jede datierte Messung. "Befund
+      // 30.07.2026: keine der 26 Evals ..." beschreibt einen alten Zustand;
+      // "LAUFZEIT: 782s (gemessen 02.08.2026). Sie faehrt 37 Evals" ist eine
+      // aktuelle Behauptung und muss geprueft werden.
+      //
+      // Erster Versuch nahm jedes "gemessen <Datum>" aus — damit fiel genau die
+      // Stelle durch, wegen der es die Wache gibt (gemessen 02.08.2026: die
+      // Gegenprobe blieb gruen).
+      .filter((abs) => !/Befund \d{2}\.\d{2}\.\d{4}|stand auf|nannte|hiess frueher|Zaehlweisen|Erster Versuch|Vorher/i.test(abs))
+      .join('\n\n');
+    doku += `\n${ohneHistorie}`;
+  }
+  const gefunden = new Map();
+  // "run-x.mjs ... 37 Evals" — Dateiname und Zahlwort im selben Abschnitt.
+  // Ueber Zeilengrenzen hinweg suchen: in Kommandozeilen steht der Dateiname
+  // in der einen Zeile und die Zahl in der Fortsetzung darunter. Ein Muster,
+  // das an \n haltmacht, sieht genau die Stelle nicht, an der der Widerspruch
+  // vom 02.08.2026 stand (gemessen: die Gegenprobe griff erst danach).
+  // Fenster eng halten und KEINEN zweiten Dateinamen ueberspringen: mit 120
+  // Zeichen ohne diese Sperre ordnete das Muster eine Zahl dem falschen
+  // Dateinamen zu — "run-bilder-check.mjs (12 Faelle)" landete bei
+  // run-craft-check, weil dessen Name 80 Zeichen vorher stand. Ein Waechter,
+  // der Befunde erfindet, wird abgeschaltet (gemessen 02.08.2026).
+  const re = /(run-[a-z-]+\.mjs)((?:(?!run-[a-z-]+\.mjs)[\s\S]){0,120}?)(\d+)\s+(Faelle|Fälle|Evals|Werkzeuge|Angaben)/g;
+  for (const m of doku.matchAll(re)) {
+    // "Faelle" und "Fälle" meinen dasselbe — ohne diese Zusammenfassung
+    // gelten sie als zwei Schluessel, und ein Widerspruch zwischen beiden
+    // Schreibweisen faellt nie auf (gemessen 02.08.2026: 35 vs 30 blieb
+    // unentdeckt, weil die eine Stelle "Fälle" und die andere "Faelle"
+    // schrieb).
+    const wort = m[4] === 'Fälle' ? 'Faelle' : m[4];
+    const schluessel = `${m[1]} / ${wort}`;
+    if (!gefunden.has(schluessel)) gefunden.set(schluessel, new Set());
+    gefunden.get(schluessel).add(Number(m[3]));
+  }
+  const streit = [...gefunden.entries()].filter(([, z]) => z.size > 1);
+  zeile(streit.length === 0,
+    `${gefunden.size} Zahl-Nennungen mit Eval-Bezug, keine widerspricht sich`,
+    streit.map(([k, z]) => `${k}: ${[...z].sort((a, b) => a - b).join(' vs ')}`).join(' | '));
+}
+
+// funde-Tabelle ist die bekannte Untergrenze.
+if (gepruefte < funde.length) {
+  console.log(`\nNur ${gepruefte} Pruefungen gelaufen, mindestens ${funde.length} erwartet.`);
+  console.log('Ein Abschnitt ist still ausgefallen — das ist kein bestandener Lauf.');
+  process.exit(2);
+}
+console.log(`\n${gepruefte - fehler - ohneStand}/${gepruefte - ohneStand} gepruefte Doku-Zahlen stimmen`
+  + `${ohneStand ? ` (${ohneStand} ohne Sollstand)` : ''}.`);
+if (fehler) {
+  console.log('SKILL.md verspricht einen Umfang, den die Evals nicht haben.');
+  process.exit(1);
+}
+console.log('Wer der Doku glaubt, erwartet die richtige Zahl an Faellen.');
+process.exit(0);

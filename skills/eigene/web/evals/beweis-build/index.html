@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meisterbetrieb Kerner: Altbau-Sanierung in Karlsruhe</title>
+<meta name="description" content="Sanierung von Altbauten in Karlsruhe und Umgebung. Festpreis nach Ortstermin, ein Ansprechpartner, Übergabe mit Mängelprotokoll.">
+<meta property="og:title" content="Meisterbetrieb Kerner: Altbau-Sanierung in Karlsruhe">
+<meta property="og:description" content="Festpreis nach Ortstermin, ein Ansprechpartner, Übergabe mit Mängelprotokoll.">
+<meta property="og:image" content="/og.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23153043'/><path d='M9 22V10h3.4l3.6 6 3.6-6H23v12h-3v-6.6l-3 5h-2l-3-5V22z' fill='%23fff'/></svg>">
+<style>
+  :root{
+    /* Typo-Skala 1.25, bewusst 6 Stufen — nicht pro Element entschieden */
+    --t-xs:0.8125rem; --t-sm:0.9375rem; --t-base:1.0625rem;
+    --t-lg:1.3125rem; --t-xl:1.75rem; --t-2xl:2.5rem; --t-3xl:3.5rem;
+    /* 4px-Raster */
+    --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px;
+    --s-8:32px; --s-12:48px; --s-16:64px; --s-24:96px; --s-32:128px;
+    /* Radien-Skala; innen = aussen minus padding */
+    --r-sm:6px; --r-md:10px; --r-lg:16px;
+    --ink:#12212b; --ink-2:#4a5c68; --line:#d9e0e4;
+    --bg:#fbfaf8; --card:#ffffff; --brand:#153043; --accent:#a8502a;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:var(--t-base); line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.ui{font-family:ui-sans-serif,"Helvetica Neue",Arial,sans-serif}
+  h1,h2,h3{line-height:1.1; text-wrap:balance; margin:0; letter-spacing:-0.02em}
+  p{text-wrap:pretty; margin:0}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 var(--s-6)}
+  .measure{max-width:64ch}
+
+  /* Kopf */
+  header{border-bottom:1px solid var(--line); background:var(--card)}
+  .bar{display:flex; align-items:center; justify-content:space-between; gap:var(--s-8);
+       min-height:72px}
+  .logo{font-family:ui-sans-serif,Arial,sans-serif; font-weight:700; font-size:var(--t-lg);
+        letter-spacing:-0.03em; color:var(--brand); text-decoration:none;
+        display:inline-flex; align-items:center; min-height:44px}
+  nav ul{display:flex; gap:var(--s-6); list-style:none; margin:0; padding:0}
+  nav a{color:var(--ink-2); text-decoration:none; font-size:var(--t-sm);
+        font-family:ui-sans-serif,Arial,sans-serif;
+        display:inline-flex; align-items:center; min-height:44px; padding:0 var(--s-1)}
+  nav a:hover{color:var(--ink)}
+
+  /* Knöpfe: Trefferfläche >= 44px, Fokus sichtbar */
+  .btn{display:inline-flex; align-items:center; justify-content:center;
+       min-height:52px; padding:0 var(--s-8); border-radius:var(--r-md);
+       font-family:ui-sans-serif,Arial,sans-serif; font-size:var(--t-sm); font-weight:600;
+       text-decoration:none; border:1px solid transparent; cursor:pointer;
+       transition:background-color 160ms ease, border-color 160ms ease}
+  .btn-primary{background:var(--brand); color:#fff}
+  .btn-primary:hover{background:#0d222f}
+  .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--ink-2)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--accent); outline-offset:3px}
+
+  /* Held: zwei Spalten, damit die rechte Haelfte nicht leer steht */
+  .hero{padding:var(--s-24) 0 var(--s-16); display:grid;
+        grid-template-columns:1.15fr 0.85fr; gap:var(--s-16); align-items:center}
+  .hero-proof{background:var(--card); border:1px solid var(--line);
+    border-radius:var(--r-lg); padding:var(--s-8)}
+  .hero-proof dl{margin:0; display:grid; gap:var(--s-6)}
+  .hero-proof .row{display:grid; gap:var(--s-1)}
+  .hero-proof dt{font-family:ui-sans-serif,Arial,sans-serif; font-size:var(--t-xs);
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-2)}
+  .hero-proof dd{margin:0; font-family:ui-sans-serif,Arial,sans-serif;
+    font-size:var(--t-lg); font-weight:600; color:var(--brand); letter-spacing:-0.02em}
+  .hero-proof dd small{display:block; font-family:inherit; font-weight:400;
+    font-size:var(--t-sm); color:var(--ink-2); letter-spacing:0; margin-top:var(--s-1)}
+  .hero .kicker{font-family:ui-sans-serif,Arial,sans-serif; font-size:var(--t-xs);
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s-4)}
+  .hero h1{font-size:var(--t-3xl); max-width:16ch}
+  .hero p{margin-top:var(--s-6); color:var(--ink-2); font-size:var(--t-lg); max-width:52ch}
+  .hero .cta{display:flex; gap:var(--s-3); margin-top:var(--s-8); flex-wrap:wrap}
+  .hero .note{margin-top:var(--s-4); font-size:var(--t-sm); color:var(--ink-2)}
+
+  /* Zahlenband: Abstände gruppieren bewusst unterschiedlich */
+  .facts{border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+         background:var(--card)}
+  .facts ul{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s-12);
+            list-style:none; margin:0; padding:var(--s-12) 0}
+  .facts .n{font-family:ui-sans-serif,Arial,sans-serif; font-size:var(--t-xl);
+            font-weight:700; font-variant-numeric:tabular-nums; color:var(--brand);
+            display:block; letter-spacing:-0.02em}
+  .facts .l{font-size:var(--t-sm); color:var(--ink-2); margin-top:var(--s-1); display:block}
+
+  /* Leistungen */
+  section{padding:var(--s-24) 0}
+  .sec-head{max-width:56ch; margin-bottom:var(--s-12)}
+  .sec-head h2{font-size:var(--t-2xl)}
+  .sec-head p{margin-top:var(--s-4); color:var(--ink-2)}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s-6)}
+  /* Karte: Rahmen ODER Schatten, nicht beides. Innenradius = 16 - 24 -> Bild eigener Wert */
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg);
+        padding:var(--s-6)}
+  .card h3{font-size:var(--t-lg); margin-bottom:var(--s-2)}
+  .card p{font-size:var(--t-sm); color:var(--ink-2)}
+  .card .tag{display:inline-block; font-family:ui-sans-serif,Arial,sans-serif;
+    font-size:var(--t-xs); color:var(--accent); border:1px solid #e6cfc3;
+    border-radius:var(--r-sm); padding:2px var(--s-2); margin-bottom:var(--s-4)}
+
+  /* Ablauf */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--s-8)}
+  .step{border-top:2px solid var(--brand); padding-top:var(--s-4)}
+  .step .no{font-family:ui-sans-serif,Arial,sans-serif; font-variant-numeric:tabular-nums;
+    font-size:var(--t-xs); color:var(--ink-2); letter-spacing:0.08em}
+  .step h3{font-size:var(--t-base); margin-top:var(--s-2)}
+  .step p{font-size:var(--t-sm); color:var(--ink-2); margin-top:var(--s-2)}
+
+  /* Zitat */
+  .quote{background:var(--card); border-top:1px solid var(--line);
+         border-bottom:1px solid var(--line)}
+  blockquote{margin:0; max-width:60ch; font-size:var(--t-xl); line-height:1.4}
+  .quote figcaption{margin-top:var(--s-6); font-family:ui-sans-serif,Arial,sans-serif;
+    font-size:var(--t-sm); color:var(--ink-2)}
+
+  /* Abschluss */
+  .final{background:var(--brand); color:#fff}
+  .final h2{font-size:var(--t-2xl); max-width:20ch}
+  .final p{margin-top:var(--s-4); color:#c4d2dc; max-width:52ch}
+  .final .btn-primary{background:#fff; color:var(--brand); margin-top:var(--s-8)}
+  .final .btn-primary:hover{background:#e8eef2}
+
+  footer{padding:var(--s-12) 0; font-size:var(--t-sm); color:var(--ink-2)}
+  footer ul{display:flex; gap:var(--s-6); list-style:none; margin:0 0 var(--s-4); padding:0}
+  footer a{color:var(--ink-2); display:inline-flex; min-height:44px; align-items:center}
+
+  @media (max-width:860px){
+    :root{--t-3xl:2.25rem; --t-2xl:1.75rem}
+    .grid,.steps,.facts ul{grid-template-columns:1fr; gap:var(--s-8)}
+    .hero{grid-template-columns:1fr; gap:var(--s-12)}
+    nav{display:none}
+    .hero{padding:var(--s-16) 0 var(--s-12)}
+    section{padding:var(--s-16) 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition-duration:0.01ms !important; animation-duration:0.01ms !important}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">Kerner<span style="color:var(--accent)">.</span></a>
+    <nav aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-ghost ui" href="tel:+497211234567">0721 1234567</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div>
+      <p class="kicker">Meisterbetrieb seit 1998</p>
+      <h1>Altbau sanieren, ohne dass daraus ein zweites Projekt wird.</h1>
+      <p>Wir sanieren Wohnungen und Häuser in Karlsruhe. Sie bekommen nach dem Ortstermin
+        einen Festpreis, einen Ansprechpartner und ein Datum, an dem Sie wieder einziehen.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#kontakt">Ortstermin vereinbaren</a>
+        <a class="btn btn-ghost" href="#ablauf">So läuft es ab</a>
+      </div>
+      <p class="note">Ortstermin und Angebot kosten nichts.</p>
+    </div>
+    <aside class="hero-proof">
+      <dl>
+        <div class="row">
+          <dt>Angebot</dt>
+          <dd>Festpreis<small>Der Preis vom Ortstermin steht auf der Rechnung.</small></dd>
+        </div>
+        <div class="row">
+          <dt>Ansprechpartner</dt>
+          <dd>Einer<small>Vom Aufmaß bis zur Übergabe dieselbe Nummer.</small></dd>
+        </div>
+        <div class="row">
+          <dt>Übergabe</dt>
+          <dd>Mit Protokoll<small>Offene Punkte schriftlich, mit Termin.</small></dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+
+  <div class="facts">
+    <div class="wrap">
+      <ul>
+        <li><span class="n">27</span><span class="l">Jahre Meisterbetrieb</span></li>
+        <li><span class="n">412</span><span class="l">sanierte Wohneinheiten</span></li>
+        <li><span class="n">6</span><span class="l">eigene Gewerke, kein Subunternehmer</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="leistungen" class="wrap">
+    <div class="sec-head">
+      <h2>Was wir übernehmen</h2>
+      <p>Vom ersten Aufmaß bis zur Übergabe. Was wir nicht selbst machen, sagen wir Ihnen
+        vorher, statt es still weiterzugeben.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <span class="tag">Kernsanierung</span>
+        <h3>Wohnung komplett</h3>
+        <p>Entkernen, Leitungen, Estrich, Bäder, Böden, Malerarbeiten. Ein Zeitplan,
+          ein Ansprechpartner, ein Preis.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Bad</span>
+        <h3>Bad auf Bestand</h3>
+        <p>Auch in belegten Häusern. Wir arbeiten staubdicht und geben das Bad
+          arbeitstäglich nutzbar zurück, wo es geht.</p>
+      </article>
+      <article class="card">
+        <span class="tag">Energetisch</span>
+        <h3>Fenster und Dämmung</h3>
+        <p>Fenstertausch, Dach- und Kellerdeckendämmung. Auf Wunsch mit Nachweis
+          für die Förderung.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="ablauf" class="wrap" style="padding-top:var(--s-16)">
+    <div class="sec-head">
+      <h2>Der Ablauf</h2>
+      <p>Drei Schritte, und Sie wissen nach dem zweiten, was es kostet.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="no">SCHRITT 01</span>
+        <h3>Ortstermin</h3>
+        <p>Wir sehen uns die Räume an und hören, was Sie vorhaben. Dauert meist
+          unter einer Stunde.</p>
+      </div>
+      <div class="step">
+        <span class="no">SCHRITT 02</span>
+        <h3>Festpreis</h3>
+        <p>Sie bekommen ein Angebot mit Positionen, Terminen und dem Preis, der
+          am Ende auf der Rechnung steht.</p>
+      </div>
+      <div class="step">
+        <span class="no">SCHRITT 03</span>
+        <h3>Ausführung und Übergabe</h3>
+        <p>Wir arbeiten die Gewerke der Reihe nach ab und übergeben mit einem
+          Protokoll, in dem offene Punkte stehen.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote">
+    <section class="wrap" style="padding-top:var(--s-16); padding-bottom:var(--s-16)">
+      <figure>
+        <blockquote>„Der Preis vom Ortstermin war der Preis auf der Rechnung.
+          Das war für uns nach zwei anderen Angeboten der Punkt.“</blockquote>
+        <figcaption>Familie Brandt, Karlsruhe-Durlach. Kernsanierung Altbauwohnung, 2025</figcaption>
+      </figure>
+    </section>
+  </div>
+
+  <div class="final" id="kontakt">
+    <section class="wrap">
+      <h2>Sollen wir uns die Räume ansehen?</h2>
+      <p>Rufen Sie an oder schreiben Sie kurz, worum es geht. Wir melden uns am selben
+        Werktag zurück.</p>
+      <a class="btn btn-primary" href="tel:+497211234567">0721 1234567 anrufen</a>
+    </section>
+  </div>
+</main>
+
+<footer class="wrap">
+  <ul>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#ablauf">Ablauf</a></li>
+  </ul>
+  <p>Meisterbetrieb Kerner, Karlsruhe. Referenzbau des web-Skills, kein reales Unternehmen.</p>
+</footer>
+</body>
+</html>
