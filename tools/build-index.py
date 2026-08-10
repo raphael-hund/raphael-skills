@@ -56,7 +56,10 @@ def main(argv: list[str]) -> int:
     check_only = "--check" in argv[1:]
 
     skills_dir = REPO_ROOT / "skills"
-    skill_files = sorted(skills_dir.rglob("SKILL.md"))
+    skill_files = sorted(
+        p for p in skills_dir.rglob("SKILL.md")
+        if "_candidates" not in p.parts
+    )
 
     # Nicht in den Index aufnehmen, was nicht valide ist — validate-skill.py
     # ist die Quelle der Wahrheit fuer "gueltiger Skill".

@@ -1,5 +1,5 @@
 > Vendoriert aus kill-ai-slop (github.com/yetone/kill-ai-slop), Apache-2.0.
-> Details: `../VENDORING.md`.
+> Details: `../VENDORING-NOTE.md`.
 
 # The AI-slop taxonomy
 

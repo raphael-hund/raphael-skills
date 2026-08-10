@@ -44,10 +44,13 @@ Live-Website.
 **WICHTIG:** Kein Cron wird von einer ausführenden Rolle selbst angelegt. Dauerbetrieb nur
 mit Raphael-Einzelfreigabe pro Kunde + Kostenlimit.
 
-### 1. Sweep
-`node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> [--hover ...] [--mobile]`
+### 1. Sweep (Spec Raphael 10.08.2026)
+`node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> --static [--hover ...] [--mobile] [--no-interact]`
 - **`--base` ist Pflicht** mit der echten Dev-/Live-URL. Ohne Flag: Exit 2 + Usage (Anfänger-Falle #2 in `anfaenger-pfad.md`; stiller Port-5280-Default ist entfernt).
-- First Fold 1440×730, Rest 1440×1400, Schritt 50 %. Niemals fullPage.
+- **Sequentiell pro Seite**: Fold → Hover-Pass → Scroll+Klick, dann erst die nächste Route. Primär Desktop.
+- **Hero/First Fold 1440×730**, danach Viewport **1440×1500**, Scroll-Schritt **exakt 750 px** (halber Viewport). Niemals fullPage. Ziel: jede Seite lückenlos abgedeckt, nicht nur top/mid/deep/full-Stichproben.
+- **Interaktiv-Pass ist Pflicht** (Default an): Header-Nav wird gehovert (Shot je Eintrag), alles Klickbare (Buttons, Accordions, Tabs, `aria-expanded`) wird geklickt mit Shot und zurückgetoggelt. `--no-interact` nur für schnelle Regressions-Sweeps.
+- **`--static` für Kritik-Sweeps Pflicht**: erzwingt reduced-motion + tötet CSS-Animationen + macht `data-reveal` sichtbar — keine leeren Reveal-Flächen, deterministische Shots.
 - Das Skript schreibt `manifest.json` — NUR dieses Manifest wird an die Kritik-Rollen gegeben.
 
 ### 2. Selbst ansehen (Pflicht, nicht delegierbar)
@@ -77,6 +80,25 @@ sie nicht ansagen muessen. Ein Sweep ohne diesen Katalog gilt als nicht angesehe
 
 Judge-Prompt-Form: IMMER „pass/fail + eingefuegter Beweis", NIE eine Aufforderung,
 internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefunden.
+
+### 3a. Sektions-Kritik (Ultracode/Premium — Raphael 10.08.2026)
+
+Zusaetzlich zum Panel wird **pro Sektion** einzeln kritisiert, modelluebergreifend:
+
+1. **Pro Sektions-Shot 2–3 Kritiker aus verschiedenen Modellfamilien** (z. B. Kimi +
+   Grok + Opus/Sol). Jeder Kritiker bekommt NUR den/die Shot(s) genau dieser einen
+   Sektion — Auftrag: Layout, Hierarchie, inhaltliche Darstellung dieser Sektion.
+   Agent-Definition: `.claude/agents`-Rolle „sektion-kritiker“ (bzw. per Workflow
+   `agentType` auf kimi-worker/grok-worker/opus-builder gemappt).
+2. **Pro Seite ein Gesamt-Kritiker** (alle Shots der Seite): wirkt die Seite als
+   Ganzes, Sektions-Uebergaenge, Rhythmus, Frontend-Fokus.
+3. **Seitenuebergreifende Konsistenz-Achsen** (eigene Kritiker, alle Fold-/Key-Shots
+   aller Seiten):
+   - Buttons/CTAs: eine Familie, gleiche Radien/Hoehen/Hover-Logik ueberall.
+   - Typografie: Headline-/Body-Schriftarten und -Groessen konsistent, eine Skala.
+   - Illustrationsstil: Bilder/Illustrationen/Interaktionen ein Stil, keine Stilbrueche.
+4. Alle Kritiker haben die geladenen Linien aus `design` (impeccable/taste/no-ai-slop)
+   und `web`/`seo` als Massstab — im Prompt referenzieren, Fokus Frontend-Design.
 
 ### 3b. Blind-A/B vs. Weltklasse-Referenz (Pflicht bei Ship / Premium / Gauntlet)
 

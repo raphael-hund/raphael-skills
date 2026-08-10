@@ -77,17 +77,3 @@ Format), nicht als 10 Umformulierungen einer Zelle — Matrix-Diversität ist Zi
 Thumbstop + eingebrochene Hold-Rate/CVR. Immer den ganzen Trichter lesen, nie beim Stop stoppen.
 **On-Ramp-Regel:** jeder Hook-Test ist auch ein On-Ramp-Test — wird ein neuer Hook auf einen
 bestehenden Body gesetzt, bricht meist die Prämissen-Brücke; On-Ramp beim Hook-Wechsel mitschreiben.
-
-## Ergänzungen aus IG-Bookmarks-Konsolidierung (04.08.2026, Beleg: wiki/craft/hooks/erweitert-hooks.md)
-
-- **Vierte Hook-Ebene: der Primary Text.** Die drei Video-Komponenten oben (Visual, gesprochene
-  Zeile, Caption) bleiben der Rahmen — der Primary Text über der Ad ist eine zusätzliche,
-  eigene Hook-Fläche außerhalb des Videos und wird beim Hook-Schreiben mitgeplant.
-- **Die zweite Zeile ist so wichtig wie der Hook** — der On-Ramp beginnt schon im Text, nicht
-  erst in Sekunde 3.
-- **Desire-Hook statt Info-Hook.** Info-Hooks ("3 Dinge, die…") ziehen Viewer, die nie kaufen;
-  der Hook muss am Wunsch/Ergebnis ansetzen, nicht an der Neugier auf Information.
-- **Trap-Hook-Formel:** eine Aussage, die das Zielsegment nicht ignorieren kann, weil sie es
-  direkt betrifft oder seiner Annahme widerspricht.
-- **Hook-Rate und Watchtime hängen zusammen** — ein Hook-Test ohne Blick auf die Hold-Rate
-  misst nur die halbe Wirkung (passt zum Diagnose-Trichter oben).

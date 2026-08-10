@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Vendoriert aus claude-skill-web-clone (github.com/Jane-xiaoer/claude-skill-web-clone),
 // MIT-Lizenz; Schema urspruenglich adaptiert von github.com/zanwei/design-dna (MIT).
-// Details: ../VENDORING.md. Original: scripts/dna-scaffold.mjs.
+// Details: ../VENDORING-NOTE.md. Original: scripts/dna-scaffold.mjs.
 // Funktioniert auch OHNE --recon (reines leeres Skelett) — recon-site.mjs
 // selbst ist NICHT Teil von design (das ist web's Aufgabe).
 //

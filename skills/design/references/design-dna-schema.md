@@ -1,7 +1,7 @@
 > Vendoriert aus claude-skill-web-clone (github.com/Jane-xiaoer/
 > claude-skill-web-clone), MIT-Lizenz. Schema urspruenglich adaptiert von
 > zanwei/design-dna (github.com/zanwei/design-dna, MIT). Details:
-> `../VENDORING.md`.
+> `../VENDORING-NOTE.md`.
 
 # Design-DNA-Schema — Referenz-Site zu eigenem Stil destillieren
 

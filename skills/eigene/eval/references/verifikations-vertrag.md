@@ -74,7 +74,6 @@ Council statt einen Erfolg zu behaupten, den niemand geprüft hat.
 | `max_attempts` → `escalated`                        | Eskalation an Raphael/Council statt Fake-Success nach X Fehlversuchen |
 | `max_loop_iterations` global                        | ultra-loop-Plateau-Stopp (3 Experimente ohne Verbesserung) |
 | JSON-State-Datei als Beweis-Log (`state.json`, atomarer Write) | Run-ID (z. B. `wf_70891d18`) im ultra-loop-Runden-Protokoll als Beweis, dass ein Lauf stattfand |
-| (visuell, ergänzt 06.08.2026) Worker „sieht gut aus“ | **Kein DoneClaim** ohne `visual-ship.json` (`schema=visual-aaa/ship/v1`, `ok=true`, `g1_exit=0`, `self_read=true`, Critic `pass`+`HIGH` pro Seite) — Skill `visual-aaa`, Validate: `scripts/validate-ship-manifest.py` |
 
 ## Beispiel aus dieser Session
 

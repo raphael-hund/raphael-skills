@@ -2,7 +2,7 @@
 > MIT-Lizenz. Kondensiert aus `find-animation-opportunities` (Vorschlags-Gate)
 > und `improve-animations/AUDIT.md` (Audit-Kategorien). Nur bei einem vollen
 > Motion-Audit laden — nicht bei jedem UI-Task (Progressive Disclosure).
-> Details: `../VENDORING.md`.
+> Details: `../VENDORING-NOTE.md`.
 
 # Motion-Audit-Workflow
 

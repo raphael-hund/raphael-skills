@@ -11,16 +11,12 @@ Blocker unten.
 ## Angle [ID] × Style [ID] — [Kurztitel]
 
 **Angle:** [Winkel-Name + 1 Satz Referenz-Framing/Beleg, woher der Angle kommt]
-**Visual Style:** [F1-F8 aus visual-styles.md; bestehende S1-S5 nur als Legacy-Alias,
-  + Format 1:1/4:5/9:16]
+**Visual Style:** [S1-S5 aus visual-styles.md, + Format 1:1/4:5/9:16]
 **Copy-Bauform:** [1-6 aus copy-bauformen.md, ggf. + Primary-Text-Skelett 1-4]
-**Reduktionscheck:** [1 Zielgruppe | 1 Kernzahl + Zeitraum | 1 Beweis | 1 Handlung]
-
-**Zonen-Bauplan:** [Zone 1..n nach der Zonen-Tabelle der gewählten Familie — was steht wo]
 
 **Onscreen-Copy:**
-> [Text, in Rahmen-Sprache der gewählten Familie — Typo-Poster=Schlagzeile,
->  UI-Mock=Postsprache, Chat=Chatsprache, Schild=handschriftlich]
+> [Text, in Rahmen-Sprache des gewählten Styles — Karte=Schlagzeile,
+>  Post=Postsprache, Chat=Chatsprache, Schild=handschriftlich]
 
 **Primary Text:**
 > [Ganzer Text nach gewähltem Skelett, 600-1.200 Zeichen]

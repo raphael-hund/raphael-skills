@@ -3,10 +3,6 @@
 Ablage: `/root/raphael-skills/skills/_candidates/<name>/SKILL.md`. Status bleibt Kandidat,
 bis Raphael promotet.
 
-Verbindlich ist das Pflicht-Schema in
-[`writing-skills`](/root/raphael-skills/skills/methodik/writing-skills/SKILL.md#frontmatter-schema-pflicht-für-jeden-skill)
-— unten nur die Kandidaten-Abweichungen (`version: 0.0.1`, Ablage in `_candidates/`).
-
 ```yaml
 ---
 name: r-<name>            # r-Präfix, noch nicht final vergeben

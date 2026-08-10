@@ -43,6 +43,22 @@ Material, nie aus Imitation.
 
 ## Ablauf
 
+0. **Health / Substanz / Stack / Evidenz-Zweig (Pflicht).** Wenn die Frage
+   Körper, Peptide, Hormone, Supplements, Training, Schlaf, Longevity, Dosis,
+   Sicherheit, Blutwerte oder „was sagt die Forschung?“ berührt — **bevor**
+   Hamza-Coaching zur Substanzlage läuft:
+   - Health-Brain öffnen: `/root/health-brain/PROFIL.md` + `INDEX.md`.
+   - PubMed-Pfad des Health-Brains nutzen (kein ad-hoc-curl):
+     - Reuse first:
+       `python3 /root/health-brain/scripts/pubmed_client.py reuse --query "<frage/query>" --json`
+       bzw. vorhandene `sources/pubmed/PMID-*.md` / `research/pubmed-*.md`.
+     - Bei Miss: `python3 /root/health-brain/scripts/pubmed_client.py search-persist "<query>" --retmax 5`
+       und danach **aus der gespeicherten Notiz** antworten, zitieren als
+       `[[PMID-<id>]]`.
+   - Jacob/IG-Protokolle aus dem Health-Brain bleiben Stack-Narrative; PubMed
+     liefert Primärliteratur. Hamza-Doktrin gilt weiter für Disziplin/Mindset/
+     Dating-Framing — **nicht** als Ersatz für PubMed bei Evidenzfragen und
+     **nicht** als Anlass, PubMed-Befunde mit Hamza-Moral zu überschreiben.
 1. **Wissen laden.** Personal Second Brain zum Thema durchsuchen, in dieser
    Reihenfolge (Ordner: `/root/raphael-brain/raw/person-2026-08-03-hamza-ahmed-advanced/`):
    freigegebene Wiki-Seiten (`brain-context.py lookup`) → die Verdichtungen

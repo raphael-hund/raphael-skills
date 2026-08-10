@@ -1,6 +1,6 @@
 > Vendoriert aus emilkowalski/skills (github.com/emilkowalski/skills @ 6bf24434),
 > Skill `apple-design`, MIT-Lizenz. Fast unveraendert uebernommen (dicht,
-> 282 Zeilen Original). Details: `../VENDORING.md`.
+> 282 Zeilen Original). Details: `../VENDORING-NOTE.md`.
 >
 > Laden bei Gesten/Drag/Sheet/Spring-Aufgaben oder wenn "Apple-Style"/
 > "iOS-Feel" explizit gewuenscht ist.

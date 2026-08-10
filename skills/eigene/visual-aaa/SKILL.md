@@ -2,13 +2,11 @@
 name: visual-aaa
 version: 1.0.0
 description: >
-  Harter Qualitäts-Gate für ALLE visuellen Deliverables (PDF-Seiten, Folien,
-  HTML-A4, Landingpages, Ads-Statics). Erzwingt Render → Self-Read → G1
-  (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis
-  PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist
-  verboten. Trigger: "visual-aaa", "visuell prüfen", "AAA-Qualität",
-  "Screenshot-Gate", "PDF-QA", "Folien prüfen", "visuell fertig",
-  "Triple-A Check", "harsh critic", "Pixel-QA".
+  Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien,
+  HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render →
+  Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) →
+  Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und
+  Critic-PASS ist verboten. always: true.
 class: E
 scope: agency
 sensitivity: internal
@@ -170,12 +168,14 @@ Ship nur wenn `visual-ship.json` valid und `ok: true`
 
 ## Integration
 
-| Kontext | Wie |
+**Pflicht für alle Skills, die visuelle Deliverables ausliefern** (PDF, Landingpage, Ads-Static, Offerte, Folie). Kein DoneClaim ohne `visual-ship.json` (G1 Exit 0 + Critic pass HIGH + self_read=true).
+
+| Host-Skill | Status |
 |---|---|
-| `make-pdf` | vor Auslieferung `visual-aaa` Pflicht |
-| `web` Ship | nach shot-sweep: G1 auf PNGs + Critic-Panel |
-| `orchestrate` GAUNTLET | Messlatte + dieser Gate als externes Gate |
-| `ads-statics` | Creative-PNG durch G1 + Critic |
+| `web` | ✅ `requires_skills` + completion_criteria (unconditionell nach Fix) |
+| `ads-statics` | ⬜ `requires_skills` + completion_criteria fehlen (muss ergänzt werden) |
+| `make-pdf` | ⬜ keine `requires_skills`/`completion_criteria` (muss ergänzt werden) |
+| `report` | ⬜ nur wenn PDFs ausgeliefert werden |
 
 ## Autopsie-Anker
 

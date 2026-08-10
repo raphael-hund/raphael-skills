@@ -1,6 +1,6 @@
 ---
 name: extract-approach
-version: 0.1.1
+version: 0.1.0
 description: >
   "skillify this" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht:
   extrahiert es als Skill-Kandidat nach _candidates/. Trigger: "skillify this",
@@ -40,7 +40,7 @@ Vorrat bauen.
 3. **Kandidat schreiben** — nach `references/candidate-template.md` als SKILL.md-Entwurf.
 4. **Ablegen in `_candidates/`** — NIE direkt als aktiver Skill. Skill-Mutation ist Rot-Klasse.
 5. **Inbox-Notiz** — Kandidat in `ops/review-inbox.md` verlinken → Raphaels Freigabe
-   entscheidet über Promotion in den aktiven -Namespace.
+   entscheidet über Promotion in den aktiven `r-*`-Namespace.
 
 ## Gotchas
 
@@ -51,13 +51,3 @@ Vorrat bauen.
 - Erst Schmerz, dann Werkzeug (Regel 10): einmal ≠ Muster. Zwei echte Wiederholungen sind
   die Schwelle.
 - Vor dem Anlegen `_candidates/` prüfen — nicht denselben Kandidaten doppelt.
-
-## Nachbarn
-
-- Betrifft der Lernpunkt einen **bestehenden** Skill ("soll künftig anders arbeiten"),
-  ist das kein neuer Kandidat, sondern
-  [`skill-update`](/root/raphael-skills/skills/methodik/skill-update/SKILL.md).
-  `extract-approach` legt nur neu an, es ändert nie Bestehendes.
-- Wie der Kandidat aussehen muss (Frontmatter-Pflichtfelder, Aufbau, `validate-skill.py`),
-  steht in [`writing-skills`](/root/raphael-skills/skills/methodik/writing-skills/SKILL.md)
-  — dort auch die Weiche zwischen den drei Skill-Einstiegen.

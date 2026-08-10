@@ -121,20 +121,6 @@ Scale-Schritt → Budget sofort 20–30 % zurücknehmen, 2 Wochen stabilisieren.
 "Higher Intent"-Typ (Review-Schritt) + Pflichtfeld Arbeits-E-Mail (kann nicht aus dem Profil
 autofillen — stärkster Qualitäts-Lever gegen "Social Amnesia" bei Formular-Leads).
 
-## Batch-Ideation vor Feinschliff (statt Einzel-Entwurf)
-
-Bei neuen Angles/Creatives: erst 10-20 Varianten PARALLEL grob entwerfen (Fan-out;
-Hook + Kernaussage, kein Feinschliff), dann Raphael/Sol-Kritiker filtert auf
-3-5 Kandidaten, ERST DANN volle Ausarbeitung (Beat-Struktur, Sprechtext,
-Claims-QA) nur für die Gewinner. Grund: Ideation ist die billige, parallele
-Kern-KI-Fähigkeit — Feinschliff ist teuer, also erst nach der Filterung
-investieren. Menschlicher Filter ersetzt keinen Prüfschritt, er kommt VOR
-dem eval-Skill-Gate, nicht statt ihm.
-
-Grenze (hart, unverändert): Schaltung/Budget bleibt Rot-Klasse. Auch bei
-20 parallelen Kandidaten gibt es keine autonome Ad-Spend-Entscheidung —
-jede Testwelle geht durch Raphaels Signatur + Budget-Egress-Gate wie bisher.
-
 ## Outputs (Zielpfade)
 
 `client-<name>/wiki/voc.md`, `.../ads/angles.md`, `.../ads/hooks.md`, `.../ads/scripts/`,

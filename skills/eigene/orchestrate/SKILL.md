@@ -33,6 +33,7 @@ loads:
   - references/graph-vorlage.md
   - references/kontext-packs.md
   - references/loop-typen.md
+  - references/loop-primitive.md
   - references/runden-protokoll.md
   - references/retro-muster.md
 requires_skills: [eval@^0]
@@ -208,6 +209,39 @@ Gates.
    `references/runden-protokoll.md`.
 7. **Stoppen:** `CronDelete <job-id>`. Sessionübergreifend → systemd-Timer +
    `claude -p --resume` vorschlagen, nicht Session-Cron.
+
+## Per-Item Loop Primitive
+
+Für eine LOOP-Runde mit mehreren gleichartigen Items (z. B. Seiten, Ansichten oder
+Assets) nutzt der Workflow den verbindlichen Vertrag in
+[`loop-primitive.md`](/root/raphael-skills/skills/eigene/orchestrate/references/loop-primitive.md).
+
+- Der Workflow besitzt die Schleife und startet alle sichtbaren Agent-Aufrufe.
+- Pro Item arbeitet genau ein `luna-worker`; kein Item-Wechsel, keine Selbstabnahme,
+  höchstens drei Runden. Rückgabe ist Artefakt plus AAA-Beleg.
+- Bei visuellen oder visuellen Spezifikations-Outputs prüft ein separater
+  `visual-critic` das echte Artefakt. Bei `fail` geht nur `biggest_gap` in die nächste
+  Fix-Runde.
+- Unabhängige Items dürfen parallel laufen. `PASS` gibt das Artefakt an den nächsten
+  Workflow-Schritt; `BLOCKED` nach Runde 3 verhindert den Ship und eskaliert mit dem
+  letzten Artefakt, Kritiker-Output und `biggest_gap` ans Cockpit.
+
+**Einsatz im Workflow-Script:**
+
+```javascript
+const results = await parallel(items.map(item => () => loopItem(item)))
+const blocked = results.filter(result => result.status === 'BLOCKED')
+
+if (blocked.length > 0) {
+  return { status: 'BLOCKED', items: blocked }
+}
+
+return { status: 'PASS', items: results }
+```
+
+`loopItem` übernimmt pro Item den sichtbaren Build-, Kritik- und Fix-Aufruf; die
+vollständige Vorlage mit `agentType`, AAA-Gate und `biggest_gap` steht in der
+referenzierten Datei.
 
 **Loop-Hygiene:** Runden-Körper idempotent (zweimal dieselbe Runde = derselbe
 Endzustand). Dreimal am selben Punkt gescheitert → erst `unstuck` (externe

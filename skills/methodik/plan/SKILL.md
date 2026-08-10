@@ -74,6 +74,7 @@ Faustregeln:
   nicht hier diskutieren.
 - Kleinst-Änderung (<5 Min, eine Datei): Kurz-Spec in zwei Sätzen im Chat,
   Freigabe, machen — keine Dateien-Zeremonie.
+- **Prajwal-Team-Prinzip:** Vor jedem orchestrate-Spawn muss `plan` durchlaufen werden (außer Kleinst-Änderung <5 Min, eine Datei). Der Plan ist die bounded Task-Definition für alle Workers — One orchestrator, scoped Tasks, Depth-3 Review Fan-out, visual-kritiker Gate.
 
 ## Die fünf Stufen (Kurzform — Details in den references)
 
