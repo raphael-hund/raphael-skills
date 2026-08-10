@@ -1,594 +1,557 @@
 {
- "schema_version": 1,
- "skills": {
-  "design": {
-   "source": "skills/design/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the audited frontend design workflow through the Codex skill loader.",
-   "triggers": [
-    "Landingpage bauen",
-    "Dashboard designen",
-    "UI review",
-    "Design polieren",
-    "sieht nach AI aus",
-    "Slop entfernen",
-    "Farben/Typo/Layout fixen",
-    "Animation/Motion pruefen",
-    "Kontrast/OKLCH",
-    "Layout/Spacing/Ausrichtung",
-    "Breakpoints/Responsive",
-    "RTL",
-    "Barrierefreiheit/A11y/WCAG",
-    "Tastaturbedienung",
-    "Screenreader",
-    "Fokusring",
-    "Hit-Area/Touch-Target",
-    "Microcopy/Button-Label/Fehlermeldung/Empty State",
-    "voller Interface-Review",
-    "Referenz-Site als Stilvorlage",
-    "Stitch",
-    "Screen in Stitch bauen",
-    "Design mit Google Stitch"
-   ],
-   "codex_notes": [
-    "Resolve wiki/craft/webdesign/effekt-performance-patterns.md to /root/raphael-brain/wiki/craft/webdesign/effekt-performance-patterns.md.",
-    "Resolve wiki/craft/webdesign/motion-polish.md to /root/raphael-brain/wiki/craft/webdesign/motion-polish.md.",
-    "Resolve wiki/craft/webdesign/interaction-states-and-accessibility.md to /root/raphael-brain/wiki/craft/webdesign/interaction-states-and-accessibility.md."
-   ]
-  },
-  "ads": {
-   "source": "skills/eigene/ads/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the paid-ads scoring and claims gates available as one Codex capability.",
-   "triggers": [
-    "Ads bauen",
-    "Hooks schreiben",
-    "Creatives",
-    "Anzeigentexte",
-    "Testwelle",
-    "Konto-Audit",
-    "Health-Score",
-    "Testwelle auswerten",
-    "Ad-Fatigue prüfen"
-   ]
-  },
-  "ads-video": {
-   "source": "skills/eigene/ads-video/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the paid-ads video-script fulfillment (beat structure, VO, on-screen plan) available as one Codex capability.",
-   "triggers": [
-    "Video-Skript schreiben",
-    "Ad-Skript",
-    "Drehbuch für Ads",
-    "Skripte für Testwelle",
-    "Hook-Varianten fürs Video"
-   ]
-  },
-  "ads-statics": {
-   "source": "skills/eigene/ads-statics/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the paid-ads static-creative fulfillment (angle x visual-style briefs, copy Bauformen) available as one Codex capability.",
-   "triggers": [
-    "Statics bauen",
-    "Static-Briefs",
-    "Bildanzeigen",
-    "Testwelle Statics",
-    "Angle-Matrix für Creatives"
-   ]
-  },
-  "codex-first": {
-   "source": "skills/eigene/codex-first/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Preserve the cross-vendor build-and-review procedure while mapping it to Codex coordination.",
-   "triggers": [
-    "/codex-first",
-    "an Codex geben",
-    "von GPT bauen lassen",
-    "codex exec",
-    "Cross-Vendor-Bau"
-   ]
-  },
-  "copywriting": {
-   "source": "skills/eigene/copywriting/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Route German marketing copy and anti-slop editing to the authoritative source skill.",
-   "triggers": [
-    "Text schreiben",
-    "Copy",
-    "umschreiben",
-    "Stil prüfen",
-    "entfloskeln",
-    "klingt nach KI",
-    "humanize",
-    "AI-Slop raus"
-   ]
-  },
-  "debug": {
-   "source": "skills/eigene/debug/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Make the evidence-first debugging loop directly invocable in Codex.",
-   "triggers": [
-    "debug",
-    "diagnose",
-    "warum schlägt der Test fehl",
-    "geht nicht",
-    "kaputt",
-    "Regression",
-    "langsam geworden"
-   ]
-  },
-  "eval": {
-   "source": "skills/eigene/eval/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Retain deterministic gates and evidence-bearing evaluation for Codex outputs.",
-   "triggers": [
-    "evaluieren",
-    "Gate fahren",
-    "Judge",
-    "Rubrik schreiben",
-    "QA-Score"
-   ]
-  },
-  "extract-approach": {
-   "source": "skills/eigene/extract-approach/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the two-repetition skill-candidate extraction practice without copying its source.",
-   "triggers": [
-    "skillify this",
-    "das haben wir schon mal so gemacht",
-    "daraus einen Skill machen"
-   ]
-  },
-  "handoff": {
-   "source": "skills/eigene/handoff/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the session handoff and redaction contract available at the Codex boundary.",
-   "triggers": [
-    "handoff",
-    "übergeben",
-    "vor /clear",
-    "Session beenden",
-    "~300-400k Tokens erreicht"
-   ]
-  },
-  "kimi-first": {
-   "source": "skills/eigene/kimi-first/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Preserve the large-context delegation procedure with Codex as coordinator and reviewer.",
-   "triggers": [
-    "/kimi-first",
-    "an Kimi geben",
-    "kimi -p",
-    "riesiger Kontext",
-    "1M ingest",
-    "Cross-Vendor-Bau"
-   ]
-  },
-  "kimi-sol": {
-   "source": "codex/skills/kimi-sol/SKILL.md",
-   "mode": "native-external-review",
-   "rationale": "Native Codex-only Kimi-to-Sol handoff with audited External-Model readiness, fresh per-call approval, byte-preserving artifacts, and mandatory independent review; it is intentionally separate from the kimi-first source adapter.",
-   "triggers": [
-    "/kimi-sol",
-    "Kimi→Sol",
-    "Kimi -> Sol",
-    "Kimi mit Sol prüfen",
-    "Kimi mit Sol pruefen"
-   ]
-  },
-  "offers": {
-   "source": "skills/eigene/offers/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Provide the audited offer-design and value-equation method as a Codex adapter.",
-   "triggers": [
-    "Angebot bauen",
-    "Offer",
-    "Preis festlegen",
-    "Garantie",
-    "Bonus-Stack",
-    "Value Proposition schärfen"
-   ]
-  },
-  "onboard": {
-   "source": "skills/eigene/onboard/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Route customer onboarding and dossier construction to the canonical skill text.",
-   "triggers": [
-    "onboarden",
-    "neuer Kunde",
-    "ICP erarbeiten",
-    "Dossier bauen"
-   ]
-  },
-  "orchestrate": {
-   "source": "skills/eigene/orchestrate/SKILL.md",
-   "mode": "native-thread",
-   "rationale": "Use Codex native thread coordination for leader, worker, verifier, and council patterns.",
-   "triggers": [
-    "delegieren",
-    "parallelisieren",
-    "Subagenten",
-    "Task aufteilen",
-    "orchestrieren",
-    "Council",
-    "Zweitmeinungs-Rat"
-   ],
-   "trigger_aliases": {
-    "Subagenten": "Sub-Tasks"
-   }
-  },
-  "report": {
-   "source": "skills/eigene/report/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep evidence-backed customer reporting and number-source gates accessible in Codex.",
-   "triggers": [
-    "Report bauen",
-    "Kundenbericht",
-    "Weekly",
-    "Performance-Report",
-    "Ergebnisse zusammenfassen"
-   ]
-  },
-  "seo": {
-   "source": "skills/eigene/seo/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the full SEO research, production, and monitoring workflow through Codex.",
-   "triggers": [
-    "SEO",
-    "Keyword-Research",
-    "Content-Brief",
-    "Ranking",
-    "Tech-Audit",
-    "Backlinks",
-    "Digital PR",
-    "Statistikseite",
-    "AI-Sichtbarkeit",
-    "Local SEO",
-    "GBP",
-    "E-E-A-T",
-    "SERP-Feature",
-    "Featured Snippet",
-    "Themen-Cluster",
-    "interne Verlinkung"
-   ]
-  },
-  "watch": {
-   "source": "skills/eigene/watch/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep local video analysis and scene-by-scene breakdown available without source duplication.",
-   "triggers": [
-    "analysiere dieses Video",
-    "watch",
-    "Reel sezieren",
-    "was macht diesen Hook stark",
-    "Struktur klauen"
-   ]
-  },
-  "web": {
-   "source": "skills/eigene/web/SKILL.md",
-   "mode": "canonical-link",
-   "rationale": "Expose the portable canonical web package byte-identically through a verified repository bridge.",
-   "triggers": [
-    "Website bauen",
-    "Landingpage",
-    "Sitemap",
-    "Website-QA",
-    "CRO",
-    "Design polieren",
-    "Slop entfernen",
-    "Referenzseite nachbauen",
-    "Website clonen",
-    "Popup/Lead-Magnet",
-    "Screenshot nachbauen",
-    "aus Bild bauen"
-   ]
-  },
-  "last30days": {
-   "source": "skills/imported/last30days/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Preserve recency research and multi-source audience signals behind a Codex adapter.",
-   "triggers": [
-    "last30days",
-    "was sagen Leute über",
-    "Trend-/Ad-Library-Scan",
-    "Recency-Recherche"
-   ]
-  },
-  "code-review": {
-   "source": "skills/methodik/code-review/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Retain the full evidence-first review and feedback disposition contract.",
-   "triggers": [
-    "Code Review",
-    "review anfordern",
-    "Feedback bekommen",
-    "PR review",
-    "vor dem Merge prüfen"
-   ]
-  },
-  "finish": {
-   "source": "skills/methodik/finish/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the branch completion decision tree with Codex terminal operations.",
-   "triggers": [
-    "Branch abschließen",
-    "fertig implementiert",
-    "mergen oder PR",
-    "finishing a development branch"
-   ]
-  },
-  "handoff-ext": {
-   "source": "skills/methodik/handoff-ext/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep redacted external handoff synthesis available as a deterministic source adapter.",
-   "triggers": [
-    "Handoff für einen anderen Agenten",
-    "an Subagenten übergeben",
-    "externe Übergabe",
-    "handoff-ext"
-   ],
-   "trigger_aliases": {
-    "Handoff für einen anderen Agenten": "Handoff für eine andere Instanz",
-    "an Subagenten übergeben": "an eine andere Instanz übergeben"
-   }
-  },
-  "plan": {
-   "source": "skills/methodik/plan/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the approved-spec to implementation-plan workflow with explicit verification gates.",
-   "triggers": [
-    "Umsetzungsplan",
-    "Plan schreiben",
-    "Spec in Tasks zerlegen",
-    "implementation plan"
-   ]
-  },
-  "research": {
-   "source": "skills/methodik/research/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Route primary-source research and cited gap rounds through the Codex adapter.",
-   "triggers": [
-    "recherchieren",
-    "Doku nachschlagen",
-    "API-Fakten sammeln",
-    "Hintergrund-Recherche"
-   ]
-  },
-  "tdd": {
-   "source": "skills/methodik/tdd/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the red-green-refactor discipline available for Codex implementation work.",
-   "triggers": [
-    "TDD",
-    "Test-Driven Development",
-    "Red-Green-Refactor",
-    "Feature implementieren",
-    "Bugfix schreiben"
-   ]
-  },
-  "writing-skills": {
-   "source": "skills/methodik/writing-skills/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Make the repository's skill-authoring contract directly usable by Codex.",
-   "triggers": [
-    "neuen Skill schreiben",
-    "SKILL.md anlegen",
-    "Skill überarbeiten",
-    "Skill erstellen",
-    "Frontmatter-Schema",
-    "Fremd-Skill vendorieren"
-   ],
-   "codex_notes": [
-    "For canonical Raphael source skills, use /root/raphael-skills/tools/validate-skill.py and the repository frontmatter contract. For a Codex adapter or plugin skill, use only name and description in SKILL.md frontmatter plus agents/openai.yaml, as required by the Codex skill creator.",
-    "The pinned upstream Superpowers writing guide is /root/tools/vendor/superpowers/skills/writing-skills/SKILL.md; preserve it instead of copying it into this adapter."
-   ]
-  },
-  "impeccable": {
-   "source": "skills/eigene/impeccable/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Design-Kommandosprache und Craft-Floor aus impeccable v4 fuer Design-Arbeit und QA.",
-   "triggers": [
-    "Design review",
-    "UI audit",
-    "polish this",
-    "make it bolder",
-    "landing page critique",
-    "sieht nach AI aus",
-    "Slop check",
-    "Design verbessern",
-    "animate this",
-    "typography fix"
-   ]
-  },
-  "no-ai-slop": {
-   "source": "skills/eigene/no-ai-slop/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Zweit-Editor hinter copywriting: 20+ AI-Slop-Muster erkennen und minimal entfernen.",
-   "triggers": [
-    "klingt nach KI",
-    "humanize",
-    "schärfer machen",
-    "AI slop raus",
-    "ist das AI-slop?",
-    "audit this text",
-    "make it sound human"
-   ]
-  },
-  "taste": {
-   "source": "skills/eigene/taste/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Register-Router auf die taste-Linie (Landing/brand) im design-Skill.",
-   "triggers": [
-    "Landingpage designen",
-    "Premium-Look",
-    "nicht nach Baukasten aussehen",
-    "Brand-Fläche",
-    "Hero gestalten",
-    "Portfolio",
-    "Editorial",
-    "taste",
-    "mehr Geschmack ins Design"
-   ]
-  },
-  "ui-ux": {
-   "source": "skills/eigene/ui-ux/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Register-Router auf die ui-ux-Linie (App/product, Offline-DB) im design-Skill.",
-   "triggers": [
-    "Dashboard bauen",
-    "App-UI",
-    "Admin-Panel",
-    "Formular designen",
-    "Settings-Seite",
-    "Tool-UI",
-    "SaaS-Interface",
-    "Datentabelle",
-    "UI-UX",
-    "Produkt-UI"
-   ]
-  },
-  "ads-copy": {
-   "source": "skills/eigene/ads-copy/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the measured Meta primary-text, headline, and description patterns available as one Codex capability.",
-   "triggers": [
-    "Primary Text schreiben",
-    "Ad-Text",
-    "Anzeigentext",
-    "Copy unter der Ad",
-    "Text zur Anzeige",
-    "Ad Copy"
-   ]
-  },
-  "ads-research": {
-   "source": "skills/eigene/ads-research/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the Meta Ad Library competitor scan and structural evaluation through the Codex skill loader.",
-   "triggers": [
-    "Konkurrenz-Ads ziehen",
-    "Ad Library",
-    "was schaltet eine Firma",
-    "Swipe-File bauen",
-    "Marktscan Ads",
-    "welche Ads laufen lange"
-   ]
-  },
-  "brain": {
-   "source": "skills/eigene/brain/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Route all Second-Brain modes (einspeisen bis verbinden) to the canonical skill text.",
-   "triggers": [
-    "ins Brain",
-    "einspeisen",
-    "Brain aufräumen",
-    "was weiß ich über",
-    "Kandidaten sichten",
-    "Wissen verdichten",
-    "Brain prüfen",
-    "brain",
-    "Notiz ablegen",
-    "Second Brain"
-   ]
-  },
-  "idea-filter": {
-   "source": "skills/eigene/idea-filter/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the nine-dimension idea evaluation with its four fixed verdicts invocable in Codex.",
-   "triggers": [
-    "Idee bewerten",
-    "lohnt sich das",
-    "Geschäftsidee prüfen",
-    "soll ich das bauen",
-    "idea-filter",
-    "Ideen filtern"
-   ]
-  },
-  "orchestrate-gauntlet": {
-   "source": "skills/eigene/orchestrate-gauntlet/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the maximal gauntlet loop against an inspectable bar through the Codex adapter.",
-   "triggers": [
-    "/orchestrate-gauntlet",
-    "Gauntlet",
-    "Gauntlet-Loop",
-    "gegen eine Messlatte bauen",
-    "bis es richtig gut ist",
-    "so krass wie möglich",
-    "maximaler Modus",
-    "alle Modelle drauf",
-    "lauf über Nacht",
-    "Dauerlauf"
-   ]
-  },
-  "ultra-loop": {
-   "source": "skills/eigene/ultra-loop/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Expose the thin /ultra-loop router while keeping LOOP semantics canonical in orchestrate.",
-   "triggers": [
-    "/ultra-loop",
-    "Ultra-Loop",
-    "Dauer-Verbesserungs-Loop"
-   ],
-   "codex_notes": [
-    "Resolve the `orchestrate` dependency for LOOP mode directly to `/root/raphael-skills/skills/eigene/orchestrate/SKILL.md`; do not use the native Codex `orchestrate` skill as the LOOP semantics source."
-   ]
-  },
-  "read-book": {
-   "source": "skills/eigene/read-book/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep local chapter-by-chapter book and document digestion available without source duplication.",
-   "triggers": [
-    "lies das Buch",
-    "PDF auswerten",
-    "EPUB zusammenfassen",
-    "Buchnotizen",
-    "read-book",
-    "was steht in diesem Buch",
-    "Kapitelzusammenfassung",
-    "Buch ins Brain"
-   ]
-  },
-  "personal": {
-   "source": "skills/personal/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Route the personal-advisor mode with its Second-Brain knowledge base to the canonical skill text.",
-   "triggers": [
-    "personal",
-    "challenge mich",
-    "Ausreden zerlegen",
-    "Disziplin",
-    "Gewohnheiten",
-    "was wuerde Hamza sagen",
-    "ehrliche Ansage",
-    "Lebensentscheidung"
-   ]
-  },
-  "skill-update": {
-   "source": "skills/methodik/skill-update/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Make the single-lesson propagation into all affected skills directly invocable in Codex.",
-   "triggers": [
-    "Skill anpassen",
-    "Lernpunkt einarbeiten",
-    "das soll der Skill künftig anders machen",
-    "Skills nachziehen",
-    "skill-update"
-   ]
-  },
-  "unstuck": {
-   "source": "skills/methodik/unstuck/SKILL.md",
-   "mode": "source-adapter",
-   "rationale": "Keep the mandatory dead-end classification and ten-angle search before any 'geht nicht' message.",
-   "triggers": [
-    "geht nicht",
-    "ich komme nicht weiter",
-    "steckt fest",
-    "keine Möglichkeit",
-    "blockiert",
-    "unstuck",
-    "gibt es einen anderen Weg",
-    "bin in einer Sackgasse"
-   ]
+  "schema_version": 1,
+  "skills": {
+    "ads": {
+      "source": "skills/eigene/ads/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the paid-ads scoring and claims gates available as one Codex capability.",
+      "triggers": [
+        "Ads bauen",
+        "Hooks schreiben",
+        "Creatives",
+        "Anzeigentexte",
+        "Testwelle",
+        "Konto-Audit",
+        "Health-Score",
+        "Testwelle auswerten",
+        "Ad-Fatigue prüfen"
+      ]
+    },
+    "ads-copy": {
+      "source": "skills/eigene/ads-copy/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the measured Meta primary-text, headline, and description patterns available as one Codex capability.",
+      "triggers": [
+        "Primary Text schreiben",
+        "Ad-Text",
+        "Anzeigentext",
+        "Copy unter der Ad",
+        "Text zur Anzeige",
+        "Ad Copy"
+      ]
+    },
+    "ads-research": {
+      "source": "skills/eigene/ads-research/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the Meta Ad Library competitor scan and structural evaluation through the Codex skill loader.",
+      "triggers": [
+        "Konkurrenz-Ads ziehen",
+        "Ad Library",
+        "was schaltet <Firma>",
+        "Swipe-File bauen",
+        "Marktscan Ads",
+        "welche Ads\n  laufen lange",
+        "welche Ads laufen lange"
+      ]
+    },
+    "ads-statics": {
+      "source": "skills/eigene/ads-statics/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the paid-ads static-creative fulfillment (angle x visual-style briefs, copy Bauformen) available as one Codex capability.",
+      "triggers": [
+        "Statics bauen",
+        "Static-Briefs",
+        "Bildanzeigen",
+        "Testwelle Statics",
+        "Angle-Matrix für Creatives"
+      ]
+    },
+    "ads-video": {
+      "source": "skills/eigene/ads-video/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the paid-ads video-script fulfillment (beat structure, VO, on-screen plan) available as one Codex capability.",
+      "triggers": [
+        "Video-Skript schreiben",
+        "Ad-Skript",
+        "Drehbuch für Ads",
+        "Skripte für Testwelle",
+        "Hook-Varianten fürs Video"
+      ]
+    },
+    "brain": {
+      "source": "skills/eigene/brain/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Route all Second-Brain modes (einspeisen bis verbinden) to the canonical skill text.",
+      "triggers": [
+        "ins Brain",
+        "einspeisen",
+        "Brain aufräumen",
+        "was weiß ich über",
+        "Kandidaten sichten",
+        "Wissen verdichten",
+        "Brain prüfen",
+        "brain",
+        "Notiz ablegen",
+        "Second Brain"
+      ]
+    },
+    "code-review": {
+      "source": "skills/methodik/code-review/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Retain the full evidence-first review and feedback disposition contract.",
+      "triggers": [
+        "Code Review",
+        "review anfordern",
+        "Feedback bekommen",
+        "PR review",
+        "vor dem Merge prüfen"
+      ]
+    },
+    "codex-orchestration": {
+      "source": "skills/eigene/codex-orchestration/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose user-visible Codex App task orchestration routes.",
+      "triggers": [
+        "Codex App tasks",
+        "visible sub-threads",
+        "multi-model fan-out",
+        "model comparisons"
+      ]
+    },
+    "copywriting": {
+      "source": "skills/eigene/copywriting/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Route German marketing copy and anti-slop editing to the authoritative source skill.",
+      "triggers": [
+        "Text schreiben",
+        "Copy",
+        "umschreiben",
+        "Stil prüfen",
+        "entfloskeln",
+        "klingt nach KI",
+        "humanize",
+        "AI-Slop raus"
+      ]
+    },
+    "debug": {
+      "source": "skills/eigene/debug/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Make the evidence-first debugging loop directly invocable in Codex.",
+      "triggers": [
+        "debug",
+        "diagnose",
+        "warum schlägt der Test fehl",
+        "geht nicht",
+        "kaputt",
+        "Regression",
+        "langsam geworden"
+      ]
+    },
+    "design": {
+      "source": "skills/design/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the audited frontend design workflow through the Codex skill loader.",
+      "triggers": [
+        "Design polieren",
+        "UI review",
+        "sieht nach AI aus",
+        "Slop entfernen",
+        "Farben/Typo/Layout fixen",
+        "Animation/Motion pruefen",
+        "Kontrast/OKLCH",
+        "Dashboard designen",
+        "Referenz-Site als Stilvorlage",
+        "Stitch",
+        "Screen in Stitch bauen",
+        "Design mit Google Stitch"
+      ],
+      "codex_notes": [
+        "Resolve wiki/craft/webdesign/effekt-performance-patterns.md to /root/raphael-brain/wiki/craft/webdesign/effekt-performance-patterns.md.",
+        "Resolve wiki/craft/webdesign/motion-polish.md to /root/raphael-brain/wiki/craft/webdesign/motion-polish.md.",
+        "Resolve wiki/craft/webdesign/interaction-states-and-accessibility.md to /root/raphael-brain/wiki/craft/webdesign/interaction-states-and-accessibility.md."
+      ]
+    },
+    "eval": {
+      "source": "skills/eigene/eval/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Retain deterministic gates and evidence-bearing evaluation for Codex outputs.",
+      "triggers": [
+        "evaluieren",
+        "Gate fahren",
+        "Judge",
+        "Rubrik schreiben",
+        "QA-Score"
+      ]
+    },
+    "extract-approach": {
+      "source": "skills/eigene/extract-approach/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the two-repetition skill-candidate extraction practice without copying its source.",
+      "triggers": [
+        "skillify this",
+        "das haben wir schon mal so gemacht",
+        "daraus einen Skill machen"
+      ]
+    },
+    "finish": {
+      "source": "skills/methodik/finish/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the branch completion decision tree with Codex terminal operations.",
+      "triggers": [
+        "Branch abschließen",
+        "fertig implementiert",
+        "mergen oder PR",
+        "finishing a development branch"
+      ]
+    },
+    "handoff": {
+      "source": "skills/eigene/handoff/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the session handoff and redaction contract available at the Codex boundary.",
+      "triggers": [
+        "handoff",
+        "übergeben",
+        "vor /clear",
+        "Session\n  beenden",
+        "~300-400k Tokens erreicht",
+        "Handoff für einen anderen Agenten",
+        "an Subagenten übergeben",
+        "externe Übergabe",
+        "Session beenden",
+        "handoff-ext"
+      ]
+    },
+    "idea-filter": {
+      "source": "skills/eigene/idea-filter/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the nine-dimension idea evaluation with its four fixed verdicts invocable in Codex.",
+      "triggers": [
+        "Idee bewerten",
+        "lohnt sich das",
+        "Geschäftsidee prüfen",
+        "soll ich das bauen",
+        "idea-filter",
+        "Ideen filtern"
+      ]
+    },
+    "kimi-sol": {
+      "source": "codex/skills/kimi-sol/SKILL.md",
+      "mode": "native-external-review",
+      "rationale": "Native Codex-only Kimi-to-Sol handoff with audited External-Model readiness, fresh per-call approval, byte-preserving artifacts, and mandatory independent review; it is intentionally separate from the kimi-first source adapter.",
+      "triggers": [
+        "/kimi-sol",
+        "Kimi→Sol",
+        "Kimi -> Sol",
+        "Kimi mit Sol prüfen",
+        "Kimi mit Sol pruefen"
+      ]
+    },
+    "last30days": {
+      "source": "skills/imported/last30days/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Preserve recency research and multi-source audience signals behind a Codex adapter.",
+      "triggers": [
+        "last30days",
+        "was sagen Leute über",
+        "Trend-/Ad-Library-Scan",
+        "Recency-Recherche"
+      ]
+    },
+    "no-ai-slop": {
+      "source": "skills/eigene/no-ai-slop/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Zweit-Editor hinter copywriting: 20+ AI-Slop-Muster erkennen und minimal entfernen.",
+      "triggers": [
+        "klingt nach KI",
+        "humanize",
+        "schärfer machen",
+        "AI slop raus",
+        "ist das AI-slop?",
+        "audit this text",
+        "make it sound human"
+      ]
+    },
+    "offers": {
+      "source": "skills/eigene/offers/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Provide the audited offer-design and value-equation method as a Codex adapter.",
+      "triggers": [
+        "Angebot bauen",
+        "Offer",
+        "Preis festlegen",
+        "Garantie",
+        "Bonus-Stack",
+        "Value Proposition schärfen"
+      ]
+    },
+    "onboard": {
+      "source": "skills/eigene/onboard/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Route customer onboarding and dossier construction to the canonical skill text.",
+      "triggers": [
+        "onboarden",
+        "neuer Kunde",
+        "ICP erarbeiten",
+        "Dossier bauen"
+      ]
+    },
+    "orchestrate": {
+      "source": "skills/eigene/orchestrate/SKILL.md",
+      "mode": "native-thread",
+      "rationale": "Use Codex native thread coordination for leader, worker, verifier, and council patterns.",
+      "triggers": [
+        "orchestrieren",
+        "delegieren",
+        "parallelisieren",
+        "Subagenten",
+        "Task aufteilen",
+        "Flotte",
+        "Workflow",
+        "als Workflow machen",
+        "fächere das auf",
+        "Loop",
+        "Dauer-Loop",
+        "loop der sich verbessert",
+        "Graph",
+        "Pipeline aufsetzen",
+        "Gauntlet",
+        "gegen eine Messlatte bauen",
+        "bis es richtig gut ist",
+        "Council",
+        "Zweitmeinungs-Rat",
+        "Cross-Model",
+        "Cross-Harness"
+      ],
+      "trigger_aliases": {
+        "Subagenten": "Sub-Tasks"
+      }
+    },
+    "orchestrate-gauntlet": {
+      "source": "skills/eigene/orchestrate-gauntlet/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the maximal gauntlet loop against an inspectable bar through the Codex adapter.",
+      "triggers": [
+        "/orchestrate-gauntlet",
+        "Gauntlet",
+        "Gauntlet-Loop",
+        "gegen eine Messlatte bauen",
+        "bis es richtig gut ist",
+        "so krass wie möglich",
+        "maximaler Modus",
+        "alle Modelle drauf",
+        "lauf über Nacht",
+        "Dauerlauf"
+      ]
+    },
+    "personal": {
+      "source": "skills/personal/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Route the personal-advisor mode with its Second-Brain knowledge base to the canonical skill text.",
+      "triggers": [
+        "personal",
+        "challenge mich",
+        "Ausreden zerlegen",
+        "Disziplin",
+        "Gewohnheiten",
+        "was wuerde Hamza sagen",
+        "ehrliche Ansage",
+        "Lebensentscheidung"
+      ]
+    },
+    "plan": {
+      "source": "skills/methodik/plan/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the approved-spec to implementation-plan workflow with explicit verification gates.",
+      "triggers": [
+        "planen",
+        "Plan machen",
+        "plane das",
+        "Umsetzungsplan",
+        "brainstorm",
+        "Idee ausarbeiten",
+        "Design-Spec",
+        "Spec schreiben",
+        "PRD",
+        "grillen",
+        "grill mich",
+        "Entscheidung durchleuchten",
+        "Tickets schreiben",
+        "Plan schreiben",
+        "Spec in Tasks zerlegen",
+        "implementation plan",
+        "Backlog bauen",
+        "Plan umsetzen",
+        "Tasks ausführen"
+      ]
+    },
+    "printingpress": {
+      "source": "skills/eigene/printingpress/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Agent-native CLI + SKILL.md printing for API-only services.",
+      "triggers": [
+        "printingpress",
+        "CLI für X"
+      ]
+    },
+    "raphael-chrome": {
+      "source": "skills/raphael-chrome/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Drive the persistent VPS Chrome over CDP with logins and autofill.",
+      "triggers": [
+        "chrome",
+        "browser",
+        "trello login",
+        "airtable",
+        "CDP",
+        "9222"
+      ]
+    },
+    "read-book": {
+      "source": "skills/eigene/read-book/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep local chapter-by-chapter book and document digestion available without source duplication.",
+      "triggers": [
+        "lies das Buch",
+        "PDF auswerten",
+        "EPUB zusammenfassen",
+        "Buchnotizen",
+        "read-book",
+        "was steht in diesem Buch",
+        "Kapitelzusammenfassung",
+        "Buch ins Brain"
+      ]
+    },
+    "report": {
+      "source": "skills/eigene/report/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep evidence-backed customer reporting and number-source gates accessible in Codex.",
+      "triggers": [
+        "Report bauen",
+        "Kundenbericht",
+        "Weekly",
+        "Performance-Report",
+        "Ergebnisse zusammenfassen"
+      ]
+    },
+    "research": {
+      "source": "skills/methodik/research/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Route primary-source research and cited gap rounds through the Codex adapter.",
+      "triggers": [
+        "recherchieren",
+        "Doku nachschlagen",
+        "API-Fakten sammeln",
+        "Hintergrund-Recherche"
+      ]
+    },
+    "seo": {
+      "source": "skills/eigene/seo/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Expose the full SEO research, production, and monitoring workflow through Codex.",
+      "triggers": [
+        "SEO",
+        "Keyword-Research",
+        "Content-Brief",
+        "Ranking",
+        "Tech-Audit",
+        "Backlinks",
+        "Digital PR",
+        "Statistikseite",
+        "AI-Sichtbarkeit",
+        "Local SEO",
+        "GBP",
+        "E-E-A-T",
+        "SERP-Feature",
+        "Featured Snippet",
+        "Themen-Cluster",
+        "interne Verlinkung"
+      ]
+    },
+    "skill-update": {
+      "source": "skills/methodik/skill-update/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Make the single-lesson propagation into all affected skills directly invocable in Codex.",
+      "triggers": [
+        "Skill anpassen",
+        "Lernpunkt einarbeiten",
+        "das soll der Skill künftig anders machen",
+        "Skills nachziehen",
+        "skill-update"
+      ]
+    },
+    "tdd": {
+      "source": "skills/methodik/tdd/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the red-green-refactor discipline available for Codex implementation work.",
+      "triggers": [
+        "TDD",
+        "Test-Driven Development",
+        "Red-Green-Refactor",
+        "Feature implementieren",
+        "Bugfix schreiben"
+      ]
+    },
+    "unstuck": {
+      "source": "skills/methodik/unstuck/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep the mandatory dead-end classification and ten-angle search before any 'geht nicht' message.",
+      "triggers": [
+        "geht nicht",
+        "ich komme nicht weiter",
+        "steckt fest",
+        "keine Möglichkeit",
+        "blockiert",
+        "unstuck",
+        "gibt es einen anderen Weg",
+        "bin in einer Sackgasse"
+      ]
+    },
+    "visual-aaa": {
+      "source": "skills/eigene/visual-aaa/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Mandatory visual quality gate before any visual deliverable ships.",
+      "triggers": [
+        "visuellen Deliverable",
+        "vor Auslieferung",
+        "visual-ship.json"
+      ]
+    },
+    "watch": {
+      "source": "skills/eigene/watch/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Keep local video analysis and scene-by-scene breakdown available without source duplication.",
+      "triggers": [
+        "analysiere dieses Video",
+        "watch",
+        "Reel sezieren",
+        "was macht diesen Hook stark",
+        "Struktur klauen"
+      ]
+    },
+    "web": {
+      "source": "skills/eigene/web/SKILL.md",
+      "mode": "canonical-link",
+      "rationale": "Expose the portable canonical web package byte-identically through a verified repository bridge.",
+      "triggers": [
+        "Website bauen",
+        "Landingpage bauen",
+        "Landingpage für einen Kunden",
+        "Sitemap",
+        "Webseite launchen",
+        "CRO",
+        "Referenzseite nachbauen",
+        "Website clonen",
+        "Popup/Lead-Magnet",
+        "Screenshot nachbauen",
+        "aus Bild bauen"
+      ]
+    },
+    "writing-skills": {
+      "source": "skills/methodik/writing-skills/SKILL.md",
+      "mode": "source-adapter",
+      "rationale": "Make the repository's skill-authoring contract directly usable by Codex.",
+      "triggers": [
+        "neuen Skill schreiben",
+        "SKILL.md anlegen",
+        "Skill überarbeiten",
+        "Skill erstellen",
+        "Frontmatter-Schema",
+        "Fremd-Skill vendorieren"
+      ],
+      "codex_notes": [
+        "For canonical Raphael source skills, use /root/raphael-skills/tools/validate-skill.py and the repository frontmatter contract. For a Codex adapter or plugin skill, use only name and description in SKILL.md frontmatter plus agents/openai.yaml, as required by the Codex skill creator.",
+        "The pinned upstream Superpowers writing guide is /root/tools/vendor/superpowers/skills/writing-skills/SKILL.md; preserve it instead of copying it into this adapter."
+      ]
+    }
   }
- }
 }

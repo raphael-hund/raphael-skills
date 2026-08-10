@@ -1,11 +1,14 @@
 ---
 name: web
 description: >
-  Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy,
-  Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen
-  nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router
-  (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. Trigger: "Website bauen", "Landingpage", "Sitemap",
-  "Website-QA", "CRO", "Design polieren", "Slop entfernen",
+  Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn
+  eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie,
+  Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen,
+  Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router
+  (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen.
+  UI-Detailarbeit (Polish, Motion, Slop-Scan) delegiert er an den
+  design-Skill. Trigger: "Website bauen", "Landingpage bauen",
+  "Landingpage für einen Kunden", "Sitemap", "Webseite launchen", "CRO",
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
@@ -14,7 +17,7 @@ metadata:
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
-  raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","impeccable@^0","taste@^0","ui-ux@^0","visual-aaa@^1"]'
+  raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1"]'
   raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Rollen aus agent-roster.md (agentType/Familie) — Build und Review unterschiedliche Familien"]'
 ---
 
@@ -124,12 +127,12 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 
 | Aufgabe | Linie | Referenz |
 |---|---|---|
-| Landing/Kampagne | taste | design → `taste-kern.md` |
-| App/Dashboard | ui-ux | design → `ui-ux-db-nutzung.md` |
-| Design-G1 | impeccable | `node …/design/scripts/detect.mjs` Exit 0 |
-| Doktrin | fusioniert | design → `design-doktrin.md` |
+| Landing/Kampagne | taste | design → `/root/raphael-skills/skills/design/references/taste-kern.md` |
+| App/Dashboard | ui-ux | design → `/root/raphael-skills/skills/design/references/ui-ux-db-nutzung.md` |
+| Design-G1 | impeccable | `node /root/raphael-skills/skills/design/scripts/detect.mjs` Exit 0 (Detektoren: `/root/raphael-skills/skills/design/references/impeccable-detektoren.md`) |
+| Doktrin | fusioniert | design → `/root/raphael-skills/skills/design/references/design-doktrin.md` |
 
-**AI-Slop-Sequenz:** design ZUERST (`detect.mjs` + `scan-ai-slop.mjs`) → danach
+**AI-Slop-Sequenz:** design ZUERST (`/root/raphael-skills/skills/design/scripts/detect.mjs` + `/root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs`) → danach
 copywriting G1→G2. Nie `npx impeccable detect`.
 
 ## Landingpage (Kurz)
@@ -150,7 +153,7 @@ Detail: `landingpage-struktur.md`.
    Assets → Grafik-Baum im Router, dann ggf. `bildgenerierung.md`.  
    `imagegen-web`/`imagegen-mobile` = **kein Default** (nur Host+Router).
 5. **components** — 5a Bedarf → 5b Router-Zeile → 5c einzelne Kandidaten bei Bedarf mit `scripts/resource-access.mjs show "<Name>"` nachschlagen (nie die gesamte Liste) → Abweichung belegt → **5d Werkzeugtabelle** in `art-direction.md`. Ohne Tabelle kein `npm i`.
-6. **build** — nur Tabellen-Zeilen installieren; Review = andere Familie. Security/OWASP bei Formularen/Consent. Echtes Custom-UI → `code-qualitaets-checkliste.md`.
+6. **build** — nur Tabellen-Zeilen installieren; Review = andere Familie. Security/OWASP bei Formularen/Consent (`/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`). Echtes Custom-UI → `code-qualitaets-checkliste.md`.
 7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs`.
 8. **Launch** — Signatur + Deploy-Egress-Gate. Nie autonom. Junge Domain → Safe-Browsing-Checkliste.
 9. **cro-learn** — nur echte Analytics (G4).

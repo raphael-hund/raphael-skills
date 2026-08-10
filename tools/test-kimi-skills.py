@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 SYNC_PATH = REPO_ROOT / "tools" / "sync-kimi-skills.py"
 KIMI_COMPAT_PATH = REPO_ROOT / "kimi" / "compatibility.json"
 CODEX_COMPAT_PATH = REPO_ROOT / "codex" / "compatibility.json"
-NATIVE_AGENT = {"dynamic-workflow", "orchestrate", "sdd", "kimi-first"}
+NATIVE_AGENT = {"orchestrate"}
 NATIVE_REVIEW = {"kimi-sol"}
 NO_LEGACY_THREAD_WORDING = re.compile(r"\bcodex[- ](?:thread|task)s?\b", re.IGNORECASE)
 KIMI_0281_TODO_FIELDS = {"title", "status"}
@@ -103,8 +103,6 @@ def check_frontmatter(c: Checks, registry: dict[str, dict]) -> None:
         elif entry["mode"] != "source-adapter" and path.is_file():
             c.check(sync.validate_native_skill(name, path, entry["mode"]) == [], f"invalid native Kimi skill: {path}")
     c.check(not sync.stale_adapter_paths(registry), "unregistered Kimi skill directory present")
-    codex_first = (REPO_ROOT / "kimi" / "skills" / "codex-first" / "SKILL.md").read_text(encoding="utf-8")
-    c.check("Codex-CLI" in codex_first and "codex exec" in codex_first, "codex-first external Codex route was neutralized")
     writing = (REPO_ROOT / "kimi" / "skills" / "raphael-writing-skills" / "SKILL.md").read_text(encoding="utf-8")
     c.check("does not require agents/openai.yaml" in writing, "Kimi writing-skills metadata contract is wrong")
 
@@ -128,29 +126,9 @@ def check_native_runtime_contracts(c: Checks) -> None:
         c.check("resume_agent_ids" in lowered and "resume" in lowered, f"{name}: Agent/AgentSwarm resume contract missing")
         c.check(bool(re.search(r"do not (?:call|use).*agent.*agentswarm", lowered, re.DOTALL)), f"{name}: descendant dispatch prohibition missing")
 
-    for name in {"dynamic-workflow", "orchestrate", "sdd"}:
+    for name in {"orchestrate"}:
         lowered = texts[name].lower()
         c.check("best_effort_authorized" in lowered and "resume" in lowered, f"{name}: task-scoped best-effort resume latch missing")
-
-    dynamic_blocks = re.findall(r"```json\n(.*?)\n```", texts["dynamic-workflow"], flags=re.DOTALL)
-    ledger = None
-    for block in dynamic_blocks:
-        try:
-            candidate = json.loads(block)
-        except json.JSONDecodeError:
-            continue
-        if isinstance(candidate, dict) and isinstance(candidate.get("nodes"), dict):
-            ledger = candidate
-            break
-    c.check(ledger is not None, "dynamic-workflow: parseable DAG ledger example missing")
-    if ledger is not None:
-        nodes = ledger["nodes"]
-        c.check(2 <= len(nodes) <= 6, "dynamic-workflow: example is not a 2-6 node DAG")
-        c.check(any(node.get("deps") for node in nodes.values() if isinstance(node, dict)), "dynamic-workflow: example has no dependency edge")
-
-    sdd = texts["sdd"].lower()
-    c.check("focused red" in sdd and "non-tdd" in sdd and "bereits gruener test" in sdd, "sdd: fail-closed Red/exception contract missing")
-    c.check(bool(re.search(r"nach jedem.*fix.*green.*bevor beide reviews", sdd, re.DOTALL)), "sdd: Green-after-every-fix contract missing")
 
     kimi_sol = texts["kimi-sol"]
     lowered_sol = kimi_sol.lower()
@@ -167,9 +145,6 @@ def check_native_runtime_contracts(c: Checks) -> None:
     c.check("trap cleanup EXIT HUP INT TERM" in runner and "SOL_SUBAGENT_OUTPUT=streamed" in runner, "sol-subagent runner does not clean up and stream output")
 
     mutation_cases = [
-        ("kimi-first", texts["kimi-first"].replace('{"title":"Dispatch bounded worker","status":"in_progress"}', '{"title":"Dispatch bounded worker","status":"in_progress","deps":[]}'), "illegal Todo field"),
-        ("dynamic-workflow", texts["dynamic-workflow"].replace("Do not call Agent or AgentSwarm", "Do not delegate", 1), "missing descendant prohibition"),
-        ("sdd", texts["sdd"].replace("Green erneut", "Green wieder"), "missing Green-after-fix wording"),
         ("kimi-sol", texts["kimi-sol"].replace("- `Kimi mit Sol pruefen`", "- `Kimi mit Sol pruefen`\n- `generic review`"), "broadened trigger list"),
         ("kimi-sol", texts["kimi-sol"].replace("SOL_SUBAGENT_FINAL_B64", "SOL_SUBAGENT_OUTPUT"), "missing final-message artifact"),
     ]

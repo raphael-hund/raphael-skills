@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Handoff Ext"
-  short_description: "Codex adapter for the handoff-ext skill"
-  default_prompt: "Use $handoff-ext for this task."

@@ -182,6 +182,15 @@ async function sweepRoute(browser, route, vp, label, manifest) {
     const res = await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' }).catch((e) => {
       console.log(`NAV-ERR ${route}: ${e.message}`);
       return null;
+    }) || await page.goto(`${BASE}${route}`, { waitUntil: 'domcontentloaded' }).then((r) => {
+      // Externe Referenz-Seiten erreichen networkidle nie (Ads/Tracker) — Fallback
+      // auf domcontentloaded + laengeres Settling, damit Blind-A/B-Sweeps nicht
+      // komplett leer ausfallen (Befund 10.08.2026, lugg.com/anyvan.com).
+      console.log(`NAV-FALLBACK ${route}: domcontentloaded statt networkidle`);
+      return page.waitForTimeout(2500).then(() => r);
+    }).catch((e) => {
+      console.log(`NAV-ERR-2 ${route}: ${e.message}`);
+      return null;
     });
     if (!res) {
       manifest.routes.push({ route, error: `navigation failed (${BASE}${route})`, shots: [] });
@@ -294,17 +303,44 @@ async function sweepRoute(browser, route, vp, label, manifest) {
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
-  const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+  const launch = () => chromium.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-gl=swiftshader', '--disable-software-rasterizer'],
+  });
+  let browser = await launch();
   const manifest = {
     base: BASE, createdAt: new Date().toISOString(), static: STATIC,
     viewports: { fold: FOLD, deep: DEEP, scrollStepPx: SCROLL_STEP }, routes: [],
   };
+  const manifestPath = path.join(OUT, 'manifest.json');
+  const writeManifest = () =>
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   // Sequentiell: eine Route komplett (Fold -> Hover -> Scroll+Klick), dann die naechste.
-  for (const r of ROUTES) await sweepRoute(browser, r, FOLD, 'desktop', manifest);
-  if (MOBILE) for (const r of ROUTES) await sweepRoute(browser, r, MOB, 'mobile', manifest);
-  fs.writeFileSync(path.join(OUT, 'manifest.json'), JSON.stringify(manifest, null, 2));
-  console.log(`manifest: ${path.join(OUT, 'manifest.json')} (${manifest.routes.reduce((n, r) => n + r.shots.length, 0)} shots)`);
-  await browser.close();
+  // Browser-Crash (z.B. "Target closed" mitten im Hover-Pass) darf den Rest-Sweep
+  // nicht toeten: Route als Fehler ins Manifest, Browser neu starten, weiter.
+  // Das Manifest wird nach JEDER Route geschrieben — ein toter Lauf verliert so
+  // keine bereits geschossenen Routen mehr (Absturz 10.08.2026, /reinigung-privat).
+  const sweepAll = async (routes, vp, label) => {
+    for (const r of routes) {
+      try {
+        await sweepRoute(browser, r, vp, label, manifest);
+      } catch (e) {
+        console.log(`CRASH ${r}: ${e.message} -> Browser-Neustart, Sweep laeuft weiter`);
+        manifest.routes.push({ route: r, error: `sweep crashed: ${e.message}`, shots: [] });
+        browser = await launch().catch((e2) => {
+          console.log(`CRASH: Browser-Neustart fehlgeschlagen: ${e2.message}`);
+          return null;
+        });
+        if (!browser) break;
+      }
+      writeManifest();
+    }
+  };
+  await sweepAll(ROUTES, FOLD, 'desktop');
+  if (MOBILE && browser) await sweepAll(ROUTES, MOB, 'mobile');
+  writeManifest();
+  console.log(`manifest: ${manifestPath} (${manifest.routes.reduce((n, r) => n + r.shots.length, 0)} shots)`);
+  await browser?.close().catch(() => {});
   const failed = manifest.routes.filter((r) => r.error);
   if (failed.length) {
     console.log(`WARN: ${failed.length} Route(s) mit Fehler im Manifest: ${failed.map((r) => r.route).join(', ')}`);

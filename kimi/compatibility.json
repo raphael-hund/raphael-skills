@@ -1,147 +1,164 @@
 {
- "schema_version": 1,
- "target": "kimi-code-0.28.1",
- "derived_from": "codex/compatibility.json",
- "skills": {
-  "ads": {
-   "source": "skills/eigene/ads/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "ads-statics": {
-   "source": "skills/eigene/ads-statics/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "ads-video": {
-   "source": "skills/eigene/ads-video/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "code-review": {
-   "source": "skills/methodik/code-review/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "codex-first": {
-   "source": "skills/eigene/codex-first/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "copywriting": {
-   "source": "skills/eigene/copywriting/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "debug": {
-   "source": "skills/eigene/debug/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "design": {
-   "source": "skills/design/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "eval": {
-   "source": "skills/eigene/eval/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "extract-approach": {
-   "source": "skills/eigene/extract-approach/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "finish": {
-   "source": "skills/methodik/finish/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "handoff": {
-   "source": "skills/eigene/handoff/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "handoff-ext": {
-   "source": "skills/methodik/handoff-ext/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "kimi-first": {
-   "source": "kimi/skills/kimi-first/SKILL.md",
-   "mode": "native-kimi-agent",
-   "triggers": [
-    "/kimi-first",
-    "an Kimi geben",
-    "riesiger Kontext",
-    "1M ingest",
-    "Kimi-Agent für großen Kontext"
-   ]
-  },
-  "kimi-sol": {
-   "source": "kimi/skills/kimi-sol/SKILL.md",
-   "mode": "native-kimi-review"
-  },
-  "last30days": {
-   "source": "skills/imported/last30days/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "offers": {
-   "source": "skills/eigene/offers/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "onboard": {
-   "source": "skills/eigene/onboard/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "orchestrate": {
-   "source": "kimi/skills/orchestrate/SKILL.md",
-   "mode": "native-kimi-agent"
-  },
-  "plan": {
-   "source": "skills/methodik/plan/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "report": {
-   "source": "skills/eigene/report/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "research": {
-   "source": "skills/methodik/research/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "seo": {
-   "source": "skills/eigene/seo/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "tdd": {
-   "source": "skills/methodik/tdd/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "watch": {
-   "source": "skills/eigene/watch/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "web": {
-   "source": "skills/eigene/web/SKILL.md",
-   "mode": "canonical-link"
-  },
-  "raphael-writing-skills": {
-   "codex_name": "writing-skills",
-   "source": "skills/methodik/writing-skills/SKILL.md",
-   "mode": "source-adapter",
-   "dependency_map": [
-    "For canonical Raphael source skills, use /root/raphael-skills/tools/validate-skill.py and the repository frontmatter contract. For a Kimi directory skill, SKILL.md frontmatter contains exactly name and description; Kimi does not require agents/openai.yaml.",
-    "The pinned upstream Superpowers writing guide is /root/tools/vendor/superpowers/skills/writing-skills/SKILL.md; preserve it instead of copying it into this adapter."
-   ]
-  },
-  "impeccable": {
-   "source": "skills/eigene/impeccable/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "no-ai-slop": {
-   "source": "skills/eigene/no-ai-slop/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "taste": {
-   "source": "skills/eigene/taste/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "ui-ux": {
-   "source": "skills/eigene/ui-ux/SKILL.md",
-   "mode": "source-adapter"
-  },
-  "ultra-loop": {
-   "source": "skills/eigene/ultra-loop/SKILL.md",
-   "mode": "source-adapter"
+  "schema_version": 1,
+  "target": "kimi-code-0.28.1",
+  "derived_from": "codex/compatibility.json",
+  "skills": {
+    "ads": {
+      "source": "skills/eigene/ads/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ads-copy": {
+      "source": "skills/eigene/ads-copy/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ads-research": {
+      "source": "skills/eigene/ads-research/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ads-statics": {
+      "source": "skills/eigene/ads-statics/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ads-video": {
+      "source": "skills/eigene/ads-video/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "brain": {
+      "source": "skills/eigene/brain/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "code-review": {
+      "source": "skills/methodik/code-review/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "codex-orchestration": {
+      "source": "skills/eigene/codex-orchestration/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "copywriting": {
+      "source": "skills/eigene/copywriting/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "debug": {
+      "source": "skills/eigene/debug/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "design": {
+      "source": "skills/design/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "eval": {
+      "source": "skills/eigene/eval/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "extract-approach": {
+      "source": "skills/eigene/extract-approach/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "finish": {
+      "source": "skills/methodik/finish/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "handoff": {
+      "source": "skills/eigene/handoff/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "idea-filter": {
+      "source": "skills/eigene/idea-filter/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "kimi-sol": {
+      "source": "kimi/skills/kimi-sol/SKILL.md",
+      "mode": "native-kimi-review"
+    },
+    "last30days": {
+      "source": "skills/imported/last30days/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "no-ai-slop": {
+      "source": "skills/eigene/no-ai-slop/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "offers": {
+      "source": "skills/eigene/offers/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "onboard": {
+      "source": "skills/eigene/onboard/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "orchestrate": {
+      "source": "kimi/skills/orchestrate/SKILL.md",
+      "mode": "native-kimi-agent"
+    },
+    "orchestrate-gauntlet": {
+      "source": "skills/eigene/orchestrate-gauntlet/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "personal": {
+      "source": "skills/personal/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "plan": {
+      "source": "skills/methodik/plan/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "printingpress": {
+      "source": "skills/eigene/printingpress/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "raphael-chrome": {
+      "source": "skills/raphael-chrome/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "raphael-writing-skills": {
+      "codex_name": "writing-skills",
+      "source": "skills/methodik/writing-skills/SKILL.md",
+      "mode": "source-adapter",
+      "dependency_map": [
+        "For canonical Raphael source skills, use /root/raphael-skills/tools/validate-skill.py and the repository frontmatter contract. For a Kimi directory skill, SKILL.md frontmatter contains exactly name and description; Kimi does not require agents/openai.yaml.",
+        "The pinned upstream Superpowers writing guide is /root/tools/vendor/superpowers/skills/writing-skills/SKILL.md; preserve it instead of copying it into this adapter."
+      ]
+    },
+    "read-book": {
+      "source": "skills/eigene/read-book/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "report": {
+      "source": "skills/eigene/report/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "research": {
+      "source": "skills/methodik/research/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "seo": {
+      "source": "skills/eigene/seo/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "skill-update": {
+      "source": "skills/methodik/skill-update/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "tdd": {
+      "source": "skills/methodik/tdd/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "unstuck": {
+      "source": "skills/methodik/unstuck/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "visual-aaa": {
+      "source": "skills/eigene/visual-aaa/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "watch": {
+      "source": "skills/eigene/watch/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "web": {
+      "source": "skills/eigene/web/SKILL.md",
+      "mode": "canonical-link"
+    }
   }
- }
 }

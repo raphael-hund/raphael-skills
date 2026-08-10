@@ -1,12 +1,12 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 42,
+  "skill_count": 37,
   "skills": [
     {
       "name": "design",
       "version": "0.3.3",
       "path": "skills/design/SKILL.md",
-      "description": "Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills). Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/ Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als eigene References bei Bedarf nachladen. Trigger: \"Landingpage bauen\", \"Dashboard designen\", \"UI review\", \"Design polieren\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
+      "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
     },
     {
       "name": "ads-copy",
@@ -45,10 +45,10 @@
       "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage für Raphaels Freigabe) und `verbinden` (Verlinkungs-Vorschläge als Diff). Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\"."
     },
     {
-      "name": "codex-first",
+      "name": "codex-orchestration",
       "version": "0.1.0",
-      "path": "skills/eigene/codex-first/SKILL.md",
-      "description": "Delegiert ein Arbeitspaket an die Codex-CLI (GPT-5.6, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Billig/anders bauen (Codex), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/codex-first\", \"an Codex geben\", \"von GPT bauen lassen\", \"codex exec\", \"Cross-Vendor-Bau\"."
+      "path": "skills/eigene/codex-orchestration/SKILL.md",
+      "description": "Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when available. Use for visible sub-threads, separate tasks, model comparisons, multi-model fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI sessions, or background agents."
     },
     {
       "name": "copywriting",
@@ -76,27 +76,15 @@
     },
     {
       "name": "handoff",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "path": "skills/eigene/handoff/SKILL.md",
-      "description": "Feuert vor jedem /clear und am Session-Ende: schreibt einen Übergabe-Brief, damit die nächste Session ohne Verlust weiterarbeitet. Fakten statt Anweisungen (State, not instructions), inkl. Fallen/Sackgassen-Sektion und Secret-Redaktion. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\"."
+      "description": "Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben (PROGRESS.md/DECISIONS.md, Commit+Push, hartes /clear). (2) EXTERN: das Gespräch zu einem redigierten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person verdichten (Verweis statt Duplikat, Ablage im OS-Temp). Fakten statt Anweisungen, inkl. Fallen/Sackgassen und Secret-Redaktion. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\", \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
     },
     {
       "name": "idea-filter",
       "version": "0.1.0",
       "path": "skills/eigene/idea-filter/SKILL.md",
       "description": "Bewertet eine Geschäfts-/Produktidee entlang von neun festen Dimensionen gegen Raphaels tatsächliches Portfolio (ICP, Angebot, Voice, Kunden) und endet immer in genau einem von vier Verdikten — Build, Sleep on it, Pass oder Angle klauen. Erzwingt Belege statt Bauchgefühl und legt jede bewertete Idee als Kandidat ab, auch die abgelehnten. Trigger: \"Idee bewerten\", \"lohnt sich das\", \"Geschäftsidee prüfen\", \"soll ich das bauen\", \"idea-filter\", \"Ideen filtern\"."
-    },
-    {
-      "name": "impeccable",
-      "version": "0.1.0",
-      "path": "skills/eigene/impeccable/SKILL.md",
-      "description": "Feuert bei Frontend-Design-Arbeit, die über \"funktioniert\" hinausgehen soll: Design bauen, redesignen, kritisieren, auditieren, polieren, vereinfachen, härtener, animieren, kolorieren, typographieren, layouten, begeistern, klären, anpassen, optimieren — oder bei der Frage \"sieht das nach AI aus?\" / \"mach es bolder/quieter\". Liefert die Kommando-Sprache (23 Befehle wie `audit`, `critique`, `polish`, `bolder`, `quieter`, `distill`, `animate`, `colorize`, `typeset`, `layout`, `delight`, `clarify`, `harden`, `adapt`, `optimize`) und den Craft-Floor (Qualitäts-Mindeststandard) für Web-UI. Der design-Skill bleibt die kanonische Wissensquelle; impeccable ist die Arbeits- und QA-Sprache. Trigger: \"Design review\", \"UI audit\", \"polish this\", \"make it bolder\", \"landing page critique\", \"sieht nach AI aus\", \"Slop check\", \"Design verbessern\", \"animate this\", \"typography fix\"."
-    },
-    {
-      "name": "kimi-first",
-      "version": "0.2.0",
-      "path": "skills/eigene/kimi-first/SKILL.md",
-      "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
     },
     {
       "name": "no-ai-slop",
@@ -129,6 +117,12 @@
       "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok, Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
     },
     {
+      "name": "printingpress",
+      "version": "0.1.0",
+      "path": "skills/eigene/printingpress/SKILL.md",
+      "description": "\"Druckt agent-native CLI + SKILL.md für API-only Services aus einem Prompt. Target: ads-research, seo, pipedrive, trello. Intake → Draft-Welle (1-3 Luna parallel) → G1 mechanical → G2 cross-family → _candidates/. Nutze NUR wenn Raphael explizit 'printingpress' oder 'CLI für X' sagt.\""
+    },
+    {
       "name": "read-book",
       "version": "0.1.0",
       "path": "skills/eigene/read-book/SKILL.md",
@@ -147,28 +141,10 @@
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\". Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)"
     },
     {
-      "name": "taste",
-      "version": "0.1.0",
-      "path": "skills/eigene/taste/SKILL.md",
-      "description": "Feuert bei Landing/Marketing/Portfolio/Editorial-Flächen, wenn der Look \"besonders\", \"premium\", \"nicht nach Template\" aussehen soll — die Landing-/Brand-Linie des design-Systems. Trigger: \"Landingpage designen\", \"Premium-Look\", \"nicht nach Baukasten aussehen\", \"Brand-Fläche\", \"Hero gestalten\", \"Portfolio\", \"Editorial\", \"taste\", \"mehr Geschmack ins Design\"."
-    },
-    {
-      "name": "ui-ux",
-      "version": "0.1.0",
-      "path": "skills/eigene/ui-ux/SKILL.md",
-      "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
-    },
-    {
-      "name": "ultra-loop",
-      "version": "1.0.0",
-      "path": "skills/eigene/ultra-loop/SKILL.md",
-      "description": "Dünner Router für /ultra-loop: lädt ausschließlich orchestrate und delegiert an dessen Betriebsart LOOP. Die kanonische Dauer-Verbesserungs-Mechanik lebt nur dort. Trigger: \"/ultra-loop\", \"Ultra-Loop\", \"Dauer-Verbesserungs-Loop\"."
-    },
-    {
       "name": "visual-aaa",
       "version": "1.0.0",
       "path": "skills/eigene/visual-aaa/SKILL.md",
-      "description": "Harter Qualitäts-Gate für ALLE visuellen Deliverables (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. Trigger: \"visual-aaa\", \"visuell prüfen\", \"AAA-Qualität\", \"Screenshot-Gate\", \"PDF-QA\", \"Folien prüfen\", \"visuell fertig\", \"Triple-A Check\", \"harsh critic\", \"Pixel-QA\"."
+      "description": "Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. always: true."
     },
     {
       "name": "watch",
@@ -178,9 +154,9 @@
     },
     {
       "name": "web",
-      "version": "0.12.3",
+      "version": "0.13.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Websites/Landingpages (Loop 2): Strategie, Sitemap, Copy, Look/QA (design integriert), Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. Trigger: \"Website bauen\", \"Landingpage\", \"Sitemap\", \"Website-QA\", \"CRO\", \"Design polieren\", \"Slop entfernen\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
+      "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) delegiert er an den design-Skill. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },
     {
       "name": "last30days",
@@ -201,16 +177,10 @@
       "description": "Schließt einen Entwicklungs-Branch sauber ab: Tests verifizieren, Umgebung erkennen, genau die passenden Optionen anbieten (Merge, PR, Behalten, Verwerfen), gewählten Weg ausführen, Workspace aufräumen. Trigger: \"Branch abschließen\", \"fertig implementiert\", \"mergen oder PR\", \"finishing a development branch\"."
     },
     {
-      "name": "handoff-ext",
-      "version": "0.1.0",
-      "path": "skills/methodik/handoff-ext/SKILL.md",
-      "description": "Verdichtet das laufende Gespräch zu einem kompakten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person, die weiterarbeiten soll — mit Redaktion sensibler Daten und Verweis statt Duplikat auf bestehende Artefakte. Trigger: \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
-    },
-    {
       "name": "plan",
       "version": "1.0.0",
       "path": "skills/methodik/plan/SKILL.md",
-      "description": "DER Planungs-Skill — einer für alles Planen. Führt von der rohen Idee bis zum umsetzbaren Plan und wählt selbst die Stufe: GRILL (Entscheidung durchbohren), SPEC (Idee zur freigegebenen Spec), PLAN (Spec zum bissgroßen Umsetzungsplan), TICKETS (in Tracer-Bullet-Tickets schneiden), UMSETZUNG (Subagent je Task). Ersetzt brainstorm, grill, to-spec, tickets und sdd. Trigger: \"planen\", \"Plan machen\", \"plane das\", \"Umsetzungsplan\", \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"Spec schreiben\", \"PRD\", \"grillen\", \"grill mich\", \"Entscheidung durchleuchten\", \"Tickets schreiben\", \"Backlog bauen\", \"Plan umsetzen\", \"Tasks ausführen\"."
+      "description": "DER Planungs-Skill — einer für alles Planen. Führt von der rohen Idee bis zum umsetzbaren Plan und wählt selbst die Stufe: GRILL (Entscheidung durchbohren), SPEC (Idee zur freigegebenen Spec), PLAN (Spec zum bissgroßen Umsetzungsplan), TICKETS (in Tracer-Bullet-Tickets schneiden), UMSETZUNG (Subagent je Task). Ersetzt brainstorm, grill, to-spec, tickets und sdd. Trigger: \"planen\", \"Plan machen\", \"plane das\", \"Umsetzungsplan\", \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"Spec schreiben\", \"PRD\", \"grillen\", \"grill mich\", \"Entscheidung durchleuchten\", \"Tickets schreiben\", \"Plan schreiben\", \"Spec in Tasks zerlegen\", \"implementation plan\", \"Backlog bauen\", \"Plan umsetzen\", \"Tasks ausführen\"."
     },
     {
       "name": "research",

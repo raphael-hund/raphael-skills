@@ -9,7 +9,8 @@ description: >
   UMSETZUNG (Subagent je Task). Ersetzt brainstorm, grill, to-spec, tickets
   und sdd. Trigger: "planen", "Plan machen", "plane das", "Umsetzungsplan",
   "brainstorm", "Idee ausarbeiten", "Design-Spec", "Spec schreiben", "PRD",
-  "grillen", "grill mich", "Entscheidung durchleuchten", "Tickets schreiben",
+  "grillen", "grill mich", "Entscheidung durchleuchten", "Tickets schreiben", "Plan schreiben",
+  "Spec in Tasks zerlegen", "implementation plan",
   "Backlog bauen", "Plan umsetzen", "Tasks ausführen".
 class: M
 scope: agency

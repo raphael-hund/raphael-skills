@@ -2,16 +2,17 @@
 name: design
 version: 0.3.3
 description: >
-  Frontend-Design-Skill (Fusion aus impeccable + taste + ui-ux-pro-max +
-  kill-ai-slop + emilkowalski-Motion-Skills + jakubkrehel-Detailskills).
-  Baut und prueft produktionsreife Interfaces ohne AI-Slop. Router: Landing/
-  Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber
-  die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner.
-  Motion/Animation, Farben (OKLCH), Typografie und UI-Polish-Details als
-  eigene References bei Bedarf nachladen. Trigger: "Landingpage bauen",
-  "Dashboard designen", "UI review", "Design polieren", "sieht nach AI aus",
-  "Slop entfernen", "Farben/Typo/Layout fixen", "Animation/Motion pruefen",
-  "Kontrast/OKLCH", "Referenz-Site als Stilvorlage", "Stitch",
+  Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus
+  impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-
+  Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH),
+  Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem
+  Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der
+  web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard ->
+  ui-ux-Linie, finale QA IMMER ueber die deterministischen
+  impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger:
+  "Design polieren", "UI review", "sieht nach AI aus", "Slop entfernen",
+  "Farben/Typo/Layout fixen", "Animation/Motion pruefen", "Kontrast/OKLCH",
+  "Dashboard designen", "Referenz-Site als Stilvorlage", "Stitch",
   "Screen in Stitch bauen", "Design mit Google Stitch".
 class: F
 scope: agency

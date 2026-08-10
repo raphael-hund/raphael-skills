@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Kimi First"
-  short_description: "Codex adapter for the kimi-first skill"
-  default_prompt: "Use $kimi-first for this task."

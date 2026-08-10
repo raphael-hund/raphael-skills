@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Ultra Loop"
-  short_description: "Codex adapter for the ultra-loop skill"
-  default_prompt: "Use $ultra-loop for this task."

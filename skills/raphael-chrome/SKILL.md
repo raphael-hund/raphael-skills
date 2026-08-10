@@ -1,11 +1,17 @@
 ---
 name: raphael-chrome
+version: 0.1.0
 description: >-
   Steuert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit Logins und
   Passwort-Autofill. Nutzen für Browser-Arbeit, Trello/Airtable/Google-UI,
   API-Keys aus Web-Oberflächen holen, Screenshots, Klicks. Prefer this over
   Orca computer-use for websites. Triggers: chrome, browser, trello login,
   airtable, CDP, 9222, Passwort autofill, website klicken.
+class: O
+scope: agency
+sensitivity: internal
+completion_criteria:
+  - "Aktion im VPS-Chrome ausgeführt und per Screenshot oder DOM-State verifiziert"
 ---
 
 # raphael-chrome — VPS Chrome steuern

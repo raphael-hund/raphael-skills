@@ -3,7 +3,11 @@ name: orchestrate
 description: >
   Orchestriere sichtbare user-owned Codex-Tasks für nichttriviale Arbeit.
   Trigger: "delegieren", "parallelisieren", Alias "Sub-Tasks", "Task aufteilen",
-  "orchestrieren", "Council" und "Zweitmeinungs-Rat". Kleine Aufgaben
+  "orchestrieren", "Council" und "Zweitmeinungs-Rat". Weitere Trigger:
+  "Flotte", "Workflow", "als Workflow machen", "fächere das auf", "Loop",
+  "Dauer-Loop", "loop der sich verbessert", "Graph", "Pipeline aufsetzen",
+  "Gauntlet", "gegen eine Messlatte bauen", "bis es richtig gut ist",
+  "Cross-Model", "Cross-Harness". Kleine Aufgaben
   bleiben solo. Für größere Aufgaben setze Leader-, Task- und Verifier-Threads
   auf, halte Schreiben disjunkt, lasse Antworten unabhängig und synthetisiere
   nur nach eigener Prüfung.
