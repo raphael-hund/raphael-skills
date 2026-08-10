@@ -10,6 +10,12 @@ Default-Wahl.
 > **Ausgabe-Deckel:** Nie mehr als 3 URLs aus dieser Datei in eine Antwort, nie
 > eine ganze Kategorie zitieren, nie diese Datei als Ersatz für den Router laden.
 
+**Einzelzugriff:** Nach der Router-Wahl genau eine benannte Ressource mit
+`node scripts/resource-access.mjs show "<Name>"` nachschlagen. Der Name ist exakt und
+Groß-/Kleinschreibung gilt. Das Skript liest diese Datei, liefert genau einen Eintrag
+(URL, Kategorie, Router-Modus und Metadaten), führt aber weder Installationen noch
+Netzwerkzugriffe aus.
+
 Pro Projekt nur die kleinste sinnvolle Auswahl öffnen. Vor Übernahme: Lizenz,
 Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
 
@@ -122,7 +128,7 @@ Barrierefreiheit, SSR-Kompatibilität und Wartungsaktivität prüfen.
 - [Motion Primitives](https://motion-primitives.com/)
 - [Cult UI](https://www.cult-ui.com/)
 - [Park UI](https://park-ui.com/)
-- [Origin UI](https://originui.com/)
+- [Origin UI](https://coss.com/ui)
 - [Float UI](https://floatui.com/)
 - [Preline UI](https://preline.co/)
 - [HyperUI](https://www.hyperui.dev/)
@@ -161,6 +167,8 @@ Copy-paste-fertige Komponenten.
 - [React Three Fiber](https://r3f.docs.pmnd.rs/)
 - [Theatre.js](https://www.theatrejs.com/)
 - [GSAP](https://gsap.com/)
+- [tsParticles](https://particles.js.org/)
+- [Vanta.js](https://www.vantajs.com/)
 
 ## Gradients, SVGs und Hintergründe
 
@@ -200,7 +208,7 @@ Produktion übernehmen und SVGs vor Einbau auf eingebettete Skripte/Links prüfe
 - [PatternPad](https://patternpad.com/)
 - [Pattern Monster](https://pattern.monster/)
 - [Blobmaker](https://www.blobmaker.app/)
-- [Blobmixer](https://www.blobmixer.ooo/)
+- [Blobmixer](https://blobmixer.14islands.com/)
 - [Shape Divider](https://www.shapedivider.app/)
 - [CSS Pattern](https://css-pattern.com/)
 - [Patternico](https://patternico.com/)
@@ -292,7 +300,7 @@ Beleg für echte Kundenarbeit.
 - [Rive](https://rive.app/)
 - [Mixkit](https://mixkit.co/)
 - [Coverr](https://coverr.co/)
-- [Life of Vids](https://www.lifeofvids.com/)
+- [Life of Vids](https://pixabay.com/users/life-of-vids-1282862/)
 
 ## Icons
 
@@ -319,7 +327,7 @@ Quelle prüfen. Nicht mehrere Icon-Systeme ohne begründeten Bedarf mischen.
 - [Iconify](https://iconify.design/)
 - [Icons8](https://icons8.com/)
 - [Hugeicons](https://hugeicons.com/)
-- [Atlas Icons](https://atlasicons.vectopus.com/)
+- [Atlas Icons](https://atlasicons.vectoricons.net/)
 
 ## Fonts und Typografie
 
