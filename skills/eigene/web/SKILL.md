@@ -9,13 +9,13 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.12.3"
+  raphael-version: "0.13.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","impeccable@^0","taste@^0","ui-ux@^0","visual-aaa@^1"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "Premium/Ship: screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "Premium/Ship visuell: visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Rollen aus agent-roster.md (agentType/Familie) — Build und Review unterschiedliche Familien"]'
+  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Rollen aus agent-roster.md (agentType/Familie) — Build und Review unterschiedliche Familien"]'
 ---
 
 # web — Loop 2: Website
@@ -41,6 +41,22 @@ Alles Visuelle → Skill **design** (nicht hier neu erfinden).
 
 Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und
 aus echten Analytics verbessern.
+
+## Workspace-pro-Version (Raphael 10.08.2026, bindend für Bestandsseiten)
+
+Update an einer bestehenden Site = immer neuer Workspace/Worktree von `main`
+(in Orca: „New Workspace" — das IST ein Git-Worktree). Name egal, umbenennen
+erlaubt. `main` trägt nur flache Squash-Commits.
+
+- **Gefällt Raphael** → EIN Squash-Commit auf `main` (`git merge --squash`),
+  Push/Deploy nur auf sein Wort, dann Workspace + Branch löschen.
+- **Gefällt nicht** → Workspace + Branch ersatzlos löschen UND das Abgelehnte
+  als Verboten-Eintrag in Root-`DESIGN.md`/`DECISIONS.md` schreiben. Erst dann
+  gilt das Nein als eingearbeitet.
+- Historie/Archiv-Ordner sind KEINE Quelle: nichts aus `git log`, alten Plänen
+  oder Handoffs wieder einbauen. Was nicht im aktuellen Code oder `DESIGN.md`
+  steht, ist verworfen. Muster-Repo: Wilhelm-Bedachung (`CLAUDE.md` dort).
+- Nie alte Workspaces liegen lassen; nie parallel im Root-Checkout bauen.
 
 ## Worker-Präferenz (Raphael 05.08.2026)
 
@@ -98,7 +114,7 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
   --routes /
 ```
 
-- Fold 1440×730, dann 1440×1400 @ 50 % Scroll — **nie** fullPage / captureBeyondViewport.
+- Fold 1440×730, dann 1440×1500 @ 750 px Scroll, sequentiell pro Seite, Hover+Klick-Pass, `--static` für Kritik — **nie** fullPage / captureBeyondViewport.
 - **`--base` Pflicht** (ohne Flag: Exit 2). Früherer Default-Port 5280 entfällt.
 - Jedes PNG per Read ansehen; nach jedem Fix **alle** betroffenen Routen erneut.
 - Kritik bekommt nur `manifest.json` + PNGs. Ablauf: `screenshot-kritik-loop.md`.
@@ -147,6 +163,8 @@ QA 1–4 ‖ dann SEO+Trust → Launch (Signatur) → cro-learn.
 
 - **Anfänger lädt alles** → falsch. Nur `anfaenger-pfad.md` §1.
 - **`shot-sweep` ohne `--base`** → Exit 2 (Usage); nie ohne echte Dev-URL.
+- **`shot-sweep` schlägt fehl → Standard-Skript fixen, NIE eigenes Ad-hoc-Playwright-Skript schreiben.** Forensik 10.08.2026: beide Fehl-Sessions wichen nach einem Fehler/aus Bequemlichkeit auf eigene Skripte aus (1440×900, 12-Shot-Cap, kein Hover/Klick, kein Static) — genau das ist verboten. Auch alte `scratch/shot-*.cjs`-Skripte im Projekt nie wiederverwenden.
+- **Kritik nur auf selbst angesehene Shots.** „Jedes PNG per Read" ist wörtlich: Read-Aufrufe auf PNGs müssen die Shot-Zahl decken, Agent-Berichte ersetzen das nicht.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill (Mac-Pfade). Nie routen; Kanon = `web` + `design`.
 - **Design-G1** nur `node …/design/scripts/detect.mjs`, nie `npx impeccable detect`.
 - **Tools** über `tool-usecase-router.md`, nicht Link-Dumps (max 3 URLs aus Bibliothek).
