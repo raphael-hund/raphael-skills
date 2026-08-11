@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
-# Exportiert MAKE-Airtable Ads + Referenz-Ads in den ads-video-Korpus.
+# Exportiert Airtable Ads (kundeneigene Performance) + Referenz-Ads (Markt) aus Airtable.
+#
+# Zwei Ziele, zwei Repos:
+#   eigene Ads   -> /root/clients/client-<KUNDE>/ads/korpus/eigene-ads.md   (Kundenrepo)
+#   Referenz-Ads -> <skill>/references/korpus/referenz-ads.md              (Skills-Repo)
+#
 # Auth: /root/tools/secrets/airtable.env (AIRTABLE_API_KEY)
-# Usage: bash scripts/export-airtable-korpus.sh
+# Usage: KUNDE=make bash scripts/export-airtable-korpus.sh
+#        (Default KUNDE=make; Base/Tabellen über AIRTABLE_* überschreibbar)
 set -euo pipefail
 
+KUNDE="${KUNDE:-make}"
 ENV_FILE="${AIRTABLE_ENV_FILE:-/root/tools/secrets/airtable.env}"
 BASE="${AIRTABLE_BASE:-app9VvWqeSNAOwwmV}"
 ADS_TABLE="${AIRTABLE_ADS_TABLE:-tbl6pfcYgHgo2uVii}"
 REF_TABLE="${AIRTABLE_REF_TABLE:-tblKuUyOwIAOqcvb7}"
 SKILL_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT_DIR="${SKILL_ROOT}/references/korpus"
+CLIENT_OUT_DIR="${CLIENT_KORPUS_DIR:-/root/clients/client-${KUNDE}/ads/korpus}"
 DATE_TAG="$(date -u +%Y-%m-%d)"
 
 if [[ ! -f "$ENV_FILE" ]]; then
@@ -24,9 +32,10 @@ if [[ -z "$KEY" ]]; then
   exit 1
 fi
 
-mkdir -p "$OUT_DIR"
+mkdir -p "$OUT_DIR" "$CLIENT_OUT_DIR"
 export AIRTABLE_API_KEY="$KEY" AIRTABLE_BASE="$BASE" AIRTABLE_ADS_TABLE="$ADS_TABLE" \
-  AIRTABLE_REF_TABLE="$REF_TABLE" OUT_DIR="$OUT_DIR" DATE_TAG="$DATE_TAG"
+  AIRTABLE_REF_TABLE="$REF_TABLE" OUT_DIR="$OUT_DIR" CLIENT_OUT_DIR="$CLIENT_OUT_DIR" \
+  KUNDE="$KUNDE" DATE_TAG="$DATE_TAG"
 
 python3 <<'PY'
 import os, json, urllib.request, urllib.parse, time
@@ -35,6 +44,8 @@ from pathlib import Path
 KEY = os.environ["AIRTABLE_API_KEY"]
 BASE = os.environ["AIRTABLE_BASE"]
 OUT = Path(os.environ["OUT_DIR"])
+CLIENT_OUT = Path(os.environ["CLIENT_OUT_DIR"])
+KUNDE = os.environ["KUNDE"]
 DATE = os.environ["DATE_TAG"]
 ADS_TABLE = os.environ["AIRTABLE_ADS_TABLE"]
 REF_TABLE = os.environ["AIRTABLE_REF_TABLE"]
@@ -88,7 +99,8 @@ def write_eigene(recs):
         "Leads 14T", "Termine AT", "Klicks gesamt", "Klicks AT",
     ]
     lines = [
-        "# Korpus: Eigene Ads (MAKE Airtable)",
+        f"# Korpus: Eigene Ads ({KUNDE} · Airtable)",
+        f"Kunde: {KUNDE}",
         f"Export: {DATE}",
         f"Base: {BASE}",
         f"Tabelle: Ads ({ADS_TABLE})",
@@ -125,7 +137,8 @@ def write_eigene(recs):
                 lines.append(f"  {line}")
         lines.append("")
     lines += ["---", f"Unvollständig markiert: {incomplete}/{len(recs)}"]
-    path = OUT / "eigene-ads.md"
+    CLIENT_OUT.mkdir(parents=True, exist_ok=True)
+    path = CLIENT_OUT / "eigene-ads.md"
     path.write_text("\n".join(lines), encoding="utf-8")
     return path, len(recs), incomplete
 
@@ -182,4 +195,6 @@ if n1 < 1 or n2 < 1:
     raise SystemExit("empty export")
 PY
 
-echo "Korpus-Refresh fertig → $OUT_DIR"
+echo "Korpus-Refresh fertig"
+echo "  eigene Ads (${KUNDE}) → ${CLIENT_OUT_DIR}"
+echo "  Referenz-Ads (Markt)  → ${OUT_DIR}"
