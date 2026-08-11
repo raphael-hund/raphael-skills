@@ -1,0 +1,20623 @@
+# Korpus: Eigene Ads (MAKE Airtable)
+Export: 2026-08-11
+Base: app9VvWqeSNAOwwmV
+Tabelle: Ads (tbl6pfcYgHgo2uVii)
+Anzahl Records: 224
+Vollständig: ja (Pagination)
+
+Quelle für Winner-Learning: Hookrate % 14T, ROAS 14T, CTR % 14T, Ausgaben.
+
+## 05.09. · Video · BROAD
+- id: rec0DcNuuGrwb0tIO
+- Name: 05.09. · Video · BROAD
+- Creative-ID: 1312936253600885
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du brauchst einfach eine geile Webseite – direkter Face-to-Camera-Pitch mit Termin-CTA
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Selbstständige und kleine Unternehmen, Inhaber, die eine neue Website brauchen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | BROAD
+- Ausgaben gesamt: 86.29
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 31
+- Klicks AT: 31
+- Ad-IDs: 120233526241250598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 86.29
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.52
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.52
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.44
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 7.44
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 7.44
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5968
+- Impressionen gesamt: 5968
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-/Talking-Head-Stil, hochformatig. Szene 1 (Hook): Ein Mann in dunklem T-Shirt spricht direkt und nah in die Kamera und gestikuliert mit der Hand; der Bildausschnitt ist Brust/Kopf, der Hintergrund hell und neutral (im Vorschaubild nur unscharf erkennbar). Über dem Bild liegt ein großes Text-Overlay in weißer Schrift: „eine geile Webseite" – das Wort „Webseite" ist in auffälliger, rot/weißer Brush-/Handlettering-Optik hervorgehoben und dominiert den Frame. Diese Hook-Phrase bildet den Einstieg: Der Sprecher benennt direkt, worum es geht – eine neue, richtig gute Webseite für das eigene Business. Aus Ad-Titel und Kampagnenkontext („WEBSITE OFFER", „Jetzt Termin für deine neue Website sichern") ist ableitbar, dass danach eine kurze Nutzen-Argumentation folgt (professionelle Website = mehr Anfragen/Kunden) und der Sprecher zum kostenlosen Erstgespräch bzw. zur Terminbuchung auffordert. Der exakte Wortlaut des gesprochenen Skripts, Zwischenszenen, weitere Text-Overlays und die genaue Endkarte sind im Vorschaubild nicht lesbar/ableitbar. Das Video endet erwartbar mit einem CTA zur Terminbuchung über den Anzeigen-Button.
+
+## 04.03. · Static · Videograf
+- id: rec0Fne2jenBmatCi
+- Name: 04.03. · Static · Videograf
+- Creative-ID: 1949606379001229
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Stellenanzeige als handschriftliche Notiz getarnt (Pattern Interrupt)
+- Visual Style: Handgeschriebener Zettel (Notiz-Look)
+- Awareness Level: Problem Unaware
+- Industry: Recruiting Agentur (Fotograf/Videograf)
+- Target Audience: junge Leute in Basel mit Interesse an Foto/Video
+- Offer / Funnel-Typ: Direkte Bewerbung
+- Kampagne: RECRUITING
+- Adset: Videograf
+- Ausgaben gesamt: 19.89
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 222
+- Klicks AT: 222
+- Ad-IDs: 120241853890020598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 19.89
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 12.01
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 12.01
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 6.98
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-04
+- Erstellt am: 2026-03-04
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1848
+- Impressionen gesamt: 1848
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bildanzeige (Ad „Zettel", Status: pausiert) im bewusst improvisierten „handgeschriebene Notiz"-Look; das Vorschaubild liegt nur als 64×64-px-Thumbnail vor, daher ist der Wortlaut nicht lesbar. Aufbau: Ein weisses Blatt Papier liegt leicht schräg auf einer braunen, strukturierten Unterlage (wirkt wie eine Tischplatte oder ein Notizbrett). Auf dem Blatt steht oben eine handschriftliche Überschrift, darunter vier bis fünf Stichpunkte mit Gedankenstrichen in dunkler Handschrift (Kugelschreiber-/Filzstift-Optik). Im Thumbnail scheint die erste Zeile mit „Wir suchen…" zu beginnen – einzelne Wörter wie „Fotos/Videos" sind angedeutet, aber im Vorschaubild nicht sicher lesbar. Die Stichpunkte listen aus Kampagnenkontext (Fotograf/Videograf gesucht) vermutlich Anforderungen bzw. Konditionen der Stelle. Ein CTA oder Button ist auf dem Bild nicht erkennbar. Farbwelt: reduziert und natürlich – weisses Papier, dunkle Schrift, brauner Untergrund – komplett ohne Corporate-Design oder Logo. Der Stil lebt vom Pattern Interrupt: Die Anzeige sieht im Feed aus wie eine private, abfotografierte Notiz statt wie Werbung und erzeugt so Neugier. Die Bildsprache ist damit das Gegenmodell zu den Hochglanz-Varianten derselben Kampagne. Was genau in den einzelnen Zeilen steht, ist im Vorschaubild nicht lesbar und wird hier nicht ergänzt.
+
+## 06.05. · Static · STÄRKERES MARKETING OFFER
+- id: rec0UdBB8fIXEc4bj
+- Name: 06.05. · Static · STÄRKERES MARKETING OFFER
+- Creative-ID: 1009086394920881
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Du hast ein Küchenstudio? 3 Küchenkunden in 60 Tagen – du zahlst 0 CHF
+- Visual Style: Text-Only-Anzeige (Dark mit Rot-Akzenten)
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Küchenstudios in der Schweiz
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO V2 | STÄRKERES MARKETING OFFER
+- Ausgaben gesamt: 8.7
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120245590891420598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.7
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.57
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.57
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.26
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-06
+- Erstellt am: 2026-05-06
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 318
+- Impressionen gesamt: 318
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Text-Creative im 9:16-Hochformat (900×1600 px) ohne Fotomotiv — reine Typografie auf dunklem Hintergrund. Hintergrund: dunkelgrau-schwarzer, leicht grünlich-stichiger Verlauf mit dezentem Lichthof in der Bildmitte, der die Aufmerksamkeit auf den Text lenkt. Oben mittig sitzt das rote MAKE-Wortmarke-Logo als einziges Branding-Element. Der gesamte Text ist horizontal zentriert und folgt einer klaren Drei-Stufen-Hierarchie: 1) Frage-Hook in sehr grosser, fetter weisser Grotesk über zwei Zeilen: „Du hast ein Küchenstudio?" — spricht die Zielgruppe direkt und selbstqualifizierend an. 2) Ergebnis-Versprechen in mittlerer weisser Schrift: „Wir bringen dir", dann „3 Küchenkunden" als weisse Schrift auf knallrotem Block hervorgehoben, gefolgt von „in den nächsten 60 Tagen!" — der rote Block setzt das konkrete Ergebnis visuell in Szene. 3) Konditions-Zeile im unteren Textblock: „Und du zahlst uns:" in fetter weisser Grossschrift, direkt anschliessend „0 CHF" wieder als weisse Schrift auf rotem Block — das Null-Preis-Versprechen als zweiter starker Eyecatcher. Der untere Bildrand bleibt leer; kein CTA-Button, keine weiteren Grafikelemente. Farbwelt: reduziertes Dunkelgrau-Weiss-Rot-Schema mit harten Kontrasten. Bildsprache: nüchtern, direkt und selbstbewusst — die Anzeige funktioniert allein über Angebot und Typografie, identische Botschaft wie die Showroom-Foto-Variante (Text Only 4.1).
+
+## 17.10. · Static · Statische Image-Ad aus dem eigenen Konto MAKE (Ad
+- id: rec0YeboeW0iWcii6
+- Name: 17.10. · Static · Statische Image-Ad aus dem eigenen Konto MAKE (Ad
+- Creative-ID: 810218531416738
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Risiko-Umkehr: Website in 14 Tagen, nicht zufrieden = 0 CHF — Deal?
+- Visual Style: Typografie-Textkarte (Schwarz auf Weiß)
+- Awareness Level: Product Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmer mit Website-Bedarf, preissensible KMU-Inhaber
+- Offer / Funnel-Typ: Terminbuchung direkt (mit Geld-zurück-Garantie)
+- Kampagne: WEBSITE OFFER
+- Adset: WEBSITE OFFER 2.0 | 17.10.
+- Ausgaben gesamt: 146.02
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 129
+- Klicks AT: 129
+- Ad-IDs: 120235546879600598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 146.02
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.03
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.03
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.66
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-17
+- Erstellt am: 2025-10-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6357
+- Impressionen gesamt: 6357
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-17
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad mit hellem, fast weißem Hintergrund. Das Creative ist eine reine Typografie-Anzeige ohne Foto, Mockup oder Illustration. Der schwarze, mehrzeilige Fließtext lautet in Lesefassung: „Du bekommst deine Website in 14 Tagen. Wenn du nicht 100% zufrieden bist, bezahlst du 0 CHF." — einzelne Wörter sind in der Miniatur nicht hundertprozentig sicher, die Gesamtbotschaft ist jedoch klar erkennbar. Darunter steht deutlich größer und fett die einzeilige Abschlussfrage „Deal?", die als visueller Anker und impliziter CTA funktioniert. Die Farbwelt ist maximal reduziert: Schwarz auf Weiß, ohne weitere Akzentfarben. Die Typografie-Hierarchie ist zweistufig: zuerst das Angebot mit Garantie in normaler Schriftgröße, dann die übergroße „Deal?"-Zeile als emotionaler Abschluss. Branding-Elemente wie Logo oder Button sind im Vorschaubild nicht erkennbar. Der Stil erinnert an eine schlichte Verhandlungskarte — ein Deal-Vorschlag in digitaler Form. Die Bildsprache setzt komplett auf die Kraft der Risiko-Umkehr: Der Kunde trägt kein finanzielles Risiko. Insgesamt die direkteste Offer-Ad der Kampagne — kein Storytelling, nur Konditionen und Abschlussfrage.
+
+## 15.04. · Video · BROAD LUZERN | MARC EVERS
+- id: rec0kuaHAArsqC4rd
+- Name: 15.04. · Video · BROAD LUZERN | MARC EVERS
+- Creative-ID: 1258883355911463
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Begrüßung aus Luzern – lokaler Webdesigner meldet sich direkt
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU und Selbstständige in der Region Luzern
+- Offer / Funnel-Typ: nicht eindeutig ableitbar, vermutlich Anfrage/Termin für Website-Angebot
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD LUZERN | MARC EVERS
+- Ausgaben gesamt: 20.66
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120244277267960598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 20.66
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.51
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.51
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.13
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 23.51
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 23.51
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 787
+- Impressionen gesamt: 787
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-04-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Kappe und Brille lächelt freundlich in die Kamera und winkt mit erhobener rechter Hand in die Linse. Er trägt ein dunkles Oberteil; der Hintergrund ist hell und bläulich, vermutlich Himmel im Freien. Die Bildsprache wirkt bewusst ungekünstelt und authentisch – typischer UGC/Selfie-Look ohne sichtbare Studio-Inszenierung. Text-Overlays oder Untertitel sind im Standbild nicht erkennbar; ein CTA-Button ist im Frame selbst nicht sichtbar (CTA käme aus dem Ad-Placement).
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Thema „Webdesign aus Luzern"):** Die Ad dürfte mit dem winkenden, lächelnden Sprecher als visuellem Hook starten („Hallo aus Luzern"-Moment), der Zuschauende in der Region direkt und persönlich anspricht. Danach dürfte er sich kurz vorstellen und das Angebot benennen: professionelles Webdesign von einer lokalen Agentur aus Luzern. Wahrscheinlich folgt ein Pain-Point-Block (veraltete oder fehlende Website kostet lokale Kunden) und ein Lösungsversprechen. Zum Ende dürfte ein klarer CTA folgen (Anfrage/Beratung/Termin). Gesprochene Botschaft, konkrete Text-Overlays, Zwischenschnitte (z. B. Website-Screenshots) und der exakte CTA: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 10.08. · Video · CH | PLATZ-1 SEO
+- id: rec11PE5g1wE2T93e
+- Name: 10.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 2185035488739245
+- Format: Video
+- Status: ACTIVE
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26 – EDITIERT
+- Ausgaben gesamt: 43.48
+- Ausgaben 30T: 23.73
+- Hookrate % 14T: 25.11
+- ROAS 14T: 0
+- CTR % 14T: 1.95
+- CPL 30T: 11.87
+- CPA AT: 0
+- Leads 14T: 2
+- Termine AT: 0
+- Klicks gesamt: 28
+- Klicks AT: 28
+- Ad-IDs: 120250934584440598
+- Angereichert: Nein
+- Anzahl Ads: 1
+- Ausgaben 14T: 23.73
+- Ausgaben 7T: 23.73
+- Ausgaben AT: 43.48
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 21.74
+- CPL 14T: 11.87
+- CPL 7T: 11.87
+- CPL AT: 21.74
+- CTR %: 1.48
+- CTR % 30T: 1.95
+- CTR % 7T: 1.95
+- CTR % AT: 1.48
+- CTR Link % 14T: 1.15
+- CTR Link % 30T: 1.15
+- CTR Link % 7T: 1.15
+- CTR Link % AT: 0.84
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-10
+- Erstellt am: 2026-08-10
+- Funnel-Zweck: Lead
+- Hookrate %: 24.76
+- Hookrate % 30T: 25.11
+- Hookrate % 7T: 25.11
+- Hookrate % AT: 24.76
+- Impressionen 14T: 872
+- Impressionen 30T: 872
+- Impressionen 7T: 872
+- Impressionen AT: 1894
+- Impressionen gesamt: 1894
+- Klicks 14T: 17
+- Klicks 30T: 17
+- Klicks 7T: 17
+- Leads 30T: 2
+- Leads 7T: 2
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2026-08-10
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript: [UNVOLLSTÄNDIG — nur in Notion oder leer]
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: rec1MEn0mA2KOc0iN
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 856063037577314
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Endlich eine neue Website, die sich von der Konkurrenz abhebt
+- Visual Style: Minimalistische Text-Grafik mit Dashboard-Mockup
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU-Inhaber mit generischer Website, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 1.58
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248515947300598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.58
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 73
+- Impressionen gesamt: 73
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf hellem, fast weißem Hintergrund in sehr reduzierter, sachlicher Gestaltung. Oben steht eine mehrzeilige, linksbündige schwarze Sans-Serif-Headline, in der einzelne Wörter farblich (orange/warm) hervorgehoben sind; erkennbare Fragmente sind „endlich eine neue Website" und „Konkurrenz" — der vollständige Wortlaut ist im 64×64-px-Vorschaubild nicht vollständig lesbar, der Sinn geht in Richtung „endlich eine neue Website, die sich von deiner Konkurrenz abhebt". Unter der Headline folgt ein dunkles Browser- bzw. Dashboard-Mockup, das eine Website- bzw. Analyse-Ansicht in Demo-Optik zeigt (Details im Vorschaubild nicht lesbar). Die Komposition arbeitet mit viel Weißraum, klarer Typografie und nur einem Farbakzent in der Headline; Fotos oder Menschen kommen nicht vor. Branding-Elemente (z. B. MAKE-Logo) und ein CTA-Button sind im Vorschaubild nicht eindeutig erkennbar; die CTA-Beschriftung ist nicht lesbar. Das Ad gehört zur STATIC-Serie „Konkurrenz" und setzt im Vergleich zu ad-04 zusätzlich auf das Dashboard-/Mockup-Motiv als Beweis-Element. Der Hook zielt auf den Wunsch nach Abhebung vom Wettbewerb statt auf pure Angst vor Austauschbarkeit.
+
+## 04.03. · Static · Videograf
+- id: rec1XsCdo00LViIgh
+- Name: 04.03. · Static · Videograf
+- Creative-ID: 936513305644396
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Du bist Student und hast Lust auf Fotos & Videos?
+- Visual Style: Grafik-Ad (Schwarz-Weiss-Rot) mit Foto-Einschub
+- Awareness Level: Problem Unaware
+- Industry: Recruiting Agentur (Fotograf/Videograf)
+- Target Audience: Studenten mit Interesse an Foto & Video
+- Offer / Funnel-Typ: Direkte Bewerbung
+- Kampagne: RECRUITING
+- Adset: Videograf
+- Ausgaben gesamt: 1.19
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120241853929290598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.19
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.99
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.99
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.99
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-04
+- Erstellt am: 2026-03-04
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 67
+- Impressionen gesamt: 67
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-07
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische, gestaltete Grafik-Anzeige (Ad „HIFI 2", Status: aktiv) in der Kampagnen-Farbwelt Schwarz-Weiss-Rot; das Vorschaubild liegt nur als 64×64-px-Thumbnail vor, daher sind kleinere Texte nicht lesbar. Aufbau von oben nach unten: Auf einem schwarzen Kopffeld steht in grosser weisser Bold-Grossschrift die Headline, die im Thumbnail sinngemäss als „DU BIST STUDENT UND HAST LUST AUF FOTOS & VIDEOS?" lesbar ist. In der Bildmitte liegt ein querformatiges Farbfoto mit Personen in einer Arbeitssituation (Team-/Arbeitsatmosphäre, Details im Vorschaubild nicht erkennbar). Darunter schliesst ein roter Banner bzw. Button mit weissem Text ab – aus dem Kampagnenkontext (RECRUITING, vgl. Schwester-Ads) ist dies mit hoher Wahrscheinlichkeit der Bewerbungs-CTA („Jetzt bewerben"), der genaue Wortlaut ist im Vorschaubild jedoch nicht lesbar. Die Komposition ist klassisches Kampagnen-Design: klarer Headline-Block, emotionales Foto, farblich abgesetzter CTA-Streifen. Die Farbwelt Schwarz-Weiss-Rot erzeugt hohen Kontrast und Wiedererkennbarkeit innerhalb der Kampagne. Im Gegensatz zu den UGC-Varianten („IG 1", „IG 2") wirkt diese Anzeige bewusst wie designed Werbung. Ein Logo ist im Thumbnail nicht sicher erkennbar. Kleinere Sublines oder Stichpunkte sind, falls vorhanden, im Vorschaubild nicht lesbar.
+
+## 03.06. · Video · Heeb BTS
+- id: rec1ZTamzo7jLH6sH
+- Name: 03.06. · Video · Heeb BTS
+- Creative-ID: 1471599860845654
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Authentischer Einblick: So arbeitet MAKE wirklich beim Kunden vor Ort
+- Visual Style: Behind-the-Scenes / Dokumentarisches Dreh-Video
+- Awareness Level: Product Aware
+- Industry: Marketing-Agentur (Eigenwerbung MAKE)
+- Target Audience: KMU-Inhaber im Retargeting, die MAKE bereits kennen
+- Offer / Funnel-Typ: Vertrauensaufbau (Nurturing) → indirekt Termin/Anfrage
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 11 | Heeb BTS
+- Ausgaben gesamt: 51.59
+- Ausgaben 30T: 10.29
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 11
+- Klicks AT: 11
+- Ad-IDs: 120247607317540598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.59
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.14
+- CTR % 30T: 0.11
+- CTR % 7T: 0
+- CTR % AT: 0.14
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 21.4
+- Hookrate % 30T: 19.02
+- Hookrate % 7T: 0
+- Hookrate % AT: 21.4
+- Impressionen 14T: 0
+- Impressionen 30T: 1809
+- Impressionen 7T: 0
+- Impressionen AT: 7981
+- Impressionen gesamt: 7981
+- Klicks 14T: 0
+- Klicks 30T: 2
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Transkript: [Musik]
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad im Behind-the-Scenes-/Doku-Stil, vertikales Format (Reel/Story). WICHTIG: Es liegt nur ein 64×64-Standbild vor — die folgende Beschreibung trennt daher strikt zwischen Sichtbarem und aus dem Kontext Ableitbarem. SICHTBAR im Standbild: Eine Person in dunkler Arbeitskleidung und Kappe steht in einem Innenraum und hält eine Kamera im Anschlag, sie filmt offenbar eine zweite Person bzw. Szene außerhalb des Bildausschnitts; im Hintergrund sind Regale bzw. eine Arbeits- bzw. Werkstattumgebung mit hellem Tageslicht zu erkennen — die Szene wirkt wie ein echter Kundentermin, nicht wie ein Studio-Setup. ABLEITBAR aus Titel und Caption-Kontext („Wir waren vor Ort und haben genau das gemacht, was die meist[en] …", Kampagne „NURTURING | RETARGETING"): Das Video dokumentiert einen realen Drehtag von Make Marketing beim Bestandskunden Heeb & Enzler und zeigt die Arbeitsweise der Agentur ungeschönt von innen. Typische Szenenfolge eines solchen BTS-Videos: Einstieg mit Hook-Zeile als Text-Overlay (z. B. „Was die meisten Agenturen nie zeigen"), Anfahrt/Ankunft beim Kunden, Aufbau von Kamera und Licht, kurze Sequenzen der eigentlichen Dreharbeiten (Kameraführung, Anweisungen an den Kunden, Zweitperspektive hinter der Kamera), zwischendurch kurze Sprech- oder Text-Einwürfe zum Ablauf, Abschluss mit Ergebnis-Andeutung und CTA. Ob gesprochene Sprache, Untertitel oder nur Musik mit Text-Overlays verwendet werden, ist aus dem Standbild nicht ableitbar. Konkrete Text-Overlays, exakte Szenenfolge, Laufzeit und der Schluss-CTA sind im Vorschaubild nicht lesbar. Stil: authentisch, handgehalten, bewusst „ungehobelt" als Vertrauens- und Nurturing-Format gegenüber einer bereits warmen Retargeting-Zielgruppe.
+
+## 06.07. · Video · CH | PLATZ-1 SEO
+- id: rec1zsx2QWdBsPgdb
+- Name: 06.07. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1759956908537391
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: "Unternehmen ab 100'000 Jahresumsatz aufgepasst! Wir bringen dich in den naechsten 30 Tagen bei Google auf Platz 1 oder du bezahlst uns keinen einzigen Rappen." (Guarantee)
+- Visual Style: UGC Selfie, Text-on-Screen
+- Awareness Level: Problem Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Inhaber von Betrieben aus der Region ab 100'000 Franken Jahresumsatz
+- Offer / Funnel-Typ: Neue Website plus Sichtbarkeitssystem, Platz 1 in 30 Tagen oder kein Geld, kostenloser Sichtbarkeits-Check mit Entwurf der neuen Seite in 24 Stunden -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | JUN26 – Kopie
+- Ausgaben gesamt: 1732.29
+- Ausgaben 30T: 1487.51
+- Hookrate % 14T: 28.11
+- ROAS 14T: 0
+- CTR % 14T: 0.95
+- CPL 30T: 70.83
+- CPA AT: 1732.29
+- Leads 14T: 4
+- Termine AT: 8
+- Klicks gesamt: 645
+- Klicks AT: 645
+- Ad-IDs: 120249881147650598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 591.12
+- Ausgaben 7T: 230.03
+- Ausgaben AT: 1732.29
+- CPA: 1732.29
+- CPA 14T: 0
+- CPA 30T: 1487.51
+- CPA 7T: 0
+- CPL: 69.29
+- CPL 14T: 147.78
+- CPL 7T: 230.03
+- CPL AT: 69.29
+- CTR %: 0.93
+- CTR % 30T: 0.9
+- CTR % 7T: 1.05
+- CTR % AT: 0.93
+- CTR Link % 14T: 0.58
+- CTR Link % 30T: 0.53
+- CTR Link % 7T: 0.64
+- CTR Link % AT: 0.56
+- Conversions gesamt: 1
+- Erste Auslieferung: 2026-07-06
+- Erstellt am: 2026-07-06
+- Funnel-Zweck: Lead
+- Hookrate %: 27.96
+- Hookrate % 30T: 27.86
+- Hookrate % 7T: 27.02
+- Hookrate % AT: 27.96
+- Impressionen 14T: 20725
+- Impressionen 30T: 56730
+- Impressionen 7T: 8104
+- Impressionen AT: 69347
+- Impressionen gesamt: 69347
+- Klicks 14T: 196
+- Klicks 30T: 511
+- Klicks 7T: 85
+- Leads 30T: 21
+- Leads 7T: 1
+- Leads AT: 25
+- Leads gesamt: 25
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 1
+- Termine 30T: 7
+- Termine 7T: 0
+- Terminpreis 14T: 591.12
+- Terminpreis 30T: 212.5
+- Terminpreis 7T: 0
+- Terminpreis AT: 216.54
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 1
+- Verkauft 7T: 0
+- Verkauft AT: 1
+- Verlustgruende: Preis/Budget · 6
+Sonstiges · 3
+Unqualifiziert · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Betriebe ab 100'000 Franken Jahresumsatz aufgepasst, wir bringen dich in den naechsten 30 Tagen bei Google auf Platz 1 oder du bezahlst keinen einzigen Rappen. Aufbau: Komplett neue Seite plus eigenes Sichtbarkeitssystem fuer Google, KI-Suche, ChatGPT und die naechsten Kunden, Beispiel AlpenEnergie, die bei einer Suche nach Solaranlage in der Region ganz oben stehen. Dominic stellt sich als Inhaber von Make Marketing vor, ueber 15 Betriebe aus der Region in diesem Jahr, alles selber vom Code ueber das Design bis zum Fotoshooting vor Ort. Close: Kostenloser Sichtbarkeits-Check, in 24 Stunden sieht man, wie die neue Seite aussieht, Eintragen unter der Anzeige.
+
+## 03.06. · Video · Innocenti Termin
+- id: rec21czkJaEeBh7vf
+- Name: 03.06. · Video · Innocenti Termin
+- Creative-ID: 1004116568649597
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: So erstellen wir … — offener Einblick in die Arbeitsweise für Kunde Innocenti
+- Visual Style: Doku-/Interview-Video mit Text-Overlay
+- Awareness Level: Product Aware
+- Industry: Marketing-Agentur (Eigenwerbung MAKE)
+- Target Audience: KMU-Inhaber im Retargeting, terminbereit
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 02 | Innocenti Termin
+- Ausgaben gesamt: 51.52
+- Ausgaben 30T: 10.3
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 18
+- Klicks AT: 18
+- Ad-IDs: 120247607274960598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.52
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.23
+- CTR % 30T: 0.17
+- CTR % 7T: 0
+- CTR % AT: 0.23
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 16.03
+- Hookrate % 30T: 14.23
+- Hookrate % 7T: 0
+- Hookrate % AT: 16.03
+- Impressionen 14T: 0
+- Impressionen 30T: 1799
+- Impressionen 7T: 0
+- Impressionen AT: 7891
+- Impressionen gesamt: 7891
+- Klicks 14T: 0
+- Klicks 30T: 3
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad im Doku-/Interview-Stil, vertikales Format (Reel/Story), mit großem Text-Overlay als Hook. WICHTIG: Es liegt nur ein 64×64-Standbild vor — Sichtbares und Ableitbares werden daher strikt getrennt. SICHTBAR im Standbild: Eine Außenszene auf einer Grünfläche bei Tageslicht; zwei Personen — eine sitzt (mutmaßlich auf einer Bank oder einem niedrigen Element), eine steht daneben, die Körpersprache wirkt wie eine Interview- oder Drehsituation. Über dem unteren Bilddrittel liegt ein markantes zweizeiliges Text-Overlay: Die erste Zeile „SO ERSTELLEN WIR" in weißer, fetter Grotesk ist klar lesbar; direkt darunter sitzt ein roter Balken mit weißer Schrift, dessen Wortlaut im Vorschaubild nicht lesbar ist (vermutlich das Objekt des Satzes, z. B. „WEBSITES" oder „VIDEOS FÜR UNSERE KUNDEN"). Das Overlay-Muster (weiße Großschrift + rote Highlight-Zeile) entspricht der MAKE-Haussprache aus den statischen Creatives. ABLEITBAR aus Ad-Name („AD 02 | Innocenti Termin") und Kampagne („NURTURING | RETARGETING"): Das Video dokumentiert die Arbeit für den Kunden Innocenti und erklärt, wie MAKE vorgeht — vermutlich mit Sprech-Szene(n) der sitzenden Person (Kunde oder Mitarbeiter) und ergänzenden Dreh-Eindrücken. Typische Dramaturgie eines solchen Erklär-Videos: Hook-Overlay in den ersten Sekunden, kurze Vorstellung des Falls, 2–4 Schritte der Arbeitsweise mit begleitenden Bildern, Ergebnis-Andeutung, Schluss-CTA Richtung Terminbuchung. Ob und welche gesprochene Botschaft, Untertitel, Musik und weitere Overlays vorkommen, ist aus dem Standbild nicht ableitbar; exakte Szenenfolge, Laufzeit und der konkrete CTA-Wortlaut sind im Vorschaubild nicht lesbar.
+
+## 17.02. · Video · BROAD | META FORMULAR
+- id: rec2C1TPEL6QnXITh
+- Name: 17.02. · Video · BROAD | META FORMULAR
+- Creative-ID: 1604242164103245
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: Echter Kunde berichtet, was die neue Website gebracht hat
+- Visual Style: Testimonial-Video vor Arbeitskulisse (Kundenstimme)
+- Awareness Level: Solution Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: Handwerker und lokale Dienstleister, die sich mit dem Kunden identifizieren
+- Offer / Funnel-Typ: Meta-Leadformular via Social Proof (Testimonial)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241191443860598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Kunden-Testimonial, Ad-Name „Testimonial | MEB"). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau, Text-Overlays, Personendetails und Schnittfolge sind daher nicht vollständig verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Eine Person in dunkler Arbeitskleidung steht bzw. sitzt vor einer rot-orange dominierten Kulisse, die wie eine Baustelle, ein Container oder eine Gerüstkonstruktion mit vertikalen Streben wirkt; die Person blickt in Richtung Kamera. Die Arbeitsumgebung signalisiert: Hier spricht ein echter Handwerker/Dienstleister, kein Schauspieler im Studio. Wahrscheinlicher Szenenablauf (aus Ad-Name „Testimonial" und Kampagnenkontext ableitbar, nicht aus dem Bild verifizierbar): (1) Einstieg: Der Protagonist stellt sich mit Name/Betrieb vor oder startet direkt mit der Ausgangslage — viel Arbeit, aber kaum Anfragen über die alte Website. (2) Erfahrungsbericht: Er beschreibt die Zusammenarbeit mit MAKE und den neuen Webauftritt. (3) Ergebnis: konkrete Wirkung, z. B. mehr Anfragen bzw. Aufträge über die Website — typische Testimonial-Struktur „vorher → Zusammenarbeit → nachher". (4) Empfehlung/Abschluss: Der Protagonist empfiehlt MAKE weiter, danach CTA Richtung Meta-Leadformular (Adset nennt „META FORMULAR"); die exakte CTA-Formulierung ist aus dem vorliegenden Material nicht ableitbar. Für Testimonial-Videos üblich sind eingeblendete Namens-/Firmen-Captions und B-Roll-Zwischenschnitte (Website-Screenshots, Arbeitsszenen) — im Standbild nicht nachweisbar. Die authentische Baustellen-/Werkstattkulisse dient als Glaubwürdigkeitsanker für die Zielgruppe, die sich mit dem Protagonisten identifizieren soll.
+
+## 04.03. · Static · Videograf
+- id: rec2QPf4XR6EOnEoj
+- Name: 04.03. · Static · Videograf
+- Creative-ID: 1476592537467631
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Stellenanzeige als private Notizen-App-Notiz getarnt
+- Visual Style: Dark-Mode-Screenshot (Notizen-App)
+- Awareness Level: Problem Unaware
+- Industry: Recruiting Agentur (Fotograf/Videograf)
+- Target Audience: junge Leute in Basel mit Interesse an Foto/Video
+- Offer / Funnel-Typ: Direkte Bewerbung
+- Kampagne: RECRUITING
+- Adset: Videograf
+- Ausgaben gesamt: 3.44
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 17
+- Klicks AT: 17
+- Ad-IDs: 120241853870060598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.44
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 5.9
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 5.9
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 3.47
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-04
+- Erstellt am: 2026-03-04
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 288
+- Impressionen gesamt: 288
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bildanzeige (Ad „Notes", Status: pausiert) als Screenshot einer Notizen-App im Dark Mode; das Vorschaubild liegt nur als 64×64-px-Thumbnail vor, daher ist der Wortlaut weitgehend nicht lesbar. Aufbau: Hochformatiger Handy-Screenshot mit schwarzem Hintergrund, darauf mehrere Zeilen weisser Fliesstext in der typischen Systemschrift einer Notizen-App. Die erste Zeile beginnt erkennbar mit „Wir suchen einen Fotografen…" – danach folgen mehrere Zeilen, die aus Kampagnenkontext die Stellenbeschreibung (Aufgaben, Anforderungen, Konditionen) enthalten dürften; der genaue Wortlaut ist im Vorschaubild nicht lesbar. Im unteren Drittel liegt ein rot hervorgehobener Textblock – vermutlich die Konditionen (vgl. Schwester-Ads: bis zu CHF 30/h) oder der Bewerbungshinweis. Ein gestalteter CTA-Button fehlt; der rote Block übernimmt offenbar diese Funktion. Farbwelt: reines Schwarz-Weiss mit einem einzigen roten Akzent – kein Logo, kein Branding. Der Stil nutzt denselben Pattern-Interrupt wie die „Zettel"-Variante: Die Anzeige sieht aus wie ein privat getippter Notiz-Screenshot statt wie eine Stellenanzeige. Bildsprache und Aufbau zielen auf Authentizität und niedrige Werbe-Abwehr bei der jungen Zielgruppe. Nicht lesbare Zeilen werden hier bewusst nicht ergänzt.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: rec2yimiPtXhwdtHd
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 1018494930681402
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Null Risiko: neue Website in 24 Stunden — gefällt sie nicht, zahlst du 0 CHF
+- Visual Style: Reduziertes Text-Creative mit Bogen-Formen
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: risikoscheue Schweizer KMU und Selbstständige, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 13.4
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 6
+- Klicks AT: 6
+- Ad-IDs: 120248515983150598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 13.4
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.94
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.94
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.29
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 310
+- Impressionen gesamt: 310
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf ruhigem dunkelblauem (navy) Hintergrund, dekoriert mit großen, weichen cremefarbenen Bogen- bzw. Halbkreis-Formen am rechten und unteren Bildrand — organisch, freundlich, ohne harte Kanten. Zentriert im oberen und mittleren Bereich steht die komplette Kernbotschaft in heller (cremeweißer) Schrift: „Wir bauen dir deine neue Website in 24 Stunden. Gefällt sie dir nicht, zahlst du 0 CHF." — gut lesbar und alleiniger Hook des Ads. Darunter folgen vier kleine Bullet-Zeilen; der Kleintext ist im 64×64-px-Vorschaubild nicht entzifferbar, vermutlich Leistungs- und Vertrauensargumente. Das Ad verzichtet bewusst auf Website-Mockups, Fotos und Personen — die Botschaft wirkt rein über Typografie und die ruhige, reduzierte Formensprache. Ein CTA-Button ist im Vorschaubild nicht eindeutig erkennbar; falls vorhanden, ist die Beschriftung nicht lesbar. Die Farbwelt (tiefes Navy plus warmes Creme) wirkt seriös, ruhig und vertrauenserweckend — passend zum Ad-Namen „Null Risiko", denn die Garantie-Botschaft steht im Zentrum statt das Tempo-Versprechen. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar. Innerhalb der STATIC-Serie ist dies die textlastigste und ruhigste Variante, die gezielt risikoscheue, zögerliche Interessenten abholen soll.
+
+## 19.12. · Static · BROAD
+- id: rec3NP6ZE7YiYK22S
+- Name: 19.12. · Static · BROAD
+- Creative-ID: 1633144570983547
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Suchst du Mitarbeiter? Wir bringen sie zu dir.
+- Visual Style: Text-Only Static im Corporate Design
+- Awareness Level: Problem Aware
+- Industry: Recruiting-Marketing / Personalgewinnung für KMU
+- Target Audience: Unternehmer und Geschäftsführer mit offenen Stellen
+- Offer / Funnel-Typ: Anzeigen-Leadgenerierung → Bewerberzufuhr
+- Kampagne: RECRUITING
+- Adset: BROAD
+- Ausgaben gesamt: 3.89
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120239184018310598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.89
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.39
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.39
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.69
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-19
+- Erstellt am: 2025-12-19
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 144
+- Impressionen gesamt: 144
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild im Hochformat 9:16 (1080x1920 px), komplett weißer Hintergrund mit viel Leerraum — minimalistisches Text-Creative ohne Fotografie. Die obere Hälfte des Bildes bleibt vollständig frei, der Textblock sitzt optisch in der Mitte. Im oberen Textbereich steht linksbündig in großer, schwarzer, fetter Sans-Serif die zweizeilige Headline „Suchst du Mitarbeiter?". Direkt darunter liegt ein vollflächiger türkiser (cyanblauer) Textbalken über die volle Textbreite, auf dem in weißer, ebenfalls fetter Schrift das Versprechen „Wir bringen sie zu dir." steht. Unter dem Balken folgt in deutlich kleinerer, schwarzer Regular-Schrift der zweizeilige Subtext: „Wir schalten Werbeanzeigen, die qualifizierte Bewerber direkt zu dir bringen." Weit unten, etwa im unteren Fünftel des Bildes, ist mittig das MAKE-Logo platziert: das Wort „MAKE" in türkis, wobei die Buchstaben „MA" heller und „KE" in einem dunkleren Türkis-Blau gehalten sind. Es gibt keinen CTA-Button, kein Foto von Personen und keine weiteren grafischen Elemente — die gesamte Bildsprache beruht auf Typografie und der Agentur-Hausfarbe Türkis. Der Stil wirkt bewusst schlicht und textlastig, ähnlich einer Stellenanzeige, die direkt die Kernfrage des Betrachters aufgreift. Branding beschränkt sich auf Logo und die Corporate-Farbe. Die Komposition führt das Auge von der Frage (Problem) über den türkisen Balken (Lösung) zum Subtext (Mechanismus) und schließt mit dem Logo (Absender) ab.
+
+## 20.02. · Video · BROAD | META FORMULAR – Kopie
+- id: rec3OluTPjoE7jj5O
+- Name: 20.02. · Video · BROAD | META FORMULAR – Kopie
+- Creative-ID: 3488508967980908
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Website ist der erste Eindruck — und der entscheidet über den Auftrag
+- Visual Style: Talking-Head-Video Outdoor mit Wort-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU-Inhaber, deren Website einen schwachen ersten Eindruck macht
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 12.78
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120241290378770598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 12.78
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.26
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.26
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.26
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 13.47
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 13.47
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 386
+- Impressionen gesamt: 386
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Szene 1 (sichtbar im Standbild): Der Sprecher der Kampagne (Mann mit Brille, kurzem dunklem Bart, dunkle Jacke) steht outdoor vor der Hochhaus-/Skyline-Kulisse bei Tageslicht, spricht direkt in die Kamera und hebt eine Hand in einer betonenden Geste. Im unteren Bildbereich läuft ein weißes Overlay in handschriftlich wirkender Schreibschrift mit; im Standbild ist nur ein Wortfragment erkennbar, das wie „Jeder …" wirkt — der vollständige Text ist im Vorschaubild nicht lesbar. Aus dem Ad-Namen „Erster Eindruck" ist der Winkel klar ableitbar: Der Spot thematisiert, dass die Website für viele Kunden der erste Kontaktpunkt mit dem Betrieb ist und ein schwacher erster Eindruck Aufträge kostet, bevor es überhaupt zum Gespräch kommt. Der typische Aufbau dieses Kampagnen-Formats (aus dem Einzelbild nicht verifizierbar): Hook zum ersten Eindruck, Verknüpfung mit dem Kampagnen-Claim „Deine Arbeit ist besser als deine Website", 1-2 argumentierende Sequenzen am selben Standort mit synchron laufenden Wort-Captions (hier in Schreibschrift statt Blockschrift), und am Ende ein direkter CTA zur Anfrage über das Meta-Leadformular. Genaue Szenenfolge, Sprechtext und Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Bildsprache urban-dokumentarisch, unscharfer Hintergrund; sichtbares MAKE-Branding ist im Thumbnail nicht erkennbar.
+
+## 17.02. · Video · BROAD | META FORMULAR
+- id: rec3PSDT483RXHNyS
+- Name: 17.02. · Video · BROAD | META FORMULAR
+- Creative-ID: 1431945405004583
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Der Konkurrent bekommt den Auftrag, weil seine Website überzeugt – nicht weil er besser arbeitet
+- Visual Style: Talking-Head-Video mit Text-Overlay (Außenaufnahme)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister, Inhaber mit schwacher Website
+- Offer / Funnel-Typ: Meta-Leadformular (Website-Angebot)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR
+- Ausgaben gesamt: 6.98
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120241191419940598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 6.98
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.47
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.47
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.37
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 15.44
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.44
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 272
+- Impressionen gesamt: 272
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head). Wichtiger Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau, daher können Text-Overlays und Szenendetails nur teilweise verifiziert werden — Nicht-Lesbares wird entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart und Brille, dunkel gekleidet, spricht direkt in die Kamera; es handelt sich um eine Außenaufnahme vor einer unscharfen Gebäude-/Stadtkulisse bei Tageslicht. Im unteren Bilddrittel läuft ein weißes Text-Overlay (Caption-Stil), von dem nur das Wort „Dein" sicher lesbar ist — der Rest ist im Vorschaubild nicht lesbar, liegt aber nahe, dass ein Einstieg wie „Dein Konkurrent hat gerade den Auftrag bekommen …" folgt (passt zum Ad-Namen „Konkurrent hat Auftrag bekommen"). Wahrscheinlicher Szenenablauf (aus Kampagnenname, Ad-Name und Kontext ableitbar, nicht aus dem Bild verifizierbar): (1) Hook-Szene: Sprecher eröffnet mit dem Verlustschmerz — der Konkurrent hat den Auftrag erhalten, obwohl die eigene Arbeit besser ist. (2) Problembenennung: Der Unterschied liegt nicht in der Arbeitsqualität, sondern im Webauftritt; Kunden entscheiden anhand der Website. (3) Wendepunkt: Bezug zur Kampagnenbotschaft „Deine Arbeit ist besser als deine Website" — die eigene Website muss die Qualität der Arbeit zeigen. (4) Angebot: MAKE baut/optimiert Websites für lokale Handwerker und Dienstleister. (5) Abschluss: CTA vermutlich Richtung Meta-Leadformular (Adset nennt „META FORMULAR"); die genaue CTA-Formulierung ist aus dem vorliegenden Material nicht ableitbar. Die direkte Kameraansprache in Nahaufnahme und die realistische Außenkulisse verleihen dem Video einen authentischen, beratenden UGC-Charakter statt Hochglanz-Werbung. Durchgehende Captions deuten auf Ton-aus-Nutzung im Feed hin.
+
+## 10.08. · Video · CH | PLATZ-1 SEO
+- id: rec3fwkUSDgPhUEeU
+- Name: 10.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 2263508417826471
+- Format: Video
+- Status: ACTIVE
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26 – EDITIERT
+- Ausgaben gesamt: 1.85
+- Ausgaben 30T: 1.5
+- Hookrate % 14T: 9.76
+- ROAS 14T: 0
+- CTR % 14T: 1.22
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120250934624130598
+- Angereichert: Nein
+- Anzahl Ads: 1
+- Ausgaben 14T: 1.5
+- Ausgaben 7T: 1.5
+- Ausgaben AT: 1.85
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.27
+- CTR % 30T: 1.22
+- CTR % 7T: 1.22
+- CTR % AT: 2.27
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.14
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-10
+- Erstellt am: 2026-08-10
+- Funnel-Zweck: Lead
+- Hookrate %: 11.36
+- Hookrate % 30T: 9.76
+- Hookrate % 7T: 9.76
+- Hookrate % AT: 11.36
+- Impressionen 14T: 82
+- Impressionen 30T: 82
+- Impressionen 7T: 82
+- Impressionen AT: 88
+- Impressionen gesamt: 88
+- Klicks 14T: 1
+- Klicks 30T: 1
+- Klicks 7T: 1
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-10
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript: [UNVOLLSTÄNDIG — nur in Notion oder leer]
+
+## 11.09. · Static · INTEREST | META FORMULAR
+- id: rec3vh3vLPKidZGLi
+- Name: 11.09. · Static · INTEREST | META FORMULAR
+- Creative-ID: 1278688240239083
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Deine Website bringt keine neuen Kunden
+- Visual Style: Statische Problem-Ad mit Smartphone-Mockup auf schwarzem Hintergrund
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer und Selbstständige mit bestehender, schwacher Website
+- Offer / Funnel-Typ: Meta Lead-Formular
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | INTEREST | META FORMULAR
+- Ausgaben gesamt: 159.92
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 34
+- Klicks AT: 34
+- Ad-IDs: 120233847852940598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 159.92
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.35
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.35
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.03
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-11
+- Erstellt am: 2025-09-11
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2517
+- Impressionen gesamt: 2517
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad im Hochkant-/Feed-Format mit durchgehend schwarzem Hintergrund. Oben dominiert eine große, mehrzeilige Headline in weißer, fetter Großbuchstaben-Sans-Serif: Die erste Zeile „DEINE WEBSITE" ist klar lesbar, dahinter scheint eine Frage rund um neue Kunden über die Website zu stehen — die übrigen Zeilen sind auf der 64×64-px-Vorschau nicht sicher entzifferbar („im Vorschaubild nicht lesbar"). In der Bildmitte hält eine Hand ein Smartphone ins Bild; auf dem Screen ist ein rot-weißes Website-Mockup zu sehen, das als Beispiel für eine moderne, verkaufsstarke MAKE-Website steht. Der Smartphone-Screen bildet den einzigen hellen, detailreichen Fokuspunkt und zieht den Blick direkt ins Zentrum. Unten quer über die volle Breite läuft ein roter Banner-Streifen mit weißem Text — vermutlich CTA oder Angebotszeile, ebenfalls im Vorschaubild nicht lesbar. Die Farbwelt ist strikt Schwarz-Rot-Weiß: hoher Kontrast, klare Markenwirkung, aufmerksamkeitsstark im Feed. Die Komposition folgt dem klassischen Muster Headline → Beweis/Produktbild → CTA-Banner. Bildsprache: direkte, unbequeme Problem-Ansprache („Deine Website …") kombiniert mit dem visuellen Gegenbeweis einer guten Website auf dem Handy. Branding-Elemente: rote Akzentfarbe und Website-Mockup als wiedererkennbares MAKE-Stilmittel.
+
+## 18.12. · Static · Website 30d
+- id: rec3yG1t83dvIl06l
+- Name: 18.12. · Static · Website 30d
+- Creative-ID: 1391097872482048
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Das ist Dom – der Mensch hinter deiner neuen Website. Kein Verkaufsdruck, einfach ein ehrliches Gespräch.
+- Visual Style: Statisches Portrait-Bild, kein Text-Overlay, Personal-Branding/Testimonial-Stil
+- Awareness Level: Product Aware
+- Industry: Webdesign-/Marketingagentur
+- Target Audience: Website-Besucher der letzten 30 Tage, die noch nicht konvertiert sind – KMU-/Handwerksinhaber, bei denen Vertrauen zur Agentur aufgebaut werden soll
+- Offer / Funnel-Typ: Kostenloses, unverbindliches Beratungsgespräch (Lead-Funnel, Retargeting von Website-Besuchern der letzten 30 Tage)
+- Kampagne: RTG | WEBSITE OFFER
+- Adset: Website 30d
+- Ausgaben gesamt: 3.98
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 6
+- Klicks AT: 6
+- Ad-IDs: 120239133559760598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.98
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 4.2
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 4.2
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.4
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 143
+- Impressionen gesamt: 143
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Persönliches Portraitbild (2x identische Datei) von Dom, dem Geschäftsführer/Creative Lead der Agentur. Kein Video. Langer Anzeigentext im Ich-Erzähler-Stil über einen Dritten stellt Dom als kreativen, mitdenkenden Kopf hinter jedem Shooting und jedem Creative vor und lädt zu einem unverbindlichen Gespräch ein.
+
+## 24.04. · Video · CAM BASEL | MARC EVERS
+- id: rec3zsJmU9YrwvZ7M
+- Name: 24.04. · Video · CAM BASEL | MARC EVERS
+- Creative-ID: 1724977742030483
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Direkte Kameraansprache mit Untertitel-Hook zum Thema Website
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU und Selbstständige in der Region Basel
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CAM BASEL | MARC EVERS
+- Ausgaben gesamt: 620.76
+- Ausgaben 30T: 50.15
+- Hookrate % 14T: 15.49
+- ROAS 14T: 0
+- CTR % 14T: 0.44
+- CPL 30T: 0
+- CPA AT: 310.38
+- Leads 14T: 0
+- Termine AT: 6
+- Klicks gesamt: 282
+- Klicks AT: 282
+- Ad-IDs: 120244827271950598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 10.28
+- Ausgaben 7T: 0
+- Ausgaben AT: 620.76
+- CPA: 310.38
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 51.73
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 51.73
+- CTR %: 1.34
+- CTR % 30T: 0.82
+- CTR % 7T: 0
+- CTR % AT: 1.34
+- CTR Link % 14T: 0.22
+- CTR Link % 30T: 0.72
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.75
+- Conversions gesamt: 2
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 22
+- Hookrate % 30T: 17.62
+- Hookrate % 7T: 0
+- Hookrate % AT: 22
+- Impressionen 14T: 452
+- Impressionen 30T: 1958
+- Impressionen 7T: 0
+- Impressionen AT: 21095
+- Impressionen gesamt: 21095
+- Klicks 14T: 2
+- Klicks 30T: 16
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 12
+- Leads gesamt: 12
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 8.05
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 103.46
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 5000
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 2
+- Verlustgruende: Sonstiges · 4
+Keine Antwort · 4
+Unqualifiziert · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit dunkler Basecap, Brille und dunklem Oberteil spricht direkt in die Kamera, UGC-/Selfie-Perspektive. Hintergrund: helle Steinmauer bzw. Fassade, rechts im Bild etwas Grün (Pflanzen/Bewuchs), Tageslicht — Outdoor-Schauplatz. Unten im Bild läuft ein weißes, zweizeiliges Text-Overlay (vermutlich Hook-Zeile oder Untertitel); der Wortlaut ist im Vorschaubild nicht lesbar. Szene 1 (Hook, ca. 0–3 s): Direkte Kameraansprache; aus Kampagne („LOKAL | WEBSITE") und Adset („CAM BASEL") ist ableitbar, dass lokale Basler Unternehmer angesprochen werden, wahrscheinlich mit einer Frage oder Feststellung zum Thema Website bzw. Kundengewinnung über die Website. Szene 2 (Mittelteil): Talking-Head-Passage mit Untertiteln; der Sprecher erklärt das Webdesign-Angebot und positioniert sich als lokaler Ansprechpartner aus Basel. Der ungestellte Outdoor-Look unterstreicht die Authentizität („echter Mensch statt Agentur-Hochglanz"). Szene 3 (Ende): Aufforderung zur Kontaktaufnahme bzw. Terminbuchung, ableitbar aus der Lead-Kampagne mit CPL-Messung; konkreter CTA-Wortlaut im Vorschaubild nicht erkennbar. Stil insgesamt: schlichtes UGC-Video, natürlicher Look, einziges Gestaltungselement ist das weiße Text-Overlay am unteren Bildrand. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 17.02. · Video · BROAD | LP
+- id: rec4HdDJsvJS8QVjq
+- Name: 17.02. · Video · BROAD | LP
+- Creative-ID: 1554041422564161
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Die Website ist der erste Eindruck – und der hinkt der Arbeitsqualität hinterher
+- Visual Style: Talking-Head-Video (Außendreh, mit Untertitel-Overlay)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker, Dienstleister und Selbstständige mit veralteter Website
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | LP
+- Ausgaben gesamt: 45.26
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 122
+- Klicks AT: 122
+- Ad-IDs: 120241192843370598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 45.26
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 4.48
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 4.48
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.06
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 31.3
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 31.3
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2725
+- Impressionen gesamt: 2725
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein Mann mit Brille und dunkler Jacke steht im Freien vor hellem Himmel und spricht direkt in die Kamera. Unten im Bild läuft ein weißer Text-Overlay (Untertitel) mit, von dem im Standbild nur das Wortfragment „…jeder" lesbar ist – der vollständige Satz ist im Vorschaubild nicht lesbar. Das Video ist also mit dynamischen Untertiteln produziert, die das Gesprochene wortweise einblenden.
+  Gesprochene Kernbotschaft (aus Ad-Name „Erster Eindruck" und Titel ableitbar): Die Website ist der erste Eindruck, den Kunden vom Betrieb bekommen – und dieser Eindruck hinkt der tatsächlichen Arbeitsqualität hinterher.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Zuspitzung – ein veralteter erster Eindruck vergrault Interessenten, bevor es überhaupt zum Kontakt kommt.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Make Marketing baut Websites, die beim ersten Eindruck überzeugen und Anfragen erzeugen.
+  Schluss/CTA: Der konkrete CTA und weitere Overlays sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Talking Head im Außendreh (Authentizität für die Handwerker-Zielgruppe), weiße Untertitel-Einblendungen unten im Bild, keine weiteren Grafikelemente im Standbild erkennbar.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: rec4QFNrAk3iDQt3p
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 1722676529054180
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du denkst, in 24 Stunden entsteht keine gute Website? Diese hier schon.
+- Visual Style: UGC Selfie-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: lokale Betriebe in Basel mit veralteter oder fehlender Website
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 41.03
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 12
+- Klicks AT: 12
+- Ad-IDs: 120248677486960598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 41.03
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.06
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.06
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.88
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 23.68
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 23.68
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1136
+- Impressionen gesamt: 1136
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Selfie-Video (9:16) im Talking-Head-Stil, gedreht vor Ort in Basel. Das Vorschaubild zeigt einen Mann mit Brille und dunkler Basecap, der im Selfie-Abstand direkt in die Kamera spricht; hinter ihm ein markantes rotes Sandsteingebäude mit Arkaden — die Kulisse erinnert stark an den Basler Marktplatz mit dem Rathaus und verankert die Ad lokal. Unten am Bildrand läuft ein weißer Untertitel-Text mit, dessen Wortlaut auf dem 64-px-Thumbnail nicht lesbar ist. Die Outdoor-Kulisse mit Tageslicht verstärkt den authentischen, ungestellten UGC-Eindruck. Der wahrscheinliche Ablauf, aus Titel und Kontext ableitbar (nicht verifizierbar): (1) Hook: „Du denkst, in 24 Stunden kann keine richtig gute Website entstehen?" — direkt in die Kamera, mit Basel-Bezug. (2) Konter: „Diese hier schon." — vermutlich Cut auf Screenshots einer echten Beispiel-Website als Beweis. (3) Kurzer Vertrauens-Part: wer Make Marketing ist und warum der 24-Stunden-Prozess funktioniert. (4) Abschluss-CTA Richtung Anfrage/Termin. Konkrete Schnittfolge, B-Roll und finaler CTA-Screen sind aus dem Standbild nicht ableitbar.
+
+## 24.02. · Video · WEBSITE
+- id: rec4lyswFoJ2IRNf9
+- Name: 24.02. · Video · WEBSITE
+- Creative-ID: 1576283236815254
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: AlpenEnergie-Website als Ergebnis-Beleg
+- Visual Style: Case-Grafik mit Handy-Mockup
+- Awareness Level: Product Aware
+- Industry: Webdesign für KMU/Handwerk
+- Target Audience: Retargeting: Inhaber lokaler Betriebe
+- Offer / Funnel-Typ: Case-Study → Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: RTG | WEBSITE
+- Ausgaben gesamt: 26.75
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120241512915280598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 26.75
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.44
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.44
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.96
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 10.26
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 10.26
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 624
+- Impressionen gesamt: 624
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-24
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Vorschaubild ist nur 64×64 Pixel groß. Erkennbar ist eine hochformatige Grafik auf hellem Grund: oben eine zweizeilige, dunkle Bold-Headline, deren Wortlaut im Vorschaubild nicht sicher lesbar ist (angedeutet etwa „DIESE SEITE BRINGT … UMSATZ“). Darunter steht ein Smartphone-Mockup, das eine dunkle Website-Ansicht zeigt — passend zur AlpenEnergie-Referenz mit dunklem Hero-Bereich. Der Ad-Name „AlpenEnergie Seite“ und das Retargeting-Adset (RTG | WEBSITE) deuten darauf hin, dass MAKE hier die Kunden-Website als Case mit Ergebnis-These präsentiert. Weitere Elemente wie Zahlen-Highlights, Logo oder CTA-Button sind im Vorschaubild nicht auszumachen. Farbwelt: heller Hintergrund, schwarze Typo, dunkles Mockup als Kontrastblock in der Bildmitte. Das Schema entspricht „Behauptung oben, Beleg unten“ — ein klassisches Case-Creative für warme Zielgruppen. Konkrete Zahlen, der exakte Headline-Text und ein möglicher CTA sind im Vorschaubild nicht lesbar.
+
+## 20.02. · Video · BROAD | META FORMULAR – Kopie
+- id: rec5G7CXkVXUIy4aW
+- Name: 20.02. · Video · BROAD | META FORMULAR – Kopie
+- Creative-ID: 1306820521278891
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: So startest du dein Website-Projekt und bekommst eine geile Website
+- Visual Style: Talking-Head-Video mit Text-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmer und KMU-Inhaber, die eine neue Website planen
+- Offer / Funnel-Typ: Meta-Leadformular / Projektanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 8.88
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120241290911360598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.88
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.96
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.96
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.57
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 2.49
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 2.49
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 523
+- Impressionen gesamt: 523
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Szene 1 (sichtbar im Standbild): Ein junger Mann mit dunklen Haaren und Brille, dunkles Poloshirt, steht/sitzt in einem hellen, neutralen Raum und spricht direkt in die Kamera; er gestikuliert mit beiden Händen auf Brusthöhe, was auf einen erklärenden Einstieg hindeutet. Auf Brusthöhe liegt ein zweizeiliges Text-Overlay: oben „eine geile" in weißer, handschriftlich wirkender Schreibschrift, darunter „WEBSITE" in weißen, fetten Großbuchstaben auf rotem Farbblock — der Hook-Begriff wird also typografisch stark hervorgehoben. Aus Creative-Name („Dein Website-Projekt starten") und Adset („META FORMULAR") ist ableitbar, dass das Video als Erklär-Clip aufgebaut ist: Der Sprecher adressiert Unternehmer, die ein Website-Projekt planen, und führt durch die ersten Schritte bzw. typischen Fehler beim Projektstart. Üblicher Aufbau dieses Formats (nicht aus dem Einzelbild verifizierbar): Hook-Einstieg mit Overlay, danach 2-4 Stichwort-Overlays mit Kernaussagen, kurze B-Roll- oder Gesten-Wechsel zur Auflockerung, am Ende ein direkter CTA Richtung Projektanfrage über das Meta-Leadformular. Weitere Szenen, Schnittfolge, genaue Sprechtexte und die Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Die Farbwelt ist hell und clean, der rote Textblock setzt den einzigen starken Farbakzent. Sichtbares Branding/Logo ist im Thumbnail nicht erkennbar.
+
+## 03.08. · Video · CH | PLATZ-1 SEO
+- id: rec5ZJbcU5Ic8vVkP
+- Name: 03.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1079425737996906
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Es gibt nichts Schlimmeres als den Betrieb, der schlechter schafft als du und bei Google vor dir steht." (Problem)
+- Visual Style: Talking Head, Text-on-Screen
+- Awareness Level: Problem Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Inhaber und Geschaeftsfuehrer Schweizer Betriebe mit mindestens 10 Mitarbeitern, die Anfragen ueber die eigene Webseite gewinnen wollen
+- Offer / Funnel-Typ: Platz 1 bei Google in 60 Tagen mit schriftlicher Garantie, danach kurzes Gespraech mit individuellem Umsatzplan -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26
+- Ausgaben gesamt: 47.53
+- Ausgaben 30T: 47.51
+- Hookrate % 14T: 19.57
+- ROAS 14T: 0
+- CTR % 14T: 1.24
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 12
+- Klicks AT: 12
+- Ad-IDs: 120250707672040598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 47.51
+- Ausgaben 7T: 39.92
+- Ausgaben AT: 47.53
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.24
+- CTR % 30T: 1.24
+- CTR % 7T: 1.41
+- CTR % AT: 1.24
+- CTR Link % 14T: 0.72
+- CTR Link % 30T: 0.72
+- CTR Link % 7T: 0.9
+- CTR Link % AT: 0.72
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-03
+- Erstellt am: 2026-08-03
+- Funnel-Zweck: Lead
+- Hookrate %: 19.52
+- Hookrate % 30T: 19.57
+- Hookrate % 7T: 19.87
+- Hookrate % AT: 19.52
+- Impressionen 14T: 966
+- Impressionen 30T: 966
+- Impressionen 7T: 780
+- Impressionen AT: 968
+- Impressionen gesamt: 968
+- Klicks 14T: 12
+- Klicks 30T: 12
+- Klicks 7T: 11
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Dominic sagt in die Kamera, es gebe nichts Schlimmeres als den Betrieb, der schlechter arbeitet als du und bei Google vor dir steht. Aufbau: Die ersten drei Betriebe bekommen die Anfragen, der Rest null, Platz 1 bekommt ueber 40 Prozent, nicht weil er besser ist, sondern weil er sichtbar ist. Dann das Angebot: Platz 1 innerhalb von 60 Tagen mit schriftlicher Garantie. Close: Wer eine Firma mit mindestens 10 Mitarbeitern hat und planbare Anfragen ueber die Webseite will, traegt sich unten ein und bekommt nach einem kurzen Gespraech einen individuellen Plan.
+
+## 26.06. · Video · BROAD ZÜRICH | JUN26
+- id: rec6JOepXI83OuduZ
+- Name: 26.06. · Video · BROAD ZÜRICH | JUN26
+- Creative-ID: 1346977077400027
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Webdesign direkt aus Zürich – persönlich und lokal statt anonymer Agentur
+- Visual Style: UGC-/Sprecher-Video (Person spricht direkt in die Kamera, Outdoor urban)
+- Awareness Level: Problem Aware
+- Industry: Webdesign für KMU / lokale Dienstleister
+- Target Audience: Unternehmer und lokale Betriebe im Raum Zürich, die eine neue Website brauchen
+- Offer / Funnel-Typ: Leadgenerierung Website (Video → Anfrage)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | JUN26
+- Ausgaben gesamt: 214.42
+- Ausgaben 30T: 176.4
+- Hookrate % 14T: 21.17
+- ROAS 14T: 0
+- CTR % 14T: 1.55
+- CPL 30T: 176.4
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 90
+- Klicks AT: 90
+- Ad-IDs: 120249379801200598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 48.83
+- Ausgaben 7T: 0
+- Ausgaben AT: 214.42
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 214.42
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 214.42
+- CTR %: 1.24
+- CTR % 30T: 1.31
+- CTR % 7T: 0
+- CTR % AT: 1.24
+- CTR Link % 14T: 1.04
+- CTR Link % 30T: 0.91
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.84
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-26
+- Erstellt am: 2026-06-26
+- Funnel-Zweck: Lead
+- Hookrate %: 23.31
+- Hookrate % 30T: 23.5
+- Hookrate % 7T: 0
+- Hookrate % AT: 23.31
+- Impressionen 14T: 1545
+- Impressionen 30T: 6186
+- Impressionen 7T: 0
+- Impressionen AT: 7264
+- Impressionen gesamt: 7264
+- Klicks 14T: 24
+- Klicks 30T: 81
+- Klicks 7T: 0
+- Leads 30T: 1
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-/Sprecher-Stil; als Beleg liegt nur ein 64×64-px-Standbild vor, daher sind viele Details nicht verifizierbar. Im Standbild erkennbar: Ein Mann in dunklem Oberteil steht halbnah im Freien und spricht direkt in die Kamera – Frontalperspektive bei Tageslicht. Der Hintergrund zeigt eine urbane Szene vor einem Gebäude mit Glasfassade bzw. Schaufenstern, hell und unscharf; links unten im Frame fällt ein rotes Element auf (möglicherweise ein Schild, Fahrzeug oder Möbelstück – auf 64×64 px nicht sicher bestimmbar). Der Eindruck entspricht einem „Vor-Ort-Sprechvideo" in der Stadt, passend zum lokalen Zürich-Bezug der Kampagne. Text-Overlays, Untertitel, weitere Szenen oder Branding-Elemente sind im Vorschaubild nicht lesbar; Schnittfolge und B-Roll sind nicht ableitbar. Aus Dateiname („Webdesign aus Zürich"), Adset („VIDEOS | BROAD ZÜRICH") und Kampagne („LOKAL | WEBSITE") ist ableitbar, dass der Sprecher das Webdesign-Angebot von MAKE für Zürcher Unternehmen bewirbt – vermutlich mit direkter Ansprache, Nutzenargumenten und Abschluss-CTA; der genaue Wortlaut und der CTA sind aus den vorhandenen Daten nicht ableitbar. Die Ad ist aktiv und zeigt im Verlauf steigende CTR-Werte (0,46 % bis 4,88 % bei kleinen Budgets). Für eine vollständige Szenen-Analyse müsste das Originalvideo (video_id 1689139688962016) aus der Anzeigenbibliothek gezogen werden.
+
+## 24.02. · Static · META FORMULAR
+- id: rec6JrcMr3YkrvgBQ
+- Name: 24.02. · Static · META FORMULAR
+- Creative-ID: 926564079787300
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Neugier-Hook: Team hält Schild mit „Wir suchen …“-Botschaft
+- Visual Style: Schild-Foto (Team mit Botschaftstafel)
+- Awareness Level: Problem Unaware
+- Industry: Webdesign für KMU/Handwerk
+- Target Audience: lokale Betriebsinhaber (Kaltakquise)
+- Offer / Funnel-Typ: Meta-Leadformular (Anfrage direkt)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 44.12
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 20
+- Klicks AT: 20
+- Ad-IDs: 120241514208600598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 44.12
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.94
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.94
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.57
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2118
+- Impressionen gesamt: 2118
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Vorschaubild ist nur 64×64 Pixel groß. Erkennbar ist ein Foto in einem hellen Innenraum — vermutlich Büroflur oder Empfang mit weißen Wänden und Türen im Hintergrund. Eine blonde Frau und ein dunkelhaariger Mann stehen nebeneinander in der Bildmitte und halten gemeinsam ein weißes Schild bzw. eine beschriebene Tafel vor dem Oberkörper. Auf dem Schild ist mehrzeiliger Text zu erkennen, der im Vorschaubild nicht lesbar ist; der Ad-Name „Schild wir suchen“ deutet auf eine Botschaft im Stil von „Wir suchen …“ hin. Beide Personen wirken wie Teammitglieder von MAKE, nicht wie Models — das Format lebt von Authentizität und Neugier. Es gibt kein erkennbares Text-Overlay, keinen Button und kein Logo außerhalb des Schilds. Farbwelt: helle, natürliche Bürofarben; das weiße Schild kontrastiert mit der dunkleren Kleidung der Personen und zieht den Blick auf sich. Wer genau gesucht wird (z. B. Betriebe für eine Aktion oder neue Kunden) und ob ein CTA folgt, ist im Vorschaubild nicht lesbar.
+
+## 03.06. · Static · Solar Adrian
+- id: rec6Lefjl9RE6pWZn
+- Name: 03.06. · Static · Solar Adrian
+- Creative-ID: 1562293678648972
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: 5-Sterne-Kundenstimme: schnelle, kompetente Beratung bei AlpenEnergie
+- Visual Style: Testimonial-Karte mit Portrait-Foto
+- Awareness Level: Solution Aware
+- Industry: Solar / Energieberatung
+- Target Audience: Hausbesitzer und Solar-Interessenten (Schweiz, Deutschschweiz)
+- Offer / Funnel-Typ: Vertrauensaufbau (Social Proof) → Beratungsanfrage
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 04 | Solar Adrian
+- Ausgaben gesamt: 51.17
+- Ausgaben 30T: 10.17
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120247607286210598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.17
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.04
+- CTR % 30T: 0.09
+- CTR % 7T: 0
+- CTR % AT: 0.04
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 2281
+- Impressionen 7T: 0
+- Impressionen AT: 9836
+- Impressionen gesamt: 9836
+- Klicks 14T: 0
+- Klicks 30T: 2
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Testimonial-Bild im Feed-Hochformat 4:5 (1080×1350 px). Dominantes Bildelement ist ein Portrait-Foto: Ein jüngerer Mann mit kurzen braunen Haaren, Bart und feiner Metallbrille lächelt freundlich aus dem Bild nach rechts; er trägt ein schwarzes Poloshirt mit kleinem „AlpenEnergie“-Brustlogo und hat die Arme selbstbewusst verschränkt. Der Hintergrund ist ein unscharfer Außenbereich mit Einfamilienhäusern, Grünflächen und Bäumen bei diffusem Tageslicht — die Szene verortet das Angebot glaubwürdig im Wohnumfeld der Zielgruppe (Hausbesitzer). Oben rechts sitzt in kräftigem Rot das MAKE-Wortlogo als Agentur-Branding. Im unteren linken Bereich liegt ein großes Zitat-Element, grafisch durch eine feine weiße Liniengrafik mit abgerundeter Ecke (wie eine Sprechblase bzw. ein Zitatrahmen) eingefasst. Darin in weißer, gut lesbarer serifenloser Schrift das Kundenzitat in Anführungszeichen: „Immer gut beraten und auch im nachhinein ging alles sehr schnell und kompetent! Auf jedenfall zu empfehlen.“ Direkt darunter fünf ausgefüllte goldgelbe Sterne als Bewertungs-Signal, gefolgt vom Namen „Adrian Hohler“ in fetter weißer Schrift und der Funktionszeile „AlpenEnergie Berater“ in dünnerer Schrift. Auffällig: Das Portrait zeigt den Berater selbst, das Zitat stammt vom Kunden — Bild und Testimonial ergänzen sich als „Gesicht + Beweis“. Die Farbwelt ist natürlich und ruhig: gedämpfte Grün- und Grautöne im Hintergrund, Schwarz im Vordergrund, Weiß für Text, Gold für die Sterne, Rot als einziger Markenakzent. Ein expliziter CTA-Button ist auf dem Bild nicht vorhanden; die Handlungsaufforderung erfolgt über den Anzeigen-Button im Feed. Gesamtstil: seriöser, hochwertiger Social-Proof-Look — Vertrauen durch echte Person, echtes Zitat, echte Bewertung.
+
+## 24.04. · Video · CAM BASEL | MARC EVERS
+- id: rec6g4HI0OcYls2MS
+- Name: 24.04. · Video · CAM BASEL | MARC EVERS
+- Creative-ID: 1343438580555669
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Direkte, persönliche Ansprache im Selfie-Format vor Ort in Basel
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CAM BASEL | MARC EVERS
+- Ausgaben gesamt: 68.5
+- Ausgaben 30T: 3.23
+- Hookrate % 14T: 6.67
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 27
+- Klicks AT: 27
+- Ad-IDs: 120244827271980598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0.51
+- Ausgaben 7T: 0
+- Ausgaben AT: 68.5
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.19
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.19
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.75
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 18.38
+- Hookrate % 30T: 10.84
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.38
+- Impressionen 14T: 15
+- Impressionen 30T: 83
+- Impressionen 7T: 0
+- Impressionen AT: 2274
+- Impressionen gesamt: 2274
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video im Selfie-Format, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit dunkler Basecap spricht direkt in die Kamera; sein Kopf liegt im unteren Bilddrittel, das Gesicht halb im Schatten der Kappe, dahinter ein sehr heller, fast weißer Himmel – das Standbild ist stark überbelichtet (Gegenlicht-Aufnahme im Freien). Der spontane, unperfekte Look wirkt wie ein echter Schnappschuss und dient als Authentizitäts-Hook. Szene 2: Aus Kampagnenkontext („Webdesign aus Basel", „LOKAL | WEBSITE | FEB26", Adset „CAM BASEL | MARC EVERS") ist ableitbar, dass sich der Sprecher als Webdesigner aus Basel vorstellt und lokale Unternehmer mit Website-Bedarf direkt adressiert. Szene 3: Vermutlich benennt er das Problem (keine oder veraltete Website, fehlende Sichtbarkeit) und führt sein Angebot als lokale, persönliche Lösung ein. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, wahrscheinlich mit Hinweis auf den Button der Anzeige. Text-Overlays: Wegen der starken Überbelichtung sind auf dem 64-px-Standbild keine Text-Overlays oder Untertitel erkennbar; ob im Video Einblendungen vorkommen, ist aus dem Vorschaubild nicht ableitbar. Bildsprache: Tageslicht, Handheld-Charakter, kein sichtbares Branding. Genaue Szenenfolge und Wortlaut sind aus den vorhandenen Daten nicht ableitbar.
+
+## 19.03. · Video · BROAD ZÜRICH | MARC EVERS
+- id: rec6lUr9Br2v7q1du
+- Name: 19.03. · Video · BROAD ZÜRICH | MARC EVERS
+- Creative-ID: 1539089351154447
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Ansprache mit Untertiteln für Ton-aus-Konsum im Feed
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor mit eingebrannten Untertiteln
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Zürich)
+- Target Audience: lokale KMU und Selbstständige im Raum Zürich mit Website-Bedarf
+- Offer / Funnel-Typ: Lead-Formular direkt (FormSwap, ohne Landingpage)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | MARC EVERS
+- Ausgaben gesamt: 193.88
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 1
+- Klicks gesamt: 69
+- Klicks AT: 69
+- Ad-IDs: 120242544550050598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 193.88
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 193.88
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 193.88
+- CTR %: 1.01
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.01
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.65
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-19
+- Erstellt am: 2026-03-19
+- Funnel-Zweck: Lead
+- Hookrate %: 21.28
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 21.28
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6814
+- Impressionen gesamt: 6814
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 193.88
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Konkurrenz · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme, mit eingebrannten Untertiteln). Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit dunkler Basecap und Brille (derselbe Sprecher wie „WebsiteOffer-V2-FormSwap-V1", Adset „MARC EVERS", Zürich) spricht direkt in die Kamera, Mund geöffnet, Gesicht ausdrucksstark. Hintergrund: unscharfe urbane Szene mit Vegetation/Gebäuden, Tageslicht.
+  - **Text-Overlays:** Am unteren Bildrand läuft ein zweizeiliger weißer Untertitel mit dunkler Kontur mit — im Vorschaubild ansatzweise erkennbar, aber nicht zuverlässig lesbar (Fragment wirkt wie „… noch keine", nicht verifizierbar). Die Untertitel sind fest eingebrannt, also für Ton-aus-Nutzung optimiert.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Direkte Ansprache an Zürcher Unternehmer mit Website-Problem/Angebot; wörtliche Botschaft im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Kampagnenname „FormSwap" deutet auf Angebot mit direktem Lead-Formular hin; Zwischenszenen und Overlays aus dem Thumbnail nicht ableitbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zum Ausfüllen des Formulars; Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** UGC-Ästhetik mit Accessibility-/Feed-Optimierung durch Captions; Tageslicht, keine Branding-Elemente oder Logos erkennbar. Läuft parallel zur V1-Variante mit deutlich geringerem Spend.
+
+## 06.07. · Video · CH | PLATZ-1 SEO
+- id: rec6p4QxjEBru3maU
+- Name: 06.07. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1345111573652419
+- Format: Video
+- Status: CREATIVE_REMOVED
+- Angle / Hook: In 30 Tagen auf Platz 1 bei Google — mit einer neuen Top-Website
+- Visual Style: UGC Sprecher-Video mit Screen-/Phone-Show
+- Awareness Level: Problem Aware
+- Industry: Webdesign & SEO für KMU
+- Target Audience: Schweizer KMU-Inhaber, die bei Google nicht gefunden werden
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | JUN26 – Kopie
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Angereichert: Ja
+- Anzahl Ads: 0
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-07-06
+- Erstellt am: 2026-07-06
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Preis/Budget · 6
+Unqualifiziert · 1
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-06T06:22:14.000Z
+- Skript:
+  Video im Sprecher-Stil; das Standbild ist nur 64×64 Pixel gross, Details sind daher begrenzt erkennbar. Szene 1 (Standbild): Ein Mann mit dunkler Basecap und dunklem Oberteil sitzt/steht in einem hellen Innenraum mit einem Fenster im Hintergrund und hält mit erhobener linker Hand ein Smartphone bzw. einen kleinen Screen in die Kamera; auf dem Screen ist ein violett-blauer Inhalt zu erkennen, der im Vorschaubild nicht lesbar ist — vermutlich ein Ranking-Screenshot, eine Website-Vorschau oder ein Suchergebnis (nicht verifizierbar). Diese „Screen-Show“-Geste dient als visueller Beweis-Hook: Der Sprecher zeigt etwas Konkretes, statt nur zu behaupten. Der zentrale Hook steht im Titel: „In 30 Tagen auf Platz 1 bei Google — mit einer neuen Top-Website“; aus Ad- und Adset-Namen („SEO Gefunden“, „PLATZ-1 SEO“) ist ableitbar, dass der Clip das Problem anspricht, bei Google nicht gefunden zu werden, und die Kombination aus neuer Website plus SEO als Lösung präsentiert. Die wahrscheinliche Dramaturgie: Problem-Hook (keine Sichtbarkeit, keine Anfragen), Beweis über den gezeigten Screen, Erklärung des 30-Tage-Versprechens, dann CTA zur Kontaktaufnahme bzw. Terminbuchung (aus Funnel ableitbar, im Bild nicht sichtbar). Text-Overlays, Untertitel, Logo-Branding und die genaue CTA-Einblendung sind auf dem Standbild nicht erkennbar. Weitere Szenen und Schnitte lassen sich aus dem einzigen vorhandenen Standbild nicht ableiten. Der gesprochene Wortlaut ist aus den vorhandenen Daten nicht ableitbar.
+
+## 17.02. · Carousel · RTG | LP
+- id: rec7KeCCl7y6uOC1y
+- Name: 17.02. · Carousel · RTG | LP
+- Creative-ID: 1736054554023372
+- Format: Carousel
+- Status: PAUSED
+- Angle / Hook: Google-Rezensionen als Vertrauensbeweis für die Agentur
+- Visual Style: Social-Proof-Karte (Google-Rezensions-Screenshots)
+- Awareness Level: Product Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Retargeting-Publikum: Interessenten, die Make Marketing bereits kennen
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: BILDER | RTG | LP
+- Ausgaben gesamt: 15.75
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 10
+- Klicks AT: 10
+- Ad-IDs: 120241195184930598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 15.75
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.12
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.12
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.78
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 892
+- Impressionen gesamt: 892
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-22
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Layout-Beschreibung (statisches Bild; Vorschau nur 64x64 px, Details daher eingeschränkt):
+  Aufbau/Komposition: Hochkant- bzw. quadratisches Layout auf weißem Hintergrund; im oberen Drittel steht eine mehrzeilige, schwarze, großbuchstabige Headline. Lesbar ist sinngemäß „WAS MAKE-KUNDEN BEI GOOGLE ÜBER UNS SAGEN" – die Worte „WAS MAKE-KUNDEN" und „…BEI GOOGLE" sind erkennbar, die mittlere Zeile ist im Vorschaubild nicht sicher lesbar.
+  Darunter befindet sich ein kleinerer Bildbereich mit hellen, kartenartigen Blöcken – offenbar Screenshots von Google-Rezensionen (Sterne und kurze Bewertungstexte sind angedeutet, aber im Vorschaubild nicht lesbar).
+  Farbwelt: Reduzierte Schwarz-Weiß-Ästhetik mit kontraststarker schwarzer Typografie auf Weiß; sachlich und klar, ohne erkennbare Buntfarben.
+  Stil/Bildsprache: Dokumentarischer Social-Proof-Stil – echte Bewertungs-Screenshots als Vertrauensanker statt inszenierter Motive.
+  Branding: Der Name „MAKE" (Make Marketing) steht prominent in der Headline und markiert den Absender; ein separates Logo ist im Vorschaubild nicht erkennbar.
+  Texte: Subline, Bulletpoints oder ein CTA-Button sind im Vorschaubild nicht lesbar bzw. nicht erkennbar; ein CTA-Button wird typischerweise von der Anzeigenoberfläche (nicht vom Bild) gestellt – im Standbild nicht verifizierbar.
+  Funktion im Funnel: Retargeting-Ad (Adset „BILDER | RTG"), die zögernde Interessenten über Kundenstimmen zur Anfrage bewegen soll.
+
+## 03.08. · Video · CH | PLATZ-1 SEO
+- id: rec87j8f2lwR7TWOB
+- Name: 03.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1515691609872812
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Deine Firma waechst. Vor ein paar Jahren bist du 5, 10 Mitarbeiter gewesen. Jetzt hast du ueber 20 Mitarbeiter." (Call-Out)
+- Visual Style: Talking Head, Text-on-Screen, 3D-Mockup B-Roll
+- Awareness Level: Problem Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Inhaber Schweizer Betriebe ab 10 Mitarbeitern, deren Firma gewachsen ist, waehrend die Webseite alt geblieben ist
+- Offer / Funnel-Typ: Neue Webseite plus Platz 1 bei Google in 60 Tagen, danach kurzes Gespraech mit individuellem Umsatzplan -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26
+- Ausgaben gesamt: 15.01
+- Ausgaben 30T: 15
+- Hookrate % 14T: 15.59
+- ROAS 14T: 0
+- CTR % 14T: 0.76
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120250707669820598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 15
+- Ausgaben 7T: 14.17
+- Ausgaben AT: 15.01
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.76
+- CTR % 30T: 0.76
+- CTR % 7T: 0.92
+- CTR % AT: 0.76
+- CTR Link % 14T: 0.76
+- CTR Link % 30T: 0.76
+- CTR Link % 7T: 0.92
+- CTR Link % AT: 0.76
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-03
+- Erstellt am: 2026-08-03
+- Funnel-Zweck: Lead
+- Hookrate %: 15.53
+- Hookrate % 30T: 15.59
+- Hookrate % 7T: 16.13
+- Hookrate % AT: 15.53
+- Impressionen 14T: 263
+- Impressionen 30T: 263
+- Impressionen 7T: 217
+- Impressionen AT: 264
+- Impressionen gesamt: 264
+- Klicks 14T: 2
+- Klicks 30T: 2
+- Klicks 7T: 2
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Deine Firma ist gewachsen, frueher 5 bis 10 Mitarbeiter, heute ueber 20, aber die Webseite sieht immer noch aus wie bei einem Einzelunternehmen. Aufbau: Angebot, das zu aendern und die Firma in 60 Tagen bei Google auf Platz 1 zu bringen, mit einer Webseite, die in der Region wie Nummer 1 aussieht. Danach die Referenzen: Heeb & Enzler, Zemp Sanitaer aus Luzern mit 18 Mitarbeitern, Gregory GmbH aus Zuerich und AlpenEnergie mit ueber 50 Mitarbeitern, zusammen ueber 1 Million Franken Umsatz im letzten Monat. Close: Ab 10 Mitarbeitern unten eintragen, kurzes Gespraech, individueller Plan.
+
+## 12.06. · Video · BASEL 30KM | H1aB1
+- id: rec8VK4KKBhIuMaz3
+- Name: 12.06. · Video · BASEL 30KM | H1aB1
+- Creative-ID: 28332076969714535
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Lokale Webdesign-Ansprache direkt aus Basel
+- Visual Style: Talking-Head UGC-Video mit Text-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Raum Basel)
+- Target Audience: lokale Unternehmen im Umkreis 30 km um Basel
+- Offer / Funnel-Typ: Terminbuchung direkt / Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEO | BASEL 30KM | H1aB1 | JUN26
+- Ausgaben gesamt: 92.29
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 28
+- Klicks AT: 28
+- Ad-IDs: 120248262119880598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 92.29
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 92.29
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 92.29
+- CTR %: 1
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.39
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-12
+- Erstellt am: 2026-06-12
+- Funnel-Zweck: Lead
+- Hookrate %: 31.65
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 31.65
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2793
+- Impressionen gesamt: 2793
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformat-Video (9:16) im Talking-Head-Stil. Das Vorschaubild zeigt eine Frau mit hellen, schulterlangen Haaren in einem hellen Innenraum; sie spricht direkt in die Kamera, die Einstellung ist eine mittlere Nahaufnahme (Kopf und Schultern). Über dem Bild liegen zwei weiße Text-Overlays: eines im oberen Bildbereich (Hook-Zeile) und eines im unteren Drittel (vermutlich Untertitel bzw. Kernbotschaft der aktuellen Szene); der Wortlaut beider Zeilen ist im 64×64-px-Vorschaubild nicht lesbar. Die Overlays sind weiß mit dunklem Schatten/Kontur, typisch für Ads, die auch ohne Ton funktionieren müssen. Der Ad-Name „H1aB1" und das Adset „VIDEO | BASEL 30KM" zeigen, dass dies die Hook-Variante 1a eines systematischen Creative-Tests ist: Die ersten Sekunden sprechen vermutlich direkt lokale Unternehmen aus Basel an (Problem-Hook, z. B. veraltete Website oder fehlende Anfragen). Aus dem Kampagnenkontext „LOKAL | WEBSITE" ist ableitbar, dass die gesprochene Botschaft das Angebot „Webdesign aus Basel" erklärt und mit einem konkreten CTA endet — üblicherweise Aufforderung zur Terminbuchung oder Website-Anfrage. Die Frau wirkt wie Teammitglied oder Sprecherin der Agentur; die authentische, ungestellte Bildsprache zielt auf Nähe und Vertrauen statt Hochglanz. Weitere Szenen (B-Roll, Website-Screenshots, Logo-Einblendung) und der exakte CTA-Wortlaut sind aus dem Vorschaubild nicht ableitbar. Musik und Schnittfolge sind im Standbild nicht erkennbar.
+
+## 11.09. · Static · INTEREST | META FORMULAR
+- id: rec9FIJ1kFqnxFFEe
+- Name: 11.09. · Static · INTEREST | META FORMULAR
+- Creative-ID: 780812128036786
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Konkurrent kassiert Aufträge, du nicht
+- Visual Style: Statische Problem-Ad mit Smartphone-Mockup auf schwarzem Hintergrund
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer und Selbstständige im lokalen Wettbewerb
+- Offer / Funnel-Typ: Meta Lead-Formular
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | INTEREST | META FORMULAR
+- Ausgaben gesamt: 98.66
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 10
+- Klicks AT: 10
+- Ad-IDs: 120233847863450598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 98.66
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 98.66
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 98.66
+- CTR %: 0.51
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.51
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.36
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-11
+- Erstellt am: 2025-09-11
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1969
+- Impressionen gesamt: 1969
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad mit durchgehend schwarzem Hintergrund und klarem Drei-Zonen-Aufbau. Oben steht eine große, mehrzeilige Headline in weißer, fetter Großbuchstaben-Sans-Serif: Lesbar sind „DEIN KONKURRENT" in der ersten Zeile und „KASSIERT …" zu Beginn der zweiten Zeile; der Rest der Headline ist auf der 64×64-px-Vorschau nicht sicher entzifferbar („im Vorschaubild nicht lesbar"), transportiert aber erkennbar eine Wettbewerbs-Verlust-Botschaft. In der Bildmitte hält eine Hand ein Smartphone frontal ins Bild; auf dem Screen ist ein rot-weißes Website-Mockup zu sehen, das als Beispiel für eine moderne, auftragsstarke Website dient und den visuellen Fokuspunkt setzt. Unten läuft über die volle Breite ein roter Banner-Streifen mit weißem Text — vermutlich CTA oder Angebotszeile, im Vorschaubild nicht lesbar. Die Farbwelt ist konsequent Schwarz-Rot-Weiß mit hohem Kontrast und starker Feed-Sichtbarkeit. Die Komposition folgt dem Schema Headline-Hook → Produktbeweis auf dem Handy → CTA-Banner. Die Bildsprache arbeitet mit Verlustangst und sozialem Vergleich: Während der Betrachter zögert, kassiert der Wettbewerber die Aufträge. Branding-Elemente: rote Akzentfarbe und das rot-weiße Website-Mockup als wiedererkennbares MAKE-Stilmittel.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: rec9SRthaUj7xpjUA
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 1563027518731646
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Website sieht 2026 aus wie die der Konkurrenz — und fällt nicht auf
+- Visual Style: Minimalistische Text-Grafik mit Website-Mockup
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU-Inhaber mit veralteter oder austauschbarer Website, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 20.62
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120248515943760598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 20.62
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.94
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.94
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.71
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 425
+- Impressionen gesamt: 425
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE in sehr reduzierter, schwarz-weißer Bildsprache auf hellem, fast weißem Hintergrund. Oben dominiert eine mehrzeilige, linksbündig gesetzte schwarze Sans-Serif-Headline; erkennbare Fragmente sind „Du siehst 2026", „wirklich wie deine Website deiner" und „Konkurrenz?" — der vollständige Wortlaut ist im 64×64-px-Vorschaubild nicht vollständig lesbar, die Zeilen sind gestaffelt und bilden zusammen den Sinn „Du siehst 2026 wirklich … wie die Website deiner Konkurrenz?". Unter der Headline, in der unteren Bildhälfte, steht ein dunkles Laptop- bzw. Browser-Mockup, das eine beispielhafte Website-Ansicht zeigt (im Vorschaubild nicht im Detail lesbar). Die Komposition ist sehr clean: viel Weißraum, kein Fotomotiv, kein Farbakzent, Typografie als alleiniges Stilmittel. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar. Ein CTA-Button oder eine Button-Fläche ist im Standbild nicht erkennbar; der Hook wirkt rein über die rhetorische Frage in der Headline. Stilistisch gehört das Ad zur STATIC-Serie „Konkurrenz 2026" und spielt den Austauschbarkeits-Schmerz generischer KMU-Websites an.
+
+## 11.03. · Video · BROAD BASEL | MARC EVERS
+- id: rec9ZiaEXnJUiN9ym
+- Name: 11.03. · Video · BROAD BASEL | MARC EVERS
+- Creative-ID: 920165757276234
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Ungestellte persönliche Ansprache vor auffälliger oranger Wand — Authentizität statt Werbefilm
+- Visual Style: UGC Selfie-Video, Talking Head vor Farbfläche
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Basel)
+- Target Audience: lokale KMU und Selbstständige in Basel mit Website-Bedarf
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS
+- Ausgaben gesamt: 613.92
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 613.92
+- Leads 14T: 0
+- Termine AT: 3
+- Klicks gesamt: 540
+- Klicks AT: 540
+- Ad-IDs: 120242143441440598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 613.92
+- CPA: 613.92
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 76.74
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 76.74
+- CTR %: 1.85
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.85
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.79
+- Conversions gesamt: 1
+- Erste Auslieferung: 2026-03-11
+- Erstellt am: 2026-03-11
+- Funnel-Zweck: Lead
+- Hookrate %: 29.43
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 29.43
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 29208
+- Impressionen gesamt: 29208
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 8
+- Leads gesamt: 8
+- Letzte Auslieferung: 2026-03-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 204.64
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 1
+- Verlustgruende: Preis/Budget · 1
+Falsche Erwartung · 1
+Unqualifiziert · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive). Als Vorschau liegt nur ein 64×64-Pixel-Standbild vor — die Detailgenauigkeit ist entsprechend begrenzt.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit Brille und dunklem, kurzem Haar (mutmaßlich derselbe Sprecher wie in Ad „V2", Adset „MARC EVERS") spricht aus leicht erhöhter Selfie-Perspektive direkt in die Kamera. Hintergrund: auffällige Wand in Orange/Rot mit hellerem vertikalem Element (Tür- oder Fensterrahmen), wirkt wie eine Ladenfront oder Gebäudeaußenwand. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Vermutlich direkte Ansprache an Basler Unternehmer, z. B. mit Problem-Hook rund um veraltete oder nicht konvertierende Websites. Wörtliche Ansprache ist aus dem Thumbnail nicht ableitbar; Untertitel, falls vorhanden, im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Naheliegend ein kurzer Vertrauens-/Lokalbezug-Block („Webdesign aus Basel") mit möglichen Schnitten oder Overlays — im vorliegenden Bildmaterial nicht sichtbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zur Anfrage oder zum Erstgespräch; genaue Formulierung und Endkarte im Vorschaubild nicht lesbar.
+  
+  **Stil:** Rote/orange Farbfläche als natürlicher Hingucker, der den Sprecher optisch vom Feed abhebt; ansonsten bewusst unpolierte UGC-Ästhetik, Tageslicht, keine erkennbaren Branding-Elemente oder Logos. Diese Variante („V5") ist mit deutlich höherem Spend die Hauptvariante der Kampagne.
+
+## 18.12. · Static · BROAD 1
+- id: rec9wDJ4j0B9K3mOM
+- Name: 18.12. · Static · BROAD 1
+- Creative-ID: 888398750430960
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Konkurrenz macht hübsche Websites, wir machen klingelnde Telefone
+- Visual Style: Minimalistische Typo-Anzeige
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing KMU
+- Target Audience: KMU-Inhaber, die über ihre Website Anfragen gewinnen wollen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 1
+- Ausgaben gesamt: 10.23
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 8
+- Klicks AT: 8
+- Ad-IDs: 120239131191400598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 10.23
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.52
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.52
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.21
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 317
+- Impressionen gesamt: 317
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-23
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Image-Ad im Hochformat (1080×1920), rein typografisch, ohne Foto oder Illustration. Komposition: komplett weißer Hintergrund mit sehr viel Weißraum; der Textblock sitzt in der unteren Bildhälfte, linksbündig. Die Headline in großer, fetter schwarzer Grotesk lautet über drei Zeilen: „Die meisten machen Websites. Wir machen" — darunter liegt die vierte Zeile „klingelnde Telefone." in weißer Schrift auf einem durchgehend türkisen Balken, der als stärkster Blickfang dient und das Versprechen optisch hervorhebt. Darunter in deutlich kleinerer, schmaler schwarzer Schrift zwei Subline-Zeilen: „Seiten mit einem Ziel: Anfragen." und „Plus Werbung, die die richtigen Leute bringt." Weit unten, zentriert und frei stehend, das MAKE-Logo in Türkis/Blau (Wortmarke „MAKE" mit stilisiertem K). Farbwelt: Weiß, Schwarz und die Markenfarbe Türkis — sonst nichts. Stil: minimalistische, ruhige Swiss-Typo-Anzeige mit klarem Kontrast-Hook; kein CTA-Button auf dem Bild selbst, der Handlungsimpuls entsteht über Headline und Ad-Caption. Bildsprache: bewusster Verzicht auf Websites/Screenshots — verkauft wird das Ergebnis (Anfragen, klingelnde Telefone), nicht die Leistung. Branding-Elemente: MAKE-Logo und Türkis als Agentur-Akzentfarbe.
+
+## 24.02. · Video · WEBSITE
+- id: recA5N9lsQ7aEZKK4
+- Name: 24.02. · Video · WEBSITE
+- Creative-ID: 26536890439279890
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: So sieht eine Website aus, die Aufträge bringt
+- Visual Style: Typo-Headline-Grafik
+- Awareness Level: Product Aware
+- Industry: Webdesign für KMU/Handwerk
+- Target Audience: Retargeting: Inhaber lokaler Betriebe
+- Offer / Funnel-Typ: Referenz-Case → Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: RTG | WEBSITE
+- Ausgaben gesamt: 79.22
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 19
+- Klicks AT: 19
+- Ad-IDs: 120241513079200598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 79.22
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.01
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.01
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.64
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 14.56
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.56
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1875
+- Impressionen gesamt: 1875
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-24
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Vorschaubild ist nur 64×64 Pixel groß. Erkennbar ist eine hochformatige Typo-Grafik auf weißem Grund: eine große, mehrzeilige Bold-Headline in kräftigem Rot (MAKE-Markenfarbe) dominiert das obere Bildfeld. Die Headline scheint etwa „SO SIEHT EINE WEBSITE AUS, DIE AUFTRÄGE BRINGT“ zu lauten — der Wortlaut ist im Vorschaubild jedoch nicht sicher lesbar. Unter der Headline ist ein dunkleres Bildfeld angedeutet, vermutlich ein Screenshot oder Mockup der Kunden-Website (Ad-Name „BeoTherm“), dessen Inhalt nicht lesbar ist. Weitere Elemente wie Bulletpoints, Logo oder CTA-Button sind im Vorschaubild nicht auszumachen. Das Creative folgt damit dem Muster „Ergebnis-Versprechen als Headline plus Referenz als Beleg“. Es läuft im Retargeting-Adset (RTG | WEBSITE) und spricht damit Interessenten an, die MAKE bereits kennen. Farbwelt: Weißgrund mit roter Typo — schlicht, laut und voll auf den Hook reduziert. Konkrete Zahlen, der im Bild genannte Kundenname und ein möglicher CTA sind im Vorschaubild nicht lesbar.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: recB8naCzJccdPgWV
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 2545771889175764
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Konkurrenz sieht online besser aus als du
+- Visual Style: Studio-Mockup-Collage
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige, Inhaber mit veralteter Website
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0.41
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248677377170598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.41
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 10
+- Impressionen gesamt: 10
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat mit hellem, nahezu weißem Hintergrund. Oben im Bild steht groß und fett in Schwarz die Headline „Sieht deine Konkurrenz online besser aus als du?" über zwei Zeilen. Direkt darunter steht eine kleinere, grau gesetzte Subline in zwei Zeilen — der genaue Wortlaut ist im Vorschaubild nicht lesbar, sinngemäß geht es um fehlende Anfragen/Neukunden über die Website. Unterhalb der Subline sitzt ein auffälliger roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar (vermutlich eine Handlungsaufforderung zur Anfrage). Die untere Bildhälfte dominiert eine Mockup-Collage: Im Zentrum ein großer, dunkler Website-Screenshot (Dark-Design mit blauen Akzenten), auf dem ein Personenfoto eines Mannes zu sehen ist sowie Textblöcke und ein blauer Button — der Website-Inhalt ist im Vorschaubild nicht lesbar. Links davor ein kleinerer Laptop-Mockup mit einer hellen, veraltet wirkenden Website, rechts am Rand ein Smartphone-Mockup mit dunkler Website-Ansicht. Die Anordnung erzeugt einen impliziten Vorher-Nachher-Kontrast zwischen alter heller und neuer dunkler, hochwertiger Website. Bildsprache: sauberer Studio-Look, Produktfoto-Ästhetik mit Schatten, Fokus auf dem großen zentralen Screen. Branding-Elemente oder Logo sind im Vorschaubild nicht erkennbar.
+
+## 18.12. · Static · BROAD 2
+- id: recBxp1VytK4griNz
+- Name: 18.12. · Static · BROAD 2
+- Creative-ID: 1194046992134227
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Schluss mit Warten auf Empfehlungen — planbar neue Anfragen statt Mundpropaganda
+- Visual Style: Foto-Background mit Headline und Checkliste
+- Awareness Level: Problem Aware
+- Industry: Online-Marketing / Neukundengewinnung für Handwerk (Agentur-Eigenwerbung)
+- Target Audience: Handwerker und lokale Dienstleister, die bisher von Mundpropaganda leben
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 2
+- Ausgaben gesamt: 11.62
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 16
+- Klicks AT: 16
+- Ad-IDs: 120239131230040598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 11.62
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 3.99
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 3.99
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.99
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 401
+- Impressionen gesamt: 401
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) mit Fotohintergrund und nach unten abgedunkeltem Verlauf. Das Hintergrundfoto zeigt zwei Männer in hellen Polohemden mit sichtbarem Logo, die im Freien vor einem blauen Firmen-Transporter stehen (Grünanlage im Hintergrund) — glaubwürdige Handwerker-/Dienstleister-Optik, die der Zielgruppe ein Wiedererkennungsmoment bietet. Oben steht eine zweizeilige Headline in weißer Marker-/Handschrift-Optik: „Schluss mit Warten auf Empfehlungen" — ein klarer Problem-Hook gegen die Abhängigkeit von Mundpropaganda. Darunter folgt eine Aufzählung mit drei türkisen Häkchen als Nutzen-Versprechen; die einzelnen Zeilen sind im Vorschaubild nur teilweise lesbar (sinngemäß: regelmäßig neue Anfragen, passende Kunden aus der Region, erste Ergebnisse innerhalb von 14 Tagen). Am unteren Rand ist ein türkiser CTA-Button angeschnitten, dessen Beschriftung im Vorschaubild nicht lesbar ist. Farbwelt: natürliche Foto-Farben (Blau des Wagens, Grün der Umgebung) kombiniert mit Weiß und Türkis-Akzenten in Markenfarbe. Das Layout verbindet Problem-Headline mit Checklisten-Logik: Der Betrachter sieht auf einen Blick, welche konkreten Vorteile ihn erwarten, wenn er die Neukundengewinnung nicht mehr dem Zufall überlässt.
+
+## 15.04. · Video · BROAD LUZERN | MARC EVERS
+- id: recBxsmYd2QI2AnsA
+- Name: 15.04. · Video · BROAD LUZERN | MARC EVERS
+- Creative-ID: 1307802394116394
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Sprecher vor Luzerner Kulisse erklärt direkt das Webdesign-Angebot
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU und Selbstständige in der Region Luzern
+- Offer / Funnel-Typ: nicht eindeutig ableitbar, vermutlich Anfrage/Termin für Website-Angebot
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD LUZERN | MARC EVERS
+- Ausgaben gesamt: 65.63
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 18
+- Klicks AT: 18
+- Ad-IDs: 120244277267980598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 65.63
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.53
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.53
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.33
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 17.55
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 17.55
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3384
+- Impressionen gesamt: 3384
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-04-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Kappe und Brille spricht direkt in die Kamera und gestikuliert dabei ausdrucksstark mit erhobener Hand – die Geste wirkt wie ein erklärender oder mahnender Moment („Moment mal!"). Er trägt ein dunkles Oberteil; im Hintergrund sind unscharf Gebäude zu erkennen, vermutlich eine urbane Außenszene in Luzern. Die Bildsprache ist UGC-typisch: keine Studio-Ästhetik, sondern authentischer Selfie-/Talking-Head-Look. Text-Overlays oder Untertitel sind im Standbild nicht erkennbar; ein CTA-Element im Frame selbst ist nicht sichtbar (CTA käme aus dem Ad-Placement).
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Thema „Webdesign aus Luzern"):** Die Ad dürfte mit der direkten Ansprache des Sprechers als Hook starten – die ausdrucksstarke Handgeste deutet auf einen Aufmerksamkeits- oder Problempunkt hin (z. B. „Deine Website kostet dich Kunden"). Danach dürfte der Sprecher das Problem lokaler Unternehmen benennen (keine oder veraltete Website, Sichtbarkeit bei Google) und die Lösung einführen: Webdesign von einer Agentur aus Luzern. Plausibel ist ein Zwischenblock mit Nutzenargumenten oder Beispielen, dann ein klarer Abschluss-CTA (Anfrage/Beratung). Gesprochene Botschaft im Wortlaut, konkrete Text-Overlays, Zwischenschnitte und der exakte CTA: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 18.12. · Static · BROAD 2
+- id: recCEnSKfQgaH9FZk
+- Name: 18.12. · Static · BROAD 2
+- Creative-ID: 2604570876595944
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Authentisches Kunden-Teamfoto als Vertrauensanker — Botschaft kommt aus dem Anzeigentext
+- Visual Style: Teamfoto ohne Text-Overlay (Native/UGC-Look)
+- Awareness Level: Problem Aware
+- Industry: Online-Marketing für SHK-/Heizungsbetriebe (Agentur-Eigenwerbung, Kundenfall BeoTherm)
+- Target Audience: Handwerksbetriebe, insb. SHK/Heizung, Inhaber
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 2
+- Ausgaben gesamt: 45.58
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 226
+- Klicks AT: 226
+- Ad-IDs: 120239131230110598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 45.58
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 45.58
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 45.58
+- CTR %: 7.01
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 7.01
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.23
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3225
+- Impressionen gesamt: 3225
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1), die ausschließlich aus einem Foto besteht — komplett ohne Text-Overlay, Headline, Logo-Einblendung oder CTA-Button im Bild. Das Foto zeigt zwei bärtige Männer in hellgrauen Polohemden mit Brustlogo, die nebeneinander im Freien stehen; der linke Mann trägt eine auffällige rote Kabel-/Schlauchtrommel über der Schulter, was die Szene unmittelbar als Arbeitsalltag im Handwerk kennzeichnet. Im Hintergrund sind ein blauer Transporter/Firmenwagen sowie grüne Hecken zu sehen, aufgenommen bei Tageslicht mit leichter Unschärfe. Das Brustlogo der Polos ist im Vorschaubild nicht im Detail lesbar; der Ad-Name „BeoTherm" deutet auf einen Kundenfall aus dem SHK-/Heizungsbereich hin. Die Stimmung ist sympathisch, bodenständig und authentisch — das Bild wirkt wie ein spontaner Schnappschuss vom Hof oder von der Baustelle, nicht wie ein gestelltes Stockfoto. Da das Creative keinerlei Text enthält, muss die komplette Hook-, Angebots- und CTA-Kommunikation über den Anzeigen-Primärtext und die Headline der Facebook-Anzeige laufen; das Foto selbst fungiert als Vertrauens- und Aufmerksamkeitsanker im Feed. Strategisch ist das ein Native-Advertising-Ansatz: Die Anzeige tarnt sich als organisches Teamfoto und fällt so nicht sofort als Werbung auf — mit 7,01 % CTR das messbar stärkste Creative dieses Batches.
+
+## 02.05. · Static · KÜCHENSTUDIO
+- id: recCL2fGA24RV4hDR
+- Name: 02.05. · Static · KÜCHENSTUDIO
+- Creative-ID: 1514448403712836
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Komplette Kampagne gebaut, geschaltet und betreut – 10 Anfragen in 30 Tagen, du zahlst 0 CHF
+- Visual Style: Text-Only-Anzeige (Editorial-Typografie)
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Schweizer Küchenstudios
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO
+- Ausgaben gesamt: 80.2
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 32
+- Klicks AT: 32
+- Ad-IDs: 120245384450240598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 80.2
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 80.2
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 80.2
+- CTR %: 1.06
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.06
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.86
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-02
+- Erstellt am: 2026-05-02
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3024
+- Impressionen gesamt: 3024
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Text-Creative im 9:16-Hochformat (900×1600 px) auf cremeweissem Grund mit feinem, hellem Karo-Rastermuster als subtiler Textur. Aufbau von oben nach unten: Ganz oben links das rote MAKE-Wortmarke-Logo in kantiger Grossbuchstaben-Grotesk. Darunter in roten, gesperrten Kapitälchen der Label-Schriftzug „PILOTPROGRAMM 2026". Es folgt die zentrale Headline in sehr grosser, schwarzer, komprimierter Grotesk über drei Zeilen: „10 Küchen-Anfragen" / „in 30 Tagen," / „kostenlos." — wobei „30 Tagen," als weisse Schrift auf einem roten, leicht gerundeten Block hervorgehoben ist und so das Zeitversprechen optisch heraussticht. Unter der Headline steht dreizeiliger schwarzer Fliesstext in schlichter Serifenlos-Schrift: „Wir bauen, schalten und betreuen die komplette Kampagne für 3 Schweizer Küchenstudios. Du zahlst 0 CHF." — dieser Satz erklärt das Full-Service-Versprechen und die Gratis-Kondition. Darunter als Verknappungs-Zeile in fetter schwarzer Kapitälchen-Schrift: „3/3 PLÄTZE FREI DIESEN MONAT". Am unteren Rand dominiert ein vollflächig roter CTA-Balken mit weissem Text „Jetzt Platz sichern" und weissem Pfeil nach rechts. Farbwelt: reduziertes Creme-Schwarz-Rot-Schema, Stil clean, typografisch und editorial — bewusst wie eine Anzeige aus einem Magazin. Branding: ausschliesslich das MAKE-Logo oben, keine Fotomotive, keine Personen.
+
+## 26.06. · Video · BROAD ZÜRICH | JUN26
+- id: recCN7hkUu4QNZ6pf
+- Name: 26.06. · Video · BROAD ZÜRICH | JUN26
+- Creative-ID: 1349087654100255
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Webdesign aus Zürich — lokale Nähe als Vertrauensargument
+- Visual Style: UGC Sprecher-Video (Selfie/Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU und Dienstleister in Zürich, Inhaber
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | JUN26
+- Ausgaben gesamt: 66.86
+- Ausgaben 30T: 5.93
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 1
+- Klicks gesamt: 13
+- Klicks AT: 13
+- Ad-IDs: 120249379797790598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0.3
+- Ausgaben 7T: 0
+- Ausgaben AT: 66.86
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 66.86
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 66.86
+- CTR %: 0.76
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.76
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.41
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-26
+- Erstellt am: 2026-06-26
+- Funnel-Zweck: Lead
+- Hookrate %: 18.05
+- Hookrate % 30T: 14.17
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.05
+- Impressionen 14T: 9
+- Impressionen 30T: 127
+- Impressionen 7T: 0
+- Impressionen AT: 1717
+- Impressionen gesamt: 1717
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 66.86
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-Talking-Head-Stil; das Standbild ist nur 64×64 Pixel gross, Details sind daher begrenzt erkennbar. Zu sehen ist ein Mann mit Brille und dunklem Oberteil, der draussen vor einem hellen Gebäude steht und mit beiden erhobenen, geöffneten Händen lebhaft gestikulierend direkt in die Kamera spricht — ein klassischer Sprecher-Einstieg, der sofort persönliche Ansprache und Energie signalisiert. Aus Dateiname („Webdesign aus Zürich“) und Kampagnenkontext („LOKAL | WEBSITE“, Adset „VIDEOS | BROAD ZÜRICH“) ist ableitbar, dass der Sprecher sich als Zürcher Webdesigner vorstellt und die lokale Nähe als zentrales Vertrauensargument nutzt. Die wahrscheinliche Botschaft: Wer in Zürich eine neue Website braucht, soll nicht mit einer anonymen Agentur, sondern mit einem lokalen Partner arbeiten, der direkt erreichbar ist. Der Clip dürfte mit einem konkreten Angebot bzw. einer Aufforderung zur Terminbuchung enden (ableitbar aus dem Funnel, im Bild nicht sichtbar). Text-Overlays, Untertitel, Branding-Elemente und der exakte CTA sind auf dem vorliegenden Vorschaubild nicht lesbar. Weitere Szenen, Schnitte oder B-Roll-Einblendungen lassen sich aus dem einzigen vorhandenen Standbild nicht ableiten. Gesprochener Wortlaut: nicht aus den vorhandenen Daten ableitbar.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recCfZowWSEw8leng
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 2242433246589588
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Konkurrenz ist online sichtbar — du nicht
+- Visual Style: Clean Static-Ad mit Device-Mockup und CTA-Button (Farbvariante Rot)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Raum Basel)
+- Target Audience: Unternehmen in Basel, deren Website gegenüber Wettbewerbern zurückfällt
+- Offer / Funnel-Typ: Website-Anfrage / Terminbuchung über CTA-Button
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 4.3
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248515941020598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 4.3
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 142
+- Impressionen gesamt: 142
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratisches Static-Ad (1:1), das als rote Farbvariante von ad-02 aufgebaut ist — gleiches Grundlayout, anderer Farbakzent. Auf hellem, fast weißem Hintergrund steht oben eine mehrzeilige, fett gesetzte schwarze Headline, in der Schlüsselwörter rot hervorgehoben bzw. rot unterstrichen sind; erkennbar bzw. angedeutet sind Fragmente wie „Du siehst", „2025" und „Konkurrenz", der vollständige Wortlaut ist im 64×64-px-Vorschaubild nicht sicher lesbar und wird daher nicht ergänzt. Aus dem Ad-Namen „STATIC | Konkurrenz rot | ad-03" ist der Hook ableitbar: Der Betrachter sieht die Website seiner Konkurrenz — seine eigene fehlt. Rechts neben bzw. unter der Headline sitzt ein Laptop- bzw. Browser-Mockup, das eine moderne Website mit deutlich roten Akzenten zeigt (im Unterschied zur blauen Variante ad-02); die dargestellte Seite hat einen Hero-Bereich mit Bild und wirkt wie ein Portfolio-Beispiel. Unten im Layout liegt ein roter CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist. Die Farbwelt ist bewusst kontraststark: Weißgrund, schwarze Typo, Rot als Alarm-/Aufmerksamkeitsfarbe, die den Wettbewerbs-Schmerz visuell unterstreicht. Die Komposition spiegelt ad-02: Hook oben, Mockup als Ergebnisbeweis, Button als Handlungsaufforderung — getestet wird, welche Farbwelt mehr qualifizierte Klicks zieht. Das Adset „STATICS | BASEL 30KM | QUALI UMSATZ" bestätigt den lokalen Qualifizierungs-Fokus. Weitere Texte, Subline oder Logo-Details sind im Vorschaubild nicht lesbar.
+
+## 14.05. · Static · CH BROAD
+- id: recChTbkPk9GtXese
+- Name: 14.05. · Static · CH BROAD
+- Creative-ID: 1043312838023571
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: 10 Eigentümer-Anfragen mit Verkaufsabsicht in 30 Tagen – für 0 CHF
+- Visual Style: Editorial-Static mit Immobilienfoto und Icon-Leiste
+- Awareness Level: Problem Aware
+- Industry: Immobilienmakler / Maklerbüro
+- Target Audience: Immobilienmakler und Maklerbüros in der Schweiz
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: MAKLERBÜRO PILOT | CH BROAD
+- Ausgaben gesamt: 48.91
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 2
+- Klicks gesamt: 43
+- Klicks AT: 43
+- Ad-IDs: 120246173678180598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 48.91
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 12.23
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 12.23
+- CTR %: 2.23
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.23
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.35
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-14
+- Erstellt am: 2026-05-14
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1929
+- Impressionen gesamt: 1929
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 4
+- Leads gesamt: 4
+- Letzte Auslieferung: 2026-06-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 24.45
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Konkurrenz · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Feed-Bild im hochformatigen Editorial-Layout (1500×2009 px, ca. 3:4), klar zweigeteilt in Text- und Fotobereich. Oberer Teil auf cremeweissem Grund: Zentriert steht die grosse Headline in dunkelblauer, fetter Grotesk „Wir suchen 3 Immobilienmakler:" — abgeschlossen mit einem feinen horizontalen Trennstrich. Darunter folgen zwei Angebots-Zeilen, jeweils mit beigem Rund-Icon links und dunkelblauem Text rechts: 1) Personen-Icon (zwei Figuren) mit „10 qualifizierte Eigentümer-Anfragen mit Verkaufsabsicht" — der Zusatz „mit Verkaufsabsicht" adressiert gezielt das Kernproblem der Makler (reine Käufer-Leads statt Eigentümer-Leads). 2) Kalender-Icon mit „in 30 Tagen" als Zeitversprechen. Es folgt ein breiter, dunkelblauer, abgerundeter Button mit weissem Häkchen-Icon im Kreis und dem Text „Und du zahlst uns 0 CHF" — wobei „0 CHF" in Gold gesetzt ist und so als Kondition heraussticht. Unterer Teil: helles, hochwertiges Foto eines modernen Wohninterieurs mit grossem weissem Ecksofa, dunklen Kissen, bodentiefen Fenstern mit Grünblick und offener Küche im Hintergrund — vermittelt die Verkaufs-Immobilie als Ziel des Angebots. Links im Vordergrund steht ein dunkelblaues Makler-Galgen-Schild mit weissem Text „ZU VERKAUFEN", goldenem Trennstrich und goldenem Haus-Icon — der direkte Branchen-Wiedererkennungsanker. Farbwelt: Creme, Dunkelblau, Beige/Gold, Stimmung seriös, ruhig und hochwertig. Kein sichtbares Logo; die Gestaltung wirkt wie eine Editorial-Anzeige aus einem Immobilien-Fachmagazin.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recCsLQYsdo4MtsSW
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 890370230753403
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Null Risiko für dich: Website in 24 Stunden — gefällt sie nicht, zahlst du 0 CHF
+- Visual Style: Dunkles Offer-Layout mit Orange-Kontrast und Bulletpoints
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: risikoscheue Schweizer KMU und Selbstständige, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248515991590598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf tiefschwarzem Hintergrund mit einer großen, diagonal angeschnittenen orangen Fläche auf der rechten Seite — ein aggressiver, aufmerksamkeitsstarker Schwarz-Orange-Kontrast. Oben links steht die Headline „Null Risiko für dich:" in weißer Schrift, wobei „Null Risiko" in leuchtendem Orange gesetzt ist und sofort ins Auge springt; diese Zeile ist auch im kleinen Vorschaubild gut lesbar. Darunter folgt in kleinerer weißer Schrift das bekannte Offer: „Wir bauen dir deine neue Website in 24 Stunden. Gefällt sie dir nicht, zahlst du 0 CHF." Unter dem Offer stehen vier Bullet-Zeilen mit orangen Icons; ansatzweise lesbar sind u. a. „Professionelles Design" und „Regionales Team", der restliche Kleintext ist im 64×64-px-Vorschaubild nicht sicher entzifferbar. Unten abschließend sitzt ein oranger CTA-Button; dessen Beschriftung ist im Vorschaubild nicht entzifferbar. Das Ad verzichtet auf Device-Mockups und Fotos — Wirkung entsteht rein über Typografie und den harten Farbkontrast. Im Vergleich zur ruhigen Navy-Creme-Variante ad-11 (gleiche „Null Risiko"-Linie) ist ad-12 die laute, drängendere Ausführung: Schwarz/Orange signalisiert Deal-Charakter und Direktheit. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar. Der Hook dreht das Kauf-Risiko komplett um: Die Garantie steht wörtlich als erste Zeile vor dem eigentlichen Angebot.
+
+## 18.12. · Static · BROAD 1
+- id: recCwtfstjC3htmI6
+- Name: 18.12. · Static · BROAD 1
+- Creative-ID: 4380943802140676
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Wir bringen deinen Betrieb auf Platz 1 bei Google — Top-Platzierung als Screenshot bewiesen
+- Visual Style: Headline-Karte mit Google-Screenshot
+- Awareness Level: Solution Aware
+- Industry: Online-Marketing / SEO (Agentur-Eigenwerbung)
+- Target Audience: lokale Betriebe und Dienstleister, Inhaber, die bei Google gefunden werden wollen
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 1
+- Ausgaben gesamt: 34.93
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 17
+- Klicks AT: 17
+- Ad-IDs: 120239131017160598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 34.93
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.07
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.07
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.69
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1591
+- Impressionen gesamt: 1591
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige im Format 1:1 mit hellem, freundlichem Layout (Weißgrund mit Türkis-Akzenten in der Markenfarbe der Agentur). Oben dominiert eine dreizeilige Headline in schwarzer Handschrift-/Marker-Optik: „So bringen wir deinen Betrieb auf Nummer 1 bei Google"; die Worte „Nummer 1" sind mit türkisfarbener Textmarker-Markierung hervorgehoben und bilden den visuellen Anker. Darunter ist ein leicht unscharfer Screenshot einer Google-Suchergebnisseite eingebettet, der den Großteil der unteren Bildhälfte einnimmt und als Ergebnis-Beweis (Social Proof) dient. Ein türkiser Pfeil zeigt von links auf das oberste Suchergebnis und lenkt den Blick gezielt auf die Top-Platzierung. Neben dem Pfeil sitzt eine kleine Annotation/Textbox, deren Inhalt im Vorschaubild nicht vollständig lesbar ist (vermutlich ein kurzer Hinweis auf die Platz-1-Position). Die einzelnen Zeilen und Firmennamen im Screenshot sind im Vorschaubild nicht lesbar. Unten im Bild ist ein weiteres kleineres Element/Block angedeutet, dessen Inhalt im Vorschaubild ebenfalls nicht lesbar ist. Ein klassischer CTA-Button ist auf dem Creative selbst nicht erkennbar; die Handlungsaufforderung erfolgt vermutlich über den Anzeigentext. Bildsprache: clean, modern, ergebnisorientiert — die Kombination aus Handschrift-Headline (persönlich, direkt) und Screenshot (beweisführend) soll Vertrauen aufbauen und Neugier auf das Website-Offer wecken.
+
+## 05.09. · Static · INTEREST
+- id: recDRWCssuvW5v7j1
+- Name: 05.09. · Static · INTEREST
+- Creative-ID: 24085017677842845
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Keine Aufträge? Während du wartest, telefoniert dein Konkurrent schon mit Kunden
+- Visual Style: Kontrast-Fotografie / Problem-Lösung-Split
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Selbstständige und Inhaber kleiner Unternehmen (u. a. Handwerk) mit zu wenig Anfragen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | INTEREST
+- Ausgaben gesamt: 153.94
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 136
+- Klicks AT: 136
+- Ad-IDs: 120233525644280598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 153.94
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.68
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.68
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.54
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 20073
+- Impressionen gesamt: 20073
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat in dunkler, kontrastreicher Studio-Optik mit schwarzem Hintergrund. Oben steht die große, zweizeilige Headline: „KEINE" in kräftiger weißer Sans-Serif, direkt darunter „AUFTRÄGE?" in Signalfarbe Rot – die Schmerzfrage ist damit das visuelle Zentrum des oberen Drittels. Darunter sitzt eine kleinere Subline, deren Wortlaut im Vorschaubild nicht lesbar ist. Die Bildmitte zeigt einen klassischen Problem-vs.-Lösung-Personenkontrast: Links sitzt ein bärtiger Mann in dunkler Jacke mit verschränkten Armen und skeptischem, frustriertem Blick – er verkörpert den Betrieb ohne Anfragen. Rechts sitzt ein Mann in schwarzem Poloshirt, der entspannt lächelt und ein Handy ans Ohr hält – er verkörpert den Unternehmer mit vollem Auftragsbuch. Ein roter, geschwungener Pfeil verbindet die beiden Figuren und suggeriert den Übergang vom linken in den rechten Zustand (also: durch das beworbene Angebot). Unten läuft ein roter Banner-Balken quer über das Layout mit weißem Text darauf – vermutlich CTA oder Offer-Zusatz, im Vorschaubild nicht lesbar. Farbwelt: Schwarz/Anthrazit mit Weiß- und Rot-Akzenten, gedämpftes Licht auf die Gesichter. Bildsprache: dramatisch, vergleichend, leicht provokant. Branding-Elemente/Logo sind im Vorschaubild nicht erkennbar. (Hinweis: identisches Motiv wie die BROAD-Varianten, hier als Ad 4 im INTEREST-Adset.)
+
+## 11.03. · Video · BROAD BASEL | MARC EVERS
+- id: recEIaq5ftIP7K93Q
+- Name: 11.03. · Video · BROAD BASEL | MARC EVERS
+- Creative-ID: 1300248815501526
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direktansprache zum Thema Webdesign aus Basel; konkreter Hook im Standbild nicht ableitbar
+- Visual Style: UGC Selfie-Video (Talking Head draussen)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU in Basel und Umgebung, Inhaber
+- Offer / Funnel-Typ: Kontaktanfrage / Beratungscall
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS
+- Ausgaben gesamt: 30.41
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 30.41
+- Leads 14T: 0
+- Termine AT: 1
+- Klicks gesamt: 19
+- Klicks AT: 19
+- Ad-IDs: 120242142513060598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 30.41
+- CPA: 30.41
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 30.41
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 30.41
+- CTR %: 1.3
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.3
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.62
+- Conversions gesamt: 1
+- Erste Auslieferung: 2026-03-11
+- Erstellt am: 2026-03-11
+- Funnel-Zweck: Lead
+- Hookrate %: 14.46
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.46
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1459
+- Impressionen gesamt: 1459
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-03-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 30.41
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Videoad (Ad „V1") im UGC-Selfie-/Talking-Head-Stil; das einzige verfügbare Standbild liegt nur als 64×64-px-Thumbnail vor, daher sind Szenenablauf, Overlays und gesprochene Botschaft grösstenteils nicht verifizierbar. Szene 1 (aus dem Standbild ableitbar): Ein Mann mit Brille und Bart filmt sich im Selfie-Stil vor einer rotbraunen Wand bzw. Fassade; er spricht direkt in die Kamera und gestikuliert mit der Hand. Der direkte Blick in die Linse und die Hand-Geste deuten auf eine aktive Direktansprache des Zuschauers hin – typischer Einstieg für einen Hook. Aus dem Kampagnenkontext („LOKAL | WEBSITE | FEB26", Titel „Webdesign aus Basel") ist ableitbar, dass die gesprochene Botschaft lokale KMU auf die Webdesign-Dienstleistung der Agentur anspricht. Wahrscheinlicher Aufbau (nicht verifizierbar): Hook mit Problem- oder Frage-Einstieg zur Firmenwebsite, dann Leistung/Angebot der Agentur, am Ende CTA zur Kontaktaufnahme bzw. zum Beratungscall. Text-Overlays oder Untertitel sind auf dem Standbild nicht erkennbar. Eine Endkarte oder CTA-Einblendung ist aus dem Thumbnail nicht ableitbar. Der Sprecher ist derselbe wie in den Schwester-Varianten V4 und V5 – die Serie „V1–V5" testet offenbar verschiedene Hooks/Locations mit identischem Gesicht und Format.
+
+## 14.05. · Static · CH BROAD
+- id: recEjDhKDucTskxjg
+- Name: 14.05. · Static · CH BROAD
+- Creative-ID: 4205736366309943
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: In 14 Tagen kostenlos ins Eigentum bzw. zum Ergebnis starten
+- Visual Style: Plakatives Text-Poster (Editorial-Look, Rot-Weiß-Blau)
+- Awareness Level: Problem Aware
+- Industry: Immobilien / Maklerbüros
+- Target Audience: Laut Adset Maklerbüros (CH Broad); Bildtext wirkt eher wie Immobilien-Suchende/Eigentümer
+- Offer / Funnel-Typ: Gratis-Einstieg (0 CHF / kostenlos) → Anfrage
+- Kampagne: TESTKUNDEN
+- Adset: MAKLERBÜRO PILOT | CH BROAD
+- Ausgaben gesamt: 8.33
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120246173387460598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.33
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 8.33
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 8.33
+- CTR %: 0.55
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.55
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.27
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-14
+- Erstellt am: 2026-05-14
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 365
+- Impressionen gesamt: 365
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-06-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im plakativen Editorial-/Poster-Stil ohne Foto — reine Typografie auf satthelem Dunkelblau als Vollflächen-Hintergrund. Die Komposition ist streng zentriert: Im oberen Bereich steht eine kleinere Zeile in Weiß (Eyebrow/Zielgruppen-Ansprache), die im vorliegenden 64×64-Vorschaubild nicht lesbar ist. Der Kern des Creatives ist eine sehr große, weiße Kondens-Grotesk in Versalien über drei Zeilen: „IM EIGENTUM ANFANGEN" liegt auf einem durchgehenden roten Highlight-Balken, „IN 14 TAGEN." steht unmarkiert in Weiß dazwischen, „KOSTENLOS." liegt wieder auf einem roten Balken — das Wechselspiel aus roten und freien Zeilen erzeugt ein rhythmisches, posterartiges Muster. Unterhalb der Headline folgt eine weitere kleinere Zeile (vermutlich Subline oder CTA-Hinweis), ebenfalls im Vorschaubild nicht lesbar. Die Farbwelt ist auf drei Signalfarben reduziert: Dunkelblau als Grund, Weiß für die Schrift, Rot für die Highlight-Balken — hoher Kontrast, sofortige Blickführung auf die Kernbotschaft. Stilistisch erinnert das Creative an eine Litfass-Kampagne oder ein Schweizer Plakat: keine Bildsprache, keine Icons, nur Schriftgröße, Farbe und Zeilenrhythmus als Gestaltungsmittel. Die Botschaft ist maximal reduktiv: Ergebnis („Im Eigentum anfangen"), Zeitrahmen („in 14 Tagen") und Preis („kostenlos") in einem Atemzug. Kein sichtbares Logo, kein sichtbarer CTA-Button auf dem Creative erkennbar (im Vorschaubild nicht lesbar). Hinweis: Quelle ist nur ein sehr kleines Thumbnail (64×64 px), Feintext, exakte Zeilenbrüche und Kleinschriften sind daher aus den vorhandenen Daten nicht verlässlich ableitbar; die Großschrift ist dagegen klar entzifferbar.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recF0BBiJMn3kKRCA
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 1299038185055218
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Webdesigner direkt aus Basel – lokale Nähe statt anonymer Agentur
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel ohne professionelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 8.96
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120244825710950598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.96
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.15
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.15
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.69
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 20.64
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 20.64
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 436
+- Impressionen gesamt: 436
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video in Selfie-Perspektive, quadratisches bzw. hochkantiges Format. Szene 1 (Hook): Der Sprecher (schwarze Basecap, Brille, dunkles Shirt) steht draußen auf einer Straße bzw. einem Parkplatz mit Bäumen und einem Gebäude im Hintergrund und spricht mit geöffnetem Mund direkt in die Kamera – unmittelbarer, authentischer Einstieg ohne produzierte Intro-Sequenz. Szene 2: Er gestikuliert mit der Hand und baut so Betonung auf; aus Ad-Name („Webdesign aus Basel") und Kampagnenkontext („LOKAL | WEBSITE | FEB26") ist ableitbar, dass er sich als Webdesigner aus Basel vorstellt und lokale Unternehmer direkt adressiert. Szene 3: Vermutlich benennt er das Problem (keine oder veraltete Website bei Basler Betrieben) und positioniert sein Angebot als einfache, lokale Lösung. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, vermutlich mit Verweis auf den Anzeigen-Button. Text-Overlays: Im Vorschaubild (64×64 px) keine erkennbar; ob Untertitel oder Einblendungen im Video erscheinen, ist aus dem Standbild nicht ableitbar. Bildsprache: bewusst unpoliert, Tageslicht, Handheld-Charakter – klassischer UGC-Look ohne sichtbares Branding. Der genaue Wortlaut des Gesprochenen ist aus den vorhandenen Daten nicht ableitbar.
+
+## 18.06. · Static · CH | PLATZ-1
+- id: recFQAi9qycFauCFC
+- Name: 18.06. · Static · CH | PLATZ-1
+- Creative-ID: 1950009892357353
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Kunden suchen – werden sie dich oder deine Konkurrenz finden?
+- Visual Style: Minimal-Layout mit Website-Mockup
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: lokale Schweizer KMU, Inhaber mit wenig Online-Sichtbarkeit
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | PLATZ-1 | JUN26
+- Ausgaben gesamt: 0.23
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248678405110598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.23
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3
+- Impressionen gesamt: 3
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches 9:16-Bild-Ad auf hellem, fast weißem Grund. Die Komposition ist streng zweigeteilt: oben Text, unten Mockup. Oben steht in großer, dunkler, fetter Serifen- oder Grotesk-Schrift die zweizeilige Frage-Headline: „Deine Kunden suchen. Werden sie fündig?" — der zweite Satz wirkt wie eine direkte Konfrontation. Darunter, leicht überlappend, liegt ein Browser-Fenster-Mockup mit typischer Fensterleiste, das eine dunkle Website-Hero-Sektion zeigt; die Inhalte der Website sind im kleinen Vorschaubild nicht lesbar. Das Mockup suggeriert „so sieht eine moderne Website aus", ohne Details preiszugeben. Die Farbwelt ist reduziert: weißer Hintergrund, schwarze/dunkelgraue Typo, dunkles Mockup als Kontrastanker. Viel Weißraum um beide Elemente verleiht dem Ad einen hochwertigen, ruhigen Studio-Look. Kein sichtbares Logo oder CTA-Button im Vorschaubild erkennbar — der Markeneindruck entsteht rein über das cleane Layout. Stimmung: sachlicher Zweifel-Hook, der die eigene Google-Auffindbarkeit hinterfragt und Unsicherheit erzeugt.
+
+## 05.09. · Static · INTEREST
+- id: recFTTB61Lrm59LoM
+- Name: 05.09. · Static · INTEREST
+- Creative-ID: 749308584553508
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Website sieht aus wie 2003 – provokanter Spiegel für veraltete Webpräsenz
+- Visual Style: Kontrast-Grafik alt vs. neu (Split-Vergleich)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Inhaber kleiner und lokaler Unternehmen mit veralteter Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | INTEREST
+- Ausgaben gesamt: 64.02
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 39
+- Klicks AT: 39
+- Ad-IDs: 120233525103850598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 64.02
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.54
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.54
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.49
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 7182
+- Impressionen gesamt: 7182
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat auf komplett schwarzem Grund; die Komposition gehört zur selben Bildserie wie das „DEIN KONKURRENT KASSIERT"-Motiv. Oben steht eine große, dreizeilige Headline in kräftiger Sans-Serif: „DEINE WEBSITE SIEHT AUS WIE 2003" – die Wörter „WEBSITE" und „2003" sind dabei in Signalfarbe Rot gesetzt, der Rest in Weiß; im Vorschaubild ist diese Headline in Grundzügen lesbar. Darunter folgt eine kleinere Subline, deren Wortlaut im Vorschaubild nicht lesbar ist. Die Bildmitte visualisiert den alt-vs.-neu-Kontrast: Links steht ein alter, klobiger Röhrenmonitor, auf dem eine veraltete, graue, textlastige Website zu sehen ist – sie symbolisiert die „2003"-Webpräsenz. Rechts hält eine Hand ein modernes Smartphone, das eine zeitgemäße, mobil optimierte Website zeigt (erkennbar: rote Buttons und ein Produkt-/Bildbereich; Details nicht lesbar). Ein roter Pfeil bzw. eine rote Verbindungslinie zwischen den beiden Geräten führt den Blick von alt nach neu und impliziert die notwendige Erneuerung. Unten läuft ein roter Banner-Balken mit weißem Text – vermutlich CTA bzw. Offer-Hinweis, im Vorschaubild nicht lesbar. Farbwelt: Schwarz, Weiß, Signalfarbe Rot. Bildsprache: provokant, warnend, humorvoll-konfrontativ (Jahreszahl als Stilmittel). Branding-Elemente/Logo sind im Vorschaubild nicht erkennbar. (Hinweis: identisches Motiv wie die BROAD-Variante, hier im INTEREST-Adset.)
+
+## 17.02. · Video · BROAD | META FORMULAR
+- id: recFreNacKfE6nMOg
+- Name: 17.02. · Video · BROAD | META FORMULAR
+- Creative-ID: 1602482567322454
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website – die Website verkauft dich unter Wert
+- Visual Style: Talking-Head-Video mit Caption-Overlay (Innenraum)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister, Inhaber mit schwacher Website
+- Offer / Funnel-Typ: Meta-Leadformular (Website-Angebot)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR
+- Ausgaben gesamt: 35.21
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 22
+- Klicks AT: 22
+- Ad-IDs: 120241191470040598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 35.21
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.56
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.56
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.92
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 12.98
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 12.98
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1410
+- Impressionen gesamt: 1410
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau, daher sind Text-Overlays und Szenendetails nur eingeschränkt verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart und Brille in dunklem Poloshirt spricht direkt in die Kamera und gestikuliert mit erhobener Hand; Innenraum mit hellem, ausgeleuchtetem Hintergrund (Fenster-/Tageslichtsituation). Quer über die Bildmitte läuft ein helles Text-Overlay (Caption), von dem in der Vorschau nur der Wortanfang „Eine …" ansatzweise erahnbar ist — der vollständige Wortlaut ist im Vorschaubild nicht lesbar. Wahrscheinlicher Szenenablauf (aus Kampagnenname und Ad-Kontext ableitbar, nicht aus dem Bild verifizierbar): (1) Hook: Der Sprecher eröffnet mit einer Pointe entlang der Kampagnenlinie, z. B. „Eine Website, die deine Arbeit nicht zeigt, kostet dich Aufträge". (2) Problembeschreibung: Handwerker und Dienstleister liefern top Arbeit, aber ihre Website wirkt veraltet und verkauft sie unter Wert. (3) Konsequenz: Interessenten springen ab oder gehen zum Konkurrenten mit dem besseren Webauftritt. (4) Lösung: MAKE baut Websites, die zur Qualität der Arbeit passen und Anfragen erzeugen. (5) Abschluss: CTA Richtung Meta-Leadformular (Adset nennt „META FORMULAR"); die exakte CTA-Formulierung ist aus dem vorliegenden Material nicht ableitbar. Der Ad-Name „Kei Rappe" deutet auf einen namentlich bekannten Sprecher oder eine regionale Anspielung hin — aus dem Bild nicht verifizierbar. Durchgehende Captions sind erkennbar (Overlay im Standbild), was auf Ton-aus-optimierte Feed-Nutzung hindeutet.
+
+## 26.06. · Video · BROAD ZÜRICH | JUN26
+- id: recGO6bH70mBwnJDj
+- Name: 26.06. · Video · BROAD ZÜRICH | JUN26
+- Creative-ID: 1767949994633342
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Webdesign direkt aus Zürich – persönlich und lokal statt anonymer Agentur
+- Visual Style: UGC-/Vlog-Sprecher-Video (Person mit Mikro/Handy, Outdoor urban)
+- Awareness Level: Problem Aware
+- Industry: Webdesign für KMU / lokale Dienstleister
+- Target Audience: Unternehmer und lokale Betriebe im Raum Zürich, die eine neue Website brauchen
+- Offer / Funnel-Typ: Leadgenerierung Website (Video → Anfrage)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | JUN26
+- Ausgaben gesamt: 56.66
+- Ausgaben 30T: 13.86
+- Hookrate % 14T: 14.29
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 15
+- Klicks AT: 15
+- Ad-IDs: 120249379804990598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0.49
+- Ausgaben 7T: 0
+- Ausgaben AT: 56.66
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1
+- CTR % 30T: 0.38
+- CTR % 7T: 0
+- CTR % AT: 1
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0.38
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.73
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-26
+- Erstellt am: 2026-06-26
+- Funnel-Zweck: Lead
+- Hookrate %: 15.88
+- Hookrate % 30T: 15.97
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.88
+- Impressionen 14T: 7
+- Impressionen 30T: 263
+- Impressionen 7T: 0
+- Impressionen AT: 1505
+- Impressionen gesamt: 1505
+- Klicks 14T: 0
+- Klicks 30T: 1
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-/Vlog-Sprecher-Stil; als Beleg liegt nur ein 64×64-px-Standbild vor, daher sind viele Details nicht verifizierbar. Im Standbild erkennbar: Ein Mann mit Brille und dunklem Oberteil steht halbnah im Freien und spricht direkt in die Kamera; er hält ein kleines Objekt in der Hand (möglicherweise ein Mikrofon oder Handy – auf 64×64 px nicht sicher bestimmbar). Der Hintergrund zeigt ein helles Gebäude mit Fassadendetails bei Tageslicht, urban und leicht unscharf. Die Bildwirkung entspricht einem Spaziergang-/Vlog- oder Strasseninterview-Format, das Nähe und Authentizität erzeugen soll – passend zum lokalen Zürich-Bezug. Text-Overlays, Untertitel, weitere Szenen oder Branding-Elemente sind im Vorschaubild nicht lesbar; Schnittfolge und B-Roll sind nicht ableitbar. Aus Dateiname („Webdesign aus Zürich"), Adset („VIDEOS | BROAD ZÜRICH") und Kampagne („LOKAL | WEBSITE") ist ableitbar, dass der Sprecher das Webdesign-Angebot von MAKE für Zürcher Unternehmen bewirbt – vermutlich mit direkter Ansprache, Nutzenargumenten und Abschluss-CTA; der genaue Wortlaut und der CTA sind aus den vorhandenen Daten nicht ableitbar. Die Ad ist aktiv, die Performance schwankt (CTR 0,0–1,38 % bei kleinen Budgets). Für eine vollständige Szenen-Analyse müsste das Originalvideo (video_id 1237557678498842) aus der Anzeigenbibliothek gezogen werden.
+
+## 24.06. · Video · CH | PLATZ-1 SEO
+- id: recGXs9DVhe1nbDvv
+- Name: 24.06. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1485238986979541
+- Format: Video
+- Status: CREATIVE_REMOVED
+- Angle / Hook: In 30 Tagen auf Platz 1 bei Google – mit einer neuen Top-Website.
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Solution Aware
+- Industry: Webdesign / SEO Schweiz
+- Target Audience: Schweizer Unternehmen, die bei Google besser gefunden werden wollen
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Angereichert: Ja
+- Anzahl Ads: 0
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-24
+- Erstellt am: 2026-06-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-06T06:22:14.000Z
+- Skript:
+  Vertikales Talking-Head-Video (9:16) im UGC-Stil. Das Vorschaubild zeigt einen Mann mit dunkler Kappe und Brille, der frontal in die Kamera spricht; im Hintergrund ist unscharf ein Büro- oder Studioraum mit einem Bildschirm zu erkennen, was eine Arbeitsumgebung suggeriert. Unten im Frame läuft ein helles Untertitel-Overlay mit — auf dem 64-px-Thumbnail ist nur ansatzweise ein Satzfragment (offenbar beginnend mit „…ist sich total…") zu erahnen, der genaue Wortlaut ist nicht sicher lesbar. Der wahrscheinliche Ablauf, aus Titel und Ad-Namen („SEO Proof") ableitbar (nicht verifizierbar): (1) Hook mit dem Ergebnisversprechen: „In 30 Tagen auf Platz 1 bei Google — mit einer neuen Top-Website." (2) Beweispart passend zum Ad-Namen: der Sprecher zeigt vermutlich echte Ranking-Ergebnisse, Screenshots von Google-Suchergebnissen oder Kundenergebnisse als Social Proof. (3) Erklärung, warum die neue Website der Hebel für das Ranking ist (Technik, Struktur, Speed). (4) Abschluss-CTA Richtung Anfrage oder Terminbuchung. Tonalität: selbstbewusst, ergebnisorientiert, beweisführend. Konkrete Schnittfolge, eingeblendete Beweise und finaler CTA-Screen sind aus dem Standbild nicht ableitbar.
+
+## 15.04. · Video · BROAD BERN | MARC EVERS
+- id: recGmOXNJg1ADVCHf
+- Name: 15.04. · Video · BROAD BERN | MARC EVERS
+- Creative-ID: 2048242219059840
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direkte Ansprache auf Augenhöhe – Website-Angebot ohne Umwege
+- Visual Style: UGC Selfie-Video / Talking Head mit Untertitel-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmer und KMU in der Region Bern, die eine neue Website brauchen
+- Offer / Funnel-Typ: Formular/Leadformular (Serienname „FormSwap")
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BERN | MARC EVERS
+- Ausgaben gesamt: 191.61
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 149
+- Klicks AT: 149
+- Ad-IDs: 120244276901330598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 191.61
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.68
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.68
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.79
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 24.9
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 24.9
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 8852
+- Impressionen gesamt: 8852
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Basecap und Brille spricht in Selfie-Perspektive direkt in die Kamera, leicht von schräg unten aufgenommen. Die Kulisse ist eine urbane Straßenszene: rechts im Hintergrund ein rotes Tram, links Gebäude bzw. ein Torbogen – stimmig zur Adset-Lokalisierung „BROAD BERN". Am unteren Bildrand läuft ein weißes Untertitel-Overlay in zwei Zeilen; die erste Zeile beginnt etwa mit „dafür jemanden direkt…", der Rest ist auf dem kleinen Thumbnail nicht vollständig lesbar. Der Untertitel-Overlay deutet auf durchgehende Captions im gesamten Video hin – üblich für Mobile-First-Ads ohne Ton. Logos oder weitere Branding-Elemente sind im Frame nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Serie „WebsiteOffer-V2-FormSwap", Variante V1):** Die Ad dürfte mit einer direkten Hook-Aussage des Sprechers starten, möglicherweise im Sinne von „dafür brauchst du jemanden, der sich direkt darum kümmert" (Anschluss an den lesbaren Untertitel-Anschnitt). Danach dürfte das Website-Angebot vorgestellt werden – der Serienname „FormSwap" legt nahe, dass mehrere Varianten auf ein Formular/Leadformular als Conversion-Ziel einzahlen. Plausibel ist ein mittlerer Block mit Nutzenargumenten (professionelle Website, alles aus einer Hand), dann ein klarer Abschluss-CTA zum Ausfüllen des Formulars bzw. zur Anfrage. Gesprochener Wortlaut vollständig, Zwischenschnitte und exakter CTA-Text: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 24.02. · Video · META FORMULAR
+- id: recHObIeJlnQel40C
+- Name: 24.02. · Video · META FORMULAR
+- Creative-ID: 1624865698526117
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website
+- Visual Style: UGC Talking-Head-Video (Outdoor)
+- Awareness Level: Problem Aware
+- Industry: Webdesign für Handwerks-/Baubetriebe
+- Target Audience: Inhaber von Handwerks- und Baubetrieben
+- Offer / Funnel-Typ: Meta-Leadformular (Anfrage direkt)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 0.17
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241513590090598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.17
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 11.11
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 11.11
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 9
+- Impressionen gesamt: 9
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Standbild ist nur 64×64 Pixel groß und zeigt einen Mann mit Brille und kurzem dunklem Bart in dunkler Kapuzenjacke, der frontal in die Kamera spricht; im Hintergrund blauer Himmel, also ein Außendreh bei Tageslicht. Das Format ist ein Talking-Head- bzw. Selfie-Video in halbnaher Einstellung, bewusst unpoliert im UGC-Stil. Aus Titel und Kontext ableitbarer Einstieg: der Hook „Deine Arbeit ist besser als deine Website“ — der Sprecher adressiert Inhaber von Handwerks- und Baubetrieben direkt mit „Du“. Die vermutliche Dramaturgie: erst Wertschätzung der handwerklichen Leistung, dann der Bruch — die Website hält mit der Qualität nicht mit und kostet dadurch Aufträge. Anschließend dürfte der Sprecher das MAKE-Angebot (Website-Relaunch für lokale Betriebe) als Lösung einführen und mit Referenzhinweis belegen. Ob und welche Text-Overlays, Untertitel oder Einblendungen im Video erscheinen, ist aus dem Standbild nicht ableitbar. Auch der Schluss-CTA (vermutlich Hinweis auf das Meta-Leadformular bzw. „Jetzt anfragen“) ist im Vorschaubild nicht lesbar. Der Ad-Name „Du willst Website – Kopie“ deutet auf eine Testvariante einer bestehenden Talking-Head-Ad hin.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recHfDXbr2lVVvL6a
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 1523208609177860
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Unzufrieden mit deiner Website? So sieht die Lösung aus
+- Visual Style: Clean Static-Ad mit Device-Mockups (Produkt-Demo)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Raum Basel)
+- Target Audience: Unternehmen in Basel, die mit ihrer Website unzufrieden sind
+- Offer / Funnel-Typ: Website-Anfrage / Terminbuchung
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 1.51
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120248515876490598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.51
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.63
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.63
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 38
+- Impressionen gesamt: 38
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratisches Static-Ad (1:1) in cleaner Produkt-Demo-Optik auf hellem, fast weißem Hintergrund. Oben steht eine mehrzeilige, fett gesetzte schwarze Headline; lesbar ist davon nur der Teil „…in Basel:", die übrigen Zeilen sind im 64×64-px-Vorschaubild nicht entzifferbar — aus dem Ad-Namen „STATIC | nicht zufrieden | ad-01" ist aber ableitbar, dass die Headline den Unzufriedenheits-Hook trägt (Sinnbild: „Nicht zufrieden mit deiner Website in Basel?"). Unter der Headline dominieren zwei Device-Mockups den mittleren Bildbereich: links ein Smartphone in leichter Schrägansicht, rechts ein Laptop bzw. Browserfenster, beide zeigen dieselbe Website als responsives Design — die dargestellte Seite wirkt modern mit hellem Layout und einem Hero-Bereich mit Bild. Am linken Bildrand sind vertikale blaue Elemente angedeutet (evtl. Akzentflächen, Bullet-Icons oder Branding-Streifen), deren Inhalt im Vorschaubild nicht lesbar ist. Die Farbwelt ist reduziert: Weiß/Hellgrau als Grund, schwarze Typografie, Blau als Akzentfarbe — sachlich, professionell, agenturtypisch. Die Komposition folgt dem Problem-Lösung-Schema: Headline benennt den Schmerz, Mockups zeigen sofort das Ergebnis (eine moderne, mobile-optimierte Website). Ob unten ein CTA-Button oder eine Subline liegt, ist im Vorschaubild nicht eindeutig erkennbar; kein CTA-Text ist lesbar. Die Bildsprache zielt auf Inhaber, die den Zustand ihrer eigenen Website mit dem gezeigten Ergebnis vergleichen sollen. Keine weiteren Texte oder Details werden ergänzt, da sie im Vorschaubild nicht lesbar sind.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: recII181eG03byFJY
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 2123720245157822
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Du zahlst erst, wenn die neue Website gefällt — 0 Franken Risiko
+- Visual Style: Typografie-Ad
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und lokale Betriebe, skeptisch gegenüber Agentur-Vorkasse
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 1.97
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120248677388980598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.97
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.15
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.15
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 87
+- Impressionen gesamt: 87
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Typografie-Ad im vertikalen Format auf warmem, cremefarbenem Grund (Beige/Off-White). Ganz oben links sitzt das rote „MAKE"-Logo der Agentur, darunter eine kleine Zeile (Tagline oder Leistungszeile) — im Vorschaubild nicht lesbar. Darunter folgt linksbündig die große, fette schwarze Headline über drei Zeilen: „Du zahlst erst, wenn dir deine neue Website gefällt." Unter der Headline steht eine kleinere, schmale Subline in einer Zeile — der genaue Wortlaut ist im Vorschaubild nicht lesbar (vermutlich ein Zusatz zur Umsetzungsdauer oder zum Ablauf). Das untere Bilddrittel dominiert ein übergroßer Preis-Block: „0 Franken." — die „0" ist in leuchtendem Rot gesetzt, das Wort „Franken." in Schwarz, beide in sehr großer, fetter Schrift; die „0" ist dabei nochmals größer als der Rest und dient als Eyecatcher. Es gibt keine Fotomotive, keine Mockups, keine weiteren Grafikelemente — die komplette Werbewirkung kommt aus Typografie und Farbkontrast (Schwarz/Rot auf Creme). Die Hierarchie ist klar: Logo → Versprechen → Zusatz → Preis-Risiko-Umkehr. Stimmung: selbstbewusst, klar, risikofrei; das Ad adressiert direkt die Angst vor hohen Vorkasse-Kosten für eine neue Website. Kein separater CTA-Button im Bild erkennbar.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recIiTzOG5B1IKzAj
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 1338888671435641
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Lokale Nähe: Webdesigner aus Basel spricht direkt vom Stadtplatz
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale Unternehmen in Basel, die eine Website brauchen
+- Offer / Funnel-Typ: nicht eindeutig ableitbar, vermutlich Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 141.48
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 93
+- Klicks AT: 93
+- Ad-IDs: 120244825461420598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 141.48
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.18
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.18
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.62
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 17.93
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 17.93
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 7876
+- Impressionen gesamt: 7876
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Basecap, Brille und dunklem Shirt spricht in Selfie-Perspektive direkt in die Kamera und gestikuliert dabei mit der Hand in Richtung Linse – eine erklärende, betonende Geste. Der Hintergrund zeigt einen Platz in der Stadt mit Brunnen und Gebäuden, urbane Außenszene bei Tageslicht, stimmig zur Basler Lokalisierung (Adset „HANDY BASEL 2", Ad-Name „Webdesign aus Basel"). Die Bildsprache ist UGC-typisch authentisch, ohne Studio-Inszenierung. Text-Overlays, Untertitel oder Logos sind im Standbild nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Thema „Webdesign aus Basel", Variante A2):** Die Ad dürfte mit der direkten Ansprache des Sprechers als Hook starten – die betonende Geste deutet auf einen pointierten Einstiegssatz zum Website-Thema hin (Problem oder direkter Nutzen). Danach dürfte er sich als Webdesigner aus Basel vorstellen und das Angebot benennen. Plausibel ist ein mittlerer Block mit Pain Point (keine oder veraltete Website kostet Kunden) und Lösungsversprechen, dann ein klarer CTA Richtung Website-Anfrage oder Beratung. Gesprochener Wortlaut, Zwischenschnitte, Text-Overlays und der exakte CTA: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 18.12. · Static · BROAD 3
+- id: recJ6SgcHS55dOVLP
+- Name: 18.12. · Static · BROAD 3
+- Creative-ID: 1364056421868868
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: In nur 14 Tagen auf Platz 1 bei Google — mit Screenshot als Beleg
+- Visual Style: Dark-Mode-Karte mit Google-Screenshot
+- Awareness Level: Solution Aware
+- Industry: Online-Marketing / SEO (Agentur-Eigenwerbung)
+- Target Audience: lokale Betriebe und Dienstleister, Inhaber, die bei Google schnell sichtbar werden wollen
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 3
+- Ausgaben gesamt: 13.56
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 10
+- Klicks AT: 10
+- Ad-IDs: 120239131229030598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 13.56
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 13.56
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 13.56
+- CTR %: 1.73
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.73
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.21
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 577
+- Impressionen gesamt: 577
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) im Dark-Mode-Look mit durchgehend schwarzem Hintergrund und starkem Weiß-Türkis-Kontrast. Im oberen Drittel ist ein leicht unscharfer Screenshot einer mobilen Google-Suchergebnis-Seite eingebettet, der als Ergebnis-Beweis dient; die einzelnen Suchtreffer und Texte darin sind im Vorschaubild nicht lesbar. Rechts oben am Screenshot sitzt eine kleine Annotation mit türkisem Pfeil, der gezielt auf ein oberes Suchergebnis zeigt — der Wortlaut der Annotation ist im Vorschaubild nicht vollständig lesbar, vermutlich ein Hinweis auf die Top-Platzierung. Im mittleren bis unteren Bereich dominiert eine große zweizeilige Headline in weißer Marker-/Handschrift-Optik: „In 14 Tagen zur Nr. 1 bei Google", wobei „Nr. 1" türkis hinterlegt/hervorgehoben ist und sofort ins Auge springt. Darunter steht eine kleine Subline, die im Vorschaubild nicht lesbar ist. Am unteren Rand befindet sich ein türkiser CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist. Stil: modernes Dark-Mode-Design, das sich von hellen Feed-Inhalten abhebt und das konkrete Zeitversprechen („14 Tage") in den Mittelpunkt stellt. Die Kombination aus Beweis-Screenshot oben und Versprechen-Headline unten folgt dem Muster „Ergebnis zeigen, dann Versprechen formulieren".
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recJS8KGSG376Vs4a
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 981505054396593
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: Lokale Ansprache mitten in Zürich — Webdesigner direkt auf der Strasse
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige in der Region Zürich
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 0.38
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120244829507460598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.38
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 15.38
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.38
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 13
+- Impressionen gesamt: 13
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-07
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille und dunkler Basecap im dunklen Oberteil spricht im Freien in die Kamera — Selfie-/Talking-Head-Perspektive. Hintergrund: eine Stadtstrasse mit Häuserzeile, im Hintergrund sind Berge und blauer Himmel zu erkennen — urbane Schweizer Kulisse, passend zum Zürich-Bezug, Tageslicht. Ein Text-Overlay ist im Standbild nicht sichtbar (ggf. erscheinen Untertitel erst im Videoverlauf — aus dem Standbild nicht ableitbar). Szene 1 (Hook, ca. 0–3 s): Direkte Kameraansprache mitten im städtischen Umfeld; aus Angebot („Webdesign aus Zürich") und Adset („BROAD ZÜRICH") ist ableitbar, dass Zürcher Unternehmer und Selbstständige adressiert werden, wahrscheinlich mit einer Frage oder Feststellung zur eigenen Website. Die Outdoor-Kulisse verankert den lokalen Bezug visuell („ich bin hier vor Ort"). Szene 2 (Mittelteil): Pitch des Webdesign-Angebots — professionelle Website von einem lokalen Ansprechpartner; die Walking-/Street-Optik wirkt dynamisch und ungestellt. Szene 3 (Ende): Aufforderung zur Anfrage bzw. Terminbuchung, ableitbar aus der Lead-Kampagne; der genaue CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: authentisches UGC-Video, natürlicher Tageslicht-Look, keine sichtbaren Grafikeinblendungen im Standbild. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recJUNP1LWMSbF1hq
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 1883171432392125
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direkte Ansprache von Angesicht zu Angesicht statt Hochglanz-Werbung
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel ohne professionelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 11.03
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120244825598420598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 11.03
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.68
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.68
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.56
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 16.23
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 16.23
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 536
+- Impressionen gesamt: 536
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video im Selfie-Stil, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit Brille, dunkler Basecap und dunklem Oberteil steht draußen vor einer hellen Gebäudefassade bei Tageslicht, hebt die Hand und spricht direkt in die Kamera – der Einstieg wirkt wie eine spontane Sprachnachricht an den Zuschauer. Szene 2: Aus Kampagnen- und Ad-Kontext („Webdesign aus Basel", „LOKAL | WEBSITE | FEB26") ist ableitbar, dass er sich als Webdesigner aus Basel vorstellt und gezielt Inhaber lokaler Unternehmen anspricht. Szene 3: Vermutlich thematisiert er das Problem fehlender oder veralteter Websites bei Basler Betrieben und stellt sein Angebot als unkomplizierte, lokale Lösung vor – persönlich statt anonymer Agentur. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Anfrage eines Website-Projekts, wahrscheinlich mit Hinweis auf den Anzeigen-Button unter dem Video. Text-Overlays: Auf dem Standbild (64×64 px) nicht erkennbar; ob Untertitel oder Text-Einblendungen im Video erscheinen, ist aus dem Vorschaubild nicht ableitbar. Bildsprache: natürlicher Look, Tageslicht, kein sichtbares Logo oder Branding – bewusst authentischer UGC-Charakter. Weiterer Szenenablauf und genauer Wortlaut sind aus den vorhandenen Daten nicht ableitbar.
+
+## 11.03. · Video · BROAD BASEL | MARC EVERS
+- id: recJZGIecdQIb7wcr
+- Name: 11.03. · Video · BROAD BASEL | MARC EVERS
+- Creative-ID: 3396449313855336
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Face-to-Camera-Ansprache: Lokaler Webdesigner statt anonymer Agentur-Hochglanz
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Basel)
+- Target Audience: lokale KMU und Selbstständige in Basel ohne moderne Website
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS
+- Ausgaben gesamt: 17.8
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 10
+- Klicks AT: 10
+- Ad-IDs: 120242143301480598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 17.8
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.21
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.21
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.36
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-11
+- Erstellt am: 2026-03-11
+- Funnel-Zweck: Lead
+- Hookrate %: 17.7
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 17.7
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 825
+- Impressionen gesamt: 825
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme). Als Vorschau liegt nur ein 64×64-Pixel-Standbild vor — Details sind daher eingeschränkt ablesbar.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit Brille und dunklem Haar, mittleren Alters, spricht in Handheld-Selfie-Perspektive direkt in die Kamera; Hintergrund zeigt unscharf eine helle Gebäudefassade — vermutlich Straßenszene in Basel. Kein Text-Overlay im Standbild erkennbar (im Vorschaubild nicht lesbar, ob Untertitel eingeblendet werden).
+  - **Szene 2 (ca. 3–15 Sek., aus Kontext ableitbar, nicht verifizierbar):** Vermutlich Hook-Ansprache an lokale Unternehmer — sinngemäß, dass die eigene Website veraltet ist oder Kunden verloren gehen. Gesprochene Botschaft im Einzelnen aus dem Thumbnail nicht ableitbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Naheliegend ist ein kurzer Proof- oder Angebotsblock (Referenzen, lokale Nähe „aus Basel"), eventuell mit eingeblendeten Text-Overlays oder Schnitten zu Website-Screenshots — im vorliegenden Bildmaterial nicht sichtbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zur Kontaktaufnahme/Erstgespräch; konkrete CTA-Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Bewusst rohe UGC-Ästhetik ohne Studio-Licht oder Branding-Elemente, natürliche Tageslicht-Außenaufnahme, vertikales Mobile-Format angenommen. Authentizität steht im Vordergrund; kein Logo, keine Farbwelt erkennbar.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recJvA53TWfhv22ZK
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 1488803919555771
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Direktansprache auf der Strasse: deine Website kostet dich Kunden
+- Visual Style: UGC Talking-Head-Selfie-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für KMU
+- Target Audience: Selbstständige und KMU-Inhaber in Zürich mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 68.16
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 17
+- Klicks AT: 17
+- Ad-IDs: 120244829995030598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 68.16
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.89
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.89
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.57
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 22.87
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 22.87
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1915
+- Impressionen gesamt: 1915
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video (Format: Video, quadratischer Feed-Ausschnitt). Szene 1: Ein Mann mit Brille, dunkler Basecap und dunklem Kapuzenoberteil steht frontal in einer Stadtstrasse und spricht im Selfie-/Frontalkamera-Stil direkt in die Kamera; hinter ihm sind helle Häuserfassaden und ein graues Strassenschild zu erkennen, der Eindruck ist authentischer UGC-Stil ohne Studio. Im unteren Drittel läuft ein zweizeiliges weisses Untertitel-Overlay mit schwarzer Kontur, das im Vorschaubild nicht lesbar ist — es trägt vermutlich den gesprochenen Hook mit. Szenen 2-4 (aus dem Format „WebsiteOffer-V2-FormSwap" ableitbar, visuell nicht verifizierbar): Wahrscheinlich wechselt das Video von der Talking-Head-Ansprache zu Screenshots/Screenrecordings von Website-Beispielen oder einem Formular-Element („FormSwap" deutet auf den Wechsel des Anfrage-Formulars hin), jeweils mit Untertitel-Overlays. Die gesprochene Botschaft ist aus Caption und Kampagnenkontext („LOKAL | WEBSITE", Zielgruppe Zürich) ableitbar: Eine veraltete oder nicht konvertierende Website kostet lokale Anfragen, Make Marketing baut Websites, die messbar Anfragen bringen. Das Video endet voraussichtlich mit einem direkten CTA zur Terminbuchung bzw. zum Ausfüllen des Formulars. Exakter Wortlaut von Untertiteln und CTA ist aus dem kleinen Standbild nicht ableitbar.
+
+## 03.08. · Video · CH | PLATZ-1 SEO
+- id: recJy0RNTmbAuLNwO
+- Name: 03.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1364771709095581
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Wir bringen deine Firma auf Platz 1 bei Google in 60 Tagen, schriftlich garantiert." (Guarantee)
+- Visual Style: Talking Head, Text-on-Screen
+- Awareness Level: Solution Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Schweizer Unternehmer mit mindestens 10 Mitarbeitern, die wachsen und planbare Anfragen ueber die Webseite wollen
+- Offer / Funnel-Typ: Platz 1 bei Google in 60 Tagen mit schriftlicher Garantie, danach kurzes Gespraech mit individuellem Umsatzplan -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26
+- Ausgaben gesamt: 57.08
+- Ausgaben 30T: 56.95
+- Hookrate % 14T: 12.67
+- ROAS 14T: 0
+- CTR % 14T: 0.97
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 10
+- Klicks AT: 10
+- Ad-IDs: 120250707667020598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 56.95
+- Ausgaben 7T: 37.87
+- Ausgaben AT: 57.08
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.97
+- CTR % 30T: 0.97
+- CTR % 7T: 1.14
+- CTR % AT: 0.97
+- CTR Link % 14T: 0.39
+- CTR Link % 30T: 0.39
+- CTR Link % 7T: 0.49
+- CTR Link % AT: 0.39
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-03
+- Erstellt am: 2026-08-03
+- Funnel-Zweck: Lead
+- Hookrate %: 12.58
+- Hookrate % 30T: 12.67
+- Hookrate % 7T: 12.05
+- Hookrate % AT: 12.58
+- Impressionen 14T: 1026
+- Impressionen 30T: 1026
+- Impressionen 7T: 614
+- Impressionen AT: 1033
+- Impressionen gesamt: 1033
+- Klicks 14T: 10
+- Klicks 30T: 10
+- Klicks 7T: 7
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Wir bringen deine Firma in 60 Tagen bei Google auf Platz 1, schriftlich garantiert. Aufbau: Dominic stellt sich als Geschaeftsfuehrer von Make Marketing vor und zaehlt die Referenzen auf, Heeb & Enzler als Elektrobetrieb, Zemp Sanitaer aus Luzern mit 18 Mitarbeitern, Gregory GmbH als Gartenbaubetrieb aus Zuerich und AlpenEnergie als einer der groessten Solaranbieter der Schweiz mit ueber 50 Mitarbeitern, zusammen ueber 1 Million Franken Umsatz im letzten Monat. Close: Ab 10 Mitarbeitern unten eintragen, kurzes Gespraech, individueller Plan mit dem Zwei-Stufen-Sichtbarkeitssystem.
+
+## 19.12. · Static · BROAD
+- id: recK8YLwcazfK4vRh
+- Name: 19.12. · Static · BROAD
+- Creative-ID: 1055163633402457
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Wir finden neue Mitarbeiter für dein Unternehmen
+- Visual Style: Teamfoto mit Headline (Employer-Branding-Static)
+- Awareness Level: Problem Aware
+- Industry: Recruiting-Marketing / Personalgewinnung für KMU
+- Target Audience: Unternehmer und Geschäftsführer mit Personalbedarf
+- Offer / Funnel-Typ: Anzeigen-Leadgenerierung → Bewerberzufuhr
+- Kampagne: RECRUITING
+- Adset: BROAD
+- Ausgaben gesamt: 12
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 7
+- Klicks AT: 7
+- Ad-IDs: 120239184160840598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 12
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.57
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.57
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.12
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-19
+- Erstellt am: 2025-12-19
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 447
+- Impressionen gesamt: 447
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild (Hinweis: Das vorliegende Asset ist nur eine 64x64-px-Vorschau, daher sind Details eingeschränkt lesbar und Kleinteiliges kann nicht verifiziert werden). Der Aufbau ist zweigeteilt: oben ein Textbereich, darunter ein Gruppenfoto. Im oberen Bereich steht eine zweizeilige Headline in schwarzer Schrift, in der Vorschau sinngemäß als „Wir finden neue Mitarbeiter für dein Unternehmen" lesbar — die exakte Formulierung ist bei dieser Auflösung nicht hundertprozentig sicher ablesbar. Der untere, größere Bildbereich zeigt ein authentisch wirkendes Teamfoto: ca. fünf Personen, allesamt in schwarzen T-Shirts, stehen nebeneinander vor einer hellen Glasfassade bzw. Bürofront. Mehrere der Personen zeigen den Daumen nach oben als positives Signal. Die Personen wirken jung bis mittleren Alters, gemischt männlich/weiblich, freundlich in die Kamera blickend. Die Bildsprache ist bewusst ungestellt und sympathisch — „echtes Team" statt Stockfoto-Ästhetik. Ob ein CTA-Button, Logo oder weitere Textelemente (z. B. Subline) im Original enthalten sind, ist im Vorschaubild nicht lesbar. Farblich dominiert das helle Tageslicht der Glasfassade plus der Kontrast der schwarzen Shirts. Die Komposition verbindet Glaubwürdigkeit durch die echten Gesichter der Agentur mit einer klaren Nutzen-Headline für suchende Unternehmer.
+
+## 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- id: recKZ61BzrBkbR2h6
+- Name: 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- Creative-ID: 1659607478715959
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Spontane Ansprache unterwegs — persönlicher Webdesigner aus Basel statt anonymer Agentur
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor mit Gestik
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Basel)
+- Target Audience: lokale KMU und Selbstständige im Raum Basel
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS 2
+- Ausgaben gesamt: 14.32
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120242355353950598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 14.32
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.89
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.89
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.22
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-16
+- Erstellt am: 2026-03-16
+- Funnel-Zweck: Lead
+- Hookrate %: 18.44
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.44
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 450
+- Impressionen gesamt: 450
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme). Vorschau liegt nur als 64×64-Pixel-Standbild vor — Detailaussagen sind begrenzt.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit Brille, dunklem Haar und Bart (derselbe Sprecher wie in den Ads „V2"/„V5", Adset „MARC EVERS 2") spricht direkt in die Kamera. Er hebt die rechte Hand mit ausgestreckten Fingern — Gestik wirkt wie eine Aufzählung oder ein Betonen eines Punkts. Hintergrund: unscharfe urbane Szene mit Straße/Schienen und Himmel, Tageslicht, leicht bewölkt. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Die Handgeste deutet auf eine enumerative Ansprache hin („Drei Gründe, warum deine Website Kunden verliert …" o. ä.); wörtlicher Inhalt und etwaige Untertitel sind im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Wahrscheinlich kurzer Nutzen-/Lokalbezug-Block zum Webdesign-Angebot aus Basel; Schnitte, Overlays oder B-Roll sind aus dem Thumbnail nicht ableitbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zur Anfrage/Erstberatung; konkrete Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Fortsetzung der UGC-Serie — bewusst ungestellte, „unterwegs" wirkende Außenaufnahme ohne Branding, keine Farbwelt oder Logo erkennbar. Aktive Körpersprache (Gestik) als Aufmerksamkeits-Treiber im ersten Frame.
+
+## 12.06. · Video · BASEL 30KM | H3b_B1
+- id: recKnEm3INyxhRsgf
+- Name: 12.06. · Video · BASEL 30KM | H3b_B1
+- Creative-ID: 1546829100436900
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Vor-Ort-Ansprache in der Basler Altstadt — Webdesign von nebenan
+- Visual Style: Talking-Head UGC-Video on-location mit Text-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Raum Basel)
+- Target Audience: lokale Unternehmen im Umkreis 30 km um Basel
+- Offer / Funnel-Typ: Terminbuchung direkt / Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEO | BASEL 30KM | H3b_B1 | JUN26
+- Ausgaben gesamt: 156.9
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 84
+- Klicks AT: 84
+- Ad-IDs: 120248262136220598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 156.9
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 156.9
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 156.9
+- CTR %: 1.42
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.42
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.06
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-12
+- Erstellt am: 2026-06-12
+- Funnel-Zweck: Lead
+- Hookrate %: 29.34
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 29.34
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5933
+- Impressionen gesamt: 5933
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformat-Video (9:16) im Talking-Head-Stil, gedreht on-location. Das Vorschaubild zeigt einen Mann mit dunklen Haaren und Brille, der im Freien vor einem rotbraunen Sandsteingebäude mit Bögen steht — eine typische Basler Altstadt-Kulisse (erinnert an Rathaus-/Marktplatz-Architektur). Er spricht direkt in die Kamera, Einstellung ist eine mittlere Nahaufnahme. Über dem Bild liegen zwei Text-Overlays: oben eine mehrzeilige weiße Hook-Zeile mit dunkler Kontur, in der einzelne Wörter farblich (rötlich/gelb) hervorgehoben scheinen, und unten eine weitere weiße Textzeile (vermutlich Untertitel bzw. Kernbotschaft); der genaue Wortlaut ist im 64×64-px-Vorschaubild nicht lesbar. Der Ad-Name „H3b_B1" und das Adset „VIDEO | BASEL 30KM" kennzeichnen dies als Hook-Variante 3b im systematischen Creative-Testing — die On-Location-Kulisse unterstreicht den Lokalbezug („Webdesign aus Basel") schon in der ersten Sekunde. Aus dem Kampagnenkontext „LOKAL | WEBSITE" ist ableitbar, dass der Sprecher lokale Unternehmen direkt adressiert, ein Website-Problem benennt oder das Angebot vorstellt und zum Abschluss einen klaren CTA ausspricht (vermutlich Terminbuchung oder Anfrage). Die bewusst authentische Außenaufnahme mit Umgebungslicht wirkt wie UGC und soll scroll-stoppende Nähe erzeugen. Weitere Szenen, B-Roll, exakte Overlay-Texte und der CTA-Wortlaut sind aus dem Vorschaubild nicht ableitbar; Musik und Schnittfolge sind im Standbild nicht erkennbar.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recKzFNnDzupiJRIp
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 2068472504089164
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Neue Website in 24 Stunden — gefällt sie nicht, zahlst du 0 CHF, mit Schweizer Lokalbezug
+- Visual Style: Helles Offer-Layout mit Skyline-Foto und Bulletpoints
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige mit lokalem Bezug (Zürich/Basel), die eine neue Website brauchen
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 10.36
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 3
+- Klicks AT: 3
+- Ad-IDs: 120248515960750598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 10.36
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.8
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.8
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.2
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 167
+- Impressionen gesamt: 167
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf hellem, fast weißem Grund mit dunkelblauen Diagonal-Formen in den Bildecken als grafischer Rahmung. Auf der rechten Seite läuft ein vertikales Foto der Zürcher Skyline mit den markanten Grossmünster-Türmen über die volle Bildhöhe — als Schweizer Lokalbezug und Vertrauensanker. Links oben steht die mehrzeilige dunkle Headline: „Wir bauen dir deine neue Website in 24 Stunden. Gefällt sie dir nicht, zahlst du 0 CHF." — gut lesbar und zentraler Hook des Ads. Darunter folgen vier Bullet-Zeilen mit runden Check-Icons; der Kleintext ist im 64×64-px-Vorschaubild nicht sicher entzifferbar, vermutlich Leistungs- und Vertrauensargumente. Unten abschließend sitzt ein goldfarbener (ocker/gelber) CTA-Button; dessen Beschriftung ist im Vorschaubild nicht entzifferbar. Die Farbwelt kombiniert helles Weiß mit tiefem Navy und einem warmen Gold-Akzent — seriös, hochwertig, mit lokalem Anker. Der Stil ist die dritte Design-Variante der „Offer Bullets"-Serie (nach Creme-Hell in ad-06 und Navy-Dark in ad-07), ergänzt um das Skyline-Foto statt Device-Mockups. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar.
+
+## 25.09. · Static · LEADS
+- id: recL3GuL3EReIc2fh
+- Name: 25.09. · Static · LEADS
+- Creative-ID: 866911392461863
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Geo-Targeting als Hook: Wir suchen Unternehmer in der Schweiz
+- Visual Style: Typografie-Textkarte (Schwarz auf Weiß)
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer Unternehmer, Inhaber kleiner und mittlerer Unternehmen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WIR SUCHEN | LEADS
+- Ausgaben gesamt: 39.35
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 20
+- Klicks AT: 20
+- Ad-IDs: 120234432237630598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 39.35
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.15
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.15
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.63
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-25
+- Erstellt am: 2025-09-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1745
+- Impressionen gesamt: 1745
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-29
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad mit hellem, fast weißem Hintergrund. Im oberen Bildbereich steht linksbündig eine große, fette schwarze Headline in zwei Zeilen: „Wir suchen Unternehmer / in der Schweiz" — der Ortsbezug trägt die gesamte Anzeige. Darunter folgt ein kleinerer Textblock aus mehreren kurzen Zeilen; sein Wortlaut ist im Vorschaubild nicht lesbar, vermutlich eine Erläuterung des Angebots und/oder die Handlungsaufforderung. Unterhalb des Textblocks ist eine rote Zeile bzw. ein roter Akzent angedeutet, aber in der Miniatur nicht entzifferbar. Es gibt kein Foto, kein Mockup und keine Illustration — das Creative ist eine reine Text-Anzeige. Die Farbwelt ist extrem reduziert: Schwarz auf Weiß mit einem möglichen roten Akzent. Der Stil erinnert an eine schlichte klassische Suchanzeige bzw. Inserats-Karte. Branding-Elemente wie Logo oder CTA-Button sind in der vorliegenden Auflösung nicht erkennbar. Die Komposition ist nüchtern und direkt: viel Weißraum, Typografie im oberen Drittel, Rest der Fläche weitgehend leer. Der Hook funktioniert ausschließlich über die Kombination aus direkter Ansprache („Wir suchen …") und geografischer Eingrenzung („… in der Schweiz").
+
+## 04.03. · Static · Videograf
+- id: recL5aZxrC1rrJNNQ
+- Name: 04.03. · Static · Videograf
+- Creative-ID: 1401324604618181
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Bis zu CHF 30/h für Fotos & Videos – kein Profi nötig
+- Visual Style: UGC-Foto (Story-Format) mit Text-Overlays
+- Awareness Level: Problem Unaware
+- Industry: Recruiting Agentur (Fotograf/Videograf)
+- Target Audience: Studenten & Schüler in Basel, Hobby-Fotografen/Filmer
+- Offer / Funnel-Typ: Direkte Bewerbung
+- Kampagne: RECRUITING
+- Adset: Videograf
+- Ausgaben gesamt: 6.44
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 19
+- Klicks AT: 19
+- Ad-IDs: 120241853852560598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 6.44
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 5.28
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 5.28
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 4.72
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-04
+- Erstellt am: 2026-03-04
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 360
+- Impressionen gesamt: 360
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-04
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bildanzeige im Hochformat 9:16 (Story-Placement, Ad „IG 2"). Hintergrundmotiv ist ein ungestelltes Foto aus der Perspektive der Rückbank eines Autos: Zwei Männer sitzen vorne, links der Fahrer in heller Jeansjacke, rechts der Beifahrer mit Brille und dunklem Mantel, der auf ein Smartphone tippt. Durch die Windschutzscheibe ist eine städtische Strasse mit Tramgleisen bei Tageslicht zu sehen – der Look wirkt wie ein authentischer Behind-the-Scenes-Schnappschuss der Agentur. Darüber liegen vier schwarze, abgerundete Textboxen mit weisser Bold-Schrift, Schlüsselwörter sind jeweils rot hervorgehoben. Box 1 (oben): „Studenten & Schüler in Basel aufgepasst!" („Studenten & Schüler" rot). Box 2 (Mitte): „Wir suchen jemanden für Fotos und Videos bei unserer Marketing-agentur." („Fotos und Videos" rot). Box 3: „Bis zu CHF 30/h. Kein Profi nötig." Box 4 (unten, CTA): „Jetzt bewerben 👇". Die Farbwelt kombiniert die natürlichen, leicht entsättigten Tageslichtfarben des Fotos mit dem harten Schwarz-Weiss-Rot-Kontrast der Textebene. Ein Logo ist nicht erkennbar; Branding entsteht nur über die konsistente Rot-Akzent-Sprache. Der Textaufbau folgt klar der Logik Hook (lokale Direktansprache) → Angebot → Einwand-Killer (kein Profi nötig, Lohn) → CTA.
+
+## 03.06. · Video · Dominic 20 Jahre
+- id: recLhP3FSvB0GxaBl
+- Name: 03.06. · Video · Dominic 20 Jahre
+- Creative-ID: 1981583532460510
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: 20 Jahre Erfahrung als Vertrauensbeweis der Person hinter der Agentur
+- Visual Style: Face-to-Camera Story-Video mit Text-Overlays
+- Awareness Level: Product Aware
+- Industry: Marketing-Agentur (Eigenwerbung MAKE)
+- Target Audience: Retargeting-Publikum, das MAKE/die Agentur bereits kennt
+- Offer / Funnel-Typ: Vertrauensaufbau ohne direktes Angebot (Nurturing)
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 09 | Dominic 20 Jahre
+- Ausgaben gesamt: 51.31
+- Ausgaben 30T: 10.11
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120247607307060598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.31
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.11
+- CTR % 30T: 0.22
+- CTR % 7T: 0
+- CTR % AT: 0.11
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 13.55
+- Hookrate % 30T: 12.64
+- Hookrate % 7T: 0
+- Hookrate % AT: 13.55
+- Impressionen 14T: 0
+- Impressionen 30T: 1836
+- Impressionen 7T: 0
+- Impressionen AT: 7991
+- Impressionen gesamt: 7991
+- Klicks 14T: 0
+- Klicks 30T: 4
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Face-to-Camera-Video im Hochformat (9:16), das sich auf eine Person fokussiert: Dominic, ein Mann mit dunklen Haaren und markanter dunkler Brille, spricht direkt und aus nächster Nähe in die Kamera — die Kameraeinstellung ist eine enge Nahaufnahme (Kopf und Brille füllen fast den gesamten Frame). Über dem Bild liegt ein mehrzeiliges Text-Overlay in weißer Schrift mit schwarzer Umrandung/Schatten; die mittlere Zeile „vor 10 Jahren" ist deutlich größer gesetzt und klar lesbar, die Zeilen darüber und darunter sind im kleinen Vorschaubild nicht lesbar. Das Overlay-Muster deutet auf den typischen Storytelling-Aufbau hin, bei dem gesprochene Kernbegriffe zeitgleich als Text eingeblendet werden, damit das Video auch ohne Ton funktioniert. Aus dem Ad-Namen „AD 09 | Dominic 20 Jahre" und dem lesbaren Overlay ist ableitbar, dass Dominic rückblickend seine Geschichte erzählt — vermutlich Startpunkt vor ca. 10 Jahren, Entwicklung bis heute, insgesamt 20 Jahre Erfahrung im Business. Die Kampagne (NURTURING | RETARGETING | BEKANNTHEIT) legt nahe, dass das Video bewusst persönlich und ohne harten Verkauf aufgebaut ist: Erzählung von Anfängen, Wendepunkten und Learnings, um Vertrauen zur Person hinter der Agentur aufzubauen. Der Hintergrund ist im Vorschaubild nicht erkennbar, wirkt aber wie eine neutrale Innenraumumgebung. Wie das Video genau endet (CTA, Verweis auf Profil/Website) ist aus den vorhandenen Daten nicht ableitbar; bei Retargeting-Nurturing üblich wäre ein weicher CTA wie „Folge mir" oder „Schreib mir". Hintergrundmusik, Schnittfolge und exakte Overlay-Reihenfolge sind im Vorschaubild nicht erkennbar.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recLmalkT4vkqIrJY
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 1336994518347345
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Ansprache unterwegs — Webdesigner direkt vor städtischer Kulisse
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige mit Website-Bedarf
+- Offer / Funnel-Typ: Anfrage über Formular (FormSwap-Test)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 95.7
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 31
+- Klicks AT: 31
+- Ad-IDs: 120244829861110598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 95.7
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.98
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.98
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.69
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 22.64
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 22.64
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3167
+- Impressionen gesamt: 3167
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille und dunkler Basecap spricht im Freien in die Kamera — Selfie-/Talking-Head-Perspektive. Er trägt einen dunklen Hoodie bzw. eine dunkle Jacke mit sichtbarem Trageriemen (Rucksack oder Tasche), was den „unterwegs"-Eindruck verstärkt. Hintergrund: Wohnhäuser und blauer Himmel, Tageslicht, ruhige städtische Kulisse. Ein Text-Overlay ist im Standbild nicht sichtbar (ggf. erscheinen Untertitel erst im Videoverlauf — aus dem Standbild nicht ableitbar). Szene 1 (Hook, ca. 0–3 s): Persönliche Direktansprache im Gehen oder Stehen; aus der Creative-Variante („WebsiteOffer-V2-FormSwap") ist ableitbar, dass Zürcher Unternehmen mit Website-Bedarf adressiert werden, wahrscheinlich mit einer Frage oder Feststellung zur aktuellen Website. Die Alltags-Optik (Riemen, Hoodie, Strasse) positioniert den Sprecher als greifbaren lokalen Ansprechpartner statt als anonyme Agentur. Szene 2 (Mittelteil): Pitch des Website-Angebots der Make Marketing GmbH — aus der Einordnung ableitbar: neue oder besser konvertierende Website für KMU. Szene 3 (Ende): CTA zur Anfrage; „FormSwap" deutet auf getestete Formular-Varianten hin, der genaue CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: authentisches UGC-Video ohne sichtbare Grafikeinblendungen, natürlicher Tageslicht-Look, eine durchgehende Kameraeinstellung. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 20.02. · Static · BROAD | META FORMULAR – Kopie
+- id: recMO0BdludPrZ9Gz
+- Name: 20.02. · Static · BROAD | META FORMULAR – Kopie
+- Creative-ID: 1515600383466284
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Wir suchen Schweizer KMU mit mehr als 5 Mitarbeitern, die eine Website wollen, die Kunden beeindruckt
+- Visual Style: Schild-Foto / Hand-Lettering-Karte
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU (Schweiz)
+- Target Audience: Schweizer KMU mit mehr als 5 Mitarbeitern, die eine neue Website wollen
+- Offer / Funnel-Typ: Meta-Leadformular / Projektanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 351.07
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 261
+- Klicks AT: 261
+- Ad-IDs: 120241290911380598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 351.07
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 20.65
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 20.65
+- CTR %: 1.23
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.23
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.98
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 21156
+- Impressionen gesamt: 21156
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 17
+- Leads gesamt: 17
+- Letzte Auslieferung: 2026-07-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Creative im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar) in heller, freundlicher Bildwelt. Zentrales Bildelement ist eine blonde Frau in weißem Shirt, die ein weißes Schild auf Brusthöhe vor die Kamera hält; ihr Gesicht ist am oberen Bildrand angeschnitten, der Fokus liegt klar auf dem Schild. Auf dem Schild stehen fünf Zeilen schwarzer Text, ein Wort ist rot hervorgehoben (vermutlich „WEBSITE"). Die Lesart aus dem Thumbnail lautet: „Wir suchen Schweizer KMU mit mehr als 5 Mitarbeitern, die eine Website wollen, die Kunden beeindruckt." — einzelne Wörter sind im Vorschaubild unscharf und nicht mit Sicherheit lesbar. Der Text funktioniert als Selbstqualifizierung: Wer die Kriterien erfüllt, soll sich direkt angesprochen fühlen. Die Optik ist schlicht wie ein Studio- oder Büro-Foto, ohne weitere grafische Elemente; das Schild mit seiner handschriftlich wirkenden, direkten Ansprache trägt das gesamte Creative. Die Farbwelt ist hell und clean, Weiß dominiert, Schwarz für den Text, Rot als einzelner Akzent. Ein sichtbares MAKE-Logo oder ein separater CTA-Button ist im Thumbnail nicht erkennbar. Der Stil erinnert an das bekannte „Mann/Frau mit Schild"-Meme-Format und wirkt bewusst ungestellt und authentisch statt werblich.
+
+## 18.12. · Static · BROAD 1
+- id: recMVm7hxxpP0bly1
+- Name: 18.12. · Static · BROAD 1
+- Creative-ID: 2581047468941336
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Jede Woche neue Anfragen — ohne Portale, ohne Kaltakquise
+- Visual Style: Beratungs-Foto mit Marker-Headline
+- Awareness Level: Problem Aware
+- Industry: Online-Marketing / Neukundengewinnung für Handwerk (Agentur-Eigenwerbung)
+- Target Audience: Handwerker und lokale Betriebe, Inhaber, die ohne Portale und Kaltakquise Kunden gewinnen wollen
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 1
+- Ausgaben gesamt: 0.25
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120239130914270598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.25
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 12
+- Impressionen gesamt: 12
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-23
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) in hellem, freundlichem Look mit klarer Zwei-Zonen-Komposition. Die obere Zone besteht aus einer weißen Fläche, auf der eine dreizeilige Headline in schwarzer Marker-/Handschrift-Optik steht: „Jede Woche neue Anfragen. Ohne Portale, ohne Kaltakquise."; das Wort „Anfragen" ist türkis hinterlegt und bildet den visuellen Fokus. Die beiden „Ohne"-Ausschlüsse adressieren gezielt die größten Frustquellen der Zielgruppe (Lead-Portale, Kaltakquise). Die untere Zone zeigt ein Foto einer Beratungssituation in einem hellen Wohnraum: Ein bärtiger Mann in dunkelblauem Polo sitzt an einem Holztisch gegenüber einer Frau, beide blicken gemeinsam auf Unterlagen bzw. ein Tablet — die Szene visualisiert das Ergebnis des Angebots, nämlich echte Auftrags- und Beratungsgespräche mit interessierten Kunden. Ein separater CTA-Button ist auf dem Creative selbst nicht erkennbar bzw. im Vorschaubild nicht lesbar. Farbwelt: helles Weiß und warme Holztöne, kombiniert mit dem Türkis der Markenfarbe als einzigem Farbakzent. Bildsprache: ruhig, seriös, alltagsnah — keine aggressive Werbeästhetik, sondern eine Szene, in die sich Handwerker hineinversetzen können. Das Creative kombiniert damit Versprechen (Headline) und Ergebnis-Visualisierung (Beratungsfoto) in einem aufgeräumten Layout.
+
+## 17.02. · Video · BROAD | LP
+- id: recMfQZgovxxw2XWJ
+- Name: 17.02. · Video · BROAD | LP
+- Creative-ID: 2833396103667760
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du willst eine Website, die deine Arbeitsqualität widerspiegelt
+- Visual Style: Talking-Head-Video (Außendreh, UGC-Stil)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker, Dienstleister und Selbstständige mit schwacher Website
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | LP
+- Ausgaben gesamt: 45.76
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 46
+- Klicks AT: 46
+- Ad-IDs: 120241192843340598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 45.76
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.65
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.65
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.09
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 20.66
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 20.66
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1738
+- Impressionen gesamt: 1738
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein Mann mit Brille, dunkler Jacke und rot-kariertem Hemd spricht direkt in die Kamera; der helle, unscharfe Hintergrund wirkt wie ein Außendreh bei Tageslicht (evtl. Baustellen- oder Hofumgebung). Die Nahaufnahme und der direkte Blick erzeugen einen persönlichen, authentischen Eindruck – passend zur Handwerker-Zielgruppe.
+  Gesprochene Kernbotschaft (aus Ad-Name „Du willst Website" und Titel „Deine Arbeit ist besser als deine Website" ableitbar): Der Sprecher greift den Wunsch der Zielgruppe nach einer neuen bzw. besseren Website direkt auf und verknüpft ihn mit dem Stolz auf die eigene Arbeitsqualität.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Problem-Zuspitzung – die aktuelle Website schreckt Kunden ab bzw. spiegelt die Qualität des Betriebs nicht wider; dadurch gehen Anfragen verloren.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Angebot von Make Marketing: eine Website, die zur Arbeitsqualität passt und messbar Anfragen bringt.
+  Schluss/CTA: Text-Overlays und der konkrete CTA am Ende sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Talking Head im Außenbereich als Authentizitäts-Signal, keine sichtbaren Grafikelemente oder Bauchbinden im Standbild.
+
+## 18.12. · Static · BROAD 1
+- id: recN4G43JBlHvsOZs
+- Name: 18.12. · Static · BROAD 1
+- Creative-ID: 1445804853732008
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Meme-Humor als Scroll-Stopp für das Website-Anfragen-Problem
+- Visual Style: Meme (Simpsons-Panel)
+- Awareness Level: Problem Aware
+- Industry: Webdesign/Marketing KMU
+- Target Audience: KMU-Inhaber/Handwerker, meme-affine Feed-Nutzer
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 1
+- Ausgaben gesamt: 9.85
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120239131103920598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 9.85
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.44
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.44
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.96
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 627
+- Impressionen gesamt: 627
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-23
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad (Format laut Metadaten Bild); die lokal vorhandene Vorschau ist nur 64×64 Pixel groß und daher unscharf — die Panel-Texte sind im Vorschaubild nicht lesbar. Erkennbar ist ein mehrteiliges Meme-Grid im Comic-Layout, offenbar mit 2×2 Panels: Jedes Panel enthält Screenshots von Simpsons-Figuren in typischen gelben Cartoon-Farben, darüber oder darunter je kurze Textzeilen im klassischen Meme-Stil (weiße/dunkle Schrift). Die Figuren scheinen in Interaktion gezeigt zu werden — typisches Reaktions-Meme-Format, das eine kleine Szene mit Pointe erzählt. Unter dem Meme-Grid läuft ein türkiser Balken über die Bildbreite, vermutlich ein CTA-Button in der MAKE-Markenfarbe — der einzige klar erkennbare Branding-Bezug. Der genaue Witz, die übertragene Botschaft und der CTA-Wortlaut sind auf dieser Auflösung nicht lesbar — aus den vorhandenen Daten nicht ableitbar. Farbwelt: helles, buntes Cartoon-Design (Simpsons-Gelb, helle Panel-Hintergründe) plus Türkis-Akzent unten. Bildsprache: bewusster Bruch mit den seriösen Typo-Ads derselben Kampagne — Humor und Meme-Kultur als Scroll-Stopp und Aufmerksamkeits-Hook, die eigentliche Werbebotschaft wird über Caption und CTA transportiert. Die Anzeige ist aktuell pausiert.
+
+## 11.03. · Video · BROAD BASEL | MARC EVERS
+- id: recNuSPGEMU4o9rCS
+- Name: 11.03. · Video · BROAD BASEL | MARC EVERS
+- Creative-ID: 1680785683088169
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direktansprache mit Betonungs-Geste; konkreter Hook im Standbild nicht ableitbar
+- Visual Style: UGC Selfie-Video (Talking Head draussen)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU in Basel und Umgebung, Inhaber
+- Offer / Funnel-Typ: Kontaktanfrage / Beratungscall
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS
+- Ausgaben gesamt: 20.62
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 18
+- Klicks AT: 18
+- Ad-IDs: 120242143416840598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 20.62
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.8
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.8
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.7
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-11
+- Erstellt am: 2026-03-11
+- Funnel-Zweck: Lead
+- Hookrate %: 23.78
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 23.78
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1001
+- Impressionen gesamt: 1001
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Videoad (Ad „V4") im UGC-Selfie-/Talking-Head-Stil; das einzige verfügbare Standbild liegt nur als 64×64-px-Thumbnail vor, daher sind Szenenablauf, Overlays und gesprochene Botschaft grösstenteils nicht verifizierbar. Szene 1 (aus dem Standbild ableitbar): Ein Mann mit Brille und Bart filmt sich im Selfie-Stil draussen auf einer Strasse; im Hintergrund sind Gebäude und Strassenraum erkennbar. Er hebt den Zeigefinger nach oben – eine Betonungs-Geste, die typischerweise den zentralen Punkt oder die Kern-These des Videos unterstreicht („Und genau darum…"). Aus dem Kampagnenkontext („LOKAL | WEBSITE | FEB26", Titel „Webdesign aus Basel") ist ableitbar, dass die Botschaft lokale KMU auf die Webdesign-Dienstleistung der Agentur anspricht. Wahrscheinlicher Aufbau (nicht verifizierbar): Einstieg mit provokanter These oder Frage zur Firmenwebsite, dann Argumente bzw. Angebot, am Ende CTA zur Kontaktaufnahme bzw. zum Beratungscall. Text-Overlays oder Untertitel sind auf dem Standbild nicht erkennbar. Wie das Video endet (Endkarte, CTA-Einblendung), ist aus dem Thumbnail nicht ableitbar. Der Sprecher ist derselbe wie in den Schwester-Varianten V1 und V5 – offenbar eine Video-Serie mit demselben Gesicht und wechselnden Aussen-Locations in Basel.
+
+## 24.02. · Video · META FORMULAR
+- id: recObVVoQNefaFBkK
+- Name: 24.02. · Video · META FORMULAR
+- Creative-ID: 4160794704182959
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: 50–200 Besucher pro Monat auf deiner Website — und die meisten gehen wieder
+- Visual Style: UGC Talking-Head-Video (Outdoor)
+- Awareness Level: Problem Aware
+- Industry: Webdesign für KMU/Handwerk
+- Target Audience: Inhaber kleiner lokaler Betriebe mit Website-Traffic ohne Anfragen
+- Offer / Funnel-Typ: Meta-Leadformular (Anfrage direkt)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 9.46
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 3
+- Klicks AT: 3
+- Ad-IDs: 120241513591480598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 9.46
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.77
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.77
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.26
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 18.67
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.67
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 391
+- Impressionen gesamt: 391
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Standbild ist nur 64×64 Pixel groß und zeigt einen Mann mit Brille und Bart in dunkler Steppjacke, der im Freien vor strahlend blauem Himmel in die Kamera spricht — halbnahe Talking-Head-Einstellung bei Tageslicht, UGC-Stil. Aus der Caption ableitbarer Einstieg: Der Sprecher eröffnet mit konkreten Zahlen — „Jeden Monat landen Leute auf deiner Website. 50, 100, vielleicht 200.“ Dann folgt die Wendung: „Die meisten gehen wieder“ — ohne anzufragen, ohne sich zu melden. Die vermutliche Dramaturgie: Der Sprecher rechnet vor, wie viele potenzielle Aufträge monatlich verloren gehen, weil die Website Besucher nicht überzeugt. Anschließend dürfte er die Gründe benennen (veraltete Seite, kein Vertrauen, kein klarer nächster Schritt) und den Website-Relaunch von MAKE als Lösung positionieren. Ob Text-Overlays mit den Zahlen (z. B. „50–200 Besucher“) eingeblendet werden, ist aus dem Standbild nicht ableitbar. Der Schluss-CTA — vermutlich Verweis auf das Meta-Leadformular — ist im Vorschaubild nicht lesbar. Der Ad-Name „Champions League“ ist ein interner Codename und nicht Teil der sichtbaren Botschaft.
+
+## 29.10. · Video · Video-Ad aus dem eigenen Konto MAKE (Ad „Kei Rappe
+- id: recP393503SuQBOIh
+- Name: 29.10. · Video · Video-Ad aus dem eigenen Konto MAKE (Ad „Kei Rappe
+- Creative-ID: 2529717217401268
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Direktansprache: In 14 Tagen online — Termin reservieren
+- Visual Style: Talking-Head-Video (Direktansprache im Innenraum)
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmer, die schnell eine neue Website brauchen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WEBSITE OFFER 3.0 | 29.10.
+- Ausgaben gesamt: 355.97
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 195
+- Klicks AT: 195
+- Ad-IDs: 120236271021000598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 355.97
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 177.99
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 177.99
+- CTR %: 1.4
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.4
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.82
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-29
+- Erstellt am: 2025-10-29
+- Funnel-Zweck: Lead
+- Hookrate %: 11.82
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 11.82
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 13964
+- Impressionen gesamt: 13964
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2025-10-31
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad im Talking-Head-Format; die folgende Beschreibung basiert auf dem Standbild und dem Kampagnenkontext — der tatsächliche Szenenverlauf ist aus dem Einzelbild nicht vollständig ableitbar. Szene 1 (durch das Standbild belegt): Ein Mann mit Brille und Bart in dunklem Poloshirt steht in einem hellen, modernen Innenraum und spricht direkt in die Kamera; er gestikuliert mit erhobenem Arm Richtung Zuschauer — ein aktiver, anpackender Einstieg. Das Format ist hochkant (9:16), in der Feed-Darstellung mit schwarzen Balken oben und unten. In der Bildmitte ist eine kleine helle Einblendung bzw. ein Overlay angedeutet, dessen Inhalt im Vorschaubild nicht lesbar ist. Aus dem Anzeigentitel ist die gesprochene Kernbotschaft ableitbar: „In 14 Tagen online" — das Versprechen einer neuen Website in zwei Wochen. Naheliegende weitere Dramaturgie (nicht im Bild belegt): kurzes Problem-Setup (alte oder fehlende Website), dann das Angebot mit Zeitversprechen. Der Schluss ist über den Titel belegt: ein direkter CTA „Termin reservieren", vermutlich kombiniert mit dem Hinweis auf den Button unter dem Video. Ob Untertitel, Text-Overlays oder Schnitte im weiteren Verlauf vorkommen, ist aus den vorhandenen Daten nicht ableitbar. Der Ad-Name „Kei Rappe" (schweizerdeutsch für „kein Rappen/Geld") deutet auf einen Kosten- bzw. Preis-Hook im gesprochenen Skript hin; die genaue Einbindung ist aus dem Bild nicht verifizierbar. Stil insgesamt: authentischer, UGC-naher Selbstler-Clip statt Hochglanz-Produktion — persönlich und direkt.
+
+## 18.12. · Static · BROAD 1
+- id: recPDyGGsT1KtCP5j
+- Name: 18.12. · Static · BROAD 1
+- Creative-ID: 1166949591822013
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Pain-Point-Zitat in Ich-Form: Unplanbarkeit der Anfragen
+- Visual Style: Minimalistische Typo-Anzeige
+- Awareness Level: Problem Aware
+- Industry: Webdesign Handwerk
+- Target Audience: Handwerksbetriebe, deren Website keine Anfragen bringt
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 1
+- Ausgaben gesamt: 22.2
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 18
+- Klicks AT: 18
+- Ad-IDs: 120239131161150598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 22.2
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.51
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.51
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.95
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 717
+- Impressionen gesamt: 717
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-23
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Image-Ad im Hochformat (1080×1920), rein typografisch, ohne Foto. Komposition: komplett weißer Hintergrund mit großzügigem Weißraum; der Textblock sitzt in der unteren Bildhälfte, linksbündig. Die Headline ist als direktes Zitat in Ich-Form gesetzt, beginnend mit einem großen schwarzen Anführungszeichen, in fetter schwarzer Grotesk über vier Zeilen: „Ich weiß nicht wie / viele Anfragen / nächsten Monat / kommen." Die Zeile „viele Anfragen" liegt dabei in weißer Schrift auf einem türkisen Balken — der einzige Farbakzent im Text und der Blickfang der Anzeige, der den Schmerzbegriff optisch isoliert. Darunter in deutlich kleinerer schwarzer Schrift die Zielgruppen-Spiegelung über zwei Zeilen: „Handwerker, die 2025 immer noch keine Anfragen von Ihrer Website bekommen." Weit unten, zentriert und frei stehend, das MAKE-Logo in Türkis/Blau (Wortmarke „MAKE" mit stilisiertem K). Farbwelt: Weiß, Schwarz, Marken-Türkis. Stil: minimalistische Swiss-Typo-Anzeige; kein CTA-Button auf dem Bild, der Impuls entsteht über die Selbsterkennung im Zitat. Bildsprache: bewusst nüchtern und textlastig — die Anzeige funktioniert wie ein Gedanke, den der Betrachter „schon mal hatte". Branding-Elemente: MAKE-Logo und Türkis als Agentur-Akzentfarbe.
+
+## 18.12. · Static · BROAD 2
+- id: recPoqhljdtA2iXWo
+- Name: 18.12. · Static · BROAD 2
+- Creative-ID: 834891636124527
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Jede Woche automatisch neue Kundenanfragen aus der eigenen Region
+- Visual Style: Foto-Background mit Marker-Headline und CTA-Button
+- Awareness Level: Problem Aware
+- Industry: Online-Marketing / Local SEO (Agentur-Eigenwerbung)
+- Target Audience: lokale Betriebe und Handwerker, Inhaber
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 2
+- Ausgaben gesamt: 13.27
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 32
+- Klicks AT: 32
+- Ad-IDs: 120239131230090598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 13.27
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 6.44
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 6.44
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 6.04
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 497
+- Impressionen gesamt: 497
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-23
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) im Stil einer „Notification"-Karte mit durchgehendem Fotohintergrund. Das Hintergrundfoto zeigt einen Mann in hellem Polohemd im Außenbereich vor einer grünen Hecke — authentische, alltagsnahe Bildsprache statt Studio-Look; das Foto ist zur besseren Lesbarkeit der Texte leicht abgedunkelt. Oben links ist ein kleines Google-„G"-Logo platziert, das den Kanal der Neukundengewinnung (Google) signalisiert. Darüber bzw. mittig steht eine dreizeilige Headline in weißer Handschrift-/Marker-Optik: „Jede Woche neue Anfragen aus deiner Region", wobei das Wort „Anfragen" (bzw. ein Kernwort) mit türkiser Markierung hervorgehoben ist. Darunter befindet sich eine kleinere Subline, deren Wortlaut im Vorschaubild nicht vollständig lesbar ist. Am unteren Rand sitzt ein durchgehend türkiser CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist (vermutlich ein Handlungsimpuls wie „Mehr erfahren" oder „Jetzt Anfragen sichern"). Farbwelt: natürliches Grün des Fotos kombiniert mit Weiß und dem Türkis der Markenfarbe. Das Gesamtkonzept arbeitet mit dem Notification-/Automatik-Gedanken: Neue Kundenanfragen trudeln jede Woche von allein ein — der Betrachter soll sich vorstellen, diese Anfragen künftig selbst zu erhalten.
+
+## 11.03. · Video · BROAD BASEL | MARC EVERS
+- id: recQQWDUbhR8UuHzI
+- Name: 11.03. · Video · BROAD BASEL | MARC EVERS
+- Creative-ID: 1464163215407096
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: nicht ableitbar – Vorschaubild zeigt nur dunklen Frame
+- Visual Style: Video (Vorschau-Frame fast vollständig schwarz)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU in Basel und Umgebung, Inhaber
+- Offer / Funnel-Typ: Kontaktanfrage / Beratungscall
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS
+- Ausgaben gesamt: 17.05
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 8
+- Klicks AT: 8
+- Ad-IDs: 120242143366580598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 17.05
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.35
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.35
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.85
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-11
+- Erstellt am: 2026-03-11
+- Funnel-Zweck: Lead
+- Hookrate %: 13.87
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 13.87
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 591
+- Impressionen gesamt: 591
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Videoad (Ad „V3") aus der Webdesign-Serie der Agentur; das einzige verfügbare Standbild liegt nur als 64×64-px-Thumbnail vor und zeigt eine fast vollständig schwarze, dunkel rötlich-braune Fläche – vermutlich ein Dunkel-, Übergangs- oder Fade-Frame aus dem Video. Auf diesem Frame sind keine Personen, Motive, Texte oder Logos erkennbar. Damit sind Szenenablauf, Hook, Text-Overlays, gesprochene Botschaft und CTA aus dem vorhandenen Bildmaterial nicht ableitbar. Aus dem Kampagnenkontext („LOKAL | WEBSITE | FEB26", Titel „Webdesign aus Basel", Adset „VIDEOS | BROAD BASEL | MARC EVERS") lässt sich nur der thematische Rahmen ableiten: lokale Ansprache von KMU zum Thema Webdesign aus Basel. Da die Schwester-Varianten V1, V4 und V5 allesamt Talking-Head-Selfie-Videos mit demselben Sprecher sind, ist ein ähnlicher Aufbau wahrscheinlich – das ist jedoch eine Kontext-Annahme und kein verifizierter Befund dieses Creatives. Wahrscheinlicher Aufbau (nicht verifizierbar): Hook zur Firmenwebsite, Angebot der Agentur, CTA zur Kontaktaufnahme. Eine belastbare Szenenbeschreibung erfordert das Original-Video oder ein aussagekräftigeres Thumbnail. Bewusst nichts erfunden: Dieser Abschnitt dokumentiert primär, was nicht ableitbar ist.
+
+## 29.10. · Video · Video-Ad aus dem eigenen Konto MAKE (Ad „Kurz & kn
+- id: recQWJtBxds9mpUxR
+- Name: 29.10. · Video · Video-Ad aus dem eigenen Konto MAKE (Ad „Kurz & kn
+- Creative-ID: 25022127214113892
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Kurze Direktansprache mit rot markiertem Keyword „WEBSITE" im Overlay
+- Visual Style: Talking-Head-Video mit Text-Overlay
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmer mit akutem Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WEBSITE OFFER 3.0 | 29.10.
+- Ausgaben gesamt: 44.24
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 24
+- Klicks AT: 24
+- Ad-IDs: 120236270888620598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 44.24
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.63
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.63
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.75
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-29
+- Erstellt am: 2025-10-29
+- Funnel-Zweck: Lead
+- Hookrate %: 14.16
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.16
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1469
+- Impressionen gesamt: 1469
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-31
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad im Talking-Head-Format mit Text-Overlay; die Beschreibung basiert auf dem Standbild und dem Kampagnenkontext — die exakte Szenenfolge ist aus dem Einzelbild nicht vollständig ableitbar. Szene 1 (durch das Standbild belegt): Ein Mann mit Brille und Bart in dunklem Poloshirt steht in einem hellen Innenraum, zeigt mit ausgestrecktem Arm direkt in die Kamera und spricht den Zuschauer an — ein konfrontativ-direkter Einstieg, der Aufmerksamkeit erzwingt. Quer über die Bildmitte läuft ein weißes Text-Overlay, in dem das Wort „WEBSITE" rot hervorgehoben ist; die vollständige Zeile ist im Vorschaubild nicht sicher entzifferbar (vermutlich die Kernaussage des Videos). Das Format ist hochkant (9:16), in der Feed-Darstellung mit schwarzen Balken oben und unten. Der Ad-Name „Kurz & knapp" legt ein sehr kurzes Skript nahe: direkte Ansprache, Angebot in wenigen Sätzen, sofortiger CTA — ohne lange Story. Aus dem Anzeigentitel ableitbar ist die gesprochene Botschaft: neue Website in 14 Tagen, abgeschlossen mit der Aufforderung „Termin reservieren". Ob weitere Overlays, Untertitel oder Szenenwechsel folgen, ist aus den vorhandenen Daten nicht ableitbar. Stil: UGC-naher Selbstler-Clip mit gestischer Direktansprache und farbig akzentuiertem Keyword-Overlay — bewusst simpel und schnell konsumierbar. Der Zeigegestus plus Overlay bildet den Hook: Der Zuschauer fühlt sich persönlich gemeint.
+
+## 02.05. · Static · KÜCHENSTUDIO
+- id: recQWwpTVVzx5Clkq
+- Name: 02.05. · Static · KÜCHENSTUDIO
+- Creative-ID: 1481723556766648
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: 10 qualifizierte Küchen-Anfragen in 30 Tagen – und du zahlst 0 CHF
+- Visual Style: UGC Selfie-Static mit Text-Overlays
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Schweizer Küchenstudios
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO
+- Ausgaben gesamt: 23.3
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120245383186400598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 23.3
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.21
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.21
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.11
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-02
+- Erstellt am: 2026-05-02
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 932
+- Impressionen gesamt: 932
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild im 9:16-Story-Format (900×1600 px), aufgebaut wie ein UGC-Founder-Selfie mit gestapelten Text-Overlays. Motiv: Ein junger Mann mit dunklen lockigen Haaren, Brille und schwarzem T-Shirt (Fitness-Armband am linken Handgelenk) fotografiert sich selbst aus leichter Froschperspektive in einem modernen Küchenshowroom; er zwinkert verschmitzt in die Kamera und zeigt mit dem rechten Zeigefinger nach oben auf die Textboxen — die Geste führt den Blick gezielt zum Angebot. Hintergrund: Hochwertiger Showroom mit weisser Marmor-Kochinsel, dunklen Holzfronten, Regalen mit Materialmustern, Edelstahl-Einbaugeräten und sichtbarer Lüftungsdecke — dient als Branchen-Kontext und Vertrauensanker. Text-Overlays von oben nach unten: 1) schwarze Box mit zweifarbigem Text „Küchenstudios aufgepasst!" (orange + weiss), 2) grosse weisse Box „Wir bringen dir 10 qualifizierte Küchen-Anfragen in den nächsten 30 Tagen…" (schwarz, Wort „Küchen-Anfragen" orange hervorgehoben), 3) orange Box „…und du zahlst uns 0 CHF" (weiss), 4) schwarze Leiste im unteren Bilddrittel „3/3 Plätze frei diesen Monat" (weiss) als Verknappungs-Element. Farbwelt: Schwarz-Weiss-Orange-Schema der Overlays kontrastiert mit dem hellen, natürlich wirkenden Showroom; Bildsprache bewusst ungeschliffen und authentisch im IG-Story-Look. Kein sichtbares Logo oder Firmen-Branding; die Anzeige wirkt wie ein persönlicher Story-Post.
+
+## 17.02. · Video · CA & LLA | LP
+- id: recQfJxlF7FlSNepm
+- Name: 17.02. · Video · CA & LLA | LP
+- Creative-ID: 1254618713265396
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du willst eine Website? Direkte Du-Ansprache als Einstieg
+- Visual Style: Talking-Head-Video (Außenaufnahme, Selfie-Nähe)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister (Retargeting: Custom Audiences & Lookalikes)
+- Offer / Funnel-Typ: Landingpage (Website-Angebot via LP)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CA & LLA | LP
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241196113990598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head, Außenaufnahme). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau und identisch mit dem Vorschaubild des Creatives 1461267042079471 (gleiche Ad-Familie, Variante mit Custom-Audience-/Lookalike-Targeting und Landingpage-Ziel statt Broad/Meta-Formular); Text-Overlays und Szenendetails sind nur eingeschränkt verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart, Brille und dunkler Jacke spricht direkt in die Kamera; Hintergrund ist eine Außenszene mit blauem Himmel und einer hellen Gebäudekulisse, vermutlich urbanes Umfeld bei Tageslicht. Er scheint einen Gegenstand in der Hand zu halten (möglicherweise ein Smartphone — bei dieser Auflösung nicht sicher bestimmbar). Die Kameraperspektive wirkt nah und persönlich, fast wie ein selbstgefilmtes Video. Text-Overlays/Captions sind im Vorschaubild nicht eindeutig lesbar. Wahrscheinlicher Szenenablauf (aus Ad-Name „Du willst Website" und Kampagnenkontext ableitbar, nicht aus dem Bild verifizierbar): (1) Hook: direkte Du-Ansprache, z. B. „Du willst eine Website, die dir Anfragen bringt?". (2) Problem: Die aktuelle Website spiegelt nicht die Qualität der eigenen Arbeit wider (Kampagnenbotschaft „Deine Arbeit ist besser als deine Website"). (3) Lösung: MAKE baut Websites speziell für lokale Handwerker und Dienstleister. (4) Abschluss: CTA auf eine Landingpage (Adset nennt „LP"); die exakte CTA-Formulierung und das LP-Ziel sind aus dem vorliegenden Material nicht ableitbar. Die Außenaufnahme mit natürlicher Beleuchtung und der unperfekte, authentische Look unterstützen den UGC-Charakter und senken die Werbeabwehr. Da diese Variante auf Custom Audiences und Lookalikes läuft, spricht sie eine bereits vorberührte bzw. ähnliche Zielgruppe an — der direkte Einstieg ohne lange Erklärung passt zu dieser wärmeren Audience.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recQxqaZoHGcdlAxp
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 985490200948192
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Neue Website in 24 Stunden — gefällt sie nicht, zahlst du 0 CHF
+- Visual Style: Dark-Mode Offer-Layout mit Device-Mockups
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige, die schnell eine neue Website brauchen, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0.36
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248515955690598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.36
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 17
+- Impressionen gesamt: 17
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf dunkelblauem, fast marinefarbenem Hintergrund — die dunkle Schwester-Variante von ad-06. Oben steht eine mehrzeilige Headline in heller, handschriftlich wirkender Schrift: „Wir bauen dir deine neue Website in 24 Stunden.", wobei „24 Stunden" in leuchtendem Blau farblich hervorgehoben ist und als Blickfang dient. Direkt darunter in kleinerer Schrift die Risiko-Umkehr: „Gefällt sie dir nicht, zahlst du 0 CHF." Die untere Bildhälfte ist zweispaltig: Links eine Bullet-Liste mit vier Zeilen und kleinen Icons; der Kleintext ist im 64×64-px-Vorschaubild nicht sicher entzifferbar, vermutlich Leistungs- und Vertrauensargumente. Rechts stehen Laptop- und Tablet-Mockups, die eine dunkel gestaltete Beispiel-Website zeigen (Details im Vorschaubild nicht lesbar). Unten abschließend ein auffälliger limettengrüner CTA-Button über die Bildbreite; die Beschriftung ist im Vorschaubild nicht entzifferbar. Die Farbwelt ist dunkel und modern: Navy-Grund, weiße/blaue Typografie, limettengrüner Akzent als Komplementärkontrast. Der Stil wirkt techiger und hochwertiger als die helle Creme-Variante ad-06, inhaltlich aber identisch: Direct-Offer mit 24-Stunden-Versprechen und Null-Risiko-Garantie. Branding-Elemente (MAKE-Logo) sind im Vorschaubild nicht eindeutig erkennbar.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: recRAROucu6Gwhah0
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 1330398285725418
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: 2026 hat deine Firma endlich eine Website, die zu ihr passt
+- Visual Style: Typografie-Ad
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und lokale Betriebe, deren Website nicht zum Anspruch passt
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 1.83
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120248677395120598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.83
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 8.7
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 8.7
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.17
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 46
+- Impressionen gesamt: 46
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches, fast rein typografisches Ad im vertikalen Format auf warmem, cremefarbenem Grund (Beige/Off-White). Das Bild wird von einer sehr großen, fetten schwarzen Headline dominiert, die über fünf Zeilen läuft: „2026 hat deine Firma eine Website, die zu ihr passt." Die Jahreszahl „2026" steht prominent am Zeilenanfang und zieht den Blick sofort an. Darunter steht eine kleinere, schmal gesetzte Subline über zwei Zeilen — im Vorschaubild nur ansatzweise entzifferbar, sinngemäß geht es um schnelle Umsetzung und eine Preis-/Risiko-Zusage (u. a. scheinen „24 Stunden" und „0 Franken" auf, der genaue Wortlaut ist nicht lesbar). Unten links sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar. Es gibt keine Fotomotive, keine Device-Mockups und keine weiteren Grafikelemente — die Werbewirkung entsteht komplett aus Typografie, Zeilenbruch und dem Rot-Schwarz-Kontrast auf Creme. Die Hierarchie ist streng: Jahres-Vorsatz-Headline → Zusatz-Subline → Button. Stil: minimalistisch, viel Weißraum, Editorial-Typografie. Stimmung: ruhiger, selbstbewusster Vorsatz-Appell — konkret und ohne Hochglanz. Ein rotes Akzentelement unten links (Button) ist das einzige Farbelement neben der Schrift; ein separates Logo ist im Vorschaubild nicht erkennbar.
+
+## 19.03. · Video · BROAD ZÜRICH | MARC EVERS
+- id: recRVqAQWA5BZ8FzK
+- Name: 19.03. · Video · BROAD ZÜRICH | MARC EVERS
+- Creative-ID: 976160381458868
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Dynamische, freundliche Direktansprache mit Handgeste — Website-Angebot ohne Umweg ins Formular
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor mit Kappe
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Zürich)
+- Target Audience: lokale KMU und Selbstständige im Raum Zürich mit Website-Bedarf
+- Offer / Funnel-Typ: Lead-Formular direkt (FormSwap, ohne Landingpage)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | MARC EVERS
+- Ausgaben gesamt: 1225.99
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 306.5
+- Leads 14T: 0
+- Termine AT: 8
+- Klicks gesamt: 671
+- Klicks AT: 671
+- Ad-IDs: 120242544149150598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1225.99
+- CPA: 306.5
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 94.31
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 94.31
+- CTR %: 1.24
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.24
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.68
+- Conversions gesamt: 4
+- Erste Auslieferung: 2026-03-19
+- Erstellt am: 2026-03-19
+- Funnel-Zweck: Lead
+- Hookrate %: 34.19
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 34.19
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 53902
+- Impressionen gesamt: 53902
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 13
+- Leads gesamt: 13
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 10.6
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 153.25
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 13000
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 4
+- Verlustgruende: Timing · 2
+Sonstiges · 2
+Unqualifiziert · 1
+Keine Antwort · 1
+Preis/Budget · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme). Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit dunkler Basecap und Brille (mutmaßlich derselbe Sprecher der Serie, Adset „MARC EVERS", hier Zürich) spricht breit lächelnd direkt in die Kamera. Die rechte Hand ist erhoben und geöffnet — wirkt wie eine Begrüßungs- oder Stopp-Geste Richtung Linse. Hintergrund: unscharfe Straßenszene mit Häusern und Himmel, Tageslicht. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Die energische Geste plus Lächeln deutet auf einen aufmerksamkeitsstarken Eröffnungs-Hook hin (direkte Ansprache von Zürcher Unternehmern, z. B. „Braucht dein Business eine neue Website?"); wörtliche Botschaft und Untertitel sind im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Der Kampagnenname „WebsiteOffer-V2-FormSwap" legt nahe, dass das Angebot konkret benannt und direkt zum Ausfüllen eines Lead-Formulars motiviert wird (kein Landingpage-Umweg); Zwischenszenen, Overlays oder B-Roll sind aus dem Thumbnail nicht ableitbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA „Formular ausfüllen" bzw. native Lead-Form-Erklärung; genaue Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Lockerere, dynamischere Variante der UGC-Serie (Kappe, große Geste, breites Lächeln) — optimistische Tonalität statt Problem-Dramatik; Tageslicht, kein Branding/Logo erkennbar. Mit Abstand höchster Spend der Batch-Dateien; lang laufende Hauptvariante in Zürich.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: recRblecAySwT7Dll
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 1548229243366845
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Webdesign aus Basel – Gründe, warum ein lokaler Anbieter der bessere ist.
+- Visual Style: UGC Selfie-Video
+- Awareness Level: Solution Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: Betriebe in Basel mit Website-Bedarf, die lokale Anbieter bevorzugen
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 117.76
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 44
+- Klicks AT: 44
+- Ad-IDs: 120248680239740598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 117.76
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.1
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.1
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.7
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 31.96
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 31.96
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4018
+- Impressionen gesamt: 4018
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Selfie-Video (9:16), gedreht im Freien vor dem roten Basler Rathaus mit Arkaden — die Lokalkulisse trägt den „aus Basel"-Winkel sofort. Das Vorschaubild zeigt einen Mann mit Brille und Bart im Selfie-Abstand, der direkt in die Kamera spricht und dabei eine Hand hebt, als zähle er gerade Punkte auf — eine Geste, die typischerweise eine Aufzählungs-Struktur einleitet. Oben im Bild liegt ein dreizeiliges Text-Overlay in weißen Boxen; der Wortlaut ist auf dem 64-px-Thumbnail nicht sicher lesbar, wirkt aber wie eine komprimierte These oder Punkteliste. Der wahrscheinliche Ablauf, aus Bildgeste und Kontext ableitbar (nicht verifizierbar): (1) Hook: lokale Positionierung „Webdesign aus Basel". (2) Aufzählung: 2–3 Gründe oder Leistungen (z. B. von Hand gebaut, echte Fotos, schnelle Umsetzung), jeweils mit passenden Text-Einblendungen oder Website-Screenshots. (3) Vertrauensbeweis anhand einer Beispiel-Website. (4) Abschluss-CTA Richtung Anfrage oder Terminbuchung. Tonalität: direkt, strukturiert, überzeugend. Konkrete Schnittfolge, B-Roll-Einspieler und finaler CTA-Screen sind aus dem Standbild nicht ableitbar. Der Ad-Name „H1bB1 – Kopie" kennzeichnet eine duplizierte Skalierungsvariante desselben Hooks.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: recRottIvzIZqrp4Z
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 2225788951504891
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Eine Website, die du jedem Kunden gern zeigst
+- Visual Style: Studio-Mockup-Collage
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige, Inhaber mit veralteter Website
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248677380690598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat mit hellem, fast weißem Hintergrund. Oben steht groß und fett in Schwarz die Headline „Eine Website, die du jedem Kunden gern zeigst." über zwei Zeilen. Darunter eine kleinere, schmal gesetzte Subline in einer Zeile — der genaue Wortlaut ist im Vorschaubild nicht lesbar. Unter der Subline sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar (vermutlich Handlungsaufforderung zur Anfrage). Die untere Bildhälfte füllt ein einzelnes, großes Laptop-Mockup mit leichtem Schattenwurf auf den hellen Grund. Auf dem Laptop-Screen läuft eine dunkel gestaltete Beispiel-Website: auffällig ist ein roter Header-/Hero-Bereich oben, darunter helle Textblöcke mit Headline und Absätzen, ein roter Website-Button sowie rechts ein Foto mit zwei Männern in dunklen Anzügen (Business-/Team-Szene). Die Texte auf der Website-Mockup sind im Vorschaubild nicht lesbar. Der Kontrast aus hellem Ad-Hintergrund und dunklem Premium-Website-Mockup dient als Qualitätsbeweis: So hochwertig könnte die eigene Website aussehen. Bildsprache: sauberer Studio-Produktfoto-Look, minimalistisch, Fokus klar auf dem Screen. Logo oder Branding-Elemente sind im Vorschaubild nicht erkennbar.
+
+## 25.06. · Video · CH_breit_28-65
+- id: recS43vqCqiCZAyVo
+- Name: 25.06. · Video · CH_breit_28-65
+- Creative-ID: 1414255370757689
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: 2 bis 4 neue Kunden pro Monat allein über Google-Sichtbarkeit
+- Visual Style: UGC-/POV-Video mit Text-Overlay (Smartphone in dunkler Szene)
+- Awareness Level: Solution Aware
+- Industry: SEO / Local Marketing für Dienstleister
+- Target Audience: lokale Dienstleister und KMU in der Schweiz, die über Google Neukunden gewinnen wollen
+- Offer / Funnel-Typ: Leadgenerierung SEO (Ergebnisversprechen → Anfrage)
+- Kampagne: MAKE_SEO_Leads_CH_2026-06
+- Adset: CH_breit_28-65
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249266410280598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-/POV-Stil mit dunkler, atmosphärischer Bildwelt; als Beleg liegt ein 64×64-px-Standbild vor. Im unteren Bildbereich des Standbilds ist eine Hand zu sehen, die ein Smartphone hält – die Szene wirkt wie eine dunkle Lounge-/Bar- oder Abendszene mit warmen, unscharfen Lichtpunkten im Hintergrund (Bokeh). Oben im Frame steht ein großes, helles Text-Overlay in zwei Zeilen: „2 bis 4 neue Kunden in den" – die Fortsetzung der Zeile ist im Vorschaubild nicht lesbar (aus Kontext ableitbar vermutlich „… nächsten 30 Tagen" o. ä.). Darunter steht eine kleinere Subline bzw. ein Untertitel-Streifen, dessen Wortlaut im Vorschaubild nicht lesbar ist. Die Textfarbe ist hell (weiß/creme) auf dunklem Grund, was den Hook sofort lesbar macht. Der Einstieg folgt damit dem klassischen Ergebnis-Hook: Ein konkretes Zahlenversprechen (2–4 Neukunden) wird in der ersten Sekunde als Overlay eingeblendet, während das Smartphone-Motiv unterbewusst „Anfragen auf dem Handy" kommuniziert. Aus Ad-Name („MAKE_SEO_V2") und Kampagne („MAKE_SEO_Leads_CH_2026-06") ist ableitbar, dass das Video danach erklärt, wie MAKE über SEO bzw. bessere Google-Rankings genau diese Kundenanfragen erzeugt; die konkreten Folgeszenen, gesprochenen Botschaften und B-Roll sind aus dem Standbild nicht ableitbar. Der Schluss-CTA (z. B. „Jetzt anfragen", Lead-Formular oder Terminbuchung) ist im Vorschaubild nicht erkennbar und müsste aus dem Originalvideo verifiziert werden. Weitere Text-Overlays oder Branding-Elemente (Logo, Farbwelt der Agentur) sind auf dem 64×64-px-Beleg nicht sicher identifizierbar.
+
+## 20.02. · Static · BROAD | META FORMULAR – Kopie
+- id: recSCDPacO6AAHou2
+- Name: 20.02. · Static · BROAD | META FORMULAR – Kopie
+- Creative-ID: 1965275757715125
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Keine Aufträge? — deine Website ist das Problem
+- Visual Style: Dark-Design Pain-Point-Karte mit Stockfoto
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU-Inhaber und Selbstständige mit Auftragsflaute über die Website
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 7.79
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120241290911370598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 7.79
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.94
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.94
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.47
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 213
+- Impressionen gesamt: 213
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Pain-Point-Creative im dunklen Look (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Der Hintergrund ist fast schwarz, wodurch die weißen und roten Elemente stark kontrastieren. Oben steht eine zweizeilige Headline in fetten Großbuchstaben: die erste Zeile „KEINE" in Weiß, die zweite Zeile „AUFTRÄGE?" in Rot — die Schmerzfrage dominiert den oberen Bildbereich. Direkt darunter steht eine kleinere weiße Zeile, vermutlich eine Subline; sie ist im Vorschaubild nicht lesbar. Die Bildmitte füllt ein Foto zweier Männer an einem Tisch in gedämpfter, ernster Atmosphäre: Einer telefoniert angespannt, der andere sitzt mit verschränkten Armen daneben und wirkt ratlos — die Bildsprache inszeniert die Situation „das Telefon klingelt nicht / keine Anfragen". Unten schließt das Layout mit einem breiten roten Button bzw. Balken als CTA ab; dessen Beschriftung ist im Vorschaubild nicht lesbar. Die Farbwelt ist konsequent Schwarz-Weiß-Rot, dramatisch und aufmerksamkeitsstark. Ein sichtbares MAKE-Logo oder weiteres Branding ist im Thumbnail nicht erkennbar. Der Aufbau folgt dem klassischen Muster Headline (Schmerz) → Subline → Stimmungsbild → CTA und richtet sich an Unternehmer, die akut unter fehlenden Anfragen leiden.
+
+## 07.09. · Video · INTEREST | cal.com LP
+- id: recSILU56TcUF6iTP
+- Name: 07.09. · Video · INTEREST | cal.com LP
+- Creative-ID: 1452183939406431
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du willst eine geile Website — sichere dir jetzt deinen Termin
+- Visual Style: Talking-Head-Video mit rotem Text-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer und Selbstständige mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt (cal.com LP)
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | INTEREST | cal.com LP
+- Ausgaben gesamt: 71.32
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 31
+- Klicks AT: 31
+- Ad-IDs: 120233669762340598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 71.32
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.56
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.56
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.38
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-07
+- Erstellt am: 2025-09-07
+- Funnel-Zweck: Lead
+- Hookrate %: 8.45
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 8.45
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5564
+- Impressionen gesamt: 5564
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-07
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im Talking-Head-Format. Das Standbild (Vorschaubild, sehr klein, 64×64 px) zeigt einen bärtigen Mann in schwarzem T-Shirt, der direkt in die Kamera spricht, vor einer hellen, neutralen Wand. Quer über das Bild legt sich ein rotes Text-Overlay in zwei Zeilen: oben „eine geile" in kleinerer Schrift, darunter „WEBSITE" in großen, fetten Großbuchstaben. Die Bildsprache ist bewusst direkt und ungeschliffen — Nahaufnahme, Augenkontakt mit der Kamera, wie ein persönliches Ansprechen im Feed. Aus Titel („Jetzt Termin für deine neue Website sichern") und Adset-Kontext („VIDEO | INTEREST | cal.com LP") ist ableitbar: Der Sprecher adressiert Unternehmer und Selbstständige, die eine neue Website brauchen, stellt das Website-Angebot der Agentur MAKE vor und leitet über zur Aufforderung, direkt einen Termin über die cal.com-Landingpage zu buchen. Weitere Text-Overlays, Schnitte oder Zwischenszenen sind aus dem Standbild nicht ableitbar — im Vorschaubild nicht lesbar bzw. nicht sichtbar. Das Video endet erwartbar mit einem klaren CTA „Termin sichern".
+
+## 18.12. · Static · BROAD 3
+- id: recSOw16SX5E4KgE2
+- Name: 18.12. · Static · BROAD 3
+- Creative-ID: 1605741527260538
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: 48 Stunden nach Start schon die ersten Anfragen — Social Proof mit Zeitwert
+- Visual Style: Testimonial-Karte mit Portraitfoto
+- Awareness Level: Solution Aware
+- Industry: Online-Marketing / Neukundengewinnung (Agentur-Eigenwerbung)
+- Target Audience: lokale Betriebe und Dienstleister, Inhaber, die schnell neue Anfragen wollen
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 3
+- Ausgaben gesamt: 3.29
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120239131229040598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.29
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.52
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.52
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.76
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 132
+- Impressionen gesamt: 132
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) im Testimonial-Layout. Die obere Bildhälfte zeigt ein Portraitfoto eines lächelnden, glatzköpfigen Mannes mit Bart in schwarzem Poloshirt vor hellem, neutralem Hintergrund — freundlicher, vertrauenswürdiger Gesichtsausdruck, Blick Richtung Kamera; der Ad-Name „Musti" legt nahe, dass es sich um einen Kunden oder ein Teammitglied handelt. Der untere Bildbereich geht in einen dunklen Verlauf über, auf dem das Testimonial-Zitat steht. Das Zitat erscheint in Anführungszeichen, zweizeilig, in weißer Marker-/Handschrift-Optik: „48h nach Start die ersten Anfragen", wobei die Worte „ersten Anfragen" türkis hervorgehoben sind und als Kernaussage sofort ins Auge fallen. Darunter steht eine kleine Zeile, die im Vorschaubild nicht vollständig lesbar ist — vermutlich die Namens- oder Quellenangabe des Zitierenden, die dem Testimonial Glaubwürdigkeit verleiht. Am unteren Rand sitzt ein türkiser CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist. Farbwelt: helles Portrait oben, dunkler Verlauf unten, Weiß-Türkis-Typografie in Markenfarbe. Das Layout folgt dem klassischen Social-Proof-Muster: Gesicht schafft Vertrauen, das konkrete Zeitversprechen („48h") erzeugt den Impuls „das will ich auch".
+
+## 18.12. · Static · BROAD 2
+- id: recSTS2atYS0Dfc0v
+- Name: 18.12. · Static · BROAD 2
+- Creative-ID: 1564611738214134
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Konkurrenz macht hübsche Websites, wir machen klingelnde Telefone
+- Visual Style: Minimalistische Typo-Anzeige
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing KMU
+- Target Audience: KMU-Inhaber, die über ihre Website Anfragen gewinnen wollen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 2
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120239131230080598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Image-Ad im Hochformat (1080×1920), rein typografisch, ohne Foto oder Illustration. Das Motiv ist identisch mit der Schwester-Ad Creative-ID 888398750430960 (gleiche Bildquelle, zweite Ad-Variante in der Kampagne). Komposition: komplett weißer Hintergrund mit viel Weißraum; der Textblock sitzt in der unteren Bildhälfte, linksbündig. Headline in großer, fetter schwarzer Grotesk über drei Zeilen: „Die meisten machen Websites. Wir machen" — die vierte Zeile „klingelnde Telefone." liegt in weißer Schrift auf einem durchgehend türkisen Balken als stärkstem Blickfang. Darunter in kleinerer, schmaler schwarzer Schrift zwei Subline-Zeilen: „Seiten mit einem Ziel: Anfragen." und „Plus Werbung, die die richtigen Leute bringt." Weit unten, zentriert und frei stehend, das MAKE-Logo in Türkis/Blau (Wortmarke „MAKE" mit stilisiertem K). Farbwelt: Weiß, Schwarz und Marken-Türkis — sonst keine Farben. Stil: minimalistische Swiss-Typo-Anzeige mit klarem Kontrast-Hook; kein CTA-Button auf dem Bild selbst, der Handlungsimpuls entsteht über Headline und Ad-Caption. Bildsprache: bewusster Verzicht auf Website-Screenshots — verkauft wird das Ergebnis (Anfragen, klingelnde Telefone), nicht die Leistung. Branding-Elemente: MAKE-Logo und Türkis als Agentur-Akzentfarbe.
+
+## 25.06. · Static · CH_breit_28-65
+- id: recScb3qJGmcj6ZAJ
+- Name: 25.06. · Static · CH_breit_28-65
+- Creative-ID: 3590134551139799
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Branchen-Callout: Als Elektrobetrieb 2 bis 4 Neukunden in 60 Tagen
+- Visual Style: Werkstatt-Fotografie mit Website-Mockup (Dark Mode, Schwarz/Gelb)
+- Awareness Level: Solution Aware
+- Industry: Elektrobetriebe / Elektrohandwerk
+- Target Audience: Inhaber und Geschäftsführer von Elektrobetrieben in der Schweiz
+- Offer / Funnel-Typ: Leadgenerierung SEO (Ergebnisversprechen → Anfrage)
+- Kampagne: MAKE_SEO_Leads_CH_2026-06
+- Adset: CH_breit_28-65
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249265312130598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges statisches Werbebild (ca. 9:16) in dunkler, bodenständiger Handwerks-Ästhetik mit Schwarz-Gelb-Farbwelt – die „Werkstatt"-Variante der Elektro-Branchenkampagne. Die Szene zeigt eine düster ausgeleuchtete Werkstatt: Im rechten Hintergrund ist ein offener Schaltschrank mit mehreren Reihen Sicherungsautomaten und farbigen Kabelsträngen (orange, blau, schwarz) zu sehen. Im Vordergrund liegt eine dunkle Werkbank, auf der typische Elektriker-Werkzeuge arrangiert sind: eine aufgerollte Kabelrolle, ein Schraubendreher mit rot-gelbem Griff, eine Zange und weitere Kleinteile. Mittig rechts steht ein aufgeklappter silberner Laptop, auf dessen Bildschirm eine Beispiel-Website für einen Elektrobetrieb läuft – mit Menüleiste (u. a. „Startseite, Leistungen, Über uns, Projekte, Kontakt"), der Headline „Kompetente Lösungen für Ihre Elektroprojekte", einer Subline „Installation. Prüfung. Wartung. Ihr zuverlässiger Partner." und einem gelben Button „Jetzt anfragen" – das Mockup visualisiert das versprochene Endprodukt. Oben links steht die große Headline in zwei Farben: „Du führst einen" in Weiß und „Elektrobetrieb?" in kräftigem Gelb. Darunter sitzt eine gelbe Parallelogramm-Box mit schwarzer Botschaft: „Dann bringen wir dir 2 bis 4 Neukunden in 60 Tagen." Links darunter drei Leistungszeilen, jeweils mit gelbem Kreis-Icon und Trennstrich: Google-„G"-Icon mit „Bei Google auf Platz 1", Website-Icon mit Häkchen und „Professionelle Seite, die Kunden überzeugt" sowie Kamera-Icon mit „Eigenes Fotoshooting, sodass Besucher dir vertrauen". Den unteren Abschluss bildet eine diagonale gelbe Linie mit einem schwarzen Blitz-Symbol in der Mitte – stilistische Klammer zum Elektro-Handwerk. Ein expliziter CTA-Button außerhalb des Website-Mockups ist nicht vorhanden; die Conversion läuft über die Meta-Anzeigen-Schaltfläche/Caption. Stimmung: dunkel, maskulin, nah am Handwerk-Alltag der Zielgruppe.
+
+## 25.06. · Static · STATICS | CH
+- id: recSnXzfebNqiMVpA
+- Name: 25.06. · Static · STATICS | CH
+- Creative-ID: 1543976324103513
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: 2 bis 4 Neukunden in 60 Tagen durch Platz 1 bei Google
+- Visual Style: Studio-Personenfoto mit Text-Overlay (Dark Mode, Markenfarben)
+- Awareness Level: Solution Aware
+- Industry: SEO & Webdesign für lokale Dienstleister
+- Target Audience: lokale Dienstleister und Inhaber in der Schweiz, die über Google Neukunden gewinnen wollen
+- Offer / Funnel-Typ: Platz sichern / begrenztes Kontingent → Anfrage
+- Kampagne: MAKE_SEO_Leads_CH_2026-06 | NATIONAL | WEBSITE | JUN26
+- Adset: CH_breit_28-65 | STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249266748540598, 120249265274110598
+- Angereichert: Ja
+- Anzahl Ads: 2
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges statisches Werbebild (ca. 9:16) im Dark-Mode-Look, komplett in den MAKE-Markenfarben Schwarz/Orange-rot gehalten. Komposition: rechte Bildhälfte dominiert ein Mann (vermutlich Inhaber/Teammitglied), der frontal in die Kamera blickt – er trägt Brille, eine schwarze Kappe mit orangefarbenem „MAKE"-Schriftzug und eine schwarze Softshell-Jacke mit orangefarbenem „MAKE"-Brustlogo; die Arme sind selbstbewusst verschränkt. Der Hintergrund ist ein dunkler, modern wirkender Studio-/Büroraum mit einer vertikalen rot-orangen Lichtleiste am rechten Bildrand, die Tiefe und hochwertige Ästhetik erzeugt. Linke Bildhälfte trägt die komplette Textebene: Oben die große, mehrzeilige Headline „So bringen wir dir 2 bis 4 Neukunden in 60 Tagen" – „So bringen wir dir" und „in" sind weiß, die Zahlenelemente „2 bis 4", „Neukunden" und „60 Tagen" in kräftigem Rot-Orange hervorgehoben; darunter eine kurze horizontale Akzentlinie in Orange. Darunter folgen drei Bulletpoints, jeweils mit weißem Häkchen in rundem orange-rotem Kreis-Icon: „Platz 1 bei Google in deiner Region", „Professionelle Website, die Kunden überzeugt" und „Eigenes Fotoshooting, damit Besucher dir vertrauen" – alle in weißer, klar lesbarer Sans-Serif. Unten links sitzt als Abschluss ein breiter, abgerundeter CTA-Button in Rot-Orange mit weißer Aufschrift „Jetzt Platz sichern", der Knappheit/Kontingent suggeriert. Die Bildsprache kombiniert persönliches Vertrauen (echte Person in Markenkleidung) mit einem konkreten Ergebnisversprechen und drei Leistungsnachweisen; Branding-Elemente sind Kappen- und Jackenlogo sowie die durchgängige Schwarz-Orange-Farbwelt. Die Anzeige läuft im Adset „STATICS | CH | QUALI UMSATZ", ist also auf qualifizierte, umsatzstarke Anfragen in der Schweiz ausgelegt.
+
+## 15.04. · Video · BROAD LUZERN | MARC EVERS
+- id: recSx65kWMUESg0Yv
+- Name: 15.04. · Video · BROAD LUZERN | MARC EVERS
+- Creative-ID: 937232152263986
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Lokale Nähe: Webdesigner direkt aus Luzern, am Seeufer
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale Unternehmen in Luzern, die eine Website brauchen oder erneuern wollen
+- Offer / Funnel-Typ: nicht eindeutig ableitbar, vermutlich Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD LUZERN | MARC EVERS
+- Ausgaben gesamt: 16.17
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120244277267950598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 16.17
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 29.23
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 29.23
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 633
+- Impressionen gesamt: 633
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-04-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit schwarzer Basecap, Brille und dunkler Jacke (wirkt wie Camouflage-Muster) spricht in Selfie-Perspektive direkt in die Kamera, der Arm sichtbar nach vorne zur Kamera ausgestreckt. Die Kulisse ist ein Seeufer: hinter ihm Holzdalben bzw. -pfähle im Wasser, am gegenüberliegenden Ufer Gebäude – stimmig zur Luzerner Lokalisierung der Kampagne. Die Bildsprache ist bewusst authentisch und unpoliert, klassischer UGC-Look ohne Studio-Inszenierung. Text-Overlays, Untertitel oder Logos sind im Standbild nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Ad-Name „Webdesign aus Luzern", Variante V3):** Die Ad dürfte mit dem Sprecher als visuellem Hook starten, der Zuschauende in Luzern direkt anspricht – die lokale Kulisse am Seeufer unterstreicht den Lokalitäts-Bezug. Danach dürfte er sich als Webdesigner bzw. Teil der Agentur aus Luzern vorstellen und das Kernthema benennen: neue oder bessere Website für lokale Unternehmen. Plausibel ist ein Pain-Point-Block (Website veraltet, Kunden finden einen nicht) gefolgt vom Lösungsversprechen. Der Clip endet vermutlich mit einem CTA Richtung Website-Anfrage oder Beratung. Gesprochener Wortlaut, Zwischenschnitte, Text-Overlays und der exakte CTA: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 14.05. · Static · CH BROAD
+- id: recTHktHh6HR5rlpe
+- Name: 14.05. · Static · CH BROAD
+- Creative-ID: 1732841694388208
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Du hast ein Maklerbüro? 10 Eigentümer-Anfragen in 14 Tagen für 0 CHF
+- Visual Style: Text-Creative auf dunklem Grund (Statement-Ad)
+- Awareness Level: Solution Aware
+- Industry: Immobilien / Maklerbüros
+- Target Audience: Inhaber von Maklerbüros in der Schweiz
+- Offer / Funnel-Typ: Gratis-Pilot (0 CHF) → Anfrage/Bewerbung
+- Kampagne: TESTKUNDEN
+- Adset: MAKLERBÜRO PILOT | CH BROAD
+- Ausgaben gesamt: 112.16
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 7
+- Klicks gesamt: 75
+- Klicks AT: 75
+- Ad-IDs: 120246173374030598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 112.16
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 9.35
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 9.35
+- CTR %: 1.41
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.41
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.81
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-14
+- Erstellt am: 2026-05-14
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5317
+- Impressionen gesamt: 5317
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 12
+- Leads gesamt: 12
+- Letzte Auslieferung: 2026-06-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 16.02
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 7
+Unqualifiziert · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Text-Creative im Story-/Reels-Hochformat (9:16, 1500×2666 px) ganz ohne Foto – ein reines Statement-Ad auf dunkelgrau-schwarzem, leicht strukturiertem Verlauf, der zur Mitte hin minimal aufgehellt ist. Ganz oben mittig sitzt in kräftigem Rot das MAKE-Wortlogo („MAKE“ in fetter serifenloser Schrift) – das einzige Branding-Element. Im oberen Drittel folgt zentriert in sehr großer weißer Bold-Schrift die zweizeilige Frage-Headline „Du hast ein Maklerbüro?“ – ein direkter Zielgruppen-Call-out, der sofort filtert, wer gemeint ist. In der Bildmitte steht das Versprechen in drei Zeilen: „Wir bringen dir“ in Weiß, darunter „10 Eigentümer-Anfragen“ als weiße Schrift auf durchgehendem rotem Highlight-Block (der visuelle Akzent des gesamten Creatives), darunter „in den nächsten 14 Tagen!“ wieder in Weiß mit Ausrufezeichen – Zahl, Nutzen und enger Zeitrahmen in einer Einheit. Im unteren Drittel die Preis-Zeile: „Und du zahlst uns:“ in Weiß, direkt dahinter „0 CHF“ in Weiß auf rotem Block – die Wiederholung des Rot-Highlight-Musters verbindet Versprechen und Preis optisch. Die Komposition ist streng zentriert und symmetrisch, mit großzügigen Negativ-Spaces oben und unten, was die drei Textblöcke (Frage → Versprechen → Preis) wie eine Treppe wirken lässt. Farbwelt: Anthrazit/Schwarz, Weiß, Signal-Rot – hoher Kontrast, aufmerksamkeitsstark im Feed. Die Dramaturgie folgt einer klaren Drei-Schritt-Logik: Selbsterkennung (Frage), konkretes Ergebnis (10 Anfragen/14 Tage), Risiko-Umkehr (0 CHF). Ein expliziter CTA-Button ist auf dem Bild nicht vorhanden; der Klick erfolgt über den Anzeigen-Button im Feed. Hinweis: Entgegen dem Ad-Namen („Editorial-Laptop“) zeigt das Creative keinen Laptop, sondern nur Text.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recTKt9N5c46MOjsl
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 2210731876411652
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Freundlicher, lokaler Einstieg – Webdesigner aus Basel direkt vor Ort
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale Unternehmen in Basel, die eine Website brauchen
+- Offer / Funnel-Typ: nicht eindeutig ableitbar, vermutlich Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 4.33
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120244825813190598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 4.33
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.08
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.08
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.56
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 21.35
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 21.35
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 192
+- Impressionen gesamt: 192
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Basecap, Brille und dunklem Shirt lächelt breit in die Kamera und hebt die rechte Hand in einer winkenden bzw. begrüßenden Geste. Der Hintergrund zeigt einen offenen Platz mit einer hohen, schlanken Struktur (wirkt wie ein Turm oder Baukran) und Grünfläche – urbane Außenszene bei Tageslicht, stimmig zur Basler Lokalisierung. Die Bildsprache ist UGC-typisch authentisch und sympathisch, ohne Studio-Inszenierung. Text-Overlays, Untertitel oder Logos sind im Standbild nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Thema „Webdesign aus Basel", Variante B4):** Die Ad dürfte mit dem lächelnden, winkenden Sprecher als freundlichem Hook starten – ein warmer, lokaler Einstieg („Grüezi aus Basel"-Moment). Danach dürfte er sich als Webdesigner aus Basel vorstellen und das Angebot benennen: neue oder bessere Website für lokale Unternehmen. Plausibel ist ein mittlerer Block mit Pain Point und Lösungsversprechen, dann ein klarer CTA Richtung Website-Anfrage oder Beratung. Gesprochener Wortlaut, Zwischenschnitte, Text-Overlays und der exakte CTA: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 24.06. · Video · CH | PLATZ-1 SEO
+- id: recTaPU6P1Rx5XprS
+- Name: 24.06. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1604800677872900
+- Format: Video
+- Status: CREATIVE_REMOVED
+- Angle / Hook: Zeig mir dein Handy: So wirst du bei Google gefunden – oder eben nicht.
+- Visual Style: UGC Talking-Head-Video mit Smartphone-Demo
+- Awareness Level: Problem Aware
+- Industry: Webdesign / SEO Schweiz
+- Target Audience: Schweizer Unternehmen mit Sichtbarkeitsproblem bei Google
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Angereichert: Ja
+- Anzahl Ads: 0
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-24
+- Erstellt am: 2026-06-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Preis/Budget · 8
+Unqualifiziert · 3
+Konkurrenz · 2
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-06T06:22:14.000Z
+- Skript:
+  Vertikales UGC-Video (9:16) mit Talking-Head-Framing und Smartphone-Demo. Das Vorschaubild zeigt einen Mann mit dunkler Kappe und Brille in hellem T-Shirt, der ein Smartphone mit auffällig lila/violett leuchtendem Display hochhält und es in Richtung Kamera dreht — er demonstriert also live etwas auf dem Handy. Hintergrund ist ein heller, neutraler Innenraum. Was genau auf dem Smartphone-Screen zu sehen ist, lässt sich auf dem 64-px-Thumbnail nicht erkennen. Der wahrscheinliche Ablauf, aus Bildgeste, Titel und Ad-Namen („SEO Gefunden") ableitbar (nicht verifizierbar): (1) Demo-Hook: Der Sprecher öffnet die Google-Suche auf seinem Handy und zeigt, wer bei relevanten Suchbegriffen oben steht — und wer nicht. (2) Problem-Part: „Wenn du hier nicht auftauchst, findet dich kein Kunde" — das Sichtbarkeitsproblem wird am konkreten Beispiel greifbar. (3) Lösungsversprechen aus dem Titel: „In 30 Tagen auf Platz 1 bei Google — mit einer neuen Top-Website." (4) Beweis: vermutlich Ranking-Screenshots oder Kundenergebnisse. (5) Abschluss-CTA Richtung Anfrage oder Terminbuchung. Tonalität: demonstrativ, lehrreich, konkret. Konkrete Schnittfolge, Text-Overlays und finaler CTA-Screen sind aus dem Standbild nicht ableitbar.
+
+## 24.02. · Carousel · WEBSITE
+- id: recTiJGxYaZBxetJ3
+- Name: 24.02. · Carousel · WEBSITE
+- Creative-ID: 887429864092173
+- Format: Carousel
+- Status: ADSET_PAUSED
+- Angle / Hook: Google-Rezensionen von MAKE-Kunden als Vertrauensbeweis
+- Visual Style: Social-Proof-Grafik mit Bewertungs-Screenshot
+- Awareness Level: Product Aware
+- Industry: Webdesign für KMU/Handwerk
+- Target Audience: Retargeting: Interessenten, die MAKE bereits kennen
+- Offer / Funnel-Typ: Social Proof → Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: RTG | WEBSITE
+- Ausgaben gesamt: 32.68
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 16
+- Klicks AT: 16
+- Ad-IDs: 120241513094390598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 32.68
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.04
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.04
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.4
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 786
+- Impressionen gesamt: 786
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Vorschaubild ist nur 64×64 Pixel groß. Erkennbar ist eine helle, hochformatige Grafik mit einer mehrzeiligen schwarzen Bold-Headline im oberen Drittel; die erste Zeile scheint mit „WAS MAKE-KUNDEN …“ zu beginnen, der genaue Wortlaut ist im Vorschaubild nicht lesbar. Darunter sitzt ein helles, kastenförmiges Element, das wie der Screenshot einer Google-Bewertung aussieht — eine Sterne-Reihe und Fließtext sind angedeutet, der Inhalt ist nicht lesbar. Der Aufbau folgt dem klassischen Social-Proof-Schema: oben eine neugierig machende Headline, darunter der Vertrauensbeweis als authentisch wirkender Screenshot. Die Farbwelt ist hell und reduziert (weißer Grund, schwarze Typo), ohne erkennbares Foto. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht sicher auszumachen. Ein CTA-Button oder grafische Akzente sind nicht erkennbar — möglicherweise im nicht lesbaren Bereich vorhanden. Der Ad-Name „Google Rezensionen“ bestätigt die inhaltliche Richtung: Kundenstimmen von Google als Verkaufsargument. Da das Creative im Retargeting-Adset (RTG | WEBSITE) läuft, soll es Interessenten, die MAKE bereits kennen, über Bewertungen zur Anfrage bewegen. Konkrete Texte, Sterne-Anzahl und zitierte Namen sind im Vorschaubild nicht lesbar.
+
+## 18.12. · Static · Website 30d
+- id: recU7edeBK3FecHS4
+- Name: 18.12. · Static · Website 30d
+- Creative-ID: 1229236255724939
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Stock-Fotos sind Scheisse – echte Fotos vom Team schaffen Vertrauen, das brachte BeoTherm 52 Anfragen im ersten Monat.
+- Visual Style: Authentisches Team-/Behind-the-Scenes-Foto ohne Text-Overlay, mit langem erzählendem Anzeigentext
+- Awareness Level: Product Aware
+- Industry: Webdesign-/Marketingagentur für Handwerksbetriebe
+- Target Audience: Inhaber/Geschäftsführer von Handwerks- und Gewerbebetrieben (hier als Beispiel: Heizungs-/Energiefirma BeoTherm)
+- Offer / Funnel-Typ: Website inkl. Vor-Ort-Fotoshooting für Handwerks-/Gewerbebetriebe – Lead-Generierung (Case-Study als Trust-Booster)
+- Kampagne: RTG | WEBSITE OFFER
+- Adset: Website 30d
+- Ausgaben gesamt: 17.11
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 29
+- Klicks AT: 29
+- Ad-IDs: 120239131825670598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 17.11
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 4.27
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 4.27
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.5
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 679
+- Impressionen gesamt: 679
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Kein klassischer Hook/Body/CTA-Videoaufbau, sondern Static-Post mit langem erzählendem Anzeigentext. Bild zeigt das BeoTherm-Team beim Vor-Ort-Fotoshooting; der Text erzählt die Behind-the-Scenes-Story (echte Fotos statt Stock-Fotos) und liefert das Ergebnis als Social Proof (52 Anfragen im ersten Monat). CTA im Text: Link zu website.make-marketing.agency.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recUFBXUhqyIxVmUH
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 2095334188028536
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Ortsbezug-Hook: „hier in Zürich" — vor markanter Zürcher Kulisse mit Untertitel-Zeile
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige mit Website-Bedarf in Zürich
+- Offer / Funnel-Typ: Anfrage über Formular (FormSwap-Test)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 140.89
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 33
+- Klicks AT: 33
+- Ad-IDs: 120244829899400598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 140.89
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.73
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.73
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.38
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 24.69
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 24.69
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4525
+- Impressionen gesamt: 4525
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille und dunkler Basecap spricht im Freien in die Kamera und gestikuliert dabei mit der Hand — Talking-Head-Perspektive, Tageslicht. Hintergrund: ein grosses historisches Gebäude mit markanter Kirchen-/Turm-Architektur — erkennbare Zürcher Kulisse, die den lokalen Bezug sofort visuell trägt. Am unteren Bildrand läuft ein weisser Untertitel (ein- bis zweizeilig); der Wortlaut ist im Vorschaubild nicht lesbar. Szene 1 (Hook, ca. 0–3 s): Aus der Creative-Einordnung ist ableitbar, dass der Einstieg einen Ortsbezug nutzt („hier in Zürich") — die Kulisse bestätigt die Botschaft im selben Moment, in dem sie gesprochen wird. Die Handgeste verstärkt die direkte Ansprache. Szene 2 (Mittelteil): Pitch des Website-Angebots der Make Marketing GmbH; die Untertitel laufen weiter am unteren Bildrand, der Sprecher positioniert sich als lokaler Webdesign-Ansprechpartner für Zürcher KMU. Szene 3 (Ende): CTA zur Anfrage — der Namensbestandteil „FormSwap" deutet auf getestete Formular-Varianten hin; der exakte CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: UGC-Talking-Head mit Untertitel-Overlay, Landmark-Kulisse als Location-Anker, keine weiteren Grafikelemente sichtbar. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 03.06. · Video · Heeb Vorher-Nachher
+- id: recUcmBhbFuo7BiXC
+- Name: 03.06. · Video · Heeb Vorher-Nachher
+- Creative-ID: 921375317587974
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Gleicher Betrieb, komplett anderer Auftritt — zeige das Relaunch-Potenzial
+- Visual Style: Vorher-Nachher-Split mit Claim-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign/Marketing für lokale KMU (Kundenbeispiel Heeb)
+- Target Audience: Inhaber lokaler Betriebe mit veraltetem Web-Auftritt
+- Offer / Funnel-Typ: Case-Study → Anfrage/Call
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 10 | Heeb Vorher-Nachher
+- Ausgaben gesamt: 51.48
+- Ausgaben 30T: 10.18
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120247607310610598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.48
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.11
+- CTR % 30T: 0.05
+- CTR % 7T: 0
+- CTR % AT: 0.11
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 7.39
+- Hookrate % 30T: 5.96
+- Hookrate % 7T: 0
+- Hookrate % AT: 7.39
+- Impressionen 14T: 0
+- Impressionen 30T: 1963
+- Impressionen 7T: 0
+- Impressionen AT: 8271
+- Impressionen gesamt: 8271
+- Klicks 14T: 0
+- Klicks 30T: 1
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformat-Video (9:16) im Vorher-Nachher-Stil für den Kunden Heeb (& Enzler). Das Vorschaubild zeigt eine vertikale Zweiteilung bzw. Gegenüberstellung: links sieht man eine Person in einer Werkstatt-/Lagerumgebung mit Regalen und Regalböden im Hintergrund, rechts ist eine zweite, ähnliche Szene angedeutet — die Bildsprache suggeriert „gleicher Ort, anderer Zustand". Über dem unteren Bilddrittel liegt ein fettes, zweizeiliges Text-Overlay in weißer Großschrift: „GLEICHER BETRIEB." und darunter „KOMPLETT ANDERER". Eine dritte Textzeile liegt auf einem roten Balken direkt darunter, sie ist im Vorschaubild nicht lesbar — vermutlich das abschließende Schlüsselwort des Claims (z. B. „AUFTRITT" oder „WEBSITE"). Der Aufbau folgt dem klassischen Vorher-Nachher-Prinzip: Erst wird der alte Zustand (alter Auftritt/alte Website des Betriebs Heeb) gezeigt, dann erfolgt ein harter Wechsel oder Wipe zum neuen, von MAKE umgesetzten Auftritt — der Claim-Overlay bleibt dabei als Anker über den Szenen stehen. Aus dem Ad-Namen „AD 10 | Heeb Vorher-Nachher" und dem Kundenkontext ist ableitbar, dass die gesprochene oder eingeblendete Botschaft den Relaunch-Case kommentiert: was vorher nicht funktionierte und was sich durch den neuen Auftritt verändert hat. Die Kampagne (NURTURING | RETARGETING | BEKANNTHEIT) deutet darauf hin, dass das Video als Case-Proof an ein bereits vorberührtes Publikum ausgespielt wird. Der Schluss ist vermutlich ein CTA Richtung Anfrage oder Termin (z. B. „Willst du das auch für deinen Betrieb?"), der exakte Wortlaut ist aus den vorhandenen Daten nicht ableitbar. Musik, Schnittgeschwindigkeit und weitere Overlays sind im Vorschaubild nicht erkennbar.
+
+## 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- id: recViEYLxBpd0rBh3
+- Name: 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- Creative-ID: 26172435882410896
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Face-to-Camera-Ansprache statt produziertem Werbespot — Webdesigner direkt vor Ort
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor (Kopie von V1)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Basel)
+- Target Audience: lokale KMU und Selbstständige im Raum Basel
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS 2
+- Ausgaben gesamt: 40.7
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 40.7
+- Leads 14T: 0
+- Termine AT: 1
+- Klicks gesamt: 27
+- Klicks AT: 27
+- Ad-IDs: 120242355353930598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 40.7
+- CPA: 40.7
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 40.7
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 40.7
+- CTR %: 1.79
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.79
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.73
+- Conversions gesamt: 1
+- Erste Auslieferung: 2026-03-16
+- Erstellt am: 2026-03-16
+- Funnel-Zweck: Lead
+- Hookrate %: 16.18
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 16.18
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1508
+- Impressionen gesamt: 1508
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-03-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 40.7
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme). Kopie der Ad „V1" in Adset „MARC EVERS 2". Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit Brille, dunklem Haar und Bart (derselbe Sprecher der Serie, „Marc Evers") spricht direkt in die Kamera, Mund geöffnet — mitten im Satz. Hintergrund: helles Gebäude mit sichtbaren Fensterfronten, leicht unscharf, Tageslicht; urbaner Außenbereich. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Wie bei den Serien-Varianten ist eine direkte Problem-Ansprache an Basler Unternehmer zu erwarten (Website bringt keine Anfragen o. ä.); wörtlicher Inhalt und Untertitel sind im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Naheliegend Angebots-/Vertrauensblock mit lokalem Bezug; Schnitte, Overlays oder B-Roll aus dem Thumbnail nicht ableitbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zur Anfrage/Erstberatung; Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Kohärente UGC-Ästhetik der Kampagne — natürliche Tageslicht-Außenaufnahme, keine Branding-Elemente, kein Logo erkennbar. Als „V1 – Kopie" offenbar Re-Upload der ersten Serien-Variante zur erneuten Auslieferung im zweiten Adset.
+
+## 03.06. · Static · Sanitaer BTS
+- id: recVweuSaPqN9zfc9
+- Name: 03.06. · Static · Sanitaer BTS
+- Creative-ID: 1019984433781996
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Authentischer Blick hinter die Kulissen eines echten Kundenshootings
+- Visual Style: Behind-the-Scenes-Foto vom Kunden-Shooting
+- Awareness Level: Product Aware
+- Industry: Marketing für Handwerksbetriebe (Sanitär)
+- Target Audience: Inhaber von Handwerksbetrieben, die MAKE bereits kennen
+- Offer / Funnel-Typ: Vertrauensaufbau ohne direktes Angebot (Nurturing)
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 05 | Sanitaer BTS
+- Ausgaben gesamt: 51.35
+- Ausgaben 30T: 10.22
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 43
+- Klicks AT: 43
+- Ad-IDs: 120247607289220598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.35
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.45
+- CTR % 30T: 0.38
+- CTR % 7T: 0
+- CTR % AT: 0.45
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0.28
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.36
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 2116
+- Impressionen 7T: 0
+- Impressionen AT: 9488
+- Impressionen gesamt: 9488
+- Klicks 14T: 0
+- Klicks 30T: 8
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratisches Standbild (1:1) im Behind-the-Scenes-Stil. Zu sehen sind zwei Männer, die nebeneinander vor einer bläulichen Holz- bzw. Gebäudefassade stehen; beide haben die Arme vor der Brust verschränkt und blicken selbstbewusst in die Kamera. Die Person links trägt dunkle Kleidung und eine dunkle Kappe, die Person rechts trägt ein dunkles Oberteil — beide wirken wie Handwerker bzw. Inhaber des Sanitär-Betriebs, für den MAKE das Shooting durchführt. Die Fassade im Hintergrund hat vertikale Elemente und wirkt wie ein Betriebsgebäude oder Showroom-Eingang; oben links ist ein helles Detail (evtl. Schild oder Fenster) angedeutet, im Vorschaubild aber nicht eindeutig identifizierbar. Die Farbwelt ist natürlich-dokumentarisch mit kühlen Blautönen der Fassade und dunkler Kleidung — bewusst ungestellt, Arbeitsalltag vor Ort. Ob auf dem Bild Text-Overlays, ein Logo oder ein CTA-Button liegen, ist im 64×64-px-Vorschaubild nicht lesbar; im Ad selbst dürfte die Botschaft über die Caption laufen. Aus dem Ad-Namen „AD 05 | Sanitaer BTS" ist ableitbar, dass das Motiv Teil einer BTS-Serie ist, die zeigt, wie MAKE real für Handwerks-Kunden arbeitet — Teamfoto mit dem Kunden als Vertrauensbeweis. Die Bildsprache positioniert MAKE als Agentur, die persönlich beim Kunden vor Ort ist. Konkrete Textinhalte, Branding-Elemente und CTA sind aus dem vorhandenen Bild nicht ableitbar und werden nicht ergänzt.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recVyn75WjrWqoQkL
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 968755259064091
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direkte Kameraansprache, authentischer Outdoor-Look statt Hochglanz-Werbung
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel ohne professionelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 29.38
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 19
+- Klicks AT: 19
+- Ad-IDs: 120244825569340598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 29.38
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.35
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.35
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.5
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 18.98
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.98
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1407
+- Impressionen gesamt: 1407
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video im Selfie-Stil, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit Brille und dunklem Shirt (im Standbild mit Basecap) steht draußen vor einer hellen Hausfassade mit Fenstern bei Tageslicht, hebt die Hand und spricht direkt in die Kamera – der Einstieg nutzt die unmittelbare, persönliche Ansprache als Aufmerksamkeits-Hook. Szene 2: Aus Kampagnenkontext („Webdesign aus Basel", „LOKAL | WEBSITE | FEB26") ist ableitbar, dass er sich als Webdesigner aus Basel vorstellt und Inhaber lokaler Unternehmen anspricht, die eine neue Website brauchen. Szene 3: Vermutlich beschreibt er das Problem veralteter oder fehlender Webpräsenz und positioniert sein Angebot als einfache, lokale Lösung mit persönlicher Betreuung. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Anfrage eines Website-Projekts, wahrscheinlich mit Hinweis auf den CTA-Button der Anzeige. Text-Overlays: Auf dem Standbild (64×64 px) nicht erkennbar; ob Untertitel oder Text-Einblendungen im Video vorkommen, ist aus dem Vorschaubild nicht ableitbar. Bildsprache: natürlicher Outdoor-Look, Tageslicht, kein sichtbares Logo – bewusst authentischer UGC-Charakter. Genaue Szenenfolge und Wortlaut sind aus den vorhandenen Daten nicht ableitbar.
+
+## 01.10. · Static · LEADS
+- id: recW0juefRAdfTOJ2
+- Name: 01.10. · Static · LEADS
+- Creative-ID: 1106548724636156
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Such-Ansprache mit Gesicht: Wir suchen Schweizer Unternehmen (25K-Kriterium im Adset)
+- Visual Style: Porträtfoto mit Text-Overlay (Split-Layout)
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer Unternehmer, Inhaber kleiner und mittlerer Unternehmen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WIR SUCHEN 25K  | LEADS
+- Ausgaben gesamt: 48.02
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 19
+- Klicks AT: 19
+- Ad-IDs: 120234719644540598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 48.02
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.74
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.74
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.73
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-01
+- Erstellt am: 2025-10-01
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1090
+- Impressionen gesamt: 1090
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-01
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad im Split-Layout. Die rechte Bildhälfte zeigt eine blonde Frau in Business-Look — dunkler Blazer über rötlichem Oberteil —, die frontal und freundlich-seriös in die Kamera blickt. Die linke Bildhälfte ist ein helles Textfeld mit mehrzeiligem dunklem Text-Overlay. Im Vorschaubild ist ansatzweise eine Zeile mit „Wir suchen Schweizer …" sowie eine Zahl bzw. ein Betrag („25 000" o. ä.) erkennbar; der genaue Wortlaut ist im Vorschaubild nicht lesbar. Der Adset-Kontext („WIR SUCHEN 25K | LEADS") legt eine Such-Ansprache an Schweizer Unternehmen mit einem 25K-bezogenen Kriterium nahe; das ist aus dem Bild allein jedoch nicht zweifelsfrei ableitbar. Ein CTA-Button oder Logo ist in der Miniatur nicht erkennbar. Die Farbwelt ist hell und natürlich, mit visuellem Kontrast durch die dunkle Kleidung der Person. Die Bildsprache kombiniert Vertrauen durch ein echtes Gesicht (Personal-Branding-Ansatz) mit der direkten Text-Botschaft. Die Komposition folgt einem klassischen 50/50-Split: Person rechts, Botschaft links. Insgesamt wirkt die Anzeige persönlicher und weniger plakativ als die reinen Typo-Varianten der Kampagne.
+
+## 17.02. · Video · CA & LLA | LP
+- id: recWZ2zvtgjGiSsAJ
+- Name: 17.02. · Video · CA & LLA | LP
+- Creative-ID: 1405078324076732
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Gute Arbeit verdient eine Website, die ihr gerecht wird
+- Visual Style: Talking-Head-Video (UGC-Stil, Innenraum)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker, Dienstleister und Selbstständige, ländlich-dialektal angesprochen
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CA & LLA | LP
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241196113960598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein bärtiger Mann mit Brille und dunklem Polo- bzw. T-Shirt spricht gestikulierend direkt in die Kamera; der Hintergrund ist hell und wirkt wie ein schlichter Innenraum. Die ausladende Handgeste unterstreicht eine erklärende, bodenständige Ansprache – passend zum Ad-Namen „Kei Rappe" (dialektal: „kein Rappen"/fränkisch-schwäbische Färbung), der einen lokalen, humorvoll-direkten Ton andeutet.
+  Gesprochene Kernbotschaft (aus Titel „Deine Arbeit ist besser als deine Website" ableitbar): Der Sprecher sagt der Zielgruppe unverblümt, dass ihre handwerkliche Arbeit besser ist als ihr Webauftritt.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Erklärung, warum das ein Problem ist – Kunden suchen online, und eine schwache Website kostet Vertrauen und Aufträge.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Hinweis auf Make Marketing als lokale Agentur, die das Website-Problem für Handwerker und Selbstständige löst.
+  Schluss/CTA: Text-Overlays und der konkrete CTA am Ende sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Talking Head mit Gestik, bodenständig-dialektale Ansprache als Nähe-Signal zur lokalen Zielgruppe, keine sichtbaren Grafikelemente im Standbild.
+
+## 17.02. · Video · BROAD | LP
+- id: recWgIObvkwPUQnyV
+- Name: 17.02. · Video · BROAD | LP
+- Creative-ID: 927912723094339
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website
+- Visual Style: Talking-Head-Video (UGC-Stil, Innenraum)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker, Dienstleister und Selbstständige mit schwacher Website
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | LP
+- Ausgaben gesamt: 19.12
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 32
+- Klicks AT: 32
+- Ad-IDs: 120241192843310598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 19.12
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 3.93
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 3.93
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.98
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 30.55
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 30.55
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 815
+- Impressionen gesamt: 815
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kampagnenkontext; das Vorschaubild ist nur 64x64 px groß, Details daher eingeschränkt):
+  Szene 1 (Hook): Ein bärtiger Mann mit Brille und dunklem T-Shirt mit rot-weißem Schriftzug spricht direkt in die Kamera und zeigt mit dem Finger auf den Betrachter – eine klassische Aufmerksamkeits-Geste (Pattern Interrupt), die zum Ad-Namen „Kurz & knapp" passt: Der Einstieg kommt ohne Umschweife zur Sache. Der Hintergrund ist hell und neutral (Innenraum), die Person dominiert den Bildausschnitt.
+  Gesprochene Kernbotschaft (aus Titel/Caption ableitbar): „Deine Arbeit ist besser als deine Website" – der Sprecher konfrontiert Handwerker und Dienstleister damit, dass ihre tatsächliche Arbeitsqualität hochwertiger ist als ihr Webauftritt.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Zuspitzung des Schmerzes – potenzielle Kunden beurteilen den Betrieb nach der Website, nicht nach der Arbeit; Aufträge gehen an Wettbewerber mit besserem Auftritt verloren.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Make Marketing wird als Agentur positioniert, die Websites für lokale Dienstleister baut, die Anfragen bringen.
+  Schluss/CTA: Konkrete Text-Overlays, Einblendungen und der exakte CTA am Ende sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Direkte Kameraadresse (Talking Head), Fingerzeig in die Kamera, keine sichtbaren Grafiken oder Bauchbinden im Standbild.
+
+## 17.02. · Video · BROAD | META FORMULAR
+- id: recWpumq2wLxds9f4
+- Name: 17.02. · Video · BROAD | META FORMULAR
+- Creative-ID: 931821495863018
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Website ist der erste Eindruck – und der muss zur Qualität deiner Arbeit passen
+- Visual Style: Talking-Head-Video mit Caption-Overlay (Außenaufnahme)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister, Inhaber mit schwacher Website
+- Offer / Funnel-Typ: Meta-Leadformular (Website-Angebot)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR
+- Ausgaben gesamt: 2.91
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120241190879820598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 2.91
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.64
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.64
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 11.48
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 11.48
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 122
+- Impressionen gesamt: 122
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head, Außenaufnahme). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau, Text-Overlays und Szenendetails sind daher nur eingeschränkt verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart, Brille und dunkler Jacke spricht direkt in die Kamera; der Hintergrund ist unscharf (Bokeh) mit Gebäuden und hellem Himmel — urbane Außenszene bei Tageslicht. Im unteren Bildbereich läuft ein weißes Text-Overlay (Caption), von dem nur eine Endung wie „…ieder" erahnbar ist — der vollständige Wortlaut ist im Vorschaubild nicht lesbar. Wahrscheinlicher Szenenablauf (aus Ad-Name „Erster Eindruck" und Kampagnenkontext ableitbar, nicht aus dem Bild verifizierbar): (1) Hook: Der Sprecher eröffnet mit dem Gedanken, dass die Website der erste Eindruck ist, den potenzielle Kunden vom Betrieb bekommen. (2) Problem: Eine veraltete oder lieblose Website beschädigt diesen ersten Eindruck, obwohl die handwerkliche Arbeit top ist (Kampagnenbotschaft „Deine Arbeit ist besser als deine Website"). (3) Konsequenz: Interessenten bilden sich ihr Urteil in Sekunden — und springen im Zweifel ab. (4) Lösung: MAKE baut Websites, die beim ersten Eindruck überzeugen und zur Arbeitsqualität passen. (5) Abschluss: CTA Richtung Meta-Leadformular (Adset nennt „META FORMULAR"); die exakte CTA-Formulierung ist aus dem vorliegenden Material nicht ableitbar. Die Nahaufnahme mit direktem Blickkontakt und natürlicher Außenbeleuchtung erzeugt einen authentischen, beratenden UGC-Ton. Durchgehende Captions sind am Overlay erkennbar und deuten auf Ton-aus-optimierte Feed-Nutzung hin.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recX8G7sbIAnFimr5
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 910923388618811
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Text-Hook mitten auf der Strasse: Website, die Kunden bringt
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige mit Website-Bedarf
+- Offer / Funnel-Typ: Anfrage über Formular (FormSwap-Test)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 349.77
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 349.77
+- Leads 14T: 0
+- Termine AT: 2
+- Klicks gesamt: 122
+- Klicks AT: 122
+- Ad-IDs: 120244829826360598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 349.77
+- CPA: 349.77
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 58.29
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 58.29
+- CTR %: 1.27
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.27
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.78
+- Conversions gesamt: 1
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 30.88
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 30.88
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 9583
+- Impressionen gesamt: 9583
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 6
+- Leads gesamt: 6
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 8.58
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 174.88
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 3000
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 1
+- Verlustgruende: Unqualifiziert · 2
+Keine Antwort · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille, dunkler Basecap und schwarzem T-Shirt spricht auf einer Stadtstrasse in die Kamera — Selfie-/Talking-Head-Perspektive, Tageslicht, urbanes Umfeld mit Gebäuden im Hintergrund. Links mittig im Bild ist ein weisses Text-Overlay eingeblendet (vermutlich Hook-Zeile oder Untertitel); der Wortlaut ist im Vorschaubild nicht lesbar. Szene 1 (Hook, ca. 0–3 s): Die eingeblendete Textzeile trägt den Einstieg; aus der Creative-Variante („WebsiteOffer-V2-FormSwap") und der Zielgruppe ist ableitbar, dass der Hook sich um Websites dreht, die neue bzw. mehr Kunden bringen sollen. Die Strassen-Kulisse vermittelt Unmittelbarkeit und Alltagsnähe. Szene 2 (Mittelteil): Pitch des Website-Angebots; der Sprecher erklärt aus der „Was ist das"-Einordnung ableitbar, wie eine besser konvertierende Website aussieht, und positioniert das eigene Angebot der Make Marketing GmbH. Szene 3 (Ende): CTA zur Anfrage — der Namensbestandteil „FormSwap" deutet auf getestete Formular-Varianten hin; der exakte CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: schlichtes UGC-Video mit einer einzigen Text-Einblendung als Gestaltungselement, natürlicher Outdoor-Look, keine Studio-Inszenierung. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 19.12. · Static · BROAD
+- id: recXCALDWdG36pLsG
+- Name: 19.12. · Static · BROAD
+- Creative-ID: 1947520136189202
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Neue Mitarbeiter finden, ohne selbst zu suchen — komplette Übernahme des Recruiting-Aufwands
+- Visual Style: Story-Format Stockfoto mit Headline-Banner
+- Awareness Level: Problem Aware
+- Industry: Recruiting / Mitarbeitergewinnung für Handwerk (Agentur-Eigenwerbung)
+- Target Audience: Schweizer Handwerksbetriebe mit Personalbedarf, Inhaber
+- Offer / Funnel-Typ: Landingpage → Anfrage
+- Kampagne: RECRUITING
+- Adset: BROAD
+- Ausgaben gesamt: 25.89
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 26
+- Klicks AT: 26
+- Ad-IDs: 120239184179380598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 25.89
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 25.89
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 25.89
+- CTR %: 2.63
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.63
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.52
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-19
+- Erstellt am: 2025-12-19
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 990
+- Impressionen gesamt: 990
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Anzeige im Hochformat 9:16 (1080x1920, Story-Format) mit klarer Zwei-Zonen-Komposition. Das obere rund 40 % des Bildes ist eine weiße Fläche mit dreizeiligem Textblock in schwarzer, fetter Serifenlos-Schrift. Erste Zeile (kleiner): „Für Handwerker in der Schweiz" — geografisch und beruflich präzise Targeting-Ansprache. Zweite Zeile (sehr groß): „Neue Mitarbeiter finden", wobei die Worte „Neue Mitarbeiter" als weiße Schrift auf einer türkisen Markierung (Textmarker-Effekt) hervorgehoben sind und das Wort „finden" schwarz dahinter steht. Dritte Zeile (groß): „– ohne selbst zu suchen", der eigentliche Hook, der den kompletten Recruiting-Aufwand vom Kunden wegnimmt. Das untere rund 60 % füllt ein helles, sauberes Stockfoto: drei lächelnde Handwerker stehen selbstbewusst in einer Werkstatt/Halle — links ein junger bärtiger Mann mit verschränkten Armen, in der Mitte eine Frau mit dunklem Pferdeschwanz, die einen Schraubenschlüssel in der behandschuhten Hand hält, rechts ein bärtiger Mann; alle drei tragen einheitliche schwarze Shirts mit grauen Latzhosen mit orangefarbenen Akzenten. Im Hintergrund steht ein Fahrzeug auf einer Hebebühne, Reifen- bzw. Werkstattausstattung ist zu erkennen. Ein CTA-Button ist im Creative selbst nicht enthalten; die Handlungsaufforderung läuft über den Anzeigentext. Farbwelt: Weiß/Türkis als Markenfarben plus das neutrale Grau-Schwarz der Arbeitskleidung. Das Foto visualisiert das Wunschergebnis — ein vollständiges, zufriedenes Team — und macht das abstrakte Recruiting-Versprechen emotional greifbar.
+
+## 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- id: recXNCLysqvZ53I5P
+- Name: 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- Creative-ID: 1641217556886058
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: nicht ableitbar — Thumbnail zeigt nur unscharfe Farbfläche
+- Visual Style: nicht erkennbar (Thumbnail unscharf/einfarbig)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Basel)
+- Target Audience: lokale KMU und Selbstständige im Raum Basel
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS 2
+- Ausgaben gesamt: 13.41
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120242355353920598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 13.41
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.31
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.31
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.28
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-16
+- Erstellt am: 2026-03-16
+- Funnel-Zweck: Lead
+- Hookrate %: 16.92
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 16.92
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 390
+- Impressionen gesamt: 390
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Kopie der Ad „V3" in Adset „MARC EVERS 2"). Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (Thumbnail):** Das Standbild ist eine unscharfe, nahezu einfarbige Fläche in dunklem Rotbraun/Mauve — weder Person, Objekt, Setting noch Text ist darin erkennbar. Es könnte sich um einen Bewegungsunschärfe-Frame, eine Nahaufnahme (z. B. Stoff, Haut, Wand) oder einen Übergangsframe handeln; dies ist im Vorschaubild nicht verifizierbar.
+  - **Szene 2 (Hook, nicht ableitbar):** Weder gesprochene Botschaft noch Text-Overlays sind aus dem Thumbnail ableitbar. Da es sich um eine Kopie von „V3" handelt, wäre der Inhalt im Original-V3-Creative nachzuschlagen — hier nicht verfügbar.
+  - **Szene 3 (Mitte, nicht ableitbar):** Keine Aussage möglich.
+  - **Szene 4 (Ende/CTA, nicht ableitbar):** Aufgrund der Serienlogik (Basler Webdesign-Kampagne, Erstgespräch als Ziel) ist ein CTA zur Anfrage wahrscheinlich, aber nicht verifiziert.
+  
+  **Stil:** Keine belastbaren Aussagen zu Farbwelt, Branding oder Bildsprache möglich. Kampagne, Adset-Naming und Spend-Verlauf deuten auf dieselbe UGC-Video-Serie wie „V2", „V4" und „V5" hin (Talking-Head-Ansprache des Sprechers Marc Evers) — dies ist jedoch eine Kontext-Annahme, keine Bildbeobachtung.
+
+## 24.02. · Video · META FORMULAR
+- id: recXhSZ013Yc1TYLS
+- Name: 24.02. · Video · META FORMULAR
+- Creative-ID: 885212914350150
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Website ist der erste Eindruck — und der entscheidet über den Auftrag
+- Visual Style: Talking-Head-Video Outdoor mit Wort-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU-Inhaber, deren Website einen schwachen ersten Eindruck macht
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 1.06
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241513590080598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.06
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 20.27
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 20.27
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 74
+- Impressionen gesamt: 74
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Das Standbild ist identisch mit dem Creative „Erster Eindruck" (creative_id 3488508967980908, gleiche Thumbnail-Quelle) — dies ist eine Kopie desselben Spots in einem anderen Adset. Szene 1 (sichtbar im Standbild): Der Sprecher der Kampagne (Mann mit Brille, kurzem dunklem Bart, dunkle Jacke) steht outdoor vor der Hochhaus-/Skyline-Kulisse bei Tageslicht, spricht direkt in die Kamera und hebt eine Hand in einer betonenden Geste. Im unteren Bildbereich läuft ein weißes Overlay in handschriftlich wirkender Schreibschrift mit; im Standbild ist nur ein Wortfragment erkennbar, das wie „Jeder …" wirkt — der vollständige Text ist im Vorschaubild nicht lesbar. Aus dem Ad-Namen „Erster Eindruck – Kopie" ist der Winkel klar ableitbar: Die Website ist oft der erste Kontaktpunkt zwischen Kunde und Betrieb; sitzt dieser erste Eindruck nicht, geht der Auftrag verloren, bevor ein Gespräch zustande kommt. Der typische Aufbau des Spots (aus dem Einzelbild nicht verifizierbar): Hook zum ersten Eindruck, Verknüpfung mit dem Kampagnen-Claim „Deine Arbeit ist besser als deine Website", 1-2 argumentierende Sequenzen am selben Standort mit synchron laufenden Wort-Captions in Schreibschrift, und am Ende ein direkter CTA zur Anfrage über das Meta-Leadformular. Genaue Szenenfolge, Sprechtext und Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Sichtbares MAKE-Branding ist im Thumbnail nicht erkennbar.
+
+## 05.09. · Video · INTEREST
+- id: recYEOS1VkO2h4Gi7
+- Name: 05.09. · Video · INTEREST
+- Creative-ID: 2615915562083996
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du brauchst einfach eine geile Webseite – direkter Face-to-Camera-Pitch mit Termin-CTA
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Selbstständige und kleine Unternehmen, Inhaber, die eine neue Website brauchen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | INTEREST
+- Ausgaben gesamt: 387.07
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 134
+- Klicks AT: 134
+- Ad-IDs: 120233525711560598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 387.07
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.62
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.62
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.48
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 9.04
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 9.04
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 21753
+- Impressionen gesamt: 21753
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-/Talking-Head-Stil, hochformatig. Szene 1 (Hook): Ein Mann in dunklem T-Shirt spricht direkt und nah in die Kamera und gestikuliert mit der Hand; der Bildausschnitt ist Brust/Kopf, der Hintergrund hell und neutral (im Vorschaubild nur unscharf erkennbar). Über dem Bild liegt ein großes Text-Overlay in weißer Schrift: „eine geile Webseite" – das Wort „Webseite" ist in auffälliger, rot/weißer Brush-/Handlettering-Optik hervorgehoben und dominiert den Frame. Diese Hook-Phrase bildet den Einstieg: Der Sprecher benennt direkt, worum es geht – eine neue, richtig gute Webseite für das eigene Business. Aus Ad-Titel und Kampagnenkontext („WEBSITE OFFER", „Jetzt Termin für deine neue Website sichern") ist ableitbar, dass danach eine kurze Nutzen-Argumentation folgt (professionelle Website = mehr Anfragen/Kunden) und der Sprecher zum kostenlosen Erstgespräch bzw. zur Terminbuchung auffordert. Der exakte Wortlaut des gesprochenen Skripts, Zwischenszenen, weitere Text-Overlays und die genaue Endkarte sind im Vorschaubild nicht lesbar/ableitbar. Das Video endet erwartbar mit einem CTA zur Terminbuchung über den Anzeigen-Button. (Hinweis: identisches Thumbnail wie das Pendant in der BROAD-Variante; vermutlich gleiches oder sehr ähnliches Video-Material in der INTEREST-Zielgruppe.)
+
+## 04.03. · Static · Videograf
+- id: recYePFUbasVyrJgd
+- Name: 04.03. · Static · Videograf
+- Creative-ID: 2134387660662128
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Aus Hobby wird Job: kein Studium nötig, nur Lust zu lernen
+- Visual Style: UGC Büro-Foto (Story-Format) mit Text-Overlays
+- Awareness Level: Problem Unaware
+- Industry: Recruiting Agentur (Fotograf/Videograf)
+- Target Audience: Basler ohne Studium/Ausbildung, die gern filmen/fotografieren
+- Offer / Funnel-Typ: Direkte Bewerbung
+- Kampagne: RECRUITING
+- Adset: Videograf
+- Ausgaben gesamt: 69.09
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 336
+- Klicks AT: 336
+- Ad-IDs: 120241853571180598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 69.09
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 5.14
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 5.14
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 3.54
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-04
+- Erstellt am: 2026-03-04
+- Funnel-Zweck: Recruiting
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6532
+- Impressionen gesamt: 6532
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-04
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bildanzeige im Hochformat 9:16 (Story-Placement, Ad „IG 1"). Hintergrundmotiv ist ein ungestellter Büro-Schnappschuss: Zwei junge Männer sitzen bzw. stehen an einem Schreibtisch und schauen gemeinsam auf einen Laptop-Bildschirm; der Mann links mit Brille und Bart zeigt auf den Screen, daneben ein Mann im grauen Hoodie. Im Hintergrund sind ein Fenster mit Tageslicht, eine Pinnwand mit Zetteln, Kopfhörer und ein zweiter Monitor mit Code-Ansicht zu sehen – das Bild vermittelt echten Agentur-Alltag statt Stockfoto-Ästhetik. Darüber liegen vier schwarze, abgerundete Textboxen mit weisser Bold-Schrift, Schlüsselwörter rot hervorgehoben. Box 1: „Du bist aus Basel und filmst oder fotografierst du gerne?" („filmst oder fotografierst" rot). Box 2: „Dann suchen wir dich!" Box 3: „Du brauchst kein Studium oder Ausbildung einfach nur Lust zu lernen und Bock Gas zu geben 🚀". Box 4 (unten, CTA): „Jetzt bewerben ⬇️". Die Farbwelt ist warm und natürlich (Büro-Tageslicht), die schwarzen Textboxen setzen den Kontrast; ein Logo ist nicht erkennbar. Die Dramaturgie folgt dem Muster Hobby-Abfrage → direkte Ansprache → Einwand-Killer (keine Ausbildung nötig) → CTA. Der Tonfall („Bock Gas zu geben", Raketen-Emoji) zielt klar auf eine junge, lockere Zielgruppe.
+
+## 19.03. · Video · BROAD ZÜRICH | MARC EVERS
+- id: recZeZXKB9LX97qLe
+- Name: 19.03. · Video · BROAD ZÜRICH | MARC EVERS
+- Creative-ID: 1017857047231247
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Spontan wirkende persönliche Ansprache Face-to-Camera — dritte Testvariante der Zürcher FormSwap-Serie
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Zürich)
+- Target Audience: lokale KMU und Selbstständige im Raum Zürich mit Website-Bedarf
+- Offer / Funnel-Typ: Lead-Formular direkt (FormSwap, ohne Landingpage)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | MARC EVERS
+- Ausgaben gesamt: 224.76
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 109
+- Klicks AT: 109
+- Ad-IDs: 120242544564290598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 224.76
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.71
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.71
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.85
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-19
+- Erstellt am: 2026-03-19
+- Funnel-Zweck: Lead
+- Hookrate %: 28.54
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 28.54
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6388
+- Impressionen gesamt: 6388
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme). Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit dunkler Basecap, Brille und dunklem Kapuzenoberteil (derselbe Sprecher der Zürcher FormSwap-Serie) spricht direkt in die Kamera, Mund geöffnet — mitten in einer Betonung. Hintergrund: unscharfe urbane Szene mit Glasfassade/Fenstern und hellem Tageslicht. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Wie in den V1/V2-Varianten ist eine direkte Ansprache an Zürcher Unternehmer mit Website-Angebot zu erwarten; wörtliche Botschaft und Untertitel sind im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Angebotsblock mit Verweis auf das Lead-Formular (Kampagnenname „FormSwap"); Zwischenszenen, Overlays oder B-Roll aus dem Thumbnail nicht ableitbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zum Ausfüllen des Formulars; Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Gleiche UGC-Ästhetik wie V1/V2 — ungestellte Tageslicht-Außenaufnahme, kein Branding/Logo erkennbar. Dritte Creative-Variante im selben Adset mit mittlerem Spend-Niveau; dient dem Hook-/Varianten-Test innerhalb der Zürcher Auslieferung.
+
+## 02.05. · Static · KÜCHENSTUDIO
+- id: recZrLD3BnfKTAX7z
+- Name: 02.05. · Static · KÜCHENSTUDIO
+- Creative-ID: 975989858460952
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: 10 Küchen-Anfragen in 30 Tagen – kostenlos, nur noch 3 Studios gesucht
+- Visual Style: Text-Only-Anzeige (Typografie-Static)
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Schweizer Küchenstudios und Küchenbauer, Inhaber- oder Inhabergeführte Betriebe
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (Gratis-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO
+- Ausgaben gesamt: 10.25
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120245384443790598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 10.25
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-02
+- Erstellt am: 2026-05-02
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 270
+- Impressionen gesamt: 270
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Anzeige im Hochformat 9:16 (900×1600 px), komplett ohne Fotomotiv — reine Typografie auf Farbfläche. Hintergrund: sattes Dunkelblau (Navy), in der oberen rechten und unteren linken Ecke jeweils dekorative, konzentrische weisse Kreisbogen-Linien als grafisches Ornament. Oberer Textblock (ca. oberes Drittel): In hellblauer/weisser schmaler Serifen-Kapitälchen-Schrift steht der Zielgruppen-Anker „FÜR SCHWEIZER KÜCHENSTUDIOS". Darunter folgt die dreizeilige Hauptbotschaft in sehr grosser, weisser Condensed-Grotesk (extra fett, komprimiert): Zeile 1 „10 KÜCHEN-ANFRAGEN." liegt auf einem durchgehenden roten Balken, Zeile 2 „IN 30 TAGEN." steht direkt auf dem Blau, Zeile 3 „KOSTENLOS." liegt wieder auf einem roten Balken — die Rot-Hervorhebungen setzen die zwei wichtigsten Versprechen (Ergebnis + Gratis-Kondition) visuell in Szene. Unterhalb der Headline steht als weisse, zweizeilige Subline in schlichter Grotesk: „Wir suchen noch 3 Schweizer Studios für unser Pilotprojekt." (Knappheits-Element). Darunter ein roter, stark abgerundeter Pill-Button mit weissem Text „Jetzt Pilot-Platz sichern" und weissem Pfeil nach rechts als CTA. Farbwelt: striktes Rot-Blau-Weiss-Schema mit hoher Kontrastwirkung, Bildsprache kühn-reduziert und werblich-direkt. Branding-Elemente wie Logo oder Firmenname sind auf dem Bild nicht sichtbar; die Anzeige lebt ausschliesslich aus Offer, Zahl und CTA.
+
+## 03.08. · Video · CH | PLATZ-1 SEO
+- id: recZxd9B6AnndoMZt
+- Name: 03.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 1897718434522096
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Wir haben diese Webseite gebaut. Das ist AlpenEnergie, einer der groessten Solaranbieter der Schweiz." (Proof)
+- Visual Style: Talking Head, Text-on-Screen, Produktdemo
+- Awareness Level: Solution Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Inhaber Schweizer Betriebe mit mindestens 10 Mitarbeitern, die planbare Anfragen ueber die Webseite wollen
+- Offer / Funnel-Typ: MAKE Sichtbarkeits-System mit zwei Stufen und Fotoshooting vor Ort, Platz 1 in der Region in 60 Tagen schriftlich garantiert, danach kurzes Gespraech mit individuellem Umsatzplan -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26
+- Ausgaben gesamt: 350.75
+- Ausgaben 30T: 331.58
+- Hookrate % 14T: 15.03
+- ROAS 14T: 0
+- CTR % 14T: 0.97
+- CPL 30T: 165.79
+- CPA AT: 0
+- Leads 14T: 2
+- Termine AT: 0
+- Klicks gesamt: 73
+- Klicks AT: 73
+- Ad-IDs: 120250707667830598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 331.58
+- Ausgaben 7T: 315.8
+- Ausgaben AT: 350.75
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 175.38
+- CPL 14T: 165.79
+- CPL 7T: 157.9
+- CPL AT: 175.38
+- CTR %: 1.03
+- CTR % 30T: 0.97
+- CTR % 7T: 0.99
+- CTR % AT: 1.03
+- CTR Link % 14T: 0.63
+- CTR Link % 30T: 0.63
+- CTR Link % 7T: 0.66
+- CTR Link % AT: 0.62
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-03
+- Erstellt am: 2026-08-03
+- Funnel-Zweck: Lead
+- Hookrate %: 14.91
+- Hookrate % 30T: 15.03
+- Hookrate % 7T: 15.21
+- Hookrate % AT: 14.91
+- Impressionen 14T: 6693
+- Impressionen 30T: 6693
+- Impressionen 7T: 6332
+- Impressionen AT: 7095
+- Impressionen gesamt: 7095
+- Klicks 14T: 65
+- Klicks 30T: 65
+- Klicks 7T: 63
+- Leads 30T: 2
+- Leads 7T: 2
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Wir haben diese Webseite gebaut, Kameraschwenk auf den Monitor mit der AlpenEnergie-Seite, einem der groessten Solaranbieter der Schweiz mit ueber 50 Mitarbeitern. Aufbau: Wer in der Region nach einer Solaranlage googelt, findet sie ganz oben, die Seite hat in 3 Monaten 64 Anfragen ohne Werbung gebracht. Danach die Erklaerung der zwei Stufen, Stufe 1 macht bei Google und in der KI-Suche sichtbar, Stufe 2 macht aus Besuchern Anfragen, mit Fotoshooting vor Ort statt Vorlage. Close: Platz 1 in 60 Tagen schriftlich garantiert, ab 10 Mitarbeitern unten eintragen fuer ein kurzes Gespraech und einen individuellen Plan.
+
+## 18.06. · Static · CH | PLATZ-1
+- id: recaer0iw65H5C5K9
+- Name: 18.06. · Static · CH | PLATZ-1
+- Creative-ID: 2100907807435061
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Platz 1 bei Google, ohne für Werbung zu zahlen – Spar-/Kosten-Winkel mit Suchergebnis-Mockup
+- Visual Style: Static / Werbe-Grafik mit Browser-Mockup, minimalistisch auf hellem Grund
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Schweizer KMU und Selbstständige, die bei Google gefunden werden wollen, ohne Werbebudget zu verbrennen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | PLATZ-1 | JUN26
+- Ausgaben gesamt: 1.38
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248678398060598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.38
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 21
+- Impressionen gesamt: 21
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikale (9:16) statische Werbe-Grafik auf hellem, nahezu weißem Grund. Aufbau von oben nach unten: Oben eine dunkle, mehrzeilige Headline; lesbar ist der Kern „… ohne dass du für Werbung zahlst." – die Zeile(n) davor enthalten erkennbar den Begriff „Google" bzw. einen Platzierungs-Claim (vollständiger Wortlaut im 64×64-px-Vorschaubild nicht lesbar). Darunter sitzt mittig ein helles Browser-Fenster-Mockup mit Adressleiste, das eine Suchergebnis- bzw. Website-Ansicht andeutet (Listenelemente/Textzeilen angedeutet, Inhalte im Vorschaubild nicht lesbar). Unten ein schmaler Abschlussbereich – vermutlich CTA-Button bzw. Logozeile (nicht eindeutig ableitbar). Stil: minimalistisch, viel Weißraum, klare Text-Bild-Trennung, sachliche B2B-Anmutung. Keine Personen, keine Fotografie – reine Grafik mit Mockup. Stimmung: sparorientiert, kompetent. Button-/CTA-Text und exakter Headline-Wortlaut sind am vorliegenden Standbild nicht lesbar.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recarlqvXQFO3DhJ0
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 1555340542689403
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Problem-Hook: Deine Website verkauft nicht — direkte Ansprache mit Untertitel-Zeile
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige mit Website-Bedarf
+- Offer / Funnel-Typ: Anfrage über Formular (FormSwap-Test)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 158.13
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 73
+- Klicks AT: 73
+- Ad-IDs: 120244829528720598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 158.13
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.14
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.14
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.75
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 22.21
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 22.21
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6407
+- Impressionen gesamt: 6407
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille und dunkler Basecap spricht im Freien in die Kamera und gestikuliert dabei mit beiden Händen — ausdrucksstarke Talking-Head-Szene vor strahlend blauem Himmel, Tageslicht, offener Outdoor-Schauplatz. Am unteren Bildrand läuft ein weisses, zweizeiliges Text-Overlay (Untertitel bzw. Hook-Zeile); der Wortlaut ist im Vorschaubild nicht lesbar. Szene 1 (Hook, ca. 0–3 s): Die Overlay-Zeile trägt den Einstieg; aus der Creative-Beschreibung (Variante „WebsiteOffer-V2-FormSwap") ist ableitbar, dass der Hook ein Problem- oder Widerspruchs-Statement rund um Websites ist, die keine Anfragen/Verkäufe bringen. Die beidhändige Geste verstärkt die Dringlichkeit der Eröffnung. Szene 2 (Mittelteil): Pitch des Website-Angebots — die Untertitel laufen weiter, der Sprecher erklärt, was eine verkaufsstarke Website braucht und positioniert das eigene Angebot. Der helle Himmel als Hintergrund lenkt den Fokus komplett auf Person und Overlay-Text. Szene 3 (Ende): CTA zur Anfrage — der Namensbestandteil „FormSwap" deutet auf getestete Formular-Varianten hin; der exakte CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: UGC-Talking-Head mit Untertitel-Overlay, sehr reduzierte Bildsprache (Person + Himmel + Text), keine weiteren Grafikelemente sichtbar. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 24.02. · Static · META FORMULAR
+- id: recbVAHR1Ad3pLDg1
+- Name: 24.02. · Static · META FORMULAR
+- Creative-ID: 946673587698938
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website — direkter Vorher-Nachher-Vergleich
+- Visual Style: Vorher-Nachher-Split
+- Awareness Level: Problem Aware
+- Industry: Webdesign für Handwerks-/Baubetriebe
+- Target Audience: Inhaber von Handwerks- und Baubetrieben mit veralteter Website
+- Offer / Funnel-Typ: Meta-Leadformular (Anfrage direkt)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 2.35
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120241513785590598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 2.35
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.37
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.37
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 73
+- Impressionen gesamt: 73
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformat-Grafik (ca. 4:5) auf rein weißem Grund als direkter Vorher-Nachher-Vergleich. Oben links steht in großer schwarzer Bold-Schrift die dreizeilige Headline „DEINE AKTUELLE WEBSITE“. Rechts daneben ein handgezeichnetes, skizzenhaftes Smartphone mit einer bewusst generischen Baukasten-Seite: Stockfoto eines Bauarbeiters mit blauem Helm und gelber Warnweste neben einer Kundin mit Bauplan; darunter der ironisch überzeichnete Blindtext „Wir sind ihr Partner für Qualität und Zuverlässigkeit seit 1715 und machen eigentlich alles für jeden Hauptsache, sie bezahlen uns.“ Die Bildmitte bleibt als großzügiger Weißraum frei und trennt die beiden Welten. Unten links die zweite Headline „DEINE WEBSITE MIT MAKE“, wobei „MAKE“ in leuchtendem Rot (Markenfarbe) gesetzt ist. Rechts daneben ein fotorealistisches iPhone-Mockup mit dunkler, moderner Website des Kunden „AlpenEnergie“ (Logo mit Schweizer-Kreuz-Symbol): Hero-Bild eines Hauses bei Sonnenuntergang, darüber die Zeile „ALLES AUS EINER HAND“, die Headline „Ihre Energiezukunft beginnt hier“ sowie zwei Buttons — rot „Jetzt Ersparnis berechnen“ und dunkel „Erklärvideo ansehen“. Ganz unten zentriert fünf gelbe Sterne mit der Zeile „4,9/5 aus 17 Google Bewertungen“ als Social-Proof-Abschluss. Die Bildsprache kontrastiert bewusst Amateur (Skizze, Stockfoto, Fließtext) gegen Profi (hochwertiges Mockup, Dark-Design, klare CTAs). Ein separater CTA-Button der Anzeige ist nicht Teil der Grafik — die Conversion läuft über das Meta-Leadformular.
+
+## 24.06. · Video · CH | PLATZ-1 SEO
+- id: recbmZ2f0TrHEovyj
+- Name: 24.06. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 2093113934952147
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Unternehmen ab 100'000 Jahresumsatz aufgepasst! Wir bringen dich in den naechsten 30 Tagen bei Google auf Platz 1 oder du bezahlst uns keinen einzigen Rappen." (Guarantee)
+- Visual Style: UGC Selfie, Text-on-Screen
+- Awareness Level: Problem Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Inhaber von Betrieben aus der Region ab 100'000 Franken Jahresumsatz
+- Offer / Funnel-Typ: Neue Website plus Sichtbarkeitssystem, Platz 1 in 30 Tagen oder kein Geld, kostenloser Sichtbarkeits-Check mit Entwurf der neuen Seite in 24 Stunden -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | JUN26
+- Ausgaben gesamt: 2337.06
+- Ausgaben 30T: 1661.44
+- Hookrate % 14T: 31.85
+- ROAS 14T: 0
+- CTR % 14T: 1.36
+- CPL 30T: 51.92
+- CPA AT: 1168.53
+- Leads 14T: 16
+- Termine AT: 21
+- Klicks gesamt: 812
+- Klicks AT: 812
+- Ad-IDs: 120249175508990598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 763.24
+- Ausgaben 7T: 421.44
+- Ausgaben AT: 2337.06
+- CPA: 1168.53
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 44.94
+- CPL 14T: 47.7
+- CPL 7T: 70.24
+- CPL AT: 44.94
+- CTR %: 1.22
+- CTR % 30T: 1.18
+- CTR % 7T: 1.32
+- CTR % AT: 1.22
+- CTR Link % 14T: 0.76
+- CTR Link % 30T: 0.68
+- CTR Link % 7T: 0.79
+- CTR Link % AT: 0.69
+- Conversions gesamt: 2
+- Erste Auslieferung: 2026-06-24
+- Erstellt am: 2026-06-24
+- Funnel-Zweck: Lead
+- Hookrate %: 31.44
+- Hookrate % 30T: 32.58
+- Hookrate % 7T: 31.38
+- Hookrate % AT: 31.44
+- Impressionen 14T: 18793
+- Impressionen 30T: 42664
+- Impressionen 7T: 10547
+- Impressionen AT: 66607
+- Impressionen gesamt: 66607
+- Klicks 14T: 255
+- Klicks 30T: 502
+- Klicks 7T: 139
+- Leads 30T: 32
+- Leads 7T: 6
+- Leads AT: 52
+- Leads gesamt: 52
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 4.28
+- Termine 14T: 1
+- Termine 30T: 8
+- Termine 7T: 1
+- Terminpreis 14T: 763.24
+- Terminpreis 30T: 207.68
+- Terminpreis 7T: 421.44
+- Terminpreis AT: 111.29
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 10000
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 2
+- Verlustgruende: Preis/Budget · 10
+Sonstiges · 4
+Unqualifiziert · 3
+Konkurrenz · 2
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Betriebe ab 100'000 Franken Jahresumsatz aufgepasst, wir bringen dich in den naechsten 30 Tagen bei Google auf Platz 1 oder du bezahlst keinen einzigen Rappen. Aufbau: Komplett neue Seite plus eigenes Sichtbarkeitssystem fuer Google, KI-Suche, ChatGPT und die naechsten Kunden, Beispiel AlpenEnergie, die bei einer Suche nach Solaranlage in der Region ganz oben stehen. Dominic stellt sich als Inhaber von Make Marketing vor, ueber 15 Betriebe aus der Region in diesem Jahr, alles selber vom Code ueber das Design bis zum Fotoshooting vor Ort. Close: Kostenloser Sichtbarkeits-Check, in 24 Stunden sieht man, wie die neue Seite aussieht, Eintragen unter der Anzeige.
+
+## 25.06. · Video · CH_breit_28-65
+- id: recc5RgHAnb1p0eUY
+- Name: 25.06. · Video · CH_breit_28-65
+- Creative-ID: 1291666616288708
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: Im Dunkeln bleibt, wer bei Google nicht gefunden wird – MAKE bringt Sichtbarkeit
+- Visual Style: Dark-Mode Imagefilm/Teaser-Video
+- Awareness Level: Problem Aware
+- Industry: SEO / Digitalmarketing für KMU
+- Target Audience: Schweizer KMU und Selbstständige, die bei Google sichtbarer werden wollen
+- Offer / Funnel-Typ: Leadgenerierung SEO (Kampagne MAKE_SEO_Leads_CH)
+- Kampagne: MAKE_SEO_Leads_CH_2026-06
+- Adset: CH_breit_28-65
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249266405460598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das Creative ist ein Video (Format laut Frontmatter), als Beleg liegt nur ein 64×64-px-Standbild vor, das extrem dunkel und wenig aussagekräftig ist. Soweit im Standbild erkennbar: Eine fast komplett schwarze, unterbelichtete Szene, die wie ein Raum- oder Flurausschnitt wirkt. Im rechten Bilddrittel zieht sich eine dünne, vertikale rot-orange Lichtlinie von oben nach unten – sie ist der einzige farbliche Akzent und erzeugt eine dramatische, filmische Stimmung. Personen, Gesichter, Produkt, Screen-Elemente oder Text-Overlays sind auf dem Standbild nicht erkennbar. Der visuelle Stil legt einen atmosphärischen Teaser/Einstieg nahe, der über Dunkelheit und ein einzelnes Lichtelement Aufmerksamkeit erzeugt, bevor die eigentliche Botschaft folgt. Da keine Caption und keine weiteren Frames vorliegen, sind einzelne Szenen, gesprochene Botschaften und Text-Overlays im Vorschaubild nicht lesbar bzw. nicht ableitbar. Aus dem Ad-Namen („MAKE_SEO_V1") und der Kampagne („MAKE_SEO_Leads_CH_2026-06") ist ableitbar, dass das Video für die SEO-Leistung der Agentur MAKE wirbt und auf Leadgenerierung in der Schweiz ausgelegt ist. Der konkrete Schluss-CTA (z. B. Formular, Website oder Terminbuchung) ist aus den vorhandenen Daten nicht ableitbar. Für eine vollständige Szenen-Analyse müsste das Originalvideo aus der Anzeigenbibliothek gezogen werden.
+
+## 25.06. · Static · CH_breit_28-65
+- id: recc6poxRcSfXUblb
+- Name: 25.06. · Static · CH_breit_28-65
+- Creative-ID: 1006021982017643
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Deine Website soll Kunden bringen, nicht nur gut aussehen
+- Visual Style: Edles Device-Mockup-Foto (Laptop + Smartphone, Dark Mode, Grün-Akzent)
+- Awareness Level: Solution Aware
+- Industry: Webdesign & SEO für lokale Betriebe/Handwerk
+- Target Audience: lokale Betriebe und Handwerker in der Schweiz, deren Website keine Anfragen bringt
+- Offer / Funnel-Typ: Leadgenerierung Website/SEO (Ergebnisversprechen → Anfrage)
+- Kampagne: MAKE_SEO_Leads_CH_2026-06
+- Adset: CH_breit_28-65
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249265324850598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Werbebild im Story-/Portrait-Format (ca. 9:16) mit edler, dunkler Premium-Ästhetik. Der Hintergrund ist ein tiefes Dunkelblau-Schwarz mit leichtem Verlauf; vorne links sorgt eine unscharfe grüne Pflanze für Tiefenwirkung, die Akzentfarbe Grün zieht sich durchs ganze Layout. Oben links steht die große Headline in vier Zeilen: „Eine Website, die Kunden bringt." – „Website," ist in leuchtendem Grün gesetzt, der Rest in Weiß, am Zeilenende ein grüner Punkt. Darunter folgen drei Bulletpoints, jeweils mit grünem Kreis-Icon und weißem Häkchen: „Bei Google auf Platz 1" („Platz 1" grün), „Professionelles Design, das Kunden überzeugt" („überzeugt" grün) und „Eigenes Fotoshooting, damit dein Betrieb echt wirkt" („echt" grün) – die Schlüsselwörter sind also farblich hervorgehoben. Rechts unten steht als Produkt-Visualisierung ein aufgeklappter dunkler Laptop neben einem aufgestellten Smartphone auf einem dunklen Stein-/Betonpodest. Der Laptop-Screen zeigt eine hochwertige, dunkle Beispiel-Website mit Menüleiste („HOME, LEISTUNGEN, PROJEKTE, ÜBER UNS, KONTAKT"), großem Architekturfoto eines modernen Hauses, der Headline „QUALITÄT. HANDWERK. VERTRAUEN.", Subline „Ihr Partner für hochwertige Lösungen." und einem hellen Button „MEHR ERFAHREN". Das Smartphone zeigt die mobile Ansicht derselben Website: Hamburger-Menü, Headline „WIR SCHAFFEN WERTE, DIE BLEIBEN.", darunter Sektionen wie „LEISTUNGEN" und „BERATUNG" mit kleinen Architekturbildern – das Responsive-Design wird so mitverkauft. Ein expliziter CTA-Button im Werbemotiv selbst fehlt; der Abschluss läuft über die Meta-Anzeigen-Schaltfläche/Caption. Stil: edel, ruhig, architektonisch – positioniert die Website als hochwertiges Aushängeschild mit messbarem Kundennutzen.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: reccFadXLB5bKQzdY
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 997320969812416
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Webdesign direkt aus Basel – von jemandem aus deiner Stadt, nicht von einer anonymen Agentur.
+- Visual Style: UGC Selfie-Video
+- Awareness Level: Solution Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: Betriebe in Basel, die eine neue Website brauchen und lokal kaufen wollen
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 118.1
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 39
+- Klicks AT: 39
+- Ad-IDs: 120248680239730598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 118.1
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.21
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.21
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.77
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 29.12
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 29.12
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3235
+- Impressionen gesamt: 3235
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Selfie-Video (9:16), gedreht im Freien direkt vor dem roten Basler Rathaus mit Arkaden — die Kulisse ist das visuelle Kernstück und beweist den Lokalbezug „aus Basel" sofort. Das Vorschaubild zeigt einen Mann mit Brille und dunkler Basecap im Selfie-Abstand, der direkt in die Kamera spricht. Oben im Bild liegt ein dreizeiliges Text-Overlay in weißen Boxen, in dem einzelne Keywords rot hervorgehoben sind; der genaue Wortlaut ist auf dem 64-px-Thumbnail nicht sicher entzifferbar, die Struktur wirkt aber wie ein Qualifizierungs- oder Angebots-Statement. Der wahrscheinliche Ablauf, aus Titel und Kontext ableitbar (nicht verifizierbar): (1) Lokaler Hook: „Webdesign aus Basel" — der Sprecher positioniert sich als Mensch aus der Stadt, nicht als anonyme Agentur. (2) Ansprache der Zielgruppe: Betriebe in Basel mit Website-Bedarf. (3) Vertrauens- und Leistungspart: was Make Marketing konkret liefert (von Hand gebaut, echte Fotos, schnelle Umsetzung), vermutlich mit Website-Screenshots als Beweis. (4) Abschluss-CTA Richtung Anfrage oder Terminbuchung. Tonalität: persönlich, bodenständig, vertrauensvoll. Konkrete Schnittfolge, B-Roll und finaler CTA-Screen sind aus dem Standbild nicht ableitbar. Der Ad-Name „H3b_B1 – Kopie" deutet auf eine duplizierte Skalierungsvariante desselben Hooks hin.
+
+## 12.06. · Video · BASEL 30KM | H1bB1
+- id: recd73mvrH91Ti5DR
+- Name: 12.06. · Video · BASEL 30KM | H1bB1
+- Creative-ID: 27825180330420685
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direktansprache aus der Basler Altstadt — Hook-Variante 1b
+- Visual Style: Talking-Head UGC-Video on-location mit Text-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Raum Basel)
+- Target Audience: lokale Unternehmen im Umkreis 30 km um Basel
+- Offer / Funnel-Typ: Terminbuchung direkt / Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEO | BASEL 30KM | H1bB1 | JUN26
+- Ausgaben gesamt: 152.5
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 90
+- Klicks AT: 90
+- Ad-IDs: 120248262132440598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 152.5
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 152.5
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 152.5
+- CTR %: 1.5
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.5
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.05
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-12
+- Erstellt am: 2026-06-12
+- Funnel-Zweck: Lead
+- Hookrate %: 31.08
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 31.08
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6020
+- Impressionen gesamt: 6020
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformat-Video (9:16) im Talking-Head-Stil, gedreht on-location in der Basler Altstadt. Das Vorschaubild zeigt eine Frau mit dunklem, hochgestecktem Haar, die im Freien vor einer hellen, klassischen Gebäudefassade mit Fensterreihen steht — eine Altstadtgasse als Kulisse. Sie spricht direkt in die Kamera, Einstellung ist eine mittlere Nahaufnahme (Kopf bis Oberkörper), das natürliche Tageslicht erzeugt eine authentische UGC-Anmutung. Im oberen Bildbereich liegt ein weißes, mehrzeiliges Text-Overlay mit dunkler Kontur (die Hook-Zeile), dessen Wortlaut im 64×64-px-Vorschaubild nicht lesbar ist. Der Ad-Name „H1bB1" ordnet das Video als Variante 1b im systematischen Hook-Testing der Kampagne ein — gleiches Grundkonzept wie H1a, aber mit abgewandeltem Einstieg, um die beste Scroll-Stopper-Formulierung zu finden. Aus dem Kampagnenkontext „LOKAL | WEBSITE" und dem Adset „VIDEO | BASEL 30KM" ist ableitbar, dass die Sprecherin lokale Unternehmen aus Basel direkt adressiert, das Thema Website/Webdesign aufgreift und das Video mit einem klaren CTA endet — üblicherweise Terminbuchung oder Website-Anfrage. Die Altstadt-Kulisse verstärkt den Lokalbezug („aus Basel, für Basel") bereits visuell in der ersten Sekunde. Weitere Szenen, B-Roll-Elemente, exakte Overlay-Texte und der CTA-Wortlaut sind aus dem Vorschaubild nicht ableitbar; Musik und Schnittfolge sind im Standbild nicht erkennbar.
+
+## 25.09. · Static · LEADS
+- id: recdBKW9e2C2BdftK
+- Name: 25.09. · Static · LEADS
+- Creative-ID: 2020949815309001
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Such-Ansprache plus Produktbeweis: fertige Website direkt im Bild gezeigt
+- Visual Style: Typografie-Ad mit Laptop-Mockup
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Inhaber kleiner und mittlerer Unternehmen ohne oder mit veralteter Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WIR SUCHEN | LEADS
+- Ausgaben gesamt: 3.67
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 3
+- Klicks AT: 3
+- Ad-IDs: 120234432475610598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.67
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.17
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.17
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.72
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-25
+- Erstellt am: 2025-09-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 138
+- Impressionen gesamt: 138
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad mit vollflächig knallrotem Hintergrund. Oben steht eine mehrzeilige, weiße Headline in fetter Sans-Serif: „Wir suchen Unternehmer, die eine neue Website brauchen." — das Wort „Website" wirkt in der Miniatur farblich abgesetzt bzw. unterlegt; ob als Marker, Box oder Farbwechsel, ist im Vorschaubild nicht eindeutig erkennbar. Unter der Headline dominiert ein frontal gezeigtes Laptop-Mockup, das eine fertige, rot gehaltene Website mit Hero-Bereich, Navigation und weiteren Content-Sektionen zeigt. Das Mockup liefert den konkreten Produktbeweis: So könnte die neue Website des Interessenten aussehen. Die Details des Website-Screenshots — Texte, Bilder, einzelne Sektionen — sind im Vorschaubild nicht lesbar. Die Farbwelt ist kompromisslos Rot/Weiß: roter Hintergrund, weiße Typografie und ein rot gestaltetes Website-Design im Screen, was die Agentur-Farbwelt konsistent durchzieht. Die Bildsprache ist plakativ und flächig, ohne Fotorealismus außerhalb des Mockups. Unten im Bild sind gegebenenfalls weitere Elemente wie ein Button oder Logo angedeutet, in der Miniatur jedoch nicht eindeutig erkennbar. Die Komposition folgt einem klassischen Zwei-Ebenen-Layout — Text oben, Produkt unten — mit klarer Blickführung von der Such-Headline zum sichtbaren Ergebnis.
+
+## 15.04. · Video · BROAD BERN | MARC EVERS
+- id: recdFrjuKXdjSmX1Y
+- Name: 15.04. · Video · BROAD BERN | MARC EVERS
+- Creative-ID: 1518821313224750
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Rot hervorgehobene Schlüsselwörter im Untertitel ziehen den Blick auf den Nutzen
+- Visual Style: UGC Selfie-Video / Talking Head mit Untertitel-Overlay (Keyword-Highlighting)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU und Selbstständige in der Region Bern, die eine Website brauchen
+- Offer / Funnel-Typ: Formular/Leadformular (Serienname „FormSwap")
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BERN | MARC EVERS
+- Ausgaben gesamt: 198.48
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 118
+- Klicks AT: 118
+- Ad-IDs: 120244277132250598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 198.48
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 198.48
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 198.48
+- CTR %: 1.18
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.18
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.65
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 31.7
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 31.7
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 9983
+- Impressionen gesamt: 9983
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Basecap und Brille (dunkles Oberteil) spricht in Selfie-Perspektive direkt in die Kamera; dahinter eine Straße mit Häuserzeile, urbane Wohngegend. Am unteren Bildrand läuft ein zweizeiliges Untertitel-Overlay, in dem einzelne Wörter rot hervorgehoben sind – der exakte Wortlaut ist auf dem kleinen Thumbnail nicht sicher lesbar. Das Farb-Highlighting im Untertitel ist ein typisches Mobile-First-Stilmittel, um Schlüsselbegriffe (Problem oder Nutzen) visuell zu betonen. Logos oder andere Branding-Elemente sind im Frame nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Serie „WebsiteOffer-V2-FormSwap", Variante V2, Adset „BROAD BERN"):** Die Ad dürfte mit einer kurzen, direkten Hook-Aussage zur Website-Problematik starten – die rot hervorgehobenen Untertitel-Wörter tragen den Hook auch ohne Ton. Danach dürfte der Sprecher das Website-Angebot und den konkreten Nutzen benennen (z. B. mehr Anfragen, professioneller Auftritt). Der Serienname „FormSwap" legt nahe, dass die Conversion über ein Formular läuft; plausibel ist daher ein Abschluss-CTA zum Ausfüllen des Formulars bzw. zur unverbindlichen Anfrage. Gesprochener Wortlaut vollständig, Zwischenschnitte und exakter CTA-Text: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 20.02. · Video · BROAD | META FORMULAR – Kopie
+- id: recdMUokM7naLXTSd
+- Name: 20.02. · Video · BROAD | META FORMULAR – Kopie
+- Creative-ID: 1358637179712347
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du willst eine neue Website — so bekommst du eine, die deiner Arbeit gerecht wird
+- Visual Style: Talking-Head-Video Outdoor mit Wort-Overlays
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU-Inhaber mit konkretem Bedarf an einer neuen Website
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 121.47
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 44
+- Klicks AT: 44
+- Ad-IDs: 120241290376430598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 121.47
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 60.73
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 60.73
+- CTR %: 1.01
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.01
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.59
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 15.79
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.79
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4371
+- Impressionen gesamt: 4371
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Szene 1 (sichtbar im Standbild): Der Sprecher der Kampagne (Mann mit Brille, kurzem dunklem Bart, dunkle Jacke über hellem Shirt) steht outdoor vor der Hochhaus-/Skyline-Kulisse, spricht direkt in die Kamera und gestikuliert mit beiden Händen vor dem Oberkörper — eine offene, erklärende Körpersprache. Im sichtbaren Standbild ist kein Text-Overlay erkennbar; die Captions setzen vermutlich erst im Verlauf ein oder liegen außerhalb des gecroppten Bildausschnitts. Aus dem Ad-Namen „Du willst Website" ist der Einstieg ableitbar: direkte Du-Ansprache von Unternehmern, die bereits wissen, dass sie eine neue Website brauchen — der Spot setzt also später im Entscheidungsprozess an als die Schmerz-Spots der Kampagne („Konkurrent", „90%"). Der typische Aufbau dieses Formats (aus dem Einzelbild nicht verifizierbar): Hook mit der Du-Ansprache, dann die Verknüpfung mit dem Kampagnen-Claim „Deine Arbeit ist besser als deine Website", kurze Erläuterung, was eine gute Website ausmacht, synchron laufende Wort-Captions, und am Ende ein direkter CTA zur Anfrage über das Meta-Leadformular. Genaue Szenenfolge, Sprechtext und Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Bildsprache urban, Tageslicht, unscharfer Hintergrund; sichtbares MAKE-Branding ist im Thumbnail nicht erkennbar.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recdNumkpdgOsJwRc
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 1470421444556134
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direkte Ansprache von Firmeninhabern mit eingeblendetem Stichwort „Unternehmen“
+- Visual Style: UGC Selfie-Video (Talking Head) mit Untertitel-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Firmeninhaber lokaler Unternehmen in Basel mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 20.03
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 13
+- Klicks AT: 13
+- Ad-IDs: 120244825672100598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 20.03
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.55
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.55
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.84
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 14.44
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.44
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 838
+- Impressionen gesamt: 838
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video mit eingeblendeten Untertitel-Overlays, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit dunkler Basecap und Brille spricht direkt in die Kamera, Hintergrund unscharf und hell (Außenkulisse); unten im Bild erscheint ein weißes Text-Overlay mit dunkler Schrift, von dem auf dem 64-px-Standbild nur das Wort „Unternehmen" lesbar ist – ein weiteres Wort darunter ist nicht entzifferbar. Diese Untertitel-Zeile deutet darauf hin, dass das Video durchgehend mit Caption-Overlays arbeitet (typisch für Ton-aus-Konsum im Feed). Szene 2: Aus Kampagnenkontext („Webdesign aus Basel", „LOKAL | WEBSITE | FEB26") ist ableitbar, dass der Sprecher sich als Webdesigner aus Basel vorstellt und gezielt Firmeninhaber anspricht – das Overlay-Wort „Unternehmen" passt zur Zielgruppen-Ansprache („Du hast ein Unternehmen in Basel …"). Szene 3: Vermutlich benennt er das Problem (keine oder veraltete Website, verlorene Kundenanfragen) und stellt sein Webdesign-Angebot als lokale Lösung vor. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, wahrscheinlich mit Hinweis auf den Anzeigen-Button; ob ein CTA auch als Text-Overlay eingeblendet wird, ist aus dem Standbild nicht ableitbar. Bildsprache: authentischer UGC-Look, Tageslicht, kein sichtbares Logo. Der vollständige Overlay-Text und die Szenenfolge sind auf dem kleinen Vorschaubild nicht lesbar bzw. nicht ableitbar.
+
+## 03.06. · Static · Heeb Feedback
+- id: recdhjKHMH4yBmtOu
+- Name: 03.06. · Static · Heeb Feedback
+- Creative-ID: 962391946769968
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Echtes Kundenfeedback von Heeb als Social Proof für MAKE
+- Visual Style: Testimonial-Karte mit Porträtfoto und Zitat-Overlay
+- Awareness Level: Solution Aware
+- Industry: Marketing für lokale KMU (Kundenbeispiel Heeb)
+- Target Audience: Inhaber lokaler Betriebe, die Agentur-Leistungen vergleichen
+- Offer / Funnel-Typ: Case-Study → Anfrage/Call
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 01 | Heeb Feedback
+- Ausgaben gesamt: 50.85
+- Ausgaben 30T: 10.13
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 33
+- Klicks AT: 33
+- Ad-IDs: 120247607270180598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 50.85
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.35
+- CTR % 30T: 0.38
+- CTR % 7T: 0
+- CTR % AT: 0.35
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0.24
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.27
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 2091
+- Impressionen 7T: 0
+- Impressionen AT: 9556
+- Impressionen gesamt: 9556
+- Klicks 14T: 0
+- Klicks 30T: 8
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratisches Standbild (1:1) im klassischen Testimonial-Layout. Im rechten bzw. zentralen Bildbereich steht ein Mann in dunklem Sakko bzw. dunkler Jacke vor einem rot gefärbten Hintergrund und blickt direkt in die Kamera — das Porträt vermittelt Seriosität und Persönlichkeit, vermutlich der Kunde Heeb (Inhaber/Geschäftsführer). Über den linken bzw. oberen Bildbereich liegt ein mehrzeiliges Text-Overlay in weißer Schrift, einzelne Wörter oder Zeilen wirken rot hervorgehoben; der genaue Wortlaut des Zitats ist im 64×64-px-Vorschaubild nicht lesbar — erkennbar ist nur, dass es sich um mehrere Zeilen Fließtext (das Kundenfeedback) handelt. Die Farbwelt ist auf Rot (Brandfarbe) und Dunkelgrau/Schwarz aufgebaut, was Aufmerksamkeit erzeugt und zum MAKE-Branding passt. Die Komposition folgt dem bewährten Social-Proof-Schema: Gesicht des Kunden + wörtliches Zitat, damit Betrachter Feedback und Person direkt verknüpfen. Unterhalb des Zitats dürften üblicherweise Name und Firma des Kunden stehen; auch ein Sterne-Rating oder Logo ist bei diesem Format üblich, ist aber im Vorschaubild nicht verifizierbar. Aus dem Ad-Namen „AD 01 | Heeb Feedback" und der Platzierung als erste Ad der Kampagne ist ableitbar, dass diese Ad als Vertrauensanker im Retargeting läuft: Wer MAKE schon kennt, sieht hier den Beweis, dass echte Kunden zufrieden sind. Ein expliziter CTA-Button auf dem Bild ist im Vorschaubild nicht erkennbar; der Handlungsimpuls kommt vermutlich über Caption und Facebook-Button. Keine weiteren Texte oder Details werden ergänzt, da sie im Vorschaubild nicht lesbar sind.
+
+## 18.12. · Video · Website 30d
+- id: recdoOuf6UhcYJKK4
+- Name: 18.12. · Video · Website 30d
+- Creative-ID: 1488441238885955
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Authentischer Einblick: So entsteht deine Website wirklich
+- Visual Style: Behind-the-Scenes Doku-Video
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing KMU
+- Target Audience: lokale KMU-Inhaber mit Interesse an neuer Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: RTG | WEBSITE OFFER
+- Adset: Website 30d
+- Ausgaben gesamt: 4.39
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120239131423670598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 4.39
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.9
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.9
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.45
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 32.74
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 32.74
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 223
+- Impressionen gesamt: 223
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Transkript: Das ist das erste Mal, dass ich das sehe.
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video (Format laut Metadaten). Das Vorschaubild ist sehr klein (64×64 px) und zeigt eine Außenszene beim Shooting-Tag: Mehrere Personen stehen locker beieinander im Freien, daneben ein dunkles Fahrzeug, im Hintergrund Bäume und Grünfläche — offensichtlich ein Team- oder Setbild vom Fotoshooting beim Kunden BeoTherm. Text-Overlays, Untertitel oder Logos sind im Vorschaubild nicht lesbar.
+  
+  Ableitbarer Aufbau aus Caption und Kontext („Das ist der Moment, wo eine Website entsteht"):
+  1. Einstieg: Szene vom Shooting-Tag — Team trifft beim Kunden ein, Equipment wird aufgebaut.
+  2. Mittelteil: Schnelle Doku-Eindrücke — Kamera-Arbeit, Fotograf richtet Motive ein, Team-Mitglieder positionieren Personen/Produkte, lockere Atmosphäre am Set.
+  3. Botschaft: Der ehrliche, ungeschönte Arbeitsprozess wird als Vertrauensbeweis gezeigt — „so arbeiten wir wirklich".
+  4. Verknüpfung: Das Shooting-Material wird zur Website — vermutlich kurze Andeutung des Ergebnisses (Website-Screens oder Fotos).
+  5. Abschluss: CTA in Richtung Termin/Kontakt mit MAKE Marketing (genauer Wortlaut im Vorschaubild nicht lesbar).
+  
+  Gesprochene Botschaft ist aus dem Standbild nicht ableitbar; die Caption liefert den Kern-Hook. Details wie Musik, Sprechertext und exakte CTA-Formulierung sind aus dem Vorschaubild nicht ableitbar.
+
+## 15.04. · Video · BROAD BERN | MARC EVERS
+- id: receBzpT6pQWrsUgO
+- Name: 15.04. · Video · BROAD BERN | MARC EVERS
+- Creative-ID: 1290051523252749
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Emotionaler Einstieg („endlich mal…") – Erleichterung über einfache Website-Lösung
+- Visual Style: UGC Selfie-Video / Talking Head mit Untertitel-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen in der Region Bern, die eine neue Website brauchen
+- Offer / Funnel-Typ: Formular/Leadformular (Serienname „FormSwap")
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BERN | MARC EVERS
+- Ausgaben gesamt: 122.41
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 1
+- Klicks gesamt: 72
+- Klicks AT: 72
+- Ad-IDs: 120244277179430598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 122.41
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 61.2
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 61.2
+- CTR %: 1.22
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.22
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.68
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 20.94
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 20.94
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5907
+- Impressionen gesamt: 5907
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 122.41
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Sonstiges · 1
+Unqualifiziert · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Basecap und Brille (dunkles Oberteil) spricht in Selfie-Perspektive mit geöffnetem Mund in die Kamera. Der Hintergrund zeigt eine Grünfläche bzw. einen Park mit unscharfen Passanten und Gebäuden am Rand – urbane Außenszene. Unten läuft ein weißes Untertitel-Overlay, in dem die Wörter „endlich mal" klar erkennbar sind; der restliche Wortlaut ist auf dem Thumbnail nicht lesbar. Wie bei den anderen Varianten der Serie deutet der Untertitel auf durchgehende Captions für Sound-off-Konsum hin. Logos oder Branding-Elemente sind im Frame nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Serie „WebsiteOffer-V2-FormSwap", Variante V4, Adset „BROAD BERN"):** Die Formulierung „endlich mal" deutet auf einen emotionalen, erleichterungsgeladenen Hook hin – im Sinne von „endlich mal jemand, der sich um deine Website kümmert" oder „endlich mal eine Website, die Anfragen bringt". Danach dürfte der Sprecher das Website-Angebot konkretisieren und den Nutzen für lokale Unternehmen benennen. Wie die anderen „FormSwap"-Varianten dürfte die Conversion über ein Formular laufen, mit CTA zum Ausfüllen am Ende. Gesprochener Wortlaut vollständig, Zwischenschnitte und exakter CTA-Text: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 17.02. · Video · BROAD | LP
+- id: recegkifEwx3OB41V
+- Name: 17.02. · Video · BROAD | LP
+- Creative-ID: 2842325302784568
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Konkurrent kassiert den Auftrag, weil er online besser dasteht
+- Visual Style: Talking-Head-Video (Außendreh, mit Untertitel-Overlay)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker und Selbstständige im lokalen Wettbewerb
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | LP
+- Ausgaben gesamt: 84.55
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 201
+- Klicks AT: 201
+- Ad-IDs: 120241192843330598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 84.55
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 4.43
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 4.43
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.98
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 29.17
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 29.17
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4542
+- Impressionen gesamt: 4542
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein Mann mit Brille spricht direkt in die Kamera, im Hintergrund unscharfe Gebäude – Außendreh in städtischer Umgebung. Unten im Bild erscheint ein weißer Text-Overlay (Untertitel) mit dem Wort „Dein" – im Vorschaubild ist nur dieses Wort lesbar; es passt zum Ad-Namen „Konkurrent hat Auftrag bekommen" (z. B. Satzanfang „Dein Konkurrent …"), der genaue Wortlaut ist im Vorschaubild nicht lesbar.
+  Gesprochene Kernbotschaft (aus Ad-Name und Titel ableitbar): Der Sprecher schildert das Verlustszenario – der Konkurrent hat den Auftrag bekommen, nicht weil er besser arbeitet, sondern weil er online besser dasteht.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Verlustangst-Verstärkung – das passiert nicht einmal, sondern immer wieder, solange die eigene Website schwächer ist als die des Wettbewerbers.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Make Marketing als Lösung: eine Website, die im lokalen Vergleich überzeugt und Aufträge zurückholt.
+  Schluss/CTA: Der konkrete CTA und weitere Overlays sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Talking Head im Außendreh, weiße Untertitel-Einblendungen unten im Bild, Wettbewerbs-/Verlustangst-Frame als emotionaler Treiber.
+
+## 25.09. · Static · LEADS
+- id: recekdyTPpn2FTd88
+- Name: 25.09. · Static · LEADS
+- Creative-ID: 1962250881175318
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Wir suchen Unternehmer in der Schweiz (direkte Such-Ansprache)
+- Visual Style: Text-First-Anzeige auf weißem Hintergrund mit rotem CTA-Button
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing Schweiz (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer in der Schweiz
+- Offer / Funnel-Typ: Meta Lead-Formular (WIR SUCHEN | LEADS)
+- Kampagne: WEBSITE OFFER
+- Adset: WIR SUCHEN | LEADS
+- Ausgaben gesamt: 22.75
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 11
+- Klicks AT: 11
+- Ad-IDs: 120234432191160598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 22.75
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.01
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.01
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.46
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-25
+- Erstellt am: 2025-09-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1085
+- Impressionen gesamt: 1085
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad mit hellem, fast reinweißem Hintergrund und reduziertem, textzentriertem Layout ohne Foto. Oben dominiert eine große, schwarze, fette Headline in mehreren Zeilen: „Wir suchen Unternehmer in der Schweiz" — vollständig und klar lesbar. Darunter steht eine kleinere Subline in feinerer Schrift, die farblich rot abgesetzt zu sein scheint; der genaue Wortlaut ist auf der 64×64-px-Vorschau nicht lesbar, die Zeile ergänzt erkennbar die Such-Ansprache mit dem konkreten Angebot. Im unteren Bereich sitzt ein auffälliger roter CTA-Button mit heller, weißer Schrift; der Button-Text ist im Vorschaubild nicht lesbar, bildet aber den klaren Handlungs-Trigger. Die Komposition ist vertikal gestaffelt: Headline → Subline → CTA-Button, mit großzügigem Weißraum um alle Elemente. Die Farbwelt ist minimalistisch: Schwarz-Weiß-Basis mit dem roten MAKE-Markenrot als Akzent auf Subline und Button. Stil und Bildsprache: clean und direkt wie eine Suchanzeige — die „Wir suchen …"-Form erzeugt Neugier, persönliche Ansprache und Selbstqualifikation der Zielgruppe. Branding-Elemente: rote Akzentfarbe als wiedererkennbares MAKE-Stilmittel; ein Logo ist auf der Vorschau nicht erkennbar.
+
+## 18.12. · Static · BROAD 3
+- id: recfZsGZxNR5pWlA6
+- Name: 18.12. · Static · BROAD 3
+- Creative-ID: 1914528189945387
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Deine Konkurrenz ist bei Google sichtbar — du nicht
+- Visual Style: Dark-Mode-Screenshot / Post-Karte
+- Awareness Level: Problem Aware
+- Industry: Webdesign/Marketing lokale Dienstleister
+- Target Audience: lokale Dienstleister/Handwerker ohne Google-Sichtbarkeit
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 3
+- Ausgaben gesamt: 6.17
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120239131229010598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 6.17
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.58
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.58
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.58
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 171
+- Impressionen gesamt: 171
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad (Format laut Metadaten Bild); die lokal vorhandene Vorschau ist nur 64×64 Pixel groß und daher stark unscharf — der genaue Wortlaut ist im Vorschaubild nur ansatzweise bzw. nicht vollständig lesbar. Erkennbar ist ein dunkles, kartenartiges Design im Dark-Mode-Look: dunkelgrauer bis schwarzer Hintergrund, darauf oben mittig ein kleines rundes Element (vermutlich Profilbild oder Icon) und darunter mehrere Zeilen heller Text — der Aufbau erinnert an einen Social-Media-Post, eine Google-Bewertungskarte oder einen Screenshot. In der hellen Textzeile scheint sinngemäß „Deine Konkurrenz ist bei Google sichtbar" zu stehen (auf dieser Auflösung nicht sicher entzifferbar — als nicht vollständig lesbar zu werten). Unten im Bild scheinen weitere kleinere Textzeilen oder Elemente zu liegen; ob ein CTA-Button, ein MAKE-Logo oder eine Sternebewertungs-Grafik enthalten ist, ist im Vorschaubild nicht lesbar. Farbwelt: kontrastreiches Dark-Design (Schwarz/Dunkelgrau mit hellem Text), deutlich dunkler als die typografischen Weiß-Ads derselben Kampagne — fällt im Feed durch Kontrast auf. Bildsprache: Screenshot-Ästhetik als Beweismittel-Look — die Anzeige soll wie ein „echter Fund" (Google-Suche/Post) wirken und den Schmerz „die anderen sind sichtbar, du nicht" auslösen. Der Werbetext und CTA laufen zusätzlich über die Ad-Caption (nicht in der Datei hinterlegt).
+
+## 05.09. · Static · INTEREST
+- id: recg9HsVyz6lCQdED
+- Name: 05.09. · Static · INTEREST
+- Creative-ID: 818235467193490
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Keine Aufträge? Während du wartest, telefoniert dein Konkurrent schon mit Kunden
+- Visual Style: Kontrast-Fotografie / Problem-Lösung-Split
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Selbstständige und Inhaber kleiner Unternehmen (u. a. Handwerk) mit zu wenig Anfragen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | INTEREST
+- Ausgaben gesamt: 88.65
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 82
+- Klicks AT: 82
+- Ad-IDs: 120233525621070598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 88.65
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.83
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.83
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.66
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 9884
+- Impressionen gesamt: 9884
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat in dunkler, kontrastreicher Studio-Optik mit schwarzem Hintergrund. Oben steht die große, zweizeilige Headline: „KEINE" in kräftiger weißer Sans-Serif, direkt darunter „AUFTRÄGE?" in Signalfarbe Rot – die Schmerzfrage ist damit das visuelle Zentrum des oberen Drittels. Darunter sitzt eine kleinere Subline, deren Wortlaut im Vorschaubild nicht lesbar ist. Die Bildmitte zeigt einen klassischen Problem-vs.-Lösung-Personenkontrast: Links sitzt ein bärtiger Mann in dunkler Jacke mit verschränkten Armen und skeptischem, frustriertem Blick – er verkörpert den Betrieb ohne Anfragen. Rechts sitzt ein Mann in schwarzem Poloshirt, der entspannt lächelt und ein Handy ans Ohr hält – er verkörpert den Unternehmer mit vollem Auftragsbuch. Ein roter, geschwungener Pfeil verbindet die beiden Figuren und suggeriert den Übergang vom linken in den rechten Zustand (also: durch das beworbene Angebot). Unten läuft ein roter Banner-Balken quer über das Layout mit weißem Text darauf – vermutlich CTA oder Offer-Zusatz, im Vorschaubild nicht lesbar. Farbwelt: Schwarz/Anthrazit mit Weiß- und Rot-Akzenten, gedämpftes Licht auf die Gesichter. Bildsprache: dramatisch, vergleichend, leicht provokant. Branding-Elemente/Logo sind im Vorschaubild nicht erkennbar. (Hinweis: identisches Motiv wie die anderen „KEINE AUFTRÄGE?"-Varianten, hier als Ad 3 im INTEREST-Adset.)
+
+## 24.06. · Video · CH | PLATZ-1 SEO
+- id: recgC5mxBCOlmQO2K
+- Name: 24.06. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 2147799662761721
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Unternehmen mit mindestens hunderttausend Franken Jahresumsatz aufgepasst. Die Art, wie deine Kunden dich finden, hat sich total veraendert." (Call-Out)
+- Visual Style: UGC Selfie, Text-on-Screen, Doku/B-Roll, Produktdemo
+- Awareness Level: Problem Aware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Inhaber von Betrieben aus der Region ab 100'000 Franken Jahresumsatz, deren Kunden ueber Google und KI-Suche suchen
+- Offer / Funnel-Typ: Neue Seiten plus Sichtbarkeitssystem, in 30 Tagen Platz 1 bei Google und in der KI-Suche, kostenloser Sichtbarkeits-Check mit Entwurf der neuen Seiten in 24 Stunden -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | JUN26
+- Ausgaben gesamt: 19.34
+- Ausgaben 30T: 3.42
+- Hookrate % 14T: 5.56
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120249175540990598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 1.77
+- Ausgaben 7T: 1.16
+- Ausgaben AT: 19.34
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.49
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.49
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.73
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-24
+- Erstellt am: 2026-06-24
+- Funnel-Zweck: Lead
+- Hookrate %: 21.84
+- Hookrate % 30T: 8.96
+- Hookrate % 7T: 9.52
+- Hookrate % AT: 21.84
+- Impressionen 14T: 36
+- Impressionen 30T: 67
+- Impressionen 7T: 21
+- Impressionen AT: 412
+- Impressionen gesamt: 412
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Unternehmen mit mindestens 100'000 Franken Jahresumsatz aufgepasst, die Art, wie deine Kunden dich finden, hat sich total veraendert. Aufbau: Sie googeln nicht nur, sie fragen auch ChatGPT, und wer dort nicht auftaucht, ist fuer diese Kunden unsichtbar. Angebot: In den naechsten 30 Tagen bei Google und in der KI-Suchmaschine auf Platz 1, komplett neue Seiten mit eigenem Sichtbarkeitssystem, so wie bei AlpenEnergie und MIP-Ruest. Dominic stellt sich als Inhaber von Make Marketing vor, ueber 15 Betriebe in diesem Jahr, alles selber vom Code ueber das Design bis zum Fotoshooting vor Ort. Close: Kostenloser Sichtbarkeits-Check mit Entwurf der neuen Seite in 24 Stunden, Eintragen unter der Anzeige.
+
+## 11.03. · Video · BROAD BASEL | MARC EVERS
+- id: recgSxT0Gx2zbwuMg
+- Name: 11.03. · Video · BROAD BASEL | MARC EVERS
+- Creative-ID: 1481975226978442
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direktansprache zum Thema Webdesign aus Basel; konkreter Hook im Standbild nicht ableitbar
+- Visual Style: UGC Selfie-Video (Talking Head draussen)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale KMU in Basel und Umgebung, Inhaber
+- Offer / Funnel-Typ: Kontaktanfrage / Beratungscall
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS
+- Ausgaben gesamt: 127.06
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 145
+- Klicks AT: 145
+- Ad-IDs: 120242143498920598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 127.06
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.35
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.35
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.99
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-11
+- Erstellt am: 2026-03-11
+- Funnel-Zweck: Lead
+- Hookrate %: 21.81
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 21.81
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6171
+- Impressionen gesamt: 6171
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-11
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Videoad (Ad „V5 (ohne CC)" – die Variante läuft bewusst ohne Closed Captions) im UGC-Selfie-/Talking-Head-Stil; das einzige verfügbare Standbild liegt nur als 64×64-px-Thumbnail vor, daher sind Szenenablauf, Overlays und gesprochene Botschaft grösstenteils nicht verifizierbar. Szene 1 (aus dem Standbild ableitbar): Ein Mann mit Brille und Bart filmt sich im Selfie-Stil vor einer auffälligen orange-roten Hausfassade; er schaut direkt in die Kamera und spricht. Die Location draussen vor urbaner Kulisse soll Lokalität („aus Basel") und Authentizität signalisieren. Aus dem Kampagnenkontext („LOKAL | WEBSITE | FEB26", Titel „Webdesign aus Basel") ist ableitbar, dass die gesprochene Botschaft lokale KMU auf die Webdesign-Dienstleistung der Agentur anspricht. Wahrscheinlicher Aufbau (nicht verifizierbar): Hook mit direktem Problem-Bezug (z. B. veraltete oder Kunden-verlierende Website), dann Lösung/Angebot der Agentur, am Ende CTA zur Kontaktaufnahme bzw. zum Beratungscall. Text-Overlays sind auf dem Standbild nicht erkennbar – konsistent mit dem Ad-Namen „ohne CC". Eine Endkarte oder ein eingeblendeter CTA ist aus dem Thumbnail nicht ableitbar. Der Sprecher ist derselbe wie in den Schwester-Varianten V1 und V4 (Serien-Produktion mit wechselnden Locations).
+
+## 01.10. · Static · LEADS
+- id: recgk7f57aGrX9RRq
+- Name: 01.10. · Static · LEADS
+- Creative-ID: 770856265831685
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Alltags-Szene als Scroll-Stopper; Hook im Vorschaubild nicht lesbar (Kontext: Wir-suchen-Kampagne)
+- Visual Style: Arbeitsplatz-Foto mit Textfeld (Lifestyle-Motiv)
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer Unternehmer, KMU-Inhaber
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WIR SUCHEN 25K  | LEADS
+- Ausgaben gesamt: 96.95
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 115
+- Klicks AT: 115
+- Ad-IDs: 120234720031030598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 96.95
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.23
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.23
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.55
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-01
+- Erstellt am: 2025-10-01
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5157
+- Impressionen gesamt: 5157
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-01
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad, horizontal zweigeteilt. Der obere Bereich ist hell und weitgehend leer; dort steht offenbar ein mehrzeiliger dunkler Textblock, dessen Wortlaut im Vorschaubild nicht lesbar ist. Der untere, größere Bereich zeigt eine fotografische Arbeitsplatz-Szene: eine sitzende Person an einem Tisch mit aufgeklapptem Laptop, in lässiger, leicht zurückgelehnter Haltung — Details wie Kleidung, Mimik und Blickrichtung sind in der vorliegenden Auflösung nicht sicher erkennbar. Die Szene wirkt wie ein authentischer Arbeitsmoment bzw. ein Stock-nahes Lifestyle-Motiv, nicht wie ein inszeniertes Studio-Setup. Die Farbwelt ist natürlich und eher entsättigt: helles Textfeld oben, realistische Farbtöne unten. Ob Logo, Button oder CTA im Bild integriert sind, lässt sich in der Miniatur nicht feststellen. Die Komposition teilt das Bild klar in Botschaft (oben) und Szene (unten). Hook und konkretes Angebot sind aus dem Bild allein nicht ableitbar; der Kampagnenkontext („WIR SUCHEN 25K | LEADS", Website Offer) legt eine Such-Ansprache an Unternehmer nahe. Der Scroll-Stopp-Effekt entsteht hier über das Alltagsmotiv und nicht über harte Typografie. Insgesamt die ruhigste, am wenigsten werblich wirkende Variante der Kampagnenreihe.
+
+## 24.02. · Static · WEBSITE
+- id: recgv2uHzOTsEkmyq
+- Name: 24.02. · Static · WEBSITE
+- Creative-ID: 1633903190950632
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Echter Baustellen-Kundenmoment statt Stockfoto
+- Visual Style: Authentisches Baustellen-/Projektfoto
+- Awareness Level: Product Aware
+- Industry: Webdesign für Handwerks-/Baubetriebe
+- Target Audience: Retargeting: Bau- und Handwerksbetriebe, die MAKE kennen
+- Offer / Funnel-Typ: Referenz-Beleg → Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: RTG | WEBSITE
+- Ausgaben gesamt: 27.34
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 23
+- Klicks AT: 23
+- Ad-IDs: 120241513128540598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 27.34
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.31
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.31
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.7
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 994
+- Impressionen gesamt: 994
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-24
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Querformat-Foto (ca. 3:2) bei natürlichem Tageslicht unter bedecktem Himmel, authentische Baustellen-Atmosphäre. Zwei Männer stehen mittig im Bild vor einem eingerüsteten Rohbau mit Holzständerwänden und ockerfarbenen Holzwerkstoffplatten; im Hintergrund sind ein Dach mit roten Ziegeln und eine fahle Bergkuppe zu erkennen. Der Mann links trägt einen schwarzen Hoodie mit weißem „AlpenEnergie“-Logo auf der Brust und eine graue Hose, lacht breit in die Kamera und zeigt mit der rechten Hand Daumen hoch. Der Mann rechts trägt eine Brille, eine schwarze Jacke über weißem Shirt und eine dunkle Hose, lächelt und zeigt ebenfalls Daumen hoch. Die Körpersprache signalisiert Projektabschluss und Zufriedenheit — ein echter Kundenmoment statt eines gestellten Werbefotos. Das Bild kommt komplett ohne Text-Overlay, Headline, Button oder Logo-Grafik aus; die gesamte werbliche Botschaft läuft über Caption und Anzeigenkontext. Das AlpenEnergie-Logo auf dem Hoodie ist das einzige Branding-Element und verknüpft das Creative mit dem Referenzkunden. Farbwelt: natürliche, leicht entsättigte Töne (Grau, Schwarz, Ocker), die die Authentizität unterstreichen. Als Retargeting-Creative (RTG | WEBSITE) dient das Foto als Vertrauens- und Realitätsbeweis: MAKE arbeitet mit echten Betrieben auf echten Baustellen.
+
+## 24.02. · Video · META FORMULAR
+- id: rech1mcsDW5FvPX3W
+- Name: 24.02. · Video · META FORMULAR
+- Creative-ID: 1593214411909081
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Mitarbeitermangel? Auch Bewerber checken zuerst deine Website
+- Visual Style: Talking-Head-Video Outdoor mit Wort-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU-Inhaber mit Personalmangel und Recruiting-Problemen
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 5.06
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120241513612500598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 5.06
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.68
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.68
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.34
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 14.19
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.19
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 296
+- Impressionen gesamt: 296
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Szene 1 (sichtbar im Standbild): Derselbe Sprecher wie in den anderen Spots der Kampagne (Mann mit Brille, kurzem dunklem Bart, dunkle Jacke über hellem Shirt) steht outdoor vor der unscharfen Hochhaus-/Skyline-Kulisse bei Tageslicht und spricht frontal in die Kamera. Im sichtbaren Standbild ist kein Text-Overlay erkennbar; die Wort-Captions setzen vermutlich erst im Verlauf ein oder liegen außerhalb des gecroppten Ausschnitts. Aus dem Ad-Namen „Mitarbeitermangel" ist der inhaltliche Winkel ableitbar: Der Spot verknüpft den akuten Fachkräftemangel der Zielgruppe mit der Außenwirkung der eigenen Website — wer online schlecht dasteht, verliert nicht nur Kunden, sondern auch potenzielle Bewerber, die sich vor einer Bewerbung zuerst online über den Betrieb informieren. Der typische Aufbau dieses Kampagnen-Formats (aus dem Einzelbild nicht verifizierbar): Hook zum Thema Mitarbeitermangel, dann die Überleitung zur Website als Aushängeschild für Bewerber, Verknüpfung mit dem Kampagnen-Claim „Deine Arbeit ist besser als deine Website", synchron laufende Wort-Captions, und am Ende ein direkter CTA zur Anfrage über das Meta-Leadformular. Genaue Szenenfolge, Sprechtext und Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Bildsprache urban-dokumentarisch; sichtbares MAKE-Branding ist im Thumbnail nicht erkennbar.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: rechAz6t04gBEPF0j
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 2164826197422936
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine neue Website von einem Schweizer Team
+- Visual Style: Studio-Mockup-Collage
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und lokale Betriebe, Wert auf lokale Zusammenarbeit
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0.04
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248677391390598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.04
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4
+- Impressionen gesamt: 4
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im vertikalen Format auf hellem, fast weißem Hintergrund. Oben steht in großer, fetter schwarzer Schrift die Headline über zwei Zeilen, sinngemäß lesbar: „Deine neue Website von einem Schweizer Team." — die genaue Wortwahl ist im Vorschaubild nur eingeschränkt lesbar, der Kern (neue Website + Schweizer Team) ist jedoch erkennbar. Darunter folgt eine kleinere, grau gesetzte Subline in zwei Zeilen — der genaue Wortlaut ist im Vorschaubild nicht lesbar. Unter der Subline sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar. Die untere Bildhälfte dominiert ein großes Laptop-Mockup mit Schatten, auf dem eine Beispiel-Website läuft: Das Website-Hero zeigt ein Outdoor-Foto mit viel Grün (Baum, Garten/Park-Umgebung) und einem Mann in dunkler Jacke, der rechts im Bild steht — wirkt wie ein Gartenbau-/Landschafts- oder Dienstleistungsbetrieb. Links auf der Website sind helle Textblöcke mit Headline und Absätzen zu erkennen, deren Inhalt im Vorschaubild nicht lesbar ist. Die Komposition folgt der gleichen Vorlage wie die anderen Ads der Serie: Headline → Subline → roter Button → Gerät mit Referenz-Website. Bildsprache: sauberer Studio-Look, natürliches Fotomotiv im Mockup als Vertrauens- und Qualitätsanker. Stimmung: bodenständig, lokal, vertrauensvoll — der Winkel betont die Zusammenarbeit mit einem Schweizer Team statt einer anonymen Offshore-Agentur. Logo oder Branding sind im Vorschaubild nicht erkennbar.
+
+## 25.06. · Static · CH_breit_28-65
+- id: rechUaxZfMeKEKK7R
+- Name: 25.06. · Static · CH_breit_28-65
+- Creative-ID: 1310094591332576
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Branchen-Callout: Als Elektrobetrieb 2 bis 4 Neukunden in 60 Tagen
+- Visual Style: 3D-Glas-Illustration, branchenspezifisch (Elektro)
+- Awareness Level: Solution Aware
+- Industry: Elektrobetriebe / Elektrohandwerk
+- Target Audience: Inhaber und Geschäftsführer von Elektrobetrieben in der Schweiz
+- Offer / Funnel-Typ: Leadgenerierung SEO (Ergebnisversprechen → Anfrage)
+- Kampagne: MAKE_SEO_Leads_CH_2026-06
+- Adset: CH_breit_28-65
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249265300370598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges statisches Werbebild (ca. 9:16) in hellem Blau-Weiß mit moderner 3D-Glas-Optik – die Branchenvariante für Elektrobetriebe. Der Hintergrund ist ein sehr heller, fast weißer Verlauf mit sanftem Eisblau, der nach unten in einen spiegelnden, glasartigen Boden übergeht. Rechts zieht sich eine große abstrakte 3D-Illustration durchs Bild: mehrere gläserne, leicht bläulich schimmernde Kabel-/Röhrenstränge, die in weiten Kurven vom oberen rechten Rand nach unten laufen; an ihnen hängen drei transparente Glas-Kacheln mit blauen Icons – oben ein Blitzsymbol, in der Mitte eine aufsteigende Kurvenlinie (Wachstumsdiagramm) und unten ein Stecker-Symbol – eine klare visuelle Anspielung auf das Elektrohandwerk kombiniert mit dem Wachstumsversprechen. Links oben steht als Aufhänger in kleinerer schwarzer Sans-Serif: „Du führst einen Elektrobetrieb?", abgesetzt mit einer kurzen blauen Akzentlinie darunter. Darunter folgt die große, fette Hauptbotschaft in Schwarz über mehrere Zeilen: „Dann bringen wir dir 2 bis 4 Neukunden in 60 Tagen." – wobei „60 Tagen." groß in leuchtendem Blau gesetzt ist und den Blick fängt. Unter der Headline sind drei weiße, abgerundete Karten-/Checklisten-Kacheln gestapelt, jeweils mit blauem Kreis-Icon und weißem Häkchen links: „Bei Google auf Platz 1", „Professionelle Seite, die Kunden überzeugt" und „Eigenes Fotoshooting, sodass Besucher dir vertrauen" – Text in Schwarz, zweizeilig wo nötig. Ein expliziter CTA-Button ist im Bild selbst nicht enthalten; der Conversion-Impuls läuft über die Meta-Anzeigen-Schaltfläche bzw. Caption. Stil: hell, glänzend, hochwertige 3D-Glas-Ästhetik, ohne sichtbares MAKE-Logo im Bild; der Wiedererkennungswert entsteht über die konsistente Kampagnen-Bildsprache der „quali"-Serie.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: rechwb8W1k9KaUgCE
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 2522474464848888
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: „Unterwegs"-Ansprache aus dem Fahrzeug — nahbarer Alltags-Look statt Studio
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige mit Website-Bedarf
+- Offer / Funnel-Typ: Anfrage über Formular (FormSwap-Test)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 360.71
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 360.71
+- Leads 14T: 0
+- Termine AT: 4
+- Klicks gesamt: 130
+- Klicks AT: 130
+- Ad-IDs: 120244829943740598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 360.71
+- CPA: 360.71
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 60.12
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 60.12
+- CTR %: 1.21
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.21
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.78
+- Conversions gesamt: 1
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 29.48
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 29.48
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 10711
+- Impressionen gesamt: 10711
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 6
+- Leads gesamt: 6
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 6.93
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 90.18
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 2500
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 1
+- Verlustgruende: Keine Antwort · 2
+Unqualifiziert · 1
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille und dunkler Basecap spricht aus einem Fahrzeug heraus in die Kamera — Selfie-/Talking-Head-Perspektive. Im Hintergrund sind Fenster und Sitze zu erkennen, es wirkt wie Auto oder ÖV bei Tageslicht; die Szenerie vermittelt einen „unterwegs"-Charakter. Ein Text-Overlay ist im Standbild nicht sichtbar (ggf. erscheinen Untertitel erst im Videoverlauf — aus dem Standbild nicht ableitbar). Szene 1 (Hook, ca. 0–3 s): Direkte Kameraansprache aus dem Alltag heraus; aus der Creative-Variante („WebsiteOffer-V2-FormSwap") und der Zielgruppe ist ableitbar, dass Unternehmen und Selbstständige mit Website-Bedarf adressiert werden, wahrscheinlich mit einer Frage oder Feststellung zur aktuellen Website bzw. zu fehlenden Anfragen. Das Fahrzeug-Setting bricht bewusst mit der Studio-Erwartung und signalisiert: „echter Unternehmer, mitten im Arbeitsalltag". Szene 2 (Mittelteil): Pitch des Website-Angebots der Make Marketing GmbH — neue oder besser konvertierende Website für KMU; der Sprecher bleibt die ganze Zeit in derselben Einstellung, Fokus komplett auf der gesprochenen Botschaft. Szene 3 (Ende): CTA zur Anfrage; „FormSwap" deutet auf getestete Formular-Varianten hin, der genaue CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: sehr reduziertes UGC-Video ohne sichtbare Grafikeinblendungen, natürliche Fahrzeug-Kulisse, eine durchgehende Kameraeinstellung. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 05.09. · Static · BROAD
+- id: reci1wSPq3ce0mRDr
+- Name: 05.09. · Static · BROAD
+- Creative-ID: 1205979518222082
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Keine Aufträge? Während du wartest, telefoniert dein Konkurrent schon mit Kunden
+- Visual Style: Kontrast-Fotografie / Problem-Lösung-Split
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Selbstständige und Inhaber kleiner Unternehmen (u. a. Handwerk) mit zu wenig Anfragen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | BROAD
+- Ausgaben gesamt: 59.77
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 61
+- Klicks AT: 61
+- Ad-IDs: 120233525909650598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 59.77
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.57
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.57
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.44
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 10666
+- Impressionen gesamt: 10666
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat in dunkler, kontrastreicher Studio-Optik mit schwarzem Hintergrund. Oben steht die große, zweizeilige Headline: „KEINE" in kräftiger weißer Sans-Serif, direkt darunter „AUFTRÄGE?" in Signalfarbe Rot – die Schmerzfrage ist damit das visuelle Zentrum des oberen Drittels. Darunter sitzt eine kleinere Subline, deren Wortlaut im Vorschaubild nicht lesbar ist. Die Bildmitte zeigt einen klassischen Problem-vs.-Lösung-Personenkontrast: Links sitzt ein bärtiger Mann in dunkler Jacke mit verschränkten Armen und skeptischem, frustriertem Blick – er verkörpert den Betrieb ohne Anfragen. Rechts sitzt ein Mann in schwarzem Poloshirt, der entspannt lächelt und ein Handy ans Ohr hält – er verkörpert den Unternehmer mit vollem Auftragsbuch. Ein roter, geschwungener Pfeil verbindet die beiden Figuren und suggeriert den Übergang vom linken in den rechten Zustand (also: durch das beworbene Angebot). Unten läuft ein roter Banner-Balken quer über das Layout mit weißem Text darauf – vermutlich CTA oder Offer-Zusatz, im Vorschaubild nicht lesbar. Farbwelt: Schwarz/Anthrazit mit Weiß- und Rot-Akzenten, gedämpftes Licht auf die Gesichter. Bildsprache: dramatisch, vergleichend, leicht provokant. Branding-Elemente/Logo sind im Vorschaubild nicht erkennbar. (Hinweis: identisches Motiv wie die „KEINE AUFTRÄGE?"-Variante mit Ad-Name 3, hier als Ad 4 im selben BROAD-Adset.)
+
+## 03.06. · Static · Veli Google
+- id: reci5vI1D7hQRU2aE
+- Name: 03.06. · Static · Veli Google
+- Creative-ID: 27164385896523575
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Kunde bestätigt: Neue Website bringt über Google ganz sicher neue Kunden
+- Visual Style: Testimonial-Karte mit Büro-Portrait
+- Awareness Level: Solution Aware
+- Industry: Webdesign / Marketing-Agentur (Kunde: Treuhand)
+- Target Audience: KMU-Inhaber, die eine neue Website erwägen
+- Offer / Funnel-Typ: Vertrauensaufbau (Social Proof) → Website-Anfrage
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 07 | Veli Google
+- Ausgaben gesamt: 51.27
+- Ausgaben 30T: 10.24
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 19
+- Klicks AT: 19
+- Ad-IDs: 120247607298370598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.27
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.2
+- CTR % 30T: 0.18
+- CTR % 7T: 0
+- CTR % AT: 0.2
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.01
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 2220
+- Impressionen 7T: 0
+- Impressionen AT: 9669
+- Impressionen gesamt: 9669
+- Klicks 14T: 0
+- Klicks 30T: 4
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Testimonial-Bild im Feed-Hochformat (ca. 4:5, 1350×1688 px). Das Foto zeigt Veli Manis in einer glaubwürdigen Arbeitssituation: Er sitzt in einem dunkelblauen Bürostuhl an einem Schreibtisch und telefoniert konzentriert mit dem Handy am Ohr; er trägt ein hellgraues Hemd, eine silberne Metall-Armbanduhr und einen Ring, sein Haar ist kurz und gegelt, der Bart grau meliert. Im Hintergrund große Fenster mit hellem Tageslicht und unscharfer Außensicht — eine klassische, seriöse Treuhand-Büroatmosphäre. Oben rechts sitzt in kräftigem Rot das MAKE-Wortlogo als Agentur-Branding. Das untere Bilddrittel wird von einem dunklen Verlauf überzogen, auf dem das Zitat-Element ruht: Eine feine weiße Liniengrafik mit abgerundeten Ecken rahmt den Text wie eine große Sprechblase ein. Darin in weißer serifenloser Schrift das Kundenzitat in Anführungszeichen über sechs Zeilen: „Ich bin mir bewusst, dass ich durch meine neue Website ganz sicher neue Kunden gewinne, da ich auch über Google gefunden werde und die Kundengewinnung dadurch vor allem einfacher wird.“ — die Kernaussage „ganz sicher neue Kunden gewinne“ ist fett hervorgehoben, der Rest regulär, was den Blick gezielt auf den Nutzen lenkt. Unter dem Zitat folgen fünf ausgefüllte goldgelbe Sterne, dann der Name „Veli Manis“ in fetter weißer Schrift und darunter die Funktionszeile „Geschäftsführer Manis Treuhand AG“ in dünnerer Schrift. Die Farbwelt ist bewusst dezent und geschäftlich: Helle Büro-Grau- und Blautöne, Weiß für Text, Gold für die Sterne, Rot als einziger Markenakzent. Ein expliziter CTA-Button ist auf dem Bild nicht vorhanden; die Handlungsaufforderung läuft über den Anzeigen-Button im Feed. Gesamtstil: glaubwürdiger B2B-Social-Proof — echter Kunde, echte Funktion, konkreter Nutzen (Google-Sichtbarkeit → Kundengewinnung), identisches Layout-System wie das AlpenEnergie-Testimonial (AD 04).
+
+## 17.02. · Video · CA & LLA | LP
+- id: reciHcy93EPgCCGZo
+- Name: 17.02. · Video · CA & LLA | LP
+- Creative-ID: 2157421171759597
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website
+- Visual Style: Talking-Head-Video (UGC-Stil, Innenraum)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker, Dienstleister und Selbstständige mit schwacher Website
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CA & LLA | LP
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241196114010598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hinweis: Das Vorschaubild ist byte-identisch mit dem von Creative 927912723094339 – es handelt sich offenbar um dasselbe Video, das in einer weiteren Ad (anderes Adset: CA & LLA statt Broad) ausgespielt wird.
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kampagnenkontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein bärtiger Mann mit Brille und dunklem T-Shirt mit rot-weißem Schriftzug spricht direkt in die Kamera und zeigt mit dem Finger auf den Betrachter – eine Aufmerksamkeits-Geste (Pattern Interrupt), die zum Ad-Namen „Kurz & knapp" passt: Der Einstieg kommt ohne Umschweife zur Sache. Der Hintergrund ist hell und neutral (Innenraum).
+  Gesprochene Kernbotschaft (aus Titel/Caption ableitbar): „Deine Arbeit ist besser als deine Website" – Konfrontation der Zielgruppe damit, dass ihre Arbeitsqualität hochwertiger ist als ihr Webauftritt.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Zuspitzung des Schmerzes – Kunden beurteilen den Betrieb nach der Website; Aufträge gehen an Wettbewerber mit besserem Auftritt verloren.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Make Marketing als Agentur für Websites lokaler Dienstleister, die Anfragen bringen.
+  Schluss/CTA: Text-Overlays und der exakte CTA sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Direkte Kameraadresse (Talking Head), Fingerzeig als Pattern Interrupt, keine sichtbaren Grafiken im Standbild.
+
+## 24.04. · Video · CAM BASEL | MARC EVERS
+- id: reciTCVormsHtSSkp
+- Name: 24.04. · Video · CAM BASEL | MARC EVERS
+- Creative-ID: 2093022398316862
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Direkte Kameraansprache mit eingeblendeter Frage-Botschaft als Aufhänger
+- Visual Style: UGC Selfie-Video (Talking Head) mit Untertitel-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CAM BASEL | MARC EVERS
+- Ausgaben gesamt: 95.18
+- Ausgaben 30T: 6.69
+- Hookrate % 14T: 19.57
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 28
+- Klicks AT: 28
+- Ad-IDs: 120244827271990598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0.74
+- Ausgaben 7T: 0
+- Ausgaben AT: 95.18
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.94
+- CTR % 30T: 1.29
+- CTR % 7T: 0
+- CTR % AT: 0.94
+- CTR Link % 14T: 0
+- CTR Link % 30T: 1.29
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.6
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 16.42
+- Hookrate % 30T: 15.45
+- Hookrate % 7T: 0
+- Hookrate % AT: 16.42
+- Impressionen 14T: 46
+- Impressionen 30T: 233
+- Impressionen 7T: 0
+- Impressionen AT: 2991
+- Impressionen gesamt: 2991
+- Klicks 14T: 0
+- Klicks 30T: 3
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video mit eingeblendetem Text-Overlay oben im Bild, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit Brille und Basecap im dunklen Hoodie steht vor einer beigen Gebäudewand mit Fenster und spricht direkt in die Kamera. Oben im Bild läuft ein helles Text-Overlay mit, das auf dem 64-px-Standbild nur ansatzweise lesbar ist (anscheinend eine Frage bzw. Aussage wie „Oder noch unklar, …" – im Vorschaubild nicht eindeutig entzifferbar). Das Overlay deutet auf durchgehende Untertitel bzw. Statement-Einblendungen hin. Szene 2: Aus Kampagnenkontext („Webdesign aus Basel", „LOKAL | WEBSITE | FEB26", Adset „CAM BASEL | MARC EVERS") ist ableitbar, dass der Sprecher sich als Webdesigner aus Basel vorstellt und lokale Unternehmer mit Website-Bedarf direkt adressiert. Szene 3: Vermutlich thematisiert er typische Einwände oder Unklarheiten (passend zum Frage-Overlay) und führt zu seinem Angebot: professionelle Website-Erstellung für Basler Betriebe. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, wahrscheinlich mit Hinweis auf den Button der Anzeige; ob der CTA zusätzlich als Overlay erscheint, ist aus dem Standbild nicht ableitbar. Bildsprache: Tageslicht, authentischer UGC-Look, kein sichtbares Logo. Genaue Overlay-Texte, Szenenfolge und Wortlaut sind aus den vorhandenen Daten nicht ableitbar.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: recireUxr8FNAMPSS
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 4481616632081734
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Endlich eine Website, die du jedem Kunden stolz zeigst – von Hand gebaut, mit echten Fotos.
+- Visual Style: UGC Selfie-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: lokale Betriebe in Basel, die ihre Website nicht mehr herzeigen wollen
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 167.97
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 67
+- Klicks AT: 67
+- Ad-IDs: 120248677499050598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 167.97
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 167.97
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 167.97
+- CTR %: 1.17
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.17
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.7
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 27.64
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 27.64
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5727
+- Impressionen gesamt: 5727
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Preis/Budget · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Selfie-Video (9:16), gedreht im Freien vor dem roten Basler Rathaus mit seinen Arkaden — die Lokalkulisse verankert die Ad geografisch. Das Vorschaubild zeigt einen Mann mit Brille und dunkler Basecap im Selfie-Abstand, der direkt und ernst in die Kamera spricht. Unten am Bildrand läuft ein mehrzeiliger Untertitel mit, in dem eine Zeile rot hervorgehoben ist; der genaue Wortlaut ist auf dem 64-px-Thumbnail nicht lesbar. Der rote Untertitel-Akzent korrespondiert mit der roten Rathaus-Fassade und erzeugt einen einheitlichen visuellen Eindruck. Der wahrscheinliche Ablauf, aus Titel und Kontext ableitbar (nicht verifizierbar): (1) Hook-Einstieg rund um Website-Scham bzw. Stolz: eine Website, die man wieder jedem Kunden von sich aus zeigt. (2) Emotionale Pointe: „Endlich eine Website, die du jedem Kunden von dir aus zeigst." (3) Differenzierung: „Von Hand gebaut, mit echten Fotos" — vermutlich mit Cut auf Beispiel-Website und echten Fotografie-Einspielern als Beweis gegen Baukasten/Stockbilder. (4) Abschluss-CTA Richtung Anfrage oder Terminbuchung. Tonalität: ernst, handwerklich, direkt. Konkrete Schnittfolge, B-Roll und finaler CTA-Screen sind aus dem Standbild nicht ableitbar.
+
+## 18.06. · Static · CH | PLATZ-1
+- id: reciwJ5rolAvsiNwb
+- Name: 18.06. · Static · CH | PLATZ-1
+- Creative-ID: 27601519446144928
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: In 30 Tagen auf Google Platz 1 mit neuer Top-Website
+- Visual Style: Studio-Mockup-Collage
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU / Lokale Sichtbarkeit
+- Target Audience: lokale Schweizer Betriebe, die bei Google sichtbarer werden wollen
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | PLATZ-1 | JUN26
+- Ausgaben gesamt: 1.94
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120248678386930598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.94
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 3.23
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 3.23
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.61
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 62
+- Impressionen gesamt: 62
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im vertikalen Format auf hellem, fast weißem Hintergrund. Ganz oben steht eine kleine, grau gesetzte Zeile (Kicker/Eyebrow) — der Wortlaut ist im Vorschaubild nicht lesbar. Darunter dominiert eine große, fette schwarze Headline über vier Zeilen, weitgehend lesbar: „Wir bringen dich in 30 Tagen auf Platz 1 mit einer neuen Top-Website." — die konkrete Zeit- und Ergebnis-Zusage („30 Tagen", „Platz 1") ist klar erkennbar. Unter der Headline sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar. Die untere Bildhälfte füllt ein großes Laptop-Mockup mit Schatten, auf dem eine dunkel gestaltete Beispiel-Website läuft: Dark-Design mit blauen Akzenten, hellen Textblöcken mit Headline und Absätzen links sowie einem blauen Website-Button; rechts im Website-Hero ein Foto eines Mannes in dunkler Kleidung (wirkt wie ein Handwerker/Dienstleister mit Werkzeug oder Mikrofon in der Hand). Die Texte auf der Website-Mockup sind im Vorschaubild nicht lesbar. Es ist das gleiche dunkle Referenz-Mockup wie in anderen Ads der Serie. Die Komposition folgt der Serien-Vorlage: Kicker → Versprechens-Headline → roter Button → Gerät mit Beleg-Website. Bildsprache: sachlicher Studio-Look, textgetrieben; das Mockup dient als Qualitäts- und Ergebnisbeleg. Stimmung: selbstbewusstes, konkretes Ergebnisversprechen statt Prozessbeschreibung. Logo oder Branding sind im Vorschaubild nicht erkennbar.
+
+## 06.05. · Static · STÄRKERES MARKETING OFFER
+- id: recj47rJ4hy0VZVHX
+- Name: 06.05. · Static · STÄRKERES MARKETING OFFER
+- Creative-ID: 1453199646606412
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Wir suchen nur 3 Studios: 3 neue Küchenkunden in 60 Tagen für 0 CHF
+- Visual Style: Text-Only-Anzeige (minimalistisch, Dark)
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Schweizer Küchenstudios
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO V2 | STÄRKERES MARKETING OFFER
+- Ausgaben gesamt: 19.91
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 11
+- Klicks AT: 11
+- Ad-IDs: 120245591008730598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 19.91
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.07
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.07
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.78
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-06
+- Erstellt am: 2026-05-06
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1024
+- Impressionen gesamt: 1024
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Text-Creative im 9:16-Hochformat (900×1600 px) auf durchgehend schwarzem Grund — bewusst extrem reduziert: kein Foto, kein Logo, keine Grafikelemente, kein Button. Der gesamte Text steht mittig zentriert in einer hellen, eleganten Serifenschrift (Times-/Editorial-Anmutung), was der Anzeige einen ruhigen, fast hochwertigen „Stellenanzeigen"-Charakter gibt. Aufbau: Im oberen Textblock steht in reinem Weiss die Ansprache „Wir suchen 3 Schweizer Küchenstudios:" — formuliert wie eine Suche, nicht wie ein Verkauf, was Neugier und Exklusivität erzeugt. Darunter folgt mit etwas Abstand das Angebot in drei Zeilen: „3 neue Küchenkunden in" / „60 Tagen, und du zahlst" / „uns 0 CHF." — wobei die beiden Kernzahlen „3 neue Küchenkunden" und „0 CHF" in leuchtendem Orange gesetzt sind, der Rest bleibt weiss. Die Orange-Akzente auf Schwarz erzeugen die einzigen Kontrastpunkte und ziehen das Auge exakt auf Ergebnisversprechen und Gratis-Kondition. Viel Negativraum ober- und unterhalb des Textes verstärkt den minimalistischen Eindruck; die Anzeige wirkt wie eine persönliche Nachricht statt wie klassische Werbung. Branding: keines sichtbar. Bildsprache: maximaler Fokus auf das Angebot, Null Ablenkung — ein „Plain-Text-Ad" im Meta-Feed.
+
+## 03.06. · Video · Piadina
+- id: recj7pkx6roECGdXr
+- Name: 03.06. · Video · Piadina
+- Creative-ID: 992783373465530
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Schau, was wir für Piadina gebaut haben — Ergebnis statt Versprechen
+- Visual Style: Website-Showcase / Screen-Demo-Video
+- Awareness Level: Product Aware
+- Industry: Webdesign / Marketing-Agentur (Kunde: Gastro/Food)
+- Target Audience: KMU-Inhaber im Retargeting, die Referenzarbeit sehen sollen
+- Offer / Funnel-Typ: Case-Study → Call
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 03 | Piadina
+- Ausgaben gesamt: 51.34
+- Ausgaben 30T: 10.18
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 15
+- Klicks AT: 15
+- Ad-IDs: 120247607281980598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.34
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.18
+- CTR % 30T: 0.16
+- CTR % 7T: 0
+- CTR % AT: 0.18
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 11.72
+- Hookrate % 30T: 9.74
+- Hookrate % 7T: 0
+- Hookrate % AT: 11.72
+- Impressionen 14T: 0
+- Impressionen 30T: 1930
+- Impressionen 7T: 0
+- Impressionen AT: 8257
+- Impressionen gesamt: 8257
+- Klicks 14T: 0
+- Klicks 30T: 3
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad im Website-Showcase-/Screen-Demo-Stil: Gezeigt wird der von MAKE gebaute Webauftritt des Kunden Piadina (Name deutet auf Gastro/Food). WICHTIG: Es liegt nur ein 64×64-Standbild vor — Sichtbares und Ableitbares werden strikt getrennt. SICHTBAR im Standbild: Eine Website-Ansicht, präsentiert in einem Browser-artigen Frame (mit sichtbarer Browser-Chrome-Leiste oben) auf hellem, nahezu weißem Hintergrund. Die gezeigte Seite hat eine dunkle Hero-Section: links mehrere übereinanderliegende Textzeilen (Headline/Subline, im Vorschaubild nicht lesbar), darunter ein auffälliger roter Button (mutmaßlich CTA wie „Reservieren" oder „Kontakt"); rechts im Hero ein Personenfoto bzw. eine Bildfläche mit Person. Oben rechts im Browser-Frame scheint ein kleines Logo bzw. ein Navigationselement zu sitzen. ABLEITBAR aus Format und Ad-Name („AD 03 | Piadina", Kampagne NURTURING/RETARGETING): Das Video führt durch die fertige Website — typischerweise als Scroll- oder Blenden-Sequenz durch die wichtigsten Sektionen (Hero, Angebot/Speisekarte, Über-uns, Kontakt), ggf. mit Text-Overlays, die Zahlen oder Ergebnisse einblenden („Neue Website für Piadina", „Design + Umsetzung von MAKE"). Ziel ist der Beleg der eigenen Leistungsfähigkeit gegenüber einer warmen Zielgruppe. Ob gesprochener Kommentar, Musik oder reine Text-Overlays verwendet werden, ist aus dem Standbild nicht ableitbar; exakte Szenenfolge, gezeigte Unterseiten, Overlay-Texte und der Schluss-CTA sind im Vorschaubild nicht lesbar. Stil: sauberes Case-Showcase mit Browser-Mockup-Rahmen — beweist Ergebnis statt Behauptung.
+
+## 17.02. · Video · RTG | LP
+- id: recjSzyXZ3kBrhcaB
+- Name: 17.02. · Video · RTG | LP
+- Creative-ID: 1448130370040423
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: So sieht eine Website aus, die Aufträge bringt
+- Visual Style: Text-Creative / Headline-Karte
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale Unternehmer und KMU-Inhaber, die über ihre Website Aufträge gewinnen wollen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: BILDER | RTG | LP
+- Ausgaben gesamt: 27.9
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 15
+- Klicks AT: 15
+- Ad-IDs: 120241195332190598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 27.9
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.68
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.68
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.12
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 14.64
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.64
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 895
+- Impressionen gesamt: 895
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-22
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Text-Creative im Querformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Der Hintergrund ist hell, fast weiß, und wirkt sehr aufgeräumt und reduziert. Oben bis mittig zentriert steht eine mehrzeilige, schwarze, fette Headline in Großbuchstaben: „SO SIEHT EINE WEBSITE AUS, DIE AUFTRÄGE BRINGT." Die Zeilenumbrüche setzen die Aussage in drei bis vier kurze Zeilen, sodass sie wie ein Plakat-Claim wirkt. Unter der Headline befindet sich mittig ein breiter, leuchtend roter Button mit abgerundeten Ecken; die Beschriftung des Buttons ist im Vorschaubild nicht lesbar. Es gibt kein Foto, keine Personen und keine weiteren Grafikelemente — die reine Typografie trägt das Creative. Die Farbwelt ist minimalistisch: Weiß/Offwhite als Fläche, Schwarz für die Headline, Rot als einziger Akzent für den CTA. Ein sichtbares MAKE-Logo oder Branding-Element ist im Vorschaubild nicht erkennbar. Der Stil erinnert an eine Landingpage-Hero-Sektion und transportiert den Hook „Ergebnis statt Design". Ob die ausgespielte Vollansicht zusätzlich einen Website-Screenshot (Referenz BeoTherm) oder weitere Textzeilen enthält, ist aus dem vorhandenen Standbild nicht ableitbar.
+
+## 15.04. · Video · BROAD LUZERN | MARC EVERS
+- id: recjYUFK8PGzVw7gG
+- Name: 15.04. · Video · BROAD LUZERN | MARC EVERS
+- Creative-ID: 1988711372038714
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Lokalbezug als Vertrauensargument: Webdesigner direkt am Luzerner Seeufer
+- Visual Style: UGC Selfie-Video, Talking Head am Seeufer
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Luzern)
+- Target Audience: lokale KMU und Selbstständige in der Region Luzern
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD LUZERN | MARC EVERS
+- Ausgaben gesamt: 34.01
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120244277267970598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 34.01
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.74
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.74
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.33
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 17.95
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 17.95
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1209
+- Impressionen gesamt: 1209
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-04-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme am Wasser). Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit Brille und dunkler Basecap (derselbe Sprecher der Serie, „Marc Evers") blickt leicht lächelnd direkt in die Kamera, Nahaufnahme im Selfie-Winkel. Hintergrund: glitzernde Wasserfläche (See), dahinter grünes Ufer und unscharfe Gebäude am gegenüberliegenden Ufer — mutmaßlich Vierwaldstättersee in Luzern; helles, sonniges Tageslicht. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Direkte Ansprache an Luzerner Unternehmer, Lokalbezug („Webdesign aus Luzern") als Vertrauens- und Nähe-Argument; wörtliche Botschaft und etwaige Untertitel sind im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Naheliegend Vorstellung des Angebots und kurzer Proof-Block; Schnitte, Overlays oder B-Roll aus dem Thumbnail nicht ableitbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zur Anfrage/Erstberatung; Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Fortsetzung der UGC-Serie in neuer Region — erkennbare Kulisse (Seeufer) macht den Lokalbezug sofort sichtbar und hebt die Ad von den urbanen Basel-/Zürich-Varianten ab; freundlichere, ruhigere Ausstrahlung (Lächeln statt großer Geste), kein Branding/Logo erkennbar.
+
+## 24.04. · Video · CAM BASEL | MARC EVERS
+- id: recjc0yMm1U8kfHXK
+- Name: 24.04. · Video · CAM BASEL | MARC EVERS
+- Creative-ID: 1751738882497081
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Lokale Kulisse (Basler Münster) plus provokanter Teaser („…schlimmer“)
+- Visual Style: UGC Selfie-Video (Talking Head) mit Untertitel-Overlay vor Basler Münster
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CAM BASEL | MARC EVERS
+- Ausgaben gesamt: 514.34
+- Ausgaben 30T: 204.37
+- Hookrate % 14T: 28.03
+- ROAS 14T: 0
+- CTR % 14T: 1.26
+- CPL 30T: 40.87
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 8
+- Klicks gesamt: 231
+- Klicks AT: 231
+- Ad-IDs: 120244827272000598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 13.16
+- Ausgaben 7T: 0
+- Ausgaben AT: 514.34
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 42.86
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 42.86
+- CTR %: 1.32
+- CTR % 30T: 1.44
+- CTR % 7T: 0
+- CTR % AT: 1.32
+- CTR Link % 14T: 0.76
+- CTR Link % 30T: 0.94
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.83
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 20.78
+- Hookrate % 30T: 23.05
+- Hookrate % 7T: 0
+- Hookrate % AT: 20.78
+- Impressionen 14T: 396
+- Impressionen 30T: 6808
+- Impressionen 7T: 0
+- Impressionen AT: 17435
+- Impressionen gesamt: 17435
+- Klicks 14T: 5
+- Klicks 30T: 98
+- Klicks 7T: 0
+- Leads 30T: 5
+- Leads 7T: 0
+- Leads AT: 12
+- Leads gesamt: 12
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 64.29
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Preis/Budget · 5
+Keine Antwort · 3
+Unqualifiziert · 2
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video mit durchgehendem Untertitel-Overlay unten im Bild, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit Basecap und Brille spricht direkt in die Kamera; im Hintergrund klar erkennbar ein roter Sandsteinbau mit zwei Türmen – vermutlich das Basler Münster – bei Tageslicht. Die ikonische Basler Kulisse verankert den „aus Basel"-Winkel visuell sofort im ersten Frame. Unten läuft ein weißes Text-Overlay mit dunkler Schrift, von dem auf dem 64-px-Standbild nur das Fragment „…schlimmer" lesbar ist – ein provokanter Teaser (z. B. im Sinne von „nichts ist schlimmer als …"); der übrige Zeilentext ist im Vorschaubild nicht entzifferbar. Szene 2: Aus Kampagnenkontext („Webdesign aus Basel", „LOKAL | WEBSITE | FEB26") ist ableitbar, dass der Sprecher sich als Webdesigner aus Basel vorstellt und lokale Unternehmer direkt anspricht. Szene 3: Vermutlich spitzt er das Problem zu (veraltete/fehlende Website als Umsatzverlust – passend zum „schlimmer"-Fragment) und präsentiert sein Webdesign-Angebot als lokale Lösung. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, wahrscheinlich mit Hinweis auf den Anzeigen-Button; ob der CTA als Overlay erscheint, ist aus dem Standbild nicht ableitbar. Bildsprache: authentischer UGC-Look, Tageslicht, kein sichtbares Logo; die Münster-Kulisse fungiert als lokales Branding-Element. Genaue Overlay-Texte und Szenenfolge sind aus den vorhandenen Daten nicht ableitbar. Leistungsstärkstes Creative des Adsets (meiste Leads im Verlauf).
+
+## 05.09. · Static · BROAD
+- id: recjyeDrpTxrHwYoG
+- Name: 05.09. · Static · BROAD
+- Creative-ID: 1469143427507625
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Keine Aufträge? Während du wartest, telefoniert dein Konkurrent schon mit Kunden
+- Visual Style: Kontrast-Fotografie / Problem-Lösung-Split
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Selbstständige und Inhaber kleiner Unternehmen (u. a. Handwerk) mit zu wenig Anfragen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | BROAD
+- Ausgaben gesamt: 31.57
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 24
+- Klicks AT: 24
+- Ad-IDs: 120233525909630598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 31.57
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.58
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.58
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.48
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4170
+- Impressionen gesamt: 4170
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat in dunkler, kontrastreicher Studio-Optik mit schwarzem Hintergrund. Oben steht die große, zweizeilige Headline: „KEINE" in kräftiger weißer Sans-Serif, direkt darunter „AUFTRÄGE?" in Signalfarbe Rot – die Schmerzfrage ist damit das visuelle Zentrum des oberen Drittels. Darunter sitzt eine kleinere Subline, deren Wortlaut im Vorschaubild nicht lesbar ist. Die Bildmitte zeigt einen klassischen Problem-vs.-Lösung-Personenkontrast: Links sitzt ein bärtiger Mann in dunkler Jacke mit verschränkten Armen und skeptischem, frustriertem Blick – er verkörpert den Betrieb ohne Anfragen. Rechts sitzt ein Mann in schwarzem Poloshirt, der entspannt lächelt und ein Handy ans Ohr hält – er verkörpert den Unternehmer mit vollem Auftragsbuch. Ein roter, geschwungener Pfeil verbindet die beiden Figuren und suggeriert den Übergang vom linken in den rechten Zustand (also: durch das beworbene Angebot). Unten läuft ein roter Banner-Balken quer über das Layout mit weißem Text darauf – vermutlich CTA oder Offer-Zusatz, im Vorschaubild nicht lesbar. Farbwelt: Schwarz/Anthrazit mit Weiß- und Rot-Akzenten, gedämpftes Licht auf die Gesichter. Bildsprache: dramatisch, vergleichend, leicht provokant. Branding-Elemente/Logo sind im Vorschaubild nicht erkennbar.
+
+## 26.06. · Video · BROAD ZÜRICH | JUN26
+- id: recjzdaekoG6eDnCU
+- Name: 26.06. · Video · BROAD ZÜRICH | JUN26
+- Creative-ID: 1053017813748690
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Webdesign direkt aus Zürich – persönlich und lokal statt anonymer Agentur
+- Visual Style: UGC-/Sprecher-Video (Person spricht direkt in die Kamera, Outdoor)
+- Awareness Level: Problem Aware
+- Industry: Webdesign für KMU / lokale Dienstleister
+- Target Audience: Unternehmer und lokale Betriebe im Raum Zürich, die eine neue Website brauchen
+- Offer / Funnel-Typ: Leadgenerierung Website (Video → Anfrage)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH | JUN26
+- Ausgaben gesamt: 569.68
+- Ausgaben 30T: 255.1
+- Hookrate % 14T: 28.73
+- ROAS 14T: 0
+- CTR % 14T: 0.66
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 2
+- Klicks gesamt: 214
+- Klicks AT: 214
+- Ad-IDs: 120249379807850598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 14.61
+- Ausgaben 7T: 0
+- Ausgaben AT: 569.68
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 189.89
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 189.89
+- CTR %: 1.15
+- CTR % 30T: 1.19
+- CTR % 7T: 0
+- CTR % AT: 1.15
+- CTR Link % 14T: 0.22
+- CTR Link % 30T: 0.66
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.67
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-26
+- Erstellt am: 2026-06-26
+- Funnel-Zweck: Lead
+- Hookrate %: 30.64
+- Hookrate % 30T: 30.16
+- Hookrate % 7T: 0
+- Hookrate % AT: 30.64
+- Impressionen 14T: 456
+- Impressionen 30T: 8346
+- Impressionen 7T: 0
+- Impressionen AT: 18688
+- Impressionen gesamt: 18688
+- Klicks 14T: 3
+- Klicks 30T: 99
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 3
+- Leads gesamt: 3
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 284.84
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Preis/Budget · 1
+Unqualifiziert · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im UGC-/Sprecher-Stil; als Beleg liegt nur ein 64×64-px-Standbild vor, daher sind viele Details nicht verifizierbar. Im Standbild erkennbar: Ein Mann mit kurzen Haaren und Bart in schwarzem T-Shirt steht halbnah im Freien und spricht direkt in die Kamera – Selfie-/Frontalperspektive, Tageslicht. Im Hintergrund ist eine urbane Szene angedeutet: rechts ein helles Fahrzeug (wirkt wie ein weisser Van oder Wohnmobil), dahinter Strukturen, die an eine Strasse oder einen Platz erinnern; die Umgebung ist hell und unscharf. Der visuelle Eindruck passt zu einem „Spaziergang-/Vor-Ort-Sprechvideo", wie es für lokale Dienstleistungswerbung typisch ist. Text-Overlays, Untertitel oder Branding-Elemente sind auf dem 64×64-px-Standbild nicht lesbar; einzelne Szenen, Schnitte und B-Roll sind im Vorschaubild nicht erkennbar. Aus Dateiname („Webdesign aus Zürich"), Adset („VIDEOS | BROAD ZÜRICH") und Kampagne („LOKAL | WEBSITE") ist ableitbar, dass der Sprecher das Webdesign-Angebot von MAKE für Zürcher Unternehmen vorstellt – vermutlich mit persönlicher Ansprache, Leistungsargumenten (Website, die Kunden bringt) und einem Abschluss-CTA; der genaue Wortlaut und der CTA sind aus den vorhandenen Daten jedoch nicht ableitbar. Die Ad läuft aktiv und liefert laut Performance-Tabelle CTR-Werte um 0,9–1,4 %. Für eine vollständige Szenen-Analyse müsste das Originalvideo (video_id 1576072567637182) aus der Anzeigenbibliothek gezogen werden.
+
+## 19.09. · Static · LP 2 | WIR SUCHEN
+- id: recl8BAMwK0o6yu5E
+- Name: 19.09. · Static · LP 2 | WIR SUCHEN
+- Creative-ID: 3013279988855661
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Wir suchen Selbstständige, die in 6 Monaten mehr Anfragen wollen
+- Visual Style: Text-First-Anzeige auf weißem Hintergrund mit farbigem CTA-Block
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing Schweiz (Agentur-Eigenwerbung)
+- Target Audience: Selbstständige in der Schweiz mit Wachstumsziel
+- Offer / Funnel-Typ: Meta Lead-Formular (WIR SUCHEN | LEADS)
+- Kampagne: WEBSITE OFFER
+- Adset: TG | LP 2 | WIR SUCHEN | LEADS
+- Ausgaben gesamt: 253.53
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 174
+- Klicks AT: 174
+- Ad-IDs: 120234431685970598, 120234191555650598
+- Angereichert: Ja
+- Anzahl Ads: 2
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 253.53
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 63.38
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 63.38
+- CTR %: 2.02
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.02
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.15
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-19
+- Erstellt am: 2025-09-19
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 8599
+- Impressionen gesamt: 8599
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 4
+- Leads gesamt: 4
+- Letzte Auslieferung: 2025-09-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad mit hellem, fast reinweißem Hintergrund und textzentriertem Layout ohne Foto. Oben steht eine mehrzeilige, schwarze, fette Headline, die mit „Wir suchen Selbstständige in der Schweiz, die in 6 Monaten …" beginnt — dieser Anfang ist klar lesbar; die Fortsetzung (erkennbar ein Ergebnis-Versprechen rund um mehr Anfragen) ist auf der 64×64-px-Vorschau nicht in jedem Wort sicher entzifferbar („im Vorschaubild nicht lesbar"). Darunter folgt eine kleinere, feinere Subline, deren Wortlaut ebenfalls nicht lesbar ist. Im unteren Drittel sitzt ein beiger/heller, farblich abgesetzter Block bzw. Button mit dunklem Text — Inhalt im Vorschaubild nicht lesbar, fungiert als CTA- bzw. Angebotsbereich. Die Komposition ist vertikal gestaffelt: Headline → Subline → CTA-Block, mit viel Weißraum und klarer Leserichtung. Die Farbwelt ist zurückhaltend: Schwarz-Weiß-Basis mit warmem Beige-Akzent — ein bewusster Kontrast zu den schwarz-roten MAKE-Problem-Ads. Bildsprache: clean, seriös, wie eine Suchanzeige mit konkretem Zeit- und Ergebnisversprechen, das qualifizierte Interessenten selbst selektieren lässt. Branding-Elemente sind auf der Vorschau nicht erkennbar.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: reclOLXdVcq7Qsm5R
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 1476268931182116
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du denkst, in 24 Stunden entsteht keine gute Website? Diese hier schon.
+- Visual Style: UGC Selfie-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: lokale Betriebe und Selbständige im Raum Basel mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 18
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 3
+- Klicks AT: 3
+- Ad-IDs: 120248677479540598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 18
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.99
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.99
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.33
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 21.19
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 21.19
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 302
+- Impressionen gesamt: 302
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Selfie-Video (9:16) in Talking-Head-Manier. Das Vorschaubild zeigt einen Mann mit Brille, Bart und dunkler Basecap, der lachend und nah aus Selfie-Perspektive in die Kamera spricht; im Hintergrund ist ein Innenraum mit Holztür zu erkennen. Unten im Bild läuft ein kleiner Untertitel-Einspieler mit — der Wortlaut ist auf dem 64-px-Thumbnail nicht lesbar. Der locker-lachende Gesichtsausdruck unterstützt den Provokations-Hook: Er nimmt dem Skeptiker-Einwand vorab die Schärfe. Der wahrscheinliche Ablauf, aus Titel und Kontext ableitbar (nicht verifizierbar): (1) Hook-Einstieg: „Du denkst, in 24 Stunden kann keine richtig gute Website entstehen?" (2) Konter: „Diese hier schon." — vermutlich mit Cut auf Screenshots oder Screen-Recording einer echten Kunden-Website als Beweis. (3) Kurze Einordnung, wie dieser Speed-Prozess bei Make Marketing funktioniert („echtes Design, kein Baukasten"). (4) Abschluss-CTA Richtung Anfrage oder Terminbuchung. Sprachlich-energetisch, UGC-authentisch statt Studio-polished. Konkrete Szenenfolge, Anzahl der Schnitte, B-Roll-Inhalte und der finale CTA-Screen sind aus dem Standbild allein nicht ableitbar.
+
+## 15.04. · Video · BROAD BERN | MARC EVERS
+- id: reclV8mgxDg8jAZHj
+- Name: 15.04. · Video · BROAD BERN | MARC EVERS
+- Creative-ID: 999406886377667
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Nutzenversprechen im Untertitel („…bekommt") als Hook
+- Visual Style: UGC Selfie-Video / Talking Head mit Untertitel-Overlay (Keyword-Highlighting)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen in der Region Bern, die eine neue Website brauchen
+- Offer / Funnel-Typ: Formular/Leadformular (Serienname „FormSwap")
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BERN | MARC EVERS
+- Ausgaben gesamt: 327.23
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 4
+- Klicks gesamt: 162
+- Klicks AT: 162
+- Ad-IDs: 120244277161820598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 327.23
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 54.54
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 54.54
+- CTR %: 1.15
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.15
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.66
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-15
+- Erstellt am: 2026-04-15
+- Funnel-Zweck: Lead
+- Hookrate %: 33.43
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 33.43
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 14128
+- Impressionen gesamt: 14128
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 6
+- Leads gesamt: 6
+- Letzte Auslieferung: 2026-05-15
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 81.81
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 2
+Konkurrenz · 1
+Timing · 1
+Unqualifiziert · 1
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit dunkler Basecap und Brille (dunkles Oberteil) spricht in Selfie-Perspektive direkt in die Kamera; im Hintergrund eine Stadtstraße mit Arkaden bzw. Häuserfront – stimmig zur Berner Lokalisierung des Adsets. Unten läuft ein Untertitel-Overlay mit zwei farblich getrennten Textsegmenten: ein roter und ein weißer Teil; das Wort „…bekommt" ist erkennbar, der Rest ist auf dem Thumbnail nicht lesbar. Die Farb-Splittung im Untertitel (rot = Betonung/Key-Word, weiß = Restsatz) ist ein klassisches Hook-Element für Sound-off-Konsum. Logos oder Branding-Elemente sind im Frame nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Serie „WebsiteOffer-V2-FormSwap", Variante V3, Adset „BROAD BERN"):** Das erkennbare „…bekommt" im Untertitel deutet auf ein konkretes Nutzenversprechen hin („was du bekommst"), das die Ad vermutlich früh im Verlauf einführt. Die Ad dürfte mit einer direkten Ansprache als Hook starten, dann das Website-Angebot mit seinen Leistungsbestandteilen aufzählen und die Conversion über ein Formular ansteuern (Serienname „FormSwap"). Der Abschluss dürfte ein klarer CTA zum Ausfüllen des Formulars bzw. zur Anfrage sein. Gesprochener Wortlaut vollständig, Reihenfolge der Szenen, Zwischenschnitte und exakter CTA-Text: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recmF4kTVFl9O9hln
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 3433497726806884
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: Stopp-Geste als Aufmerksamkeits-Hook, dann Webdesign-Pitch
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige in der Region Zürich
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 5.24
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 4
+- Klicks AT: 4
+- Ad-IDs: 120244829507480598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 5.24
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 4.04
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 4.04
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 3.03
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 26.26
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 26.26
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 99
+- Impressionen gesamt: 99
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-07
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille und dunkler Basecap spricht in die Kamera und hebt dabei die offene Hand Richtung Linse — klassische Stopp-/Aufmerksamkeits-Geste als Hook. Der Schauplatz ist ein Innenraum, im Hintergrund sind mehrere Monitore/Bildschirme zu erkennen (Büro- oder Studio-Atmosphäre), was den Webdesign-/Digital-Kontext visuell unterstützt. Ein Text-Overlay ist im Standbild nicht sichtbar (ggf. erscheinen Untertitel erst im Videoverlauf — aus dem Standbild nicht ableitbar). Szene 1 (Hook, ca. 0–3 s): Die Hand-Geste Richtung Kamera dient als Scroll-Stopp; die gesprochene Eröffnung ist aus Angebotskontext („Webdesign aus Zürich", Adset „BROAD ZÜRICH") als direkte Ansprache an Zürcher Unternehmer ableitbar, z. B. eine Warnung oder provokante Feststellung zur eigenen Website. Szene 2 (Mittelteil): Pitch des Webdesign-Angebots; der Bildschirm-Hintergrund vermittelt Kompetenz im Digitalbereich, der Sprecher präsentiert sich als persönlicher Ansprechpartner. Szene 3 (Ende): Aufforderung zur Anfrage bzw. Terminbuchung, ableitbar aus der Lead-Kampagne; der genaue CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: UGC-Talking-Head mit einer aktiven Gestik-Ebene, keine sichtbaren Grafikeinblendungen im Standbild, natürliche Büro-Kulisse statt Studio. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recmGwM0vnv8jOah9
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 1789322999113858
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Konkurrenz ist online sichtbar — du nicht
+- Visual Style: Clean Static-Ad mit Device-Mockup und CTA-Button
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Raum Basel)
+- Target Audience: Unternehmen in Basel, deren Website gegenüber Wettbewerbern zurückfällt
+- Offer / Funnel-Typ: Website-Anfrage / Terminbuchung über CTA-Button
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 4.31
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120248515938610598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 4.31
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.45
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.45
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.45
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 69
+- Impressionen gesamt: 69
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratisches Static-Ad (1:1) in cleaner, reduzierter Grafiksprache auf hellem, fast weißem Hintergrund. Oben dominiert eine mehrzeilige, fett gesetzte schwarze Headline, in der einzelne Wörter farblich hervorgehoben sind; lesbar bzw. angedeutet sind Fragmente wie „Du siehst", „2025", „deine neue Website" und „Konkurrenz" — der vollständige, exakte Wortlaut ist im 64×64-px-Vorschaubild nicht sicher entzifferbar und wird daher nicht ergänzt. Aus dem Ad-Namen „STATIC | Konkurrenz | ad-02" ist der Kern der Headline ableitbar: Der Betrachter wird damit konfrontiert, dass er die (neue) Website der Konkurrenz sieht — nicht seine eigene. Rechts neben bzw. unter der Headline steht ein Laptop- bzw. Browser-Mockup, das eine moderne Website mit hellem Layout und sichtbarem Hero-Bereich zeigt; die Seite wirkt wie ein Beispiel-Relaunch aus dem MAKE-Portfolio. Unten im Layout sitzt ein blauer CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist (typisch wäre „Mehr erfahren" oder „Jetzt anfragen" — nicht verifizierbar). Die Farbwelt ist reduziert: Weißgrund, schwarze Typografie, Blau als Akzent- und Buttonfarbe. Die Komposition folgt einem klaren Schema: Hook-Headline oben, Ergebnis-Mockup als Beweis, Button als Handlungsaufforderung. Das Adset „STATICS | BASEL 30KM | QUALI UMSATZ" zeigt, dass dies die qualifizierende Static-Variante für den lokalen Markt ist. Weitere Texte, Subline oder Logo-Details sind im Vorschaubild nicht lesbar.
+
+## 17.02. · Video · RTG | LP
+- id: recn2e2qP9Y9clzma
+- Name: 17.02. · Video · RTG | LP
+- Creative-ID: 759919123511430
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: Diese Seite bringt CHF 80'000+ Umsatz – Ergebnisbeweis statt Versprechen
+- Visual Style: Case-Study-Karte (Smartphone-Mockup mit Ergebnis-Headline)
+- Awareness Level: Product Aware
+- Industry: Webdesign / Websites für KMU (Case: Energiebranche)
+- Target Audience: Retargeting-Publikum: Interessenten, die Make Marketing bereits kennen
+- Offer / Funnel-Typ: Case-Study → Landingpage (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: BILDER | RTG | LP
+- Ausgaben gesamt: 4.29
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120241195754470598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 4.29
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.64
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.64
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 11.54
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 11.54
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 156
+- Impressionen gesamt: 156
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-22
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Layout-Beschreibung (statisches Bild; Vorschau nur 64x64 px, Details daher eingeschränkt):
+  Aufbau/Komposition: Vertikales Zwei-Zonen-Layout auf hellem, vermutlich weißem Grund. Oben steht ein Smartphone-Mockup als Eyecatcher, das den Startscreen einer von Make Marketing gebauten Website zeigt – laut Ad-Name die Seite des Kunden „AlpenEnergie". Im Screen des Mockups ist ein dunkles Hero-Motiv mit heller Schrift angedeutet; Inhalte der Website sind im Vorschaubild nicht lesbar.
+  Darunter dominiert eine zweizeilige, schwarze, fett gesetzte Headline in Großbuchstaben. Lesbar ist sinngemäß „DIESE SEITE BRINGT / CHF …'…+ UMSATZ" – die Zeile wirkt wie „CHF 80'000+ UMSATZ", die exakten Ziffern sind bei dieser Auflösung jedoch nicht hundertprozentig sicher lesbar.
+  Farbwelt: Reduziertes, cleanes Schwarz-auf-Weiß mit kontraststarker Typografie; das dunkle Website-Hero im Mockup setzt den einzigen farbigen Akzent.
+  Stil/Bildsprache: Case-Study- bzw. Ergebnis-Layout – Produktbeweis (echte Website im Device-Mockup) plus konkrete Umsatzzahl als harter Ergebnisbeweis statt Versprechen.
+  Branding: Kein separates Logo im Vorschaubild erkennbar; die Marke wird über den Website-Case (AlpenEnergie) und die Ergebnisaussage transportiert.
+  Texte: Subline, Bulletpoints oder CTA-Button sind im Vorschaubild nicht lesbar bzw. nicht erkennbar; ein CTA-Button wird typischerweise von der Anzeigenoberfläche gestellt – im Standbild nicht verifizierbar.
+  Funktion im Funnel: Retargeting-Ad (Adset „BILDER | RTG"), die Interessenten mit einem konkreten Umsatz-Case von der Leistung der Agentur überzeugen soll.
+
+## 25.09. · Static · LEADS
+- id: recn4JlfSc3oj2W70
+- Name: 25.09. · Static · LEADS
+- Creative-ID: 24475168765465919
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Direkte Such-Ansprache: Wir suchen Unternehmer, die eine neue Website brauchen
+- Visual Style: Typografie-Textkarte auf hellem Grund
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Inhaber kleiner und mittlerer Unternehmen ohne aktuelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WIR SUCHEN | LEADS
+- Ausgaben gesamt: 395.6
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 392
+- Klicks AT: 392
+- Ad-IDs: 120234432302560598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 395.6
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 395.6
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 395.6
+- CTR %: 1.74
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.74
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.65
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-25
+- Erstellt am: 2025-09-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 22527
+- Impressionen gesamt: 22527
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2025-09-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad im Format 1:1. Entgegen einer früheren Einschätzung ist der Hintergrund im vorliegenden Vorschaubild hell, fast weiß — keine dunkle Fläche. Das Creative ist eine reine Typografie-Anzeige ohne Foto, Mockup oder Illustration. Im oberen Bereich steht eine mehrzeilige, groß formatierte Headline: die erste Zeile „Wir suchen Unternehmer" in Schwarz, darunter „die eine neue Website brauchen." in kräftigem Rot — der Bedarfssatz wird farblich hervorgehoben und trägt die Botschaft. Unter der Headline folgt ein deutlich kleinerer Textblock mit weiterer Erläuterung bzw. Handlungsaufforderung; sein Wortlaut ist im Vorschaubild nicht lesbar. Ein separater CTA-Button oder ein Logo ist in der Miniatur nicht eindeutig erkennbar. Die Farbwelt ist reduziert auf Weiß, Schwarz und das Agentur-Rot als einzigen Akzent. Die Bildsprache ist plakativ-minimalistisch und bewusst wie eine Suchanzeige bzw. Stellenausschreibung gestaltet. Die Blickführung läuft zwangsläufig vom schwarzen Einstieg „Wir suchen Unternehmer" zur roten Zeile „die eine neue Website brauchen". Branding-Elemente sind in der vorliegenden Auflösung nicht auszumachen.
+
+## 20.02. · Video · BROAD | META FORMULAR – Kopie
+- id: recnPUKUKMxOAZPfk
+- Name: 20.02. · Video · BROAD | META FORMULAR – Kopie
+- Creative-ID: 1053210740606200
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Dein Konkurrent gewinnt die Aufträge, weil seine Website besser ist als deine
+- Visual Style: Talking-Head-Video Outdoor mit Wort-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Inhaber kleiner und mittlerer Betriebe, deren Website schlechter ist als ihre Arbeitsqualität
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 125.28
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 69
+- Klicks AT: 69
+- Ad-IDs: 120241290381140598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 125.28
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 125.28
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 125.28
+- CTR %: 1.52
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.52
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.82
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 18.3
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.3
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4530
+- Impressionen gesamt: 4530
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Szene 1 (sichtbar im Standbild): Ein Mann mit Brille und kurzem dunklem Bart, dunkle Jacke, steht outdoor vor einer unscharfen Hochhaus-/Skyline-Kulisse bei Tageslicht und spricht direkt in die Kamera; er hebt eine Hand in einer betonenden Geste, was auf einen provokanten Hook-Einstieg hindeutet. Im unteren Bilddrittel läuft ein weißes Text-Overlay (Caption-Stil), das mit dem Wort „Dein" beginnt — die Fortsetzung ist im Vorschaubild nicht lesbar; naheliegend ist „Dein Konkurrent …", passend zum Ad-Namen. Aus Creative-Name („Deine Arbeit ist besser als deine Website.") und Ad-Name („Konkurrent") ist der dramaturgische Aufbau ableitbar: Der Sprecher benennt zuerst den Schmerz — die eigene handwerkliche/fachliche Arbeit ist stark, aber die Website verkauft sie schlecht. Danach folgt die Verschärfung: Der Konkurrent mit der besseren Website bekommt den Auftrag, obwohl er schlechter arbeitet. Üblicherweise (aus dem Einzelbild nicht verifizierbar) laufen Wort-für-Wort-Captions synchron zum Gesprochenen, es gibt 1-2 Locationswechsel oder Zooms zur Auflockerung, und das Video endet mit einem direkten CTA zur Website-Anfrage über das Meta-Leadformular. Weitere Szenen, der genaue Sprechtext und die Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Die Bildsprache ist urban und leicht dokumentarisch; sichtbares MAKE-Branding ist im Thumbnail nicht erkennbar.
+
+## 24.02. · Static · META FORMULAR
+- id: recnUEBOwmuLnV052
+- Name: 24.02. · Static · META FORMULAR
+- Creative-ID: 889051837290806
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Aufforderung „Google mal …“ als Neugier-Hook
+- Visual Style: Schild-Foto (Mitarbeiterin am Empfang)
+- Awareness Level: Problem Unaware
+- Industry: Webdesign für KMU/Handwerk
+- Target Audience: lokale Betriebsinhaber (Kaltakquise)
+- Offer / Funnel-Typ: Meta-Leadformular (Anfrage direkt)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 8.56
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120241515073290598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.56
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.52
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.52
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.26
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 383
+- Impressionen gesamt: 383
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Vorschaubild ist nur 64×64 Pixel groß. Erkennbar ist ein Foto in Büro- oder Empfangsatmosphäre: eine blonde Frau hinter einem hellen Tresen bzw. Schreibtisch, im Hintergrund eine dunkle Tafel oder ein Bildschirm an der Wand. Die Frau hält ein weißes Schild mit mehrzeiligem Text in Brusthöhe in die Kamera; einzelne Textzeilen scheinen rot bzw. dunkel gesetzt zu sein. Der Schildtext ist im Vorschaubild nicht lesbar — der Ad-Name „Schild Google mal“ legt nahe, dass die Botschaft eine Aufforderung ist, etwas Bestimmtes zu googeln (z. B. den Firmen- oder Markennamen). Das Format setzt auf Neugier: Betrachter sollen den Suchbegriff selbst eingeben und so aktiv mit der Marke interagieren. Es gibt kein erkennbares Overlay, keinen Button und kein zusätzliches Logo. Farbwelt: natürliche, helle Büroumgebung; das weiße Schild sticht als Blickfang heraus. Welcher Suchbegriff konkret genannt wird und ob das Schild weitere Zeilen (z. B. einen Bewertungs-Hinweis) enthält, ist im Vorschaubild nicht lesbar.
+
+## 25.06. · Static · CH_breit_28-65
+- id: reco3YpnHsOj9Jwxx
+- Name: 25.06. · Static · CH_breit_28-65
+- Creative-ID: 1491167685590887
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Monatlich Kundenverlust, weil dich bei Google keiner findet
+- Visual Style: 3D-Illustration / SaaS-Grafik in Google-Optik
+- Awareness Level: Problem Aware
+- Industry: SEO / Local Marketing für Dienstleister
+- Target Audience: lokale Unternehmen und Dienstleister ohne gutes Google-Ranking
+- Offer / Funnel-Typ: Kostenloser Sichtbarkeits-Check → Anfrage
+- Kampagne: MAKE_SEO_Leads_CH_2026-06
+- Adset: CH_breit_28-65
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120249265286050598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-25
+- Erstellt am: 2026-06-25
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges statisches Werbebild (ca. 9:16) in hellem, freundlichem Blau-Weiß mit klarer Google-Anmutung und SaaS-/3D-Illustrationsstil. Der Hintergrund ist ein weicher, hellblauer Verlauf mit dezenten Punktmustern in den Ecken und großen, transparenten Kreisformen, die Tiefe erzeugen. Im oberen und mittleren Bereich dominiert eine sehr große, schwarze, fette Sans-Serif-Headline über fünf Zeilen: „Wie viele Kunden gehen dir jeden Monat verloren, weil dich bei Google keiner findet?" – das Wort „Google" ist dabei im originalen Google-Logo-Schriftzug und den Google-Markenfarben (Blau/Rot/Gelb/Grün) gesetzt, was sofortige Markenassoziation erzeugt. Rechts neben bzw. hinter der Headline ragt eine 3D-Illustration in den Frame: ein glänzender, aufsteigender blauer Pfeil, der über einem hellen Balkendiagramm nach oben rechts zeigt – Sinnbild für Wachstum und steigende Rankings. Darunter, rechts im unteren Bilddrittel, sitzt eine weiße 3D-Karte, die eine stilisierte Google-Suchergebnisliste zeigt: oben ein Suchschlitz mit Lupe, darunter die Plätze 1, 2 und 3 als horizontale Balken – Platz 1 ist farbig hervorgehoben (blau/grüne Balken) und trägt zusätzlich eine kleine aufsteigende Trendlinie, während Plätze 2 und 3 ausgegraut sind. Links unter der Headline steht eine Versprechenszeile mit rundem blauem Zielscheiben-Icon: „Wir bringen dich in 60 Tagen auf Platz 1 bei Google." – wobei „60 Tagen" und „Platz 1" blau hervorgehoben sind. Ganz unten spannt sich ein breiter, abgerundeter CTA-Button in leuchtendem Blau über die Bildbreite: weißes Schild-Icon mit Häkchen links, daneben weißer Text „Sichtbarkeits-Check sichern". Die Bildsprache arbeitet mit Pain-Point-Frage (Kundenverlust) plus konkretem Ergebnisversprechen (Platz 1 in 60 Tagen) und niedrigschwelligem Einstieg über einen kostenlosen Check; MAKE-Branding ist im Bild selbst nicht sichtbar, die Optik lehnt sich bewusst an Google an.
+
+## 11.09. · Static · INTEREST | META FORMULAR
+- id: recoIsH0rK30LAeLr
+- Name: 11.09. · Static · INTEREST | META FORMULAR
+- Creative-ID: 1390244482846949
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Problem-Frage (KEINE …) mit dem Team als Gesicht und Vertrauensanker
+- Visual Style: Statische Problem-Ad mit Team-Foto auf schwarzem Hintergrund
+- Awareness Level: Problem Aware
+- Industry: Webdesign/Marketing KMU (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer und Selbstständige mit Website- bzw. Marketing-Bedarf
+- Offer / Funnel-Typ: Meta Lead-Formular
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | INTEREST | META FORMULAR
+- Ausgaben gesamt: 169.63
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 54
+- Klicks AT: 54
+- Ad-IDs: 120233847868560598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 169.63
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 56.54
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 56.54
+- CTR %: 1.17
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.17
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.71
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-11
+- Erstellt am: 2025-09-11
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 4629
+- Impressionen gesamt: 4629
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 3
+- Leads gesamt: 3
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad mit schwarzem Hintergrund und Drei-Zonen-Komposition. Oben dominiert eine große, mehrzeilige Headline in Weiß mit rot hervorgehobenem Schlüsselwort: Lesbar ist der Einstieg „KEINE" sowie ein rotes Wort in der zweiten Zeile; die komplette Formulierung ist auf der 64×64-px-Vorschau nicht sicher entzifferbar („im Vorschaubild nicht lesbar"), der Aufbau deutet auf eine Problem-Frage hin. In der Bildmitte stehen zwei Männer nebeneinander — vermutlich das MAKE-Gründerteam — in dunkler, lässiger Kleidung, frontal zur Kamera; das Team-Foto fungiert als Vertrauens- und Persönlichkeitselement und macht die Agentur greifbar. Unten läuft über die volle Breite ein roter Button-/Banner-Streifen mit hellem, weißem Text — vermutlich der CTA, im Vorschaubild nicht lesbar. Die Farbwelt bleibt strikt Schwarz-Rot-Weiß: hoher Kontrast, klare Aufmerksamkeitssteuerung vom Headline-Einstieg über das Team-Foto zum roten CTA-Bereich. Die Bildsprache kombiniert schmerzbasierte Ansprache („KEINE …") mit menschlicher Präsenz, um Seriosität und Nähe aufzubauen. Branding-Elemente: rote Akzentfarbe, Team als Gesicht der Marke, konsistenter Schwarz-Look der MAKE-Eigenwerbung.
+
+## 18.06. · Static · CH | PLATZ-1
+- id: recoJLEmSy5eylNlk
+- Name: 18.06. · Static · CH | PLATZ-1
+- Creative-ID: 991400167032663
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Wirst du bei Google gefunden — oder nur deine Konkurrenz?
+- Visual Style: SERP-Screenshot-Mockup
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU / Lokale Sichtbarkeit
+- Target Audience: lokale Schweizer Betriebe, die über Google Neukunden gewinnen wollen
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | PLATZ-1 | JUN26
+- Ausgaben gesamt: 0.41
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248678380660598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.41
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 13
+- Impressionen gesamt: 13
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im vertikalen Format auf hellem, leicht grauem Hintergrund. Oben steht in großer, fetter schwarzer Schrift eine Frage-Headline über drei Zeilen, sinngemäß lesbar: „Wirst du bei Google gefunden, oder nur deine Konkurrenz?" — die genaue Wortwahl ist im Vorschaubild nur eingeschränkt lesbar, der Kern (bei Google gefunden werden vs. Konkurrenz) ist jedoch erkennbar. Darunter folgt eine kleinere, grau gesetzte Subline über zwei Zeilen — der genaue Wortlaut ist im Vorschaubild nicht lesbar (vermutlich ein Zusatz zu Anfragen/Top-Platzierung). Unter der Subline sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar. Die untere Bildhälfte dominiert ein großes Laptop-Mockup mit Schatten, auf dem eine Google-Suchergebnisseite (SERP) zu sehen ist: oben links die Google-Logo-Farben, darunter mehrere Suchergebnis-Einträge untereinander mit Titel- und Beschreibungszeilen sowie einem auffälligen roten Element im oberen Ergebnisbereich. Die konkreten Texte der Suchergebnisse sind im Vorschaubild nicht lesbar. Die Komposition folgt der Serien-Vorlage: Headline → Subline → roter Button → Gerät, hier jedoch mit SERP-Screenshot statt Website-Referenz als Beweismittel. Bildsprache: sachlich, clean, wenig Dekor; der SERP-Screenshot macht den Abstrakten Begriff „Sichtbarkeit" greifbar. Stimmung: Frage-Hook, der gezielt Zweifel an der eigenen Google-Platzierung weckt. Logo oder Branding sind im Vorschaubild nicht erkennbar.
+
+## 05.09. · Static · BROAD
+- id: recoR1ImKTQMqwTnR
+- Name: 05.09. · Static · BROAD
+- Creative-ID: 3668674330105890
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Website sieht aus wie 2003 – provokanter Spiegel für veraltete Webpräsenz
+- Visual Style: Kontrast-Grafik alt vs. neu (Split-Vergleich)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Inhaber kleiner und lokaler Unternehmen mit veralteter Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | BROAD
+- Ausgaben gesamt: 10.16
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 9
+- Klicks AT: 9
+- Ad-IDs: 120233525909640598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 10.16
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.54
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.54
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.48
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1670
+- Impressionen gesamt: 1670
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat auf komplett schwarzem Grund; die Komposition gehört zur selben Bildserie wie das „DEIN KONKURRENT KASSIERT"-Motiv. Oben steht eine große, dreizeilige Headline in kräftiger Sans-Serif: „DEINE WEBSITE SIEHT AUS WIE 2003" – die Wörter „WEBSITE" und „2003" sind dabei in Signalfarbe Rot gesetzt, der Rest in Weiß; im Vorschaubild ist diese Headline in Grundzügen lesbar. Darunter folgt eine kleinere Subline, deren Wortlaut im Vorschaubild nicht lesbar ist. Die Bildmitte visualisiert den alt-vs.-neu-Kontrast: Links steht ein alter, klobiger Röhrenmonitor, auf dem eine veraltete, graue, textlastige Website zu sehen ist – sie symbolisiert die „2003"-Webpräsenz. Rechts hält eine Hand ein modernes Smartphone, das eine zeitgemäße, mobil optimierte Website zeigt (erkennbar: rote Buttons und ein Produkt-/Bildbereich; Details nicht lesbar). Ein roter Pfeil bzw. eine rote Verbindungslinie zwischen den beiden Geräten führt den Blick von alt nach neu und impliziert die notwendige Erneuerung. Unten läuft ein roter Banner-Balken mit weißem Text – vermutlich CTA bzw. Offer-Hinweis, im Vorschaubild nicht lesbar. Farbwelt: Schwarz, Weiß, Signalfarbe Rot. Bildsprache: provokant, warnend, humorvoll-konfrontativ (Jahreszahl als Stilmittel). Branding-Elemente/Logo sind im Vorschaubild nicht erkennbar.
+
+## 17.02. · Video · BROAD | LP
+- id: recoSypqQ17fWCYUC
+- Name: 17.02. · Video · BROAD | LP
+- Creative-ID: 2695638080801503
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website – die Website verkauft dich unter Wert
+- Visual Style: Talking-Head-Video mit Caption-Overlay (Innenraum)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister, Inhaber mit schwacher Website
+- Offer / Funnel-Typ: Landingpage (Website-Angebot via LP)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | LP
+- Ausgaben gesamt: 42.12
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 78
+- Klicks AT: 78
+- Ad-IDs: 120241192843360598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 42.12
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 3.92
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 3.92
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.01
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 30.94
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 30.94
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1991
+- Impressionen gesamt: 1991
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau und identisch mit dem Vorschaubild des Creatives 1602482567322454 (gleiche Ad-Familie, Variante mit Landingpage-Ziel statt Meta-Formular); Text-Overlays und Szenendetails sind nur eingeschränkt verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart und Brille in dunklem Poloshirt spricht direkt in die Kamera und gestikuliert mit erhobener Hand; Innenraum mit hellem, ausgeleuchtetem Hintergrund (Fenster-/Tageslichtsituation). Quer über die Bildmitte läuft ein helles Text-Overlay (Caption), von dem in der Vorschau nur der Wortanfang „Eine …" ansatzweise erahnbar ist — der vollständige Wortlaut ist im Vorschaubild nicht lesbar. Wahrscheinlicher Szenenablauf (aus Kampagnenname und Ad-Kontext ableitbar, nicht aus dem Bild verifizierbar): (1) Hook: Der Sprecher eröffnet mit einer Pointe entlang der Kampagnenlinie, z. B. „Eine Website, die deine Arbeit nicht zeigt, kostet dich Aufträge". (2) Problembeschreibung: Handwerker und Dienstleister liefern top Arbeit, aber ihre Website wirkt veraltet und verkauft sie unter Wert. (3) Konsequenz: Interessenten springen ab oder gehen zum Konkurrenten mit dem besseren Webauftritt. (4) Lösung: MAKE baut Websites, die zur Qualität der Arbeit passen und Anfragen erzeugen. (5) Abschluss: CTA auf eine Landingpage (Adset nennt „LP"); die exakte CTA-Formulierung und das LP-Ziel sind aus dem vorliegenden Material nicht ableitbar. Der Ad-Name „Kei Rappe" deutet auf einen namentlich bekannten Sprecher oder eine regionale Anspielung hin — aus dem Bild nicht verifizierbar. Durchgehende Captions (Overlay im Standbild) deuten auf Ton-aus-optimierte Feed-Nutzung hin. Performance-Hinweis: Diese LP-Variante zeigte in KW07 mit 4,34 % CTR die deutlich stärkste Klickrate der Ad-Familie.
+
+## 18.12. · Static · BROAD 3
+- id: recozen854nf5mxde
+- Name: 18.12. · Static · BROAD 3
+- Creative-ID: 1571472667183687
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Positiv-Versprechen: Wissen, wie viele Anfragen nächsten Monat kommen
+- Visual Style: Zweispaltige Text-Foto-Karte
+- Awareness Level: Problem Aware
+- Industry: Webdesign Handwerk
+- Target Audience: Handwerker/lokale Dienstleister mit unplanbaren Anfragen
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 3
+- Ausgaben gesamt: 14.48
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 27
+- Klicks AT: 27
+- Ad-IDs: 120239131229060598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 14.48
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 3.38
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 3.38
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.38
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 798
+- Impressionen gesamt: 798
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad (Format laut Metadaten Bild); die lokal vorhandene Vorschau ist nur 64×64 Pixel groß und daher unscharf — der genaue Wortlaut und Feinheiten sind im Vorschaubild nicht vollständig lesbar. Erkennbar ist ein zweispaltiges Karten-Layout: Links ein heller (weißer/hellgrauer) Textblock mit mehreren Zeilen dunkler Schrift — die erste Zeile scheint mit „Wissen, wie viele Anfragen nächsten Monat kommen." zu beginnen und damit bewusst die positive Umkehrung des Pain-Point-Zitats der Schwester-Ad „Ich weiß nicht..." zu formulieren (auf dieser Auflösung nicht sicher entzifferbar). Rechts daneben ein Farbfoto einer Person, vermutlich ein Porträt oder Arbeitsfoto aus dem MAKE-Kontext (Teammitglied/Gründer) — die Person scheint vor einem dunkleren Hintergrund zu stehen bzw. zu sitzen. Ob weitere Elemente wie Subline, CTA-Button oder MAKE-Logo enthalten sind, ist im Vorschaubild nicht lesbar. Farbwelt: helles, freundliches Karten-Design mit Foto-Akzent — hebt sich damit von den rein typografischen Weiß-Ads und der Dark-Mode-Ad derselben Kampagne ab. Bildsprache: Kombination aus Text-Versprechen und Personenbezug — Planbarkeit wird nicht nur behauptet, sondern mit einem Gesicht versehen, was Vertrauen aufbaut. Der Werbetext und CTA laufen zusätzlich über die Ad-Caption (nicht in der Datei hinterlegt).
+
+## 03.06. · Video · Veli Testimonial
+- id: recpD6eZULT7skXVW
+- Name: 03.06. · Video · Veli Testimonial
+- Creative-ID: 1339115188173745
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Kunde Veli Manis sagt vor der Kamera: Die neue Homepage ist viel …
+- Visual Style: Video-Testimonial mit Text-Overlays
+- Awareness Level: Solution Aware
+- Industry: Webdesign / Marketing-Agentur (Kunde: Treuhand)
+- Target Audience: KMU-Inhaber, die vor einem Website-Projekt stehen
+- Offer / Funnel-Typ: Testimonial/Case → Anfrage
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 08 | Veli Testimonial
+- Ausgaben gesamt: 51.7
+- Ausgaben 30T: 10.24
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 28
+- Klicks AT: 28
+- Ad-IDs: 120247607303220598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.7
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.35
+- CTR % 30T: 0.39
+- CTR % 7T: 0
+- CTR % AT: 0.35
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 18.76
+- Hookrate % 30T: 17.56
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.76
+- Impressionen 14T: 0
+- Impressionen 30T: 1794
+- Impressionen 7T: 0
+- Impressionen AT: 7944
+- Impressionen gesamt: 7944
+- Klicks 14T: 0
+- Klicks 30T: 7
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Testimonial im gleichen Design-System wie die statischen Testimonial-Ads der Serie (AD 04, AD 07): sprechender Kunde plus eingespielte Text-Overlays im vertikalen Format (Reel/Story). WICHTIG: Es liegt nur ein 64×64-Standbild vor — Sichtbares und Ableitbares werden strikt getrennt. SICHTBAR im Standbild: Im Hintergrund unscharf und abgedunkelt eine Person in hellem Hemd (mutmaßlich Veli Manis, der sprechende Kunde) in einer Innenraum-Situation; darüber liegt ein dunkler Verlauf, der die Textebene lesbar macht. Links oben sitzt ein großes rotes Anführungszeichen als grafisches Erkennungszeichen der Serie. Darunter ein mehrzeiliges Text-Overlay in weißer, fetter Grotesk: klar lesbar ist „DIE NEUE HOMEPAGE IST VIEL"; die anschließende Zeile liegt auf einem roten Highlight-Balken, ihr Wortlaut ist im Vorschaubild nicht lesbar (vermutlich die Steigerung, z. B. „BESSER" oder „PROFESSIONELLER"). Unten im Bild sind fünf goldene Sterne und eine Namenszeile angedeutet (im Vorschaubild nicht lesbar, mutmaßlich „Veli Manis / Geschäftsführer Manis Treuhand AG" analog zu AD 07). ABLEITBAR aus Ad-Name („AD 08 | Veli Testimonial") und Serienkontext: Der Kunde spricht vor der Kamera über sein Website-Projekt mit MAKE; seine Kernaussagen werden als große Text-Overlays (weiße Großschrift + rote Balken) synchron eingespielt — das typische Muster der Kampagne. Typische Dramaturgie: Hook-Aussage in den ersten Sekunden, 2–4 weitere Zitat-Overlays im Verlauf, B-Roll oder durchgehende Sprechszene, Abschluss mit Sternebewertung, Name/Funktion und implizitem oder ausgesprochenem CTA. Ob zusätzlich B-Roll der Website, Musik oder Untertitel vorkommen, ist aus dem Standbild nicht ableitbar; exakte Overlay-Texte, Szenenfolge, Laufzeit und Schluss-CTA sind im Vorschaubild nicht lesbar.
+
+## 18.12. · Static · BROAD 3
+- id: recpHqpuYBJERse1f
+- Name: 18.12. · Static · BROAD 3
+- Creative-ID: 870680168710814
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Solarbetrieb in Basel bekommt Anfragen für nur 45 CHF — Kennzahlen als Beweis
+- Visual Style: Case-Study-Karte mit Kennzahlen-Kacheln
+- Awareness Level: Solution Aware
+- Industry: Online-Marketing für Solarbetriebe (Agentur-Eigenwerbung)
+- Target Audience: Solar- und Handwerksbetriebe in der Schweiz (Region Basel), Inhaber
+- Offer / Funnel-Typ: Case-Study → Website-Offer
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 3
+- Ausgaben gesamt: 36.94
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 54
+- Klicks AT: 54
+- Ad-IDs: 120239131229020598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 36.94
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 3.6
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 3.6
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 2.2
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1499
+- Impressionen gesamt: 1499
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) im Case-Study-Layout mit drei horizontalen Ebenen. Oben: ein unscharfes Teamfoto mehrerer Männer in schwarzen Arbeits-Polos im Freien — authentische Betriebs-Optik, die den beworbenen Kunden (Solarbetrieb) greifbar macht. Mittig dominieren zwei nebeneinanderliegende Statistik-Kacheln: links eine blaue Kachel mit dem Wert „11,10", rechts eine rote Kachel mit „85,78 CHF"; die genaue Bedeutung der beiden Kennzahlen ist aus dem Standbild nicht vollständig ableitbar, vermutlich handelt es sich um einen Vergleich der Anfragekosten (z. B. Vorher/Nachher bzw. zwei Kampagnen-Werte). Darunter steht die zweizeilige Headline in weißer Marker-/Handschrift-Optik: „Ein Solarbetrieb in Basel" und „45 CHF pro Anfrage", wobei „45 CHF" türkis hervorgehoben ist und als zentrales Ergebnis-Versprechen fungiert. Unter der Headline befindet sich eine kleinere Zeile, die im Vorschaubild nicht vollständig lesbar ist (vermutlich eine ergänzende Erläuterung zum Case). Am unteren Rand sitzt ein türkiser CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist; der untere Bildbereich läuft in einen dunklen Verlauf aus. Farbwelt: natürliches Foto oben, kräftige Blau-Rot-Kacheln in der Mitte, Weiß-Türkis-Typografie unten. Das Layout folgt dem Beweis-Muster einer Mini-Case-Study: Branche + Ort + konkreter Preis pro Anfrage sollen Ähnlichkeit herstellen („wenn es bei einem Basler Solarbetrieb klappt, dann auch bei mir").
+
+## 06.05. · Static · STÄRKERES MARKETING OFFER
+- id: recpNMDfgoAHb59A5
+- Name: 06.05. · Static · STÄRKERES MARKETING OFFER
+- Creative-ID: 1689045859110553
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: 3 Küchenkunden in 60 Tagen für 0 CHF – kein Risiko, nur Ergebnisse
+- Visual Style: Premium-Foto-Static mit Offer-Karte und USP-Leiste
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Schweizer Küchenstudios, Premium-Segment
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO V2 | STÄRKERES MARKETING OFFER
+- Ausgaben gesamt: 93.55
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 1
+- Klicks gesamt: 43
+- Klicks AT: 43
+- Ad-IDs: 120245591020200598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 93.55
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 93.55
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 93.55
+- CTR %: 1.19
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.19
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.89
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-06
+- Erstellt am: 2026-05-06
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3604
+- Impressionen gesamt: 3604
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 1
+- Leads gesamt: 1
+- Letzte Auslieferung: 2026-05-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 93.55
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild im hochformatigen Feed-Format (900×1206 px, ca. 3:4) im Premium-Editorial-Stil. Hintergrund: hochwertige Fotografie einer dunklen Designerküche mit schwarzer Kochinsel, Stein-Arbeitsplatte, Designer-Armatur, warmen Holzfronten, indirekter LED-Beleuchtung und Schienenstrahlern an der Decke — vermittelt sofort das Premium-Segment der Zielgruppe. Oben links steht die grosse Headline in weisser Grotesk „Wir suchen" und darunter „3 Schweizer Küchenstudios:", wobei die Zahl „3" überdimensional in Gold gesetzt ist und ein goldener Unterstrich die Headline abschliesst. Im Zentrum sitzt eine helle, cremefarbene Offer-Karte mit abgerundeten Ecken: oben ein goldenes Linien-Icon mit drei Personen, darunter das Angebot „3 neue Küchenkunden in 60 Tagen, und du zahlst uns 0 CHF." — die Zahlen „3", „60" und „0" sind jeweils gross in Gold hervorgehoben, der Rest in schwarzer Grotesk; ein dünner goldener Trennstrich gliedert die Karte. Rechts daneben, halb auf der Kochinsel liegend, ein rundes schwarzes Badge mit goldenem Schild-Haken-Icon und dem Versprechen „KEIN RISIKO. NUR ERGEBNISSE." in weissen Kapitälchen. Am unteren Rand läuft eine schwarze USP-Leiste mit vier goldenen Linien-Icons und weissen Labels: Zielscheibe „QUALIFIZIERTE ANFRAGEN", Kalender „MESSBAR. PLANBAR.", steigender Chart „MEHR UMSATZ. WENIGER STREUVERLUST.", Handschlag „FAIR. TRANSPARENT. AUF ERGEBNISBASIS.". Farbwelt: Schwarz, Creme, Gold — konsequent hochwertig und seriös. Kein sichtbarer CTA-Button und kein Logo; die Glaubwürdigkeit entsteht über Bildwelt, Badge und USP-Leiste.
+
+## 24.02. · Static · META FORMULAR
+- id: recqYpUZkwBcrvdBU
+- Name: 24.02. · Static · META FORMULAR
+- Creative-ID: 864418743241748
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Lokaler Schild-Hook auf Basler Straße mit grünem Tram
+- Visual Style: Schild-Foto (Street-Style mit Tram)
+- Awareness Level: Problem Unaware
+- Industry: Webdesign für KMU (lokal Basel)
+- Target Audience: lokale Betriebsinhaber in Basel und Umgebung
+- Offer / Funnel-Typ: Meta-Leadformular (Anfrage direkt)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS 2 | META FORMULAR
+- Ausgaben gesamt: 185.03
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 125
+- Klicks AT: 125
+- Ad-IDs: 120241515464530598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 185.03
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 92.52
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 92.52
+- CTR %: 1.91
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.91
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.36
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-24
+- Erstellt am: 2026-02-24
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 6535
+- Impressionen gesamt: 6535
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2026-02-25
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Das verfügbare Vorschaubild ist nur 64×64 Pixel groß. Erkennbar ist ein Foto auf einer urbanen Straße mit Tramschienen und einem grünen Tram im Hintergrund — ein unverwechselbares Basel-Motiv (grüne Trams der Basler Verkehrsbetriebe). Eine Frau mit dunklen Haaren steht in der Bildmitte auf dem Gehweg und hält ein weißes Schild mit mehrzeiligem Text in die Kamera. Der Schildtext ist im Vorschaubild nicht lesbar; angesichts des Ad-Namens „Schild Basel“ ist eine lokal bezogene Botschaft an Basler Betriebe wahrscheinlich. Das Bild wirkt wie ein spontanes Street-Foto und nutzt die Wiedererkennbarkeit der Location als Stopper im Feed. Es gibt kein erkennbares Text-Overlay, keinen Button und kein Logo außerhalb des Schilds. Farbwelt: natürliches Tageslicht, Grautöne der Straße, das grüne Tram als Farbakzent und Lokalkolorit. Ob das Schild eine Frage, ein Versprechen oder einen Such-Hook trägt, ist im Vorschaubild nicht lesbar.
+
+## 10.08. · Video · CH | PLATZ-1 SEO
+- id: recqgeNcsV7acYSoR
+- Name: 10.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 4363123060621553
+- Format: Video
+- Status: ACTIVE
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26 – EDITIERT
+- Ausgaben gesamt: 2.93
+- Ausgaben 30T: 2.9
+- Hookrate % 14T: 10.1
+- ROAS 14T: 0
+- CTR % 14T: 1.01
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1
+- Klicks AT: 1
+- Ad-IDs: 120250934566320598
+- Angereichert: Nein
+- Anzahl Ads: 1
+- Ausgaben 14T: 2.9
+- Ausgaben 7T: 2.9
+- Ausgaben AT: 2.93
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.96
+- CTR % 30T: 1.01
+- CTR % 7T: 1.01
+- CTR % AT: 0.96
+- CTR Link % 14T: 1.01
+- CTR Link % 30T: 1.01
+- CTR Link % 7T: 1.01
+- CTR Link % AT: 0.96
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-10
+- Erstellt am: 2026-08-10
+- Funnel-Zweck: Lead
+- Hookrate %: 9.62
+- Hookrate % 30T: 10.1
+- Hookrate % 7T: 10.1
+- Hookrate % AT: 9.62
+- Impressionen 14T: 99
+- Impressionen 30T: 99
+- Impressionen 7T: 99
+- Impressionen AT: 104
+- Impressionen gesamt: 104
+- Klicks 14T: 1
+- Klicks 30T: 1
+- Klicks 7T: 1
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-10
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript: [UNVOLLSTÄNDIG — nur in Notion oder leer]
+
+## 17.02. · Video · CA & LLA | LP
+- id: recql2nucIJDitzZ3
+- Name: 17.02. · Video · CA & LLA | LP
+- Creative-ID: 1248657587229950
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Die Website ist der erste Eindruck – und der hinkt der Arbeitsqualität hinterher
+- Visual Style: Talking-Head-Video (Außendreh, mit Untertitel-Overlay)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker, Dienstleister und Selbstständige mit veralteter Website
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CA & LLA | LP
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241196113980598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hinweis: Das Vorschaubild ist byte-identisch mit dem von Creative 1554041422564161 – offenbar dasselbe Video in einer weiteren Ad-Instanz (Adset CA & LLA statt Broad).
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein Mann mit Brille und dunkler Jacke steht im Freien vor hellem Himmel und spricht direkt in die Kamera. Unten im Bild läuft ein weißer Text-Overlay (Untertitel) mit, von dem im Standbild nur das Wortfragment „…jeder" lesbar ist – der vollständige Satz ist im Vorschaubild nicht lesbar. Das Video arbeitet also mit dynamischen Untertiteln, die das Gesprochene wortweise einblenden.
+  Gesprochene Kernbotschaft (aus Ad-Name „Erster Eindruck" und Titel ableitbar): Die Website liefert den ersten Eindruck vom Betrieb – und dieser Eindruck hinkt der tatsächlichen Arbeitsqualität hinterher.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Zuspitzung – ein veralteter erster Eindruck vergrault Interessenten, bevor es zum Kontakt kommt; Kunden beurteilen den Betrieb zuerst online.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Make Marketing baut Websites, die beim ersten Eindruck überzeugen und Anfragen erzeugen.
+  Schluss/CTA: Der konkrete CTA und weitere Overlays sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Talking Head im Außendreh (Authentizität für die Handwerker-Zielgruppe), weiße Untertitel unten im Bild, keine weiteren Grafikelemente im Standbild erkennbar.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recr95EuormL7VZ0Z
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 1944459312876292
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Direkte Ansprache von Angesicht zu Angesicht statt Hochglanz-Werbung
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel ohne professionelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 1.85
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120244825862210598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.85
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 15.62
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.62
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 64
+- Impressionen gesamt: 64
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video im Selfie-Stil, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit Brille und dunkler Basecap, dunkles Oberteil, steht draußen vor einem hellen Gebäude bei Tageslicht, hebt die Hand und spricht direkt in die Kamera – persönlicher, unmittelbarer Einstieg ohne produzierte Intro-Sequenz. Szene 2: Aus dem Kontext (Ad-Name „Webdesign aus Basel", Kampagne „LOKAL | WEBSITE | FEB26", Adset „MARC EVERS") ist ableitbar, dass er sich als Webdesigner aus Basel vorstellt und gezielt lokale Unternehmer mit Website-Bedarf adressiert. Szene 3: Vermutlich benennt er das Problem fehlender oder veralteter Websites bei Basler Betrieben und stellt sein Angebot als lokale, persönliche Lösung vor. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, wahrscheinlich mit Verweis auf den Button der Anzeige. Text-Overlays: Auf dem Standbild (64×64 px) nicht erkennbar; ob Untertitel oder Einblendungen im Video erscheinen, ist aus dem Vorschaubild nicht ableitbar. Bildsprache: Tageslicht, Handheld-Charakter, kein sichtbares Branding – bewusst authentischer UGC-Look. Hinweis: Das Thumbnail ist identisch mit dem der Ad A5 (Creative-ID 1883171432392125) – vermutlich gleiches Video oder gleicher Take in anderem Adset; ob das Video selbst übereinstimmt, ist aus den vorhandenen Daten nicht ableitbar.
+
+## 17.10. · Static · Statische Image-Ad aus dem eigenen Konto MAKE (Ad
+- id: recrGnVzuRkU0OT4z
+- Name: 17.10. · Static · Statische Image-Ad aus dem eigenen Konto MAKE (Ad
+- Creative-ID: 1331205911876834
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Negative Google-Rezension als Schreckbild: Website wie 2005 treibt Kunden zur Konkurrenz
+- Visual Style: Fake-Review-Screenshot mit Kontrast-Panel
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmer mit veralteter Website, Schweizer KMU (CHF-Preis)
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WEBSITE OFFER 2.0 | 17.10.
+- Ausgaben gesamt: 78.06
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 56
+- Klicks AT: 56
+- Ad-IDs: 120235546335500598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 78.06
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.9
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.9
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.39
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-17
+- Erstellt am: 2025-10-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2942
+- Impressionen gesamt: 2942
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-17
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad (1080×1080), horizontal in zwei kontrastreiche Hälften geteilt. Die obere Hälfte auf weißem Grund imitiert einen Google-Rezensions-Screenshot: links ein lila Profilkreis mit dem Buchstaben „H", daneben der Name „Potentieller Kunde" und die Zeile „1 Rezension", rechts ein Drei-Punkte-Menü-Icon wie in der Google-Oberfläche. Darunter ein einziger gelber Stern neben vier ausgegrauten Sternen (1 von 5) und der Zeitstempel „vor 2 Monaten". Der Rezensionstext lautet vollständig: „Bin 30 Sekunden auf der Website geblieben. Sah aus wie 2005. Das kann niemals professionell sein! Bin zu Konkurrenz." — ein konstruiertes Schreckensszenario, das den Schmerz der Zielgruppe dramatisiert. Die untere Hälfte auf schwarzem Grund trägt die Antwort der Agentur: als große, fette weiße Headline die Frage „Willst du solche Reviews vermeiden?", zentriert gesetzt. Darunter das Angebot in kleinerer weißer Schrift: „Wir bauen dir eine neue Website in 14 Tagen. Wenn du nicht 100% zufrieden bist, bezahlst du 0 CHF." — die Wörter „neue Website" sind unterstrichen, der Satzteil „bezahlst du 0 CHF." ist fett hervorgehoben. Die Farbwelt ist kompromisslos Schwarz-Weiß mit dem Lila und Gelb der Review-Elemente als einzigen Farbakzenten. Die Bildsprache nutzt „Social Proof umgekehrt": Nicht ein positives Testimonial, sondern eine negative Bewertung dient als Aufhänger. Branding-Elemente wie ein Logo sind nicht sichtbar; der CTA erfolgt vermutlich über den Anzeigentext außerhalb des Bildes (Titel der Anzeige: „In 14 Tagen online – Termin reservieren"). Die Komposition erzeugt eine klare Dramaturgie: oben das Problem (schlechte Rezension), unten die Lösung (neue Website mit Geld-zurück-Garantie).
+
+## 24.04. · Video · CAM BASEL | MARC EVERS
+- id: recrMwS4r7MCPTjdL
+- Name: 24.04. · Video · CAM BASEL | MARC EVERS
+- Creative-ID: 1536692247946393
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Webdesign direkt aus Basel — lokale Ansprache vor Basler Kulisse
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU und Selbstständige in der Region Basel
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CAM BASEL | MARC EVERS
+- Ausgaben gesamt: 813.49
+- Ausgaben 30T: 185.67
+- Hookrate % 14T: 23.37
+- ROAS 14T: 0
+- CTR % 14T: 1.57
+- CPL 30T: 92.83
+- CPA AT: 406.75
+- Leads 14T: 0
+- Termine AT: 8
+- Klicks gesamt: 353
+- Klicks AT: 353
+- Ad-IDs: 120244827272010598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 96.52
+- Ausgaben 7T: 0
+- Ausgaben AT: 813.49
+- CPA: 406.75
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 58.11
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 58.11
+- CTR %: 1.18
+- CTR % 30T: 1.39
+- CTR % 7T: 0
+- CTR % AT: 1.18
+- CTR Link % 14T: 1.25
+- CTR Link % 30T: 1.01
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.73
+- Conversions gesamt: 2
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 25.19
+- Hookrate % 30T: 24.03
+- Hookrate % 7T: 0
+- Hookrate % AT: 25.19
+- Impressionen 14T: 3761
+- Impressionen 30T: 7495
+- Impressionen 7T: 0
+- Impressionen AT: 29815
+- Impressionen gesamt: 29815
+- Klicks 14T: 59
+- Klicks 30T: 104
+- Klicks 7T: 0
+- Leads 30T: 2
+- Leads 7T: 0
+- Leads AT: 14
+- Leads gesamt: 14
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 8.85
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 101.69
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 7200
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 2
+- Verlustgruende: Preis/Budget · 5
+Keine Antwort · 3
+Sonstiges · 2
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit dunkler Basecap, Brille und dunklem Oberteil spricht direkt in die Kamera, gehalten in UGC-/Selfie-Perspektive. Hintergrund: markantes rotes Sandstein-Gebäude mit Fensterreihen — typische Basler Altstadt-Architektur, Tageslicht. Oben im Bild läuft ein weißes Text-Overlay (vermutlich Hook-Zeile oder Untertitel); der Wortlaut ist im Vorschaubild nicht lesbar. Szene 1 (Hook, ca. 0–3 s): Der Sprecher adressiert die Kamera direkt am Basler Schauplatz; aus Kampagne („LOKAL | WEBSITE") und Adset („CAM BASEL") ist ableitbar, dass er lokale Unternehmer anspricht, wahrscheinlich mit einer Frage oder Feststellung rund um die eigene Website bzw. fehlende Anfragen darüber. Szene 2 (Mittelteil): Talking-Head-Passage mit eingeblendeten Untertiteln; der Sprecher erklärt das Angebot — Webdesign aus Basel, persönlich und lokal. Der Standort-Bezug dient als Vertrauensanker („von hier, für hier"). Szene 3 (Ende): Aufforderung zur Kontaktaufnahme bzw. Terminbuchung, ableitbar aus der Lead-Kampagne mit CPL-Messung; der konkrete CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: authentische UGC-Optik ohne Studio-Inszenierung, keine Grafikeinblendungen außer dem Text-Overlay, natürlicher Tageslicht-Look. Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 04.03. · Video · Videograf
+- id: recrP70gGe7GZ4Atl
+- Name: 04.03. · Video · Videograf
+- Creative-ID: 1465142218592197
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: nicht aus Standbild ableitbar (Stellenangebot Foto/Video laut Kampagne)
+- Visual Style: UGC Selfie-Video (Auto bei Nacht)
+- Awareness Level: Problem Unaware
+- Industry: Recruiting Agentur (Fotograf/Videograf)
+- Target Audience: junge Leute in Basel mit Interesse an Foto/Video
+- Offer / Funnel-Typ: Direkte Bewerbung
+- Kampagne: RECRUITING
+- Adset: Videograf
+- Ausgaben gesamt: 1.61
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 12
+- Klicks AT: 12
+- Ad-IDs: 120241854180250598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.61
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 9.23
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 9.23
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 5.38
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-04
+- Erstellt am: 2026-03-04
+- Funnel-Zweck: Recruiting
+- Hookrate %: 30.77
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 30.77
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 130
+- Impressionen gesamt: 130
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-04
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Videoad im vermutlich hochformatigen UGC-Stil (Ad „Video Nacht 1"); das einzige verfügbare Standbild liegt nur als 64×64-px-Thumbnail vor, daher sind Szenenablauf, Text-Overlays und gesprochene Botschaft grösstenteils nicht verifizierbar. Szene 1 (aus dem Standbild ableitbar): Ein Mann mit Brille sitzt am Steuer eines Autos bei Nacht bzw. in dunkler Umgebung, gefilmt aus dem Fahrzeuginneren in Selfie-/Talking-Head-Manier – er schaut Richtung Kamera und spricht offenbar direkt hinein. Die nächtliche Auto-Kulisse passt zum Ad-Namen „Video Nacht 1" und zur Schwester-Anzeige „IG 2", die ebenfalls ein Auto-Motiv mit denselben Personen nutzt. Aus dem Kampagnenkontext (Kampagne RECRUITING, Titel „Wir suchen einen Fotografen/Videografen") ist ableitbar, dass die gesprochene Botschaft das Jobangebot Foto/Video bei der Marketing-Agentur in Basel vorstellt. Wahrscheinlicher Ablauf (nicht verifizierbar): kurzer Hook in die Kamera, dann Konditionen (vgl. Schwester-Ads: bis zu CHF 30/h, kein Profi nötig), danach CTA „Jetzt bewerben". Ob und welche Text-Overlays eingeblendet werden, ist im Vorschaubild nicht lesbar. Wie das Video endet (Endkarte, CTA-Button), ist ebenfalls nicht ableitbar.
+
+## 19.09. · Static · LP 2
+- id: recrerfTm8161ppTH
+- Name: 19.09. · Static · LP 2
+- Creative-ID: 1500294181001277
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Wir suchen Selbstständige in der Schweiz (direkte Such-Ansprache)
+- Visual Style: Text-First-Anzeige auf weißem Hintergrund mit CTA-Button
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing Schweiz (Agentur-Eigenwerbung)
+- Target Audience: Selbstständige in der Schweiz
+- Offer / Funnel-Typ: Lead-Formular über Landingpage
+- Kampagne: WEBSITE OFFER
+- Adset: TG | LP 2
+- Ausgaben gesamt: 59.71
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 76
+- Klicks AT: 76
+- Ad-IDs: 120234191509130598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 59.71
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.6
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.6
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.13
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-19
+- Erstellt am: 2025-09-19
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2924
+- Impressionen gesamt: 2924
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad mit hellem, fast reinweißem Hintergrund und textzentriertem Layout ohne Foto — Variante 5.2 von Ad 5. Oben dominiert eine große, schwarze, fette Headline in mehreren Zeilen: „Wir suchen Selbstständige in der Schweiz" — vollständig und klar lesbar. Darunter steht eine kleinere Subline in feinerer Schrift, deren Wortlaut auf der 64×64-px-Vorschau nicht lesbar ist; sie ergänzt die Such-Ansprache, vermutlich mit dem konkreten Angebot bzw. der Kondition. Unter dem Text sitzt ein dunkler CTA-Button mit heller Schrift; der Button-Text ist im Vorschaubild ebenfalls nicht lesbar. Die Komposition ist vertikal gestaffelt: Headline → Subline → Button, mit großzügigem Weißraum um alle Elemente. Die Farbwelt ist minimalistisch in Schwarz-Weiß mit dunklem Button-Akzent gehalten. Stil und Bildsprache: clean und direkt wie eine Suchanzeige — die „Wir suchen …"-Form erzeugt Neugier und persönliche Ansprache. Gegenüber Ad 5 unterscheidet sich die Variante sichtbar nur in Subline und/oder Button-Formulierung; Headline, Layout und Farbwelt sind identisch. Branding-Elemente sind auf der Vorschau nicht erkennbar.
+
+## 06.05. · Static · STÄRKERES MARKETING OFFER
+- id: recs8cefTVXhdC3nv
+- Name: 06.05. · Static · STÄRKERES MARKETING OFFER
+- Creative-ID: 906084422436561
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: 3 Küchenkunden in 60 Tagen für 0 CHF – kostenlos, weil wir eine Fallstudie bauen
+- Visual Style: Fake-Screenshot (iPhone-Notiz, Dark Mode)
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Schweizer Küchenstudios
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (Fallstudie gegen 0 CHF)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO V2 | STÄRKERES MARKETING OFFER
+- Ausgaben gesamt: 10.88
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120245591012280598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 10.88
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.14
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.14
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.46
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-06
+- Erstellt am: 2026-05-06
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 438
+- Impressionen gesamt: 438
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild im 9:16-Hochformat (900×1600 px), gestaltet als fotorealistischer Screenshot der iPhone-Notizen-App im Dark Mode — die Anzeige tarnt sich bewusst als private Notiz („Notes-App-Angle"). Hintergrund: tiefes Schwarz wie in der echten App. Oben die originalgetreue App-Navigation: links gelbes „< Notizen" (Zurück-Pfeil), rechts drei gelbe Icons (Teilen-Symbol, Drei-Punkte-Menü, Häkchen im Kreis). Darunter der Notiz-Titel in sehr grosser, fetter weisser Grotesk über zwei Zeilen: „Küchenstudios aufgepasst!" — der Ausruf wirkt wie eine persönliche Notiz an sich selbst. Unter dem Titel der graue Zeitstempel „Heute, 09:42", der die Echtheits-Illusion verstärkt. Der Fliesstext folgt in weisser, fetter App-Schrift mit Absätzen: Absatz 1 „Wir bringen dir 3 Küchenkunden in den nächsten 60 Tagen." — die Worte „3 Küchenkunden" sind grün hervorgehoben (das typische Grün der Notizen-Markierungen). Absatz 2 „Und du zahlst uns 0 CHF" — „0 CHF" ebenfalls in Grün. Absatz 3 liefert die entscheidende Einwand-Behandlung: „Warum kostenlos?" (fett weiss) und darunter in dünnerer weisser Schrift „Wir bauen daraus eine Fallstudie." — diese ehrliche Begründung macht das 0-CHF-Angebot glaubwürdig. Abschluss-Absatz: „Noch 3 Plätze frei." als Verknappung. Kein Logo, kein CTA-Button, keine weiteren Grafikelemente; der untere Bildteil bleibt absichtlich leer wie eine echte Notiz. Bildsprache: radikal unpoliert und authentisch — sticht im Feed gerade dadurch heraus, dass sie nicht wie Werbung aussieht.
+
+## 17.02. · Video · BROAD | META FORMULAR
+- id: recsHkxkhDcaO3G6B
+- Name: 17.02. · Video · BROAD | META FORMULAR
+- Creative-ID: 1461267042079471
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du willst eine Website? Direkte Du-Ansprache als Einstieg
+- Visual Style: Talking-Head-Video (Außenaufnahme, Selfie-Nähe)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister, Inhaber mit Website-Wunsch
+- Offer / Funnel-Typ: Meta-Leadformular (Website-Angebot)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR
+- Ausgaben gesamt: 15.35
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 13
+- Klicks AT: 13
+- Ad-IDs: 120241191405840598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 15.35
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.88
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.88
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.01
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 14.33
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.33
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 691
+- Impressionen gesamt: 691
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head, Außenaufnahme). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau, Text-Overlays und Szenendetails sind daher nur eingeschränkt verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart, Brille und dunkler Jacke spricht direkt in die Kamera; Hintergrund ist eine Außenszene mit blauem Himmel und einer hellen Gebäudekulisse, vermutlich urbanes Umfeld bei Tageslicht. Er scheint einen Gegenstand in der Hand zu halten (möglicherweise ein Smartphone — bei dieser Auflösung nicht sicher bestimmbar). Die Kameraperspektive wirkt nah und persönlich, fast wie ein selbstgefilmtes Video. Text-Overlays/Captions sind im Vorschaubild nicht eindeutig lesbar. Wahrscheinlicher Szenenablauf (aus Ad-Name „Du willst Website" und Kampagnenkontext ableitbar, nicht aus dem Bild verifizierbar): (1) Hook: direkte Du-Ansprache, z. B. „Du willst eine Website, die dir Anfragen bringt?". (2) Problem: Die aktuelle Website spiegelt nicht die Qualität der eigenen Arbeit wider (Kampagnenbotschaft „Deine Arbeit ist besser als deine Website"). (3) Lösung: MAKE baut Websites speziell für lokale Handwerker und Dienstleister. (4) Abschluss: CTA Richtung Meta-Leadformular (Adset nennt „META FORMULAR"); die exakte CTA-Formulierung ist aus dem vorliegenden Material nicht ableitbar. Die Außenaufnahme mit natürlicher Beleuchtung und der unperfekte, authentische Look unterstützen den UGC-Charakter und senken die Werbeabwehr. Falls ein Smartphone im Bild ist, könnte es als Requisit dienen (z. B. „so sieht deine Website auf dem Handy aus") — Spekulation, nicht verifiziert.
+
+## 19.09. · Video · LP 2
+- id: recsO5YDU9DnWAiwU
+- Name: 19.09. · Video · LP 2
+- Creative-ID: 1445451006663356
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du willst eine geile Website — sichere dir jetzt deinen Termin
+- Visual Style: Talking-Head-Video mit rotem Text-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer und Selbstständige mit Website-Bedarf
+- Offer / Funnel-Typ: Terminbuchung direkt (Landingpage)
+- Kampagne: WEBSITE OFFER
+- Adset: TG | LP 2
+- Ausgaben gesamt: 14.98
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 7
+- Klicks AT: 7
+- Ad-IDs: 120234191944380598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 14.98
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.3
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.3
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.99
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-19
+- Erstellt am: 2025-09-19
+- Funnel-Zweck: Lead
+- Hookrate %: 18.75
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 18.75
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 304
+- Impressionen gesamt: 304
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im Talking-Head-Format (Ad-Name „V1"). Das Standbild (Vorschaubild, sehr klein, 64×64 px) zeigt einen bärtigen Mann in schwarzem T-Shirt, der direkt in die Kamera spricht, vor einer hellen, neutralen Wand. Quer über das Bild liegt ein rotes Text-Overlay in zwei Zeilen: oben „eine geile" in kleinerer Schrift, darunter „WEBSITE" in großen, fetten Großbuchstaben. Die Bildsprache ist direkt und persönlich — Nahaufnahme, Augenkontakt mit der Kamera, wie eine 1:1-Ansprache im Feed. Aus Titel („Jetzt Termin für deine neue Website sichern") und Adset-Kontext („TG | LP 2") ist ableitbar: Der Sprecher adressiert Unternehmer und Selbstständige mit Website-Bedarf, stellt das Website-Angebot von MAKE vor und leitet auf eine zweite Landingpage-Variante über, wo der Betrachter direkt einen Termin buchen soll. Weitere Text-Overlays, Schnitte, B-Roll oder Untertitel sind aus dem Standbild nicht ableitbar — im Vorschaubild nicht lesbar bzw. nicht sichtbar. Das Video endet erwartbar mit dem CTA „Termin sichern".
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recsOdEuXxYNOyKz2
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 2065748711490284
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche, direkte Ansprache vor Ort in Basel statt anonymer Agentur
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel ohne professionelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 2.38
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 2
+- Klicks AT: 2
+- Ad-IDs: 120244825519650598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 2.38
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.72
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.72
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.86
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 25
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 25
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 116
+- Impressionen gesamt: 116
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video im Selfie-Stil, Hochformat bzw. quadratisch. Szene 1 (Hook): Ein Mann mit Brille und dunklem Shirt (im Standbild mit dunkler Basecap erkennbar) steht draußen auf einem offenen Platz bzw. Parkplatz, gestikuliert mit der Hand und spricht direkt in die Kamera; im Hintergrund eine Baumreihe und bewölkter Himmel – authentischer Außendreh ohne Studiokulisse. Szene 2: Aus dem Kontext (Ad-Name „Webdesign aus Basel", Kampagne „LOKAL | WEBSITE | FEB26", Adset „MARC EVERS") ist ableitbar, dass sich der Sprecher als Webdesigner aus Basel vorstellt und lokale Unternehmer direkt adressiert. Szene 3: Vermutlich benennt er das Problem (keine oder schlechte Website, verlorene Anfragen) und präsentiert sein Webdesign-Angebot als lokale, persönliche Lösung. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Website-Anfrage, wahrscheinlich mit Verweis auf den Button der Anzeige. Text-Overlays: Auf dem Standbild (64×64 px) nicht erkennbar; ob Untertitel oder Einblendungen im Video erscheinen, ist aus dem Vorschaubild nicht ableitbar. Bildsprache: Tageslicht, Handheld-Charakter, kein sichtbares Branding – bewusst unpolierter UGC-Look. Hinweis: Das Thumbnail ist identisch mit dem der Variante B3 (gleiche Aufnahme); ob das Video selbst übereinstimmt, ist aus den vorhandenen Daten nicht ableitbar.
+
+## 05.09. · Static · INTEREST
+- id: recsRsCyJNd5OaTVL
+- Name: 05.09. · Static · INTEREST
+- Creative-ID: 1832501431008579
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Dein Konkurrent kassiert die Kunden online – du nicht, weil deine Website veraltet ist
+- Visual Style: Kontrast-Grafik alt vs. neu (Split-Vergleich)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Inhaber kleiner und lokaler Unternehmen mit veralteter Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | INTEREST
+- Ausgaben gesamt: 51.31
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 38
+- Klicks AT: 38
+- Ad-IDs: 120233465354170598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.31
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.64
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.64
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.44
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5911
+- Impressionen gesamt: 5911
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat, komplett auf schwarzem Grund – dadurch wirken die roten Akzente sehr aggressiv und dringlich. Oben dominiert eine große, zweizeilige Headline: die erste Zeile in weißer, kräftiger Sans-Serif „DEIN KONKURRENT KASSIERT.", darunter (laut vorhandener Anzeigenbeschreibung) der Kontrast „NICHT DU." in Rot; im kleinen Vorschaubild ist nur die obere Zeile sicher lesbar, die zweite Zeile ist nicht eindeutig entzifferbar. Darunter bzw. dazwischen steht eine kleinere Subline, die im Vorschaubild nicht lesbar ist. Die Bildmitte ist als alt-vs.-neu-Kontrast komponiert: Links steht ein alter, klobiger Röhrenmonitor bzw. Retro-PC, auf dessen Bildschirm eine veraltete, graue, lieblos gestaltete Website zu sehen ist – Symbol für die jetzige, überholte Webpräsenz des Betrachters. Rechts hält eine Hand ein modernes Smartphone, das eine zeitgemäße, mobil optimierte Website zeigt (erkennbar sind rote Buttons und ein Produkt-/Bildbereich; Details im Vorschaubild nicht lesbar) – Symbol für die Lösung, die der Konkurrent bereits nutzt. Ein roter Pfeil bzw. eine rote Verbindungslinie zwischen den beiden Geräten verstärkt die Gegenüberstellung und lenkt den Blick von alt nach neu. Unten läuft ein durchgehender roter Balken quer über das Layout, der das Bild abschließt und wie ein Warnstreifen wirkt; ob darin Text oder ein CTA steht, ist im Vorschaubild nicht lesbar. Farbwelt: Schwarz, Weiß, Signalfarbe Rot; Bildsprache: warnend, dringlich, konfrontativ. Branding-Elemente (Logo etc.) sind im Vorschaubild nicht erkennbar.
+
+## 17.02. · Video · CA & LLA | LP
+- id: recsUmXFfyjcCarxH
+- Name: 17.02. · Video · CA & LLA | LP
+- Creative-ID: 1089522546657498
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Konkurrent kassiert den Auftrag, weil er online besser dasteht
+- Visual Style: Talking-Head-Video (Außendreh, mit Untertitel-Overlay)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Dienstleister
+- Target Audience: Handwerker und Selbstständige im lokalen Wettbewerb
+- Offer / Funnel-Typ: Landingpage-Funnel (LP), Termin/Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | CA & LLA | LP
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241196114000598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-20
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hinweis: Das Vorschaubild ist byte-identisch mit dem von Creative 2842325302784568 – offenbar dasselbe Video in einer weiteren Ad-Instanz (Adset CA & LLA statt Broad).
+  Szenen-Skript (Ableitung aus Vorschaubild, Ad-Name und Kontext; Vorschaubild nur 64x64 px):
+  Szene 1 (Hook): Ein Mann mit Brille spricht direkt in die Kamera, im Hintergrund unscharfe Gebäude – Außendreh in städtischer Umgebung. Unten im Bild läuft ein weißer Text-Overlay (Untertitel) mit, im Standbild ist nur das Wort „Dein" lesbar – es passt zum Ad-Namen „Konkurrent hat Auftrag bekommen" (z. B. Satzanfang „Dein Konkurrent …"); der genaue Wortlaut ist im Vorschaubild nicht lesbar.
+  Gesprochene Kernbotschaft (aus Ad-Name und Titel ableitbar): Der Sprecher schildert das Verlustszenario – der Konkurrent hat den Auftrag bekommen, nicht weil er besser arbeitet, sondern weil er online besser dasteht.
+  Mittelteil (aus Kontext ableitbar, nicht bildbelegt): Verlustangst-Verstärkung – das passiert immer wieder, solange die eigene Website schwächer ist als die des Wettbewerbers.
+  Lösungsteil (aus Kontext ableitbar, nicht bildbelegt): Make Marketing als Lösung: eine Website, die im lokalen Vergleich überzeugt und Aufträge zurückholt.
+  Schluss/CTA: Der konkrete CTA und weitere Overlays sind im Vorschaubild nicht lesbar und nicht ableitbar.
+  Stilmittel: Talking Head im Außendreh, weiße Untertitel-Einblendungen unten im Bild, Verlustangst-Frame als emotionaler Treiber.
+
+## 29.06. · Video · DACH | Jobs
+- id: recsrT1NQOiWlFnPf
+- Name: 29.06. · Video · DACH | Jobs
+- Creative-ID: 1326779719629181
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Wir suchen einen Webdesigner — direkte, persönliche Jobsuche statt klassischer Stellenanzeige
+- Visual Style: UGC Selfie-Reel (Talking Head mit Text-Overlay)
+- Awareness Level: Problem Aware
+- Industry: Recruiting / Webdesign-Jobs
+- Target Audience: Webdesigner und Designer im DACH-Raum, Bewerber
+- Offer / Funnel-Typ: Bewerbung direkt (Job-Ad)
+- Kampagne: MAKE | Recruiting | Webdesigner | Jobs | Welt | 2026-06
+- Adset: AS | DACH | Jobs | 20CHF
+- Ausgaben gesamt: 75.69
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 1471
+- Klicks AT: 1471
+- Ad-IDs: 120249612718100598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 75.69
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0.36
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0.36
+- CTR %: 1.81
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.81
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.96
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-29
+- Erstellt am: 2026-06-29
+- Funnel-Zweck: Recruiting
+- Hookrate %: 15.25
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.25
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 81268
+- Impressionen gesamt: 81268
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 212
+- Leads gesamt: 212
+- Letzte Auslieferung: 2026-07-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im Hochformat-Reel-Stil; das Standbild ist nur 64×64 Pixel gross, daher sind Details nur begrenzt erkennbar. Szene 1 (Standbild): Nahaufnahme eines Mannes mit kurzen Haaren und hellem Oberteil, der in einem hellen, modern wirkenden Innenraum direkt und frontal in die Kamera spricht — klassischer Selfie-Talking-Head-Einstieg, der Nähe und Authentizität erzeugt. Oben links im Bild ist ein kleines, zweizeiliges Text-Overlay eingeblendet, das auf dem Vorschaubild nicht lesbar ist — vermutlich Hook-Text wie der Jobtitel oder „Wir suchen einen Webdesigner“ (aus Dateiname ableitbar, nicht verifizierbar). Aus Titel („Wir suchen einen Webdesigner“), Ad-Name („Webdesigner Reel | Welt“) und Kampagnenname („MAKE | Recruiting | Webdesigner | Jobs“) ist der Ablauf klar ableitbar: Eine Person aus dem MAKE-Team kündigt die offene Webdesigner-Stelle direkt an, beschreibt kurz, was MAKE macht und wen man sucht, und nennt die Konditionen bzw. den Arbeitsstil (genauer Wortlaut nicht ableitbar). Der Clip dürfte typischerweise mit einem klaren CTA enden, etwa „Bewirb dich jetzt“ bzw. dem Hinweis auf den Bewerbungs-Link (im Bild nicht sichtbar). Branding-Elemente wie Logo oder Endcard sind auf dem Standbild nicht erkennbar. Weitere Szenen, Schnitte, Untertitel und B-Roll lassen sich aus dem einzigen vorhandenen Standbild nicht ableiten. Der gesprochene Wortlaut ist aus den vorhandenen Daten nicht ableitbar.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: recss0G9jfbFQxgCR
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 1342684161333880
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Selbstprüf-Frage: Bist du mit deiner Website noch zufrieden?
+- Visual Style: Helles Frage-Layout mit Laptop-Mockup
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU mit bestehender, veralteter Website, national
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248677373640598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 0
+- Impressionen gesamt: 0
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf hellem, warm-cremefarbenem Hintergrund — erste Variante der nationalen CH-Kampagne („STATIC | A1 | CH"). Ganz oben steht eine kleine rote Zeile (Kicker/Eyebrow), deren Wortlaut im 64×64-px-Vorschaubild nicht entzifferbar ist. Darunter dominiert die große dunkle Headline: „Bist du mit deiner Website noch zufrieden?" — gut lesbar und zentraler Hook des Ads; das Wort „deiner" bzw. ein Teil der Frage wirkt typografisch betont. Unter der Headline folgt eine kleinere Subline, die im Vorschaubild nicht entzifferbar ist, und darunter ein roter CTA-Button, dessen Beschriftung ebenfalls nicht lesbar ist. Der untere Bildbereich zeigt ein dunkles Laptop-Mockup mit einer Beispiel-Website als Beweiselement: blauer Header-Bereich, ein Foto eines Mannes (Business-Look, dunkler Anzug), ein Textblock und ein blauer Button — Details der Website-Texte sind im Vorschaubild nicht lesbar. Die Komposition folgt dem klassischen Frage-Ad-Aufbau: Kicker → provozierende Selbstprüf-Frage → erläuternde Subline → CTA → visueller Qualitätsbeweis per Mockup. Die Farbwelt kombiniert den hellen Creme-Grund mit Rot-Akzenten (Kicker, Button) und dem dunklen Kontrast des Mockups. Stil: seriös, clean, beratend — der Hook weckt Unzufriedenheit mit der bestehenden Website, ohne ein konkretes Angebot in die Headline zu stellen. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar.
+
+## 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- id: rect2cozWvmBwOBAp
+- Name: 16.03. · Video · BROAD BASEL | MARC EVERS 2
+- Creative-ID: 1645171499992223
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Persönliche Face-to-Camera-Ansprache: Lokaler Webdesigner statt anonymer Agentur-Hochglanz
+- Visual Style: UGC Selfie-Video, Talking Head Outdoor (Kopie von V2)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (eigene Agentur, Basel)
+- Target Audience: lokale KMU und Selbstständige im Raum Basel
+- Offer / Funnel-Typ: Erstgespräch/Anfrage direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD BASEL | MARC EVERS 2
+- Ausgaben gesamt: 25.36
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 18
+- Klicks AT: 18
+- Ad-IDs: 120242355353940598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 25.36
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.65
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.65
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.64
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-03-16
+- Erstellt am: 2026-03-16
+- Funnel-Zweck: Lead
+- Hookrate %: 23.58
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 23.58
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1094
+- Impressionen gesamt: 1094
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-03-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  **Format:** Video (Talking Head, Selfie-Perspektive, Außenaufnahme). Duplikat der Ad „V2" vom 11.03.2026 — identisches Thumbnail und mutmaßlich identischer Video-Inhalt, nur neuer Upload in Adset „MARC EVERS 2". Vorschau liegt nur als 64×64-Pixel-Standbild vor.
+  
+  - **Szene 1 (0–3 Sek.):** Mann mit Brille und dunklem Haar spricht in Handheld-Selfie-Perspektive direkt in die Kamera; Hintergrund zeigt unscharf eine helle Gebäudefassade — vermutlich Straßenszene in Basel. Kein Text-Overlay im Standbild erkennbar.
+  - **Szene 2 (Hook, aus Kontext ableitbar, nicht verifizierbar):** Wie beim V2-Original ist eine direkte Problem-Ansprache an lokale Unternehmer zu erwarten (veraltete Website, verlorene Kundenanfragen o. ä.); wörtliche Botschaft und Untertitel sind im Vorschaubild nicht lesbar.
+  - **Szene 3 (Mitte, nicht verifizierbar):** Naheliegend kurzer Angebots-/Proof-Block mit lokalem Bezug („Webdesign aus Basel"); Schnitte oder Overlays im Bildmaterial nicht sichtbar.
+  - **Szene 4 (Ende, nicht verifizierbar):** Erwartbarer CTA zum Erstgespräch/zur Anfrage; Formulierung im Vorschaubild nicht lesbar.
+  
+  **Stil:** Rohe UGC-Ästhetik, Tageslicht-Außenaufnahme, kein Logo, keine Branding-Elemente erkennbar. Als exakte Kopie von „V2" dient die Ad offenbar dem Neustart der Lernphase im zweiten Adset.
+
+## 14.05. · Static · CH BROAD
+- id: rect9MSI51ynO7x35
+- Name: 14.05. · Static · CH BROAD
+- Creative-ID: 1306514018344157
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Wir suchen 3 Makler: 10 Eigentümer-Anfragen in 30 Tagen für 0 CHF
+- Visual Style: Editorial-Feed-Bild mit Schreibtisch-Foto
+- Awareness Level: Solution Aware
+- Industry: Immobilien / Maklerbüros
+- Target Audience: Immobilienmakler und Maklerbüro-Inhaber in der Schweiz
+- Offer / Funnel-Typ: Gratis-Pilot (0 CHF) → Bewerbung um 1 von 3 Plätzen
+- Kampagne: TESTKUNDEN
+- Adset: MAKLERBÜRO PILOT | CH BROAD
+- Ausgaben gesamt: 210.69
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 11
+- Klicks gesamt: 134
+- Klicks AT: 134
+- Ad-IDs: 120246173672080598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 210.69
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 11.09
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 11.09
+- CTR %: 1.43
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.43
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.86
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-14
+- Erstellt am: 2026-05-14
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 9380
+- Impressionen gesamt: 9380
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 19
+- Leads gesamt: 19
+- Letzte Auslieferung: 2026-06-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 19.15
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Keine Antwort · 3
+Unqualifiziert · 1
+Preis/Budget · 1
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Feed-Bild im Hochformat (ca. 3:4, 1500×2009 px) im hellen Editorial-Stil, zweigeteilt in Textblock oben und Fotoszene unten. Der Hintergrund oben ist ein warmes Creme-Weiß, unten geht das Layout in ein echtes Foto über. Als Eyecatcher oben links steht in großer, fetter dunkelblauer Serifenlos-Schrift die zweizeilige Headline „Wir suchen 3 Immobilienmakler:“ – der Doppelpunkt signalisiert, dass das konkrete Angebot folgt. Darunter eine dünne gold-beige Trennlinie als grafisches Akzent-Element. Es folgt eine Icon-Text-Zeile: links ein beiger Kreis mit dunkelblauem Haus-Icon, rechts daneben vierzeilig in Dunkelblau „10 qualifizierte Eigentümer-Anfragen mit Verkaufsabsicht in 30 Tagen“ – das Kernversprechen mit Zahl, Qualifizierung („Verkaufsabsicht“) und Zeitrahmen. Darunter sitzt ein dunkelblauer, abgerundeter Button-Balken mit beigem Häkchen-Icon und dem Text „Und du zahlst uns 0 CHF“, wobei „0 CHF“ in Gold hervorgehoben ist – der Preis-Hebel als visueller Höhepunkt. Das untere Drittel zeigt ein helles, freundliches Schreibtisch-Foto: links ein kleines weißes Modellhaus, rechts ein aufgeklapptes silbernes Notebook, auf dessen Bildschirm ein modernes weißes Wohnhaus mit Garten zu sehen ist (wie ein Immobilieninserat), davor ein aufgeschlagenes Notizbuch mit schwarzem Stift; rechts im Hintergrund unscharf eine grüne Zimmerpflanze am Fenster. Die Bildsprache verbindet das digitale Arbeiten des Maklers (Laptop, Inserat) mit dem physischen Objekt (Modellhaus). Farbwelt: Creme/Beige, Dunkelblau, Gold – seriös, hochwertig, ruhig. Kein sichtbares MAKE-Logo auf dem Bild, Branding läuft über Farben und den FB-Seitenkontext. Ein konkreter CTA-Button („Jetzt bewerben“ o. ä.) ist auf dem Bild selbst nicht vorhanden; die Handlungsaufforderung erfolgt implizit über die Platz-Begrenzung und den Anzeigen-Button im Feed.
+
+## 03.08. · Video · CH | PLATZ-1 SEO
+- id: rectUFYWPusdHQpxa
+- Name: 03.08. · Video · CH | PLATZ-1 SEO
+- Creative-ID: 3297851323708820
+- Format: Video
+- Status: ACTIVE
+- Angle / Hook: "Als Schweizer Geschaeftsfuehrer kennst du das. Die eine Stelle, die du unbedingt besetzen willst." (Nightmare)
+- Visual Style: Talking Head, Text-on-Screen
+- Awareness Level: Unaware
+- Industry: Webdesign- und SEO-Agentur
+- Target Audience: Schweizer Geschaeftsfuehrer mit offenen Stellen, die Bewerber und Kunden ueber die Webseite verlieren
+- Offer / Funnel-Typ: Kurzes Gespraech mit individuellem Plan zum Zwei-Stufen-Sichtbarkeitssystem -> Eintragen ueber das Formular unter der Anzeige
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | CH | PLATZ-1 SEO | AUG26
+- Ausgaben gesamt: 11.9
+- Ausgaben 30T: 11.4
+- Hookrate % 14T: 17.91
+- ROAS 14T: 0
+- CTR % 14T: 1.87
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120250707672630598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 11.4
+- Ausgaben 7T: 9.12
+- Ausgaben AT: 11.9
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.76
+- CTR % 30T: 1.87
+- CTR % 7T: 2.14
+- CTR % AT: 1.76
+- CTR Link % 14T: 2.24
+- CTR Link % 30T: 2.24
+- CTR Link % 7T: 2.86
+- CTR Link % AT: 2.11
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-08-03
+- Erstellt am: 2026-08-03
+- Funnel-Zweck: Lead
+- Hookrate %: 17.25
+- Hookrate % 30T: 17.91
+- Hookrate % 7T: 18.57
+- Hookrate % AT: 17.25
+- Impressionen 14T: 268
+- Impressionen 30T: 268
+- Impressionen 7T: 140
+- Impressionen AT: 284
+- Impressionen gesamt: 284
+- Klicks 14T: 5
+- Klicks 30T: 5
+- Klicks 7T: 3
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-08-03
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hook: Als Schweizer Geschaeftsfuehrer kennst du das, die eine Stelle, die du unbedingt besetzen willst. Aufbau: Was, wenn du die haettest besetzen koennen? Der Bewerber war da, aber er hat vorher deine Webseite gesehen. Die ehrliche Rueckfrage: Haettest du dich beworben, wenn du so eine Webseite gesehen haettest? Danach stellt sich Dominic als Geschaeftsfuehrer von Make Marketing vor. Close: Wer planbare Anfragen ueber die Webseite gewinnen will, traegt sich unten ein und bekommt nach einem kurzen Gespraech einen individuellen Plan.
+
+## 18.12. · Static · Website 30d
+- id: recthQoN81ZQJtQbr
+- Name: 18.12. · Static · Website 30d
+- Creative-ID: 2715966475410998
+- Format: Static
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Kein direkter Text-Hook – reines Vertrauens-/Stimmungsbild eines fokussiert arbeitenden (vermeintlichen) Unternehmers/Beraters, das Kompetenz und Seriosität vermittelt.
+- Visual Style: Lifestyle-/Portraitfoto, kein Text-Overlay, natürliches Licht
+- Awareness Level: Product Aware
+- Industry: Webdesign-/Marketingagentur (Website-Angebot für Unternehmer).
+- Target Audience: Unternehmer/Selbstständige, die bereits mit der Marke in Berührung kamen (Website-Besucher, Retargeting-Zielgruppe).
+- Offer / Funnel-Typ: Website-Angebot (Lead-Funnel), vermutlich Retargeting-Creative (Kampagne 'RTG | WEBSITE OFFER') ohne eigenen Claim im Bild.
+- Kampagne: RTG | WEBSITE OFFER
+- Adset: Website 30d
+- Ausgaben gesamt: 0.77
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120239133084270598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.77
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 14
+- Impressionen gesamt: 14
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Reine Bildanzeige ohne Text-Overlay, kein Hook/Body/CTA im klassischen Sinn. Zeigt einen jungen Mann in dunklem Feinstrick-Zip-Pullover mit kabelgebundenen Kopfhörern, der konzentriert auf einem MacBook tippt. Im Vordergrund eine Grünpflanze im Terracotta-Topf und eine helle Keramiktasse, im Hintergrund ein unscharfes Bücherregal und ein großes Fenster mit warmem Tageslicht. Kein CTA, keine Headline, kein Logo sichtbar — funktioniert als Trust-/Lifestyle-Visual, vermutlich für Retargeting eingesetzt (Kampagnenname 'RTG'), wo die eigentliche Botschaft bereits über anderen Content transportiert wurde.
+
+## 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- id: recti8bO18OPyrR08
+- Name: 24.04. · Video · BROAD ZÜRICH 2 | MARC EVERS
+- Creative-ID: 1475955823452752
+- Format: Video
+- Status: PAUSED
+- Angle / Hook: Persönliche Direktansprache: neue Website vom Zürcher Webdesigner
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Unternehmen und Selbstständige in der Region Zürich
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD ZÜRICH 2 | MARC EVERS
+- Ausgaben gesamt: 174.23
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 90
+- Klicks AT: 90
+- Ad-IDs: 120244829507470598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 174.23
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 87.11
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 87.11
+- CTR %: 1.09
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.09
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.72
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 35.27
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 35.27
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 8291
+- Impressionen gesamt: 8291
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 2
+- Leads gesamt: 2
+- Letzte Auslieferung: 2026-05-07
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Preis/Budget · 2
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Sichtbarer Frame (Standbild): Ein Mann mit Brille, schwarzer Basecap und schwarzem T-Shirt spricht aus nächster Nähe in die Kamera — enger Selfie-/Talking-Head-Bildausschnitt, Gesicht dominiert das Bild. Im Hintergrund rechts ist unscharf eine zweite Person zu erkennen; die Umgebung wirkt hell, Tageslicht oder heller Innenraum, Details sind im Vorschaubild nicht klar erkennbar. Ein Text-Overlay ist im Standbild nicht sichtbar (ggf. erscheinen Untertitel erst im Videoverlauf — aus dem Standbild nicht ableitbar). Szene 1 (Hook, ca. 0–3 s): Direkte, persönliche Kameraansprache; aus Angebot („Webdesign aus Zürich") und Adset („BROAD ZÜRICH") ist ableitbar, dass Zürcher Unternehmer und Selbstständige angesprochen werden, wahrscheinlich mit einer Frage oder Feststellung zur aktuellen Website bzw. zu fehlenden Anfragen. Szene 2 (Mittelteil): Erläuterung des Angebots — neue Website von einem lokalen Webdesigner aus Zürich; die ungestellte Nahaufnahme schafft Nähe und Authentizität. Szene 3 (Ende): Aufforderung zur Anfrage bzw. Terminbuchung, ableitbar aus der Lead-Kampagne mit CPL-Messung; der exakte CTA-Wortlaut ist im Vorschaubild nicht erkennbar. Stil insgesamt: schlichtes UGC-Video ohne sichtbare Grafikeinblendungen, natürlicher Look, eine einzige durchgehende Kameraeinstellung (aus dem Standbild ableitbar). Gesprochene Botschaft im Detail aus dem Standbild nicht ableitbar.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recu3BXdjKpYvrlds
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 1623531282207904
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Lokale Nähe: Webdesigner aus Basel spricht Unternehmen direkt an
+- Visual Style: UGC Selfie-Video / Talking Head
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: lokale Unternehmen in Basel, die eine Website brauchen
+- Offer / Funnel-Typ: nicht eindeutig ableitbar, vermutlich Website-Anfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 8.9
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 3
+- Klicks AT: 3
+- Ad-IDs: 120244825643700598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.9
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.83
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.83
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 14.68
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 14.68
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 361
+- Impressionen gesamt: 361
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad (Format: Video, Länge unbekannt); es liegt nur ein 64 × 64 px großes Standbild als Thumbnail vor, daher kann keine vollständige Szenenliste belegt werden.
+  
+  **Was das Standbild zeigt:** Ein Mann mit schwarzer Basecap, Brille und dunklem Shirt spricht in Selfie-Perspektive direkt in die Kamera und gestikuliert dabei mit der rechten Hand in Richtung Linse – eine aktivierende, betonende Geste. Der Hintergrund zeigt eine Straße bzw. einen Platz mit Gebäuden, urbane Außenszene, stimmig zur Basler Lokalisierung (Adset „HANDY BASEL 2", Ad-Name „Webdesign aus Basel"). Die Bildsprache ist UGC-typisch authentisch, ohne Studio-Inszenierung. Text-Overlays, Untertitel oder Logos sind im Standbild nicht erkennbar.
+  
+  **Ableitbarer Skript-Aufbau (aus Kontext: Kampagne „LOKAL | WEBSITE", Thema „Webdesign aus Basel", Variante B1):** Die Ad dürfte mit der direkten Ansprache des Sprechers als Hook starten – die Geste deutet auf einen pointierten Einstiegssatz hin (Problem oder Provokation). Danach dürfte er sich als Webdesigner aus Basel vorstellen und das Angebot benennen: neue oder bessere Website für lokale Unternehmen. Plausibel ist ein mittlerer Block mit Pain Point (veraltete Website, fehlende Anfragen) und Lösungsversprechen, dann ein klarer CTA Richtung Website-Anfrage oder Beratung. Gesprochener Wortlaut, Zwischenschnitte, Text-Overlays und der exakte CTA: im Vorschaubild nicht lesbar bzw. aus dem Standbild nicht ableitbar – nicht erfunden.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: recuOlf3t7vRzGrE8
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 1467419218484975
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Du denkst, in 24 Stunden entsteht keine gute Website? Diese hier schon.
+- Visual Style: UGC Talking-Head-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: KMU und Selbständige im Raum Basel, die schnell eine Website brauchen
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 20.75
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120248677474650598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 20.75
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.92
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.92
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.55
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 19
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 19
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 542
+- Impressionen gesamt: 542
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Video (9:16) mit Talking-Head-Framing. Das Vorschaubild zeigt einen Mann mittleren Alters mit dunkler Basecap und Brille, der aus leicht unterer Perspektive direkt in die Kamera spricht; der Hintergrund ist eine warme, schlichte Innenraumwand (ocker/beige). Am unteren Bildrand läuft ein zweizeiliges Untertitel-Overlay in roter bzw. weißer Schrift mit — der exakte Wortlaut ist im kleinen Vorschaubild nicht lesbar, deutet aber auf dynamische Sprechuntertitel im Social-typischen Stil hin. Der Ablauf ist aus Thumbnail und Titelkontext ableitbar (nicht verifizierbar): (1) Eröffnung mit dem Skepsis-Hook: „Du denkst, in 24 Stunden kann keine richtig gute Website entstehen?" — der Sprecher greift damit direkt die Einwand-Frage der Zielgruppe auf. (2) Sofortige Entkräftung: „Diese hier schon." — vermutlich begleitet von Website-Screenshots oder Screen-Recordings echter Projekte als Beweis („Echtes Design"). (3) Kurzer Erklärpart, wie Make Marketing den 24-Stunden-Prozess ermöglicht (Vorlagen, Fokus, Prozess). (4) Abschluss mit CTA zur unverbindlichen Anfrage/Terminbuchung. Tonality: selbstbewusst, direkt, provokant-charmant. Der konkrete Szenenablauf, B-Roll-Einspieler und Text-Overlays jenseits des Standbilds können nicht aus der Vorschau abgeleitet werden.
+
+## 06.05. · Static · STÄRKERES MARKETING OFFER
+- id: recuPTW2kpxHjlTHV
+- Name: 06.05. · Static · STÄRKERES MARKETING OFFER
+- Creative-ID: 1373411054807364
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Du hast ein Küchenstudio? 3 Küchenkunden in 60 Tagen – du zahlst 0 CHF
+- Visual Style: Foto-Static mit Text-Overlays (Showroom)
+- Awareness Level: Problem Aware
+- Industry: Küchenstudio / Küchenbau
+- Target Audience: Inhaber von Küchenstudios in der Schweiz
+- Offer / Funnel-Typ: Kostenloses Pilotprojekt (0-CHF-Testkunde)
+- Kampagne: TESTKUNDEN
+- Adset: KÜCHENSTUDIO V2 | STÄRKERES MARKETING OFFER
+- Ausgaben gesamt: 59.31
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 36
+- Klicks AT: 36
+- Ad-IDs: 120245591000490598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 59.31
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.44
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.44
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.08
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-05-06
+- Erstellt am: 2026-05-06
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2500
+- Impressionen gesamt: 2500
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild im 9:16-Hochformat (900×1600 px) mit Fotohintergrund und zentriertem Text-Overlay. Hintergrund: atmosphärisch dunkel abgestimmtes Foto eines hochwertigen Küchenshowrooms — im Vordergrund eine grosse dunkle Kochinsel mit Steinfront, dahinter Einbauküche mit Kochfeld, Edelstahl-Abzugshaube und Glasfront-Schränken; an der Decke schwarze Rasterfelder mit Holzbalken und Hängeschienen-Spotlights, die warme Lichtakzente setzen. Die dunkle Bildstimmung sorgt dafür, dass der weisse Text maximalen Kontrast hat. Oben mittig sitzt das rote MAKE-Wortmarke-Logo. Text-Aufbau zentriert von oben nach unten: 1) Sehr grosse weisse Frage-Headline in fetter Grotesk: „Du hast ein Küchenstudio?" — der klassische Pattern-Interrupt für die Zielgruppe. 2) Darunter das Angebot: „Wir bringen dir" in kleinerer weisser Schrift, dann „3 Küchenkunden" als weisse Schrift auf rotem Block hervorgehoben, gefolgt von „in den nächsten 60 Tagen!" in weisser Grossschrift. 3) Im unteren Drittel die Konditions-Zeile „Und du zahlst uns:" in Weiss, mit „0 CHF" erneut als weisse Schrift auf rotem Block — das Null-Preis-Versprechen als zweiter Eyecatcher. Farbwelt: Dunkles Schwarz-Grau des Fotos plus Weiss und Signalfarbe Rot für die zwei Kernversprechen. Kein CTA-Button auf dem Bild; Branding nur über das MAKE-Logo. Gesamteindruck: hochwertig, ruhig, selbstbewusst — die Botschaft steht im Vordergrund.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recufnKVbFbujnlXD
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 3062560983954691
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Endlich eine Website, auf die du stolz bist — statt dich dafür zu schämen
+- Visual Style: Emotionale Farbverlauf-Grafik ohne Mockup
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige, die sich für ihre aktuelle Website schämen, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 7.04
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248515976130598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 7.04
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 200
+- Impressionen gesamt: 200
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf einem lebendigen Farbverlauf in Lila-Blau mit weichen, diffusen Leuchtflecken (Glow-Effekte) — die emotionalste und farbigste Variante der STATIC-Serie. Oben steht die große weiße Headline: „endlich eine Website, auf die du stolz bist." — das Wort „stolz" ist pink/magenta hervorgehoben und bildet den emotionalen Kern; die Headline ist auch im kleinen Vorschaubild gut lesbar. Darunter in kleinerer weißer Schrift das bekannte Offer: „Wir bauen dir deine neue Website in 24 Stunden. Gefällt sie dir nicht, zahlst du 0 CHF." Es folgen drei Bullet-Zeilen mit runden Icons; erkennbar ist u. a. „Professionelles Design", der restliche Kleintext ist im 64×64-px-Vorschaubild nicht sicher entzifferbar. Unten abschließend sitzt ein korallenfarbener (orange-roter) CTA-Button über die Bildbreite; die Beschriftung ist im Vorschaubild nicht entzifferbar. Anders als die Offer-Varianten ad-06 bis ad-09 verzichtet dieses Ad komplett auf Device-Mockups und Fotos — Typografie, Farbe und Lichteffekte tragen allein die Wirkung. Der Stil wirkt modern, emotional und inspirierend statt sachlich-seriös; die Farbwelt (Lila, Blau, Pink, Koralle) hebt sich deutlich vom restlichen Feed ab. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar. Der Hook adressiert das Scham-Gefühl bei der eigenen Website und dreht es ins Positive: Stolz statt Peinlichkeit.
+
+## 11.09. · Video · INTEREST | META FORMULAR
+- id: recuxz6ySivuvLfS3
+- Name: 11.09. · Video · INTEREST | META FORMULAR
+- Creative-ID: 1636267480723561
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Starte dein Website-Projekt — du willst eine geile Website
+- Visual Style: Talking-Head-Video mit rotem Text-Overlay
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (Agentur-Eigenwerbung)
+- Target Audience: Unternehmer und Selbstständige, die ein Website-Projekt starten wollen
+- Offer / Funnel-Typ: Meta Lead-Formular
+- Kampagne: WEBSITE OFFER
+- Adset: VIDEO | INTEREST | META FORMULAR
+- Ausgaben gesamt: 291.01
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 55
+- Klicks AT: 55
+- Ad-IDs: 120233847335140598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 291.01
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 58.2
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 58.2
+- CTR %: 0.96
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.96
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.6
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-11
+- Erstellt am: 2025-09-11
+- Funnel-Zweck: Lead
+- Hookrate %: 15.61
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 15.61
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 5708
+- Impressionen gesamt: 5708
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 5
+- Leads gesamt: 5
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im Talking-Head-Format. Das Standbild (Vorschaubild, sehr klein, 64×64 px) zeigt einen bärtigen Mann in schwarzem T-Shirt, der direkt in die Kamera spricht, vor einer hellen, neutralen Wand. Quer über das Bild liegt ein rotes Text-Overlay in zwei Zeilen: oben „eine geile" in kleinerer Schrift, darunter „WEBSITE" in großen, fetten Großbuchstaben. Die Bildsprache ist direkt und persönlich — Nahaufnahme mit Augenkontakt zur Kamera, wie eine 1:1-Ansprache im Feed. Aus Titel („Dein Website-Projekt starten") und Adset-Kontext („VIDEO | INTEREST | META FORMULAR") ist ableitbar: Der Sprecher adressiert Unternehmer und Selbstständige, motiviert sie zum Start ihres Website-Projekts mit MAKE und führt zur Conversion über ein Meta-Lead-Formular direkt auf der Plattform. Weitere Szenen, Schnitte, zusätzliche Overlays oder Untertitel sind aus dem Standbild nicht ableitbar — im Vorschaubild nicht lesbar bzw. nicht sichtbar. Das Video endet erwartbar mit einem CTA, der zum Ausfüllen des Meta-Formulars auffordert.
+
+## 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- id: recvPVJbLwiawdEnn
+- Name: 24.04. · Video · HANDY BASEL 2 | MARC EVERS
+- Creative-ID: 800165746184800
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Webdesigner direkt aus Basel – lokale Nähe statt anonymer Agentur
+- Visual Style: UGC Selfie-Video (Talking Head)
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU (lokal, Basel)
+- Target Audience: Inhaber kleiner lokaler Unternehmen in Basel ohne professionelle Website
+- Offer / Funnel-Typ: Terminbuchung direkt / Anfrage Website-Projekt
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | HANDY BASEL 2 | MARC EVERS
+- Ausgaben gesamt: 1.59
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120244824672170598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 1.59
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-04-24
+- Erstellt am: 2026-04-24
+- Funnel-Zweck: Lead
+- Hookrate %: 12.73
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 12.73
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 55
+- Impressionen gesamt: 55
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-05-02
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  UGC-Talking-Head-Video in Selfie-Perspektive, hochkant bzw. quadratisch. Szene 1 (Hook): Ein Mann mit schwarzer Basecap, Brille und dunklem Shirt steht draußen auf einer Straße bzw. einem Platz in Basel, spricht direkt in die Kamera und gestikuliert mit der Hand – typischer UGC-Einstieg ohne Intro-Grafik, der sofort persönliche Nähe aufbaut. Szene 2: Aus Caption und Kontext (Ad-Name „Webdesign aus Basel", Kampagne „LOKAL | WEBSITE") ist ableitbar, dass er sich als Webdesigner aus Basel vorstellt und anspricht, dass viele lokale Betriebe keine oder eine veraltete Website haben. Szene 3: Er benennt vermutlich sein Angebot (Website-Erstellung für Unternehmen in Basel) und die Vorteile der lokalen Zusammenarbeit – persönlich, greifbar, ohne Agentur-Overhead. Szene 4 (Abschluss/CTA): Aufforderung zur Kontaktaufnahme bzw. Terminbuchung, vermutlich mit Hinweis auf den Button unter dem Video. Text-Overlays: Im Vorschaubild (64×64 px) nicht erkennbar; ob im Video Untertitel eingeblendet werden, ist aus dem Standbild nicht ableitbar. Branding: kein sichtbares Logo im Thumbnail – bewusst unpoliert-authentischer UGC-Look. Hinweis: Das Standbild ist identisch mit dem der Variante B1 (gleiches Thumbnail), vermutlich gleiche Aufnahme in anderem Ad-Setup; ob das Video selbst mit B1 übereinstimmt, ist aus den vorhandenen Daten nicht ableitbar.
+
+## 17.02. · Video · BROAD | META FORMULAR
+- id: recw7yTY1RZlLgJWS
+- Name: 17.02. · Video · BROAD | META FORMULAR
+- Creative-ID: 1439410851032517
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Arbeit ist besser als deine Website – kurz und direkt benannt
+- Visual Style: Talking-Head-Video mit Zeigegestus (Innenraum)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Websites für lokale Handwerker & Dienstleister
+- Target Audience: lokale Handwerker und Dienstleister, Inhaber mit schwacher Website
+- Offer / Funnel-Typ: Meta-Leadformular (Website-Angebot)
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR
+- Ausgaben gesamt: 0.86
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120241191459250598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.86
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-17
+- Erstellt am: 2026-02-17
+- Funnel-Zweck: Lead
+- Hookrate %: 13.64
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 13.64
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 44
+- Impressionen gesamt: 44
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-02-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video im vertikalen Format (Talking Head, kurze Direct-Response-Sequenz laut Ad-Name „Kurz & knapp"). Hinweis vorab: Das vorliegende Standbild ist nur eine 64x64-px-Vorschau, Text-Overlays und Feinheiten sind daher nur eingeschränkt verifizierbar — Nicht-Lesbares ist entsprechend gekennzeichnet. Im Vorschaustandbild erkennbar: Ein Mann mit dunklem Bart und Brille in schwarzem T-Shirt steht in einem hellen Innenraum (Fenster-/Tageslichtkulisse im Hintergrund) und zeigt mit ausgestrecktem Arm und Zeigefinger direkt in die Kamera — eine konfrontativ-freundliche „Du bist gemeint"-Geste. Auf Brusthöhe ist ein rot-weißes Element sichtbar (vermutlich ein Schriftzug auf dem T-Shirt oder ein Overlay-Balken); der Wortlaut ist im Vorschaubild nicht lesbar. Wahrscheinlicher Szenenablauf (aus Kampagnenname, Ad-Name und Gestik ableitbar, nicht vollständig aus dem Bild verifizierbar): (1) Hook: Der Sprecher zeigt in die Kamera und adressiert den Betrachter unmittelbar, z. B. mit der Kampagnenkernaussage „Deine Arbeit ist besser als deine Website". (2) Problem in einem Satz: Potenzielle Kunden sehen online eine schwache Website und springen ab, obwohl die handwerkliche Leistung stimmt. (3) Lösung: MAKE baut Websites, die die tatsächliche Qualität der Arbeit zeigen und Anfragen bringen. (4) Abschluss: kurzer CTA Richtung Meta-Leadformular (Adset nennt „META FORMULAR"); die exakte CTA-Formulierung ist aus dem vorliegenden Material nicht ableitbar. Die kurze, pointierte Ansprache („Kurz & knapp") deutet auf eine Laufzeit von vermutlich unter 30 Sekunden hin. Die Kombination aus Nahaufnahme, direktem Blickkontakt und Zeigegestus erzeugt eine persönliche, fordernde Ansprache im UGC-Stil. Durchgehende Captions sind wahrscheinlich (Ton-aus-Nutzung im Feed), im Vorschaubild aber nicht verifizierbar.
+
+## 17.10. · Static · Statische Image-Ad aus dem eigenen Konto MAKE (Ad
+- id: recwAU5T3CKJZ8tnT
+- Name: 17.10. · Static · Statische Image-Ad aus dem eigenen Konto MAKE (Ad
+- Creative-ID: 1141651058089091
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Pattern-Interrupt: Werbebotschaft als privater iMessage-Chat inszeniert
+- Visual Style: Fake-Messenger-Screenshot (iMessage Dark Mode)
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer Unternehmer, KMU-Inhaber (Kampagnenkontext)
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: WEBSITE OFFER 2.0 | 17.10.
+- Ausgaben gesamt: 14.18
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 18
+- Klicks AT: 18
+- Ad-IDs: 120235546936430598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 14.18
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.79
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.79
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.09
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-10-17
+- Erstellt am: 2025-10-17
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 645
+- Impressionen gesamt: 645
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-10-17
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Image-Ad als Screenshot-Imitat eines iPhone-Chats (iMessage) im Dark Mode auf schwarzem Hintergrund. Oben ist die typische iMessage-Kopfzeile nachgebaut: ein runder Profil-Avatar mit dem Buchstaben „M", daneben eine Kontaktzeile in Weiß sowie Telefon-/Video-Icons; der Avatar trägt offenbar einen roten Notification-Badge, dessen Zahl im Vorschaubild nicht sicher lesbar ist. Darunter verläuft ein Dialog aus mindestens drei Nachrichtenblasen: eine blaue Sende-Blase rechts, gefolgt von einer grauen, mehrzeiligen Antwort-Blase links, danach erneut eine blaue Blase rechts. Die Texte in den Blasen sind im Vorschaubild nicht lesbar; Inhalt, Angebot und CTA des „Chats" können daher nicht rekonstruiert werden. Die Optik folgt detailgetreu dem echten iOS-Messenger: Blau- und Grautöne der Blasen, dunkle Statuszeile, realistische Abstände. Der werbliche Trick ist ein klassischer Pattern-Interrupt: Die Anzeige sieht im Feed aus wie ein privater Chat-Screenshot und erzeugt so Neugier. Branding-Elemente wie ein Logo sind nicht sichtbar; die Absenderkennung erfolgt vermutlich über Profilbild und Namenszeile. Es gibt kein Foto und keine Illustration außerhalb der Chat-Optik. Die Komposition füllt das Quadrat vollständig mit dem nachgebauten Bildschirm, was den Eindruck eines echten Screenshots verstärkt.
+
+## 05.09. · Static · BROAD
+- id: recwDfrySBdswdtZQ
+- Name: 05.09. · Static · BROAD
+- Creative-ID: 679359247897245
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Dein Konkurrent kassiert die Kunden online – du nicht, weil deine Website veraltet ist
+- Visual Style: Kontrast-Grafik alt vs. neu (Split-Vergleich)
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing KMU
+- Target Audience: Inhaber kleiner und lokaler Unternehmen mit veralteter Website
+- Offer / Funnel-Typ: Terminbuchung direkt
+- Kampagne: WEBSITE OFFER
+- Adset: STILL | BROAD
+- Ausgaben gesamt: 8.1
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 11
+- Klicks AT: 11
+- Ad-IDs: 120233525909610598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 8.1
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.94
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.94
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.68
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-05
+- Erstellt am: 2025-09-05
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1168
+- Impressionen gesamt: 1168
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-05
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im Hochformat, komplett auf schwarzem Grund – dadurch wirken die roten Akzente sehr aggressiv und dringlich. Oben dominiert eine große, zweizeilige Headline: die erste Zeile in weißer, kräftiger Sans-Serif „DEIN KONKURRENT KASSIERT.", darunter (laut vorhandener Anzeigenbeschreibung) der Kontrast „NICHT DU." in Rot; im kleinen Vorschaubild ist nur die obere Zeile sicher lesbar, die zweite Zeile ist nicht eindeutig entzifferbar. Darunter bzw. dazwischen steht eine kleinere Subline, die im Vorschaubild nicht lesbar ist. Die Bildmitte ist als alt-vs.-neu-Kontrast komponiert: Links steht ein alter, klobiger Röhrenmonitor bzw. Retro-PC, auf dessen Bildschirm eine veraltete, graue, lieblos gestaltete Website zu sehen ist – Symbol für die jetzige, überholte Webpräsenz des Betrachters. Rechts hält eine Hand ein modernes Smartphone, das eine zeitgemäße, mobil optimierte Website zeigt (erkennbar sind rote Buttons und ein Produkt-/Bildbereich; Details im Vorschaubild nicht lesbar) – Symbol für die Lösung, die der Konkurrent bereits nutzt. Ein roter Pfeil bzw. eine rote Verbindungslinie zwischen den beiden Geräten verstärkt die Gegenüberstellung und lenkt den Blick von alt nach neu. Unten läuft ein durchgehender roter Balken quer über das Layout, der das Bild abschließt und wie ein Warnstreifen wirkt; ob darin Text oder ein CTA steht, ist im Vorschaubild nicht lesbar. Farbwelt: Schwarz, Weiß, Signalfarbe Rot; Bildsprache: warnend, dringlich, konfrontativ. Branding-Elemente (Logo etc.) sind im Vorschaubild nicht erkennbar. (Hinweis: identisches Creative wie die INTEREST-Variante, hier im BROAD-Adset.)
+
+## 18.06. · Static · CH | PLATZ-1
+- id: recwFROD2AO0XayKP
+- Name: 18.06. · Static · CH | PLATZ-1
+- Creative-ID: 2085938219021966
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Deine Konkurrenz steht bei Google auf Platz 1, du nicht
+- Visual Style: Studio-Mockup-Collage
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU / Lokale Sichtbarkeit
+- Target Audience: lokale Schweizer Betriebe, die Kunden an Google-besser-sichtbare Mitbewerber verlieren
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | PLATZ-1 | JUN26
+- Ausgaben gesamt: 0
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248678383840598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1
+- Impressionen gesamt: 1
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im vertikalen Format auf hellem, fast weißem Hintergrund. Oben steht in großer, fetter schwarzer Schrift eine Konkurrenz-Headline über drei Zeilen, sinngemäß lesbar: „Deine Konkurrenz steht bei Google auf Platz 1, du nicht?" — die Begriffe „bei Google", „Platz 1" und „du nicht?" sind erkennbar, die erste Zeile ist im Vorschaubild nur eingeschränkt lesbar. Darunter folgt eine kleinere, grau gesetzte Subline über zwei Zeilen — der genaue Wortlaut ist im Vorschaubild nicht lesbar (vermutlich Zusatz zu Anfragen/Top-Platzierung). Unter der Subline sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar. Die untere Bildhälfte dominiert ein großes Laptop-Mockup mit Schatten, auf dem eine Beispiel-Website läuft: ein Outdoor-Foto mit viel Grün (Baum, Garten-/Park-Umgebung) und einem Mann in dunkler Jacke rechts im Bild, links helle Textblöcke mit Headline und Absätzen — die Texte der Website sind im Vorschaubild nicht lesbar. Es ist das gleiche Referenz-Mockup wie in anderen Ads der Serie (Gartenbau-/Dienstleistungs-Ästhetik). Die Komposition folgt der Serien-Vorlage: Headline → Subline → roter Button → Gerät. Bildsprache: clean, sachlich, Studio-Look; das hochwertige Website-Mockup visualisiert, wie der besser platzierte Wettbewerber online auftritt. Stimmung: sachlicher Konkurrenzdruck — der Betrachter soll den eigenen Google-Rang hinterfragen. Logo oder Branding sind im Vorschaubild nicht erkennbar.
+
+## 19.09. · Static · LP 2
+- id: recwzOKlb1mLYDQ63
+- Name: 19.09. · Static · LP 2
+- Creative-ID: 2247102335764786
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Wir suchen Selbstständige in der Schweiz (direkte Such-Ansprache)
+- Visual Style: Text-First-Anzeige auf weißem Hintergrund mit CTA-Button
+- Awareness Level: Solution Aware
+- Industry: Webdesign/Marketing Schweiz (Agentur-Eigenwerbung)
+- Target Audience: Selbstständige in der Schweiz
+- Offer / Funnel-Typ: Lead-Formular über Landingpage
+- Kampagne: WEBSITE OFFER
+- Adset: TG | LP 2
+- Ausgaben gesamt: 61.31
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 52
+- Klicks AT: 52
+- Ad-IDs: 120234190406970598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 61.31
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.99
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.99
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 1.03
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-09-19
+- Erstellt am: 2025-09-19
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 2617
+- Impressionen gesamt: 2617
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-09-19
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statische Bild-Ad mit hellem, fast reinweißem Hintergrund und bewusst reduziertem, textzentriertem Layout ohne Foto. Oben dominiert eine große, schwarze, fette Headline in mehreren Zeilen: „Wir suchen Selbstständige in der Schweiz" — vollständig und klar lesbar. Darunter steht eine kleinere, feinere Subline bzw. Fließtextzeile, deren Wortlaut auf der 64×64-px-Vorschau nicht lesbar ist; sie ergänzt erkennbar die Such-Ansprache, vermutlich mit dem konkreten Angebot. Unter dem Text sitzt ein dunkler CTA-Button mit heller Schrift; der Button-Text ist im Vorschaubild nicht lesbar, dient aber als eindeutiger Handlungs-Trigger. Die Komposition ist vertikal gestaffelt: Headline → Subline → Button, mit viel Weißraum um die Elemente. Die Farbwelt ist minimalistisch: Schwarz-Weiß-Basis mit dunklem Button-Akzent — bewusster Kontrast zu den sonstigen schwarz-roten MAKE-Creatives. Stil und Bildsprache: clean, direkt, fast wie eine Stellenanzeige — die „Wir suchen …"-Form erzeugt Neugier und das Gefühl, persönlich gemeint zu sein. Branding-Elemente sind auf der Vorschau nicht erkennbar; die Wirkung entsteht allein über Typografie und direkte Ansprache.
+
+## 03.06. · Video · Zemp Walkthrough
+- id: recxGfhYf9K32SBYl
+- Name: 03.06. · Video · Zemp Walkthrough
+- Creative-ID: 1558005339027379
+- Format: Video
+- Status: CAMPAIGN_PAUSED
+- Angle / Hook: Scroll durch die neue Zemp-Website — fertiges Ergebnis als Beweis
+- Visual Style: Website-Walkthrough / Scroll-Demo-Video
+- Awareness Level: Product Aware
+- Industry: Webdesign / Marketing-Agentur (Kunde: Möbel/Innenausbau)
+- Target Audience: KMU-Inhaber im Retargeting, die Referenzarbeit sehen sollen
+- Offer / Funnel-Typ: Case-Study → Call
+- Kampagne: NURTURING | RETARGETING | BEKANNTHEIT | JUN26
+- Adset: AS 06 | Zemp Walkthrough
+- Ausgaben gesamt: 51.61
+- Ausgaben 30T: 10.28
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 13
+- Klicks AT: 13
+- Ad-IDs: 120247607293060598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 51.61
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0.16
+- CTR % 30T: 0.16
+- CTR % 7T: 0
+- CTR % AT: 0.16
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-03
+- Erstellt am: 2026-06-03
+- Funnel-Zweck: Nurturing
+- Hookrate %: 10.16
+- Hookrate % 30T: 8.95
+- Hookrate % 7T: 0
+- Hookrate % AT: 10.16
+- Impressionen 14T: 0
+- Impressionen 30T: 1877
+- Impressionen 7T: 0
+- Impressionen AT: 8035
+- Impressionen gesamt: 8035
+- Klicks 14T: 0
+- Klicks 30T: 3
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-17
+- Meta-Ziel: OUTCOME_AWARENESS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Video-Ad im Website-Walkthrough-Stil für den Kunden Zemp: Der von MAKE gebaute Webauftritt wird als Scroll-Demo präsentiert. WICHTIG: Es liegt nur ein 64×64-Standbild vor — Sichtbares und Ableitbares werden strikt getrennt. SICHTBAR im Standbild: Eine lange, zusammengesetzte Website-Seite im vertikalen Format (Screen-Capture der kompletten Seite von oben nach unten). Ganz oben ein dunkler, fast schwarzer Hero-Bereich mit einem blauen Akcentbalken bzw. Button und großen, nicht lesbaren Textflächen; darunter wechseln sich helle, weiße Content-Sektionen mit Icon-Reihen und mehrspaltigen Textblöcken ab. Im mittleren Bereich ist ein Foto mit warmen Holztönen zu erkennen — wirkt wie Möbel, Küche oder Innenausbau, was zur Branche des Kunden (Name „Zemp", mutmaßlich Schreinerei/Innenausbau) passt. Unten schließt die Seite mit einer weiteren dunklen Sektion ab, Details im Vorschaubild nicht lesbar. ABLEITBAR aus Ad-Name („AD 06 | Zemp Walkthrough") und Kampagne („NURTURING | RETARGETING"): Das Video führt als kontinuierlicher Scroll (oder als Sequenz von Sektions-Blenden) durch die fertige Website — typischerweise begleitet von Text-Overlays, die Leistungsumfang oder Ergebnis benennen (z. B. „Neue Website für Zemp", „Design & Umsetzung von MAKE"), und endet mit einem CTA Richtung Kontakt/Termin. Ziel ist erneut der Ergebnis-Beweis gegenüber einer warmen Zielgruppe. Ob gesprochener Kommentar, Musik oder nur Text-Overlays zum Einsatz kommen, ist aus dem Standbild nicht ableitbar; exakte Sektionsfolge, Overlay-Texte, Laufzeit und Schluss-CTA sind im Vorschaubild nicht lesbar. Stil: cleane Screen-Demo, Fokus auf Design-Qualität und Vollständigkeit des Auftritts.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: recxVdyDoo94epLLU
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 1615545899509229
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Neue Website in 24 Stunden — gefällt sie nicht, zahlst du 0 CHF, in Premium-Optik
+- Visual Style: Premium Schwarz-Gold Offer-Layout mit Device-Mockups
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige mit Qualitätsanspruch, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 3.12
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248515968220598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.12
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 66
+- Impressionen gesamt: 66
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE in einer edlen Schwarz-Gold-Premium-Optik auf tief schwarzem Hintergrund. Oben dominiert die mehrzeilige Headline in weißer Schrift: „Wir bauen dir deine neue Website in 24 Stunden. Gefällt sie dir nicht, zahlst du 0 CHF." — die Schlüsselbegriffe „neue Website", „24 Stunden" und „0 CHF" sind goldfarben hervorgehoben und funktionieren als Blickfänge; die Headline ist auch im kleinen Vorschaubild gut lesbar. Die untere Bildhälfte ist zweispaltig: Links stehen vier Bullet-Zeilen mit goldfarbenen Icons; der Kleintext ist im 64×64-px-Vorschaubild nicht sicher entzifferbar, vermutlich Leistungs- und Vertrauensargumente. Rechts stehen Laptop- und Smartphone-Mockups, die eine dunkel gestaltete, hochwertige Beispiel-Website zeigen (Details im Vorschaubild nicht lesbar). Unten abschließend sitzt ein goldfarbener CTA-Button; dessen Beschriftung ist im Vorschaubild nicht entzifferbar. Die Farbwelt ist bewusst reduziert: Schwarz, Weiß und Metallic-Gold für einen Luxus-/Premium-Eindruck mit hohem Kontrast. Der Stil ist die edelste der vier Offer-Varianten (ad-06 Creme, ad-07 Navy, ad-08 Skyline) und zielt auf qualitätsbewusste KMU. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar. Inhaltlich identisches Direct-Offer: 24-Stunden-Versprechen plus Null-Risiko-Garantie.
+
+## 18.06. · Static · CH | QUALI UMSATZ
+- id: recxd7X5rZMhfo5YO
+- Name: 18.06. · Static · CH | QUALI UMSATZ
+- Creative-ID: 1001899369477640
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Neukunden googeln dich, bevor sie anrufen
+- Visual Style: Studio-Mockup-Collage
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und lokale Betriebe, Inhaber mit schwacher Online-Präsenz
+- Offer / Funnel-Typ: Website-Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: STATICS | CH | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 0.1
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 0
+- Klicks AT: 0
+- Ad-IDs: 120248677385000598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 0.1
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 0
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 3
+- Impressionen gesamt: 3
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-18
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Statisches Bild-Ad im vertikalen Format auf warmem, cremefarbenem Hintergrund (Beige-Ton, wirkt hochwertig und ruhig). Oben steht in großer, fetter schwarzer Serifen-/Grotesk-Schrift die Headline „Neukunden googeln dich, bevor sie anrufen." über zwei Zeilen. Darunter folgt eine kleinere Subline in zwei Zeilen — der genaue Wortlaut ist im Vorschaubild nicht lesbar, sinngemäß ergänzt sie, dass die Website die erste Anlaufstelle für Interessenten ist. Unter der Subline sitzt ein leuchtend roter CTA-Button mit weißer Schrift; der Buttontext ist im Vorschaubild nicht lesbar. Die untere Bildhälfte dominiert ein großes, zentriertes iPhone-Mockup (mit Dynamic Island, realistisches Gerät mit Schatten). Auf dem Smartphone-Screen ist eine Beispiel-Website zu sehen: oben ein heller Website-Header mit Logo-Bereich, darunter ein großes Teamfoto mit drei Männern in blauen Arbeitshemden (wirkt wie ein Handwerks- oder Dienstleistungsbetrieb), darunter dunkle Website-Sektionen mit weißen Textblöcken und Button-Elementen. Die Texte innerhalb der Website-Mockup sind im Vorschaubild nicht lesbar. Die Komposition folgt einer klaren Vertikale: Headline → Subline → Button → Gerät. Bildsprache: minimalistischer Studio-Look, viel Weißraum, sachlich-dringliche Stimmung — der Betrachter soll realisieren, dass seine Website das erste Gespräch mit Neukunden führt. Logo oder Branding sind im Vorschaubild nicht erkennbar.
+
+## 18.06. · Video · BASEL 30KM | JUN26
+- id: recxoMb0MfzUijRub
+- Name: 18.06. · Video · BASEL 30KM | JUN26
+- Creative-ID: 1718431986152271
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: Endlich eine Website, die du jedem Kunden stolz zeigst – von Hand gebaut, mit echten Fotos.
+- Visual Style: UGC Selfie-Video
+- Awareness Level: Problem Aware
+- Industry: Webdesign / Online-Marketing Schweiz
+- Target Audience: etablierte lokale Betriebe in Basel, die stolz auf ihre Arbeit sind
+- Offer / Funnel-Typ: Terminbuchung / Anfrage direkt
+- Kampagne: NATIONAL | WEBSITE | JUN26
+- Adset: VIDEOS | BASEL 30KM | JUN26
+- Ausgaben gesamt: 375.12
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 2
+- Klicks gesamt: 100
+- Klicks AT: 100
+- Ad-IDs: 120248677493980598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 375.12
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 125.04
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 125.04
+- CTR %: 0.97
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 0.97
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.67
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-18
+- Erstellt am: 2026-06-18
+- Funnel-Zweck: Lead
+- Hookrate %: 25.73
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 25.73
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 10304
+- Impressionen gesamt: 10304
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 3
+- Leads gesamt: 3
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 187.56
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Verlustgruende: Unqualifiziert · 1
+Preis/Budget · 1
+Sonstiges · 1
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Vertikales UGC-Selfie-Video (9:16), gedreht im Freien vor der markanten roten Arkaden-Kulisse des Basler Rathauses. Das Vorschaubild zeigt einen Mann mit Brille und dunkler Basecap im Selfie-Abstand, der direkt in die Kamera spricht. Im oberen Drittel liegt ein zweizeiliges Text-Overlay in weißen Boxen, sinngemäß „Wir suchen etablierte Betriebe, die eine neue Website brauchen" — das Keyword „etablierte" ist dabei rot hervorgehoben; der exakte Wortlaut ist auf dem kleinen Thumbnail nur ansatzweise lesbar. Die Kombination aus rotem Overlay-Highlight und rotem Rathaus-Hintergrund schafft einen kohärenten, markanten Look. Der wahrscheinliche Ablauf, aus Titel und Overlay ableitbar (nicht verifizierbar): (1) Einstieg mit direkter Zielgruppen-Ansprache: „Wir suchen etablierte Betriebe…" — ein Qualifizierungs-Hook, der Zuschauer selektiert. (2) Emotionale Kernbotschaft: „Endlich eine Website, die du jedem Kunden von dir aus zeigst." (3) Differenzierungs-Beweis: „Von Hand gebaut, mit echten Fotos" — vermutlich mit Cut auf Website-Screenshots und echte Projekt-Fotos statt Stockbildern. (4) Abschluss-CTA Richtung Anfrage/Terminbuchung. Tonalität: stolz, handwerklich, ehrlich. Konkrete Schnittfolge, B-Roll-Einspieler und der finale CTA-Screen sind aus dem Standbild nicht ableitbar.
+
+## 20.02. · Video · BROAD | META FORMULAR – Kopie
+- id: reczIZ4muhETkd88P
+- Name: 20.02. · Video · BROAD | META FORMULAR – Kopie
+- Creative-ID: 2112156280184229
+- Format: Video
+- Status: ADSET_PAUSED
+- Angle / Hook: 90% der Kunden informieren sich vor der Entscheidung online — und deine Website verliert sie
+- Visual Style: Talking-Head-Video Outdoor mit Wort-Overlays
+- Awareness Level: Problem Aware
+- Industry: Webdesign KMU
+- Target Audience: KMU-Inhaber, deren Website keine Anfragen bringt
+- Offer / Funnel-Typ: Meta-Leadformular / Beratungsanfrage
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: VIDEOS | BROAD | META FORMULAR – Kopie
+- Ausgaben gesamt: 43.22
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 28
+- Klicks AT: 28
+- Ad-IDs: 120241290401230598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 43.22
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 1.51
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 1.51
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.76
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-02-20
+- Erstellt am: 2026-02-20
+- Funnel-Zweck: Lead
+- Hookrate %: 13.62
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 13.62
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 1850
+- Impressionen gesamt: 1850
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-07-06
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Talking-Head-Video im Hochformat (Vorschau nur als sehr kleines 64x64-Thumbnail verfügbar). Szene 1 (sichtbar im Standbild): Derselbe Sprecher wie in den anderen Spots der Kampagne (Mann mit Brille, kurzem dunklem Bart, dunkle Jacke) steht outdoor vor der Hochhaus-/Skyline-Kulisse und spricht in die Kamera; er hält eine Hand vor der Brust in einer zählenden oder aufzählenden Geste — passend zu einem Zahlen-Hook. Im unteren Bilddrittel läuft ein weißes Caption-Overlay, das mit „Mit einer" beginnt; die Fortsetzung ist im Vorschaubild nicht lesbar, naheliegend ist „Mit einer Website …". Aus dem Ad-Namen „90%" ist ableitbar, dass das Video mit einer Statistik eröffnet (üblicherweise der Anteil der Kunden, die sich vor einer Kaufentscheidung online informieren), um Aufmerksamkeit über die Zahl zu erzeugen. Der weitere, typische Aufbau dieses Kampagnen-Formats (aus dem Einzelbild nicht verifizierbar): Nach dem Zahlen-Hook folgt die Überleitung zum Schmerz — die eigene Website wird dieser Erwartung nicht gerecht und verliert Anfragen —, danach 1-2 argumentierende Sequenzen am selben Standort mit synchron laufenden Wort-Captions, und das Video schließt mit einem direkten CTA zur Anfrage über das Meta-Leadformular. Genaue Szenenfolge, Sprechtext und Endkarte sind aus dem vorhandenen Standbild nicht ableitbar. Bildsprache urban-dokumentarisch, Tageslicht, leicht unscharfer Hintergrund; sichtbares MAKE-Branding ist im Thumbnail nicht erkennbar.
+
+## 18.12. · Static · BROAD 2
+- id: reczNgqX8tXnbTMkF
+- Name: 18.12. · Static · BROAD 2
+- Creative-ID: 823608903824700
+- Format: Static
+- Status: PAUSED
+- Angle / Hook: Schluss mit Portal-Anfragen, bei denen 10 Mitbewerber mitbieten
+- Visual Style: Foto-Background mit Problem-Hook-Headline
+- Awareness Level: Problem Aware
+- Industry: Online-Marketing / Neukundengewinnung für Handwerk (Agentur-Eigenwerbung)
+- Target Audience: Handwerker und Bau-Betriebe, die bisher über Lead-Portale akquirieren
+- Offer / Funnel-Typ: Website-Offer Landingpage
+- Kampagne: WEBSITE OFFER 4.0 | DEZEMBER 25
+- Adset: BROAD 2
+- Ausgaben gesamt: 3.86
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120239131230130598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 3.86
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 4.31
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 4.31
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 6.9
+- Conversions gesamt: 0
+- Erste Auslieferung: 2025-12-18
+- Erstellt am: 2025-12-18
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 116
+- Impressionen gesamt: 116
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2025-12-23
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Quadratische statische Anzeige (1:1) mit durchgehendem Fotohintergrund und dunklem Overlay. Das Hintergrundfoto zeigt einen bärtigen Mann in grauem T-Shirt auf einer Baustelle, der konzentriert auf sein Handy schaut — eine Szene, die die Zielgruppe (Handwerker) unmittelbar aus ihrem Arbeitsalltag wiedererkennt; das Bild ist nach unten hin abgedunkelt, um die Textlesbarkeit zu sichern. Darüber liegt ein mehrzeiliger Text in weißer Marker-/Handschrift-Optik mit türkisen Hervorhebungen einzelner Schlüsselwörter: „Schluss mit Portal-Anfragen, bei denen 10 andere mitbieten" — der Problem-Hook benennt offen den Preiswettbewerb auf Lead-Portalen. Darunter steht eine kleinere Subline, deren Wortlaut im Vorschaubild nicht vollständig lesbar ist (vermutlich die Auflösung des Problems, also der Hinweis auf die alternative Neukundengewinnung der Agentur). Am unteren Rand sitzt ein türkiser CTA-Button, dessen Beschriftung im Vorschaubild nicht lesbar ist. Farbwelt: gedämpftes, dunkles Baustellen-Foto kombiniert mit Weiß und Türkis-Akzenten in Markenfarbe. Die Bildsprache arbeitet mit Alltagsnähe (Handy, Baustelle) und Reizwort („10 andere mitbieten"), um den Frust der Zielgruppe über Portal-Anfragen emotional aufzugreifen und auf das eigene Angebot zu lenken.
+
+## 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- id: reczQhU8q1IIYNzy6
+- Name: 16.06. · Static · BASEL 30KM | QUALI UMSATZ
+- Creative-ID: 1523172102887598
+- Format: Static
+- Status: ADSET_PAUSED
+- Angle / Hook: Neue Website in 24 Stunden — gefällt sie nicht, zahlst du 0 CHF
+- Visual Style: Offer-Layout mit Website-Mockup und Bulletpoints
+- Awareness Level: Solution Aware
+- Industry: Webdesign KMU
+- Target Audience: Schweizer KMU und Selbstständige, die schnell eine neue Website brauchen, Raum Basel
+- Offer / Funnel-Typ: Terminbuchung direkt mit Null-Risiko-Garantie
+- Kampagne: LOKAL | WEBSITE | FEB26
+- Adset: STATICS | BASEL 30KM | QUALI UMSATZ | JUN26
+- Ausgaben gesamt: 6.7
+- Ausgaben 30T: 0
+- Hookrate % 14T: 0
+- ROAS 14T: 0
+- CTR % 14T: 0
+- CPL 30T: 0
+- CPA AT: 0
+- Leads 14T: 0
+- Termine AT: 0
+- Klicks gesamt: 5
+- Klicks AT: 5
+- Ad-IDs: 120248515950240598
+- Angereichert: Ja
+- Anzahl Ads: 1
+- Ausgaben 14T: 0
+- Ausgaben 7T: 0
+- Ausgaben AT: 6.7
+- CPA: 0
+- CPA 14T: 0
+- CPA 30T: 0
+- CPA 7T: 0
+- CPL: 0
+- CPL 14T: 0
+- CPL 7T: 0
+- CPL AT: 0
+- CTR %: 2.27
+- CTR % 30T: 0
+- CTR % 7T: 0
+- CTR % AT: 2.27
+- CTR Link % 14T: 0
+- CTR Link % 30T: 0
+- CTR Link % 7T: 0
+- CTR Link % AT: 0.91
+- Conversions gesamt: 0
+- Erste Auslieferung: 2026-06-16
+- Erstellt am: 2026-06-16
+- Funnel-Zweck: Lead
+- Hookrate %: 0
+- Hookrate % 30T: 0
+- Hookrate % 7T: 0
+- Hookrate % AT: 0
+- Impressionen 14T: 0
+- Impressionen 30T: 0
+- Impressionen 7T: 0
+- Impressionen AT: 220
+- Impressionen gesamt: 220
+- Klicks 14T: 0
+- Klicks 30T: 0
+- Klicks 7T: 0
+- Leads 30T: 0
+- Leads 7T: 0
+- Leads AT: 0
+- Leads gesamt: 0
+- Letzte Auslieferung: 2026-06-16
+- Meta-Ziel: OUTCOME_LEADS
+- ROAS 30T: 0
+- ROAS 7T: 0
+- ROAS AT: 0
+- Termine 14T: 0
+- Termine 30T: 0
+- Termine 7T: 0
+- Terminpreis 14T: 0
+- Terminpreis 30T: 0
+- Terminpreis 7T: 0
+- Terminpreis AT: 0
+- Umsatz 14T: 0
+- Umsatz 30T: 0
+- Umsatz 7T: 0
+- Umsatz AT: 0
+- Verkauft 14T: 0
+- Verkauft 30T: 0
+- Verkauft 7T: 0
+- Verkauft AT: 0
+- Zuletzt synchronisiert: 2026-08-11T06:15:40.000Z
+- Skript:
+  Hochformatiges (9:16) Static-Ad der Agentur MAKE auf hellem Creme-/Elfenbein-Hintergrund. Oben dominiert eine mehrzeilige Headline in einer handschriftlich wirkenden, leicht verspielten Schrift: „Wir bauen dir deine neue Website in 24 Stunden. Gefällt sie dir nicht, zahlst du 0 CHF." — diese Kernbotschaft ist auch im kleinen Vorschaubild klar erkennbar und bildet den gesamten Hook des Ads. Die untere Bildhälfte ist zweispaltig aufgebaut: Links stehen vier Bullet-Zeilen mit kleinen runden Icons (Häkchen-/Punkt-Optik); der Kleintext der Bullets ist im 64×64-px-Vorschaubild nicht sicher entzifferbar, vermutlich Leistungs- bzw. Vertrauensargumente. Rechts daneben zeigt ein Browser-/Laptop-Mockup eine Beispiel-Website mit warmem Interieur-Foto (Schlafzimmer mit Bett) und einem dunklen Button — als visueller Qualitätsbeweis des Webdesigns. Unten abschließend sitzt ein dunkler (schwarzer/dunkelgrauer) CTA-Button über die Bildbreite; dessen Beschriftung ist im Vorschaubild nicht entzifferbar. Die Farbwelt ist warm und hell (Creme, Braun-/Beigetöne im Mockup, schwarzer Kontrast-Button), der Stil clean und mockup-basiert ohne Fotografie von Personen. Branding-Elemente wie ein MAKE-Logo sind im Vorschaubild nicht eindeutig erkennbar. Das Ad ist ein klassisches Direct-Offer-Static: Kern-Versprechen (24h + Null-Risiko) als Headline, Beweis-Mockup, Bullet-Argumente, CTA — passend zum Ad-Namen „Offer direkt".
+
+---
+Unvollständig markiert: 3/224

@@ -33,8 +33,10 @@ vier müssen zueinander passen (Alignment-Regel) — Text "How I scaled to $200K
 braucht ein Revenue-Dashboard im Bild, keine random redende Person.
 
 - **Audio-Hook, 3 Beats in ersten 3 Sekunden:** (a) Call-Out (wer ist gemeint), (b) sofort
-  Problem/Ziel, (c) optional Curiosity-Loop/Bonus-Tease. Formel: "Wenn du [ICP] bist und
-  [Outcome] willst, brauchst du [Offer]".
+  Problem/Ziel, (c) optional Curiosity-Loop/Bonus-Tease. **Nicht** die generische Schablone
+  „Wenn du [ICP] bist und [Outcome] willst, brauchst du [Offer]" als einzige Form benutzen —
+  das ist ein **Anti-Beispiel** (austauschbar, ohne Zahl/Name). Stattdessen eine konkrete
+  F-ID aus `hook-formeln.md` (F1–F13) wählen; Zahl oder Name in Satz 1.
 - **Visual-Hook:** erstes Bild selbst-selektiert den ICP (Kleidung, Environment,
   Outcome-Symbole). Endzustand zeigen, nicht das Schmerzstadium.
 - **Banner-Text:** sagt etwas ANDERES als das Gesprochene (ergänzend, wie YouTube-Titel).
