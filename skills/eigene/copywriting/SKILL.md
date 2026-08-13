@@ -50,9 +50,12 @@ klingt — als Stil-Gate für ads, web, seo.
 aktiv, ein Wort = eine Bedeutung) plus Zinssers vier Prinzipien
 (Simplicity, Brevity, Clarity, Humanity). Siehe `/root/.claude/CLAUDE.md`.
 
-**2. `forbidden.md` ist das härteste Gate.** Datei: `/root/.claude/forbidden.md`.
-Ein Treffer = Fail. Läuft VOR G1, nicht danach. Neuer Slop wird sofort dort
-nachgetragen (Abschnitt F), nie nur im Kopf behalten.
+**2. `forbidden.md` ist das härteste Gate.** Aktive Datei: `/root/.claude/forbidden.md`.
+Ein Treffer = Fail. Läuft VOR G1. Trage neuen Slop sofort dort nach (Abschnitt F),
+statt ihn im Kopf zu behalten.
+
+Die aktive Datei liegt außerhalb eines Git-Repos. Nach jeder Änderung sichern:
+`cp /root/.claude/forbidden.md /root/raphael-skills/skills/eigene/copywriting/references/forbidden-backup.md`
 
 **3. Modell-Wahl für den Schreib-Schritt.**
 
