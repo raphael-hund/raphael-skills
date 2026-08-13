@@ -1,6 +1,6 @@
 ---
 name: ads-video
-version: 0.4.0
+version: 0.5.0
 description: >
   Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok
   entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan.
@@ -27,7 +27,7 @@ loads:
 loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [copywriting@^0, no-ai-slop@^0]
 completion_criteria:
-  - "forbidden.md = 0 Treffer auf dem Sprechtext (harte Sperre, vor der Messlatte)"
+  - "copywriting/scripts/forbidden-check.py auf dem Sprechtext gelaufen, Exit 0 (harte Sperre, vor der Messlatte); Ausgabe im Output zitiert"
   - "voice-dna-ads V12-Selbstcheck (6 Fragen) = 6x ja, im Output dokumentiert"
   - "Hook-Länge ≤ 8 Wörter (oder ≤ 12 mit exakter belegter Zahl) — V1"
   - "Winner-Basis-Feld gesetzt (Ad-Name/ID + Hookrate/Spend/CTR oder ehrlich 'kein Performance-Datensatz')"

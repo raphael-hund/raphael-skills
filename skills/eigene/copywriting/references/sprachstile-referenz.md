@@ -5,6 +5,12 @@
 > Anrede, Proof-Muster, CTA-Muster, Original-Zitate als Stilvorlage.
 > **Nutzung:** Beim Schreiben EINEN Stil wählen und dessen Muster folgen —
 > nie Stile mischen. Kunde + Kanal entscheiden, nicht eigene Vorliebe.
+>
+> **⚠️ Die Original-Zitate sind Belege, keine Vorlagen.** Diese Seiten laufen
+> im Markt und enthalten trotzdem Slop. `/root/.claude/forbidden.md` schlägt
+> jedes Zitat hier. Übernommen wird das Aufbau- und Beweismuster, nie eine
+> Formulierung, die dort verboten ist. Die betroffenen Stellen sind unten
+> mit **⚠️ Slop-Beleg** markiert.
 
 ---
 
@@ -23,14 +29,19 @@ Stilmarker (Original):
 
 Regeln: Emotion zuerst (Unabhängigkeit, grüne Zukunft), dann Social Proof,
 dann Technik (Wirkungsgrad, Garantie) zur rationalen Absicherung.
-Risiko-Umkehr über lange Garantien + kostenlose Beratung, NICHT über künstliche Knappheit.
+Risiko-Umkehr über lange Garantien und kostenlose Beratung. Künstliche Knappheit
+bleibt in diesem Stil außen vor.
 
 ---
 
 ## Stil 2: Coach/Mittelstand Direct-Response (matthias-aumann.de)
 
 **Wann:** Beratung/Coaching für Inhaber, Personal Brand, B2B-Mittelstand.
-**Anrede:** Duzen. **Rhythmus:** kurz, Fragmente erlaubt ("Mehr verdienen. Mehr Zeit haben.").
+**Anrede:** Duzen. **Rhythmus:** kurz, einzelne Fragmente erlaubt.
+> **⚠️ Slop-Beleg:** Das Original "Mehr verdienen. Mehr Zeit haben." ist ein
+> Staccato-Paar (`forbidden.md` A1) und wird **nicht** kopiert. Erlaubt ist EIN
+> Fragment pro Sektion, oder ein Paar mit echtem Informationssprung
+> ("Festpreis. Angebot in 24 Stunden.").
 **Proof:** konkrete Fallzahlen mit Namen + Umsatz-Vorher/Nachher (980.000 € → 14.000.000 €).
 **CTA:** EIN identischer CTA nach jeder Sektion ("Jetzt Erstgespräch vereinbaren"), Risiko-Umkehr direkt am Button ("nur 15 Minuten, garantiert kostenlos").
 
@@ -59,7 +70,7 @@ Stilmarker (Original):
 - "Ergebnisse wie diese klingen komplett unglaubwürdig, richtig?"
 - "Wir sind sogar bereit, dir das live zu BEWEISEN!"
 
-Regeln: Einwand des Lesers ZUERST aussprechen, bevor er es tut — dann mit
+Regeln: Einwand des Lesers ZUERST aussprechen, bevor er es tut. Dann mit
 belegbaren Zahlen kontern. Zwei "gescheiterte Optionen" beschreiben, eigene
 Lösung als dritte Option. Lifestyle-Outcome statt nur Umsatz ("ein Leben,
 das sich nicht wie Arbeit anfühlt").
@@ -71,7 +82,11 @@ das sich nicht wie Arbeit anfühlt").
 **Wann:** lokale Services mit Vertrauensproblem (Entrümpelung, Umzug, Handwerk
 mit schlechtem Ruf), Ad-Landingpages mit Formular-Funnel.
 **Anrede:** Du (inkonsistent-Sie vermeiden — Rümpelwelt-Fehler, nicht kopieren).
-**Rhythmus:** kurz + bewusste Fragmente ("Kein Warten, kein Vertrösten.").
+**Rhythmus:** kurz, mit einzelnen Fragmenten.
+> **⚠️ Slop-Beleg:** Das Original "Kein Warten, kein Vertrösten." ist das
+> A1-Negativbeispiel in `forbidden.md` — zwei gleich gebaute Fragmente ohne
+> Informationssprung. Stattdessen die Aussage machen: "Wir kommen innerhalb
+> von 48 Stunden."
 **Proof:** Bewertungs-Dichte ("1257+ Bewertungen", "5,0 auf Google"), Live-Nutzung ("698 Sofortangebote in den letzten 7 Tagen").
 **CTA:** Multi-Step-Quiz ("Schritt 1/4, ~60 Sek.") statt Langformular; beratende Persona (Name) menscht den Funnel.
 
@@ -102,7 +117,7 @@ Stilmarker (Original):
 - "This is the same stuff we use in our portfolio."
 
 Regeln: Anti-Hype als Vertrauenssignal (gegen Branchen-Klischees positionieren).
-Knappheit durch Qualifizierung statt Countdown — der Leser muss sich BEWERBEN.
+Knappheit durch Qualifizierung statt Countdown. Der Leser muss sich BEWERBEN.
 Kostenlosen Wert zuerst (Reziprozität), dann Bezahltes. Nie "Click here" —
 CTA als Selbstverpflichtung des Lesers formulieren.
 
@@ -132,6 +147,12 @@ Verlust-Aversion ("Nie wieder hohe Stromkosten"). Komplexe Technik über
 Analogien erklären (Nervensystem/Gehirn). Jeder Vorteil monetarisiert
 ("bis zu 2.000 € pro Jahr"), nicht nur ökologisch. Vergleichstabelle gegen
 Generika ("us vs. them") als Einwand-Vorwegnahme.
+
+> **⚠️ Slop-Beleg:** Die Analogie "Enpal.One als das Nervensystem …
+> Enpal.One+ als das Gehirn" ist ein Isokolon-Metapher-Paar (`forbidden.md` A3).
+> Komplexe Technik erklären: ja. Aber mit EINEM Bild, nicht mit einem
+> gespiegelten Paar. Besser: die Funktion direkt benennen ("Enpal.One steuert
+> die Geräte im Haus").
 
 ---
 

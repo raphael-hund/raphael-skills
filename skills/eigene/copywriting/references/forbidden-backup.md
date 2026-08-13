@@ -1,7 +1,3 @@
-> **Sicherungskopie.** Die aktive Datei liegt unter `/root/.claude/forbidden.md`.
-> Diese Kopie dient nur der Versionierung. Bei Änderungen immer die aktive Datei bearbeiten,
-> danach `cp /root/.claude/forbidden.md skills/eigene/copywriting/references/forbidden-backup.md`.
-
 # forbidden.md — verbotene Muster (lebende Datei)
 
 **Geltung:** JEDER geschriebene Text. Antworten an Raphael, Copy, Ad-Skripte,
@@ -28,8 +24,22 @@ Zwei kurze Sätze/Fragmente hintereinander, gleiche Länge, gleicher Bau.
 - ✗ "It's not an event. It's a workshop."
 - ✓ "Wir kommen innerhalb von 48 Stunden."
 
-**Ausnahme (einzige):** In Ad-Copy ist EIN Staccato-Paar pro Skript erlaubt,
-wenn es ein echtes Kundenzitat ist. Nie zwei. Nie als Slogan.
+**Ausnahmen (nur diese zwei, nur in Ad-Copy):**
+
+1. **Echtes Kundenzitat.** Ein Staccato-Paar pro Skript, wörtlich zitiert.
+2. **Hook mit Informationssprung.** Die beiden Teile tragen verschiedene
+   Information, und der zweite enthält eine belegte Zahl oder Frist.
+   Gilt nur für den Hook, nie im Body.
+
+   - ✓ "Wärmepumpe kaputt? Neue in 48 Stunden." (Problem → Frist)
+   - ✗ "Kein Warten. Kein Vertrösten." (zweimal dieselbe Aussage)
+   - ✗ "Schneller. Günstiger." (zwei Adjektive ohne Information)
+
+   **Test:** Streiche den zweiten Teil. Verliert der Leser eine Information?
+   Wenn ja, ist es ein Informationssprung. Wenn nur der Rhythmus fehlt,
+   ist es Slop.
+
+Nie zwei Paare pro Text. Nie als Slogan. Nie außerhalb von Ad-Copy.
 
 ### A2. Antithese-Reframe / negative Parallelität
 "Nicht X — sondern Y". Der Reflex, eine Aussage über ihre Verneinung zu bauen.
@@ -76,8 +86,29 @@ Sätze, die auf vorher Gesagtes zeigen, statt weiterzugehen.
 ### A6. Parataxe-Kette
 Drei oder mehr kurze Sätze in Folge (< 8 Wörter). Klingt nach LinkedIn-Bot.
 
+### A8. Kontrast-Dreisprung
+Drei Sätze, die dasselbe Subjekt steigern. Läuft an A2 vorbei, weil "sondern"
+fehlt, und an A5, weil es ganze Sätze sind. Derselbe Singsang.
+
+- ✗ "Es ist nicht nur eine Solaranlage. Es ist deine Unabhängigkeit.
+  Es ist deine Zukunft."
+- ✓ "Die Anlage deckt 85 % deines Strombedarfs."
+
+### A9. "Stell dir vor"-Einstieg
+Der Immersions-Trick als Satzmuster. Keine Floskel-Phrase, deshalb greift B1 nicht.
+
+- ✗ "Stell dir vor: Dein Dach ist ab morgen dicht."
+- ✗ "Was wäre, wenn du nie wieder …"
+- ✓ "Dein Dach ist in zwei Tagen dicht."
+
 ### A7. Gleichlange Sätze
 Drei Sätze in Folge mit fast gleicher Wortzahl. Rhythmus muss springen.
+
+**Kanal-Ausnahme:** Im SEO-Fließtext und im Landingpage-Body gilt A7 als
+Hinweis, nicht als Fail. Dort schreibt `kanaele.md` einen Korridor von
+15–25 Wörtern vor. Innerhalb eines so engen Korridors sind ähnliche Längen
+unvermeidlich, und gleichmäßiger Erklär-Rhythmus liest sich dort besser als
+Sprünge. In Ads, Video-Skripten, E-Mails und Social bleibt A7 ein harter Fail.
 
 ---
 
@@ -101,6 +132,31 @@ Drei Sätze in Folge mit fast gleicher Wortzahl. Rhythmus muss springen.
 "innovativ", "state-of-the-art", "einzigartig".
 → Ersetzen durch Zahl, Nomen oder Konsequenz.
 
+### B4b. Verstärker vor der Zahl
+Ein Verstärker schwächt jede Zahl, die danach kommt. B4 greift nicht, weil
+das Adjektiv eine Zahl bei sich hat.
+
+wirklich · richtig (als Verstärker) · absolut · extrem · super · mega · total
+
+- ✗ "Wir sind wirklich extrem schnell vor Ort, in nur 48 Stunden."
+- ✓ "Wir sind in 48 Stunden vor Ort."
+
+### B6b. Bindestrich-Kunstwort
+Zwei Substantive zu einem Wort verklebt, das niemand spricht.
+
+- ✗ "Entrümpelungs-Excellence", "Wohlfühl-Zuhause", "Rundum-Sorglos-Lösung"
+- ✓ "Wir räumen die Wohnung leer."
+
+### B7. Emoji-Bullets als Ersatz für Sätze
+Gilt auf allen Kanälen, nicht nur Social.
+
+- ✗ "✅ Schnell ✅ Günstig ✅ Zuverlässig"
+- ✓ "Festpreis in 24 Stunden, Zahlung nach Übergabe."
+
+**Ausnahme:** In Meta-Ad-Primary-Text ist EINE Emoji-Liste erlaubt
+(55 % des Korpus nutzen sie, siehe `ads-copy`). Jeder Punkt trägt eine
+eigene Information, nicht nur ein Adjektiv.
+
 ### B5. AI-Copywriting-Voice
 "Sag Goodbye zu X", "Das ändert alles", "X-Theater", "der Game-Changer",
 "auf das nächste Level", "endlich verstehen".
@@ -118,7 +174,7 @@ Max. 1 pro Text.
 | Em-Dash (—) | max. 1 pro 500 Wörter |
 | Doppelpunkt-Enthüllung | max. 1 pro Text |
 | Ausrufezeichen | max. 1 pro Text (Ads: max. 2) |
-| Rhetorische Frage | max. 2 pro Text |
+| Rhetorische Frage | max. 2 pro Text (SEO: max. 1 je H2-Abschnitt) |
 | Klammer-Einschub | max. 2 pro 500 Wörter |
 | Aufzählung mit "und mehr" | 0 |
 

@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 0.8.0
+version: 0.9.0
 description: >
   Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie,
   Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits
@@ -31,7 +31,7 @@ loads:
 requires_skills: [copywriting@^0, offers@^0, eval@^0, ads-video@^0, ads-statics@^0]
 loads_external: ["/root/.claude/forbidden.md"]
 completion_criteria:
-  - "forbidden.md = 0 Treffer auf jedem Ship-Output (/root/.claude/forbidden.md, Abschnitte A-F) — hartes Gate vor G1"
+  - "copywriting/scripts/forbidden-check.py auf jedem Ship-Output gelaufen, Exit 0 — hartes Gate vor G1"
   - "0 verbotene Claims im Live-Set (claims-qa Block, Sol frische Session)"
   - "G1-Stil grün, dann G2 >= 0.7 auf jedem Ship-Output (Gate-Definition: references/loop3-ablauf.md → Abschnitt Gates, Rubrik evals/rubrics/ads.md)"
   - "Schaltung nur mit Raphaels Signatur + Budget-Egress-Gate"
@@ -183,7 +183,7 @@ nicht automatisch bei E-Com.
   Anzeige, die keinen Spend bekommt, wird an den ersten 3 Sekunden (Hook) repariert oder
   ersetzt — nicht am Targeting gedreht. Ausnahme: technische Ursache (Ablehnung, Budget-Cap,
   frisch gestartete Lernphase) statt kreativer Ursache (Beleg:
-  `raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/media-buying-scaling.md` →
+  `/root/raphael-brain/wiki/craft/ads/nugget-sammlungen/media-buying-scaling.md` →
   Täglicher Kill/Keep/Scale-Check; Candidate, noch nicht freigegeben, wandert nach Freigabe
   an `wiki/craft/ads/strategie/2026-07-20-testing-vs-scaling-kampagnenstruktur.md`).
 - **Tages-Zahlen bei Ads sind Rauschen — nie auf Tagesbasis killen/skalieren.** Bei

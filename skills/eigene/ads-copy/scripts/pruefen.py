@@ -24,9 +24,18 @@ def absaetze(text):
     return [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
 
 
-def pruefe(text, name="Text"):
+def pruefe(text, name="Text", kurzform=False):
+    """kurzform=True schaltet die Bauform-2-Grenzen frei.
+
+    Bauform 2 (references/bauformen.md) ist eine belegte Kurzform:
+    3 Absätze, unter 300 Zeichen, Beleg Pascal Harting mit 287 Zeichen.
+    Ohne diesen Schalter blockte das Skript eine dokumentierte Bauform hart.
+    """
     fehler, hinweise = [], []
     abs_ = absaetze(text)
+
+    min_abs = 3 if kurzform else MIN_ABSAETZE
+    min_zeichen = 150 if kurzform else MIN_ZEICHEN
 
     if not abs_:
         return [f"{name}: leer"], []
@@ -42,15 +51,15 @@ def pruefe(text, name="Text"):
     if dashes > MAX_DASH:
         fehler.append(f"{dashes} Gedankenstriche (max {MAX_DASH}) — Punkt setzen statt —")
 
-    if len(abs_) < MIN_ABSAETZE:
-        fehler.append(f"nur {len(abs_)} Absätze (min {MIN_ABSAETZE})")
+    if len(abs_) < min_abs:
+        fehler.append(f"nur {len(abs_)} Absätze (min {min_abs})")
 
     for i, p in enumerate(abs_, 1):
         if len(p) > MAX_ABSATZ:
             fehler.append(f"Absatz {i} hat {len(p)} Zeichen (max {MAX_ABSATZ}) — teilen")
 
-    if not MIN_ZEICHEN <= len(text) <= MAX_ZEICHEN:
-        fehler.append(f"{len(text)} Zeichen (Korpus: {MIN_ZEICHEN}-{MAX_ZEICHEN})")
+    if not min_zeichen <= len(text) <= MAX_ZEICHEN:
+        fehler.append(f"{len(text)} Zeichen (erlaubt: {min_zeichen}-{MAX_ZEICHEN})")
 
     if not re.search(r"\d", text):
         fehler.append("keine Zahl im Text (96 % des Korpus nennen eine)")
@@ -82,6 +91,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("datei", nargs="?")
     ap.add_argument("--text")
+    ap.add_argument(
+        "--kurzform",
+        action="store_true",
+        help="Bauform 2 (3 Absätze, <300 Zeichen) — nur mit bewusster Wahl",
+    )
     args = ap.parse_args()
 
     if args.text:
@@ -93,9 +107,10 @@ def main():
 
     schlimm = 0
     for name, t in texte:
-        fehler, hinweise = pruefe(t, name)
+        fehler, hinweise = pruefe(t, name, kurzform=args.kurzform)
         abs_n = len(absaetze(t))
-        print(f"\n=== {name} === {len(t)} Zeichen, {abs_n} Absätze")
+        modus = " [Kurzform]" if args.kurzform else ""
+        print(f"\n=== {name} ==={modus} {len(t)} Zeichen, {abs_n} Absätze")
         for f in fehler:
             print(f"  FEHLER   {f}")
         for h in hinweise:

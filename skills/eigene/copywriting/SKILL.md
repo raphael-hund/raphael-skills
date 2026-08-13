@@ -1,6 +1,6 @@
 ---
 name: copywriting
-version: 0.5.0
+version: 0.6.0
 description: >
   Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
   SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
@@ -21,12 +21,13 @@ loads: [references/voice-dna.md, references/kanaele.md, references/beispiele-gut
 loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [eval@^0, no-ai-slop@^0]
 completion_criteria:
-  - "forbidden.md = 0 Treffer (harte Sperre, vor allem anderen)"
+  - "scripts/forbidden-check.py auf dem Entwurf gelaufen, Exit 0 (harte Sperre, vor allem anderen); Skript-Ausgabe im Output zitiert"
+  - "Skript-Hinweise (A1/A5/A6/A7/B6b) einzeln beurteilt: je Hinweis 'gefixt' oder 'bewusst behalten weil <Grund>'"
   - "G1 grün: Orwell-Regeln 2-5 + Passiv-/Nominalstil-Detektor + Floskelliste (inkl. quantifizierter Interpunktions-Schwellen) = 0 Treffer"
   - "voice-dna.md Selbstcheck (5 Fragen) = 5x ja"
   - "Selbstkritik-Zwischenschritt durchlaufen: 'was ist an diesem Entwurf noch offensichtlich KI-generiert?' beantwortet, vor G2"
   - "G2 Judge: unabhängiger Eval-Agent (andere Modellfamilie), Regeln 1+6 (Override) + Brand-Voice-Treue >= 0.7"
-  - "Writer-Kontext blieb unter 50 % (sonst Subagent-Split dokumentiert)"
+  - "Kontext-Disziplin belegt: entweder <=3 Referenzdateien + Kundenmaterial gelesen, oder Subagent-Split mit Aufteilung im Output genannt"
 ---
 
 # copywriting — deutscher Klartext in Brand-Voice

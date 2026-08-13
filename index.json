@@ -10,7 +10,7 @@
     },
     {
       "name": "ads-copy",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "path": "skills/eigene/ads-copy/SKILL.md",
       "description": "Feuert für den Primary Text einer Meta-Ad — den Fliesstext über/unter dem Creative, plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads von 10 Werbetreibenden (Marc Evers, Speedscaling, SEOLabs, Neuhaus Digital, Pascal Harting, Dr. Matt Shiver, Charlie Morgan, Ben Heath, Enpal, Tim Krasenbrink) statt aus dem Gefühl. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\", \"Text zur Anzeige\", \"Ad Copy\". Für Video-Skripte siehe ads-video, für Statics-Briefs ads-statics, für den Loop-3-Ablauf ads."
     },
@@ -22,19 +22,19 @@
     },
     {
       "name": "ads-statics",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
       "description": "Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs, Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"Angle-Matrix für Creatives\". Ergänzt ads (Loop 3, Schritt 6 „statics\") um die Tiefe der Visual-Style- und Copy-Bauform-Wahl; Bild-Erzeugung selbst bleibt bei design/Bildgenerierung-Policy."
     },
     {
       "name": "ads-video",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "path": "skills/eigene/ads-video/SKILL.md",
       "description": "Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan. Trigger: \"Video-Skript schreiben\", \"Ad-Skript\", \"Drehbuch für Ads\", \"Skripte für Testwelle\", \"Hook-Varianten fürs Video\". Funktioniert für jeden Kunden: Craft kommt Pflicht aus den Markt-Referenzen (Hooks, Architekturen, Sprache, Strategien/Taktiken, Referenz-Volltexte), Performance-Daten optional aus dem Kundenrepo. Schreibt nie aus dem Gedächtnis, endet erst nach no-ai-slop-Pass + Messlatte."
     },
     {
       "name": "ads",
-      "version": "0.8.0",
+      "version": "0.9.0",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach"
     },
@@ -52,7 +52,7 @@
     },
     {
       "name": "copywriting",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "path": "skills/eigene/copywriting/SKILL.md",
       "description": "Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\". Für mehrteilige Email-Sequenzen, Drip-Kampagnen, Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill."
     },

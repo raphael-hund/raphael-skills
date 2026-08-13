@@ -1,6 +1,6 @@
 ---
 name: ads-copy
-version: 1.1.0
+version: 1.2.0
 description: >
   Feuert für den Primary Text einer Meta-Ad — den Fliesstext über/unter dem Creative,
   plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads
@@ -14,11 +14,11 @@ scope: agency
 sensitivity: internal
 loads_external: ["/root/.claude/forbidden.md", "/root/raphael-skills/skills/eigene/ads-video/references/voice-dna-ads.md"]
 completion_criteria:
-  - "forbidden.md = 0 Treffer (/root/.claude/forbidden.md, Abschnitte A-F) — hartes Gate vor pruefen.py"
+  - "copywriting/scripts/forbidden-check.py gelaufen, Exit 0 — hartes Gate vor pruefen.py; Ausgabe im Output zitiert"
   - "Jeder Text durch scripts/pruefen.py: 0 harte Verstösse (Exit-Code 0)"
   - "Erster Absatz <= 125 Zeichen (steht vor Metas 'Mehr anzeigen')"
   - "Höchstens 1 Gedankenstrich (—) pro Text — im Korpus haben 98 % gar keinen"
-  - "Mindestens 5 Absätze, kein Absatz über 250 Zeichen"
+  - "Mindestens 5 Absätze, kein Absatz über 250 Zeichen (Ausnahme Bauform 2: 3 Absätze, dann pruefen.py --kurzform)"
   - "Jede Zahl im Text hat eine benannte Quelle oder ist als Zuspitzung markiert"
 provenance: >
   Korpus am 03.08.2026 über die Foreplay-API erhoben (105 eindeutige Ad-Texte,
@@ -114,8 +114,18 @@ kürzeste des Textes.
    abgeleitet, je mit Beleg-Ad.
 3. **Schreiben.** Erst der erste Absatz allein, bis er unter 125 Zeichen trägt.
    Dann der Rest.
-4. **Prüfen.** `scripts/pruefen.py <datei>` misst die harten Kriterien gegen die
-   Korpus-Werte. Exit-Code 1 = nicht ausliefern.
+4. **Prüfen — zwei Skripte, beide grün.**
+   - `python3 /root/raphael-skills/skills/eigene/copywriting/scripts/forbidden-check.py <datei>`
+     misst die Slop-Muster A–F. Läuft **zuerst**. Exit 1 = nicht ausliefern.
+   - `scripts/pruefen.py <datei>` misst die Korpus-Kriterien (Länge, Absätze,
+     Gedankenstriche, Zahl, CTA). Exit 1 = nicht ausliefern.
+   - Bei **Bauform 2** (Kurzform, 3 Absätze unter 300 Zeichen):
+     `scripts/pruefen.py --kurzform <datei>`. Ohne den Schalter blockt das
+     Skript diese belegte Bauform, weil die Standardgrenzen bei 5 Absätzen
+     und 300 Zeichen liegen.
+
+   Beide Skripte messen Form, keine Bedeutung. Sie ersetzen den Eval-Agenten
+   nicht, sie filtern vor ihm.
 5. **Claims.** Jede Zahl und jede Garantie durch `ads` → Schritt claims-qa. Der
    Prüfer ist nie der Autor (Regel 8).
 
@@ -126,9 +136,17 @@ kürzeste des Textes.
   redigiert; die echten Ads lesen sich gesprochen.
 - **„Mehr anzeigen" ist kein Absatzende.** Meta schneidet mitten im Satz. Wer den
   Hook auf 200 Zeichen anlegt, verliert die Hälfte davon ungelesen.
-- **Emoji-Bullets sind Norm, nicht Verzierung.** 55 % nutzen sie. ✅ für das, was
-  der Kunde bekommt, ❌ für das, was er nicht mehr braucht, 👉 für Beweise. Aber:
-  nie mehr als eine Liste pro Text.
+- **Emoji-Bullets sind im Meta-Primary-Text Norm.** 55 % des Korpus nutzen sie.
+  ✅ für das, was der Kunde bekommt, ❌ für das, was er nicht mehr braucht,
+  👉 für Beweise. Nie mehr als eine Liste pro Text.
+
+  **Vorrang-Regel (sonst Konflikt):** `copywriting/references/floskel-verbote.md`
+  verbietet Emoji-Aufzählungen in seriöser Copy, `/root/.claude/forbidden.md` B7
+  verbietet sie als Ersatz für Sätze. Für **Meta-Ad-Primary-Text** gewinnt die
+  hier belegte Korpus-Norm — aber nur, wenn jeder Punkt eine eigene Information
+  trägt ("✅ Festpreis vor Anfahrt"), nie als Adjektiv-Kette
+  ("✅ Schnell ✅ Günstig"). Auf allen anderen Kanälen (Landingpage, SEO, E-Mail,
+  Social) gilt das Verbot ohne Ausnahme.
 - **Der Text darf das Video nicht nacherzählen.** Er verlängert den Hook um das,
   was im Video keinen Platz hatte — meist die Beweise und die Qualifikation.
 - **Kein Text ohne Zahl.** Fehlt eine belegbare Zahl, ist nicht der Text das
