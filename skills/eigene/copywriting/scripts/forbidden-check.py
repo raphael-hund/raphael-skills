@@ -144,6 +144,24 @@ B5_AI_VOICE = [
     "auf das nächste level", "endlich verstehen", "-theater",
 ]
 
+# B8: Fake-Dringlichkeit. Knappheit ohne pruefbaren Grund. Eine Zahl daneben
+# ("nur noch 3 Plaetze") macht sie nicht belegt — sie ist unpruefbar.
+B8_DRINGLICHKEIT = [
+    "bevor es zu spät ist", "nur noch wenige", "nur für kurze zeit",
+    "sichere dir jetzt", "jetzt zuschlagen", "verpasse nicht",
+    "die nachfrage ist enorm", "melde dich heute noch",
+    "nur solange der vorrat reicht", "letzte chance",
+]
+
+# B9: Buzzword-Kette. Drei oder mehr Marketing-Abstrakta in einem Satz.
+# Einzeln sind sie erlaubt (Fachpublikum), die Haeufung ist das Signal.
+B9_BUZZWORDS = [
+    "datengetrieben", "skalierbar", "growth", "automatisierung", "nachhaltig",
+    "dynamisch", "ganzheitlich", "innovativ", "digital", "strategisch",
+    "effizient", "agil", "transformation", "synergie", "potenzial",
+    "ki-gestützt", "ai-gestützt", "zukunftsorientiert", "kundenzentriert",
+]
+
 # --- D. Deutsch -------------------------------------------------------------
 
 D2_FUNKTIONSVERB = [
@@ -272,8 +290,18 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
         (fehler if hart else hinweise).append(eintrag)
 
     # zeilenweise Muster
+    #
+    # Code-Bloecke (```) enthalten in Skill-Doku woertliche Ad-Beispiele.
+    # Der Zeilenfilter allein sieht das nicht — er kennt nur die eine Zeile.
+    # Deshalb hier ein Zustand ueber die Schleife.
+    in_block = False
     for nr, roh in enumerate(zeilen, 1):
         s = roh.strip()
+        if s.startswith("```"):
+            in_block = not in_block
+            continue
+        if doku and in_block:
+            continue
         vor = zeilen[nr - 2] if nr >= 2 else None
         if doku and _doku_zeile_ueberspringen(s, roh, vor):
             continue
@@ -328,6 +356,16 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
         for w in B5_AI_VOICE:
             if w in low:
                 melde(nr, f"B5 AI-Voice '{w}'", s)
+        for w in B8_DRINGLICHKEIT:
+            if w in low:
+                melde(nr, f"B8 Fake-Dringlichkeit '{w}'", s)
+
+        # B9 greift erst bei Haeufung: drei Buzzwords in einem Satz.
+        treffer_b9 = [
+            w for w in B9_BUZZWORDS if re.search(rf"\b{re.escape(w)}\w*", low)
+        ]
+        if len(treffer_b9) >= 3:
+            melde(nr, f"B9 Buzzword-Kette ({', '.join(treffer_b9[:4])})", s)
         for w in D2_FUNKTIONSVERB:
             if w in low:
                 melde(nr, f"D2 Funktionsverbgefüge '{w}'", s)
@@ -338,15 +376,22 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
         if re.search(D1_MUSTER, s, re.I):
             melde(nr, "D1 Nominalstil", s)
 
-    # Fließtext für Zählungen
+    # Fließtext für Zählungen. Code-Blöcke zählen nicht mit — sonst verzerren
+    # zitierte Ad-Beispiele die Em-Dash-Dichte und den Generik-Test.
     if doku:
-        body = "\n".join(
-            l
-            for i, l in enumerate(zeilen)
-            if not _doku_zeile_ueberspringen(
+        gefiltert, im_block = [], False
+        for i, l in enumerate(zeilen):
+            if l.strip().startswith("```"):
+                im_block = not im_block
+                continue
+            if im_block:
+                continue
+            if _doku_zeile_ueberspringen(
                 l.strip(), l, zeilen[i - 1] if i else None
-            )
-        )
+            ):
+                continue
+            gefiltert.append(l)
+        body = "\n".join(gefiltert)
     else:
         body = text
 

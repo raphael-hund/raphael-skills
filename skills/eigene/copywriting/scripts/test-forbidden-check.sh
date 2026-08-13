@@ -75,6 +75,16 @@ no FEHLER "Wärmepumpe kaputt? Neue in 48 Stunden."
 no FEHLER "Die Anlage deckt 85 Prozent deines Strombedarfs."
 no FEHLER "Wir entrümpeln zum Festpreis. Du zahlst erst nach der Übergabe. 1257 Kunden haben uns mit 5,0 bewertet."
 
+echo "== B8 Fake-Dringlichkeit / B9 Buzzword-Kette =="
+# Beide beim Schlusscheck gefunden: passierten das Gate, weil die Zahl
+# ("nur noch 3 Plaetze") als Beleg zaehlte bzw. jedes Buzzword einzeln erlaubt ist.
+hit B8 "Nur noch 3 Plätze frei. Sichere dir jetzt deinen Platz, bevor es zu spät ist."
+hit B9 "Wir liefern datengetriebene, skalierbare Growth-Strategien mit KI-gestützter Automatisierung."
+# Echte Knappheit mit pruefbarem Grund bleibt erlaubt
+no B8  "Wir nehmen im Januar vier neue Betriebe auf. Mehr schaffen wir mit unserem Team von sechs Leuten nicht."
+# Einzelne Fachbegriffe gegenueber Fachpublikum bleiben erlaubt
+no B9  "Die Kampagne läuft datengetrieben über einen skalierbaren Funnel."
+
 echo "== E3 Generik-Test =="
 # Gefunden beim Schlusscheck: Slop OHNE gelistete Woerter passierte das Gate.
 # "Als erfahrener Partner an Ihrer Seite..." enthaelt kein verbotenes Muster,

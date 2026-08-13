@@ -161,6 +161,30 @@ eigene Information, nicht nur ein Adjektiv.
 "Sag Goodbye zu X", "Das ändert alles", "X-Theater", "der Game-Changer",
 "auf das nächste Level", "endlich verstehen".
 
+### B8. Fake-Dringlichkeit
+Knappheit ohne prüfbaren Grund. Eine Zahl daneben macht sie nicht belegt.
+
+"bevor es zu spät ist" · "nur noch wenige" · "nur für kurze Zeit" ·
+"sichere dir jetzt" · "verpasse nicht" · "die Nachfrage ist enorm" ·
+"letzte Chance" · "nur solange der Vorrat reicht"
+
+- ✗ "Nur noch 3 Plätze frei! Sichere dir jetzt deinen Platz, bevor es zu spät ist."
+- ✓ "Wir nehmen im Januar vier neue Betriebe auf. Mehr schafft unser Team nicht."
+
+**Der Unterschied:** Echte Knappheit nennt den Grund und ist überprüfbar
+(Team-Größe, Kapazität, Termin). Fake-Dringlichkeit behauptet nur Druck.
+
+### B9. Buzzword-Kette
+Drei oder mehr Marketing-Abstrakta in einem Satz. Einzeln sind sie gegenüber
+Fachpublikum erlaubt. Die Häufung ist das Signal.
+
+datengetrieben · skalierbar · Growth · Automatisierung · nachhaltig ·
+dynamisch · ganzheitlich · innovativ · strategisch · effizient · agil ·
+Transformation · Synergie · Potenzial · KI-gestützt · kundenzentriert
+
+- ✗ "Datengetriebene, skalierbare Growth-Strategien mit KI-gestützter Automatisierung."
+- ✓ "Die Kampagne läuft datengetrieben über einen skalierbaren Funnel."
+
 ### B6. Doppelpunkt-Enthüllung
 "Die Wahrheit ist: …", "Das Problem: …", "Die Lösung: …"
 Max. 1 pro Text.
@@ -214,7 +238,7 @@ Nie. Auch nicht als "Beispiel-Platzhalter" ohne sichtbare `[PLATZHALTER]`-Markie
 Frage vor Abgabe: "Könnte dieser Text für JEDEN Kunden dieser Branche stehen?"
 Falls ja → eine konkrete Zahl, ein Eigenname oder eine echte Konsequenz einsetzen.
 
-**Maschinell (ab 25 Wörtern):** Ein Text braucht mindestens einen Beleg —
+**Maschinell (ab 25 Wörtern):** Ein Text braucht mindestens einen Beleg:
 eine Zahl, eine Frist, einen Betrag oder einen Ortsnamen. Null Belege heißt
 austauschbar.
 
