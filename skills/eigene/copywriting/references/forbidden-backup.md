@@ -214,6 +214,20 @@ Nie. Auch nicht als "Beispiel-Platzhalter" ohne sichtbare `[PLATZHALTER]`-Markie
 Frage vor Abgabe: "Könnte dieser Text für JEDEN Kunden dieser Branche stehen?"
 Falls ja → eine konkrete Zahl, ein Eigenname oder eine echte Konsequenz einsetzen.
 
+**Maschinell (ab 25 Wörtern):** Ein Text braucht mindestens einen Beleg —
+eine Zahl, eine Frist, einen Betrag oder einen Ortsnamen. Null Belege heißt
+austauschbar.
+
+- ✗ "Als erfahrener Partner an Ihrer Seite begleiten wir Sie auf dem Weg zu
+  mehr Sichtbarkeit. Unsere Experten entwickeln gemeinsam mit Ihnen eine
+  Strategie, die zu Ihrem Unternehmen passt."
+- ✓ "1257 Kunden bewerten uns mit 5,0. Dein Angebot kommt in 24 Stunden."
+
+**Warum das eine eigene Regel ist:** Der Text oben enthält kein einziges
+verbotenes Muster. Keine Antithese, kein Staccato-Paar, kein gelistetes
+Wert-Adjektiv. Er passierte das Gate mit Exit 0 und ist trotzdem reiner Slop.
+Die Muster-Regeln A–D finden Slop-**Formen**. E3 findet Slop-**Leere**.
+
 ---
 
 ## F. Neu erwischt (Log)

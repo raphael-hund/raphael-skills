@@ -75,6 +75,18 @@ no FEHLER "Wärmepumpe kaputt? Neue in 48 Stunden."
 no FEHLER "Die Anlage deckt 85 Prozent deines Strombedarfs."
 no FEHLER "Wir entrümpeln zum Festpreis. Du zahlst erst nach der Übergabe. 1257 Kunden haben uns mit 5,0 bewertet."
 
+echo "== E3 Generik-Test =="
+# Gefunden beim Schlusscheck: Slop OHNE gelistete Woerter passierte das Gate.
+# "Als erfahrener Partner an Ihrer Seite..." enthaelt kein verbotenes Muster,
+# ist aber vollstaendig austauschbar. Messbar ueber fehlende Belegdichte.
+hit E3 "Als erfahrener Partner an Ihrer Seite begleiten wir Sie auf dem Weg zu mehr Sichtbarkeit. Unsere Experten entwickeln gemeinsam mit Ihnen eine Strategie, die zu Ihrem Unternehmen passt. Vertrauen Sie auf unsere langjährige Erfahrung."
+# Zahl im Text -> Beleg vorhanden -> kein E3
+no E3  "Wir entrümpeln deine Wohnung zum Festpreis. Du zahlst erst nach der Übergabe. 1257 Kunden haben uns auf Google mit 5,0 bewertet. Das Angebot kommt in 24 Stunden bei dir an."
+# Unter 25 Woerter: Hooks und Zeilen werden nicht auf Belegdichte geprueft
+no E3  "Wärmepumpe kaputt? Wir kommen noch heute vorbei."
+# Frist statt Zahl reicht als Beleg
+no E3  "Du bekommst dein Angebot binnen 48 Stunden. Wir melden uns persönlich bei dir und klären offene Fragen im Gespräch, bevor irgendetwas beauftragt wird."
+
 echo "== End-to-End: ganze Ad-Copy =="
 # Ein Text mit sechs eingebauten Slop-Stellen muss blocken, die redigierte
 # Fassung desselben Texts muss durchgehen. Faengt Regex-Aenderungen, die nur

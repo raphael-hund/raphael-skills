@@ -373,6 +373,35 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
     if dp > C_GRENZEN["doppelpunkt_enthuellung"]:
         fehler.append(f"[C] {dp} Doppelpunkt-Enthüllungen (max 1)")
 
+    # E3: Generik-Test, maschinell.
+    #
+    # Die Muster-Regeln oben finden Slop-FORMEN. Sie finden keine Slop-LEERE:
+    # "Als erfahrener Partner an Ihrer Seite begleiten wir Sie auf dem Weg zu
+    # mehr Sichtbarkeit" enthaelt kein verbotenes Wort und passierte das Gate.
+    # Ein Text ohne jede Zahl und ohne Eigennamen kann fuer jeden Wettbewerber
+    # derselben Branche stehen. Das ist messbar.
+    # Eine Eigennamen-Heuristik scheitert am Deutschen: dort ist JEDES
+    # Substantiv gross. Messbar ist stattdessen die Belegdichte — Zahl,
+    # Zeitangabe, Waehrung, Prozent, Ortsname mit Praeposition.
+    if not doku and woerter >= 25:
+        belege = 0
+        if re.search(r"\d", body):
+            belege += 1
+        if re.search(r"\b(?:in|nach|binnen|innerhalb)\s+\w*\s*\d", body, re.I):
+            belege += 1
+        if re.search(r"[€$%]|\bEuro\b|\bProzent\b", body, re.I):
+            belege += 1
+        if re.search(r"\b(?:aus|in)\s+[A-ZÄÖÜ][a-zäöüß]{3,}(?:\s|,|\.)", body):
+            belege += 1
+
+        if belege == 0:
+            fehler.append(
+                f"[E3] Generik-Verdacht: kein einziger Beleg auf {woerter} Wörter "
+                f"(keine Zahl, keine Frist, kein Betrag, kein Ort). Der Text "
+                f"könnte für jeden Wettbewerber derselben Branche stehen. "
+                f"Eine belegte Zahl oder eine echte Konsequenz einsetzen."
+            )
+
     # A1/A6/A7: Satzrhythmus
     saetze = _saetze(body)
     laengen = [len(s.split()) for s in saetze]
