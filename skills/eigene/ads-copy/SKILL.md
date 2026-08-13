@@ -35,6 +35,18 @@ requires_skills:
 
 # ads-copy — der Text unter der Anzeige
 
+## Schritt 0 — Wissens-Landkarte laden (PFLICHT, vor dem ersten Satz)
+
+```bash
+python3 /root/raphael-brain/scripts/brain-context.py index craft/ads
+```
+
+Liefert alle freigegebenen Ads-Wissensseiten mit Titel und TLDR (~17.000 Zeichen, keine
+Volltexte). Lies daraus die 1–3 passenden Seiten per Read-Tool nach — besonders alles zu
+Hook, Angle und Offer. Nie aus dem Gedächtnis texten.
+
+Läuft der Befehl nicht, melde `BLOCKED` statt zu raten.
+
 ## Zweck (1 Satz)
 
 Einen Primary Text schreiben, der wie die Texte aussieht, die im Markt tatsächlich

@@ -39,10 +39,31 @@ completion_criteria:
 
 # ads — Loop 3: Paid Ads
 
-**Lies zuerst:**
-`/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`
-(Dossier aus Loop 1: Pflicht-Voraussetzung),
-`/root/raphael-brain/wiki/craft/hooks/` (Swipe-File), `/root/raphael-brain/wiki/hot.md`.
+## Schritt 0 — Wissens-Landkarte laden (PFLICHT, vor allem anderen)
+
+```bash
+python3 /root/raphael-brain/scripts/brain-context.py index craft/ads
+```
+
+Das liefert **alle** freigegebenen Ads-Wissensseiten mit Titel und TLDR (rund 17.000
+Zeichen, keine Volltexte). Lies daraus die 1–3 Seiten, die zur Aufgabe passen, mit dem
+Read-Tool nach. Nie aus dem Gedächtnis diagnostizieren, nie alle Seiten laden.
+
+Der Befehl ersetzt jede handgetippte Pfadliste: Er zeigt den echten Stand des Wikis,
+auch nach Freigaben und Umzügen. Läuft er nicht, melde `BLOCKED` statt zu raten.
+
+**Danach lies das Dossier — der Ort hängt vom Kunden ab:**
+
+| Kunde | Dossier liegt in |
+|---|---|
+| **MAKE** (`kunde: make`) — die Agentur ist ihr eigener Kunde | `/root/raphael-brain/wiki/company/` → `icp/` (9 Seiten), `offer/`, `voice/`. Landkarte: `brain-context.py index company` |
+| jeder andere Kunde | `/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md` (Dossier aus Loop 1) |
+
+Dazu: `/root/raphael-brain/wiki/craft/hooks/` (Swipe-File), `/root/raphael-brain/wiki/hot.md`.
+
+Fehlt das Dossier am erwarteten Ort, ist das ein Blocker: melde ihn, statt ICP, Offer
+oder Voice zu raten. Stand 13.08.2026 hat **kein** Kundenrepo ein `wiki/ICP.md` —
+für alle Kunden außer MAKE muss Loop 1 (`onboard`) das Dossier erst erzeugen.
 
 ## Zweck (1 Satz)
 

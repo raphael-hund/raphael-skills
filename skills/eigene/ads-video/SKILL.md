@@ -47,6 +47,18 @@ completion_criteria:
 
 # ads-video — Video-Ad-Skripte aus Markt-Craft + Kunden-Layer
 
+## Schritt 0 — Wissens-Landkarte laden (PFLICHT, vor dem ersten Beat)
+
+```bash
+python3 /root/raphael-brain/scripts/brain-context.py index craft/ads
+```
+
+Liefert alle freigegebenen Ads-Wissensseiten mit Titel und TLDR (~17.000 Zeichen, keine
+Volltexte). Lies daraus die 1–3 passenden Seiten per Read-Tool nach — besonders zu
+Hook-Typen, Skript-Struktur und Awareness-Stufe. Nie aus dem Gedächtnis schreiben.
+
+Läuft der Befehl nicht, melde `BLOCKED` statt zu raten.
+
 **Aufruf:** `ads-video(kunde: slug [pflicht], anzahl: int = 3)`
 
 **Version 0.3 (2026-08-11):** generalisiert, Craft-Kern gilt für jeden Kunden,

@@ -1,5 +1,14 @@
 # Wissens-Router (Second Brain) — ads
 
+> **Der Ladebefehl schlägt diese Datei.** Den echten, tagesaktuellen Bestand liefert:
+> `python3 /root/raphael-brain/scripts/brain-context.py index craft/ads`
+> Diese Tabellen sind nur eine Lesehilfe für die häufigsten Fälle. Bei jedem
+> Widerspruch zwischen Tabelle und Ladebefehl gilt der Ladebefehl.
+>
+> Grund: Die Tabellen unten waren von Hand gepflegt und standen am 13.08.2026 noch
+> auf dem Stand vom 23.07. — 13 von 68 Pfaden zeigten ins Leere, weil freigegebene
+> Seiten umgezogen waren. Handgetippte Pfadlisten veralten still. Der Ladebefehl nicht.
+
 Die früheren ~39 Einzel-Slash-Skills sind jetzt belegte Wissensseiten unter dem Pfad
 `/root/raphael-brain/wiki/craft/ads/` (Unterordner: grundlagen/ plattformen/ creative/ messung/ strategie/). Trifft eine Aufgabe ein Spezialthema,
 lies die passende Seite mit dem **Read-Tool** nach, *bevor* du arbeitest: nie aus dem
@@ -84,15 +93,18 @@ Diese datierten Seiten in `wiki/craft/ads/` (bzw. die eigenen Konto-Seiten unter
 
 **Kern vs. Tiefe:** Die operativen `references/` (loop3-ablauf, hook-taxonomie, claims-verbote, static-ad-templates) sind der **Kern** jeder Arbeit; die Brain-Seiten oben sind **Tiefen-Nachschlag** für Spezialfälle. Bei Themen-Überschneidung (z. B. „Copy erzeugen": reference vs. `creative/ads-create.md`) **führt die `references/`-Quelle**.
 
-## Konsolidierte Themen-Seiten (Stand 23.07., noch Candidates)
+## Konsolidierte Themen-Seiten — ERLEDIGT, Tabelle veraltet
 
-Die zehn Seiten unten liegen unter
-`/root/raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/` und tragen Stand 23.07. noch
-`status: candidate`. Sie sind aus dem Ads-Wissenspaket 2 synthetisiert, aber noch **nicht**
-freigegeben und gemergt. Jede Candidate-Seite nennt in ihrem eigenen Frontmatter (`merge_into:`)
-die kanonische Wiki-Zielseite. Bis zur Freigabe zuerst die Candidate-Seite lesen; nach der
-Freigabe (Review-Inbox, Raphaels Signatur) wandert der Inhalt an den `merge_into`-Pfad. Dann
-dort statt im Candidates-Ordner nachschlagen.
+> **Diese zehn Seiten sind seit dem 23./24.07.2026 freigegeben.** Der Ordner
+> `wiki/_candidates/konsolidiert-2026-07-23/` existiert nicht mehr; sein Inhalt liegt
+> kanonisch im Wiki (drei davon unter `wiki/craft/ads/nugget-sammlungen/`, der Rest
+> thematisch eingearbeitet). Die Tabelle unten nennt darum teils tote Pfade.
+>
+> **Nicht mehr nach diesen Dateinamen suchen.** Nimm den Ladebefehl:
+> `python3 /root/raphael-brain/scripts/brain-context.py index craft/ads`
+>
+> Die Tabelle bleibt nur als Themen-Landkarte stehen: Sie sagt gut, *welche Frage*
+> zu welchem Themenfeld gehört. Die Pfade in Klammern sind nicht mehr verlässlich.
 
 | Situation | Candidate-Seite (Stand 23.07.) | Inhalt |
 |---|---|---|

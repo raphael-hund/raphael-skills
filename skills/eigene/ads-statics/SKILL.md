@@ -32,9 +32,20 @@ completion_criteria:
 
 **Aufruf:** `ads-statics(kunde: slug [pflicht], welle: int = 1)`
 
+**Schritt 0 — Wissens-Landkarte laden (PFLICHT):**
+
+```bash
+python3 /root/raphael-brain/scripts/brain-context.py index craft/ads
+```
+
+Liefert alle freigegebenen Ads-Wissensseiten mit Titel und TLDR (~17.000 Zeichen, keine
+Volltexte). Lies daraus die 1–3 passenden Seiten per Read-Tool nach. Läuft der Befehl
+nicht, melde `BLOCKED` statt zu raten.
+
 **Lies zuerst:**
 - MAKE (`kunde: make`, Sonderfall: Agentur ist eigener Kunde, ICP/Offer/Voice liegen im
   gemeinsamen Brain statt in einem Kundenrepo-Wiki): `/root/raphael-brain/wiki/company/`
+  (Landkarte: `brain-context.py index company`)
   (`icp/`, `offer/`, `voice/`) + bisherige Statics/Ad-Artefakte als Stil-Referenz
   `/root/clients/client-make/ads/statics/`.
 - Alle anderen Kunden: `/root/clients/client-<slug>/wiki/` (Dossier-Dateien aus Loop 1:
