@@ -1,32 +1,25 @@
-# agents/ — Subagenten-Rollen-Templates
+# agents/ — Rollen, nicht Modelle
 
-Wiederverwendbare Subagenten-Rollen mit **fest verdrahtetem Modell + Effort** (AGENTS.md
-Regel 7: Subagents nie ohne festes Modell/Effort losschicken — sonst erben sie das teure
-Leader-Setup). Zentral hier gepflegt, per Symlink/Kopie in die Harnesses/Kundenrepos
-(`.claude/agents/*.md`) verteilt.
+Eine Rolle ist der Auftrag. Ein Modell ist die Besetzung.
+Quelle der Besetzung: [ROLE-CAST.md](ROLE-CAST.md).
 
-**Herkunft:** Rollen-Schnitt adaptiert aus gstack (garrytan) @ `a3259400` — dort als
-Slash-Commands (`/spec`, `/review`, `/qa`, `/retro`, `/ship`). Übernommen wurden NUR die
-Rollen-Definitionen (Aufgabenzuschnitt), KEIN gstack-Code, KEINE Concurrency-Limits.
-Modell + Effort je Rolle nach `raphael-command-center/ops/ROUTING.md` / KLARER-PLAN Kap. 3.
+Lane-Wrapper (`kimi-worker`, `grok-worker`, `luna-worker`, …) bleiben
+Transport. Rollen heißen nach dem Job.
 
-**Kein Concurrency-Limit** (KLARER-PLAN Kap. 3: „Subagenten: Kein Limit") — so viele
-parallel, wie die Aufgabe braucht.
+Bei Ads, Copy, Skript, Frontend: **zwei Modelle parallel**.
+Prüfer = andere Familie.
 
-**Cross-Vendor-Prinzip (Regel 8):** Nichts prüft die eigene Hausarbeit. Der Builder
-(`engineer`, Claude/Sonnet) wird von einer ANDEREN Modellfamilie geprüft (`reviewer` = Sol,
-`qa` = Luna, beide GPT-5.6). Fable prüft nie Fable, Sonnet nie Sonnet.
+| Rolle | Auftrag | Doppel-Besetzung |
+|---|---|---|
+| `ads` | Angles, Testwelle, Kill-Keep | Kimi + Opus (+ Grok) |
+| `copywriter` | DE-Verkaufstext | Opus + Kimi (+ Grok) |
+| `scriptwriter` | Video-Ad-Skript | Kimi + Opus (+ Grok) |
+| `frontend` | Seite / UI | Opus + Kimi (+ Grok) |
+| `pm` | Spec / Plan | Fable + Grok |
+| `engineer` | Ticket / Fix | Grok + Sol |
+| `reviewer` | Diff prüfen | andere Familie als Builder |
+| `qa` | Flow fahren | Luna + Grok |
+| `retro` | Historie | Kimi + Grok |
 
-| Rolle | Modell | Effort | Aufruf-Weg | Auftragsschnitt |
-|---|---|---|---|---|
-| `pm` | Fable | medium | Agent-Typ `pm` / `cc` → `/model fable` | Planen, Spec, entscheiden |
-| `engineer` | Sonnet | xhigh | Agent-Typ `engineer` / `cc` → `/model sonnet` | Bauen, umsetzen, Tests schreiben |
-| `reviewer` | Sol (GPT-5.6) | high | Agent-Typ `reviewer` (nicht `sol-pruefer`) | Cross-Vendor-Review |
-| `qa` | Luna (GPT-5.6) | max | Agent-Typ `qa` (nicht `luna-worker`) | Tests fahren, App treiben |
-| `retro` | Kimi K3 (1M) | high | Agent-Typ `retro` / `kimi -p` | Retro über Historie |
-
-Installiert 13.08.2026 in `~/.claude/agents/`, `~/.grok/agents/` und die Spiegel unter `raphael-command-center`. Das sind Rollen, keine weiteren Lane-Wrapper.
-
-Effort für GPT-Profile steckt in den Codex-V2-Profildateien (`sol/terra/luna.config.toml`),
-für Kimi in `~/.kimi-code/config.toml` (`k3.default_effort=high`). Für Claude-Modelle wird
-Effort im Prompt/Aufruf gesetzt (Standard = kein Override).
+Installiert in `~/.claude/agents/`, `~/.grok/agents/` und die Spiegel
+unter `raphael-command-center`.
