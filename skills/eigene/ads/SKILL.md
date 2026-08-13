@@ -62,8 +62,11 @@ auch nach Freigaben und Umzügen. Läuft er nicht, melde `BLOCKED` statt zu rate
 Dazu: `/root/raphael-brain/wiki/craft/hooks/` (Swipe-File), `/root/raphael-brain/wiki/hot.md`.
 
 Fehlt das Dossier am erwarteten Ort, ist das ein Blocker: melde ihn, statt ICP, Offer
-oder Voice zu raten. Stand 13.08.2026 hat **kein** Kundenrepo ein `wiki/ICP.md` —
-für alle Kunden außer MAKE muss Loop 1 (`onboard`) das Dossier erst erzeugen.
+oder Voice zu raten.
+
+Stand 13.08.2026 ist **MAKE der einzige Ads-Kunde**; sein Dossier liegt vollständig im
+Brain (14 freigegebene Seiten unter `wiki/company/`). Kommt ein neuer Ads-Kunde dazu,
+erzeugt Loop 1 (`onboard`) zuerst sein Dossier im Kundenrepo — ohne das kein Ads-Start.
 
 ## Zweck (1 Satz)
 
