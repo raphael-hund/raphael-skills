@@ -16,33 +16,33 @@
     },
     {
       "name": "ads-copy",
-      "version": "1.3.0",
+      "version": "2.0.0",
       "path": "skills/eigene/ads-copy/SKILL.md",
-      "description": "Feuert für den Primary Text einer Meta-Ad: den Fliesstext über/unter dem Creative, plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads von 10 Werbetreibenden (Marc Evers, Speedscaling, SEOLabs, Neuhaus Digital, Pascal Harting, Dr. Matt Shiver, Charlie Morgan, Ben Heath, Enpal, Tim Krasenbrink) statt aus dem Gefühl. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\", \"Text zur Anzeige\", \"Ad Copy\". Für Video-Skripte siehe ads-video, für Statics-Briefs ads-statics, für den Loop-3-Ablauf ads."
+      "description": "Zeigt auf ads Teil Statics für Primary Text unter der Anzeige. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\"."
     },
     {
       "name": "ads-research",
-      "version": "0.1.0",
+      "version": "2.0.0",
       "path": "skills/eigene/ads-research/SKILL.md",
-      "description": "Zieht echte laufende Konkurrenz-Ads ueber die Meta Ad Library API (ads_archive, Graph v26.0) und wertet sie nach Struktur aus: Hook-Typ, Story-Aufbau, Szenen-Takt, Beweisform, CTA. Laufzeit ist der Performance-Proxy — was ueber 30 Tage laeuft, funktioniert. Trigger: \"Konkurrenz-Ads ziehen\", \"Ad Library\", \"was schaltet <Firma>\", \"Swipe-File bauen\", \"Marktscan Ads\", \"welche Ads laufen lange\". Liefert Rohmaterial fuer ads (Angles), ads-video (Skripte) und ads-copy (Primary Text) — schreibt selbst keine Creatives."
+      "description": "Zeigt auf ads Teil Research. Angle-Dossier mit Beleg. Trigger: \"Angle-Dossier\", \"Ads-Recherche\", \"Konkurrenz-Ads ziehen\", \"Ad Library\", \"Marktscan Ads\"."
     },
     {
       "name": "ads-statics",
-      "version": "0.4.0",
+      "version": "2.0.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
-      "description": "Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs, Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"Angle-Matrix für Creatives\". Ergänzt ads (Loop 3, Schritt 6 „statics\") um die Tiefe der Visual-Style- und Copy-Bauform-Wahl; Bild-Erzeugung selbst bleibt bei design/Bildgenerierung-Policy."
+      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\"."
     },
     {
       "name": "ads-video",
-      "version": "0.7.0",
+      "version": "2.0.0",
       "path": "skills/eigene/ads-video/SKILL.md",
-      "description": "Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan. Trigger: \"Video-Skript schreiben\", \"Ad-Skript\", \"Drehbuch für Ads\", \"Skripte für Testwelle\", \"Hook-Varianten fürs Video\". Funktioniert für jeden Kunden: Craft kommt Pflicht aus den Markt-Referenzen (Hooks, Architekturen, Sprache, Strategien/Taktiken, Referenz-Volltexte), Performance-Daten optional aus dem Kundenrepo. Schreibt nie aus dem Gedächtnis, endet erst nach no-ai-slop-Pass + Messlatte."
+      "description": "Zeigt auf ads Teil Video. Video-Ad-Skripte, gesprochener Sprechtext. Trigger: \"Video-Skript schreiben\", \"Ad-Skript\", \"Ads Scripts\", \"Drehbuch für Ads\", \"Hook-Varianten fürs Video\"."
     },
     {
       "name": "ads",
-      "version": "0.10.0",
+      "version": "2.0.0",
       "path": "skills/eigene/ads/SKILL.md",
-      "description": "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics`: dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach"
+      "description": "Ein Skill für Paid Ads. Vier Teile: ICP, Research, Video-Skript, Statics. Video-Skripte klingen wie eine Sprachnachricht. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"Konto-Audit\"."
     },
     {
       "name": "brain",
@@ -166,9 +166,9 @@
     },
     {
       "name": "seo",
-      "version": "0.6.1",
+      "version": "0.7.1",
       "path": "skills/eigene/seo/SKILL.md",
-      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\". Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)"
+      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\"."
     },
     {
       "name": "taste",
@@ -202,7 +202,7 @@
     },
     {
       "name": "web",
-      "version": "0.13.1",
+      "version": "0.14.0",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) delegiert er an den design-Skill. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },
