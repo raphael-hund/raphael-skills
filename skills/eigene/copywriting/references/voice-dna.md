@@ -47,8 +47,8 @@ Muster, das trägt: **lang → kurz → mittel**.
 > irgendetwas entscheidest."
 
 ### Regel R2 — Fragment sparsam
-Ein Fragment (Satz ohne Verb) pro Sektion. Nie zwei hintereinander — das wäre
-ein Staccato-Paar (`forbidden.md` A1).
+Ein Fragment (Satz ohne Verb) pro Sektion. Zwei hintereinander ergeben ein
+Staccato-Paar (`forbidden.md` A1).
 
 - ✓ "Festpreis. Und das Angebot kommt in 24 Stunden."
 - ✗ "Kein Warten. Kein Vertrösten."
@@ -107,7 +107,7 @@ Gegenüber Endkunden (Hausbesitzer, Privatperson): keiner davon.
 **Default: Duzen.** Fünf von sechs Referenzstilen duzen.
 
 **Siezen nur bei:** hoher Kaufpreis (> 10.000 €) UND breiter Zielgruppe mit
-älteren Käufern (Stil 6, Enpal-Muster). Dann warm siezen, nicht steif.
+älteren Käufern (Stil 6, Enpal-Muster). Dann warm siezen.
 
 **Nie mischen.** Ein Wechsel Du→Sie innerhalb einer Seite ist der dokumentierte
 Rümpelwelt-Fehler. Vor dem Schreiben festlegen, danach durchhalten.
@@ -143,7 +143,8 @@ Jede Referenzseite belegt anders. Das Muster folgt dem Preis:
 
 ## 7. Kanal-Dials
 
-Dieselbe Idee klingt je Kanal anders. Voice bleibt, Ton flext.
+Dieselbe Idee klingt je Kanal anders. Die Voice bleibt konstant, während der
+Ton sich dem Kanal anpasst.
 
 | Kanal | Satzlänge | Fragmente | Zahl-Dichte | CTA |
 |---|---|---|---|---|

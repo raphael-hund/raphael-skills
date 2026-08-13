@@ -24,8 +24,8 @@
 **Leser-Zustand:** Er wollte diese Anzeige nicht sehen.
 
 - Erster Satz = Hook. Zahl, Einwand oder Leser-Alltag. Nie Firmenname.
-- Absätze max. 2 Zeilen. Mobile ist Standard, nicht Ausnahme.
-- Ein Fragment erlaubt, nicht zwei (`forbidden.md` A1).
+- Absätze max. 2 Zeilen. Schreibe jeden Text zuerst für das Handy.
+- Höchstens ein Fragment pro Absatz (`forbidden.md` A1).
 - Der Beweis folgt nach dem Hook, in der Mitte des Textes. Der Hook trägt allein.
 - CTA am Ende, EIN Satz, mit Risiko-Umkehr.
 
@@ -40,7 +40,7 @@ Detail: Skill `ads-copy`.
 - Schreibe so, wie Menschen sprechen. 6–12 Wörter pro Satz.
 - Erster Satz muss auch als Einblendung funktionieren.
 - Zahl in Sekunde 1–3.
-- Keine Nebensätze. Kein Nominalstil (`forbidden.md` D1).
+- Löse Nebensätze in eigene Sätze auf. Kein Nominalstil (`forbidden.md` D1).
 - CTA in den letzten 3 Sekunden, einmal.
 
 Detail: Skill `ads-video` + dessen `voice-dna-ads.md`.
@@ -78,7 +78,7 @@ Detail: Skill `emails` (Sequenzen), copywriting nur für Ton.
 
 ## SEO-Artikel
 
-**Leser-Zustand:** Hat eine Frage. Will die Antwort, nicht den Aufbau.
+**Leser-Zustand:** Hat eine Frage. Will sofort die Antwort lesen.
 
 - Antwort steht im ersten Absatz. Kein Aufbau-Text davor.
 - Zwischenüberschriften sind echte Fragen oder echte Aussagen, keine Ein-Wort-Label.
@@ -92,7 +92,7 @@ Detail: Skill `seo`.
 
 ## X / LinkedIn
 
-**Leser-Zustand:** Sozialer Feed. Bewertet die Person, nicht das Angebot.
+**Leser-Zustand:** Sozialer Feed. Bewertet zuerst die Person hinter dem Text.
 
 - Zeile 1 = die ganze Behauptung. Sie muss allein stehen können.
 - Keine Aufzählung mit Emoji-Bullets als Ersatz für Denken.
@@ -104,7 +104,7 @@ Detail: Skill `seo`.
 
 ## Ablauf für Multi-Kanal-Aufträge
 
-Eine Idee, mehrere Kanäle — so:
+Eine Idee auf mehrere Kanäle bringen:
 
 1. **Kern in einem Satz** schreiben. Wer, Problem, was, Beleg.
 2. **Pro Kanal neu bauen** aus diesem Satz. Nie den längsten Text kürzen.

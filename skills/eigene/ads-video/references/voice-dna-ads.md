@@ -85,7 +85,7 @@ Gemessen: Feld "cta", 322 gefüllte Records. Wörtliche exakte Strings dominiere
 | Enthält "link in/unten" | 7 |
 | Enthält "ruft dich an" / "rufe dich" / "Anruf" | 4 |
 
-Bei 322 CTA-Feldern ist "Learn more" mit 136 (42,2 %) der häufigste einzelne Wert — das ist der Standard-Meta-Button, kein handgeschriebener CTA. Die handgeschriebenen deutschen CTAs sind überwiegend Long-Tail (fast jeder Wortlaut kommt nur 1–2 Mal vor); das Muster liegt im Cluster "Klick(e)" (51 Treffer) und "Trag dich ein" (22 Treffer), nicht in einem einzelnen Satz.
+Bei 322 CTA-Feldern ist "Learn more" mit 136 (42,2 %) der häufigste einzelne Wert. Dahinter steht der Standard-Meta-Button, den die Plattform selbst setzt. Die handgeschriebenen deutschen CTAs sind überwiegend Long-Tail: fast jeder Wortlaut kommt nur 1–2 Mal vor. Das verwertbare Muster liegt deshalb in den Clustern "Klick(e)" (51 Treffer) und "Trag dich ein" (22 Treffer).
 
 ## Skriptstrukturen
 
@@ -153,7 +153,7 @@ Gemessen: nur wörtlich zitierte Hook-Fragmente (Text in Anführungszeichen inne
 | 29 | ads | 5 |
 | 30 | raus | 5 |
 
-"Ich" ist mit Abstand das häufigste Inhaltswort — Hooks sprechen oft in Ich-Form vom Anbieter ("Ich bringe dich auf...").
+"Ich" ist mit Abstand das häufigste Inhaltswort. Hooks sprechen oft in Ich-Form vom Anbieter ("Ich bringe dich auf...").
 
 ## 20 Original-Hook-Zitate (Stilvorlage)
 
@@ -218,7 +218,7 @@ Gemessen: nur wörtlich zitierte Hook-Fragmente (Text in Anführungszeichen inne
 
 Beleg für kurz: "Leiter von Bildungseinrichtungen aufgepasst!" (4 Wörter, Neuhaus Digital).
 Beleg für lang mit Zahl: "Ich bringe dich in den nächsten 31 Tagen auf Platz 1 bei
-Google oder du bezahlst mir keinen Cent." (Pascal Harting) — trägt, weil Zahl + Garantie.
+Google oder du bezahlst mir keinen Cent." (Pascal Harting). Trägt wegen Zahl plus Garantie.
 
 ## V2 — Fragment vor Frage
 
@@ -235,8 +235,8 @@ Staccato-Paar und damit ein Fail (`/root/.claude/forbidden.md` A1).
 
 30,1 % der Hooks haben eine Ziffer im ersten Satz.
 
-**Regel:** Zahl in Sekunde 1–3. Exakt, nicht gerundet. "170.000 Euro" schlägt
-"über 170.000 Euro". "7 Monaten" schlägt "wenigen Monaten".
+**Regel:** Zahl in Sekunde 1–3, immer auf die genaue Stelle. "170.000 Euro"
+schlägt "über 170.000 Euro", weil eine gerundete Zahl nach Schätzung klingt.
 Zahl ohne belegbare Quelle kommt nicht ins Skript (`forbidden.md` E1).
 
 ## V4 — Anrede
@@ -271,7 +271,8 @@ Firmen ohne Gesicht bleiben bei "Wir".
 | Garantie | 21 | Garantie ist echt und einklagbar |
 
 **Regel:** Callout ist der sicherste Einstieg bei scharfer Zielgruppe. Proof nur
-mit belegbarer Zahl. Nightmare (16) sparsam — Angst ohne Auflösung verbrennt Vertrauen.
+mit belegbarer Zahl. Nightmare (16) sparsam einsetzen. Angst ohne Auflösung
+verbrennt Vertrauen.
 
 ## V7 — Angle-Wahl
 
@@ -293,8 +294,9 @@ nur bei unter 20 Sekunden Laufzeit.
 
 ## V9 — CTA
 
-"Learn more" (136 von 322) ist der Meta-Standard-Button, kein geschriebener CTA.
-Die geschriebenen deutschen CTAs sind Long-Tail — das Cluster liegt bei
+"Learn more" (136 von 322) ist der Meta-Standard-Button. Die Plattform setzt ihn
+selbst, ein Texter schreibt ihn nie.
+Die geschriebenen deutschen CTAs sind Long-Tail. Das Cluster liegt bei
 "Klick(e)" (51) und "Trag dich ein" (22).
 
 **Regel:** Der gesprochene CTA sagt, was der Zuschauer bekommt, plus die
@@ -343,5 +345,5 @@ Sechs Fragen. Ein Nein = zurück ins Skript.
 ## Wartung
 
 Korpus neu ziehen: `bash scripts/export-airtable-korpus.sh`
-Danach die Zahlen in Teil 1 neu messen und die Regeln in Teil 2 prüfen —
-verschieben sich Median oder Anteile deutlich, wandern die Regeln mit.
+Danach die Zahlen in Teil 1 neu messen und die Regeln in Teil 2 prüfen.
+Verschieben sich Median oder Anteile deutlich, wandern die Regeln mit.

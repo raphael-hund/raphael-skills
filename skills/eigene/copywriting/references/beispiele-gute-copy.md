@@ -36,7 +36,7 @@ Headline (A1). Wir übernehmen ausschließlich das Beweis-Muster.
 
 **Warum es trägt:** Satz 2 beschreibt den Alltag des Lesers in dessen eigener
 Sprache, bevor irgendein Angebot kommt. Satz 3 differenziert über einen echten
-Schmerz mit der Konkurrenz, nicht über Eigenlob.
+Schmerz mit der Konkurrenz.
 
 **Übertragbar:** Problem-Spiegel vor Angebot. Formuliere die
 Wettbewerber-Differenzierung als Erfahrung des Lesers.
@@ -111,7 +111,7 @@ vor … und Enpal.One+ als das Gehirn." — Isokolon-Metapher-Paar (`forbidden.m
 1. Exakte Zahl schlägt gerundete Zahl. "70.925 €" schlägt "über 70.000 €".
 2. Der Leser-Alltag steht vor dem Angebot.
 3. Der Einwand steht im Text, bevor der Leser ihn denkt.
-4. Der CTA verspricht einen Wert, keine Kontaktaufnahme.
+4. Der CTA verspricht dem Leser einen konkreten Wert.
 5. Ein CTA-Text, überall gleich.
 6. Proof nie weiter als einen Viewport vom CTA.
 
@@ -119,5 +119,5 @@ vor … und Enpal.One+ als das Gehirn." — Isokolon-Metapher-Paar (`forbidden.m
 
 Neue Referenzseite gefunden, die überzeugt? Hier eintragen mit:
 Original-Zitate wörtlich · warum es trägt · was NICHT kopiert wird (Slop-Anteil).
-Nie ohne den dritten Punkt — jede Referenzseite enthält auch Muster,
+Nie ohne den dritten Punkt. Jede Referenzseite enthält auch Muster,
 die in `forbidden.md` stehen.
