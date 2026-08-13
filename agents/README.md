@@ -20,6 +20,16 @@ Prüfer = andere Familie.
 | `reviewer` | Diff prüfen | andere Familie als Builder |
 | `qa` | Flow fahren | Luna + Grok |
 | `retro` | Historie | Kimi + Grok |
+| `explorer` | nur lesen | Luna + Grok |
+| `architect` | Schnitt | Fable + Grok |
+| `planning-critic` | Plan zerreißen | andere Familie |
+| `security` | Risiken | Sol + Grok |
+| `researcher` | Quellen | Kimi + Grok |
+| `prototyper` | Spike | Grok + Kimi |
+| `sweeper` | aufräumen | Grok + Luna |
+| `synthesizer` | zwei zu eins | andere Familie |
+| `triager` | sortieren | Luna + Grok |
+| `test-writer` | Tests | Luna + Grok |
 
 Installiert in `~/.claude/agents/`, `~/.grok/agents/` und die Spiegel
 unter `raphael-command-center`.

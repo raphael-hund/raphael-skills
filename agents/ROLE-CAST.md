@@ -27,6 +27,18 @@ oder Kundendaten (Secrets-Gate, Juli 2026).
 | `qa` | echten Flow fahren | Luna + Grok 4.6 | — | — |
 | `retro` | Historie → Lernen | Kimi K3 + Grok 4.6 | — | — |
 | `visual-kritiker` | visuell zerreißen | Grok 4.6 | Sol | `visual-aaa` |
+| `explorer` | Repo/Docs nur lesen | Luna + Grok 4.6 | — | — |
+| `architect` | Schnitt, kein Code | Fable + Grok 4.6 | — | — |
+| `planning-critic` | Plan vor dem Bau zerreißen | andere Familie als Architect | — | — |
+| `security` | Secrets/Auth/XSS | Sol + Grok 4.6 | — | — |
+| `researcher` | Quellen holen | Kimi + Grok 4.6 | — | `agent-reach` / `last30days` |
+| `prototyper` | Spike / Wegwerf | Grok + Kimi | — | — |
+| `sweeper` | aufräumen nach dem Bau | Grok + Luna | — | — |
+| `synthesizer` | zwei Entwürfe zu einem | andere Familie als Schreiber | — | — |
+| `triager` | Inbox sortieren | Luna + Grok 4.6 | — | — |
+| `test-writer` | Tests schreiben | Luna + Grok 4.6 | — | `tdd` |
+
+Belege (X / 30 Tage): Claude built-in Explore+Plan; Jules Planning Critic; Sid/Anthropic Architect+Reviewer+QA; Simon Last planner/implementer/adversarial reviewer/black-box tester/triager; @ko1_agmsg Prototyper/Builder/Sweeper; @shoto290 Owns-Refuses-Knows-Verifies-Returns; CyrilXBT planner/researcher/skeptic/synthesizer; Codex-Pack security-auditor + docs-researcher.
 
 ## Keine eigene Rolle (Skill reicht)
 
