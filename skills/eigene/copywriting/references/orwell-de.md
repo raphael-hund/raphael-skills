@@ -1,6 +1,6 @@
 # Orwell für deutsche Copy (adaptiert)
 
-George Orwell, "Politics and the English Language" (1946), sechs Regeln — auf deutsche
+George Orwell, "Politics and the English Language" (1946), sechs Regeln: auf deutsche
 Verkaufstexte übertragen. **Split für die Gates:** Regeln 2–5 laufen deterministisch als G1,
 Regeln 1 + 6 im G2-Judge (6 = Override).
 
@@ -40,10 +40,10 @@ Treffer markieren, wenn Dichte über Schwelle (Richtwert: mehr als 1 Treffer je 
   (→ weil), "zum Zwecke der" (→ um zu).
 
 **Fix-Richtung:** Nomen → Verb, Passiv → Aktiv, Handelnden benennen, Blähfügung → einfaches
-Wort. Kurze Sätze mischen mit längeren (Rhythmus), nicht alles gleich lang.
+Wort. Kurze Sätze mit längeren mischen (Rhythmus).
 
 ## Regel-6-Override in der Praxis
 
-Der G2-Judge fragt nur: "Klingt der Text menschlich und wie die Brand-Voice — ja/nein, mit
+Der G2-Judge fragt nur: "Klingt der Text menschlich und wie die Brand-Voice: ja/nein, mit
 Beleg?" Wenn ein bewusster Regelbruch (langes Wort, unvollständiger Satz, umgangssprachliche
 Metapher) den Text besser macht, ist das ein PASS, kein Fehler.

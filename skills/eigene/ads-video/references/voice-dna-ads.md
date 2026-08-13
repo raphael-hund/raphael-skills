@@ -192,16 +192,16 @@ Gemessen: nur wörtlich zitierte Hook-Fragmente (Text in Anführungszeichen inne
 **4. Charlie Morgan (LinkedIn Ads), ad_archive_id 760341766980011**
 > Tischtennis spielen ist wie LinkedIn Ads. Du musst nur die richtige Technik beherrschen. Dann macht es richtig Spaß. Du kannst nicht nur ein, zwei, drei oder vier Leads am Tag, sondern easy 10, 12, 15 Leads am Tag generieren. Wir sind richtig gut in LinkedIn und können dir mit unserer LinkedIn Schritt für Schritt Anleitung zeigen, wie du Entscheiderleads für 20 bis 30 Euro generierst. Denn seit 1225 Tagen laufen unsere hoch profitablen LinkedIn Ads.
 
-**5. Speedscaling.de (100-Millionen-Euro-Skript), ad_archive_id 990232776923890 — Skriptstruktur-Notation**
+**5. Speedscaling.de (100-Millionen-Euro-Skript), ad_archive_id 990232776923890: Skriptstruktur-Notation**
 > HOOK (Buch-Flip-Through, 0–15s): "Hier ist das 100-Millionen-Euro-Webinar-Skript, das kannst du dir kostenfrei herunterladen" → OFFER-TEASE: Inhalt des Skripts → PROOF/BONUS: zwei echte Webinar-Beispiele, 10-Mio.-Euro-Ergebnis → BONUS: 1-Stunden-Masterclass → RELEVANZ/URGENCY: "für alle, die 2026 erfolgreich ihre Expertise vermarkten wollen" → GUARANTEE: "kostenlos, kein Haken" → CTA: "auf der nächsten Seite downloaden"
 
 **6. Dr. Matt Shiver (Instagram Coach Case), Skript-Auszug**
 > This is crazy. This one coach spent $423 on this low budget Instagram ad strategy and made $13,494. Okay. These results are not typical. So Natalie is a client of ours. She's a fitness coach and she helps the LGBT community get fit. This worked really well. She used the very simple Instagram follower funnel that we teach inside of our curriculum. That's a 31 times return on ad spend.
 
-**7. Enpal (Weihnachts-Bundle), ad_archive_id 25381491344841352 — Static-Struktur-Notation**
+**7. Enpal (Weihnachts-Bundle), ad_archive_id 25381491344841352: Static-Struktur-Notation**
 > STRUKTUR: Hook (Bundle-Headline) → Pill-Badge (Leistungsumfang) → Produktarrangement auf Podium (Proof) → Logo → Begleittext: Förderung + Enpal-Prinzip → CTA. Headline zweizeilig "Solar-" / "Komplettpaket", Pill-Badge "inkl. Speicher + Wallbox".
 
-**8. Maximilian Saal (KI Bootcamp), ad_archive_id 1025550479861256 — Skriptstruktur-Notation**
+**8. Maximilian Saal (KI Bootcamp), ad_archive_id 1025550479861256: Skriptstruktur-Notation**
 > HOOK (Superlativ): "Das Größte Deutsche Claude Event" → PROOF: "1.700+ KI Mitarbeiter erstellt, beste KI Experten Deutschlands" → PROBLEM/PAIN: "Manuelle Prozesse kosten Zeit, brauchst Team oder Agenturen" → SOLUTION: "KI automatisiert alles vollständig" → DREAM-OUTCOME: "4-Stunden-Woche bei wachsendem Umsatz" → CTA: "Meld dich kostenlos an"
 
 ---

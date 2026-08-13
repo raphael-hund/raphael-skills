@@ -12,8 +12,8 @@
 #             (On-Screen-Text trägt die Botschaft).
 set -euo pipefail
 
-usage() {
-  cat >&2 <<'EOF'
+usage_text() {
+  cat <<'EOF'
 usage: watch-extract.sh <video-url|lokaler-pfad> [arbeits-verzeichnis]
 
 beispiel:

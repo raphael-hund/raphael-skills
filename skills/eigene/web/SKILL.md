@@ -12,7 +12,7 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.13.0"
+  raphael-version: "0.13.1"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
@@ -44,6 +44,14 @@ Alles Visuelle → Skill **design** (nicht hier neu erfinden).
 
 Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und
 aus echten Analytics verbessern.
+
+## Eingang aus `website-plan` (fail-closed)
+
+Wenn ein FULL-Plan unter `website-plan/` als Baukanon genannt ist, beginnt `build`
+erst bei `PLAN_VERIFIED=YES` aus dessen Validator. `RUN_COMPLETE`, eine gewählte
+Designrichtung oder vorhandene Briefs reichen nicht. Bei rotem Critic,
+`OWNER-BLOCKER` oder fehlendem Route-/Mockup-Manifest bleibt der Build BLOCKED;
+der Web-Skill entscheidet keine Kundenfakten eigenmächtig.
 
 ## Workspace-pro-Version (Raphael 10.08.2026, bindend für Bestandsseiten)
 
@@ -122,6 +130,13 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 - **`--base` Pflicht** (ohne Flag: Exit 2). Früherer Default-Port 5280 entfällt.
 - Jedes PNG per Read ansehen; nach jedem Fix **alle** betroffenen Routen erneut.
 - Kritik bekommt nur `manifest.json` + PNGs. Ablauf: `screenshot-kritik-loop.md`.
+- Plan-Mockups sind Soll; Web-Screenshots sind Ist. Build-QA erfasst pro betroffener
+  Route Desktop/Mobile sowie relevante Normal-, Loading-, Empty-, Error- und
+  Success-Zustände. Reveal-Zwischenstände, unklare Cookie-/Datenzustände und
+  Full-Page-Captures ohne lesbare Section-Zuordnung sind kein PASS.
+- Motion-Abnahme prüft Trigger, Element, Dauer, Easing, Stagger und
+  `prefers-reduced-motion` gegen den Planvertrag; ein statisches Bild allein
+  beweist keine funktionierende Animation.
 
 ## Look & QA (design = einzige Design-Quelle)
 

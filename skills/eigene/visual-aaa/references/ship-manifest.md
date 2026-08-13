@@ -47,8 +47,12 @@
 - `self_read` muss `true` sein.
 - `g1_exit` muss `0` sein.
 - `pages` nicht leer; jede `render`-Datei existiert und size > 10_000 Bytes.
-- Jede page_id hat mindestens ein Critic-Verdikt mit `verdict=pass` und
-  `confidence=HIGH`.
+- Jede page_id hat mindestens ein Critic-Verdikt mit `verdict=pass`,
+  `biggest_gap=none`, `confidence=HIGH` und einem nichtleeren Beleg.
+- Jedes Critic-Verdikt hat exakt die vier Pflichtfelder `verdict`, `biggest_gap`,
+  `beleg`, `confidence`; ungültige Werte, Platzhalter oder leere Belege sind rot.
+- `fail` mit `biggest_gap=none` ist ungültig; `pass` ohne AAA-Bedingungen ist
+  ungültig.
 - Kein Critic-Verdikt mit `verdict=fail` ohne späteren pass derselben page_id
   mit höherer `round`.
 - `acceptance_checks` (falls vorhanden): alle `status=pass`.

@@ -44,10 +44,52 @@ A2_MUSTER = [
     (r"\bes geht nicht um\b", "A2 'Es geht nicht um X'"),
 ]
 
-# Verben nach ", nicht" sind Anweisungen, keine Antithese ("…, nicht schätzen").
-A2_VERB_AUSNAHME = re.compile(
-    r",\s+(?:nicht|keine?n?s?)\s+\w+(?:en|eln|ern)\b", re.I
-)
+# Ausnahmen: Formen, die nach Komma verneinen, aber KEINE Antithese-Figur sind.
+#
+# Die Figur A2 spiegelt dieselbe Sache in zwei Begriffen ("Standard, nicht
+# Ausnahme"). Eine Anweisung grenzt dagegen eine Alternative ab ("gehört
+# hierher, nicht dorthin") — das ist normale Präzisierung und muss durchgehen.
+# Ohne diese Trennung meldet das Skript jede zweite Regelzeile in der Skill-Doku
+# (gemessen 2026-08-13: 22 Fehlalarme über 9 ads-video-Referenzdateien).
+_NEG = r"(?:nicht|keine?[nrms]?)"
+A2_AUSNAHMEN = [
+    # Verb oder Partizip: ", nicht schätzen", ", nicht poliert"
+    re.compile(rf",\s+{_NEG}\s+\w+(?:en|eln|ern|iert)\b", re.I),
+    # Orts-/Richtungsangabe: ", nicht hierher", ", nicht in die Drehliste"
+    re.compile(rf",\s+{_NEG}\s+(?:hier|dort|da)\w*\b", re.I),
+    re.compile(rf",\s+{_NEG}\s+(?:in|an|auf|zu|bei|vor|nach|über)\s", re.I),
+    # Komparativ: ", nicht schwächer"
+    re.compile(rf",\s+{_NEG}\s+\w+er\b", re.I),
+    # Satz läuft nach der Verneinung weiter: ", kein Ziel; bei Zweifel …"
+    re.compile(rf",\s+{_NEG}\s+[^.!?]{{1,25}}[;:]", re.I),
+    # Zweite Verneinung in einer Aufzählung: "keine Fachbegriffe, keine …"
+    re.compile(rf"{_NEG}\s+\w+,\s+{_NEG}\s", re.I),
+    # Bullet-Zeile: "✅ Festpreis, keine Erfolgsbeteiligung" ist ein
+    # Aufzählungspunkt aus zwei Merkmalen, keine Antithese-Figur.
+    re.compile(r"^\s*[✅✔❌👉→•\-*]\s", re.I),
+    # Sachangabe mit "kein/keine" plus Nomen, die KEIN Gegenstueck zum ersten
+    # Teil ist: "…, kein Build nötig", "…, keine Übernahme von Code",
+    # "…, kein Foto". Die Antithese-Figur spiegelt dagegen denselben Begriff
+    # ("Standard, nicht Ausnahme"). Marker: Nomen + Ergaenzung statt blossem
+    # Gegenbegriff am Satzende.
+    re.compile(rf",\s+{_NEG}\s+\w+\s+(?:nötig|noetig|erforderlich|von|fuer|für)\b", re.I),
+    # Klammer-Einschub als Sachhinweis: "(… ist X, keine Y — nicht laden.)"
+    re.compile(rf"\(.*,\s+{_NEG}\s+\w+", re.I),
+    # Aufzaehlung ohne Gegenbegriff: "einfache Wörter, keine Fachbegriffe, keine …"
+    # Der Marker ist ein Doppelpunkt VOR der Aufzaehlung oder ein Komma DANACH:
+    # die Verneinung ist ein Listenelement, kein Spiegelbegriff.
+    re.compile(rf":\s*[^.!?]*,\s+{_NEG}\s+\w+", re.I),
+    re.compile(rf",\s+{_NEG}\s+\w+,\s", re.I),
+    # Zeilenumbruch mitten in der Aufzaehlung: "…, kein langes\n Vorspiel".
+    # Nur wenn ein ADJEKTIV am Zeilenende steht (der Satz laeuft weiter) —
+    # ein Nomen am Zeilenende waere der Spiegelbegriff einer Antithese
+    # ("Standard, nicht Ausnahme") und muss weiter anschlagen.
+    # KEIN re.I hier: die Gross-/Kleinschreibung IST das Unterscheidungsmerkmal.
+    re.compile(rf",\s+(?:nicht|keine?[nrms]?)\s+[a-zäöüß]+$"),
+    # Verb-Anweisung nach Komma: "…, nicht ungegroundet weiterproduzieren".
+    # Zwei Woerter, das zweite ist ein Verb -> Anweisung, keine Antithese.
+    re.compile(rf",\s+{_NEG}\s+[a-zäöüß]+\s+\w+(?:en|eln|ern)\b", re.I),
+]
 
 # A5: Drei-Wort-Triade als Slogan — drei Substantive mit Komma und "und/oder",
 # ohne Verb im Umfeld. Nur bei Großschreibung (deutsche Substantive).
@@ -134,7 +176,7 @@ C_GRENZEN = {
 DOPPELPUNKT_ENTHUELLUNG = r"\b(Die Wahrheit|Das Problem|Die Lösung|Der Grund|Die Antwort)\s*:"
 
 
-def _doku_zeile_ueberspringen(s: str) -> bool:
+def _doku_zeile_ueberspringen(s: str, roh: str = "", vorzeile=None) -> bool:
     """Zeilen, die in einer Regelwerk-Datei legitim gegen die Regeln verstoßen.
 
     Ein Regelwerk MUSS die verbotenen Wörter nennen, sonst kann es sie nicht
@@ -158,8 +200,23 @@ def _doku_zeile_ueberspringen(s: str) -> bool:
         return True
 
     # Zeile besteht überwiegend aus Zitaten -> Beispielsammlung.
-    zitiert = sum(len(m) for m in re.findall(r'"([^"]*)"', s))
-    if zitiert and zitiert / max(len(s), 1) > 0.5:
+    # Deutsche Anführungszeichen („…") mitzählen, sonst rutschen umbrochene
+    # Verbotslisten in der Skill-Doku durch den Filter.
+    zitiert = sum(
+        len(m) for m in re.findall(r'"([^"]*)"|„([^"]*)"', s) for m in m if m
+    )
+    if zitiert and zitiert / max(len(s), 1) > 0.4:
+        return True
+
+    # Semikolon-getrennte Zitatkette: »„X"; „Y" ohne Zahl; …« ist eine
+    # Aufzählung von Verboten, keine Prosa.
+    if s.count(";") >= 1 and ("„" in s or '"' in s):
+        return True
+
+    # Reine Wortliste: >=4 Kommas und kein Satzende. Eine Verbotsliste nennt
+    # die verbotenen Wörter ("intricate, meticulous, bolster, garner, …") und
+    # darf dafür nicht selbst gemeldet werden.
+    if s.count(",") >= 4 and not re.search(r"[.!?]\s", s):
         return True
 
     # Regel-Definition mit Platzhaltern: "Nicht X — sondern Y" beschreibt die
@@ -179,7 +236,27 @@ def _doku_zeile_ueberspringen(s: str) -> bool:
     if re.search(r"(Regel|Muster|Ausnahme|Verstoß|Fail|Slop-Beleg|Abgrenzung|Test)\b", s):
         return True
 
+    # Eingerückte Fortsetzung einer übersprungenen Zeile erbt deren Status.
+    # Ohne das reisst jede umbrochene Verbotsliste in der Skill-Doku
+    # ("… maßgeschneidert, ganzheitlich,\n   innovativ. Beleg: …").
+    if vorzeile is not None and roh.startswith((" ", "\t")):
+        if _doku_zeile_ueberspringen(vorzeile.strip(), vorzeile):
+            return True
+
     return False
+
+
+# Korpus-Dateien enthalten woertlich zitierte Fremd-Anzeigen als Beleg.
+# Sie zu redigieren waere Datenfaelschung: die Regeln beruhen darauf, dass
+# dort steht, was der Markt TATSAECHLICH schreibt — Slop eingeschlossen.
+KORPUS_MARKER = re.compile(
+    r"^#\s.*\b(Korpus|Referenz-Korpus|Swipe-File|Transkript)\b", re.I | re.M
+)
+
+
+def ist_korpus(text: str) -> bool:
+    """True, wenn die Datei sich im Titel als Zitat-Sammlung ausweist."""
+    return bool(KORPUS_MARKER.search(text[:400]))
 
 
 def _saetze(text: str):
@@ -197,7 +274,8 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
     # zeilenweise Muster
     for nr, roh in enumerate(zeilen, 1):
         s = roh.strip()
-        if doku and _doku_zeile_ueberspringen(s):
+        vor = zeilen[nr - 2] if nr >= 2 else None
+        if doku and _doku_zeile_ueberspringen(s, roh, vor):
             continue
         if not s:
             continue
@@ -205,7 +283,7 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
 
         for muster, code in A2_MUSTER:
             if re.search(muster, s, re.I):
-                if "getarnt" in code and A2_VERB_AUSNAHME.search(s):
+                if "getarnt" in code and any(a.search(s) for a in A2_AUSNAHMEN):
                     continue
                 melde(nr, code, s)
 
@@ -263,7 +341,11 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
     # Fließtext für Zählungen
     if doku:
         body = "\n".join(
-            l for l in zeilen if not _doku_zeile_ueberspringen(l.strip())
+            l
+            for i, l in enumerate(zeilen)
+            if not _doku_zeile_ueberspringen(
+                l.strip(), l, zeilen[i - 1] if i else None
+            )
         )
     else:
         body = text
@@ -359,8 +441,15 @@ def main():
 
     schlimm = 0
     for name, t in texte:
-        fehler, hinweise = pruefe(t, name, doku=args.doku)
         kurz = name.split("/")[-1]
+
+        # Zitat-Korpora werden nur im Doku-Modus uebersprungen. Wer eine
+        # Korpus-Datei direkt prueft, will das Ergebnis sehen.
+        if args.doku and ist_korpus(t):
+            print(f"\n=== {kurz} === uebersprungen (Zitat-Korpus, Fremdtext)")
+            continue
+
+        fehler, hinweise = pruefe(t, name, doku=args.doku)
         print(f"\n=== {kurz} === {len(t.split())} Wörter")
         for f in fehler:
             print(f"  FEHLER   {f}")

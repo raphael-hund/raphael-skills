@@ -2,7 +2,7 @@
 
 Bevor ein neues Skript geschrieben wird: bestehende Referenz-Skripte (Kunde selbst,
 Wettbewerb, Swipe-File) nach dieser Methodik zerlegen. Nie aus dem Gedächtnis
-diagnostizieren — jeder Beat braucht ein wörtliches Zitat.
+diagnostizieren. Jeder Beat braucht ein wörtliches Zitat.
 
 ## Phase 1 — pro Skript: Beats sequenziell zerlegen
 
@@ -23,7 +23,7 @@ Danach pro Skript eine Kopfzeile:
 - **Gesamt-Wortzahl**
 - **Hook-Wortzahl** (erster Beat bis zum Funktionswechsel — siehe Gotcha "Hook-Ende inhaltlich, nicht per Satzzahl")
 - **Beat-Zahl**
-- **CTA-Typ** (klick/Link, Termin/Anruf, DM-Wort, kein CTA — mit Begründung falls letzteres)
+- **CTA-Typ** (klick/Link, Termin/Anruf, DM-Wort, kein CTA: mit Begründung falls letzteres)
 
 ## Phase 2 — über alle Skripte: Vergleich + Skelett
 
@@ -39,10 +39,10 @@ Erst wenn Phase 1 für **alle** Referenz-Skripte steht:
    - Top-2-3-Devices (die häufigsten, nicht alle beobachteten)
    - 1 starkes Original-Zitat als Beleg (mit Quellenangabe: welches Skript)
 3. **Divergenzen mit Hypothese.** Skripte, die vom Skelett abweichen (Beat fehlt, andere
-   Reihenfolge, Extra-Beat) — je Divergenz eine Hypothese, warum (Format, ICP-Reife,
+   Reihenfolge, Extra-Beat): je Divergenz eine Hypothese, warum (Format, ICP-Reife,
    Kanal-Placement, Awareness-Stufe). Keine Divergenz unkommentiert lassen.
 4. **Fill-in-the-blank-Template.** Aus dem Skelett ein Lückentext mit Platzhaltern.
-   Je Slot eine 1-Zeilen-Anweisung, was dort hinmuss (nicht wie es klingen soll —
+   Je Slot eine 1-Zeilen-Anweisung, was dort hinmuss (nicht wie es klingen soll:
    das übernimmt `copywriting`/`sprech-text-regeln.md`).
 
    Beispiel-Form:
@@ -58,9 +58,9 @@ Erst wenn Phase 1 für **alle** Referenz-Skripte steht:
 
 ## Grounding-Pflicht
 
-Jeder Beat-Eintrag in Phase 1 braucht das wörtliche Zitat als Beleg — keine
+Jeder Beat-Eintrag in Phase 1 braucht das wörtliche Zitat als Beleg: keine
 Zusammenfassung ohne Fundstelle. Ohne echtes Referenz-Material (mindestens 3-5
-Skripte) keine Phase 2 — sonst ist das "Skelett" geraten statt abgeleitet.
+Skripte) keine Phase 2, sonst ist das "Skelett" geraten statt abgeleitet.
 
 ## Anwendung im ads-video-Ablauf
 

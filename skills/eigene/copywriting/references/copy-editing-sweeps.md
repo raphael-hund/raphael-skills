@@ -4,17 +4,17 @@
 > [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills),
 > Skill `copy-editing/SKILL.md`, MIT-Lizenz (Copyright Corey Haines).
 > Original ist ein einzelner sequenzieller Redigier-Durchlauf; hier als optionaler
-> QA-Schritt VOR Auslieferung (nach G2, vor Abgabe an den Kunden) — bei langer
+> QA-Schritt VOR Auslieferung (nach G2, vor Abgabe an den Kunden), bei langer
 > Copy (Sales-Page, Landingpage, E-Mail-Sequenz), nicht bei kurzer Ad-Copy.
 
 Sieben Durchgänge, jeder auf eine einzige Dimension fokussiert. Nach jedem
-Durchgang kurz zu den vorherigen zurückspringen — eine Korrektur in Sweep 5
+Durchgang kurz zu den vorherigen zurückspringen. Eine Korrektur in Sweep 5
 kann Klarheit (Sweep 1) wieder kaputt machen.
 
 ## Sweep 1 — Klarheit
 Versteht ein Leser ohne Vorwissen sofort, was gemeint ist? Prüfen: unklare
 Bezüge, Jargon, Sätze mit zu vielen Gedanken gleichzeitig, fehlender Kontext.
-Test: laut vorlesen — jeder Stolperer ist ein Klarheits-Fund.
+Test: laut vorlesen. Jeder Stolperer ist ein Klarheits-Fund.
 
 ## Sweep 2 — Stimme & Ton
 Klingt der Text durchgehend gleich? Prüfen: Kippt der Text von locker zu
@@ -23,10 +23,10 @@ plötzlich mitten in einfachem Text auf. Danach zurück zu Sweep 1.
 
 ## Sweep 3 — Na und?
 Beantwortet jede Behauptung "warum soll mich das interessieren?" Feature ohne
-Nutzen-Brücke = Fund. Test: nach jedem Satz "Na und?" fragen — wenn die Antwort
+Nutzen-Brücke = Fund. Test: nach jedem Satz "Na und?" fragen, wenn die Antwort
 nicht im Text steht, fehlt die Brücke ("… das heißt für dich: …").
 Beispiel: "Unsere Plattform nutzt KI-Analysen" → *Na und?* → "Unsere
-KI-Analysen zeigen Muster, die du händisch übersiehst — Entscheidung in der
+KI-Analysen zeigen Muster, die du händisch übersiehst: Entscheidung in der
 halben Zeit." Danach zurück zu Sweep 2, dann 1.
 
 ## Sweep 4 — Beleg
@@ -52,7 +52,7 @@ Danach zurück zu 4, 3, 2, 1.
 Löst der Text etwas aus, oder berichtet er nur neutral? Dimensionen: Schmerz
 des Status quo, Frust mit Alternativen, FOMO, Wunsch nach Veränderung, Stolz
 über die richtige Entscheidung, Erleichterung. Technik: "Vorher"-Zustand
-konkret schildern, Sinnesdetails, Mikro-Geschichten — Emotion dient der
+konkret schildern, Sinnesdetails, Mikro-Geschichten: Emotion dient der
 Botschaft, nicht der Manipulation. Danach zurück zu 5, 4, 3, 2, 1.
 
 ## Sweep 7 — Null Risiko
@@ -66,9 +66,9 @@ einmal komplett von 6 zurück bis 1 durchlaufen.
 
 - **Immer volle 7 Sweeps:** Launch-Copy, Preisseiten, High-Traffic-Landingpages.
 - **Empfohlen:** E-Mail-Sequenzen, Sales-Pages, Ad-Copy.
-- **Optional/Quick-Pass:** Blogposts, Social-Content — nur Wort-/Satzebene
+- **Optional/Quick-Pass:** Blogposts, Social-Content. Nur Wort-/Satzebene
   prüfen (Streichwörter: "sehr", "eigentlich", "im Grunde"; Passiv → Aktiv;
-  Nominalstil → Verb — deckt sich mit `orwell-de.md`).
+  Nominalstil → Verb: deckt sich mit `orwell-de.md`).
 
 ## Häufige Copy-Probleme & Fix (Kurzreferenz)
 

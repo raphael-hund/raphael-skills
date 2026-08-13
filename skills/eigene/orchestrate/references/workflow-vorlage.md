@@ -165,7 +165,7 @@ async function callAgent(agentType, prompt, options) {
     const result = { agent_type: type, family: FAMILY[type], provider_family: PROVIDER_FAMILY[type],
       phase: agentOptions.phase, step_id: step_id || null, output: null, error: null }
     try {
-      result.output = (await agent(prompt, { ...agentOptions, label, agentType: type })) || null
+      result.output = (await agent(prompt, { ...agentOptions, label, agentType: type, stallMs: 0 })) || null
       if (result.output === null) result.error = 'Agent returned null'
     } catch (error) { result.error = String(error) }
     return result

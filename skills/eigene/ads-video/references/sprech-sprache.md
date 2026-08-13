@@ -6,8 +6,35 @@ Gesprochenem, keine geschriebenen Werbetexte. Alle Beispiele wörtliche
 Original-Zeilen.
 
 **Diese Datei ist die Härtungsschicht NACH dem copywriting-Gate.**
-copywriting liefert Orwell-DE/Floskel/Voice-Basics für geschriebenen Text —
-die Spoken-Video-Qualität lebt hier in ads-video.
+copywriting liefert Orwell-DE/Floskel/Voice-Basics für geschriebenen Text.
+Die Spoken-Video-Qualität lebt hier in ads-video.
+
+## Vorrang bei Konflikt (Spoken-Ausnahme, verbindlich)
+
+R1–R3 widersprechen mehreren Schreibregeln. Ohne Vorrang-Regel blockiert das
+Gate die belegten Sprech-Muster. Diese Tabelle entscheidet:
+
+| Konflikt | Gilt im **gesprochenen Text** (VO) | Gilt in **Onscreen-Text, Primary Text, Beschreibung** |
+|---|---|---|
+| R1 Telegramm / Ein-Wort-Beats vs. `forbidden.md` A1, A6 | **R1 gewinnt** im Hook und beim Pain. Max. eine Stakkato-Reihe pro Skript. | A1/A6 gewinnen, hart |
+| R2 Kraftwörter vs. Orwell-G1 „Füllwörter raus" | **R2 gewinnt**, aber nie im CTA | Orwell-G1 gewinnt |
+| R3 Füllwörter/Selbstkorrekturen vs. Orwell-G1 | **R3 gewinnt** nur bei echtem Transkript, nie künstlich eingestreut | Orwell-G1 gewinnt |
+| R4 krumme Zahlen | gewinnt überall | gewinnt überall |
+
+**Vier harte Grenzen. Die Spoken-Ausnahme deckt sie nie:**
+
+1. **Nie im CTA.** Der CTA bleibt sachlich (R2 sagt das selbst).
+2. **Nur echt, nie simuliert.** R3 gilt für Transkripte von tatsächlich
+   Gesprochenem. Erfundene Füllwörter in einem geschriebenen Skript sind Slop,
+   kein Realismus.
+3. **Kein Freibrief für A2/A3/B4/B5.** Antithese-Reframes, Metapher-Paare,
+   Wert-Adjektive ohne Zahl und AI-Voice bleiben auch gesprochen verboten.
+   Die Ausnahme deckt Rhythmus und Register, nicht Denkfaulheit.
+4. **Einmal pro Skript.** Eine Stakkato-Reihe, eine Kraftwort-Stelle. Zwei
+   sind ein Muster, kein Effekt.
+
+Im Output wird jede genutzte Spoken-Ausnahme benannt: welche Regel, welche
+Zeile, warum. Ohne Nennung gilt das Gate.
 
 ## R1 — Kurze Sätze, Telegramm-Stil, Ein-Wort-Beats
 
@@ -18,7 +45,7 @@ die Spoken-Video-Qualität lebt hier in ads-video.
 
 ## R2 — Umgangssprache und Kraftwörter als Glaubwürdigkeits-Signal
 
-Nicht geglättet. Kraftwörter stehen im Hook oder beim Pain — **nie im CTA**;
+Nicht geglättet. Kraftwörter stehen im Hook oder beim Pain: **nie im CTA**;
 der CTA bleibt sachlich.
 
 - Speedscaling: „Ich hab den Meta-Algorithmus geknackt, jetzt mal ohne Scheiß." / „das funktioniert richtig geil"
@@ -56,7 +83,7 @@ Skripts.** Anaphora-Technik als Rhythmus-Instrument:
 
 ## R6 — Verzichts-Formel („ohne jemals wieder …")
 
-Der Comfort-Beat listet, was der Kunde NICHT mehr tun muss — fast immer
+Der Comfort-Beat listet, was der Kunde NICHT mehr tun muss: fast immer
 wörtlich gleich.
 
 - Marc Evers: „sodass du dich nie wieder auf Empfehlungen verlassen musst, ohne jemals wieder Kaltakquise machen zu müssen."

@@ -75,12 +75,19 @@ striktes Verdikt zurück:
 
 ```
 verdict:    confirmed | false-positive | needs-fix | needs-human-review
-evidence:   <Datei:Zeile, Log-Ausschnitt, Diff — nicht "sieht gut aus">
+evidence:   <Datei:Zeile, Log-Ausschnitt, Diff, Screenshot-Pfad — nicht "sieht gut aus">
 repro:      <Befehl/Schritt, der den Zustand reproduziert>
 confidence: HIGH | MED | LOW
 ```
 
 Ohne `evidence` kein Verdikt — eine Behauptung ohne Beleg zählt nicht.
+
+**Screenshot-Pflicht bei Frontend/Design-Artefakten (hart):** Ein DoneClaim
+für sichtbare UI-Arbeit ist nur prüfbar mit Screenshot-Manifest:
+Desktop (1440) UND Mobile (390) pro betroffener Route, PNGs existieren,
+wurden per Read gesichtet, und der Screenshot-Zeitstempel liegt NACH dem
+letzten Code-Edit. Fehlt eines davon → Verdikt `needs-fix`, nie `confirmed`.
+Ein grüner Build ohne Bilder ist für UI-Arbeit KEIN ausreichender Beleg.
 **Keine Severity ohne Angriffspfad:** eine Einstufung als kritisch/hoch
 braucht konkrete Voraussetzungen, unter denen der Fund tatsächlich auftritt
 (nicht nur "könnte theoretisch"), sonst auf niedriger einstufen oder als

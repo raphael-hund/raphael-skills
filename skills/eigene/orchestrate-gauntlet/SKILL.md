@@ -26,7 +26,7 @@ source: >
 loads:
   - references/besetzung.md
   - references/gauntlet-graph.md
-  - references/dauerlauf.md
+  # dauerlauf.md nur bei Cron-/Dauerlauf-Modus — siehe Zweig unten.
 requires_skills: [orchestrate@^1, eval@^0, visual-aaa@^1]
 completion_criteria:
   - "Die Messlatte existiert als Datei (Screenshots/URLs/Referenztext/Testsuite) und hängt in JEDEM Kritiker-Prompt"

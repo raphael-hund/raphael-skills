@@ -255,6 +255,29 @@ Regeln stehen im Imperativ, nicht im Passiv (ASD-STE100).
 - ✓ "Trage jeden neu erwischten Slop hier ein."
 - ✓ "Die Monatsrate rahmt den Kaufpreis neu."
 
+### F0. Verfahren: Zeichensetzung gehört ins Skript. 2026-08-13
+
+Kein Muster im Text, sondern eine Lehre über das Fixen.
+
+Ein Subagent sollte Em-Dashes von Hand durch korrekte Zeichensetzung ersetzen.
+Er ersetzte jeden durch `" . "` — freistehende Punkte mitten im Satz, über neun
+Dateien. Ein zweiter Versuch zerstörte ein Negativ-Beispiel (beide Satzhälften
+wurden identisch), erzeugte Doppel-Doppelpunkte und riss Formatvorlagen in
+Backticks auseinander, die exakt zum erzeugenden Skript passen müssen.
+
+**Regel:** Zeichensetzung folgt festen grammatischen Regeln und gehört deshalb
+in Code, nicht in ein Sprachmodell. Werkzeug:
+`raphael-skills/skills/eigene/copywriting/scripts/em-dash-fix.py`.
+Immer erst `--dry`, dann schreiben.
+
+**Regel:** Jedes Fix-Skript braucht einen Regressionstest mit beiden Richtungen —
+was ersetzt werden muss UND was unangetastet bleibt. Ohne den Test fällt kein
+Schaden auf.
+
+**Regel:** Nach jedem Fremd-Eingriff in Belege (Zitate, Korpora, Formatvorlagen)
+den Diff lesen, nicht der Erfolgsmeldung glauben. Beide Subagenten meldeten
+"0 Verstösse, alles grün" — mit zerstörten Dateien.
+
 ### F4. Em-Dash als Denkpause. 2026-08-13
 
 Der Em-Dash ersetzt oft nur einen Punkt. Grenze C gilt auch in Doku.

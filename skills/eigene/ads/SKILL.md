@@ -1,11 +1,11 @@
 ---
 name: ads
-version: 0.9.0
+version: 0.10.0
 description: >
   Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie,
   Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits
   mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an
-  `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien-
+  `ads-video` und Statics-Briefs an `ads-statics`: dies ist der Familien-
   Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss.
   Trigger: "Ads bauen", "Hooks schreiben", "Creatives", "Anzeigentexte", "Testwelle",
   "Konto-Audit", "Health-Score", "Testwelle auswerten", "Ad-Fatigue prüfen".
@@ -13,9 +13,9 @@ description: >
 class: F
 scope: agency
 sensitivity: internal
-source: fusion — eigenes Loop-3-System + kondensiert aus coreyhaines31/marketingskills
+source: fusion, eigenes Loop-3-System + kondensiert aus coreyhaines31/marketingskills
   skills/ads, skills/ad-creative @ 67264763 (MIT-Lizenz) + kondensiert aus
-  AgriciDaniel/claude-ads (MIT-Lizenz, Stand 2026-07-11) — Scoring-/Audit-/
+  AgriciDaniel/claude-ads (MIT-Lizenz, Stand 2026-07-11): Scoring-/Audit-/
   Signifikanz-Methodik, paraphrasiert, keine Übernahme von Code/Schemas/Skripten.
 loads:
   - references/wissens-router.md
@@ -41,7 +41,7 @@ completion_criteria:
 
 **Lies zuerst:**
 `/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`
-(Dossier aus Loop 1 — Pflicht-Voraussetzung),
+(Dossier aus Loop 1: Pflicht-Voraussetzung),
 `/root/raphael-brain/wiki/craft/hooks/` (Swipe-File), `/root/raphael-brain/wiki/hot.md`.
 
 ## Zweck (1 Satz)
@@ -75,7 +75,7 @@ Die früheren ~39 Einzel-Slash-Skills sind jetzt belegte Wissensseiten unter
 
 **Spezialthema (andere Plattform, Quermaterie wie Attribution/Budget/Bidding/Scoring,
 Pipeline-Schritt oder belegte Referenz-Notiz)?** Lies zuerst
-`references/wissens-router.md` und dann die 1-3 passenden Brain-Seiten daraus —
+`references/wissens-router.md` und dann die 1-3 passenden Brain-Seiten daraus:
 nie alle Seiten laden, nie aus dem Gedächtnis diagnostizieren.
 
 **Kern vs. Tiefe:** Die operativen `references/` (loop3-ablauf, hook-taxonomie,
@@ -88,10 +88,10 @@ erzeugen": reference vs. `ads-create.md`) **führt die `references/`-Quelle**.
 **Statics-first-Sequenz** (Beleg: `raw/evidence/2026-07-23-ads-wissenspaket-2/ig-reel-angle-statics-video/analyse.md`):
 neue Angles werden zuerst als einfache Statics getestet (billiger/schneller zu produzieren als
 Video), bevor überhaupt ein Video-Skript entsteht. Gewinnt eine Static (bester Cost-per-Ergebnis,
-nicht Klicks), wird ihr Hook 1:1 in mehrere Video-Varianten übernommen — nur der Body/die
+nicht Klicks), wird ihr Hook 1:1 in mehrere Video-Varianten übernommen. Nur der Body/die
 Pain-Point-Ansprache variiert, der Hook bleibt eingefroren. Reihenfolge im Ablauf: **angles →
 statics (Angle-Screening) → Gewinner-Angle an `video-scripts` (Skript-Produktion) →
-Testwelle**. Format-Frage (Static vs. Video) ist der Angle-Frage bewusst untergeordnet — bei
+Testwelle**. Format-Frage (Static vs. Video) ist der Angle-Frage bewusst untergeordnet: bei
 MAKEs Budget läuft primär und laufend Static+Video desselben Angles im selben Testing-Ad-Set
 (siehe `references/wissens-router.md` → teststrategie), die Statics-first-Sequenz ist der
 Spezialfall für einen **neuen, ungetesteten** Angle. Einschränkung: Einzelfall-Beleg eines
@@ -112,14 +112,14 @@ nicht automatisch bei E-Com.
    (Delegation) → verweist dort weiter auf `design` fürs Visuelle. Layout-Vorlagen in
    `references/vendor/coreyhaines-ads/static-ad-templates-en.md` (15 Templates, über alle
    Zyklen statt auf 2-3 Favoriten zu clustern). **Grounding-Pflicht:** jedes Konzept braucht
-   eine Quelle (echte Review/Winning-Ad/Ad-Kommentar aus voc.md/PROOF.md) — keine erfundenen
+   eine Quelle (echte Review/Winning-Ad/Ad-Kommentar aus voc.md/PROOF.md): keine erfundenen
    Claims/Statistiken/Testimonials. Fehlt Rohmaterial: stoppen und Raphael/Kunden um Material
    bitten, nicht ungegroundet weiterproduzieren. Für Kunden-Freigabe eines Batches das
    Review-Artefakt `assets/creative-review-template.html` nutzen (ein HTML-File,
    JSON-Datenblock, kein Build nötig).
-7. **claims-qa** — **Sol, frische Session.** Jede Behauptung: belegt / riskant / verboten.
+7. **claims-qa**: **Sol, frische Session.** Jede Behauptung: belegt / riskant / verboten.
    Gegen Meta-Policy **und** HWG/UWG-Verbotsliste (`references/claims-verbote.md`).
-8. **Schaltung** — **Signatur (Geld = rot) + Budget-Egress-Gate.** Nie autonom.
+8. **Schaltung**: **Signatur (Geld = rot) + Budget-Egress-Gate.** Nie autonom.
    **Pixel-Regel (hart, vor Launch):** Tracking/Events VOR dem ersten Live-Schalten
    einrichten; Lead-Event NUR bei qualifizierter Antwort feuern (nicht bei jedem
    Formular-Submit); auf das tiefste Funnel-Event optimieren (Booking, nicht Klicks).
@@ -148,30 +148,30 @@ nicht automatisch bei E-Com.
 
 - **G2-Scores sind Stil-Checks, nie "Performance-Beweis" gegenüber Kunden.** Nur echte
   CTR/CPL/CVR zählen als Ergebnis (→ report).
-- **Ads-Daten kommen per Datei-Export oder read-only Zugang — nie Schreib-Scope.** Ein
+- **Ads-Daten kommen per Datei-Export oder read-only Zugang: nie Schreib-Scope.** Ein
   Ads-Schreibzugriff berührt direkt die Rot-Klasse Budgets.
-- claims-qa läuft in **frischer Session, anderer Modellfamilie** (Sol) — nie Selbstprüfung
+- claims-qa läuft in **frischer Session, anderer Modellfamilie** (Sol): nie Selbstprüfung
   des Autors.
-- HWG (Heilmittelwerbung) trifft Gesundheit/Beauty/Supplements hart — Verbotsliste immer prüfen.
+- HWG (Heilmittelwerbung) trifft Gesundheit/Beauty/Supplements hart: Verbotsliste immer prüfen.
 - Hook-Autor darf nicht sein eigener Judge sein (Regel 8).
 - **Andromeda-Budget-Klumpen ist KEIN Fehler (Stand 2025).** Wenn Meta bei ~12 aktiven
-  Ads fast das ganze Budget auf eine Anzeige legt, ist das erwartetes Matching — nicht
+  Ads fast das ganze Budget auf eine Anzeige legt, ist das erwartetes Matching: nicht
   manuell umverteilen. (Andromeda-Details + Datumshinweis in loop3-ablauf.md.)
 - **Negative Kommentare sind kein Abschalt-Signal.** Nie nach Kommentarstimmung ab-/anschalten
-  oder Kommentare löschen — nur nach CPL/Ergebnis entscheiden. Bissige Kommentare als
+  oder Kommentare löschen. Nur nach CPL/Ergebnis entscheiden. Bissige Kommentare als
   Ad-Rohstoff recyceln (Kommentar einblenden → Beweis-Sequenz).
 - **Link-CTR > 2 % = Warnsignal, nicht Erfolg.** Zu wenig Filterung im Text: viele falsche
   Klicks kosten Geld ohne Conversion. Mehr Committed-Sprache senkt die CTR (~1 %) und
   vervielfacht oft die LP-Conversion. Jede Metrik ist ein Regler, kein An/Aus-Schalter.
 - **Kein Testwellen-Kill ohne Ersatz in der Pipeline.** Killt eine Ad-Regel eine Anzeige,
-  ohne dass 2-3 Iterationen bereitstehen, wird das Budget einfach zurückgefahren — nie eine
+  ohne dass 2-3 Iterationen bereitstehen, wird das Budget einfach zurückgefahren: nie eine
   "Zombie"-Anzeige unbeobachtet weiterlaufen lassen (Details: Kill/Keep/Scale-Engine).
 - **Statics-Batch ohne Grounding-Quelle ist ein Blocker, keine Stilfrage.** Ein Konzept ohne
-  Review-/Winning-Ad-/Kommentar-Beleg wird nicht ausgeliefert — dieselbe Härte wie claims-qa,
+  Review-/Winning-Ad-/Kommentar-Beleg wird nicht ausgeliefert: dieselbe Härte wie claims-qa,
   nur schon am Brief statt erst am Text.
 - **Es gibt keine feste Ad-Fatigue-Frequenz oder Signifikanz-Schwelle, die für jedes Konto
   gilt.** Immer gegen die eigene Konto-Baseline vergleichen (Details:
-  `references/vendor/claude-ads/quellen-und-benchmarks.md`) — eine erfundene Konstante
+  `references/vendor/claude-ads/quellen-und-benchmarks.md`). Eine erfundene Konstante
   wie "Frequency > 3" klingt konkret und ist trotzdem oft falsch.
 - **Testwelle ohne vorab festgelegte Stopp-Regel ist keine Testwelle.** Wiederholtes Peeken
   und Abbruch beim ersten guten Ergebnis produziert Falsch-Positive, die sich wie ein
@@ -181,18 +181,18 @@ nicht automatisch bei E-Com.
   (`references/vendor/claude-ads/scoring-methodik.md`).
 - **"No Spend" ist fast immer ein Hook-Problem, nicht ein Budget-/Targeting-Problem.** Eine
   Anzeige, die keinen Spend bekommt, wird an den ersten 3 Sekunden (Hook) repariert oder
-  ersetzt — nicht am Targeting gedreht. Ausnahme: technische Ursache (Ablehnung, Budget-Cap,
+  ersetzt: nicht am Targeting gedreht. Ausnahme: technische Ursache (Ablehnung, Budget-Cap,
   frisch gestartete Lernphase) statt kreativer Ursache (Beleg:
   `/root/raphael-brain/wiki/craft/ads/nugget-sammlungen/media-buying-scaling.md` →
   Täglicher Kill/Keep/Scale-Check; Candidate, noch nicht freigegeben, wandert nach Freigabe
   an `wiki/craft/ads/strategie/2026-07-20-testing-vs-scaling-kampagnenstruktur.md`).
-- **Tages-Zahlen bei Ads sind Rauschen — nie auf Tagesbasis killen/skalieren.** Bei
+- **Tages-Zahlen bei Ads sind Rauschen: nie auf Tagesbasis killen/skalieren.** Bei
   schwankenden Tageswerten auf 3-7-Tage-Durchschnitt umstellen, sonst wird normale
   Volatilität für ein Signal gehalten (Beleg: gleiche Quelle wie oben). Bei sehr kleinem
-  Budget/wenig Conversions reicht auch das 3-7-Tage-Fenster oft nicht — dann länger
+  Budget/wenig Conversions reicht auch das 3-7-Tage-Fenster oft nicht. Dann länger
   beobachten statt trotzdem zu entscheiden.
 - **Statics-first-Sequenz ist kein MAKE-Standard, sondern ein Einzelfall-Beleg für neue
   Angles.** MAKEs laufender Standard ist Static+Video desselben Angles gleichzeitig im
-  selben Testing-Ad-Set (siehe Strategie-Regel oben) — die sequenzielle Statics-vor-Video-
+  selben Testing-Ad-Set (siehe Strategie-Regel oben). Die sequenzielle Statics-vor-Video-
   Idee stammt aus einer unabhängigen Quelle mit unverifizierten Eigenangaben und ersetzt den
   MAKE-Standard nicht, sie ergänzt ihn nur für brandneue, ungetestete Angles.

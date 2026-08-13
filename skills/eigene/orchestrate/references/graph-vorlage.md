@@ -55,7 +55,7 @@ for (let briefRunde = 0; briefRunde < 2; briefRunde++) {
   if (briefRunde > 0) {
     await agent(`${LONGHORIZON} Überarbeite ${DIR}/brief.md grundlegend — der ` +
       `Draft scheiterte 3x am Score, letzte Mängel: ${JSON.stringify(verdict.maengel)}.`,
-      { label: 'brief:neu', phase: 'Brief', agentType: 'sonnet-worker' })
+      { label: 'brief:neu', phase: 'Brief', agentType: 'sonnet-worker' , stallMs: 0 })
   }
   for (let runde = 0; runde < 3; runde++) {
     await agent(`${LONGHORIZON} Schreibe/überarbeite den Artikel nach ${DIR}/brief.md` +
@@ -75,7 +75,7 @@ if (!verdict || !verdict.pass) return { abbruch: 'score auch nach Brief-Neuschri
 das ROHE Ergebnis (Exit-Code + Ausgabe) — er interpretiert nicht weg:
 ```javascript
 const gate = await agent(`${LONGHORIZON} Führe aus: <GATE-KOMMANDO>. Gib {exitCode, output} zurück, ungeschönt.`,
-  { label: 'gate:lint', phase: 'Gate', agentType: 'haiku-worker', schema: GATE_SCHEMA })
+  { label: 'gate:lint', phase: 'Gate', agentType: 'haiku-worker', schema: GATE_SCHEMA , stallMs: 0 })
 if (!gate || gate.exitCode !== 0) return { abbruch: 'Gate rot', gate }
 ```
 Das Cockpit prüft das Gate nach dem Run NOCHMAL selbst (Bash) —

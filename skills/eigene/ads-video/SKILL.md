@@ -1,6 +1,6 @@
 ---
 name: ads-video
-version: 0.5.0
+version: 0.6.0
 description: >
   Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok
   entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan.
@@ -27,7 +27,8 @@ loads:
 loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [copywriting@^0, no-ai-slop@^0]
 completion_criteria:
-  - "copywriting/scripts/forbidden-check.py auf dem Sprechtext gelaufen, Exit 0 (harte Sperre, vor der Messlatte); Ausgabe im Output zitiert"
+  - "copywriting/scripts/forbidden-check.py auf dem Skript gelaufen, Exit 0 (harte Sperre, vor der Messlatte); Ausgabe im Output zitiert"
+  - "jede genutzte Spoken-Ausnahme (R1-R3, sprech-sprache.md Vorrang-Tabelle) im Output benannt: Regel + Zeile + Grund; nie im CTA, max 1x pro Skript, nie fuer A2/A3/B4/B5"
   - "voice-dna-ads V12-Selbstcheck (6 Fragen) = 6x ja, im Output dokumentiert"
   - "Hook-Länge ≤ 8 Wörter (oder ≤ 12 mit exakter belegter Zahl) — V1"
   - "Winner-Basis-Feld gesetzt (Ad-Name/ID + Hookrate/Spend/CTR oder ehrlich 'kein Performance-Datensatz')"
@@ -48,7 +49,7 @@ completion_criteria:
 
 **Aufruf:** `ads-video(kunde: slug [pflicht], anzahl: int = 3)`
 
-**Version 0.3 (2026-08-11):** generalisiert — Craft-Kern gilt für jeden Kunden,
+**Version 0.3 (2026-08-11):** generalisiert, Craft-Kern gilt für jeden Kunden,
 Performance-Daten und Kunden-Playbook liegen im Kundenrepo, Strategien/Taktiken als
 Pflicht-Load ergänzt.
 
@@ -56,7 +57,7 @@ Pflicht-Load ergänzt.
 
 1. **Craft-Kern (immer gleich, kundenunabhängig).** Sechs Referenzen, aus echten
    Markt-Ads destilliert. Sie liefern Aufbau, Hooks, Sprache, Strategien und Taktiken.
-2. **Kunden-Layer (pro `kunde`).** ICP, Offer, Voice — plus optional ein eigener
+2. **Kunden-Layer (pro `kunde`).** ICP, Offer, Voice: plus optional ein eigener
    Performance-Korpus und ein Kunden-Playbook. Fehlt der Performance-Teil, schreibt der
    Skill trotzdem, nur eben rein aus dem Markt-Pfad.
 
@@ -80,7 +81,8 @@ Referenzen), `references/beat-struktur-und-aufbau.md` (Fallback), `references/vi
 (Einblendungsplan).
 
 **Korpus-Klassen:** nur Records mit Volltext für Phase-1-Zitate.
-`[UNVOLLSTÄNDIG — nur in Notion]` → ausschließen, nicht erfinden.
+`[UNVOLLSTÄNDIG — nur in Notion oder leer]` → ausschließen, nicht erfinden.
+(Wortlaut exakt wie in `scripts/export-airtable-korpus.sh`.)
 Drafts/Konzepte im Kundenordner = Stil/Dialekt, **nicht** Beat-Skelett-Quelle.
 Skelett-Quelle = `winner` / `laufend` (Performance oder klarer Flight).
 
@@ -108,7 +110,7 @@ ehrlich `kein Performance-Datensatz`. Nie die Zahlen eines anderen Kunden borgen
 **Korpus-Refresh (nur wo Airtable existiert):**
 `KUNDE=<slug> bash /root/raphael-skills/skills/eigene/ads-video/scripts/export-airtable-korpus.sh`
 Auth: `/root/tools/secrets/airtable.env`. Base über `AIRTABLE_BASE` überschreibbar.
-Kein Live-API-Zwang im Schreibpfad — der Datei-Korpus reicht.
+Kein Live-API-Zwang im Schreibpfad. Der Datei-Korpus reicht.
 
 ## Ablauf
 
@@ -129,20 +131,20 @@ Kein Live-API-Zwang im Schreibpfad — der Datei-Korpus reicht.
 
 3. **Proof-Inventar (Positiv-Zwang).** Aus Kunden-Dossier + Kunden-Korpus alle
    freigegebenen Zahlen, Namen, filmbaren Artefakte listen. Mindestens **1 früher Case**
-   und **1 filmbarer Proof** müssen ins Skript — sonst **BLOCKED** mit konkreter
+   und **1 filmbarer Proof** müssen ins Skript, sonst **BLOCKED** mit konkreter
    Materialfrage (nicht entkernt weiterschreiben). Stärksten erlaubten Claim wählen.
 
 4. **Referenz-Analyse (Methodik).** Kunden- und Markt-Volltexte nach
    `skript-analyse-methodik.md` Phase 1+2 zerlegen. Nur `winner`/`laufend` + Volltext
    fürs Skelett. Ergänzend: Playbook §5 Skelett; `hook-formeln.md` +
    `skript-architekturen.md` als Markt-Rahmen. `beat-struktur-und-aufbau.md` nur Fallback
-   wenn <3 brauchbare Referenzen — die Zeile „Wenn du [ICP] bist und [Outcome] willst,
-   brauchst du [Offer]" ist **Anti-Beispiel**, keine Vorlage.
+   wenn <3 brauchbare Referenzen. Die Zeile „Wenn du [ICP] bist und [Outcome] willst,
+   brauchst du [Offer]" ist ein **Anti-Beispiel**.
 
 5. **F-ID + A-ID + S-ID/T-ID wählen, dann schreiben.** Vor dem ersten Satz: eine
    Hook-Formel (F1–F13), eine Architektur (A1–A7) und mindestens eine Strategie (S-ID)
    plus eine Taktik (T-ID) aus `strategien-taktiken.md` benennen; je 1 Belegzeile aus
-   denselben Refs. Body vom Winner clonen, wenn derselbe Funnel läuft — nur
+   denselben Refs. Body vom Winner clonen, wenn derselbe Funnel läuft. Nur
    Angle/Hook-Variante neu. Text/Ton: `copywriting` + `sprech-text-regeln.md` +
    `sprech-sprache.md`.
    **Voice-DNA bindet den Satzbau** (`references/voice-dna-ads.md` Teil 2):
@@ -166,15 +168,31 @@ Kein Live-API-Zwang im Schreibpfad — der Datei-Korpus reicht.
    **Spoken-Ausnahme:** Füllwörter/Kraftwörter im Hook (R2/R3 `sprech-sprache.md`)
    nicht glätten. Ohne dokumentierten Pass gilt das Skript als unfertig.
 
-7b. **`forbidden.md` + V12-Selbstcheck (hartes Gate, vor der Messlatte).**
-   Sprechtext gegen `/root/.claude/forbidden.md` prüfen, Abschnitt A–F.
-   Ein Treffer = Zeile neu schreiben, nicht abschwächen. Häufigste Treffer im
+7b. **Skript-Gate + V12-Selbstcheck (hart, vor der Messlatte).**
+
+   ```
+   python3 /root/raphael-skills/skills/eigene/copywriting/scripts/forbidden-check.py <skript.md>
+   ```
+
+   Exit 1 = nicht shippen. Ausgabe im Output zitieren. Häufigste Treffer im
    Ad-Text: Staccato-Paare (A1), "nicht X, sondern Y" (A2), Metapher-Paare (A3),
    Drei-Wort-Triaden (A5), Wert-Adjektive ohne Zahl (B4).
+
+   **Spoken-Ausnahme (VO-Zeilen):** Meldet das Skript A1 oder A6 auf einer
+   gesprochenen Zeile, entscheidet die Vorrang-Tabelle in
+   `references/sprech-sprache.md` → "Vorrang bei Konflikt". R1–R3 gewinnen dort
+   im Hook und beim Pain, **nie im CTA**, **nie mehr als einmal pro Skript**,
+   **nie für A2/A3/B4/B5**. Jede genutzte Ausnahme wird im Output benannt:
+   welche Regel, welche Zeile, warum. Ohne Nennung gilt das Gate.
+
+   Onscreen-Text, Primary Text und Beschreibung haben **keine** Spoken-Ausnahme.
+   Dort ist jeder Treffer ein Fail.
+
    Danach die 6 Fragen aus `references/voice-dna-ads.md` V12 beantworten und
    das Ergebnis im Output dokumentieren.
+
    **Nachtragspflicht:** Jedes neu erwischte Slop-Muster wandert sofort nach
-   `forbidden.md` Abschnitt F — mit kaputtem Beispiel und Fix.
+   `forbidden.md` Abschnitt F: mit kaputtem Beispiel und Fix.
 
 8. **Messlatte grün.** Alle 10 Assertions in `skript-architekturen.md` (Form, erste
    12 Wörter, Zahl im Hook, Mechanismus-Name, Proof×2+filmbar, Disclaimer, voller CTA,
@@ -187,47 +205,50 @@ Kein Live-API-Zwang im Schreibpfad — der Datei-Korpus reicht.
 
 Jede Zahl, jeder Kundenname, jedes Ergebnis braucht eine Quelle aus dem Kunden-Dossier
 (Proof/VOC) oder dem Kunden-Korpus / einem freigegebenen Case. Markt-Referenzen belegen
-**Bauform**, nie die Zahlen des Kunden. Fehlt Rohmaterial: stoppen und fragen — identisch
+**Bauform**, nie die Zahlen des Kunden. Fehlt Rohmaterial: stoppen und fragen, identisch
 zur Grounding-Pflicht der Statics-Briefs im `ads`-Router.
 
 ## Claims-QA bleibt beim Router
 
-`ads-video` schreibt, prüft aber nicht final gegen Meta-Policy/HWG/UWG — das ist
+`ads-video` schreibt, prüft aber nicht final gegen Meta-Policy/HWG/UWG. Das ist
 `claims-qa` (Sol, frische Session, `eigene/ads/references/claims-verbote.md`).
 Beim Schreiben grob gegensteuern (`sprech-text-regeln.md`).
 
 ## Hierarchie bei Regelkonflikt
 
-0. `/root/.claude/forbidden.md` — schlägt alles. Ein verbotenes Muster bleibt
+0. `/root/.claude/forbidden.md`: schlägt alles. Ein verbotenes Muster bleibt
    verboten, auch wenn ein Winner-Skript es benutzt.
-1. Kunden-Winner-Korpus + Kunden-Playbook (was im Konto messbar hält/skaliert) —
+   **Einzige Ausnahme:** die Spoken-Vorrang-Tabelle in `sprech-sprache.md`
+   (R1–R3 auf gesprochenen Zeilen, mit den vier dort genannten Grenzen).
+   Sie deckt Rhythmus und Register, nie A2/A3/B4/B5.
+1. Kunden-Winner-Korpus + Kunden-Playbook (was im Konto messbar hält/skaliert):
    falls vorhanden
 2. Zentrales Playbook + `hook-formeln.md` + `skript-architekturen.md` +
    `strategien-taktiken.md` (Markt-Craft + Messlatte)
-2b. `voice-dna-ads.md` V1–V12 (gemessener Satzbau) — bindet den Sprechtext,
+2b. `voice-dna-ads.md` V1–V12 (gemessener Satzbau): bindet den Sprechtext,
    solange die Kunden-VOICE.md nicht ausdrücklich widerspricht
 3. Kunden-Voice / `copywriting` + `sprech-sprache.md`
 4. Generisches 5-Beat in `beat-struktur-und-aufbau.md` nur als Fallback
 
 ## Gotchas
 
-- **Kein Performance-Zwang.** Ohne eigenen Korpus ist der Markt-Pfad vollwertig — aber das
+- **Kein Performance-Zwang.** Ohne eigenen Korpus ist der Markt-Pfad vollwertig, aber das
   Winner-Basis-Feld muss das ehrlich sagen, statt Zahlen zu erfinden oder zu borgen.
 - **Hook-Ende inhaltlich, nicht per Satzzahl.** Funktion zählt (Retention vor Delivery).
 - **Direktheit Standard, Curiosity Ausnahme.** Curiosity ohne Payoff = Anti-Muster.
-- **Testimonial-Roh-Format** ist bewusste CTA-Ausnahme — nur mit echtem Call-Outcome.
-- **Markenfarbe/-Assets nie aus dem Gedächtnis** — gegen `client-*/brand/` prüfen.
+- **Testimonial-Roh-Format** ist bewusste CTA-Ausnahme. Nur mit echtem Call-Outcome.
+- **Markenfarbe/-Assets nie aus dem Gedächtnis**: gegen `client-*/brand/` prüfen.
 - **Fable-Gotcha (Regel 19):** Verifier nur pass/fail + eingefügter Beweis, nie
   „erkläre deinen Gedankengang".
 - **Tote Verweise vermeiden:** „Craft-Kern" = Abschnitt A dieses Files.
 - **Der Korpus ist Beleg, kein Vorbild.** 711 laufende Ads enthalten auch Slop
   (`voice-dna-ads.md` V11). Übernommen werden Bauform und Beweismuster, nie eine
-  Formulierung, die in `forbidden.md` steht — Laufzeit im Konto adelt kein Muster.
+  Formulierung, die in `forbidden.md` steht: Laufzeit im Konto adelt kein Muster.
 - **Voice-DNA neu messen nach jedem Korpus-Refresh.** Ändert sich der Median der
   Hook-Länge oder das Du/Sie-Verhältnis deutlich, wandern die Regeln in
   `voice-dna-ads.md` Teil 2 mit. Zahlen von 2026-08-13: Median 8 Wörter, 83,3 % Duzen.
 - **Schreiber-Kontext unter 50 %.** Der Korpus ist ~15.000 Zeilen. Nie komplett
-  laden — gezielt greppen oder per Subagent auswerten. Über 50 % Füllstand fällt
+  laden: gezielt greppen oder per Subagent auswerten. Über 50 % Füllstand fällt
   die Sprechtext-Qualität hart ab.
 - **Root-Cause D1–D9 (2026-08-11):** Craft-Refs müssen in `loads` bleiben; Performance
   muss im Output-Feld stehen; no-ai-slop muss feuern; entkernte Story ohne Proof-Inventar

@@ -13,7 +13,7 @@ Die Zahlen eines einzelnen Kontos gehören ins Kunden-Playbook
 
 Vor dem Schreiben, in dieser Reihenfolge:
 
-1. **Winner des Kunden laden — falls vorhanden.** Existiert
+1. **Winner des Kunden laden: falls vorhanden.** Existiert
    `/root/clients/client-<slug>/ads/korpus/eigene-ads.md`, die Top-Ads nach
    Spend × Hookrate bestimmen und die Winner-Basis notieren. Existiert ein Kunden-Playbook
    `playbook-<slug>.md`, dessen Instanz-Belege dazu lesen.
@@ -47,7 +47,7 @@ Zahlen dazu hat, steht der **Instanz-Beleg im Kunden-Playbook**.
 - **Markt-Belege:** Pascal Harting „Ich bringe dich garantiert in den nächsten 31 Tagen auf
   Platz 1 bei Google – oder du bezahlst mir keinen Cent" (3× im selben Account gefahren);
   Marc Evers „Webdesigner aufgepasst! Ich bringe dir 5 neue Webdesign Kunden in den
-  nächsten 60 Tagen — Garantiert oder du zahlst keinen Cent".
+  nächsten 60 Tagen: Garantiert oder du zahlst keinen Cent".
 - **Instanz-Beleg im Kunden-Playbook.**
 - **Anti-Muster:** Mission-Statement oder Story-Frame vor dem Filter.
 
@@ -65,7 +65,7 @@ Zahlen dazu hat, steht der **Instanz-Beleg im Kunden-Playbook**.
 ### W3: Lokaler Callout + echte Kulisse (Geo-UGC)
 - **Regel:** Stadt/Region im Hook + erkennbarer Ort im Bild schlägt Studio und anonyme
   Agentur-Claims.
-- **Warum:** Der Ort filtert und beweist gleichzeitig — er ist Callout und Proof in einem.
+- **Warum:** Der Ort filtert und beweist gleichzeitig. Er ist Callout und Proof in einem.
 - **Markt-Beleg:** Enpal „Hausbesitzer in NRW" als harter Geo-Callout.
 - **Instanz-Beleg im Kunden-Playbook.**
 - **Anti-Muster:** „Wir sind eine Agentur aus der Region" ohne Ort, ohne Gesicht, ohne
@@ -80,7 +80,7 @@ Zahlen dazu hat, steht der **Instanz-Beleg im Kunden-Playbook**.
 - **Anti-Muster:** „zahlreiche Kunden vertrauen uns" ohne Name.
 
 ### W5: UGC Face-to-Camera + Karaoke-Untertitel durchgehend
-- **Regel:** Talking-Head nah, Selfie-Perspektive, Untertitel unten durchgehend — nicht
+- **Regel:** Talking-Head nah, Selfie-Perspektive, Untertitel unten durchgehend: nicht
   nur als Endcard.
 - **Warum:** Der Feed läuft stumm. Ohne Caption stirbt der Hook vor dem ersten Wort.
 - **Markt-Beleg:** Fast alle starken Ads der Shards fahren Wort-für-Wort-Karaoke-Captions
@@ -171,7 +171,7 @@ Korpus: die Familie wählen, die zum Awareness-Level und Funnel passt
    SEOLabs „über 20"; Marc Evers „über 30.000 Euro".
 3. **Kraftwort nur im Hook/Pain, CTA sachlich.** Beleg: `sprech-sprache.md` R2/R3; starke
    Referenz-CTAs kommen ohne Superlativ-Geschrei aus.
-4. **Mechanismus braucht einen Eigennamen.** „Suchflow-System", „No-Funnel-Ads-Framework" —
+4. **Mechanismus braucht einen Eigennamen.** „Suchflow-System", „No-Funnel-Ads-Framework":
    nicht „unsere Lösung". Beleg: Pascal Harting „Suchflowsystem" im Referenz-Skript;
    `skript-architekturen.md` Messlatte Punkt 4.
 5. **Kein Weichmacher-Cluster:** individuell, maßgeschneidert, ganzheitlich, auf Augenhöhe,
@@ -186,7 +186,7 @@ Jeder Sprechtext läuft durch `no-ai-slop` **Edit-Modus**. Häufige Ads-Slop-Mus
 - Importance-Puffery
 
 **Spoken-Ausnahme (nicht glätten):** echte Füllwörter, Selbstkorrekturen, Kraftwörter im
-Hook — siehe `sprech-sprache.md` R2/R3 und `sprech-text-regeln.md` § no-ai-slop.
+Hook. Siehe `sprech-sprache.md` R2/R3 und `sprech-text-regeln.md` § no-ai-slop.
 
 ## 5. Beat-Skelett der Gewinner (Fill-in-the-blank)
 
@@ -222,8 +222,8 @@ Je Variante: F-ID | erste 12 Wörter | Zahl/Name | On-Ramp-Satz | Caption-Job | 
 ```
 
 **Fallback nur wenn <3 brauchbare Referenzen:** generisches 5-Beat aus
-`beat-struktur-und-aufbau.md` — aber die Zeile „Wenn du [ICP] bist und [Outcome] willst,
-brauchst du [Offer]" ist **Anti-Beispiel**, keine Vorlage (siehe `skript-architekturen.md`
+`beat-struktur-und-aufbau.md`, aber die Zeile „Wenn du [ICP] bist und [Outcome] willst,
+brauchst du [Offer]" ist ein **Anti-Beispiel** (siehe `skript-architekturen.md`
 Verbote).
 
 ## 6. Checkliste vor Ship (max 12, ja/nein)
@@ -245,10 +245,10 @@ Verbote).
 
 ## Korpus-Notizen (Ehrlichkeit)
 
-- Markt-Referenz-Ads: 711 Records; 176 unvollständig/Notion-Lücke — **nur Volltext** für
-  Phase-1-Zitate nutzen. `[UNVOLLSTÄNDIG — nur in Notion]` ausschließen, nicht erfinden.
+- Markt-Referenz-Ads: 711 Records; 176 unvollständig/Notion-Lücke: **nur Volltext** für
+  Phase-1-Zitate nutzen. `[UNVOLLSTÄNDIG. Nur in Notion]` ausschließen, nicht erfinden.
 - Ein eigener Performance-Korpus ist optional und liegt beim Kunden:
-  `/root/clients/client-<slug>/ads/korpus/eigene-ads.md`. Fehlt er, ist das kein Fehler —
+  `/root/clients/client-<slug>/ads/korpus/eigene-ads.md`. Fehlt er, ist das kein Fehler:
   dann trägt der Markt-Pfad, und das Winner-Basis-Feld sagt es ehrlich.
 - Drafts und Konzepte im Kundenordner sind Stil- und Dialekt-Referenz, **nicht**
   Beat-Skelett-Quelle. Skelett-Quelle = `winner` / `laufend` mit Performance oder klarem Flight.

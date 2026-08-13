@@ -26,16 +26,7 @@ source: >
 loads:
   - references/dispatch.md
   - references/cross-model-harness.md
-  - references/muster-wahl.md
-  - references/workflow-vorlage.md
-  - references/gauntlet-loop.md
-  - references/council.md
-  - references/graph-vorlage.md
-  - references/kontext-packs.md
-  - references/loop-typen.md
-  - references/loop-primitive.md
-  - references/runden-protokoll.md
-  - references/retro-muster.md
+  # Branch-spezifische References (muster-wahl, workflow-vorlage, gauntlet-loop, council, etc.) werden nur bei Bedarf nachgeladen — siehe Zweige unten.
 requires_skills: [eval@^0]
 completion_criteria:
   - "Betriebsart ist genannt und begründet (SOLO / EINMAL / LOOP / GRAPH / GAUNTLET / COUNCIL)"
@@ -220,7 +211,7 @@ Assets) nutzt der Workflow den verbindlichen Vertrag in
 - Pro Item arbeitet genau ein `luna-worker`; kein Item-Wechsel, keine Selbstabnahme,
   höchstens drei Runden. Rückgabe ist Artefakt plus AAA-Beleg.
 - Bei visuellen oder visuellen Spezifikations-Outputs prüft ein separater
-  `visual-critic` das echte Artefakt. Bei `fail` geht nur `biggest_gap` in die nächste
+  `visual-kritiker` das echte Artefakt. Bei `fail` geht nur `biggest_gap` in die nächste
   Fix-Runde.
 - Unabhängige Items dürfen parallel laufen. `PASS` gibt das Artefakt an den nächsten
   Workflow-Schritt; `BLOCKED` nach Runde 3 verhindert den Ship und eskaliert mit dem

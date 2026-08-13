@@ -2,7 +2,7 @@
 
 Standardisiertes Format, nach dem Muster der MAKE-Statics-Briefs
 (`/root/clients/client-make/ads/statics/2026-07-22-MAKE-Statics-Briefs.md`). Ein Brief
-= eine Zelle in der Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding — siehe
+= eine Zelle in der Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe
 Blocker unten.
 
 ## Feld-Reihenfolge je Brief
@@ -21,10 +21,10 @@ Blocker unten.
 **Primary Text:**
 > [Ganzer Text nach gewähltem Skelett, 600-1.200 Zeichen]
 
-**Bild-Beschreibung:** [Szene + Stil + Format + exakter On-Image-Text — konkret genug,
+**Bild-Beschreibung:** [Szene + Stil + Format + exakter On-Image-Text, konkret genug,
   dass ein Designer/Bildgenerator ohne Rückfrage bauen kann]
 
-**Grounding-Quelle:** [Pflichtfeld — echte Review/Winning-Ad/Ad-Kommentar/Kundenzitat aus
+**Grounding-Quelle:** [Pflichtfeld, echte Review/Winning-Ad/Ad-Kommentar/Kundenzitat aus
   voc.md, PROOF.md oder Kunden-Wiki. Kein Beleg = kein Brief, siehe Blocker unten]
 
 **Status:** [sofort produzierbar | wartet auf Material: <was fehlt> | Grounding fehlt]
@@ -45,14 +45,14 @@ Feature-Spotlight, Press Mention, Lifestyle Hero, Numbered List, FAQ Card, Compe
 Callout, Origin Story) verweist dieses Schema auf die 15 Layout-Vorlagen im ads-Router:
 `../../ads/references/vendor/coreyhaines-ads/static-ad-templates-en.md`. Dort steht auch
 das Output-Format und die Batch-Verteilungsregel (über alle 15 zyklen, nicht auf 2-3
-Favoriten clustern). Nicht kopieren — verweisen.
+Favoriten clustern). Nicht kopieren: verweisen.
 
 ## Grounding-Pflicht (harter Blocker, aus dem ads-Router übernommen)
 
 Jedes Konzept braucht eine Quelle: echte Review, Winning-Ad, Ad-Kommentar oder Zitat aus
 `client-<slug>/wiki/voc.md` / `PROOF.md`. Keine erfundenen Claims, Statistiken oder
 Testimonials. Fehlt Rohmaterial für eine Zelle: **stoppen und um Material bitten**, nicht
-ungegroundet weiterproduzieren — dieselbe Härte wie claims-qa, nur schon am Brief statt
+ungegroundet weiterproduzieren: dieselbe Härte wie claims-qa, nur schon am Brief statt
 erst am Text.
 
 ## Kunden-Freigabe eines Batches
@@ -64,11 +64,11 @@ Nicht Rohtext-Briefs als Freigabe-Artefakt verschicken.
 ## Gotchas
 
 - **Ein Brief ohne Grounding-Feld ist kein unfertiger Brief, sondern gar kein Brief.**
-  Das Feld leer lassen und "Status: wartet" reicht nicht — der Blocker gilt für Erzeugung,
+  Das Feld leer lassen und "Status: wartet" reicht nicht. Der Blocker gilt für Erzeugung,
   nicht nur für Auslieferung.
 - **Mehr Headline-/Hook-Varianten schlagen mehr Body-Varianten.** Beim Aufteilen der
-  Produktionszeit mehr Varianz in Onscreen-Copy/Headline stecken als in Primary-Text-Bodies
-  — die Performance-Streuung sitzt im Hook, nicht im Body.
+  Produktionszeit mehr Varianz in Onscreen-Copy/Headline stecken als in
+  Primary-Text-Bodies. Die Performance-Streuung sitzt im Hook, nicht im Body.
 - **Ein neues Design ist kein neues Konzept.** Neu ist nur, was Angle, Offer, Persona oder
   Format ändert. Mikro-Variationen (nur Hintergrundfarbe, nur Pose) sind als eigene Briefs
-  wertlos — nicht separat messbar, Meta gruppiert sie ohnehin zur selben Ad-ID.
+  wertlos: nicht separat messbar, Meta gruppiert sie ohnehin zur selben Ad-ID.

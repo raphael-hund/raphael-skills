@@ -13,7 +13,7 @@ der Shards ab. Alle Beispiele unten sind wörtliche Original-Zeilen.
 ## F1 — Garantie-Hook (Risiko-Umkehr in Satz 1)
 
 **Bauplan:** `Ich bringe dich [garantiert] in den nächsten [N] Tagen auf
-[messbares Ergebnis] — oder du bezahlst mir [keinen Cent / 0 €].`
+[messbares Ergebnis], oder du bezahlst mir [keinen Cent / 0 €].`
 Der Garantie-Satz steht wörtlich an Position 1. Die Risiko-Umkehr folgt im
 selben Atemzug (Gedankenstrich, kein neuer Absatz). Braucht danach die
 Begründung „warum ich das geben kann" (Proof).
@@ -25,14 +25,14 @@ Begründung „warum ich das geben kann" (Proof).
 
 **Einsatz:** solution-aware bis product-aware, cold, High-Ticket mit
 persönlichem Call dahinter (Application-/Call-Funnel). Die Garantie ersetzt
-langen Vertrauensaufbau — der Anbieter muss sie wirtschaftlich tragen können.
+langen Vertrauensaufbau. Der Anbieter muss sie wirtschaftlich tragen können.
 
 ## F2 — Zielgruppen-Callout + Ergebnisversprechen + Zeitrahmen (Big-Promise)
 
 **Bauplan:** `[Zielgruppe] aufgepasst: Ich bringe dich auf [konkrete €-Zahl]
-in [Zeitraum] — so wie [hier, hier, hier oder hier / Name, Name, Name].`
+in [Zeitraum]. So wie [hier, hier, hier oder hier / Name, Name, Name].`
 Stärkster wiederholter Hook der Shards. Der Zusatz „so wie hier, hier, hier
-oder hier" verweist live auf eingeblendete Screenshots — Versprechen und
+oder hier" verweist live auf eingeblendete Screenshots: Versprechen und
 Beweis fallen in dieselbe Sekunde.
 
 - Marc Evers: „Webdesigner, ich bringe dich auf 30.000€ Monatsumsatz in den nächsten 3 Monaten, so wie hier, hier, hier oder hier."
@@ -42,13 +42,13 @@ Beweis fallen in dieselbe Sekunde.
 
 **Einsatz:** solution-aware, cold Traffic, High-Ticket 1on1/Agentur
 (Call-Funnel). Funktioniert nur mit sofort anschließendem Case-Proof. Auch
-als Geo-Callout: Enpal — „Wir suchen Hausbesitzer in Baden-Württemberg, die
+als Geo-Callout: Enpal: „Wir suchen Hausbesitzer in Baden-Württemberg, die
 ein Solar-Komplettpaket für 0 € Anzahlung … haben wollen."
 
 ## F3 — Case-Callout / Proof-First (Beweis vor Versprechen)
 
 **Bauplan:** `[Name/Kunde] ist [Avatar] und macht mit [gewöhnlichem Angebot]
-über [Zahl] — und ich habe ihm dabei geholfen.` bzw. `Schau mal, [dieser
+über [Zahl], und ich habe ihm dabei geholfen.` bzw. `Schau mal, [dieser
 Kunde] hat [messbares Ergebnis mit Zahlen].`
 Fremdergebnis zuerst, eigene Rolle als Nebensatz. Der Kunde ist der Held,
 der Werber nur Enabler. Reihenfolge umgedreht: Beweis VOR Versprechen.
@@ -61,14 +61,14 @@ der Werber nur Enabler. Reihenfolge umgedreht: Beweis VOR Versprechen.
 **Einsatz:** cold/problem-aware bis solution-aware, überall wo ein echter,
 benennbarer Case existiert. Besonders stark bei lokalem/nischigem
 Dienstleister. Vorname + voller Kontext (Zeit, Adspend) macht es
-glaubwürdig — die absichtlich un-runden Zahlen (423 $ / 13.494 $) wirken echt.
+glaubwürdig. Die absichtlich un-runden Zahlen (423 $ / 13.494 $) wirken echt.
 
 ## F4 — Qualifizierungs-Hook (Status-Filter mit Zahl)
 
 **Bauplan:** `Du {bist/hast/machst} [Status-Merkmal mit Zahl] und willst
 [Outcome]?` bzw. `Wenn du [Avatar-Zustand mit konkreter Zahl] und [Wunsch],
 dann [pass jetzt gut auf].`
-Filtert aktiv im ersten Satz — wer die Bedingung nicht erfüllt, scrollt
+Filtert aktiv im ersten Satz. Wer die Bedingung nicht erfüllt, scrollt
 weiter (gewollt: billigere Klicks durch Vor-Qualifizierung). Die Zahl ist
 der Qualifizierer; ohne Zahl kein Filter.
 
@@ -85,7 +85,7 @@ people in the hook who've already spent money."
 
 **Bauplan:** `[Dritte/Ergebnis] erreichen [Zahl] [Zeiteinheit], ohne [einen
 Cent in Werbung / Kaltakquise / viralen Content].`
-Der „ohne"-Teil ist genauso wichtig wie das Ergebnis — er nimmt den Einwand
+Der „ohne"-Teil ist genauso wichtig wie das Ergebnis. Er nimmt den Einwand
 vorweg.
 
 - SEOLabs: „Diese Immobilienmakler erhalten jeden Monat über 100 qualifizierte Anfragen, ohne einen Cent in Werbung zu investieren"
@@ -101,7 +101,7 @@ vorweg.
 später: Entschärfung/Begründung].` Varianten: „Alles was du tust ist
 falsch", „Der größte Irrglaube", „Niemand redet über X", „Kauf nicht X,
 bevor…".
-Die These darf nie länger als 2 Sätze ungelöst stehen bleiben — sonst
+Die These darf nie länger als 2 Sätze ungelöst stehen bleiben, sonst
 Clickbait. Man muss die Auflösung liefern können.
 
 - Charlie Morgan: „What if I told you that everything you're doing to scale your marketing agency is fundamentally wrong? Now that might sound hard to hear, but it is true though. You don't need 47 funnels. You don't need to send 2000 cold DMs a day and you sure as hell don't need to make cold calls."
@@ -116,7 +116,7 @@ Clickbait. Man muss die Auflösung liefern können.
 ## F7 — Gift-Hook („Ich schenk dir das System hinter [großer Zahl]")
 
 **Bauplan:** `Ich schenk dir [das System/die Formel/das Skript] hinter
-[großer bewiesener €-Zahl] — [komplett kostenlos / auf der nächsten Seite].`
+[großer bewiesener €-Zahl]: [komplett kostenlos / auf der nächsten Seite].`
 Ein teuer erkauftes Asset wird verschenkt. Die große eigene Zahl ist der
 Glaubwürdigkeits-Anker, das Wort „schenken/for free" der Reaktanz-Löser.
 Das physische Zeigen des Booklets/Dokuments trägt den Hook visuell.
@@ -150,19 +150,19 @@ ersten Satz wiedererkennen.
 ## F9 — Pain-Fragen-Montage (innerer Monolog)
 
 **Bauplan:** 4–6 wörtliche Zielgruppen-Fragen hintereinander (Anapher,
-meist „Wie/Warum … endlich …?"), keine Antwort dazwischen, dann
+meist „Wie/Warum … endlich …?") ohne Antwort dazwischen, dann
 Titelkarte/Setup. Wiedererkennung statt Argumentation.
 
 - Speedscaling: „Wie skaliere ich endlich mein Business? Wie komme ich endlich auf das nächste Business-Level? Wie entwickle ich ein Gewinner-Mindset? Wie schaffe ich es, alles unter einen Hut zu bringen?" (2× identisch im Account)
 
 **Einsatz:** problem-aware, emotionale Märkte (Coaching). Braucht visuellen
-Träger (Nacht-am-Laptop-Bild) — Text allein wäre spammy. Typischerweise
+Träger (Nacht-am-Laptop-Bild): Text allein wäre spammy. Typischerweise
 Opener der 3-Wege-Entscheidung (A4).
 
 ## F10 — Demo-Hook („Ich zeig's dir live")
 
 **Bauplan:** `Here's how [I/you] [Ergebnis] in [lächerlich kurzer Zeit].`
-bzw. `[Was das Ding tut, in einem Satz]. Ich zeige dir das mal.` — Beweis
+bzw. `[Was das Ding tut, in einem Satz]. Ich zeige dir das mal.`: Beweis
 wird live gezeigt statt behauptet. Screen-Demo ab Sekunde 3–5, kein langes
 Vorgeplänkel.
 
@@ -172,7 +172,7 @@ Vorgeplänkel.
 - DatAds: „Diese AI analysiert all deine Ad Creatives und gibt dir konkrete Handlungsvorschläge, was du optimieren musst."
 
 **Einsatz:** solution-aware bis product-aware, SaaS/Tools/Product-Demos,
-Edutainment. Der Screen selbst ist der Beweis — Hook und Proof verschmelzen.
+Edutainment. Der Screen selbst ist der Beweis: Hook und Proof verschmelzen.
 
 ## F11 — Insider-/News-Frage („Was ist eigentlich [Buzzword]?")
 
@@ -202,7 +202,7 @@ Selbstidentifikation. Funktioniert auch als reine Static-Textkarte.
 
 ## F13 — „X ist tot" / Abschieds-Frame
 
-**Bauplan:** `Wir nehmen Abschied von [alter Standard] — *2010 - †2026.` /
+**Bauplan:** `Wir nehmen Abschied von [alter Standard]: *2010 - †2026.` /
 `[Bekanntes] ist nicht mehr der Hebel. [Neues] ist es.`
 
 - Stefan Graf: „WIR NEHMEN ABSCHIED VON Klassischen B2C-Neukunden-Funnels *2010 - †2026. Sie hinterließen unqualifizierte Leads, verbrannte Werbebudgets und Albträume"
@@ -234,10 +234,10 @@ Mechanismus-Namen („AI Infused Funnels").
 ## Bau-Regeln für Hook-Varianten
 
 - **Varianten als Matrix, nicht als Paraphrasen.** Hook-Varianten werden als
-  Matrix Segment × Motivation × Familie gebaut — nicht 3 Umformulierungen
+  Matrix Segment × Motivation × Familie gebaut: nicht 3 Umformulierungen
   desselben Callouts. Mindestens 2 verschiedene Formeln (F-IDs) im Set.
 - **Body-Brücke mitliefern (On-Ramp-Pflicht).** Jede Hook-Variante bekommt
-  die Brücke für Sekunde 3–15 gleich mitgeschrieben — sonst Hold-Rate-Tod.
+  die Brücke für Sekunde 3–15 gleich mitgeschrieben, sonst Hold-Rate-Tod.
   Die Brücke löst den Hook ein und führt in den Mechanismus (Beispiel:
   „Indem ich mein No-Funnel-Ads-Framework als 1on1-Sparringspartner bei dir
   implementiere …" — Marc Evers).
@@ -245,7 +245,7 @@ Mechanismus-Namen („AI Infused Funnels").
   Sekunde 0–3 (welche Szene/welches Overlay) und Caption-Job (sagt etwas
   ANDERES als das Gesprochene, keine Wort-Duplikation) je Variante angeben.
   Karaoke-Captions sind Standard (fast alle starken Ads haben Wort-für-Wort-
-  Untertitel — für Scroll-ohne-Ton überlebenswichtig).
+  Untertitel: für Scroll-ohne-Ton überlebenswichtig).
 - **Klo-Check je Hook:** versteht das jemand ohne Branchenkontext, verschlafen
   um 8 Uhr morgens? Jedes Wort ein Alltagswort, passt der Satz in einen
   Atemzug, fühlt sich die Zielperson direkt angesprochen?

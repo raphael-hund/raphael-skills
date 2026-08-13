@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 37,
+  "skill_count": 48,
   "skills": [
     {
       "name": "design",
@@ -9,10 +9,16 @@
       "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
     },
     {
+      "name": "ultra-loop",
+      "version": "0.4.0",
+      "path": "skills/eigene/_restored-20260811/ultra-loop/SKILL.md",
+      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Worker-Flotte (Sol/Kimi/Luna/Sonnet/Haiku, frei nach Verfügbarkeit) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
+    },
+    {
       "name": "ads-copy",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "path": "skills/eigene/ads-copy/SKILL.md",
-      "description": "Feuert für den Primary Text einer Meta-Ad — den Fliesstext über/unter dem Creative, plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads von 10 Werbetreibenden (Marc Evers, Speedscaling, SEOLabs, Neuhaus Digital, Pascal Harting, Dr. Matt Shiver, Charlie Morgan, Ben Heath, Enpal, Tim Krasenbrink) statt aus dem Gefühl. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\", \"Text zur Anzeige\", \"Ad Copy\". Für Video-Skripte siehe ads-video, für Statics-Briefs ads-statics, für den Loop-3-Ablauf ads."
+      "description": "Feuert für den Primary Text einer Meta-Ad: den Fliesstext über/unter dem Creative, plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads von 10 Werbetreibenden (Marc Evers, Speedscaling, SEOLabs, Neuhaus Digital, Pascal Harting, Dr. Matt Shiver, Charlie Morgan, Ben Heath, Enpal, Tim Krasenbrink) statt aus dem Gefühl. Trigger: \"Primary Text schreiben\", \"Ad-Text\", \"Anzeigentext\", \"Copy unter der Ad\", \"Text zur Anzeige\", \"Ad Copy\". Für Video-Skripte siehe ads-video, für Statics-Briefs ads-statics, für den Loop-3-Ablauf ads."
     },
     {
       "name": "ads-research",
@@ -22,27 +28,33 @@
     },
     {
       "name": "ads-statics",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
       "description": "Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs, Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"Angle-Matrix für Creatives\". Ergänzt ads (Loop 3, Schritt 6 „statics\") um die Tiefe der Visual-Style- und Copy-Bauform-Wahl; Bild-Erzeugung selbst bleibt bei design/Bildgenerierung-Policy."
     },
     {
       "name": "ads-video",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "path": "skills/eigene/ads-video/SKILL.md",
       "description": "Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan. Trigger: \"Video-Skript schreiben\", \"Ad-Skript\", \"Drehbuch für Ads\", \"Skripte für Testwelle\", \"Hook-Varianten fürs Video\". Funktioniert für jeden Kunden: Craft kommt Pflicht aus den Markt-Referenzen (Hooks, Architekturen, Sprache, Strategien/Taktiken, Referenz-Volltexte), Performance-Daten optional aus dem Kundenrepo. Schreibt nie aus dem Gedächtnis, endet erst nach no-ai-slop-Pass + Messlatte."
     },
     {
       "name": "ads",
-      "version": "0.9.0",
+      "version": "0.10.0",
       "path": "skills/eigene/ads/SKILL.md",
-      "description": "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach"
+      "description": "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics`: dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\". Lädt bei Spezialthemen gezielt die belegten Wissensseiten aus dem Second Brain (wiki/craft/ads, on-demand) nach"
     },
     {
       "name": "brain",
       "version": "0.1.0",
       "path": "skills/eigene/brain/SKILL.md",
       "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage für Raphaels Freigabe) und `verbinden` (Verlinkungs-Vorschläge als Diff). Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\"."
+    },
+    {
+      "name": "codex-first",
+      "version": "0.1.0",
+      "path": "skills/eigene/codex-first/SKILL.md",
+      "description": "Delegiert ein Arbeitspaket an die Codex-CLI (GPT-5.6, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Billig/anders bauen (Codex), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/codex-first\", \"an Codex geben\", \"von GPT bauen lassen\", \"codex exec\", \"Cross-Vendor-Bau\"."
     },
     {
       "name": "codex-orchestration",
@@ -52,7 +64,7 @@
     },
     {
       "name": "copywriting",
-      "version": "0.6.0",
+      "version": "0.7.0",
       "path": "skills/eigene/copywriting/SKILL.md",
       "description": "Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\". Für mehrteilige Email-Sequenzen, Drip-Kampagnen, Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill."
     },
@@ -75,6 +87,12 @@
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
     {
+      "name": "grok-first",
+      "version": "0.1.0",
+      "path": "skills/eigene/grok-first/SKILL.md",
+      "description": "Delegiert ein Arbeitspaket an die native Grok-Build-CLI. Grok arbeitet headless in seiner eigenen Harness; der aufrufende Agent prueft Diff und Tests danach selbst. Trigger: \"/grok-first\", \"an Grok geben\", \"grok -p\", \"schnelle Serien-Edits\", \"Cross-Vendor-Bau\"."
+    },
+    {
       "name": "handoff",
       "version": "0.3.0",
       "path": "skills/eigene/handoff/SKILL.md",
@@ -85,6 +103,18 @@
       "version": "0.1.0",
       "path": "skills/eigene/idea-filter/SKILL.md",
       "description": "Bewertet eine Geschäfts-/Produktidee entlang von neun festen Dimensionen gegen Raphaels tatsächliches Portfolio (ICP, Angebot, Voice, Kunden) und endet immer in genau einem von vier Verdikten — Build, Sleep on it, Pass oder Angle klauen. Erzwingt Belege statt Bauchgefühl und legt jede bewertete Idee als Kandidat ab, auch die abgelehnten. Trigger: \"Idee bewerten\", \"lohnt sich das\", \"Geschäftsidee prüfen\", \"soll ich das bauen\", \"idea-filter\", \"Ideen filtern\"."
+    },
+    {
+      "name": "impeccable",
+      "version": "0.1.0",
+      "path": "skills/eigene/impeccable/SKILL.md",
+      "description": "Feuert bei Frontend-Design-Arbeit, die über \"funktioniert\" hinausgehen soll: Design bauen, redesignen, kritisieren, auditieren, polieren, vereinfachen, härtener, animieren, kolorieren, typographieren, layouten, begeistern, klären, anpassen, optimieren — oder bei der Frage \"sieht das nach AI aus?\" / \"mach es bolder/quieter\". Liefert die Kommando-Sprache (23 Befehle wie `audit`, `critique`, `polish`, `bolder`, `quieter`, `distill`, `animate`, `colorize`, `typeset`, `layout`, `delight`, `clarify`, `harden`, `adapt`, `optimize`) und den Craft-Floor (Qualitäts-Mindeststandard) für Web-UI. Der design-Skill bleibt die kanonische Wissensquelle; impeccable ist die Arbeits- und QA-Sprache. Trigger: \"Design review\", \"UI audit\", \"polish this\", \"make it bolder\", \"landing page critique\", \"sieht nach AI aus\", \"Slop check\", \"Design verbessern\", \"animate this\", \"typography fix\"."
+    },
+    {
+      "name": "kimi-first",
+      "version": "0.2.0",
+      "path": "skills/eigene/kimi-first/SKILL.md",
+      "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
     },
     {
       "name": "no-ai-slop",
@@ -141,6 +171,24 @@
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\". Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)"
     },
     {
+      "name": "taste",
+      "version": "0.1.0",
+      "path": "skills/eigene/taste/SKILL.md",
+      "description": "Feuert bei Landing/Marketing/Portfolio/Editorial-Flächen, wenn der Look \"besonders\", \"premium\", \"nicht nach Template\" aussehen soll — die Landing-/Brand-Linie des design-Systems. Trigger: \"Landingpage designen\", \"Premium-Look\", \"nicht nach Baukasten aussehen\", \"Brand-Fläche\", \"Hero gestalten\", \"Portfolio\", \"Editorial\", \"taste\", \"mehr Geschmack ins Design\"."
+    },
+    {
+      "name": "ui-ux",
+      "version": "0.1.0",
+      "path": "skills/eigene/ui-ux/SKILL.md",
+      "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
+    },
+    {
+      "name": "ultra-loop",
+      "version": "0.4.0",
+      "path": "skills/eigene/ultra-loop/SKILL.md",
+      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Worker-Flotte (Sol/Kimi/Luna/Sonnet/Haiku, frei nach Verfügbarkeit) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
+    },
+    {
       "name": "visual-aaa",
       "version": "1.0.0",
       "path": "skills/eigene/visual-aaa/SKILL.md",
@@ -154,15 +202,27 @@
     },
     {
       "name": "web",
-      "version": "0.13.0",
+      "version": "0.13.1",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) delegiert er an den design-Skill. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
+    },
+    {
+      "name": "website-plan",
+      "version": "2.4.0",
+      "path": "skills/eigene/website-plan/SKILL.md",
+      "description": "Plant eine Kunden-Website end-to-end als Dateien (kein Code): kanonischer Multi-Agent-Workflow, Research, SEO+AEO, IA-Gate, fertige Copy, Specs, Design-Gate mit Mockups, Design-System und Roadmap. Trigger: \"/website-plan\", \"Website planen\", \"kompletter Website-Plan\", \"Site Copy SEO Layout planen\", \"mit Workflow Website planen\", \"Relaunch planen\"."
     },
     {
       "name": "last30days",
       "version": "3.16.0",
       "path": "skills/imported/last30days/SKILL.md",
       "description": "Recherchiert, was Leute in den letzten 30 Tagen wirklich über ein Thema sagen — Posts und Engagement aus Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub und dem Web, inkl. doctor-Health-Check. Vendored aus last30days-skill (mvanhorn). VORAUSSETZUNG: SCRAPECREATORS_API_KEY (ohne Key laufen nur keyless/degradierte Quellen). Trigger: \"last30days\", \"was sagen Leute über\", \"Trend-/Ad-Library-Scan\", \"Recency-Recherche\"."
+    },
+    {
+      "name": "brainstorm",
+      "version": "1.0.0",
+      "path": "skills/methodik/brainstorm/SKILL.md",
+      "description": "Kompatibilitäts-Adapter für /brainstorm. Enthält keine eigene Brainstorm-Logik: Zielklärung läuft über plan (GRILL/SPEC), die Perspektiven-Arbeit über den kanonischen Workflow `ultracode` mit mode \"brainstorm\" (drei Luna-Perspektiven, je ein frischer Sol-Kritiker, Synthese erst nach PASS aller drei). Trigger: /brainstorm, \"brainstorme\", \"Lösungsrichtungen entwickeln\"."
     },
     {
       "name": "code-review",
@@ -175,6 +235,12 @@
       "version": "0.1.0",
       "path": "skills/methodik/finish/SKILL.md",
       "description": "Schließt einen Entwicklungs-Branch sauber ab: Tests verifizieren, Umgebung erkennen, genau die passenden Optionen anbieten (Merge, PR, Behalten, Verwerfen), gewählten Weg ausführen, Workspace aufräumen. Trigger: \"Branch abschließen\", \"fertig implementiert\", \"mergen oder PR\", \"finishing a development branch\"."
+    },
+    {
+      "name": "handoff-ext",
+      "version": "0.1.0",
+      "path": "skills/methodik/handoff-ext/SKILL.md",
+      "description": "Verdichtet das laufende Gespräch zu einem kompakten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person, die weiterarbeiten soll — mit Redaktion sensibler Daten und Verweis statt Duplikat auf bestehende Artefakte. Trigger: \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
     },
     {
       "name": "plan",
@@ -220,9 +286,9 @@
     },
     {
       "name": "raphael-chrome",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "path": "skills/raphael-chrome/SKILL.md",
-      "description": "Steuert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit Logins und Passwort-Autofill. Nutzen für Browser-Arbeit, Trello/Airtable/Google-UI, API-Keys aus Web-Oberflächen holen, Screenshots, Klicks. Prefer this over Orca computer-use for websites. Triggers: chrome, browser, trello login, airtable, CDP, 9222, Passwort autofill, website klicken."
+      "description": "Steuert und repariert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit persistenten Logins und Passwort-Autofill. Nutzen fuer Browser-Arbeit, leere Tabs, CDP-Timeouts, fehlende Renderer, Cloudflare-Challenges, Screenshots und Web-Logins. Trigger: chrome, browser, VPS-Browser, Cloudflare, CAPTCHA, Renderer, CDP, 9222, Passwort autofill, website klicken."
     }
   ]
 }

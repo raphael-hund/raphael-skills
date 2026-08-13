@@ -2,9 +2,9 @@
 
 Kondensiert aus `wiki/craft/ads/creative/2026-07-20-referenz-video-skript-struktur.md`
 (kanonisch, 277-Ads-Basis) und `wiki/_candidates/konsolidiert-2026-07-23/
-video-skript-strukturen-hooks.md` (Stand 23.07., noch `status: candidate` — wandert nach
+video-skript-strukturen-hooks.md` (Stand 23.07., noch `status: candidate`: wandert nach
 Freigabe in die kanonische Seite; bis dahin hier als Übergangsquelle referenziert).
-Hook-Familien selbst NICHT dupliziert — siehe `wiki/craft/hooks/` (README dort).
+Hook-Familien selbst NICHT dupliziert. Siehe `wiki/craft/hooks/` (README dort).
 
 ## Das Standard-Skelett (5 Beats, 277-Ads-Basis)
 
@@ -19,7 +19,7 @@ Hook → Problem/Mechanismus → Proof → Offer → CTA. Median 5 Beats, Median
 | Offer | 0,66 | Angebot, meist einer der letzten 3 Beats vor CTA | spät |
 | CTA | letzter Beat (93/102) | Reibung senken + Commitment | Ende |
 
-Proof wird oft gestapelt (27/102 zwei+, 10/102 drei-vier) — stärkere Skripte wechseln
+Proof wird oft gestapelt (27/102 zwei+, 10/102 drei-vier): stärkere Skripte wechseln
 Proof/Mechanismus mehrfach ab statt Proof nur einmal zu setzen.
 
 **Kurzformate (<80 Wörter, 50/277):** lassen Mechanismus und Proof weg, springen direkt
@@ -27,25 +27,26 @@ Hook → Offer → CTA.
 
 ## Der Hook im Detail — vier gestapelte Variablen
 
-Ein Hook ist kein Satz, sondern vier synchron laufende Ebenen: Audio (gesprochen),
+Ein Hook besteht aus vier synchron laufenden Ebenen: Audio (gesprochen),
 Visual/Environment, Banner-Text on-screen, Primary Text/Headline im Anzeigentext. Alle
-vier müssen zueinander passen (Alignment-Regel) — Text "How I scaled to $200K/month"
-braucht ein Revenue-Dashboard im Bild, keine random redende Person.
+vier müssen zueinander passen (Alignment-Regel). Der Text "How I scaled to
+$200K/month" braucht ein Revenue-Dashboard im Bild. Eine beliebige redende
+Person reicht dafür nicht.
 
 - **Audio-Hook, 3 Beats in ersten 3 Sekunden:** (a) Call-Out (wer ist gemeint), (b) sofort
   Problem/Ziel, (c) optional Curiosity-Loop/Bonus-Tease. **Nicht** die generische Schablone
-  „Wenn du [ICP] bist und [Outcome] willst, brauchst du [Offer]" als einzige Form benutzen —
+  „Wenn du [ICP] bist und [Outcome] willst, brauchst du [Offer]" als einzige Form benutzen:
   das ist ein **Anti-Beispiel** (austauschbar, ohne Zahl/Name). Stattdessen eine konkrete
   F-ID aus `hook-formeln.md` (F1–F13) wählen; Zahl oder Name in Satz 1.
 - **Visual-Hook:** erstes Bild selbst-selektiert den ICP (Kleidung, Environment,
   Outcome-Symbole). Endzustand zeigen, nicht das Schmerzstadium.
 - **Banner-Text:** sagt etwas ANDERES als das Gesprochene (ergänzend, wie YouTube-Titel).
-- **Primary Text:** erste zwei Zeilen tragen Offer/Call-Out — Video braucht 15-30 s bis
+- **Primary Text:** erste zwei Zeilen tragen Offer/Call-Out: Video braucht 15-30 s bis
   zum Offer, der Text darf es vorwegnehmen.
 
 **Direktheit ist Standard, Curiosity ist selten:** nur 4/121 Hooks nutzen Curiosity-Wörter
 (warum, Geheimnis, Fehler); 24/121 nutzen Negation als Pattern Interrupt. Bei unaware ICPs
-Curiosity-Loop als optionalen dritten Audio-Beat prüfen — bei aware/direkten Angeboten beim
+Curiosity-Loop als optionalen dritten Audio-Beat prüfen: bei aware/direkten Angeboten beim
 Direktheits-Standard bleiben.
 
 ## ABT-Framework (And/But/Therefore)
@@ -53,10 +54,10 @@ Direktheits-Standard bleiben.
 Aus `raw/evidence/2026-07-23-ads-wissenspaket-2/web-abt-framework/analyse.md`. Kein
 Beat-Skelett im engeren Sinn, sondern eine Spannungs-Logik für den Bogen:
 
-- **And** — Ausgangslage, Status quo, das Erwartbare aneinanderreihen.
-- **But** — Bruch, Kontrast, Problem/Hindernis — der Moment, der die eigentliche
+- **And**: Ausgangslage, Status quo, das Erwartbare aneinanderreihen.
+- **But**: Bruch, Kontrast, Problem/Hindernis. Der Moment, der die eigentliche
   Spannung erzeugt.
-- **Therefore** — Konsequenz/Lösung, die aus dem Bruch zwingend folgt.
+- **Therefore**: Konsequenz/Lösung, die aus dem Bruch zwingend folgt.
 
 Anwendung im Skript: die Struktur Context (And) → Stakes/Problem (But) → Payoff/Mechanismus
 (Therefore) prüfen, ob jeder Beat-Übergang tatsächlich einen Bruch/eine Konsequenz trägt
@@ -70,7 +71,7 @@ Aus dem Candidate-Text, für Fälle, in denen das 5-Beat-Skelett nicht passt:
 - **Dagger (problem-first):** Hook(Problem) → Agitate → Reveal Solution → Features
   (3-4, nicht mehr) → Social Proof → CTA (eine klare Handlung).
 - **Testimonial-Roh-Clip (eigenes Format, kein Skelett-Fall):** Before → After → Why,
-  bewusst OHNE CTA und OHNE Schnitt — Rohheit ist Teil des Proof-Signals. Nur wenn ein
+  bewusst OHNE CTA und OHNE Schnitt: Rohheit ist Teil des Proof-Signals. Nur wenn ein
   Kunde mit klar erzählbarem Outcome vorhanden ist; nicht bei regulierten Claims oder
   wenn der Funnel zwingend einen CTA im Creative braucht.
 - **Hook-Body-CTA (Minimalgerüst):** Hook = Avatar direkt ansprechen, Body = Problem+Lösung
@@ -86,10 +87,10 @@ Incentive für sofortigen Kauf. Bild und Text müssen zur selben Awareness-Stufe
 
 ## Setting-Match als eigener Prüfpunkt
 
-Das Dreh-Umfeld muss zum ICP passen (Baustelle/Werkstatt/Büro/Zuhause) — Setting-Mismatch
+Das Dreh-Umfeld muss zum ICP passen (Baustelle/Werkstatt/Büro/Zuhause): Setting-Mismatch
 zerstört Proof auch bei starkem Angle. Bei Fatigue trotz guter Copy: Setting-Mismatch als
 Hypothese vor Message-Neuschrieb testen. Ausnahme: ICP kauft Aspiration/Status explizit
-(z. B. Get-rich-Einsteiger-Angebote) — dort kann Luxus-Setting als Proof funktionieren.
+(z. B. Get-rich-Einsteiger-Angebote). Dort kann Luxus-Setting als Proof funktionieren.
 
 ## Klo-Check (Verständlichkeitsregel für Hook + Overlay)
 
@@ -104,5 +105,5 @@ vor Freigabe: (1) versteht das jemand ohne Branchenkontext? (2) jedes Wort ein A
 
 Produktbewusstsein langsam steigern, nicht sprunghaft einführen ("Well, X ist deine
 Lösung" reißt einen sonst funktionierenden Hook/Body/CTA ab). Produkt so spät wie möglich
-einführen (nach vollständiger Problem-/Solution-Awareness) — Drop-off vor dem Reveal ist
+einführen (nach vollständiger Problem-/Solution-Awareness): Drop-off vor dem Reveal ist
 erwünscht, filtert die falschen Zuschauer.

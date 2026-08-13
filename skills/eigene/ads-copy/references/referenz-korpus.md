@@ -3,7 +3,7 @@
 **Erhoben:** 03.08.2026 über die Foreplay-API (`FOREPLAY_API_KEY`).
 Rohdaten: `raphael-brain/raw/ads-copy-2026-08-03/korpus.json` (105 eindeutige Texte,
 davon 56 deutsch). Diese Datei zeigt die Volltexte, auf denen die Regeln in der
-SKILL.md beruhen — damit jede Regel nachprüfbar ist statt behauptet.
+SKILL.md beruhen. Damit jede Regel nachprüfbar ist statt behauptet.
 
 
 ---

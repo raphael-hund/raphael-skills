@@ -3,8 +3,52 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
+
+
+_VERDICTS = {"pass", "fail"}
+_CONFIDENCE = {"HIGH", "MED", "LOW"}
+_PLACEHOLDER = re.compile(r"<[^>]+>|…|TODO|TBD", re.IGNORECASE)
+_EVIDENCE_FILE = re.compile(r"\b[^\s,;]+\.(?:png|jpg|jpeg|webp)\b", re.IGNORECASE)
+_EVIDENCE_REGION = re.compile(
+    r"\b(?:region|oben|unten|links|rechts|mitte|top|bottom|left|right|center|zentral)\b",
+    re.IGNORECASE,
+)
+
+
+def _critic_errors(v: object, index: int) -> list[str]:
+    if not isinstance(v, dict):
+        return [f"critic[{index}] must be an object"]
+    errs: list[str] = []
+    prefix = f"critic[{index}]"
+    for key in ("verdict", "biggest_gap", "beleg", "confidence"):
+        if not isinstance(v.get(key), str) or not v[key].strip():
+            errs.append(f"{prefix}.{key} must be a non-empty string")
+    verdict = v.get("verdict")
+    confidence = v.get("confidence")
+    gap = v.get("biggest_gap")
+    beleg = v.get("beleg")
+    if verdict not in _VERDICTS:
+        errs.append(f"{prefix}.verdict must be pass or fail")
+    if confidence not in _CONFIDENCE:
+        errs.append(f"{prefix}.confidence must be HIGH, MED, or LOW")
+    if isinstance(beleg, str) and (
+        _PLACEHOLDER.search(beleg)
+        or len(beleg.split()) < 4
+        or not _EVIDENCE_FILE.search(beleg)
+        or not _EVIDENCE_REGION.search(beleg)
+    ):
+        errs.append(f"{prefix}.beleg must name an observed PNG, region, and visible fact")
+    if verdict == "pass":
+        if confidence != "HIGH":
+            errs.append(f"{prefix}: pass requires confidence HIGH")
+        if gap != "none":
+            errs.append(f"{prefix}: pass requires biggest_gap=none")
+    elif verdict == "fail" and gap == "none":
+        errs.append(f"{prefix}: fail requires one concrete biggest_gap")
+    return errs
 
 
 def main() -> int:
@@ -39,9 +83,14 @@ def main() -> int:
             errs.append(f"tiny render: {r} ({r.stat().st_size} bytes)")
 
     verdicts = m.get("critic_verdicts") or []
+    if not isinstance(verdicts, list) or not verdicts:
+        errs.append("critic_verdicts must be a non-empty list")
+        verdicts = []
     by_page: dict[str, list] = {}
-    for v in verdicts:
-        by_page.setdefault(v.get("page_id", ""), []).append(v)
+    for i, v in enumerate(verdicts):
+        errs.extend(_critic_errors(v, i))
+        if isinstance(v, dict):
+            by_page.setdefault(v.get("page_id", ""), []).append(v)
 
     for p in pages:
         pid = p.get("id")

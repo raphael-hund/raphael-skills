@@ -34,7 +34,7 @@ Beat-Korridore (Wortzahl je Beat):
 | Qualifizierer (High-Ticket) | 2–4 Sätze („kein Coaching für Einsteiger") |
 | Sign-off | 1 Satz („Cheers, dein Marc.") |
 
-**Scharnier-Sätze (wörtlich, wiederkehrend — erlernbare Bausteine):**
+**Scharnier-Sätze (wörtlich, wiederkehrend: erlernbare Bausteine):**
 
 - Hook → Mechanismus: „Indem ich …" — Marc Evers: „…in den nächsten 3 Monaten, so wie hier, hier, hier oder hier. Indem ich mein No-Funnel-Ads-Framework als 1on1-Sparringspartner bei dir implementiere …"
 - Mechanismus → Case: „Wie zum Beispiel bei …" / „Genauso wie ich das zum Beispiel bei Marcel Lellig gemacht habe …" / „So wie hier, hier, hier oder hier" (Zeigegeste auf Screenshots)
@@ -124,7 +124,7 @@ sondern zweimal: früh (Hook oder Beat 2 als Case) UND vor dem CTA als
 Autoritäts-Block. Jede Behauptung ist ≤2 Sätze von einer spezifischen Zahl
 oder einem Namen entfernt. Visueller Proof wird im Skript als eigener Beat
 mitgedacht („so wie hier, hier, hier oder hier" funktioniert nur mit
-eingeblendetem Overlay — Audio und visuelles Artefakt fallen zusammen).
+eingeblendetem Overlay: Audio und visuelles Artefakt fallen zusammen).
 Im Skript als `[ZEIGEN: …]`-Beat markieren.
 
 ### P1 — Case-Kette mit Namen + Zahlen-Triplet (dominanteste Form)
@@ -161,7 +161,7 @@ physisches Durchblättern, Räume betreten.
 
 ### P5 — Disclaimer direkt hinter der fettesten Zahl
 
-Die stärksten Zahlen-Ads relativieren sofort — und werden dadurch
+Die stärksten Zahlen-Ads relativieren sofort, und werden dadurch
 glaubwürdiger, nicht schwächer.
 
 - Dr. Matt Shiver: „Okay. These results are not typical." / „Again, these are unicorn numbers. Not normal. … Typically what we're shooting for is we're shooting for a four to six times on return on ad spend."
@@ -184,21 +184,21 @@ Megaphone Partner In UK" (Ben Heath).
 Der CTA stapelt immer: Aktion + Ort + was danach passiert (+ Zeitrahmen).
 Kein nacktes „Jetzt klicken".
 
-1. **Klick + Eintragung + persönlicher Rückruf mit Frist:** „trag dich jetzt unten ein, und ich ruf dich in den nächsten 48 Stunden persönlich an" (Pascal Harting; Marc Evers in 5+ Ads — die 48h-Frist ist ein Account-übergreifendes Muster)
+1. **Klick + Eintragung + persönlicher Rückruf mit Frist:** „trag dich jetzt unten ein, und ich ruf dich in den nächsten 48 Stunden persönlich an" (Pascal Harting; Marc Evers in 5+ Ads. Die 48h-Frist ist ein Account-übergreifendes Muster)
 2. **Kommentar-Keyword (ManyChat), am Anfang UND am Ende wiederholt:** „comment the word ads below and I'll shoot you over a free mini course" (Dr. Matt Shiver, doppelt gesetzt, identische Trigger-Wort-Mechanik)
 3. **Klick + kostenlos + Reibung klein rechnen:** „Das kostet 0 Euro. Klicke auf diese Anzeige, lade das jetzt gleich herunter." (Finally Freelancing) / „Der Link ist unten, bewirb dich in weniger als 2 Minuten."
 4. **Post-Click-Vorschau (nimmt die Angst vor dem Klick):** „Nach deiner Bewerbung schauen wir uns kurz an, wo du grad stehst … Wenn ja, melde ich mich … Wenn nein, sagen wir das auch ganz transparent." (Marc Evers, fast wortgleich in 3 Ads) / „On the call, we'll review your business and show you exactly what we would do …" (Dr. Matt Shiver)
-5. **Signatur-Sign-off:** „Cheers, dein Marc." / „I'll see you on the inside!" (Ben Heath) — Personal-Brand-Schluss statt Firmen-CTA.
+5. **Signatur-Sign-off:** „Cheers, dein Marc." / „I'll see you on the inside!" (Ben Heath): Personal-Brand-Schluss statt Firmen-CTA.
 
 ## Die Messlatte (harte Prüf-Assertions vor Auslieferung)
 
 Ein Skript besteht erst, wenn alle Zeilen grün sind:
 
 1. **Form gewählt:** Eine Hook-Formel (F1–F13) und eine Architektur (A1–A7) benannt, mit Beleg-Skript verglichen.
-2. **Erste 12 Wörter:** Callout | Proof | Garantie | Outcome | Pain — kein Throat-clearing, kein Mission-Statement.
+2. **Erste 12 Wörter:** Callout | Proof | Garantie | Outcome | Pain. Kein Throat-clearing, kein Mission-Statement.
 3. **Zahl im Hook:** mindestens eine harte, möglichst krumme Zahl oder ein Name in Satz 1.
-4. **Mechanismus benannt:** Eigennamen („Suchflow-System", „No-Funnel-Ads-Framework", „ROAS-5-Formel") — ohne Namen kein neues Ding, ohne neues Ding kein Grund zuzuhören.
-5. **Proof zweimal:** früh als Case (Name + von X auf Y in Z Monaten), spät als Aggregat/Authority — plus mindestens ein filmbarer Proof (Overlay, Screen, Artefakt) als eigener Beat markiert.
+4. **Mechanismus benannt:** Eigennamen („Suchflow-System", „No-Funnel-Ads-Framework", „ROAS-5-Formel"): ohne Namen kein neues Ding, ohne neues Ding kein Grund zuzuhören.
+5. **Proof zweimal:** früh als Case (Name + von X auf Y in Z Monaten), spät als Aggregat/Authority: plus mindestens ein filmbarer Proof (Overlay, Screen, Artefakt) als eigener Beat markiert.
 6. **Disclaimer bei Monster-Zahlen:** direkt hinter der fettesten Zahl.
 7. **CTA vollständig:** Aktion + Ort + was danach passiert + Zeitrahmen/Reibung („ich ruf dich in 48h persönlich an", „dauert 2 Minuten, kostet 0 Euro").
 8. **Negativ-Qualifikation bei High-Ticket** („kein Coaching für Einsteiger").
@@ -212,14 +212,14 @@ Social Proof; CTA ohne Post-Click-Vorschau.
 
 ## Anti-Muster (was schwache Ads tun — als Negativ-Kompass)
 
-1. **Behauptung ohne Proof.** Im Shard explizit so markiert: „typ: keiner; staerke: blosse-behauptung" (Pascal Harting REC 16, Marc Evers REC 23/24/169). Dieselbe Garantie-Formel (F1) steht bei REC 3 MIT Proof („nachweislich in den letzten 7 Jahren über 100 Unternehmen") — die Formel allein trägt nicht. Marc Evers REC 23 („gottlos dominieren, 50k, 10x ROAS") nennt nur Superlative, keinen einzigen Case.
-2. **Generischer Hook ohne Zahl / weicher Zielgruppen-Filter.** „Wenn du in irgendeiner Weise im Marketing unterwegs bist …" — der Filter ist zu weich. Gegenbeispiele: „Du bist Webdesigner …", „B2B-Closer aufgepasst.", „Immobilienmakler aufgepasst". Dr. Matt Shivers Lehre: „if you don't call specific avatar ur gonna attract everyone and not everyone can afford your services."
+1. **Behauptung ohne Proof.** Im Shard explizit so markiert: „typ: keiner; staerke: blosse-behauptung" (Pascal Harting REC 16, Marc Evers REC 23/24/169). Dieselbe Garantie-Formel (F1) steht bei REC 3 MIT Proof („nachweislich in den letzten 7 Jahren über 100 Unternehmen"). Die Formel allein trägt nicht. Marc Evers REC 23 („gottlos dominieren, 50k, 10x ROAS") nennt nur Superlative, keinen einzigen Case.
+2. **Generischer Hook ohne Zahl / weicher Zielgruppen-Filter.** „Wenn du in irgendeiner Weise im Marketing unterwegs bist …". Der Filter ist zu weich. Gegenbeispiele: „Du bist Webdesigner …", „B2B-Closer aufgepasst.", „Immobilienmakler aufgepasst". Dr. Matt Shivers Lehre: „if you don't call specific avatar ur gonna attract everyone and not everyone can afford your services."
 3. **Weichspüler-Eröffnung statt Callout.** „Herzlich willkommen zu diesem kurzen Video und in diesem Video zeige ich dir einmal …" — zwei Sätze Anlauf ohne Filter. Gegenprobe: Marc Evers beginnt „Andreas Pütter ist Webdesigner und macht mit Standard-Webdesign über 30.000 Euro Monatsumsatz" — Zahl in Sekunde 1.
-4. **Hook verspricht, Skript liefert nicht (Curiosity ohne Payoff).** Schneider: „Aber was ist das größte Geheimnis, woran so viele Immobilienunternehmen scheitern?" — danach 7.000 Zeichen Pathos ohne konkrete Antwort. Ebenso verboten: drei Hook-Ideen in die ersten 10 Sekunden quetschen.
-5. **Feature-Gerede ohne Kunde / abstraktes „nächstes Level".** DatAds wiederholt fünfmal fast wörtlich denselben Feature-Block — kein Kundenname, keine Zahl, nur „Zahlreiche große Brands vertrauen bereits". Die starken Skripte sagen „von 10k auf 49k im dritten Monat".
+4. **Hook verspricht, Skript liefert nicht (Curiosity ohne Payoff).** Schneider: „Aber was ist das größte Geheimnis, woran so viele Immobilienunternehmen scheitern?": danach 7.000 Zeichen Pathos ohne konkrete Antwort. Ebenso verboten: drei Hook-Ideen in die ersten 10 Sekunden quetschen.
+5. **Feature-Gerede ohne Kunde / abstraktes „nächstes Level".** DatAds wiederholt fünfmal fast wörtlich denselben Feature-Block. Kein Kundenname, keine Zahl, nur „Zahlreiche große Brands vertrauen bereits". Die starken Skripte sagen „von 10k auf 49k im dritten Monat".
 6. **Versprechen ohne Zeitrahmen.** Schwache Varianten sagen „mehr Umsatz", „bessere Sichtbarkeit"; die starken sagen „in den nächsten 3 Monaten", „in 7 Monaten", „in den ersten 48 Stunden nach Start".
-7. **Weiche CTAs ohne Ort, Frist oder Post-Click-Vorschau.** „Click the link below to learn more." — komplette Ad ist Hook + Teaser, null Substanz, null Proof.
-8. **Wiederholung ohne Variation im Value-Teil.** Wiederholung ist nur beim CTA und beim Trigger-Wort erlaubt („You know what to do I'll see you on the inside") — nicht mitten im Value-Teil.
+7. **Weiche CTAs ohne Ort, Frist oder Post-Click-Vorschau.** „Click the link below to learn more.": komplette Ad ist Hook + Teaser, null Substanz, null Proof.
+8. **Wiederholung ohne Variation im Value-Teil.** Wiederholung ist nur beim CTA und beim Trigger-Wort erlaubt („You know what to do I'll see you on the inside"): nicht mitten im Value-Teil.
 9. **Story-Start ohne Hook-Spannung.** Mitten im Satz beginnen wirkt wie ein willkürlicher Ausschnitt; der eigentliche Schmerz kommt erst nach ~30 Sekunden.
-10. **Kein gesprochenes Wort / keine Captions.** Visuelle Hooks mit reiner Musik-Vertonung verkaufen nichts Konkretes. Fast alle starken Ads haben Wort-für-Wort-Karaoke-Captions — für Scroll-ohne-Ton überlebenswichtig.
+10. **Kein gesprochenes Wort / keine Captions.** Visuelle Hooks mit reiner Musik-Vertonung verkaufen nichts Konkretes. Fast alle starken Ads haben Wort-für-Wort-Karaoke-Captions: für Scroll-ohne-Ton überlebenswichtig.
 11. **Negativ-Qualifikation fehlt bei High-Ticket.** Alle Marc-Evers-High-Ticket-Ads enthalten eine Abwehr-Passage: „Das ist kein Coaching für Einsteiger … Die Zusammenarbeit macht nur Sinn, wenn du bereits … zwischen 5 und 15k pro Monat stehst." / „habe keine Lust mit blutigen Anfängern zu arbeiten."

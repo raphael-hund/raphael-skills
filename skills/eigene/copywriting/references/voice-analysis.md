@@ -1,9 +1,9 @@
 # voice-analysis — Vorlage für VOICE.md (Kunden-Voice-Dossier)
 
 **Herkunft:** Methodik adaptiert aus `knowledge-work-plugins/partner-built/brand-voice`
-(Tribe AI, MIT-Lizenz) — Skills `guideline-generation` und `brand-voice-enforcement`.
+(Tribe AI, MIT-Lizenz), Skills `guideline-generation` und `brand-voice-enforcement`.
 Original ist auf Enterprise-Discovery (Notion/Confluence/Gong) ausgelegt; hier auf
-Agentur-Maßstab reduziert: keine Plattform-Discovery, kein Agenten-Overhead — nur die
+Agentur-Maßstab reduziert: keine Plattform-Discovery, kein Agenten-Overhead. Nur die
 Denkmodelle und die Dossier-Struktur, angewandt auf das, was der Kunde beim Onboarding
 tatsächlich liefert (Textproben, Website, Interview).
 
@@ -14,29 +14,29 @@ abgeleitet werden muss.
 
 ## Kernmodell: Voice ist konstant, Ton flext
 
-- **Voice** = WER der Kunde ist — Persönlichkeit, Werte, Identität. Ändert sich **nie**,
+- **Voice** = WER der Kunde ist: Persönlichkeit, Werte, Identität. Ändert sich **nie**,
   egal ob Ad, Landingpage, Newsletter oder WhatsApp.
-- **Ton** = WIE der Kunde in einer konkreten Situation spricht — Formalität, Energie,
+- **Ton** = WIE der Kunde in einer konkreten Situation spricht: Formalität, Energie,
   Fachtiefe. Flext je Kanal, wie ein Mensch mit einem Freund anders spricht als mit dem
   Finanzamt.
 
 Häufigster Fehler (aus der Quelle übernommen, weil real beobachtet): Voice und Ton
 verwechseln. Wenn der Kunde "lockerer" will, ist das ein Ton-Dial (Formalität runter,
-Energie hoch) — nicht ein neuer Charakter. Die Persönlichkeit bleibt.
+Energie hoch), bei gleichbleibendem Charakter. Die Persönlichkeit bleibt.
 
 ## "Wir sind / Wir sind nicht"-Tabelle
 
 Der Anker des Dossiers. 4-7 Zeilen, jede mit Beleg aus einer echten Quelle (Zitat,
-Textprobe, Interview-Aussage) — keine erratenen Adjektive.
+Textprobe, Interview-Aussage): keine erratenen Adjektive.
 
 | Wir sind | Wir sind nicht |
 |---|---|
-| **[Attribut]** — [was das konkret heißt] | **[Gegenstück]** — [wo die Grenze ist] |
+| **[Attribut]:** [was das konkret heißt] | **[Gegenstück]:** [wo die Grenze ist] |
 
-Beispielzeile: **Direkt** — kommt sofort zum Punkt / **Nicht** schroff — Direktheit
+Beispielzeile: **Direkt:** kommt sofort zum Punkt / **Nicht schroff:** Direktheit
 schließt Empathie nicht aus.
 
-Nicht jedes Attribut muss in jedem Text vorkommen — die 2-3 relevantesten für den
+Nicht jedes Attribut muss in jedem Text vorkommen. Die 2-3 relevantesten für den
 jeweiligen Kanal/die Zielgruppe reichen.
 
 ## Terminologie-Tabelle
@@ -50,7 +50,7 @@ jeweiligen Kanal/die Zielgruppe reichen.
 
 ## Tonalitäts-Matrix nach Kanal
 
-Die drei Dimensionen (Formalität / Energie / Fachtiefe) je Kanal einstufen — deckt sich
+Die drei Dimensionen (Formalität / Energie / Fachtiefe) je Kanal einstufen: deckt sich
 mit der Frage aus Schritt 1 von `copywriting` ("Landingpage ≠ Ad ≠ Newsletter ≠
 WhatsApp"):
 
@@ -75,14 +75,14 @@ eine Confidence-Stufe"). Auf VOICE.md-Abschnitte angewandt:
   Frage an den Kunden zurückspielen statt zu raten (deckt sich mit dem Verallgemeinerungs-
   Gotcha in `onboard`: lieber Feld leer lassen als erfinden).
 
-Jede Sektion mit Niedrig-Confidence bekommt eine offene Frage mit einer Empfehlung —
+Jede Sektion mit Niedrig-Confidence bekommt eine offene Frage mit einer Empfehlung:
 nie eine Sackgasse ("wir vermuten X, bitte bestätigen" statt nur "unklar").
 
 ## Häufige Fehler bei der Anwendung
 
-1. Alle Voice-Attribute gleichzeitig auf Maximum ziehen — 2-3 führende reichen pro Text.
+1. Alle Voice-Attribute gleichzeitig auf Maximum ziehen: 2-3 führende reichen pro Text.
 2. Voice mit Ton verwechseln (siehe oben).
 3. Das Dossier als starre Checkliste statt als Leitplanke behandeln — Text muss natürlich
    bleiben, nicht mechanisch abgehakt wirken.
-4. Zielgruppe ignorieren — dieselbe Voice klingt bei einer B2B-Ansprache anders als bei
+4. Zielgruppe ignorieren: dieselbe Voice klingt bei einer B2B-Ansprache anders als bei
    einer Story-Ad, das regelt die Tonalitäts-Matrix, nicht die Voice selbst.

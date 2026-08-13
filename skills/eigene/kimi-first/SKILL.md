@@ -13,6 +13,7 @@ loads:
   - scripts/kimi-first.sh
 completion_criteria:
   - "Kimi-Lauf lief durch (Abo 1, sonst Fallback Abo 2) und der Output liegt als Datei vor"
+  - "Kimi und jedes gestartete Kind haben passende Raphael-Skills anhand von Name und SKILL.md-Pfad geladen"
   - "Claude hat den erzeugten Diff/Output als strenger Reviewer geprüft (pass/fail mit eingefügtem Beleg je Fund)"
   - "Claude hat die Tests SELBST ausgeführt (grüne Testausgabe eingefügt) — nicht Kimis Selbstauskunft geglaubt"
   - "Nur die geprüften, gewollten Änderungen sind gemerged; alles andere verworfen"
@@ -28,11 +29,14 @@ Fallback), `AGENTS.md` Regel 2 (Delegations-Ökonomie), 8 (Verifier = andere Fam
 Kimi K3 (1M Kontext, andere Modellfamilie) baut/verarbeitet parallel — vor allem bei
 Riesen-Kontexten/Volumen; Claude bleibt Reviewer und behält den Merge.
 
+`/kimi-first` ist die ausdrueckliche native CLI-Route. Die normalen Kimi-Subagent-Lanes
+des allgemeinen Routers bleiben davon getrennt und koennen weiter automatisch genutzt werden.
+
 ## Wann Kimi statt Codex
 - **Riesen-Kontext / Volumen:** ganze Codebasen, lange Transkripte, SERP-Cleanup, Ingest —
   1M Kontext ist Kimis Stärke.
 - Wenn Codex-Seats leer sind (Fallback in der Gesamtkette: Claude → Codex → **Kimi**).
-Effort steckt fest auf `high` (`~/.kimi-code/config.toml`, `k3.default_effort=high`).
+Der Launcher erzwingt `kimi-code/k3`; beide Abos laufen mit Thinking-Effort `high`.
 
 ## Wann NICHT
 Kleine Tasks nicht delegieren (Regel 2). Kimi-Gotcha: `reasoning_effort` ist launch-seitig
@@ -40,22 +44,26 @@ teils MAX-only → kurze Aufgaben unerwartet teuer.
 
 ## Ablauf
 1. **Task-Ausschnitt schneiden** (Regel 15): nötiges Paket + Kontext, nie den ganzen Vault.
-2. **Delegieren** — der Helper schreibt den Prompt in eine Temp-Datei und ruft
-   `(cd <repo> && kimi -p "$(cat $PROMPTFILE)")`, Output als Datei:
+2. **Skills routen** — Kimi waehlt passende Raphael-Skills aus dem per `--skills-dir`
+   geladenen Katalog und liest sie. Jedes gestartete Kind bekommt Skill-Namen plus
+   absoluten `SKILL.md`-Pfad und liest diese Skills selbst.
+3. **Delegieren** — der Helper schreibt den Prompt in eine Temp-Datei und ruft die
+   NATIVE Kimi-CLI non-interaktiv: `(cd <repo> && kimi -p "…" --skills-dir …)`:
    ```bash
    scripts/kimi-first.sh /root/clients/client-acme "Fasse alle 40 Call-Transkripte in raw/ zu einem ICP-Dossier zusammen. Nur wiki/_candidates/ schreiben."
    # oder Prompt über stdin:
    cat aufgabe.txt | scripts/kimi-first.sh /root/clients/client-acme
    ```
-   Fallback-Kette: **Abo 1 (Default `~/.kimi-code`) → Abo 2** (per `KIMI_HOME`-Override,
-   siehe Skript-Kopf). Der Helper setzt `--skills-dir` automatisch auf unser Skill-Repo.
-3. **Diff/Output ansehen** — der Helper druckt `git diff --stat` (falls Git) und den
+   Fallback-Kette automatisch: **Abo 1 (Default `~/.kimi-code`) → Abo 2**
+   (`KIMI_CODE_HOME=/root/.kimi-code-2`). Der Helper setzt `--skills-dir` auf unser
+   Skill-Repo. Kimi arbeitet dabei in seiner eigenen Harness mit eigenen Tools.
+4. **Diff/Output ansehen** — der Helper druckt `git diff --stat` (falls Git) und den
    Output-Pfad. Vollständigen Diff mit `git -C <repo> diff` lesen.
-4. **Streng reviewen (Claude, `code-review`)** — jeden Fund als **pass/fail + Ort +
+5. **Streng reviewen (Claude, `code-review`)** — jeden Fund als **pass/fail + Ort +
    eingefügter Beleg + Fix**. Kimis „hab getestet"-Behauptung NICHT glauben (Regel 8/14).
-5. **Tests SELBST fahren** — Claude führt die Suite aus und fügt die Ausgabe ein. Rot →
+6. **Tests SELBST fahren** — Claude führt die Suite aus und fügt die Ausgabe ein. Rot →
    zurückspulen (Regel 4) oder selbst fixen.
-6. **Merge behält Claude** — nur geprüfte Hunks bleiben; Rest verwerfen. Commit + Handoff.
+7. **Merge behält Claude** — nur geprüfte Hunks bleiben; Rest verwerfen. Commit + Handoff.
 
 ## Schwarm-Modus (verschachtelt) — für Riesen-Aufgaben
 **TLDR:** Ein Chef gibt an EINEN Kimi-Helfer. Ist die Aufgabe zu riesig, darf dieser

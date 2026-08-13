@@ -8,7 +8,7 @@ Schaltung → perf-analyse → nächste Testwelle.
 ## Worker-Reuse
 
 Hooks/Skripte/Copy laufen über **denselben Sonnet-Worker je Kunde** (Regel 2), nicht neue
-Session pro Hook — der Worker trägt Brand-Voice + Dossier stabil im Cache-Prefix.
+Session pro Hook. Der Worker trägt Brand-Voice + Dossier stabil im Cache-Prefix.
 
 ## Andromeda-Struktur (Stand: Meta-Update ~Mitte 2025 — bei Änderung prüfen)
 
@@ -19,11 +19,11 @@ als grobe Suggestion setzen.
 - **Targeting kommt aus dem Ad-Inhalt, nicht aus Interessen.** Keine Zeit in manuelles
   Interessen-Targeting stecken (Advantage+ nutzen). Copy/Video so schreiben, dass Sprache
   und Bild eindeutig den Avatar ansprechen (z. B. „Service-Business-Owner" statt E-Commerce).
-  Ad-Set-Targeting ist nur noch ein Vorschlag — Meta wertet Transkript, Visuals und Landingpage aus.
+  Ad-Set-Targeting ist nur noch ein Vorschlag: Meta wertet Transkript, Visuals und Landingpage aus.
 - **~12 diverse Creatives pro Kampagne (nicht 1–3).** Pro Ad eine **komplett neue Kreation**
   (neuer Hook, neues Video/Bild, neue Kernbotschaft), jeweils auf **einen** Avatar-Motivator
   (towards / away / gescheiterte Vorversuche). Nur Hook/Titel einer bestehenden Anzeige zu
-  tauschen zählt nicht mehr als eigenständiges Creative — Creative-Diversität ist ein eigener
+  tauschen zählt nicht mehr als eigenständiges Creative: Creative-Diversität ist ein eigener
   Matching-Faktor.
 - **Struktur:** 1 Kampagne → mehrere Ad-Sets (cold / retargeting / lookalike) → je ~12
   verschiedene Ads.
@@ -38,21 +38,21 @@ als grobe Suggestion setzen.
 Müll-Zielgruppen. Darum sauber tracken, bevor irgendetwas live geht.
 
 - **Tracking/Events VOR dem ersten Launch einrichten.** Läuft eine Kampagne ohne Tracking an,
-  lernt der Algorithmus nichts über den echten Erfolg — auch wenn sie kurzfristig gut aussieht.
+  lernt der Algorithmus nichts über den echten Erfolg, auch wenn sie kurzfristig gut aussieht.
 - **Lead-Event nur bei qualifizierter Antwort feuern**, nicht bei jedem Formular-Submit. Sonst
   lernt Meta, unqualifizierte Leute zu finden, und verbrennt Budget (CPL fällt scheinbar, die
-  Lead-Qualität kollabiert — dann muss der Pixel neu aufgesetzt werden).
+  Lead-Qualität kollabiert. Dann muss der Pixel neu aufgesetzt werden).
 - **Auf das tiefste gewünschte Funnel-Event optimieren** (Booking/Schedule), nicht auf „Link
-  Clicks" oder nur „Leads". Sagst du Meta „ich will Klicks", bekommst du Klicks — keine Leads.
+  Clicks" oder nur „Leads". Sagst du Meta „ich will Klicks", bekommst du Klicks statt Leads.
 
 ## Produktionstaktiken (Creative-Herstellung)
 
-- **One-Frame-Test:** Vor Dreh/Schnitt den ersten Frame wie ein Standbild prüfen — was
+- **One-Frame-Test:** Vor Dreh/Schnitt den ersten Frame wie ein Standbild prüfen. Was
   signalisieren Kleidung und Hintergrund, bevor ein Wort fällt? Hintergrund aktiv als
   Credibility-Fläche nutzen (Team/Kunden im Bild statt leere Wand). Glaubwürdigkeit entscheidet
   sich in Sekundenbruchteilen visuell.
 - **Batching:** Content in einer langen Session drehen (30+ Min, mehrere Varianten) statt täglich
-  einzeln — die Anlaufzeit (Setup, in den Flow finden) zahlt man so nur einmal (~15 Stücke pro
+  einzeln. Die Anlaufzeit (Setup, in den Flow finden) zahlt man so nur einmal (~15 Stücke pro
   Session statt 1/Tag).
 - **Geographical-Affinity-Hook (lokale Kunden):** Hook + erstes Frame mit lokal erkennbaren
   Landmarks verknüpfen (Opening vor dem echten Firmenschild an einer Hauptstraße). Rapport über
@@ -81,35 +81,35 @@ Schaltung berührt Geld → kleines deterministisches Bash-Gate (Konto-/Budget-W
 > nachjustieren.
 
 **TCPL = Target Cost Per Qualified Lead** (qualifiziert = erfüllt ICP-Bar, nicht nur
-Formular ausgefüllt). Herleitung, in Prioritätsreihenfolge: (1) aus Deal-Mathematik —
-TCPL = Zielkosten pro Demo × Quote qualifizierter Lead → Demo; (2) aus Historie —
+Formular ausgefüllt). Herleitung, in Prioritätsreihenfolge: (1) aus Deal-Mathematik:
+TCPL = Zielkosten pro Demo × Quote qualifizierter Lead → Demo; (2) aus Historie:
 TCPL = rollierender 30-Tage-CPL(qualifiziert) × 0,80 (20 % Verbesserung ist allein durch
-Aufräumen erreichbar); (3) neues Konto — Platzhalter aus Ziel-CAC, nach 30 Tagen durch (2)
+Aufräumen erreichbar); (3) neues Konto: Platzhalter aus Ziel-CAC, nach 30 Tagen durch (2)
 ersetzen. TCPL monatlich neu prüfen.
 
-**Ad-Count-Deckel:** Deckel = (Tagesbudget × 14) / (2 × TCPL) — jede Anzeige braucht in
+**Ad-Count-Deckel:** Deckel = (Tagesbudget × 14) / (2 × TCPL). Jede Anzeige braucht in
 14 Tagen mind. 2× TCPL Spend, um beurteilbar zu sein. Über dem Deckel: neuer Test nur nach
 Kill einer bestehenden Anzeige.
 
 **Zwei-Kampagnen-Struktur:** Scaling-Kampagne (~80 % Budget, nur graduierte Ads) + Testing-
-Kampagne (~20 %, neue Konzepte) über dieselbe Zielgruppe — schützt Tests davor, in einer
+Kampagne (~20 %, neue Konzepte) über dieselbe Zielgruppe: schützt Tests davor, in einer
 gemeinsamen CBO von bewährten Ads ausgehungert zu werden.
 
 **Kill-Regeln (hart, nehmen Emotion raus):**
 - Neue Ad, 0 Conversions bei 2–3× TCPL Spend → killen.
 - Laufende Ad (>7–14 Tage), CPL läuft 1,5–2× über Ziel → killen.
-- Tag 7 Delivery-Check: erwarteter Mindest-Spend = (Tagesbudget ÷ aktive Ads) × 7 × 0,5 — darunter killen (Meta hat schon depriorisiert).
+- Tag 7 Delivery-Check: erwarteter Mindest-Spend = (Tagesbudget ÷ aktive Ads) × 7 × 0,5, darunter killen (Meta hat schon depriorisiert).
 - **Datengate vor jedem Qualitätsurteil:** Spend < 3× TCPL → warten, noch kein Signal (2× hat ~13 % Fehlkill-Rate).
-- **Nie pausieren ohne Ersatz** — 2–3 Iterationen immer in der Pipeline halten.
+- **Nie pausieren ohne Ersatz**: 2–3 Iterationen immer in der Pipeline halten.
 
 **Lead-Quality-Score (Urgency/Budget/Fit, je 0–3, max 9):** wer die Calls führt, scored jeden
 Lead gegen die Ad, die ihn brachte. Nach ~20 gescorten Calls: Ads nach Ø-Score ranken, nicht
-nach CPL/CTR — der CPL-günstigste Ad liefert regelmäßig die 3/9-Leads. Score <5 im Schnitt → killen.
+nach CPL/CTR. Der CPL-günstigste Ad liefert regelmäßig die 3/9-Leads. Score <5 im Schnitt → killen.
 
 **Fatigue-Bänder (Frequency, sicher/Warnung/kritisch):** Cold Prospecting 1,0–2,5 / 2,5–4,0 / >4,0.
 Retargeting 2,0–4,0 / 4,0–6,0 / >6,0. Für Scaling-Kampagne-Ads strengeren Maßstab anlegen
 (sie tragen ~80 % des Spends): Warnung schon bei 3,0–3,5 oder Kosten +20 % → jetzt 2 Iterationen
-starten (brauchen ~14 Tage). Nie Creative in einer laufenden, performenden Ad bearbeiten — das
+starten (brauchen ~14 Tage). Nie Creative in einer laufenden, performenden Ad bearbeiten. Das
 resettet die Lernphase; neue Ad danebenschalten statt editieren.
 
 **Scaling-Protokoll:** nur wenn genug bewährte Ads für die nächste Budgetstufe vorhanden sind,
@@ -119,7 +119,7 @@ Scale-Schritt → Budget sofort 20–30 % zurücknehmen, 2 Wochen stabilisieren.
 
 **Lead-Formulare vs. Landingpage:** LP-Conversion ≥5 % → LP nutzen; <~2 % → Lead-Formular mit
 "Higher Intent"-Typ (Review-Schritt) + Pflichtfeld Arbeits-E-Mail (kann nicht aus dem Profil
-autofillen — stärkster Qualitäts-Lever gegen "Social Amnesia" bei Formular-Leads).
+autofillen: stärkster Qualitäts-Lever gegen "Social Amnesia" bei Formular-Leads).
 
 ## Outputs (Zielpfade)
 

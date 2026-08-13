@@ -2,8 +2,8 @@
 
 Die früheren ~39 Einzel-Slash-Skills sind jetzt belegte Wissensseiten unter dem Pfad
 `/root/raphael-brain/wiki/craft/ads/` (Unterordner: grundlagen/ plattformen/ creative/ messung/ strategie/). Trifft eine Aufgabe ein Spezialthema,
-lies die passende Seite mit dem **Read-Tool** nach, *bevor* du arbeitest — nie aus dem
-Gedächtnis diagnostizieren. Immer nur die 1–3 wirklich relevanten Seiten laden, nie alle.
+lies die passende Seite mit dem **Read-Tool** nach, *bevor* du arbeitest: nie aus dem
+Gedächtnis diagnostizieren. Immer nur die 1–3 passenden Seiten laden, nie alle.
 
 ## Quermaterie & Grundlagen (plattform-übergreifend)
 
@@ -60,7 +60,7 @@ Gedächtnis diagnostizieren. Immer nur die 1–3 wirklich relevanten Seiten lade
 | Snapchat (Snap Pixel/CAPI, AR-/Katalog-Formate, App-Install) | `plattformen/ads-snapchat.md` |
 | X/Twitter (Pixel/CAPI, Conversation-Targeting) | `plattformen/ads-x.md` |
 
-**Plattform-Wahl:** Lade **nur die Plattform-Seite(n), die der Kunde tatsächlich bespielt** —
+**Plattform-Wahl:** Lade **nur die Plattform-Seite(n), die der Kunde tatsächlich bespielt**:
 Raphael skaliert v.a. **Meta**, also ist `plattformen/ads-meta.md` der Normalfall. Nie alle 12 Plattformen
 durchgehen. Quermaterie (Attribution, Server-Side-Tracking, Budget, Scoring, Benchmarks,
 Bidding, Denk-Framework) kommt **separat** aus dem ersten Block dazu, nicht aus der Plattform-Seite.
@@ -80,7 +80,7 @@ Diese datierten Seiten in `wiki/craft/ads/` (bzw. die eigenen Konto-Seiten unter
 | Schaltung/Pixel-Regel: Lead-Qualifizierung Pixel/CAPI | `messung/2026-07-20-lead-qualifizierung-pixel-conversions-api.md` |
 | perf-analyse: Metrik-Hierarchie / Testing-vs-Scaling / eigene Creative-Lehren | `messung/2026-07-20-meta-ads-metrik-hierarchie-kpi.md`, `strategie/2026-07-20-testing-vs-scaling-kampagnenstruktur.md`, `2026-07-20-eigene-creatives-performance-lehren.md` |
 
-(`README.md` im Ordner ist eine Ordnerbeschreibung, keine Wissensseite — nicht laden.)
+(`README.md` im Ordner ist eine Ordnerbeschreibung, keine Wissensseite: nicht laden.)
 
 **Kern vs. Tiefe:** Die operativen `references/` (loop3-ablauf, hook-taxonomie, claims-verbote, static-ad-templates) sind der **Kern** jeder Arbeit; die Brain-Seiten oben sind **Tiefen-Nachschlag** für Spezialfälle. Bei Themen-Überschneidung (z. B. „Copy erzeugen": reference vs. `creative/ads-create.md`) **führt die `references/`-Quelle**.
 
@@ -88,10 +88,10 @@ Diese datierten Seiten in `wiki/craft/ads/` (bzw. die eigenen Konto-Seiten unter
 
 Die zehn Seiten unten liegen unter
 `/root/raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/` und tragen Stand 23.07. noch
-`status: candidate` — sie sind aus dem Ads-Wissenspaket 2 synthetisiert, aber noch **nicht**
+`status: candidate`. Sie sind aus dem Ads-Wissenspaket 2 synthetisiert, aber noch **nicht**
 freigegeben und gemergt. Jede Candidate-Seite nennt in ihrem eigenen Frontmatter (`merge_into:`)
 die kanonische Wiki-Zielseite. Bis zur Freigabe zuerst die Candidate-Seite lesen; nach der
-Freigabe (Review-Inbox, Raphaels Signatur) wandert der Inhalt an den `merge_into`-Pfad — dann
+Freigabe (Review-Inbox, Raphaels Signatur) wandert der Inhalt an den `merge_into`-Pfad. Dann
 dort statt im Candidates-Ordner nachschlagen.
 
 | Situation | Candidate-Seite (Stand 23.07.) | Inhalt |
@@ -107,7 +107,7 @@ dort statt im Candidates-Ordner nachschlagen.
 | Agentur-/Advertising-Grundsatzfragen: AI-Anteil an Creative, Rollenverteilung Mensch/AI | `agency-scaling.md` (→ NEU: `grundlagen/2026-07-20-agency-scaling-prinzipien.md`) | AI übernimmt Creative-Discovery, Menschen entscheiden Studio-Produktion; Advertising als Agentur-Kern-Skill |
 | Server-Side-Tracking/CRM-Verknüpfung vor Skalierung prüfen, LTGP:CAC als Steuergröße | `tracking-attribution-report.md` (→ `messung/ads-server-side-tracking.md`) | Warum Tracking vor Skalierung Pflicht ist, LTGP:CAC-Steuerlogik, Praxisbeispiel Meta Ad ID → Pipedrive |
 
-Diese Tabelle ergänzt den Block „Belegte Muster & Referenz-Notizen" oben — bei Themen-
+Diese Tabelle ergänzt den Block „Belegte Muster & Referenz-Notizen" oben: bei Themen-
 Überschneidung (Candidate-Seite deckt denselben Fall wie eine bereits gemergte Referenz-Notiz
 ab) gilt: die **neuere, noch nicht gemergte Candidate-Seite** hat den aktuelleren Stand, die
 gemergte Notiz bleibt der stabile Unterbau.

@@ -122,7 +122,7 @@ Jeder Eintrag: was es ist, warum es nach KI klingt, Vorher/Nachher.
 
 ### 14. Em Dashes (and En Dashes): Cut Them
 
-**Rule:** No em dashes (—) or en dashes (–) in the final rewrite — treat this as a hard constraint. Replace with a period, comma, colon, parentheses, or restructure. Also catch spaced em dashes and double hyphens used the same way.
+**Rule:** No em dashes (—) or en dashes (–) in the final rewrite, treat this as a hard constraint. Replace with a period, comma, colon, parentheses, or restructure. Also catch spaced em dashes and double hyphens used the same way.
 
 **Before:** The term is primarily promoted by Dutch institutions—not by the people themselves.
 
@@ -172,7 +172,7 @@ Jeder Eintrag: was es ist, warum es nach KI klingt, Vorher/Nachher.
 
 **Words to watch:** as of [date], while specific details are limited/scarce, based on available information, maintains a low profile, likely [grew up/studied/began], it is believed that
 
-**Problem:** Two related tells. (a) hard knowledge-cutoff disclaimers left in text. (b) When a model can't find a source, it writes a paragraph *about* not finding one, then invents plausible filler. Say what isn't known, or cut the sentence — don't dress a guess up as fact.
+**Problem:** Two related tells. (a) hard knowledge-cutoff disclaimers left in text. (b) When a model can't find a source, it writes a paragraph *about* not finding one, then invents plausible filler. Say what isn't known, or cut the sentence, don't dress a guess up as fact.
 
 **Before:** Information about her early life is not publicly available, suggesting she maintains a low profile and keeps personal details private. She likely grew up in a middle-class household...
 
@@ -262,7 +262,7 @@ Jeder Eintrag: was es ist, warum es nach KI klingt, Vorher/Nachher.
 
 ### 33. Conversational Rhetorical Openers
 
-**Phrases to watch:** Honestly?, Look, Here's the thing, The thing is, Let's be honest, Real talk — used as standalone hooks before an ordinary point.
+**Phrases to watch:** Honestly?, Look, Here's the thing, The thing is, Let's be honest, Real talk, used as standalone hooks before an ordinary point.
 
 **Before:** Is it worth the price? Honestly? It depends on how often you'll use it.
 
@@ -276,14 +276,14 @@ Ein sauberer menschlicher Text kann mehrere der Muster oben treffen, ohne KI zu 
 - Perfekte Grammatik und konsistenter Stil (viele Menschen sind Profis oder lektoriert).
 - Gemischte formelle/lockere Register (oft ein Fachmensch, junge Autoren, neurodivergenter Stil).
 - "Blande"/"robotische" Prosa ohne die spezifischen Tells oben — trockener Stil allein ist keine KI.
-- Formelles/akademisches Vokabular allgemein — KI übernutzt *spezifische* Wörter (siehe #7), nicht jedes gehobene Wort.
-- Grußformeln/Anrede in Kommentaren — die gab es lange vor ChatGPT.
+- Formelles/akademisches Vokabular allgemein: KI übernutzt *spezifische* Wörter (siehe #7), nicht jedes gehobene Wort.
+- Grußformeln/Anrede in Kommentaren. Die gab es lange vor ChatGPT.
 - Einzelnes "however/moreover/additionally" — Tell nur bei Häufung.
-- Curly Quotes allein — viele Editoren curlen automatisch.
-- Em-Dashes allein — viele Redakteure nutzen sie häufig; erst mit floskelhaftem Sales-Rhythmus zusammen ein Tell.
-- Ein einzelner kurzer, prägnanter Satz zur Betonung — Staccato-Drama nur bei mehreren Fragmenten in Reihe.
+- Curly Quotes allein: viele Editoren curlen automatisch.
+- Em-Dashes allein: viele Redakteure nutzen sie häufig; erst mit floskelhaftem Sales-Rhythmus zusammen ein Tell.
+- Ein einzelner kurzer, prägnanter Satz zur Betonung: Staccato-Drama nur bei mehreren Fragmenten in Reihe.
 - "Honestly"/"look" mitten im Satz — im lockeren Register normal; Tell ist der theatralische Stand-alone-Opener.
-- Unbelegte Behauptungen allein — der Großteil des Webs ist unbelegt.
+- Unbelegte Behauptungen allein. Der Großteil des Webs ist unbelegt.
 
 **Faustregel:** Auf **Cluster** von Tells achten, nicht auf Einzelfunde. Ein Em-Dash allein
 bedeutet nichts; Em-Dash + Rule-of-Three + "vibrant tapestry" + eine "Challenges"-Sektion
@@ -295,5 +295,5 @@ ist ein Geständnis.
 - Gemischte Gefühle und ungelöste Spannung ("ich finde das größtenteils gut, aber es stört mich, und ich kann nicht genau sagen warum").
 - Zeit-/subkulturgebundene Referenzen (Slang, Memes, In-Jokes eines bestimmten Jahres).
 - Nachvollziehbare erste-Person-Entscheidungen des Schreibenden.
-- Variierte Satzlänge — echte Texte wechseln kurz/lang, KI tendiert zu gleichmäßigem Mid-Length-Rhythmus.
+- Variierte Satzlänge: echte Texte wechseln kurz/lang, KI tendiert zu gleichmäßigem Mid-Length-Rhythmus.
 - Echte Einschübe, Klammerbemerkungen, Selbstkorrekturen.

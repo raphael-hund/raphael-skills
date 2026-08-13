@@ -63,15 +63,34 @@ def main(argv: list[str]) -> int:
 
     # Nicht in den Index aufnehmen, was nicht valide ist — validate-skill.py
     # ist die Quelle der Wahrheit fuer "gueltiger Skill".
-    invalid = [validate_skill_file(f) for f in skill_files]
-    invalid = [sf for sf in invalid if not sf.ok]
-    if invalid:
-        print("build-index abgebrochen — folgende SKILL.md sind ungueltig:")
-        for sf in invalid:
+    #
+    # Eigene Skills (skills/eigene, skills/methodik, skills/design) muessen
+    # valide sein, sonst bricht der Lauf ab. Importierte Fremd-Skills
+    # (skills/imported/...) erfuellen unser Frontmatter-Schema oft nicht — die
+    # werden uebersprungen statt den ganzen Index zu blockieren.
+    #
+    # Grund (2026-08-13): Vorher blockierte EIN ungueltiger Fremd-Skill den
+    # kompletten Schreibvorgang. index.json stand dadurch seit dem 10.08. still,
+    # waehrend eigene Skills weiterliefen — der Index log stillschweigend
+    # veraltete Versionen.
+    def ist_eigen(p) -> bool:
+        return "imported" not in p.parts
+
+    validiert = [(f, validate_skill_file(f)) for f in skill_files]
+
+    eigene_kaputt = [sf for f, sf in validiert if not sf.ok and ist_eigen(f)]
+    if eigene_kaputt:
+        print("build-index abgebrochen — eigene SKILL.md sind ungueltig:")
+        for sf in eigene_kaputt:
             print(f"  {sf.path}: {'; '.join(sf.errors)}")
         return 1
 
-    entries = [build_entry(f) for f in skill_files]
+    fremd_kaputt = [f for f, sf in validiert if not sf.ok and not ist_eigen(f)]
+    if fremd_kaputt:
+        print(f"uebersprungen: {len(fremd_kaputt)} importierte SKILL.md ohne gueltiges Frontmatter")
+
+    gueltige = [f for f, sf in validiert if sf.ok]
+    entries = [build_entry(f) for f in gueltige]
     entries.sort(key=lambda e: e["path"])
 
     registry = {

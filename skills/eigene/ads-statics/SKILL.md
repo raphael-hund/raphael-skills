@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 0.3.0
+version: 0.4.0
 description: >
   Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs,
   Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: "Statics bauen",
@@ -37,7 +37,7 @@ completion_criteria:
   gemeinsamen Brain statt in einem Kundenrepo-Wiki): `/root/raphael-brain/wiki/company/`
   (`icp/`, `offer/`, `voice/`) + bisherige Statics/Ad-Artefakte als Stil-Referenz
   `/root/clients/client-make/ads/statics/`.
-- Alle anderen Kunden: `/root/clients/client-<slug>/wiki/` (Dossier-Dateien aus Loop 1 —
+- Alle anderen Kunden: `/root/clients/client-<slug>/wiki/` (Dossier-Dateien aus Loop 1:
   vorhandene ICP/Offer/Proof/Voice/VOC lesen, Dateinamen können je Kunde variieren) +
   `/root/clients/client-<slug>/ads/`.
 - **Fehlt der Wissens-Pfad** (bei MAKE: `wiki/company/` leer oder icp/offer/voice fehlen;
@@ -68,15 +68,15 @@ kopiert: `../ads/references/vendor/coreyhaines-ads/static-ad-templates-en.md`.
    Gewinner-Ad, nie freihändig erfunden).
 3. **Je Angle Visual Style + Copy-Bauform wählen (Matrix).** `references/visual-styles.md`
    für den Rahmen, `references/copy-bauformen.md` für die Textform. Eine Zelle = eine Ad;
-   Botschaft fix pro Angle, Rahmen fix pro Style — keine Misch-Copy, sonst misst die
+   Botschaft fix pro Angle, Rahmen fix pro Style: keine Misch-Copy, sonst misst die
    Testwelle zwei Variablen gleichzeitig. Über alle 15 Layout-Vorlagen des ads-Routers
    zyklen statt auf 2-3 Favoriten zu clustern.
 4. **Briefs nach Schema bauen** (`references/brief-schema.md`). Text-Feinschliff (Hook,
-   Primary Text, Onscreen-Copy) läuft über `copywriting` — dieser Skill liefert die
+   Primary Text, Onscreen-Copy) läuft über `copywriting`. Dieser Skill liefert die
    Struktur, nicht den fertigen Stil.
 5. **Grounding-Check.** Jeder Brief bekommt vor Auslieferung eine echte Quelle (Review,
    Winning-Ad, Ad-Kommentar, Kundenzitat aus voc.md/PROOF.md). **Fehlt die Quelle: Brief
-   ist ein Blocker, nicht auslieferbar** — Zelle geht in die Material-Warteliste, keine
+   ist ein Blocker, nicht auslieferbar**: Zelle geht in die Material-Warteliste, keine
    Erfindung als Lückenfüller.
 6. **Bild-Erzeugung nur als Verweis, nicht hier ausführen.** Sobald ein Brief steht, geht
    die eigentliche Bildproduktion an `design` mit der geltenden Bildgenerierung-Policy:
@@ -89,8 +89,8 @@ kopiert: `../ads/references/vendor/coreyhaines-ads/static-ad-templates-en.md`.
 
 Jede Welle definiert vor Produktionsstart: welche Zellen sofort produzierbar sind (kein
 fehlendes Material), welche auf eine Material-Liste warten, und die Entscheidungsmetrik der
-Testwelle (bei MAKE: qualifizierte Anfrage, nicht CTR — CTR > 2 % ist dort ein Warnsignal
-für zu schwache Filterung). Ohne vorab festgelegte Stopp-Regel keine Welle starten —
+Testwelle (bei MAKE: qualifizierte Anfrage, nicht CTR, CTR > 2 % ist dort ein Warnsignal
+für zu schwache Filterung). Ohne vorab festgelegte Stopp-Regel keine Welle starten:
 wiederholtes Peeken und Abbruch beim ersten guten Ergebnis produziert Falsch-Positive.
 Die harten Gates vor Schaltung (Claims-QA, Nennungs-Zustimmungen, Tracking) bleiben bei
 `ads` (Schaltung = Signatur + Budget-Egress-Gate, nie autonom).
@@ -100,15 +100,15 @@ Die harten Gates vor Schaltung (Claims-QA, Nennungs-Zustimmungen, Tracking) blei
 - **Statics ohne Grounding-Quelle sind ein Blocker, keine Stilfrage.** Aus dem ads-Router
   übernommen: dieselbe Härte wie claims-qa, nur schon am Brief statt erst am Text.
 - **Ein neues Design ist kein neues Konzept.** Neu ist nur, was Angle, Offer, Persona oder
-  Format ändert — Mikro-Variationen sind nicht separat messbar und werden von Meta ohnehin
+  Format ändert: Mikro-Variationen sind nicht separat messbar und werden von Meta ohnehin
   zur selben Ad-ID gruppiert (siehe `brief-schema.md`).
 - **KI-Bilder können hohe CTR bei schlechterer Conversion-Qualität erzeugen.** Eigenes Risiko
-  schon in der Test-Phase, nicht nur ein Skalierungs-Kompromiss — deshalb die harte
+  schon in der Test-Phase, nicht nur ein Skalierungs-Kompromiss. Deshalb die harte
   Beweis-Kontexte-nie-KI-Regel in Schritt 6.
 - **CTR > 2 % ist ein Warnsignal, kein Erfolg** (mindestens bei MAKE eigene, belegte
-  Datenlage) — Entscheidungsmetrik bleibt die qualifizierte Anfrage/das echte Ergebnis, nie
+  Datenlage): Entscheidungsmetrik bleibt die qualifizierte Anfrage/das echte Ergebnis, nie
   die plattforminterne Metrik allein.
-- **Mehr Headline-/Hook-Varianten schlagen mehr Body-Varianten** bei gleichem Zeitbudget —
+- **Mehr Headline-/Hook-Varianten schlagen mehr Body-Varianten** bei gleichem Zeitbudget:
   siehe `copy-bauformen.md`.
 - **S3/S4-Zellen ohne echtes Material sind kein Kompromiss.** Kein Stock-Ersatz, keine
-  Mock-Chats — Zelle wartet, bis Material da ist.
+  Mock-Chats: Zelle wartet, bis Material da ist.

@@ -81,7 +81,7 @@ das sich nicht wie Arbeit anfühlt").
 
 **Wann:** lokale Services mit Vertrauensproblem (Entrümpelung, Umzug, Handwerk
 mit schlechtem Ruf), Ad-Landingpages mit Formular-Funnel.
-**Anrede:** Du (inkonsistent-Sie vermeiden — Rümpelwelt-Fehler, nicht kopieren).
+**Anrede:** Du (inkonsistent-Sie vermeiden, Rümpelwelt-Fehler, nicht kopieren).
 **Rhythmus:** kurz, mit einzelnen Fragmenten.
 > **⚠️ Slop-Beleg:** Das Original "Kein Warten, kein Vertrösten." ist das
 > A1-Negativbeispiel in `forbidden.md` — zwei gleich gebaute Fragmente ohne
@@ -118,7 +118,7 @@ Stilmarker (Original):
 
 Regeln: Anti-Hype als Vertrauenssignal (gegen Branchen-Klischees positionieren).
 Knappheit durch Qualifizierung statt Countdown. Der Leser muss sich BEWERBEN.
-Kostenlosen Wert zuerst (Reziprozität), dann Bezahltes. Nie "Click here" —
+Kostenlosen Wert zuerst (Reziprozität), dann Bezahltes. Nie "Click here":
 CTA als Selbstverpflichtung des Lesers formulieren.
 
 ---
@@ -127,7 +127,7 @@ CTA als Selbstverpflichtung des Lesers formulieren.
 
 **Wann:** großer D2C-Markt, high-ticket mit Finanzierung, breite Zielgruppe
 (auch ältere Käufer), Marktführer-Anspruch.
-**Anrede:** Siezen (bewusst: Seriosität bei 20.000 € Kauf) — aber warm, mit
+**Anrede:** Siezen (bewusst: Seriosität bei 20.000 € Kauf), aber warm, mit
 lockeren Hooks ("Tschüss Öl und Gas!").
 **Rhythmus:** kurze Benefit-Fragmente oben, längere Erklär-Sätze im
 Magazin-/FAQ-Teil unten.
@@ -167,7 +167,7 @@ Generika ("us vs. them") als Einwand-Vorwegnahme.
 | Massenmarkt D2C, Finanzierung, Sie-Zielgruppe | 6 (Enterprise) |
 
 **Cross-Cutting-Regeln (gelten in allen Stilen):**
-1. Konkrete Zahlen schlagen Adjektive — immer ("70.925 €" > "viel Umsatz").
+1. Konkrete Zahlen schlagen Adjektive: immer ("70.925 €" > "viel Umsatz").
 2. Risiko-Umkehr am CTA formulieren (kostenlos, unverbindlich, X Minuten).
 3. EIN wiederholter CTA-Text durch die ganze Seite.
 4. Proof nie weiter als einen Viewport entfernt.

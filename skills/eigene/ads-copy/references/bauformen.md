@@ -2,7 +2,7 @@
 
 Abgeleitet aus 56 deutschen Ad-Texten (Korpus 03.08.2026). Jede Form hat eine
 Beleg-Ad in [referenz-korpus.md](referenz-korpus.md). Die Form entscheidet die
-Reihenfolge der Bausteine, nicht den Ton — der kommt aus `VOICE.md` des Kunden.
+Reihenfolge der Bausteine, nicht den Ton. Der kommt aus `VOICE.md` des Kunden.
 
 Grenzwerte für alle Formen: Hook ≤ 125 Zeichen, Absätze 1–3 Zeilen, höchstens ein
 Gedankenstrich, mindestens eine belegte Zahl, CTA als einzelner Satz.
@@ -18,14 +18,14 @@ Gedankenstrich, mindestens eine belegte Zahl, CTA als einzelner Satz.
 [Autorität mit Zahl und Zeitraum]
 In den letzten 14 Monaten habe ich über 75 Agenturbetreibern geholfen …
 
-[Wie es entstanden ist — Aufwand als Beweis]
+[Wie es entstanden ist: Aufwand als Beweis]
 Nach über 30.000 generierten Kundenanfragen und 140.000 € in Coachings …
 
 [❌-Liste: was der Kunde NICHT mehr braucht]
 ❌ohne dass du zig Case-Studies brauchst
 ❌ohne Kaltakquise oder DM-Spam
 
-[Mechanismus benennen — kurzer, fast frecher Absatz]
+[Mechanismus benennen: kurzer, fast frecher Absatz]
 Ich nenne es das No-Funnel-Ads-Framework. Und es ist ziemlich geil.
 
 [👉-Beweise mit Namen und Betrag, je einer pro Absatz]
@@ -56,7 +56,7 @@ dich auf Platz 1 bei Google!
 ```
 
 Drei Absätze, unter 300 Zeichen. Funktioniert nur, wenn das Creative die Arbeit
-macht. Die Ausnahme von der 5-Absätze-Regel — bewusst gewählt, nicht aus Faulheit.
+macht. Die Ausnahme von der 5-Absätze-Regel: bewusst gewählt, nicht aus Faulheit.
 
 ---
 
@@ -69,7 +69,7 @@ macht. Die Ausnahme von der 5-Absätze-Regel — bewusst gewählt, nicht aus Fau
 [Veränderung mit Zahl]
 Immer mehr Eigentümer fragen ChatGPT direkt nach dem besten Makler. Heute über 25 %.
 
-[Die Lücke — warum die Zielgruppe nicht profitiert]
+[Die Lücke: warum die Zielgruppe nicht profitiert]
 Die meisten Makler tauchen dort gar nicht auf, weil sie ihre Webseite nicht anpassen.
 
 [Was ihr macht, mit Ergebniszahl]
@@ -85,7 +85,7 @@ Warum lohnt sich das Ganze für dich?
 Sichere dir jetzt deine Analyse: …
 ```
 
-Die Überleitungsfrage als eigener Absatz ist der Trick dieser Form — sie hält den
+Die Überleitungsfrage als eigener Absatz ist der Trick dieser Form. Sie hält den
 Leser vor der Liste fest.
 
 ---
@@ -117,7 +117,7 @@ Wir haben in 4 Jahren über 120 Träger unterstützt.
 Sichere dir jetzt deine Potenzial-Analyse!
 ```
 
-Die Autorität steht hier **hinten**, nicht vorne. Der Fall trägt den Einstieg.
+Die Autorität steht hier **hinten**. Der Fall trägt den Einstieg.
 
 ---
 
@@ -131,13 +131,13 @@ Die Autorität steht hier **hinten**, nicht vorne. Der Fall trägt den Einstieg.
 Wer sich als Bildungsträger rein auf Zuweisungen verlässt, führt kein Unternehmen,
 sondern eine Abteilung des Arbeitsamtes.
 
-[Warum das kippt — konkretes Szenario]
+[Warum das kippt: konkretes Szenario]
 Sobald dein Ansprechpartner wechselt, bricht das Kartenhaus zusammen.
 
 [Was stattdessen gilt]
 Wahres Wachstum entsteht erst, wenn du die Kontrolle hast.
 
-[Nummerierte Liste — wirkt sachlicher als Emoji]
+[Nummerierte Liste: wirkt sachlicher als Emoji]
 1. Es erzeugt eine Sog-Wirkung bei deiner Zielgruppe.
 2. Es bereitet die Leute so vor, dass die Bewilligungsquote hoch ist.
 
@@ -174,7 +174,7 @@ Betrieb ab 10 Mitarbeitern? Trag dich unter dem Video ein.
 ```
 
 Die stärkste Form, wenn sie verfügbar ist. Ein prüfbarer Beweis schlägt jede
-Formulierung — er verlagert die Beweislast vom Text auf die Wirklichkeit.
+Formulierung. Er verlagert die Beweislast vom Text auf die Wirklichkeit.
 
 ---
 

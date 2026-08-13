@@ -8,10 +8,14 @@
 # Danach reviewt CLAUDE den Diff (siehe SKILL.md), fährt Tests selbst, behält den Merge.
 #
 # Effort wird NICHT hier gesetzt — er steckt fest in der jeweiligen V2-Profildatei
-# (sol.config.toml=medium, terra/luna.config.toml=high). approval_policy/sandbox kommen
-# aus der Basis-config.toml; die in AGENTS.md Regel 11 namentlich verbotenen YOLO-Sandbox-
-# Flags werden hier bewusst NICHT gesetzt.
+# (sol/terra.config.toml=high, luna.config.toml=max). Die Approval-Policy kommt aus
+# der Basis-config.toml; der Launcher setzt die Sandbox ausdruecklich auf workspace-write.
+# Die in AGENTS.md Regel 11 verbotenen YOLO-Flags werden bewusst NICHT gesetzt.
 set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../../_shared/first-cli-contract.sh
+source "$SCRIPT_DIR/../../_shared/first-cli-contract.sh"
 
 # Der Hilfetext einmal, zwei Wege hinaus: usage_text auf stdout (fuer --help,
 # Exit 0), usage auf stderr mit Exit 2 (fuer den falschen Aufruf). Bis zum
@@ -62,16 +66,23 @@ esac
 WORK="$(mktemp -d "${TMPDIR:-/tmp}/codex-first.XXXXXX")"
 PROMPTFILE="$WORK/prompt.txt"
 OUTFILE="$WORK/output.txt"
-printf '%s\n' "$PROMPT" > "$PROMPTFILE"
+SKILLS_ROOT="$WORK/skills"
+python3 "$SCRIPT_DIR/materialize-skills.py" "$SKILLS_ROOT" >/dev/null
+chmod -R a+rX "$SKILLS_ROOT"
+{
+  first_cli_contract Codex "$PROFILE" "$SKILLS_ROOT"
+  printf '%s\n' "$PROMPT"
+} > "$PROMPTFILE"
 
 run_seat() {  # $1 = CODEX_HOME
   CODEX_HOME="$1" codex exec --profile "$PROFILE" --sandbox workspace-write \
-    -C "$REPO" "$(cat "$PROMPTFILE")"
+    -C "$REPO" - < "$PROMPTFILE"
 }
 
 echo "[codex-first] Profil=$PROFILE  Repo=$REPO"
 echo "[codex-first] Prompt: $PROMPTFILE"
 echo "[codex-first] Output: $OUTFILE"
+echo "[codex-first] Skills: $SKILLS_ROOT"
 
 SEAT=""
 if run_seat /root/.codex-1 >"$OUTFILE" 2>&1; then

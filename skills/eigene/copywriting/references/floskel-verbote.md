@@ -23,7 +23,7 @@ Treffer = Umschreiben, bevor G2 läuft.
 - "whether you're … or …", "look no further", "the possibilities are endless"
 
 **Erweiterte Vokabelliste** (nur relevant bei englischen Kundentexten, niedrige
-Priorität — Kernfokus ist deutsch): tapestry, vibrant, pivotal, crucial,
+Priorität. Kernfokus ist deutsch): tapestry, vibrant, pivotal, crucial,
 intricate, meticulous, bolster, garner, underscore, interplay, multifaceted,
 foster, leverage (als Verb), facilitate, encompass, paramount, groundbreaking,
 transformative, robust (außerhalb Technik), aforementioned, unprecedented,
@@ -32,7 +32,7 @@ streamline/supercharge (als Verkaufsverb), bridge the gap, move the needle.
 
 ## AI-Copywriting-Voice (deutsche Tells)
 
-Eigener rhythmischer Fingerabdruck von KI-Verkaufstext — zu glatt, eine Stufe
+Eigener rhythmischer Fingerabdruck von KI-Verkaufstext: zu glatt, eine Stufe
 zu begeistert, spezifikationsfrei. Fix: konkrete Zahlen/Nomen/Konsequenzen,
 so formulieren, wie eine Person es einer anderen erklärt.
 
@@ -47,10 +47,10 @@ so formulieren, wie eine Person es einer anderen erklärt.
 ## Typografische/strukturelle LLM-Marker
 
 - **Em-Dash-Schwelle:** max. **1 Gedankenstrich pro 500 Wörter**. Im Deutschen
-  ohnehin selten grammatisch korrekt — jeder zusätzliche ist ein Fund.
+  ohnehin selten grammatisch korrekt. Jeder zusätzliche ist ein Fund.
 - **Ausrufezeichen-Schwelle:** max. **1 pro 1000 Wörter**. Begeisterung kommt
   über Wortwahl, nicht über Interpunktion.
-- **Ellipse:** max. 1 pro Text, nur bei echtem Verklingen — nie als Übergang.
+- **Ellipse:** max. 1 pro Text, nur bei echtem Verklingen, nie als Übergang.
 - **Listen-Monotonie**: jeder Absatz gleich lang, jeder Satz gleiche Struktur.
 - **Fett-Doppelpunkt-Muster** in jeder Zeile ("**Vorteil:** …") als Schema.
 - Emoji als Aufzählungszeichen in seriöser Copy.
@@ -58,19 +58,19 @@ so formulieren, wie eine Person es einer anderen erklärt.
 
 ## Strukturregeln (Satzebene, ergänzend zum Vokabel-Check)
 
-- **Keine drei gleichlangen Sätze in Folge.** Kurze mit langen mischen — das
+- **Keine drei gleichlangen Sätze in Folge.** Kurze mit langen mischen: das
   meistgemessene KI-Erkennungssignal.
-- **Keine Parataxe** (Kurzsatz. Kurzsatz. Kurzsatz.) — verbindet stattdessen
+- **Keine Parataxe** (Kurzsatz. Kurzsatz. Kurzsatz.): verbindet stattdessen
   mit Nebensätzen/Konjunktionen, die eine Beziehung zeigen (Grund, Kontrast).
 - **Keine Hedging-Wippe.** Position beziehen, Gegenargument in maximal einem
   Satz würdigen statt beide Seiten gleich zu gewichten.
 - **Keine identische Absatzstruktur** (Themasatz → Erklärung → Beispiel →
-  Übergang, jedes Mal gleich) — manche Absätze mit einer Frage beginnen,
+  Übergang, jedes Mal gleich): manche Absätze mit einer Frage beginnen,
   manche nach einem Satz abrupt enden.
 
 ## Maschinell prüfbarer Teil (seit 29.07.2026)
 
-Diese Liste war bis dahin reine Prosa — sie galt nur, wenn ein Agent sie gelesen
+Diese Liste war bis dahin reine Prosa. Sie galt nur, wenn ein Agent sie gelesen
 hatte. Die eindeutig greifbaren Muster stehen jetzt zusätzlich als Regelsatz in
 `/root/raphael-skills/skills/design/scripts/rules.de.mjs` und laufen im
 Slop-Scanner mit:
@@ -80,17 +80,17 @@ node skills/design/scripts/scan-ai-slop.mjs <projekt> --rules=skills/design/scri
 ```
 
 `de-14` deutsche KI-Textstimme (Blocker im Web-Gate) · `de-15` Werbe-Interpunktion ·
-`de-16` Werbe-Leerformel. **Diese Datei bleibt die Quelle** — kommt hier eine
+`de-16` Werbe-Leerformel. **Diese Datei bleibt die Quelle**: kommt hier eine
 Floskel dazu, gehört sie in den Regelsatz und in dessen Eval
 (`skills/eigene/web/evals/run-slop-de-check.mjs`, 67 Fälle inkl. 14 Gegenproben).
 
 Nicht maschinell prüfbar und deshalb weiterhin Lesearbeit: die Schwellen pro
 Dokument (Em-Dash pro 500 Wörter, Ausrufezeichen pro 1000), die Satzrhythmus-
 Regeln und die Absatzstruktur. Ein grüner Scan heißt also *nicht*, dass der Text
-menschlich klingt — nur, dass die bekannten Einzelfloskeln raus sind.
+menschlich klingt. Er sagt nur, dass die bekannten Einzelfloskeln raus sind.
 
 ## Regel
 Detektor meldet Trefferliste mit Position. 0 Treffer = G1 grün. Voice mancher Kunden
-erlaubt einzelne Anglizismen bewusst — dann in VOICE.md als Ausnahme whitelisten.
+erlaubt einzelne Anglizismen bewusst. Dann in VOICE.md als Ausnahme whitelisten.
 Für weitere, englischsprachige Tells + explizite False-Positive-Liste siehe
 `ai-slop-patterns-en.md` (33-Pattern-Katalog).

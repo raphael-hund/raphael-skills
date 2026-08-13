@@ -41,11 +41,11 @@ Funktioniert auch bei mittlerem Ticket, weil der Magnet vor-qualifiziert.
 - Charlie Morgan: „I am giving away the exact system that built my $30 million consulting business for free. Yep. Free."
 - Unbekannt (Sales-Playbook): „Das hier ist meine interne Provisionstabelle, mit der ich mein mittlerweile 19-köpfiges Sales Team vergüte. … Das 48-seitige Sales Team Playbook kannst du für kurze Zeit kostenlos herunterladen."
 
-**Typische Kombis:** A5/A2 + F7/F13, dazu T5 (physisches Artefakt zeigen — der Booklet-Flip-Through trägt den Hook visuell), T4 (krumme Zahlen als Wert-Anker).
+**Typische Kombis:** A5/A2 + F7/F13, dazu T5 (physisches Artefakt zeigen. Der Booklet-Flip-Through trägt den Hook visuell), T4 (krumme Zahlen als Wert-Anker).
 
 ## S3 — SaaS-/Tool-Demo (Product-led, Trial-CTA)
 
-**Bauplan:** Der Screen ist der Beweis — das Produkt wird live bedient, Hook und Proof
+**Bauplan:** Der Screen ist der Beweis. Das Produkt wird live bedient, Hook und Proof
 verschmelzen. Gefahren als A3 oder kurze A2-Variante. CTA = Trial mit konkreter Länge.
 
 **Wann:** solution- bis product-aware, SaaS/Tools mit visuell zeigbarem Aha-Moment.
@@ -57,16 +57,16 @@ Ticket niedrig bis mittel; die Ad ersetzt die erste Demo.
 - DatAds: „teste jetzt DatAds kostenlos" / „14 Tage vollkommen kostenfrei testen" (Trial-Länge immer konkret)
 
 **Typische Kombis:** A3 + F10/F11, dazu T5 (Screen zeigen statt erzählen). Anti-Muster derselben
-Population: DatAds' Feature-Block ohne Kunde/Zahl („Ein Ort, eine Wahrheit, ein Creative-Flywheel") — Demo ohne Case kippt in Feature-Gerede.
+Population: DatAds' Feature-Block ohne Kunde/Zahl („Ein Ort, eine Wahrheit, ein Creative-Flywheel"): Demo ohne Case kippt in Feature-Gerede.
 
 ## S4 — Geo-/B2C-Kurz-Direct (lokale Dienstleistung, Massenmarkt)
 
 **Bauplan:** Region/Status als Callout, Offer in einem Satz, Reibung-CTA („dauert
 2 Minuten, kostenlos, unverbindlich"). Gefahren als A6, 36–110 Wörter. Sie-Form, wenn
-die Zielgruppe 45+ ist (Enpal ist die einzige Sie-Ausnahme im Korpus — Hausbesitzer).
+die Zielgruppe 45+ ist (Enpal ist die einzige Sie-Ausnahme im Korpus: Hausbesitzer).
 
 **Wann:** B2C mit breiter Streuung, product-aware (Nachfrage existiert: Solar, Wärmepumpe),
-Geo-Targeting trägt die Relevanz. Kein High-Ticket-Call nötig — ein Online-Check reicht.
+Geo-Targeting trägt die Relevanz. Kein High-Ticket-Call nötig. Ein Online-Check reicht.
 
 - Enpal: „Sie heizen noch mit Gas oder Öl? Dann sucht Enpal genau Sie!" → „Es dauert nur 2 Minuten, ist kostenlos, unverbindlich …"
 - Enpal: „Hi, wir suchen Hausbesitzer in ganz Nordrhein-Westfalen, die Lust auf ein Solar-Komplettpaket für 0 Euro Anzahlung inklusive Montage haben."
@@ -78,11 +78,11 @@ Geo-Targeting trägt die Relevanz. Kein High-Ticket-Call nötig — ein Online-C
 ## S5 — Edutainment / Lehr-Ad (Webinar- und Kommentar-Funnel)
 
 **Bauplan:** Echter Lehrinhalt in der Ad selbst (nummeriertes Framework, Rechenbeispiel,
-Markt-News erklärt) — das Offer kommt erst am Ende als Webinar-Einladung oder
+Markt-News erklärt). Das Offer kommt erst am Ende als Webinar-Einladung oder
 Kommentar-Keyword. Gefahren als A3, 250–500 Wörter (90 s–3 min).
 
 **Wann:** problem- bis solution-aware, Märkte mit Vorwissen und Lärm (Trading, Ads,
-KI). Funktioniert, wenn der Anbieter Autorität durch Adspend/Volumen belegen kann —
+KI). Funktioniert, wenn der Anbieter Autorität durch Adspend/Volumen belegen kann:
 die Lehre selbst ist der Qualifizierer (wer zuhört, ist warm).
 
 - Speedscaling: „Was ist eigentlich dieses Andromeda-Update von dem alle reden? Na ja, ganz einfach, es ist eine neue Art Meta-Werbung zu schalten." → „wir machen jeweils 2-3 Ads pro Stufe und haben dann so 10, 12, 15 Ads" → „So Tipps und sehr, sehr viele weitere geben wir dir übrigens in unserem Black Friday Webinar".
@@ -97,7 +97,7 @@ die Lehre selbst ist der Qualifizierer (wer zuhört, ist warm).
 Wendepunkt → krumme Zahlen → Für-wen-es-passt. Gefahren als A7, 700+ Wörter (3–10 min).
 
 **Wann:** solution- bis product-aware, warme Audiences und als Social-Proof-Reserve.
-Besonders stark in skeptischen Märkten (Trading), wo Mondversprechen verbrannt sind —
+Besonders stark in skeptischen Märkten (Trading), wo Mondversprechen verbrannt sind:
 dort gewinnt radikale Untertreibung.
 
 - Speedscaling (Jonas Schnering): „5-6.000 Euro Ad-Spend und haben daraus knapp 70.000 Euro umgesetzt … mein erster Monat, wo ich die 100.000 Euro zum ersten Mal geknackt hatte" — Vorher klein geredet: „Webinare … profitabel, aber nicht mehr, sag ich mal so"
@@ -108,13 +108,13 @@ dort gewinnt radikale Untertreibung.
 
 ## S7 — Positionierungs-Achsen, die der Korpus durchgehend zeigt
 
-Keine eigene Strategie, sondern zwei Entscheidungen VOR der Strategie-Wahl:
+Zwei Entscheidungen, die VOR der Strategie-Wahl fallen:
 
 - **Ein enger Avatar schlägt ein breites Segment.** Dr. Matt Shiver: „when you have a specific avatar it can crush" — und umgekehrt: „busy dads or parents ... I haven't seen that work very well". Dazu seine Regel: „you need to call out people in the hook who've already spent money."
 - **Persönlich signiert schlägt Corporate.** Alle starken High-Ticket-Ads enden mit
   Vorname („Cheers, dein Marc.", „I'll see you on the inside!"), die Mechanismen tragen
   Eigennamen („Ich nenne es das No-Funnel-Ads-Framework. Und es ist ziemlich geil." — Marc Evers). Marktfremde Inflation („99% automatisiert, 4-Stunden-Woche") steht im selben
-  Korpus gegen TradingFreaks' „0,5–1% pro Monat" — die glaubwürdigeren Ads dosieren das
+  Korpus gegen TradingFreaks' „0,5–1% pro Monat". Die glaubwürdigeren Ads dosieren das
   Versprechen kleiner und legen die Differenz in den Mechanismus.
 
 ---
@@ -123,7 +123,7 @@ Keine eigene Strategie, sondern zwei Entscheidungen VOR der Strategie-Wahl:
 
 ## T1 — Winner identisch wiederholen (keine Variation aus Prinzip)
 
-Dieselbe Ad wird wortgleich mehrfach im selben Account gefahren — Wiederholung ist ein
+Dieselbe Ad wird wortgleich mehrfach im selben Account gefahren: Wiederholung ist ein
 Feature, kein Fehler. Erst variieren, wenn der Winner müde ist.
 
 - Pascal Harting: „Ich bringe dich garantiert in den nächsten 31 Tagen auf Platz 1 bei Google – oder du bezahlst mir keinen Cent" (REC 3; identisch REC 13, 16 — dieselbe Formel 3× im selben Account)
@@ -132,7 +132,7 @@ Feature, kein Fehler. Erst variieren, wenn der Winner müde ist.
 
 ## T2 — Neue Hooks auf laufenden Winner-Body recyclen
 
-Der Body bleibt stehen, nur der Hook wird getauscht — und die Selektions-Zahl im Hook
+Der Body bleibt stehen, nur der Hook wird getauscht, und die Selektions-Zahl im Hook
 darf mitgetestet werden.
 
 - Dr. Matt Shiver (Case-Bericht zur Volleyball-Selektions-Ad): „we launched these in October ... they've done roughly — just been recycling putting new hooks on ads ... and that's worked really well"
@@ -140,7 +140,7 @@ darf mitgetestet werden.
 
 ## T3 — „So wie hier, hier, hier"-Zeigegeste (Versprechen + Beweis in derselben Sekunde)
 
-Der Hook verweist live auf eingeblendete Screenshots — Audio und visuelles Artefakt
+Der Hook verweist live auf eingeblendete Screenshots: Audio und visuelles Artefakt
 fallen zusammen. Funktioniert NUR mit geplantem Overlay im Skript.
 
 - Marc Evers: „Webdesigner, ich bringe dich auf 30.000€ Monatsumsatz in den nächsten 3 Monaten, so wie hier, hier, hier oder hier."
@@ -167,7 +167,7 @@ Der gesprochene Proof verweist aufs Bild.
 
 ## T6 — Verzicht-Beat („ohne jemals wieder X")
 
-Nach dem Mechanismus listen 2–4 Sätze, was der Kunde NICHT mehr tun muss — fast immer
+Nach dem Mechanismus listen 2–4 Sätze, was der Kunde NICHT mehr tun muss: fast immer
 wortgleiche Formel, nimmt den Standard-Einwand vorweg.
 
 - Marc Evers: „sodass du dich nie wieder auf Empfehlungen verlassen musst, ohne jemals wieder Kaltakquise machen zu müssen."
@@ -184,7 +184,7 @@ Funktioniert auch als reine Static-Textkarte.
 
 ## T8 — Negativ-Qualifizierung bei High-Ticket
 
-Wer nicht passt, wird aktiv abgewehrt — das erklärt die Lead-Qualität und macht das
+Wer nicht passt, wird aktiv abgewehrt. Das erklärt die Lead-Qualität und macht das
 Angebot begehrenswerter. Bei High-Ticket Pflicht, kein „für jeden".
 
 - Marc Evers: „Das ist kein Coaching für Einsteiger … Die Zusammenarbeit macht nur Sinn, wenn du bereits … zwischen 5 und 15k pro Monat stehst." / „habe keine Lust mit blutigen Anfängern zu arbeiten."
@@ -210,7 +210,7 @@ bei breit gestreutem B2C.
 ## T11 — Karaoke-Captions als Pflicht + Onscreen ≠ VO
 
 Fast alle starken Ads haben Wort-für-Wort-Karaoke-Untertitel (Scroll-ohne-Ton);
-Onscreen-Text dupliziert das Gesprochene nicht wortgleich, sondern ergänzt es
+Onscreen-Text ergänzt das Gesprochene, statt es wortgleich zu doppeln
 (Overlays, Zahlen-Karten). Talking Head ohne Captions ist für die Hälfte der
 Impressionen verloren.
 
@@ -219,7 +219,7 @@ Impressionen verloren.
 
 ## T12 — Disclaimer direkt hinter der fettesten Zahl
 
-Die stärksten Zahlen-Ads relativieren sofort — und werden dadurch glaubwürdiger,
+Die stärksten Zahlen-Ads relativieren sofort, und werden dadurch glaubwürdiger,
 nicht schwächer.
 
 - Dr. Matt Shiver: „Okay. These results are not typical." / „Again, these are unicorn numbers. Not normal. … Typically what we're shooting for is we're shooting for a four to six times on return on ad spend."
@@ -235,7 +235,7 @@ nie mitten im Value-Teil.
 
 ## T14 — Persönlicher Sign-off mit Vornamen
 
-Handschlag-Schluss statt Firmen-CTA — identisch über den ganzen Account, wird zum
+Handschlag-Schluss statt Firmen-CTA: identisch über den ganzen Account, wird zum
 Wiedererkennungszeichen.
 
 - Marc Evers: „Cheers, dein Marc." / „Tschüss, dein Marc." (in 6+ Ads identisch)
@@ -259,7 +259,7 @@ Wiedererkennungszeichen.
 | Winner-Ad läuft, Account skalieren | — (Account-Ebene) | unverändert | — | T1, T2 |
 
 **Routing-Merksatz (Korpus-Konsens):** Erst Avatar schärfen (eng schlägt breit), dann
-Strategie nach Ticket und Awareness wählen, dann Architektur, dann Hook-Familie —
+Strategie nach Ticket und Awareness wählen, dann Architektur, dann Hook-Familie:
 nie umgekehrt. Und: „Jede Behauptung bekommt innerhalb von 2 Sätzen eine Zahl oder
 einen Namen. Der Mechanismus bekommt einen Eigennamen. Der CTA sagt, was nach dem
 Klick passiert. Alles andere ist Dekoration."

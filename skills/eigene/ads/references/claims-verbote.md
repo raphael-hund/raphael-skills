@@ -5,7 +5,7 @@ Verboten = harter Block, geht nicht live. Riskant = umschreiben + belegen, dann 
 
 ## A. Meta Advertising Policy (Auszug, häufigste Blocker)
 
-- **Personal attributes**: Anrede, die persönliche Merkmale unterstellt/bejaht — Gesundheit,
+- **Personal attributes**: Anrede, die persönliche Merkmale unterstellt/bejaht, Gesundheit,
   Gewicht, Alter, Religion, sexuelle Orientierung, finanzielle Not, kriminelle Vergangenheit.
   Verboten: "Bist du übergewichtig?" / "Leidest du an Depressionen?".
   Erlaubt: "Unser Programm für mehr Energie".

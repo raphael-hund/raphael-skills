@@ -39,6 +39,8 @@ hit A2  "Das ist kein Tool, sondern ein System."
 hit A2  "Mobile ist Standard, nicht Ausnahme."
 hit A2  "Dann warm siezen, nicht steif."
 hit A2  "Es geht nicht um Traffic."
+# Antithese am Zeilenende: Nomen (gross) ist der Spiegelbegriff -> Fail.
+hit A2  "Mobile ist Standard, nicht Ausnahme"
 hit A9  "Stell dir vor: Dein Dach ist dicht."
 hit A9  "Was wäre, wenn du nie wieder zahlen müsstest?"
 hit B1  "Kurz gesagt, wir liefern."
@@ -57,10 +59,68 @@ no A2     "Es ist nicht nur eine Frage des Preises."
 no A2     "Keine Quelle heisst Zahl raus, nicht schätzen."
 no A2     "Die Regel steht im Imperativ, nicht im Passiv."
 no A2     "Gilt auf allen Kanälen, nicht nur Social."
+# Abgrenzung statt Antithese: Anweisung nennt eine Alternative, die wegfaellt.
+no A2     "Das gehört ins Kundenrepo, nicht hierher."
+no A2     "Der Satz wird gestrichen, nicht poliert."
+no A2     "Das gehört in die Drehliste, nicht in die Illustration."
+no A2     "Der Beleg macht es glaubwürdiger, nicht schwächer."
+no A2     "Zeig den Endzustand, nicht das Schmerzstadium."
+no A2     "Einfache Wörter, keine Fachbegriffe, keine Schachtelsätze."
+no A2     "Eine Obergrenze, kein Ziel; bei Zweifel weniger."
+# Umbrochene Aufzaehlung: Adjektiv (klein) am Zeilenende, Satz laeuft weiter.
+no A2     "Screen-Demo ab Sekunde 3, kein langes"
+no A2     "Einfache Wörter, keine Fachbegriffe, keine Schachtelsätze im Skript."
 no B6b    "Wir liefern dein Festpreis-Angebot in 24 Stunden."
 no FEHLER "Wärmepumpe kaputt? Neue in 48 Stunden."
 no FEHLER "Die Anlage deckt 85 Prozent deines Strombedarfs."
 no FEHLER "Wir entrümpeln zum Festpreis. Du zahlst erst nach der Übergabe. 1257 Kunden haben uns mit 5,0 bewertet."
+
+echo "== End-to-End: ganze Ad-Copy =="
+# Ein Text mit sechs eingebauten Slop-Stellen muss blocken, die redigierte
+# Fassung desselben Texts muss durchgehen. Faengt Regex-Aenderungen, die nur
+# auf Einzelsaetzen richtig aussehen.
+SLOP='Du hast schon drei Agenturen ausprobiert. Keine hat geliefert.
+
+Ich verstehe das. Die meisten verkaufen dir Reichweite, nicht Termine.
+
+In 14 Monaten haben wir für 23 Betriebe 1.847 Anfragen erzeugt.
+
+Unsere robuste Lösung ist dabei ganzheitlich und nahtlos integriert.
+
+Stell dir vor: Dein Kalender füllt sich von allein.
+
+✅ Schnell ✅ Günstig ✅ Zuverlässig
+
+Trag dich ein, ich melde mich in 48 Stunden.'
+
+SAUBER='Du hast schon drei Agenturen ausprobiert und keine hat geliefert.
+
+Ich verstehe das. Die meisten verkaufen dir Reichweite statt Termine im Kalender.
+
+In den letzten 14 Monaten haben wir für 23 Handwerksbetriebe insgesamt 1.847 qualifizierte Anfragen erzeugt. Der günstigste Lead lag bei 18,40 Euro.
+
+Wir richten das System in deinem Betrieb ein und übernehmen die Nachfassung.
+
+✅ Erste Anfragen nach 12 Tagen
+✅ Festpreis, keine Erfolgsbeteiligung
+✅ Kündbar zum Monatsende
+
+Trag dich ein, ich melde mich in 48 Stunden persönlich.'
+
+if python3 "$S" --text "$SLOP" >/dev/null 2>&1; then
+  bad=$((bad + 1))
+  echo "  VERPASST: Slop-Ad ging durch (Exit 0)"
+else
+  ok=$((ok + 1))
+fi
+
+if python3 "$S" --text "$SAUBER" >/dev/null 2>&1; then
+  ok=$((ok + 1))
+else
+  bad=$((bad + 1))
+  echo "  FEHLALARM: saubere Ad wurde geblockt"
+  python3 "$S" --text "$SAUBER" | grep FEHLER
+fi
 
 echo "----"
 echo "bestanden=$ok  fehlgeschlagen=$bad"
