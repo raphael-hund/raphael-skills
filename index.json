@@ -34,7 +34,7 @@
     },
     {
       "name": "ads-video",
-      "version": "0.6.0",
+      "version": "0.7.0",
       "path": "skills/eigene/ads-video/SKILL.md",
       "description": "Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan. Trigger: \"Video-Skript schreiben\", \"Ad-Skript\", \"Drehbuch für Ads\", \"Skripte für Testwelle\", \"Hook-Varianten fürs Video\". Funktioniert für jeden Kunden: Craft kommt Pflicht aus den Markt-Referenzen (Hooks, Architekturen, Sprache, Strategien/Taktiken, Referenz-Volltexte), Performance-Daten optional aus dem Kundenrepo. Schreibt nie aus dem Gedächtnis, endet erst nach no-ai-slop-Pass + Messlatte."
     },
@@ -64,7 +64,7 @@
     },
     {
       "name": "copywriting",
-      "version": "0.9.0",
+      "version": "0.10.0",
       "path": "skills/eigene/copywriting/SKILL.md",
       "description": "Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\". Für mehrteilige Email-Sequenzen, Drip-Kampagnen, Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill."
     },

@@ -242,6 +242,14 @@ Falls ja → eine konkrete Zahl, ein Eigenname oder eine echte Konsequenz einset
 eine Zahl, eine Frist, einen Betrag oder einen Ortsnamen. Null Belege heißt
 austauschbar.
 
+**Erfahrungs-Zahlen zählen nicht.** "seit 10 Jahren", "über 20 Jahre
+Erfahrung", "seit drei Jahrzehnten" sagen nichts darüber, was der Kunde
+bekommt. Sie stehen bei jedem Wettbewerber und neutralisieren den Test.
+
+- ✗ "Seit 10 Jahren sind wir Ihr verlässlicher Partner an Ihrer Seite."
+- ✓ "Seit 10 Jahren bauen wir Dächer. Letztes Jahr 84 Sanierungen,
+  im Schnitt in 6 Tagen fertig."
+
 - ✗ "Als erfahrener Partner an Ihrer Seite begleiten wir Sie auf dem Weg zu
   mehr Sichtbarkeit. Unsere Experten entwickeln gemeinsam mit Ihnen eine
   Strategie, die zu Ihrem Unternehmen passt."

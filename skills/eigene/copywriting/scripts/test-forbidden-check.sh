@@ -96,6 +96,10 @@ no E3  "Wir entrümpeln deine Wohnung zum Festpreis. Du zahlst erst nach der Üb
 no E3  "Wärmepumpe kaputt? Wir kommen noch heute vorbei."
 # Frist statt Zahl reicht als Beleg
 no E3  "Du bekommst dein Angebot binnen 48 Stunden. Wir melden uns persönlich bei dir und klären offene Fragen im Gespräch, bevor irgendetwas beauftragt wird."
+# Erfahrungs-Zahl ist KEIN Beleg: "seit 10 Jahren" steht bei jedem Wettbewerber
+hit E3 "Seit 10 Jahren sind wir Ihr verlässlicher Partner an Ihrer Seite. Unsere Experten begleiten Sie auf dem Weg zu mehr Sichtbarkeit und entwickeln gemeinsam mit Ihnen eine Strategie."
+# Erfahrung PLUS echtes Ergebnis geht durch
+no E3  "Seit 10 Jahren bauen wir Dächer. Letztes Jahr waren es 84 Sanierungen, im Schnitt in 6 Tagen fertig."
 
 echo "== End-to-End: ganze Ad-Copy =="
 # Ein Text mit sechs eingebauten Slop-Stellen muss blocken, die redigierte

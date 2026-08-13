@@ -1,6 +1,6 @@
 ---
 name: copywriting
-version: 0.9.0
+version: 0.10.0
 description: >
   Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
   SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
@@ -62,7 +62,7 @@ statt ihn im Kopf zu behalten.
 | `forbidden-check.py` | misst A–F, Exit 1 bei Treffer | `python3 scripts/forbidden-check.py <datei>` |
 | `forbidden-check.py --doku` | dasselbe für Regelwerk-Dateien (ignoriert ✗/✓-Beispiele, Verbotslisten, Zitat-Korpora) | `… --doku <datei>` |
 | `em-dash-fix.py` | ersetzt Em-Dash-Denkpausen durch Punkt/Komma/Doppelpunkt | `python3 scripts/em-dash-fix.py [--dry] <datei>` |
-| `test-forbidden-check.sh` | 44 Regressionsfälle (hit/no, B8/B9, E3-Generik, End-to-End) | `bash scripts/test-forbidden-check.sh` |
+| `test-forbidden-check.sh` | 46 Regressionsfälle (hit/no, B8/B9, E3-Generik, End-to-End) | `bash scripts/test-forbidden-check.sh` |
 | `test-em-dash-fix.sh` | 13 Fälle, u. a. Zitate und Backtick-Vorlagen | `bash scripts/test-em-dash-fix.sh` |
 
 **Vor jeder Regex-Änderung an einem der Skripte laufen beide Tests.** Sie halten

@@ -429,22 +429,33 @@ def pruefe(text: str, name: str = "Text", doku: bool = False):
     # Substantiv gross. Messbar ist stattdessen die Belegdichte — Zahl,
     # Zeitangabe, Waehrung, Prozent, Ortsname mit Praeposition.
     if not doku and woerter >= 25:
+        # Eine Erfahrungs-Zahl ("seit 10 Jahren", "über 20 Jahre Erfahrung")
+        # ist KEIN Beleg. Sie sagt nichts darüber, was der Kunde bekommt, und
+        # steht bei jedem Wettbewerber. Sie wird vor der Zählung entfernt.
+        pruef = re.sub(
+            r"\b(?:seit|über|mehr als|rund|circa|ca\.)\s+\d+\s*"
+            r"(?:Jahren?|Jahrzehnten?|Monaten?)\b",
+            " ",
+            body,
+            flags=re.I,
+        )
         belege = 0
-        if re.search(r"\d", body):
+        if re.search(r"\d", pruef):
             belege += 1
-        if re.search(r"\b(?:in|nach|binnen|innerhalb)\s+\w*\s*\d", body, re.I):
+        if re.search(r"\b(?:in|nach|binnen|innerhalb)\s+\w*\s*\d", pruef, re.I):
             belege += 1
-        if re.search(r"[€$%]|\bEuro\b|\bProzent\b", body, re.I):
+        if re.search(r"[€$%]|\bEuro\b|\bProzent\b", pruef, re.I):
             belege += 1
-        if re.search(r"\b(?:aus|in)\s+[A-ZÄÖÜ][a-zäöüß]{3,}(?:\s|,|\.)", body):
+        if re.search(r"\b(?:aus|in)\s+[A-ZÄÖÜ][a-zäöüß]{3,}(?:\s|,|\.)", pruef):
             belege += 1
 
         if belege == 0:
             fehler.append(
                 f"[E3] Generik-Verdacht: kein einziger Beleg auf {woerter} Wörter "
-                f"(keine Zahl, keine Frist, kein Betrag, kein Ort). Der Text "
-                f"könnte für jeden Wettbewerber derselben Branche stehen. "
-                f"Eine belegte Zahl oder eine echte Konsequenz einsetzen."
+                f"(keine Zahl, keine Frist, kein Betrag, kein Ort). "
+                f"Erfahrungs-Zahlen wie 'seit 10 Jahren' zählen nicht — sie "
+                f"stehen bei jedem Wettbewerber. Eine Zahl einsetzen, die sagt, "
+                f"was der Kunde bekommt."
             )
 
     # A1/A6/A7: Satzrhythmus

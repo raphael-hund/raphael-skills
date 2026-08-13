@@ -231,6 +231,16 @@ nie als rhetorische Aufwärmung ("Kennst du das Gefühl, wenn …?").
 **Grenze:** Ein Fragment pro Hook. Zwei Fragmente hintereinander sind ein
 Staccato-Paar und damit ein Fail (`/root/.claude/forbidden.md` A1).
 
+**Einzige Ausnahme — Informationssprung** (A1, Ausnahme 2): Zwei Teile sind
+erlaubt, wenn der zweite eine belegte Zahl oder Frist trägt. Gilt nur im Hook,
+nie im Body, nie zweimal pro Skript.
+
+- ✓ "Wärmepumpe kaputt? Neue in 48 Stunden." (Problem → Frist)
+- ✗ "Kein Warten. Kein Vertrösten." (zweimal dieselbe Aussage)
+
+**Test:** Streiche den zweiten Teil. Verliert der Leser eine Information?
+Wenn nur der Rhythmus fehlt, ist es Slop.
+
 ## V3 — Zahl in den ersten Sekunden
 
 30,1 % der Hooks haben eine Ziffer im ersten Satz.

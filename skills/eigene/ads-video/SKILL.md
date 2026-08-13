@@ -1,6 +1,6 @@
 ---
 name: ads-video
-version: 0.6.0
+version: 0.7.0
 description: >
   Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok
   entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan.
