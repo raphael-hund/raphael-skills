@@ -17,13 +17,15 @@ parallel, wie die Aufgabe braucht.
 (`engineer`, Claude/Sonnet) wird von einer ANDEREN Modellfamilie geprüft (`reviewer` = Sol,
 `qa` = Luna, beide GPT-5.6). Fable prüft nie Fable, Sonnet nie Sonnet.
 
-| Rolle | Modell | Effort | Aufruf-Weg | Rolle in einem Kilометр |
+| Rolle | Modell | Effort | Aufruf-Weg | Auftragsschnitt |
 |---|---|---|---|---|
-| `pm` | Fable | Standard | `cc` → `/model fable` | Planen, Spec, entscheiden, finale Freigabe-Vorbereitung |
-| `engineer` | Sonnet | Standard | `cc` → `/model sonnet` (Bulk: Terra `codex --profile terra`) | Bauen, umsetzen, Tests schreiben |
-| `reviewer` | Sol (GPT-5.6) | medium | `codex --profile sol` / `ccx --model gpt-5.6-sol` | Cross-Vendor-Code-Review, Zweitmeinung |
-| `qa` | Luna (GPT-5.6) | high | `codex --profile luna` / `ccx --model gpt-5.6-luna` | Tests fahren, App treiben, Bugs melden |
-| `retro` | Kimi K3 (1M) | high | `kimi -p` / `cck` | Retrospektive über viel Historie (Sessions/Worklogs) |
+| `pm` | Fable | medium | Agent-Typ `pm` / `cc` → `/model fable` | Planen, Spec, entscheiden |
+| `engineer` | Sonnet | xhigh | Agent-Typ `engineer` / `cc` → `/model sonnet` | Bauen, umsetzen, Tests schreiben |
+| `reviewer` | Sol (GPT-5.6) | high | Agent-Typ `reviewer` (nicht `sol-pruefer`) | Cross-Vendor-Review |
+| `qa` | Luna (GPT-5.6) | max | Agent-Typ `qa` (nicht `luna-worker`) | Tests fahren, App treiben |
+| `retro` | Kimi K3 (1M) | high | Agent-Typ `retro` / `kimi -p` | Retro über Historie |
+
+Installiert 13.08.2026 in `~/.claude/agents/`, `~/.grok/agents/` und die Spiegel unter `raphael-command-center`. Das sind Rollen, keine weiteren Lane-Wrapper.
 
 Effort für GPT-Profile steckt in den Codex-V2-Profildateien (`sol/terra/luna.config.toml`),
 für Kimi in `~/.kimi-code/config.toml` (`k3.default_effort=high`). Für Claude-Modelle wird
