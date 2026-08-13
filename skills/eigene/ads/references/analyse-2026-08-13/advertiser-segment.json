@@ -1,0 +1,687 @@
+[
+  {
+    "brand": "Enpal",
+    "segment": "local-service-handwerk",
+    "n": 59,
+    "mix": {
+      "local-service-handwerk": 59
+    }
+  },
+  {
+    "brand": "Marc Evers Marketing & Consulting",
+    "segment": "agenturen-coaching",
+    "n": 53,
+    "mix": {
+      "agenturen-coaching": 53
+    }
+  },
+  {
+    "brand": "SEOLabs",
+    "segment": "local-service-handwerk",
+    "n": 52,
+    "mix": {
+      "local-service-handwerk": 52
+    }
+  },
+  {
+    "brand": "Stefan Graf",
+    "segment": "b2b-dienstleister",
+    "n": 49,
+    "mix": {
+      "b2b-dienstleister": 49
+    }
+  },
+  {
+    "brand": "Neuhaus Digital",
+    "segment": "b2b-dienstleister",
+    "n": 45,
+    "mix": {
+      "b2b-dienstleister": 45
+    }
+  },
+  {
+    "brand": "Dr. Matt Shiver",
+    "segment": "agenturen-coaching",
+    "n": 42,
+    "mix": {
+      "agenturen-coaching": 42
+    }
+  },
+  {
+    "brand": "Finseo",
+    "segment": "b2b-dienstleister",
+    "n": 39,
+    "mix": {
+      "b2b-dienstleister": 39
+    }
+  },
+  {
+    "brand": "Charlie Morgan",
+    "segment": "agenturen-coaching",
+    "n": 39,
+    "mix": {
+      "agenturen-coaching": 39
+    }
+  },
+  {
+    "brand": "Max Modrich with DatAds",
+    "segment": "b2b-dienstleister",
+    "n": 37,
+    "mix": {
+      "b2b-dienstleister": 37
+    }
+  },
+  {
+    "brand": "Speedscaling.de",
+    "segment": "agenturen-coaching",
+    "n": 36,
+    "mix": {
+      "agenturen-coaching": 36
+    }
+  },
+  {
+    "brand": "Unknown",
+    "segment": "agenturen-coaching",
+    "n": 34,
+    "mix": {
+      "agenturen-coaching": 19,
+      "uebertragbar": 11,
+      "local-service-handwerk": 4
+    }
+  },
+  {
+    "brand": "Marc Evers",
+    "segment": "agenturen-coaching",
+    "n": 22,
+    "mix": {
+      "agenturen-coaching": 22
+    }
+  },
+  {
+    "brand": "Mario Müller",
+    "segment": "b2b-dienstleister",
+    "n": 20,
+    "mix": {
+      "b2b-dienstleister": 20
+    }
+  },
+  {
+    "brand": "Ben Heath",
+    "segment": "agenturen-coaching",
+    "n": 20,
+    "mix": {
+      "agenturen-coaching": 20
+    }
+  },
+  {
+    "brand": "TradingFreaks",
+    "segment": "agenturen-coaching",
+    "n": 13,
+    "mix": {
+      "agenturen-coaching": 13
+    }
+  },
+  {
+    "brand": "Maximilian Saal",
+    "segment": "agenturen-coaching",
+    "n": 12,
+    "mix": {
+      "agenturen-coaching": 12
+    }
+  },
+  {
+    "brand": "Alex Hormozi / Vantage (Acquisition.com)",
+    "segment": "agenturen-coaching",
+    "n": 11,
+    "mix": {
+      "agenturen-coaching": 11
+    }
+  },
+  {
+    "brand": "the.volleyball.strength.coach",
+    "segment": "uebertragbar",
+    "n": 9,
+    "mix": {
+      "uebertragbar": 9
+    }
+  },
+  {
+    "brand": "Skool",
+    "segment": "agenturen-coaching",
+    "n": 6,
+    "mix": {
+      "agenturen-coaching": 6
+    }
+  },
+  {
+    "brand": "Imperium Academy (Charlie Morgan)",
+    "segment": "agenturen-coaching",
+    "n": 6,
+    "mix": {
+      "agenturen-coaching": 6
+    }
+  },
+  {
+    "brand": "peter.at",
+    "segment": "b2b-dienstleister",
+    "n": 6,
+    "mix": {
+      "b2b-dienstleister": 6
+    }
+  },
+  {
+    "brand": "EDEKA Bildschirmwerbung",
+    "segment": "local-service-handwerk",
+    "n": 6,
+    "mix": {
+      "local-service-handwerk": 6
+    }
+  },
+  {
+    "brand": "Pascal Harting",
+    "segment": "b2b-dienstleister",
+    "n": 5,
+    "mix": {
+      "b2b-dienstleister": 5
+    }
+  },
+  {
+    "brand": "QualiLead System",
+    "segment": "uebertragbar",
+    "n": 5,
+    "mix": {
+      "uebertragbar": 4,
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "Mission Mittelstand / Matthias Aumann",
+    "segment": "agenturen-coaching",
+    "n": 4,
+    "mix": {
+      "agenturen-coaching": 4
+    }
+  },
+  {
+    "brand": "Unklar",
+    "segment": "uebertragbar",
+    "n": 4,
+    "mix": {
+      "agenturen-coaching": 1,
+      "uebertragbar": 2,
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "Neuhaus Digital GmbH",
+    "segment": "b2b-dienstleister",
+    "n": 3,
+    "mix": {
+      "b2b-dienstleister": 3
+    }
+  },
+  {
+    "brand": "Yunilabs",
+    "segment": "local-service-handwerk",
+    "n": 3,
+    "mix": {
+      "local-service-handwerk": 3
+    }
+  },
+  {
+    "brand": "Client Acquisition Accelerator",
+    "segment": "agenturen-coaching",
+    "n": 3,
+    "mix": {
+      "agenturen-coaching": 3
+    }
+  },
+  {
+    "brand": "Reidl & Co",
+    "segment": "uebertragbar",
+    "n": 3,
+    "mix": {
+      "uebertragbar": 3
+    }
+  },
+  {
+    "brand": "Alex Hormozi / Acquisition.com",
+    "segment": "agenturen-coaching",
+    "n": 3,
+    "mix": {
+      "agenturen-coaching": 3
+    }
+  },
+  {
+    "brand": "(Performance-Marketer)",
+    "segment": "agenturen-coaching",
+    "n": 3,
+    "mix": {
+      "agenturen-coaching": 3
+    }
+  },
+  {
+    "brand": "Finally Freelancing",
+    "segment": "agenturen-coaching",
+    "n": 2,
+    "mix": {
+      "agenturen-coaching": 2
+    }
+  },
+  {
+    "brand": "Mission Mittelstand / Aumann",
+    "segment": "agenturen-coaching",
+    "n": 2,
+    "mix": {
+      "agenturen-coaching": 2
+    }
+  },
+  {
+    "brand": "Lokal-Webdesigner",
+    "segment": "local-service-handwerk",
+    "n": 2,
+    "mix": {
+      "local-service-handwerk": 2
+    }
+  },
+  {
+    "brand": "Schneider Marketing (Hans Schneider)",
+    "segment": "b2b-dienstleister",
+    "n": 2,
+    "mix": {
+      "b2b-dienstleister": 2
+    }
+  },
+  {
+    "brand": "Fullstack Marketer",
+    "segment": "agenturen-coaching",
+    "n": 2,
+    "mix": {
+      "agenturen-coaching": 2
+    }
+  },
+  {
+    "brand": "JGOOT",
+    "segment": "uebertragbar",
+    "n": 2,
+    "mix": {
+      "uebertragbar": 2
+    }
+  },
+  {
+    "brand": "michael.kaschinski",
+    "segment": "b2b-dienstleister",
+    "n": 1,
+    "mix": {
+      "b2b-dienstleister": 1
+    }
+  },
+  {
+    "brand": "Finally Freelancing GmbH",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Just Get Out Of Town",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "The Finest Difference (im Transkript als 'Final Difference' erfasst)",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "DeepImmo",
+    "segment": "b2b-dienstleister",
+    "n": 1,
+    "mix": {
+      "b2b-dienstleister": 1
+    }
+  },
+  {
+    "brand": "Schneider Marketing / Real Estate Summit",
+    "segment": "b2b-dienstleister",
+    "n": 1,
+    "mix": {
+      "b2b-dienstleister": 1
+    }
+  },
+  {
+    "brand": "Yunilabs / Web3 Universe",
+    "segment": "local-service-handwerk",
+    "n": 1,
+    "mix": {
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "Sales Hax Consulting",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "Baulig Consulting",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Solar Startup",
+    "segment": "local-service-handwerk",
+    "n": 1,
+    "mix": {
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "Baulig",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unknown (Promoting a KI Marketing Masterclass)",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "Schneider (Logo auf Shirt), ImmoBEW",
+    "segment": "b2b-dienstleister",
+    "n": 1,
+    "mix": {
+      "b2b-dienstleister": 1
+    }
+  },
+  {
+    "brand": "Claude (Anthropic)",
+    "segment": "b2b-dienstleister",
+    "n": 1,
+    "mix": {
+      "b2b-dienstleister": 1
+    }
+  },
+  {
+    "brand": "TradingFreaks / Tim Schäfer",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Pokale Meier",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "LeadGen Workshop / Adis Pezerovic",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Charlie Morgan / Imperium Academy",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Adhouse (Adis Pezerovic)",
+    "segment": "local-service-handwerk",
+    "n": 1,
+    "mix": {
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "Final Freelancing",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Trading Freaks",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "Heath Media",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Marwan",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "TF TradingFreaks",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "TF Trading",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "Web3 Universe",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "TradingFreaks (TF Logo)",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unbranded/Handwerk-Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "LinkedIn-Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Hans",
+    "segment": "local-service-handwerk",
+    "n": 1,
+    "mix": {
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "CAA (Client Acquisition Accelerator) Logo oben",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Kfz-Gutachter-Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unbranded/LeadGen-Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unbekannt (Kein explizites Branding ausser KI-Logos)",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Skool / Andrew Tate",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Skool (implied)",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Joel McDonald",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "Unbranded/Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unknown (AT)",
+    "segment": "local-service-handwerk",
+    "n": 1,
+    "mix": {
+      "local-service-handwerk": 1
+    }
+  },
+  {
+    "brand": "Unknown (Greentech)",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "Jasmin Huber",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "KI-Service, Brand unklar",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unknown (Charlie?)",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Unbranded/B2B-Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Trading-Anbieter, Brand unklar",
+    "segment": "uebertragbar",
+    "n": 1,
+    "mix": {
+      "uebertragbar": 1
+    }
+  },
+  {
+    "brand": "(Coaching)",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  },
+  {
+    "brand": "Tattoo-Coach",
+    "segment": "agenturen-coaching",
+    "n": 1,
+    "mix": {
+      "agenturen-coaching": 1
+    }
+  }
+]

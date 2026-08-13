@@ -1,0 +1,18 @@
+FATHOM_LOCAL_MEETINGS=13
+EVERS_170417796=present  path=/root/raphael-brain/raw/meetings/2026-08-05-impromptu-zoom-meeting-170417796.md
+KANDIDATEN=6
+/root/raphael-brain/wiki/_candidates/2026-08-13-evers-budget-und-testlogik.md
+/root/raphael-brain/wiki/_candidates/2026-08-13-evers-drei-agenturmodelle.md
+/root/raphael-brain/wiki/_candidates/2026-08-13-evers-drei-stufen-funnel.md
+/root/raphael-brain/wiki/_candidates/2026-08-13-evers-fast-slow-lane.md
+/root/raphael-brain/wiki/_candidates/2026-08-13-evers-hook-body-angle-offer.md
+/root/raphael-brain/wiki/_candidates/2026-08-13-evers-testing-matrix.md
+TOPIC_3_Agenturmodelle=True
+TOPIC_3-Stufen-Funnel=True
+TOPIC_Testing-Matrix=True
+TOPIC_Fast-Lane=True
+TOPIC_Slow-Lane=True
+TOPIC_Hook=True
+TOPIC_Instant-Formular=True
+SOURCE_POINTERS=True
+GATE3_PASS=true

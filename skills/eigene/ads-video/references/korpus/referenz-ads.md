@@ -1,9 +1,10 @@
 # Korpus: Referenz-Ads (Konkurrenz / Library)
-Export: 2026-08-11
+Export: 2026-08-13
 Base: app9VvWqeSNAOwwmV
 Tabelle: Referenz-Ads (tblKuUyOwIAOqcvb7)
 Anzahl Records: 711
 Vollständig: ja (Pagination)
+Quelle: Airtable-Read 2026-08-13 plus strikte Shard-Rettung (hook-unique).
 
 ## Video-Training für Bildungsanbieter 🎓
 - id: rec08ptsg7qJmKnfv
@@ -2940,7 +2941,23 @@ TAGS: Glassmorphic, Quiz-Lead, Realfoto,
 - index_quality: hoch (vollständiges ad.json + Screenshot vorhanden)
 - transcript_vorhanden: nein (static)
 - Visuelle Beschreibung: Minimalistisches Text-auf-Farbe-Creative (Navy/Weiß, kein Foto).
-- Skript: [UNVOLLSTÄNDIG — nur in Notion oder leer]
+- skript_source: shard-title
+- Skript:
+  **Are you struggling to scale?**
+  
+  To scale, you need one of these three things:
+  
+  1. Better advertising and sales processes to get more customers
+  2. Increased customer value to afford more advertising and sales
+  3. More people to help keep up with demand
+  
+  The good news? We’ve designed a Scaling Roadmap that teaches how to solve these constraints.
+  
+  And we’ve personalized it for your business.
+  
+  We're confident it can help you break through to the next level.
+  
+  Just answer a few questions and we’ll send it to you for free.
 
 ## Video | Stefan Graf | 1718047642668686
 - id: recBEWkpENAHkNh3e
@@ -3234,7 +3251,9 @@ TAGS: Job-Ad, Emoji-Bullets, Ye
 - brand: Ben Heath
 - transcript_vorhanden: nein
 - Visuelle Beschreibung: Nahaufnahme von Ben Heath, lächelnd, Hand am Kinn, Blick nach links außerhalb des Bildes, sitzt draußen vor einem Holz-/Backsteingebäude. Im unteren Bilddrittel ist ein Screenshot-Fenster eingeblendet, das eine Tabelle mit Spend-, ROAS- und Umsatzzahlen zeigt, darunter Summenzeile mit Total Spent, Average und Total. Unten rechts das Heath Media Logo.
-- Skript: [UNVOLLSTÄNDIG — nur in Notion oder leer]
+- skript_source: shard-title
+- Skript:
+  What if I told you that the next ad campaign you run could not fail? Well, i can't guarantee that. But have created something that is as close As it can possibly get Im just added something insane to my mentorship program For a couple of years now we've offered live calls And one-to one support which has been tremendously valuable for more than 1000 people That have joined our mentorship program Now was talking with team yesterday and were trying To work out how could make this even more valuable for people like you People who want better results and scale Here's what came up with and I'm pretty sure no one else is offering anything close to this level of support. You can get your questions answered, your ads reviewed or whatever it is you want to discuss we really know our stuff. The people already in my mentorship program are absolutely loving this
 
 ## Baulig REF-0041
 - id: recCiV6wzKUSQGjKz
@@ -15224,4 +15243,4 @@ VISUELLE STRUKTUR: Struktur: product-shot | Stil: product-shot
 TAGS: Preis-Anker, Förderungs-Hook, Produkt-Hero, IG Story
 
 ---
-Unvollständig markiert: 176/711
+Unvollständig markiert: 174/711

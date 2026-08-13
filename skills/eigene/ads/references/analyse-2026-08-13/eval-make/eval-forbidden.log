@@ -1,0 +1,258 @@
+===== RUN 1 =====
+--- angle-dossier-make.md ---
+
+=== angle-dossier-make.md === 444 Wörter
+  hinweis  [A8] Kontrast-Dreisprung 'passt_zu: z1 …': passt_zu: Z1 plus P1
+quelle: wiki/compan
+
+0 harte Verstösse
+exit:0
+--- brief-1-tafel.md ---
+
+=== brief-1-tafel.md === 121 Wörter
+  hinweis  [A1] Staccato-Verdacht (2+2 W): Zwei Namen. / Keine Baustelle.
+  hinweis  [A1] Staccato-Verdacht (5+4 W): > Zwei Leute stehen bereit. / Der nächste Auftrag fehlt.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): > Kostenlos. / Dein Dominic.
+  hinweis  [A6] Parataxe-Kette ab: > Trag dich ein.
+
+0 harte Verstösse
+exit:0
+--- brief-2-luecke.md ---
+
+=== brief-2-luecke.md === 119 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): > Es kommt keine Beschwerde. / Die Anfrage fehlt einfach.
+  hinweis  [A1-ok] Informationssprung (4+5 W, Zahl im 2. Teil): > Trag dich ein. / Wir reden in 24 Stunden.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): > Unverbindlich. / Dein Dominic.
+  hinweis  [A6] Parataxe-Kette ab: Dann geht er.
+  hinweis  [A6] Parataxe-Kette ab: > Trag dich ein.
+
+0 harte Verstösse
+exit:0
+--- brief-3-check.md ---
+
+=== brief-3-check.md === 96 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): > Trag dich unten ein. / > Ich bin Dominic.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): Headline oben. / Kein KI-Gesicht.
+  hinweis  [A6] Parataxe-Kette ab: > Trag dich unten ein.
+
+0 harte Verstösse
+exit:0
+--- skript-1-tafel-montag.md ---
+
+=== skript-1-tafel-montag.md === 250 Wörter
+  hinweis  [A1] Staccato-Verdacht (3+3 W): Keine Baustelle dahinter. / Der Betrieb läuft.
+  hinweis  [A1] Staccato-Verdacht (3+2 W): Kostenlos und unverbindlich. / Dein Dominic.
+  hinweis  [A1-ok] Informationssprung (2+3 W, Zahl im 2. Teil): Dein Dominic. / ## Hook-Varianten
+
+1.
+  hinweis  [A1] Staccato-Verdacht (2+3 W): ja
+3. / Anrede Du durchgehend.
+  hinweis  [A1-ok] Informationssprung (3+2 W, Zahl im 2. Teil): Anrede Du durchgehend. / ja
+4.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): ja
+4. / A2 kurz.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): A2 kurz. / ja
+5.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+5. / forbidden-check folgt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): forbidden-check folgt. / ja
+6.
+  hinweis  [A6] Parataxe-Kette ab: Zwei Namen an der Tafel.
+  hinweis  [A6] Parataxe-Kette ab: Du trägst dich unten ein.
+  hinweis  [A6] Parataxe-Kette ab: ja
+3.
+
+0 harte Verstösse
+exit:0
+--- skript-2-realitaetsluecke.md ---
+
+=== skript-2-realitaetsluecke.md === 188 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): Ein Empfehlungs-Kunde öffnet den Li / Dann ist er weg.
+  hinweis  [A1] Staccato-Verdacht (4+4 W): Dann ist er weg. / Es gibt keine Beschwerde.
+  hinweis  [A1] Staccato-Verdacht (4+3 W): MAKE schließt diese Lücke. / Seite, Suche, Anfragen.
+  hinweis  [A1] Staccato-Verdacht (3+4 W): Seite, Suche, Anfragen. / Trag dich kurz ein.
+  hinweis  [A1] Staccato-Verdacht (2+3 W): ja
+2. / Keine erfundene Euro-Zahl.
+  hinweis  [A1] Staccato-Verdacht (3+2 W): Keine erfundene Euro-Zahl. / Szene belegt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): Szene belegt. / ja
+3.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+3. / Du durchgehend.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): Du durchgehend. / ja
+4.
+  hinweis  [A1-ok] Informationssprung (2+1 W, Zahl im 2. Teil): ja
+4. / A2.
+  hinweis  [A1-ok] Informationssprung (1+2 W, Zahl im 2. Teil): A2. / ja
+5.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+5. / forbidden-check folgt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): forbidden-check folgt. / ja
+6.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+6. / Ein CTA.
+  hinweis  [A1] Staccato-Verdacht (2+1 W): Ein CTA. / ja
+  hinweis  [A6] Parataxe-Kette ab: Ein Empfehlungs-Kunde öffnet den Link.
+  hinweis  [A6] Parataxe-Kette ab: 2.
+  hinweis  [A6] Parataxe-Kette ab: Erster Satz 7 Wörter.
+  hinweis  [A7] Gleichlange Sätze [5, 4, 4]: Ein Empfehlungs-Kunde öffnet den Link.
+
+0 harte Verstösse
+exit:0
+--- skript-3-check.md ---
+
+=== skript-3-check.md === 175 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): Ich bin Dominic von MAKE. / Trag dich unten ein.
+  hinweis  [A1] Staccato-Verdacht (5+4 W): F10: Trag dich unten ein. / Ich rufe dich an.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+3. / Du durchgehend.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): Du durchgehend. / ja
+4.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): ja
+4. / A6 kurz.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): A6 kurz. / ja
+5.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+5. / forbidden-check folgt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): forbidden-check folgt. / ja
+6.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+6. / Ein CTA.
+  hinweis  [A1] Staccato-Verdacht (2+1 W): Ein CTA. / ja
+  hinweis  [A6] Parataxe-Kette ab: Ich bin Dominic von MAKE.
+  hinweis  [A6] Parataxe-Kette ab: Erster Satz 6 Wörter.
+
+0 harte Verstösse
+exit:0
+===== RUN 2 =====
+--- angle-dossier-make.md ---
+
+=== angle-dossier-make.md === 444 Wörter
+  hinweis  [A8] Kontrast-Dreisprung 'passt_zu: z1 …': passt_zu: Z1 plus P1
+quelle: wiki/compan
+
+0 harte Verstösse
+exit:0
+CONSISTENT angle-dossier-make.md yes
+--- brief-1-tafel.md ---
+
+=== brief-1-tafel.md === 121 Wörter
+  hinweis  [A1] Staccato-Verdacht (2+2 W): Zwei Namen. / Keine Baustelle.
+  hinweis  [A1] Staccato-Verdacht (5+4 W): > Zwei Leute stehen bereit. / Der nächste Auftrag fehlt.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): > Kostenlos. / Dein Dominic.
+  hinweis  [A6] Parataxe-Kette ab: > Trag dich ein.
+
+0 harte Verstösse
+exit:0
+CONSISTENT brief-1-tafel.md yes
+--- brief-2-luecke.md ---
+
+=== brief-2-luecke.md === 119 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): > Es kommt keine Beschwerde. / Die Anfrage fehlt einfach.
+  hinweis  [A1-ok] Informationssprung (4+5 W, Zahl im 2. Teil): > Trag dich ein. / Wir reden in 24 Stunden.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): > Unverbindlich. / Dein Dominic.
+  hinweis  [A6] Parataxe-Kette ab: Dann geht er.
+  hinweis  [A6] Parataxe-Kette ab: > Trag dich ein.
+
+0 harte Verstösse
+exit:0
+CONSISTENT brief-2-luecke.md yes
+--- brief-3-check.md ---
+
+=== brief-3-check.md === 96 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): > Trag dich unten ein. / > Ich bin Dominic.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): Headline oben. / Kein KI-Gesicht.
+  hinweis  [A6] Parataxe-Kette ab: > Trag dich unten ein.
+
+0 harte Verstösse
+exit:0
+CONSISTENT brief-3-check.md yes
+--- skript-1-tafel-montag.md ---
+
+=== skript-1-tafel-montag.md === 250 Wörter
+  hinweis  [A1] Staccato-Verdacht (3+3 W): Keine Baustelle dahinter. / Der Betrieb läuft.
+  hinweis  [A1] Staccato-Verdacht (3+2 W): Kostenlos und unverbindlich. / Dein Dominic.
+  hinweis  [A1-ok] Informationssprung (2+3 W, Zahl im 2. Teil): Dein Dominic. / ## Hook-Varianten
+
+1.
+  hinweis  [A1] Staccato-Verdacht (2+3 W): ja
+3. / Anrede Du durchgehend.
+  hinweis  [A1-ok] Informationssprung (3+2 W, Zahl im 2. Teil): Anrede Du durchgehend. / ja
+4.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): ja
+4. / A2 kurz.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): A2 kurz. / ja
+5.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+5. / forbidden-check folgt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): forbidden-check folgt. / ja
+6.
+  hinweis  [A6] Parataxe-Kette ab: Zwei Namen an der Tafel.
+  hinweis  [A6] Parataxe-Kette ab: Du trägst dich unten ein.
+  hinweis  [A6] Parataxe-Kette ab: ja
+3.
+
+0 harte Verstösse
+exit:0
+CONSISTENT skript-1-tafel-montag.md yes
+--- skript-2-realitaetsluecke.md ---
+
+=== skript-2-realitaetsluecke.md === 188 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): Ein Empfehlungs-Kunde öffnet den Li / Dann ist er weg.
+  hinweis  [A1] Staccato-Verdacht (4+4 W): Dann ist er weg. / Es gibt keine Beschwerde.
+  hinweis  [A1] Staccato-Verdacht (4+3 W): MAKE schließt diese Lücke. / Seite, Suche, Anfragen.
+  hinweis  [A1] Staccato-Verdacht (3+4 W): Seite, Suche, Anfragen. / Trag dich kurz ein.
+  hinweis  [A1] Staccato-Verdacht (2+3 W): ja
+2. / Keine erfundene Euro-Zahl.
+  hinweis  [A1] Staccato-Verdacht (3+2 W): Keine erfundene Euro-Zahl. / Szene belegt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): Szene belegt. / ja
+3.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+3. / Du durchgehend.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): Du durchgehend. / ja
+4.
+  hinweis  [A1-ok] Informationssprung (2+1 W, Zahl im 2. Teil): ja
+4. / A2.
+  hinweis  [A1-ok] Informationssprung (1+2 W, Zahl im 2. Teil): A2. / ja
+5.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+5. / forbidden-check folgt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): forbidden-check folgt. / ja
+6.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+6. / Ein CTA.
+  hinweis  [A1] Staccato-Verdacht (2+1 W): Ein CTA. / ja
+  hinweis  [A6] Parataxe-Kette ab: Ein Empfehlungs-Kunde öffnet den Link.
+  hinweis  [A6] Parataxe-Kette ab: 2.
+  hinweis  [A6] Parataxe-Kette ab: Erster Satz 7 Wörter.
+  hinweis  [A7] Gleichlange Sätze [5, 4, 4]: Ein Empfehlungs-Kunde öffnet den Link.
+
+0 harte Verstösse
+exit:0
+CONSISTENT skript-2-realitaetsluecke.md yes
+--- skript-3-check.md ---
+
+=== skript-3-check.md === 175 Wörter
+  hinweis  [A1] Staccato-Verdacht (5+4 W): Ich bin Dominic von MAKE. / Trag dich unten ein.
+  hinweis  [A1] Staccato-Verdacht (5+4 W): F10: Trag dich unten ein. / Ich rufe dich an.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+3. / Du durchgehend.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): Du durchgehend. / ja
+4.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): ja
+4. / A6 kurz.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): A6 kurz. / ja
+5.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+5. / forbidden-check folgt.
+  hinweis  [A1-ok] Informationssprung (2+2 W, Zahl im 2. Teil): forbidden-check folgt. / ja
+6.
+  hinweis  [A1] Staccato-Verdacht (2+2 W): ja
+6. / Ein CTA.
+  hinweis  [A1] Staccato-Verdacht (2+1 W): Ein CTA. / ja
+  hinweis  [A6] Parataxe-Kette ab: Ich bin Dominic von MAKE.
+  hinweis  [A6] Parataxe-Kette ab: Erster Satz 6 Wörter.
+
+0 harte Verstösse
+exit:0
+CONSISTENT skript-3-check.md yes
+FAIL_COUNT=0

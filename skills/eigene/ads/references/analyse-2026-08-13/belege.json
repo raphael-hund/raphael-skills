@@ -1,0 +1,643 @@
+{
+  "F1": [
+    {
+      "id": "rec1DdladvtwlByM7",
+      "brand": "Pascal Harting",
+      "f_id": "F1",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Ich bringe dich garantiert in den nächsten 31 Tagen auf Platz 1 bei Google – oder du bezahlst mir keinen Cent –, indem ich deine Webseite mit meinem einzigartigen Suchflowsystem neu baue, um diese optimal sichtbar für Go"
+    },
+    {
+      "id": "rec4fEZavywqR2dpR",
+      "brand": "Pascal Harting",
+      "f_id": "F1",
+      "a_id": "A6",
+      "segment": "b2b-dienstleister",
+      "quote": "Ich bringe dich in den nächsten 31 Tagen auf Platz 1 bei Google oder du bezahlst mir keinen Cent. So wie diesen, diesen und diesen Kunden von mir! Indem ich deine Webseite mit meinem einzigartigen Suchflow-System neu bau"
+    },
+    {
+      "id": "rec5rhYd86EgYk18E",
+      "brand": "Neuhaus Digital",
+      "f_id": "F1",
+      "a_id": "STATIC",
+      "segment": "b2b-dienstleister",
+      "quote": "Dunkelblaue Neuhaus-Digital-Anzeige für Weiterbildungsanbieter. Ein Laptop zeigt das Marketing-System; ein Pfeil weist darauf. Unten steht groß „170.000€ Umsatz mit diesem System“."
+    }
+  ],
+  "F2": [
+    {
+      "id": "rec0cPviC7FjT8f8t",
+      "brand": "Maximilian Saal",
+      "f_id": "F2",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "Die größte Marketing-Lüge der Selbstständigkeit wurde Realität: Ein 99 % automatisiertes Business mit KI.  Im KI-Bootcamp am 21. & 22.07 um 18 Uhr schaust du nicht nur zu, sondern setzt live mit uns um, wie selbst blutig"
+    },
+    {
+      "id": "rec0lu32t2vpLbYnh",
+      "brand": "Enpal",
+      "f_id": "F2",
+      "a_id": "A6",
+      "segment": "local-service-handwerk",
+      "quote": "Hi, wir suchen Hausbesitzer in ganz Nordrhein-Westfalen, die Lust auf ein Solar-Komplettpaket für 0 Euro Anzahlung inklusive Montage haben. Klingt zu gut, um wahr zu sein? Ist es nicht. Bei Enpal gibt es genau dieses Ang"
+    },
+    {
+      "id": "rec1lgx4WvRBEbfAC",
+      "brand": "Speedscaling.de",
+      "f_id": "F2",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "{{product.brand}}"
+    }
+  ],
+  "F3": [
+    {
+      "id": "rec1uTXeqZGKfIVlb",
+      "brand": "Dr. Matt Shiver",
+      "f_id": "F3",
+      "a_id": "A1",
+      "segment": "agenturen-coaching",
+      "quote": "This is crazy. This one coach spent $423 on this low budget Instagram ad strategy and made $13,494. Okay. These results are not typical. I'm going to break down exactly what she did, but if you're an online coach and you"
+    },
+    {
+      "id": "rec4SpzSkEzdgjsj3",
+      "brand": "SEOLabs",
+      "f_id": "F3",
+      "a_id": "A2",
+      "segment": "local-service-handwerk",
+      "quote": "Schau mal, wir haben diesen Handwerksbetrieb hier auf Platz 1 für sein wichtigstes Keyword gebracht in der Google-Suche und dasselbe gilt für den KI Modus wo er als der beste Bodenleger in seiner Region empfohlen wird. U"
+    },
+    {
+      "id": "rec60nrLQTpAogN8B",
+      "brand": "Marc Evers",
+      "f_id": "F3",
+      "a_id": "A6",
+      "segment": "agenturen-coaching",
+      "quote": "54 Webdesigner und Agenturbetreiber habe ich in elf Monaten über Ads skaliert — und den Zwischenstand habe ich in diesem YouTube-Video zusammengefasst: alle meine Learnings, was ich in der Zwischenzeit gelernt habe, wie "
+    }
+  ],
+  "F4": [
+    {
+      "id": "rec3uFofF8HKO3Zl9",
+      "brand": "Neuhaus Digital",
+      "f_id": "F4",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Wenn du als Bildungseinrichtung deine Teilnehmer oder Schüler rein über Empfehlungen oder deine Webseite generierst, dann pass jetzt gut auf. Denn genau das ist für die meisten Einrichtungen Realität und gleichzeitig ein"
+    },
+    {
+      "id": "recAXU2ftT9Db3Rgs",
+      "brand": "Neuhaus Digital",
+      "f_id": "F4",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Wenn du als Bildungseinrichtung deine Teilnehmer oder Schüler rein über Empfehlungen oder deine Webseite generierst, dann pass jetzt gut auf. Denn genau das ist für die meisten Einrichtungen Realität und gleichzeitig ein"
+    },
+    {
+      "id": "recG0V2DqVMrvf7pL",
+      "brand": "Marc Evers Marketing & Consulting",
+      "f_id": "F4",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "LAYOUT: Hochformat 9:16 (1152×2048 px, JPEG). Selfie-Perspektive: Mann rechts in der Bildmitte (Kopf/Schulter), Hochhaus-Fensterfront mit Blick auf Wasser/Marina und Skyline links und im Hintergrund, aufgeklapptes MacBoo"
+    }
+  ],
+  "F5": [],
+  "F6": [
+    {
+      "id": "recNRkmhnqCUIjf3n",
+      "brand": "Charlie Morgan",
+      "f_id": "F6",
+      "a_id": "A6",
+      "segment": "agenturen-coaching",
+      "quote": "What if I told you that everything you're doing to scale your marketing agency is fundamentally wrong? Now that might sound hard to hear, but it is true though. You don't need 47 funnels. You don't need to send 2000 cold"
+    }
+  ],
+  "F7": [
+    {
+      "id": "rec1iktyZHnKXGeeS",
+      "brand": "Speedscaling.de",
+      "f_id": "F7",
+      "a_id": "A5",
+      "segment": "agenturen-coaching",
+      "quote": "Hier ist das 100-Millionen-Euro-Webinar-Skript von Speedscaling, das kannst du dir auf der nächsten Seite völlig kostenfrei herunterladen. Da ist die komplette Anleitung, wie wir wirklich Webinare bauen, die viele 100.00"
+    },
+    {
+      "id": "rec1lNCSuDSTqZQwe",
+      "brand": "Enpal",
+      "f_id": "F7",
+      "a_id": "STATIC",
+      "segment": "local-service-handwerk",
+      "quote": "LAYOUT: Karte 1: Hochformat 9:16 (1080×1920). Oben hängende Tannenzweige mit roten Kugeln; darunter zentriert zweizeilige Headline „Solar-“ / „Komplettpaket“ (weiss, Extrabold); darunter dunkelblaue abgerundete Pill-Badg"
+    },
+    {
+      "id": "rec35mHh6oPZy7946",
+      "brand": "Speedscaling.de",
+      "f_id": "F7",
+      "a_id": "A2",
+      "segment": "agenturen-coaching",
+      "quote": "Hier ist das 100 Millionen Euro Webinar Skript von Speedscaling, das kannst du dir auf der nächsten Seite völlig kostenfrei herunterladen. Da ist die komplette Anleitung, wie wir wirklich Webinare bauen, die viele 100.00"
+    }
+  ],
+  "F8": [
+    {
+      "id": "rec17U3mWcOXU4YCO",
+      "brand": "Enpal",
+      "f_id": "F8",
+      "a_id": "A6",
+      "segment": "local-service-handwerk",
+      "quote": "Sie heizen noch mit Gas oder Öl? Dann sucht Enpal genau Sie! Holen Sie sich Ihre Wärmepumpe für 0 € Anzahlung inklusive Montage. Jetzt hier klicken und in zwei Minuten herausfinden, ob Ihr Haus geeignet ist. (Rekonstruie"
+    },
+    {
+      "id": "rec2cy8W2LrDSfBjv",
+      "brand": "Marc Evers Marketing & Consulting",
+      "f_id": "F8",
+      "a_id": "A2",
+      "segment": "agenturen-coaching",
+      "quote": "Arjen und Robin hier haben früher Webdesign und Ads an jeden verkauft, waren stuck bei 10k im Monat. Hatten absolut keinen Bock mehr auf Kaldackfliese und waren abhängig von unplanbaren Empfehlungen 2 Monate später war i"
+    },
+    {
+      "id": "rec33rHywYPShmG6Z",
+      "brand": "Speedscaling.de",
+      "f_id": "F8",
+      "a_id": "A4",
+      "segment": "agenturen-coaching",
+      "quote": "Wie skaliere ich endlich mein Business? Wie komme ich endlich auf das nächste Business-Level? Wie entwickle ich ein Gewinner-Mindset? Wie schaffe ich es, alles unter einen Hut zu bringen? Wie skaliere ich mein Business u"
+    }
+  ],
+  "F9": [],
+  "F10": [
+    {
+      "id": "rec8jcwXTUhFXXziZ",
+      "brand": "Finseo",
+      "f_id": "F10",
+      "a_id": "A3",
+      "segment": "b2b-dienstleister",
+      "quote": "Wie sichtbar ist dein Unternehmen eigentlich bei ChatGPT und kriegst du da auch schon Kunden? Gib mir 20 Sekunden, ich zeige dir Schritt für Schritt, wie du es rausfinden kannst. Also du klickst jetzt auf die Ad, dann öf"
+    },
+    {
+      "id": "recGUFB660UmBrnBK",
+      "brand": "Finseo",
+      "f_id": "F10",
+      "a_id": "A3",
+      "segment": "b2b-dienstleister",
+      "quote": "Es war noch nie so einfach zu erreichen, dass Claude und ChatGPT und Gemini und so dich empfehlen. Hi, ich bin Maurice Marinelli. Ich habe mit Findling eine der erfolgreichsten SEO-Agenturen im ganzen Dachraum gebaut. Un"
+    },
+    {
+      "id": "recJTQVnKgQXiHVVH",
+      "brand": "Finseo",
+      "f_id": "F10",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Wird dein Unternehmen von der KI genannt. Es dauert nur so lange, bis du es rausfindest. Ich zeige dir, wie es geht. Schritt Nummer 1, du klickst hier auf die App, gibst dann hier deine Domain und deine Mail ein und dann"
+    }
+  ],
+  "F11": [
+    {
+      "id": "rec8UP1vVg4vLzxrr",
+      "brand": "Marc Evers",
+      "f_id": "F11",
+      "a_id": "A6",
+      "segment": "agenturen-coaching",
+      "quote": "Ich habe hier ein YouTube-Video aufgenommen, wo ich dir genau zeige, wie du als Agenturbetreiber deinen Markt mit Ads gottlos dominierst, dabei auf bis zu 50.000 Euro Monatsumsatz kommst und mit 10x ROAS und dabei aussch"
+    },
+    {
+      "id": "rec8ebYXVRkfWWg77",
+      "brand": "Marc Evers",
+      "f_id": "F11",
+      "a_id": "A6",
+      "segment": "agenturen-coaching",
+      "quote": "Wenn du Webdesign-Kunden zwischen 3.000 und 7.000 Euro über deine eigenen No-Funnel-Ads gewinnen willst, dann habe ich dir hierzu einen kompletten YouTube-Breakdown absolut for free aufgenommen. Klicke hierzu einfach dir"
+    },
+    {
+      "id": "rec8izHuU58egS1B3",
+      "brand": "Schneider Marketing / Real Estate Summit",
+      "f_id": "F11",
+      "a_id": "A7",
+      "segment": "b2b-dienstleister",
+      "quote": "Aber was ist das größte Geheimnis, woran so viele Immobilienunternehmen scheitern? Überleg dir mal, warum Menschen Immobilien kaufen, warum Menschen Immobilien verkaufen. Du musst in die Köpfe der Menschen, du musst in d"
+    }
+  ],
+  "F12": [],
+  "F13": [
+    {
+      "id": "recYs0pyUKxLwmmq2",
+      "brand": "Finseo",
+      "f_id": "F13",
+      "a_id": "A6",
+      "segment": "b2b-dienstleister",
+      "quote": "Sorry to say, aber wenn du sagst, SEO ist tot, dann bist du nicht besser als dieser gute Typ hier. Während du dir noch überlegst, bringt überhaupt SEO noch was zu machen, gehen alle deine Wettbewerber in die KI-Suche rei"
+    },
+    {
+      "id": "recbaa62gFMuGccnB",
+      "brand": "Stefan Graf",
+      "f_id": "F13",
+      "a_id": "STATIC",
+      "segment": "b2b-dienstleister",
+      "quote": "Beige Urkunden-/Manifest-Optik: „Wir nehmen Abschied von klassischen B2C-Neukunden-Funnels – 2010–2026“. Text nennt unqualifizierte Leads, verbrannte Werbebudgets und Albträume bei Coaches, Trainern und Beratern. CTA zum"
+    }
+  ],
+  "F?": [
+    {
+      "id": "rec0GAPHVqcMbmj7u",
+      "brand": "Neuhaus Digital",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "b2b-dienstleister",
+      "quote": "Neuhaus-Digital-Anzeige mit jungem lockigem Mann im weißen Hemd. Headline: „Noch Kapazitäten frei? Für Bildungsträger: von 60% auf 95% Auslastung“. CTA „Video-Training sichern!“."
+    },
+    {
+      "id": "rec0tZBHxVRQvBjBn",
+      "brand": "SEOLabs",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "local-service-handwerk",
+      "quote": "Sehr schlichtes schwarzes Quadrat mit weißem, kreisförmigem SEOLabs-Logo in der Mitte."
+    },
+    {
+      "id": "rec122MazcWWTvtOW",
+      "brand": "Dr. Matt Shiver",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "Porträt eines lächelnden Mannes vor unscharfem dunklem Hintergrund. Overlay: „I’m looking for 5 online coaches who want to scale to $100k/mo in 2026 with paid ads. We’ll script, edit, and launch your ads in 14 days.“ Grü"
+    }
+  ],
+  "A1": [
+    {
+      "id": "rec1uTXeqZGKfIVlb",
+      "brand": "Dr. Matt Shiver",
+      "f_id": "F3",
+      "a_id": "A1",
+      "segment": "agenturen-coaching",
+      "quote": "This is crazy. This one coach spent $423 on this low budget Instagram ad strategy and made $13,494. Okay. These results are not typical. I'm going to break down exactly what she did, but if you're an online coach and you"
+    },
+    {
+      "id": "rec2swcIR2LqdpIVS",
+      "brand": "Marc Evers Marketing & Consulting",
+      "f_id": "F2",
+      "a_id": "A1",
+      "segment": "agenturen-coaching",
+      "quote": "Marketing-Agenturbetreiber über 10k pro Monat. Das hier ist das konkrete Setup, um mit 100 Euro Adspend pro Tag auf über 50 000 Euro Monatsumsatz zu kommen – das mit 80% Profitmarge und in den nächsten 90 Tagen ohne komp"
+    },
+    {
+      "id": "rec4L8AnwSoaizUMn",
+      "brand": "Marc Evers Marketing & Consulting",
+      "f_id": "F2",
+      "a_id": "A1",
+      "segment": "agenturen-coaching",
+      "quote": "Du bist Webdesigner und willst planbar neue Kunden über Ads gewinnen, ... ... sodass dein Kalender auch so aussieht? Ich schalte deine Ads one-one zusammen mit dir und wenn du nicht mindestens ... 5 neuen Webdesignkunden"
+    }
+  ],
+  "A2": [
+    {
+      "id": "rec1DdladvtwlByM7",
+      "brand": "Pascal Harting",
+      "f_id": "F1",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Ich bringe dich garantiert in den nächsten 31 Tagen auf Platz 1 bei Google – oder du bezahlst mir keinen Cent –, indem ich deine Webseite mit meinem einzigartigen Suchflowsystem neu baue, um diese optimal sichtbar für Go"
+    },
+    {
+      "id": "rec1GGBSL9HtifrjO",
+      "brand": "Max Modrich with DatAds",
+      "f_id": "F?",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Hiermit wirst du zu einem AI-Powered Creator Strategist. Die meisten machen außer AI eine Art Glücksspiel. Gib mir 20 neue Ad-Sideen. Sorry, dass ich dich enttäuschen muss, aber so wirst du deinen Ad-Account ganz sicher "
+    },
+    {
+      "id": "rec2EAzztnk1gjO5j",
+      "brand": "Stefan Graf",
+      "f_id": "F?",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "LinkedIn mit AI siehst du in diesem Board hier, wie das zu einer absoluten Akquise-Maschine wird. Wer als Agentur oder Dienstleister dieses Jahr nicht mit den Methoden der LinkedIn-Aquise 3.0 arbeitet und dabei AI als He"
+    }
+  ],
+  "A3": [
+    {
+      "id": "rec1ZSd1NIMFINAkM",
+      "brand": "Stefan Graf",
+      "f_id": "F?",
+      "a_id": "A3",
+      "segment": "b2b-dienstleister",
+      "quote": "Tischtennis spielen ist wie LinkedIn Ads. Du musst nur die richtige Technik beherrschen. Dann macht es richtig Spaß. Du kannst nicht nur ein, zwei, drei oder vier Leads am Tag, sondern easy 10, 12, 15 Leads am Tag generi"
+    },
+    {
+      "id": "rec8jcwXTUhFXXziZ",
+      "brand": "Finseo",
+      "f_id": "F10",
+      "a_id": "A3",
+      "segment": "b2b-dienstleister",
+      "quote": "Wie sichtbar ist dein Unternehmen eigentlich bei ChatGPT und kriegst du da auch schon Kunden? Gib mir 20 Sekunden, ich zeige dir Schritt für Schritt, wie du es rausfinden kannst. Also du klickst jetzt auf die Ad, dann öf"
+    },
+    {
+      "id": "recGUFB660UmBrnBK",
+      "brand": "Finseo",
+      "f_id": "F10",
+      "a_id": "A3",
+      "segment": "b2b-dienstleister",
+      "quote": "Es war noch nie so einfach zu erreichen, dass Claude und ChatGPT und Gemini und so dich empfehlen. Hi, ich bin Maurice Marinelli. Ich habe mit Findling eine der erfolgreichsten SEO-Agenturen im ganzen Dachraum gebaut. Un"
+    }
+  ],
+  "A4": [
+    {
+      "id": "rec33rHywYPShmG6Z",
+      "brand": "Speedscaling.de",
+      "f_id": "F8",
+      "a_id": "A4",
+      "segment": "agenturen-coaching",
+      "quote": "Wie skaliere ich endlich mein Business? Wie komme ich endlich auf das nächste Business-Level? Wie entwickle ich ein Gewinner-Mindset? Wie schaffe ich es, alles unter einen Hut zu bringen? Wie skaliere ich mein Business u"
+    },
+    {
+      "id": "rec6rH9rIKrUTeIdY",
+      "brand": "Speedscaling.de",
+      "f_id": "F8",
+      "a_id": "A4",
+      "segment": "agenturen-coaching",
+      "quote": "Wie skaliere ich endlich mein Business? Wie komme ich endlich auf das nächste Business Level? Wie entwickle ich ein Gewinner-Mindset? Wie schaffe ich es, alles unter einen Hut zu bringen? Wie skaliere ich mein Business u"
+    },
+    {
+      "id": "rec93vPK2guXbiV5p",
+      "brand": "Speedscaling.de",
+      "f_id": "F8",
+      "a_id": "A4",
+      "segment": "agenturen-coaching",
+      "quote": "Wie skaliere ich endlich mein Business? Wie komme ich endlich auf das nächste Business-Level? Wie entwickle ich ein Gewinner-Mindset? Wie schaffe ich es, alles unter einen Hut zu bringen? Wie skaliere ich mein Business u"
+    }
+  ],
+  "A5": [
+    {
+      "id": "rec1iktyZHnKXGeeS",
+      "brand": "Speedscaling.de",
+      "f_id": "F7",
+      "a_id": "A5",
+      "segment": "agenturen-coaching",
+      "quote": "Hier ist das 100-Millionen-Euro-Webinar-Skript von Speedscaling, das kannst du dir auf der nächsten Seite völlig kostenfrei herunterladen. Da ist die komplette Anleitung, wie wir wirklich Webinare bauen, die viele 100.00"
+    },
+    {
+      "id": "recH5qAkdFwBMcL0M",
+      "brand": "Speedscaling.de",
+      "f_id": "F7",
+      "a_id": "A5",
+      "segment": "agenturen-coaching",
+      "quote": "Hier ist das 100 Millionen Euro Webinar-Skript von Speedscaling, das kannst du dir auf der nächsten Seite völlig kostenlos herunterladen. Da ist die komplette Anleitung, wie wir wirklich Webinare bauen, die viele 100.000"
+    },
+    {
+      "id": "reciPTtvZWR0exJKx",
+      "brand": "Speedscaling.de",
+      "f_id": "F11",
+      "a_id": "A5",
+      "segment": "agenturen-coaching",
+      "quote": "Hier ist das 100 Millionen Euro Webinar-Skript von Speedscaling, das kannst du dir auf der nächsten Seite völlig kostenfrei herunterladen. Da ist die komplette Anleitung, wie wir wirklich Webinare bauen, die viele 100.00"
+    }
+  ],
+  "A6": [
+    {
+      "id": "rec0lu32t2vpLbYnh",
+      "brand": "Enpal",
+      "f_id": "F2",
+      "a_id": "A6",
+      "segment": "local-service-handwerk",
+      "quote": "Hi, wir suchen Hausbesitzer in ganz Nordrhein-Westfalen, die Lust auf ein Solar-Komplettpaket für 0 Euro Anzahlung inklusive Montage haben. Klingt zu gut, um wahr zu sein? Ist es nicht. Bei Enpal gibt es genau dieses Ang"
+    },
+    {
+      "id": "rec12uqlKpKaKmLac",
+      "brand": "Finseo",
+      "f_id": "F?",
+      "a_id": "A6",
+      "segment": "b2b-dienstleister",
+      "quote": "Wenn du in irgendeiner Weise im Marketing unterwegs bist, dann beschäftigen dich aktuell drei Fragen. Nummer eins, was geben deine potenziellen Kunden in der KI ein? Nummer zwei, bist du mit deinem Unternehmen in den Ant"
+    },
+    {
+      "id": "rec17U3mWcOXU4YCO",
+      "brand": "Enpal",
+      "f_id": "F8",
+      "a_id": "A6",
+      "segment": "local-service-handwerk",
+      "quote": "Sie heizen noch mit Gas oder Öl? Dann sucht Enpal genau Sie! Holen Sie sich Ihre Wärmepumpe für 0 € Anzahlung inklusive Montage. Jetzt hier klicken und in zwei Minuten herausfinden, ob Ihr Haus geeignet ist. (Rekonstruie"
+    }
+  ],
+  "A7": [
+    {
+      "id": "rec59DnyJTz6PNXdc",
+      "brand": "Ben Heath",
+      "f_id": "F8",
+      "a_id": "A7",
+      "segment": "agenturen-coaching",
+      "quote": "Oh, you must be joking. Seriously? Like that's it there is nothing we can do Well what about if we... Don't you hate it when clients leave your marketing agency and the truth this If want to build a successful marketing "
+    },
+    {
+      "id": "rec8izHuU58egS1B3",
+      "brand": "Schneider Marketing / Real Estate Summit",
+      "f_id": "F11",
+      "a_id": "A7",
+      "segment": "b2b-dienstleister",
+      "quote": "Aber was ist das größte Geheimnis, woran so viele Immobilienunternehmen scheitern? Überleg dir mal, warum Menschen Immobilien kaufen, warum Menschen Immobilien verkaufen. Du musst in die Köpfe der Menschen, du musst in d"
+    },
+    {
+      "id": "recGzUpHlgT9a22vh",
+      "brand": "Schneider (Logo auf Shirt), ImmoBEW",
+      "f_id": "F11",
+      "a_id": "A7",
+      "segment": "b2b-dienstleister",
+      "quote": "Herzlich willkommen zu diesem kurzen Video und in diesem Video zeige ich dir einmal, welche Ergebnisse du mit Social Media Marketing erreichen kannst, wenn du die richtige Strategie hast. Ich nehme dich mal direkt mit au"
+    }
+  ],
+  "STATIC": [
+    {
+      "id": "rec0GAPHVqcMbmj7u",
+      "brand": "Neuhaus Digital",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "b2b-dienstleister",
+      "quote": "Neuhaus-Digital-Anzeige mit jungem lockigem Mann im weißen Hemd. Headline: „Noch Kapazitäten frei? Für Bildungsträger: von 60% auf 95% Auslastung“. CTA „Video-Training sichern!“."
+    },
+    {
+      "id": "rec0cPviC7FjT8f8t",
+      "brand": "Maximilian Saal",
+      "f_id": "F2",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "Die größte Marketing-Lüge der Selbstständigkeit wurde Realität: Ein 99 % automatisiertes Business mit KI.  Im KI-Bootcamp am 21. & 22.07 um 18 Uhr schaust du nicht nur zu, sondern setzt live mit uns um, wie selbst blutig"
+    },
+    {
+      "id": "rec0tZBHxVRQvBjBn",
+      "brand": "SEOLabs",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "local-service-handwerk",
+      "quote": "Sehr schlichtes schwarzes Quadrat mit weißem, kreisförmigem SEOLabs-Logo in der Mitte."
+    }
+  ],
+  "agenturen-coaching": [
+    {
+      "id": "rec0cPviC7FjT8f8t",
+      "brand": "Maximilian Saal",
+      "f_id": "F2",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "Die größte Marketing-Lüge der Selbstständigkeit wurde Realität: Ein 99 % automatisiertes Business mit KI.  Im KI-Bootcamp am 21. & 22.07 um 18 Uhr schaust du nicht nur zu, sondern setzt live mit uns um, wie selbst blutig"
+    },
+    {
+      "id": "rec122MazcWWTvtOW",
+      "brand": "Dr. Matt Shiver",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "Porträt eines lächelnden Mannes vor unscharfem dunklem Hintergrund. Overlay: „I’m looking for 5 online coaches who want to scale to $100k/mo in 2026 with paid ads. We’ll script, edit, and launch your ads in 14 days.“ Grü"
+    },
+    {
+      "id": "rec15vVWu8z7M2ECr",
+      "brand": "Charlie Morgan",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "agenturen-coaching",
+      "quote": "Quadratische Anzeige mit einem Mann im schwarzen T-Shirt vor dunklem Studiohintergrund mit türkis-blauen Lichtstreifen; rechts steht ein Podcast-Mikrofon. Unten liegt ein türkisfarbener Verlauf mit dem Text: „Steal The O"
+    },
+    {
+      "id": "rec1gRbe4WftrVuB2",
+      "brand": "Charlie Morgan",
+      "f_id": "F?",
+      "a_id": "A6",
+      "segment": "agenturen-coaching",
+      "quote": "Marketing agency owners, do you remember when you thought you'd be driving a Lamborghini by 25 years old? Instead, you're over here begging local businesses to pay your teeny tiny $500 a month retainer, all whilst your p"
+    },
+    {
+      "id": "rec1iktyZHnKXGeeS",
+      "brand": "Speedscaling.de",
+      "f_id": "F7",
+      "a_id": "A5",
+      "segment": "agenturen-coaching",
+      "quote": "Hier ist das 100-Millionen-Euro-Webinar-Skript von Speedscaling, das kannst du dir auf der nächsten Seite völlig kostenfrei herunterladen. Da ist die komplette Anleitung, wie wir wirklich Webinare bauen, die viele 100.00"
+    }
+  ],
+  "local-service-handwerk": [
+    {
+      "id": "rec0lu32t2vpLbYnh",
+      "brand": "Enpal",
+      "f_id": "F2",
+      "a_id": "A6",
+      "segment": "local-service-handwerk",
+      "quote": "Hi, wir suchen Hausbesitzer in ganz Nordrhein-Westfalen, die Lust auf ein Solar-Komplettpaket für 0 Euro Anzahlung inklusive Montage haben. Klingt zu gut, um wahr zu sein? Ist es nicht. Bei Enpal gibt es genau dieses Ang"
+    },
+    {
+      "id": "rec0tZBHxVRQvBjBn",
+      "brand": "SEOLabs",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "local-service-handwerk",
+      "quote": "Sehr schlichtes schwarzes Quadrat mit weißem, kreisförmigem SEOLabs-Logo in der Mitte."
+    },
+    {
+      "id": "rec17U3mWcOXU4YCO",
+      "brand": "Enpal",
+      "f_id": "F8",
+      "a_id": "A6",
+      "segment": "local-service-handwerk",
+      "quote": "Sie heizen noch mit Gas oder Öl? Dann sucht Enpal genau Sie! Holen Sie sich Ihre Wärmepumpe für 0 € Anzahlung inklusive Montage. Jetzt hier klicken und in zwei Minuten herausfinden, ob Ihr Haus geeignet ist. (Rekonstruie"
+    },
+    {
+      "id": "rec1lNCSuDSTqZQwe",
+      "brand": "Enpal",
+      "f_id": "F7",
+      "a_id": "STATIC",
+      "segment": "local-service-handwerk",
+      "quote": "LAYOUT: Karte 1: Hochformat 9:16 (1080×1920). Oben hängende Tannenzweige mit roten Kugeln; darunter zentriert zweizeilige Headline „Solar-“ / „Komplettpaket“ (weiss, Extrabold); darunter dunkelblaue abgerundete Pill-Badg"
+    },
+    {
+      "id": "rec3gezjOMZ3loSZ8",
+      "brand": "SEOLabs",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "local-service-handwerk",
+      "quote": "Schwarzes Quadrat mit weißem, kreisförmigem SEOLabs-Logo zentral."
+    }
+  ],
+  "b2b-dienstleister": [
+    {
+      "id": "rec0GAPHVqcMbmj7u",
+      "brand": "Neuhaus Digital",
+      "f_id": "F?",
+      "a_id": "STATIC",
+      "segment": "b2b-dienstleister",
+      "quote": "Neuhaus-Digital-Anzeige mit jungem lockigem Mann im weißen Hemd. Headline: „Noch Kapazitäten frei? Für Bildungsträger: von 60% auf 95% Auslastung“. CTA „Video-Training sichern!“."
+    },
+    {
+      "id": "rec12uqlKpKaKmLac",
+      "brand": "Finseo",
+      "f_id": "F?",
+      "a_id": "A6",
+      "segment": "b2b-dienstleister",
+      "quote": "Wenn du in irgendeiner Weise im Marketing unterwegs bist, dann beschäftigen dich aktuell drei Fragen. Nummer eins, was geben deine potenziellen Kunden in der KI ein? Nummer zwei, bist du mit deinem Unternehmen in den Ant"
+    },
+    {
+      "id": "rec1DdladvtwlByM7",
+      "brand": "Pascal Harting",
+      "f_id": "F1",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Ich bringe dich garantiert in den nächsten 31 Tagen auf Platz 1 bei Google – oder du bezahlst mir keinen Cent –, indem ich deine Webseite mit meinem einzigartigen Suchflowsystem neu baue, um diese optimal sichtbar für Go"
+    },
+    {
+      "id": "rec1GGBSL9HtifrjO",
+      "brand": "Max Modrich with DatAds",
+      "f_id": "F?",
+      "a_id": "A2",
+      "segment": "b2b-dienstleister",
+      "quote": "Hiermit wirst du zu einem AI-Powered Creator Strategist. Die meisten machen außer AI eine Art Glücksspiel. Gib mir 20 neue Ad-Sideen. Sorry, dass ich dich enttäuschen muss, aber so wirst du deinen Ad-Account ganz sicher "
+    },
+    {
+      "id": "rec1ZSd1NIMFINAkM",
+      "brand": "Stefan Graf",
+      "f_id": "F?",
+      "a_id": "A3",
+      "segment": "b2b-dienstleister",
+      "quote": "Tischtennis spielen ist wie LinkedIn Ads. Du musst nur die richtige Technik beherrschen. Dann macht es richtig Spaß. Du kannst nicht nur ein, zwei, drei oder vier Leads am Tag, sondern easy 10, 12, 15 Leads am Tag generi"
+    }
+  ],
+  "uebertragbar": [
+    {
+      "id": "rec54yzQRHYZiCPKo",
+      "brand": "",
+      "f_id": "F8",
+      "a_id": "A2",
+      "segment": "uebertragbar",
+      "quote": "Begrüssung (z.B. Hallo neutral, Servus südlich, Moin nördlich).  Du hast einen Betrieb hier in (Name der Stadt) oder der Umgebung und weisst genau, dass deine Website schon ordentlich in die Jahre gekommen ist? Jetzt wil"
+    },
+    {
+      "id": "recEaFoo3t47ey185",
+      "brand": "Unknown (Promoting a KI Marketing Masterclass)",
+      "f_id": "F8",
+      "a_id": "A6",
+      "segment": "uebertragbar",
+      "quote": "Music"
+    },
+    {
+      "id": "recF4aHD6BzyhC4jd",
+      "brand": "Unklar",
+      "f_id": "F11",
+      "a_id": "A2",
+      "segment": "uebertragbar",
+      "quote": "Niemand redet über diesen einen Schritt im Trading, der letztendlich der entscheidende ist, um profitabel zu werden. Wir sind hier in Frankfurt auf der World of Trading Messe. Wir haben mit dem Team einen eigenen Stand. "
+    },
+    {
+      "id": "recTJaa5zItbf3k8T",
+      "brand": "the.volleyball.strength.coach",
+      "f_id": "F11",
+      "a_id": "A2",
+      "segment": "uebertragbar",
+      "quote": "As promised, this is a demonstration of the plyometrics from my last post. Starting off here with some extensive leaps A leap is 2 feet to two feet so first we're going to go forward and then backwards After that side-si"
+    },
+    {
+      "id": "recWPUZfFvK6Ykkcg",
+      "brand": "",
+      "f_id": "F8",
+      "a_id": "A2",
+      "segment": "uebertragbar",
+      "quote": "Du bist Selbständiger oder Unternehmer hier aus (Name der Stadt) oder der Umgebung?  Und deine aktuelle Website ist schon etwas in die Jahre gekommen? Oder noch schlimmer, du hast noch gar keinen richtigen Online-Auftrit"
+    }
+  ]
+}

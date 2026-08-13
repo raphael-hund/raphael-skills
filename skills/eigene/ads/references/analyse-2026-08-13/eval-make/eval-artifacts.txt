@@ -1,0 +1,11 @@
+DOSSIER=/tmp/grok-goal-0ced06dee8ae/implementer/eval/angle-dossier-make.md
+DOSSIER_MISSING_HEADS=[]
+SKRIPTE=3
+/tmp/grok-goal-0ced06dee8ae/implementer/eval/skript-1-tafel-montag.md
+/tmp/grok-goal-0ced06dee8ae/implementer/eval/skript-2-realitaetsluecke.md
+/tmp/grok-goal-0ced06dee8ae/implementer/eval/skript-3-check.md
+BRIEFS=3
+/tmp/grok-goal-0ced06dee8ae/implementer/eval/brief-1-tafel.md
+/tmp/grok-goal-0ced06dee8ae/implementer/eval/brief-2-luecke.md
+/tmp/grok-goal-0ced06dee8ae/implementer/eval/brief-3-check.md
+GATE6_STRUCTURE=true

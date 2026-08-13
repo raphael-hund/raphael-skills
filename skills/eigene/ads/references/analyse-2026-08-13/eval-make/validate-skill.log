@@ -1,0 +1,13 @@
+[OK  ] /root/raphael-skills/skills/eigene/ads/SKILL.md
+        warning: empfohlene Felder fehlen (kein Fehler): provenance, eval_scorecard, expires
+[OK  ] /root/raphael-skills/skills/eigene/ads-copy/SKILL.md
+        warning: empfohlene Felder fehlen (kein Fehler): eval_scorecard, expires
+[OK  ] /root/raphael-skills/skills/eigene/ads-research/SKILL.md
+        warning: empfohlene Felder fehlen (kein Fehler): provenance, eval_scorecard, expires
+[OK  ] /root/raphael-skills/skills/eigene/ads-statics/SKILL.md
+        warning: empfohlene Felder fehlen (kein Fehler): provenance, eval_scorecard, expires
+[OK  ] /root/raphael-skills/skills/eigene/ads-video/SKILL.md
+        warning: empfohlene Felder fehlen (kein Fehler): provenance, eval_scorecard, expires
+        warning: enthaelt reasoning-extraction-Trigger-Phrase 'erkläre deinen gedankengang' (Fable-Gotcha, Regel 19) — kann stillen Fallback auf Opus ausloesen
+
+5 SKILL.md geprueft — alle gueltig, Warnungen vorhanden
