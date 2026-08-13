@@ -1,6 +1,6 @@
 ---
 name: ads-copy
-version: 1.0.0
+version: 1.1.0
 description: >
   Feuert für den Primary Text einer Meta-Ad — den Fliesstext über/unter dem Creative,
   plus Headline und Description. Baut ihn nach gemessenen Mustern aus 105 echten Ads
@@ -12,7 +12,9 @@ description: >
 class: F
 scope: agency
 sensitivity: internal
+loads_external: ["/root/.claude/forbidden.md", "/root/raphael-skills/skills/eigene/ads-video/references/voice-dna-ads.md"]
 completion_criteria:
+  - "forbidden.md = 0 Treffer (/root/.claude/forbidden.md, Abschnitte A-F) — hartes Gate vor pruefen.py"
   - "Jeder Text durch scripts/pruefen.py: 0 harte Verstösse (Exit-Code 0)"
   - "Erster Absatz <= 125 Zeichen (steht vor Metas 'Mehr anzeigen')"
   - "Höchstens 1 Gedankenstrich (—) pro Text — im Korpus haben 98 % gar keinen"

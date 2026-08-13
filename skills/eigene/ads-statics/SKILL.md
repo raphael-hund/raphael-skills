@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 0.1.0
+version: 0.2.0
 description: >
   Feuert für statische Meta-/Paid-Ad-Creatives: Angle × Visual-Style-Briefs,
   Copy-Bauformen, Grounding-Check vor Bildproduktion. Trigger: "Statics bauen",
@@ -20,7 +20,9 @@ loads:
   - references/copy-bauformen.md
   - references/brief-schema.md
 requires_skills: [copywriting@^0]
+loads_external: ["/root/.claude/forbidden.md"]
 completion_criteria:
+  - "forbidden.md = 0 Treffer auf allen Copy-Elementen im Brief (/root/.claude/forbidden.md, Abschnitte A-F)"
   - "jeder Static-Brief hat Angle × Visual Style × Copy-Bauform × Grounding-Quelle ausgefüllt"
   - "kein Brief ohne Grounding-Quelle ausgeliefert (harter Blocker, kein Statusfeld-Trick)"
   - "Welle hat vorab eine definierte Stopp-Regel (Entscheidungsmetrik + Mindestlaufzeit), bevor produziert wird"

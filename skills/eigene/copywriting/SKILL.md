@@ -1,6 +1,6 @@
 ---
 name: copywriting
-version: 0.4.2
+version: 0.5.0
 description: >
   Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
   SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
@@ -17,12 +17,16 @@ source: ergänzt um voice-analysis.md — adaptiert aus knowledge-work-plugins/
   partner-built/brand-voice (Tribe AI, MIT-Lizenz), Stand 2026-07-20;
   ergänzt um direct-response-klassiker.md — destilliert aus
   robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
-loads: [references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md, references/sprachstile-referenz.md]
+loads: [references/voice-dna.md, references/kanaele.md, references/beispiele-gute-copy.md, references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md, references/sprachstile-referenz.md]
+loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [eval@^0, no-ai-slop@^0]
 completion_criteria:
+  - "forbidden.md = 0 Treffer (harte Sperre, vor allem anderen)"
   - "G1 grün: Orwell-Regeln 2-5 + Passiv-/Nominalstil-Detektor + Floskelliste (inkl. quantifizierter Interpunktions-Schwellen) = 0 Treffer"
+  - "voice-dna.md Selbstcheck (5 Fragen) = 5x ja"
   - "Selbstkritik-Zwischenschritt durchlaufen: 'was ist an diesem Entwurf noch offensichtlich KI-generiert?' beantwortet, vor G2"
-  - "G2 Judge: Regeln 1+6 (Override) + Brand-Voice-Treue >= 0.7"
+  - "G2 Judge: unabhängiger Eval-Agent (andere Modellfamilie), Regeln 1+6 (Override) + Brand-Voice-Treue >= 0.7"
+  - "Writer-Kontext blieb unter 50 % (sonst Subagent-Split dokumentiert)"
 ---
 
 # copywriting — deutscher Klartext in Brand-Voice
@@ -40,6 +44,42 @@ als Redigier- und Audit-Schicht — siehe dort für Muster-Katalog und Eval).
 Text produzieren/prüfen, der klar, aktiv und floskelfrei ist und wie der jeweilige Kunde
 klingt — als Stil-Gate für ads, web, seo.
 
+## Betriebsregeln (vor dem ersten Satz lesen)
+
+**1. Schreib-Doktrin gilt.** ASD-STE100 (ein Gedanke pro Satz, max. 20 Wörter,
+aktiv, ein Wort = eine Bedeutung) plus Zinssers vier Prinzipien
+(Simplicity, Brevity, Clarity, Humanity). Siehe `/root/.claude/CLAUDE.md`.
+
+**2. `forbidden.md` ist das härteste Gate.** Datei: `/root/.claude/forbidden.md`.
+Ein Treffer = Fail. Läuft VOR G1, nicht danach. Neuer Slop wird sofort dort
+nachgetragen (Abschnitt F), nie nur im Kopf behalten.
+
+**3. Modell-Wahl für den Schreib-Schritt.**
+
+| Aufgabe | Modell | Grund |
+|---|---|---|
+| Deutsche Verkaufs-Copy schreiben | `opus-builder` | beste DE-Copy im Haus |
+| Ad-Copy, kreative Angles | `kimi-worker` | Ads-Spezialist, knapper Output |
+| Umschreiben/Kürzen mechanisch | `luna-worker` | exakte Vorgabe, kein Eigenleben |
+| Eval/Judge | `sol-pruefer` oder `kimi-recherche` | andere Familie als der Schreiber |
+
+Fable schreibt **keine** Copy — zu wortreich. Ein Modell schreibt nie den
+eigenen Text ab: Schreiber und Prüfer sind immer verschiedene Familien.
+
+**4. Writer-Kontext unter 50 %.** Über 50 % Füllstand fällt die Textqualität hart
+ab. Braucht der Auftrag mehr Material (langer Korpus, viele Referenzen):
+pro Teilstück einen Subagenten, nicht ein Agent mit vollem Kontext.
+Faustregel: mehr als 3 Referenzdateien + Kundenmaterial → splitten.
+
+**5. Der Eval-Agent ist unabhängig.** Kein Text geht raus, den der Schreiber
+selbst freigegeben hat. Prüfauftrag an den Eval-Agenten enthält immer:
+`forbidden.md`, `references/voice-dna.md`, die VOICE.md des Kunden, den Entwurf.
+Rückgabe: pass/fail je Regel mit **eingefügtem Beleg aus dem Text**.
+Nie "erkläre dein Denken" fragen (Fable-Gotcha, Regel 19).
+
+**6. Handedit vor Veröffentlichung.** Jeder Draft geht als Entwurf an Raphael,
+nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
+
 ## Ablauf
 
 1. **Voice laden** — VOICE.md des Kunden (Duzen/Siezen, Jargon-Level, Erlaubt-/Verboten-Sätze).
@@ -50,7 +90,19 @@ klingt — als Stil-Gate für ads, web, seo.
    gebaut werden, Vorlage + Modell in `references/voice-analysis.md` nutzen: **Voice ist
    konstant, Ton flext** — "Wir sind/Wir sind nicht"-Tabelle mit Beleg, Terminologie-Tabelle,
    Tonalitäts-Matrix je Kanal, Confidence-Stufe pro Sektion.
-2. **Schreiben/Umschreiben** — nach Orwell-DE (`references/orwell-de.md`). Perfekte Grammatik
+1b. **Kanal festlegen** — `references/kanaele.md`. Ad, Video, Landingpage, E-Mail, SEO,
+   Social brauchen unterschiedliches Framing, nicht unterschiedliche Länge desselben Texts.
+   Bei Multi-Kanal-Aufträgen: Kern in EINEM Satz schreiben, dann pro Kanal neu bauen —
+   nie den längsten Text kürzen.
+
+1c. **Beispiele laden** — 2–3 passende Belege aus `references/beispiele-gute-copy.md`
+   wählen (Branche + Preisklasse + Kanal). Ohne echte Beispiele regrediert jedes LLM
+   zum Mittelwert. Die Datei markiert je Beispiel auch, welcher Teil **nicht** kopiert wird.
+
+2. **Schreiben/Umschreiben** — nach `references/voice-dna.md` (Casing, Rhythmus, Lexikon,
+   Anrede, Beweis-Muster, CTA-Regeln, Kanal-Dials) und Orwell-DE (`references/orwell-de.md`).
+   Kern-Rhythmusregel: Satzlängen müssen springen (lang → kurz → mittel); drei gleichlange
+   Sätze in Folge sind ein Fail. Perfekte Grammatik
    oder gehobenes Vokabular allein ist **kein** KI-Beweis (siehe Detection Guidance in
    `references/ai-slop-patterns-en.md`) — nicht jede saubere Formulierung kaputt-editieren.
    **Sprachstil wählen:** Für Conversion-Copy (Landing, Ads, Sales) vor dem Schreiben einen
@@ -58,7 +110,13 @@ klingt — als Stil-Gate für ads, web, seo.
    (Lokal-Vertrauen / Coach-DR / Skeptiker-DR / Quiz-Funnel / Velvet-Rope / Enterprise) —
    gewählt nach Kunde + Kanal + Markt-Reife, nie nach eigener Vorliebe. Der Stil liefert
    Rhythmus, Proof-Muster und CTA-Form; die VOICE.md des Kunden gewinnt bei Konflikt.
-3. **G1 (deterministisch, immer zuerst):**
+3. **G0 — `forbidden.md` (härtestes Gate, läuft VOR G1):**
+   `/root/.claude/forbidden.md` durchgehen, Abschnitt A bis F. Jeder Treffer = Satz neu
+   schreiben, nicht abschwächen. Besonders: Staccato-Paare (A1), Antithese-Reframes
+   „nicht X, sondern Y" (A2), Isokolon-Metapher-Paare (A3), Rückwärts-Referenzen (A4),
+   Drei-Wort-Triaden (A5), Interpunktions-Schwellen (C).
+
+3b. **G1 (deterministisch):**
    - Orwell-Regeln **2–5** als Checks (kurzes Wort, Aktiv, kürzen, kein Fachjargon-Ballast).
    - **Passiv-/Nominalstil-Detektor** (`references/orwell-de.md` → Heuristik).
    - **LLM-Floskel-Verbotsliste** dt.+engl. inkl. quantifizierter Interpunktions-Schwellen und
@@ -69,9 +127,21 @@ klingt — als Stil-Gate für ads, web, seo.
 4. **Selbstkritik-Zwischenschritt (billig, vor dem teuren G2):** Entwurf laut durchlesen und
    knapp beantworten: "Was macht diesen Text noch offensichtlich KI-generiert?" Die Antwort
    direkt einarbeiten, bevor G2 läuft — hebt die Qualität vor dem Judge-Call günstig an.
-5. **G2 (Judge):** Orwell-Regeln **1** (abgedroschene Metaphern) + **6** (Override-Klausel:
-   Regel brechen, bevor der Text hölzern/"barbarous" wird) + **Brand-Voice-Treue**. pass/fail
-   mit eingefügtem Beweis, nie "erkläre dein Denken" (Regel 19 / Fable-Gotcha).
+5. **G2 (unabhängiger Eval-Agent, andere Modellfamilie als der Schreiber):**
+   Prüfauftrag bekommt: den Entwurf, `/root/.claude/forbidden.md`,
+   `references/voice-dna.md`, die VOICE.md des Kunden. Geprüft wird:
+   - Orwell-Regel **1** (abgedroschene Metaphern)
+   - Orwell-Regel **6** (Override: Regel brechen, bevor der Text hölzern wird)
+   - **Brand-Voice-Treue** ≥ 0,7
+   - **voice-dna-Selbstcheck** (5 Fragen aus Abschnitt 8 dort)
+   - **forbidden.md** — Gegenprüfung, ob der Schreiber Treffer übersehen hat
+
+   Rückgabe: pass/fail je Regel **mit wörtlich eingefügtem Beleg aus dem Text**.
+   Nie "erkläre dein Denken" fragen (Regel 19 / Fable-Gotcha).
+
+   **Jeder Fund des Eval-Agenten, der ein neues Muster zeigt, wird sofort in
+   `forbidden.md` Abschnitt F nachgetragen** — mit kaputtem Beispiel und Fix.
+   Die Harness wird bei jedem Durchlauf besser, sonst wiederholt sich der Fehler.
 6. **Hook & CTA** — nach `references/cta-framework.md` (Hook = drei Funktionen + 1,8-s-Regel,
    Curious-vs-Committed-Diagnose, Financial Qualification über die Situation). Für
    Persuasion-Framing (Anchoring, Verlust-Aversion, Decoy-Effekt etc.) siehe
@@ -82,14 +152,32 @@ klingt — als Stil-Gate für ads, web, seo.
 8. **Verkaufs-/VSL-Struktur** — bei Long-Form (VSL, Sales-Page, Nurture) nach
    `references/vsl-framework.md`: Reihenfolge nach Überzeugungskraft, Identitäts-Commitment
    auf Danke-Seiten, Nurture aus Empfängerperspektive.
-9. **Selbstcheck vor Abgabe (letzter Schritt, still anwenden):** Banned Words? Drei
+9. **Selbstcheck vor Abgabe (letzter Schritt, still anwenden):** Zuerst die 5 Fragen aus
+   `references/voice-dna.md` Abschnitt 8 (Satzlängen springen? erste Zahl früh? Anrede
+   durchgehend? forbidden.md null? Generik-Test bestanden?). Dann: Banned Words? Drei
    gleichlange Sätze in Folge? Parataxe (drei+ kurze Sätze hintereinander)? Hedging statt
    klarer Position? Mehr als 1 Em-Dash/500 Wörter? Erfundene Zahlen/Zitate? "Könnte das
    jede KI für jeden Kunden geschrieben haben?" — falls ja, eine konkrete Zahl/Nomen/Konsequenz
    ergänzen. Bei langer Copy (Sales-Page, Landingpage) zusätzlich optional die
    Seven-Sweeps (`references/copy-editing-sweeps.md`) als Qualitäts-Gate vor Auslieferung.
 
+10. **Übergabe als Entwurf.** Ausgeliefert wird: Entwurf + Eval-Bericht + Liste der
+   `forbidden.md`-Nachträge. Nie "fertig, kann live". Raphael handeditiert vor
+   Veröffentlichung — das ist Teil des Verfahrens, kein Mangel.
+
 ## Gotchas
+
+- **`forbidden.md` schlägt jede Stilvorlage.** Auch die Referenzseiten in
+  `references/beispiele-gute-copy.md` enthalten Slop ("Kein Warten, kein Vertrösten",
+  "It's not an event. It's a workshop.", das Nervensystem/Gehirn-Bild). Übernommen
+  wird das Beweis- und Aufbau-Muster, nie die kaputte Formulierung.
+- **Eval-Agent muss eine andere Modellfamilie sein.** Ein Modell findet den eigenen
+  Slop nicht — es hat ihn erzeugt, weil es ihn für gut hält.
+- **Kontext über 50 % = Textqualität fällt.** Bemerkbar an: längeren Sätzen,
+  mehr Hedging, Rückwärts-Referenzen. Bei diesen Symptomen Kontext prüfen,
+  nicht am Text herumdoktern.
+- **Kürzen ist kein Kanal-Transfer.** Eine Landingpage auf 90 Wörter gekürzt ist
+  keine Ad. Pro Kanal aus dem Kern-Satz neu bauen (`references/kanaele.md`).
 
 - **Orwell-Split:** Regeln 2–5 sind G1 (deterministisch), Regeln 1+6 sind G2 (Judge). Regel 6
   ist die **Override-Klausel** — ein starrer Regel-Roboter produziert steifen Text; der Judge

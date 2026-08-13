@@ -1,6 +1,6 @@
 ---
 name: ads-video
-version: 0.3.0
+version: 0.4.0
 description: >
   Feuert wenn aus Angle/Hook (aus dem ads-Router) ein Video-Ad-Skript für Meta/TikTok
   entstehen soll: Beat-Struktur, Sprechtext, Einblendungs-/Illustrationsplan.
@@ -13,6 +13,7 @@ class: F
 scope: agency
 sensitivity: internal
 loads:
+  - references/voice-dna-ads.md
   - references/playbook-geile-ads.md
   - references/korpus/referenz-ads.md
   - references/skript-architekturen.md
@@ -23,8 +24,12 @@ loads:
   - references/skript-analyse-methodik.md
   - references/beat-struktur-und-aufbau.md
   - references/video-visuals.md
+loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [copywriting@^0, no-ai-slop@^0]
 completion_criteria:
+  - "forbidden.md = 0 Treffer auf dem Sprechtext (harte Sperre, vor der Messlatte)"
+  - "voice-dna-ads V12-Selbstcheck (6 Fragen) = 6x ja, im Output dokumentiert"
+  - "Hook-Länge ≤ 8 Wörter (oder ≤ 12 mit exakter belegter Zahl) — V1"
   - "Winner-Basis-Feld gesetzt (Ad-Name/ID + Hookrate/Spend/CTR oder ehrlich 'kein Performance-Datensatz')"
   - "F-ID + A-ID benannt; je mindestens 1 wörtliche Belegzeile aus Markt-Referenzen/Kunden-Korpus derselben Bauform gelesen"
   - "mindestens 1 S-ID (Strategie) + 1 T-ID (Taktik) aus strategien-taktiken.md benannt und im Skript sichtbar"
@@ -61,6 +66,8 @@ Pflicht-Load ergänzt.
 
 | Quelle | Pfad | Job |
 |---|---|---|
+| **Voice-DNA (gemessen)** | `references/voice-dna-ads.md` | **V1–V12: Hook-Länge, Anrede, Zahl-Position, Sprechrhythmus, Struktur-Default, CTA-Form — aus 711 Records ausgezählt** |
+| **Verbots-Katalog** | `/root/.claude/forbidden.md` | **Slop-Muster, die nie ins Skript kommen. Hartes Gate vor der Messlatte.** |
 | Playbook | `references/playbook-geile-ads.md` | Nutzungs-Loop, Winner-/Verlierer-Muster, Skelett, Ship-Checkliste |
 | Architekturen + Messlatte | `references/skript-architekturen.md` | Aufbau A1–A7 + 10 Assertions vor Ship |
 | Hook-Formeln | `references/hook-formeln.md` | F1–F13 wählen, ≥2 F-IDs in den Varianten |
@@ -138,6 +145,14 @@ Kein Live-API-Zwang im Schreibpfad — der Datei-Korpus reicht.
    denselben Refs. Body vom Winner clonen, wenn derselbe Funnel läuft — nur
    Angle/Hook-Variante neu. Text/Ton: `copywriting` + `sprech-text-regeln.md` +
    `sprech-sprache.md`.
+   **Voice-DNA bindet den Satzbau** (`references/voice-dna-ads.md` Teil 2):
+   Hook ≤ 8 Wörter (V1), Fragment schlägt Frage (V2), exakte Zahl in Sek. 1–3 (V3),
+   Duzen als Default (V4), Ich-Form bei Personenmarken (V5), Default-Struktur
+   Callout → Problem → Mechanism → Proof → Offer → CTA (V8), CTA sagt den Nutzen
+   plus Risiko-Umkehr (V9), Satzlängen springen 6–15 Wörter (V10).
+   **Nicht aus dem Korpus kopiert werden** die dort belegten Slop-Muster (V11):
+   Isokolon-Metaphern, Versalien-Schreie, ungedeckte Superlative,
+   Ergebnis-Disclaimer als Deckmantel.
    Je finalem Skript **≥3 Hook-Varianten mit ≥2 F-IDs**, je Variante On-Ramp (Sek. 3–15),
    Caption-Job, Visual-Job. Paraphrasen derselben Formel zählen nicht.
 
@@ -150,6 +165,16 @@ Kein Live-API-Zwang im Schreibpfad — der Datei-Korpus reicht.
    Muster-Katalog anwenden; jeden Eingriff benennen; Stimme bewahren.
    **Spoken-Ausnahme:** Füllwörter/Kraftwörter im Hook (R2/R3 `sprech-sprache.md`)
    nicht glätten. Ohne dokumentierten Pass gilt das Skript als unfertig.
+
+7b. **`forbidden.md` + V12-Selbstcheck (hartes Gate, vor der Messlatte).**
+   Sprechtext gegen `/root/.claude/forbidden.md` prüfen, Abschnitt A–F.
+   Ein Treffer = Zeile neu schreiben, nicht abschwächen. Häufigste Treffer im
+   Ad-Text: Staccato-Paare (A1), "nicht X, sondern Y" (A2), Metapher-Paare (A3),
+   Drei-Wort-Triaden (A5), Wert-Adjektive ohne Zahl (B4).
+   Danach die 6 Fragen aus `references/voice-dna-ads.md` V12 beantworten und
+   das Ergebnis im Output dokumentieren.
+   **Nachtragspflicht:** Jedes neu erwischte Slop-Muster wandert sofort nach
+   `forbidden.md` Abschnitt F — mit kaputtem Beispiel und Fix.
 
 8. **Messlatte grün.** Alle 10 Assertions in `skript-architekturen.md` (Form, erste
    12 Wörter, Zahl im Hook, Mechanismus-Name, Proof×2+filmbar, Disclaimer, voller CTA,
@@ -173,10 +198,14 @@ Beim Schreiben grob gegensteuern (`sprech-text-regeln.md`).
 
 ## Hierarchie bei Regelkonflikt
 
+0. `/root/.claude/forbidden.md` — schlägt alles. Ein verbotenes Muster bleibt
+   verboten, auch wenn ein Winner-Skript es benutzt.
 1. Kunden-Winner-Korpus + Kunden-Playbook (was im Konto messbar hält/skaliert) —
    falls vorhanden
 2. Zentrales Playbook + `hook-formeln.md` + `skript-architekturen.md` +
    `strategien-taktiken.md` (Markt-Craft + Messlatte)
+2b. `voice-dna-ads.md` V1–V12 (gemessener Satzbau) — bindet den Sprechtext,
+   solange die Kunden-VOICE.md nicht ausdrücklich widerspricht
 3. Kunden-Voice / `copywriting` + `sprech-sprache.md`
 4. Generisches 5-Beat in `beat-struktur-und-aufbau.md` nur als Fallback
 
@@ -191,6 +220,15 @@ Beim Schreiben grob gegensteuern (`sprech-text-regeln.md`).
 - **Fable-Gotcha (Regel 19):** Verifier nur pass/fail + eingefügter Beweis, nie
   „erkläre deinen Gedankengang".
 - **Tote Verweise vermeiden:** „Craft-Kern" = Abschnitt A dieses Files.
+- **Der Korpus ist Beleg, kein Vorbild.** 711 laufende Ads enthalten auch Slop
+  (`voice-dna-ads.md` V11). Übernommen werden Bauform und Beweismuster, nie eine
+  Formulierung, die in `forbidden.md` steht — Laufzeit im Konto adelt kein Muster.
+- **Voice-DNA neu messen nach jedem Korpus-Refresh.** Ändert sich der Median der
+  Hook-Länge oder das Du/Sie-Verhältnis deutlich, wandern die Regeln in
+  `voice-dna-ads.md` Teil 2 mit. Zahlen von 2026-08-13: Median 8 Wörter, 83,3 % Duzen.
+- **Schreiber-Kontext unter 50 %.** Der Korpus ist ~15.000 Zeilen. Nie komplett
+  laden — gezielt greppen oder per Subagent auswerten. Über 50 % Füllstand fällt
+  die Sprechtext-Qualität hart ab.
 - **Root-Cause D1–D9 (2026-08-11):** Craft-Refs müssen in `loads` bleiben; Performance
   muss im Output-Feld stehen; no-ai-slop muss feuern; entkernte Story ohne Proof-Inventar
   ist BLOCKED, nicht „kreativ".

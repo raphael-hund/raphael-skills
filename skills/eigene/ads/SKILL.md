@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 0.7.0
+version: 0.8.0
 description: >
   Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie,
   Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits
@@ -29,7 +29,9 @@ loads:
   - references/vendor/claude-ads/experimente-und-monitoring.md
   - references/vendor/claude-ads/automatisierungs-tiers.md
 requires_skills: [copywriting@^0, offers@^0, eval@^0, ads-video@^0, ads-statics@^0]
+loads_external: ["/root/.claude/forbidden.md"]
 completion_criteria:
+  - "forbidden.md = 0 Treffer auf jedem Ship-Output (/root/.claude/forbidden.md, Abschnitte A-F) — hartes Gate vor G1"
   - "0 verbotene Claims im Live-Set (claims-qa Block, Sol frische Session)"
   - "G1-Stil grün, dann G2 >= 0.7 auf jedem Ship-Output (Gate-Definition: references/loop3-ablauf.md → Abschnitt Gates, Rubrik evals/rubrics/ads.md)"
   - "Schaltung nur mit Raphaels Signatur + Budget-Egress-Gate"
