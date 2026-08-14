@@ -23,6 +23,7 @@
   "run-pruefstand.mjs": 14,
   "run-registry-check.mjs": 9,
   "run-routen-check.mjs": 15,
+  "run-shot-stable-check.mjs": 20,
   "run-slop-build-check.mjs": 8,
   "run-slop-check.mjs": 9,
   "run-slop-de-check.mjs": 62,

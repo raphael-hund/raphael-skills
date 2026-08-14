@@ -12,7 +12,7 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.13.1"
+  raphael-version: "0.14.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
@@ -117,7 +117,9 @@ Vollständige Auftrag→Datei-Matrix inkl. „nicht laden“: `anfaenger-pfad.md
 
 ## Screenshot-Pflicht (hart)
 
-Design wird **nur** an Screenshots entschieden. Standard-Werkzeug:
+Design wird **nur** an Screenshots entschieden. Kanonischer Capture-Weg ist
+Playwright über `scripts/shot-sweep.mjs`. Chrome-CLI und `raphael-chrome`
+sind kein Ersatz für den Sweep.
 
 ```bash
 node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
@@ -128,6 +130,8 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 
 - Fold 1440×730, dann 1440×1500 @ 750 px Scroll, sequentiell pro Seite, Hover+Klick-Pass, `--static` für Kritik — **nie** fullPage / captureBeyondViewport.
 - **`--base` Pflicht** (ohne Flag: Exit 2). Früherer Default-Port 5280 entfällt.
+- Jeder Shot: Playwright `page.screenshot`, `animations: 'disabled'`, `caret: 'hide'`. Fonts und Seite sind vor dem Shot gesetzt.
+- Stabile Screenshots: wiederholbar, nicht leer, Viewport-Vertrag 1440×730 im Fold. Nach Änderung am Sweep: Screenshots testen mit `node evals/run-shot-stable-check.mjs`.
 - Jedes PNG per Read ansehen; nach jedem Fix **alle** betroffenen Routen erneut.
 - Kritik bekommt nur `manifest.json` + PNGs. Ablauf: `screenshot-kritik-loop.md`.
 - Plan-Mockups sind Soll; Web-Screenshots sind Ist. Build-QA erfasst pro betroffener
