@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.3.3
+version: 0.4.0
 description: >
   Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus
   impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-
@@ -13,29 +13,17 @@ description: >
   "Design polieren", "UI review", "sieht nach AI aus", "Slop entfernen",
   "Farben/Typo/Layout fixen", "Animation/Motion pruefen", "Kontrast/OKLCH",
   "Dashboard designen", "Referenz-Site als Stilvorlage", "Stitch",
-  "Screen in Stitch bauen", "Design mit Google Stitch".
+  "Screen in Stitch bauen", "Design mit Google Stitch", "/taste",
+  "/impeccable", "kill AI slop", "frontend-design".
 class: F
 scope: agency
 sensitivity: internal
 loads:
   - references/design-doktrin.md
   - references/impeccable-detektoren.md
-  - references/ui-ux-db-nutzung.md
   - references/taste-kern.md
-  - references/ai-slop-taxonomy.md
-  - references/ai-slop-detection.md
-  - references/ai-slop-fixes.md
-  - references/motion-doktrin.md
-  - references/apple-fluid-interfaces.md
-  - references/animation-vokabular.md
-  - references/motion-audit-workflow.md
-  - references/farben-oklch.md
-  - references/typografie.md
-  - references/ui-polish-details.md
-  - references/design-dna-schema.md
-  - references/component-bibliotheken-radar.md
-  - references/wissens-router.md
-  - references/stitch-workflow.md
+  - references/ui-ux-db-nutzung.md
+  # Weitere References (ai-slop-*, motion-*, farben-*, etc.) werden nur bei Bedarf nachgeladen — siehe Progressive Disclosure unten.
 provenance: >
   Fusion aus drei Upstream-Skills (impeccable, taste, ui-ux-pro-max), uebernommen
   am 2026-07-19 aus --depth-1-Klonen unter /root/tools/vendor/. Herkunft, Commits,
@@ -43,7 +31,7 @@ provenance: >
   stehen vollstaendig in VENDORING.md dieses Skills — diese Zeile ist nur der
   Zeiger, nicht die Zweitfassung. Spaeter ergaenzt: emilkowalski-Motion- und
   jakubkrehel-Detailskills, kill-ai-slop-Scanner.
-requires_skills: [impeccable@^0]
+requires_skills: []
 # Wie tief ist dieser Skill geprueft? Die Zahlen sind an Laeufe gebunden —
 # evals/run-doku-zahlen.mjs reisst, wenn eine hier falsch wird.
 eval_scorecard:
@@ -83,10 +71,11 @@ gotchas:
 
 # design — Anti-Slop Frontend (Router)
 
-**Lädt automatisch mit:** `impeccable` (Kommandosprache + Craft-Floor für
-Design-Arbeit und QA — dieses Skill bleibt die kanonische Wissensquelle,
-impeccable liefert das Vokabular). taste ist hier eingebaut als
-`references/taste-kern.md` (kein separater Skill).
+**Site-Build kommt über `web`.** Hier nur UI-Detail. Nicht extra laden:
+`taste`, `impeccable`, `ui-ux`, `kill-ai-slop`, `design-taste-frontend`.
+Kommandosprache + Craft-Floor: `references/commands-de.md` +
+`references/craft-floor-de.md`. taste-Linie: `references/taste-kern.md`.
+Slop-Scan: `scripts/scan-ai-slop.mjs` (deutsch: `--rules=scripts/rules.de.mjs`).
 
 **Zweck (1 Satz):** Interfaces bauen/pruefen, die niemand als "AI-gemacht" erkennt —
 teuer denkt (Register + Doktrin), billig tippt, deterministisch geprueft.
@@ -295,4 +284,5 @@ Kein Backend/Non-UI. Native Apps (iOS/Android): impeccable-Register-Refs waeren
 noetig — hier nur Web abgedeckt. Datentabellen/Wizards: ui-ux-DB gibt Muster,
 aber spezialisierte Libs (TanStack/AG Grid) bleiben Sache des Projekts.
 Deutsche Copy-Slop-Tells (Floskeln, KI-Voice) gehoeren zu copywriting, nicht
-hierher — die kill-ai-slop-Detektoren sind englischsprachig.
+hierher. Der Scanner hier bleibt der visuelle/englische Tell-Satz plus
+`rules.de.mjs` fuer deutsche Tells im web-Gate.

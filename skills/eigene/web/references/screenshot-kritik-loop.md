@@ -73,12 +73,17 @@ Erst wer selbst gesehen hat, darf das Panel rufen.
 Regel dazu (Raphael, 24.07.2026): Diese Dinge muessen von ALLEINE auffallen — er will
 sie nicht ansagen muessen. Ein Sweep ohne diesen Katalog gilt als nicht angesehen.
 
-### 3. Kritik-Panel (3 Rollen, parallel, frische Kontexte)
+### 3. Kritik-Panel (dieselbe Seite, zwei Familien + Gegencheck)
+
+Besetzung kommt aus `agent-roster.md`. **Nie Haiku.** Builder der Seite ist `opus-builder` — dann ist A = Grok und B **nicht** Opus (gleiche Familie). B = `kimi-recherche`. Sol prüft Code, nicht die Shots. Nie A=B, nie dieselbe Familie wie der Builder.
+
 | Rolle | Fähigkeit | Liest | Auftrag |
 |---|---|---|---|
-| Code-Kritik („Zoll") | unabhängige Code-Ursachenprüfung | Die zum Befund gehoerenden Source-Dateien + die Befundliste (KEIN Manifest noetig — sie prueft Code gegen Befund, nicht Screenshots) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
-| Visuelle Kritik A | erste unabhängige visuelle Prüfung | manifest.json + alle Shot-PNGs | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
-| Visuelle Kritik B | zweite unabhängige visuelle Prüfung | manifest.json + alle Shot-PNGs | „Zweite, unabhaengige Sicht: Was wirkt wie KI-Slop, was ist inkonsistent ueber die Seiten? Befund + Shot-Datei als Beleg." |
+| Code-Kritik („Zoll") | `sol-pruefer` | Befundliste + Source als Textausschnitt (keine Bildpfade) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
+| Visuelle Kritik A | Grok / `visual-kritiker` | manifest.json + Shots **dieser einen Seite** | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
+| Visuelle Kritik B | `opus-critic` (andere Familie als A und als Builder) | dieselben Shots wie A | „Zweite, unabhaengige Sicht. Befund + Shot-Datei als Beleg." |
+
+**Gegencheck (Pflicht, nicht optional):** Nach dem ersten Pass bekommt A die Befundliste von B, B die von A. Jeder Satz darf nur `bestätigt` oder `widerlegt` + ein Satz Beleg sein. Kein neuer Katalog. Fixliste = Befunde, die (a) beide unabhängig fanden oder (b) den Gegencheck überleben.
 
 Judge-Prompt-Form: IMMER „pass/fail + eingefuegter Beweis", NIE eine Aufforderung,
 internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefunden.
@@ -87,11 +92,10 @@ internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefund
 
 Zusaetzlich zum Panel wird **pro Sektion** einzeln kritisiert, modelluebergreifend:
 
-1. **Pro Sektions-Shot 2–3 Kritiker aus verschiedenen Modellfamilien** (z. B. Kimi +
-   Grok + Opus/Sol). Jeder Kritiker bekommt NUR den/die Shot(s) genau dieser einen
-   Sektion — Auftrag: Layout, Hierarchie, inhaltliche Darstellung dieser Sektion.
-   Agent-Definition: `.claude/agents`-Rolle „sektion-kritiker“ (bzw. per Workflow
-   `agentType` auf kimi-worker/grok-worker/opus-builder gemappt).
+1. **Pro Seite / Sektions-Shot mindestens zwei Kritiker** aus **Grok / Opus-Critic / Sol**
+   (nie Haiku, nie Luna als Urteil). Jeder Kritiker bekommt NUR die Shots genau dieser
+   einen Seite/Sektion. Danach Gegencheck (siehe Schritt 3). Mapping: `agent-roster.md`
+   — `visual-kritiker` + `opus-critic`; Sol nur Code-Ursache.
 2. **Pro Seite ein Gesamt-Kritiker** (alle Shots der Seite): wirkt die Seite als
    Ganzes, Sektions-Uebergaenge, Rhythmus, Frontend-Fokus.
 3. **Seitenuebergreifende Konsistenz-Achsen** (eigene Kritiker, alle Fold-/Key-Shots
@@ -99,8 +103,10 @@ Zusaetzlich zum Panel wird **pro Sektion** einzeln kritisiert, modelluebergreife
    - Buttons/CTAs: eine Familie, gleiche Radien/Hoehen/Hover-Logik ueberall.
    - Typografie: Headline-/Body-Schriftarten und -Groessen konsistent, eine Skala.
    - Illustrationsstil: Bilder/Illustrationen/Interaktionen ein Stil, keine Stilbrueche.
-4. Alle Kritiker haben die geladenen Linien aus `design` (impeccable/taste/no-ai-slop)
-   und `web`/`seo` als Massstab — im Prompt referenzieren, Fokus Frontend-Design.
+4. Alle Kritiker haben die Linien aus `design` (`taste-kern.md` /
+   `ui-ux-db-nutzung.md` / `impeccable-detektoren.md` / `scan-ai-slop.mjs`)
+   und `web`/`seo` als Massstab — im Prompt die **design-Pfade** nennen, nicht
+   die Einzel-Skills `taste`/`impeccable`/`kill-ai-slop` extra laden.
 
 ### 3b. Blind-A/B vs. Weltklasse-Referenz (Pflicht bei Ship / Premium / Gauntlet)
 

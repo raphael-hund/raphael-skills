@@ -15,7 +15,9 @@ es **keine Galerie-Dumps**. Ein Agent, der die 160 Links in die Antwort kippt,
 verletzt diesen Router. Nach Wahl dieses Router-Falls kann
 `node scripts/resource-access.mjs show "<Name>"` genau einen Katalogeintrag
 (URL + sicheren Modus) nachschlagen; es wählt keinen Default und führt nie
-Installationen aus.
+Installationen aus. **Nach jeder Router-Wahl ist dieser Show-Aufruf Pflicht**
+(ein Name, exakte Schreibweise). Unbekannter Name = Exit 1, nicht raten. Nie die
+160er-Liste in die Antwort kippen.
 
 ## Ergebnis: die Werkzeugtabelle (Pflichtartefakt)
 
@@ -125,8 +127,8 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 |---|---|
 | **Bedarf** | Referenz-Looks für Art Direction, nicht zum Kopieren von Layout/Assets |
 | **Loop** | `art-direction` (vor design-DNA) |
-| **Default** | Godly (Marketing/Awwwards-Look) **oder** Mobbin (App/Flows) **oder** Refero (UI-Patterns) — **eine** Quelle passend zum Brief |
-| **Install/Use** | Seite im Browser/AgentReach öffnen, 3–7 Screenshots/Notizen in `art-direction.md`; **kein** npm |
+| **Default** | Godly (Marketing/Awwwards-Look) **oder** Mobbin (App/Flows) **oder** Refero (UI-Patterns) — **eine** Quelle passend zum Brief. App/Flows: Mobbin zuerst. |
+| **Install/Use** | Erst MCP-Status: `/root/tools/raphael-mcp-ondemand.sh status`. Mobbin-MCP OFF → `raphael-chrome` oder AgentReach, 3–7 echte Screenshots/Notizen in `art-direction.md`. Nie ein Mobbin-Browse erfinden. **kein** npm |
 | **Alternativen** | Awwwards, Land-book, Lapa Ninja, SiteInspire, Page Flows, Screenlane (siehe Bibliothek §Inspiration) |
 | **Gate** | Lizenz/Urheber: nur Muster analysieren; keine Assets/Copy/Logos übernehmen (`web-clone-playbook.md` wenn Nachbau) |
 | **Nie** | Referenz-HTML clonen ohne Lizenz-Check; 20 Galerien gleichzeitig öffnen |
@@ -324,11 +326,11 @@ Buttons, Zustände, Listen.
 |---|---|
 | **Bedarf** | Webfonts für Marke |
 | **Loop** | `art-direction` → `build` |
-| **Default** | **Kunden-/Brand-Fonts self-hosted** (`@font-face`, subset). Kein Google-Fonts-CDN-Default. |
-| **Install/Use** | Dateien nach `public/fonts/` · Tailwind `fontFamily` · `pdffonts`/Screenshot-Check bei PDF-Export |
-| **Alternativen** | Fontshare, Bunny/Google **self-hosted** nach Lizenz; Typewolf/Fonts In Use nur Inspiration |
-| **Gate** | Lizenz erlaubt Web/Kundenprojekt; FOIT/FOUT geplant; Zeichensatz DE; Fallback-Stack |
-| **Nie** | Google-Fonts-CDN in Prod ohne Freigabe; gefundene Display-Font ohne Lizenz; fünf Familien |
+| **Default** | Immer die **Adobe Fonts Library** nutzen. Familie dort wählen. Seite lädt über das hinterlegte Kit (`use.typekit.net/<id>.css` plus die Kit-`font-family`-Namen). Lokales Pack: `references/adobe-fonts/` (`head.html`, `tokens.css`, `next-head.tsx`). Quelle: `node scripts/adobe-fonts-kit.mjs files`. Liegen lizenzierte Kunden-Brand-Dateien vor, gelten diese Dateien zuerst — dann nur diese lokal einbinden. |
+| **Install/Use** | Immer die **Adobe Fonts Library**. `node scripts/adobe-fonts-kit.mjs apply <projekt>` schreibt Embed + Tokens nach `<projekt>/adobe-fonts/`. Familie nachschlagen: `node scripts/adobe-fonts-kit.mjs show Fieldwork` (Bibliothek `/root/tools/adobe-fonts-library`). Link aus `head.html` ins Dokument. Höchstens zwei Familien. Kein Adobe-Login. |
+| **Alternativen** | Keine andere Foundry. Nur lizenzierte Kunden-Brand-Dateien ersetzen die Adobe Fonts Library. Typewolf/Fonts In Use nur zur Recherche. |
+| **Gate** | Kit-Embed im Dokument; keine Adobe-`.woff`/`.ttf` im Repo; Zeichensatz DE; Fallback-Stack |
+| **Nie** | Adobe-Bibliothek herunterladen; Adobe-Webfonts selbst hosten; Google-Fonts-CDN als Default; `next/font/google` als Default; fünf Familien |
 
 ### 12. Texturen / 3D-Assets
 

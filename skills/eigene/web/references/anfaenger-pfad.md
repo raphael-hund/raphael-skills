@@ -13,10 +13,10 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
-| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `loop2-ablauf.md` → Skill **design** (taste) → `tool-usecase-router.md` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
+| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
-| **Nur Design/Look polieren** | design-Skill + `screenshot-kritik-loop.md` + `shot-sweep.mjs` | Sweep + PNGs gelesen + Fixliste leer |
-| **Ship / Launch-Check** | `qa-faecher.md` → `agentur-rubrik.md` → `agent-roster.md` | Fächer 1–6 grün, Rubrik 1–25 oder Ausnahme |
+| **Nur Design/Look polieren** | design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` | Sweep + PNGs gelesen + Fixliste leer |
+| **Ship / Launch-Check** | `qa-faecher.md` → `agentur-rubrik.md` → `agent-roster.md` → `vercel-git-deploy.md` | Fächer 1–6 grün, Rubrik 1–25 oder Ausnahme; Org-`origin` + Preview |
 | **Premium/Gauntlet** (gegen Weltklasse) | `screenshot-kritik-loop.md` (inkl. 3b Blind-A/B) → `agentur-rubrik.md` → `lexlin-design-prinzipien.md` + `damien-design-methodik.md` | Blind-A/B dokumentiert, max 3 Zyklen |
 | **Referenzseite nachbauen** (URL) | `web-clone-playbook.md` **zuerst** (Lizenz!) → dann Clone-Scripts | Lizenz-Check schriftlich vor Code |
 | **Screenshot/Bild nachbauen** | `rebuild-from-image.md` → `bildgenerierung.md` nur für echte Assets | Pixel-Check 1440/768/390 |
@@ -54,6 +54,14 @@ node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>
 ```
 
 5. Wer baut, reviewt nicht. Rollen: `agent-roster.md`.
+6. Nach jeder Router-Wahl **genau einen** Katalognamen nutzen:
+   `node /root/raphael-skills/skills/eigene/web/scripts/resource-access.mjs show "<Name>"`.
+   Keine 160-Link-Liste. Unbekannter Name = Exit 1, nicht raten.
+7. Inspiration App/Flows: Mobbin. Zuerst
+   `/root/tools/raphael-mcp-ondemand.sh status`. MCP OFF → `raphael-chrome`
+   oder AgentReach. Nie ein Browse erfinden.
+8. Fonts: Adobe-Kit nachschlagen
+   (`node …/adobe-fonts-kit.mjs show <Familie>`), keine Adobe-`.woff` ins Repo.
 
 ---
 
@@ -85,6 +93,7 @@ Outputs: `client-<name>/web/strategy.md`, `sitemap.md`, `copy/`, `art-direction.
 | `remotion-produktionsweg.md` | echtes Video/Composition, kein CSS-Motion |
 | `readonly-db-rolle.md` | Build braucht DB-Lesezugriff |
 | `domain-safe-browsing-checkliste.md` | Launch auf junger Domain |
+| `vercel-git-deploy.md` | Git-Anbindung, Org+privat, Vercel-Plugin-Skills |
 | `experiment-programm.md` | laufendes A/B-Programm, nicht ein Fix |
 | `templates/statistics-page-template.html` | Statistik-/Linkbait-Seite |
 

@@ -58,9 +58,10 @@ die Sachfrage überhaupt qualifiziert.
 
 ## Fach 2 — Design (→ design)
 - G1: `node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>` = Exit 0
-  **und** `node /root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs <projekt-root>`
+  **und** `node /root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs <projekt-root> --rules=/root/raphael-skills/skills/design/scripts/rules.de.mjs`
   triagiert (keine offenen P0-Slop-Funde). Niemals `npx impeccable detect` — das
-  trifft die unpatchte npm-Version, nicht die lokalen Regeln.
+  trifft die unpatchte npm-Version, nicht die lokalen Regeln. Den Scanner nicht
+  über Skill `kill-ai-slop` extra laden — er sitzt in design.
 - Visuelle Hierarchie, Kontrast, Rhythmus/Spacing, konsistente Tokens.
 - Landing → taste-Kern + `lexlin-design-prinzipien.md` / `damien-design-methodik.md`;
   App/Dashboard → ui-ux-DB.

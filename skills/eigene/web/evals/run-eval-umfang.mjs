@@ -2,7 +2,7 @@
 /**
  * run-eval-umfang.mjs — hat jede Eval ueberhaupt noch ihre Faelle?
  *
- * LAUFZEIT: rund 13 Minuten (782s gemessen 02.08.2026). Sie faehrt 44 Evals
+ * LAUFZEIT: rund 13 Minuten (782s gemessen 02.08.2026). Sie faehrt 48 Evals
  * nacheinander — das ist der Preis, kein Defekt. Wer sie ohne diese Angabe
  * startet, haelt sie nach fuenf Minuten fuer haengen geblieben und bricht ab.
  * Fuer den schnellen Blick reicht run-struktur.mjs (13s, dreimal gemessen),

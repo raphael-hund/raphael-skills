@@ -4,9 +4,9 @@
   "skills": [
     {
       "name": "design",
-      "version": "0.3.3",
+      "version": "0.4.0",
       "path": "skills/design/SKILL.md",
-      "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\"."
+      "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\", \"/taste\", \"/impeccable\", \"kill AI slop\", \"frontend-design\"."
     },
     {
       "name": "ultra-loop",
@@ -82,7 +82,7 @@
     },
     {
       "name": "extract-approach",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/extract-approach/SKILL.md",
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
@@ -106,9 +106,9 @@
     },
     {
       "name": "impeccable",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/impeccable/SKILL.md",
-      "description": "Feuert bei Frontend-Design-Arbeit, die über \"funktioniert\" hinausgehen soll: Design bauen, redesignen, kritisieren, auditieren, polieren, vereinfachen, härtener, animieren, kolorieren, typographieren, layouten, begeistern, klären, anpassen, optimieren — oder bei der Frage \"sieht das nach AI aus?\" / \"mach es bolder/quieter\". Liefert die Kommando-Sprache (23 Befehle wie `audit`, `critique`, `polish`, `bolder`, `quieter`, `distill`, `animate`, `colorize`, `typeset`, `layout`, `delight`, `clarify`, `harden`, `adapt`, `optimize`) und den Craft-Floor (Qualitäts-Mindeststandard) für Web-UI. Der design-Skill bleibt die kanonische Wissensquelle; impeccable ist die Arbeits- und QA-Sprache. Trigger: \"Design review\", \"UI audit\", \"polish this\", \"make it bolder\", \"landing page critique\", \"sieht nach AI aus\", \"Slop check\", \"Design verbessern\", \"animate this\", \"typography fix\"."
+      "description": "Router auf Kommandosprache + Craft-Floor in design. Feuert NUR bei explizitem \"/impeccable\" oder einem namentlichen Kommando (audit, polish, bolder, quieter, distill, live). NICHT bei Website-/Landingpage-Bau — das ist web + design. Trigger: \"/impeccable\", \"impeccable audit\", \"impeccable polish\"."
     },
     {
       "name": "kimi-first",
@@ -172,15 +172,15 @@
     },
     {
       "name": "taste",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/taste/SKILL.md",
-      "description": "Feuert bei Landing/Marketing/Portfolio/Editorial-Flächen, wenn der Look \"besonders\", \"premium\", \"nicht nach Template\" aussehen soll — die Landing-/Brand-Linie des design-Systems. Trigger: \"Landingpage designen\", \"Premium-Look\", \"nicht nach Baukasten aussehen\", \"Brand-Fläche\", \"Hero gestalten\", \"Portfolio\", \"Editorial\", \"taste\", \"mehr Geschmack ins Design\"."
+      "description": "Router auf die taste-Linie in design. Feuert NUR bei explizitem \"/taste\" oder \"taste-Linie\". NICHT bei Website-/Landingpage-Bau — das ist der web-Skill (laedt design progressiv). Trigger: \"/taste\", \"taste-Linie\", \"taste-Skill\"."
     },
     {
       "name": "ui-ux",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/ui-ux/SKILL.md",
-      "description": "Feuert bei App-/Dashboard-/Tool-/SaaS-Produkt-UI, Formularen, Settings und Admin-Flächen — der product-Register-Pfad, bei dem Design dem Produkt dient. Nutzt die vendored ui-ux-pro-max Offline-Wissensdatenbank (BM25-Suche, Design-Systeme, Stacks, Farb-/Style-Empfehlungen). Trigger: \"Dashboard bauen\", \"App-UI\", \"Admin-Panel\", \"Formular designen\", \"Settings-Seite\", \"Tool-UI\", \"SaaS-Interface\", \"Datentabelle\", \"UI-UX\", \"Produkt-UI\"."
+      "description": "Router auf die ui-ux-Linie in design. Feuert NUR bei explizitem \"/ui-ux\" oder \"ui-ux-Linie\". NICHT bei Website-Bau — das ist der web-Skill. Trigger: \"/ui-ux\", \"ui-ux-Linie\", \"ui-ux-pro-max Suche\"."
     },
     {
       "name": "ultra-loop",
@@ -202,9 +202,9 @@
     },
     {
       "name": "web",
-      "version": "0.14.0",
+      "version": "0.16.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) delegiert er an den design-Skill. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
+      "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },
     {
       "name": "website-plan",
@@ -256,7 +256,7 @@
     },
     {
       "name": "skill-update",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/methodik/skill-update/SKILL.md",
       "description": "Nimmt einen einzelnen Lernpunkt (\"das hätte anders laufen sollen\") und trägt ihn in ALLE betroffenen bestehenden Skills nach — statt ihn in einem Skill zu vergraben oder als neuen Skill anzulegen. Zwingt den Lernpunkt zuerst in eine Pflichtform, sucht dann dreistufig über das Skill-Repo, unterscheidet Skill-Regel von Prinzip und legt jede Datei einzeln zur Freigabe vor. Trigger: \"Skill anpassen\", \"Lernpunkt einarbeiten\", \"das soll der Skill künftig anders machen\", \"Skills nachziehen\", \"skill-update\"."
     },
@@ -274,7 +274,7 @@
     },
     {
       "name": "writing-skills",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "path": "skills/methodik/writing-skills/SKILL.md",
       "description": "Beschreibt, wie in diesem Repo neue Skills geschrieben werden: Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter → SKILL.md-Schritte → references/), unser Pflicht-Frontmatter-Schema und wann validate-skill.py grün sein muss. Ergänzt um die TDD-Testdisziplin aus superpowers, die zwei Skill-Archetypen (Capability- vs. Process-Primitive) und eine Sicherheits-/Qualitäts-Checkliste für jedes vendorierte Fremd-Skill. Trigger: \"neuen Skill schreiben\", \"SKILL.md anlegen\", \"Skill überarbeiten\", \"Skill erstellen\", \"Frontmatter-Schema\", \"Fremd-Skill vendorieren\"."
     },

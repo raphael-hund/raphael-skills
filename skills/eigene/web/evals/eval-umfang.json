@@ -1,4 +1,5 @@
 {
+  "run-adobe-fonts-check.mjs": 34,
   "run-aufruffehler-check.mjs": 35,
   "run-axe-check.mjs": 8,
   "run-bilder-check.mjs": 12,
@@ -36,5 +37,7 @@
   "run-verweise-check.mjs": 25,
   "run-weiterleitung-check.mjs": 9,
   "run-zwillinge-check.mjs": 2,
-  "run-hilfe-alle.mjs": 22
+  "run-hilfe-alle.mjs": 22,
+  "run-illustration-rezept-check.mjs": 23,
+  "run-site-build-load-path-check.mjs": 10
 }

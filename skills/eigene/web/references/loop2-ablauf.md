@@ -31,6 +31,8 @@ Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
 - **G1 (immer zuerst):** `node …/design/scripts/detect.mjs` Exit 0 (nie `npx impeccable detect`),
   Lighthouse = 0, axe = 0, Link-Check, HTML-validate, Werkzeug-Gate, SEO-Head-Mindestmaß,
   Trust-Legal (Impressum/Datenschutz/404) — Details `qa-faecher.md` Fächer 1–6.
+- **AI-Slop-Sequenz:** nur in `qa-faecher.md` (design detect + scan-ai-slop zuerst,
+  dann copywriting G1→G2). Hier nicht noch einmal ausformulieren.
 - **G2:** Copy sektionsweise gegen Rubrik `evals/rubrics/web.md`, Schwelle 0.7;
   Premium/Ship: Blind-A/B (`screenshot-kritik-loop.md` 3b) + Stichprobe `agentur-rubrik.md`.
 - **G4 (Outcome):** echte Analytics (CVR, Scroll, Bounce) → CRO-Learning, korrigiert Rubriken.
@@ -54,6 +56,10 @@ Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
 
 Launch → deterministisches Bash-Gate (Domain-Whitelist, Ziel-Env) + `git commit -S` in
 review-inbox. Nie autonomer Production-Deploy.
+
+Git für Kunden-Sites: `vercel-git-deploy.md`. `origin` ist die Org. `personal` ist
+der private Spiegel. Nach `main` auf `origin` läuft `/root/tools/git-personal-mirror.sh`.
+Preview über Feature-Branch. Production nur nach Signatur. Plugin-Skills dort.
 
 ## Outputs (Zielpfade)
 
