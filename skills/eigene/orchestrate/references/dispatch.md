@@ -5,8 +5,8 @@
 ```
 ROLLE:      Leader | Worker | Verifier
 agentType:  luna-worker | terra-bulk | sol-pruefer | sonnet-worker |
-            haiku-worker | kimi-worker | kimi-recherche
-MODELL:     sonnet | haiku | sol | terra | luna | kimi   (nur wenn kein agentType)
+            kimi-worker | kimi-recherche
+MODELL:     sonnet | sol | terra | luna | kimi   (nur wenn kein agentType)
 EFFORT:     standard | medium | high | max               (explizit!)
 HARNESS:    claude-agent | mcp-codex | mcp-kimi | codex-native | kimi-native
 AUFGABE:    <ein klar umrissenes Arbeitspaket, ein Output>
@@ -18,7 +18,7 @@ write_set:  <disjunkte Dateiliste bei parallelen Writern>
 ```
 
 In Claude-Terminal-Sessions **`agentType` bevorzugen** — nur so starten Luna/Sol/
-Terra/Kimi über Gateway bzw. MCP. Reines `model:'sonnet'|'haiku'|'opus'` ist ein
+Terra/Kimi über Gateway bzw. MCP. Reines `model:'sonnet'|'opus'` ist ein
 Claude-Override und zählt **nicht** als Cross-Model-Flotte.
 
 ## Effort-Defaults
@@ -26,7 +26,7 @@ Claude-Override und zählt **nicht** als Cross-Model-Flotte.
 | Modell / agentType | Effort |
 |---|---|
 | Fable / Opus (nur Cockpit, nie Subagent) | high |
-| Sonnet / Haiku | standard (bei Bedarf high) |
+| Sonnet | standard (bei Bedarf high) |
 | Sol (`sol-pruefer`) | medium–high |
 | Terra (`terra-bulk`) | max (high) |
 | Luna (`luna-worker`) | max (Gateway `forced_effort`) |

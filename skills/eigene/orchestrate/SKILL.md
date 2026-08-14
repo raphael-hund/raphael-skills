@@ -3,7 +3,7 @@ name: orchestrate
 version: 1.3.2
 description: >
   DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle
-  Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Haiku, Kimi, Grok,
+  Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Kimi, Grok,
   Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf,
   Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei
   Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt
@@ -37,7 +37,7 @@ completion_criteria:
   - "Kern-Ergebnisse wurden vom Cockpit selbst mit eigenem Read/Bash-Beleg nachverifiziert — kein blindes Übernehmen von Agenten-Reports"
   - "Bei LOOP: Abbruchbedingung stand vor dem Start fest und das Runden-Protokoll ist fortgeschrieben"
   - "Bei jeder Substanz-Runde erzeugten Subagenten zuerst einen echten PLAN mit mindestens zwei Steps; jeder Plan-Step läuft über mindestens einen explizit beauftragten Subagenten und abhängige Steps sind sequentiell nachvollziehbar"
-  - "LOOP setzt Kimi, Grok, Sol, Terra, Luna, Opus, Sonnet und Haiku mit echten Rollen ein; fehlt eine Familie wegen eines belegten Routenausfalls, stehen Beleg und Ersatz im Runden-Protokoll"
+  - "LOOP setzt Kimi, Grok, Sol, Terra, Luna, Opus und Sonnet mit echten Rollen ein; fehlt eine Familie wegen eines belegten Routenausfalls, stehen Beleg und Ersatz im Runden-Protokoll"
   - "Bei mindestens einem sinnvoll zerlegbaren LOOP-Step definierte ein Lead eigene Child-Aufträge; der Workflow startete diese Child-Subagenten als sichtbare Runtime-Aufrufe in Wellen und gab ihre echten Ergebnisse zur Lead-Synthese zurück"
   - "Parallelität bleibt innerhalb eines Plan-Steps; mehr als 6 gleichzeitig läuft in Wellen (bindende RAM-Grenze)"
   - "Im LOOP gibt es nie einen Fable-Subagenten"
@@ -88,7 +88,7 @@ Gauntlet-Runden). Kombinieren statt künstlich trennen.
     (**Default-Nicht-Claude-Worker**, Max-Effort im Gateway erzwungen)
   - `terra-bulk` — Architektur, große Migrationen über viele Dateien
   - `sonnet-worker` — normale Bau-Arbeit, Drafts, Integration
-  - `haiku-worker` — Massen-Lesen, Parsen, billige Klassifikation
+  - `luna-worker` — Massen-Lesen, Parsen, billige Klassifikation
   - `kimi-worker` — Frontend-Code, deutsche Marketing-/Verkaufstexte (immer K3)
   - `kimi-recherche` — lesende Dritt-Familie, Gegenperspektive
   - `grok-worker` — Grok 4.5, vierte Familie: Tempo/Volumen, Tool-Use, Zweitblick
@@ -97,8 +97,8 @@ Gauntlet-Runden). Kombinieren statt künstlich trennen.
 
 **Cross-Model-Regel:** mindestens **zwei Providerfamilien** je Substanz-Lauf;
 Bauen und Prüfen nie dieselbe Providerfamilie. Für dieses Gate zählen
-Luna/Sol/Terra als **GPT**, Opus/Sonnet/Haiku als **Claude**, dazu Kimi und Grok;
-die acht AgentTypes behalten trotzdem eigene LOOP-Rollen. `model:'opus'|'sonnet'|'haiku'`
+Luna/Sol/Terra als **GPT**, Opus/Sonnet als **Claude**, dazu Kimi und Grok;
+die sieben AgentTypes behalten trotzdem eigene LOOP-Rollen. `model:'opus'|'sonnet'`
 allein zählt **nicht** — GPT/Kimi starten nur über `agentType` oder natives Harness.
 Isolierbare Sub-Actions gehen zuerst an `luna-worker`, nicht ans Cockpit.
 **Fable/Opus nur über `agentType:'fable-architekt'` / `'opus-builder'`**
@@ -108,11 +108,11 @@ roher `model:`-Override. Zuteilung je Aufgabenklasse, Harness-Wahl
 `references/cross-model-harness.md`. Auftragskontrakt: `references/dispatch.md`.
 
 Router-Kurzform (Familien-Präferenz Raphael 03.08.: Luna/Terra/Grok zuerst,
-Sonnet/Haiku unbeliebt): klein → selbst · Urteil → Cockpit · Mechanik/Tests/Bau
+Sonnet unbeliebt): klein → selbst · Urteil → Cockpit · Mechanik/Tests/Bau
 → `luna-worker` · Bulk/Architektur → `terra-bulk` · schnelle Masse/Prototypen →
 `grok-worker` · Frontend/DE-Text/Denken → `kimi-worker` · Ship-Review →
 `sol-pruefer` · Zweitmeinung → `kimi-recherche` · stumpfes Massen-Lesen →
-`haiku-worker` (letzte Wahl) · Sonnet nur Notnagel · Browser → Kimi steuert.
+`luna-worker` · Sonnet nur Notnagel · Browser → Kimi steuert.
 Quota-Fehler = weiterlaufen, das Gateway rotiert; sichtbarer Nicht-Fallback ist
 ein Vorfall. Grok 4.5 ist seit 03.08.2026 als Route freigegeben (CLIProxy 8317,
 xAI-OAuth) — Cockpit-Preset für Raphaels direkte Ansprache und `grok-worker` als
@@ -181,7 +181,7 @@ Gates.
    wird in Wellen gefahren (bindende RAM-Grenze). Das Cockpit koordiniert und
    verifiziert, erledigt aber keinen Plan-Step solo.
 3. **Familien und Delegation besetzen:** Jede LOOP-Runde setzt Kimi, Grok, Sol,
-   Terra, Luna, Opus, Sonnet und Haiku mit echten Rollen ein. Bei echtem
+   Terra, Luna, Opus und Sonnet mit echten Rollen ein. Bei echtem
    Routenausfall darf eine Familie fehlen, aber nur mit Beleg und Ersatz im
    Runden-Protokoll. Ein geeigneter Lead definiert für mindestens einen sinnvoll
    zerlegbaren Plan-Step eigene Child-Aufträge. Der Workflow startet die Children
@@ -310,6 +310,15 @@ sonst selbst): mehrere künstlich gegensätzliche Rollen unabhängig ansetzen �
 Runde 2 greifen sie sich gegenseitig an → der Leader destilliert **nur, was
 den Angriff überlebt hat** und dispatcht das an einen eigenständigen
 Planer-Agenten. **Der Leader schreibt nie selbst den finalen Plan.**
+
+## Harte Modell-Grenzen (14.08.2026)
+
+- `haiku-worker` ist verboten und stillgelegt.
+- Masse, Massen-Lesen, Parsen und billige Klassifikation laufen über `luna-worker`.
+- Jeder Kritiker-Lauf nutzt zwei parallele Kritiker aus verschiedenen Familien.
+- Code nutzt `sol-critic` + `opus-critic`.
+- Visuelle Arbeit nutzt `visual-kritiker` + `opus-critic`.
+- Ads und Copy nutzen `kimi-critic` + `opus-critic`.
 
 ## Harte Regeln (Rot-Linien)
 

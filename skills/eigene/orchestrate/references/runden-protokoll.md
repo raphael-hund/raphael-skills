@@ -34,7 +34,6 @@ Mission: <1 Satz>. Gates: <Liste>. Tabu: <Liste>.
       - Luna: <agentType + echte Rolle + Ergebnis/Beleg>
       - Opus: <agentType + echte Rolle + Ergebnis/Beleg>
       - Sonnet: <agentType + echte Rolle + Ergebnis/Beleg>
-      - Haiku: <agentType + echte Rolle + Ergebnis/Beleg>
 
       Nested-Delegation:
       - Lead <agentType> → Runtime-Child <agentType>: <Step-ID>, <child_call_id>,

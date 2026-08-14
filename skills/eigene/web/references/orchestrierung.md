@@ -7,8 +7,10 @@ Stand 27.07.2026. Alle Fähigkeitsangaben hier sind **getestet, nicht vermutet**
 
 | Subagent | Familie | Sieht Bilder | Liest Dateien | Schreibt | Wofür |
 |---|---|---|---|---|---|
-| `sonnet-worker` | Claude | **ja** | ja | ja | visuelle Kritik, normale Bauarbeit, Drafts |
-| `haiku-worker` | Claude | **ja** | ja | ja | Massen-Lesen, Parsen, billige Klassifikation |
+| `opus-critic` | Claude Opus | **ja** | ja | nein | visuelle Kritik, hartes Urteil |
+| `visual-kritiker` | Grok (Lane) | **ja** | ja | nein | visuelle Kritik, Default fail |
+| `sonnet-worker` | Claude | **ja** | ja | ja | Hülle für native CLI, Drafts |
+| `luna-worker` | GPT-Luna | **ja** | ja | ja | Massen-Lesen, Parsen, billige Klassifikation |
 | `kimi-worker` | Kimi K3 | ja | ja | ja | Frontend-Code, deutsche Marketing-Texte |
 | `kimi-recherche` | Kimi K3 | **ja** | ja | nein | dritte Familie, Zweitmeinung, Slop-Blick |
 | `luna-worker` | GPT-5.6 | **ja** | ja | ja | Mechanik, Tests, Recherche |
@@ -16,7 +18,7 @@ Stand 27.07.2026. Alle Fähigkeitsangaben hier sind **getestet, nicht vermutet**
 
 **Der Test, auf dem das beruht:** ein Kontrollbild mit einer Überschrift, einer Unterzeile
 und einer Form, deren Inhalt kein Modell erraten kann („KOBALT 47" / „drei Fische tanzen
-links" / magenta Kreis auf marineblau). `sonnet-worker`, `haiku-worker`, `kimi-recherche`
+links" / magenta Kreis auf marineblau). `sonnet-worker`, `luna-worker`, `kimi-recherche`
 und `luna-worker` haben alle drei Angaben korrekt genannt. Die frühere Annahme
 „nur Claude-Subagenten können Bilder sehen" ist damit widerlegt — bei der Panel-Besetzung
 ist man also freier als gedacht.
@@ -34,11 +36,15 @@ Regel 8 sagt: nichts prüft die eigene Hausarbeit. Praktisch heißt das für ein
 | Rolle | Besetzung | Bekommt |
 |---|---|---|
 | Code-Urteil | `sol-pruefer` (GPT) | Textausschnitt mit Zeilennummern, kein Pfad |
-| Visuelle Kritik A | `sonnet-worker` (Claude) | `manifest.json` + alle Shot-PNGs |
-| Visuelle Kritik B | `kimi-recherche` (Kimi) | `manifest.json` + alle Shot-PNGs |
+| Visuelle Kritik A | `visual-kritiker` (Grok) | `manifest.json` + alle Shot-PNGs |
+| Visuelle Kritik B | `opus-critic` (Claude Opus) | `manifest.json` + alle Shot-PNGs |
 
-Wer gebaut hat, prüft nicht. Hat `kimi-worker` das Frontend gebaut, wandert die
-visuelle Kritik B auf `luna-worker` — sonst prüft die Familie sich selbst.
+Wer gebaut hat, prüft nicht. Hat `opus-builder` das Frontend gebaut, wandert die
+visuelle Kritik B auf `kimi-critic` — sonst prüft die Familie sich selbst.
+
+**Kritik läuft immer doppelt** (Raphael 14.08.2026). Nie ein Kritiker allein.
+Nie Haiku als Kritiker. Luna ist kein Kritiker — Luna macht Masse, nicht Urteil.
+Beide Kritiker starten in EINER Nachricht, damit sie parallel laufen.
 
 **Judge-Form immer „pass/fail + eingefügter Beweis", nie „erkläre dein Denken"**
 (Regel 19, Fable-Gotcha). Ein Befund ohne Beleg gilt als nicht gefunden.
@@ -87,7 +93,7 @@ löst mehr als ein größeres Modell auf Standard-Effort — und kostet weniger.
 | Art Direction, Struktur, Entscheidungen | Cockpit selbst (nicht delegieren) |
 | Frontend-Code, deutsche Texte | `kimi-worker` |
 | Mechanik, Tests, Datenkram | `luna-worker` |
-| Massen-Lesen, Sortieren | `haiku-worker` |
+| Massen-Lesen, Sortieren | `luna-worker` |
 | Auslieferungs-Urteil | `sol-pruefer` + eine bildfähige Familie |
 
 Keine Opus-/Fable-Subagenten (Doktrin). Kimi immer K3, HighSpeed verboten (3× Quota).

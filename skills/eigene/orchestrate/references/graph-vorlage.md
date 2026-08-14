@@ -18,7 +18,7 @@ Stand: <Datum> · Läufe: <Run-IDs mit Datum anhängen>
 | brief | sonnet-worker | research.md | brief.md | nein |
 | draft | kimi-worker | NUR brief.md (bewusst eng) | draft.md | nein |
 | score | sol-pruefer | draft.md + Rubrik | verdict JSON | ja, max 3 |
-| publish-vorschlag | haiku-worker | draft.md final | Inbox-Eintrag | nein |
+| publish-vorschlag | luna-worker | draft.md final | Inbox-Eintrag | nein |
 
 ## Routen + Checkpoints
 - research → brief (Checkpoint: hat Suchintention + Konkurrenz + Fragen? sonst → research)
@@ -75,7 +75,7 @@ if (!verdict || !verdict.pass) return { abbruch: 'score auch nach Brief-Neuschri
 das ROHE Ergebnis (Exit-Code + Ausgabe) — er interpretiert nicht weg:
 ```javascript
 const gate = await agent(`${LONGHORIZON} Führe aus: <GATE-KOMMANDO>. Gib {exitCode, output} zurück, ungeschönt.`,
-  { label: 'gate:lint', phase: 'Gate', agentType: 'haiku-worker', schema: GATE_SCHEMA , stallMs: 0 })
+  { label: 'gate:lint', phase: 'Gate', agentType: 'luna-worker', schema: GATE_SCHEMA , stallMs: 0 })
 if (!gate || gate.exitCode !== 0) return { abbruch: 'Gate rot', gate }
 ```
 Das Cockpit prüft das Gate nach dem Run NOCHMAL selbst (Bash) —

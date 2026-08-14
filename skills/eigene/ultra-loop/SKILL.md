@@ -4,7 +4,8 @@ version: 0.4.0
 description: >
   Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang
   einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents
-  startet: Worker-Flotte (Sol/Kimi/Luna/Sonnet/Haiku, frei nach Verfügbarkeit) findet Schwächen → verifizieren
+  startet: Worker-Flotte (Sol/Kimi/Luna/Opus/Sonnet, frei nach Verfügbarkeit;
+  Haiku verboten) findet Schwächen → verifizieren
   → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger:
   "/ultra-loop", "Loop mit Workflows", "Dauer-Verbesserungs-Loop",
   "selbstkritischer Loop", "loop der sich verbessert", "ultracode-Loop".
@@ -68,7 +69,7 @@ erzwingt die Run-ID als Beweis.
    Der Prompt MUSS enthalten: (a) Pflicht "starte einen Workflow
    (Workflow-Tool) nach references/workflow-vorlage.md", (b) Worker per
    `agentType` frei nach Aufgabe und Verfügbarkeit wählen (sol-pruefer=Urteil,
-   kimi=Gegenperspektive, luna-worker=Mechanik, Sonnet/Haiku ergänzen) —
+   kimi=Gegenperspektive, luna-worker=Mechanik, Opus ergänzen) —
    keine Pflicht-Kombination mehr, aber NIE Fable-Subagents,
    (c) Stand-Datei lesen+fortschreiben, (d) Commit/Push-Regel,
    (e) "EINEN Punkt tief und fertig, nicht zehn anfangen".
@@ -157,8 +158,10 @@ Session bzw. nach 7 Tagen Auto-Ablauf. Für sessionübergreifende Loops:
 - 63 parallele Schreiber sind ok, wenn jeder eine ANDERE Datei schreibt —
   zwei Agenten auf derselben Datei sind ein Race (Worktree-Isolation nutzen
   oder sequenzieren).
-- Der Verify-Schritt gehört in den Workflow (haiku je Artefakt), aber die
-  Letzt-Verifikation der Kern-Funde macht das Cockpit selbst.
+- Der Verify-Schritt gehört in den Workflow: zwei Kritiker je Artefakt,
+  parallel und aus verschiedenen Familien (Code `sol-critic` + `opus-critic`,
+  visuell `visual-kritiker` + `opus-critic`). Haiku ist verboten, Luna urteilt
+  nicht. Die Letzt-Verifikation der Kern-Funde macht das Cockpit selbst.
 - `check_model_fable` in `scripts/validate-workflow.py` ist nur eine
   Text-Heuristik, kein hartes Gate: sie erkennt das Literal
   `model:'fable'` case-insensitiv, aber Verschleierung per

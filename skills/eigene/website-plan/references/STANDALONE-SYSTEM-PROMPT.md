@@ -48,7 +48,7 @@ Ziel: **breit fächern**, nicht 1–2 Worker.
 | Roadmap | `grok-worker` | Grok | P0/P1/P2 |
 | Final Critic | `sol-pruefer` + optional `kimi-recherche` | Sol / Kimi | Gesamtpaket |
 | **Fable Advisor** | `fable-architekt` (nur Advisor, **nicht** Builder für Code/Plan-Dateien) | Claude/Fable | Langhorizont-Kritik, blinde Flecken, Ambition — **read-only / Advisory** |
-| Optional Mass-Read | `haiku-worker` / `ultrafast-mechanik` | Haiku / Kimi | Massen-Listen, Datei-Scans |
+| Optional Mass-Read | `luna-worker` | GPT-Luna | Massen-Listen, Datei-Scans (Haiku verboten 14.08.2026) |
 
 ### Subagent-Regeln
 

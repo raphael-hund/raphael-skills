@@ -5,9 +5,9 @@ description: >
   Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine
   inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter
   Graph, mit überlappender Cross-Family-Besetzung (Opus, Luna, Sol, Terra,
-  Haiku, Grok auf max; Kimi K3 auf high; Fable bewusst auf low/medium) plus
+  Grok auf max; Kimi K3 auf high; Fable bewusst auf low/medium) plus
   zwei festen Tandems — Sol+Opus fürs Urteil, Kimi+Fable als austauschbares
-  Denk-Paar — und einem Kritiker, der NIE aus der Familie des Builders kommt.
+  Denk-Paar — und zwei Kritikern aus verschiedenen Familien, die NIE aus der Familie des Builders kommt.
   Läuft als Dauerlauf über Stunden: Welle für Welle, immer wieder neu, bis die
   Zugewinne klein sind.
   Trigger: "/orchestrate-gauntlet", "Gauntlet", "Gauntlet-Loop", "gegen eine
@@ -74,7 +74,7 @@ Bugfix) ist er falsch.
 
 **Familien-Präferenz (Raphael):** Luna, Terra und Grok zuerst — die
 GPT-Familie und Grok sind die Lieblings-Worker. Kimi für Frontend/Texte/Denken.
-Sonnet ist raus (Notnagel), Haiku nur für stumpfes Massen-Lesen.
+Sonnet ist raus (Notnagel). Masse läuft über Luna.
 
 **Grundsatz: die Rollen überlappen sich.** Kein Modell hat ein Monopol. Jede
 Familie kann mehrere Dinge, und für fast jede Aufgabe gibt es mehrere taugliche
@@ -88,7 +88,7 @@ und hält Regel 8 (Builder ≠ Kritiker) immer erfüllbar.
 | `luna-worker` | GPT | max | **Motor.** Goal je Stück: Mechanik, Tests, Fix-Schleifen, Backend | Kritiker (Mechanik/Zahlen), Glätter |
 | `terra-bulk` | GPT | max | Architektur, Migration, Multi-File-Volumen | Kritiker (Konsistenz über viele Dateien) |
 | `sol-pruefer` | GPT | max | Ship-Urteil, Chairman, finale Abnahme | **auch Builder**: harte Code-Fälle, Planung |
-| `haiku-worker` | Claude | max | nur noch stumpfes Massen-Lesen, wenn Luna/Grok verschwendet wären | Screenshot-Datei-Vergleich |
+| `luna-worker` | GPT | max | Massen-Lesen, Parsen und mechanische Arbeit | Screenshot-/Datei-Vergleich |
 | `kimi-worker` | Kimi K3 | high | Frontend/UI, DE-Texte, Kreatives, 3D — **und schweres Denken**: Platz 4 im Intelligence Index (57,11), 1M Kontext, Thinking immer an | Kritiker (Design/Ton/Analyse), Glätter, Deep-Search |
 | `grok-worker` | Grok 4.5 | max | Tempo und Volumen, Prototypen, Tool-Use | Kritiker (vierte Perspektive) |
 | `kimi-recherche` | Kimi K3 | high | Lesende Gegenprobe, Latten-Suche | Kritiker ohne Schreibrechte |
@@ -116,8 +116,7 @@ füreinander sind sie erlaubt (verschiedene Familien) — das ist die günstigst
 Art, Fable-Output abzunehmen.
 
 **Fable und Opus sind Teil der Flotte** (Freigabe 03.08.2026). Beide zählen als
-**Claude-Familie** für Regel 8 — Fable prüft nie Opus, keiner von beiden prüft
-Haiku.
+**Claude-Familie** für Regel 8 — Fable prüft nie Opus.
 
 **Cockpit** zerlegt, entscheidet, destilliert und fällt das Letzt-Urteil über
 das geglättete Ganze. Raphaels direkte Ansprache läuft über **Grok 4.5**.
@@ -148,7 +147,7 @@ Unabhängige läuft parallel:
   Fix, ein Verify-Skript, eine Datei) bekommt seinen EIGENEN `luna-worker`
   auf max mit eigenem 5-Teile-Goal — nicht ein Luna für alles.
 - **Massen-Arbeit fächern:** Referenzen sichten, Screenshots vergleichen,
-  Lint-Runden → je Einheit ein `haiku-worker`/`grok-worker`; 20–60 parallel
+  Lint-Runden → je Einheit ein `luna-worker`/`grok-worker`; 20–60 parallel
   sind normal, wenn die Einheiten da sind (jeder auf einer ANDEREN Datei —
   `write_set` disjunkt).
 - **Duelle kosten keine Zeit extra:** zwei Builder parallel + ein Kritiker ist
@@ -169,7 +168,7 @@ messen können: Screenshots einer Best-in-Class-Seite (Desktop + Mobil), die
 eigene Referenz-Anzeige, eine Testsuite, ein Latenz-Budget, ein Referenztext.
 „Mach es großartig" scheitert immer.
 
-- Keine Latte da? → **erster Auftrag** an `kimi-recherche` oder `haiku-worker`:
+- Keine Latte da? → **erster Auftrag** an `kimi-recherche` oder `luna-worker`:
   drei Referenzen finden und als Datei ablegen.
 - Latte als Datei speichern (`gauntlet/<name>/latte/`), Pfad in JEDEN
   Kritiker-Prompt.
@@ -223,7 +222,7 @@ Nicht-Claude-Worker.
 ### 4. Die Runde
 
 1. Builder baut gegen sein Goal.
-2. Kritiker (andere Familie) vergleicht am **echten Artefakt** — gerenderter
+2. Kritiker-Paar: `sol-critic` + `opus-critic` bei Code, `visual-kritiker` + `opus-critic` bei visuellen Stücken, `kimi-critic` + `opus-critic` bei Ads/Copy vergleicht am **echten Artefakt** — gerenderter
    Screenshot, laufende Seite, echte Testausgabe. **Nie an einer vom Builder
    geschriebenen Zusammenfassung.** Blind A/B gegen die Latte, wo möglich.
 3. Rückgabe streng: `GEWINNER: <A|B>` · `GRÖSSTE LÜCKE: <ein Satz>` ·
@@ -320,3 +319,13 @@ nicht die Lösung innerhalb eines Nodes.
 - **Immer dieselbe Besetzung fahren** → die Überlappung ist da, um genutzt zu
   werden. Wenn ein Stück zweimal am selben Kritiker scheitert, die Zweitwahl
   aus einer anderen Familie ansetzen statt eine dritte Runde mit demselben Paar.
+
+
+## Harte Modell-Grenzen (14.08.2026)
+
+- `haiku-worker` ist verboten und stillgelegt.
+- Masse, Massen-Lesen, Parsen und billige Klassifikation laufen über `luna-worker`.
+- Jeder Kritiker-Lauf nutzt zwei parallele Kritiker aus verschiedenen Familien.
+- Code nutzt `sol-critic` + `opus-critic`.
+- Visuelle Arbeit nutzt `visual-kritiker` + `opus-critic`.
+- Ads und Copy nutzen `kimi-critic` + `opus-critic`.

@@ -73,12 +73,12 @@ return { kritik_funde: alle.length, fixes, review }
 
 - **Massen-Umbau über N Dateien** (je Datei ein Schreiber + Prüfer):
   `pipeline(dateien, schreib(sonnet-worker/kimi-worker),
-  pruef(luna-worker/haiku-worker), fixWennRot(sonnet-worker))` — Schreiber
+  pruef(luna-worker), fixWennRot(sonnet-worker))` — Schreiber
   schreiben je EINE eigene Datei (kein Race). Danach Sol-Stichprobe (jede
   ~8. Datei voll lesen, git diff gegen Substanzverlust/Erfindung).
 - **Vendoring-Runde:** je Repo ein Sonnet- oder Kimi-Agent (clone → Lizenz →
   Red-Flags → destillieren in bestehende Skill-References — nie
-  Masseninstall), danach Luna-/Haiku-Validate und Sol-Abnahme.
+  Masseninstall), danach Luna-Validate und Sol-Abnahme.
 - **Streitfall:** llm-council-Muster — N Antworten parallel, anonymes
   Peer-Ranking („Antwort A/B/C", drei Fragen: stärkste? größter blinder Fleck?
   was übersahen ALLE?), Chairman-Synthese. Statt Nutzer-Rückfrage.
@@ -102,6 +102,6 @@ return { kritik_funde: alle.length, fixes, review }
 Große Zwischenergebnisse NIE per `JSON.stringify(x).slice(0, N)` an
 Folge-Agenten übergeben — der Slice kappt still Fälle, und der Folge-Agent
 arbeitet unvollständig, ohne es zu merken. Stattdessen: Zwischenergebnis
-als Datei ins Scratchpad schreiben (ein kleiner Haiku-Agent oder das
+als Datei ins Scratchpad schreiben (ein kleiner luna-worker oder das
 Cockpit) und dem Folge-Agenten den PFAD geben — er liest selbst per Read.
 Faustregel: alles über ~8k Zeichen geht als Datei, nicht als Prompt-Text.

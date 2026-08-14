@@ -58,7 +58,6 @@ als Kritiker desselben Stücks gebunden ist.
 | `luna-worker` | GPT | **max** (Gateway erzwingt) | ✅ **Motor**: Mechanik, Tests, Fix-Schleifen, Backend, Refactor | ✅ mechanische Prüfung, Tests nachfahren, Zahlen-Check | ✅ technische Angleichung | ✅ Code-/Datei-Recherche |
 | `terra-bulk` | GPT | **max** | ✅ Architektur, Migration, Multi-File, Volumen | ✅ Architektur-Kritik, Konsistenz über viele Dateien | ✅ Struktur-Angleich | — |
 | `sol-pruefer` | GPT | **max** | ✅ harte Code-Fälle, Terminal-/Agent-Arbeit, Planung eines Stücks | ✅ **Erstwahl** Ship-Urteil, Design-Kritik, Chairman, Abnahme | ✅ inhaltliche Angleichung | ✅ Zahlen-Verifikation |
-| `haiku-worker` | Claude | **max** | ✅ mechanische Edits, Boilerplate, Massen-Umbau | ✅ Screenshot-/Datei-Vergleich, Lint, Checklisten | ✅ Format-Angleich | ✅ **Erstwahl** Massen-Lesen |
 | `kimi-worker` | Kimi K3 | **high** | ✅ **Erstwahl** Frontend/UI, DE-Texte, Kreatives, 3D — **und schweres Denken** (Platz 4 Intelligence Index, Thinking immer an) | ✅ Design-Blick, Text-Kritik, Analyse-Kritik, dritte Familie | ✅ visuelle Angleichung | ✅ Riesen-Kontext (1M), Deep-Search |
 | `kimi-recherche` | Kimi K3 | **high** | — (nur lesend) | ✅ lesende Gegenprobe, Latten-Prüfung | — | ✅ Referenzen/Latte finden |
 | `grok-worker` | Grok 4.5 | **max** | ✅ schnelle Umsetzung in Volumen, Prototypen, Tool-Use, Agent-Schritte | ✅ vierte Perspektive, Tempo-Review | ✅ mechanische Angleichung | ✅ breite Sichtung |
@@ -70,7 +69,7 @@ als Kritiker desselben Stücks gebunden ist.
 |---|---|---|
 | `fable-architekt` | **low / medium** | Fable ist das stärkste Modell im Feld (Index 59,86, Platz 1) — die Kraft kommt aus dem Modell, nicht aus langem Nachdenken. Der Effort-Aufschlag ist der Kostentreiber. Reicht low nicht → medium, nie höher. |
 | `opus-builder` | **max** | Der Denk-Aufwand ist hier der Hebel: Root-Cause und Debugging leben von langen Ketten. |
-| alle übrigen (Luna, Sol, Terra, Haiku, Grok) | **max** | Luna erzwingt max nativ im Gateway (`forced_effort`). |
+| alle übrigen (Luna, Sol, Terra, Grok) | **max** | Luna erzwingt max nativ im Gateway (`forced_effort`). |
 | `kimi-worker` / `kimi-recherche` | **high** | K3 hat Thinking immer an; `max` verbrennt bei kurzen Aufgaben unverhältnismäßig viele versteckte Denk-Tokens (bei Launch: 13.241 Reasoning-Tokens für 3.417 Output-Tokens). |
 
 Braucht ein Stück wirklich maximales Nachdenken, ist das **nicht** Fable auf max —
@@ -109,7 +108,7 @@ Raphael spricht direkt über **Grok 4.5**, nicht über Opus.
 | Tiefe Bug-Jagd (hoher Recall nötig) | `fable-architekt` | `opus-builder` | `luna-worker` |
 | Große Migration / Multi-File | `terra-bulk` | `luna-worker` | `grok-worker` |
 | Prototyp, viele Varianten schnell | `grok-worker` | `luna-worker` | `kimi-worker` |
-| Mechanik, Boilerplate, Massen-Edit | `luna-worker` | `grok-worker` | `haiku-worker` |
+| Mechanik, Boilerplate, Massen-Edit | `luna-worker` | `grok-worker` | `terra-bulk` |
 | Tests schreiben und grün fahren | `luna-worker` | `grok-worker` | `terra-bulk` |
 | 3D / visuelle Kreation | `kimi-worker` | `fable-architekt` | `grok-worker` |
 | Recherche / Referenzen finden | `kimi-recherche` | `grok-worker` | `luna-worker` |
@@ -123,18 +122,17 @@ in dem Fable jedes Stück baut, ist falsch besetzt.
 
 | Builder | Familie | Erlaubte Kritiker (alle gleichwertig) |
 |---|---|---|
-| `kimi-worker` | Kimi | `sol-pruefer` · `luna-worker` · `terra-bulk` · `opus-builder` · `fable-architekt` · `haiku-worker` · `grok-worker` |
-| `luna-worker` / `terra-bulk` / `sol-pruefer` | GPT | `kimi-worker` · `kimi-recherche` · `opus-builder` · `fable-architekt` · `haiku-worker` · `grok-worker` |
-| `fable-architekt` / `opus-builder` / `haiku-worker` | Claude | `sol-pruefer` · `luna-worker` · `terra-bulk` · `kimi-worker` · `kimi-recherche` · `grok-worker` |
-| `grok-worker` | Grok | `sol-pruefer` · `luna-worker` · `opus-builder` · `fable-architekt` · `haiku-worker` · `kimi-recherche` |
+| `kimi-worker` | Kimi | `sol-pruefer` · `luna-worker` · `terra-bulk` · `opus-builder` · `fable-architekt` · `grok-worker` |
+| `luna-worker` / `terra-bulk` / `sol-pruefer` | GPT | `kimi-worker` · `kimi-recherche` · `opus-builder` · `fable-architekt` · `grok-worker` |
+| `fable-architekt` / `opus-builder` | Claude | `sol-pruefer` · `luna-worker` · `terra-bulk` · `kimi-worker` · `kimi-recherche` · `grok-worker` |
+| `grok-worker` | Grok | `sol-pruefer` · `luna-worker` · `opus-builder` · `fable-architekt` · `kimi-recherche` |
 
 **Achtung Claude-Familie:** `fable-architekt`, `opus-builder` und
-`haiku-worker` sind **dieselbe Familie**. Fable prüft nie Opus, Opus nie Fable,
-und keiner von beiden prüft Haiku-Output (Regel 8).
+Fable und Opus gehören zur Claude-Familie. Fable prüft nie Opus, Opus nie Fable.
 
 **Wahl innerhalb der erlaubten Kritiker** nach Art der Prüfung:
 - Design-/Ship-Urteil → `sol-pruefer` (Beschluss B1), ersatzweise `kimi-worker`
-- Mechanik, Tests nachfahren, Zahlen → `luna-worker` oder `haiku-worker`
+- Mechanik, Tests nachfahren, Zahlen → `luna-worker` oder `opus-builder`
 - Text und Ton → `kimi-worker` oder `fable-architekt` (low)
 - Schneller Zweitblick, vierte Familie → `grok-worker`
 - Reine Gegenprobe ohne Schreiben → `kimi-recherche`
@@ -230,7 +228,7 @@ in die Gewinner-Variante.
    sind NICHT die Gateway-Routen. Die echten IDs holt man sich mit
    `curl -s http://127.0.0.1:8317/v1/models -H "Authorization: Bearer $GWKEY"`.
    Gültig sind u. a. `claude-fable-5`, `claude-opus-5`, `claude-sonnet-5`,
-   `claude-haiku-4-5-20251001`, `gpt-5.6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`,
+   `gpt-5.6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`,
    `kimi-k3`, `grok-4.5` (alle am 03.08.2026 live geprüft).
 
 **Immer gilt:** ein Familien-Ausfall wird im `workbench.md` protokolliert, nie

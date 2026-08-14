@@ -26,7 +26,7 @@ oder Kundendaten (Secrets-Gate, Juli 2026).
 | `reviewer` | Diff prüfen | andere Familie als der Builder | — | `code-review` |
 | `qa` | echten Flow fahren | Luna + Grok 4.6 | — | — |
 | `retro` | Historie → Lernen | Kimi K3 + Grok 4.6 | — | — |
-| `visual-kritiker` | visuell zerreißen | Grok 4.6 | Sol | `visual-aaa` |
+| `visual-kritiker` | visuell zerreißen | Grok 4.6 + Opus 5 (immer beide) | Sol | `visual-aaa` |
 | `explorer` | Repo/Docs nur lesen | Luna + Grok 4.6 | — | — |
 | `architect` | Schnitt, kein Code | Fable + Grok 4.6 | — | — |
 | `planning-critic` | Plan vor dem Bau zerreißen | andere Familie als Architect | — | — |
@@ -46,6 +46,15 @@ SEO, Report, Onboard, Offer, Research. Das ist Fachwissen, kein zweiter Auftrags
 
 ## Harte Grenzen
 
+- **Haiku ist als Sub-Agent verboten** (Raphael 14.08.2026). `haiku-worker`
+  ist stillgelegt. Masse (lesen, parsen, suchen, Bilder beschreiben) → Luna.
+  Denken, bauen, urteilen → Opus, Kimi K3, Grok, Sol.
+- **Kritik läuft immer doppelt.** Nie ein Modell allein. Zwei Kritiker aus
+  verschiedenen Familien parallel, in EINER Nachricht:
+  visuell `visual-kritiker` (Grok) + `opus-critic` ·
+  Code `sol-critic` + `opus-critic` ·
+  Ads/Copy `kimi-critic` + `opus-critic`.
+  Luna ist kein Kritiker — Luna macht Masse, nicht Urteil.
 - Kimi fixt keinen Prod-Code.
 - Fable schreibt keinen Produktivcode.
 - Reviewer ≠ Schreiber-Familie.

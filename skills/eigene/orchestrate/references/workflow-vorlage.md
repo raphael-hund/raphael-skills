@@ -30,17 +30,17 @@ if (Object.keys(input).length < 1) throw new Error('Autoritative Mission fehlt i
 const MAX_WAVE = 6
 const AGENT_TYPES = [
   'kimi-worker', 'grok-worker', 'sol-pruefer', 'terra-bulk',
-  'luna-worker', 'opus-builder', 'sonnet-worker', 'haiku-worker',
+  'luna-worker', 'opus-builder', 'sonnet-worker',
 ]
 const FAMILY = {
   'kimi-worker': 'Kimi', 'grok-worker': 'Grok', 'sol-pruefer': 'Sol',
   'terra-bulk': 'Terra', 'luna-worker': 'Luna', 'opus-builder': 'Opus',
-  'sonnet-worker': 'Sonnet', 'haiku-worker': 'Haiku',
+  'sonnet-worker': 'Sonnet',
 }
 const PROVIDER_FAMILY = {
   'kimi-worker': 'Kimi', 'grok-worker': 'Grok',
   'sol-pruefer': 'GPT', 'terra-bulk': 'GPT', 'luna-worker': 'GPT',
-  'opus-builder': 'Claude', 'sonnet-worker': 'Claude', 'haiku-worker': 'Claude',
+  'opus-builder': 'Claude', 'sonnet-worker': 'Claude',
 }
 const LEAD_TYPES = ['opus-builder', 'sonnet-worker']
 const CONTRACT = [

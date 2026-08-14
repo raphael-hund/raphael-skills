@@ -5,7 +5,7 @@ description: |
   Nutze proaktiv wenn: PDF, Landingpage, Ads-Static, Offerte, Folie oder
   anderes visuelles Stück fertig ist und vor Auslieferung zerrissen werden
   muss. Andere Rolle als der Ersteller (Regel 8).
-model: haiku
+model: sonnet
 tools: Bash, Read, Glob, Grep
 ---
 

@@ -26,18 +26,21 @@ class MultiModelValidationTest(unittest.TestCase):
     def messages(self, body):
         return [message for _, _, message in VALIDATOR.validate(BASE % body)]
 
-    def test_rejects_claude_only_workflow(self):
+    def test_claude_only_workflow_wird_nicht_mehr_geblockt(self):
+        """check_multimodel_fleet ist seit 25.07.2026 bewusst leer.
+
+        Der Vorgaenger-Test verlangte hier eine Warnung. Die Funktion gibt aber
+        nur `return` zurueck (siehe ihren Docstring: die Pflicht-Flotte war bei
+        Anbieter-Ausfaellen nicht erfuellbar). Der Test blieb rot stehen und war
+        damit ein blindes Gate. Er prueft jetzt den echten Vertrag: der
+        Validator meldet zur Flotte nichts, die Familien-Wahl liegt beim
+        Cockpit (Doktrin AGENTS.md, Regel 8).
+        """
         messages = self.messages(
             "const result = await agent('work', {model:'sonnet'})"
         )
-        self.assertTrue(
-            any("sol-pruefer" in message for message in messages), messages
-        )
-        self.assertTrue(
-            any("kimi" in message for message in messages), messages
-        )
-        self.assertTrue(
-            any("luna-worker" in message for message in messages), messages
+        self.assertFalse(
+            any("Pflicht-Flotte" in message for message in messages), messages
         )
 
     def test_accepts_required_cross_vendor_fleet(self):
@@ -47,7 +50,7 @@ const sol = await agent('judge', {agentType:'sol-pruefer'})
 const kimi = await agent('critic', {agentType:'kimi-recherche'})
 const luna = await agent('verify', {agentType:'luna-worker'})
 const writer = await agent('write', {agentType:'sonnet-worker'})
-const mechanic = await agent('check', {agentType:'haiku-worker'})
+const mechanic = await agent('check', {agentType:'terra-bulk'})
 """
         )
         self.assertFalse(
@@ -192,8 +195,12 @@ class SabotageTest(unittest.TestCase):
     SCHAEDEN = [
         ("check_nondeterminism", "        for m in re.finditer(pat, code):",
          "        for m in []:"),
-        ("check_multimodel_fleet", "    for label, pattern in required:",
-         "    for label, pattern in []:"),
+        # check_multimodel_fleet steht hier NICHT mehr: die Funktion ist seit
+        # 25.07.2026 bewusst leer (nur `return`). Eine Funktion ohne Urteil
+        # laesst sich nicht sabotieren. Der alte Eintrag suchte
+        # "for label, pattern in required:" — diese Zeile existiert nicht mehr,
+        # der Test war seitdem dauerhaft rot. Kommt das Urteil je zurueck,
+        # gehoert der Fall wieder in diese Liste.
         ("check_model_fable", "def check_model_fable(code, findings):",
          "def check_model_fable(code, findings):\n    return"),
         ("check_meta", '    if "name" not in body:', "    if False:"),

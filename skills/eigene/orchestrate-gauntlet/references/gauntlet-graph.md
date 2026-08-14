@@ -26,7 +26,7 @@ STAND:     gauntlet/<name>/workbench.md
 |---|---|---|---|---|---|
 | n1 | Hero-Sektion | kimi-worker | sol-pruefer | src/hero.* | gerenderter Screenshot |
 | n2 | Preis-Sektion | kimi-worker | opus-builder | src/pricing.* | gerenderter Screenshot |
-| n3 | Build + Tests | luna-worker | haiku-worker | tests/* | Testausgabe |
+| n3 | Build + Tests | luna-worker | sol-critic + opus-critic | tests/* | Testausgabe |
 
 ## Routen
 n1 → check1 → n2 → check2 → n3 → gate_build → glätten → fertig

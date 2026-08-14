@@ -184,7 +184,7 @@ def check_model_fable(code, findings):
     for pattern in patterns:
         for m in re.finditer(pattern, masked, re.I):
             findings.append((FAIL, _lineno(code, m.start()),
-                             "Fable-Subagents sind verboten — Fable bleibt das Cockpit; Worker laufen ueber Sol/Kimi/Luna/Sonnet/Haiku."))
+                             "Fable-Subagents sind verboten — Fable bleibt das Cockpit; Worker laufen ueber Sol/Kimi/Luna/Grok/Opus/Sonnet. Haiku ist verboten (14.08.2026)."))
 
 
 def check_multimodel_fleet(code, findings):

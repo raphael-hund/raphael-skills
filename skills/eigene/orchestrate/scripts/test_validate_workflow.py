@@ -44,7 +44,7 @@ const sol = await agent('judge', {agentType:'sol-pruefer'})
 const kimi = await agent('critic', {agentType:'kimi-recherche'})
 const luna = await agent('verify', {agentType:'luna-worker'})
 const writer = await agent('write', {agentType:'sonnet-worker'})
-const mechanic = await agent('check', {agentType:'haiku-worker'})
+const mechanic = await agent('check', {agentType:'terra-bulk'})
 """
         )
         self.assertFalse(
