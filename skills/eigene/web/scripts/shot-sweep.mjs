@@ -11,6 +11,8 @@
 //      Navigation ist durch den Routen-Sweep abgedeckt.
 //   5. --static: Animationen hart aus (reduced-motion + CSS-Kill + data-reveal sichtbar).
 //      Standard fuer Kritik-Sweeps, damit keine leeren Reveal-Flaechen entstehen.
+//   6. Jeder Shot ueber Playwright page.screenshot: animations disabled,
+//      caret hide, Fonts/Seite gesetzt. Nie fullPage/captureBeyondViewport.
 //
 // Ausgabe: PNGs + manifest.json — das Manifest ist der Vertrag fuer Kritik-Agents.
 // Playwright erst NACH der Flag-Wache laden (dynamischer import unten): ein
@@ -44,6 +46,17 @@ const FOLD = { width: 1440, height: 730 };   // Hero/First Fold: exakt 730
 const DEEP = { width: 1440, height: 1500 };  // danach: 1500 hoch
 const SCROLL_STEP = 750;                     // exakt 750 px pro Schritt
 const MOB = { width: 390, height: 844 };
+
+// Capture-Stabilitaet getrennt von I/O (Flags, Manifest, Hover/Klick).
+// scale css + deviceScaleFactor 1: PNG-Pixel = Viewport-Vertrag.
+const SHOT_OPTS = {
+  animations: 'disabled',
+  caret: 'hide',
+  fullPage: false,
+  scale: 'css',
+  type: 'png',
+  timeout: 20000,
+};
 
 const COOKIE_BUTTON = 'button:has-text("Okay"), button:has-text("Akzeptieren"), button:has-text("Alle akzeptieren")';
 
@@ -81,8 +94,22 @@ async function waitSettled(page) {
   await page.waitForTimeout(300);
 }
 
+async function waitPageReady(page) {
+  await page.evaluate(async () => {
+    if (document.readyState !== 'complete') {
+      await new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
+    }
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+  });
+}
+
+async function captureShot(page, destPath) {
+  await waitPageReady(page);
+  await page.screenshot({ path: destPath, ...SHOT_OPTS });
+}
+
 async function shot(page, entry, file, meta) {
-  await page.screenshot({ path: path.join(OUT, file) });
+  await captureShot(page, path.join(OUT, file));
   const vp = page.viewportSize();
   entry.shots.push({ file, viewport: vp, width: vp.width, height: vp.height, ...meta });
 }
@@ -169,7 +196,11 @@ async function clickPass(page, entry, slug, label, y, seen) {
 }
 
 async function sweepRoute(browser, route, vp, label, manifest) {
-  const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
+  const page = await browser.newPage({
+    viewport: { width: vp.width, height: vp.height },
+    deviceScaleFactor: 1,
+    colorScheme: 'light',
+  });
   page.setDefaultNavigationTimeout(45000);
   // Slug: '/' -> 'home', fuehrenden Slash strippen — '/a/b' und '/a_b' kollidieren so nicht.
   const slug = route === '/' ? 'home'
@@ -210,10 +241,12 @@ async function sweepRoute(browser, route, vp, label, manifest) {
       const bodyText = await page.evaluate(() => (document.body?.innerText || '').slice(0, 600));
       isNotFound = notFoundRe.test(bodyText);
     }
-    if (res.ok() && isNotFound) {
-      entry.error = 'not-found page served with HTTP 200 (SPA catch-all)';
+    if (!res.ok() || isNotFound) {
+      entry.error = res.ok()
+        ? 'not-found page served with HTTP 200 (SPA catch-all)'
+        : `HTTP ${res.status()}`;
       manifest.routes.push(entry);
-      console.log(`WARN ${route}: NotFound-Seite (HTTP 200) -> als Fehler im Manifest`);
+      console.log(`WARN ${route}: ${entry.error} -> als Fehler im Manifest`);
       return;
     }
 
@@ -305,7 +338,15 @@ async function sweepRoute(browser, route, vp, label, manifest) {
   const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
   const launch = () => chromium.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-dev-shm-usage', '--use-gl=swiftshader', '--disable-software-rasterizer'],
+    args: [
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--use-gl=swiftshader',
+      '--disable-software-rasterizer',
+      '--force-color-profile=srgb',
+      '--disable-lcd-text',
+      '--hide-scrollbars',
+    ],
   });
   let browser = await launch();
   const manifest = {

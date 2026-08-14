@@ -46,9 +46,11 @@ mit Raphael-Einzelfreigabe pro Kunde + Kostenlimit.
 
 ### 1. Sweep (Spec Raphael 10.08.2026)
 `node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs --base <url> --out <dir> --routes <liste> --static [--hover ...] [--mobile] [--no-interact]`
+- **Kanonischer Capture-Weg ist Playwright** in diesem Skript. Chrome-CLI und `raphael-chrome` sind kein Ersatz. Ad-hoc-Playwright neben dem Standard-Skript bleibt verboten.
 - **`--base` ist Pflicht** mit der echten Dev-/Live-URL. Ohne Flag: Exit 2 + Usage (Anfänger-Falle #2 in `anfaenger-pfad.md`; stiller Port-5280-Default ist entfernt).
 - **Sequentiell pro Seite**: Fold → Hover-Pass → Scroll+Klick, dann erst die nächste Route. Primär Desktop.
 - **Hero/First Fold 1440×730**, danach Viewport **1440×1500**, Scroll-Schritt **exakt 750 px** (halber Viewport). Niemals fullPage. Ziel: jede Seite lückenlos abgedeckt, nicht nur top/mid/deep/full-Stichproben.
+- **Stabile Screenshots:** `animations: 'disabled'`, `caret: 'hide'`, Fonts/Seite gesetzt. Wiederholbar, nicht leer, Fold 1440×730. Nach Änderung am Sweep: Screenshots testen mit `node evals/run-shot-stable-check.mjs`.
 - **Interaktiv-Pass ist Pflicht** (Default an): Header-Nav wird gehovert (Shot je Eintrag), alles Klickbare (Buttons, Accordions, Tabs, `aria-expanded`) wird geklickt mit Shot und zurückgetoggelt. `--no-interact` nur für schnelle Regressions-Sweeps.
 - **`--static` für Kritik-Sweeps Pflicht**: erzwingt reduced-motion + tötet CSS-Animationen + macht `data-reveal` sichtbar — keine leeren Reveal-Flächen, deterministische Shots.
 - Das Skript schreibt `manifest.json` — NUR dieses Manifest wird an die Kritik-Rollen gegeben.
