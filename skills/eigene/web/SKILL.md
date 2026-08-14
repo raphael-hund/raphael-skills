@@ -40,10 +40,10 @@ Detail-Ablauf und Gates: `references/loop2-ablauf.md`.
 Alles Visuelle → Skill **design** (nicht hier neu erfinden).
 
 **Mitgeladene Skills (keine Extra-Dateien):** nur `design` (Linien, Detektoren,
-`scan-ai-slop`) und `copywriting` (G1→G2; `no-ai-slop` erst danach).
-`taste`, `impeccable`, `ui-ux`, `kill-ai-slop`, `frontend-design` /
+`scan-ai-slop`) und `copywriting` (G1→G2).
+`taste`, `impeccable`, `ui-ux`, `kill-ai-slop`, `no-ai-slop`, `frontend-design` /
 `design-taste-frontend`, `animate` sind **keine Pflicht-Loads** — sie routen
-auf `design/` oder bleiben still. Ein Site-Build lädt nicht jedes Einzel-Skill.
+auf `design/` bzw. `copywriting` oder bleiben still. Ein Site-Build lädt nicht jedes Einzel-Skill.
 
 ## Zweck (1 Satz)
 
@@ -222,7 +222,7 @@ QA 1–4 ‖ dann SEO+Trust → Launch (Signatur) → cro-learn.
 - **Fonts:** Immer die **Adobe Fonts Library** nutzen. Seite lädt über Kit-Embed. Nachschlagen: `node scripts/adobe-fonts-kit.mjs show <Familie>`. Keine Adobe-`.woff` ins Skill-Repo. Nur Kunden-Brand-Dateien gehen vor.
 - **Lighthouse/axe = 0** hart; Fertig = Environment-Tatsache.
 - Build ≠ Review (Regel 8). Deploy = Rot + Signatur.
-- **Haiku baut oder kritisiert keine Seite.** Builder = Opus. Kritiker = Grok + Opus-Critic (Gegencheck), Sol für Code. Codex-CLI (`codex` auf PATH) ist optionaler Ship-Review, kein Pflicht-Wrapper. Fehlt die CLI: ehrlich sagen, nicht vortäuschen.
+- **Haiku baut oder kritisiert keine Seite.** Builder = Opus. Kritiker = Grok + `kimi-recherche` (Gegencheck). Sol für Code, keine Shots. Opus prüft Opus nicht. Codex-CLI (`codex` auf PATH) ist optionaler Ship-Review, kein Pflicht-Wrapper. Fehlt die CLI: ehrlich sagen, nicht vortäuschen.
 - **GitHub öffentlich ≠ frei nutzbar** — Lizenz-Check im Clone-Playbook.
 - Junge Domain + Formular = Safe-Browsing-Risiko.
 - Motion ohne `useReducedMotion` = Fail.

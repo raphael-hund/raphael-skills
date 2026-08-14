@@ -81,7 +81,7 @@ Besetzung kommt aus `agent-roster.md`. **Nie Haiku.** Builder der Seite ist `opu
 |---|---|---|---|
 | Code-Kritik („Zoll") | `sol-pruefer` | Befundliste + Source als Textausschnitt (keine Bildpfade) | „Verifiziere pro Befund die Code-Ursache (datei:zeile) oder widerlege ihn. Keine Design-Meinung ohne Code-Beleg." |
 | Visuelle Kritik A | Grok / `visual-kritiker` | manifest.json + Shots **dieser einen Seite** | „Kritisiere Hierarchie, Spacing, Typo, Bildschnitt, CTA-Fuehrung pro Shot. Befund + Shot-Datei als Beleg." |
-| Visuelle Kritik B | `opus-critic` (andere Familie als A und als Builder) | dieselben Shots wie A | „Zweite, unabhaengige Sicht. Befund + Shot-Datei als Beleg." |
+| Visuelle Kritik B | `kimi-recherche` (andere Familie als A und als Builder) | dieselben Shots wie A | „Zweite, unabhaengige Sicht. Befund + Shot-Datei als Beleg." |
 
 **Gegencheck (Pflicht, nicht optional):** Nach dem ersten Pass bekommt A die Befundliste von B, B die von A. Jeder Satz darf nur `bestätigt` oder `widerlegt` + ein Satz Beleg sein. Kein neuer Katalog. Fixliste = Befunde, die (a) beide unabhängig fanden oder (b) den Gegencheck überleben.
 
@@ -92,10 +92,10 @@ internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefund
 
 Zusaetzlich zum Panel wird **pro Sektion** einzeln kritisiert, modelluebergreifend:
 
-1. **Pro Seite / Sektions-Shot mindestens zwei Kritiker** aus **Grok / Opus-Critic / Sol**
-   (nie Haiku, nie Luna als Urteil). Jeder Kritiker bekommt NUR die Shots genau dieser
-   einen Seite/Sektion. Danach Gegencheck (siehe Schritt 3). Mapping: `agent-roster.md`
-   — `visual-kritiker` + `opus-critic`; Sol nur Code-Ursache.
+1. **Pro Seite / Sektions-Shot mindestens zwei Kritiker:** A = Grok / `visual-kritiker`,
+   B = `kimi-recherche` (nie Haiku, nie Luna als Urteil, nie Opus auf Opus-Build).
+   Jeder Kritiker bekommt NUR die Shots genau dieser einen Seite/Sektion.
+   Danach Gegencheck (siehe Schritt 3). Sol nur Code-Ursache.
 2. **Pro Seite ein Gesamt-Kritiker** (alle Shots der Seite): wirkt die Seite als
    Ganzes, Sektions-Uebergaenge, Rhythmus, Frontend-Fokus.
 3. **Seitenuebergreifende Konsistenz-Achsen** (eigene Kritiker, alle Fold-/Key-Shots

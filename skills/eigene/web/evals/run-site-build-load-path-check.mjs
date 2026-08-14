@@ -18,6 +18,10 @@ const QA = path.join(WEB, 'references', 'qa-faecher.md');
 const ACCESS = path.join(WEB, 'scripts', 'resource-access.mjs');
 const SWEEP = path.join(WEB, 'scripts', 'shot-sweep.mjs');
 const DESIGN = path.join(WEB, '..', '..', 'design', 'SKILL.md');
+const COPY = path.join(WEB, '..', 'copywriting', 'SKILL.md');
+const LOOP = path.join(WEB, 'references', 'screenshot-kritik-loop.md');
+const GROK_IMP = '/root/.grok/skills/impeccable/SKILL.md';
+const GROK_UIUX = '/root/.grok/skills/ui-ux-pro-max/SKILL.md';
 
 let fehler = 0;
 let geprueft = 0;
@@ -53,6 +57,40 @@ zeile(
 zeile(
   /rules\.de\.mjs/.test(qa),
   'qa-faecher.md haengt DE-Regeln an scan-ai-slop',
+);
+
+const copy = fs.readFileSync(COPY, 'utf8');
+const reqZeile = (copy.match(/^requires_skills:.*$/m) || [''])[0];
+zeile(
+  /eval@\^0/.test(reqZeile) && !/no-ai-slop/.test(reqZeile),
+  'copywriting requires nur eval, nicht no-ai-slop',
+);
+
+const loop = fs.readFileSync(LOOP, 'utf8');
+const bIstKimi = /Visuelle Kritik B \| `kimi-recherche`/.test(loop);
+const bIstOpus = /Visuelle Kritik B \| `opus-critic`/.test(loop);
+const webPaar = /Opus gebaut → Grok \+ `kimi-recherche`/.test(skill)
+  && /Kritiker = Grok \+ `kimi-recherche`/.test(skill);
+zeile(
+  bIstKimi && !bIstOpus && webPaar,
+  'Kritik-Paarung einheitlich: A=Grok, B=kimi-recherche (kein opus-critic als B)',
+);
+
+function grokRouter(pfad, verboten) {
+  const txt = fs.readFileSync(pfad, 'utf8');
+  const kurz = txt.split(/\n/).length <= 30;
+  const doktrin = verboten.some((m) => txt.includes(m));
+  return { kurz, doktrin, txt };
+}
+const imp = grokRouter(GROK_IMP, ['award-winning design director', 'Core principles:']);
+zeile(
+  imp.kurz && !imp.doktrin && /design\/scripts\/detect\.mjs/.test(imp.txt),
+  'Grok-Host impeccable ist kurzer Router auf design detect',
+);
+const uiux = grokRouter(GROK_UIUX, ['Searchable database of UI/UX', 'Rule Categories by Priority']);
+zeile(
+  uiux.kurz && !uiux.doktrin && /ui-ux-db-nutzung\.md/.test(uiux.txt),
+  'Grok-Host ui-ux-pro-max ist kurzer Router auf ui-ux-db-nutzung',
 );
 
 function show(name) {

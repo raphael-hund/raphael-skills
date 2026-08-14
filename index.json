@@ -64,7 +64,7 @@
     },
     {
       "name": "copywriting",
-      "version": "0.10.0",
+      "version": "0.11.0",
       "path": "skills/eigene/copywriting/SKILL.md",
       "description": "Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\". Für mehrteilige Email-Sequenzen, Drip-Kampagnen, Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill."
     },
@@ -118,9 +118,9 @@
     },
     {
       "name": "no-ai-slop",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/no-ai-slop/SKILL.md",
-      "description": "Feuert beim Redigieren/Verfeinern englischer UND deutscher Texte, die nach KI klingen sollen — und bei der Frage \"liest sich das nach AI?\". Zweit-Meinung als scharfer menschlicher Editor NACH dem copywriting-Skill: erkennt 20+ AI-Slop-Muster (binary contrasts, throat-clearing, faux-insight, colon reveals, importance puffery, weasel attribution u.a.), entfernt sie mit minimalen Eingriffen und bewahrt dabei die Stimme des Autors. Trigger: \"klingt nach KI\", \"humanize\", \"schärfer machen\", \"AI slop raus\", \"ist das AI-slop?\", \"audit this text\", \"make it sound human\"."
+      "description": "Router auf copywriting G1→G2. Feuert NUR bei explizitem \"/no-ai-slop\". NICHT bei Website-/Landingpage-Bau — web lädt copywriting, nicht diesen Skill. Trigger: \"/no-ai-slop\"."
     },
     {
       "name": "offers",

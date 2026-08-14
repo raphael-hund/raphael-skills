@@ -1,6 +1,6 @@
 ---
 name: copywriting
-version: 0.10.0
+version: 0.11.0
 description: >
   Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
   SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
@@ -19,7 +19,7 @@ source: ergänzt um voice-analysis.md, adaptiert aus knowledge-work-plugins/
   robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
 loads: [references/voice-dna.md, references/kanaele.md, references/beispiele-gute-copy.md, references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md, references/sprachstile-referenz.md]
 loads_external: ["/root/.claude/forbidden.md"]
-requires_skills: [eval@^0, no-ai-slop@^0]
+requires_skills: [eval@^0]
 completion_criteria:
   - "scripts/forbidden-check.py auf dem Entwurf gelaufen, Exit 0 (harte Sperre, vor allem anderen); Skript-Ausgabe im Output zitiert"
   - "Skript-Hinweise (A1/A5/A6/A7/B6b) einzeln beurteilt: je Hinweis 'gefixt' oder 'bewusst behalten weil <Grund>'"
@@ -37,8 +37,8 @@ completion_criteria:
 `/root/clients/client-<name>/wiki/VOICE.md` (kundenspezifische Voice):
 der Kunde gewinnt bei Widerspruch. Außerdem `/root/raphael-brain/wiki/craft/hooks/`.
 
-**Lädt automatisch mit:** `no-ai-slop` (Zweit-Editor, läuft NACH diesem Skill
-als Redigier- und Audit-Schicht. Siehe dort für Muster-Katalog und Eval).
+**Kein Extra-Load:** `no-ai-slop` ist ein Router auf diesen Skill. Site-Build
+lädt nur `copywriting` (G1→G2). `/no-ai-slop` extra nur auf ausdrücklichen Wunsch.
 
 ## Zweck (1 Satz)
 
@@ -171,9 +171,8 @@ nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
    Curious-vs-Committed-Diagnose, Financial Qualification über die Situation). Für
    Persuasion-Framing (Anchoring, Verlust-Aversion, Decoy-Effekt etc.) siehe
    `references/mental-models-en.md`: ersetzt keine echte Voice-of-Customer-Recherche.
-7. **Zweit-Edit (no-ai-slop, bei Bedarf):** Wenn der Text nach G2 immer noch "irgendwie
-   nach KI" klingt oder ein Fremd-Text auditiert werden soll → **no-ai-slop** laden
-   (Detect- oder Edit-Modus). copywriting produziert, no-ai-slop redigiert.
+7. **Zweit-Edit bleibt hier:** Wenn der Text nach G2 noch nach KI klingt, denselben
+   Ablauf G0→G1→G2 erneut fahren. Skill `no-ai-slop` nicht extra laden.
 8. **Verkaufs-/VSL-Struktur**: bei Long-Form (VSL, Sales-Page, Nurture) nach
    `references/vsl-framework.md`: Reihenfolge nach Überzeugungskraft, Identitäts-Commitment
    auf Danke-Seiten, Nurture aus Empfängerperspektive.
