@@ -33,6 +33,9 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | ein Backlink-Profil bewerten (Referring Domains, Anchor, toxische Links, Competitor-Gap, Disavow) | `seo-backlinks.md` |
 | echte Google-Felddaten ziehen (GSC, CrUX/PageSpeed, Indexing, GA4, YouTube, NLP) | `seo-google.md` |
 | Live-SERP-/Keyword-/Backlink-/OnPage-Daten via DataForSEO holen (mit Kosten-Guardrails) | `seo-dataforseo.md` |
+| Google-Ranking-Plan (30/90, Google vs KI getrennt) aus echten Exporten | Skill: `ranking-plan.md` — Brain-Tiefe: `seo-plan.md` + `seo-google.md` |
+| KI-Engines namentlich (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | Skill: `ideen-ai-sichtbarkeit-aeo.md` — Brain-Tiefe: `seo-geo.md` |
+| Graustufen / Penalty-Muster (Doorway, Scaled, Expired, Parasite) | Skill: `graustufen.md` — Brain: `seo.md` + `seo-programmatic.md` |
 
 **Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste)
 bleiben der **Kern** jeder Arbeit; die Brain-Seiten sind die **tiefe

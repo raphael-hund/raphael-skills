@@ -46,3 +46,7 @@ aktiver Kampagne) → Outcome-Daten, nie Schreib-Scope.
 
 `client-<name>/seo/research.md`, `.../seo/ia.md`, `.../seo/briefs/`, `.../seo/content/`,
 `.../seo/tech-qa-<datum>.md`, `.../seo/gsc-<datum>.md`, `.../seo/refresh-<datum>.md`.
+
+**Ranking-Plan** (eigener Zweig, nicht jeder Loop-4-Lauf):
+`client-<name>/seo/ranking-plan-<datum>.md` — Pflichtfelder in `ranking-plan.md`.
+GSC-Read: `gsc-read.md` / `scripts/gsc_read.py`. Graustufen nur nach Go: `graustufen.md`.

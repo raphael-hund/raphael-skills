@@ -166,7 +166,7 @@
     },
     {
       "name": "seo",
-      "version": "0.7.1",
+      "version": "0.7.2",
       "path": "skills/eigene/seo/SKILL.md",
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\"."
     },

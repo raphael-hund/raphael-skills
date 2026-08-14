@@ -1,15 +1,17 @@
 ---
 name: seo
-version: 0.6.1
+version: 0.7.2
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
   lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse,
-  interne Verlinkung/Cluster. Trigger: "SEO", "Keyword-Research",
-  "Content-Brief", "Ranking", "Tech-Audit", "Backlinks", "Digital PR",
-  "Statistikseite", "AI-Sichtbarkeit", "Local SEO", "GBP", "E-E-A-T",
-  "SERP-Feature", "Featured Snippet", "Themen-Cluster", "interne Verlinkung".
-  Nutzt bei Spezialthemen die belegte SEO-Wissensbibliothek im Second Brain (25 Seiten, on-demand nachgeladen)
+  interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews,
+  AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat.
+  Trigger: "SEO", "Keyword-Research", "Content-Brief", "Ranking", "Ranking-Plan",
+  "Tech-Audit", "Backlinks", "Digital PR", "Statistikseite", "AI-Sichtbarkeit",
+  "AEO", "GEO", "GSC", "Local SEO", "GBP", "E-E-A-T", "SERP-Feature",
+  "Featured Snippet", "Themen-Cluster", "interne Verlinkung", "Graustufen",
+  "asozial SEO", "gray-hat", "gray hat".
 class: F
 scope: agency
 sensitivity: internal
@@ -19,8 +21,9 @@ source: >
   competitors) @ 67264763; qwoted-seo-backlinks-skill (MIT) @ 3ef97c52;
   distribb-skill (kein LICENSE, nur Paraphrase/Ideen, keine wörtliche
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
-  AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract) —
-  Details siehe VENDORING.md (Runde 6)
+  AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract);
+  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube) —
+  Details siehe references/quellen-2026-08.md
 loads:
   - references/wissens-router.md
   - references/loop4-ablauf.md
@@ -35,127 +38,81 @@ loads:
   - references/taktiken-serp-features.md
   - references/taktiken-interne-verlinkung-cluster.md
   - references/ideen-ai-sichtbarkeit-aeo.md
+  - references/ranking-plan.md
+  - references/gsc-read.md
+  - references/quellen-2026-08.md
 requires_skills: [copywriting@^0, eval@^0]
 completion_criteria:
   - "Tech-QA 0 Blocker (Meta/Schema/Canonical/Links) — G1 hart"
   - "G2 auf jedem Ship-Text >= 0.7"
   - "Belegpflicht: jede Zahl/Behauptung im Brief zeigt auf echten Export (SERP/GSC) — nichts erfunden"
   - "Publish nur mit Raphaels Signatur"
+  - "Ranking-Plan (wenn angefordert) enthält Keyword-Ziele, Google-Aktionen, KI-Aktionen für AI Overviews, AI Mode, ChatGPT, Perplexity und Bing Copilot, Beleg-Zeiger, 30- und 90-Tage-Schritte"
+  - "GSC nur read-only Snapshot mit Query-/Page-Zeilen oder ehrlicher Setup-Fallback"
+  - "Graustufen nur nach Raphaels Go, jede Taktik mit Risiko-Label Penalty/Ban/rechtlich"
 ---
 
 # seo — Loop 4: SEO
 
-**Lies zuerst:**
-`/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `VOICE.md` (Dossier aus Loop 1),
-`/root/raphael-brain/wiki/hot.md`. Stil immer über **copywriting**.
+**Lies zuerst:** `client-<name>/wiki/ICP.md`, `OFFER.md`, `VOICE.md`,
+`/root/raphael-brain/wiki/hot.md`. Stil über **copywriting**.
 
-## Zweck (1 Satz)
+## Zweck
 
-Aus Suchintention belegbaren, technisch fehlerfreien Content bauen, der rankt, und bei
-Ranking-Decay auffrischen.
+Aus belegter Suchintention Content bauen, der in Google **und** in KI-Suche
+sichtbar wird, und bei Decay auffrischen.
 
-## Reference-Routing — welche Datei wann laden
+## Zweig wählen (eine Datei extra, nicht alles in einem Lauf)
 
-| Anliegen | Datei | Ebene |
-|---|---|---|
-| Loop-4-Ablauf, Gates, Belegpflicht, Modell-Zuteilung | `references/loop4-ablauf.md` | Ablauf |
-| Blog-Text vor Auslieferung: 5-Gate-Blocker-Sequenz (Format/Review/P0-Filter/Link-Integrität), Iterationsschleife, Bypass-Protokoll | `references/blog-delivery-contract.md` | Ablauf |
-| Publish-Blocker vor jedem Go-Live | `references/tech-qa-checkliste.md` | Regeln |
-| Crawlability/CWV/On-Page/hreflang/GSC-9-Analysen | `references/regeln-technischer-audit.md` | Regeln |
-| JSON-LD-Typen, Validierung (Kern; Detektion/Generierung bei Bedarf: `seo-schema.md`) | `references/regeln-schema-markup.md` | Regeln |
-| E-E-A-T-Tiefe, Who/How/Why-Test, YMYL, KI-Content-Bewertung | `references/regeln-eeat.md` | Regeln |
-| Backlinks, Digital PR (HARO/Qwoted), Statistikseiten, Directories (Kern; Profil-Bewertung bei Bedarf: `seo-backlinks.md`) | `references/taktiken-linkbuilding-digitalpr.md` | Taktiken |
-| Instagram-Carousel, Newsjacking, Vergleichsseiten, pSEO, 90-Tage-Fahrplan | `references/taktiken-content-distribution.md` | Taktiken |
-| Local SEO/GBP-Taktik-Tiefe (Kategorien, Reviews, NAP, Swap-Test, Branchen-Schema) (Kern; Website-Signale bei Bedarf: `seo-local.md`, Maps-Präsenz/Geo-Grid: `seo-maps.md`) | `references/taktiken-local-seo-gbp.md` | Taktiken |
-| SERP-Feature-/Seitentyp-Analyse (SXO), Featured Snippet, PAA, User-Storys | `references/taktiken-serp-features.md` | Taktiken |
-| Themen-Cluster bauen: Hub-and-Spoke, SERP-Overlap-Clustering, Link-Matrix (Kern; Umsetzung bei Bedarf: `seo-cluster.md`) | `references/taktiken-interne-verlinkung-cluster.md` | Taktiken |
-| AI-Sichtbarkeit/AEO/GEO, llms.txt, AI-Crawler, Citability-Score (Kern; belegte Umsetzung bei Bedarf: `seo-geo.md`) | `references/ideen-ai-sichtbarkeit-aeo.md` | Ideen (unbestätigt, mit Vorsicht) |
+| Anliegen | Datei |
+|---|---|
+| Loop-4, Gates, Belegpflicht | `references/loop4-ablauf.md` |
+| Blog 5-Gate vor Ship | `references/blog-delivery-contract.md` |
+| Publish-Blocker | `references/tech-qa-checkliste.md` |
+| Crawl/CWV/On-Page | `references/regeln-technischer-audit.md` |
+| JSON-LD | `references/regeln-schema-markup.md` |
+| E-E-A-T / YMYL | `references/regeln-eeat.md` |
+| Keyword/SERP + Beleg | `references/loop4-ablauf.md` (research) + echter Export |
+| IA / Cluster / interne Links | `references/taktiken-interne-verlinkung-cluster.md` |
+| Links / Authority / Digital PR | `references/taktiken-linkbuilding-digitalpr.md` |
+| Local / GBP | `references/taktiken-local-seo-gbp.md` |
+| SERP-Features | `references/taktiken-serp-features.md` |
+| GSC-Monitor / Refresh | `references/gsc-read.md` + loop4 monitor/refresh |
+| **Google-Ranking-Plan** | `references/ranking-plan.md` + `scripts/ranking_plan.py` |
+| **KI-Suche** (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | `references/ideen-ai-sichtbarkeit-aeo.md` |
+| **Graustufen / asozial** | `references/graustufen.md` — nur nach Raphael-Go |
+| Named-Source-Mechaniken (Borja, Edward, Tony, Brain) | `references/quellen-2026-08.md` |
+| Spezialtiefe Brain | `references/wissens-router.md` |
 
-## Wissens-Router (Second Brain)
+Brain-Präfix immer `/root/raphael-brain/wiki/craft/seo/`. 1–3 Seiten, nie alle.
 
-Die operative Arbeit steuert der Skill selbst (siehe Reference-Routing oben). Für die
-**häufigsten** Spezialfälle:
+## Ablauf
 
-- Volles Website-Audit mit Health-Score → `seo-audit.md`
-- Content-Brief recherche-gestützt schreiben → `seo-content-brief.md`
-- Voller Tech-Audit (Crawlability/CWV/JS-Rendering) → `seo-technical.md`
-- Echte Google-Felddaten ziehen (GSC/CrUX/GA4) → `seo-google.md`
+1. **research** — SERP-Ausriss + GSC-Export ablegen. G1.
+2. **ia** — Cluster/Pillar. G2.
+3. **briefs** — jede Zahl mit Quelle+Datum. G2.
+4. **produce** — Intent-Konsistenz Title/Meta == Seite. G1-Stil → G2.
+5. **tech-qa** — 0 Blocker, hart.
+6. **Publish** — Raphaels Signatur.
+7. **monitor** — `scripts/gsc_read.py --live` oder Setup-Fallback. Nur lesen.
+8. **refresh** — bei echtem Decay (G4), nicht nach Kalender.
+9. **ranking-plan** (eigener Zweig) — Skript auf denselben Exporten.
 
-**Anderes Spezialthema** (Cluster, Schema, hreflang, Local/Maps, GEO/AEO, Backlinks,
-Competitor-Pages, Sitemap, Drift, Bilder, E-Commerce, SXO, DataForSEO, Gesamt-Synthese
-über mehrere Audits)? Lies zuerst `references/wissens-router.md` und dann die 1-3
-passenden Brain-Seiten daraus — Pfadpräfix immer `/root/raphael-brain/wiki/craft/seo/`,
-nie alle Seiten laden, nie aus dem Gedächtnis diagnostizieren.
+Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 
-**Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste)
-bleiben der **Kern** jeder Arbeit; die Brain-Seiten sind die **tiefe
-Nachschlage-Bibliothek** für Spezialfälle — dorthin greifen, wenn ein Thema mehr Tiefe
-braucht als der Kern hergibt, nicht routinemäßig.
+## Schritt-Ende (prüfbar)
 
-## Ablauf (Detail in references/loop4-ablauf.md)
+- research fertig = SERP-Ausriss + GSC-Export liegen als Datei.
+- ranking-plan fertig = alle sechs Pflichtsektionen nicht leer, fünf Engines genannt.
+- gsc-read fertig = Query-/Page-Zeilen im Export **oder** Setup-Fallback-Text.
+- graustufen fertig = Raphael-Go dokumentiert + jedes Item hat Penalty/Ban/rechtlich.
+- publish fertig = Signatur, Tech-QA 0 Blocker.
 
-1. **research** — Keyword-/SERP-Research (Kimi räumt Volumen auf, Luna klassifiziert).
-   Immer aus **echtem Export** starten: SERP-Ausriss + GSC-Query-Export (Impressions/
-   Klicks/Position) ablegen, nicht aus dem Kopf schätzen. G1.
-2. **ia** — Informationsarchitektur: Themen-Cluster, Pillar/Cluster-Struktur (Sonnet). G2.
-3. **briefs** — Content-Briefs pro Seite (Sonnet): Intent, Entitäten, Struktur, interne Links.
-   **Jede Zahl/Behauptung zeigt auf ihren Export** (Quelle + Datum), sonst gilt sie als
-   erfunden und darf nicht in den Text. G2.
-4. **produce** — Produktion (Volumen billig — Haiku/Luna; Qualitäts-Pass Sonnet). G1-Stil → G2.
-   SERP-Title + Meta-Description müssen **wortgleich** die Zielseite versprechen (Intent-Konsistenz,
-   siehe Gotchas).
-5. **tech-qa** — Skripte (`references/tech-qa-checkliste.md`). **G1 = 0 Blocker, hart.**
-6. **Publish** — **Raphaels Signatur.**
-7. **monitor** — GSC-Monitoring (Haiku/Luna), read-only Snapshot → Outcome-Daten (G4).
-8. **refresh** — bei Ranking-Decay auffrischen (Haiku/Luna, G4).
+## Harte Regeln
 
-## Loop-4-Ablauf (verbindlich)
-
-Keyword-/SERP-Research (Kimi räumt auf, Luna klassifiziert, G1) → IA + Briefs (Sonnet, G2) →
-Produktion (Volumen billig, Qualitäts-Pass Sonnet; G1-Stil → G2) → Tech-QA (Skripte, G1 =
-0 Blocker, hart) → Publish (Signatur) → GSC-Monitoring + Refresh bei Ranking-Decay
-(Haiku/Luna, G4).
-
-## SEO vs. SEA in der Beratung (Kanal-Diagnose)
-
-Bevor seo Arbeit annimmt, den richtigen Kanal wählen — sonst optimiert man Suche, wo es
-gar keine gibt:
-
-- **Google (SEO/SEA) = bestehende Nachfrage.** Test: die eigene Leistung des Kunden googeln.
-  Erscheinen Wettbewerber als Sponsored Ads, existiert Suchnachfrage → SEO/SEA lohnt.
-- **FB/IG = Nachfrage erzeugen.** Kennt noch niemand das Angebot, gibt es nichts zu ranken;
-  dann erst über Social Nachfrage schaffen (das ist **ads**, nicht seo).
-
-### Brand-Protect-Search: die Paid→Search-Brücke (⭐)
-
-Sobald ein Kunde **signifikant auf FB/IG spielt**, ergänzend eine **Branded-Search-Kampagne**
-auf Google einrichten (Marken-/Namens-Keywords). Grund: Wer den Namen wiederholt in Social-Ads
-sieht, sucht ihn später direkt bei Google — diese Nachfrage abzufangen ist der **günstigste
-erreichbare Lead**. Ohne Brand-Protect greift ein Wettbewerber die Marken-Suche als Anzeige ab.
-→ Trigger für seo: bei aktiver FB/IG-Kampagne Brand-Protect als Aufgabe anlegen und mit
-ads koordinieren.
-
-## Gotchas
-
-- **Persona-Skills ersetzen kein Fachwissen (Warnung D38).** SEO-Technik kommt aus echten
-  SERPs + Erfahrung, nicht aus einem "SEO-Experten"-Prompt.
-- **Ads-Kurse liefern kein SEO.** Keyword-/SERP-Research, IA und Tech-SEO kommen aus eigenen
-  Quellen (echte SERPs, GSC) — Ads-Kursmaterial taugt nur für die eine Paid→Branded-Search-Brücke,
-  nicht für das SEO-Handwerk.
-- **Intent-Konsistenz (Erwartung == Zielseite).** SERP-Title/Meta-Description müssen exakt das
-  versprechen, was die Zielseite hält — genauso wie Ad-Wording == Landingpage. Lücke Erwartung↔Realität
-  killt die Conversion.
-- **Rankings sind ein Lag-Indikator (Upstream).** Bei schwacher Seite nicht nur an ihr schrauben,
-  sondern die Stufen davor prüfen (Intent-Match, Brief, interne Links, Snippet-Versprechen). Das
-  Problem sitzt oft weiter oben als dort, wo es sichtbar wird.
-- **Belegpflicht.** Keine Zahl im Text, die nicht auf einen echten Export (SERP/GSC) zeigt —
-  erfundene Volumina/Positionen sind ein G2-Fail.
-- Tech-QA 0 Blocker ist hart: Meta/Schema/Canonical/Links müssen sauber sein, sonst kein Publish.
-- GSC-Zugang read-only, per Snapshot — nie Schreib-Scope (Konnektoren-Regel).
-- Volumen billig, Qualität teuer: Massen-Produktion Haiku/Luna, aber Qualitäts-Pass Sonnet
-  vor G2 — nicht roh ausliefern.
-- Refresh-Trigger = echter Ranking-Decay (G4), nicht Kalender.
-- **Vendorierte Studien-Zahlen (E-E-A-T/Local/GEO/SXO) sind kein eigener Beleg.** Sie stammen aus
-  Drittstudien im Quell-Repo (siehe `VENDORING.md`) und dienen der eigenen Priorisierung —
-  in einen Kundenreport gehört nur der eigene Export (GSC/GBP-Insights/SERP-Ausriss), nie die
-  fremde Studienzahl als eigene Kennzahl (Belegpflicht).
+- Keine Zahl ohne Export (SERP/GSC).
+- GSC nur lesen. Write-Scope verboten.
+- Graustufen nicht im Default. Erst Go, dann `graustufen.md`, jede Zeile gelabelt.
+- Vendor-Studienzahlen sind kein Kundenbeleg.
+- Ein Fakt ein Ort: neue Mechanik steht in `quellen-2026-08.md` oder im Brain, nicht doppelt.
+- Codex/Kimi/Grok-Adapter dürfen nur zeigen. Dieselbe Trigger-Liste wie dieses Frontmatter.

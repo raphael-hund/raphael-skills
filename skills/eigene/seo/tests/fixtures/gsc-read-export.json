@@ -1,0 +1,42 @@
+{
+  "schema": "seo-gsc-read/1",
+  "query_rows": 3,
+  "page_rows": 0,
+  "snapshots": [
+    {
+      "property_id": "fixture-read-schema",
+      "snapshot_at": "2026-08-13T00:00:00+00:00",
+      "kpis": {
+        "clicks": 221,
+        "impressions": 3931,
+        "ctr": 0.05622,
+        "position": 4.1
+      },
+      "top_queries": [
+        {
+          "query": "fixture brand gmbh",
+          "clicks": 173,
+          "impressions": 331,
+          "ctr": 0.522659,
+          "position": 1.02
+        },
+        {
+          "query": "dachdecker stuttgart",
+          "clicks": 40,
+          "impressions": 3200,
+          "ctr": 0.0125,
+          "position": 6.2
+        },
+        {
+          "query": "orphan keyword no page",
+          "clicks": 1,
+          "impressions": 400,
+          "ctr": 0.0025,
+          "position": 15.0,
+          "page": ""
+        }
+      ],
+      "top_pages": []
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "snapshot_at": "2026-08-13T00:00:00+00:00",
+  "property_id": "deadbeef",
+  "periods": {
+    "current_28d": {
+      "start_date": "2026-07-16",
+      "end_date": "2026-08-12",
+      "kpis": {
+        "clicks": 62,
+        "impressions": 5460,
+        "ctr": 0.011355,
+        "position": 8.4
+      },
+      "top_queries": [
+        {
+          "query": "dachdecker stuttgart",
+          "clicks": 40,
+          "impressions": 3200,
+          "ctr": 0.0125,
+          "position": 6.2
+        }
+      ],
+      "top_pages": [
+        {
+          "page": "https://fixture.example/dachdecker-stuttgart",
+          "clicks": 40,
+          "impressions": 3200,
+          "ctr": 0.0125,
+          "position": 6.2
+        }
+      ]
+    }
+  }
+}

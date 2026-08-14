@@ -29,6 +29,19 @@ bei **anderen** Engines (ChatGPT, Claude, Perplexity, Copilot), die aktiv extrah
 Struktur (Passagen, FAQ, Vergleichstabellen) bevorzugen und Dateien wie `llms.txt` parsen. Im
 Zweifel: "für Menschen schreiben, klar strukturieren" bedient beide Lager.
 
+## Engines namentlich (Plan-Zweig)
+
+Der Ranking-Plan muss für **jede** Engine eine eigene Aktion haben
+(Format: `ranking-plan.md`). Kurz, ohne die Zahlen unten zu wiederholen:
+
+| Engine | Hebel hier |
+|---|---|
+| Google AI Overviews | Klassisches SEO + eine antwortkomplette Seite; Scope der AIO-Antwort matchen |
+| Google AI Mode | Freshness + Entity; Citations oft jenseits Pos. 5 — separat scoren |
+| ChatGPT | Wikipedia/Reddit/Entity; Brand-Mentions; Crawler `GPTBot`/`OAI-SearchBot` |
+| Perplexity | Community + zitierbare Blöcke; `PerplexityBot` |
+| Bing Copilot | Bing-Index + IndexNow; 90-Tage-Fragen-Set unverändert wiederholen |
+
 ## Drei Ansatzpunkte für Nicht-Google-Engines
 
 1. **Struktur — extrahierbar machen.** Jede Kernaussage muss als eigenständiger Satz

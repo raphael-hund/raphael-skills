@@ -1,0 +1,35 @@
+{
+  "queries": [
+    {
+      "query": "dachdecker stuttgart",
+      "page": "https://fixture.example/dachdecker-stuttgart",
+      "impressions": 3200,
+      "clicks": 40,
+      "ctr": 0.0125,
+      "position": 6.2
+    },
+    {
+      "query": "handwerker offerte vorlage",
+      "page": "https://fixture.example/offerte-vorlage",
+      "impressions": 1800,
+      "clicks": 22,
+      "ctr": 0.0122,
+      "position": 11.4
+    },
+    {
+      "query": "günstiger dachdecker notdienst",
+      "impressions": 420,
+      "clicks": 2,
+      "ctr": 0.0048,
+      "position": 18.0
+    },
+    {
+      "query": "branded fixture login",
+      "page": "https://fixture.example/",
+      "impressions": 40,
+      "clicks": 12,
+      "ctr": 0.3,
+      "position": 1.1
+    }
+  ]
+}

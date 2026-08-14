@@ -1,0 +1,22 @@
+{
+  "serp": [
+    {
+      "rank": 1,
+      "url": "https://fixture.example/dachdecker-stuttgart",
+      "title": "Dachdecker Stuttgart — Notdienst",
+      "features": ["aio", "local_pack"]
+    },
+    {
+      "rank": 2,
+      "url": "https://competitor.example/dachdecker",
+      "title": "Dachdecker Vergleich",
+      "features": ["paa"]
+    },
+    {
+      "rank": 3,
+      "url": "https://fixture.example/offerte-vorlage",
+      "title": "Offerte Vorlage Handwerker",
+      "features": []
+    }
+  ]
+}
