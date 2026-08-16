@@ -111,7 +111,10 @@ await driveOpen("shadcn/ui", "ui.shadcn.com");
     "SKILL.md verlangt open nach Router-Wahl; URL-Dump zählt nicht",
   );
   zeile(
-    /resource-access\.mjs open/.test(router) && /Erst dieser Schritt zählt als/.test(router),
+    /resource-access\.mjs open/.test(router)
+      && /Nach jeder Router-Wahl ist `open` Pflicht/.test(router)
+      && /zählt als Nutzung/.test(router)
+      && /URL-Dump allein nicht/.test(router),
     "Router verlangt open als Pflicht vor Nutzung",
   );
 }
