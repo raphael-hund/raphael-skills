@@ -14,13 +14,13 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.16.0"
+  raphael-version: "0.18.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Seite = opus-builder; Kritik mindestens zwei Familien (Grok/Opus/Sol) plus Gegencheck; nie Haiku"]'
+  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Seite = opus-builder; Kritik mindestens zwei Familien (Grok/Opus/Sol) plus Gegencheck; nie Haiku"]'
 ---
 
 # web — Loop 2: Website
@@ -115,12 +115,12 @@ Kimi bleibt erlaubt für Recherche/Zweitstimme, nicht als Seiten-Builder. Mappin
 | CRO Bestandsseite | `references/cro-diagnose.md` |
 | A/B-Programm | `references/experiment-programm.md` |
 | Security Formulare/Supply-Chain | `references/security-audit-playbook.md` |
-| Custom-Code gegen AI-Slop (nach Build) | `references/code-qualitaets-checkliste.md` |
+| Custom-Code gegen AI-Slop + Oxlint anti-slop (nach Build) | `references/code-qualitaets-checkliste.md` |
 | Junge Domain vor Launch | `references/domain-safe-browsing-checkliste.md` |
 | Statistik-Linkbait HTML | `references/templates/statistics-page-template.html` |
 | Vercel-Git, Remotes Org+privat, Plugin-Skills | `references/vercel-git-deploy.md` |
 | Adobe Fonts Library | `node scripts/adobe-fonts-kit.mjs show Fieldwork` |
-| Genau eine Ressource nach Router-Wahl (URL, Metadaten, kein Install; exakte Groß-/Kleinschreibung) | `node scripts/resource-access.mjs show "<exakter Name>"` |
+| Genau eine Ressource nach Router-Wahl (exakte Groß-/Kleinschreibung) | `show` = lokale Metadaten; **Pflicht danach:** `node scripts/resource-access.mjs open "<exakter Name>"` öffnet die Katalog-URL und liest die Site. URL-Dump allein zählt nicht als Nutzung. |
 | 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
 
 Vollständige Auftrag→Datei-Matrix inkl. „nicht laden“: `anfaenger-pfad.md`.
@@ -192,13 +192,16 @@ Detail: `landingpage-struktur.md`.
    `imagegen-web`/`imagegen-mobile` = **kein Default** (nur Host+Router).
 5. **components** — 5a Bedarf → 5b Router-Zeile → 5c **Pflicht:** genau einen
    Namen mit `scripts/resource-access.mjs show "<Name>"` nachschlagen (nie die
-   gesamte Liste; unbekannter Name = Exit 1, nicht raten) → Abweichung belegt → **5d
+   gesamte Liste; unbekannter Name = Exit 1, nicht raten) → **5c-open Pflicht:**
+   dieselbe Ressource mit `scripts/resource-access.mjs open "<Name>"` öffnen und
+   lesen. Erst danach gilt die Site als genutzt oder ein Asset/eine Komponente
+   als übernommen. `show`/URL-Dump allein zählt nicht. → Abweichung belegt → **5d
    Werkzeugtabelle** in `art-direction.md`. Ohne Tabelle kein `npm i`.
    Inspiration App/Flows: Mobbin. MCP oft OFF — Status
    `/root/tools/raphael-mcp-ondemand.sh status`, dann `raphael-chrome` oder
    AgentReach. Nie Fake-Browse.
-6. **build** — nur Tabellen-Zeilen installieren; **Seite baut `opus-builder`**. Review = andere Familie, mindestens zwei Kritiker + Gegencheck (`screenshot-kritik-loop.md` §3). Nie Haiku. Security/OWASP bei Formularen/Consent (`/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`). Echtes Custom-UI → `code-qualitaets-checkliste.md`.
-7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs`.
+6. **build** — nur Tabellen-Zeilen installieren; **Seite baut `opus-builder`**. Review = andere Familie, mindestens zwei Kritiker + Gegencheck (`screenshot-kritik-loop.md` §3). Nie Haiku. Security/OWASP bei Formularen/Consent (`/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`). Echtes Custom-UI → `code-qualitaets-checkliste.md` (inkl. Oxlint `anti-slop` bei TS/JS).
+7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs` + bei Custom-TS/JS `npx oxlint` Exit 0.
 8. **Launch** — Signatur + Deploy-Egress-Gate. Nie autonom. Junge Domain → Safe-Browsing-Checkliste.  
    Git/Vercel: `references/vercel-git-deploy.md` (`origin`=Org, `personal`=raphael-hund).
 9. **cro-learn** — nur echte Analytics (G4).
@@ -241,4 +244,5 @@ run-eval-umfang.mjs — 48 Evals
 - "evals/run-shot-stable-check.mjs"
 - "evals/run-eval-umfang.mjs"
 - "evals/run-site-build-load-path-check.mjs"
+- "evals/run-resource-open-check.mjs"
 "48 weitere Pruefer-Evals"

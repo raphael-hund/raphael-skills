@@ -11,10 +11,13 @@ Default-Wahl.
 > eine ganze Kategorie zitieren, nie diese Datei als Ersatz für den Router laden.
 
 **Einzelzugriff:** Nach der Router-Wahl genau eine benannte Ressource mit
-`node scripts/resource-access.mjs show "<Name>"` nachschlagen. Der Name ist exakt und
-Groß-/Kleinschreibung gilt. Das Skript liest diese Datei, liefert genau einen Eintrag
-(URL, Kategorie, Router-Modus und Metadaten), führt aber weder Installationen noch
-Netzwerkzugriffe aus.
+`node scripts/resource-access.mjs show "<Name>"` nachschlagen, danach **dieselbe**
+Ressource mit `node scripts/resource-access.mjs open "<Name>"` öffnen und lesen.
+Der Name ist exakt und Groß-/Kleinschreibung gilt. `show` liest diese Datei und
+liefert genau einen Eintrag (URL, Kategorie, Router-Modus und Metadaten) ohne
+Install und ohne Netz. `open` nimmt die Katalog-URL und holt die offizielle Site.
+Ohne diesen Öffnen-/Lesen-Schritt gilt die Site nicht als genutzt. URL-Dump allein
+zählt nicht.
 
 Pro Projekt nur die kleinste sinnvolle Auswahl öffnen. Vor Übernahme: Lizenz,
 Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
@@ -332,15 +335,16 @@ Quelle prüfen. Nicht mehrere Icon-Systeme ohne begründeten Bedarf mischen.
 ## Fonts und Typografie
 
 **Bedarf:** Typografie für Marke und Web.
-**Default (Router):** Brand-Font aus dem Dossier, self-hosted (`next/font/local`)  [`#fonts`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
-**Gate:** Lizenz erlaubt Web-Embedding; keine Requests gegen fonts.gstatic.com; max. 2 Familien
-**Nie:** Schrift allein aus einer Galerie übernehmen; CDN statt Self-Hosting
+**Default (Router):** Immer die **Adobe Fonts Library** nutzen. Kit-Embed (`use.typekit.net`), außer bei Kunden-Brand-Dateien  [`#fonts`]
+**Diese Liste ist:** nur Recherche — keine Schriftquelle.
+**Gate:** offizielles Kit-CSS; keine Adobe-Dateien lokal; max. 2 Familien
+**Nie:** Adobe-Bibliothek herunterladen; Google-Fonts-CDN-Default; Adobe-Webfonts selbst hosten
 
 
-Webfont-Lizenz, Self-Hosting, erlaubtes Subsetting, Zeichensatz, variable Achsen,
-Fallbacks und echte Renderkosten prüfen. Gefundene Schrift niemals allein anhand
-einer Galerie in Produktion übernehmen.
+Webfont-Lizenz, Zeichensatz, variable Achsen, Fallbacks und echte Renderkosten
+prüfen. Adobe-Webfonts nur über das Kit laden, nie als lokale Dateien. Google
+Fonts, Fontshare und andere Foundrys hier sind keine Schriftquelle. Gefundene
+Schrift niemals allein anhand einer Galerie in Produktion übernehmen.
 
 - [Google Fonts](https://fonts.google.com/)
 - [Fontshare](https://www.fontshare.com/)

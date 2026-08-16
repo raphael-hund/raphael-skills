@@ -39,5 +39,6 @@
   "run-zwillinge-check.mjs": 2,
   "run-hilfe-alle.mjs": 22,
   "run-illustration-rezept-check.mjs": 23,
-  "run-site-build-load-path-check.mjs": 14
+  "run-site-build-load-path-check.mjs": 21,
+  "run-resource-open-check.mjs": 14
 }

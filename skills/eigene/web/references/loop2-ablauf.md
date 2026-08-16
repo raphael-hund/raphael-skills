@@ -42,11 +42,14 @@ Fail = zurück vor `art-direction`, dort nicht weiterarbeiten.
 - `art-direction`: Tokens/Components vor Pages (`damien-design-methodik.md`);
   Sektion für Sektion / Image-first (`lexlin-design-prinzipien.md`).
 - `components`: zuerst `tool-usecase-router.md` (Default+Install/Use+Gate),
-  danach optional `frontend-referenzbibliothek.md` nur für Alternativen — keine
-  160-Link-Dumps. *verify:* Werkzeugtabelle in `client-<name>/web/art-direction.md`
-  existiert, jede Zeile mit Router-Anker.
+  danach `resource-access.mjs show` **und** `open` für genau einen Namen — keine
+  160-Link-Dumps. `open` ist Pflicht, bevor die Site als genutzt gilt. *verify:*
+  Werkzeugtabelle in `client-<name>/web/art-direction.md` existiert, jede Zeile
+  mit Router-Anker.
 - `build`: *verify:* keine Dependency ohne Tabellenzeile —
   `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt>` Exit 0.
+  Bei eigenem TypeScript/JavaScript zusätzlich `npx oxlint` Exit 0
+  (`code-qualitaets-checkliste.md`, Skill `install-anti-slop`).
 - Wer baut, ist nie wer reviewt; der Review läuft in einem unabhängigen Kontext
   und nach Möglichkeit über einen anderen Anbieter. Rollen: `agent-roster.md`.
 - Assembly-Line: Copy → frischer Build-Kontext → frischer QA-Kontext. Kontext ist

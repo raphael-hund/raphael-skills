@@ -14,10 +14,12 @@ Motion, Shader, Stock-Media oder React-Native-UI gebraucht werden.
 es **keine Galerie-Dumps**. Ein Agent, der die 160 Links in die Antwort kippt,
 verletzt diesen Router. Nach Wahl dieses Router-Falls kann
 `node scripts/resource-access.mjs show "<Name>"` genau einen Katalogeintrag
-(URL + sicheren Modus) nachschlagen; es wählt keinen Default und führt nie
-Installationen aus. **Nach jeder Router-Wahl ist dieser Show-Aufruf Pflicht**
-(ein Name, exakte Schreibweise). Unbekannter Name = Exit 1, nicht raten. Nie die
-160er-Liste in die Antwort kippen.
+(URL + sicheren Modus) nachschlagen; `show` bleibt lokal und installiert nie.
+**Nach jeder Router-Wahl ist `open` Pflicht:**
+`node scripts/resource-access.mjs open "<Name>"` nimmt die Katalog-URL und liest
+die offizielle Site (Fetch, sonst Firecrawl). Erst dieser Öffnen-/Lesen-Schritt
+zählt als Nutzung; `show` oder ein URL-Dump allein nicht. Unbekannter Name =
+Exit 1, nicht raten. Nie die 160er-Liste in die Antwort kippen.
 
 ## Ergebnis: die Werkzeugtabelle (Pflichtartefakt)
 

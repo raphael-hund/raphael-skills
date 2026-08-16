@@ -22,6 +22,11 @@ const COPY = path.join(WEB, '..', 'copywriting', 'SKILL.md');
 const LOOP = path.join(WEB, 'references', 'screenshot-kritik-loop.md');
 const GROK_IMP = '/root/.grok/skills/impeccable/SKILL.md';
 const GROK_UIUX = '/root/.grok/skills/ui-ux-pro-max/SKILL.md';
+const CLAUDE_SETTINGS = '/root/.claude/settings.json';
+const CLAUDE_IMP = '/root/.claude/plugins/cache/impeccable/impeccable/4.0.4/skills/impeccable/SKILL.md';
+const CLAUDE_DESIGN_PLUGIN = '/root/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.13.0/.claude/skills/design/SKILL.md';
+const GROK_PLUGIN_IMP = '/root/.grok/installed-plugins/impeccable-plugin-54fcaebb/plugin/skills/impeccable/SKILL.md';
+const GROK_CFG = '/root/.grok/config.toml';
 
 let fehler = 0;
 let geprueft = 0;
@@ -58,6 +63,15 @@ zeile(
   /rules\.de\.mjs/.test(qa),
   'qa-faecher.md haengt DE-Regeln an scan-ai-slop',
 );
+zeile(
+  /G1 anti-slop/.test(qa) && /npx oxlint/.test(qa) && /install-anti-slop/.test(qa),
+  'qa-faecher.md Fach 4 verlangt oxlint anti-slop bei Custom-TS/JS',
+);
+const codeQ = fs.readFileSync(path.join(WEB, 'references', 'code-qualitaets-checkliste.md'), 'utf8');
+zeile(
+  /Oxlint anti-slop/.test(codeQ) && /install-anti-slop/.test(codeQ) && /dmmulroy\/anti-slop/.test(codeQ),
+  'code-qualitaets-checkliste.md nennt Oxlint anti-slop und Install-Befehl',
+);
 
 const copy = fs.readFileSync(COPY, 'utf8');
 const reqZeile = (copy.match(/^requires_skills:.*$/m) || [''])[0];
@@ -93,6 +107,41 @@ zeile(
   'Grok-Host ui-ux-pro-max ist kurzer Router auf ui-ux-db-nutzung',
 );
 
+const settings = JSON.parse(fs.readFileSync(CLAUDE_SETTINGS, 'utf8'));
+zeile(
+  settings.skillOverrides?.impeccable === 'name-only'
+    && settings.skillOverrides?.['frontend-design'] === 'name-only',
+  'Claude skillOverrides: impeccable + frontend-design = name-only',
+);
+zeile(
+  settings.enabledPlugins?.['impeccable@impeccable'] === false
+    && settings.enabledPlugins?.['frontend-design@claude-plugins-official'] === false
+    && settings.enabledPlugins?.['ui-ux-pro-max@ui-ux-pro-max-skill'] === false,
+  'Claude Design-Plugins impeccable/frontend-design/ui-ux-pro-max sind aus',
+);
+const ccImp = grokRouter(CLAUDE_IMP, ['award-winning design director', 'Core principles:']);
+zeile(
+  ccImp.kurz && !ccImp.doktrin && /design\/scripts\/detect\.mjs/.test(ccImp.txt),
+  'Claude Plugin-Cache impeccable ist kurzer Router auf design detect',
+);
+const ccDes = grokRouter(CLAUDE_DESIGN_PLUGIN, ['Gemini AI', 'corporate identity program', 'GEMINI_API_KEY']);
+zeile(
+  ccDes.kurz && !ccDes.doktrin && /raphael-skills\/skills\/design/.test(ccDes.txt),
+  'Claude Plugin-Cache design ist Router auf kanonisches design',
+);
+const grokPlug = grokRouter(GROK_PLUGIN_IMP, ['award-winning design director', 'Core principles:']);
+zeile(
+  grokPlug.kurz && !grokPlug.doktrin && /design\/scripts\/detect\.mjs/.test(grokPlug.txt),
+  'Grok-Plugin-Kopie impeccable ist kurzer Router',
+);
+const grokCfg = fs.readFileSync(GROK_CFG, 'utf8');
+const plugBlock = grokCfg.match(/\[plugins\]\s*enabled\s*=\s*\[([\s\S]*?)\]/);
+const plugListe = plugBlock ? plugBlock[1] : '';
+zeile(
+  Boolean(plugBlock) && !/"impeccable"/.test(plugListe),
+  'Grok config.toml laedt Plugin impeccable nicht',
+);
+
 function show(name) {
   return spawnSync('node', [ACCESS, 'show', name], { encoding: 'utf8', timeout: 15000 });
 }
@@ -119,6 +168,11 @@ for (const [name, marker] of [
     'resource-access show Unbekannt = ehrlicher Fail (Exit 1)',
   );
 }
+
+zeile(
+  /resource-access\.mjs open/.test(skill) && /URL-Dump allein zählt nicht/.test(skill),
+  'web SKILL.md: open nach Router-Wahl Pflicht, URL-Dump zählt nicht',
+);
 
 {
   const r = spawnSync('node', [SWEEP], { encoding: 'utf8', timeout: 15000 });

@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 /**
- * Offline Einzelzugriff auf den kanonischen Frontend-Ressourcen-Katalog.
+ * Einzelzugriff auf den kanonischen Frontend-Ressourcen-Katalog.
  *
- * Dieses Programm kennt nur `check` und `show`. Es liest lokale Referenzen;
- * es führt keine Netzwerk-, Shell-, Schreib- oder Paketaktionen aus.
+ * `check` und `show` bleiben lokal: sie lesen nur Referenzen, ohne Netz,
+ * Shell, Schreib- oder Paketaktionen.
+ * `open` nimmt die Katalog-URL und liest die offizielle Site (Fetch, sonst
+ * Firecrawl). Unbekannter Name = Exit 1, keine geratene URL.
  *
  * Usage:
  *   node resource-access.mjs check
  *   node resource-access.mjs show <exakter-Name> [--json]
+ *   node resource-access.mjs open <exakter-Name> [--json]
  */
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -37,7 +41,7 @@ const CATEGORY_ADAPTERS = Object.freeze({
   "2D-Illustration-Kits": Object.freeze({ kind: "asset-library", mode: "download-local-with-license", routerAnchor: "#illustration-flat" }),
   "Motion-Assets und Stock-Video": Object.freeze({ kind: "asset-library", mode: "download-local-with-license", routerAnchor: "#video" }),
   Icons: Object.freeze({ kind: "icon-source", mode: "selected-icon-family", routerAnchor: "#icons" }),
-  "Fonts und Typografie": Object.freeze({ kind: "font-source", mode: "self-host-after-license", routerAnchor: "#fonts" }),
+  "Fonts und Typografie": Object.freeze({ kind: "font-source", mode: "adobe-kit-embed", routerAnchor: "#fonts" }),
   "React Native und Mobile UI": Object.freeze({ kind: "mobile-ecosystem", mode: "official-docs-only", routerAnchor: "#mobile" }),
 });
 
@@ -111,6 +115,17 @@ const OVERRIDES = Object.freeze({
   "Subtle Patterns": { routerAnchor: "#background" },
   Typewolf: { kind: "typography-research", mode: "browser-research" },
   "Fonts In Use": { kind: "typography-research", mode: "browser-research" },
+  "Google Fonts": { kind: "typography-research", mode: "browser-research" },
+  Fontshare: { kind: "typography-research", mode: "browser-research" },
+  Velvetyne: { kind: "typography-research", mode: "browser-research" },
+  "Open Foundry": { kind: "typography-research", mode: "browser-research" },
+  Uncut: { kind: "typography-research", mode: "browser-research" },
+  "Use & Modify": { kind: "typography-research", mode: "browser-research" },
+  Fontesk: { kind: "typography-research", mode: "browser-research" },
+  Collletttivo: { kind: "typography-research", mode: "browser-research" },
+  "The League of Moveable Type": { kind: "typography-research", mode: "browser-research" },
+  "Omnibus Type": { kind: "typography-research", mode: "browser-research" },
+  "Atipo Foundry": { kind: "typography-research", mode: "browser-research" },
   Lucide: { kind: "icon-package", mode: "npm-after-router", routerAnchor: "#icons" },
   "Tabler Icons": { kind: "icon-package", mode: "npm-after-router", routerAnchor: "#icons" },
   "Phosphor Icons": { kind: "icon-package", mode: "npm-after-router", routerAnchor: "#icons" },
@@ -133,7 +148,7 @@ const OVERRIDES = Object.freeze({
 });
 
 const VALID_KINDS = new Set(["inspiration-source", "component-source", "component-registry", "npm-plugin", "runtime-code", "research-source", "generator", "asset-library", "icon-source", "icon-package", "font-source", "typography-research", "mobile-ecosystem", "mobile-package"]);
-const VALID_MODES = new Set(["selected-component", "npm-after-router", "pub-after-router", "browser-research", "export-local", "download-local-with-license", "selected-icon-family", "self-host-after-license", "official-docs-only"]);
+const VALID_MODES = new Set(["selected-component", "npm-after-router", "pub-after-router", "browser-research", "export-local", "download-local-with-license", "selected-icon-family", "self-host-after-license", "adobe-kit-embed", "official-docs-only"]);
 const VALID_ECOSYSTEMS = new Set(["npm", "pub"]);
 const PACKAGE_NAME = /^(?:@[a-z0-9][a-z0-9._-]*\/)?[a-z0-9][a-z0-9._-]*$/;
 
@@ -159,7 +174,7 @@ function routerAnchors() {
 }
 
 function nonPackage(resource) {
-  const reason = resource.mode === "browser-research" ? "web-only research or learning source" : resource.mode === "selected-component" ? "registry or copy source; no source package is installed" : resource.mode === "export-local" ? "generator export, not a production package" : resource.mode === "download-local-with-license" ? "asset download, not a production package" : resource.mode === "self-host-after-license" ? "font files are self-hosted after license review" : resource.mode === "selected-icon-family" ? "web-only icon source; no verified package identity" : "official documentation or copied asset; no verified package identity";
+  const reason = resource.mode === "browser-research" ? "web-only research or learning source" : resource.mode === "selected-component" ? "registry or copy source; no source package is installed" : resource.mode === "export-local" ? "generator export, not a production package" : resource.mode === "download-local-with-license" ? "asset download, not a production package" : resource.mode === "adobe-kit-embed" ? "Adobe Fonts load via official kit embed, not as a package" : resource.mode === "self-host-after-license" ? "font files are self-hosted after license review" : resource.mode === "selected-icon-family" ? "web-only icon source; no verified package identity" : "official documentation or copied asset; no verified package identity";
   return Object.freeze({ status: "non-package", ecosystem: null, reason });
 }
 
@@ -185,6 +200,7 @@ function usePlan(resource) {
     "export-local": "Export selected SVG or CSS locally, inspect scripts and external references, then version only that export.",
     "download-local-with-license": "Download one selected asset locally and document license, attribution, and client rights; do not hotlink.",
     "selected-icon-family": "Choose one icon family for the product and check icon and trademark rights before local use.",
+    "adobe-kit-embed": "Load fonts via the official Adobe kit embed (use.typekit.net). Do not download or self-host Adobe webfont files.",
     "self-host-after-license": "Verify web-embedding rights, download only selected files, and self-host them.",
     "official-docs-only": "Use only for a native-app brief and verify platform compatibility in official documentation.",
   };
@@ -243,42 +259,221 @@ function validate(resources) {
   return failures;
 }
 
+const FETCH_TIMEOUT_MS = 20000;
+const MIN_BODY_CHARS = 200;
+const EXCERPT_CHARS = 480;
+
+function siteMarkers(name, officialUrl) {
+  const tokens = new Set();
+  for (const part of String(name).toLowerCase().split(/[^a-z0-9]+/)) {
+    if (part.length >= 3) tokens.add(part);
+  }
+  try {
+    const host = new URL(officialUrl).hostname.replace(/^www\./, "");
+    const labels = host.split(".");
+    const first = labels[0] || "";
+    if (first.length >= 3 && first !== "www") tokens.add(first);
+    if (labels.length >= 3 && first.length <= 3 && (labels[1] || "").length >= 3) tokens.add(labels[1]);
+  } catch {
+    /* catalog URL already validated as https */
+  }
+  return [...tokens];
+}
+
+function findMarker(body, markers) {
+  const lower = String(body).toLowerCase();
+  return markers.find((token) => lower.includes(token)) ?? null;
+}
+
+function excerptAround(body, marker) {
+  const text = String(body).replace(/\s+/g, " ").trim();
+  if (!text) return "";
+  if (!marker) return text.slice(0, EXCERPT_CHARS);
+  const at = text.toLowerCase().indexOf(marker.toLowerCase());
+  if (at < 0) return text.slice(0, EXCERPT_CHARS);
+  const start = Math.max(0, at - 80);
+  return text.slice(start, start + EXCERPT_CHARS);
+}
+
+function loginWallOnly(body, marker) {
+  const text = String(body);
+  if (marker) return false;
+  if (text.trim().length >= MIN_BODY_CHARS) return false;
+  return /log[\s-]?in|sign[\s-]?in|anmelden/i.test(text);
+}
+
+async function readViaFetch(url) {
+  const res = await fetch(url, {
+    redirect: "follow",
+    headers: {
+      accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "user-agent": "raphael-web-resource-open/1.0",
+    },
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+  });
+  const body = await res.text();
+  return { channel: "fetch", httpStatus: res.status, finalUrl: res.url || url, body };
+}
+
+function readViaFirecrawl(url) {
+  const run = spawnSync("firecrawl", ["scrape", url, "-f", "markdown", "--only-main-content"], {
+    encoding: "utf8",
+    timeout: 60000,
+  });
+  if (run.error) throw new Error(`firecrawl missing: ${run.error.message}`);
+  if (run.status !== 0) {
+    const detail = `${run.stderr || ""}${run.stdout || ""}`.split("\n").find(Boolean) || `exit ${run.status}`;
+    throw new Error(`firecrawl failed: ${detail}`);
+  }
+  return { channel: "firecrawl", httpStatus: 200, finalUrl: url, body: run.stdout || "" };
+}
+
+async function openOfficialPage(resource) {
+  const markers = siteMarkers(resource.name, resource.officialUrl);
+  let lastError = "";
+  let page = null;
+  try {
+    page = await readViaFetch(resource.officialUrl);
+  } catch (error) {
+    lastError = error instanceof Error ? error.message : String(error);
+  }
+  const fetchOk = page && page.httpStatus >= 200 && page.httpStatus < 400;
+  const fetchMarker = page ? findMarker(page.body, markers) : null;
+  if (page && fetchOk && loginWallOnly(page.body, fetchMarker)) {
+    throw new Error(`empty or login-wall body without site marker from ${resource.officialUrl}`);
+  }
+  if (page && fetchOk && !fetchMarker) {
+    throw new Error(`fetched ${resource.officialUrl} but found no site marker (${markers.join(", ") || "none"})`);
+  }
+  if (!fetchOk || !page) {
+    try {
+      page = readViaFirecrawl(resource.officialUrl);
+    } catch (error) {
+      const firecrawlError = error instanceof Error ? error.message : String(error);
+      const why = lastError ? `${lastError}; ${firecrawlError}` : firecrawlError;
+      const fail = new Error(`HOST_UNAVAILABLE ${resource.name} ${resource.officialUrl} (${why})`);
+      fail.code = "HOST_UNAVAILABLE";
+      throw fail;
+    }
+  }
+  const marker = findMarker(page.body, markers);
+  if (!marker || loginWallOnly(page.body, marker)) {
+    throw new Error(`empty or login-wall body without site marker from ${resource.officialUrl}`);
+  }
+  const body = String(page.body);
+  return Object.freeze({
+    url: resource.officialUrl,
+    finalUrl: page.finalUrl,
+    channel: page.channel,
+    httpStatus: page.httpStatus,
+    bytes: Buffer.byteLength(body),
+    marker,
+    excerpt: excerptAround(body, marker),
+  });
+}
+
 function usage(message) {
   if (message) console.error(message);
-  console.error("usage: resource-access.mjs check | show <exakter-Name> [--json]");
+  console.error("usage: resource-access.mjs check | show <exakter-Name> [--json] | open <exakter-Name> [--json]");
   process.exit(2);
 }
 
-const args = process.argv.slice(2);
-const command = args.shift();
-const json = args.includes("--json");
-const cleanArgs = args.filter((arg) => arg !== "--json");
-if (!command || args.length !== cleanArgs.length + (json ? 1 : 0)) usage();
-
-const resources = parseCatalog(readFileSync(CATALOG_PATH, "utf8"));
-const failures = validate(resources);
-if (failures.length) {
-  console.error("Resource access: FAIL");
-  for (const failure of failures) console.error(`  - ${failure}`);
-  process.exit(1);
+function loadCatalogOrDie() {
+  const resources = parseCatalog(readFileSync(CATALOG_PATH, "utf8"));
+  const failures = validate(resources);
+  if (failures.length) {
+    console.error("Resource access: FAIL");
+    for (const failure of failures) console.error(`  - ${failure}`);
+    process.exit(1);
+  }
+  return resources;
 }
 
-if (command === "check") {
-  if (cleanArgs.length || json) usage("check accepts no arguments");
-  console.log(`Resource access: OK (${REQUESTED_CONTRACT.count} requested + ${REQUESTED_CONTRACT.extraInspirationCount} extra inspiration sources; sorted pair SHA-256; router and package metadata valid)`);
-  process.exit(0);
-}
-if (command === "show") {
-  if (cleanArgs.length !== 1) usage("show requires one exact resource name");
-  const resource = resources.find(({ name }) => name === cleanArgs[0]);
-  if (!resource) { console.error(`Resource not found: ${cleanArgs[0]}`); process.exit(1); }
-  const item = adapter(resource);
+function printShow(item, json) {
   if (json) console.log(JSON.stringify(item, null, 2));
   else {
     console.log(`${item.name}\n  URL: ${item.officialUrl}\n  Kategorie: ${item.category}\n  Modus: ${item.mode} (${item.routerAnchor})\n  Plan: ${item.usePlan}`);
     if (item.packageIdentity.status === "non-package") console.log(`  Paketidentität: keine (${item.packageIdentity.reason})`);
     else console.log(`  Paketidentität: ${item.packageIdentity.ecosystem}/${item.packageIdentity.type} ${item.packageIdentity.package} (${item.packageIdentity.source})`);
   }
-  process.exit(0);
 }
-usage(`Unknown command: ${command}`);
+
+function printOpen(item, opened, json) {
+  if (json) console.log(JSON.stringify({ ...item, opened }, null, 2));
+  else {
+    console.log(`${item.name}\n  URL: ${opened.url}\n  Final: ${opened.finalUrl}\n  Kanal: ${opened.channel}\n  Status: ${opened.httpStatus}\n  Marker: ${opened.marker}\n  Bytes: ${opened.bytes}\n  Gelesen: ${opened.excerpt}`);
+  }
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const command = args.shift();
+  if (command === "--help" || command === "-h" || command === "help") {
+    console.log(`resource-access.mjs — Einzelzugriff auf den Katalog
+
+usage:
+  node resource-access.mjs check
+  node resource-access.mjs show <exakter-Name> [--json]
+  node resource-access.mjs open <exakter-Name> [--json]
+
+check  Katalog + Router-Anker + Paketmetadaten (lokal, kein Netz)
+show   genau einen Eintrag (lokal, kein Netz)
+open   Katalog-URL öffnen und Site lesen (Fetch, sonst Firecrawl)`);
+    process.exit(0);
+  }
+  const json = args.includes("--json");
+  const cleanArgs = args.filter((arg) => arg !== "--json");
+  if (!command || args.length !== cleanArgs.length + (json ? 1 : 0)) usage();
+
+  const resources = loadCatalogOrDie();
+
+  if (command === "check") {
+    if (cleanArgs.length || json) usage("check accepts no arguments");
+    console.log(`Resource access: OK (${REQUESTED_CONTRACT.count} requested + ${REQUESTED_CONTRACT.extraInspirationCount} extra inspiration sources; sorted pair SHA-256; router and package metadata valid)`);
+    process.exit(0);
+  }
+  if (command === "show") {
+    if (cleanArgs.length !== 1) usage("show requires one exact resource name");
+    const resource = resources.find(({ name }) => name === cleanArgs[0]);
+    if (!resource) { console.error(`Resource not found: ${cleanArgs[0]}`); process.exit(1); }
+    printShow(adapter(resource), json);
+    process.exit(0);
+  }
+  if (command === "open") {
+    if (cleanArgs.length !== 1) usage("open requires one exact resource name");
+    const resource = resources.find(({ name }) => name === cleanArgs[0]);
+    if (!resource) { console.error(`Resource not found: ${cleanArgs[0]}`); process.exit(1); }
+    const item = adapter(resource);
+    try {
+      const opened = await openOfficialPage(resource);
+      printOpen(item, opened, json);
+      process.exit(0);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (error && error.code === "HOST_UNAVAILABLE") {
+        console.error(`Resource open: HOST_UNAVAILABLE`);
+        console.error(`  name: ${resource.name}`);
+        console.error(`  url: ${resource.officialUrl}`);
+        console.error(`  error: ${message}`);
+        process.exit(3);
+      }
+      console.error(`Resource open: FAIL`);
+      console.error(`  name: ${resource.name}`);
+      console.error(`  url: ${resource.officialUrl}`);
+      console.error(`  error: ${message}`);
+      process.exit(1);
+    }
+  }
+  usage(`Unknown command: ${command}`);
+}
+
+export {
+  parseCatalog,
+  adapter,
+  openOfficialPage,
+  siteMarkers,
+  CATALOG_PATH,
+};
+
+const invokedDirectly = Boolean(process.argv[1]) && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (invokedDirectly) await main();
