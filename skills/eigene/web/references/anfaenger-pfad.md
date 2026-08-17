@@ -15,7 +15,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 |---|---|---|
 | **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
-| **Nur Design/Look polieren** | design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` | Sweep + PNGs gelesen + Fixliste leer |
+| **Nur Design/Look polieren** | design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
 | **Ship / Launch-Check** | `qa-faecher.md` → `agentur-rubrik.md` → `agent-roster.md` → `vercel-git-deploy.md` | Fächer 1–6 grün, Rubrik 1–25 oder Ausnahme; bei Custom-TS/JS `npx oxlint` Exit 0; Org-`origin` + Preview |
 | **Premium/Gauntlet** (gegen Weltklasse) | `screenshot-kritik-loop.md` (inkl. 3b Blind-A/B) → `agentur-rubrik.md` → `lexlin-design-prinzipien.md` + `damien-design-methodik.md` | Blind-A/B dokumentiert, max 3 Zyklen |
 | **Referenzseite nachbauen** (URL) | `web-clone-playbook.md` **zuerst** (Lizenz!) → dann Clone-Scripts | Lizenz-Check schriftlich vor Code |
@@ -46,6 +46,8 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 ```
 
 3. Jedes PNG **per Read ansehen** (nicht nur erzeugen).
+   Vor dem Ship: Root-`DESIGN.md` Teil D und `DECISIONS.md` auf Raphael-Nein
+   zur Route prüfen. Ein gesperrter Dateipfad auf der Seite = Fail.
 4. Design-G1:
 
 ```bash

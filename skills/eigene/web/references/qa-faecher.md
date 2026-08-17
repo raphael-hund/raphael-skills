@@ -83,9 +83,12 @@ Pass nur, wenn alle fünf Punkte stimmen:
 - **(D) Mobile-Fallback da:** statische Variante oder Poster für Reduced-Motion vorhanden.
 - **(E) Screenshot nach Einbau:** Asset im echten Web-Kontext sichtbar, kein Broken Image,
   Farben stimmen mit der Quelle überein.
+- **(F) Raphael-Nein:** Root-`DESIGN.md` Teil D und `DECISIONS.md` nennen keine
+  Sperre, die dieses Asset oder diesen Dateipfad auf dieser Route verbietet.
+  `rg` auf den gesperrten Pfad in der Seiten-Copy und im Hero liefert 0 Treffer.
 
 Fail = ein Punkt offen → zurück in den Bildgenerierungs-/Freisteller-Schritt, nicht im
-Layout nachbessern.
+Layout nachbessern. (F) rot = kein Ship, auch wenn (A)–(E) grün sind.
 
 ## Fach 3 — A11y
 - G1: axe = 0 Fehler (hart). Farbkontrast AA, Fokus-Reihenfolge, Alt-Texte, Labels.
@@ -100,6 +103,10 @@ Layout nachbessern.
   `useReducedMotion` in jeder animierenden Datei, keine Dependency ohne Zeile in
   der Werkzeugtabelle aus Schritt 5d. Rot = kein Launch, wie jedes andere G1-Fach.
   "Router wurde gelesen" ist keine gueltige Antwort auf dieses Gate.
+- **G1 anti-slop (hart, nur Custom-TS/JS):** Plugin im Repo, `npx oxlint` Exit 0.
+  Richtet Skill `install-anti-slop` ein. Detail und Regel-Liste:
+  `code-qualitaets-checkliste.md`. Kein Ersatz für `scan-ai-slop.mjs` (das ist
+  Text/Markup in Fach 2). CMS-only ohne eigene `.ts`/`.js` = nicht anwenden.
 
 ## Fach 5 — SEO
 - G1: pro indexierbarer Route unique title (≤60), meta (≤160), clean slug, genau eine H1,

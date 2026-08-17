@@ -1,6 +1,6 @@
 ---
 name: handoff
-version: 0.3.0
+version: 0.3.1
 description: >
   Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am
   Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben
@@ -50,7 +50,8 @@ Modellwechsel) verlustfrei weitermacht — denn nur Git-getrackte Dateien zähle
 
 1. **Stand sichern** — PROGRESS.md: was erledigt, was WIP=1 gerade offen, Gates-Status.
 2. **Entscheidungen festhalten** — DECISIONS.md: was warum entschieden (damit die nächste
-   Session nicht neu diskutiert).
+   Session nicht neu diskutiert). Raphael-Nein zu einem Asset: Route + Dateipfad
+   + Ersatz in DECISIONS/DESIGN, nicht nur als Satz im Brief.
 3. **Nächster Schritt exakt** — eine konkrete, sofort startbare Anweisung.
 4. **Commit + Push/Backup** in jedem berührten Repo.
 5. **Übergabe-Brief** nach `references/handoff-template.md` — an den Anfang des nächsten

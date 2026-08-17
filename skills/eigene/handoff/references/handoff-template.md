@@ -18,6 +18,7 @@ Kopiere ausgefüllt an den Anfang des nächsten Prompts. Kurz, konkret, sofort s
 
 ## Entscheidungen (warum, damit nicht neu diskutiert)
 - <Entscheidung → Grund>
+- LOCKS: <Route + gesperrter Dateipfad + Ersatz — Raphael-Nein der Session>
 
 ## Kontext-Pfade
 - Repo(s): <Pfade>

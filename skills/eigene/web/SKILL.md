@@ -14,13 +14,13 @@ description: >
   "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
   "Screenshot nachbauen", "aus Bild bauen".
 metadata:
-  raphael-version: "0.18.0"
+  raphael-version: "0.19.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Seite = opus-builder; Kritik mindestens zwei Familien (Grok/Opus/Sol) plus Gegencheck; nie Haiku"]'
+  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Seite = opus-builder; Kritik mindestens zwei Familien (Grok/Opus/Sol) plus Gegencheck; nie Haiku", "Raphael-Nein derselben Session steht in DESIGN.md/DECISIONS.md mit Route+Dateipfad; gesperrter Pfad kommt auf der Route nicht mehr vor (rg vor Ship)"]'
 ---
 
 # web — Loop 2: Website
@@ -69,6 +69,13 @@ erlaubt. `main` trägt nur flache Squash-Commits.
 - **Gefällt nicht** → Workspace + Branch ersatzlos löschen UND das Abgelehnte
   als Verboten-Eintrag in Root-`DESIGN.md`/`DECISIONS.md` schreiben. Erst dann
   gilt das Nein als eingearbeitet.
+- **Raphael-Nein in derselben Session** (ein Asset, ein Motiv, ein Muster):
+  sofort Route + Dateipfad + Ersatz in `DESIGN.md`/`DECISIONS.md` schreiben,
+  Datei per `bilder.mjs reject` löschen, Code auf den Ersatz umstellen.
+  Gesperrter Pfad darf auf dieser Route nicht mehr vorkommen. Ein späterer
+  Workspace-Kill ersetzt das nicht. Beleg 17.08.2026: Haushaltsauflösung
+  sollte Illustration, live blieb `hero-polo-dokumentar.webp`, weil die
+  Ausnahme vom 13.08. das Foto festhielt.
 - Historie/Archiv-Ordner sind KEINE Quelle: nichts aus `git log`, alten Plänen
   oder Handoffs wieder einbauen. Was nicht im aktuellen Code oder `DESIGN.md`
   steht, ist verworfen. Muster-Repo: Wilhelm-Bedachung (`CLAUDE.md` dort).
@@ -230,6 +237,8 @@ QA 1–4 ‖ dann SEO+Trust → Launch (Signatur) → cro-learn.
 - Junge Domain + Formular = Safe-Browsing-Risiko.
 - Motion ohne `useReducedMotion` = Fail.
 - Bilder: Higgsfield nach `bildgenerierung.md`; AVIF + Index; `reject` löscht Datei+Index.
+- Raphael sagt Nein zu einem sichtbaren Asset: DESIGN/DECISIONS-Sperre **und**
+  `reject` **und** Code-Pfad weg. Nur Datei löschen reicht nicht.
 - AAA hier = Agentur-Rubrik, nicht WCAG AAA (WCAG bleibt AA).
 
 ## Evals (Umfang)
