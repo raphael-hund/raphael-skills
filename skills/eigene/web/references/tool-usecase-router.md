@@ -300,8 +300,8 @@ Buttons, Zustände, Listen.
 |---|---|
 | **Bedarf** | Hero-Foto, Produkt, Szene, 2D/3D-Illustration auf der Seite |
 | **Loop** | `art-direction` → Assets vor/während `build` |
-| **Default** | **Higgsfield laut `bildgenerierung.md`** (GPT Image 2 / Recraft-Baum) |
-| **Install/Use** | siehe `bildgenerierung.md` + `scripts/bilder.mjs` (AVIF + Index) |
+| **Default** | Skill **`higgsfield`** (`/higgsfield`), CLI-Details in `bildgenerierung.md` (GPT Image 2) |
+| **Install/Use** | Skill `higgsfield` zuerst, dann `bildgenerierung.md` + `scripts/bilder.mjs` (AVIF + Index) |
 | **Alternativen** | Kundenechte Fotos; Stock nur wenn Brief Stock/KI-Verbot: Unsplash/Pexels/Pixabay mit Lizenznotiz |
 | **Gate** | AVIF + `bilder-index.json`; Uncanny-Check bei KI-Menschen; kein Stock als „Kundenbeweis“ |
 | **Nie** | Stock-Pipeline als Default wenn Higgsfield erlaubt; Nano Banana als Final; doppelte Bild-Doktrin erfinden |

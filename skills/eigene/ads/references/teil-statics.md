@@ -40,4 +40,4 @@ Welle braucht vor Produktion eine Stopp-Regel (Metrik + Mindestlaufzeit).
 
 ## Bild
 
-Verweis an `design`. Beweis-Kontexte nie KI-generiert.
+Verweis an Skill `higgsfield` (`/higgsfield`). Beweis-Kontexte nie KI-generiert.

@@ -2,11 +2,14 @@
 
 **Wofür:** Echte Bild-Assets für die Website erzeugen — Hero-Bilder, Produkt-Shots,
 Szenen, Menschen, Illustrationen (2D/3D). Standard-Werkzeug ist die **Higgsfield
-CLI** (`higgsfield`, Aliase `higgs`/`hf`) auf dem VPS. Nicht raten — dieses Dokument
+CLI** (`higgsfield`, Aliase `higgs`/`higgsfield`) auf dem VPS. Nicht raten — dieses Dokument
 nennt die realen Job-Types und Parameter (geprüft mit `higgsfield model get`).
 
-Login/Workspace/Fähigkeiten der CLI stehen in der Memory `higgsfield-cli`. Diese
-Referenz ist die **Bild-Doktrin** darüber: welches Modell, wann, mit welchen Referenzen.
+Login/Workspace/Fähigkeiten der CLI stehen in der Memory `higgsfield-cli`.
+**Einstieg und Ablauf:** Skill `/higgsfield`
+(`/root/raphael-skills/skills/eigene/higgsfield/SKILL.md`). Diese Datei bleibt
+der CLI-Katalog (Job-Types, Params, `bilder.mjs`). Raphael 17.08.2026: Final
+immer GPT Image 2. Recraft nicht nutzen.
 
 ## Abgrenzung — welches Skill/Werkzeug für welches Bild?
 
@@ -23,17 +26,96 @@ Drei verschiedene Dinge, oft verwechselt. Erst einordnen, dann arbeiten:
 Für Websites gilt: **Art Direction kommt aus `design`** (Look, Palette, Register) →
 diese Referenz setzt die Art Direction in konkrete Bilder um.
 
-## Vorbereitung (einmal pro Session)
+## Vorbereitung (Auth ist dauerhaft — kein Session-Login)
+
+Die Higgsfield-CLI liegt als `higgsfield` / `higgs` in `/usr/local/bin`.
+Auth und Default-Workspace kommen aus der gemeinsamen Dauer-Konfiguration
+(`HIGGSFIELD_CONFIG_PATH`, `HIGGSFIELD_CREDENTIALS_PATH`,
+`HIGGSFIELD_WORKSPACE_ID`). Kein `workspace set` und kein `auth login` in
+der Session. Der Befehl `hf` auf diesem VPS ist HuggingFace — nicht Higgsfield.
 
 ```bash
-hf workspace set 17fb38d1-d9ad-49fd-b665-7d80ee81f9ad   # Workspace muss gesetzt sein
-hf account status                                        # Credits prüfen
-hf generate cost <job_type> --prompt "…"                 # IMMER vorab: Kosten schätzen
+higgsfield account status                          # Credits + Account prüfen
+higgsfield generate cost <job_type> --prompt "…"   # IMMER vorab: Kosten schätzen
 ```
 
 Referenzbilder zuerst hochladen (oder direkt als Pfad übergeben — Pfade werden
-auto-hochgeladen): `hf upload create ./ref.png` → Upload-ID. Bereits hochgeladene
-wiederverwenden: `hf upload list`.
+auto-hochgeladen): `higgsfield upload create ./ref.png` → Upload-ID. Bereits
+hochgeladene wiederverwenden: `higgsfield upload list`.
+
+## Neue Illustration vs. wiederverwenden
+
+Eigener Ablauf. Gilt, wenn die Seite eine **Illustration** braucht (Karte,
+Schnitt, Schema, Icon-Szene) — nicht für echte Kundenfotos.
+
+Jeder Agent (Grok, Opus, Claude, Codex) arbeitet **genau so**. Das ist das
+Training: dieselbe Datei, dieselben zwei Kontexte, dieselbe CLI.
+
+### 1. Neu erzeugen oder bestehendes Asset?
+
+| Entscheidung | Wann |
+|---|---|
+| **Wiederverwenden** | Derselbe Inhalt steht schon im Projekt-Index (`bilder-index.json`) im richtigen Stil. Dann kein Generate. |
+| **Neue Illustration** | Inhalt fehlt, Stil passt nicht, Raphael verlangt ein neues Motiv, oder das alte Asset ist rejected. |
+
+Kein drittes Bild „nur zum Ausprobieren“ als Final. Preview nur mit
+`nano_banana_flash`. Final nur `gpt_image_2` (Referenz oder Illustration).
+
+### 2. Zwei Kontexte — immer trennen, oft zusammen geben
+
+Zwei Wörter, fest:
+
+| Wort | Bedeutung | Typische Datei |
+|---|---|---|
+| **Inhaltkontext** | *Was* zu sehen ist. Echte Vorlage. Nie erfinden. | Gesuchte Map, Schnittfoto, Produkt, Ort |
+| **Stilkontext** | *Wie* es aussieht und *wo* es sitzt. | Alles, was Raphael hochlädt: Seiten-Screenshots, bestehende flache Vektor-Illustrationen, Marken-Assets |
+
+**Inhaltkontext:** Beispiel Map — der Inhalt ist Dresden → echte Dresdner Map
+suchen, als `--image` mitgeben. Nie den Stadtgrundriss halluzinieren.
+
+**Stilkontext (hart, Raphael 14.08.2026):** Screenshots der laufenden Seite
+und hochgeladene Illustrations-Beispiele **sind Stilkontext**. Nicht Inhalt.
+Sie sagen: flache Vektorlinie, Farbe, Dichte, „muss hier reinpassen“.
+Wilhelm-Beispiel: Seiten-Screenshot + bestehende Schnitt-Illustration
+(weiße Linie, flach, technisch) → neues Motiv im **selben** Stil.
+
+Im Prompt jede `--image`-Datei benennen: `Inhaltkontext:` oder `Stilkontext:`.
+Modell bleibt **GPT Image 2**, sobald irgendeine Referenz da ist.
+
+### 3. Rezept (Map / Dresden + Wilhelm-Screenshot)
+
+```text
+Inhaltkontext = echte Map Dresden (gesucht)
+Stilkontext   = Seiten-Screenshots + bestehende flache Vektor-Illustrationen
+```
+
+```bash
+higgsfield generate cost gpt_image_2 --prompt "…"
+higgsfield generate create gpt_image_2 \
+  --prompt "Inhaltkontext: Dresdner Stadtplan aus Bild 1, nicht erfinden. Stilkontext: flache Vektorlinie und Passform aus Bild 2 und 3. Motiv ins bestehende Layout einpassen." \
+  --image ./inhalt-dresden-map.png \
+  --image ./stil-seite-screenshot.png \
+  --image ./stil-bestehende-illustration.avif \
+  --aspect-ratio 16:9 --resolution 4k --quality high --wait
+```
+
+Danach:
+1. Bild per Read ansehen. Abnahme (Raphael oder visual-aaa bei Ship).
+2. Freistellen + Trim (unten).
+3. `bilder.mjs add`.
+4. Einbau. **Ausfaden** ins Layout (CSS-Maske / Gradient auf die Kante,
+   die an Fläche/Text grenzt). Abstand bleibt CSS, nicht Canvas.
+5. Dummy-Marken oder Wasserzeichen aus dem Generate entfernen.
+
+Eine Sektion nach der anderen. Asset nicht im Code neu zeichnen.
+
+### 4. Harte Verbote in diesem Abschnitt
+
+- Inhalt erfinden, obwohl eine echte Vorlage existiert (Map, Produkt, Ort).
+- Seiten-Screenshot als Inhaltkontext behandeln (er ist Stilkontext).
+- Stilkontext weglassen, wenn Screenshot oder Marken-Illustration da ist.
+- Recraft für Illustration (Recraft nur fotorealistisch ohne Referenz).
+- Einbauen vor Abnahme.
 
 ## Der Entscheidungsbaum (verbindlich)
 
@@ -45,28 +127,25 @@ oder Fotorealismus. Flache, generische Illustrationen (Marke egal) laufen über
 **Erste Frage immer: Gibt es Referenzen?**
 
 ```
-Referenzen vorhanden?
-├── JA  → GPT Image 2  (gpt_image_2)   ← Standard, sobald es IRGENDEINE Referenz gibt
-│         ├── Inhaltliche Referenz (was ist zu sehen)
-│         └── Visuelle/stilistische Referenz (wie soll es aussehen)
-└── NEIN → Was für ein Bild?
-          ├── Illustration / stilisiert (2D/3D, markenspezifisch — sonst greift
-          │     `#illustration-flat`, siehe Scope-Grenze oben) → GPT Image 2  ← bester Illustrator
-          └── echt fotorealistisch              → Recraft V4.1 (recraft_v4_1)
-                mit striktem JSON-Prompting, ohne Color-Grading
-                ⚠ KEINE Nahaufnahme-Gesichter echter Menschen — nur Distanz / beiläufig
+Referenzen vorhanden? (Stil fast immer: Seite existiert)
+├── JA  → GPT Image 2  (gpt_image_2)
+│         ├── Inhaltkontext (was ist zu sehen)
+│         └── Stilkontext (Kamera / Farbe / Linie — nicht das Motiv der Stil-Datei)
+└── NEIN → zuerst Referenzen suchen (Pexels/Unsplash/Web/Seite), dann GPT Image 2
+          ├── Foto → Kamera-Saetze, siehe Skill higgsfield/references/foto-prompt.md
+          └── Illustration → extra Recherche, siehe higgsfield/references/illustration.md
 
 Previews (schnell, wegwerfbar) → Nano Banana 2 (nano_banana_flash), sonst NIE.
 Auflösung finaler Assets → immer 4k oder 2k, nie 1k.
+Recraft (`recraft_v4_1`) nicht aufrufen (Raphael 17.08.2026).
 ```
 
-**Merksatz:** GPT Image 2 ist die erste Wahl für alles Stilisierte und alles mit
-Referenz. Recraft ist der **Realismus-Spezialist** — nur ranholen, wenn es echt
-fotorealistisch aussehen muss.
+**Merksatz:** GPT Image 2 ist die einzige Final-Wahl. Recraft bleibt in der CLI
+sichtbar, der Agent startet es nicht.
 
 ### 4-Felder-Kontext-Checkliste (Pflicht vor jedem Generate)
 
-Vor **jedem** `hf generate create` müssen diese vier Felder **schriftlich** stehen —
+Vor **jedem** `higgsfield generate create` müssen diese vier Felder **schriftlich** stehen —
 im Brief, im Prompt oder im Job-Kommentar. Ohne Kontext kommt Beliebigkeit heraus:
 
 | Feld | Was da stehen muss |
@@ -124,8 +203,8 @@ einer Stil-Referenz einen sauberen Start-Prompt zu ziehen, den man dann kürzt/a
 
 **Rezept:**
 ```bash
-hf generate cost gpt_image_2 --prompt "…"                      # vorab
-hf generate create gpt_image_2 \
+higgsfield generate cost gpt_image_2 --prompt "…"                      # vorab
+higgsfield generate create gpt_image_2 \
   --prompt "<Motiv + was aus den Referenzen übernommen wird>" \
   --image ./shooting-01.jpg --image ./shooting-02.jpg \        # Add Image 1, 2, …
   --aspect-ratio 16:9 --resolution 4k --quality high --wait
@@ -134,11 +213,11 @@ Params (`gpt_image_2`): `aspect_ratio` (1:1,4:3,3:4,16:9,9:16,3:2,2:3) ·
 `resolution` (1k,2k,4k, Default 2k → **auf 4k setzen** für Finals) ·
 `quality` (low,medium,high; Default high) · `image_references` (Array).
 
-### 2. Echt fotorealistisch, keine Referenz → Recraft V4.1 (`recraft_v4_1`)
+### 2. Recraft V4.1 (`recraft_v4_1`) — abgeschaltet
 
-Recraft ist der **Realismus-Spezialist** — nur ranholen, wenn das Bild echt
-fotorealistisch aussehen soll und es keine Referenz gibt. Alles Stilisierte gehört zu
-GPT Image 2 (oben). Recraft ist reines Text-zu-Bild — **kein `image_references`**.
+Raphael 17.08.2026: Recraft nicht nutzen. Foto ohne lokale Datei → Inhalt und
+Stil **suchen**, dann `gpt_image_2`. Der Block darunter bleibt nur als
+Archiv-Rezept, falls Raphael Recraft ausdrücklich nennt.
 
 **Gesichter echter Menschen: nur aus Distanz oder beiläufig.** Keine
 Nahaufnahme-Porträts realer Personen mit Recraft — KI-Gesichter fallen im Close-up auf
@@ -164,8 +243,8 @@ dem, was wir machen, und wirkt billig-generisch. Dagegen wird **hart** gegengest
 
 **Rezept:**
 ```bash
-hf generate cost recraft_v4_1 --prompt "…"
-hf generate create recraft_v4_1 \
+higgsfield generate cost recraft_v4_1 --prompt "…"
+higgsfield generate create recraft_v4_1 \
   --prompt '<JSON-Prompt, siehe Vorlage>' \
   --model-type standard \                # vector = nur technische Vektor-Utilities, NICHT Illustration
   --aspect-ratio 16:9 --resolution 2k --wait
@@ -222,9 +301,9 @@ get <job_type>`). Übergabe des Ausgangsbilds per `--image` (= `--image-referenc
 
 ```bash
 # Beispiel: Produktfoto freistellen → transparentes Ergebnis
-hf generate create image_background_remover --image ./sessel.jpg --wait
+higgsfield generate create image_background_remover --image ./sessel.jpg --wait
 # Beispiel: Hero-Foto auf 21:9 erweitern
-hf generate create outpaint --image ./hero.jpg --aspect-ratio 21:9 --wait
+higgsfield generate create outpaint --image ./hero.jpg --aspect-ratio 21:9 --wait
 ```
 
 **Regel:** Jede Bearbeitung ergibt ein **neues** Bild → danach zwingend durch
@@ -241,7 +320,7 @@ exakt am letzten Element-Pixel aufhört (z. B. genau an der Dachkante des Hauses
 
 ```bash
 # Schritt 1: freistellen (transparent)
-hf generate create image_background_remover --image ./illustration.png --wait
+higgsfield generate create image_background_remover --image ./illustration.png --wait
 # Schritt 2: eng auf das Motiv zuschneiden (Alpha-Trim, kein Rand)
 convert freigestellt.png -trim +repage illustration-final.png
 ```
@@ -339,25 +418,31 @@ Das **löscht die AVIF-Datei komplett** und **entfernt den Index-Eintrag** in ei
 Schritt — weg ist weg, der Index bleibt sauber und zeigt nur noch, was wirklich lebt.
 Nie nur die Datei löschen und den Index stehen lassen (oder umgekehrt).
 
+Raphael-Nein in derselben Session ist mehr als `reject`. Zusätzlich in
+derselben Runde: Route + Dateipfad + Ersatz in Root-`DESIGN.md`/`DECISIONS.md`,
+Code auf den Ersatz umstellen, `rg` auf den gesperrten Pfad muss 0 Treffer
+auf dieser Route liefern. Sonst kommt dasselbe Asset nach dem nächsten Ship
+zurück (Haushaltsauflösung 17.08.2026: Polo-Foto trotz Nein).
+
 ## Harte Regeln (Kurzfassung)
 
 1. **Referenz da → GPT Image 2.** Immer. `--image-references` = Add Image 1/2/…
-2. **Illustration/stilisiert (2D/3D) → GPT Image 2**, auch ohne Referenz (bester Illustrator).
+2. **Illustration/stilisiert (2D/3D) → GPT Image 2**, mit extra Stil-Recherche.
 3. Inhaltliche Referenz fehlt als Bild → **online suchen**, nie erfinden.
-4. Visuelle Referenz (Shooting-Look, Illustration) → **als Referenzbilder mitgeben**,
-   Übernahme im Prompt benennen (Farbe/Licht/Stil).
-5. **Nur echt fotorealistisch & ohne Referenz → Recraft**, mit JSON-Prompting,
-   Farbe im Prompt festgenagelt.
-6. **Recraft: keine Nahaufnahme-Gesichter echter Menschen** — nur Distanz/beiläufig;
-   echtes nahes Gesicht → echtes Foto.
-7. **Recraft: kein Color-Grading** (`colors`/`background_color`/`color_grading_lut` aus).
+4. Visuelle Referenz (Shooting-Look, Illustration, Seiten-Screenshot) → **als
+   Referenzbilder mitgeben**, Übernahme im Prompt benennen (Farbe/Licht/Stil).
+5. **Recraft nicht aufrufen**, ausser Raphael nennt den Job-Type.
+6. **Nahes Gesicht** nur mit echter Personen-Datei (Kunde oder Stock).
+7. **Kein Color-Grading-Job** (`colors`/`background_color`/`color_grading_lut` aus).
 8. **Auflösung: 4k oder 2k** (GPT 4k, Recraft max 2k). Nie 1k für Finals.
 9. **Nano Banana nur als Nano Banana 2 (`nano_banana_flash`) für Previews.**
-10. Vorab **immer** `hf generate cost`; Jobs mit `--wait` bzw. `hf generate wait` abholen.
+10. Vorab **immer** `higgsfield generate cost`; Jobs mit `--wait` bzw. `higgsfield generate wait` abholen.
 11. **Jedes** Bild (generiert wie geliefert) sofort → **AVIF** via
     `/root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add`.
 12. **Jedes** Bild steht im **Index** (`bilder-index.json`): typ/motiv/style/modell/refs/quelle.
 13. **„Bild ist scheiße" → `bilder.mjs reject`**: Datei komplett löschen + Index-Eintrag raus.
+14. **Raphael-Nein zu einem sichtbaren Asset:** `reject` plus DESIGN/DECISIONS-Sperre
+    plus Code-Pfad weg. Ship nur, wenn `rg` den gesperrten Pfad auf der Route nicht findet.
 
 ## Guardrails (Kundenprojekte)
 
@@ -366,7 +451,7 @@ Nie nur die Datei löschen und den Index stehen lassen (oder umgekehrt).
   KI-Generierung, echte Assets verwenden. Vor KI-Bildern für Kundenwebsites klären.
 - **Datenminimierung (TB2):** an Higgsfield geht nur das nötige Referenzmaterial,
   nie der ganze Kunden-Vault. Kundenmaterial bleibt im Kundenrepo.
-- **Credits sind endlich** — `hf account status` im Blick, Previews billig
+- **Credits sind endlich** — `higgsfield account status` im Blick, Previews billig
   (Nano Banana 2), Finals gezielt.
 - Bild-Assets liegen beim jeweiligen Projekt (`client-<name>/web/assets/`), nicht
   zentral.

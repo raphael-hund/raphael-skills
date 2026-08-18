@@ -113,8 +113,8 @@ Kimi bleibt erlaubt für Recherche/Zweitstimme, nicht als Seiten-Builder. Mappin
 | Foundations→Components→Composition | `references/damien-design-methodik.md` |
 | URL-Referenz nachbauen + Lizenz | `references/web-clone-playbook.md` |
 | Bild/Screenshot nachbauen | `references/rebuild-from-image.md` |
-| Higgsfield / GPT Image 2 / Recraft | `references/bildgenerierung.md` |
-| Neue Illustration vs. bestehendes Asset; Inhalt+Stil referenzieren (Map/Dresden-Fall) | `references/bildgenerierung.md` Abschnitt **Neue Illustration vs. wiederverwenden** |
+| Higgsfield / GPT Image 2 | Skill `higgsfield` zuerst; CLI-Katalog `references/bildgenerierung.md` |
+| Neue Illustration vs. bestehendes Asset; Inhalt+Stil referenzieren (Map/Dresden-Fall) | Skill `higgsfield` + `references/bildgenerierung.md` Abschnitt **Neue Illustration vs. wiederverwenden** |
 | Motion-Regeln | `references/motion-doktrin.md` |
 | Copy-paste Motion-UI | `references/ui-components/INDEX.md` |
 | Default-Stack Next/Tailwind/shadcn/`motion` | `references/radix-shadcn-tailwind-stack.md` |
@@ -195,7 +195,7 @@ Detail: `landingpage-struktur.md`.
 3. **copy** — sektionsweise, copywriting G1→G2.
 4. **art-direction** — design-Skill; G1 = `detect.mjs`. Premium: lexlin + damien.  
    URL-Vorlage → `web-clone-playbook.md` zuerst. Bild-Vorlage → `rebuild-from-image.md`.  
-   Assets → Grafik-Baum im Router, dann ggf. `bildgenerierung.md`.  
+   Assets → Grafik-Baum im Router, dann Skill `higgsfield` (`bildgenerierung.md` = CLI).  
    `imagegen-web`/`imagegen-mobile` = **kein Default** (nur Host+Router).
 5. **components** — 5a Bedarf → 5b Router-Zeile → 5c **Pflicht:** genau einen
    Namen mit `scripts/resource-access.mjs show "<Name>"` nachschlagen (nie die
@@ -236,7 +236,7 @@ QA 1–4 ‖ dann SEO+Trust → Launch (Signatur) → cro-learn.
 - **GitHub öffentlich ≠ frei nutzbar** — Lizenz-Check im Clone-Playbook.
 - Junge Domain + Formular = Safe-Browsing-Risiko.
 - Motion ohne `useReducedMotion` = Fail.
-- Bilder: Higgsfield nach `bildgenerierung.md`; AVIF + Index; `reject` löscht Datei+Index.
+- Bilder: Skill `higgsfield`, CLI in `bildgenerierung.md`; AVIF + Index; `reject` löscht Datei+Index.
 - Raphael sagt Nein zu einem sichtbaren Asset: DESIGN/DECISIONS-Sperre **und**
   `reject` **und** Code-Pfad weg. Nur Datei löschen reicht nicht.
 - AAA hier = Agentur-Rubrik, nicht WCAG AAA (WCAG bleibt AA).

@@ -1,10 +1,10 @@
 ---
 name: ads-statics
-version: 2.0.0
+version: 2.0.1
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs.
   Trigger: "Statics bauen", "Static-Briefs", "Bildanzeigen",
-  "Testwelle Statics".
+  "Testwelle Statics". Bild danach: Skill higgsfield.
 class: F
 scope: agency
 sensitivity: internal
