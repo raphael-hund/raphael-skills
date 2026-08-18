@@ -1,18 +1,12 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 48,
+  "skill_count": 53,
   "skills": [
     {
       "name": "design",
       "version": "0.4.0",
       "path": "skills/design/SKILL.md",
       "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\", \"/taste\", \"/impeccable\", \"kill AI slop\", \"frontend-design\"."
-    },
-    {
-      "name": "ultra-loop",
-      "version": "0.4.0",
-      "path": "skills/eigene/_restored-20260811/ultra-loop/SKILL.md",
-      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Worker-Flotte (Sol/Kimi/Luna/Sonnet/Haiku, frei nach Verfügbarkeit) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
     },
     {
       "name": "ads-copy",
@@ -28,9 +22,9 @@
     },
     {
       "name": "ads-statics",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "path": "skills/eigene/ads-statics/SKILL.md",
-      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\"."
+      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\". Bild danach: Skill higgsfield."
     },
     {
       "name": "ads-video",
@@ -40,9 +34,9 @@
     },
     {
       "name": "ads",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "path": "skills/eigene/ads/SKILL.md",
-      "description": "Ein Skill für Paid Ads. Vier Teile: ICP, Research, Video-Skript, Statics. Video-Skripte klingen wie eine Sprachnachricht. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"Konto-Audit\"."
+      "description": "Ein Skill für Paid Ads. Fünf Teile: ICP, Research, Video-Skript, Statics, Performance. Video-Skripte klingen wie eine Sprachnachricht. Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"Konto-Audit\", \"Ads Performance\", \"laufende Ads\", \"7 Tage\", \"30 Tage\"."
     },
     {
       "name": "brain",
@@ -58,9 +52,9 @@
     },
     {
       "name": "codex-orchestration",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "path": "skills/eigene/codex-orchestration/SKILL.md",
-      "description": "Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when available. Use for visible sub-threads, separate tasks, model comparisons, multi-model fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI sessions, or background agents."
+      "description": "Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when available. Use for visible sub-threads, separate tasks, model comparisons, multi-model fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI sessions, or background agents. Trigger: \"sichtbarer Codex-Task\", \"Codex-App-Task anlegen\", \"Modellvergleich als Codex-Tasks\", \"Sub-Thread in Codex\", \"codex-orchestration\"."
     },
     {
       "name": "copywriting",
@@ -87,6 +81,12 @@
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
     {
+      "name": "firecrawl",
+      "version": "0.1.0",
+      "path": "skills/eigene/firecrawl/SKILL.md",
+      "description": "Holt sauberen Web-Kontext über die Firecrawl-CLI oder den gehosteten MCP: suchen, eine URL scrapen, bei Bedarf klicken, lokale Dateien parsen. Trigger: \"Firecrawl\", \"Seite scrapen\", \"Web suchen\", \"firecrawl search\", \"firecrawl scrape\", \"sauberes Markdown von URL\"."
+    },
+    {
       "name": "grok-first",
       "version": "0.1.0",
       "path": "skills/eigene/grok-first/SKILL.md",
@@ -94,9 +94,15 @@
     },
     {
       "name": "handoff",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "path": "skills/eigene/handoff/SKILL.md",
       "description": "Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben (PROGRESS.md/DECISIONS.md, Commit+Push, hartes /clear). (2) EXTERN: das Gespräch zu einem redigierten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person verdichten (Verweis statt Duplikat, Ablage im OS-Temp). Fakten statt Anweisungen, inkl. Fallen/Sackgassen und Secret-Redaktion. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"~300-400k Tokens erreicht\", \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
+    },
+    {
+      "name": "higgsfield",
+      "version": "0.1.0",
+      "path": "skills/eigene/higgsfield/SKILL.md",
+      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
     },
     {
       "name": "idea-filter",
@@ -117,6 +123,12 @@
       "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
     },
     {
+      "name": "kunden-chat",
+      "version": "0.3.0",
+      "path": "skills/eigene/kunden-chat/SKILL.md",
+      "description": "Feuert bei Kundenkommunikation auf WhatsApp und in Mails: Entwurf im Raphael-Ton aus echten MAKE-Chats, Verlauf und Dateien zuerst ziehen. always: true bei Kunden-Chat, Kundenmail, Update an den Kunden, Erinnerung, Freigabe-Frage, Liefer-Ansage. Trigger: \"WhatsApp an Kunden\", \"Kundenmail\", \"Nachricht an den Kunden\", \"Kundenupdate schreiben\", \"im Chat antworten\"."
+    },
+    {
       "name": "no-ai-slop",
       "version": "0.2.0",
       "path": "skills/eigene/no-ai-slop/SKILL.md",
@@ -130,27 +142,27 @@
     },
     {
       "name": "onboard",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "path": "skills/eigene/onboard/SKILL.md",
-      "description": "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger-Worte: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\"."
+      "description": "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\", \"Intake-Interview\"."
     },
     {
       "name": "orchestrate-gauntlet",
-      "version": "2.2.0",
+      "version": "2.4.0",
       "path": "skills/eigene/orchestrate-gauntlet/SKILL.md",
-      "description": "Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter Graph, mit überlappender Cross-Family-Besetzung (Opus, Luna, Sol, Terra, Grok auf max; Kimi K3 auf high; Fable bewusst auf low/medium) plus zwei festen Tandems — Sol+Opus fürs Urteil, Kimi+Fable als austauschbares Denk-Paar — und zwei Kritikern aus verschiedenen Familien, die NIE aus der Familie des Builders kommt. Läuft als Dauerlauf über Stunden: Welle für Welle, immer wieder neu, bis die Zugewinne klein sind. Trigger: \"/orchestrate-gauntlet\", \"Gauntlet\", \"Gauntlet-Loop\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"so krass wie möglich\", \"maximaler Modus\", \"alle Modelle drauf\", \"lauf über Nacht\", \"Dauerlauf\"."
+      "description": "Der Maximal-Modus von orchestrate: ein Werkstück wird gegen eine inspizierbare Messlatte gebaut, bis der Abstand klein ist — als gezeichneter Graph, mit überlappender Cross-Family-Besetzung (Opus, Sol, Terra, Grok auf max; Kimi K3 auf high; Luna nur für Masse) plus dem Urteils-Tandem Sol+Opus und drei Kritikern aus verschiedenen Familien, die NIE aus der Familie des Builders kommen. Läuft als Dauerlauf über Stunden: Welle für Welle, immer wieder neu, bis die Zugewinne klein sind. Trigger: \"/orchestrate-gauntlet\", \"Gauntlet\", \"Gauntlet-Loop\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"so krass wie möglich\", \"maximaler Modus\", \"alle Modelle drauf\", \"lauf über Nacht\", \"Dauerlauf\"."
     },
     {
       "name": "orchestrate",
-      "version": "1.3.2",
+      "version": "1.6.1",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Sonnet, Kimi, Grok, Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
+      "description": "DER Orchestrierungs-Skill — einer für alles. Verteilt Arbeit über alle Modellfamilien und Harnesses (Luna, Sol, Terra, Kimi, Grok, Opus; Codex-nativ, Kimi-nativ, MCP) und wählt selbst die Betriebsart: Einmal-Lauf, Dauer-Loop, gezeichneter Graph, Gauntlet gegen eine Messlatte, Council bei Streit. Nie eine Familie allein bauen und prüfen lassen. Ersetzt dynamic-workflow, ultra-loop und graph. Trigger: \"orchestrieren\", \"delegieren\", \"parallelisieren\", \"Subagenten\", \"Task aufteilen\", \"Flotte\", \"Workflow\", \"als Workflow machen\", \"fächere das auf\", \"Loop\", \"Dauer-Loop\", \"loop der sich verbessert\", \"Graph\", \"Pipeline aufsetzen\", \"Gauntlet\", \"gegen eine Messlatte bauen\", \"bis es richtig gut ist\", \"Council\", \"Zweitmeinungs-Rat\", \"Cross-Model\", \"Cross-Harness\"."
     },
     {
       "name": "printingpress",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "path": "skills/eigene/printingpress/SKILL.md",
-      "description": "\"Druckt agent-native CLI + SKILL.md für API-only Services aus einem Prompt. Target: ads-research, seo, pipedrive, trello. Intake → Draft-Welle (1-3 Luna parallel) → G1 mechanical → G2 cross-family → _candidates/. Nutze NUR wenn Raphael explizit 'printingpress' oder 'CLI für X' sagt.\""
+      "description": "\"Druckt agent-native CLI + SKILL.md für API-only Services aus einem Prompt. Target: ads-research, seo, pipedrive, trello. Intake → Draft-Welle (1-3 Luna parallel) → G1 mechanical → G2 cross-family → _candidates/. Nutze NUR wenn Raphael explizit 'printingpress' oder 'CLI für X' sagt. Trigger: \\\"printingpress\\\", \\\"CLI für X generieren\\\", \\\"Skillify API-only Tool\\\", \\\"Skill aus API-Spec drucken\\\".\""
     },
     {
       "name": "read-book",
@@ -171,6 +183,18 @@
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\"."
     },
     {
+      "name": "session-failover",
+      "version": "0.5.1",
+      "path": "skills/eigene/session-failover/SKILL.md",
+      "description": "Claude-TUI immer zuerst /compact, dann weiter. Reicht Compact nicht: /handoff auf die Platte, /clear, neue Session in derselben TUI, /model grok-4.6, /effort xhigh, Handoff einfügen. Bei API-Fehler sofort Modell+Effort, nicht warten. Trigger: /compact, /handoff, /clear, /model, /effort, API-Fehler, 401, 408, 529, subscription disabled, synthetic, Fable tot, Session hängt, /session-failover."
+    },
+    {
+      "name": "session-watch",
+      "version": "0.12.0",
+      "path": "skills/eigene/session-watch/SKILL.md",
+      "description": "Eine offene Claude-TUI von der Grok-Harness aus überwachen und weiter prompten. Ein Fenster, gleicher Worktree. Alle 10 Minuten Inhalt prüfen (gesamte Raphael-Kette ohne Kürzung, Workflow, Tasks, Plan, Shots, Raphael-Nein als LOCKS) und einen vollen Prompt mit Dateipfaden einfügen. Bei API-Fehler oder totem Sub sofort in derselben TUI fixen. Trigger: /session-watch, Session überwachen, Claude-Tab watchen, Worker weiter prompten, 400/401/529 in der Session, Subagent fehlt, /watch-session."
+    },
+    {
       "name": "taste",
       "version": "0.2.0",
       "path": "skills/eigene/taste/SKILL.md",
@@ -184,25 +208,31 @@
     },
     {
       "name": "ultra-loop",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "path": "skills/eigene/ultra-loop/SKILL.md",
-      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Worker-Flotte (Sol/Kimi/Luna/Opus/Sonnet, frei nach Verfügbarkeit; Haiku verboten) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
+      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Worker-Flotte (Sol/Kimi/Luna/Opus/Grok, frei nach Verfügbarkeit; Haiku/Sonnet/Fable verboten) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
+    },
+    {
+      "name": "ultracode",
+      "version": "0.6.0",
+      "path": "skills/eigene/ultracode/SKILL.md",
+      "description": "Gauntlet-Loop für Claude Code: Auftrag, Pfade, Gate. Ein starker Builder je Item, Loop bis AAA, drei Kritiker. Denken: Opus, Kimi, Grok. Luna nur Masse plus Legal-Dritte. kimi-critic nur Look/Ads/Copy. Trigger: \"/ultracode\", \"ultracode\", \"fan out\", \"pro Item loopen\"."
     },
     {
       "name": "visual-aaa",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "skills/eigene/visual-aaa/SKILL.md",
-      "description": "Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. always: true."
+      "description": "Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. always: true. Trigger: \"visuell prüfen\", \"Screenshot-Check\", \"PDF vor Auslieferung\", \"Landingpage abnehmen\", \"visual-aaa\"."
     },
     {
       "name": "watch",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "path": "skills/eigene/watch/SKILL.md",
       "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok, Loom, Vimeo, Riverside, Zoom oder eine lokale Datei) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
     },
     {
       "name": "web",
-      "version": "0.18.0",
+      "version": "0.19.0",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
     },
@@ -220,9 +250,9 @@
     },
     {
       "name": "brainstorm",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "path": "skills/methodik/brainstorm/SKILL.md",
-      "description": "Kompatibilitäts-Adapter für /brainstorm. Enthält keine eigene Brainstorm-Logik: Zielklärung läuft über plan (GRILL/SPEC), die Perspektiven-Arbeit über den kanonischen Workflow `ultracode` mit mode \"brainstorm\" (drei Luna-Perspektiven, je ein frischer Sol-Kritiker, Synthese erst nach PASS aller drei). Trigger: /brainstorm, \"brainstorme\", \"Lösungsrichtungen entwickeln\"."
+      "description": "Kompatibilitäts-Adapter für /brainstorm. Enthält keine eigene Brainstorm-Logik: Zielklärung läuft über plan (GRILL/SPEC), die Perspektiven-Arbeit über den Workflow ultracode mit mode brainstorm (drei Perspektiven, drei Kritiker, Synthese erst nach PASS aller drei). Trigger: /brainstorm, \"brainstorme\", \"Lösungsrichtungen entwickeln\"."
     },
     {
       "name": "code-review",
@@ -250,7 +280,7 @@
     },
     {
       "name": "research",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "path": "skills/methodik/research/SKILL.md",
       "description": "Recherchiert eine Sachfrage gegen vertrauenswürdige Primärquellen (Docs, Source Code, Specs, First-Party-APIs) im Hintergrund und hält die Befunde als zitierte Markdown-Datei fest. Die Recherche-Frage selbst wird zuerst scharf formuliert (Ziel + Entscheidung, 3-6 Unterfragen, Quellenhierarchie) und vor Abschluss läuft eine Gap-Round-Selbstkritik. Trigger: \"recherchieren\", \"Doku nachschlagen\", \"API-Fakten sammeln\", \"Hintergrund-Recherche\"."
     },
@@ -286,9 +316,9 @@
     },
     {
       "name": "raphael-chrome",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "path": "skills/raphael-chrome/SKILL.md",
-      "description": "Steuert und repariert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit persistenten Logins und Passwort-Autofill. Nutzen fuer Browser-Arbeit, leere Tabs, CDP-Timeouts, fehlende Renderer, Cloudflare-Challenges, Screenshots und Web-Logins. Trigger: chrome, browser, VPS-Browser, Cloudflare, CAPTCHA, Renderer, CDP, 9222, Passwort autofill, website klicken."
+      "description": "Steuert und repariert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit persistenten Logins und Passwort-Autofill. Nutzen fuer Login, Session, Autofill und Klick im eigenen Chrome. Oeffentliche Suche, Scrape und PDF zuerst ueber firecrawl. Trigger: chrome, browser, VPS-Browser, Cloudflare, CAPTCHA, Renderer, CDP, 9222, Passwort autofill, website klicken."
     }
   ]
 }
