@@ -2,7 +2,8 @@
 
 Ausgang ist ein Angle-Dossier. Kein Creative.
 
-Schema-Tiefe: `../ads-research/references/angle-dossier-schema.md`.
+Schema-Tiefe: `../../ads-research/references/angle-dossier-schema.md`
+(Pfad gilt von dieser Datei aus).
 
 ## Holen
 

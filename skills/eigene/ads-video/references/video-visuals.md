@@ -1,10 +1,9 @@
-# Video-Visuals — Einblendungen, Illustrationen, B-Roll
+# Video-Visuals — Einblendungen, Formate, erster Frame
 
-Muster verallgemeinert aus MAKE-Referenzmaterial:
-`/root/clients/client-make/ads/skripte/2026-07-22-einblendungs-plan-skript1.md`,
-`2026-07-22-illustration-ideen-skript1.md`, `illustrationen/PROMPTS.md`. Konkrete
-Kunden-Assets (Logo, Farben, Website-Screens) bleiben kundenspezifisch. Hier nur die
-übertragbare Struktur.
+Muster verallgemeinert aus MAKE-Referenzmaterial (Einblendungs-Plan und
+Illustrations-Prompts der Juli-Skripte; Originaldateien inzwischen archiviert).
+Konkrete Kunden-Assets (Logo, Farben, Website-Screens) bleiben kundenspezifisch.
+Hier nur die übertragbare Struktur.
 
 ## Einblendungs-Plan — ein Beat, eine Einblendung
 
@@ -32,6 +31,49 @@ Beispiel-Tabellenform (aus MAKE-Referenz):
 | Erklärender Satz ohne Bildbedarf | nichts |
 | Proof-Satz mit Kundenname | ECHT: Kunden-Website-Screen |
 | Abschluss/CTA | nichts |
+
+Onscreen sagt etwas anderes als die Stimme. Overlay ab Frame 0.
+
+## Fünf Dreh-Formate
+
+Nach einem Static-Sieg denselben Hook in eines dieser Formate legen.
+Erstes Standbild = One-Frame-Test: hält der Frame als Static, darf gedreht werden.
+
+### Talking Head
+
+Wofür: Garantie, Callout, CTA. Gesicht trägt Glaubwürdigkeit.
+Aussehen: Brustbild, Blick in die Linse, ruhiger Hintergrund oder echter Ort.
+Bewegung klein. Overlay oben, Gesicht frei. Stumm: Lippen plus Overlay reichen.
+
+### B-Roll
+
+Wofür: Proof und Mechanismus. Zeigen statt behaupten.
+Aussehen: Hände, Screen, Ort, Werkzeug. Kein Reden ins Bild nötig.
+Schnitt eng. Jeder Cut ein neues Objekt. Overlay nennt die Zahl, Bild zeigt sie.
+
+### Green Screen
+
+Wofür: Screen-Proof, SERP, Dashboard, Folie hinter dem Sprecher.
+Aussehen: Person vor Key, dahinter ein echter Capture, kein Stock-Himmel.
+Der Screen muss lesbar sein. Sprecher zeigt hin. Erster Frame = Claim plus Screen.
+
+### Skit
+
+Wofür: Pain und Einwand. Kurze Szene vor dem Pitch.
+Aussehen: zwei Rollen oder ein Vorher-Moment. 3–6 Sekunden Handlung, dann Offer.
+Kein Sketch-Kabarett. Der ICP erkennt seinen Tag. Overlay nennt den Filter.
+
+### Split Screen
+
+Wofür: Vorher/Nachher, alt gegen neu, zwei Beweise nebeneinander.
+Aussehen: zwei gleich große Felder, eine Linie, eine Zahl pro Seite.
+Links Problem, rechts Ergebnis. Erster Frame muss beide Seiten lesen lassen.
+
+## One-Frame-Test
+
+Pause bei Sekunde 0. Der Frame muss allein als Static tragen:
+ICP oder Ort sichtbar, eine Zahl oder ein Name, Overlay lesbar, CTA noch nicht nötig.
+Fällt der Test: Format oder Overlay ändern, nicht nur den Sprechsatz.
 
 ## Illustrations-Stil-Rezept (Prompt-Baustein)
 
@@ -66,8 +108,8 @@ Zwei Referenz-Rollen im Prompt benennen:
 ## Bildgenerierungs-Policy (Verweis)
 
 Modellwahl, Auflösung, KI-Menschen-Regeln und Asset-Indexierung sind nicht Teil dieses
-Skills. Siehe Raphaels Bildgenerierungs-Policy (Memory: `bildgenerierung-policy.md`,
-operative Doktrin: `/root/raphael-skills/skills/eigene/web/references/bildgenerierung.md`).
+Skills. Operative Doktrin:
+`/root/raphael-skills/skills/eigene/web/references/bildgenerierung.md`.
 Kurzfassung für Video-Illustrationen: **Illustrationen (2D/3D, stilisiert) → GPT Image 2**,
 auch ohne Referenz: GPT Image ist der beste Illustrator, Recraft ist dafür falsch.
 Auflösung mindestens 2k, besser 4k. Uncanny-Check gilt auch für Illustrationen mit

@@ -1,10 +1,10 @@
 ---
 name: ads-statics
-version: 2.0.1
+version: 2.1.0
 description: >
-  Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs.
+  Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Trigger: "Statics bauen", "Static-Briefs", "Bildanzeigen",
-  "Testwelle Statics". Bild danach: Skill higgsfield.
+  "Testwelle Statics", "S1-S8". Bild danach: Skill higgsfield.
 class: F
 scope: agency
 sensitivity: internal
@@ -21,3 +21,4 @@ completion_criteria:
 
 Arbeit steht in `/root/raphael-skills/skills/eigene/ads/SKILL.md`
 dann `references/teil-statics.md`.
+Styles und Copy liegen dort als Pflicht-Lesen, nicht hier.

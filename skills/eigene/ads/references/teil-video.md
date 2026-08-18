@@ -9,21 +9,44 @@ In Atem 2 sieht er einen Beweis. Am Ende weiß er, was nach dem Klick passiert.
 
 Klingt wie eine Sprachnachricht.
 
-## Bevor du schreibst (3 Dinge)
+## Bevor du schreibst (4 Dinge)
 
 1. **Wer + was er bekommt.** Aus Teil ICP oder aus dem, was der User sagt.
 2. **Ein echter Proof.** Name oder Zahl mit Quelle. Fehlt beides: `proof: fehlt`.
    Keine Kundenzahl erfinden. Markt-Referenzen belegen nur die Bauform.
 3. **Ein Segment.** `../scripts/load-wissen.py --skill ads --kunde <slug>`
    Genau ein File unter `maerkte/`. Coaching-Umsatz nicht in Local-Service kopieren.
+4. **Wie das Video aussieht.** Lade genau eine Datei:
+   `../../ads-video/references/video-visuals.md`.
+   Nicht den ganzen Ordner. Ohne diese Datei kein Skript.
 
+Alle Pfade gelten von dieser Datei aus (`ads/references/`).
 Optional Tiefe, nie vorher alles laden:
-`../ads-video/references/hook-formeln.md`,
-`../ads-video/references/skript-architekturen.md`,
-`../ads-video/references/voice-dna-ads.md`,
-`../ads-video/references/playbook-geile-ads.md`.
+`../../ads-video/references/hook-formeln.md`,
+`../../ads-video/references/skript-architekturen.md`,
+`../../ads-video/references/voice-dna-ads.md`,
+`../../ads-video/references/playbook-geile-ads.md`.
 
-Zwei Volltexte derselben Bauform nur gezielt greppen, nie `referenz-ads.md` ganz.
+Zwei Volltexte derselben Bauform nur gezielt greppen, nie
+`../../ads-video/references/korpus/referenz-ads.md` ganz (15k Zeilen).
+
+## Vier Hook-Lagen
+
+Ein Hook ist kein Satz. Er sitzt in vier Lagen gleichzeitig:
+
+1. **Bild** — erster Frame. Gesicht, Ort, Beweis-Objekt. Stumm verständlich.
+2. **Satz** — gesprochener Opener, max. 8 Wörter (12 mit exakter Zahl).
+3. **Handlung** — was im Clip passiert: zeigen, tippen, umdrehen, schneiden.
+4. **Primary Text** — Text über der Anzeige, nicht die Untertitel-Zeile.
+
+Overlay-Text ab Frame 0. Stumm-Scroller lesen zuerst das Overlay.
+Onscreen sagt etwas anderes als die Stimme. Nie denselben Satz zweimal.
+
+Nach einem Static-Sieg denselben Hook in Formate übersetzen.
+Nicht neu erfinden. Dieselbe Behauptung, neues Bild.
+
+Formate: Talking Head, B-Roll, Green Screen, Skit, Split Screen.
+Wahl und Aussehen stehen in `video-visuals.md`.
 
 ## Schreib-Reihenfolge
 
@@ -35,7 +58,8 @@ Kein „Herzlich willkommen". Kein „In diesem Video".
 
 ### 2. Sprechtext in einem Stück
 
-Default-Länge: 20–40 Sekunden (Local-Service). High-Ticket 60–90.
+Default-Länge: 20–40 Sekunden (Local-Service: Handwerk, Praxis, Termin
+ohne Sales-Call). High-Ticket 60–90 (Agentur, Beratung, Sales-Call nötig).
 Sätze 6–15 Wörter, Länge springt. Duzen, außer der Kunde siezt belegt.
 
 Füllgerüst (A2 kurz, der häufigste Video-Default):
@@ -55,12 +79,13 @@ Geo plus kleiner Check: A6.
 ### 3. Caption und Bild
 
 Karaoke-Untertitel durchgehend. Onscreen sagt etwas anderes als die Stimme.
-`[ZEIGEN: …]` pro Beweis-Beat.
+`[ZEIGEN: …]` pro Beweis-Beat. Overlay ab Frame 0 benennen.
 
 ### 4. Drei Hook-Varianten
 
-Mindestens zwei verschiedene Einstiege (nicht drei Paraphrasen).
-Je Variante nur Satz 1 plus ein Brückensatz.
+Drei Varianten, davon mindestens zwei wirklich verschiedene Einstiege
+(nicht drei Paraphrasen). Je Variante nur Satz 1 plus ein Brückensatz.
+Nach Static-Sieg: Varianten als Formate, nicht als Worttausch.
 
 ### 5. Gate
 
@@ -79,6 +104,8 @@ Nie „nicht X, sondern Y". Nie drei gleich lange Sätze.
 - Jede Kundenzahl hat eine Quelle oder das Feld heißt `proof: fehlt`
 - forbidden-check Exit 0
 - Laut gelesen klingt es wie eine Sprachnachricht
+- Die vier Lagen stehen im Skript, nicht nur der Sprechtext
+- video-visuals.md war geladen
 
 ## Anti-Skript (nie so)
 
@@ -90,4 +117,5 @@ Learn more.
 ## Ausgabe
 
 Eine Datei pro Skript: Sprechtext, Hook-Varianten, `[ZEIGEN]`-Zeilen, CTA,
-`winner-basis` oder `kein Performance-Datensatz`, Quellen.
+Format (Talking Head / B-Roll / Green Screen / Skit / Split Screen),
+vier Lagen, `winner-basis` oder `kein Performance-Datensatz`, Quellen.

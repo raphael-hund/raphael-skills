@@ -1,9 +1,10 @@
 # Sechs Copy-Bauformen für Statics
 
-Aus der konsolidierten Candidate-Seite (Stand 23.07., noch `status:candidate`, wandert nach
-Freigabe nach `wiki/craft/ads/creative/2026-07-20-referenz-static-ad-muster.md`):
-`/root/raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/statics-visual-styles.md`
-(Abschnitt „Sechs Copy-Bauformen"), gestützt auf Volltext-Lektüre von 110 Statics
+Quelle: freigegebene Kanon-Seite
+`/root/raphael-brain/wiki/craft/ads/creative/2026-07-20-referenz-static-ad-muster.md`
+(Abschnitt „Sechs Copy-Bauformen"; Archiv-Original:
+`/root/raphael-brain/archive/promoted-2026-07-23/konsolidiert-2026-07-23/statics-visual-styles.md`),
+gestützt auf Volltext-Lektüre von 110 Statics
 (27 Long-Runner ≥ 60 Tage + 83 Nischen-Statics) plus MAKEs eigenen Spend-/Termin-Daten.
 
 Diese Bauformen beschreiben den **Text**, `visual-styles.md` den **Rahmen**. Beide Ebenen
@@ -31,6 +32,13 @@ kombinieren sich in jedem Brief (siehe `brief-schema.md`).
 **Zusatz-Regel:** Zeitlich-lokale Verankerung (Ort, Datum, Jahr) erhöht Prüfbarkeit.
 Sprache bleibt Betriebsergebnis („Anfragen", „Auslastung"), nie Marketingmechanik.
 
+**Onscreen-Regel:** Onscreen-Copy bleibt unter 35 Wörtern. Zahl + Zeitraum + Name, wo
+das Material es hergibt.
+
+**1-Sekunden-Regel:** Die Headline muss ohne Nachdenken verständlich sein. Kein
+Wortspiel, keine Metapher, kein gedanklicher Sprung. Versteht ein Fremder die Ad nicht
+in einer Sekunde, zurück ans Reissbrett.
+
 **Ergänzung zu Bauform 2: Konkretheit schlägt vage Benennung.** Bei identischem Inhalt
 zieht ein konkreter Name (Seitenzahl + bekanntes Format-Wort statt abstrakter Markenbegriff)
 deutlich mehr Klicks als eine vage Bezeichnung: mehrfach unabhängig belegt.
@@ -39,16 +47,15 @@ deutlich mehr Klicks als eine vage Bezeichnung: mehrfach unabhängig belegt.
 Ansprache.** Spezifität im Callout (Grösse + Merkmal + Ziel) ist der Erfolgsfaktor, nicht
 die Breite der Ansprache.
 
-**Ergänzung zu Bauform 3: Text-Only als eigene Variante.** Siehe `visual-styles.md`
-(S1-Ergänzung).
+**Ergänzung zu Bauform 3: Text-Only als eigene Variante.** Siehe `visual-styles.md`,
+Style S1.
 
 ## Primary-Text-Skelette (für die ganze Beschreibung, nicht nur den Hook)
 
-Aus `/root/raphael-brain/wiki/_candidates/konsolidiert-2026-07-23/copy-primary-text-headlines.md`
-(noch `status:candidate`, wandert nach
-`wiki/craft/ads/creative/2026-07-20-referenz-offer-garantie-cta-muster.md`), 71 live
-gezogene Primary Texts bewährter Referenz-Advertiser. Reihenfolge der Elemente ist das
-Muster, nicht der Wortlaut.
+Aus 71 live gezogenen Primary Texts bewährter Referenz-Advertiser (Kanon:
+`/root/raphael-brain/wiki/craft/ads/creative/2026-07-20-referenz-offer-garantie-cta-muster.md`,
+Archiv: `/root/raphael-brain/archive/promoted-2026-07-23/2026-07-22-primary-text-vier-skelette.md`).
+Reihenfolge der Elemente ist das Muster, nicht der Wortlaut.
 
 1. **Verzicht-Kaskade:** Callout (ICP + Ergebnis) → drei bis vier „Kein X mehr…"-Zeilen →
    harter Schnitt → Gegenwelt in einem Satz (benanntes System + Ergebnis) →
@@ -68,7 +75,9 @@ Muster, nicht der Wortlaut.
 - Struktur-Zeichen statt Fliesstext (Pfeile, Häkchen, Leerzeilen), Emojis strukturieren,
   dekorieren nie.
 - Genau ein CTA pro Text, Mechanik passend zur Plattform-Logik.
-- Länge 600-1.200 Zeichen bei Statics.
+- Länge 600-1.200 Zeichen bei Statics. Meta zeigt im Feed nur ~125 Zeichen
+  vor „…mehr anzeigen" — die ersten 125 Zeichen tragen den ganzen Job, der
+  Rest ist für Leser, die schon halb überzeugt sind.
 - Betriebsergebnisse in ICP-Sprache, nie Agentur-Mechanik.
 
 **Einschränkung:** Stichprobe stammt aus vier Advertisern, zwei Nischen, Übertragung auf
