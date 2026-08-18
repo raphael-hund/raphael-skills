@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 2.2.0
+version: 2.6.0
 description: >
   Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video),
   dann ICP, Research, Video-Skript, Statics, Performance.

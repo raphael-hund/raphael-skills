@@ -21,6 +21,8 @@ kombinieren sich in jedem Brief (siehe `brief-schema.md`).
    Kosten/Termin-Rate.
 3. **Maximal zwei Textstufen plus CTA.** Headline (gross) → Subline/Proof-Stack (klein) →
    CTA. Lange Copy funktioniert nur getarnt als natives Format (siehe Bauform 4).
+   Gilt für Typo-Karten (S1). Auf Foto, Screen und Story bleiben es Sätze.
+   Drei Fragment-Zeilen ohne Verb sind kein Proof-Stack.
 4. **Nativer Rahmen als Trojaner.** Die am längsten laufenden Statics sehen aus wie Content,
    nicht wie Werbung: koppelt direkt an S2/S4 in `visual-styles.md`.
 5. **Proof-Stack: 3-5 Belege in Miniatur.** Mehrere kurze, unabhängig prüfbare Belege
@@ -32,12 +34,28 @@ kombinieren sich in jedem Brief (siehe `brief-schema.md`).
 **Zusatz-Regel:** Zeitlich-lokale Verankerung (Ort, Datum, Jahr) erhöht Prüfbarkeit.
 Sprache bleibt Betriebsergebnis („Anfragen", „Auslastung"), nie Marketingmechanik.
 
-**Onscreen-Regel:** Onscreen-Copy bleibt unter 35 Wörtern. Zahl + Zeitraum + Name, wo
-das Material es hergibt.
+**Onscreen-Regel:** Onscreen-Copy bleibt unter 35 Wörtern, wenn eine Landingpage
+den Rest trägt. Zahl + Zeitraum + Name, wo das Material es hergibt.
+
+**Satz-Pflicht (hart):** Jede Onscreen-Zeile ist ein ganzer Satz mit Subjekt und Verb,
+kein Telegramm. «Platz 1 bei Google in 30 Tagen / oder du zahlst keinen Rappen» ist
+tot. «Wir bringen dich in 30 Tagen auf Platz 1. Sonst zahlst du nichts.» lebt.
+Kürzen nie so weit, dass das Subjekt fällt. Der 1-Sekunden-Test verlangt einen
+verständlichen Satz, nicht das kürzeste Wortgerüst. Formeln dazu: `copy-formeln.md`.
+
+**Instant-Formular:** Die 35-Wörter-Grenze gilt hier nicht. Nach dem Klick kommt
+nur das Formular. Der Deal steht trotzdem NACH dem Hook. Hook ist Ergebnis,
+Callout oder Schmerz. Nie mit «Wir bauen …» starten. Offer und CTA kommen
+unten, in einem Satz, wie bei Marc Evers und Raphaels eigenen Ads.
 
 **1-Sekunden-Regel:** Die Headline muss ohne Nachdenken verständlich sein. Kein
 Wortspiel, keine Metapher, kein gedanklicher Sprung. Versteht ein Fremder die Ad nicht
-in einer Sekunde, zurück ans Reissbrett.
+in einer Sekunde, zurück ans Reissbrett. Internes Wissen zählt als Sprung:
+eine Quote aus einer Liste («13 von 87 Namen») fällt durch. Der Leser kennt
+Franken, Anfragen und Platz 1. Er kennt keine CRM-Tabelle.
+
+**Material-Regel:** Raphaels eigene Ads (Video, Notes, Story) sind ein Format
+unter mehreren. Nie die ganze Welle nach einer Datei kopieren.
 
 **Ergänzung zu Bauform 2: Konkretheit schlägt vage Benennung.** Bei identischem Inhalt
 zieht ein konkreter Name (Seitenzahl + bekanntes Format-Wort statt abstrakter Markenbegriff)

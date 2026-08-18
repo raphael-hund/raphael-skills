@@ -15,6 +15,8 @@ Vier Tests, bevor ein Brief rausgeht:
 
 1. **Qualifier + Zahl im ersten Blick.** Wer gemeint ist und was rauskommt, muss in unter
    einer Sekunde lesbar sein. Kein Scrollen, kein Zoomen, kein Nachdenken.
+   Test: ein Fremder auf dem Handy, ohne Briefing. Versteht er die Headline nicht,
+   ist sie tot. Interne Zählungen (Listen, CRM-Quoten) fallen hier durch.
 2. **Clarity ODER Curiosity — nie beides, nie keins.** Entweder ist sofort klar, was
    angeboten wird (Clarity), oder es öffnet bewusst eine Lücke, die der Klick schliesst
    (Curiosity). Im Brief ankreuzen, welche der beiden.
@@ -40,7 +42,8 @@ Vier Tests, bevor ein Brief rausgeht:
 ### S1 — Helle Typo-Karte (Text-only) *(produzierbar ohne Material)*
 Fast weisser oder schwarzer Grund, viel Weissraum, kein Foto. Headline dominant,
 Ergebnis-/Filterzeile in Akzentfarbe, CTA-Block unten. 1:1 + 4:5.
-Copy-Form: Schlagzeile, max. 5 Zeilen sichtbar.
+Copy-Form: ganze Sätze, max. 5 Zeilen sichtbar. Kein Telegramm. Auch auf einer
+Typo-Karte hat jede Zeile Subjekt und Verb («Wir bringen dich auf Platz 1», nicht «Platz 1»).
 Billigster Angle-Test: eine Static pro Angle, keine Produktion nötig. Bei MAKE die beste
 eigene Kosten/Termin-Rate.
 
