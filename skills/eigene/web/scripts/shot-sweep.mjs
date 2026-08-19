@@ -39,6 +39,7 @@ const ROUTES = get('routes', '/').split(',').map((r) => r.trim())
   .map((r) => (r.startsWith('/') ? r : `/${r}`));
 const MOBILE = args.includes('--mobile');
 const STATIC = args.includes('--static');       // Animationen aus (Kritik-Standard)
+const ALLOW_404 = args.includes('--allow-404'); // 404-Seite bewusst sweepen (not-found.tsx)
 const NO_INTERACT = args.includes('--no-interact'); // Hover/Klick-Pass abschalten
 const HOVERS = args.filter((a, i) => args[i - 1] === '--hover'); // zusaetzliche Selektoren
 
@@ -85,6 +86,36 @@ async function forceStatic(page) {
       scroll-behavior: auto !important;
     }
     [data-reveal], [data-reveal] * { opacity: 1 !important; transform: none !important; }`,
+  });
+  // 3) Reveal-Vorlauf: einmal durch die ganze Seite scrollen und zurueck.
+  //
+  //    Die CSS-Regel oben trifft nur Reveals, die `data-reveal` tragen.
+  //    Scroll-Reveals von Framer, GSAP oder Motion setzen ihre opacity und
+  //    ihr transform per JS inline — `animation: none` haelt die nicht auf,
+  //    und ein Attribut-Selektor findet sie nicht.
+  //
+  //    Beleg 2026-08-19, alpen-energie.ch: die Bildspalte der Sektion
+  //    "Solaranlage kaufen" steht beim ersten Erreichen auf
+  //    `transform: matrix(1,0,0,1,0,50)` und faehrt erst danach auf 0. Ein
+  //    Shot bei scrollY=1500 traf sie mitten in dieser Bewegung — 50px
+  //    versetzt und halb transparent. Nach dem Vorlauf steht sie auf
+  //    translateY 0 und opacity 1, also in der Ruhe-Lage, die ein
+  //    Standbild-Vergleich braucht.
+  //
+  //    Ohne diesen Vorlauf liefert dieselbe Seite bei jedem Lauf einen
+  //    anderen Zwischenstand. Ein Vergleich kann dann nie gruen werden,
+  //    und jeder Kritiker meldet Layoutfehler, die keine sind.
+  await page.evaluate(async () => {
+    const schritt = window.innerHeight;
+    const ende = document.documentElement.scrollHeight;
+    for (let y = 0; y < ende; y += schritt) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 140));
+    }
+    window.scrollTo(0, ende);
+    await new Promise((r) => setTimeout(r, 400));
+    window.scrollTo(0, 0);
+    await new Promise((r) => setTimeout(r, 400));
   });
 }
 
@@ -245,9 +276,12 @@ async function sweepRoute(browser, route, vp, label, manifest) {
       entry.error = res.ok()
         ? 'not-found page served with HTTP 200 (SPA catch-all)'
         : `HTTP ${res.status()}`;
-      manifest.routes.push(entry);
-      console.log(`WARN ${route}: ${entry.error} -> als Fehler im Manifest`);
-      return;
+      if (!ALLOW_404) {
+        manifest.routes.push(entry);
+        console.log(`WARN ${route}: ${entry.error} -> als Fehler im Manifest`);
+        return;
+      }
+      console.log(`WARN ${route}: ${entry.error} -> --allow-404, Sweep laeuft`);
     }
 
     // 1) Hero/First Fold exakt 730 (Desktop) — eigener Shot, kein Zuschnitt.
@@ -382,7 +416,7 @@ async function sweepRoute(browser, route, vp, label, manifest) {
   writeManifest();
   console.log(`manifest: ${manifestPath} (${manifest.routes.reduce((n, r) => n + r.shots.length, 0)} shots)`);
   await browser?.close().catch(() => {});
-  const failed = manifest.routes.filter((r) => r.error);
+  const failed = manifest.routes.filter((r) => r.error && !(ALLOW_404 && r.shots.length));
   if (failed.length) {
     console.log(`WARN: ${failed.length} Route(s) mit Fehler im Manifest: ${failed.map((r) => r.route).join(', ')}`);
     process.exitCode = 1;
