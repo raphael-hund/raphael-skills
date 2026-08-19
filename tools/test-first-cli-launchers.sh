@@ -58,7 +58,15 @@ EOF
 cat > "$BIN/kimi" <<'EOF'
 #!/usr/bin/env bash
 printf 'kimi home=%s cwd=%s args=%s\n' "${KIMI_CODE_HOME:-default}" "$PWD" "$*" >> "$FIRST_CLI_TEST_LOG"
-if [ "${KIMI_CODE_HOME:-default}" = "default" ] && [ "${FAIL_FIRST_KIMI:-0}" = 1 ]; then exit 43; fi
+# FAIL_FIRST_KIMI=1: Abo 1 (default home) fails; Abo 2 succeeds.
+# FAIL_BOTH_KIMI_ABO=1: both subscription homes fail; Moonshot backup succeeds.
+if [ "${FAIL_FIRST_KIMI:-0}" = 1 ] && [ "${KIMI_CODE_HOME:-default}" = "default" ]; then exit 43; fi
+if [ "${FAIL_BOTH_KIMI_ABO:-0}" = 1 ]; then
+  case " $* " in
+    *" moonshot-ai/kimi-k3 "*) ;;
+    *) exit 43 ;;
+  esac
+fi
 printf 'KIMI-STUB-OK\n'
 EOF
 cat > "$BIN/grok" <<'EOF'
@@ -117,7 +125,7 @@ expect_success "kimi-first uses native CLI" "$KIMI_LAUNCHER" "$REPO" "KIMI-PROMP
 expect_log "kimi-first runs in target directory" "kimi home=default cwd=$REPO"
 expect_log "kimi-first uses prompt mode" "-p ARBEITSVERTRAG FUER DIE NATIVE Kimi-CLI"
 expect_log "kimi-first keeps the user prompt" "KIMI-PROMPT-MARKER"
-expect_log "kimi-first pins K3" "-m kimi-code/k3"
+expect_log "kimi-first pins K3" "-m cliproxy/k3"
 expect_log "kimi-first loads canonical skills" "--skills-dir /root/raphael-skills/skills"
 expect_log "kimi-first names its skill catalog" "Skill-Katalog fuer diesen Lauf: /root/raphael-skills/skills"
 expect_log "kimi-first requires root skill selection" "Pruefe vor der Arbeit die verfuegbaren Raphael-Skills"
@@ -170,6 +178,27 @@ fi
 FAIL_FIRST_KIMI=1 expect_success "kimi-first falls back to subscription 2" "$KIMI_LAUNCHER" "$REPO" "fallback"
 expect_log "kimi-first tried subscription 1" "kimi home=default"
 expect_log "kimi-first tried subscription 2" "kimi home=/root/.kimi-code-2"
+if grep -Fq 'moonshot-ai/kimi-k3' "$LOG"; then
+  fail "kimi-first skips Moonshot when Abo 2 works"
+else
+  pass "kimi-first skips Moonshot when Abo 2 works"
+fi
+
+: > "$LOG"
+FAIL_BOTH_KIMI_ABO=1 expect_success "kimi-first falls back to Moonshot after both subscriptions" "$KIMI_LAUNCHER" "$REPO" "payg-backup"
+expect_log "kimi-first tried subscription 1 before PAYG" "kimi home=default"
+expect_log "kimi-first tried subscription 2 before PAYG" "kimi home=/root/.kimi-code-2"
+expect_log "kimi-first tries Moonshot only after seats fail" "moonshot-ai/kimi-k3"
+if awk '
+  /kimi home=default/ && $0 ~ /cliproxy\/k3/ && !a { a=NR }
+  /kimi home=\/root\/.kimi-code-2/ && !b { b=NR }
+  /moonshot-ai\/kimi-k3/ && !c { c=NR }
+  END { exit !(a && b && c && a<b && b<c) }
+' "$LOG"; then
+  pass "kimi-first order is Abo1 then Abo2 then Moonshot"
+else
+  fail "kimi-first order is Abo1 then Abo2 then Moonshot"
+fi
 
 mv "$BIN/kimi" "$BIN/kimi.stub"
 expect_exit "kimi-first reports a missing CLI" 127 env PATH="$BIN:/usr/bin:/bin" \

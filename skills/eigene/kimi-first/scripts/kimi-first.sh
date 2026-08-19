@@ -2,7 +2,8 @@
 # kimi-first.sh — delegiere ein Arbeitspaket an die NATIVE Kimi-CLI (kimi -p,
 # non-interaktiv). Kimi arbeitet in seiner eigenen Harness mit eigenen Tools.
 # Ablauf: Prompt -> Temp-Datei -> (cd <repo> && kimi -p ...) -> Output-Datei.
-# Fallback-Kette: Abo 1 (~/.kimi-code, Default) -> Abo 2 (KIMI_CODE_HOME=~/.kimi-code-2).
+# Fallback-Kette: Abo 1 (~/.kimi-code) -> Abo 2 (~/.kimi-code-2) -> Moonshot PAYG
+# (moonshot-ai/kimi-k3) nur wenn beide Abos fehlschlagen.
 # Danach reviewt CLAUDE den Diff (SKILL.md), fährt Tests selbst, behält den Merge.
 set -euo pipefail
 
@@ -44,19 +45,25 @@ esac
   printf '%s\n' "$RAW_PROMPT"
 } > "$PROMPTFILE"
 
-run_seat() {  # $1 = KIMI_CODE_HOME oder "" für Default
+run_seat() {  # $1 = KIMI_CODE_HOME oder "" für Default; $2 = Modell
   local home_env=()
+  local model="${2:-cliproxy/k3}"
   [ -n "$1" ] && home_env=(KIMI_CODE_HOME="$1")
   (cd "$REPO" && env "${home_env[@]}" \
-    kimi -m kimi-code/k3 -p "$(cat "$PROMPTFILE")" --skills-dir "$SKILLS_DIR") | tee "$OUTFILE"
+    KIMI_CODE_EXPERIMENTAL_SECONDARY_MODEL=1 \
+    KIMI_CODE_MODEL_CATALOG_REFRESH_ON_START=0 \
+    KIMI_CODE_MODEL_CATALOG_REFRESH_INTERVAL_MS=0 \
+    kimi -m "$model" -p "$(cat "$PROMPTFILE")" --skills-dir "$SKILLS_DIR") | tee "$OUTFILE"
 }
 
-if run_seat ""; then
+if run_seat "" cliproxy/k3; then
   echo "[kimi-first] Kimi fertig (Abo 1)." >&2
-elif run_seat /root/.kimi-code-2; then
+elif run_seat /root/.kimi-code-2 cliproxy/k3; then
   echo "[kimi-first] Kimi fertig (Abo 2, Fallback)." >&2
+elif run_seat "" moonshot-ai/kimi-k3; then
+  echo "[kimi-first] Kimi fertig (Moonshot PAYG, Backup nach Abo-Fehler)." >&2
 else
-  echo "[kimi-first] FEHLER: beide Kimi-Abos fehlgeschlagen. Aufgabe selbst machen oder codex-first." >&2
+  echo "[kimi-first] FEHLER: Abo 1, Abo 2 und Moonshot-Backup fehlgeschlagen." >&2
   exit 1
 fi
 
