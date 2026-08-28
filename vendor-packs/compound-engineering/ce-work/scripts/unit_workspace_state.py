@@ -635,7 +635,10 @@ def route_model_allowed(route: str, model: str) -> bool:
     if route == "codex":
         return model == "auto" or bool(re.fullmatch(r"(?:gpt-[A-Za-z0-9._-]+|o[0-9][A-Za-z0-9._-]*)", model))
     if route == "claude":
-        return model in {"auto", "fable", "opus", "sonnet", "haiku"} or bool(re.fullmatch(r"claude-[A-Za-z0-9._-]+", model))
+        lowered = model.lower()
+        if lowered == "fable" or lowered.startswith("claude-fable"):  # forbidden route
+            return False
+        return model in {"auto", "opus", "sonnet", "haiku"} or bool(re.fullmatch(r"claude-[A-Za-z0-9._-]+", model))
     if route == "grok-cli":
         return model == "auto" or bool(re.fullmatch(r"grok-[A-Za-z0-9._-]+", model))
     if route == "cursor":

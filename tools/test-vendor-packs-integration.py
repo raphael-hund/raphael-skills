@@ -16,6 +16,12 @@ PACKS = REPO_ROOT / "vendor-packs"
 COMPOUND = PACKS / "compound-engineering"
 PSTACK = PACKS / "pstack"
 AGENTCOOKIE = PACKS / "agentcookie"
+CE_EXECUTION_SUFFIXES = {".sh", ".py", ".yaml", ".yml"}
+FABLE_ROUTE = re.compile(r"(?i)(?:\bfable\b|claude:fable|claude-fable(?:[-*][A-Za-z0-9._-]*)?)")
+EXPLICIT_PROHIBITION = re.compile(
+    r"(?i)\b(?:forbidden|prohibited|not allowed|unzulässig|verboten|reject|rejects|deny|denied|"
+    r"disallow|unsupported|unavailable|block(?:ed|s)?|fail[- ]closed)\b"
+)
 
 EXPECTED = {
     COMPOUND: ("ce-", 33, "5985d821b9413f590184531d4c35e435d2356abb"),
@@ -64,6 +70,20 @@ class NamespaceTests(unittest.TestCase):
         self.assertIn("pstack-poteto-agent", text)
 
 
+class CompoundEngineeringRouteSafetyTests(unittest.TestCase):
+    def test_execution_surfaces_do_not_allow_fable_routes(self):
+        violations: list[str] = []
+        for path in sorted(
+            candidate
+            for candidate in COMPOUND.rglob("*")
+            if candidate.is_file() and candidate.suffix in CE_EXECUTION_SUFFIXES
+        ):
+            for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+                if FABLE_ROUTE.search(line) and not EXPLICIT_PROHIBITION.search(line):
+                    violations.append(f"{path.relative_to(REPO_ROOT)}:{line_number}: {line.strip()}")
+        self.assertEqual(violations, [])
+
+
 class ProvenanceTests(unittest.TestCase):
     def test_manifests_pin_the_declared_commit_and_count(self):
         for pack, (_, count, commit) in EXPECTED.items():
@@ -71,6 +91,17 @@ class ProvenanceTests(unittest.TestCase):
                 manifest = json.loads((pack / "source-manifest.json").read_text(encoding="utf-8"))
                 self.assertEqual(manifest["source_commit"], commit)
                 self.assertEqual(len(manifest["skills"]), count)
+
+    def test_ce_safety_overlay_hashes_match_normalized_files(self):
+        manifest = json.loads((COMPOUND / "source-manifest.json").read_text(encoding="utf-8"))
+        overlay = manifest["safety_overlay"]
+        self.assertEqual(overlay["policy"], "fable-routes-blocked")
+        for relative, expected in overlay["target_sha256"].items():
+            path = COMPOUND / relative
+            self.assertTrue(path.is_file(), relative)
+            import hashlib
+            actual = hashlib.sha256(path.read_bytes()).hexdigest()
+            self.assertEqual(actual, expected, relative)
 
     def test_vendoring_document_names_every_source(self):
         text = (PACKS / "VENDORING.md").read_text(encoding="utf-8")

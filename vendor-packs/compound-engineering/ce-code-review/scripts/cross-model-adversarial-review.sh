@@ -121,7 +121,6 @@ route_receipt_supported() {
 # ce-code-review and ce-doc-review (kernel parity).
 expected_model_prefix() {   # <requested-alias-or-id> -> expected served-id family prefix
   case "$1" in
-    fable)    printf 'claude-fable' ;;
     opus)     printf 'claude-opus' ;;
     sonnet)   printf 'claude-sonnet' ;;
     haiku)    printf 'claude-haiku' ;;
@@ -291,6 +290,15 @@ validate_turn_limit() {
 # A codex id may carry the serving provider's own namespace (openai.gpt-...,
 # openai/gpt-...) when the CLI routes through a non-default model_provider; the
 # family segment after the namespace is still checked.
+forbidden_claude_model() {
+  local model
+  model="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
+  case "$model" in
+    fable|claude-fable*) return 0 ;; # forbidden route; reject, do not allowlist
+    *) return 1 ;;
+  esac
+}
+
 validate_model_override() {
   local route="$1" override="${CROSS_MODEL_MODEL_OVERRIDE:-}" override_target="${CROSS_MODEL_MODEL_OVERRIDE_TARGET:-}" target
   [ -n "$override" ] || { [ -z "$override_target" ]; return; }
@@ -298,8 +306,9 @@ validate_model_override() {
   target="$(route_target "$route")" || return 1
   [ "$override_target" = "$target" ] || return 0
   [ "$target" != "cursor" ] || return 1
+  if [ "$route" = claude ] && forbidden_claude_model "$override"; then return 1; fi
   case "$route:$override" in
-    codex:gpt-*|codex:o[0-9]*|codex:*[./]gpt-*|codex:*[./]o[0-9]*|claude:fable|claude:opus|claude:sonnet|claude:haiku|claude:claude-*|grok-cli:grok-*|grok-cursor:cursor-grok-*|composer:composer-*) ;;
+    codex:gpt-*|codex:o[0-9]*|codex:*[./]gpt-*|codex:*[./]o[0-9]*|claude:opus|claude:sonnet|claude:haiku|claude:claude-*|grok-cli:grok-*|grok-cursor:cursor-grok-*|composer:composer-*) ;;
     *) return 1 ;;
   esac
 }

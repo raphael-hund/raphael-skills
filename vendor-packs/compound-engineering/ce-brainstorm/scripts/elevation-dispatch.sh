@@ -39,6 +39,17 @@ EFFORT="high"   # settled: elevation runs at high effort
 # any mutating tool. Its output is returned prose, not a file write.
 ALLOWED=(Read Glob Grep WebSearch WebFetch)
 
+reject_forbidden_model() {
+  local model="${1:-}" lower
+  lower="$(printf '%s' "$model" | tr '[:upper:]' '[:lower:]')"
+  case "${lower#claude-}" in
+    fable|fable-*) # forbidden route; fail closed before any CLI dispatch
+      log "forbidden model route: Fable is unavailable"
+      return 2
+      ;;
+  esac
+}
+
 build_cmd() {   # <model> <handoff-dir> -> sets CMD array (claude CLI, streaming, read-only)
   # --safe-mode suppresses the user environment's hooks, plugins, and MCP
   # servers; --disable-slash-commands blocks skills. --tools RESTRICTS the
@@ -73,12 +84,14 @@ build_cmd() {   # <model> <handoff-dir> -> sets CMD array (claude CLI, streaming
 # --add-dir; without it the flag is omitted (no dir to grant).
 if [ "${1:-}" = "--emit-adapter" ]; then
   [ -n "${2:-}" ] || { log "--emit-adapter requires <model>"; exit 2; }
+  reject_forbidden_model "$2" || exit $?
   build_cmd "$2" "${3:-}"
   printf '%s\0' "${CMD[@]}"
   exit 0
 fi
 
 MODEL="${1:?model required}"
+reject_forbidden_model "$MODEL" || exit $?
 PROMPT_FILE="${2:?prompt-file required}"
 RESULT_PATH="${3:?result-path required}"
 [ -f "$PROMPT_FILE" ] || { log "prompt file not found: $PROMPT_FILE"; exit 2; }
@@ -148,7 +161,6 @@ bounded_failure_evidence() { tail -c 800 "$PEERLOG" 2>/dev/null || true; }
 # Expected served-id prefix for a requested model alias, or empty if unknown.
 model_prefix() {   # <requested> -> prefix | ""
   case "$1" in
-    fable)    printf 'claude-fable-' ;;
     opus)     printf 'claude-opus-' ;;
     sonnet)   printf 'claude-sonnet-' ;;
     haiku)    printf 'claude-haiku-' ;;

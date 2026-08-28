@@ -23,6 +23,10 @@
       "source": "skills/eigene/ads-video/SKILL.md",
       "mode": "source-adapter"
     },
+    "agentcookie": {
+      "source": "vendor-packs/agentcookie/SKILL.md",
+      "mode": "source-adapter"
+    },
     "brain": {
       "source": "skills/eigene/brain/SKILL.md",
       "mode": "source-adapter"
@@ -159,6 +163,314 @@
     "web": {
       "source": "skills/eigene/web/SKILL.md",
       "mode": "canonical-link"
+    },
+    "ce-babysit-pr": {
+      "source": "vendor-packs/compound-engineering/ce-babysit-pr/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-brainstorm": {
+      "source": "vendor-packs/compound-engineering/ce-brainstorm/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-code-review": {
+      "source": "vendor-packs/compound-engineering/ce-code-review/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-commit": {
+      "source": "vendor-packs/compound-engineering/ce-commit/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-commit-push-pr": {
+      "source": "vendor-packs/compound-engineering/ce-commit-push-pr/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-compound": {
+      "source": "vendor-packs/compound-engineering/ce-compound/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-compound-refresh": {
+      "source": "vendor-packs/compound-engineering/ce-compound-refresh/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-debug": {
+      "source": "vendor-packs/compound-engineering/ce-debug/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-doc-review": {
+      "source": "vendor-packs/compound-engineering/ce-doc-review/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-dogfood": {
+      "source": "vendor-packs/compound-engineering/ce-dogfood/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-explain": {
+      "source": "vendor-packs/compound-engineering/ce-explain/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-handoff": {
+      "source": "vendor-packs/compound-engineering/ce-handoff/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-ideate": {
+      "source": "vendor-packs/compound-engineering/ce-ideate/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-optimize": {
+      "source": "vendor-packs/compound-engineering/ce-optimize/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-plan": {
+      "source": "vendor-packs/compound-engineering/ce-plan/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-polish": {
+      "source": "vendor-packs/compound-engineering/ce-polish/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-pov": {
+      "source": "vendor-packs/compound-engineering/ce-pov/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-product-pulse": {
+      "source": "vendor-packs/compound-engineering/ce-product-pulse/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-promote": {
+      "source": "vendor-packs/compound-engineering/ce-promote/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-proof": {
+      "source": "vendor-packs/compound-engineering/ce-proof/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-prototype": {
+      "source": "vendor-packs/compound-engineering/ce-prototype/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-resolve-pr-feedback": {
+      "source": "vendor-packs/compound-engineering/ce-resolve-pr-feedback/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-retune": {
+      "source": "vendor-packs/compound-engineering/ce-retune/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-riffrec-feedback-analysis": {
+      "source": "vendor-packs/compound-engineering/ce-riffrec-feedback-analysis/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-setup": {
+      "source": "vendor-packs/compound-engineering/ce-setup/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-simplify-code": {
+      "source": "vendor-packs/compound-engineering/ce-simplify-code/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-strategy": {
+      "source": "vendor-packs/compound-engineering/ce-strategy/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-sweep": {
+      "source": "vendor-packs/compound-engineering/ce-sweep/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-test-browser": {
+      "source": "vendor-packs/compound-engineering/ce-test-browser/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-test-xcode": {
+      "source": "vendor-packs/compound-engineering/ce-test-xcode/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-work": {
+      "source": "vendor-packs/compound-engineering/ce-work/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-worktree": {
+      "source": "vendor-packs/compound-engineering/ce-worktree/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "ce-lfg": {
+      "source": "vendor-packs/compound-engineering/ce-lfg/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-architect": {
+      "source": "vendor-packs/pstack/pstack-architect/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-arena": {
+      "source": "vendor-packs/pstack/pstack-arena/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-automate-me": {
+      "source": "vendor-packs/pstack/pstack-automate-me/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-blast-radius": {
+      "source": "vendor-packs/pstack/pstack-blast-radius/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-bro": {
+      "source": "vendor-packs/pstack/pstack-bro/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-create-verification-skill": {
+      "source": "vendor-packs/pstack/pstack-create-verification-skill/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-figure-it-out": {
+      "source": "vendor-packs/pstack/pstack-figure-it-out/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-how": {
+      "source": "vendor-packs/pstack/pstack-how/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-interrogate": {
+      "source": "vendor-packs/pstack/pstack-interrogate/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-maintain-verification-skill": {
+      "source": "vendor-packs/pstack/pstack-maintain-verification-skill/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-no-comments": {
+      "source": "vendor-packs/pstack/pstack-no-comments/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-poteto-mode": {
+      "source": "vendor-packs/pstack/pstack-poteto-mode/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-boundary-discipline": {
+      "source": "vendor-packs/pstack/pstack-principle-boundary-discipline/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-build-the-lever": {
+      "source": "vendor-packs/pstack/pstack-principle-build-the-lever/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-encode-lessons-in-structure": {
+      "source": "vendor-packs/pstack/pstack-principle-encode-lessons-in-structure/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-exhaust-the-design-space": {
+      "source": "vendor-packs/pstack/pstack-principle-exhaust-the-design-space/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-experience-first": {
+      "source": "vendor-packs/pstack/pstack-principle-experience-first/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-fix-root-causes": {
+      "source": "vendor-packs/pstack/pstack-principle-fix-root-causes/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-foundational-thinking": {
+      "source": "vendor-packs/pstack/pstack-principle-foundational-thinking/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-guard-the-context-window": {
+      "source": "vendor-packs/pstack/pstack-principle-guard-the-context-window/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-laziness-protocol": {
+      "source": "vendor-packs/pstack/pstack-principle-laziness-protocol/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-make-operations-idempotent": {
+      "source": "vendor-packs/pstack/pstack-principle-make-operations-idempotent/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-migrate-callers-then-delete-legacy-apis": {
+      "source": "vendor-packs/pstack/pstack-principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-minimize-reader-load": {
+      "source": "vendor-packs/pstack/pstack-principle-minimize-reader-load/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-model-the-domain": {
+      "source": "vendor-packs/pstack/pstack-principle-model-the-domain/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-never-block-on-the-human": {
+      "source": "vendor-packs/pstack/pstack-principle-never-block-on-the-human/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-outcome-oriented-execution": {
+      "source": "vendor-packs/pstack/pstack-principle-outcome-oriented-execution/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-prove-it-works": {
+      "source": "vendor-packs/pstack/pstack-principle-prove-it-works/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-redesign-from-first-principles": {
+      "source": "vendor-packs/pstack/pstack-principle-redesign-from-first-principles/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-separate-before-serializing-shared-state": {
+      "source": "vendor-packs/pstack/pstack-principle-separate-before-serializing-shared-state/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-sequence-verifiable-units": {
+      "source": "vendor-packs/pstack/pstack-principle-sequence-verifiable-units/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-subtract-before-you-add": {
+      "source": "vendor-packs/pstack/pstack-principle-subtract-before-you-add/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-principle-type-system-discipline": {
+      "source": "vendor-packs/pstack/pstack-principle-type-system-discipline/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-recall": {
+      "source": "vendor-packs/pstack/pstack-recall/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-reflect": {
+      "source": "vendor-packs/pstack/pstack-reflect/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-setup-pstack": {
+      "source": "vendor-packs/pstack/pstack-setup-pstack/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-show-me-your-work": {
+      "source": "vendor-packs/pstack/pstack-show-me-your-work/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-swarm": {
+      "source": "vendor-packs/pstack/pstack-swarm/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-tdd": {
+      "source": "vendor-packs/pstack/pstack-tdd/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-teach": {
+      "source": "vendor-packs/pstack/pstack-teach/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-technical-writing": {
+      "source": "vendor-packs/pstack/pstack-technical-writing/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-typescript-best-practices": {
+      "source": "vendor-packs/pstack/pstack-typescript-best-practices/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-unslop": {
+      "source": "vendor-packs/pstack/pstack-unslop/SKILL.md",
+      "mode": "source-adapter"
+    },
+    "pstack-why": {
+      "source": "vendor-packs/pstack/pstack-why/SKILL.md",
+      "mode": "source-adapter"
     }
   }
 }

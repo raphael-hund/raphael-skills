@@ -66,6 +66,15 @@ route_model() {
   esac
 }
 
+forbidden_claude_model() {
+  local model
+  model="$(printf '%s' "$1" | tr '[:upper:]' '[:lower:]')"
+  case "$model" in
+    fable|claude-fable*) return 0 ;; # forbidden route; reject, do not allowlist
+    *) return 1 ;;
+  esac
+}
+
 validate_model_override() {
   local route="$1" override="${CE_WORK_MODEL_OVERRIDE:-}" override_target="${CE_WORK_MODEL_OVERRIDE_TARGET:-}" target override_lower
   [ -n "$override" ] || { [ -z "$override_target" ]; return; }
@@ -75,6 +84,7 @@ validate_model_override() {
   esac
   target="$(route_target "$route")" || return 1
   [ "$override_target" = "$target" ] || return 0
+  if [ "$route" = claude ] && forbidden_claude_model "$override"; then return 1; fi
   if [ "$route" = cursor ]; then
     case "$override" in
       [A-Za-z0-9]*)
@@ -87,7 +97,7 @@ validate_model_override() {
     esac
   fi
   case "$route:$override" in
-    codex:gpt-*|codex:o[0-9]*|claude:fable|claude:opus|claude:sonnet|claude:haiku|claude:claude-*|grok-cli:grok-*|grok-cursor:cursor-grok-*|composer:composer-*) ;;
+    codex:gpt-*|codex:o[0-9]*|claude:opus|claude:sonnet|claude:haiku|claude:claude-*|grok-cli:grok-*|grok-cursor:cursor-grok-*|composer:composer-*) ;;
     *) return 1 ;;
   esac
 }
@@ -224,7 +234,10 @@ def model_allowed(route, model):
     if route == "codex":
         return model == "auto" or bool(re.fullmatch(r"(?:gpt-[A-Za-z0-9._-]+|o[0-9][A-Za-z0-9._-]*)", model))
     if route == "claude":
-        return model in {"auto", "fable", "opus", "sonnet", "haiku"} or bool(re.fullmatch(r"claude-[A-Za-z0-9._-]+", model))
+        lowered = model.lower()
+        if lowered == "fable" or lowered.startswith("claude-fable"):  # forbidden route
+            return False
+        return model in {"auto", "opus", "sonnet", "haiku"} or bool(re.fullmatch(r"claude-[A-Za-z0-9._-]+", model))
     if route == "grok-cli":
         return model == "auto" or bool(re.fullmatch(r"grok-[A-Za-z0-9._-]+", model))
     if route == "cursor":
@@ -886,7 +899,7 @@ else:
         expected=model_terms(display_hint or requested)
         receipt="verified" if expected and expected.issubset(model_terms(served)) else "mismatch"
     else:
-        family=("claude-fable-" if req=="fable" else "claude-opus-" if req=="opus" else
+        family=("claude-opus-" if req=="opus" else
           "claude-sonnet-" if req=="sonnet" else "claude-haiku-" if req=="haiku" else req)
         normalized=lambda value: re.sub(r"[^a-z0-9]", "", value.lower())
         receipt="verified" if actual.startswith(family) or actual==req or normalized(actual)==normalized(req) else "mismatch"

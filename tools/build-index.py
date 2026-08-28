@@ -52,14 +52,26 @@ def build_entry(path: Path) -> dict:
     }
 
 
+def discover_skill_files(*roots: Path) -> list[Path]:
+    skill_files = []
+    for root in roots:
+        for path in root.rglob("SKILL.md"):
+            parts = path.relative_to(root).parts
+            if "_candidates" in parts:
+                continue
+            if any(part.startswith("_restored-") for part in parts):
+                continue
+            if any(part in {"resources", "vendor"} for part in parts[:-1]):
+                continue
+            skill_files.append(path)
+    return sorted(skill_files)
+
+
 def main(argv: list[str]) -> int:
     check_only = "--check" in argv[1:]
 
-    skills_dir = REPO_ROOT / "skills"
-    skill_files = sorted(
-        p for p in skills_dir.rglob("SKILL.md")
-        if "_candidates" not in p.parts
-    )
+    skill_roots = [REPO_ROOT / "skills", REPO_ROOT / "vendor-packs"]
+    skill_files = discover_skill_files(*skill_roots)
 
     # Nicht in den Index aufnehmen, was nicht valide ist — validate-skill.py
     # ist die Quelle der Wahrheit fuer "gueltiger Skill".

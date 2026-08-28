@@ -49,6 +49,11 @@ Zielnamen umgeschrieben. Externe URLs und absolute Dateipfade bleiben unverände
 
 - Fable bleibt Controller-only. Kein importierter Skill und kein Agent-Prompt routet Fable
   als Worker, Advisor, Reviewer oder Fallback.
+- Der lokale Sicherheits-Overlay dieses vendorten CE-Stands sperrt zusätzlich alle
+  Fable-Routen in Shell-/Python-Dispatchern und entfernt auswählbare Fable-Beispiele
+  aus den CE-Referenzen. Source-Commit und Skillcount bleiben unverändert; die
+  `source-manifest.json`-Hashes beziehen sich auf generierte `SKILL.md`-Bytes und die
+  zusätzliche `safety_overlay.target_sha256`-Map für die normalisierten Runtime-Dateien.
 - Die vendorten Agent-Prompts `pstack-poteto-agent` und `pstack-comment-sicko` liegen unter
   `agents/` und sind auf Leaf-Verhalten ohne Nachkommen festgelegt. Sie überschreiben keine
   bestehenden Agenten.

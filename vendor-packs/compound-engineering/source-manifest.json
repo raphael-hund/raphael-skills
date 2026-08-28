@@ -435,5 +435,23 @@
   ],
   "source_commit": "5985d821b9413f590184531d4c35e435d2356abb",
   "source_label": "compound-engineering",
-  "source_url": "https://github.com/EveryInc/compound-engineering-plugin.git"
+  "source_url": "https://github.com/EveryInc/compound-engineering-plugin.git",
+  "safety_overlay": {
+    "policy": "fable-routes-blocked",
+    "target_sha256": {
+      "ce-brainstorm/references/reasoning-elevation.md": "545c1068215f0c32d21c4810e9ac91b6934101de24f68651fd943c460d76184f",
+      "ce-brainstorm/scripts/elevation-dispatch.sh": "3db159adba08cbe20fc09b5060b1924e13eaf73b8ac7f9085d303c605617ad7a",
+      "ce-code-review/references/cross-model-review.md": "f54cac4630713f76cb127b1c321b412949922293e19a8a6f6476e5f4b3fb3ec3",
+      "ce-code-review/scripts/cross-model-adversarial-review.sh": "6d04c438c3c1677dad6d88aa116926e9388b705b6819fa0010712623c8fa19c1",
+      "ce-doc-review/references/cross-model-review.md": "715566aa56ae729cf9fc7f5466fc5ee7854d4cfde7f700ba0d45d332400a714f",
+      "ce-doc-review/scripts/cross-model-doc-review.sh": "e7e5fc76fcf2bb53618424d5eb2a5faadc4dd0304fc7084910ecfa01269c830b",
+      "ce-lfg/references/stage-routing.md": "11633a26ec333bf25a09069ac7719331b343d5f318a20c32e9985546ea01005b",
+      "ce-plan/references/reasoning-elevation.md": "545c1068215f0c32d21c4810e9ac91b6934101de24f68651fd943c460d76184f",
+      "ce-plan/scripts/elevation-dispatch.sh": "3db159adba08cbe20fc09b5060b1924e13eaf73b8ac7f9085d303c605617ad7a",
+      "ce-pov/scripts/cross-model-pov.sh": "f2d0e8b88d879e4e7647762da2182f9ceda15b7d3616258d542641381056b2fb",
+      "ce-setup/references/config-template.yaml": "82c59e7e7fbc8848036b8fb29fb5fb58b3f6a6c32ca8d85b0a12e75f7a6a3827",
+      "ce-work/scripts/cross-model-work.sh": "6de5e0c4595d307397786516b78e0aede95a2216e4ef85e00917063698c94b50",
+      "ce-work/scripts/unit_workspace_state.py": "3376f5ae02c8935160f9cf8a36a8248d9dc7317fd2e1660dcd6897ceec55eb06"
+    }
+  }
 }
