@@ -51,6 +51,24 @@ class NamespaceTests(unittest.TestCase):
         rewritten = rewrite_references(text, {"tdd": "pstack-tdd"})
         self.assertEqual(rewritten, "https://example.test/tdd /root/tdd (/tdd/SKILL.md) skills/pstack-tdd/SKILL.md")
 
+    def test_rewrite_agent_names_only_in_structured_fields_or_package_paths(self):
+        text = (
+            "Mention poteto-agent in prose. https://example.test/poteto-agent /root/poteto-agent\n"
+            "subagent_type: poteto-agent\n"
+            '{"agent_id": "poteto-agent"}\n'
+            "pstack/agents/poteto-agent.md agents/poteto-agent.md"
+        )
+        rewritten = rewrite_references(text, {"poteto-agent": "pstack-poteto-agent"})
+        self.assertEqual(
+            rewritten,
+            (
+                "Mention poteto-agent in prose. https://example.test/poteto-agent /root/poteto-agent\n"
+                "subagent_type: pstack-poteto-agent\n"
+                '{"agent_id": "pstack-poteto-agent"}\n'
+                "pstack/agents/pstack-poteto-agent.md agents/pstack-poteto-agent.md"
+            ),
+        )
+
     def test_rewrite_package_paths_and_derived_agent_ids(self):
         text = "pstack/skills/poteto-mode/SKILL.md ../../skills/poteto-mode/SKILL.md and subagent_type: poteto-agent (pstack/agents/poteto-agent.md)"
         rewritten = rewrite_references(
@@ -221,6 +239,29 @@ class ImportTests(unittest.TestCase):
         with self.assertRaises(ImportError):
             import_pack(spec, self.commit)
 
+    def test_pinning_rejects_assume_unchanged_and_skip_worktree_changes(self):
+        spec = PackSpec("fixture", self.source, self.target, "ce-", 3)
+        tracked = self.source / "skills" / "brainstorm" / "SKILL.md"
+        original = tracked.read_text(encoding="utf-8")
+        relative = tracked.relative_to(self.source).as_posix()
+        for flag in ("assume-unchanged", "skip-worktree"):
+            with self.subTest(flag=flag):
+                try:
+                    tracked.write_text(original + f"\n{flag} hidden change\n", encoding="utf-8")
+                    subprocess.run(["git", "-C", str(self.source), "update-index", f"--{flag}", relative], check=True)
+                    status = subprocess.run(
+                        ["git", "-C", str(self.source), "status", "--porcelain=v1", "--ignored"],
+                        check=True,
+                        capture_output=True,
+                        text=True,
+                    )
+                    self.assertEqual(status.stdout, "")
+                    with self.assertRaises(ImportError):
+                        import_pack(spec, self.commit)
+                finally:
+                    subprocess.run(["git", "-C", str(self.source), "update-index", f"--no-{flag}", relative], check=True)
+                    tracked.write_text(original, encoding="utf-8")
+
     def test_build_failure_cleans_staging_and_rejects_symlinked_tmp_parent(self):
         source = self.source / "skills" / "brainstorm" / "SKILL.md"
         source.write_text(source.read_text(encoding="utf-8") + "\n[bad](missing.md)\n", encoding="utf-8")
@@ -346,6 +387,44 @@ class CliTests(unittest.TestCase):
             after_package = {path.relative_to(spec.target_root): path.read_bytes() for path in spec.target_root.rglob("*") if path.is_file()}
             self.assertEqual(after_package, before_package)
             self.assertEqual({path: path.read_bytes() for path in registry_paths}, before_registries)
+
+    def test_backup_cleanup_failure_keeps_committed_package_and_registries(self):
+        with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as source_directory:
+            root = Path(directory)
+            source = Path(source_directory) / "source"
+            source.mkdir()
+            skill = source / "skills" / "fixture"
+            skill.mkdir(parents=True)
+            skill_file = skill / "SKILL.md"
+            skill_file.write_text("---\nname: fixture\ndescription: fixture\n---\n\nold\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(source), "init", "-q"], check=True)
+            subprocess.run(["git", "-C", str(source), "config", "user.email", "test@example.test"], check=True)
+            subprocess.run(["git", "-C", str(source), "config", "user.name", "Test"], check=True)
+            subprocess.run(["git", "-C", str(source), "add", "."], check=True)
+            subprocess.run(["git", "-C", str(source), "commit", "-qm", "fixture"], check=True)
+            RegistryTests()._write_registries(root)
+            spec = PackSpec("fixture", source, root / "skills" / "imported" / "fixture", "fixture-", 1)
+            first_commit = subprocess.run(["git", "-C", str(source), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
+            import_pack(spec, first_commit)
+            old_package = {path.relative_to(spec.target_root): path.read_bytes() for path in spec.target_root.rglob("*") if path.is_file()}
+            skill_file.write_text("---\nname: fixture\ndescription: fixture\n---\n\nnew\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(source), "add", "."], check=True)
+            subprocess.run(["git", "-C", str(source), "commit", "-qm", "updated fixture"], check=True)
+            commit = subprocess.run(["git", "-C", str(source), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
+            with patch("vendor_skill_packs.REPO_ROOT", root), patch("vendor_skill_packs._known_specs", return_value={"fixture": spec}), patch("vendor_skill_packs._discard_package_backup", side_effect=OSError("injected cleanup failure")):
+                self.assertEqual(main(["--import", "fixture", "--commit", commit]), 0)
+            new_package = {path.relative_to(spec.target_root): path.read_bytes() for path in spec.target_root.rglob("*") if path.is_file()}
+            self.assertNotEqual(new_package, old_package)
+            self.assertTrue(list(spec.target_root.parent.glob(".fixture.raphael-old-*")))
+            index = json.loads((root / "index.json").read_text(encoding="utf-8"))
+            codex = json.loads((root / "codex" / "compatibility.json").read_text(encoding="utf-8"))
+            claude = json.loads((root / "claude" / "compatibility.json").read_text(encoding="utf-8"))
+            kimi = json.loads((root / "kimi" / "compatibility.json").read_text(encoding="utf-8"))
+            expected_source = "skills/imported/fixture/fixture-fixture/SKILL.md"
+            self.assertIn("fixture-fixture", [entry["name"] for entry in index["skills"]])
+            self.assertEqual(codex["skills"]["fixture-fixture"]["source"], expected_source)
+            self.assertEqual(kimi["skills"]["fixture-fixture"]["source"], expected_source)
+            self.assertEqual(claude["expected_count"], len(codex["skills"]))
 
 
 if __name__ == "__main__":

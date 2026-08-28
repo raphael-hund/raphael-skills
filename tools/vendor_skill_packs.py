@@ -82,14 +82,13 @@ def _replace_agent_path(text: str, source: str, target: str) -> str:
 
 def _replace_agent_id(text: str, source: str, target: str) -> str:
     escaped = _reference_name_pattern(source)
-    rewritten = re.sub(
-        rf"(?P<prefix>\b(?:subagent_type|agent_type|agent_name|agent_id|agent)\s*[:=]\s*['\"]?){escaped}(?P<suffix>(?![A-Za-z0-9_-]))",
+    # Only rewrite values of structured agent fields. In particular, agent
+    # names in prose, URLs, or absolute paths are not package-owned references.
+    return re.sub(
+        rf"(?P<prefix>(?<![A-Za-z0-9_-])['\"]?(?:subagent_type|agent_type|agent_name|agent_id|agent)['\"]?\s*[:=]\s*['\"]?){escaped}(?P<suffix>(?![A-Za-z0-9_-]))",
         rf"\g<prefix>{target}",
         text,
     )
-    if source.endswith("-agent"):
-        return re.sub(rf"(?<![A-Za-z0-9_-]){escaped}(?![A-Za-z0-9_-])", target, rewritten)
-    return rewritten
 
 
 def rewrite_references(text: str, name_map: dict[str, str]) -> str:
@@ -107,6 +106,8 @@ def rewrite_references(text: str, name_map: dict[str, str]) -> str:
             continue
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", target):
             raise ImportError(f"unsafe namespaced target: {target!r}")
+        if source not in rewritten:
+            continue
         rewritten = _replace_slash_command(rewritten, source, target)
         rewritten = _replace_skill_path(rewritten, source, target)
         rewritten = _replace_agent_path(rewritten, source, target)
@@ -499,7 +500,7 @@ def _staging_dir() -> Path:
 def _build_staged_pack(spec: PackSpec, source_commit: str) -> tuple[Path, dict[str, Any], Path]:
     if not COMMIT_RE.fullmatch(source_commit):
         raise ImportError("source commit must be an exact 40-character hexadecimal commit")
-    _verify_source_commit(spec.source_root, source_commit)
+    _verify_source_commit(spec, source_commit)
     discovered = _discover_skills(spec)
     source_names = [item[0] for item in discovered]
     name_map = build_name_map(source_names, spec.prefix)
@@ -556,7 +557,7 @@ def _build_staged_pack(spec: PackSpec, source_commit: str) -> tuple[Path, dict[s
         manifest_path = staged_package / "source-manifest.json"
         manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
         _validate_generated_package(staged_package, spec, manifest)
-        _verify_source_commit(spec.source_root, source_commit)
+        _verify_source_commit(spec, source_commit)
         return staged_package, manifest, staging_root
     except Exception:
         if staging_root.exists():
@@ -829,7 +830,113 @@ def _known_specs(source_override: Path | None = None) -> dict[str, PackSpec]:
     }
 
 
-def _verify_source_commit(source: Path, expected: str) -> None:
+def _git_source_top_level(source: Path) -> Path:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(source), "rev-parse", "--show-toplevel"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise ImportError(f"could not locate source repository: {source}") from exc
+    if result.returncode != 0 or not result.stdout.strip():
+        raise ImportError(f"could not locate source repository: {source}")
+    return Path(result.stdout.strip())
+
+
+def _working_imported_files(source: Path, skill_dirs: list[Path], repository_root: Path) -> dict[str, Path]:
+    files: dict[str, Path] = {}
+    for skill_dir in skill_dirs:
+        for current, dirs, filenames in os.walk(skill_dir, topdown=True, followlinks=False):
+            current_path = Path(current)
+            dirs.sort()
+            filenames.sort()
+            for name in [*dirs, *filenames]:
+                candidate = current_path / name
+                mode = candidate.lstat().st_mode
+                if stat.S_ISLNK(mode):
+                    raise ImportError(f"symlinked source component is not allowed: {candidate}")
+                if name in dirs:
+                    if not stat.S_ISDIR(mode):
+                        raise ImportError(f"source payload has non-directory component: {candidate}")
+                    continue
+                if not stat.S_ISREG(mode):
+                    raise ImportError(f"source payload has non-regular file: {candidate}")
+                try:
+                    repository_path = candidate.relative_to(repository_root).as_posix()
+                except ValueError as exc:
+                    raise ImportError(f"source skill is outside its repository: {candidate}") from exc
+                if repository_path in files:
+                    raise ImportError(f"source payload file is selected twice: {candidate}")
+                files[repository_path] = candidate
+    return files
+
+
+def _pinned_imported_blobs(repository_root: Path, expected: str, repository_paths: list[str]) -> dict[str, str]:
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repository_root), "ls-tree", "-r", "-z", expected, "--", *repository_paths],
+            check=False,
+            capture_output=True,
+            timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise ImportError(f"could not inspect pinned source tree: {repository_root}") from exc
+    if result.returncode != 0:
+        raise ImportError(f"could not inspect pinned source tree: {repository_root}")
+    blobs: dict[str, str] = {}
+    for record in result.stdout.split(b"\0"):
+        if not record:
+            continue
+        try:
+            metadata, raw_path = record.split(b"\t", 1)
+            mode, object_type, object_id = metadata.decode("ascii").split(" ", 2)
+            repository_path = os.fsdecode(raw_path)
+        except (UnicodeDecodeError, ValueError) as exc:
+            raise ImportError(f"could not parse pinned source tree: {repository_root}") from exc
+        if object_type != "blob" or mode == "120000":
+            raise ImportError(f"pinned source contains non-regular content: {repository_path}")
+        blobs[repository_path] = object_id
+    return blobs
+
+
+def _verify_pinned_imported_files(spec: PackSpec, expected: str) -> None:
+    source = spec.source_root.expanduser()
+    discovered = _discover_skills(spec)
+    repository_root = _git_source_top_level(source)
+    try:
+        source.relative_to(repository_root)
+    except ValueError as exc:
+        raise ImportError(f"source root is outside its repository: {source}") from exc
+    skill_dirs = [skill_dir for _, skill_dir, _ in discovered]
+    working_files = _working_imported_files(source, skill_dirs, repository_root)
+    pinned_paths = [skill_dir.relative_to(repository_root).as_posix() for skill_dir in skill_dirs]
+    pinned_blobs = _pinned_imported_blobs(repository_root, expected, sorted(pinned_paths))
+    if set(working_files) != set(pinned_blobs):
+        missing = sorted(set(pinned_blobs) - set(working_files))
+        extra = sorted(set(working_files) - set(pinned_blobs))
+        details = ", ".join([*(f"missing {path}" for path in missing), *(f"extra {path}" for path in extra)])
+        raise ImportError(f"source imported file set differs from pinned commit: {details}")
+    for repository_path, working_path in working_files.items():
+        try:
+            blob = subprocess.run(
+                ["git", "-C", str(repository_root), "show", f"{expected}:{repository_path}"],
+                check=False,
+                capture_output=True,
+                timeout=30,
+            )
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise ImportError(f"could not read pinned source blob: {repository_path}") from exc
+        if blob.returncode != 0:
+            raise ImportError(f"could not read pinned source blob: {repository_path}")
+        if working_path.read_bytes() != blob.stdout:
+            raise ImportError(f"source imported file differs from pinned commit: {working_path}")
+
+
+def _verify_source_commit(spec: PackSpec, expected: str) -> None:
+    source = spec.source_root.expanduser()
     if not COMMIT_RE.fullmatch(expected):
         raise ImportError("--commit must be an exact 40-character hexadecimal commit")
     _assert_directory(source, "source root")
@@ -860,6 +967,7 @@ def _verify_source_commit(source: Path, expected: str) -> None:
         raise ImportError(f"could not verify source cleanliness: {source}")
     if status.stdout.strip():
         raise ImportError(f"source working tree is not clean (including ignored files): {source}")
+    _verify_pinned_imported_files(spec, expected)
 
 
 def _args(argv: list[str]) -> list[str]:
@@ -920,15 +1028,20 @@ def main(argv: list[str]) -> int:
         ]
         backup: Path | None = None
         replaced = False
+        registries_committed = False
         try:
             backup = _replace_staged_package(staged, _absolute_target(spec.target_root), spec.source_label)
             replaced = True
             update_registries(index_entries, namespaced_entries)
-            _discard_package_backup(backup)
+            registries_committed = True
+            try:
+                _discard_package_backup(backup)
+            except (ImportError, OSError) as exc:
+                print(f"WARNING: imported {args.pack}; retained package backup after cleanup failure: {exc}", file=sys.stderr)
             print(f"imported {args.pack}: {len(result['skills'])} skills")
             return 0
         except Exception:
-            if replaced:
+            if replaced and not registries_committed:
                 _rollback_package_replacement(_absolute_target(spec.target_root), backup)
             raise
         finally:
