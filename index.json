@@ -34,7 +34,7 @@
     },
     {
       "name": "ads",
-      "version": "2.7.2",
+      "version": "2.7.3",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video), dann ICP, Research, Video-Skript, Statics, Performance. Video-Skripte klingen wie eine Sprachnachricht. Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"was zuerst\", \"Static oder Video\", \"Konto-Audit\", \"Ads Performance\", \"laufende Ads\", \"7 Tage\", \"30 Tage\"."
     },
