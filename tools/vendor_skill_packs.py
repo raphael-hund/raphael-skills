@@ -811,19 +811,21 @@ def update_registries(index_entries: list[dict], namespaced_entries: list[dict])
         raise
 
 
+# Vendored packs live under vendor-packs/ because skills/ is root-owned and
+# this process cannot write there.
 def _known_specs(source_override: Path | None = None) -> dict[str, PackSpec]:
     return {
         "compound-engineering": PackSpec(
             "compound-engineering",
             source_override or Path("/root/.cursor/plugins/local/compound-engineering"),
-            REPO_ROOT / "skills/imported/compound-engineering",
+            REPO_ROOT / "vendor-packs/compound-engineering",
             "ce-",
             33,
         ),
         "pstack": PackSpec(
             "pstack",
             source_override or Path("/root/tools/vendor/coding-slop-cursor-plugins/pstack"),
-            REPO_ROOT / "skills/imported/pstack",
+            REPO_ROOT / "vendor-packs/pstack",
             "pstack-",
             44,
         ),
