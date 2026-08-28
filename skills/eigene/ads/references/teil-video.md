@@ -44,8 +44,13 @@ Onscreen sagt etwas anderes als die Stimme. Nie denselben Satz zweimal.
 
 Nach einem Static-Sieg denselben Hook in Formate übersetzen.
 Nicht neu erfinden. Dieselbe Behauptung, neues Bild.
+Skalierung über die Hook-Fabrik (`hormozi-paid-ads.md`): 30 Hooks × 10 Bodies
+spleissen, bester Hook × bester Body. Winner ~100× variieren, bis er stirbt.
 
 Formate: Talking Head, B-Roll, Green Screen, Skit, Split Screen.
+Nach einem Winner zusätzlich Evers-6×6 (`marc-evers-playbook.md` Abschnitt 14):
+dieselbe Ad in Problem/Lösung/Social Proof/Preis/FOMO/Angst und in UGC, Static,
+Split Screen, Green Screen, High Production, Screen Recording/Proof.
 Wahl und Aussehen stehen in `video-visuals.md`.
 
 ## Schreib-Reihenfolge

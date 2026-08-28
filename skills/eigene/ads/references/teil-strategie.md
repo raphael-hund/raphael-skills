@@ -51,6 +51,28 @@ Meta liest den Inhalt und sucht die Zielgruppe selbst.
 - Targeting nur grober Vorschlag.
 - Budget-Klumpen auf eine Ad ist Matching, kein Fehler. Nicht manuell umverteilen.
 
+## Kreativ-Volumen (Hormozi, `hormozi-paid-ads.md`)
+
+Top-1-% testen 11× mehr Creative. «Die Plattform cappt dich nicht — deine Ad ist der Cap.»
+
+- **70/20/10:** 70 % Budget und Zeit auf den Winner + Permutationen, 20 % angrenzend,
+  10 % wilde Ideen.
+- **Winner abuse:** einen Gewinner ~100× variieren (Hook, Subhead, Filter, Reihenfolge),
+  bis er stirbt. 80 % der Ressourcen gehen ins Neuaufbereiten von Winnern.
+- **Hook-Fabrik:** 10 Bodies × 30 Hooks spleissen = 300 Varianten. Erst Hook-Gewinner,
+  dann Body-Gewinner.
+- **Winner nie verschieben** (George Clem): neue Tests laufen nebenher, nie statt.
+- **Testing als Schachspiel** (Evers, `marc-evers-playbook.md`): Hypothese →
+  Markt-Feedback → schärfere Hypothese. Der nächste Zug zählt. Ad brennt =
+  Hook brennt, der Body bleibt. Loser ins Nie-wieder-Regelwerk, Winner in die
+  Scaling-Kampagne. 1–3 Ads mit 50 €/Tag sind Sterben auf Raten statt Testing.
+- **3–5 Botschaften, nicht 30 Mini-Variablen.** Erst Callout × Offer-Claim
+  validieren, dann Format.
+- **6×6 nach Winner:** 6 Winkel (Problem, Lösung, Social Proof, Preis, FOMO, Angst)
+  × Formate (UGC, Static, Split Screen, Green Screen, High Production, Screen
+  Recording/Proof). Eine Winner-Ad wird horizontal skaliert, nicht nur mit mehr Spend.
+- **Flow vor Reibung.** Erst Verkaufsopportunitäten, dann Closing, dann VSL/Ökosystem.
+
 ## Messen
 
 Zielgröße: **qualifizierte Anfrage**, nicht CTR.
@@ -58,6 +80,9 @@ Zielgröße: **qualifizierte Anfrage**, nicht CTR.
 CTR > 2 % bei MAKE = Warnung. Oft Klick-Köder, keine Käufer.
 
 Instant Form: schlechte Leads. Pixel lernt Submit statt Gespräch. Lead-Event nur bei qualifizierter Antwort.
+**Pixel Conditioning (Evers):** erweiterte Logik schliesst Brokies aus (bei ihm 0–5k
+Umsatz). Meta sieht den Kill-Zweig nicht und optimiert auf zahlungsfähige Segmente.
+Zielgrösse ist Kosten pro qualifizierter Verkaufsopportunität, nicht CPL.
 
 Kill-Kurzregeln (Vollversion mit TCPL-Herleitung: `loop3-ablauf.md`):
 

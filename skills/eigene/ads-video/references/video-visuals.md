@@ -69,6 +69,14 @@ Wofür: Vorher/Nachher, alt gegen neu, zwei Beweise nebeneinander.
 Aussehen: zwei gleich große Felder, eine Linie, eine Zahl pro Seite.
 Links Problem, rechts Ergebnis. Erster Frame muss beide Seiten lesen lassen.
 
+## 6×6 nach Winner (Evers)
+
+Die fünf Dreh-Formate oben bleiben der MAKE-Default nach Static-Sieg.
+Wenn ein Video-Winner steht, kommt horizontale Skalierung dazu, nicht nur mehr Spend.
+Sechs Winkel (Problem, Lösung, Social Proof, Preis, FOMO, Angst) mal die Formate
+UGC, Static, Split Screen, Green Screen, High Production, Screen Recording/Proof.
+Playbook: `../ads/references/marc-evers-playbook.md` Abschnitt 14.
+
 ## One-Frame-Test
 
 Pause bei Sekunde 0. Der Frame muss allein als Static tragen:

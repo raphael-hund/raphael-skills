@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 2.6.0
+version: 2.7.3
 description: >
   Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video),
   dann ICP, Research, Video-Skript, Statics, Performance.
@@ -17,6 +17,18 @@ sensitivity: internal
 source: >
   Fusion Loop-3 plus Korpus 711. v2.2.0 legt Strategie in teil-strategie
   (Static-first, Konzept-Achsen, Andromeda). Brain bleibt optional.
+  v2.7.0 legt die Hormozi-Doktrin in hormozi-paid-ads (4 Probleme,
+  Callout-Typen, WHAT×WHO×WHEN, 70/20/10, Friction-Waage), destilliert aus
+  den zwei Paid-Ads-Trainings (Transkripte 19.08.2026).
+  v2.7.1 legt das Marc-Evers-Playbook dazu (Kanal-Videos analysiert:
+  Ergebnis statt Produkt verkaufen, drei USPs, Instant-Form ohne
+  Interpretationsspielraum, Static-Spearhead, Testing als Schachspiel,
+  Eimer-Modell, Fast-/Slow-Lane).
+  v2.7.2 schliesst die Lernschleife: Lern-Register pro Kunde
+  (`client/ads/lern-register.md`), Pflicht-Lektüre vor Briefs, Write-back nach
+  jeder Auswertung, Hypothese-Feld im Brief-Schema, Formular-Regeln.
+  v2.7.3 zieht das 39. Kanal-Video und 90 Instagram-Reels nach: Flow vor Reibung,
+  Pixel Conditioning, VSL hinter dem Formular, 6×6-Skalierung.
 loads:
   - references/teil-strategie.md
   - references/teil-icp.md
@@ -27,6 +39,8 @@ loads:
   - references/segment-map.md
   - references/wissens-router.md
   - references/claims-verbote.md
+  - references/hormozi-paid-ads.md
+  - references/marc-evers-playbook.md
 loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [copywriting@^0, watch@^0]
 completion_criteria:
@@ -40,6 +54,14 @@ completion_criteria:
 ---
 
 # ads — Strategie, ICP, Research, Video, Statics, Performance
+
+Grundschule «Wie macht man Paid Ads»: `references/hormozi-paid-ads.md`
+(4 Probleme, Call out → Value → CTA, Callout-Typen, WHAT×WHO×WHEN,
+Kreativ-Volumen 70/20/10, Targeting, Friction-Waage, Proof > Promise).
+Praxis aus dem Agentur-Alltag: `references/marc-evers-playbook.md`
+(Ergebnis statt Produkt, drei USPs, Instant-Form ohne Interpretationsspielraum,
+Spearhead-Validierung, Testing als Schachspiel, Eimer-Modell, Pixel Conditioning, 6×6).
+Bei jedem Auftrag gelten beide mit; die Teile unten setzen sie um.
 
 ## Schritt 0
 
