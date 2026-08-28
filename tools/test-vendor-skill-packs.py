@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import vendor_skill_packs as vendor
 from vendor_skill_packs import (
     PackSpec,
     ImportError,
@@ -46,9 +47,20 @@ class NamespaceTests(unittest.TestCase):
         self.assertNotIn("/tdd", rewritten)
 
     def test_rewrite_does_not_modify_external_or_absolute_paths(self):
-        text = "https://example.test/tdd /root/tdd skills/tdd/SKILL.md"
+        text = "https://example.test/tdd /root/tdd (/tdd/SKILL.md) skills/tdd/SKILL.md"
         rewritten = rewrite_references(text, {"tdd": "pstack-tdd"})
-        self.assertEqual(rewritten, "https://example.test/tdd /root/tdd skills/pstack-tdd/SKILL.md")
+        self.assertEqual(rewritten, "https://example.test/tdd /root/tdd (/tdd/SKILL.md) skills/pstack-tdd/SKILL.md")
+
+    def test_rewrite_package_paths_and_derived_agent_ids(self):
+        text = "pstack/skills/poteto-mode/SKILL.md ../../skills/poteto-mode/SKILL.md and subagent_type: poteto-agent (pstack/agents/poteto-agent.md)"
+        rewritten = rewrite_references(
+            text,
+            {"poteto-mode": "pstack-poteto-mode", "poteto-agent": "pstack-poteto-agent"},
+        )
+        self.assertEqual(
+            rewritten,
+            "pstack/skills/pstack-poteto-mode/SKILL.md ../../skills/pstack-poteto-mode/SKILL.md and subagent_type: pstack-poteto-agent (pstack/agents/pstack-poteto-agent.md)",
+        )
 
 
 class ImportTests(unittest.TestCase):
@@ -103,6 +115,16 @@ class ImportTests(unittest.TestCase):
             encoding="utf-8",
         )
 
+    def _commit_all(self, message="fixture update"):
+        subprocess.run(["git", "-C", str(self.source), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(self.source), "commit", "-qm", message], check=True)
+        self.commit = subprocess.run(
+            ["git", "-C", str(self.source), "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+
     def test_import_namespaces_and_writes_manifest(self):
         spec = PackSpec("fixture", self.source, self.target, "ce-", 3)
         result = import_pack(spec, self.commit)
@@ -113,6 +135,10 @@ class ImportTests(unittest.TestCase):
         self.assertEqual(
             json.loads((self.target / "source-manifest.json").read_text(encoding="utf-8"))["source_commit"],
             self.commit,
+        )
+        self.assertEqual(
+            next(entry for entry in result["skills"] if entry["original_name"] == "brainstorm")["source_sha256"],
+            vendor._sha256(self.source / "skills" / "brainstorm" / "SKILL.md"),
         )
         self.assertEqual(next(entry for entry in result["skills"] if entry["target_name"] == "ce-plan")["version"], "1.2.3")
         self.assertIn("/ce-plan", (self.target / "ce-brainstorm" / "SKILL.md").read_text(encoding="utf-8"))
@@ -148,30 +174,97 @@ class ImportTests(unittest.TestCase):
         self.assertIn('raphael-sensitivity: "internal"', text)
         self.assertIn('raphael-completion-criteria: "[\\\"Source criterion\\\"]"', text)
 
+    def test_human_name_uses_safe_directory_identity_and_rewrites_agent(self):
+        (self.source / "skills" / "brainstorm").rename(self.source / "skills" / "poteto-mode")
+        source = self.source / "skills" / "poteto-mode" / "SKILL.md"
+        source.write_text(
+            source.read_text(encoding="utf-8").replace("name: brainstorm", "name: Poteto Mode").replace(
+                "# Skill", 'subagent_type: "poteto-agent"\npstack/skills/poteto-mode/SKILL.md\n# Skill'
+            ),
+            encoding="utf-8",
+        )
+        self._commit_all()
+        result = import_pack(PackSpec("fixture", self.source, self.target, "pstack-", 3), self.commit)
+        self.assertIn("pstack-poteto-mode", [entry["target_name"] for entry in result["skills"]])
+        text = (self.target / "pstack-poteto-mode" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn('subagent_type: "pstack-poteto-agent"', text)
+        self.assertIn("pstack/skills/pstack-poteto-mode/SKILL.md", text)
+
+    def test_template_permalink_is_not_a_local_link(self):
+        source = self.source / "skills" / "brainstorm" / "SKILL.md"
+        source.write_text(source.read_text(encoding="utf-8") + "\n[origin](<permalink>)\n", encoding="utf-8")
+        self._commit_all()
+        import_pack(PackSpec("fixture", self.source, self.target, "ce-", 3), self.commit)
+        self.assertTrue((self.target / "source-manifest.json").is_file())
+
+    def test_dirty_or_ignored_source_is_rejected(self):
+        spec = PackSpec("fixture", self.source, self.target, "ce-", 3)
+        tracked = self.source / "skills" / "brainstorm" / "SKILL.md"
+        original = tracked.read_text(encoding="utf-8")
+        tracked.write_text(original + "\ntracked dirty\n", encoding="utf-8")
+        with self.assertRaises(ImportError):
+            import_pack(spec, self.commit)
+        tracked.write_text(original, encoding="utf-8")
+        (self.source / "untracked.txt").write_text("untracked\n", encoding="utf-8")
+        with self.assertRaises(ImportError):
+            import_pack(spec, self.commit)
+        (self.source / "untracked.txt").unlink()
+        tracked.write_text(original + "\nstaged\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(self.source), "add", str(tracked)], check=True)
+        with self.assertRaises(ImportError):
+            import_pack(spec, self.commit)
+        subprocess.run(["git", "-C", str(self.source), "reset", "--", str(tracked)], check=True)
+        tracked.write_text(original, encoding="utf-8")
+        (self.source / ".gitignore").write_text("ignored.txt\n", encoding="utf-8")
+        self._commit_all("ignore fixture")
+        (self.source / "ignored.txt").write_text("ignored\n", encoding="utf-8")
+        with self.assertRaises(ImportError):
+            import_pack(spec, self.commit)
+
+    def test_build_failure_cleans_staging_and_rejects_symlinked_tmp_parent(self):
+        source = self.source / "skills" / "brainstorm" / "SKILL.md"
+        source.write_text(source.read_text(encoding="utf-8") + "\n[bad](missing.md)\n", encoding="utf-8")
+        self._commit_all()
+        with tempfile.TemporaryDirectory() as temporary:
+            with patch.dict(os.environ, {"TMPDIR": temporary}):
+                with self.assertRaises(ImportError):
+                    import_pack(PackSpec("fixture", self.source, self.target, "ce-", 3), self.commit)
+                self.assertEqual(list(Path(temporary).glob("raphael-skill-import-*")), [])
+            real_parent = Path(temporary) / "real"
+            real_parent.mkdir()
+            linked_parent = Path(temporary) / "linked"
+            linked_parent.symlink_to(real_parent, target_is_directory=True)
+            with patch.dict(os.environ, {"TMPDIR": str(linked_parent)}):
+                with self.assertRaises(ImportError):
+                    import_pack(PackSpec("fixture", self.source, self.target, "ce-", 3), self.commit)
+
 
 class RegistryTests(unittest.TestCase):
+    def _write_registries(self, root: Path):
+        (root / "codex").mkdir()
+        (root / "claude").mkdir()
+        (root / "kimi").mkdir()
+        (root / "index.json").write_text(
+            json.dumps({"generated_by": "test", "skill_count": 1, "skills": [{"name": "existing", "version": "1.0.0", "path": "skills/existing/SKILL.md", "description": "Existing"}]}),
+            encoding="utf-8",
+        )
+        (root / "codex" / "compatibility.json").write_text(
+            json.dumps({"schema_version": 1, "skills": {"existing": {"source": "skills/existing/SKILL.md", "mode": "source-adapter", "rationale": "existing", "triggers": ["/existing"]}}}),
+            encoding="utf-8",
+        )
+        (root / "claude" / "compatibility.json").write_text(
+            json.dumps({"schema_version": 1, "helper_id": "raphael.claude-skills", "target": "claude-code>=2.1", "inventory_source": "../codex/compatibility.json", "expected_count": 1, "native_overrides": {"kimi-sol": "claude/skills/kimi-sol/SKILL.md"}}),
+            encoding="utf-8",
+        )
+        (root / "kimi" / "compatibility.json").write_text(
+            json.dumps({"schema_version": 1, "target": "kimi-code-0.28.1", "skills": {"existing": {"source": "skills/existing/SKILL.md", "mode": "source-adapter"}}}),
+            encoding="utf-8",
+        )
+
     def test_registries_add_only_new_names(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            (root / "codex").mkdir()
-            (root / "claude").mkdir()
-            (root / "kimi").mkdir()
-            (root / "index.json").write_text(
-                json.dumps({"generated_by": "test", "skill_count": 1, "skills": [{"name": "existing", "version": "1.0.0", "path": "skills/existing/SKILL.md", "description": "Existing"}]}),
-                encoding="utf-8",
-            )
-            (root / "codex" / "compatibility.json").write_text(
-                json.dumps({"schema_version": 1, "skills": {"existing": {"source": "skills/existing/SKILL.md", "mode": "source-adapter", "rationale": "existing", "triggers": ["/existing"]}}}),
-                encoding="utf-8",
-            )
-            (root / "claude" / "compatibility.json").write_text(
-                json.dumps({"schema_version": 1, "helper_id": "raphael.claude-skills", "target": "claude-code>=2.1", "inventory_source": "../codex/compatibility.json", "expected_count": 1, "native_overrides": {"kimi-sol": "claude/skills/kimi-sol/SKILL.md"}}),
-                encoding="utf-8",
-            )
-            (root / "kimi" / "compatibility.json").write_text(
-                json.dumps({"schema_version": 1, "target": "kimi-code-0.28.1", "skills": {"existing": {"source": "skills/existing/SKILL.md", "mode": "source-adapter"}}}),
-                encoding="utf-8",
-            )
+            self._write_registries(root)
             entries = [{"name": "new-skill", "version": "1.0.0", "path": "skills/imported/new-skill/SKILL.md", "description": 'Trigger: "/new-skill"'}]
             runtime = [{"name": "new-skill", "source": "skills/imported/new-skill/SKILL.md", "mode": "source-adapter"}]
             with patch("vendor_skill_packs.REPO_ROOT", root):
@@ -183,10 +276,76 @@ class RegistryTests(unittest.TestCase):
             self.assertEqual(set(codex["skills"]), {"existing", "new-skill"})
             self.assertEqual(json.loads((root / "claude" / "compatibility.json").read_text(encoding="utf-8"))["expected_count"], 2)
 
+    def test_registry_sources_reject_non_repository_paths(self):
+        invalid = ["https://example.test/skill", "file:skill", "C:/skill", "\\\\server\\share", "~/skill", "./skills/skill", "skills/./skill", "skills/../skill", "skills//skill", "skills\\skill"]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self._write_registries(root)
+            with patch("vendor_skill_packs.REPO_ROOT", root):
+                for value in invalid:
+                    with self.subTest(value=value), self.assertRaises(ImportError):
+                        update_registries([{"name": "new-skill", "path": value}], [])
+
 
 class CliTests(unittest.TestCase):
     def test_import_requires_exact_commit(self):
         self.assertEqual(main(["--import", "pstack", "--source", "/tmp/source"]), 2)
+
+    def test_standalone_check_requires_pack(self):
+        self.assertEqual(main(["--check"]), 2)
+
+    def test_current_compound_engineering_and_pstack_checks(self):
+        ce = Path("/root/.cursor/plugins/local/compound-engineering")
+        ce_commit = subprocess.run(["git", "-C", str(ce), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
+        self.assertEqual(main(["--check", "--import", "compound-engineering", "--commit", ce_commit]), 0)
+        vendor_repo = Path("/root/tools/vendor/coding-slop-cursor-plugins")
+        pstack_commit = subprocess.run(["git", "-C", str(vendor_repo), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
+        discovered = vendor._discover_skills(vendor._known_specs()["pstack"])
+        self.assertEqual(len(discovered), 44)
+        self.assertIn("poteto-mode", [name for name, _, _ in discovered])
+        with tempfile.TemporaryDirectory(prefix="pstack-clean-test-") as temporary:
+            clone = Path(temporary) / "repo"
+            subprocess.run(["git", "clone", "--quiet", "--no-checkout", str(vendor_repo), str(clone)], check=True)
+            subprocess.run(["git", "-C", str(clone), "checkout", "--quiet", "--detach", pstack_commit], check=True)
+            self.assertEqual(
+                main(["--check", "--import", "pstack", "--source", str(clone / "pstack"), "--commit", pstack_commit]),
+                0,
+            )
+
+    def test_registry_failure_rolls_back_package_and_registries(self):
+        with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as source_directory:
+            root = Path(directory)
+            source = Path(source_directory) / "source"
+            source.mkdir()
+            (source / "skills" / "fixture").mkdir(parents=True)
+            (source / "skills" / "fixture" / "SKILL.md").write_text("---\nname: fixture\ndescription: fixture\n---\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(source), "init", "-q"], check=True)
+            subprocess.run(["git", "-C", str(source), "config", "user.email", "test@example.test"], check=True)
+            subprocess.run(["git", "-C", str(source), "config", "user.name", "Test"], check=True)
+            subprocess.run(["git", "-C", str(source), "add", "."], check=True)
+            subprocess.run(["git", "-C", str(source), "commit", "-qm", "fixture"], check=True)
+            commit = subprocess.run(["git", "-C", str(source), "rev-parse", "HEAD"], check=True, capture_output=True, text=True).stdout.strip()
+            RegistryTests()._write_registries(root)
+            spec = PackSpec("fixture", source, root / "skills" / "imported" / "fixture", "fixture-", 1)
+            import_pack(spec, commit)
+            before_package = {path.relative_to(spec.target_root): path.read_bytes() for path in spec.target_root.rglob("*") if path.is_file()}
+            registry_paths = [root / "index.json", root / "codex" / "compatibility.json", root / "claude" / "compatibility.json", root / "kimi" / "compatibility.json"]
+            before_registries = {path: path.read_bytes() for path in registry_paths}
+            original_write = vendor._atomic_json_write
+            calls = 0
+
+            def fail_second_write(path, value):
+                nonlocal calls
+                calls += 1
+                if calls == 2:
+                    raise OSError("injected registry failure")
+                original_write(path, value)
+
+            with patch("vendor_skill_packs.REPO_ROOT", root), patch("vendor_skill_packs._known_specs", return_value={"fixture": spec}), patch("vendor_skill_packs._atomic_json_write", side_effect=fail_second_write):
+                self.assertEqual(main(["--import", "fixture", "--commit", commit]), 2)
+            after_package = {path.relative_to(spec.target_root): path.read_bytes() for path in spec.target_root.rglob("*") if path.is_file()}
+            self.assertEqual(after_package, before_package)
+            self.assertEqual({path: path.read_bytes() for path in registry_paths}, before_registries)
 
 
 if __name__ == "__main__":

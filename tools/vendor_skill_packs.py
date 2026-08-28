@@ -14,7 +14,7 @@ import sys
 import tempfile
 import uuid
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
 
@@ -47,15 +47,15 @@ def _reference_name_pattern(name: str) -> str:
 
 
 def _replace_slash_command(text: str, source: str, target: str) -> str:
-    pattern = rf"(?<![A-Za-z0-9_./:~-])/{_reference_name_pattern(source)}(?![A-Za-z0-9_-])"
+    pattern = rf"(?<![A-Za-z0-9_./:~-])/{_reference_name_pattern(source)}(?![A-Za-z0-9_/-])"
     return re.sub(pattern, f"/{target}", text)
 
 
 def _replace_skill_path(text: str, source: str, target: str) -> str:
     escaped = _reference_name_pattern(source)
     text = re.sub(
-        rf"(?<![A-Za-z0-9_./:~-])skills/{escaped}(?=[/?#)\]`'\"\s]|$)",
-        f"skills/{target}",
+        rf"(?<![A-Za-z0-9_/:~-])(?P<package>(?:(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*/|\./|\.\./))*)skills/{escaped}(?=[/?#)\]`'\"\s]|$)",
+        rf"\g<package>skills/{target}",
         text,
     )
     text = re.sub(
@@ -71,13 +71,25 @@ def _replace_skill_path(text: str, source: str, target: str) -> str:
     return text
 
 
-def _replace_agent_id(text: str, source: str, target: str) -> str:
+def _replace_agent_path(text: str, source: str, target: str) -> str:
     escaped = _reference_name_pattern(source)
     return re.sub(
+        rf"(?<![A-Za-z0-9_/:~-])(?P<package>(?:(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*/|\./|\.\./))*)agents/{escaped}(?=\.md(?:[?#)\]`'\"\s]|$))",
+        rf"\g<package>agents/{target}",
+        text,
+    )
+
+
+def _replace_agent_id(text: str, source: str, target: str) -> str:
+    escaped = _reference_name_pattern(source)
+    rewritten = re.sub(
         rf"(?P<prefix>\b(?:subagent_type|agent_type|agent_name|agent_id|agent)\s*[:=]\s*['\"]?){escaped}(?P<suffix>(?![A-Za-z0-9_-]))",
         rf"\g<prefix>{target}",
         text,
     )
+    if source.endswith("-agent"):
+        return re.sub(rf"(?<![A-Za-z0-9_-]){escaped}(?![A-Za-z0-9_-])", target, rewritten)
+    return rewritten
 
 
 def rewrite_references(text: str, name_map: dict[str, str]) -> str:
@@ -97,6 +109,7 @@ def rewrite_references(text: str, name_map: dict[str, str]) -> str:
             raise ImportError(f"unsafe namespaced target: {target!r}")
         rewritten = _replace_slash_command(rewritten, source, target)
         rewritten = _replace_skill_path(rewritten, source, target)
+        rewritten = _replace_agent_path(rewritten, source, target)
         rewritten = _replace_agent_id(rewritten, source, target)
     return rewritten
 
@@ -301,9 +314,10 @@ def _discover_skills(spec: PackSpec) -> list[tuple[str, Path, str]]:
         source_file = skill_dir / "SKILL.md"
         _assert_regular_file(source_file, "source SKILL.md")
         fields, _ = _parse_frontmatter(source_file.read_text(encoding="utf-8"))
-        original_name = _field_value(fields, "name")
+        declared_name = _field_value(fields, "name")
+        original_name = skill_dir.name
         if not NAME_RE.fullmatch(original_name):
-            raise ImportError(f"invalid source skill name {original_name!r}: {source_file}")
+            raise ImportError(f"invalid source skill identity {declared_name!r}: {source_file}")
         if original_name in original_names:
             raise ImportError(f"duplicate source skill name: {original_name}")
         original_names.add(original_name)
@@ -387,9 +401,12 @@ def _validate_link_targets(package_root: Path) -> None:
         text = markdown.read_text(encoding="utf-8")
         for match in link_pattern.finditer(text):
             raw_target = match.group(1).strip()
+            placeholder = raw_target in {"<permalink>", "<url>", "url"}
             if raw_target.startswith("<") and ">" in raw_target:
                 raw_target = raw_target[1 : raw_target.index(">")]
             target = raw_target.split(None, 1)[0] if raw_target else ""
+            if placeholder:
+                continue
             if not target or target.startswith(("#", "//", "/")):
                 if target.startswith("/") and not target.startswith("//"):
                     raise ImportError(f"absolute local link is not allowed: {markdown}: {target}")
@@ -468,15 +485,21 @@ def _metadata_fields(fields: dict[str, Any]) -> dict[str, str]:
 
 def _staging_dir() -> Path:
     parent = Path(os.environ.get("TMPDIR") or "/tmp")
+    _assert_safe_path_components(parent, "temporary directory")
     _assert_directory(parent, "temporary directory")
     run_dir = Path(tempfile.mkdtemp(prefix=f"raphael-skill-import-{os.getuid()}-", dir=str(parent)))
-    os.chmod(run_dir, stat.S_IRWXU)
+    try:
+        os.chmod(run_dir, stat.S_IRWXU)
+    except Exception:
+        shutil.rmtree(run_dir)
+        raise
     return run_dir
 
 
 def _build_staged_pack(spec: PackSpec, source_commit: str) -> tuple[Path, dict[str, Any], Path]:
     if not COMMIT_RE.fullmatch(source_commit):
         raise ImportError("source commit must be an exact 40-character hexadecimal commit")
+    _verify_source_commit(spec.source_root, source_commit)
     discovered = _discover_skills(spec)
     source_names = [item[0] for item in discovered]
     name_map = build_name_map(source_names, spec.prefix)
@@ -485,52 +508,60 @@ def _build_staged_pack(spec: PackSpec, source_commit: str) -> tuple[Path, dict[s
     target_root = _absolute_target(spec.target_root)
     _assert_safe_path_components(target_root.parent, "target root")
     staging_root = _staging_dir()
-    staged_package = staging_root / target_root.name
-    staged_package.mkdir()
-    source_url = _source_url(spec.source_root, spec.source_label)
-    license_name = _license(spec.source_root)
-    entries: list[dict[str, Any]] = []
-    for original_name, source_dir, source_relative in discovered:
-        target_name = name_map[original_name]
-        target_dir = staged_package / target_name
-        _copy_payload(source_dir, target_dir, name_map)
-        source_file = source_dir / "SKILL.md"
-        rewritten_source = rewrite_references(source_file.read_text(encoding="utf-8"), name_map)
-        rendered = _render_skill(
-            rewritten_source,
-            target_name,
-            {"class": "M", "scope": "global", "sensitivity": "public"},
-        )
-        (target_dir / "SKILL.md").write_text(rendered, encoding="utf-8")
-        entries.append(
-            {
-                "source_path": f"{source_relative}/SKILL.md",
-                "source_sha256": _sha256(source_file),
-                "original_name": original_name,
-                "target_name": target_name,
-                "target_path": f"{target_name}/SKILL.md",
-                "target_sha256": _sha256(target_dir / "SKILL.md"),
-                "version": _metadata_fields(_parse_frontmatter(rendered)[0]).get("raphael-version", "0.1.0"),
-                "description": _field_value(_parse_frontmatter(rendered)[0], "description"),
-                "source_commit": source_commit,
-                "source_url": source_url,
-                "license": license_name,
-            }
-        )
-    entries.sort(key=lambda entry: entry["original_name"])
-    manifest = {
-        "schema_version": 1,
-        "source_label": spec.source_label,
-        "source_commit": source_commit,
-        "source_url": source_url,
-        "license": license_name,
-        "expected_count": spec.expected_count,
-        "skills": entries,
-    }
-    manifest_path = staged_package / "source-manifest.json"
-    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
-    _validate_generated_package(staged_package, spec, manifest)
-    return staged_package, manifest, staging_root
+    try:
+        staged_package = staging_root / target_root.name
+        staged_package.mkdir()
+        source_url = _source_url(spec.source_root, spec.source_label)
+        license_name = _license(spec.source_root)
+        reference_names = source_names + [f"{name[:-5]}-agent" for name in source_names if name.endswith("-mode")]
+        name_map = build_name_map(reference_names, spec.prefix)
+        entries: list[dict[str, Any]] = []
+        for original_name, source_dir, source_relative in discovered:
+            target_name = name_map[original_name]
+            target_dir = staged_package / target_name
+            _copy_payload(source_dir, target_dir, name_map)
+            source_file = source_dir / "SKILL.md"
+            rewritten_source = rewrite_references(source_file.read_text(encoding="utf-8"), name_map)
+            rendered = _render_skill(
+                rewritten_source,
+                target_name,
+                {"class": "M", "scope": "global", "sensitivity": "public"},
+            )
+            (target_dir / "SKILL.md").write_text(rendered, encoding="utf-8")
+            entries.append(
+                {
+                    "source_path": f"{source_relative}/SKILL.md",
+                    "source_sha256": _sha256(source_file),
+                    "original_name": original_name,
+                    "target_name": target_name,
+                    "target_path": f"{target_name}/SKILL.md",
+                    "target_sha256": _sha256(target_dir / "SKILL.md"),
+                    "version": _metadata_fields(_parse_frontmatter(rendered)[0]).get("raphael-version", "0.1.0"),
+                    "description": _field_value(_parse_frontmatter(rendered)[0], "description"),
+                    "source_commit": source_commit,
+                    "source_url": source_url,
+                    "license": license_name,
+                }
+            )
+        entries.sort(key=lambda entry: entry["original_name"])
+        manifest = {
+            "schema_version": 1,
+            "source_label": spec.source_label,
+            "source_commit": source_commit,
+            "source_url": source_url,
+            "license": license_name,
+            "expected_count": spec.expected_count,
+            "skills": entries,
+        }
+        manifest_path = staged_package / "source-manifest.json"
+        manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+        _validate_generated_package(staged_package, spec, manifest)
+        _verify_source_commit(spec.source_root, source_commit)
+        return staged_package, manifest, staging_root
+    except Exception:
+        if staging_root.exists():
+            shutil.rmtree(staging_root)
+        raise
 
 
 def _existing_target_is_owned(target_root: Path, source_label: str) -> None:
@@ -548,7 +579,7 @@ def _existing_target_is_owned(target_root: Path, source_label: str) -> None:
         raise ImportError(f"refusing to replace foreign target package: {target_root}")
 
 
-def _install_staged(staged_package: Path, target_root: Path, source_label: str) -> None:
+def _replace_staged_package(staged_package: Path, target_root: Path, source_label: str) -> Path | None:
     target_root = _absolute_target(target_root)
     target_root.parent.mkdir(parents=True, exist_ok=True)
     _assert_safe_path_components(target_root.parent, "target root")
@@ -563,8 +594,27 @@ def _install_staged(staged_package: Path, target_root: Path, source_label: str) 
         if backup is not None and not target_root.exists():
             os.replace(backup, target_root)
         raise
+    return backup
+
+
+def _discard_package_backup(backup: Path | None) -> None:
     if backup is not None:
         shutil.rmtree(backup)
+
+
+def _rollback_package_replacement(target_root: Path, backup: Path | None) -> None:
+    target_root = _absolute_target(target_root)
+    if target_root.exists():
+        if target_root.is_symlink() or not target_root.is_dir():
+            raise ImportError(f"cannot roll back unsafe target package: {target_root}")
+        shutil.rmtree(target_root)
+    if backup is not None:
+        os.replace(backup, target_root)
+
+
+def _install_staged(staged_package: Path, target_root: Path, source_label: str) -> None:
+    backup = _replace_staged_package(staged_package, target_root, source_label)
+    _discard_package_backup(backup)
 
 
 def import_pack(spec: PackSpec, source_commit: str) -> dict:
@@ -601,7 +651,18 @@ def _read_registry(path: Path) -> dict[str, Any]:
 
 
 def _safe_registry_source(value: Any, name: str) -> str:
-    if not isinstance(value, str) or not value or Path(value).is_absolute() or ".." in Path(value).parts:
+    if not isinstance(value, str) or not value:
+        raise ImportError(f"{name}: registry source must be repo-relative")
+    if (
+        "\\" in value
+        or value.startswith(("/", "~"))
+        or re.match(r"^[A-Za-z]:", value)
+        or re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", value)
+    ):
+        raise ImportError(f"{name}: registry source must be repo-relative")
+    raw_parts = value.split("/")
+    path = PurePosixPath(value)
+    if path.is_absolute() or any(part in {"", ".", ".."} for part in raw_parts):
         raise ImportError(f"{name}: registry source must be repo-relative")
     return value
 
@@ -633,6 +694,23 @@ def _atomic_json_write(path: Path, value: dict[str, Any]) -> None:
         with os.fdopen(fd, "w", encoding="utf-8") as stream:
             json.dump(value, stream, indent=2, ensure_ascii=False)
             stream.write("\n")
+        os.replace(temporary, path)
+    except Exception:
+        try:
+            os.unlink(temporary)
+        except FileNotFoundError:
+            pass
+        raise
+
+
+def _atomic_bytes_write(path: Path, value: bytes) -> None:
+    _assert_safe_path_components(path.parent, "registry path")
+    if path.exists() and path.is_symlink():
+        raise ImportError(f"registry must not be a symlink: {path}")
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(value)
         os.replace(temporary, path)
     except Exception:
         try:
@@ -715,14 +793,21 @@ def update_registries(index_entries: list[dict], namespaced_entries: list[dict])
     new_claude = dict(claude)
     new_claude["expected_count"] = len(new_codex["skills"])
 
-    if new_index != index:
-        _atomic_json_write(_registry_path("index"), new_index)
-    if new_codex != codex:
-        _atomic_json_write(_registry_path("codex"), new_codex)
-    if new_claude != claude:
-        _atomic_json_write(_registry_path("claude"), new_claude)
-    if new_kimi != kimi:
-        _atomic_json_write(_registry_path("kimi"), new_kimi)
+    changes = [
+        (_registry_path("index"), index, new_index),
+        (_registry_path("codex"), codex, new_codex),
+        (_registry_path("claude"), claude, new_claude),
+        (_registry_path("kimi"), kimi, new_kimi),
+    ]
+    originals = {path: path.read_bytes() for path, old, new in changes if new != old}
+    try:
+        for path, old, new in changes:
+            if new != old:
+                _atomic_json_write(path, new)
+    except Exception:
+        for path, original in reversed(list(originals.items())):
+            _atomic_bytes_write(path, original)
+        raise
 
 
 def _known_specs(source_override: Path | None = None) -> dict[str, PackSpec]:
@@ -761,6 +846,20 @@ def _verify_source_commit(source: Path, expected: str) -> None:
     actual = result.stdout.strip()
     if result.returncode != 0 or actual != expected:
         raise ImportError(f"source HEAD {actual or '<unavailable>'} does not match --commit {expected}")
+    try:
+        status = subprocess.run(
+            ["git", "-C", str(source), "status", "--porcelain=v1", "--ignored"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise ImportError(f"could not verify source cleanliness: {source}") from exc
+    if status.returncode != 0:
+        raise ImportError(f"could not verify source cleanliness: {source}")
+    if status.stdout.strip():
+        raise ImportError(f"source working tree is not clean (including ignored files): {source}")
 
 
 def _args(argv: list[str]) -> list[str]:
@@ -778,8 +877,8 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--dry-run", action="store_true", help="stage and validate without changing the repository")
     args = parser.parse_args(_args(argv))
     if not args.pack:
-        if args.source or args.commit or args.dry_run:
-            print("ERROR: --source, --commit and --dry-run require --import", file=sys.stderr)
+        if args.check or args.source or args.commit or args.dry_run:
+            print("ERROR: --check, --source, --commit and --dry-run require --import", file=sys.stderr)
             return 2
         print("vendor skill importer: OK")
         return 0
@@ -792,16 +891,15 @@ def main(argv: list[str]) -> int:
         return 2
     spec = specs[args.pack]
     try:
-        _verify_source_commit(spec.source_root, args.commit)
         if args.check or args.dry_run:
-            staged, manifest, staging_root = _build_staged_pack(spec, args.commit)
+            _, manifest, staging_root = _build_staged_pack(spec, args.commit)
             try:
                 print(f"checked {args.pack}: {len(manifest['skills'])} skills")
             finally:
                 if staging_root.exists():
                     shutil.rmtree(staging_root)
             return 0
-        result = import_pack(spec, args.commit)
+        staged, result, staging_root = _build_staged_pack(spec, args.commit)
         index_entries = [
             {
                 "name": entry["target_name"],
@@ -820,9 +918,22 @@ def main(argv: list[str]) -> int:
             }
             for entry in result["skills"]
         ]
-        update_registries(index_entries, namespaced_entries)
-        print(f"imported {args.pack}: {len(result['skills'])} skills")
-        return 0
+        backup: Path | None = None
+        replaced = False
+        try:
+            backup = _replace_staged_package(staged, _absolute_target(spec.target_root), spec.source_label)
+            replaced = True
+            update_registries(index_entries, namespaced_entries)
+            _discard_package_backup(backup)
+            print(f"imported {args.pack}: {len(result['skills'])} skills")
+            return 0
+        except Exception:
+            if replaced:
+                _rollback_package_replacement(_absolute_target(spec.target_root), backup)
+            raise
+        finally:
+            if staging_root.exists():
+                shutil.rmtree(staging_root)
     except (ImportError, OSError, ValueError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
