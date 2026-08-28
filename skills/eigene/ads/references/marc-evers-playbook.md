@@ -1,5 +1,7 @@
 # Marc Evers — Playbook (39 Kanal-Videos + 90 Instagram-Reels, 28.08.2026)
 
+Wiki-Einstieg: `wiki/craft/ads/lehren/evers-lehren-liegen-in-zehn-seiten.md`.
+
 Quelle: youtube.com/@Marc-Evers, alle 39 Videos transkribiert (YouTube-Captions +
 lokales Whisper). Instagram @marc.mev: 90 Reels (Apify-Transkripte, zwei Whisper-Nachträge).
 Rohdaten Vault: `raw/bookmark-2026-08-28-marc-evers-youtube-AyZPDYtGNPo.md`,
