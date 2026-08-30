@@ -46,6 +46,7 @@ SKILL_KERN = {
         "references/teil-statics.md",
         "references/segment-map.md",
         "references/wissens-router.md",
+        "references/zac-regan-startrunningads.md",
     ],
     "ads-research": [
         "references/angle-dossier-schema.md",

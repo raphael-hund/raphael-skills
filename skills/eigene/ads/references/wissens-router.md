@@ -36,6 +36,8 @@ Pfade gelten von `ads/references/` aus.
 | Konto / Testwelle / 7-30-Tage | `loop3-ablauf.md` |
 | Video sehen, Frames, Transkript | `/root/raphael-skills/skills/eigene/watch/SKILL.md` |
 | Claims | `claims-verbote.md` |
+| Zac Regan / @startrunningads (Hooks, Copy, Creative, Funnel) | `zac-regan-startrunningads.md` |
+| Zac-Regan Volltranskripte (41 Reels) | `/root/raphael-brain/raw/resource-2026-08-30-startrunningads-*.md` |
 
 ## Übergabe
 

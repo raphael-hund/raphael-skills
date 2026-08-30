@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 2.7.3
+version: 2.7.4
 description: >
   Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video),
   dann ICP, Research, Video-Skript, Statics, Performance.
@@ -29,6 +29,8 @@ source: >
   jeder Auswertung, Hypothese-Feld im Brief-Schema, Formular-Regeln.
   v2.7.3 zieht das 39. Kanal-Video und 90 Instagram-Reels nach: Flow vor Reibung,
   Pixel Conditioning, VSL hinter dem Formular, 6×6-Skalierung.
+    v2.7.4 legt Zac Regan / @startrunningads daneben (41 Reel-Transkripte im Brain,
+    Playbook zac-regan-startrunningads.md). Nicht mit Marc Evers vermischen.
 loads:
   - references/teil-strategie.md
   - references/teil-icp.md
@@ -41,6 +43,7 @@ loads:
   - references/claims-verbote.md
   - references/hormozi-paid-ads.md
   - references/marc-evers-playbook.md
+  - references/zac-regan-startrunningads.md
 loads_external: ["/root/.claude/forbidden.md"]
 requires_skills: [copywriting@^0, watch@^0]
 completion_criteria:
@@ -61,7 +64,11 @@ Kreativ-Volumen 70/20/10, Targeting, Friction-Waage, Proof > Promise).
 Praxis aus dem Agentur-Alltag: `references/marc-evers-playbook.md`
 (Ergebnis statt Produkt, drei USPs, Instant-Form ohne Interpretationsspielraum,
 Spearhead-Validierung, Testing als Schachspiel, Eimer-Modell, Pixel Conditioning, 6×6).
-Bei jedem Auftrag gelten beide mit; die Teile unten setzen sie um.
+Ad-Handwerk aus 41 Reels: `references/zac-regan-startrunningads.md`
+(Call-Out-Hooks, Vier-Schritte-Ad, Creative über Targeting, Messaging Pockets;
+Volltranskripte in `raw/resource-2026-08-30-startrunningads-*.md`).
+Hormozi und Evers gelten immer mit. Zac-Regan zusätzlich, sobald Hooks, Copy
+oder Video-Skripte geschrieben werden. Nicht mit Evers vermischen.
 
 ## Schritt 0
 

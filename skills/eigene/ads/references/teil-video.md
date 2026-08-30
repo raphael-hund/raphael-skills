@@ -9,8 +9,11 @@ In Atem 2 sieht er einen Beweis. Am Ende weiß er, was nach dem Klick passiert.
 
 Klingt wie eine Sprachnachricht.
 
-## Bevor du schreibst (4 Dinge)
+## Bevor du schreibst (5 Dinge)
 
+0. Lies das eigene Lern-Register des Kunden, wenn vorhanden:
+   `/root/clients/<slug>/ads/lern-register.md`. Eigene Resultate schlagen jede
+   Markt-Referenz. Was dort als tot markiert ist, wird nicht wieder gebaut.
 1. **Wer + was er bekommt.** Aus Teil ICP oder aus dem, was der User sagt.
 2. **Ein echter Proof.** Name oder Zahl mit Quelle. Fehlt beides: `proof: fehlt`.
    Keine Kundenzahl erfinden. Markt-Referenzen belegen nur die Bauform.
@@ -19,13 +22,16 @@ Klingt wie eine Sprachnachricht.
 4. **Wie das Video aussieht.** Lade genau eine Datei:
    `../../ads-video/references/video-visuals.md`.
    Nicht den ganzen Ordner. Ohne diese Datei kein Skript.
+5. **Zac-Regan-Playbook.** Lade `zac-regan-startrunningads.md`. Hooks, Vier-Schritte-Ad
+   und Steal-the-structure kommen von dort; Wortlaut nur aus dem zitierten Raw-File.
 
 Alle Pfade gelten von dieser Datei aus (`ads/references/`).
 Optional Tiefe, nie vorher alles laden:
 `../../ads-video/references/hook-formeln.md`,
 `../../ads-video/references/skript-architekturen.md`,
 `../../ads-video/references/voice-dna-ads.md`,
-`../../ads-video/references/playbook-geile-ads.md`.
+`../../ads-video/references/playbook-geile-ads.md`,
+`zac-regan-startrunningads.md`.
 
 Zwei Volltexte derselben Bauform nur gezielt greppen, nie
 `../../ads-video/references/korpus/referenz-ads.md` ganz (15k Zeilen).
@@ -111,6 +117,7 @@ Nie „nicht X, sondern Y". Nie drei gleich lange Sätze.
 - Laut gelesen klingt es wie eine Sprachnachricht
 - Die vier Lagen stehen im Skript, nicht nur der Sprechtext
 - video-visuals.md war geladen
+- Lern-Register des Kunden gelesen (Pflicht, wenn vorhanden): keine als tot markierte Bauform erneut
 
 ## Anti-Skript (nie so)
 
