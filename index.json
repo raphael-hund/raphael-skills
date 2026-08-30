@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 139,
+  "skill_count": 140,
   "skills": [
     {
       "name": "design",
@@ -34,7 +34,7 @@
     },
     {
       "name": "ads",
-      "version": "2.7.3",
+      "version": "2.7.4",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video), dann ICP, Research, Video-Skript, Statics, Performance. Video-Skripte klingen wie eine Sprachnachricht. Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"was zuerst\", \"Static oder Video\", \"Konto-Audit\", \"Ads Performance\", \"laufende Ads\", \"7 Tage\", \"30 Tage\"."
     },
@@ -154,9 +154,9 @@
     },
     {
       "name": "orchestrate",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "Koordiniert Mehrschritt-Arbeit als adaptiven, kapazitätsgebundenen DAG. Ein Controller startet alle wirklich unabhängigen, bereiten Pakete bis zur live verfügbaren Runtime-, Provider-, RAM-, Browser- und Kontextkapazität. Writer brauchen disjunkte write_sets oder isolierte Worktrees; gemeinsame Artefakte haben genau einen Integrator. Council und Gauntlet bleiben bewusste Modi. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Unterseiten einzeln\", \"jede Seite eigene Session\", \"Controller-Session\", \"nacheinander abarbeiten\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
+      "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
     },
     {
       "name": "printingpress",
@@ -295,6 +295,12 @@
       "version": "0.1.0",
       "path": "skills/imported/thermo-nuclear-cursor/SKILL.md",
       "description": "Extrem strenger, diff-basierter Maintainability-Review aus Cursor Thermos: sucht strukturelle Vereinfachung, Spaghetti-Wachstum, falsche Abstraktionen, unsaubere Typgrenzen und Dateien über 1000 Zeilen. Nur explizit/lazy. Trigger: \"thermo nuclear review\", \"Thermos Code Quality\", \"maximal strenger Code-Review\"."
+    },
+    {
+      "name": "autolearn",
+      "version": "0.1.0",
+      "path": "skills/methodik/autolearn/SKILL.md",
+      "description": "Führt nach einem Fehler von der belegten Root Cause zur dauerhaften Verbesserung: Diagnose, Lernpunkt in Pflichtform, Übergabe an den zuständigen Skill und Regression-Check. Trigger: \"/autolearn\", \"nach einem Fehler lernen\", \"Fehler künftig verhindern\", \"Root Cause festhalten\"."
     },
     {
       "name": "brainstorm",
