@@ -40,9 +40,9 @@
     },
     {
       "name": "brain",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/brain/SKILL.md",
-      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff). Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\"."
+      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff). Ein Creator-Profil (alle Reels/Videos) läuft als einspeisen→verdichten→sichten nach references/creator-feed.md, nicht als ein watch-Aufruf. Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\", \"alle Reels transkribieren\", \"Creator-Feed ins Brain\", \"Nuggets thematisch\"."
     },
     {
       "name": "codex-first",
@@ -154,7 +154,7 @@
     },
     {
       "name": "orchestrate",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
       "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
     },
@@ -226,7 +226,7 @@
     },
     {
       "name": "watch",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "path": "skills/eigene/watch/SKILL.md",
       "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok, Loom, Vimeo, Riverside, Zoom oder eine lokale Datei) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
     },
