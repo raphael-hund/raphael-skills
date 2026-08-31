@@ -46,6 +46,7 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | Compact Keywords (Sturm-Frame, keine Kurs-Kopie) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-compact-keywords.md` |
 | Digital PR für ChatGPT (zitierbare Platzierung, kein Listicle-Spam) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-digital-pr-fuer-chatgpt.md` |
 | Local-AI-Suche (Reviews, GBP, Ortsseiten) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-local-ai-search.md` |
+| Harry Sanders IG (Information Gain, Cluster nach Umsatz, Digital PR) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-harrysanders-ig.md` |
 | Preferred Sources (Top Stories / AIO) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-preferred-sources.md` |
 | Friction / Conversion nach Ranking | Skill: `creator-lehren-2026-08.md` — Brain: `seo-friction-conversion.md` |
 | Zero-Click und Zitierbarkeit | Skill: `creator-lehren-2026-08.md` — Brain: `seo-zero-click-und-zitierbarkeit.md` |

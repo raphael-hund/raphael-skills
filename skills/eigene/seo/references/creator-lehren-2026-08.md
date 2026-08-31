@@ -7,7 +7,7 @@ Pfadpräfix immer `/root/raphael-brain/wiki/craft/seo/`. Lade **1–3 Seiten**, 
 Index der Freigabe: `seo-creator-index.md`.
 Fakten mit Datum: `quellen-2026-08.md`. GEO-Unterbau bleibt `seo-geo.md`.
 
-Harry-IG bleibt Kandidat (`wiki/_candidates/2026-08-30-seo-harrysanders-ig.md`) — keine Wissensantwort.
+Harry Sanders IG: `seo-harrysanders-ig.md` (approved).
 
 ## Katalog (approved, nutzen)
 
@@ -24,6 +24,7 @@ Harry-IG bleibt Kandidat (`wiki/_candidates/2026-08-30-seo-harrysanders-ig.md`) 
 | KI-Zitate, Citability, Antwort werden | `seo-geo-citability.md` |
 | Digital PR / ChatGPT ohne Listicle-Spam | `seo-digital-pr-fuer-chatgpt.md` |
 | Local + AI (Reviews, GBP, Ortsseiten) | `seo-local-ai-search.md` |
+| Harry Sanders IG: Information Gain, Cluster-Gewichtung, Digital PR | `seo-harrysanders-ig.md` |
 | Preferred Sources als User-Signal | `seo-preferred-sources.md` |
 | Neue Site: IA und interne Links vor Masse | `seo-internal-links-ia.md` |
 | Frische, Republish, Deindex | `seo-freshness-deindex.md` |
@@ -47,6 +48,8 @@ Kurze Scout-Seiten (`audience-first-seo-zielt-auf-personen-nicht-volumen.md` usw
 - **Digital PR für ChatGPT.** Echte Platzierungen, kein Listicle-Spam. → `seo-digital-pr-fuer-chatgpt.md`
 - **Friction.** Ranking ohne Reibungs-Audit verschenkt die Nachfrage. → `seo-friction-conversion.md`
 - **Zero-Click.** Zitiert-werden ist die Aufgabe, nicht nur Klicks zählen. → `seo-zero-click-und-zitierbarkeit.md`
+
+- **Harry IG / StudioHawk.** Information Gain und Cluster nach Umsatz vor gleichmäßigem Aufwand. 1-127 ist Sprecher-Claim. → `seo-harrysanders-ig.md`
 
 Creator-Zahlen bleiben Claims, keine MAKE-Messung.
 Graustufen (Massen-PR, Listicle-Spam, Parasite) nicht Default — Raphael-Go, dann `graustufen.md`.

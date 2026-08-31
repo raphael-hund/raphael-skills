@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.7.4
+version: 0.7.5
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
