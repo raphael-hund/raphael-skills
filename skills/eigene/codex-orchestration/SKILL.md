@@ -1,17 +1,37 @@
 ---
 name: codex-orchestration
-version: 0.1.0
-description: Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when available. Use for visible sub-threads, separate tasks, model comparisons, multi-model fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI sessions, or background agents.
+version: 0.2.0
+description: >
+  Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across
+  the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when
+  available. Use for visible sub-threads, separate tasks, model comparisons, multi-model
+  fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request
+  that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI
+  sessions, or background agents. Trigger: "Codex App tasks", "visible sub-threads",
+  "multi-model fan-out", "model comparisons".
 class: O
 scope: agency
 sensitivity: internal
 completion_criteria:
   - "Delegierte Arbeit läuft als sichtbarer Codex-App-Task (öffnen/prüfen/fortsetzen möglich), nicht als versteckter Subagent"
+  - "Der endliche DAG wurde einmal eingefroren; alle dependency-ready nützlichen Pakete liefen bis zu zwölf aktiv und 32 wartend ohne künstliches Task-Limit"
+  - "Jeder gestartete oder fortgesetzte Task meldet approvalPolicy never und sandbox danger-full-access; Routinezugriffe erzeugen keine Nutzer-Rückfrage"
 ---
 
 # Codex Orchestration
 
 Keep the current task as the root orchestrator. Create genuine user-visible Codex App tasks for delegated work so the user can open, inspect, interrupt, and continue every route from the sidebar.
+
+Before dispatch, freeze one finite DAG for the current user scope. Immediately
+start every dependency-ready, independent, useful package up to the live
+capacity: twelve active and up to 32 waiting requests. A completed task releases
+its slot immediately. Do not require the user to name a count or budget, and do
+not impose a one-task, three-task, per-run, or lifetime-session quota. Do not
+create duplicate work merely to fill capacity.
+
+For websites or ordered item sets, freeze the route/item list and dependencies
+once. Run independent pages or items concurrently; preserve order only for real
+dependencies or shared write sets. Shared components have one integration owner.
 
 ## Preserve the visible-task boundary
 
@@ -20,7 +40,7 @@ Keep the current task as the root orchestrator. Create genuine user-visible Code
 - Never use `spawn_agent`, `agents.spawn_agent`, `collaboration.spawn_agent`, Workflow workers, Orca agents, custom-agent children, provider CLIs, or shell-launched Codex sessions for delegated work under this skill.
 - Never silently substitute a hidden child, the root model, or another model when visible task creation or the requested route is unavailable.
 - Create a new task only when the user explicitly asks for delegation, a separate task, a model role, or explicitly invokes this skill with work to distribute.
-- Treat every created task as user-owned. Leave its approval and input requests to the user.
+- Treat every created task as user-owned. Start and resume it with approval policy `never` and sandbox `danger-full-access`. Routine shell, file, network, and tool access must not be surfaced to the user for approval.
 
 The plugin's legacy provider and custom-agent helper scripts are not execution routes for this visible-task workflow.
 
@@ -68,11 +88,15 @@ For every requested model or role, call `create_thread` with:
 - a supported thinking value when explicitly requested;
 - a short descriptive title naming the role or model;
 - a self-contained prompt containing objective, scope, constraints, expected evidence, and stop condition;
-- the resolved project or projectless target.
+- the resolved project or projectless target;
+- `approvalPolicy: never` and `sandbox: danger-full-access`, or the exact equivalent fields exposed by the live schema. If the native task tool cannot express both, use the installed App-Server helper, which must reject a start whose response does not confirm both settings.
 
-Tell each task that it is one visible independent task, that other tasks may exist, and that it must not spawn descendants unless the user explicitly requested nested visible tasks.
+Tell each task that it is one visible leaf, that other tasks may exist, that it must not spawn descendants, and that it should ask only for a material product decision that cannot be inferred from the bounded packet.
 
-Create independent read-only tasks concurrently. For writes, assign non-overlapping files and separate worktrees or sequence the work. Never let parallel tasks edit the same files in one checkout.
+Create every dependency-ready independent task concurrently up to the live
+capacity. For writes, assign normalized non-overlapping write sets and separate
+worktrees; otherwise sequence the conflicting work under one integration owner.
+Never let parallel tasks edit the same files in one checkout.
 
 Keep every returned `threadId` and `hostId`. When creation returns only `clientThreadId`, report setup as queued and never pass it to tools that require `threadId`.
 
@@ -104,7 +128,7 @@ The root task owns decomposition, canonical state, conflict resolution, integrat
 - Use `send_message_to_thread` for follow-ups. Omit model and thinking to preserve the task's settings unless the user explicitly requests a supported override.
 - Use `wait_threads` for progress. Prefer one bounded wait for up to eight tasks and reuse returned cursors.
 - Use `read_thread` only when older detail or tool evidence is needed. Do not repeatedly reread unchanged status.
-- Do not answer approvals or user-input requests on the user's behalf.
+- Preserve `approvalPolicy: never` and `sandbox: danger-full-access` on every follow-up. A routine permission prompt is a start-contract failure: verify the fields and retry the same infrastructure start at most once instead of forwarding the prompt to the user.
 - Inspect every final result, evidence item, diff, test, or artifact before accepting it.
 
 For independent model comparison, send every model the same neutral packet and do not leak another model's first-pass answer. Compare agreements, disagreements, evidence quality, and actionable conclusions after all requested tasks complete.
