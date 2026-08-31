@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.7.2
+version: 0.7.4
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -22,7 +22,7 @@ source: >
   distribb-skill (kein LICENSE, nur Paraphrase/Ideen, keine wörtliche
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
   AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract);
-  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube) —
+  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube; buildinpublic/Sturm, Diamante, Sanders/StudioHawk, Patel) —
   Details siehe references/quellen-2026-08.md
 loads:
   - references/wissens-router.md
@@ -41,6 +41,7 @@ loads:
   - references/ranking-plan.md
   - references/gsc-read.md
   - references/quellen-2026-08.md
+  - references/creator-lehren-2026-08.md
 requires_skills: [copywriting@^0, eval@^0]
 completion_criteria:
   - "Tech-QA 0 Blocker (Meta/Schema/Canonical/Links) — G1 hart"

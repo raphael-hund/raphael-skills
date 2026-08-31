@@ -36,6 +36,22 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | Google-Ranking-Plan (30/90, Google vs KI getrennt) aus echten Exporten | Skill: `ranking-plan.md` — Brain-Tiefe: `seo-plan.md` + `seo-google.md` |
 | KI-Engines namentlich (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | Skill: `ideen-ai-sichtbarkeit-aeo.md` — Brain-Tiefe: `seo-geo.md` |
 | Graustufen / Penalty-Muster (Doorway, Scaled, Expired, Parasite) | Skill: `graustufen.md` — Brain: `seo.md` + `seo-programmatic.md` |
+| Audience-first (Personen statt Keyword-Volumen) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-audience-first-statt-volumen.md` |
+| Mentions als Trust (Reddit/Foren/YouTube/Presse, nicht Mention-Farming) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-mentions-schlagen-backlinks.md` |
+| BOFU / Money-Pages vor TOFU-Panik | Skill: `creator-lehren-2026-08.md` — Brain: `seo-bofu-money-pages-statt-tofu.md` |
+| Micro-Influencer-Captions (indexiert, Keyword vorn) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-micro-influencer-captions.md` |
+| Cheap-Modifier nur bei passendem Intent | Skill: `creator-lehren-2026-08.md` — Brain: `seo-cheap-modifier-ctr.md` |
+| Search-everywhere (Google, TikTok, YouTube, Reddit, ChatGPT) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-search-everywhere.md` |
+| AI-Referral-Formate (Tools/Rechner vor Comparison) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-ai-referral-formate-tools-rechner.md` |
+| Compact Keywords (Sturm-Frame, keine Kurs-Kopie) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-compact-keywords.md` |
+| Digital PR für ChatGPT (zitierbare Platzierung, kein Listicle-Spam) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-digital-pr-fuer-chatgpt.md` |
+| Local-AI-Suche (Reviews, GBP, Ortsseiten) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-local-ai-search.md` |
+| Preferred Sources (Top Stories / AIO) | Skill: `creator-lehren-2026-08.md` — Brain: `seo-preferred-sources.md` |
+| Friction / Conversion nach Ranking | Skill: `creator-lehren-2026-08.md` — Brain: `seo-friction-conversion.md` |
+| Zero-Click und Zitierbarkeit | Skill: `creator-lehren-2026-08.md` — Brain: `seo-zero-click-und-zitierbarkeit.md` |
+| GA4 / Analytics versteckt AI-Traffic | Skill: `creator-lehren-2026-08.md` — Brain: `seo-analytics-ai-traffic.md` |
+| Frische, Republish, Deindex | Skill: `creator-lehren-2026-08.md` — Brain: `seo-freshness-deindex.md` |
+| Neue Site: IA und interne Links | Skill: `creator-lehren-2026-08.md` — Brain: `seo-internal-links-ia.md` |
 
 **Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste)
 bleiben der **Kern** jeder Arbeit; die Brain-Seiten sind die **tiefe
