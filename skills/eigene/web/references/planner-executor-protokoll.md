@@ -24,14 +24,23 @@ Kernproblem: Nach 2× Kritik steht eine Session bei ~400k Tokens; eine
 frische Session braucht dann eine Zusammenfassung UND das unveränderte
 Original — eine Zusammenfassung von Zusammenfassungen ist verboten.
 
-Deshalb liegt der Zustand nie nur im Chatverlauf, sondern immer auf Platte:
+Deshalb liegt der Zustand nie nur im Chatverlauf, sondern immer auf Platte
+(absoluter Pfad, beim ersten Handoff anlegen):
 
 ```
-client-<name>/web/handoff/
+/root/clients/client-<name>/web/handoff/
   PLAN.md          # das Original: der freigegebene Plan (nur Planner schreibt)
   STATUS.md        # laufender Zustand (beide schreiben, append-artig)
   KRITIK-<n>.md    # je Kritikrunde eine Datei mit Fixliste + Verdict
 ```
+
+**Abgrenzung:** Dieses Session-Handoff ist NICHT das Run-Evidence-Handoff
+aus SKILL.md (Completion, fail-closed). Beide gelten nebeneinander:
+PLAN.md ersetzt keinen `website-plan`-v3-Vertrag und `run-evidence.json`
+nicht. Ist der Plan ein v3-Plan, verweist PLAN.md auf dessen Pfad und
+Hash; der Executor läuft trotzdem durch alle Gates (v3-Validator, G1,
+shot-sweep, visual-aaa). Eine frische Executor-Session darf keinen Gate
+überspringen, nur weil PLAN.md existiert.
 
 - **PLAN.md** ist das Original. Es wird nie zusammengefasst, nie umgeschrieben,
   nur per datiertem Änderungsblock ergänzt („Änderung 01.09: …“). Eine frische
@@ -57,6 +66,37 @@ Jeder Handoff-Prompt hat genau vier Blöcke, nichts weiter:
 
 Planner→Executor: Blöcke 1–3 aus PLAN.md abgeleitet.
 Executor→Planner: Block 4 zuerst; STATUS.md ist vor dem Handoff aktualisiert.
+
+**Ausgefülltes Beispiel (Planner→Executor):**
+
+```
+/web — Executor für client-braun. 
+
+Auftrag:
+1. Fixliste aus KRITIK-2 Punkt 1–4 umsetzen (Hero-H1, Stats-Band, FAQ-Intro, CTA-Farbe).
+2. Danach shot-sweep --base http://127.0.0.1:4321 und G1 laufen lassen.
+
+Quellen: /root/clients/client-braun/web/handoff/PLAN.md,
+/root/clients/client-braun/web/handoff/STATUS.md,
+/root/clients/client-braun/web/handoff/KRITIK-2.md
+
+Grenzen: Kein Redesign der Leistungs-Sektion (Raphael-Nein 28.08.,
+DECISIONS.md Zeile 14). Keine neuen Dependencies.
+
+Rückgabe: Je Punkt erledigt/BLOCKED mit Beleg (Gate-Ausgabe oder
+Screenshot-Pfad), STATUS.md aktualisiert, offene Raphael-Entscheidungen.
+```
+
+**Beispiel Rückgabe (Executor→Planner):**
+
+```
+Rückgabe client-braun, KRITIK-2:
+1. Hero-H1 SEO-direkt umgeschrieben — erledigt (shots/hero-desktop-00-fold.png)
+2. Stats-Band Belegsätze — erledigt (G1 Exit 0)
+3. FAQ-Intro — erledigt
+4. CTA-Farbe — BLOCKED: Token-Konflikt mit S1, braucht Planner-Entscheid.
+STATUS.md aktualisiert. Offen für Raphael: keine.
+```
 
 ## Session-Rotation (bei vollem Kontext)
 

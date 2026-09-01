@@ -4,6 +4,10 @@
 2–4 Dateien** er laden muss — nicht alle 30 References. (Cockpit-Detail-Ablauf
 danach: `loop2-ablauf.md`.)
 
+**Raphael tippt `/web`.** Plan, Kritik und Build sind Zeilen in Tabelle 1,
+keine Extra-Skills. Nicht `/website-plan`, nicht `/ce-plan`, nicht eine
+Skill-Liste. `web` lädt den internen Spezialisten.
+
 **Regel:** SKILL.md = Dach und Gates. Detail nur in der Datei aus der Tabelle
 unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
@@ -13,9 +17,14 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
-| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
-| **Mehrseitige Website** planen | `sitemap-section-planung.md` → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
-| **Nur Design/Look polieren** | design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
+| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
+| **Mehrseitige Website** planen | `sitemap-section-planung.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
+| **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |
+| **Website-Kritik** | `screenshot-kritik-loop.md` → `shot-sweep --base` → design intern (nicht extra laden) → Root-`DESIGN.md` | Fixliste leer, PNGs gelesen |
+| **Nur Design/Look polieren** | `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
+| **Stil-Entscheidung / Art-Direction** (Pflicht-Load) | `stil-regeln.md` **immer** + `muster-bibliothek/INDEX.md` scannen → 2–3 passende Cases laden | Jede Build-Section zitiert eine Regel-ID oder einen Case; QA gleicht gegen Regelbuch ab |
+| **Referenzseite einlernen** (Geschmack-Training) | `muster-bibliothek/_template.md` ausfüllen → INDEX-Zeile → Regel-Kandidaten in `stil-regeln.md` | Case-Datei + INDEX-Zeile + Raphael-Urteil vorhanden |
+| **Geschmack kalibrieren** (neue Seite studieren) | `scripts/muster-studie.mjs` → `muster-bibliothek/_template.md` → `muster-bibliothek/INDEX.md` | Tokens maschinell extrahiert, 1440×900 + 390×844 gelesen, INDEX-Zeile steht |
 | **Ship / Launch-Check** | `qa-faecher.md` → `agentur-rubrik.md` → `agent-roster.md` → `vercel-git-deploy.md` | Fächer 1–6 grün, Rubrik 1–25 oder Ausnahme; bei Custom-TS/JS `npx oxlint` Exit 0; Org-`origin` + Preview |
 | **Premium/Gauntlet** (gegen Weltklasse) | `screenshot-kritik-loop.md` (inkl. 3b Blind-A/B) → `agentur-rubrik.md` → `lexlin-design-prinzipien.md` + `damien-design-methodik.md` | Blind-A/B dokumentiert, max 3 Zyklen |
 | **Referenzseite nachbauen** (URL) | `web-clone-playbook.md` **zuerst** (Lizenz!) → dann Clone-Scripts | Lizenz-Check schriftlich vor Code |
@@ -26,6 +35,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
 | **Security Formular/API** | `security-audit-playbook.md` (+ OWASP aus code-review bei Consent) | Fail-open-Defaults raus |
+| **Session übernehmen / Handoff** (Planner↔Executor, Rotation) | `planner-executor-protokoll.md` → `/root/clients/client-<name>/web/handoff/PLAN.md` **vollständig** → `STATUS.md` → höchste `KRITIK-n.md` | Nächster offener Schritt aus STATUS.md benannt; kein Gate übersprungen |
 
 Wenn **mehrere** Zeilen passen: die **oberste** zuerst fertig machen, dann die nächste.
 Website **bauen** und Skill **verbessern** gleichzeitig? → Skill zuerst (dieser Pfad),
@@ -76,6 +86,7 @@ Dossier lesen (ICP/OFFER/PROOF/VOICE)
   → strategy.md (4 Meaning-Fragen, loop2-ablauf)
   → Section-Plan (landingpage-struktur ODER sitemap-section-planung)
   → Copy sektionsweise (copywriting G1→G2)
+  → stil-regeln.md + 2–3 Cases aus muster-bibliothek (Pflicht vor Art-Direction)
   → art-direction.md (design-Skill + Tokens; optional lexlin/damien bei Premium)
   → Werkzeugtabelle (tool-usecase-router) — OHNE Tabelle kein npm i
   → Build (eine Familie)
@@ -115,6 +126,8 @@ Outputs: `client-<name>/web/strategy.md`, `sitemap.md`, `copy/`, `art-direction.
 8. **Formular: E-Mail zuerst** → G1-Fail; Kontaktdaten immer zuletzt.
 9. **Eigenen Build reviewen** → Regel 8; andere Modellfamilie.
 10. **Production deploy ohne Signatur** → Rot-Klasse, nie autonom.
+11. **Art-Direction ohne `stil-regeln.md`** → Geschmack improvisiert; Pflicht-Load
+    + Cases zuerst.
 
 ---
 

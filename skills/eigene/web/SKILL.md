@@ -216,8 +216,13 @@ erlaubt. `main` trägt nur flache Squash-Commits.
   sollte Illustration, live blieb `hero-polo-dokumentar.webp`, weil die
   Ausnahme vom 13.08. das Foto festhielt.
 - Historie/Archiv-Ordner sind KEINE Quelle: nichts aus `git log`, alten Plänen
-  oder Handoffs wieder einbauen. Was nicht im aktuellen Code oder `DESIGN.md`
-  steht, ist verworfen. Muster-Repo: Wilhelm-Bedachung (`CLAUDE.md` dort).
+  oder Chat-Handoffs wieder einbauen. Was nicht im aktuellen Code, in
+  `DESIGN.md` oder in den **lebenden** Truth-Dateien
+  `/root/clients/client-<name>/web/handoff/{PLAN.md,STATUS.md}`
+  (planner-executor-protokoll.md) steht, ist verworfen. Die Truth-Dateien
+  sind Autorität, weil sie aktiv gepflegt werden — abgelöste `KRITIK-n.md`
+  und Chatverläufe bleiben bloße Evidenz. Muster-Repo: Wilhelm-Bedachung
+  (`CLAUDE.md` dort).
 - Nie alte Workspaces liegen lassen; nie parallel im Root-Checkout bauen.
 
 ## Worker-Besetzung (Raphael 14.08.2026 — ersetzt 05.08.)
