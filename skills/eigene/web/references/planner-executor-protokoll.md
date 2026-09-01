@@ -125,3 +125,16 @@ proaktiv):
   Session-Rotationen hinweg.
 - Screenshots/PNGs bleiben in Leaf-Tasks; in Handoff-Dateien stehen nur Pfade
   und Verdicts.
+
+## Vorschau vs Launch (hart, 01.09.2026)
+
+Raphael will dem Kunden eine geile Vorschau zeigen. Planner und Executor
+dürfen Fakten-Nits nicht als `BLOCKED` führen.
+
+- **Parken, nicht blocken:** 50 vs 60 Google-Bewertungen, 24 vs 28 Stunden,
+  Custom-Domain noch nicht an Vercel. Das ist `FAKT-GATE` in PLAN.md/STATUS.md.
+- **`biggest_gap` einer KRITIK-n.md ist visuell.** Klassifizierer:
+  `node /root/raphael-skills/skills/eigene/web/scripts/preview-befund-klasse.mjs "<befund>"`.
+  `preview: park` kommt nicht in den Executor-Auftrag als Blocker.
+- **Proof nicht erfinden.** Unklare echte Zahl = Working-Zahl plus FAKT-GATE.
+- Domain/DNS/Vercel ist Ops, fünf Minuten, kein Design-Gate.

@@ -17,6 +17,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
+| **Kunden-Vorschau** (Default, solange Raphael nicht „Launch“ sagt) | `screenshot-kritik-loop.md` → Skill **design** → `landingpage-struktur.md` oder `sitemap-section-planung.md` → `scripts/preview-befund-klasse.mjs` | Seite sieht geil aus (Shots gelesen). Fakten-Nits (Bewertungszahl, 24 vs 28h, Custom-Domain/Vercel) stehen als **FAKT-GATE**, nicht als Blocker. Proof nicht erfinden. |
 | **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
 | **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |
@@ -114,9 +115,12 @@ Outputs: `client-<name>/web/strategy.md`, `sitemap.md`, `copy/`, `art-direction.
 
 ---
 
-## 5. Top-10 Anfänger-Fallen (sofort vermeiden)
+## 5. Anfänger-Fallen (sofort vermeiden)
 
-1. **Alle References laden** → Context tot. Nur Tabelle §1.
+1. **Fakten-Nit statt Bild.** 50 vs 60 Reviews, Domain nicht an Vercel, 24 vs 28h
+   als Blocker oder `biggest_gap` — falsch. Das ist **FAKT-GATE**. Visual FAIL
+   ist der Blocker der Vorschau.
+2. **Alle References laden** → Context tot. Nur Tabelle §1.
 2. **`--base` vergessen** bei shot-sweep → Exit 2 mit Usage (früher: stille Shots auf 5280).
 3. **`fullPage: true`** / captureBeyondViewport → verbotene Shot-Doktrin.
 4. **`npx impeccable detect`** → falsche Regeln; nur lokales `detect.mjs`.

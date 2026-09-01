@@ -13,7 +13,7 @@ Rolle, verfügbares Äquivalent laut MODELL-MATRIX.
 | Rolle | agentType (Default) | Effort-Ziel | Kontext-Paket | Output-Schema | Verboten |
 |---|---|---|---|---|---|
 | Strategie | Cockpit (Opus) oder Sol-Cockpit | high (Gateway-Force gilt) | ICP/OFFER/PROOF/VOICE + hot.md | 1 Ziel, 1 Pfad, offene Fragen | Deploy, Copy final |
-| Sol UI-Lead | Sol-Cockpit / verfügbare Sol-Lane | high/max | Ziel + Ist-Shots + Design-Brief + relevante Source-Auszüge | direkte Opus-Zerlegung | selbst integrieren; ungeprüfte Kundenfakten |
+| Sol UI-Lead | Sol-Cockpit / verfügbare Sol-Lane | high/max | Ziel + Ist-Shots + Design-Brief + relevante Source-Auszüge | direkte Opus-Zerlegung | selbst integrieren; Proof erfinden (FAKT-GATE für unklare Zahlen ist erlaubt) |
 | Opus UI-Analyse / disjunkter Bau | alle unabhängigen `opus-builder` bis zur Live-Kapazität | high | genau ein Paket + Brief + nötige Shots/Dateien | Befunde oder disjunkter Patch mit Beleg | überlappende reale Schreibflächen; Gesamtstand integrieren |
 | Opus UI-Integration | genau ein `opus-builder` | high | Brief + alle bestätigten Paket-Ergebnisse + Ziel-Worktree | ein gemeinsamer Seitenstand + lokaler Dev-Beweis | eigene Arbeit reviewen; konkurrierende Integratoren |
 | Sitemap/IA | `luna-worker` | medium-Ziel / Gateway oft max | Strategie-Output + sitemap-section-planung.md | volle Sitemap + Section-Plan (Gate-Checkliste) | Design-Tokens erfinden |

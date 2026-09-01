@@ -16,13 +16,13 @@ description: >
   "Website planen", "Website-Plan", "Landingpage planen",
   "Website-Kritik", "Website kritisieren", "kompletter Website-Plan".
 metadata:
-  raphael-version: "0.23.0"
+  raphael-version: "0.24.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/stil-regeln.md","references/muster-bibliothek/INDEX.md","references/load-graph.md","references/loop2-ablauf.md","references/planner-executor-protokoll.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1","web-anti-slop@^0"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker; sie steht genau zwischen <!-- WERKZEUGTABELLE:START --> und <!-- WERKZEUGTABELLE:ENDE -->", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md --profile node|static|cms Exit 0; genau eines der Profile node, static, cms wählen)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "Completion/DoneClaim nur mit <run-out>/run-evidence.json: truth, optional genannter plan, design, Build sowie web/shot-sweep/v2, web/g1-report/v2 und visual-aaa/ship/v2 sind an dieselbe run_id und build_revision sowie aktuelle Contract-SHA256 gebunden; jeder neue Build invalidiert alte G1/Sweep/Ship-QA; visual-aaa/ship/v1, unknown oder stale = BLOCKED", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: alle unabhängigen Analyse- und disjunkten Baupakete adaptiv bis zur Live-Kapazität; genau ein opus-builder integriert gemeinsame UI-Flächen; lokale reproduzierbare Fixes dürfen an Grok/Sol rotieren; Kritik risikobasiert aus fremden tatsächlichen Familien; kein Fable als Subagent, nie Haiku", "Raphael-Nein derselben Session steht in DESIGN.md/DECISIONS.md mit Route+Dateipfad; gesperrter Pfad kommt auf der Route nicht mehr vor (rg vor Ship)", "Blind-A/B: jedes Paar ZWEIMAL bewertet (Kandidat einmal A, einmal B, nicht zusammenhaengende IDs); widerspruechliche Laeufe als 'kein Befund (Positions-Bias)' gewertet, nie als Sieg", "Vor jeder Blind-Bewertung: echte Bildbreiten beider Shots gleich (identify -format '%w'); Abweichung = neu aufnehmen statt bewerten", "Screenshots eines statischen Builds ueber HTTP aufgenommen, nie ueber file://; je eine HTML-, CSS- und Bild-URL vorab mit HTTP 200 belegt", "Kritik-Auftrag nennt ACTUAL_BUILDER_FAMILY (tatsaechlich gelaufenes Modell); still auf die Builderfamilie umgeleitete Kritik ist BLOCKED und wird nicht als PASS verbucht", "Ist keine fremde Familie erreichbar: Sichtpruefung ausdruecklich als Eigenpruefung deklariert und der fehlende Fremdblick in DECISIONS.md als offen gefuehrt", "Kontexttiefe je Route gemessen (Absaetze ab 25 Woertern in <main>, FAQ ausgenommen); jede H2-Sektion mit >=4 Listenpunkten und 0 solchen Absaetzen hat einen Einleitungsabsatz von 45-80 Woertern"]'
+  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Kunden-Vorschau: visuelles FAIL vor Fakten-Nit; FAKT-GATE parkt Zahlen/Domain/SLA; Custom-Domain/Vercel ist Ops; G2-Copy und Trust-Fach-6 erst bei Launch", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker; sie steht genau zwischen <!-- WERKZEUGTABELLE:START --> und <!-- WERKZEUGTABELLE:ENDE -->", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md --profile node|static|cms Exit 0; genau eines der Profile node, static, cms wählen)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "Completion/DoneClaim nur mit <run-out>/run-evidence.json: truth, optional genannter plan, design, Build sowie web/shot-sweep/v2, web/g1-report/v2 und visual-aaa/ship/v2 sind an dieselbe run_id und build_revision sowie aktuelle Contract-SHA256 gebunden; jeder neue Build invalidiert alte G1/Sweep/Ship-QA; visual-aaa/ship/v1, unknown oder stale = BLOCKED", "Launch: QA-Faecher 1-6 gruen und agentur-rubrik 1-25 oder Ausnahme; Vorschau: Fach 2 visuell gruen, Fakten-Nits als FAKT-GATE geparkt", "Multi-Agent-Web-Lauf: alle unabhängigen Analyse- und disjunkten Baupakete adaptiv bis zur Live-Kapazität; genau ein opus-builder integriert gemeinsame UI-Flächen; lokale reproduzierbare Fixes dürfen an Grok/Sol rotieren; Kritik risikobasiert aus fremden tatsächlichen Familien; kein Fable als Subagent, nie Haiku", "Raphael-Nein derselben Session steht in DESIGN.md/DECISIONS.md mit Route+Dateipfad; gesperrter Pfad kommt auf der Route nicht mehr vor (rg vor Ship)", "Blind-A/B: jedes Paar ZWEIMAL bewertet (Kandidat einmal A, einmal B, nicht zusammenhaengende IDs); widerspruechliche Laeufe als 'kein Befund (Positions-Bias)' gewertet, nie als Sieg", "Vor jeder Blind-Bewertung: echte Bildbreiten beider Shots gleich (identify -format '%w'); Abweichung = neu aufnehmen statt bewerten", "Screenshots eines statischen Builds ueber HTTP aufgenommen, nie ueber file://; je eine HTML-, CSS- und Bild-URL vorab mit HTTP 200 belegt", "Kritik-Auftrag nennt ACTUAL_BUILDER_FAMILY (tatsaechlich gelaufenes Modell); still auf die Builderfamilie umgeleitete Kritik ist BLOCKED und wird nicht als PASS verbucht", "Ist keine fremde Familie erreichbar: Sichtpruefung ausdruecklich als Eigenpruefung deklariert und der fehlende Fremdblick in DECISIONS.md als offen gefuehrt", "Kontexttiefe je Route gemessen (Absaetze ab 25 Woertern in <main>, FAQ ausgenommen); jede H2-Sektion mit >=4 Listenpunkten und 0 solchen Absaetzen hat einen Einleitungsabsatz von 45-80 Woertern"]'
 ---
 
 # web — Loop 2: Website
@@ -82,6 +82,12 @@ Zusammenfassung.
    `references/muster-bibliothek/INDEX.md` laden.
 4. Vor dem ersten Edit: Auftrag + geladene Pfade in einem Satz nennen.
 5. Visuell? → Sweep mit **`--base`** (siehe Gotchas), jedes PNG per Read ansehen.
+6. **Vorschau vor Launch (hart, 01.09.2026):** Raphael zeigt dem Kunden eine geile
+   Vorschau. Das Bild entscheidet. Unklare Zahlen (50 vs 60 Google-Bewertungen,
+   24 vs 28 Stunden) und Custom-Domain/Vercel sind **FAKT-GATE / Ops**, kein
+   Design-Blocker und kein `biggest_gap`. Proof wird nicht erfunden. Klassifizierer:
+   `node scripts/preview-befund-klasse.mjs "<befund>"` — Vorschau-`biggest_gap`
+   nur bei `preview: block`.
 
 Detail-Ablauf und Gates: `references/loop2-ablauf.md`.
 
@@ -101,8 +107,8 @@ jedes Einzel-Skill.
 
 ## Zweck (1 Satz)
 
-Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und
-aus echten Analytics verbessern.
+Aus dem Dossier eine konversionsstarke Website bauen. Die Kunden-Vorschau
+entscheidet das Bild; Launch entscheidet die Fakten.
 
 ## Workflow-Owner
 
@@ -161,7 +167,8 @@ ohne erneuten Abgleich von Manifest und Planartefakten reicht nicht.
 Abhängige oder überlappende Pakete laufen sequenziell; disjunkte Pakete dürfen
 parallel laufen. Bei `OWNER-BLOCKER`, fehlenden Artefakten, doppelten Ownern,
 Write-Set-Overlap, Manifest- oder Plan-Hash-Drift bleibt der Build `BLOCKED`;
-der Web-Skill entscheidet keine Kundenfakten eigenmächtig.
+Proof wird nicht erfunden. Unklare Zahlen und Custom-Domain sind `FAKT-GATE`,
+kein `OWNER-BLOCKER` — sie halten `PLAN_VERIFIED` und die Vorschau nicht auf.
 
 ## Run-Evidence-Handoff (Completion, fail-closed)
 
@@ -285,6 +292,7 @@ Cockpit selbst und delegiert direkt an Opus.
 | Anliegen | Datei |
 |---|---|
 | Erster Einstieg / Auftrag wählen | `references/anfaenger-pfad.md` |
+| Kunden-Vorschau vs Launch (Fakten-Nits parken) | `scripts/preview-befund-klasse.mjs` + Anfänger-Pfad Zeile **Kunden-Vorschau** |
 | **Stil-Regeln Go/No-Go (Pflicht vor Art-Direction)** | `references/stil-regeln.md` + `references/muster-bibliothek/INDEX.md` |
 | Look / Muster / „wie soll das aussehen" | `references/stil-regeln.md` + `references/muster-bibliothek/INDEX.md` |
 | Welche Skills lädt ein Site-Build (und welche nie) | `references/load-graph.md` |
@@ -404,7 +412,8 @@ Detail: `landingpage-struktur.md`.
 
 1. **strategy** — Ziel/Pfad; Meaning A–D schriftlich (`strategy.md`).
 2. **sitemap** — Landing → `landingpage-struktur.md`; Multi-Page → `sitemap-section-planung.md` (Abnahme dort bindend).
-3. **copy** — sektionsweise, copywriting G1→G2.
+3. **copy** — sektionsweise. Vorschau: Working-Copy plus `FAKT-GATE` für offene
+   Zahlen. copywriting G2-Judge erst bei Ship.
 3b. **Referenzen holen (Pflicht, nicht optional)** — vor jeder Stilentscheidung:
    `ls -lt /root/eingang | head -20`; bildhafte Dateien der letzten 7 Tage per
    Read ansehen. Raphael legt Referenzen dort ab, ohne sie im Prompt zu
@@ -448,7 +457,9 @@ Detail: `landingpage-struktur.md`.
    (`/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`).
    Echtes Custom-UI → `code-qualitaets-checkliste.md` (inkl. Oxlint `anti-slop`
    bei TS/JS).
-7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs` + bei Custom-TS/JS `npx oxlint` Exit 0.
+7. **qa-faecher** — Vorschau: Fächer 1–4 (Fach 2 = Screenshot-Loop). Launch:
+   plus 5 SEO + 6 Trust. Premium/Ship: Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs`
+   + bei Custom-TS/JS `npx oxlint` Exit 0.
 8. **Launch** — Signatur + Deploy-Egress-Gate. Nie autonom. Junge Domain → Safe-Browsing-Checkliste.  
    Git/Vercel: `references/vercel-git-deploy.md` (`origin`=Org, `personal`=raphael-hund).
 9. **cro-learn** — nur echte Analytics (G4).
@@ -461,6 +472,11 @@ cro-learn.
 
 ## Gotchas
 
+- **Fakten-Nit statt Bild.** 50 vs 60 Google-Bewertungen, Custom-Domain noch
+  nicht an Vercel, 24 vs 28 Stunden — das ist `FAKT-GATE` / Ops, kein
+  `biggest_gap` und kein Vorschau-Blocker. Klassifizierer:
+  `scripts/preview-befund-klasse.mjs`. Wenn die Seite behindert aussieht, ist
+  DAS die Lücke. Proof bleibt unbelegt nicht erfinden.
 - **Anfänger lädt alles** → falsch. Nur `anfaenger-pfad.md` §1.
 - **`shot-sweep` ohne `--base`** → Exit 2 (Usage); nie ohne echte Dev-URL.
 - **`shot-sweep` schlägt fehl → Standard-Skript fixen, NIE eigenes Ad-hoc-Playwright-Skript schreiben.** Forensik 10.08.2026: beide Fehl-Sessions wichen nach einem Fehler/aus Bequemlichkeit auf eigene Skripte aus (12-Shot-Cap, kein Hover/Klick, kein Static) — genau das ist verboten. Auch alte `scratch/shot-*.cjs`-Skripte im Projekt nie wiederverwenden.
@@ -497,5 +513,6 @@ run-eval-umfang.mjs — 48 Evals
 - "evals/run-shot-stable-check.mjs"
 - "evals/run-eval-umfang.mjs"
 - "evals/run-site-build-load-path-check.mjs"
+- "evals/run-preview-vs-launch-check.mjs"
 - "evals/run-resource-open-check.mjs"
 "48 weitere Pruefer-Evals"
