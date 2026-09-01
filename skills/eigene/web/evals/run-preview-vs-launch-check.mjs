@@ -69,7 +69,7 @@ console.log("\nPreview vs Launch — Bild vor Zahl\n");
 const faelle = [
   {
     text: "50 vs 60 Google-Bewertungen",
-    klasse: "fakt-park",
+    klasse: "content-park",
     preview: "park",
     gap: false,
   },
@@ -81,7 +81,7 @@ const faelle = [
   },
   {
     text: "Wir können nicht 24 oder 28 Stunden versprechen",
-    klasse: "fakt-park",
+    klasse: "content-park",
     preview: "park",
     gap: false,
   },
@@ -99,8 +99,8 @@ const faelle = [
   },
   {
     text: "Erfundene 500 Google-Bewertungen",
-    klasse: "fake-proof",
-    preview: "launch-block",
+    klasse: "content-park",
+    preview: "park",
     gap: false,
   },
   {
@@ -108,6 +108,18 @@ const faelle = [
     klasse: "visual-block",
     preview: "block",
     gap: true,
+  },
+  {
+    text: "Sitemap fehlt die Leistungsseite",
+    klasse: "struktur-block",
+    preview: "block",
+    gap: true,
+  },
+  {
+    text: "Satz im Hero ist falsch",
+    klasse: "content-park",
+    preview: "park",
+    gap: false,
   },
 ];
 
@@ -124,6 +136,11 @@ for (const fall of faelle) {
   );
 }
 
+
+zeile(
+  darfBiggestGapSein("Erfundene 500 Google-Bewertungen", "launch") === true,
+  "Launch: erfundene Reviews sind launch-block, Vorschau nicht",
+);
 {
   const r = spawnSync("node", [KLASS], { encoding: "utf8" });
   zeile(
@@ -138,8 +155,8 @@ for (const fall of faelle) {
   });
   const aus = `${r.stdout || ""}`;
   zeile(
-    r.status === 0 && /^fakt-park\tpark\s*$/.test(aus.trim()),
-    "CLI: Bewertungszahl → fakt-park/park",
+    r.status === 0 && /^content-park\tpark\s*$/.test(aus.trim()),
+    "CLI: Bewertungszahl → content-park/park",
     aus.trim(),
   );
 }

@@ -17,7 +17,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
-| **Kunden-Vorschau** (Default, solange Raphael nicht „Launch“ sagt) | `screenshot-kritik-loop.md` → Skill **design** → `landingpage-struktur.md` oder `sitemap-section-planung.md` → `scripts/preview-befund-klasse.mjs` | Seite sieht geil aus (Shots gelesen). Fakten-Nits (Bewertungszahl, 24 vs 28h, Custom-Domain/Vercel) stehen als **FAKT-GATE**, nicht als Blocker. Proof nicht erfinden. |
+| **Kunden-Vorschau** (Default, solange Raphael nicht „Launch“ sagt) | `screenshot-kritik-loop.md` → Skill **design** → `landingpage-struktur.md` oder `sitemap-section-planung.md` → `scripts/preview-befund-klasse.mjs` | Seite sieht geil aus (Shots gelesen). Inhalt (Satz, Wort, Bild, Sektion, Reviews) und Domain parken. Blocker: Ablauf, Sitemap, Idee, Design. |
 | **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
 | **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |

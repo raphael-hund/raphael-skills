@@ -1,58 +1,62 @@
 #!/usr/bin/env node
-// preview-befund-klasse.mjs — Vorschau vs Launch: welcher Befund darf blocken?
+// preview-befund-klasse.mjs — Vorschau vs Launch: was darf blocken?
 //
-// 01.09.2026: Planner/Kritiker holten Quick-Wins an Copy-Claims
-// (50 vs 60 Google-Bewertungen, Custom-Domain nicht an Vercel, 24 vs 28h),
-// während die Seite visuell durchfiel. Die Kunden-Vorschau braucht das Bild.
-// Zahl und Domain sind ein 5-Minuten-Swap vor Launch.
+// Preview-Blocker sind langsam: Ablauf, Sitemap, Idee, Design.
+// Inhalt ist ein Swap (Satz, Wort, Bild, Sektion, Review-Platzhalter) —
+// in der Vorschau parken, nicht biggest_gap. Launch bleibt hart bei
+// erfundenem Proof als echte Behauptung.
 //
 // Usage:
 //   node preview-befund-klasse.mjs "50 vs 60 Google-Bewertungen"
 //   node preview-befund-klasse.mjs --json "Kopf im Hero angeschnitten"
 // Exit 0 = klassifiziert, Exit 2 = Aufruffehler.
-//
-// preview: block | park | launch-block | ignore
-// biggest_gap einer Vorschau darf nur `block` sein.
 
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const VISUAL =
-  /hierarchie|spacing|typo|beschnitten|angeschnitten|bildschnitt|crop\b|layout kaputt|kontrast|hero (tot|leer)|template|button-famil|leerfl|rhythmus|motion|wipe\b|cta-f(?:ue|ü)hrung|sieht (behindert|schei(?:ß|ss)|schlecht|hässlich)|nicht premium|fold\b|überlapp|ueberlapp|safe-margin|kopf .*(?:rand|rahmen)|vier button/i;
+  /hierarchie|spacing|typo|beschnitten|angeschnitten|bildschnitt|crop\b|layout kaputt|kontrast|hero (tot|leer)|template|button-famil|leerfl|rhythmus|motion|wipe\b|cta-f(?:ue|ü)hrung|sieht (behindert|schei(?:ß|ss)|schlecht|hässlich)|nicht premium|fold\b|überlapp|ueberlapp|safe-margin|kopf .*(?:rand|rahmen)|vier button|design (?:fail|rot|daneben)/i;
+
+const STRUKTUR =
+  /sitemap|informationsarchitektur|\bablauf\b|funnel|nav(?:igation)?-struktur|\bidee\b|kernidee|seitenfluss|unterseiten fehlen|route fehlt/i;
 
 const OPS =
   /vercel|custom-domain|custom domain|\bdns\b|domain nicht (?:verbunden|angebunden|an vercel)|nicht mit vercel|preview-url|apex-domain/i;
 
-const FAKT =
-  /google-bewertung|bewertungszahl|\breviews?\b|\d+\s*(?:vs|oder|\/)\s*\d+|stunden[- ]?(?:versprechen|sla)|lieferzeit|werktage|24\s*(?:vs|oder|\/)\s*28|50\s*(?:vs|oder|\/)\s*60/i;
-
-const FAKE =
-  /erfunden|fake[- ]?(?:review|bewertung|proof|logo)|ki-person|stock-gesicht als proof|erfundene (?:bewertung|zahl|referenz)/i;
+const INHALT =
+  /google-bewertung|bewertungszahl|\breviews?\b|\d+\s*(?:vs|oder|\/)\s*\d+|stunden[- ]?(?:versprechen|sla)|lieferzeit|werktage|24\s*(?:vs|oder|\/)\s*28|50\s*(?:vs|oder|\/)\s*60|erfunden|fake[- ]?(?:review|bewertung|proof|logo)|ki-person|platzhalter|placeholder|satz.{0,60}falsch|wort tauschen|bild tauschen|copy[- ]nit|sektionstext/i;
 
 export function klassifiziereBefund(text) {
   const roh = String(text ?? "").trim();
-  if (!roh) return { klasse: "leer", preview: "ignore" };
+  if (!roh) return { klasse: "leer", preview: "ignore", launch: "ignore" };
 
-  if (FAKE.test(roh)) {
-    return { klasse: "fake-proof", preview: "launch-block" };
-  }
-  // Visual gewinnt, auch wenn derselbe Satz eine Zahl enthält.
+  // Design/Struktur gewinnen, auch wenn derselbe Satz eine Zahl oder ein Review enthält.
   if (VISUAL.test(roh)) {
-    return { klasse: "visual-block", preview: "block" };
+    return { klasse: "visual-block", preview: "block", launch: "block" };
+  }
+  if (STRUKTUR.test(roh)) {
+    return { klasse: "struktur-block", preview: "block", launch: "block" };
   }
   if (OPS.test(roh)) {
-    return { klasse: "ops-park", preview: "park" };
+    return { klasse: "ops-park", preview: "park", launch: "block" };
   }
-  if (FAKT.test(roh)) {
-    return { klasse: "fakt-park", preview: "park" };
+  if (INHALT.test(roh)) {
+    const fake = /erfunden|fake[- ]?(?:review|bewertung|proof)|ki-person/i.test(roh);
+    return {
+      klasse: "content-park",
+      preview: "park",
+      launch: fake ? "launch-block" : "park",
+    };
   }
-  return { klasse: "sonst", preview: "visual-first" };
+  return { klasse: "sonst", preview: "visual-first", launch: "visual-first" };
 }
 
 export function darfBiggestGapSein(text, phase = "preview") {
-  const { preview } = klassifiziereBefund(text);
-  if (phase !== "preview") return preview !== "ignore";
-  return preview === "block";
+  const treffer = klassifiziereBefund(text);
+  if (phase === "launch") {
+    return treffer.launch === "block" || treffer.launch === "launch-block";
+  }
+  return treffer.preview === "block";
 }
 
 function istMain() {

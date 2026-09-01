@@ -28,7 +28,7 @@ Eine Tabelle, sonst nichts. Ohne diese Datei startet Kritik nicht.
 | Conversion   | web                | landingpage-struktur.md, qa-faecher 1    | Fold-CTA, Formular      |
 | Copy         | copywriting        | VOICE.md, forbidden.md                   | Fold + Key-Sections     |
 | SEO          | seo                | qa-faecher 5, agentur-rubrik 11–17       | H1/Title sichtbar       |
-| Trust        | web                | PROOF.md, qa-faecher 6, FAKT-GATE        | Proof-Shots             |
+| Trust        | web                | PROOF.md, qa-faecher 6; Vorschau: Platzhalter ok | Proof-Slots sichtbar    |
 | Konsistenz   | web                | diese Matrix, Achse SITE                 | alle Folds nebeneinander|
 ```
 
@@ -63,7 +63,10 @@ Zuerst Skript, dann Leaves. Parent dispatcht und merged. Parent liest keine PNGs
             (b) eine SITE-Achse UND mindestens eine PAGE, oder
             (c) eine LENS UND mindestens eine PAGE/SITE.
             Rest = Parkplatz, nicht Fixliste.
-            FAKT-GATE / ops-park nie biggest_gap.
+            content-park / FAKT-GATE / ops-park nie biggest_gap.
+            Preview-Blocker nur visual-block oder struktur-block
+            (Ablauf, Sitemap, Idee, Design). Satz, Wort, Bild, Sektion,
+            Review-Platzhalter = Swap.
 ```
 
 Vier Familien sind Pflicht, sobald mehr als eine Route existiert:

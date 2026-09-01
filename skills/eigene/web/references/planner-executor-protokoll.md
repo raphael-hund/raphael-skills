@@ -134,8 +134,9 @@ proaktiv):
 Raphael will dem Kunden eine geile Vorschau zeigen. Planner und Executor
 dürfen Fakten-Nits nicht als `BLOCKED` führen.
 
-- **Parken, nicht blocken:** 50 vs 60 Google-Bewertungen, 24 vs 28 Stunden,
-  Custom-Domain noch nicht an Vercel. Das ist `FAKT-GATE` in PLAN.md/STATUS.md.
+- **Parken, nicht blocken:** Satz, Wort, Bild, Sektion, Review-Platzhalter,
+  50 vs 60, 24 vs 28 Stunden, Domain/Vercel. Inhalt ist ein Swap.
+  Preview-Blocker: Ablauf, Sitemap, Idee, Design.
 - **`biggest_gap` einer KRITIK-n.md ist visuell.** Klassifizierer:
   `node /root/raphael-skills/skills/eigene/web/scripts/preview-befund-klasse.mjs "<befund>"`.
   `preview: park` kommt nicht in den Executor-Auftrag als Blocker.
