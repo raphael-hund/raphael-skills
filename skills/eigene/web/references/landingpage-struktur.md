@@ -64,6 +64,8 @@ Mechanik:
 ## 4. Seiten-Reihenfolge (nach Überzeugungskraft sortieren)
 
 1. **Big Idea / stärkstes Ergebnis** ganz oben (Result + Feeling in der Headline).
+   Die Headline selbst ist SEO-direkt und scannbar (Leistung + Keyword benannt);
+   die Kernbotschaft gehört nie in den Eyebrow (stil-regeln S19, verbindlich).
 2. **FAQ höher ziehen** — vor die Testimonials, aber nach der Big Idea.
    ⚠️ **Hypothese** ("FAQ vor Testimonials erhöht fast immer die Conversion") — selbst A/B-testen.
 3. **"Für wen ist das?"**-Sektion mit konkreten Branchen/Berufen (klärt "funktioniert das für
