@@ -238,7 +238,7 @@
     },
     {
       "name": "web",
-      "version": "0.28.0",
+      "version": "0.29.0",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Plan\", \"Landingpage planen\", \"Website-Kritik\", \"Website kritisieren\", \"kompletter Website-Plan\"."
     },
