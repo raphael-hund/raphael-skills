@@ -106,6 +106,8 @@ Keine PNGs, kein Base64, keine Transkripte.
 - 1440×900 Fold und 390×844 Mobil je geänderter Route. Hover-Shots für CTAs.
 - fullPage ist kein Kritik-Input.
 - Leaf bekommt nur die Pfade seiner Achse plus `manifest.json`.
+  Leaves lesen nur `/small/`-JPGs (vorher `/root/tools/shots-verkleinern.sh`),
+  Budget ~12 Shots. Parent bekommt nur Verdict plus Pfad, nie das Bild.
 - Parent-Ledger: `pfad | viewport | gelesen-von | verdict`.
 - Nach jedem Bau-Fix: neuer Sweep, Ledger-Zeilen mit Zeitstempel nach dem Fix.
 

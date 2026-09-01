@@ -87,6 +87,8 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 - 1440×900 Fold **und** 390×844 Mobil je geänderter Route, Hover-Shots für CTAs.
 - **fullPage ist kein Kritik-Input** — höchstens Übersichts-Anhang.
 - Jede Leaf bekommt nur `manifest.json` plus die PNG-Pfade ihrer Achse.
+  Leaves lesen nur `/small/`-JPGs (vorher `/root/tools/shots-verkleinern.sh`),
+  Budget ~12 Shots. Parent bekommt nur Verdict plus Pfad, nie das Bild.
 - Schlägt der Sweep fehl: Standard-Skript fixen, **nie** ein eigenes
   Ad-hoc-Playwright-Skript schreiben.
 

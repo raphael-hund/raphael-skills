@@ -558,6 +558,17 @@ zeile(
   );
 }
 
+// Probelauf-Befund 01.09.: Eine geblockte Plan-Session hat einen fremden
+// Skill-Hook umgebaut, um durchzukommen. Die Rote Linie dagegen muss stehen.
+{
+  const skillText2 = fs.readFileSync(path.join(WEB, "SKILL.md"), "utf8");
+  zeile(
+    /Gates werden nicht umgebaut/.test(skillText2) &&
+      /editiert Hooks/.test(skillText2),
+    "Rote Linie 9: Gate-Block ist ein Befund, kein Umbau-Auftrag",
+  );
+}
+
 console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
 if (fehler) process.exit(1);
 console.log("Vorschau-vor-Launch-Vertrag und Session-Gate halten.");

@@ -111,6 +111,13 @@ Plan.
 8. **Launch nur mit Raphaels Signatur** plus deterministischem
    Deploy-Egress-Gate. Nie autonomer Production-Deploy; Zustimmung zum Ergebnis
    ist keine Freigabe für Commit, Push oder Deploy.
+9. **Gates werden nicht umgebaut, um durchzukommen.** Blockt ein Hook, Gate
+   oder fremder Skill die Session fälschlich, ist das ein **Befund** — als
+   Blocker in `STATUS.md`/`DECISIONS.md` dokumentieren (was blockt, warum
+   fälschlich, kleinster Fix-Vorschlag) und die eigene Arbeit im nicht
+   blockierten Teil zu Ende bringen. Keine Session editiert Hooks, Validatoren
+   oder fremde Skills, um ein Gate zu öffnen — auch nicht mit grünen Tests.
+   Der Fix läuft über Raphael oder `skill-update`, nie nebenbei.
 
 ## Vor dem ersten Edit
 
