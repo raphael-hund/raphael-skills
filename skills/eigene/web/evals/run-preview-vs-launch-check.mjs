@@ -494,6 +494,35 @@ zeile(
   "Merge-Regel identisch in kritik-matrix.md und rolle-kritik.md",
 );
 
+// Dieselbe Aussage an mehreren Orten ist die Hauptquelle stiller Rueckfaelle:
+// eine Datei wird gefixt, die andere bleibt auf dem alten Stand.
+{
+  const orte = [
+    "SKILL.md",
+    "references/anfaenger-pfad.md",
+    "references/kritik-matrix.md",
+    "references/rolle-bau.md",
+    "references/rolle-kritik.md",
+    "references/planner-executor-protokoll.md",
+  ];
+  const ledger = orte.filter((o) =>
+    /pfad \| viewport \| gelesen-von \| verdict/.test(
+      fs.readFileSync(path.join(WEB, o), "utf8"),
+    ),
+  );
+  zeile(
+    ledger.length >= 5,
+    "Shot-Ledger-Spalten an allen Orten identisch",
+    `gefunden in ${ledger.length}/${orte.length}`,
+  );
+
+  const skillText = fs.readFileSync(path.join(WEB, "SKILL.md"), "utf8");
+  zeile(
+    /Gate-Beleg/.test(skillText),
+    "SKILL.md-Completion kennt den Gate-Beleg-Weg der Merge-Regel",
+  );
+}
+
 console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
 if (fehler) process.exit(1);
 console.log("Vorschau-vor-Launch-Vertrag und Session-Gate halten.");
