@@ -8,7 +8,7 @@
 ## Drei Ebenen (Reihenfolge)
 
 1. **Harness** — Claude Code, Codex CLI, Kimi CLI, T3, Hermes, MCP-Worker
-2. **Modell / agentType** — Luna, Sol, Terra, Sonnet, Kimi K3, …
+2. **Modell / agentType** — Luna, Sol, Terra, Opus, Kimi K3, Grok …
 3. **Seat** — Gateway 8317 rotiert innerhalb der Familie; nie stiller
    Provider-Wechsel
 
@@ -18,38 +18,45 @@ Nie rückwärts routen („noch Kimi-Quota, also alles Kimi").
 
 | agentType | Familie | Typische Sub-Actions | Effort-Hinweis |
 |---|---|---|---|
-| `luna-worker` | GPT | Tests schreiben/laufen, Mechanik-Patches, Recherche, begrenzte Umbauten, Smoke | Gateway erzwingt max |
-| `terra-bulk` | GPT | Multi-File-Migration, Architektur-Umbau, Bulk-Rename | high/max |
-| `sol-pruefer` | GPT | Ship-Review, Urteil, Chairman, adversarialer Critic | high (B1) |
-| `sonnet-worker` | Claude | Drafts, Integration, normaler Feature-Bau | standard/high |
-| `kimi-worker` | Kimi | Frontend, DE-Marketing-/Sales-Text, UI-Copy | high, **nur K3** |
-| `kimi-recherche` | Kimi | Read-only Zweitmeinung, Gegenperspektive, Dritt-Familie | high, **nur K3** |
+| `opus-builder` | Claude | Frontend, Substanz, ein UI-Integrator | high |
+| `opus-critic` | Claude | Read-only Kritik nach Nicht-Opus-Build | high |
+| `sol-builder` | GPT | begrenzter Code mit Gate | max |
+| `sol-pruefer` | GPT | Ship-Review nach Nicht-GPT-Build | max |
+| `kimi-worker` | Kimi | Synthese, DE-Copy, Gegenposition | high, **nur K3** |
+| `kimi-recherche` | Kimi | Read-only Recherche | high, **nur K3** |
+| `kimi-critic` | Kimi | Read-only Kritik nach Nicht-Kimi-Build | high, **nur K3** |
+| `grok-worker` | Grok | technische Fixes, Debugging, hartes Engineering | high |
+| `grok-critic` | Grok | Read-only technisches Urteil nach Nicht-Grok-Build | high |
+| `visual-kritiker` | Grok | read-only visuell; Verdict plus Pfad, nie PNG | high |
+| `luna-worker` | GPT | Masse, Serie, mechanische Listen | max |
+| `terra-bulk` | GPT | Multi-File-Migration, Architektur-Umbau | max |
 
-**Verboten als Subagent:** Fable, Opus (Cockpit only). **Verboten:** Kimi
-HighSpeed / K2.7.
+**Verboten als Subagent:** Haiku und Sonnet. Fable nur als
+`fable-advisor`; rohe Fable-Spawns und andere Fable-Agenttypen sind verboten.
+Opus nur als `opus-builder` oder `opus-critic`.
+**Verboten:** Kimi HighSpeed / K2.7.
 
 ## Wann welche Flotte (Minimum)
 
 | Aufgaben-Klasse | Minimum-Flotte | Warum |
 |---|---|---|
-| Mechanik + Tests | `luna-worker` + `sonnet-worker` | Luna tippt, Claude spot-checkt |
-| Feature-Bau | `sonnet-worker` oder `kimi-worker` + `luna-worker` (Tests) + Verifier andere Familie | Bauen ≠ Prüfen |
-| Frontend / DE-Copy | `kimi-worker` + `luna-worker` + Review Claude/Sol | Kimi-Stärke + Cross-Review |
-| Bulk/Migration | `terra-bulk` + `luna-worker` (Tests) + `sol-pruefer`/`sonnet` Review | Volumen + Urteil |
-| Ship / Auslieferung | Builder-Familie A + `sol-pruefer` (oder Sonnet+Kimi-Panel) | Regel 8 + B1 |
-| Streit / Architektur | Council: Sonnet + Sol + Kimi | Drei Familien |
-| Nur Lesen / Map | `luna-worker` + optional `kimi-recherche` | billig + Gegenblick |
+| Feature / Website | `opus-builder` + `sol-pruefer` | Default-Paar; visuell extra `visual-kritiker` |
+| Code-Paket | `sol-builder` + `opus-critic` | Sol baut, Opus prüft |
+| Copy / Recherche | `kimi-worker` + `sol-pruefer` oder `opus-critic` | Kimi baut, andere Familie prüft |
+| Visuelles QA | `visual-kritiker` (Verdict + Pfad) | nach Grok-Build: `opus-critic` oder `sol-pruefer` |
+| Masse / Serie | `luna-worker` + `opus-critic` | Luna nur Masse, Kritik andere Familie |
+| Bulk/Migration | `terra-bulk` + `opus-critic` | Terra=GPT, also nicht `sol-pruefer` |
+| Technischer Fix | `grok-worker` + `sol-pruefer` | Grok baut klug, Sol prüft |
 
-**Luna-Bias (Raphael 03.08.):** Isolierbare Sub-Actions (Tests, Fixes,
-Recherche-Häppchen, Verify-Scripts) **zuerst** an `luna-worker` — nicht an
-das Cockpit und nicht standardmäßig an Sonnet, solange Luna erreichbar ist.
+**Luna nur für Masse:** `luna-worker` bekommt Serien, Listen und mechanische
+Edits — nicht Entscheidungen, nicht Frontend-Substanz, nicht visuelles Urteil.
 
 ## Harness-Wahl
 
 | Situation | Harness / Weg |
 |---|---|
 | Standard-Orchestrierung im Terminal | Claude Code + Agent-Tool (`agentType:…`) über Gateway |
-| Claude Desktop / Web-Session | **nur** MCP: `mcp__raphael-codex-worker__codex_worker` / `kimi_worker` — keine Gateway-Subagents |
+| Claude Desktop / RAPHAEL-Session | dieselben `agentType`s; Failover schreibt die Lane anhand der Rollen-Nadel um |
 | Ein großes GPT-Schreibpaket, native Sichtbarkeit | `codex-first` oder `codex exec --profile luna\|terra\|sol` |
 | Riesen-Kontext / DE-Volumen nativ | `kimi-first` oder Kimi-CLI; Swarm max Tiefe 2 |
 | Codex als Sub-Orchestrator (Seats ok) | Sol plant → Luna/Terra `multi_agent_v2` (max_depth=1, max_threads=6); Cross-Familie zurück ins Claude-Cockpit |
@@ -68,7 +75,7 @@ das Cockpit und nicht standardmäßig an Sonnet, solange Luna erreichbar ist.
 ## Degraded-Pfade (nicht improvisieren)
 
 1. **Codex/GPT tot** (`degraded-gpt.flag` oder Incident): `luna-worker` /
-   `terra-bulk` / `sol-pruefer` → `sonnet-worker` + `kimi-recherche`/`kimi-worker`
+   `terra-bulk` / `sol-pruefer` → `opus-builder` + `kimi-recherche`/`kimi-worker`
    für Regel 8. Melden, nicht verschweigen.
 2. **Claude-Seats voll:** Gateway rotiert 1→4; danach Kimi als Abo-Fallback
    (ROUTING). Kein PAYG-Ausweichen.
@@ -96,8 +103,10 @@ Parallele Writer: disjunkte `write_set`. Index/Lock: ein Owner am Ende.
 
 ## Anti-Muster
 
-- Alles auf Sonnet, „später mal Sol“ → **kein** Cross-Model.
+- Alles auf einer Familie, „später mal Sol“ → **kein** Cross-Model.
 - Leader schreibt den Plan nach dem Distill selbst → Selbstbestätigung.
-- Desktop-Session spawnt `luna-worker` via Agent-Tool → greift nicht; MCP.
+- Parent liest Screenshot-PNGs selbst statt `visual-kritiker` mit Pfad-Rückgabe.
 - Gleiche Familie baut und ship-reviewed → Regel 8 verletzt.
-- Fable als `agentType` → verboten.
+- Fable als rohes `model` oder anderer `agentType` → verboten.
+  Erlaubt ist nur `agentType:'fable-advisor'` mit low effort.
+- Builder ohne Kritiker, oder Kritiker derselben Familie → Regel 8 verletzt.

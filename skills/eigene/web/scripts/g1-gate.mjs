@@ -6,7 +6,7 @@
 // visual-diff.mjs nur bei Exception. Kein Skript hat je an Qualitaet blockiert.
 // Dieses Gate buendelt die harten Checks und liefert EINEN Exit-Code.
 //
-//   node g1-gate.mjs --url http://localhost:5280 --routes /,/leistungen \
+//   node g1-gate.mjs --base http://127.0.0.1:3000 --routes /,/leistungen \
 //                    --src <projektwurzel> --build <dist>
 //
 // `--src` ist nicht optional: Import- und Motion-Check lesen den Quellcode.
@@ -30,7 +30,10 @@ const has = (k) => args.includes(`--${k}`);
 
 // Ein vertipptes Flag darf nicht still auf den Default zurueckfallen — sonst prueft das
 // Gate klaglos die falsche Adresse und meldet ein gruenes Ergebnis fuer nichts.
-const KNOWN = ['base', 'url', 'routes', 'out', 'src', 'build', 'budget', 'strict', 'no-shots', 'help'];
+const KNOWN = [
+  'base', 'url', 'routes', 'out', 'src', 'build', 'budget', 'strict', 'no-shots',
+  'run-id', 'build-revision', 'state-spec', 'help',
+];
 const unknown = args.filter((a) => a.startsWith('--') && !KNOWN.includes(a.slice(2)));
 if (unknown.length) {
   console.error(`Unbekanntes Flag: ${unknown.join(', ')}\nErlaubt: ${KNOWN.map((k) => `--${k}`).join(' ')}`);
@@ -1003,10 +1006,36 @@ function checkSweep() {
     return;
   }
   const shotDir = path.join(OUT, 'shots');
+  const runId = get('run-id', process.env.SHOT_SWEEP_RUN_ID || null);
+  const buildRevision = get('build-revision', process.env.SHOT_SWEEP_BUILD_REVISION || null);
+  const stateSpec = get('state-spec', null);
+  const argv = [
+    sweep, '--base', BASE, '--routes', ROUTES.join(','), '--out', shotDir,
+    '--static', '--states', '--mobile',
+    '--run-id', runId == null ? '' : String(runId),
+    '--build-revision', buildRevision == null ? '' : String(buildRevision),
+  ];
+  if (stateSpec) argv.push('--state-spec', stateSpec);
   try {
-    run('node', [sweep, '--base', BASE, '--routes', ROUTES.join(','), '--out', shotDir, '--mobile']);
-    const manifest = JSON.parse(fs.readFileSync(path.join(shotDir, 'manifest.json'), 'utf8'));
-    const maengel = sweepMaengel(manifest, ROUTES, shotDir);
+    let sweepFehler = null;
+    try {
+      run('node', argv);
+    } catch (e) {
+      sweepFehler = e;
+    }
+    let manifest;
+    try {
+      manifest = JSON.parse(fs.readFileSync(path.join(shotDir, 'manifest.json'), 'utf8'));
+    } catch (e) {
+      record('shot-sweep', false,
+        `Sweep fehlgeschlagen: Manifest JSON fehlt oder kaputt (${String(e.message).split('\n')[0]})`);
+      return;
+    }
+    const maengel = sweepMaengel(manifest, ROUTES, shotDir)
+      .concat(sweepVertrag(manifest, { runId, buildRevision }));
+    if (sweepFehler && maengel.length === 0) {
+      maengel.push(`shot-sweep Exit ${sweepFehler.status ?? 2}: ${fehlerGrund(sweepFehler)}`);
+    }
     const shots = liste(manifest, 'routes', 'shot-sweep').reduce((n, r) => n + (r.shots?.length || 0), 0);
     record('shot-sweep', maengel.length === 0,
       maengel.length ? maengel.join(' | ') : `${shots} Screenshots in ${shotDir}`);
@@ -1044,6 +1073,95 @@ function sweepMaengel(manifest, verlangt, shotDir) {
       }
     }
     if (weg.length) maengel.push(`${weg.length} Datei(en) im Manifest fehlen auf der Platte: ${weg.slice(0, 3).join(', ')}`);
+  }
+  return maengel;
+}
+
+// Kanonisches Ship-Profil: schema/identity/capture_profile/state_matrix fail-closed.
+// Nicht in sweepMaengel, damit evals/run-sweep-check.mjs die alten Route-Fixtures
+// weiter ohne v2-Felder durchlassen kann.
+const SWEEP_NA_REASONS = new Set(['static-page', 'no-form', 'no-async-data']);
+
+function sweepZustandNamen(manifest) {
+  const kinds = [];
+  for (const r of manifest.routes || []) {
+    for (const s of r.shots || []) {
+      const st = s.state || (String(s.kind || '').startsWith('state-')
+        ? String(s.kind).slice('state-'.length) : '');
+      if (st) kinds.push(String(st).replace(/^state-/, ''));
+    }
+  }
+  for (const c of (manifest.state_matrix && Array.isArray(manifest.state_matrix.captured)
+    ? manifest.state_matrix.captured : [])) {
+    if (c && c.state) kinds.push(String(c.state).replace(/^state-/, ''));
+  }
+  return kinds;
+}
+
+function sweepRequiredGedeckt(req, matrix) {
+  const cap = (matrix.captured || []).some((c) => {
+    if (req.playwright_ref) return !!c.playwright_ref && (!req.id || c.id === req.id);
+    if (req.id && c.id) return c.id === req.id && (!req.state || c.state === req.state);
+    return c.state === req.state && (!req.route || c.route === req.route);
+  });
+  const na = (matrix.not_applicable || []).some((n) => {
+    const reason = typeof n === 'string' ? n : n && n.reason;
+    if (!SWEEP_NA_REASONS.has(reason)) return false;
+    if (req.state && n && (n.state === req.state || (n.states || []).includes(req.state))) return true;
+    if (req.applicability && reason) return true;
+    return false;
+  });
+  return cap || na;
+}
+
+function sweepVertrag(manifest, ident) {
+  const maengel = [];
+  if (manifest === null || typeof manifest !== 'object' || Array.isArray(manifest)) {
+    return ['Manifest ist kein Objekt'];
+  }
+  if (manifest.schema !== 'web/shot-sweep/v2') {
+    maengel.push(`schema ist ${JSON.stringify(manifest.schema)}, erwartet web/shot-sweep/v2`);
+  }
+  const runId = ident && ident.runId;
+  const buildRevision = ident && ident.buildRevision;
+  if (!runId || !buildRevision) {
+    maengel.push('run-id/build-revision fehlen — anonyme Sweeps gelten nicht');
+  } else if (manifest.run_id !== runId || manifest.build_revision !== buildRevision) {
+    maengel.push(`Identitaet weicht ab: manifest run_id=${JSON.stringify(manifest.run_id)} build_revision=${JSON.stringify(manifest.build_revision)}, erwartet ${runId}/${buildRevision}`);
+  }
+  const p = manifest.capture_profile;
+  if (!p || typeof p !== 'object' || p.static !== true || p.states !== true || p.mobile !== true) {
+    maengel.push(`capture_profile muss static/states/mobile alle true sein, ist ${JSON.stringify(p)}`);
+  }
+  const m = manifest.state_matrix;
+  if (!m || typeof m !== 'object' || Array.isArray(m)) {
+    maengel.push('state_matrix fehlt');
+  } else {
+    for (const feld of ['required', 'captured', 'not_applicable', 'failed']) {
+      if (!Array.isArray(m[feld])) maengel.push(`state_matrix.${feld} fehlt oder ist keine Liste`);
+    }
+    const failed = Array.isArray(m.failed) ? m.failed : [];
+    if (failed.length) {
+      maengel.push(`${failed.length} state_matrix.failed: ${failed.slice(0, 3).map((f) => f.error || f.id || f.state).join(', ')}`);
+    }
+    const nas = Array.isArray(m.not_applicable) ? m.not_applicable : [];
+    const ungueltig = nas.filter((n) => !SWEEP_NA_REASONS.has(typeof n === 'string' ? n : n && n.reason));
+    if (ungueltig.length) {
+      maengel.push(`ungueltige N/A-Gruende: ${ungueltig.map((n) => (typeof n === 'string' ? n : n && n.reason)).join(', ')}`);
+    }
+    if (Array.isArray(m.required) && Array.isArray(m.captured) && Array.isArray(m.not_applicable)) {
+      const luecken = m.required.filter((req) => !sweepRequiredGedeckt(req, m));
+      if (luecken.length) {
+        maengel.push(`${luecken.length} required gap(s): ${luecken.slice(0, 3).map((r) => r.id || r.state).join(', ')}`);
+      }
+    }
+  }
+  const kinds = sweepZustandNamen(manifest);
+  const hatFocus = kinds.some((k) => k === 'focus');
+  const hatOpen = kinds.some((k) => k === 'open' || k === 'open-expanded');
+  const nurHover = kinds.length > 0 && kinds.every((k) => k === 'hover');
+  if (p && p.states === true && (nurHover || !hatFocus || !hatOpen)) {
+    maengel.push(`states-Profil ohne focus/open oder nur hover (gesehen: ${[...new Set(kinds)].join(',') || 'keine'})`);
   }
   return maengel;
 }

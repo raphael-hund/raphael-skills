@@ -11,7 +11,7 @@ export const meta = {
   name: 'loop-runde-N',
   description: '<was diese Runde verbessert>',
   phases: [
-    { title: 'Planen', detail: 'Acht Perspektiven und eine Plan-Synthese' },
+    { title: 'Planen', detail: 'Sechs Perspektiven und eine Plan-Synthese' },
     { title: 'Zuteilen', detail: 'Plan validieren und abhängige Steps ordnen' },
     { title: 'Steps ausführen', detail: 'Jeden Plan-Step sequentiell ausführen' },
     { title: 'Verify', detail: 'Jeden Step unabhängig gegen sein Gate prüfen' },
@@ -27,22 +27,20 @@ try {
 }
 const input = rawArgs && typeof rawArgs === 'object' && !Array.isArray(rawArgs) ? rawArgs : {}
 if (Object.keys(input).length < 1) throw new Error('Autoritative Mission fehlt in args')
-const MAX_WAVE = 6
 const AGENT_TYPES = [
   'kimi-worker', 'grok-worker', 'sol-pruefer', 'terra-bulk',
-  'luna-worker', 'opus-builder', 'sonnet-worker',
+  'luna-worker', 'opus-builder',
 ]
 const FAMILY = {
   'kimi-worker': 'Kimi', 'grok-worker': 'Grok', 'sol-pruefer': 'Sol',
   'terra-bulk': 'Terra', 'luna-worker': 'Luna', 'opus-builder': 'Opus',
-  'sonnet-worker': 'Sonnet',
 }
 const PROVIDER_FAMILY = {
   'kimi-worker': 'Kimi', 'grok-worker': 'Grok',
   'sol-pruefer': 'GPT', 'terra-bulk': 'GPT', 'luna-worker': 'GPT',
-  'opus-builder': 'Claude', 'sonnet-worker': 'Claude',
+  'opus-builder': 'Claude',
 }
-const LEAD_TYPES = ['opus-builder', 'sonnet-worker']
+const LEAD_TYPES = ['opus-builder']
 const CONTRACT = [
   'agentType: explizit und nicht geerbt',
   'ROLLE: genau eine Plan-, Ausführungs- oder Prüfrolle',
@@ -199,14 +197,8 @@ function currentRouteFailures() {
   }))
 }
 async function runInWaves(tasks) {
-  const results = []
-  for (let start = 0; start < tasks.length; start += MAX_WAVE) {
-    const wave = []
-    for (let index = start; index < tasks.length && index < start + MAX_WAVE; index += 1) wave.push(tasks[index])
-    const outputs = await parallel(wave.map(task => () => task.run()))
-    results.push(...(outputs || []).filter(Boolean))
-  }
-  return results
+  const outputs = await parallel(tasks.map(task => () => task.run()))
+  return (outputs || []).filter(Boolean)
 }
 function assertKnown(type, where) {
   if (!AGENT_TYPES.includes(type)) throw new Error(`Unbekannter AgentType in ${where}: ${type}`)
@@ -288,12 +280,10 @@ function validateNestedDelegations(step, leadPlan, lead, nested) {
     || nested.length !== step.child_agent_types.length) throw new Error(`Nested-Gate rot: ${step.id}`)
   const childTaskIds = new Set(leadPlan.output.child_tasks.map(child => child.child_task_id))
   const childCallIds = new Set()
-  const waveCounts = new Map()
   for (let index = 0; index < nested.length; index += 1) {
     const item = nested[index]
-    const expectedWave = Math.floor(index / MAX_WAVE) + 1
     if (!childTaskIds.has(item.child_task_id) || !item.child_call_id.trim()
-      || childCallIds.has(item.child_call_id) || item.wave !== expectedWave
+      || childCallIds.has(item.child_call_id) || item.wave !== 1
       || !item.child_task.trim() || !item.child_result.trim() || !item.beleg.trim()
       || !item.call || !attempts.includes(item.call) || item.call.output === null
       || item.call.step_id !== step.id || item.child_agent_type !== item.call.agent_type
@@ -303,9 +293,7 @@ function validateNestedDelegations(step, leadPlan, lead, nested) {
       throw new Error(`Nested-Runtime-Beleg ungültig: ${step.id}`)
     }
     childCallIds.add(item.child_call_id)
-    waveCounts.set(item.wave, (waveCounts.get(item.wave) || 0) + 1)
   }
-  for (const count of waveCounts.values()) if (count > MAX_WAVE) throw new Error(`Child-Welle > ${MAX_WAVE}: ${step.id}`)
 }
 
 phase('Planen')
@@ -318,7 +306,7 @@ const panel = await runInWaves(AGENT_TYPES.map(agentType => ({ run: () => callAg
 const synthesisStep = { id: 'plan-synthesis', ziel: 'Echten Missionsplan synthetisieren', depends_on: ['plan-panel'],
   agent_types: ['opus-builder'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-pruefer', gate: 'PLAN_SCHEMA und Familienabdeckung erfüllt' }
 const synthesisPrompt = promptFor(synthesisStep, panel, 'Plan-Synthese',
-  `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder und mindestens ein Step muss nested=true sein. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle acht AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Lass in jedem Step zusätzlich mindestens einen AgentType aus einer weiteren Providerfamilie frei, die sowohl von allen Ownern als auch vom primären Verifier verschieden ist. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; der Workflow startet dessen Children später sichtbar.`)
+  `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder und mindestens ein Step muss nested=true sein. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle sechs AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Lass in jedem Step zusätzlich mindestens einen AgentType aus einer weiteren Providerfamilie frei, die sowohl von allen Ownern als auch vom primären Verifier verschieden ist. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; der Workflow startet dessen Children später sichtbar.`)
 const synthesis = await callAgent('opus-builder', synthesisPrompt,
   { label: 'plan-synthesis:opus', phase: 'Planen', step_id: synthesisStep.id, replacement_types: LEAD_TYPES, schema: PLAN_SCHEMA })
 const plan = synthesis.output
@@ -357,7 +345,7 @@ for (const step of plan.steps) {
         child_call_id: `${step.id}:child:${index + 1}`,
         planned_child_agent_type: child.child_agent_type,
         child_agent_type: childCall.agent_type,
-        wave: Math.floor(index / MAX_WAVE) + 1,
+        wave: 1,
         child_task: child.child_task, write_set: child.write_set,
         child_result: childCall.output.result, beleg: childCall.output.beleg,
         call: childCall }
@@ -451,7 +439,8 @@ return { plan, step_results, family_coverage, nested_delegations, route_failures
 ## Varianten und Merkregeln
 
 - **Massen-Umbau:** Der Synthese-Subagent teilt nach disjunkten `write_set`s;
-  unabhängige Owner laufen nur innerhalb ihres Steps in Wellen von höchstens 6.
+  unabhängige Owner eines Steps laufen in einem `parallel()`-Aufruf, ohne
+  künstliche Wellengröße.
 - **Vendoring:** Ein Leaf-Worker liest Lizenz und Red Flags; ein unabhängiger
   Verify-Step prüft das echte Destillat. `pipeline()` bleibt Default für
   abhängige Datenflüsse; `parallel()` ist nur innerhalb eines Steps erlaubt.

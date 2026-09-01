@@ -78,6 +78,10 @@ Design-Phase vor Code** trennen.
    Dateinamen + Stack; **Assets nicht neu erfinden**.
 5. Screenshot → gezieltes Feedback (Alignment, Spacing, Responsiveness, Brand,
    Smoothness) → naechste Sektion.
+6. Neue Website-Illustrationen (Higgsfield): Seiten-Screenshots und
+   hochgeladene Stilbilder = **Stilkontext**. Echte Map/Schnitt/Ort =
+   **Inhaltkontext**. Siehe `bildgenerierung.md` Abschnitt
+   „Neue Illustration vs. wiederverwenden“.
 
 Abgrenzung: Bild = Vorlage ohne URL → zusaetzlich `rebuild-from-image.md`.
 URL-Clone → `web-clone-playbook.md` zuerst. Image-Skills (optional, extern):

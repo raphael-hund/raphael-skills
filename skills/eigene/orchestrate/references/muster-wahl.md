@@ -11,7 +11,7 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 | Unbekanntes Terrain erkunden (Web, Codebase, Vendor-Repo) | **Recherche-Sweep** | mehrere Sucher mit VERSCHIEDENEN Zugängen parallel (Community-Meinung / Doku / Code lesen / Gegenprobe), danach Synthese-Agent; Warnliste ist Pflicht-Output |
 | Etwas Fremdes übernehmen (Repo, Skill, Wissen) | **Vendor-Kette** | je Quelle: clone → Lizenz → Red-Flag-Check (Hooks/Netz/exec/Auto-Update) → destillieren in BESTEHENDE Strukturen (nie Masseninstall) → Luna-Validate → Buchführung (VENDORING) |
 | Unbekannte Fundmenge ausschöpfen ("finde alle X") | **Loop-until-dry** | Runden von Findern, dedupe gegen ALLE bisherigen Funde (auch verworfene!), Stopp nach 2 leeren Runden |
-| Messen/Diagnose ohne Eingriff (geteilte Infrastruktur) | **Mess-und-Vorschlag** | Messen (luna) + Vergleich (sonnet) + Urteil (opus) parallel → EIN Proposal-Dokument, KEIN Eingriff — Abschluss-Check verifiziert Unberührtheit |
+| Messen/Diagnose ohne Eingriff (geteilte Infrastruktur) | **Mess-und-Vorschlag** | Messen (luna) + Vergleich (grok-worker) + Urteil (opus) parallel → EIN Proposal-Dokument, KEIN Eingriff — Abschluss-Check verifiziert Unberührtheit |
 
 ## Worker-Zuteilung (Standard)
 
@@ -21,10 +21,10 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 - **`luna-worker`** — Pflicht: Mechanik, Tests, klar begrenzte Umbauten.
 - **`grok-worker`** — schnelle Masse, Prototypen, vierte Perspektive (bevorzugt).
 - **`terra-bulk`** — Architektur, Multi-File-Volumen (bevorzugt).
-- **`sonnet-worker`** — nur Notnagel bei Familien-Ausfall (Raphael: unbeliebt).
-- **Fable/Opus** laufen nur über `agentType:'fable-architekt'` bzw.
-  `'opus-builder'` (Freigabe 03.08.2026, teuer — siehe orchestrate-gauntlet).
-  Rohes `model:'fable'` umgeht die Leitplanken und ist weiter tabu.
+- **`opus-builder`** — teurer Claude-Bau, nie Default.
+- **`fable-advisor`** — nur benannter Low-Effort-Checkpoint für schwierige
+  UI-/Website-Zerlegung; kein eigener Code.
+- Sonnet und Haiku nie als Subagent. Andere Fable-Agenttypen bleiben verboten.
 
 Im Workflow-Script diese Rollen mit `agentType:'…'` starten. `model:'opus'` und
 `model:'sonnet'` sind reine Claude-Overrides und zählen

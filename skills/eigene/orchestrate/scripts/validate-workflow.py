@@ -25,9 +25,9 @@ runden-protokoll.md), gegenueber dem Original:
   - check_slice_falle: NEU. Warnt vor `.slice(` auf `JSON.stringify(...)` in
     agent()-Prompts — die "Slice-Falle" aus workflow-vorlage.md (3x real
     passiert, R13/R15): stiller Datenverlust an Folge-Agenten statt Datei+Pfad.
-  - check_model_fable: NEU. FAIL bei Fable als `model` oder `agentType` —
-    Fable/Opus sind seit 03.08.2026 im Gauntlet erlaubt (Raphael-Freigabe) und
-    laufen dort ueber die agentTypes fable-architekt / opus-builder. Ein rohes
+  - check_model_fable: NEU. FAIL bei Fable als `model` oder nicht freigegebenem
+    `agentType`. Fable/Opus laufen ueber die agentTypes fable-advisor /
+    opus-builder. Ein rohes
     model:'fable' im Workflow-Script bleibt trotzdem ein WARN: es umgeht die
     Agenten-Definition mit ihren Leitplanken (Bounded Task, kein Reward-Hacking,
     Selbstbenotungs-Verbot).
@@ -165,38 +165,39 @@ def check_nondeterminism(code, findings):
             findings.append((FAIL, _lineno(code, m.start()), msg))
 
 
+def _is_real_fable(value):
+    """True only for Fable cockpit IDs. Gateway dd-aliases are other families."""
+    if not isinstance(value, str) or not value.strip():
+        return False
+    low = value.strip().lower()
+    if low.endswith("[1m]") or low.endswith("[1M]"):
+        low = low[:-4]
+    if low.startswith(("claude-fable-5-dd-", "claude-gw-dd-")):
+        return False
+    if low in {"fable", "claude-fable-5", "anthropic/claude-fable-5", "fable-advisor"}:
+        return True
+    if low.startswith("fable-"):
+        return True
+    return low.startswith("claude-fable-5")
+
+
 def check_model_fable(code, findings):
-    """model:'fable' als roher Override umgeht die Agenten-Definition.
+    """Rohes Fable-model / Fable-agentType blocken. dd-Aliase sind kein Fable.
 
-    Bekannte Grenze: dies ist eine Heuristik auf dem Quelltext, keine harte
-    Garantie. Sie erkennt nur das woertliche Literal model:'fable'
-    (case-insensitiv, faengt also auch 'Fable'/'FABLE'). Verschleierung durch
-    Variablen-Concat (z.B. `const m='fa'+'ble'; agent('p',{model:m})`) kann
-    dieser statische Check prinzipbedingt nicht erfassen. Die Cockpit-
-    Letztverifikation (siehe orchestrate/SKILL.md (Betriebsart LOOP), Abschnitt zur finalen
-    Pruefung vor dem Merge) ist die eigentliche Grenze gegen sowas — dieser
-    Check ist nur eine fruehe Advisory-Warnung, kein hartes Gate.
-
-    Backtick-Template-Strings werden vor dem Match maskiert: echte
-    Modell-Konfiguration steht in `model:'...'`/`model:"..."` (einfache/
-    doppelte Anfuehrungszeichen), waehrend Kritiker-Agent-Prompts (Backtick-
-    Templates) das Fable-Verbot haeufig als Text zitieren — ohne Maskierung
-    false-positiv FAIL auf legitimen Prompt-Text.
+    Gateway-Transport-IDs (`claude-fable-5-dd-*`, `claude-gw-dd-*`) enthalten
+    das Wort fable, sind aber Grok/Kimi/Sol/Luna/Terra. Ohne Dekodierung
+    blockt dieser Check die ganze Flotte (Livegang-Blocker §10).
     """
     masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
-    # Freigegebene agentTypes (Raphael 03.08.2026): sie TRAGEN die Leitplanken,
-    # deshalb duerfen sie hier nicht als Verstoss anschlagen.
-    ERLAUBT = ("fable-architekt", "opus-builder")
-    patterns = (
-        r"model\s*:\s*['\"]fable['\"]",
-        r"agentType\s*:\s*['\"]([^'\"]*fable[^'\"]*)['\"]",
-    )
-    for pattern in patterns:
-        for m in re.finditer(pattern, masked, re.I):
-            if m.groups() and m.group(1).lower() in ERLAUBT:
+    ERLAUBT = ("fable-advisor", "opus-builder")
+    for key in ("model", "agentType"):
+        for m in re.finditer(rf"\b{key}\s*:\s*['\"]([^'\"]+)['\"]", masked, re.I):
+            value = m.group(1).strip()
+            if value.lower() in ERLAUBT:
                 continue
-            findings.append((FAIL, _lineno(code, m.start()),
-                             "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen im Gauntlet ueber agentType 'fable-architekt' bzw. 'opus-builder' (Freigabe 03.08.2026) — dort stehen die Leitplanken."))
+            if _is_real_fable(value):
+                findings.append((FAIL, _lineno(code, m.start()),
+                                 "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen ueber agentType 'fable-advisor' bzw. 'opus-builder' — dort stehen Low-Effort-, Child-Cap- und Build-Leitplanken."))
 
 
 def check_multimodel_fleet(code, findings):
@@ -219,7 +220,7 @@ def check_multimodel_fleet(code, findings):
     """
     if not re.search(r"\bagent\s*\(", code):
         return
-    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|kimi-[a-z]+|luna-worker)['\"]", code):
+    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|sol-builder|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|visual-kritiker|opus-critic)['\"]", code):
         return
     findings.append((WARN, 1,
                      "Nur Claude-Familie im Workflow (kein sol-pruefer/kimi-*/luna-worker als agentType). "

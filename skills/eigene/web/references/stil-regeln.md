@@ -64,6 +64,12 @@ Die Regel dazu ist **S15** und ist verbindlich.
 | S17 | Halte ein mittleres Aktionsband ruhig: die Fläche bleibt `surface`, nur die Aktion trägt Farbe. | kandidat | braun-services |
 | S18 | Nimm bei einem Clone-Auftrag die Dials aus der gemessenen Live-Seite. | verbindlich | alpenenergie |
 | S19 | Schreibe jede Headline (H1/H2) SEO-direkt und scannbar: Sie nennt Leistung, Keyword und Kernaussage selbst — keine Poesie. Der Eyebrow trägt nie die Kernbotschaft; er ist höchstens ein kurzes Kontext-Label und darf ersatzlos entfallen. Test: Eyebrow abdecken — die Headline muss allein verständlich bleiben. | verbindlich | Raphael 01.09.2026 |
+| S20 | Definiere pro Site genau sechs sichtbare Typo-Stufen als Tokens (H1/H2/H3/Body 1/Body 2/Label) und ziehe sie sitewide durch. Zwei H2 derselben Ebene rendern nie in verschiedener Größe; Semantik-Hierarchie und Sicht-Hierarchie decken sich. | verbindlich | Raphael 01.09.2026 (braun-services) |
+| S21 | KI-generierte oder KI-regenerierte Motive werden auf der Seite nicht als KI gekennzeichnet und nicht verteidigt („Keine Bildagentur"-Sätze sind No-Go, M1). Gesichter dürfen KI-generiert werden, aber ausschließlich referenzbasiert auf echten Fotos der echten Person — nie frei erfunden. S9 (echte Menschen) bleibt der Maßstab fürs Motiv. | verbindlich | Raphael 01.09.2026 (braun-services) |
+| S22 | Entscheide Detailfragen ohne Geschäftsgewicht (Zahlenformat einer Bewertung, URL-/Preview-Wahl, Anzeigevariante) selbst per Default und nenne sie im Abschluss. An Raphael gehen nur Geschmack am Screenshot, Geld, Kundenkontakt und Irreversibles. | verbindlich | Raphael 01.09.2026 („Das ist mir im Webdesign-Skill scheißegal") |
+| S23 | Prüfe jede Typo-Stufe am gerenderten Bild, nicht am Token: Zwei Stufen, die sich um weniger als ~20 Prozent Schriftgrösse unterscheiden, sind für den Betrachter EINE Stufe. Eine Seite entscheidet sich pro Ebene für eine Lautstärke und mischt nicht. | verbindlich | braun-services 01.09.2026 (gemessen: H2 34px gegen H3 32px = keine Hierarchie) |
+| S24 | Gib einem beschriftungslosen Icon-Ziel nie die volle Signalfarbe der Hauptaktion; es braucht Umriss oder eigenen Grund, sonst verschwindet das Icon. Icons in Buttons mit fester Breite und ohne Innenabstand tragen `shrink-0`. | verbindlich | braun-services 01.09.2026 (gemessen: svgBox 0x20 bei korrekter Farbe) |
+| S25 | Behandle Token-Aliase nicht als Flächenstufen: Wenn zwei Namen auf denselben Farbwert zeigen, erzeugt ihr Wechsel keinen sichtbaren Wechsel. Vor dem Rhythmus-Entwurf die tatsächlich verschiedenen Werte zählen. | verbindlich | braun-services 01.09.2026 (--surface = --paper, --surface-deep = --warm-grey) |
 
 ### Belegstellen im Fliesstext
 
@@ -182,10 +188,24 @@ Jede NO-GO-Regel, die maschinell prüfbar ist, bekommt einen Detektor in
 Eine Regel mit Detektor ist automatisch **verbindlich** und kann nicht mehr
 still verwässern — Änderung nur über Beleg plus PR.
 
+**Ein DOM-Check beweist Existenz, nicht Sichtbarkeit** (Beleg braun-services
+01.09.2026). Ein Element kann im DOM stehen, die richtige Farbe tragen,
+`opacity: 1` und `visibility: visible` melden — und trotzdem null Pixel breit
+sein. Wo ein Kritiker am Bild etwas meldet, das die Messung nicht bestätigt,
+misst meist die Messung am falschen Ort. Geometrie (`getBoundingClientRect`)
+gehört zu jeder Sichtbarkeitsprüfung dazu.
+
+**Ein Code-Kommentar ist keine Prüfung.** Im selben Fall trug der erste Fix den
+Kommentar „das Icon bleibt orange auf Papier", geschrieben ohne Blick auf ein
+gerendertes Bild. Ein Kritiker meldete die Behauptung als eigenen Befund — zu
+Recht: Wer sie liest, hält die Stelle für erledigt.
+
 Kandidaten für einen Detektor, noch nicht gebaut (baut ein anderer Worker):
 S3 (Zahl dunkler Sektionen), S4 (`border-radius: 9999px` auf Primär-CTA),
 S7/S8 (Font-Familie im Quelltext), S10 (H1-Zahl), S13 (doppelter `src` in
-Folge-Sektionen), S16 (Pattern-ID pro Sektion in `art-direction.md`).
+Folge-Sektionen), S16 (Pattern-ID pro Sektion in `art-direction.md`),
+S23 (Grössenabstand benachbarter Typo-Stufen im gerenderten DOM),
+S25 (Token-Aliase, die auf denselben Farbwert zeigen).
 
 ---
 

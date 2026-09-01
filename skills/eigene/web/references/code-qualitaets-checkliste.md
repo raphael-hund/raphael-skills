@@ -5,6 +5,9 @@
 Webflow/CMS-only-Projekte ohne Code. Ergänzt `qa-faecher.md` (Fach Technik)
 um eine Checkliste gegen typische KI-generierte Code-Schwächen ("AI Slop").
 
+**Nicht verwechseln:** `scan-ai-slop.mjs` (design) prüft Text und Markup.
+`anti-slop` (Oxlint) prüft TypeScript-Typen. Zwei Werkzeuge, zwei Jobs.
+
 **Herkunft:** kondensiert aus `oh-my-openagent`,
 `packages/shared-skills/skills/remove-ai-slops/SKILL.md`. Lizenz: Sustainable
 Use License 1.0 — nur interner Agentur-Gebrauch, nicht weiterverkaufen/als
@@ -64,6 +67,36 @@ manueller Durchlauf), darf reduziert werden.
 
 Kommentare → toter Code → über-defensiv → Duplikation → Komplexität →
 Abstraktion/Grenzen → Performance → Tests → überdimensionierte Module.
+
+## Oxlint anti-slop (G1 bei TypeScript/JavaScript)
+
+Greift, sobald das Projekt eigene `.ts`/`.tsx`/`.js`/`.jsx` hat (nicht nur
+CMS). Das Plugin verbietet weiche Typen und Schein-Beweise im Code:
+
+- `as unknown as User` und andere Ketten-Casts
+- `value as User` ohne `// SAFETY:`-Kommentar davor
+- Parameter/Returns als `unknown` oder `object`
+- `Record<string, unknown>` und ähnliche Wörterbücher
+- `typeof x === "string"` statt Parse an der Grenze
+- `vi.mock` / `jest.mock` statt echter Naht
+- `Reflect.get` / `Reflect.apply`
+
+Einmal im Repo einrichten (Skill `install-anti-slop`, schon global):
+
+```bash
+node /root/.agents/skills/install-anti-slop/scripts/install.mjs
+```
+
+Dann `oxlint` + `@oxlint/plugins` in derselben Version als Dev-Abhängigkeit,
+Plugin in `oxlint.config.ts` registrieren, alle `anti-slop/*`-Regeln auf
+`"error"`. Vollständige Schritte: Skill `install-anti-slop`.
+
+*verify:* `npx oxlint` im Projekt-Root endet mit Exit 0. Rot = kein Launch.
+Fund im eigenen Code: Typen schärfen (`satisfies`, `as const`, Parse an der
+Grenze). Regel nicht stumm schalten. Cast nur mit konkretem `// SAFETY:`.
+
+Quelle: [dmmulroy/anti-slop](https://github.com/dmmulroy/anti-slop) MIT,
+SHA `446268e5d15baa968eaec669ff65358d36ae6259`.
 
 ## Harte Leitplanken
 

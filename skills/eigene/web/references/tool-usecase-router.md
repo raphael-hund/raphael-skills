@@ -25,25 +25,35 @@ Exit 1, nicht raten. Nie die 160er-Liste in die Antwort kippen.
 
 Der Router wird nicht "gelesen", er wird **gezogen**. Ergebnis ist immer eine
 Tabelle in `client-<name>/web/art-direction.md`, geschrieben **bevor** der erste
-Install läuft:
+Install läuft. Nur der Block zwischen exakt diesen Markern ist die
+Werkzeugtabelle; eine frühere Token- oder Entscheidungstabelle zählt nicht:
 
+<!-- WERKZEUGTABELLE:START -->
 | Bedarf | Werkzeug | Befehl | Gate | Router-Anker | geprüft-am |
 |---|---|---|---|---|---|
 | FAQ-Sektion | shadcn Accordion | `npx shadcn@latest add accordion` | axe = 0, `aria-expanded` | `#faq` | 2026-08-03 |
 | Feature-Icons | Lucide | `npm i lucide-react` | genau ein Icon-System | `#icons` | 2026-08-03 |
+<!-- WERKZEUGTABELLE:ENDE -->
 
+- Die Marker `<!-- WERKZEUGTABELLE:START -->` und
+  `<!-- WERKZEUGTABELLE:ENDE -->` stehen je genau einmal; dazwischen steht nur
+  die Werkzeugtabelle.
 - Eine Zeile pro Bedarf, jede Zeile mit Router-Anker.
 - Abweichung vom Default: ein Satz Grund **plus** AgentReach-Beleg (Datum, URL,
   Lizenzstand) in derselben Zeile.
 - **Kein Paket in `package.json` ohne Zeile in dieser Tabelle.**
 - Geprüft wird das am Ende deterministisch:
-  `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md`
-  — echte Tabellenzeilen mit gültigem Router-Anker · genau ein Icon-System
-  (auch bei Subpath-Importen) · kein `framer-motion` · Reduced Motion in jeder
-  animierenden Datei, **egal welche Animations-Bibliothek** (motion, gsap,
-  react-spring, animejs, Lottie …) · keine Abhängigkeit (auch `dev`/`optional`)
-  ohne Zeile, die selbst einen gültigen Anker trägt. Das Gate liest echte
-  Import-Pfade, keine Stichwörter — ein auskommentierter Hinweis zählt nicht.
+  `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md --profile node|static|cms`
+  — genau eines der Profile `node`, `static`, `cms` wählen. `node` verlangt
+  `package.json` und prüft dessen Abhängigkeiten. `static` und `cms` verlangen
+  keine `package.json`; vorhandene Quellen und Abhängigkeiten werden weiterhin
+  geprüft. Für alle Profile gelten echte Tabellenzeilen mit gültigem
+  Router-Anker · genau ein Icon-System (auch bei Subpath-Importen) · kein
+  `framer-motion` · Reduced Motion in jeder animierenden Datei, **egal welche
+  Animations-Bibliothek** (`motion`, gsap, react-spring, animejs, Lottie …) ·
+  keine Abhängigkeit (auch `dev`/`optional`) ohne Zeile, die selbst einen
+  gültigen Anker trägt. Das Gate liest echte Import-Pfade, keine Stichwörter —
+  ein auskommentierter Hinweis zählt nicht.
 
 ## Harte Regeln (vor jedem Default)
 
@@ -57,8 +67,9 @@ Install läuft:
    offizielle Doku/Repo/Lizenz der gewählten Quelle öffnen. Unklar → anderen
    Default-Kandidaten derselben Zeile, nicht raten.
 5. **Raphael-Stack bleibt Default:** Next.js App Router + Tailwind + Radix/
-   shadcn (kopierter Code in `components/ui/`) + Framer Motion nur wo CSS nicht
-   reicht — Details in `radix-shadcn-tailwind-stack.md` und `motion-doktrin.md`.
+   shadcn (kopierter Code in `components/ui/`) + Motion als Paket `motion` mit
+   Import `motion/react` nur wo CSS nicht reicht — `framer-motion` ist blockiert.
+   Details in `radix-shadcn-tailwind-stack.md` und `motion-doktrin.md`.
 6. **Reduced Motion + A11y-Gate** bei jeder Motion-/Overlay-Komponente
    (`useReducedMotion` oder CSS-Äquivalent, Tastatur, Fokus, Kontrast).
 7. **Bilder/Illustrationen:** zuerst den Grafik-Medium-Entscheidungsbaum
@@ -102,7 +113,7 @@ Auftrag: *„Landingpage mit Motion-Hero, Icons, Stock-Foto, FAQ-Accordion“*
 | FAQ-Accordion | shadcn/Radix Accordion | `npx shadcn@latest add accordion` | Tastatur, `aria-expanded`, ein Panel offen testen |
 | Icons | Lucide | `npm i lucide-react` → `import { Icon } from "lucide-react"` | eine Icon-Familie, 24px-Grid, `aria-hidden` dekorativ |
 | Stock-Foto | Unsplash (Lizenz lesen) **oder** Higgsfield wenn KI ok | Download + Attribution laut Lizenz; sonst `bildgenerierung.md` | Model-Release/Kundenrecht; nicht als Kundenbeweis ausgeben |
-| Motion-Hero | CSS/Tailwind zuerst; sonst Framer + vendorierte Motion aus `ui-components/` | Datei aus `references/ui-components/motion/` kopieren oder gezieltes `motion`-API | `useReducedMotion()`, LCP-Hero nicht mit schweren WebGL-Effekten blockieren |
+| Motion-Hero | CSS/Tailwind zuerst; sonst Motion (`motion`/`motion/react`) + vendorierte Motion aus `ui-components/` | Datei aus `references/ui-components/motion/` kopieren oder gezielt `npm i motion` | `useReducedMotion()`, LCP-Hero nicht mit schweren WebGL-Effekten blockieren |
 
 Verboten in diesem Szenario: Magic UI + Aceternity + daisyUI + Three.js parallel
 „zum Ausprobieren“; 160 Links zitieren; ganze shadcn-Bibliothek adden.
@@ -220,11 +231,11 @@ Buttons, Zustände, Listen.
 |---|---|
 | **Bedarf** | Hover, Enter/Exit, Shared-Layout, gestische UI |
 | **Loop** | `components` / `build` |
-| **Default** | 1) CSS/Tailwind transitions 2) vendorierte Datei aus `references/ui-components/` 3) Framer Motion — Paket heißt `motion`, Import `motion/react` — nur wenn CSS nicht reicht (`motion-doktrin.md`) |
+| **Default** | 1) CSS/Tailwind transitions 2) vendorierte Datei aus `references/ui-components/` 3) Motion — Paket `motion`, Import `motion/react` — nur wenn CSS nicht reicht (`motion-doktrin.md`) |
 | **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`) |
 | **Alternativen** | Magic UI, Motion Primitives, Aceternity, Animata — **eine** Komponente nach AgentReach-Lizenz/Wartungscheck, nicht das Starter-Kit |
 | **Gate** | `useReducedMotion()` oder CSS `prefers-reduced-motion`; keine Layout-Shift-Fallen; Lighthouse a11y |
-| **Nie** | Framer für jeden Button-Hover; drei Motion-Libraries parallel; JS-Animation ohne Reduced-Motion — gilt für **jede** Bibliothek (gsap, react-spring, animejs, Lottie), nicht nur für den Default; die globale CSS-Media-Query stoppt JS nicht |
+| **Nie** | `framer-motion`; Motion für jeden Button-Hover; drei Motion-Libraries parallel; JS-Animation ohne Reduced-Motion — gilt für **jede** Bibliothek (gsap, react-spring, animejs, Lottie), nicht nur für den Default; die globale CSS-Media-Query stoppt JS nicht |
 
 ### 6. Marketing-Sections / Blocks (Hero, Bento, Pricing, Logo-Cloud)
 

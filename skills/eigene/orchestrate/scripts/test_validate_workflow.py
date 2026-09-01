@@ -54,8 +54,8 @@ const mechanic = await agent('check', {agentType:'terra-bulk'})
     def test_rejects_raw_fable_model_override(self):
         """Rohes model:'fable' umgeht die Agenten-Definition und bleibt ein WARN.
 
-        Seit der Freigabe 03.08.2026 laufen Fable und Opus im Gauntlet ueber die
-        agentTypes 'fable-architekt' / 'opus-builder' — dort stehen die
+        Seit der Freigabe 20.08.2026 laufen Fable und Opus ueber die
+        agentTypes 'fable-advisor' / 'opus-builder' — dort stehen die
         Leitplanken (Bounded Task, kein Reward-Hacking, Selbstbenotungs-Verbot).
         Ein roher model-Override umgeht genau die.
         """
@@ -66,7 +66,7 @@ const mechanic = await agent('check', {agentType:'terra-bulk'})
             with self.subTest(body=body):
                 messages = self.messages(body)
                 self.assertTrue(
-                    any("agentType" in message and "fable-architekt" in message
+                    any("agentType" in message and "fable-advisor" in message
                         for message in messages),
                     messages,
                 )
@@ -74,7 +74,7 @@ const mechanic = await agent('check', {agentType:'terra-bulk'})
     def test_accepts_freigegebene_fable_und_opus_agent_types(self):
         """Die freigegebenen agentTypes duerfen NICHT als Fable-Verstoss gelten."""
         for body in (
-            "const x = await agent('x', {agentType:'fable-architekt'})",
+            "const x = await agent('x', {agentType:'fable-advisor'})",
             "const x = await agent('x', {agentType:'opus-builder'})",
         ):
             with self.subTest(body=body):
@@ -84,6 +84,31 @@ const mechanic = await agent('check', {agentType:'terra-bulk'})
                         for message in messages),
                     messages,
                 )
+
+    def test_accepts_gateway_dd_aliases(self):
+        """Transport-IDs sind Grok/Kimi/Sol, kein Fable-FAIL."""
+        for body in (
+            "const x = await agent('x', {model:'claude-fable-5-dd-korg', agentType:'visual-kritiker'})",
+            "const x = await agent('x', {model:'claude-fable-5-dd-3k-imik', agentType:'kimi-worker'})",
+            "const x = await agent('x', {model:'claude-fable-5-dd-los-6.5-tpg', agentType:'sol-builder'})",
+            "const x = await agent('x', {model:'claude-gw-dd-6.4-korg/iax', agentType:'grok-worker'})",
+        ):
+            with self.subTest(body=body):
+                messages = self.messages(body)
+                self.assertFalse(
+                    any("umgeht die Agenten-Definition" in message
+                        for message in messages),
+                    messages,
+                )
+
+    def test_rejects_canonical_fable_model_id(self):
+        messages = self.messages(
+            "const x = await agent('x', {model:'claude-fable-5'})"
+        )
+        self.assertTrue(
+            any("umgeht die Agenten-Definition" in message for message in messages),
+            messages,
+        )
 
 
 if __name__ == "__main__":

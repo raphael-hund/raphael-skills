@@ -75,14 +75,16 @@ Exit-Code billiger findet.
   Kritik-Agenten (die nur lesen) ist es verschwendete Zeit und Platte.
 - **Nie `git add -A`** in Parallel-Sessions — das committet die Arbeit der anderen mit.
 
-## RAM — die harte Grenze dieser Maschine
+## RAM — live messen, keine Prosa-Deckel
 
-Gemessen am 27.07.2026: 31 GiB gesamt, ~12 GiB verfügbar, **5 von 8 GiB Swap bereits
-belegt**. Diese Kiste hatte OOM-Vorfälle.
+Stand 01.09.2026: 62 GiB RAM, ~39 GiB verfügbar, 15 GiB Swap. Die alte
+4–6-Subagenten-Zahl stammte von einer 31-GiB-Kiste mit OOM und gilt nicht mehr.
 
-- Keine kleine fachliche Obergrenze: alle dependency-ready Pakete dürfen bis zur live verfügbaren Runtime-, Provider-, RAM-, Browser- und Kontextkapazität starten.
-- Playwright und Screenshot-Sweeps belegen Browser-/RAM-Leases. Bildlastige Panels und Sweeps werden nur gemeinsam gestartet, wenn die Live-Ressourcenmessung es trägt.
-- Writer brauchen disjunkte normalisierte `write_set`s oder isolierte Worktrees; Shared Files haben einen Owner.
+- Keine fachliche Obergrenze für die Agentenzahl. Unabhängige Pakete starten,
+  soweit Runtime, Provider, RAM, Browser und Kontext tragen.
+- Playwright/Screenshot-Sweeps belegen Browser. Panel und Sweep nicht blind
+  gleichzeitig, wenn der freie RAM knapp ist.
+- Writer: disjunkte `write_set`s oder Worktrees; Shared Files einen Owner.
 - Keine künstliche Arbeit nur zur Auslastung.
 
 ## Modell und Effort
@@ -93,9 +95,9 @@ löst mehr als ein größeres Modell auf Standard-Effort — und kostet weniger.
 | Aufgabe | Besetzung |
 |---|---|
 | Art Direction, Struktur, Entscheidungen | Cockpit selbst (nicht delegieren) |
-| Substanzieller UI-Neubau / roter Design-Stand | Sol/Cockpit zerlegt → alle unabhängigen Opus-Pakete bis Live-Kapazität → genau ein Opus-Integrator |
+| Substanzieller UI-Neubau / roter Design-Stand | Sol-Cockpit zerlegt selbst → alle unabhängigen Opus-Pakete parallel → genau ein Opus-Integrator |
 | Frontend-Code, Seite, Layout | **`opus-builder`** |
-| Deutsche Verkaufscopy schreiben | `kimi-worker` oder `sol-builder`; `opus-builder` baut sie nur unverändert ein |
+| Deutsche Verkaufscopy ins Markup | `opus-builder` (gleiche Bau-Lane) |
 | Mechanik, Tests, Datenkram | `luna-worker` (kein Urteil, keine Seite) |
 | Massen-Lesen, Sortieren | `luna-worker` |
 | Visuelle Kritik einer Seite | Grok + `kimi-recherche` (Opus hat gebaut), dann Gegencheck |
@@ -110,9 +112,11 @@ Ein Leitmodell formuliert die Aufgabe, ein Delegator verteilt mehrere
 UI-Blickwinkel, Opus setzt die Entscheidung um. Für diesen Skill gilt:
 
 - Im Sol-Cockpit zerlegt Sol selbst und delegiert direkt an Opus.
-- Das Cockpit schärft Kriterien und delegiert alle echten unabhängigen Pakete an `opus-builder`; Fable wird dort nicht gestartet.
-- Die Breite folgt ready Nodes und Live-Kapazität, nicht einer statischen Fünferzahl.
-- Parallele Analyse darf denselben Stand lesen. Paralleles Schreiben braucht disjunkte normalisierte `write_set`s oder Worktrees.
+- Das Cockpit schärft Kriterien und delegiert an alle unabhängigen
+  `opus-builder`-Pakete bis zur Live-Kapazität.
+- Unabhängige Opus-Pakete behandeln getrennte Kriterien oder getrennte Dateien.
+- Parallele Analyse darf denselben Stand lesen. Paralleles Schreiben braucht
+  disjunkte Dateien oder Worktrees.
 - Genau ein `opus-builder` integriert alle bestätigten Ergebnisse.
 - Der Integrator bekommt Ziel, Referenzen, erforderliches Verhalten, Grenzen,
   Testplan und die vollständige Liste bestätigter Befunde.

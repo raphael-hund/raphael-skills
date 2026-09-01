@@ -161,6 +161,7 @@ Material.
 - [ ] Screenshot-Vergleich gegen Original
 - [ ] Mehrseitig: Routen-Abgleich gemacht
 - [ ] Interaktionsreich: Hover/Click/Scroll-Zustände geprüft
+- [ ] Zustands-Shots (Hover/Fokus) je interaktiver Komponente vorhanden und gelesen — EVIDENCE: Pfade
 - Nicht verifizierbare Punkte (ehrlich dokumentieren, nichts vorspiegeln):
 ```
 

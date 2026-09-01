@@ -4,9 +4,10 @@
 
 ```
 ROLLE:      Leader | Worker | Verifier
-agentType:  luna-worker | terra-bulk | sol-pruefer | sonnet-worker |
-            kimi-worker | kimi-recherche
-MODELL:     sonnet | sol | terra | luna | kimi   (nur wenn kein agentType)
+agentType:  opus-builder | opus-critic | sol-builder | sol-pruefer |
+            kimi-worker | kimi-recherche | kimi-critic | grok-worker |
+            grok-critic | visual-kritiker | luna-worker | terra-bulk
+MODELL:     opus | sol | terra | luna | kimi   (nur wenn kein agentType)
 EFFORT:     standard | medium | high | max               (explizit!)
 HARNESS:    claude-agent | mcp-codex | mcp-kimi | codex-native | kimi-native
 AUFGABE:    <ein klar umrissenes Arbeitspaket, ein Output>
@@ -25,31 +26,50 @@ Claude-Override und zählt **nicht** als Cross-Model-Flotte.
 
 | Modell / agentType | Effort |
 |---|---|
-| Fable / Opus (nur Cockpit, nie Subagent) | high |
-| Sonnet | standard (bei Bedarf high) |
-| Sol (`sol-pruefer`) | medium–high |
-| Terra (`terra-bulk`) | max (high) |
-| Luna (`luna-worker`) | max (Gateway `forced_effort`) |
-| Kimi K3 (`kimi-worker`/`kimi-recherche`) | high — nie HighSpeed, nie K2.7 |
+| Opus (`opus-builder` / `opus-critic`) | high |
+| Sol (`sol-builder` / `sol-pruefer`) | max |
+| Terra (`terra-bulk`) | max |
+| Luna (`luna-worker`) | max |
+| Kimi K3 (`kimi-worker` / `kimi-recherche` / `kimi-critic`) | high — nie HighSpeed, nie K2.7 |
+| Grok (`grok-worker` / `grok-critic` / `visual-kritiker`) | high |
+
+## Builder → Kritiker (genau einer, andere Familie)
+
+Luna/Sol/Terra zählen als GPT. Self-Review ist `BLOCKED`.
+
+| Builder | Default-Kritiker | Alternative |
+|---|---|---|
+| `opus-builder` | `sol-pruefer` | `grok-critic`, `kimi-critic`; visuell `visual-kritiker` |
+| `sol-builder` | `opus-critic` | `grok-critic`, `kimi-critic` |
+| `terra-bulk` | `opus-critic` | `grok-critic`, `kimi-critic` |
+| `luna-worker` | `opus-critic` | `grok-critic` |
+| `kimi-worker` | `sol-pruefer` | `opus-critic`, `grok-critic` |
+| `grok-worker` | `sol-pruefer` | `opus-critic`, `kimi-critic` |
+
+`visual-kritiker` ist der visuelle Gate-Kritiker nach jedem Nicht-Grok-Build.
+Nach einem Grok-Build prüft `opus-critic` oder `sol-pruefer` auch das Bild.
 
 ## Muster
 
-- **Advisor:** Leader (Fable) nur an 2–3 Checkpoints; dazwischen laufen Worker allein.
+- **Advisor:** Leader (Opus-Cockpit) nur an 2–3 Checkpoints; dazwischen laufen Worker allein.
 - **Assembly-Line:** Recherche → `/clear` → Draft → `/clear` → Polish (Kontext-Hygiene).
-- **Standard-Flotte (Cross-Model):** `luna-worker` (Mechanik/Tests) + Bau-Worker
-  (`sonnet-worker`/`kimi-worker`/`terra-bulk`) + Verifier anderer Familie —
+- **Standard-Flotte (Cross-Model):** Dynamic Workflow mit `opus-builder` /
+  `sol-builder` / `kimi-worker` / `grok-worker`, `luna-worker` nur für Masse,
+  Verifier anderer Familie (`sol-pruefer` / `opus-critic` / `grok-critic` /
+  `kimi-critic` / `visual-kritiker`).
   Zuteilung in `cross-model-harness.md`.
 - **Adversarial verification / Tournament:** mehrere Worker bauen Varianten, Verifier/Panel
   wählt — für ship-kritische Outputs.
 - **Cross-Vendor-Baustein:** `codex-first` / `kimi-first` für ein natives Fremdpaket;
   Claude reviewt und fährt die Tests selbst. Ersetzt die Flotte nicht.
-- **Cross-Model-Review:** wer baut (z. B. Terra/Kimi) ist nie wer reviewt (Sol/Sonnet).
+- **Cross-Model-Review:** wer baut (z. B. Terra/Kimi) ist nie wer reviewt (Sol/Opus).
 
 ## Delegations-Schwelle
 
-Task in < ~5 Min solo erledigbar → **nicht delegieren** (Orchestrierungs-Aufschlag > Nutzen).
-Delegieren lohnt bei Parallelität, Volumen, isolierbaren Luna-Mechanik-Häppchen oder
-nötiger Fremd-Familien-Prüfung.
+Nur eine zusammenhängende Mini-Änderung ohne isolierbare Teile bleibt SOLO.
+Alles andere delegieren: >1 Paket, Website-Seite, Screenshot/ visuelles QA,
+Foto-Serie, Masse, oder nötige Fremd-Familien-Prüfung. Default ist Dynamic
+Workflow plus Tasks, nicht „erst fünf Minuten selbst machen“.
 
 ## Autonomer-Lauf-Kontrakt (5 Teile)
 

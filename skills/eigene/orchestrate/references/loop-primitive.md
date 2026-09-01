@@ -1,115 +1,84 @@
 # Loop-Primitive
 
-Single source of truth für den Per-Item-Loop.
+Single source of truth für sequentielle Per-Item- und Unterseiten-Läufe.
 
-## Phase-1-Vertrag
+## Controller-Vertrag
+
+Der Controller hält die vollständige Queue und genau einen aktiven Eintrag.
+Weitere Sessions werden erst erzeugt, wenn der aktive Eintrag `PASS` oder
+`BLOCKED` ist. Die Seitensession ist ein Leaf und erzeugt keine Nachkommen.
 
 Für jedes Item gilt:
 
-- Ein `luna-worker` bearbeitet genau dieses eine Item und liefert ein produktionsreifes Artefakt.
-- Der initiale Build zählt nicht als Runde. Danach gibt es höchstens drei sichtbare Kritiker-Runden; eine vierte Runde ist verboten.
-- Kein Wechsel auf andere Items und keine Selbstabnahme. Der Worker liefert ausschließlich Artefakt plus AAA-Beleg.
-- Für jedes Item läuft ein separater, harter Kritiker. Bei visuellen oder visuellen Spezifikations-Outputs ist sein `agentType` zwingend `visual-kritiker`.
-- Der Kritiker prüft das echte Artefakt gegen die Acceptance-Checks, nicht die Begründung des Workers. Er muss die größte konkrete Lücke benennen oder `none` liefern.
-- Bei `fail` geht genau `biggest_gap` in die nächste Fix-Runde. Der Fix-Auftrag darf keine zweite Lücke eröffnen oder ein anderes Item anfassen.
-- `PASS` ist ein Workflow-Entscheid: Ein Worker-Claim oder ein fehlender/ungültiger Kritiker-Output beendet den Loop nie.
+- genau ein Builder und genau ein Item
+- keine Child-Agenten, Tasks, Workflows oder Provider-CLI-Spawns
+- kein Wechsel auf andere Items
+- deterministische Checks vor subjektiver Prüfung
+- kein Reviewer im Standard
+- höchstens ein Reviewer bei hohem Risiko oder ausdrücklicher Nutzeransage
+- höchstens ein Follow-up mit genau einer belegten Lücke
+- beim zweiten gleichen Fehler `BLOCKED`
+- gemeinsame Dateien nur in einem späteren, eigenen Integrationsitem
 
-## Aufruf aus einem Workflow-Script
+## Queue-Zustände
 
-Der Workflow besitzt die Schleife und startet alle sichtbaren Agent-Aufrufe. Beispiel für ein visuelles Item:
+`queued -> running -> verifying -> passed | blocked`
+
+Es darf zu jedem Zeitpunkt höchstens einen Eintrag in `running` oder
+`verifying` geben. Ein Nutzerkorrektur ersetzt die alte Entscheidung sofort;
+betroffene Belege werden ungültig.
+
+## Referenzablauf
 
 ```javascript
-const MAX_ROUNDS = 3
+const results = []
+for (const item of items) {
+  setState(item, 'running')
+  let artifact = await runLeafWorker(item)
+  setState(item, 'verifying')
+  let check = await controllerVerify(item, artifact)
 
-function validCritic(critic) {
-  return critic && typeof critic === 'object'
-    && (critic.verdict === 'pass' || critic.verdict === 'fail')
-    && typeof critic.biggest_gap === 'string'
-    && critic.biggest_gap.trim() !== ''
-    && typeof critic.beleg === 'string'
-    && critic.beleg.trim() !== ''
-    && ['HIGH', 'MED', 'LOW'].includes(critic.confidence)
-}
-
-function artifactAAA(item, artifact) {
-  if (!artifact || artifact.aaa !== true) return false
-  if (!item.is_visual) {
-    return typeof artifact.acceptance_proof === 'string'
-      && artifact.acceptance_proof.trim() !== ''
+  if (!check.pass && check.actionableGap && !check.repeatedFailure) {
+    artifact = await followUpSameSession(item, check.actionableGap)
+    check = await controllerVerify(item, artifact)
   }
-  return artifact.g1_exit === 0
-    && artifact.self_read === true
-    && artifact.ship_manifest_valid === true
+
+  const status = check.pass ? 'passed' : 'blocked'
+  setState(item, status)
+  results.push({ item: item.id, status, artifact, check })
+  if (status === 'blocked') break
 }
-
-function aaa(item, artifact, critic) {
-  return artifactAAA(item, artifact)
-    && validCritic(critic)
-    && critic.verdict === 'pass'
-    && critic.confidence === 'HIGH'
-    && critic.biggest_gap === 'none'
-}
-
-async function loopItem(item) {
-  let artifact = await agent(buildPrompt(item), {
-    agentType: 'luna-worker', phase: 'Per-Item-Loop',
-    label: `build:${item.id}:r1`, effort: 'max',
-  })
-
-  for (let round = 1; round <= MAX_ROUNDS; round += 1) {
-    // Non-visual items use the separately defined ship-review critic; visual
-    // items must use the dedicated image-reading critic.
-    const criticType = item.is_visual ? 'visual-kritiker' : 'sol-pruefer'
-    const critic = await agent(criticPrompt(item, artifact, [
-      'Prüfe ausschließlich das echte Artefakt gegen die Acceptance-Checks.',
-      'Akzeptiere keine Behauptung ohne Beleg.',
-      'Nenne bei fail genau eine größte konkrete Lücke; bei pass exakt biggest_gap: none.',
-    ]), {
-      agentType: criticType, phase: 'Harsh-Critic',
-      label: `critic:${item.id}:r${round}`, effort: 'max',
-    })
-
-    if (aaa(item, artifact, critic)) {
-      return { status: 'PASS', item: item.id, round, artifact, critic }
-    }
-    if (round === MAX_ROUNDS) {
-      return { status: 'BLOCKED', item: item.id, round, artifact, critic }
-    }
-    if (!validCritic(critic) || critic.biggest_gap === 'none') {
-      return { status: 'BLOCKED', item: item.id, round, artifact, critic,
-        reason: 'invalid critic output or no actionable gap' }
-    }
-
-    artifact = await agent(fixPrompt(item, artifact, critic.biggest_gap), {
-      agentType: 'luna-worker', phase: 'Per-Item-Loop',
-      label: `fix:${item.id}:r${round + 1}`, effort: 'max',
-    })
-  }
-  throw new Error('unreachable: MAX_ROUNDS guard')
-}
-
-const results = await parallel(items.map(item => () => loopItem(item)))
 ```
 
-`criticPrompt` enthält die echten Render-Pfade und Acceptance-Checks. Der Kritiker liefert ausschließlich:
+`runLeafWorker` muss den vollständigen Seitenvertrag enthalten: Route, erlaubte
+Pfade, aktive und verworfene Entscheidungen, Referenz, Desktop-/Mobil-Viewport,
+Prüfbefehle und Stopbedingung.
 
-```text
-verdict: pass | fail
-biggest_gap: <genau eine Lücke oder none>
-beleg: <Datei/Region und sichtbarer Befund>
-confidence: HIGH | MED | LOW
-```
+## Controller-Prüfung
 
-## AAA-Exit-Kriterien
+Der Controller übernimmt keinen Worker-Claim blind. Er prüft:
 
-`PASS` ist nur zulässig, wenn alle Bedingungen erfüllt sind:
+- Diff nur in erlaubten Pfaden
+- Build, Typecheck, Lint und relevante Funktionstests
+- betroffene Route tatsächlich erreichbar
+- bei visueller Arbeit Desktop und Mobil mit richtigem Viewport
+- Screenshot wurde geöffnet und zeigt den verlangten Zustand
+- keine aktive Negativentscheidung verletzt
+- Providerfehler, 401, 403, 408, 429 und 503 bleiben Fehler
 
-- Das Artefakt enthält `aaa: true`; ein Worker-Claim allein reicht nie.
-- Bei visuellen Items: `visual-g1.py` beendet sich mit Exit `0` (`g1_exit: 0`), jedes gerenderte PNG wurde selbst angesehen (`self_read: true`), und `visual-ship.json` ist gültig, `ok: true` und enthält alle Seiten/Ansichten.
-- Bei nichtvisuellen Items: Das Artefakt liefert `acceptance_proof` als nichtleeren, item-spezifischen Beleg; der harte Kritiker prüft ihn am echten Artefakt.
-- Ein separater Kritiker meldet `verdict: pass`, `confidence: HIGH` und `biggest_gap: none` mit Beleg. Bei visuellen Items ist sein `agentType` zwingend `visual-kritiker`.
-- Ein fehlender, ungültiger oder nicht ausreichend belegter Kritiker-Output beendet den Loop nie mit `PASS`.
+Ein optionaler Reviewer liest das echte Artefakt und liefert genau eine größte
+Lücke mit Beleg. Er editiert nicht. Ein fehlender Reviewer kann niemals als
+Review-PASS gelten, ist aber bei einem Standardlauf ohne Reviewer auch kein
+Fehler.
 
-## FAIL in Runde 3
+## PASS und BLOCKED
 
-Es gibt keine Runde 4. Das Item wird als `BLOCKED` markiert; letzter Stand, Kritiker-Output und `biggest_gap` bleiben als Beleg erhalten. Der Workflow darf nicht shippen und eskaliert das Item mit diesem Beleg an das Cockpit/Raphael.
+`PASS` braucht grüne vereinbarte Checks und gültige Artefaktbelege. Bei
+subjektivem Look bleibt der Status `WAITING_HUMAN`, bis der Nutzer abnimmt.
+
+`BLOCKED` entsteht bei zweimal gleichem Fehler, unklarer Quelle der Wahrheit,
+Scope-Konflikt, erforderlichem Provider-Ausfall oder einer materiellen
+Produktentscheidung. Der Controller startet dann nicht still die nächste Seite.
+Er nennt genau den Blocker und den bisherigen Beleg.
+
+Commit, Push, Deploy und Publish bleiben separate, ausdrückliche Freigaben.

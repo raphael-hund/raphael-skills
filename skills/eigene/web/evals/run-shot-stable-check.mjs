@@ -16,7 +16,7 @@
  *    sind nicht wahr. Fonts/Seite werden vor dem Shot gesetzt.
  * 2. Der echte Sweep startet zweimal gegen die lokale Fixture
  *    (evals/fixtures/shot-stable.html) mit --static --no-interact --base.
- *    Fold-PNG existiert, 1440x730, nicht leer, beide Laeufe matchen.
+ *    Fold-PNG existiert, 1440x900, nicht leer, beide Laeufe matchen.
  *
  * Keine Nachimplementierung des Sweeps. Nur der ausgelieferte Einstieg.
  *
@@ -38,7 +38,7 @@ const LOOP_MD = path.join(HIER, '..', 'references', 'screenshot-kritik-loop.md')
 const FIXTURE = path.join(HIER, 'fixtures', 'shot-stable.html');
 const PORT = Number(process.env.SHOT_STABLE_PORT || 5477);
 const FRIST_MS = 180000;
-// Dokumentierter winziger Pixel-Diff: 0,01 % der Fold-Pixel (1440x730 -> 105).
+// Dokumentierter winziger Pixel-Diff: 0,01 % der Fold-Pixel (1440x900 -> 129; Fold 900 seit Audit 23.08.2026).
 const MAX_DIFF_RATIO = 0.0001;
 const LAUNCH_FAIL_RE = /browserType\.launch|Executable doesn't exist|Failed to launch/i;
 
@@ -196,11 +196,33 @@ zeile(/caret:\s*['"]hide['"]/.test(quelle) && /SHOT_OPTS/.test(quelle),
 zeile(!/fullPage:\s*true/.test(quelle), 'fullPage ist nicht wahr');
 zeile(!/captureBeyondViewport:\s*true/.test(quelle), 'captureBeyondViewport ist nicht wahr');
 zeile(/document\.fonts/.test(quelle), 'Fonts vor dem Shot gesetzt');
-zeile(/width:\s*1440,\s*height:\s*730/.test(quelle), 'Fold-Vertrag 1440x730');
+zeile(/width:\s*1440,\s*height:\s*900/.test(quelle), 'Fold-Vertrag 1440x900');
 zeile(/width:\s*1440,\s*height:\s*1500/.test(quelle), 'Deep-Vertrag 1440x1500');
 zeile(/SCROLL_STEP\s*=\s*750/.test(quelle), 'Scroll-Schritt 750 px');
 zeile(/--base/.test(quelle) && /process\.exit\(2\)/.test(quelle),
   '--base Pflicht endet mit Exit 2');
+zeile(/capture_profile/.test(quelle)
+  && /static:\s*STATIC/.test(quelle)
+  && /states:\s*STATES/.test(quelle)
+  && /mobile:\s*MOBILE/.test(quelle),
+  'capture_profile spiegelt --static/--states/--mobile ehrlich');
+zeile(/web\/shot-sweep\/v2/.test(quelle), 'Manifest-Schema web/shot-sweep/v2');
+zeile(/run_id/.test(quelle) && /build_revision/.test(quelle),
+  'Manifest traegt run_id und build_revision');
+zeile(/state-focus/.test(quelle) && /open-expanded/.test(quelle),
+  'States-Pass kennt focus und open-expanded, nicht nur Hover');
+zeile(/page\.route\s*\(/.test(quelle) && /fulfill/.test(quelle),
+  'Loading via Intercept-Hold (page.route + fulfill)');
+zeile(/state_matrix/.test(quelle)
+  && /not_applicable/.test(quelle)
+  && /static-page/.test(quelle)
+  && /no-form/.test(quelle)
+  && /no-async-data/.test(quelle),
+  'state_matrix mit validatorgeprueften not_applicable-Gruenden');
+zeile(/playwright_ref/.test(quelle) && /keyboard/.test(quelle) && /axe/.test(quelle),
+  'State-Receipts: Keyboard/Axe oder validierte Playwright-Ref');
+zeile(/nur Hover/.test(quelle),
+  '--states nur Hover ist FAIL (Quelle nennt den Fall)');
 zeile(/Playwright/.test(skillText)
   && /stabile Screenshots/i.test(skillText)
   && /Screenshots testen/i.test(skillText),
@@ -289,8 +311,8 @@ if (fs.existsSync(foldA)) {
   const bufA = fs.readFileSync(foldA);
   let infoA;
   try { infoA = pngInfo(bufA); } catch (e) { infoA = { error: e.message }; }
-  zeile(infoA.width === 1440 && infoA.height === 730,
-    'Fold A ist 1440x730',
+  zeile(infoA.width === 1440 && infoA.height === 900,
+    'Fold A ist 1440x900',
     infoA.error || `${infoA.width}x${infoA.height}`);
   try {
     pixA = pngPixels(bufA);
@@ -301,7 +323,7 @@ if (fs.existsSync(foldA)) {
     zeile(false, 'Fold A ist nicht leer/fast-leer', e.message);
   }
 } else {
-  zeile(false, 'Fold A ist 1440x730', 'keine Datei');
+  zeile(false, 'Fold A ist 1440x900', 'keine Datei');
   zeile(false, 'Fold A ist nicht leer/fast-leer', 'keine Datei');
 }
 
@@ -328,7 +350,7 @@ if (fs.existsSync(foldA) && fs.existsSync(foldB)) {
     try {
       const pixB = pngPixels(bufB);
       const diffs = pixA ? pixelDiffs(pixA, pixB) : pixB.width * pixB.height;
-      const ratio = diffs / (1440 * 730);
+      const ratio = diffs / (1440 * 900);
       zeile(ratio <= MAX_DIFF_RATIO,
         `Lauf A und Lauf B matchen (Pixel-Diff ${diffs}, ${(ratio * 100).toFixed(4)} %, Limit ${MAX_DIFF_RATIO * 100} %)`,
         'Inkonsistenz zwischen den zwei Laeufen ist ein App-Defekt');

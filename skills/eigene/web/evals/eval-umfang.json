@@ -19,6 +19,7 @@
   "run-lighthouse-check.mjs": 10,
   "run-link-check.mjs": 10,
   "run-motion-check.mjs": 16,
+  "run-muster-bibliothek-check.mjs": 12,
   "run-naht-check.mjs": 29,
   "run-ordner-check.mjs": 16,
   "run-pruefstand.mjs": 14,
@@ -40,5 +41,7 @@
   "run-hilfe-alle.mjs": 22,
   "run-illustration-rezept-check.mjs": 23,
   "run-site-build-load-path-check.mjs": 21,
-  "run-resource-open-check.mjs": 14
+  "run-resource-open-check.mjs": 14,
+  "run-werkzeug-gate-check.mjs": 6,
+  "run-preview-vs-launch-check.mjs": 36
 }

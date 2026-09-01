@@ -1,4 +1,4 @@
-# Default-Stack — Next.js + Tailwind + Radix/shadcn + Framer Motion
+# Default-Stack — Next.js + Tailwind + Radix/shadcn + Motion
 
 **Wofür:** Konkrete Setup-Entscheidungen für Raphaels Standard-Agenturprojekte
 (kein Enterprise-Marken-System nötig, siehe `design-systeme-vergleich.md` §1
@@ -7,8 +7,8 @@ stehen in `motion-doktrin.md` (wann/wie animieren) und `ui-components/INDEX.md`
 (fertiger Motion-Code).
 
 **Herkunft Radix-Fakten:** `/root/tools/vendor/radix-themes` Source gelesen
-(Komponentenliste, Token-/Props-Struktur, Stand 20.07.26). shadcn/Framer-Motion-
-Aussagen aus Fachwissen, nicht per WebFetch nachverifiziert diese Runde.
+(Komponentenliste, Token-/Props-Struktur, Stand 20.07.26). Aussagen zu shadcn
+und Motion aus Fachwissen, nicht per WebFetch nachverifiziert diese Runde.
 
 ## Regeln
 
@@ -41,14 +41,16 @@ Aussagen aus Fachwissen, nicht per WebFetch nachverifiziert diese Runde.
    Briefing ableiten (Brand-Farben, nicht Radix-Default-Blau). Wird Radix
    Primitives verwendet, bekommen die unstyled Primitives ihre Optik komplett
    über Tailwind-Klassen — Radix liefert nur Verhalten/A11y, keine Optik.
-5. **Framer Motion nur für das, was CSS-Transitions nicht können.** Layout-
-   Animationen (`layout`-Prop), Exit-Animationen (`AnimatePresence` beim
-   Unmount von Dialogen/Tooltips), Drag-/Gesten-Interaktionen, orchestrierte
-   Sequenzen. Einfache Hover-/Fokus-Übergänge bleiben CSS (`transition-colors`
-   etc.) — Framer Motion nicht für jeden Button-Hover einbinden (Bundle-Size,
-   unnötige Client-Component-Grenze in Next.js).
+5. **Motion nur für das, was CSS-Transitions nicht können.** Installiert wird
+   Paket `motion`, importiert wird aus `motion/react`; Paket und Imports von
+   `framer-motion` sind blockiert. Motion dient Layout-Animationen
+   (`layout`-Prop), Exit-Animationen (`AnimatePresence` beim Unmount von
+   Dialogen/Tooltips), Drag-/Gesten-Interaktionen und orchestrierten Sequenzen.
+   Einfache Hover-/Fokus-Übergänge bleiben CSS (`transition-colors` etc.) —
+   Motion nicht für jeden Button-Hover einbinden (Bundle-Size, unnötige
+   Client-Component-Grenze in Next.js).
 6. **Motion-Entscheidungen (Timing, Kurven, Reduced-Motion) kommen aus
-   `motion-doktrin.md` — hier nicht neu definieren.** Framer Motion ist nur die
+   `motion-doktrin.md` — hier nicht neu definieren.** `motion/react` ist nur die
    technische Umsetzung der dortigen Vier-Fragen-Prüfung.
 7. **Next.js App Router als Grundstruktur** (siehe `design-systeme-vergleich.md`
    §4): Radix-Dialog/Popover/DropdownMenu sind Client-Components (State,
@@ -75,8 +77,8 @@ Aussagen aus Fachwissen, nicht per WebFetch nachverifiziert diese Runde.
   `design-systeme-vergleich.md` §3 für Diagramme daneben anwenden (Radix hat
   kein eigenes Chart-System).
 - **Vor jedem `AnimatePresence`-Einsatz:** prüfen, ob `useReducedMotion()`-
-  Äquivalent aktiv ist — gilt genauso wie in `ui-components/INDEX.md` gefordert,
-  Framer Motion respektiert `prefers-reduced-motion` nicht automatisch.
+  Äquivalent aktiv ist — gilt genauso wie in `ui-components/INDEX.md` gefordert;
+  Motion respektiert `prefers-reduced-motion` nicht automatisch.
 
 ## Beispiel
 
@@ -85,7 +87,7 @@ soll sich nicht wie ein 08/15-Template anfühlen."
 
 → Next.js App Router, Tailwind-Theme mit Petrol als Primärfarbe (kein Radix-
 Blau), shadcn-`Dialog`/`Select`/`Tabs` für den Onboarding-Flow (A11y gelöst,
-Optik komplett über Tailwind), Framer Motion nur für den Schritt-Übergang im
-Onboarding-Wizard (`AnimatePresence` beim Step-Wechsel, Timing/Kurve nach
-Timing-Tabelle in `motion-doktrin.md`), Radix Themes NICHT eingesetzt (würde
-eigene Farbwelt überschreiben, siehe Regel 2).
+Optik komplett über Tailwind), Motion (`motion`/`motion/react`) nur für den
+Schritt-Übergang im Onboarding-Wizard (`AnimatePresence` beim Step-Wechsel,
+Timing/Kurve nach Timing-Tabelle in `motion-doktrin.md`), Radix Themes NICHT
+eingesetzt (würde eigene Farbwelt überschreiben, siehe Regel 2).

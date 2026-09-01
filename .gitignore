@@ -19,3 +19,11 @@ __pycache__/
 .claude/worktrees/
 .claude/checkpoints/
 .claude/agent-registry.json
+
+# web-Skill Binaries (1.5GB Shots/Vendor-Assets, nie ins Repo)
+skills/eigene/web/resources/
+skills/eigene/web/references/muster-bibliothek/**/*.png
+skills/eigene/web/references/muster-bibliothek/**/*.jpg
+skills/eigene/web/references/muster-bibliothek/**/*.webp
+skills/eigene/web/references/muster-bibliothek/**/*.mp4
+*.bak-livegang-*
