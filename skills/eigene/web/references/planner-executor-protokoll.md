@@ -138,3 +138,34 @@ dürfen Fakten-Nits nicht als `BLOCKED` führen.
   `preview: park` kommt nicht in den Executor-Auftrag als Blocker.
 - **Proof nicht erfinden.** Unklare echte Zahl = Working-Zahl plus FAKT-GATE.
 - Domain/DNS/Vercel ist Ops, fünf Minuten, kein Design-Gate.
+
+## Skills je Session (Chips, hart)
+
+Nicht eine Skill-Liste in den Prompt kippen. Genau diese Chips, sonst nichts.
+
+| Session | Chip-Leiste | Effort | Nie |
+|---|---|---|---|
+| **Planner (Plan)** | nur `/web` | high | `/orchestrate`, `/ultracode`, `/website-plan`, `/design`, `/visual-aaa`, `/impeccable`, `/taste`. website-plan hat 0 Child-Agenten. |
+| **Planner (Kritik)** | `/web` + `/orchestrate` | high | Parent liest keine PNG-Binaries. Panel = Leaves. |
+| **Executor (Build/Fix/Shots)** | `/web` + `/orchestrate` | Ultracode | Nicht `/ultracode` UND `/orchestrate` gleichzeitig — ein Orchestrierungs-Owner. Nicht `/design` extra. |
+
+`web` lädt intern: screenshot-kritik-loop, shot-sweep, visual-aaa als Gate, design, FAKT-GATE. Extra-Chips dafür machen den Parent dicker, nicht besser.
+
+**Executor-Startzeile (wörtlich, vor dem Handoff):**
+
+```
+/web /orchestrate — Executor, client-<name>. Du bist Controller, nicht der Builder.
+Parent editiert keine CSS-/TSX-Datei und liest keine PNG-Binaries.
+Starte JETZT einen Dynamic Workflow. Leaves, so viele wie Pakete:
+1. shot-sweep --base <dev-url> --static --states --mobile → manifest.json + PNG-Pfade
+2. visual-kritiker (Grok) und kimi-recherche unabhängig auf denselben Fold/Hover-Shots
+3. grok-worker nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt
+4. opus-builder nur als Integrator für sichtbare UI-Fixes
+Rückgabe an Planner: STATUS.md + KRITIK-n.md mit Shot-Pfaden, biggest_gap visuell,
+FAKT-GATE geparkt. Kein Solo-Debug von wipe.css im Parent.
+```
+
+**Screenshot-Vertrag (Executor):** Sweep-Leaf erzeugt die Liste. Jeder visuelle Leaf
+bekommt NUR `manifest.json` + die PNG-Pfade seiner Route. Parent führt die Liste
+(Pfad, Viewport, gelesen ja/nein, Verdict). 1440×900 Fold + 390×844 Pflicht.
+fullPage ist kein Kritik-Input. Ohne frischen Sweep nach einem Fix = nicht geprüft.
