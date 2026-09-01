@@ -1,6 +1,6 @@
 ---
 name: handoff
-version: 0.3.1
+version: 0.4.0
 description: >
   Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am
   Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben
@@ -9,7 +9,7 @@ description: >
   einen Subagenten oder eine externe Person verdichten (Verweis statt Duplikat,
   Ablage im OS-Temp). Fakten statt Anweisungen, inkl. Fallen/Sackgassen und
   Secret-Redaktion. Trigger: "handoff", "übergeben", "vor /clear", "Session
-  beenden", "~300-400k Tokens erreicht", "Handoff für einen anderen Agenten",
+  beenden", "Session-Handoff fällig", "Handoff für einen anderen Agenten",
   "an Subagenten übergeben", "externe Übergabe", "handoff-ext".
 class: O
 scope: agency
@@ -42,7 +42,8 @@ Modellwechsel) verlustfrei weitermacht — denn nur Git-getrackte Dateien zähle
 
 ## Wann
 
-- Ab ~300–400k Tokens: `/handoff` schreiben, dann **hart `/clear`** (Regel 3).
+- Sobald [`session-failover`](/root/.claude/skills/session-failover/SKILL.md)
+  den Session-Handoff auslöst: `/handoff` schreiben, dann **hart `/clear`**.
 - Vor jedem Modellwechsel (= neue Session, Regel 6).
 - Am Session-Ende (Ritual: Commit + Push/Backup + Handoff, Regel 9).
 
