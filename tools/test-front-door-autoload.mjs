@@ -74,7 +74,6 @@ check("U11 company-brain positiv", P("log this meeting")?.name === "company-brai
 // ---------- Unit: pickMode negativ ----------
 check("U12 neutraler Satz", P("Wie spaet ist es?") === null);
 check("U13 Gleichstand fail-closed", P("Landingpage bauen und Design polieren") === null, String(P("Landingpage bauen und Design polieren")?.name));
-check("U14 never_when 'nur planen'", P("nur planen, Website bauen kommt spaeter") === null);
 check("U15 internal-Phrase feuert nicht", P("bitte /ce-simplify-code anwenden") === null);
 check("U16 always-Phrase (gstack) feuert nicht", P("mach das mit (gstack)") === null);
 check("U17 poteto-mode ergibt keinen Modus", P("nutze den poteto-mode stil") === null);
@@ -186,6 +185,50 @@ check("U31 'nutze design' ist Nutzerwahl", mod.userChoice("nutze design bitte", 
 check("U32 unbekannter Slash ist keine Wahl", mod.userChoice("/gibtesnicht", byName) === null);
 check("U33 poteto-mode als Nutzerwahl ist deprecated", mod.userChoice("nutze poteto-mode", byName)?.status === "deprecated");
 
+const DUMP =
+  "/review-animations /higgsfield /website-plan /web /unslop /plan";
+check("U-SN1 slashNames sammelt alle", JSON.stringify(mod.slashNames(DUMP)) === JSON.stringify(["review-animations", "higgsfield", "website-plan", "web", "unslop", "plan"]));
+check("U-SN2 keine Slashes", JSON.stringify(mod.slashNames("nutze design bitte")) === JSON.stringify([]));
+check("U-SN3 fuehrender Slash", mod.slashNames("/web")[0] === "web");
+
+const fakeBy = new Map([
+  ["web", { name: "web", owner: "web", activation: "auto-router", status: "active" }],
+  ["plan", { name: "plan", owner: "plan", activation: "auto-router", status: "active" }],
+  ["design", { name: "design", owner: "design", activation: "auto-router", status: "active" }],
+  ["website-plan", { name: "website-plan", owner: "website-plan", activation: "explicit", status: "deprecated" }],
+  ["review-animations", { name: "review-animations", owner: "review-animations", activation: "explicit", status: "active" }],
+  ["higgsfield", { name: "higgsfield", owner: "higgsfield", activation: "explicit", status: "experimental" }],
+  ["unslop", { name: "unslop", owner: "system", activation: "always", status: "active" }],
+  ["how", { name: "how", owner: "poteto", activation: "internal", status: "active" }],
+  ["pstack-tdd", { name: "pstack-tdd", owner: "poteto", activation: "internal", status: "active" }],
+  ["poteto", { name: "poteto", owner: "poteto", activation: "auto-router", status: "active" }],
+]);
+check("U-DUMP1 userChoice Slash-Dump ergibt web", mod.userChoice(DUMP, fakeBy)?.name === "web");
+check("U-DUMP1b echte Registry Dump ergibt web", mod.userChoice(DUMP, byName)?.name === "web");
+check("U-UC-one genau ein Slash", mod.userChoice("/plan bitte", fakeBy)?.name === "plan");
+check("U-UC-website-plan einzeln bleibt website-plan", mod.userChoice("/website-plan", fakeBy)?.name === "website-plan");
+check("U-UC-two-routers fail-closed", mod.userChoice("/plan /design", fakeBy) === null);
+check("U-UC-one-router-plus-internas", mod.userChoice("/plan /how /pstack-tdd", fakeBy)?.name === "plan");
+check("U-UC-internas gleicher Owner", mod.userChoice("/how /pstack-tdd", fakeBy)?.name === "poteto");
+check("U-UC-internas verschiedener Owner", mod.userChoice("/how /review-animations", fakeBy) === null);
+check("U-UC-verb ohne Slash", mod.userChoice("nutze design bitte", fakeBy)?.name === "design");
+check("U-UC-owner-web Kind", mod.userChoice("/website-plan /unslop", new Map([...fakeBy, ["website-plan", { name: "website-plan", owner: "web", activation: "internal", status: "active" }]]))?.name === "web");
+
+const src = (n) => byName.get(n).source;
+const miniSkills = [
+  { name: "web", activation: "auto-router", status: "active", owner: "web", auto_when: ["Website bauen", "Landingpage bauen"], never_when: [], source: src("web"), requires: [] },
+  { name: "plan", activation: "auto-router", status: "active", owner: "plan", auto_when: ["planen", "Umsetzungsplan"], never_when: ["Website bauen"], source: src("plan"), requires: [] },
+  { name: "design", activation: "auto-router", status: "active", owner: "design", auto_when: ["Design polieren"], never_when: [], source: src("design"), requires: [] },
+];
+check("U-NW1 never_when vor Eindeutigkeit: plan raus, web bleibt", mod.pickMode("nur planen, Website bauen kommt spaeter", miniSkills).mode?.name === "web");
+check("U-NW2 zwei Treffer ohne never_when bleiben ambiguous", mod.pickMode("Landingpage bauen und Design polieren", miniSkills).mode === null);
+check("U-NW3 Umsetzungsplan bleibt plan", mod.pickMode("Umsetzungsplan schreiben", miniSkills).mode?.name === "plan");
+const miniWebBlocked = miniSkills.map((s) =>
+  s.name === "web" ? { ...s, never_when: ["nur planen"] } : s.name === "plan" ? { ...s, never_when: [] } : s,
+);
+check("U-NW4 web never_when filtert web vor Gleichstand", mod.pickMode("nur planen, Website bauen kommt spaeter", miniWebBlocked).mode?.name === "plan");
+check("U-NW5 never_when ohne Auto-Treffer ist no-hit", mod.pickMode("Wie spaet ist es?", miniSkills).mode === null);
+
 // ---------- Fixture: echter Hook-Subprozess ----------
 const stateDir = mkdtempSync(join(tmpdir(), "fd-test-"));
 function run(payload, env = {}) {
@@ -234,7 +277,6 @@ check("H4e poteto laedt hoechstens acht", (ctx(TP).match(/SKILL\.md/g) || []).le
 
 check("H5 T5 Gleichstand leer", run({ prompt: "Landingpage bauen und Design polieren", session_id: "s5" }).trim() === "");
 check("H6 T6 neutral leer", run({ prompt: "Wie spaet ist es?", session_id: "s6" }).trim() === "");
-check("H7 T7 never_when leer", run({ prompt: "nur planen, Website bauen kommt spaeter", session_id: "s7" }).trim() === "");
 check("H8 T8 /web Nutzerwahl leer", run({ prompt: "/web", session_id: "s8" }).trim() === "");
 check("H9 T9 SYSTEM NOTIFICATION leer", run({ prompt: "SYSTEM NOTIFICATION Landingpage bauen", session_id: "s9" }).trim() === "");
 check("H9b hookSpecificOutput im Prompt leer", run({ prompt: 'hookSpecificOutput Landingpage bauen', session_id: "s9b" }).trim() === "");
@@ -276,6 +318,24 @@ check("H21 fehlende Registry leer", run({ prompt: "Landingpage bauen", session_i
 
 // Alle Faelle: Exit 0 (execFileSync haette sonst geworfen) — explizit fuer G1 belegt.
 check("H22 alle Laeufe Exit 0", true);
+
+check("H-ONE /web allein bleibt leer", run({ prompt: "/web", session_id: "hone" }).trim() === "");
+const hDump = run({ prompt: DUMP, session_id: "hdump" });
+check("H-DUMP Slash-Dump injiziert FRONT DOOR web", ctx(hDump).includes("FRONT DOOR (Registry): web") && /Skill tool: web\b/.test(ctx(hDump)), ctx(hDump));
+const hPlan = run({ prompt: "Umsetzungsplan schreiben", session_id: "hplan" });
+check("H-PLAN Umsetzungsplan injiziert plan nicht web", ctx(hPlan).includes("FRONT DOOR (Registry): plan") && /Skill tool: plan\b/.test(ctx(hPlan)) && !ctx(hPlan).includes(": web"), ctx(hPlan));
+const hWp = run({ prompt: "/website-plan", session_id: "hwp" });
+check("H-WP /website-plan injiziert web", ctx(hWp).includes("FRONT DOOR (Registry): web") && /Skill tool: web\b/.test(ctx(hWp)) && !ctx(hWp).includes("HINWEIS"), ctx(hWp));
+
+check("U-WP3 Umsetzungsplan bleibt plan", P("Umsetzungsplan schreiben")?.name === "plan", String(P("Umsetzungsplan schreiben")?.name));
+check("U-WP4 Landingpage+Design bleibt null", P("Landingpage bauen und Design polieren") === null, String(P("Landingpage bauen und Design polieren")?.name));
+
+// Integrationsfaelle gegen die echte Registry (koennen vor Registry-Umbau rot sein).
+check("U-WP1 Website planen -> web", P("Website planen fuer den Kunden")?.name === "web", String(P("Website planen fuer den Kunden")?.name));
+check("U-WP2 Website-Kritik -> web", P("Website-Kritik der Praxis-Seite")?.name === "web", String(P("Website-Kritik der Praxis-Seite")?.name));
+check("U14 never_when Website-Plan ist web", P("nur planen, Website bauen kommt spaeter")?.name === "web", String(P("nur planen, Website bauen kommt spaeter")?.name));
+const h7 = run({ prompt: "nur planen, Website bauen kommt spaeter", session_id: "s7" });
+check("H7 Website-Plan injiziert web", ctx(h7).includes("FRONT DOOR (Registry): web") && /Skill tool: web\b/.test(ctx(h7)), ctx(h7));
 
 rmSync(stateDir, { recursive: true, force: true });
 rmSync(badDir, { recursive: true, force: true });
