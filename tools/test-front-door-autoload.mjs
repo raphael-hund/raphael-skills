@@ -141,6 +141,15 @@ for (const [p, want] of [["Sitemap erstellen", "web"], ["Website clonen", "web"]
   check(`U13e Einzeltreffer ${want}: ${p}`, P(p)?.name === want, String(P(p)?.name));
 }
 
+// Cap-Hebung 8->16 (build-skill-registry.py, Commit 1cf4a10): neu aktivierte
+// auto_when-Phrasen jenseits von Position 8 muessen wirklich routen.
+for (const [p, want] of [
+  ["Backlog bauen", "plan"], ["Tickets schreiben", "plan"], ["implementation plan", "plan"],
+  ["Konto-Audit", "ads"], ["Screen in Stitch bauen", "design"], ["Featured Snippet", "seo"],
+]) {
+  check(`U-CAP ${want}: ${p}`, P(p)?.name === want, String(P(p)?.name));
+}
+
 // ---------- Unit: requires transitiv, zyklusfrei, begrenzt ----------
 const webReq = mod.resolveRequires(byName.get("web"), byName).map((s) => s.name);
 check("U23 web requires", JSON.stringify(webReq) === JSON.stringify(["web-anti-slop"]), webReq.join(","));
