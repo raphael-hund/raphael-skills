@@ -126,8 +126,8 @@ UI-Blickwinkel, Opus setzt die Entscheidung um. Für diesen Skill gilt:
 - Danach folgen G1, Shot-Sweep, PNG-Reads durch Kritik-Leaves und familienfremdes Panel.
 
 Ein Lauf ist bei einem dieser Befunde rot: überlappende Opus-Schreibbereiche,
-fehlender Integrator oder ein Bau ohne fremdfamiliäre Kritik
-vom Cockpit selbst.
+fehlender Integrator, ein Bau ohne fremdfamiliäre Kritik — oder ein Cockpit,
+das selbst gebaut hat statt zu delegieren.
 
 ## Was nie autonom passiert
 
