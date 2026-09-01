@@ -154,7 +154,7 @@
     },
     {
       "name": "orchestrate",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
       "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
     },
@@ -238,7 +238,7 @@
     },
     {
       "name": "web",
-      "version": "0.26.0",
+      "version": "0.27.0",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Plan\", \"Landingpage planen\", \"Website-Kritik\", \"Website kritisieren\", \"kompletter Website-Plan\"."
     },
