@@ -52,7 +52,7 @@
     },
     {
       "name": "codex-orchestration",
-      "version": "0.1.0",
+      "version": "0.5.10",
       "path": "skills/eigene/codex-orchestration/SKILL.md",
       "description": "Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when available. Use for visible sub-threads, separate tasks, model comparisons, multi-model fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI sessions, or background agents. Trigger: \"Codex App tasks\", \"visible sub-threads\", \"multi-model fan-out\", \"model comparisons\"."
     },
@@ -154,7 +154,7 @@
     },
     {
       "name": "orchestrate",
-      "version": "2.2.0",
+      "version": "2.3.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
       "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
     },
@@ -178,21 +178,21 @@
     },
     {
       "name": "seo",
-      "version": "0.7.2",
+      "version": "0.7.6",
       "path": "skills/eigene/seo/SKILL.md",
-      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\"."
+      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\", \"Citation Outreach\", \"LLM mentions\"."
     },
     {
       "name": "session-failover",
-      "version": "0.6.0",
+      "version": "0.7.0",
       "path": "skills/eigene/session-failover/SKILL.md",
-      "description": "Auto-Compact erst bei 256k (Raphael 18.08.). Manuelles /compact nur wenn die TUI voll ist. Reicht Compact nicht: /handoff auf die Platte, /clear, neue Session in derselben TUI, /model kimi-k3, Handoff einfügen. Bei API-Fehler sofort Modell+Effort, nicht warten. Trigger: /compact, /handoff, /clear, /model, /effort, API-Fehler, 401, 408, 529, subscription disabled, synthetic, Fable tot, Session hängt, /session-failover."
+      "description": "Kein Compress (Raphael 01.09., ersetzt die 256k-Compact-Regel vom 18.08.). Session-Handoff ab 400k Tokens bei 1M-Kontext-Modellen (Fable, Sol, Opus, Kimi, Grok), ab 256k bei kleineren. Ab Schwelle: /handoff auf die Platte, /clear, neue Session in derselben TUI, /model kimi-k3, Handoff einfügen. Manuelles /compact nur auf ausdrückliche Ansage. Bei API-Fehler sofort Modell+Effort, nicht warten. Trigger: /compact, /handoff, /clear, /model, /effort, API-Fehler, 401, 408, 529, subscription disabled, synthetic, Fable tot, Session hängt, /session-failover."
     },
     {
       "name": "session-watch",
-      "version": "0.20.0",
+      "version": "0.34.0",
       "path": "skills/eigene/session-watch/SKILL.md",
-      "description": "Eine oder zwei offene Claude-Sessions (Default: claude --cloud, sonst lokale Claude-TUI) von der Grok-Harness aus prüfen, bei Bedarf weiter prompten und technische Fehler selbst lösen. Ziel ist immer Claude. Zwei TUIs: Builder und Kritiker, Ping-Pong. Jede Sub-Session startet mit /goal plus Gauntlet-Closer (Fan-out, /loop, harter Kritiker, Blind-A/B, /ultracode). Driver dort: kimi-k3, opus oder fable. Alle 15 Minuten Stand messen. Prompt nur wenn Loop steht, Phase fertig ist oder Technik kaputt ist. Trigger: /session-watch, Cloud-Session watchen, Claude-Tab watchen, Worker weiter prompten, /watch-session."
+      "description": "Raphael spricht nur den Watcher. Feedback geht an den Critic, dann den Builder. Sessions machen den Plan und das Produkt. Watcher scoutet Inspiration, updated diesen Skill, pastet. Watcher baut nicht. Trigger: /session-watch, \"Cloud-Session watchen\", \"Claude-Tab watchen\", \"Watcher\", \"hin und her\", \"First Mate\"."
     },
     {
       "name": "taste",
@@ -214,9 +214,9 @@
     },
     {
       "name": "ultracode",
-      "version": "1.0.0",
+      "version": "3.0.0",
       "path": "skills/eigene/ultracode/SKILL.md",
-      "description": "Expliziter, streng begrenzter Qualitätslauf für Claude Code. Verarbeitet höchstens drei disjunkte Items strikt nacheinander: ein Builder, echtes Gate, höchstens ein familienfremder Reviewer und keine Nachkommen. Trigger: \"/ultracode\", \"ultracode\"."
+      "description": "Ultracode: sofort Dynamic Workflow starten und so viele Subagenten spawnen wie die Arbeit braucht — Opus, Grok, Kimi, Sol, Luna für Masse. Kein Ein-Builder-Deckel, kein 3-Item-Deckel. Trigger: /ultracode, ultracode, Ultracode-Effort."
     },
     {
       "name": "visual-aaa",
@@ -240,13 +240,13 @@
       "name": "web",
       "version": "0.22.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
+      "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Plan\", \"Landingpage planen\", \"Website-Kritik\", \"Website kritisieren\", \"kompletter Website-Plan\"."
     },
     {
       "name": "website-plan",
       "version": "3.0.0",
       "path": "skills/eigene/website-plan/SKILL.md",
-      "description": "Plant eine Kunden-Website ohne Production-Code und erzeugt eine eingefrorene Unterseiten-Queue für den sequenziellen Codex-Controller. Keine Workflow- Wellen, keine Zwischenfreigaben pro Seite und keine versteckten Agenten. Trigger: \"/website-plan\", \"Website planen\", \"kompletter Website-Plan\", \"Unterseiten einzeln planen\", \"Relaunch planen\"."
+      "description": "Plant eine Kunden-Website ohne Production-Code und erzeugt einen eingefrorenen, maschinenlesbaren v3-Planvertrag für den Web-Workflow. Trigger: \"/website-plan\", \"Website planen\", \"kompletter Website-Plan\", \"Unterseiten einzeln planen\", \"Relaunch planen\"."
     },
     {
       "name": "anti-slop-dmmulroy",
