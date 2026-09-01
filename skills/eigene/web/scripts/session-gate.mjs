@@ -190,15 +190,19 @@ function kritik(client) {
   process.exit(0);
 }
 
-// Ein Platzhalter-Byte ist kein Kritik-Ergebnis. Verlangt wird eine Datei, in
-// der wirklich ein Befund steht: genug Text und mindestens eine Aufzählungs-,
-// Tabellen- oder Überschriftenzeile.
-const MIN_KRITIK_ZEICHEN = 200;
+// Ein Platzhalter ist kein Kritik-Ergebnis. Gezählt wird, was ein Befund
+// ausmacht: benannte Einzelpunkte. Nicht die Dateilänge — drei knappe echte
+// Befunde sind ein Arbeitsergebnis, 300 Zeichen Fließtext mit einem
+// Spiegelstrich sind keins.
+const MIN_BEFUND_ZEILEN = 2;
+const MIN_ZEICHEN_JE_BEFUND = 15;
 
-function hatBefundStruktur(roh) {
+function befundZeilen(roh) {
   return roh
     .split("\n")
-    .some((z) => /^\s*(?:[-*+]\s+\S|\d+\.\s+\S|\||#{1,6}\s+\S)/.test(z));
+    .map((z) => z.trim())
+    .filter((z) => /^(?:[-*+]\s+\S|\d+\.\s+\S|\|\s*\S|#{1,6}\s+\S)/.test(z))
+    .filter((z) => z.replace(/^(?:[-*+]|\d+\.|#{1,6}|\|)\s*/, "").trim().length >= MIN_ZEICHEN_JE_BEFUND);
 }
 
 function bau(client) {
@@ -208,15 +212,17 @@ function bau(client) {
       "Bau ohne Kritik-Befunde ist gesperrt — mindestens eine nicht-leere KRITIK-*.md nötig.",
     );
   }
-  const brauchbar = dateien.filter((name) => {
-    const roh = fs.readFileSync(path.join(client, name), "utf8");
-    return roh.trim().length >= MIN_KRITIK_ZEICHEN && hatBefundStruktur(roh);
-  });
+  const brauchbar = dateien.filter(
+    (name) =>
+      befundZeilen(fs.readFileSync(path.join(client, name), "utf8")).length >=
+      MIN_BEFUND_ZEILEN,
+  );
   if (brauchbar.length < 1) {
     sperre(
       `KRITIK-Datei(en) vorhanden, aber ohne erkennbare Befunde: ${dateien.join(", ")}. ` +
-        `Verlangt sind mindestens ${MIN_KRITIK_ZEICHEN} Zeichen und eine Befundliste ` +
-        "(Aufzählung, Tabelle oder Überschriften) — ein Platzhalter öffnet den Bau nicht.",
+        `Verlangt sind mindestens ${MIN_BEFUND_ZEILEN} benannte Befunde als Aufzählung, ` +
+        `Tabellenzeile oder Überschrift (je mindestens ${MIN_ZEICHEN_JE_BEFUND} Zeichen Inhalt) — ` +
+        "ein Platzhalter oder reiner Fließtext öffnet den Bau nicht.",
     );
   }
   process.exit(0);

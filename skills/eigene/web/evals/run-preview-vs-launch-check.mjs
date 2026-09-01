@@ -425,6 +425,41 @@ try {
   fs.writeFileSync(kritikDatei, "x");
   zeile(gate("bau", tmp) === 2, "Gate bau: Platzhalter-Byte statt Befund gesperrt (Exit 2)");
 
+  // Beide Richtungen: Fuellmaterial darf nicht durch, echte knappe Arbeit
+  // darf nicht blockieren. Ein Laengen-Schwellwert kann das nicht — er liess
+  // 326 Zeichen Lorem-Ipsum passieren und sperrte drei ehrliche Befunde.
+  fs.writeFileSync(kritikDatei, "- " + "lorem ipsum dolor sit amet ".repeat(12));
+  zeile(
+    gate("bau", tmp) === 2,
+    "Gate bau: langer Fliesstext mit einem Spiegelstrich gesperrt (Exit 2)",
+  );
+  fs.writeFileSync(kritikDatei, "- kurz\n- auch\n");
+  zeile(gate("bau", tmp) === 2, "Gate bau: Stichworte ohne Inhalt gesperrt (Exit 2)");
+  fs.writeFileSync(
+    kritikDatei,
+    [
+      "- Hero ohne visuellen Anker im Fold",
+      "- Sektionsabstaende springen 48 zu 112",
+      "- CTA bricht auf Mobil dreizeilig um",
+      "",
+    ].join("\n"),
+  );
+  zeile(
+    gate("bau", tmp) === 0,
+    "Gate bau: drei knappe echte Befunde oeffnen (kein False Positive)",
+  );
+  fs.writeFileSync(
+    kritikDatei,
+    [
+      "| Route | Befund |",
+      "|---|---|",
+      "| / | Hero traegt nicht, kein Anker |",
+      "| /leistungen | Abstaende inkonsistent ueber Folds |",
+      "",
+    ].join("\n"),
+  );
+  zeile(gate("bau", tmp) === 0, "Gate bau: Tabellen-Kritik oeffnet (kein False Positive)");
+
   zeile(gate("quatsch", tmp) === 64, "Gate: unbekannte Rolle ist Usage-Fehler (Exit 64)");
 
   // Ein untergeschobener Symlink darf die Ablage nicht aus dem Client tragen.
