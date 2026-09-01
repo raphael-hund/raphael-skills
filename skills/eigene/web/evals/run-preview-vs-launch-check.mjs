@@ -18,6 +18,7 @@
  */
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -121,6 +122,24 @@ const faelle = [
     preview: "park",
     gap: false,
   },
+  {
+    text: "sichtbare Platzhalter im Hero",
+    klasse: "visual-block",
+    preview: "block",
+    gap: true,
+  },
+  {
+    text: "kein einziges Foto auf einer Handwerker-Seite",
+    klasse: "visual-block",
+    preview: "block",
+    gap: true,
+  },
+  {
+    text: "Domain fehlt",
+    klasse: "ops-park",
+    preview: "park",
+    gap: false,
+  },
 ];
 
 for (const fall of faelle) {
@@ -182,6 +201,61 @@ zeile(
   );
 }
 
+{
+  const r = spawnSync(
+    "node",
+    [KLASS, "--json", "sichtbare Platzhalter im Hero"],
+    { encoding: "utf8" },
+  );
+  let parsed = null;
+  try {
+    parsed = JSON.parse(r.stdout || "");
+  } catch {
+    parsed = null;
+  }
+  zeile(
+    r.status === 0 && parsed?.klasse === "visual-block" && parsed?.preview === "block",
+    "CLI --json: Platzhalter im Hero → visual-block",
+    r.stdout?.trim(),
+  );
+}
+
+{
+  const r = spawnSync(
+    "node",
+    [KLASS, "--json", "kein einziges Foto auf einer Handwerker-Seite"],
+    { encoding: "utf8" },
+  );
+  let parsed = null;
+  try {
+    parsed = JSON.parse(r.stdout || "");
+  } catch {
+    parsed = null;
+  }
+  zeile(
+    r.status === 0 && parsed?.klasse === "visual-block" && parsed?.preview === "block",
+    "CLI --json: kein Foto → visual-block",
+    r.stdout?.trim(),
+  );
+}
+
+{
+  const r = spawnSync("node", [KLASS, "--json", "Domain fehlt"], {
+    encoding: "utf8",
+  });
+  let parsed = null;
+  try {
+    parsed = JSON.parse(r.stdout || "");
+  } catch {
+    parsed = null;
+  }
+  zeile(
+    r.status === 0 && parsed?.klasse === "ops-park" && parsed?.preview === "park",
+    "CLI --json: Domain ohne Vercel-Wort → ops-park",
+    r.stdout?.trim(),
+  );
+}
+
 zeile(
   /FAKT-GATE/.test(skill) && /Kunden-Vorschau/.test(skill),
   "web SKILL.md nennt FAKT-GATE und Kunden-Vorschau",
@@ -207,8 +281,8 @@ zeile(
   "qa-faecher.md: Trust-Zahlen sind Launch, nicht Vorschau",
 );
 zeile(
-  /Executor = Controller/.test(skill) && /PNG-Binaries/.test(skill),
-  "web SKILL.md: Executor ist Controller, Parent ohne PNG-Dump",
+  /Bau-Session = Controller/.test(skill) && /PNG-Binaries/.test(skill),
+  "web SKILL.md: Bau-Session ist Controller, Parent ohne PNG-Dump",
 );
 zeile(
   /müssen/.test(skill) && /orchestrate/.test(skill) && !/Liste nicht nachladen/.test(skill),
@@ -257,6 +331,109 @@ if (fs.existsSync(KONTRAKT)) {
   zeile(false, "visual-aaa kritiker-kontrakt.md erreichbar");
 }
 
+
+// ---------------------------------------------------------------------------
+// Regressionsschutz für die zwei Löcher, an denen die Vorschau historisch
+// falsch entschieden hat: schlechtes Design kam nicht durch, Content-Nits
+// blockten. Beide Richtungen werden am echten Klassifizierer geprüft.
+// ---------------------------------------------------------------------------
+
+const KLASSEN_FAELLE = [
+  ["Hero sieht billig aus", "visual-block"],
+  ["wirkt lieblos und generisch", "visual-block"],
+  ["kein visueller Anker im Fold", "visual-block"],
+  ["sichtbare Platzhalter im Hero", "visual-block"],
+  ["kein einziges Foto auf einer Handwerker-Seite", "visual-block"],
+  ["50 statt 60 Google-Bewertungen sichtbar im Hero", "content-park"],
+  ["sichtbarer Tippfehler im Hero", "content-park"],
+  ["Custom-Domain sichtbar im Footer", "ops-park"],
+  ["Custom-Domain zeigt noch auf Telekom", "ops-park"],
+  ["Sitemap hat keine Leistungsseite", "struktur-block"],
+];
+
+for (const [befund, erwartet] of KLASSEN_FAELLE) {
+  const ist = klassifiziereBefund(befund).klasse;
+  zeile(ist === erwartet, `Klassifizierer: "${befund}" -> ${erwartet}`, `ist: ${ist}`);
+}
+
+zeile(
+  darfBiggestGapSein("Hero sieht billig aus", "preview") === true,
+  "Schlechtes Design darf in der Vorschau biggest_gap sein",
+);
+zeile(
+  darfBiggestGapSein("50 statt 60 Google-Bewertungen sichtbar im Hero", "preview") === false,
+  "Sichtbarer Content-Nit ist kein Vorschau-biggest_gap",
+);
+
+// ---------------------------------------------------------------------------
+// session-gate.mjs: das Gate muss ein ausgefülltes Arbeitsprodukt verlangen,
+// nicht nur einen Dateinamen. Jeder Fall hier war einmal ein echter Bypass.
+// ---------------------------------------------------------------------------
+
+const GATE = path.join(WEB, "scripts", "session-gate.mjs");
+
+function gate(rolle, client) {
+  return spawnSync("node", [GATE, "--rolle", rolle, "--client", client], {
+    encoding: "utf8",
+  }).status;
+}
+
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "web-session-gate-"));
+try {
+  zeile(gate("plan", tmp) === 0, "Gate plan: legt PRUEFGEGEN.md an (Exit 0)");
+  zeile(
+    gate("kritik", tmp) === 2,
+    "Gate kritik: unveränderte Template-Kopie bleibt gesperrt (Exit 2)",
+  );
+
+  const pruefgegen = path.join(tmp, "PRUEFGEGEN.md");
+  const eigen = [
+    "| Design | web | stil-regeln.md | Fold 1440 | Traegt der Hero ohne Erklaerung? |",
+    "| Copy | copywriting | VOICE.md | Fold 390 | Klingt der Text nach dem Kunden? |",
+  ].join("\n");
+  fs.writeFileSync(
+    pruefgegen,
+    fs
+      .readFileSync(pruefgegen, "utf8")
+      .replace(/<!--\s*AUSFUELLEN\s*-->/i, "") + "\n" + eigen + "\n",
+  );
+  zeile(gate("kritik", tmp) === 0, "Gate kritik: ausgefüllte Datei öffnet (Exit 0)");
+
+  const kritikDatei = path.join(tmp, "KRITIK-1.md");
+  zeile(gate("bau", tmp) === 2, "Gate bau: ohne Kritik-Befund gesperrt (Exit 2)");
+  fs.writeFileSync(kritikDatei, "");
+  zeile(gate("bau", tmp) === 2, "Gate bau: leere KRITIK-1.md gesperrt (Exit 2)");
+  fs.unlinkSync(kritikDatei);
+  fs.mkdirSync(kritikDatei);
+  zeile(gate("bau", tmp) === 2, "Gate bau: Verzeichnis statt Datei gesperrt (Exit 2)");
+  fs.rmdirSync(kritikDatei);
+  fs.symlinkSync(path.join(tmp, "gibt-es-nicht.md"), kritikDatei);
+  zeile(gate("bau", tmp) === 2, "Gate bau: toter Symlink gesperrt (Exit 2)");
+  fs.unlinkSync(kritikDatei);
+  fs.writeFileSync(kritikDatei, "Befund 1: Hero traegt nicht.\n");
+  zeile(gate("bau", tmp) === 0, "Gate bau: echter Kritik-Befund öffnet (Exit 0)");
+
+  zeile(gate("quatsch", tmp) === 64, "Gate: unbekannte Rolle ist Usage-Fehler (Exit 64)");
+
+  // Ein untergeschobener Symlink darf die Ablage nicht aus dem Client tragen.
+  const aussen = fs.mkdtempSync(path.join(os.tmpdir(), "web-gate-aussen-"));
+  const zweit = fs.mkdtempSync(path.join(os.tmpdir(), "web-gate-zweit-"));
+  try {
+    fs.symlinkSync(path.join(aussen, "entwischt.md"), path.join(zweit, "PRUEFGEGEN.md"));
+    const status = gate("plan", zweit);
+    zeile(
+      status === 2 && fs.readdirSync(aussen).length === 0,
+      "Gate plan: schreibt nicht durch einen Symlink aus dem Client heraus",
+      `Exit ${status}, außerhalb: ${fs.readdirSync(aussen).length}`,
+    );
+  } finally {
+    fs.rmSync(aussen, { recursive: true, force: true });
+    fs.rmSync(zweit, { recursive: true, force: true });
+  }
+} finally {
+  fs.rmSync(tmp, { recursive: true, force: true });
+}
+
 console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
 if (fehler) process.exit(1);
-console.log("Vorschau-vor-Launch-Vertrag hält.");
+console.log("Vorschau-vor-Launch-Vertrag und Session-Gate halten.");

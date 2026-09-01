@@ -35,8 +35,8 @@ Erst Gesundheit (Konsole-Fehler, 404s, Ladezeit, Mobile-Viewport), dann Ästheti
    Hickup, kaputter Screenshot) werden so herausgefiltert, bevor sie einen
    Panel-Lauf auslösen.
 4. Erst wenn ein Muster bestätigt ist: normaler Ablauf ab Schritt 1 dieser
-   Datei (Sweep→Selbst-ansehen→Panel→Fixliste→Fix→Re-Sweep) — der
-   Health-Sweep liefert nur den Auslöser, nicht die Entscheidung.
+   Datei (Sweep→Leaf-Read→Panel→Fixliste→Fix→Re-Sweep) — der Health-Sweep
+   liefert nur den Auslöser, nicht die Entscheidung.
 
 Cron-Vorschlag (Raphael muss freigeben, nicht Teil dieser Synthese-Datei):
 täglich außerhalb der Stoßzeiten, ein Job pro aktivem Kundenprojekt mit
@@ -96,12 +96,12 @@ für Fresh Load, Hard Reload, Back/Forward, Resize und Unterbrechung mit Recover
 Der statische Sweep bleibt Pflicht; Motion kann kein rotes Visual-, Functional-
 oder Regression-Gate ausgleichen.
 
-### 2. Selbst ansehen (Pflicht für die Kritik-Rolle)
-Wer urteilt, öffnet JEDES ihm zugeteilte PNG. Builder-Prosa ersetzt das nicht.
-In der Zwei-Session ist das das Kritik-Leaf (`visual-kritiker` / `kimi-recherche`),
-nicht der Executor-Parent. Parent führt nur das Shot-Ledger
-(`pfad | viewport | gelesen | verdict`) und zählt Zeilen gegen `manifest.json`.
-PNG-Binaries in die Hauptsession = Fail. Befundliste:
+### 2. Ansehen durch Kritik-Leaves (Pflicht, per Workflow delegiert)
+Jedes Kritik-Leaf öffnet JEDES ihm zugeteilte PNG. Builder-Prosa ersetzt das nicht.
+Die Kritik-Session delegiert die Reads per Workflow gemäß `kritik-matrix.md` an
+`visual-kritiker` / Grok / Kimi; der Parent/Controller öffnet oder liest nie PNGs.
+Er führt nur das Shot-Ledger (`pfad | viewport | gelesen-von | verdict`) und zählt
+Zeilen gegen `manifest.json`. PNG-Binaries in die Hauptsession = Fail. Befundliste:
 `befund: <shot-datei> | <was falsch ist> | <vermutete Ursache>`.
 Ohne Leaf-Read kein Panel-PASS.
 
@@ -135,10 +135,10 @@ internes Denken offenzulegen. Jeder Befund ohne Shot-Beleg gilt als nicht gefund
 
 ### 3a. Kritik-Flotte (Matrix, nicht ad-hoc)
 
-Spawn, Familien, Überlappung und Merge stehen nur in
-`kritik-matrix.md`. Hier nicht noch eine zweite Liste. Maßstäbe bleiben
-`design` (taste-kern, Detektoren, scan-ai-slop) plus web/seo — im Leaf-Prompt
-die **design-Pfade** nennen, nicht die Einzel-Skills extra laden.
+Die Kritik-Session muss Spawn, Familien, Überlappung und Merge aus
+`kritik-matrix.md` laden und befolgen. Hier nicht noch eine zweite Liste.
+Maßstäbe bleiben `design` (taste-kern, Detektoren, scan-ai-slop) plus web/seo —
+im Leaf-Prompt die **design-Pfade** nennen, nicht die Einzel-Skills extra laden.
 
 ### 3b. Blind-A/B vs. Weltklasse-Referenz (Pflicht bei Ship / Premium / Gauntlet)
 
@@ -194,9 +194,9 @@ Deshalb zusaetzlich (frische Session, andere Modellfamilie als Builder):
 Rollen-Mapping: `agent-roster.md` → Blind-A/B-Richter.
 
 ### 4. Verifizierte Fixliste
-Die aktuelle Koordination merged: nur Befunde, die (a) von >=2 Panel-Mitgliedern ODER
-(b) vom eigenen Auge + 1 Panel-Mitglied getragen werden, kommen auf die Fixliste.
-Blind-A/B-Luecken (Kandidat verliert) zaehlen wie Panel-Mehrheit.
+Die aktuelle Koordination merged ausschließlich die nach `kritik-matrix.md`
+überlebenden Befunde aus PAGE-, SITE- und LENS-Leaves auf die Fixliste.
+Blind-A/B-Luecken (Kandidat verliert) zählen wie Panel-Mehrheit.
 Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
 
 **Vorschau-Triage (hart, 01.09.2026):** Jeden Fixlisten-Kandidaten durch
@@ -209,7 +209,7 @@ Zyklus. `fake-proof` bleibt Launch-Sperre — Proof wird nicht erfunden.
 Lighthouse 98/100/100/100, 0 axe-Verstoesse, 0 Craft-Blocker, 0 Slop-Blocker.
 Das Panel fand darauf vier Dinge, die kein Exit-Code sieht:
 
-| Befund | Schwere | vom eigenen Auge bestaetigt |
+| Befund | Schwere | vom Panel bestätigt |
 |---|---|---|
 | kein einziges Foto auf einer Handwerker-Seite | BLOCK | ja |
 | Zitat schwebt ohne Anker in ~280px Leerraum | WARN | ja |
@@ -255,7 +255,7 @@ Abschluss-Checkliste (Pflichtzeilen im Report):
 ## Verbote (hart)
 - Kein fullPage-Screenshot, kein captureBeyondViewport (R20-Schein-Funde = Fullpage-Artefakte:
   fixed Elemente schweben mitten im Inhalt, leere Reveal-Flaechen).
-- Kein Panel ohne vorheriges eigenes Ansehen der Shots.
+- Kein Panel ohne vorherigen PNG-Read aller zugeteilten Shots durch Kritik-Leaves.
 - Kein „fixed" ohne Nachher-Shot, der das belegt.
 - Keine Design-Entscheidung aus dem Code heraus (z.B. „sticky ist gesetzt" statt
   „auf dem Shot klebt der Tag sichtbar").

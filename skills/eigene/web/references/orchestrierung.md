@@ -52,15 +52,16 @@ oder widerlegt die Befunde des anderen. Fixliste = überlebende Befunde.
 **Judge-Form immer „pass/fail + eingefügter Beweis", nie „erkläre dein Denken"**
 (Regel 19). Ein Befund ohne Beleg gilt als nicht gefunden.
 
-**Zusammenführen:** Auf die Fixliste kommt, was (a) zwei Panel-Mitglieder tragen oder
-(b) das eigene Auge plus ein Panel-Mitglied. Bei Widerspruch **nicht** nach Mehrheit
-entscheiden, sondern einen Verify-Agenten pro strittigem Befund ansetzen, mit der
-Vorgabe „widerlegt, wenn unsicher". Mehrheit belohnt sonst den häufigsten Irrtum.
+**Zusammenführen:** Auf die Fixliste kommen ausschließlich die nach
+`kritik-matrix.md` überlebenden Befunde aus PAGE-, SITE- und LENS-Leaves. Bei
+Widerspruch **nicht** nach Mehrheit entscheiden, sondern einen Verify-Agenten pro
+strittigem Befund ansetzen, mit der Vorgabe „widerlegt, wenn unsicher". Mehrheit
+belohnt sonst den häufigsten Irrtum.
 
 ## Reihenfolge: erst das Tor, dann das Panel
 
 ```
-Build → g1-gate.mjs (Exit 0?) → shot-sweep.mjs → eigenes Ansehen → Panel → Fixliste → Fix → zurück zum Tor
+Build → g1-gate.mjs (Exit 0?) → shot-sweep.mjs → Kritik-Leaves lesen PNGs → Panel → Fixliste → Fix → zurück zum Tor
 ```
 
 Das Panel läuft **nach** G1, nicht davor. Menschen (und Modelle) über eine Seite urteilen
@@ -120,7 +121,7 @@ UI-Blickwinkel, Opus setzt die Entscheidung um. Für diesen Skill gilt:
 - Genau ein `opus-builder` integriert alle bestätigten Ergebnisse.
 - Der Integrator bekommt Ziel, Referenzen, erforderliches Verhalten, Grenzen,
   Testplan und die vollständige Liste bestätigter Befunde.
-- Danach folgen G1, Shot-Sweep, eigenes Ansehen und familienfremdes Panel.
+- Danach folgen G1, Shot-Sweep, PNG-Reads durch Kritik-Leaves und familienfremdes Panel.
 
 Ein Lauf ist bei einem dieser Befunde rot: überlappende Opus-Schreibbereiche,
 fehlender Integrator oder ein Bau ohne fremdfamiliäre Kritik

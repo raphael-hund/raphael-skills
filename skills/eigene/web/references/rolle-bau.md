@@ -1,0 +1,162 @@
+# Rolle: Bau-Session
+
+Einstiegs-Ebene für die **Bau**-Session der Drei-Sessions-Ordnung
+(Plan / Kritik / Bau). Detail-Ebene: `loop2-ablauf.md` (Reihenfolge, Gates,
+Output-Pfade), `planner-executor-protokoll.md` (Handoff),
+`agent-roster.md` + `orchestrierung.md` (Rollen, Parallelität),
+`tool-usecase-router.md` (Werkzeugtabelle), `load-graph.md` (was geladen wird).
+
+Chip-Leiste: **`/web` + `/orchestrate`**, Ultracode-Session-Default genügt —
+kein zusätzlicher `/ultracode`-Slash, kein `/design`.
+
+## Start der Session (hart)
+
+```bash
+node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
+  --rolle bau --client /root/clients/client-<name>/web/handoff
+```
+
+Exit 2 = gesperrt: ohne mindestens eine `KRITIK-n.md` baut niemand. Dann
+zurück an die Kritik-Session.
+
+## Erster Turn = Dynamic Workflow
+
+Die Bau-Session startet **im ersten Turn** einen Dynamic Workflow. Kein
+Solo-CSS im Parent, keine „ich schau mal schnell selbst“-Runde davor.
+`/orchestrate` ist der Controller-Owner.
+
+## Der Parent ist Controller, nicht Builder
+
+| Parent macht | Parent macht nie |
+|---|---|
+| Zerlegen, dispatchen, Ledger führen, mergen, abnehmen | CSS-/TSX-Datei editieren, Animationen durchrechnen, PNG-Binaries lesen |
+
+Kein Solo-Debug von `wipe.css` im Parent: belegte Ursachen (datei:zeile) gehen
+an Leaves. Der Parent führt das Shot-Ledger
+(`pfad | viewport | gelesen-von | verdict`) in `STATUS.md` und zählt es gegen
+`manifest.json`.
+
+## Leaves — so viele wie Pakete
+
+Typischer Zuschnitt, adaptiv bis zur Live-Kapazität:
+
+| Paket | Wer |
+|---|---|
+| Sweep-Skript (kein Agent) | `shot-sweep --base <dev-url> --static --states --mobile` |
+| Visuelle Kritik derselben Shots | fremde tatsächliche Familien, `visual-kritiker` (Grok) + `kimi-recherche` |
+| Belegte Code-Ursache (datei:zeile) | `grok-worker`, Input = Shot-Pfad + CSS-Ausschnitt |
+| **Copy** | `kimi-worker` **oder** `sol-builder` (gleichberechtigt, explizit besetzt) |
+| Integration gemeinsamer UI-Flächen | **genau ein** `opus-builder` |
+| Code-Ursache / Ship-Review (Textausschnitt) | `sol-pruefer` — nie Bildpfade an Sol |
+
+Unabhängige Analysen und disjunkte Baupakete laufen parallel; abhängige oder
+write-set-überlappende Pakete laufen sequenziell oder in Worktrees. Kein Fable
+als Subagent, nie Haiku. Wer baut, reviewt nicht.
+
+## Copy im Bau: das absolute Copy-Verbot für Opus
+
+Die Copy schreibt im Workflow **`kimi-worker` oder `sol-builder`** — nach dem
+Copy-Briefing aus `PLAN.md` (Zielgruppe, Ton, VOICE-Referenz, Keyword je Route,
+Proof-Lage). Das Briefing kommt aus der Plan-Session; die Bau-Session erfindet
+es nicht neu.
+
+**`opus-builder` schreibt nie Copy** — keine Headlines, keinen Fließtext, keine
+CTAs, keine Microcopy, keine Fehlermeldungen. Opus baut freigegebene Texte
+**unverändert** ein. Passt ein Text nicht ins Layout, meldet Opus den
+Layoutkonflikt zurück, statt den Text zu ändern.
+
+Vorschau-Copy darf Working-Copy sein: Platzhalter-Reviews und offene Zahlen
+sind erlaubt (`content-park`). G2-Judge und echte Proofs sind Launch-Gates
+(`rolle-launch.md`).
+
+## Nur Kritik-Überlebende umsetzen
+
+Die Fixliste ist die Liste der Befunde, die die Merge-Regel aus
+`kritik-matrix.md` überlebt haben — nicht die Sammelmenge aller Leaf-Meinungen.
+
+- **Keine neue Kritik erfinden.** Fällt dem Parent im Bau etwas auf, das nicht
+  in `KRITIK-n.md` steht, geht es als Zeile an die Kritik-Session, nicht als
+  stiller Extra-Fix in den Build.
+- **Den Plan nicht umwerfen.** Jede Abweichung vom Plan bekommt eine eigene
+  Zeile in `STATUS.md` („Abweichung: … Grund: …“); ob `PLAN.md` einen
+  Änderungsblock bekommt, entscheidet die Plan-Session.
+- `park`-Befunde (`content-park`, `ops-park`) sind kein Bau-Blocker; sie bleiben
+  `FAKT-GATE`-Zeilen für den Launch.
+
+## Re-Sweep nach Fixes (hart)
+
+Nach jedem Fix werden **alle** betroffenen Routen erneut gesweept; die neuen
+Ledger-Zeilen tragen einen Zeitstempel nach dem Fix. **Ohne frischen Sweep nach
+einem Fix = nicht geprüft** — ein Code-Diff ist kein Sichtbeweis.
+
+Jeder neue Build invalidiert alte G1-, Sweep- und Ship-QA (Run-Evidence-Kette,
+`run-evidence-contract.md`); nach jedem Build läuft
+`run-evidence.mjs bind-build --revision <build_revision>`.
+
+## Werkzeugtabelle vor dem ersten `npm i`
+
+Reihenfolge: Bedarf → Router-Zeile aus `tool-usecase-router.md` → bei einer der
+zehn Vendor-Quellen zuerst lokal `resources/components/INDEX.md`, dann den
+Site-Index → Werkzeugtabelle.
+
+Die Tabelle steht genau einmal in `client-<name>/web/art-direction.md` zwischen
+`<!-- WERKZEUGTABELLE:START -->` und `<!-- WERKZEUGTABELLE:ENDE -->`; jede Zeile
+nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker. **Ohne Tabelle kein
+`npm i`.** Keine Dependency in `package.json` ohne Zeile:
+
+```bash
+node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> \
+  --tabelle <pfad>/art-direction.md --profile node|static|cms
+```
+
+Genau eines der Profile `node`, `static`, `cms`. Bei eigenem TypeScript/
+JavaScript zusätzlich `npx oxlint` Exit 0
+(`code-qualitaets-checkliste.md`, Skill `install-anti-slop`).
+
+## Art-Direction im Bau
+
+Pflicht-Load zuerst: `stil-regeln.md` (Sektor-Dials §1) plus 2–3 passende Cases
+aus `muster-bibliothek/INDEX.md`. Erst dann der `design`-Skill; Design-G1 ist
+`node /root/raphael-skills/skills/design/scripts/detect.mjs` Exit 0 — nie
+`npx impeccable detect`. Jede Section zitiert eine Regel-ID oder einen Case.
+Art-Direction ohne `stil-regeln.md` + Cases ist improvisierter Geschmack.
+
+Trust-/Social-Proof-Logos laufen **nicht** über `higgsfield`: Marken-Logos als
+Original beschaffen (offizielles Brand-Kit → `vectorlogo.zone`/`simpleicons.org`
+→ CDN/Wikimedia), SVG vor PNG.
+
+## Workspace-pro-Version (Bestandsseiten, bindend)
+
+Update an einer bestehenden Site = immer neuer Workspace/Worktree von `main`.
+`main` trägt nur flache Squash-Commits.
+
+- **Gefällt Raphael** → EIN Squash-Commit auf `main` vorschlagen. Zustimmung zum
+  Ergebnis ist **keine** Commit-Freigabe: Commit, Push und Deploy je nur auf
+  ausdrückliche Freigabe für genau diese Aktion. Danach Workspace + Branch
+  löschen.
+- **Gefällt nicht** → Workspace + Branch ersatzlos löschen **und** das
+  Abgelehnte als Verboten-Eintrag in Root-`DESIGN.md`/`DECISIONS.md` schreiben.
+- **Raphael-Nein in derselben Session** (ein Asset, ein Motiv, ein Muster):
+  sofort Route + Dateipfad + Ersatz in `DESIGN.md`/`DECISIONS.md`, Datei per
+  `bilder.mjs reject` löschen, Code auf den Ersatz umstellen. Der gesperrte Pfad
+  darf auf dieser Route nicht mehr vorkommen (`rg` vor Ship). Nur die Datei zu
+  löschen reicht nicht.
+- Historie und Archiv-Ordner sind keine Quelle: nichts aus `git log`, alten
+  Plänen oder Chat-Handoffs wieder einbauen.
+- Nie alte Workspaces liegen lassen, nie parallel im Root-Checkout bauen.
+
+## Startzeile (wörtlich)
+
+```
+/web /orchestrate — Bau, client-<name>. Du bist Controller, nicht der Builder.
+Der Ultracode-Session-Default genügt; kein /ultracode-Slash nötig.
+Parent editiert keine CSS-/TSX-Datei und liest keine PNG-Binaries.
+Starte im ersten Turn JETZT einen Dynamic Workflow. Leaves, so viele wie Pakete:
+1. shot-sweep --base <dev-url> --static --states --mobile → manifest.json + PNG-Pfade
+2. visual-kritiker (Grok) und kimi-recherche unabhängig auf denselben Fold/Hover-Shots
+3. grok-worker nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt
+4. kimi-worker oder sol-builder für Copy nach dem Briefing aus PLAN.md
+5. opus-builder nur als Integrator für sichtbare UI-Fixes (baut Copy unverändert ein)
+Rückgabe an Plan: STATUS.md + KRITIK-n.md mit Shot-Pfaden, biggest_gap visuell,
+FAKT-GATE geparkt. Kein Solo-Debug von wipe.css im Parent.
+```

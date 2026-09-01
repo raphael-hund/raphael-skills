@@ -14,25 +14,51 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
+// Handfeste Gestaltungsbefunde: blocken die Vorschau immer.
 const VISUAL =
-  /hierarchie|spacing|typo|beschnitten|angeschnitten|bildschnitt|crop\b|layout kaputt|kontrast|hero (tot|leer)|template|button-famil|leerfl|rhythmus|motion|wipe\b|cta-f(?:ue|ü)hrung|sieht (behindert|schei(?:ß|ss)|schlecht|hässlich)|nicht premium|fold\b|überlapp|ueberlapp|safe-margin|kopf .*(?:rand|rahmen)|vier button|design (?:fail|rot|daneben)/i;
+  /hierarchie|spacing|typo|beschnitten|angeschnitten|bildschnitt|crop\b|layout kaputt|\blayout\b|kontrast|hero (tot|leer)|template|button-famil|leerfl|rhythmus|motion|wipe\b|cta-f(?:ue|ü)hrung|nicht premium|fold\b|überlapp|ueberlapp|safe-margin|kopf .*(?:rand|rahmen)|vier button|design (?:fail|rot|daneben)|kein(?:e[sn]?)?(?:\s+einziges)?\s+(?:foto|bild)\b|ohne bilder|fehlende bilder|kein(?:en)? visuelle[rn]? anker/i;
+
+// Subjektive Gesamturteile über die Gestaltung ("sieht billig aus", "wirkt
+// lieblos"). Historischer Kernfehler: die fielen auf "sonst" und konnten die
+// Vorschau nicht blocken, obwohl schlechtes Design genau der Vorschau-Blocker ist.
+const VISUAL_URTEIL =
+  /sieht\s+(?:\w+\s+){0,3}(?:behindert|schei(?:ß|ss)\w*|schlecht|hässlich|haesslich|billig|unfertig|generisch|lieblos|austauschbar|nach baukasten)|wirkt\s+(?:\w+\s+){0,3}(?:billig|lieblos|generisch|unfertig|schlecht|austauschbar)|\blieblos\b|nach baukasten/i;
+
+// Sichtbarkeits- und Ortswörter sind allein KEIN Visual-Signal — sonst wird
+// jeder Content-Nit "sichtbar im Hero" fälschlich zum Vorschau-Blocker.
+const VISUAL_KONTEXT = /sichtbar|\bhero\b|\bfold\b|\blayout\b/i;
 
 const STRUKTUR =
   /sitemap|informationsarchitektur|\bablauf\b|funnel|nav(?:igation)?-struktur|\bidee\b|kernidee|seitenfluss|unterseiten fehlen|route fehlt/i;
 
 const OPS =
-  /vercel|custom-domain|custom domain|\bdns\b|domain nicht (?:verbunden|angebunden|an vercel)|nicht mit vercel|preview-url|apex-domain/i;
+  /vercel|custom-domain|custom domain|\bdns\b|\bssl\b|\bdomain\b|zertifikat|nameserver|domain nicht (?:verbunden|angebunden|an vercel)|nicht mit vercel|preview-url|apex-domain/i;
 
 const INHALT =
-  /google-bewertung|bewertungszahl|\breviews?\b|\d+\s*(?:vs|oder|\/)\s*\d+|stunden[- ]?(?:versprechen|sla)|lieferzeit|werktage|24\s*(?:vs|oder|\/)\s*28|50\s*(?:vs|oder|\/)\s*60|erfunden|fake[- ]?(?:review|bewertung|proof|logo)|ki-person|platzhalter|placeholder|satz.{0,60}falsch|wort tauschen|bild tauschen|copy[- ]nit|sektionstext/i;
+  /google-bewertung|bewertungszahl|\breviews?\b|\d+\s*(?:vs|oder|statt|\/)\s*\d+|stunden[- ]?(?:versprechen|sla)|lieferzeit|werktage|tippfehler|rechtschreib|erfunden|fake[- ]?(?:review|bewertung|proof|logo)|ki-person|platzhalter|placeholder|satz.{0,60}falsch|wort tauschen|bild tauschen|copy[- ]nit|sektionstext/i;
+
+function visualBlock() {
+  return { klasse: "visual-block", preview: "block", launch: "block" };
+}
 
 export function klassifiziereBefund(text) {
   const roh = String(text ?? "").trim();
   if (!roh) return { klasse: "leer", preview: "ignore", launch: "ignore" };
 
-  // Design/Struktur gewinnen, auch wenn derselbe Satz eine Zahl oder ein Review enthält.
-  if (VISUAL.test(roh)) {
-    return { klasse: "visual-block", preview: "block", launch: "block" };
+  // Reihenfolge ist die Fachaussage: ein handfester Gestaltungsbefund oder ein
+  // Design-Urteil blockt, auch wenn im selben Satz eine Zahl steht. Danach
+  // gewinnt der Content-/Ops-Kern über bloße Sichtbarkeitswörter.
+  if (VISUAL.test(roh) || VISUAL_URTEIL.test(roh)) {
+    return visualBlock();
+  }
+  // Ein sichtbarer Platzhalter ist eine visuelle Lücke, kein Content-Swap —
+  // aber nur, wenn kein Ops-Kern (Domain/DNS) den Befund trägt.
+  if (
+    VISUAL_KONTEXT.test(roh) &&
+    /platzhalter|placeholder/i.test(roh) &&
+    !OPS.test(roh)
+  ) {
+    return visualBlock();
   }
   if (STRUKTUR.test(roh)) {
     return { klasse: "struktur-block", preview: "block", launch: "block" };

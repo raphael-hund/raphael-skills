@@ -1,15 +1,20 @@
 # QA-Fächer (parallel, Schwarm gemischt)
 
+**Kunden-Vorschau (G1):** nur Fach 2 visuell — frische Shots plus
+`node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>` = Exit 0.
+Ablauf, Sitemap, Idee und Design blocken; Fakten-Nits parken als FAKT-GATE.
+Lighthouse/axe, Copy-G2 und Proof-Wahrheit sind ausschließlich Launch-Gates.
+
 Sechs Fächer: 1–4 parallel (gemischte Modellfamilien), danach 5 SEO und 6 Trust
-(können parallel zueinander laufen, brauchen aber fertige Routes/Content).
-G1 zuerst, dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung.
-Rollen: `agent-roster.md`. AAA-Raster: `agentur-rubrik.md`.
+(können parallel zueinander laufen, brauchen aber fertige Routes/Content) für den
+Launch. G1 zuerst, dann fachlicher G2-Blick. Rollen: `agent-roster.md`.
+AAA-Raster: `agentur-rubrik.md`.
 
 ## Drei Freigabedimensionen (getrennt, nicht verrechenbar)
 
 | Dimension | Eigenständiger PASS-Beleg |
 |---|---|
-| **Visuell** | Kanonischer Screenshot-Sweep, Self-Read, Kritik-Loop und bei Ship das terminale `visual-aaa`-Manifest. |
+| **Visuell** | Kanonischer Screenshot-Sweep, PNG-Read durch Kritik-Leaves, Kritik-Loop und bei Ship das terminale `visual-aaa`-Manifest. |
 | **Funktional** | Feste Nutzeraufgaben bestehen; Route×Viewport×Target×State-Matrix und target-lokale A11y sind vollständig; Formulare, Links und Recovery-Pfade funktionieren. |
 | **Regression** | Vorher/Nachher gegen denselben Auftrag und dieselbe Build-Revision; nur verlangter Scope geändert, alle geänderten und betroffenen Nachbarrouten erneut geprüft. |
 
@@ -132,7 +137,8 @@ Fail = ein Punkt offen → zurück in den Bildgenerierungs-/Freisteller-Schritt,
 Layout nachbessern. (F) rot = kein Ship, auch wenn (A)–(E) grün sind.
 
 ## Fach 3 — A11y
-- G1: axe = 0 Fehler (hart). Farbkontrast AA, Fokus-Reihenfolge, Alt-Texte, Labels.
+- **Launch-Fach:** G1: axe = 0 Fehler (hart; nicht Vorschau). Farbkontrast AA,
+  Fokus-Reihenfolge, Alt-Texte, Labels.
 - Tastatur-Navigation vollständig, ARIA korrekt (nicht überladen).
 - **Target-lokal statt Seitenpauschale:** Für jeden Schlüssel aus
   `Route × Viewport × Target × State` enthält der Capture-Beleg die echte
@@ -145,7 +151,8 @@ Layout nachbessern. (F) rot = kein Ship, auch wenn (A)–(E) grün sind.
   fehlschlägt — auch bei visuell korrektem Screenshot.
 
 ## Fach 4 — Technik
-- G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO), Link-Check, HTML-validate.
+- **Launch-Fach:** G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO;
+  nicht Vorschau), Link-Check, HTML-validate.
 - Meta/OG/Schema vorhanden, Canonical korrekt, keine Broken Links, responsive.
 - **G1 Werkzeug-Gate (hart):** `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle
   <pfad>/art-direction.md` = Exit 0. Prueft deterministisch: genau EIN Icon-System,

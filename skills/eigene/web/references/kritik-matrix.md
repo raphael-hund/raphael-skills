@@ -13,7 +13,7 @@ in Roster, Loop 3a und QA-Fächer noch einmal ausformulieren.
 |---|---|---|---|
 | **Plan** | `/web` | PLAN.md, PRUEFGEGEN.md, Reihenfolge | Code, PNG-Read, Subagenten |
 | **Kritik** | `/web` + `/orchestrate` | Sweep-Skript + Kritik-Leaves, KRITIK-n.md, Shot-Ledger | Code, Deploy, PNG-Dump in den Parent |
-| **Bau** (Bilder/Executor) | `/web` + `/orchestrate` | Nur überlebende Fixliste umsetzen, Re-Sweep, Ledger nachziehen | Neue Kritik erfinden, Plan umwerfen |
+| **Bau** | `/web` + `/orchestrate` | Nur überlebende Fixliste umsetzen, Re-Sweep, Ledger nachziehen | Neue Kritik erfinden, Plan umwerfen |
 
 Plan schreibt, wogegen geprüft wird. Kritik prüft. Bau setzt um und prüft den
 Fix am neuen Shot.
@@ -100,7 +100,7 @@ Keine PNGs, kein Base64, keine Transkripte.
 - 1440×900 Fold und 390×844 Mobil je geänderter Route. Hover-Shots für CTAs.
 - fullPage ist kein Kritik-Input.
 - Leaf bekommt nur die Pfade seiner Achse plus `manifest.json`.
-- Parent-Ledger: `pfad | viewport | gelesen (welches Leaf) | verdict`.
+- Parent-Ledger: `pfad | viewport | gelesen-von | verdict`.
 - Nach jedem Bau-Fix: neuer Sweep, Ledger-Zeilen mit Zeitstempel nach dem Fix.
 
 ## Aufräumen — was diese Datei ersetzt

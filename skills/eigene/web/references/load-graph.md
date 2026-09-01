@@ -57,7 +57,8 @@ Sektor-Tabelle in `stil-regeln.md` §1 (Regel S15).
 | Skill `higgsfield` + `bildgenerierung.md` | echte Bildgenerierung ansteht |
 | Skill `seo` | Loop-4 oder ausdrücklicher SEO-Auftrag |
 | `screenshot-kritik-loop.md` | Kritik-Panel oder Blind-A/B läuft |
-| `planner-executor-protokoll.md` | Zwei-Session-Betrieb: Handoff schreiben/empfangen oder Session-Rotation |
+| `planner-executor-protokoll.md` | Drei-Sessions-Betrieb (Plan/Kritik/Bau): Handoff schreiben/empfangen oder Session-Rotation |
+| `kritik-matrix.md` | **Pflicht in der Kritik-Session:** vor dem Spawn der Flotte laden und befolgen |
 | Skill `visual-aaa` | terminales Pixel-/DoneClaim-Gate nach G1; nie als Workflow-Owner |
 | `motion-doktrin.md` | eine Motion-Komponente wirklich gebaut wird |
 | `web-clone-playbook.md` | URL-Vorlage nachbauen (Lizenz zuerst) |

@@ -145,7 +145,7 @@ Genau daran ist das Tor gescheitert. Seit 27.07. gilt:
 | Frage | Wer entscheidet | Stufe |
 |---|---|---|
 | Ist ueberhaupt ein Bild ueber Icon-Groesse da? | `craft-check.mjs` (zaehlt) | **BLOCK** |
-| Ist es echt, passend, gut? Stock? KI-Uncanny? | Panel + eigenes Auge | INFO im Skript |
+| Ist es echt, passend, gut? Stock? KI-Uncanny? | Kritik-Leaves nach `kritik-matrix.md` | INFO im Skript |
 
 Gezaehlt werden `img`, `picture`, `video` und CSS-`background-image` ab 120×120px —
 Icons und Logos zaehlen nicht als Bildwelt, CSS-Verlaeufe erst recht nicht. Reine

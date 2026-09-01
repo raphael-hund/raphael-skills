@@ -23,7 +23,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |
 | **Website-Kritik** | `/web` + `/orchestrate` → `kritik-matrix.md` → shot-sweep `--base` → PAGE/SITE/LENS-Leaves | PRUEFGEGEN.md existiert; Ledger vollständig; KRITIK-n.md nach Merge |
 | **Website-Bau** (Fixes umsetzen) | `/web` + `/orchestrate` → nur KRITIK-n.md-Überlebende → Re-Sweep | Jeder Fix hat Nachher-Shot; keine neue Kritik erfunden |
-| **Nur Design/Look polieren** | `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
+| **Nur Design/Look polieren** | `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + Kritik-Leaves haben PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
 | **Stil-Entscheidung / Art-Direction** (Pflicht-Load) | `stil-regeln.md` **immer** + `muster-bibliothek/INDEX.md` scannen → 2–3 passende Cases laden | Jede Build-Section zitiert eine Regel-ID oder einen Case; QA gleicht gegen Regelbuch ab |
 | **Referenzseite einlernen** (Geschmack-Training) | `muster-bibliothek/_template.md` ausfüllen → INDEX-Zeile → Regel-Kandidaten in `stil-regeln.md` | Case-Datei + INDEX-Zeile + Raphael-Urteil vorhanden |
 | **Geschmack kalibrieren** (neue Seite studieren) | `scripts/muster-studie.mjs` → `muster-bibliothek/_template.md` → `muster-bibliothek/INDEX.md` | Tokens maschinell extrahiert, 1440×900 + 390×844 gelesen, INDEX-Zeile steht |
@@ -37,7 +37,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
 | **Security Formular/API** | `security-audit-playbook.md` (+ OWASP aus code-review bei Consent) | Fail-open-Defaults raus |
-| **Session übernehmen / Handoff** (Planner↔Executor, Rotation) | `planner-executor-protokoll.md` (Chips!) → `PLAN.md` vollständig → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Plan = `/web`; Kritik/Bau = `/web` + `/orchestrate`. | PRUEFGEGEN.md da; nächster Schritt aus STATUS.md; Parent ohne CSS/PNG-Dump |
+| **Session übernehmen / Handoff** (Plan/Kritik/Bau, Rotation) | `planner-executor-protokoll.md` (Chips!) → `PLAN.md` vollständig → `PRUEFGEGEN.md` → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Plan = `/web`; Kritik/Bau = `/web` + `/orchestrate`. | PRUEFGEGEN.md da; nächster Schritt aus STATUS.md; Parent ohne CSS/PNG-Dump |
 
 Wenn **mehrere** Zeilen passen: die **oberste** zuerst fertig machen, dann die nächste.
 Website **bauen** und Skill **verbessern** gleichzeitig? → Skill zuerst (dieser Pfad),
@@ -57,9 +57,11 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
   --routes /,/kontakt
 ```
 
-3. Jedes PNG **per Read ansehen** (nicht nur erzeugen).
-   Vor dem Ship: Root-`DESIGN.md` Teil D und `DECISIONS.md` auf Raphael-Nein
-   zur Route prüfen. Ein gesperrter Dateipfad auf der Seite = Fail.
+3. Jedes PNG liest ausschließlich das Kritik-Leaf (`visual-kritiker` / Grok / Kimi)
+   im Workflow, nicht der Parent/Controller. Der Parent führt nur das Shot-Ledger
+   (`pfad | viewport | gelesen-von | verdict`). Vor dem Ship: Root-`DESIGN.md` Teil D
+   und `DECISIONS.md` auf Raphael-Nein zur Route prüfen. Ein gesperrter Dateipfad auf
+   der Seite = Fail.
 4. Design-G1:
 
 ```bash
@@ -163,3 +165,48 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 
 *verify Anfänger-Pfad:* Agent nennt vor dem ersten Edit die gewählte Zeile aus §1
 und die geladenen Dateipfade. Fehlt das → Skill nicht befolgt.
+
+## 8. Reference-Routing — welche Datei wann
+
+| Anliegen | Datei |
+|---|---|
+| **Welche Session bin ich** | `references/rolle-plan.md` / `rolle-kritik.md` / `rolle-bau.md` / `rolle-launch.md` |
+| Spawn-Plan der Kritik (Gesetz) | `references/kritik-matrix.md` |
+| Handoff-Format, Truth-Dateien, Rotation (Detail) | `references/planner-executor-protokoll.md` |
+| Erster Einstieg / Auftrag wählen | `references/anfaenger-pfad.md` |
+| **Stil-Regeln Go/No-Go (Pflicht vor Art-Direction)** | `references/stil-regeln.md` + `references/muster-bibliothek/INDEX.md` |
+| Welche Skills lädt ein Site-Build (und welche nie) | `references/load-graph.md` |
+| Referenzseite einlernen (Geschmack-Training) | `references/muster-bibliothek/_template.md` |
+| Loop-2 Reihenfolge, Meaning-Capture, Gates, Output-Pfade | `references/loop2-ablauf.md` |
+| Ads-Landing: eine Aktion, Formular-Reihenfolge | `references/landingpage-struktur.md` |
+| Mehrseitige Sitemap + Section-Plan (Pflicht-Format) | `references/sitemap-section-planung.md` |
+| IA-Wissen (Nav, URLs, Linkgraph) | `references/informationsarchitektur.md` |
+| Rollen / agentType / Parallel | `references/agent-roster.md` + `references/orchestrierung.md` |
+| Tools/Defaults statt Link-Dump | `references/tool-usecase-router.md` |
+| QA 6 Fächer + Formular-G1 | `references/qa-faecher.md` |
+| AAA Visual/SEO/Trust (≠ WCAG AAA) | `references/agentur-rubrik.md` |
+| Screenshots + Kritik-Panel + Blind-A/B | `references/screenshot-kritik-loop.md` |
+| Completion-Kette, run-evidence.json | `references/run-evidence-contract.md` |
+| Premium Landing-Regeln (15) | `references/lexlin-design-prinzipien.md` |
+| Foundations→Components→Composition | `references/damien-design-methodik.md` |
+| URL-Referenz nachbauen + Lizenz | `references/web-clone-playbook.md` |
+| Bild/Screenshot nachbauen | `references/rebuild-from-image.md` |
+| Higgsfield / GPT Image 2 | Skill `higgsfield` zuerst; CLI-Katalog `references/bildgenerierung.md` |
+| Neue Illustration vs. bestehendes Asset; Inhalt+Stil referenzieren | Skill `higgsfield` + `references/bildgenerierung.md` Abschnitt **Neue Illustration vs. wiederverwenden** |
+| Motion-Regeln | `references/motion-doktrin.md` |
+| Copy-paste Motion-UI (beUI v2) | `references/ui-components/INDEX.md` |
+| Lokale Vendor-Komponenten (zehn Quellen, offline zuerst) | `resources/components/INDEX.md`, dann `resources/components/<site>/INDEX.md` |
+| Default-Stack Next/Tailwind/shadcn/`motion` | `references/radix-shadcn-tailwind-stack.md` |
+| Popup/Lead-Magnet | `references/conversion-elemente.md` |
+| CRO Bestandsseite | `references/cro-diagnose.md` |
+| A/B-Programm | `references/experiment-programm.md` |
+| Security Formulare/Supply-Chain | `references/security-audit-playbook.md` |
+| Custom-Code gegen AI-Slop + Oxlint anti-slop | `references/code-qualitaets-checkliste.md` |
+| Junge Domain vor Launch | `references/domain-safe-browsing-checkliste.md` |
+| Statistik-Linkbait HTML | `references/templates/statistics-page-template.html` |
+| Vercel-Git, Remotes Org+privat | `references/vercel-git-deploy.md` |
+| Adobe Fonts Library | `node scripts/adobe-fonts-kit.mjs show <Familie>` |
+| Genau eine Ressource nach Router-Wahl | `scripts/resource-access.mjs show "<Name>"` = lokale Metadaten; **Pflicht danach:** `node scripts/resource-access.mjs open "<exakter Name>"` öffnet die Katalog-URL und liest die Site. URL-Dump allein zählt nicht als Nutzung. |
+| 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
+
+Was ein Site-Build nie lädt: §4 oben und `references/load-graph.md`.
