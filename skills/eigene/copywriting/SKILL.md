@@ -56,6 +56,12 @@ aktiv, ein Wort = eine Bedeutung) plus Zinssers vier Prinzipien
 Ein Treffer = Fail. Läuft VOR G1. Trage neuen Slop sofort dort nach (Abschnitt F),
 statt ihn im Kopf zu behalten.
 
+**Web-Einstieg (Bau-Workflow des web-Skills):** Schreibt ein Copy-Leaf
+(`kimi-worker` oder `sol-builder`) Website-Copy, fährt es G0 (`forbidden.md`)
+und G1 **selbst vor der Rückgabe** und legt die Belege bei; G2 ≥ 0.7 läuft erst
+zum Launch durch einen Judge fremder Familie. Copy ohne G0/G1-Beleg gilt als
+nicht fertig und wird nicht eingebaut. Vertrag: `web/references/rolle-bau.md`.
+
 **Werkzeuge (in `scripts/`):**
 
 | Skript | Zweck | Aufruf |

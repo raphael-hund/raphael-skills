@@ -116,8 +116,17 @@ Wahl nach: (1) Task-Cue ("Landingpage" vs "Dashboard"), (2) konkrete Seite/Route
 Nichts Visuelles wird gebaut, geaendert oder als fertig gemeldet ohne
 Screenshot-Zyklus. Kein "muesste jetzt passen" — nur belegte Sicht.
 
+Die Pflicht hat zwei Richtungen. Nach vorn: **vor** Build-Start `/root/eingang`
+(letzte 7 Tage) nach abgelegten Referenz-Screenshots durchsehen und die
+relevanten per Read oeffnen. Ein ausdruecklicher Auftrag "Referenz als
+Stilvorlage" ist dafuer nicht noetig — die abgelegte Datei ist der Auftrag.
+
 1. Nach JEDER Aenderung rendern (Chrome headless `--screenshot`, Playwright,
    `pdftoppm`, Figma `get_screenshot`) und das PNG **per Read ansehen**.
+   Ausnahme mit gleichem Ziel: Laeuft die Arbeit unter einem Workflow-Owner
+   mit Leaf-Vertrag (z.B. web-Skill), erfuellt das **Kritik-Leaf** diese
+   Pflicht — der Controller/Parent liest nie ein PNG. Die Pflicht entfaellt
+   nicht, sie wechselt den Ort (web/SKILL.md, Praezedenz-Absatz).
 2. **Jedes Asset einzeln ansehen, BEVOR es eingebaut wird:** Freisteller
    wirklich freigestellt (kein sichtbarer Hintergrund-Kasten auf farbiger
    Flaeche)? Richtiges Produkt/Motiv? Stil konsistent zu den Nachbar-Assets?

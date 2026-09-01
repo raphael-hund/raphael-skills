@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.7.5
+version: 0.7.6
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -11,7 +11,7 @@ description: >
   "Tech-Audit", "Backlinks", "Digital PR", "Statistikseite", "AI-Sichtbarkeit",
   "AEO", "GEO", "GSC", "Local SEO", "GBP", "E-E-A-T", "SERP-Feature",
   "Featured Snippet", "Themen-Cluster", "interne Verlinkung", "Graustufen",
-  "asozial SEO", "gray-hat", "gray hat".
+  "asozial SEO", "gray-hat", "gray hat", "Citation Outreach", "LLM mentions".
 class: F
 scope: agency
 sensitivity: internal
@@ -51,6 +51,7 @@ completion_criteria:
   - "Ranking-Plan (wenn angefordert) enthält Keyword-Ziele, Google-Aktionen, KI-Aktionen für AI Overviews, AI Mode, ChatGPT, Perplexity und Bing Copilot, Beleg-Zeiger, 30- und 90-Tage-Schritte"
   - "GSC nur read-only Snapshot mit Query-/Page-Zeilen oder ehrlicher Setup-Fallback"
   - "Graustufen nur nach Raphaels Go, jede Taktik mit Risiko-Label Penalty/Ban/rechtlich"
+  - "Citation Outreach: doctor, schema, idempotenter Demo-Lauf, kein external side effect"
 ---
 
 # seo — Loop 4: SEO
@@ -82,10 +83,21 @@ sichtbar wird, und bei Decay auffrischen.
 | **Google-Ranking-Plan** | `references/ranking-plan.md` + `scripts/ranking_plan.py` |
 | **KI-Suche** (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | `references/ideen-ai-sichtbarkeit-aeo.md` |
 | **Graustufen / asozial** | `references/graustufen.md` — nur nach Raphael-Go |
+| **Citation Outreach / LLM mentions** | `references/citation-outreach-automation.md` + `scripts/citation_outreach.py` |
 | Named-Source-Mechaniken (Borja, Edward, Tony, Brain) | `references/quellen-2026-08.md` |
 | Spezialtiefe Brain | `references/wissens-router.md` |
 
 Brain-Präfix immer `/root/raphael-brain/wiki/craft/seo/`. 1–3 Seiten, nie alle.
+
+## On-Page für Loop 2 (Website-Bau)
+
+Fährt der web-Skill die **Plan-Session**, liefert seo nur die On-Page-Grundlage:
+Keyword je Route, Sitemap-Entscheidung, Title-/Meta-/H1-Vorgabe — als Text ins
+`PLAN.md`. Kein SERP-Export, kein Ranking-Plan, kein technischer Audit; das
+Loop-4-Vollprogramm oben läuft nur bei ausdrücklichem SEO-Auftrag. Geprüft wird
+die Grundlage später deterministisch mit
+`web/scripts/onpage-check.mjs` (QA-Fach 5 G1). Vertrag auf der Web-Seite:
+`web/references/rolle-plan.md`.
 
 ## Ablauf
 
@@ -107,6 +119,7 @@ Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 - ranking-plan fertig = alle sechs Pflichtsektionen nicht leer, fünf Engines genannt.
 - gsc-read fertig = Query-/Page-Zeilen im Export **oder** Setup-Fallback-Text.
 - graustufen fertig = Raphael-Go dokumentiert + jedes Item hat Penalty/Ban/rechtlich.
+- citation-outreach fertig = doctor + schema + idempotenter Demo-Lauf, kein external side effect.
 - publish fertig = Signatur, Tech-QA 0 Blocker.
 
 ## Harte Regeln
@@ -115,5 +128,6 @@ Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 - GSC nur lesen. Write-Scope verboten.
 - Graustufen nicht im Default. Erst Go, dann `graustufen.md`, jede Zeile gelabelt.
 - Vendor-Studienzahlen sind kein Kundenbeleg.
+- Citation Outreach: Client-Config Pflicht, live Target-Page Pflicht, Human Approval für send/spend, Vendorzahlen kein Kundenbeleg.
 - Ein Fakt ein Ort: neue Mechanik steht in `quellen-2026-08.md` oder im Brain, nicht doppelt.
 - Codex/Kimi/Grok-Adapter dürfen nur zeigen. Dieselbe Trigger-Liste wie dieses Frontmatter.
