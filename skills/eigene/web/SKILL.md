@@ -16,13 +16,13 @@ description: >
   "Website planen", "Website-Plan", "Landingpage planen",
   "Website-Kritik", "Website kritisieren", "kompletter Website-Plan".
 metadata:
-  raphael-version: "0.25.0"
+  raphael-version: "0.26.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/anfaenger-pfad.md","references/stil-regeln.md","references/muster-bibliothek/INDEX.md","references/load-graph.md","references/loop2-ablauf.md","references/planner-executor-protokoll.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1","web-anti-slop@^0"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Kunden-Vorschau: visuelles FAIL vor Fakten-Nit; FAKT-GATE parkt Zahlen/Domain/SLA; Custom-Domain/Vercel ist Ops; G2-Copy und Trust-Fach-6 erst bei Launch", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker; sie steht genau zwischen <!-- WERKZEUGTABELLE:START --> und <!-- WERKZEUGTABELLE:ENDE -->", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md --profile node|static|cms Exit 0; genau eines der Profile node, static, cms wählen)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "Completion/DoneClaim nur mit <run-out>/run-evidence.json: truth, optional genannter plan, design, Build sowie web/shot-sweep/v2, web/g1-report/v2 und visual-aaa/ship/v2 sind an dieselbe run_id und build_revision sowie aktuelle Contract-SHA256 gebunden; jeder neue Build invalidiert alte G1/Sweep/Ship-QA; visual-aaa/ship/v1, unknown oder stale = BLOCKED", "Launch: QA-Faecher 1-6 gruen und agentur-rubrik 1-25 oder Ausnahme; Vorschau: Fach 2 visuell gruen, Fakten-Nits als FAKT-GATE geparkt", "Multi-Agent-Web-Lauf: alle unabhängigen Analyse- und disjunkten Baupakete adaptiv bis zur Live-Kapazität; genau ein opus-builder integriert gemeinsame UI-Flächen; lokale reproduzierbare Fixes dürfen an Grok/Sol rotieren; Kritik risikobasiert aus fremden tatsächlichen Familien; kein Fable als Subagent, nie Haiku", "Raphael-Nein derselben Session steht in DESIGN.md/DECISIONS.md mit Route+Dateipfad; gesperrter Pfad kommt auf der Route nicht mehr vor (rg vor Ship)", "Blind-A/B: jedes Paar ZWEIMAL bewertet (Kandidat einmal A, einmal B, nicht zusammenhaengende IDs); widerspruechliche Laeufe als 'kein Befund (Positions-Bias)' gewertet, nie als Sieg", "Vor jeder Blind-Bewertung: echte Bildbreiten beider Shots gleich (identify -format '%w'); Abweichung = neu aufnehmen statt bewerten", "Screenshots eines statischen Builds ueber HTTP aufgenommen, nie ueber file://; je eine HTML-, CSS- und Bild-URL vorab mit HTTP 200 belegt", "Kritik-Auftrag nennt ACTUAL_BUILDER_FAMILY (tatsaechlich gelaufenes Modell); still auf die Builderfamilie umgeleitete Kritik ist BLOCKED und wird nicht als PASS verbucht", "Ist keine fremde Familie erreichbar: Sichtpruefung ausdruecklich als Eigenpruefung deklariert und der fehlende Fremdblick in DECISIONS.md als offen gefuehrt", "Kontexttiefe je Route gemessen (Absaetze ab 25 Woertern in <main>, FAQ ausgenommen); jede H2-Sektion mit >=4 Listenpunkten und 0 solchen Absaetzen hat einen Einleitungsabsatz von 45-80 Woertern"]'
+  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Kunden-Vorschau: visuelles FAIL vor Fakten-Nit; FAKT-GATE parkt Zahlen/Domain/SLA; Custom-Domain/Vercel ist Ops; G2-Copy und Trust-Fach-6 erst bei Launch", "Executor-Zwei-Session: Parent ohne CSS/TSX-Edit und ohne PNG-Dump; Shot-Ledger in STATUS.md; PNG-Read durch Kritik-Leaves", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker; sie steht genau zwischen <!-- WERKZEUGTABELLE:START --> und <!-- WERKZEUGTABELLE:ENDE -->", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md --profile node|static|cms Exit 0; genau eines der Profile node, static, cms wählen)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "Completion/DoneClaim nur mit <run-out>/run-evidence.json: truth, optional genannter plan, design, Build sowie web/shot-sweep/v2, web/g1-report/v2 und visual-aaa/ship/v2 sind an dieselbe run_id und build_revision sowie aktuelle Contract-SHA256 gebunden; jeder neue Build invalidiert alte G1/Sweep/Ship-QA; visual-aaa/ship/v1, unknown oder stale = BLOCKED", "Launch: QA-Faecher 1-6 gruen und agentur-rubrik 1-25 oder Ausnahme; Vorschau: Fach 2 visuell gruen, Fakten-Nits als FAKT-GATE geparkt", "Multi-Agent-Web-Lauf: alle unabhängigen Analyse- und disjunkten Baupakete adaptiv bis zur Live-Kapazität; genau ein opus-builder integriert gemeinsame UI-Flächen; lokale reproduzierbare Fixes dürfen an Grok/Sol rotieren; Kritik risikobasiert aus fremden tatsächlichen Familien; kein Fable als Subagent, nie Haiku", "Raphael-Nein derselben Session steht in DESIGN.md/DECISIONS.md mit Route+Dateipfad; gesperrter Pfad kommt auf der Route nicht mehr vor (rg vor Ship)", "Blind-A/B: jedes Paar ZWEIMAL bewertet (Kandidat einmal A, einmal B, nicht zusammenhaengende IDs); widerspruechliche Laeufe als 'kein Befund (Positions-Bias)' gewertet, nie als Sieg", "Vor jeder Blind-Bewertung: echte Bildbreiten beider Shots gleich (identify -format '%w'); Abweichung = neu aufnehmen statt bewerten", "Screenshots eines statischen Builds ueber HTTP aufgenommen, nie ueber file://; je eine HTML-, CSS- und Bild-URL vorab mit HTTP 200 belegt", "Kritik-Auftrag nennt ACTUAL_BUILDER_FAMILY (tatsaechlich gelaufenes Modell); still auf die Builderfamilie umgeleitete Kritik ist BLOCKED und wird nicht als PASS verbucht", "Ist keine fremde Familie erreichbar: Sichtpruefung ausdruecklich als Eigenpruefung deklariert und der fehlende Fremdblick in DECISIONS.md als offen gefuehrt", "Kontexttiefe je Route gemessen (Absaetze ab 25 Woertern in <main>, FAQ ausgenommen); jede H2-Sektion mit >=4 Listenpunkten und 0 solchen Absaetzen hat einen Einleitungsabsatz von 45-80 Woertern"]'
 ---
 
 # web — Loop 2: Website
@@ -34,25 +34,26 @@ Was du sagst:
 - Website bauen / ändern / relaunchen / clonen → `/web`
 - Website planen, noch nichts bauen → `/web` (Modus plan). Nicht
   `/website-plan`, nicht `/ce-plan`, nicht 12 Plan-Skills.
-- Website-Kritik / Look / Conversion sichtbar prüfen → `/web` (Modus kritik).
-  Nicht `/design` + `/impeccable` + `/unslop` + `/visual-harness` + Anti-Slop-Liste.
+- Website-Kritik / Look / Conversion sichtbar prüfen → `/web` + `/orchestrate`
+  (Modus kritik). Nicht `/design` + `/impeccable` + `/unslop` + `/visual-harness`.
 
 Was du **nicht** sagst: Skill-Listen. `unslop`, `web-anti-slop`, `no-ai-slop`,
 `deslop-*`, `poteto`, `impeccable`, `ui-ux-pro-max`, `taste`, `frontend-design`,
 `visual-aaa`, `visual-harness`, `grilling`, `wayfinder`, `lovable`, `plan-tune`,
 `plan-design-review`, `plan-ceo-review`, `ce-plan`, `review-animations`,
 `higgsfield` sind interne Spezialisten oder andere Türen. `web` lädt, was es
-braucht.
+braucht. `/orchestrate` auf Executor und Planner-Kritik ist **kein** Dump.
 
 Drei Modi (erster Treffer, in einem Satz ansagen):
 
 1. **plan** — Vertrag/Sitemap/Page-Specs, kein Production-Code. Interner
    Spezialist `website-plan` + Anfänger-Pfad-Zeile *Mehrseitige Website planen*.
    Fertig = v3-Validator PASS.
-2. **kritik** — Live-URL oder Shots, `screenshot-kritik-loop`, `shot-sweep --base`,
-   `design` intern, `visual-aaa` als Gate nicht als Owner. Fertig = Fixliste,
-   keine neuen Skills.
-3. **build** — bisheriger Loop2-Ablauf.
+2. **kritik** — `/web` + `/orchestrate`. Shots als Leaves, `shot-sweep --base`,
+   `design` intern, `visual-aaa` als Gate. Fertig = Fixliste mit Shot-Pfaden.
+   Parent keine PNG-Binaries.
+3. **build** — `/web` + `/orchestrate`. Loop2. Executor = Controller, kein
+   Solo-CSS im Parent.
 
 **Slash-Dump:** taste / impeccable / visual-aaa / website-plan / design extra
 im Prompt = ignorieren, `web` lädt sie intern. Ausnahme, kein Dump:
@@ -94,7 +95,9 @@ Ohne Re-Sweep nach Fix = nicht geprüft.
    §1) + `references/stil-regeln.md` lesen + 2–3 passende Cases aus
    `references/muster-bibliothek/INDEX.md` laden.
 4. Vor dem ersten Edit: Auftrag + geladene Pfade in einem Satz nennen.
-5. Visuell? → Sweep mit **`--base`** (siehe Gotchas), jedes PNG per Read ansehen.
+5. Visuell? → Sweep mit **`--base`**. PNG-Read macht das Kritik-Leaf
+   (`visual-kritiker` / `kimi-recherche`). Parent führt nur das Shot-Ledger
+   (`pfad | viewport | gelesen | verdict`) — keine PNG-Binaries in die Hauptsession.
 6. **Vorschau vor Launch (hart, 01.09.2026):** Raphael zeigt dem Kunden eine geile
    Vorschau. Das Bild entscheidet. Unklare Zahlen (50 vs 60 Google-Bewertungen,
    24 vs 28 Stunden) und Custom-Domain/Vercel sind **FAKT-GATE / Ops**, kein
@@ -493,7 +496,8 @@ cro-learn.
 - **Anfänger lädt alles** → falsch. Nur `anfaenger-pfad.md` §1.
 - **`shot-sweep` ohne `--base`** → Exit 2 (Usage); nie ohne echte Dev-URL.
 - **`shot-sweep` schlägt fehl → Standard-Skript fixen, NIE eigenes Ad-hoc-Playwright-Skript schreiben.** Forensik 10.08.2026: beide Fehl-Sessions wichen nach einem Fehler/aus Bequemlichkeit auf eigene Skripte aus (12-Shot-Cap, kein Hover/Klick, kein Static) — genau das ist verboten. Auch alte `scratch/shot-*.cjs`-Skripte im Projekt nie wiederverwenden.
-- **Kritik nur auf selbst angesehene Shots.** „Jedes PNG per Read" ist wörtlich: Read-Aufrufe auf PNGs müssen die Shot-Zahl decken, Agent-Berichte ersetzen das nicht.
+- **Kritik nur auf selbst angesehene Shots.** Das Kritik-Leaf liest jedes zugeteilte PNG.
+  Parent zählt Ledger-Zeilen gegen `manifest.json`. Builder-Prosa und PNG-Dump in den Parent ersetzen das nicht.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill (Mac-Pfade). Nie routen; Kanon = `web` + `design`.
 - **Design-G1** nur `node …/design/scripts/detect.mjs`, nie `npx impeccable detect`.
 - **Tools** über `tool-usecase-router.md`, nicht Link-Dumps (max 3 URLs aus Bibliothek).

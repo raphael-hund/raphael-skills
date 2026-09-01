@@ -47,6 +47,9 @@ shot-sweep, visual-aaa). Eine frische Executor-Session darf keinen Gate
   Session liest PLAN.md immer vollständig.
 - **STATUS.md** hält je Arbeitspaket eine Zeile: `[offen|in-arbeit|gebaut|
   geprüft|abgenommen] — Paket — Beleg (Pfad/Gate) — Datum`. Kein Prosa-Log.
+  Sobald ein Sweep existiert, zusätzlich Shot-Ledger:
+  `| pfad | viewport | gelesen | verdict |` — eine Zeile pro Fold/Hover/Mobil-Shot.
+  `gelesen` nennt das Leaf (z. B. `ja (visual-kritiker)`), nie „Parent hat reingeschaut“.
 - **KRITIK-n.md** ist das Ergebnis einer Kritikrunde: Fixliste mit
   Screenshot-Pfaden und Verdicts. Alte Kritikrunden werden nicht in neue
   kopiert; erledigte Punkte werden in STATUS.md abgehakt.
@@ -147,7 +150,7 @@ Nicht eine Skill-Liste in den Prompt kippen. Genau diese Chips, sonst nichts.
 |---|---|---|---|
 | **Planner (Plan)** | nur `/web` | high | `/orchestrate`, `/ultracode`, `/website-plan`, `/design`, `/visual-aaa`, `/impeccable`, `/taste`. website-plan hat 0 Child-Agenten. |
 | **Planner (Kritik)** | `/web` + `/orchestrate` | high | Parent liest keine PNG-Binaries. Panel = Leaves. |
-| **Executor (Build/Fix/Shots)** | `/web` + `/orchestrate` | Ultracode | Nicht `/ultracode` UND `/orchestrate` gleichzeitig — ein Orchestrierungs-Owner. Nicht `/design` extra. |
+| **Executor (Build/Fix/Shots)** | `/web` + `/orchestrate` | Effort-Schieber **Ultracode** (nicht Slash `/ultracode`) | Slash `/ultracode` extra; `/design`; PNG-Dump in den Parent |
 
 `web` lädt intern: screenshot-kritik-loop, shot-sweep, visual-aaa als Gate, design, FAKT-GATE. Extra-Chips dafür machen den Parent dicker, nicht besser.
 

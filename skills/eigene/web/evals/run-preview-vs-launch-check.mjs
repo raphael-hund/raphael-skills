@@ -189,6 +189,19 @@ zeile(
   /Fach 6/.test(qa) && /Launch/.test(qa) && /Vorschau/.test(qa),
   "qa-faecher.md: Trust-Zahlen sind Launch, nicht Vorschau",
 );
+zeile(
+  /Executor = Controller/.test(skill) && /PNG-Binaries/.test(skill),
+  "web SKILL.md: Executor ist Controller, Parent ohne PNG-Dump",
+);
+zeile(
+  /müssen/.test(skill) && /orchestrate/.test(skill) && !/Liste nicht nachladen/.test(skill),
+  "Slash-Dump wirft /orchestrate nicht mehr weg",
+);
+zeile(
+  /Kritik-Leaf/.test(skill) && /Shot-Ledger/.test(skill),
+  "Start-hier: PNG-Read ist Kritik-Leaf, Parent nur Ledger",
+);
+
 
 if (fs.existsSync(PLAN) && fs.existsSync(VALIDATOR)) {
   const plan = fs.readFileSync(PLAN, "utf8");
