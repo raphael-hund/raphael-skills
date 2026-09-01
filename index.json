@@ -184,9 +184,9 @@
     },
     {
       "name": "session-failover",
-      "version": "0.7.0",
+      "version": "0.8.0",
       "path": "skills/eigene/session-failover/SKILL.md",
-      "description": "Kein Compress (Raphael 01.09., ersetzt die 256k-Compact-Regel vom 18.08.). Session-Handoff ab 400k Tokens bei 1M-Kontext-Modellen (Fable, Sol, Opus, Kimi, Grok), ab 256k bei kleineren. Ab Schwelle: /handoff auf die Platte, /clear, neue Session in derselben TUI, /model kimi-k3, Handoff einfügen. Manuelles /compact nur auf ausdrückliche Ansage. Bei API-Fehler sofort Modell+Effort, nicht warten. Trigger: /compact, /handoff, /clear, /model, /effort, API-Fehler, 401, 408, 529, subscription disabled, synthetic, Fable tot, Session hängt, /session-failover."
+      "description": "Kein Compress (Raphael 01.09., ersetzt die 256k-Compact-Regel vom 18.08.). Session-Handoff ab 95% des Route-Fensters (korrigiere 01.09.: gemessene V2-Fenster ersetzen die 400k/256k-Ansage): Opus/Fable/Grok 300k, Sol/Terra/Luna 256k, Sonnet/Kimi 1M, Haiku 200k. Auch bei zweitem Auto-Compact oder 32-MB-Fehler. Dann: /handoff auf die Platte, /clear, neue Session in derselben TUI, /model kimi-k3, Handoff einfügen. Manuelles /compact nur auf ausdrückliche Ansage. Bei API-Fehler sofort Modell+Effort, nicht warten. Trigger: /compact, /handoff, /clear, /model, /effort, API-Fehler, 401, 408, 529, subscription disabled, synthetic, Fable tot, Session hängt, /session-failover."
     },
     {
       "name": "session-watch",
@@ -220,7 +220,7 @@
     },
     {
       "name": "visual-aaa",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "path": "skills/eigene/visual-aaa/SKILL.md",
       "description": "Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. always: true. Trigger: \"visuell prüfen\", \"Screenshot-Check\", \"PDF vor Auslieferung\", \"Landingpage abnehmen\", \"visual-aaa\"."
     },
@@ -238,13 +238,13 @@
     },
     {
       "name": "web",
-      "version": "0.22.0",
+      "version": "0.24.0",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Plan\", \"Landingpage planen\", \"Website-Kritik\", \"Website kritisieren\", \"kompletter Website-Plan\"."
     },
     {
       "name": "website-plan",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "path": "skills/eigene/website-plan/SKILL.md",
       "description": "Plant eine Kunden-Website ohne Production-Code und erzeugt einen eingefrorenen, maschinenlesbaren v3-Planvertrag für den Web-Workflow. Trigger: \"/website-plan\", \"Website planen\", \"kompletter Website-Plan\", \"Unterseiten einzeln planen\", \"Relaunch planen\"."
     },
