@@ -15,6 +15,21 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 
 ## 1. Auftrag wählen (erster Treffer gewinnt)
 
+**Zuerst die Rolle, dann der Auftrag.** Jede Website-Arbeit läuft in einer von
+vier Sessions. Lade genau das eine Rollen-Dokument und fahre am Sessionstart
+das Gate — es sagt dir, ob deine Vorsession fertig ist:
+
+| Session | Chip | Pflicht-Load | Gate am Start |
+|---|---|---|---|
+| Plan | nur `/web` | `rolle-plan.md` | `node scripts/session-gate.mjs --rolle plan --client <pfad>` |
+| Kritik | `/web` + `/orchestrate` | `rolle-kritik.md` | `--rolle kritik` — Exit 2 heißt: Plan-Session zuerst |
+| Bau | `/web` + `/orchestrate` | `rolle-bau.md` | `--rolle bau` — Exit 2 heißt: Kritik-Session zuerst |
+| Launch | wie Bau | `rolle-launch.md` | alle Gates dort grün + Raphaels Signatur |
+
+Die Tabelle unten ist die Feinauswahl **innerhalb** deiner Rolle. Ältere
+Dateien wie `screenshot-kritik-loop.md` sind Detail-Ebene: Bei einem
+Widerspruch gewinnt immer das Rollen-Dokument.
+
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
 | **Kunden-Vorschau** (Default, solange Raphael nicht „Launch“ sagt) | `screenshot-kritik-loop.md` → Skill **design** → `landingpage-struktur.md` oder `sitemap-section-planung.md` → `scripts/preview-befund-klasse.mjs` | Seite sieht geil aus (Shots gelesen). Inhalt (Satz, Wort, Bild, Sektion, Reviews) und Domain parken. Blocker: Ablauf, Sitemap, Idee, Design. |
@@ -37,7 +52,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
 | **Security Formular/API** | `security-audit-playbook.md` (+ OWASP aus code-review bei Consent) | Fail-open-Defaults raus |
-| **Session übernehmen / Handoff** (Plan/Kritik/Bau, Rotation) | `planner-executor-protokoll.md` (Chips!) → `PLAN.md` vollständig → `PRUEFGEGEN.md` → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Plan = `/web`; Kritik/Bau = `/web` + `/orchestrate`. | PRUEFGEGEN.md da; nächster Schritt aus STATUS.md; Parent ohne CSS/PNG-Dump |
+| **Session übernehmen / Handoff** (Plan/Kritik/Bau, Rotation) | `rolle-<deine-session>.md` **zuerst** → `planner-executor-protokoll.md` (Chips, Detail-Ebene) → `PLAN.md` vollständig → `PRUEFGEGEN.md` → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Plan = `/web`; Kritik/Bau = `/web` + `/orchestrate`. | PRUEFGEGEN.md da; nächster Schritt aus STATUS.md; Parent ohne CSS/PNG-Dump |
 
 Wenn **mehrere** Zeilen passen: die **oberste** zuerst fertig machen, dann die nächste.
 Website **bauen** und Skill **verbessern** gleichzeitig? → Skill zuerst (dieser Pfad),

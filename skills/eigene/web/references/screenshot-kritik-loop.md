@@ -203,7 +203,9 @@ Code-Befunde ohne sichtbaren Effekt kommen auf eine getrennte Hygiene-Liste.
 `node scripts/preview-befund-klasse.mjs "<befund>"` jagen. `preview: park`
 (`fakt-park`, `ops-park`) gehört auf den FAKT-GATE-Parkplatz, nicht auf die
 visuelle Fixliste und nie als `biggest_gap`. `preview: block` bleibt der
-Zyklus. `fake-proof` bleibt Launch-Sperre — Proof wird nicht erfunden.
+Zyklus. Erfundener Proof parkt in der Vorschau (`content-park`), sperrt aber den
+Launch — der Klassifizierer meldet ihn als `LAUNCH-SPERRE`. Proof wird nicht
+erfunden.
 
 **Belegter Lauf (27.07.2026, Beweis-Build).** Das Tor hatte die Seite freigegeben:
 Lighthouse 98/100/100/100, 0 axe-Verstoesse, 0 Craft-Blocker, 0 Slop-Blocker.

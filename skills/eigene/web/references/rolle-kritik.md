@@ -107,12 +107,34 @@ Der Controller merged, er ist kein fünfter Geschmack. Es überlebt, wer
 
 - (a) von **zwei PAGE-Leaves unabhängig** gefunden wurde, **oder**
 - (b) von einer **SITE-Achse und mindestens einer PAGE**, **oder**
-- (c) von einer **LENS und mindestens einer PAGE/SITE**.
+- (c) von einer **LENS und mindestens einer PAGE/SITE**, **oder**
+- (d) von **einer LENS mit deterministischem Gate-Beleg** (siehe unten).
 
 Alles andere ist Parkplatz, nicht Fixliste. Ein Einzelbefund einer Familie ist
 kein Befund. Bei PAGE laufen die zwei Familien zuerst unabhängig; danach
 bekommt jede die Befunde der anderen und darf nur **bestätigen oder
 widerlegen** — das ist der Gegencheck, keine Mehrheitsabstimmung.
+
+### (d) Warum SEO und Copy einen eigenen Weg brauchen
+
+Die Regeln (a)–(c) verlangen einen zweiten **Blick**. PAGE und SITE schauen auf
+Gestaltung — fehlendes Canonical, doppelter Title oder ein Voice-Bruch fallen
+dort niemandem auf. Ohne (d) landet **jeder** reine SEO- und Copy-Befund per
+Konstruktion auf dem Parkplatz, während Design drei Überlebenswege hat. Genau
+so wird eine Disziplin zum Anhängsel.
+
+Design ist Geschmack und braucht deshalb eine zweite Meinung. SEO und Copy
+haben **prüfbare Wahrheiten** — die brauchen keinen zweiten Geschmack, sondern
+einen Beleg, den jeder nachfahren kann:
+
+| Linse | Gate-Beleg statt zweitem Leaf |
+|---|---|
+| SEO | Ausgabe eines Checks auf dem gebauten HTML: Title-Länge, Meta, genau eine H1, Canonical, Slug, crawlbares Markup (QA-Fach 5 G1, `qa-faecher.md`) |
+| Copy | `copywriting` G0 (`forbidden.md`-Treffer) oder G1 mit Datei und Stelle |
+| Trust | Zeile aus `PROOF.md` oder deren belegtes Fehlen |
+
+Ein LENS-Befund mit solchem Beleg überlebt allein. Ohne Beleg gilt weiter
+(a)–(c): eine SEO-Behauptung ohne Check-Ausgabe ist eine Meinung und parkt.
 
 ## Klassifizierung jedes Befunds (Pflicht)
 

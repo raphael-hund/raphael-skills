@@ -142,7 +142,17 @@ function plan(client) {
       `PRUEFGEGEN.md ist ein Symlink und wird nicht beschrieben: ${ziel}`,
     );
   }
+  // Wiederholter Plan-Lauf: die Datei existiert schon. Dann ist die Frage
+  // nicht mehr "gibt es sie", sondern "steht etwas drin" — sonst merkt die
+  // Plan-Session erst eine Session später, dass sie nur die Vorlage hinterließ.
   if (st) {
+    const roh = fs.readFileSync(ziel, "utf8");
+    if (AUSFUELL_MARKER.test(roh) || eigeneTabellenzeilen(roh).length < 2) {
+      console.warn(
+        `Hinweis: ${ziel} ist noch die unbearbeitete Vorlage. ` +
+          "Die Kritik-Session startet damit nicht — jetzt eintragen, wogegen geprüft wird.",
+      );
+    }
     process.exit(0);
   }
   if (!fs.existsSync(client)) {
@@ -180,10 +190,33 @@ function kritik(client) {
   process.exit(0);
 }
 
+// Ein Platzhalter-Byte ist kein Kritik-Ergebnis. Verlangt wird eine Datei, in
+// der wirklich ein Befund steht: genug Text und mindestens eine Aufzählungs-,
+// Tabellen- oder Überschriftenzeile.
+const MIN_KRITIK_ZEICHEN = 200;
+
+function hatBefundStruktur(roh) {
+  return roh
+    .split("\n")
+    .some((z) => /^\s*(?:[-*+]\s+\S|\d+\.\s+\S|\||#{1,6}\s+\S)/.test(z));
+}
+
 function bau(client) {
-  if (kritikDateien(client).length < 1) {
+  const dateien = kritikDateien(client);
+  if (dateien.length < 1) {
     sperre(
       "Bau ohne Kritik-Befunde ist gesperrt — mindestens eine nicht-leere KRITIK-*.md nötig.",
+    );
+  }
+  const brauchbar = dateien.filter((name) => {
+    const roh = fs.readFileSync(path.join(client, name), "utf8");
+    return roh.trim().length >= MIN_KRITIK_ZEICHEN && hatBefundStruktur(roh);
+  });
+  if (brauchbar.length < 1) {
+    sperre(
+      `KRITIK-Datei(en) vorhanden, aber ohne erkennbare Befunde: ${dateien.join(", ")}. ` +
+        `Verlangt sind mindestens ${MIN_KRITIK_ZEICHEN} Zeichen und eine Befundliste ` +
+        "(Aufzählung, Tabelle oder Überschriften) — ein Platzhalter öffnet den Bau nicht.",
     );
   }
   process.exit(0);

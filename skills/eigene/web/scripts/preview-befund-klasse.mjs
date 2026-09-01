@@ -105,6 +105,14 @@ if (istMain()) {
   if (json) {
     console.log(JSON.stringify({ befund: text, ...treffer }));
   } else {
-    console.log(`${treffer.klasse}\t${treffer.preview}`);
+    // Die Launch-Spalte muss mit: ein erfundener Proof parkt in der Vorschau,
+    // sperrt aber den Launch. Wer nur "park" liest, winkt ihn sonst durch.
+    const launchHinweis =
+      treffer.launch === "launch-block"
+        ? "\tLAUNCH-SPERRE (erfundener Proof)"
+        : treffer.launch === "block"
+          ? "\tlaunch: block"
+          : "";
+    console.log(`${treffer.klasse}\t${treffer.preview}${launchHinweis}`);
   }
 }

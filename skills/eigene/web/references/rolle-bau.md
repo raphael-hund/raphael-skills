@@ -69,6 +69,18 @@ Vorschau-Copy darf Working-Copy sein: Platzhalter-Reviews und offene Zahlen
 sind erlaubt (`content-park`). G2-Judge und echte Proofs sind Launch-Gates
 (`rolle-launch.md`).
 
+**Der Copy-Auftrag nennt seine Gates mit.** Working-Copy heißt nicht
+gate-frei — zwei Gates laufen schon beim Schreiben, eines erst zum Launch:
+
+| Gate | Wann | Wer |
+|---|---|---|
+| G0 `forbidden.md` | im Copy-Leaf, vor Rückgabe | der schreibende Leaf selbst |
+| G1 (Orwell/Slop, `web-anti-slop`) | im Copy-Leaf, vor Rückgabe | der schreibende Leaf selbst |
+| G2 ≥ 0.7 | erst zum Launch | Judge einer fremden Familie (`rolle-launch.md`) |
+
+Kommt Copy ohne G0/G1-Beleg zurück, ist sie nicht fertig — nicht einbauen,
+zurück an denselben Leaf. Details: Skill `copywriting`.
+
 ## Nur Kritik-Überlebende umsetzen
 
 Die Fixliste ist die Liste der Befunde, die die Merge-Regel aus

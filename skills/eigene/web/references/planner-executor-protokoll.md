@@ -182,7 +182,8 @@ Starte im ersten Turn JETZT einen Dynamic Workflow. Leaves, so viele wie Pakete:
 1. shot-sweep --base <dev-url> --static --states --mobile → manifest.json + PNG-Pfade
 2. visual-kritiker (Grok) und kimi-recherche unabhängig auf denselben Fold/Hover-Shots
 3. grok-worker nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt
-4. opus-builder nur als Integrator für sichtbare UI-Fixes
+4. kimi-worker oder sol-builder für jede Copy — Opus schreibt nie Text
+5. opus-builder nur als Integrator für sichtbare UI-Fixes; baut Copy unverändert ein
 Rückgabe an Plan: STATUS.md + KRITIK-n.md mit Shot-Pfaden, biggest_gap visuell,
 FAKT-GATE geparkt. Kein Solo-Debug von wipe.css im Parent.
 ```

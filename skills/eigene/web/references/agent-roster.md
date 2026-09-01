@@ -30,7 +30,7 @@ das Rollen-Wörterbuch, nicht der Spawn-Plan.
 | Visuelle Kritik A | `visual-kritiker` / `kritiker-visuell` | high (Gateway-Force) | manifest + PNGs **einer** Seite | Befund+Shot-Pfad | Code schreiben; Grok-Fixrolle verwenden; Haiku |
 | Visuelle Kritik B | andere Familie als Builder **und** als A: `opus-critic` nur wenn nicht Opus gebaut hat; sonst `kimi-recherche` | high (Gateway-Force) | dieselben Shots wie A | Befund+Shot-Pfad | Code schreiben; Haiku; gleiche Familie wie Builder oder A |
 | Blind-A/B-Richter | frische Session, **andere** Familie als Builder | high | anonymisierte Shots A/B (paarweise) | winner + Achsen + 1 Lücke | Labels „unsere Seite“ |
-| SEO-Fach | `luna-worker` + seo-Skill | medium-Ziel / Gateway oft max | Routes + Content | G1/G2 SEO-Report | Deploy |
+| SEO-Fach | `kimi-recherche` + seo-Skill (Urteil; Luna nie) | medium-Ziel / Gateway oft max | Routes + Content | G1/G2 SEO-Report | Deploy |
 | Trust-Fach | `kimi-recherche` | high (Gateway-Force) | PROOF + Seiten-Shots | Trust-Checklist pass/fail | Claims erfinden |
 | Ship-Review | `sol-pruefer` (B1) | high | Diff + QA-Reports + Shots | pass/fail + Beleg | Eigenbau |
 

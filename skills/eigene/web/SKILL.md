@@ -21,7 +21,7 @@ metadata:
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
   raphael-loads: '["references/rolle-plan.md","references/rolle-kritik.md","references/rolle-bau.md","references/rolle-launch.md","references/kritik-matrix.md","references/anfaenger-pfad.md","references/stil-regeln.md","references/muster-bibliothek/INDEX.md","references/load-graph.md","references/loop2-ablauf.md","references/planner-executor-protokoll.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/run-evidence-contract.md","references/templates/PRUEFGEGEN-template.md","references/templates/statistics-page-template.html"]'
-  raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1","web-anti-slop@^0"]'
+  raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","seo@^0","visual-aaa@^1","web-anti-slop@^0"]'
   raphael-completion-criteria: '["Rolle in einem Satz benannt (Plan|Kritik|Bau|Launch), genau ein Rollen-Dokument aus der Rollen-Tabelle geladen und vor dem ersten Edit die Auftrag-Zeile aus references/anfaenger-pfad.md 1 benannt — nur die dort gelisteten Dateien, nie die ganze loads-Liste", "session-gate.mjs mit --rolle und --client am Sessionstart gelaufen; Exit 2 heisst zurueck an die Vorsession, nicht weiterbauen", "Drei Sessions Plan/Kritik/Bau getrennt; Kritik-Flotte nach kritik-matrix.md; PRUEFGEGEN.md existiert vor Kritik; ohne mindestens eine KRITIK-n.md kein Bau", "Parent duenn: kein CSS/TSX-Edit, kein PNG-Read im Parent; jedes PNG liest ein Kritik-Leaf, Parent fuehrt nur das Shot-Ledger (pfad | viewport | gelesen-von | verdict) in STATUS.md", "Bau-Session startet im ersten Turn einen Dynamic Workflow; Copy schreibt kimi-worker oder sol-builder, opus-builder baut Copy unveraendert ein und schreibt nie selbst welche", "Kunden-Vorschau blockt nur an Ablauf/Sitemap/Idee/Design; Inhalt und Domain parken als content-park/ops-park bzw. FAKT-GATE (scripts/preview-befund-klasse.mjs), nie als biggest_gap", "Ohne frischen shot-sweep --base nach einem Fix = nicht geprueft; Kritik-Befund lebt nur nach der Merge-Regel aus kritik-matrix.md (zwei unabhaengige Leaves)", "Launch nur mit allen Gates aus references/rolle-launch.md gruen und Raphaels Signatur plus Deploy-Egress-Gate; Launch-Details werden dort geprueft, nicht hier"]'
 ---
 
@@ -136,6 +136,12 @@ Web-Owner nie überschreibt. Kritik läuft immer über fremde tatsächliche
 Familien; Opus prüft Opus nicht. Detail: `references/rolle-plan.md`
 (Plan-Eingang, `website-plan`-v3-Vertrag, fail-closed) und
 `references/kritik-matrix.md` (Paarungen).
+
+**Präzedenz bei gesetztem Web-Owner:** Der Leaf-Vertrag schlägt die
+Screenshot-Pflicht des `design`-Skills. `design` verlangt, nach jeder Änderung
+zu rendern und das PNG per Read anzusehen — dieser Zyklus läuft hier im
+**Kritik-Leaf**, nie im Controller. Die Pflicht entfällt nicht, sie wechselt den
+Ort.
 
 `web-anti-slop` ist immer mitgeladen und bündelt die Pflichtgates aus `design`,
 `copywriting` und der Oxlint-Installation. `taste`, `impeccable`, `ui-ux`,

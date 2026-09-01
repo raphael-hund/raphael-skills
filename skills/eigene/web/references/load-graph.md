@@ -40,7 +40,9 @@ ein Video-Skill-Katalog ist kein Default-Stack.
 | Design-Linie | Skill `design` → `taste-kern.md` **mit Dial-Override aus stil-regeln §1** | Bindend bleiben: Design-Read, Anti-Default-Disziplin, Hero-Fold-Regeln. Nicht bindend: Baseline-Dials 8/6/4 — die kommen aus stil-regeln §1 |
 | Doktrin | Skill `design` → `design-doktrin.md` | fusionierte Linie |
 | Design-G1 | Skill `design` → `scripts/detect.mjs` + `scan-ai-slop.mjs` | Exit 0, nie `npx impeccable detect` |
-| Copy-Gates | Skill `copywriting` G1→G2 | jeder Ship-Copy-Block ≥ 0.7 |
+| Copy-Gates | Skill `copywriting` G0→G1→G2 | G0 `forbidden.md` und G1 immer beim Copy-Leaf im Bau; G2 ≥ 0.7 zum Launch |
+| Copy-/Slop-Bündel | Skill `web-anti-slop` | immer mitgeladen: Design-Detektoren, Copy-G1→G2, Oxlint bei Custom-TS/JS |
+| SEO On-Page | Skill `seo` (nur On-Page-Teil) | **Plan-Phase**: Keyword je Route, Sitemap-Entscheidung, Title/Meta/H1-Vorgabe ins `PLAN.md`. Loop-4-Vollprogramm bleibt On demand |
 | Werkzeuge | `web/references/tool-usecase-router.md` | Werkzeugtabelle vor `npm i` |
 | QA | `web/references/qa-faecher.md` | Fächer 1–6 |
 
@@ -55,7 +57,7 @@ Sektor-Tabelle in `stil-regeln.md` §1 (Regel S15).
 |---|---|
 | `landingpage-struktur.md` **XOR** `sitemap-section-planung.md` | Landing oder Multi-Page — nie beide |
 | Skill `higgsfield` + `bildgenerierung.md` | echte Bildgenerierung ansteht |
-| Skill `seo` | Loop-4 oder ausdrücklicher SEO-Auftrag |
+| Skill `seo` (Loop-4-Vollprogramm: SERP/GSC, Cluster, Briefs, Linkbuilding) | ausdrücklicher SEO-Auftrag oder Loop 4. **Nicht zu verwechseln** mit dem On-Page-Anteil, den jede Plan-Session lädt (siehe `rolle-plan.md`): Keyword je Route, Sitemap-Entscheidung, Title/Meta/H1-Vorgabe. |
 | `screenshot-kritik-loop.md` | Kritik-Panel oder Blind-A/B läuft |
 | `planner-executor-protokoll.md` | Drei-Sessions-Betrieb (Plan/Kritik/Bau): Handoff schreiben/empfangen oder Session-Rotation |
 | `kritik-matrix.md` | **Pflicht in der Kritik-Session:** vor dem Spawn der Flotte laden und befolgen |

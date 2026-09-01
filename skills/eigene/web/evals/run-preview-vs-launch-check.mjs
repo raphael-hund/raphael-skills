@@ -410,8 +410,20 @@ try {
   fs.symlinkSync(path.join(tmp, "gibt-es-nicht.md"), kritikDatei);
   zeile(gate("bau", tmp) === 2, "Gate bau: toter Symlink gesperrt (Exit 2)");
   fs.unlinkSync(kritikDatei);
-  fs.writeFileSync(kritikDatei, "Befund 1: Hero traegt nicht.\n");
+  fs.writeFileSync(
+    kritikDatei,
+    [
+      "# Kritik 1",
+      "",
+      "- Befund 1: Der Hero traegt nicht — kein visueller Anker im Fold, Desktop 1440x900.",
+      "- Befund 2: Sektionsabstaende springen zwischen 48 und 112 Pixeln ohne Rhythmus.",
+      "- Befund 3: Auf Mobil 390 bricht die CTA-Zeile in drei Zeilen um.",
+      "",
+    ].join("\n"),
+  );
   zeile(gate("bau", tmp) === 0, "Gate bau: echter Kritik-Befund öffnet (Exit 0)");
+  fs.writeFileSync(kritikDatei, "x");
+  zeile(gate("bau", tmp) === 2, "Gate bau: Platzhalter-Byte statt Befund gesperrt (Exit 2)");
 
   zeile(gate("quatsch", tmp) === 64, "Gate: unbekannte Rolle ist Usage-Fehler (Exit 64)");
 

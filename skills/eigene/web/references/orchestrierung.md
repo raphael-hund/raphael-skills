@@ -95,10 +95,10 @@ löst mehr als ein größeres Modell auf Standard-Effort — und kostet weniger.
 
 | Aufgabe | Besetzung |
 |---|---|
-| Art Direction, Struktur, Entscheidungen | Cockpit selbst (nicht delegieren) |
-| Substanzieller UI-Neubau / roter Design-Stand | Sol-Cockpit zerlegt selbst → alle unabhängigen Opus-Pakete parallel → genau ein Opus-Integrator |
+| Art Direction, Struktur, Entscheidungen | Controller **entscheidet**, baut nicht: Kriterien schärfen, Pakete schneiden, Leaves starten |
+| Substanzieller UI-Neubau / roter Design-Stand | Controller zerlegt → alle unabhängigen Opus-Pakete parallel → genau ein Opus-Integrator |
 | Frontend-Code, Seite, Layout | **`opus-builder`** |
-| Deutsche Verkaufscopy ins Markup | `opus-builder` (gleiche Bau-Lane) |
+| Deutsche Verkaufscopy ins Markup | **`kimi-worker` oder `sol-builder`** — Opus schreibt nie Copy, er baut sie unverändert ein (`rolle-bau.md`) |
 | Mechanik, Tests, Datenkram | `luna-worker` (kein Urteil, keine Seite) |
 | Massen-Lesen, Sortieren | `luna-worker` |
 | Visuelle Kritik einer Seite | Grok + `kimi-recherche` (Opus hat gebaut), dann Gegencheck |
@@ -112,7 +112,9 @@ Die Idee aus Kevin Kerns X-Post vom 19.08.2026 ist eine Harness-Kette:
 Ein Leitmodell formuliert die Aufgabe, ein Delegator verteilt mehrere
 UI-Blickwinkel, Opus setzt die Entscheidung um. Für diesen Skill gilt:
 
-- Im Sol-Cockpit zerlegt Sol selbst und delegiert direkt an Opus.
+- Der Controller zerlegt die Arbeit und delegiert direkt an die Leaves. Zerlegen
+  heißt Pakete schneiden, nicht selbst bauen: kein CSS, keine Animationskurve,
+  kein PNG-Read im Parent (`rolle-bau.md`).
 - Das Cockpit schärft Kriterien und delegiert an alle unabhängigen
   `opus-builder`-Pakete bis zur Live-Kapazität.
 - Unabhängige Opus-Pakete behandeln getrennte Kriterien oder getrennte Dateien.
