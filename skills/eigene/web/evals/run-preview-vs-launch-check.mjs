@@ -358,6 +358,12 @@ const KLASSEN_FAELLE = [
   ["kein visueller Anker im Fold", "visual-block"],
   ["Fold tot, nur Text ohne Anker", "visual-block"],
   ["Layout kaputt im Fold", "visual-block"],
+  // Kimi-Rest 01.09.: Review-Platzhalter ist laut Roter Linie 5 ein Swap,
+  // wurde aber ueber VISUAL_KONTEXT+platzhalter zum visual-block.
+  ["Review-Platzhalter im Fold", "content-park"],
+  ["Platzhalter-Review sichtbar im Hero", "content-park"],
+  ["Platzhalter-Kundenstimme im Fold", "content-park"],
+  ["Platzhalter-Grafik im Hero", "visual-block"],
 ];
 
 for (const [befund, erwartet] of KLASSEN_FAELLE) {

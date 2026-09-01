@@ -51,11 +51,15 @@ export function klassifiziereBefund(text) {
   if (VISUAL.test(roh) || VISUAL_URTEIL.test(roh)) {
     return visualBlock();
   }
-  // Ein sichtbarer Platzhalter ist eine visuelle Lücke, kein Content-Swap —
-  // aber nur, wenn kein Ops-Kern (Domain/DNS) den Befund trägt.
+  // Ein sichtbarer Platzhalter-SLOT (leere Grafik, fehlendes Bild) ist eine
+  // visuelle Lücke. Ein Review-/Copy-Platzhalter ist dagegen Working-Copy und
+  // damit ein Swap — auch wenn er im Fold sichtbar ist (SKILL.md Rote Linie 5).
+  const contentPlatzhalter =
+    /(?:review|copy|text|satz|zitat|kundenstimm\w*)[- ]?platzhalter|platzhalter[- ]?(?:review|copy|text|satz|zitat|kundenstimm\w*)/i;
   if (
     VISUAL_KONTEXT.test(roh) &&
     /platzhalter|placeholder/i.test(roh) &&
+    !contentPlatzhalter.test(roh) &&
     !OPS.test(roh)
   ) {
     return visualBlock();
