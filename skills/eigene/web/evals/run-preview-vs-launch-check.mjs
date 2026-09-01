@@ -478,6 +478,22 @@ zeile(
   "Merge-Regel (d): Beleg noetig, sonst parkt der Befund",
 );
 
+// Die Merge-Regel steht an zwei Orten: kritik-matrix.md ist der Spawn-Plan,
+// rolle-kritik.md die Rollen-Ebene. Divergieren sie, parkt ein Kritik-Agent
+// SEO- und Copy-Befunde wieder weg — genau der alte Fehler.
+const matrixText = fs.readFileSync(
+  path.join(WEB, "references", "kritik-matrix.md"),
+  "utf8",
+);
+zeile(
+  /\(d\)/.test(matrixText) && /onpage-check\.mjs/.test(matrixText),
+  "kritik-matrix.md kennt Merge-Regel (d) mit onpage-check.mjs",
+);
+zeile(
+  /\(d\)/.test(matrixText) === /\(d\)/.test(kritikRolle),
+  "Merge-Regel identisch in kritik-matrix.md und rolle-kritik.md",
+);
+
 console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
 if (fehler) process.exit(1);
 console.log("Vorschau-vor-Launch-Vertrag und Session-Gate halten.");

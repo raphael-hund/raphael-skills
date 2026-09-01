@@ -55,13 +55,19 @@ Zuerst Skript, dann Leaves. Parent dispatcht und merged. Parent liest keine PNGs
             design      → opus-critic
             conversion  → grok-critic
             copy        → kimi-critic
-            seo         → kimi-recherche   (HTML-Titel + sichtbare H1 im Shot)
+            seo         → kimi-recherche   (onpage-check.mjs + Shot: Titel, H1)
             trust       → kimi-recherche   (Proof sichtbar? FAKT-GATE parken)
 
 4  MERGE    Controller, kein fünfter Geschmack:
             Überlebt, wer (a) zwei PAGE-Leaves unabhängig fanden, oder
             (b) eine SITE-Achse UND mindestens eine PAGE, oder
-            (c) eine LENS UND mindestens eine PAGE/SITE.
+            (c) eine LENS UND mindestens eine PAGE/SITE, oder
+            (d) eine LENS MIT deterministischem Gate-Beleg:
+                SEO   → Ausgabezeile aus scripts/onpage-check.mjs
+                Copy  → copywriting G0/G1 mit Datei und Stelle
+                Trust → Zeile aus PROOF.md oder deren Fehlen
+                Der Beleg ist die kopierte Ausgabe, nicht die
+                Behauptung, geprüft zu haben. Ohne Beleg gilt (a)-(c).
             Rest = Parkplatz, nicht Fixliste.
             content-park / FAKT-GATE / ops-park nie biggest_gap.
             Preview-Blocker nur visual-block oder struktur-block
