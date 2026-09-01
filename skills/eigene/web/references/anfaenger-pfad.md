@@ -21,7 +21,8 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
 | **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |
-| **Website-Kritik** | `/web` + `/orchestrate` → `screenshot-kritik-loop.md` → shot-sweep `--base` → Kritik-Leaves (kein Parent-PNG-Dump) → Root-`DESIGN.md` | Shot-Ledger vollständig gegen manifest.json, Fixliste mit Pfaden |
+| **Website-Kritik** | `/web` + `/orchestrate` → `kritik-matrix.md` → shot-sweep `--base` → PAGE/SITE/LENS-Leaves | PRUEFGEGEN.md existiert; Ledger vollständig; KRITIK-n.md nach Merge |
+| **Website-Bau** (Fixes umsetzen) | `/web` + `/orchestrate` → nur KRITIK-n.md-Überlebende → Re-Sweep | Jeder Fix hat Nachher-Shot; keine neue Kritik erfunden |
 | **Nur Design/Look polieren** | `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
 | **Stil-Entscheidung / Art-Direction** (Pflicht-Load) | `stil-regeln.md` **immer** + `muster-bibliothek/INDEX.md` scannen → 2–3 passende Cases laden | Jede Build-Section zitiert eine Regel-ID oder einen Case; QA gleicht gegen Regelbuch ab |
 | **Referenzseite einlernen** (Geschmack-Training) | `muster-bibliothek/_template.md` ausfüllen → INDEX-Zeile → Regel-Kandidaten in `stil-regeln.md` | Case-Datei + INDEX-Zeile + Raphael-Urteil vorhanden |
@@ -36,7 +37,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
 | **Security Formular/API** | `security-audit-playbook.md` (+ OWASP aus code-review bei Consent) | Fail-open-Defaults raus |
-| **Session übernehmen / Handoff** (Planner↔Executor, Rotation) | `planner-executor-protokoll.md` (Chips!) → `PLAN.md` vollständig → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Executor-Chip: `/web` + `/orchestrate`. | Nächster offener Schritt aus STATUS.md; Executor hat diesen Turn einen Workflow gestartet, Parent ohne CSS-Edit |
+| **Session übernehmen / Handoff** (Planner↔Executor, Rotation) | `planner-executor-protokoll.md` (Chips!) → `PLAN.md` vollständig → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Plan = `/web`; Kritik/Bau = `/web` + `/orchestrate`. | PRUEFGEGEN.md da; nächster Schritt aus STATUS.md; Parent ohne CSS/PNG-Dump |
 
 Wenn **mehrere** Zeilen passen: die **oberste** zuerst fertig machen, dann die nächste.
 Website **bauen** und Skill **verbessern** gleichzeitig? → Skill zuerst (dieser Pfad),

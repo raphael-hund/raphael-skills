@@ -203,6 +203,17 @@ zeile(
 );
 
 
+
+zeile(
+  /kritik-matrix\.md/.test(skill) && /Drei Sessions/.test(skill),
+  "web SKILL.md: drei Sessions + kritik-matrix",
+);
+const matrix = fs.readFileSync(path.join(WEB, "references", "kritik-matrix.md"), "utf8");
+zeile(
+  /PAGE/.test(matrix) && /SITE/.test(matrix) && /LENS/.test(matrix) && /PRUEFGEGEN/.test(matrix),
+  "kritik-matrix.md: PAGE + SITE + LENS + PRUEFGEGEN",
+);
+
 if (fs.existsSync(PLAN) && fs.existsSync(VALIDATOR)) {
   const plan = fs.readFileSync(PLAN, "utf8");
   const validator = fs.readFileSync(VALIDATOR, "utf8");

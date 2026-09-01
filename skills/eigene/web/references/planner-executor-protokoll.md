@@ -11,12 +11,12 @@ Verlauf kennt.
 
 | Session | Macht | Macht nie |
 |---|---|---|
-| **Planner** | Plan, Sitemap, Page-Specs, Kritik-Auswertung, Priorisierung, Abnahme-Vorbereitung | Production-Code, Deploys |
-| **Executor** | Build, Fixes, QA-Gates, Screenshots, Deploy | Plan umwerfen, Scope erweitern |
+| **Plan** | PLAN.md, PRUEFGEGEN.md, Reihenfolge | Code, PNG-Read, Subagenten |
+| **Kritik** | Sweep-Skript + Flotte nach `kritik-matrix.md`, KRITIK-n.md, Ledger | Code, Deploy, PNG-Dump |
+| **Bau** (Bilder/Executor) | Nur überlebende Fixes, Re-Sweep, Ledger | Neue Kritik erfinden, Plan umwerfen |
 
-Beide Rollen laufen im `web`-Skill (Planner = Modus plan/kritik,
-Executor = Modus build). Das Protokoll ändert die Modi nicht — es regelt
-die Übergaben.
+Drei Chats. `web` in allen. Kritik und Bau zusätzlich `/orchestrate`.
+Spawn-Plan: `kritik-matrix.md`.
 
 ## Die Truth-Datei: das Original überlebt jede Session
 
@@ -148,13 +148,22 @@ Nicht eine Skill-Liste in den Prompt kippen. Genau diese Chips, sonst nichts.
 
 | Session | Chip-Leiste | Effort | Nie |
 |---|---|---|---|
-| **Planner (Plan)** | nur `/web` | high | `/orchestrate`, `/ultracode`, `/website-plan`, `/design`, `/visual-aaa`, `/impeccable`, `/taste`. website-plan hat 0 Child-Agenten. |
-| **Planner (Kritik)** | `/web` + `/orchestrate` | high | Parent liest keine PNG-Binaries. Panel = Leaves. |
-| **Executor (Build/Fix/Shots)** | `/web` + `/orchestrate` | Effort-Schieber **Ultracode** (nicht Slash `/ultracode`) | Slash `/ultracode` extra; `/design`; PNG-Dump in den Parent |
+| **Plan** | nur `/web` | high | `/orchestrate`, Slash `/ultracode`, `/website-plan`, `/design`, `/visual-aaa`. website-plan: 0 Children. |
+| **Kritik** | `/web` + `/orchestrate` | high | Code; PNG-Dump; Slash `/ultracode`. Flotte = `kritik-matrix.md`. |
+| **Bau** | `/web` + `/orchestrate` | Effort-Schieber **Ultracode** | Slash `/ultracode`; `/design`; PNG-Dump; neue Kritik erfinden |
 
 `web` lädt intern: screenshot-kritik-loop, shot-sweep, visual-aaa als Gate, design, FAKT-GATE. Extra-Chips dafür machen den Parent dicker, nicht besser.
 
-**Executor-Startzeile (wörtlich, vor dem Handoff):**
+**Kritik-Startzeile:**
+
+```
+/web /orchestrate — Kritik, client-<name>. Controller, kein Builder.
+Lies PRUEFGEGEN.md. Ohne die Datei STOP.
+Starte die Flotte aus kritik-matrix.md (PAGE + SITE + LENS).
+Parent liest keine PNGs. Ledger + KRITIK-n.md mit Merge-Regel.
+```
+
+**Bau-Startzeile (wörtlich, vor dem Handoff):**
 
 ```
 /web /orchestrate — Executor, client-<name>. Du bist Controller, nicht der Builder.

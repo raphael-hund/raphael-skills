@@ -6,6 +6,8 @@ Output. Keine implizite Vererbung. Host-Portabilität: Rollen beschreiben
 Rolle, verfügbares Äquivalent laut MODELL-MATRIX.
 
 **Wann laden:** vor jedem Multi-Agent-Lauf in strategy/copy/build/qa.
+Kritik-Spawn steht nur in `kritik-matrix.md` — diese Tabelle hier ist
+das Rollen-Wörterbuch, nicht der Spawn-Plan.
 **Anfänger:** zuerst `anfaenger-pfad.md` (Auftrag wählen), Roster erst bei Multi-Agent.
 
 ## Roster
