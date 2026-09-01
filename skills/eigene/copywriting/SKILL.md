@@ -13,7 +13,8 @@ description: >
 class: F
 scope: agency
 sensitivity: internal
-source: ergänzt um voice-analysis.md, adaptiert aus knowledge-work-plugins/
+source: >
+  ergänzt um voice-analysis.md, adaptiert aus knowledge-work-plugins/
   partner-built/brand-voice (Tribe AI, MIT-Lizenz), Stand 2026-07-20;
   ergänzt um direct-response-klassiker.md: destilliert aus
   robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
@@ -83,7 +84,7 @@ gehört vor dem Schreiben geprüft.
 
 | Aufgabe | Modell | Grund |
 |---|---|---|
-| Deutsche Verkaufs-Copy schreiben | `opus-builder` | beste DE-Copy im Haus |
+| Deutsche Verkaufs-Copy schreiben | `kimi-worker` oder `sol-builder` (gleichberechtigt) | Copy-Owner laut Rollenlogik 01.09.2026; Opus schreibt nie Copy |
 | Ad-Copy, kreative Angles | `kimi-worker` | Ads-Spezialist, knapper Output |
 | Umschreiben/Kürzen mechanisch | `luna-worker` | exakte Vorgabe, kein Eigenleben |
 | Eval/Judge | `sol-pruefer` oder `kimi-recherche` | andere Familie als der Schreiber |

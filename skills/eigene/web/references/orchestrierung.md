@@ -1,6 +1,6 @@
 # Orchestrierung — wer baut, wer prüft, wer sieht was
 
-Stand 27.07.2026. Alle Fähigkeitsangaben hier sind **getestet, nicht vermutet**
+Stand 14.08.2026. Alle Fähigkeitsangaben hier sind **getestet, nicht vermutet**
 (Kontrollbild-Test und Sol-Leseprobe, siehe unten). Wer eine Rolle umhängt, testet vorher.
 
 ## Die Fähigkeitstabelle — das ist die Grundlage jeder Rollenverteilung
@@ -11,7 +11,8 @@ Stand 27.07.2026. Alle Fähigkeitsangaben hier sind **getestet, nicht vermutet**
 | `visual-kritiker` | Grok (Lane) | **ja** | ja | nein | visuelle Kritik, Default fail |
 | `sonnet-worker` | Claude | **ja** | ja | ja | Hülle für native CLI, Drafts |
 | `luna-worker` | GPT-Luna | **ja** | ja | ja | Massen-Lesen, Parsen, billige Klassifikation |
-| `kimi-worker` | Kimi K3 | ja | ja | ja | Frontend-Code, deutsche Marketing-Texte |
+| `opus-builder` | Claude Opus | **ja** | ja | ja | **Seiten bauen** (Default-Builder) |
+| `kimi-worker` | Kimi K3 | ja | ja | ja | Recherche, langer Kontext — nicht Default-Seitenbau |
 | `kimi-recherche` | Kimi K3 | **ja** | ja | nein | dritte Familie, Zweitmeinung, Slop-Blick |
 | `luna-worker` | GPT-5.6 | **ja** | ja | ja | Mechanik, Tests, Recherche |
 | `sol-pruefer` | GPT-5.6 Sol | **nein** | **nein** | nein | Code-Urteil gegen eingebetteten Text |
@@ -37,17 +38,19 @@ Regel 8 sagt: nichts prüft die eigene Hausarbeit. Praktisch heißt das für ein
 |---|---|---|
 | Code-Urteil | `sol-pruefer` (GPT) | Textausschnitt mit Zeilennummern, kein Pfad |
 | Visuelle Kritik A | `visual-kritiker` (Grok) | `manifest.json` + alle Shot-PNGs |
-| Visuelle Kritik B | `opus-critic` (Claude Opus) | `manifest.json` + alle Shot-PNGs |
+| Visuelle Kritik B | andere Familie als Builder und A | dieselben Shots wie A |
 
-Wer gebaut hat, prüft nicht. Hat `opus-builder` das Frontend gebaut, wandert die
-visuelle Kritik B auf `kimi-critic` — sonst prüft die Familie sich selbst.
+Wer gebaut hat, prüft nicht. **Bauen ist `opus-builder`.** Dann ist visuelle Kritik A
+`visual-kritiker` (Grok) und B **`kimi-recherche`** — Opus darf Opus nicht prüfen.
+Sol prüft Code-Ursachen als Text, nicht die Shots.
 
-**Kritik läuft immer doppelt** (Raphael 14.08.2026). Nie ein Kritiker allein.
-Nie Haiku als Kritiker. Luna ist kein Kritiker — Luna macht Masse, nicht Urteil.
-Beide Kritiker starten in EINER Nachricht, damit sie parallel laufen.
+**Kritik läuft immer doppelt plus Gegencheck** (Raphael 14.08.2026). Nie ein
+Kritiker allein. Nie Haiku. Luna ist kein Kritiker — Luna macht Masse, nicht Urteil.
+Beide Kritiker starten in EINER Nachricht. Danach zweiter Pass: jeder bestätigt
+oder widerlegt die Befunde des anderen. Fixliste = überlebende Befunde.
 
 **Judge-Form immer „pass/fail + eingefügter Beweis", nie „erkläre dein Denken"**
-(Regel 19, Fable-Gotcha). Ein Befund ohne Beleg gilt als nicht gefunden.
+(Regel 19). Ein Befund ohne Beleg gilt als nicht gefunden.
 
 **Zusammenführen:** Auf die Fixliste kommt, was (a) zwei Panel-Mitglieder tragen oder
 (b) das eigene Auge plus ein Panel-Mitglied. Bei Widerspruch **nicht** nach Mehrheit
@@ -77,11 +80,10 @@ Exit-Code billiger findet.
 Gemessen am 27.07.2026: 31 GiB gesamt, ~12 GiB verfügbar, **5 von 8 GiB Swap bereits
 belegt**. Diese Kiste hatte OOM-Vorfälle.
 
-- Höchstens **4–6 Subagenten gleichzeitig**.
-- Playwright zählt mit: jeder Sweep startet einen echten Chrome. Ein Sweep über 8 Routen
-  neben 6 Subagenten ist der Weg in den OOM.
-- Faustregel: Panel-Agenten **oder** Sweep, nicht beides zur selben Sekunde.
-- Was inline in unter 5 Minuten erledigt ist, bekommt keinen eigenen Thread.
+- Keine kleine fachliche Obergrenze: alle dependency-ready Pakete dürfen bis zur live verfügbaren Runtime-, Provider-, RAM-, Browser- und Kontextkapazität starten.
+- Playwright und Screenshot-Sweeps belegen Browser-/RAM-Leases. Bildlastige Panels und Sweeps werden nur gemeinsam gestartet, wenn die Live-Ressourcenmessung es trägt.
+- Writer brauchen disjunkte normalisierte `write_set`s oder isolierte Worktrees; Shared Files haben einen Owner.
+- Keine künstliche Arbeit nur zur Auslastung.
 
 ## Modell und Effort
 
@@ -91,12 +93,34 @@ löst mehr als ein größeres Modell auf Standard-Effort — und kostet weniger.
 | Aufgabe | Besetzung |
 |---|---|
 | Art Direction, Struktur, Entscheidungen | Cockpit selbst (nicht delegieren) |
-| Frontend-Code, deutsche Texte | `kimi-worker` |
-| Mechanik, Tests, Datenkram | `luna-worker` |
+| Substanzieller UI-Neubau / roter Design-Stand | Sol/Cockpit zerlegt → alle unabhängigen Opus-Pakete bis Live-Kapazität → genau ein Opus-Integrator |
+| Frontend-Code, Seite, Layout | **`opus-builder`** |
+| Deutsche Verkaufscopy schreiben | `kimi-worker` oder `sol-builder`; `opus-builder` baut sie nur unverändert ein |
+| Mechanik, Tests, Datenkram | `luna-worker` (kein Urteil, keine Seite) |
 | Massen-Lesen, Sortieren | `luna-worker` |
-| Auslieferungs-Urteil | `sol-pruefer` + eine bildfähige Familie |
+| Visuelle Kritik einer Seite | Grok + `kimi-recherche` (Opus hat gebaut), dann Gegencheck |
+| Auslieferungs-Urteil Code | `sol-pruefer` (Textausschnitt) |
 
-Keine Opus-/Fable-Subagenten (Doktrin). Kimi immer K3, HighSpeed verboten (3× Quota).
+**Nie Haiku.** Kimi nur Recherche/Zweitstimme, nicht Seiten-Builder. HighSpeed verboten.
+
+## Sol → Opus: Delegation ohne Drift
+
+Die Idee aus Kevin Kerns X-Post vom 19.08.2026 ist eine Harness-Kette:
+Ein Leitmodell formuliert die Aufgabe, ein Delegator verteilt mehrere
+UI-Blickwinkel, Opus setzt die Entscheidung um. Für diesen Skill gilt:
+
+- Im Sol-Cockpit zerlegt Sol selbst und delegiert direkt an Opus.
+- Das Cockpit schärft Kriterien und delegiert alle echten unabhängigen Pakete an `opus-builder`; Fable wird dort nicht gestartet.
+- Die Breite folgt ready Nodes und Live-Kapazität, nicht einer statischen Fünferzahl.
+- Parallele Analyse darf denselben Stand lesen. Paralleles Schreiben braucht disjunkte normalisierte `write_set`s oder Worktrees.
+- Genau ein `opus-builder` integriert alle bestätigten Ergebnisse.
+- Der Integrator bekommt Ziel, Referenzen, erforderliches Verhalten, Grenzen,
+  Testplan und die vollständige Liste bestätigter Befunde.
+- Danach folgen G1, Shot-Sweep, eigenes Ansehen und familienfremdes Panel.
+
+Ein Lauf ist bei einem dieser Befunde rot: überlappende Opus-Schreibbereiche,
+fehlender Integrator oder ein Bau ohne fremdfamiliäre Kritik
+vom Cockpit selbst.
 
 ## Was nie autonom passiert
 
