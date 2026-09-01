@@ -393,7 +393,6 @@ def classify(skill_id: str, fm: dict, all_ids: set[str]) -> Decision:
         if skill_id == "web":
             d.never_when.extend([
                 "UI-Detailarbeit an bestehendem Frontend",
-                "nur planen",
             ])
 
     # R5 — vom Front Door absorbierte Quelle
@@ -553,6 +552,8 @@ def classify(skill_id: str, fm: dict, all_ids: set[str]) -> Decision:
         d.set_activation("auto", "K7", terminal=True)
         d.owner = "self"
         d.status = "canonical"
+    if skill_id in K7_NEVER_WHEN:
+        d.never_when.extend(K7_NEVER_WHEN[skill_id])
 
     # U1/U3 — Experimente
     if skill_id in U1_EXPERIMENTS and d.activation is None:
@@ -684,7 +685,7 @@ def split_auto_when(description: str, skill_id: str) -> list[str]:
     if quoted:
         for q in quoted:
             add(q)
-            if len(out) >= 8:
+            if len(out) >= 16:
                 break
         if out:
             return out
@@ -745,6 +746,15 @@ PSTACK_OWNER = "poteto"
 K7_AUTO_ROUTERS = {
     "ads", "research", "debug", "plan", "seo", "copywriting",
     "poteto", "qa", "qa-only",
+}
+
+# Generisches "planen" darf Website-Kontexte nicht vor web gewinnen (U-NW1/U14/U-WP*).
+K7_NEVER_WHEN = {
+    "plan": [
+        "Website bauen",
+        "Website planen",
+        "Website-Kritik",
+    ],
 }
 
 
@@ -915,18 +925,27 @@ def prune_ambiguous_auto_when(entries: list[dict]) -> list[dict]:
     """
     routers = [e for e in entries if e["activation"] == "auto-router"]
 
+    def never_blocked(entry: dict, prompt: str) -> bool:
+        return any(
+            hook_usable(nw) and word_match(prompt, nw)
+            for nw in entry.get("never_when") or []
+        )
+
+    def hits_skill(entry: dict, prompt: str) -> bool:
+        if never_blocked(entry, prompt):
+            return False
+        return any(
+            hook_usable(cand) and word_match(prompt, cand)
+            for cand in entry.get("auto_when") or []
+        )
+
     for e in routers:
         kept = []
         for phrase in e["auto_when"]:
             if not hook_usable(phrase):
                 continue
-            # Simulation: die Phrase als ganzer Prompt gegen alle Kandidaten.
-            hitters = [
-                o["name"]
-                for o in routers
-                for cand in o["auto_when"]
-                if hook_usable(cand) and word_match(phrase, cand)
-            ]
+            # Simulation wie pickMode: never_when filtert vor der Eindeutigkeit.
+            hitters = [o["name"] for o in routers if hits_skill(o, phrase)]
             if set(hitters) == {e["name"]}:
                 kept.append(phrase)
         e["auto_when"] = kept
