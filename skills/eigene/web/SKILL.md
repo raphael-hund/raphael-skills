@@ -16,7 +16,7 @@ description: >
   "Website planen", "Website-Plan", "Landingpage planen",
   "Website-Kritik", "Website kritisieren", "kompletter Website-Plan".
 metadata:
-  raphael-version: "0.24.0"
+  raphael-version: "0.25.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
@@ -54,16 +54,29 @@ Drei Modi (erster Treffer, in einem Satz ansagen):
    keine neuen Skills.
 3. **build** — bisheriger Loop2-Ablauf.
 
-**Slash-Dump:** Stehen im Prompt viele `/skills`, gilt trotzdem nur `web`. Die
-Liste nicht nachladen.
+**Slash-Dump:** taste / impeccable / visual-aaa / website-plan / design extra
+im Prompt = ignorieren, `web` lädt sie intern. Ausnahme, kein Dump:
+Planner-Kritik und Executor **müssen** `/web` plus `/orchestrate` fahren.
+`/ultracode` zusätzlich ist redundant — Orchestrate ist der Owner.
 
 **Zwei-Session-Betrieb** (verbindlich, Raphael 01.09.2026): Raphael fährt
 Planner- und Executor-Session getrennt. Übergaben laufen über das
 Handoff-Format und die Truth-Dateien (`handoff/PLAN.md` als nie
 zusammengefasstes Original, `STATUS.md`, `KRITIK-n.md`) aus
-`references/planner-executor-protokoll.md`. Bei voller Session: Rotation
-nach Protokoll — frische Session liest PLAN.md vollständig, nie nur eine
-Zusammenfassung.
+`references/planner-executor-protokoll.md`. Chips: Planner-Plan = nur `/web`;
+Planner-Kritik und Executor = `/web` + `/orchestrate`. Bei voller Session:
+Rotation nach Protokoll — frische Session liest PLAN.md vollständig, nie nur
+eine Zusammenfassung.
+
+**Executor = Controller (hart).** Parent schreibt keine CSS/TSX/JS, liest
+keine PNG-Binaries, rechnet keine Bezier-Hypothesen. Dieser Turn startet
+einen Dynamic Workflow. Leaves: shot-sweep, visuelle Kritiker (Grok +
+kimi-recherche), Code-Ursache (`grok-worker` mit Shot-Pfad), ein
+`opus-builder`-Integrator. Rückgabe nur Pfade + Verdict in STATUS.md /
+KRITIK-n.md. Solo-Debug im Parent (wipe.css, cubic-bezier, „ich prüfe die
+Prozent-Hypothese“) = Skill nicht befolgt. Shot-Ledger in STATUS.md:
+`pfad | viewport | gelesen | verdict`. 1440×900 Fold + 390×844 Pflicht.
+Ohne Re-Sweep nach Fix = nicht geprüft.
 
 **Feedback-Pfad** (verbindlich, ohne Extra-Slash):
 

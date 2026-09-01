@@ -36,7 +36,7 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
 | **Security Formular/API** | `security-audit-playbook.md` (+ OWASP aus code-review bei Consent) | Fail-open-Defaults raus |
-| **Session übernehmen / Handoff** (Planner↔Executor, Rotation) | `planner-executor-protokoll.md` → `/root/clients/client-<name>/web/handoff/PLAN.md` **vollständig** → `STATUS.md` → höchste `KRITIK-n.md` | Nächster offener Schritt aus STATUS.md benannt; kein Gate übersprungen |
+| **Session übernehmen / Handoff** (Planner↔Executor, Rotation) | `planner-executor-protokoll.md` (Chips!) → `PLAN.md` vollständig → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Executor-Chip: `/web` + `/orchestrate`. | Nächster offener Schritt aus STATUS.md; Executor hat diesen Turn einen Workflow gestartet, Parent ohne CSS-Edit |
 
 Wenn **mehrere** Zeilen passen: die **oberste** zuerst fertig machen, dann die nächste.
 Website **bauen** und Skill **verbessern** gleichzeitig? → Skill zuerst (dieser Pfad),
