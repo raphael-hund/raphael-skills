@@ -23,7 +23,7 @@ nicht als Template stehen gelassen.
 
 | Macht | Macht nie |
 |---|---|
-| `PLAN.md`, `PRUEFGEGEN.md`, Reihenfolge, Copy-Briefing | Production-Code, PNG-Read, Subagenten, Workflows |
+| `PLAN.md`, `PRUEFGEGEN.md`, Reihenfolge, Copy-Briefing | Production-Code, Build-/Kritik-Shot-Reads (Eingang-Referenzen: max 3, siehe unten), Subagenten, Workflows |
 
 Kein Screenshot-Sweep, keine Kritik-Flotte, keine finale Copy. Ergebnis der
 Plan-Session sind zwei Textdateien und ein Handoff-Prompt.
@@ -113,9 +113,12 @@ nicht designen. Fail = nicht an `art-direction` weitergehen.
 ## Referenzen aus dem Briefkasten (Pflicht)
 
 Vor jeder Stilentscheidung: `ls -lt /root/eingang | head -20`; bildhafte Dateien
-der letzten 7 Tage per `Read` ansehen. Raphael legt Referenzen dort ab, ohne sie
-im Prompt zu erwähnen. Verwendetes kommt in den Plan; ist nichts relevant, steht
-dort in einem Satz warum.
+der letzten 7 Tage per `Read` ansehen — **höchstens 3 Stück**, und nur
+Kundenreferenzen aus dem Briefkasten. Das PNG-Verbot der Rollen-Tabelle meint
+Build- und Kritik-Shots (die Massenware, die Parents historisch geflutet hat),
+nicht die Handvoll Referenzbilder, ohne die kein Stilurteil geht. Raphael legt
+Referenzen dort ab, ohne sie im Prompt zu erwähnen. Verwendetes kommt in den
+Plan; ist nichts relevant, steht dort in einem Satz warum.
 
 ## Handoff-Format (vier Blöcke, nichts weiter)
 

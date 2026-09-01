@@ -16,7 +16,7 @@ import path from "node:path";
 
 // Handfeste Gestaltungsbefunde: blocken die Vorschau immer.
 const VISUAL =
-  /hierarchie|spacing|typo|beschnitten|angeschnitten|bildschnitt|crop\b|layout kaputt|\blayout\b|kontrast|hero (tot|leer)|template|button-famil|leerfl|rhythmus|motion|wipe\b|cta-f(?:ue|ü)hrung|nicht premium|fold\b|überlapp|ueberlapp|safe-margin|kopf .*(?:rand|rahmen)|vier button|design (?:fail|rot|daneben)|kein(?:e[sn]?)?(?:\s+einziges)?\s+(?:foto|bild)\b|ohne bilder|fehlende bilder|kein(?:en)? visuelle[rn]? anker/i;
+  /hierarchie|spacing|typo|beschnitten|angeschnitten|bildschnitt|crop\b|layout kaputt|kontrast|hero (tot|leer)|template|button-famil|leerfl|rhythmus|motion|wipe\b|cta-f(?:ue|ü)hrung|nicht premium|fold (?:tot|leer|kaputt)|überlapp|ueberlapp|safe-margin|kopf .*(?:rand|rahmen)|vier button|design (?:fail|rot|daneben)|kein(?:e[sn]?)?(?:\s+einziges)?\s+(?:foto|bild)\b|ohne bilder|fehlende bilder|kein(?:en)? visuelle[rn]? anker/i;
 
 // Subjektive Gesamturteile über die Gestaltung ("sieht billig aus", "wirkt
 // lieblos"). Historischer Kernfehler: die fielen auf "sonst" und konnten die

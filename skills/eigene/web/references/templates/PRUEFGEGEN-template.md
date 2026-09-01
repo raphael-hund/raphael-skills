@@ -6,6 +6,10 @@ geprüft wird, und lösche danach die AUSFUELLEN-Zeile. Das Gate verlangt
 mindestens zwei eigene Zeilen, die nicht aus der Vorlage stammen — die
 Beispielzeilen unten zählen nicht mit. Alle fünf Linsen gehören besetzt.
 
+Vorschau-Prüffragen fragen nach **Sichtbarkeit und Wirkung** (ist der Proof da,
+trägt der Hero). Faktenwahrheit — Stichtage, Zahlenabgleich, echte Reviews —
+ist FAKT-GATE und gehört in die Launch-Spalte, nicht in eine Vorschau-Frage.
+
 | Linse | Skill/Quelle | Datei/Referenz | Shot/Viewport | Prüffrage |
 |---|---|---|---|---|
 | Design | web + design | taste-kern.md, motion-doktrin.md | Fold Desktop 1440 | Wirkt der Hero wie ein gebautes Produkt, nicht wie ein Template? |

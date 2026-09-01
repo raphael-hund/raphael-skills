@@ -349,6 +349,15 @@ const KLASSEN_FAELLE = [
   ["Custom-Domain sichtbar im Footer", "ops-park"],
   ["Custom-Domain zeigt noch auf Telekom", "ops-park"],
   ["Sitemap hat keine Leistungsseite", "struktur-block"],
+  // Kimi-P0 01.09.: "fold" stand im VISUAL-Regex — der kanonische Shot-Ort
+  // machte jeden Content-Nit zum Vorschau-Blocker. Goldfaelle sagten nur "Hero".
+  ["50 statt 60 Google-Bewertungen im Fold", "content-park"],
+  ["sichtbarer Tippfehler im Fold", "content-park"],
+  ["Custom-Domain im Fold sichtbar", "ops-park"],
+  ["Tippfehler im Layout der Preisliste", "content-park"],
+  ["kein visueller Anker im Fold", "visual-block"],
+  ["Fold tot, nur Text ohne Anker", "visual-block"],
+  ["Layout kaputt im Fold", "visual-block"],
 ];
 
 for (const [befund, erwartet] of KLASSEN_FAELLE) {
