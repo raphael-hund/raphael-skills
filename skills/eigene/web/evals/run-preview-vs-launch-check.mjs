@@ -446,6 +446,38 @@ try {
   fs.rmSync(tmp, { recursive: true, force: true });
 }
 
+// ---------------------------------------------------------------------------
+// onpage-check.mjs ist der Gate-Beleg, den Merge-Regel (d) fuer die SEO-Linse
+// verlangt. Ohne dieses Skript waere die Regel unerfuellbar.
+// ---------------------------------------------------------------------------
+
+const ONPAGE = path.join(WEB, "scripts", "onpage-check.mjs");
+zeile(fs.existsSync(ONPAGE), "onpage-check.mjs existiert (Gate-Beleg der SEO-Linse)");
+
+{
+  const r = spawnSync("node", [ONPAGE], { encoding: "utf8" });
+  zeile(r.status === 64, "onpage-check ohne Argumente ist Usage-Fehler (Exit 64)");
+}
+{
+  const r = spawnSync("node", [ONPAGE, "--base", "file:///tmp", "--routes", "/"], {
+    encoding: "utf8",
+  });
+  zeile(r.status === 64, "onpage-check lehnt file:// ab (Exit 64)");
+}
+
+const kritikRolle = fs.readFileSync(
+  path.join(WEB, "references", "rolle-kritik.md"),
+  "utf8",
+);
+zeile(
+  /onpage-check\.mjs/.test(kritikRolle),
+  "rolle-kritik.md nennt onpage-check.mjs als SEO-Gate-Beleg",
+);
+zeile(
+  /Gate-Beleg/.test(kritikRolle) && /parkt/.test(kritikRolle),
+  "Merge-Regel (d): Beleg noetig, sonst parkt der Befund",
+);
+
 console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
 if (fehler) process.exit(1);
 console.log("Vorschau-vor-Launch-Vertrag und Session-Gate halten.");

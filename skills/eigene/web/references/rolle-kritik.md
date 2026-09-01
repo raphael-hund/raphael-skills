@@ -129,12 +129,20 @@ einen Beleg, den jeder nachfahren kann:
 
 | Linse | Gate-Beleg statt zweitem Leaf |
 |---|---|
-| SEO | Ausgabe eines Checks auf dem gebauten HTML: Title-Länge, Meta, genau eine H1, Canonical, Slug, crawlbares Markup (QA-Fach 5 G1, `qa-faecher.md`) |
+| SEO | Zeile aus `scripts/onpage-check.mjs` (Title, Meta, genau eine H1, Canonical, crawlbares Markup — QA-Fach 5 G1) |
 | Copy | `copywriting` G0 (`forbidden.md`-Treffer) oder G1 mit Datei und Stelle |
 | Trust | Zeile aus `PROOF.md` oder deren belegtes Fehlen |
 
-Ein LENS-Befund mit solchem Beleg überlebt allein. Ohne Beleg gilt weiter
-(a)–(c): eine SEO-Behauptung ohne Check-Ausgabe ist eine Meinung und parkt.
+```bash
+node /root/raphael-skills/skills/eigene/web/scripts/onpage-check.mjs \
+  --base http://127.0.0.1:<PORT> --routes / /leistungen /kontakt
+# Exit 0 = On-Page sauber, Exit 1 = jede Zeile ist ein belegter Befund
+```
+
+Ein LENS-Befund mit solchem Beleg überlebt allein — der Beleg ist die
+**kopierte Ausgabezeile**, nicht die Behauptung, man habe geprüft. Wer keinen
+Beleg mitliefert, fällt zurück auf (a)–(c): eine SEO- oder Copy-Behauptung ohne
+Check-Ausgabe ist eine Meinung und parkt.
 
 ## Klassifizierung jedes Befunds (Pflicht)
 

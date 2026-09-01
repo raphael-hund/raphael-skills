@@ -13,6 +13,20 @@ Verifikations-Vertrag). Dieser Loop hier bleibt der Web-Sweep-Ablauf; `web` blei
 der einzige Website-Workflow-Owner. `visual-aaa` ist ausschließlich der terminale
 DoneClaim-Blocker, nie Workflow-Owner oder zweite Produktionspipeline.
 
+**Shot-Budget (seit 01.09.2026, hart):** Ein Kritik-Leaf liest höchstens ~12 Shots
+und nur verkleinerte. Volle PNG-Serien sprengen das 32-MB-Limit eines Agent-Turns —
+am 01.09. starben so 9 von 10 Kritikern eines AlpenEnergie-Laufs und zwei
+Burak-Judges, jeweils mit `Request too large (max 32MB)`. Vor jedem Kritik-Fan-out:
+
+```bash
+/root/tools/shots-verkleinern.sh <shot-verzeichnis>
+```
+
+Das erzeugt daneben 1000px-JPGs (idempotent, ~85 % kleiner) und gibt den Zielpfad
+aus; die Leaf-Prompts zeigen auf dieses Verzeichnis. Braucht eine Achse mehr als
+12 Shots, wird sie in mehrere Leaves geteilt, nicht das Budget erhöht. Der Parent
+bekommt weiterhin nur Verdict plus Pfad, nie das Bild.
+
 ## Ablauf (immer diese Reihenfolge)
 
 ### 0. Wiederkehrender Health-Sweep (optional, nur für Live-Kundenseiten, per Cron)
