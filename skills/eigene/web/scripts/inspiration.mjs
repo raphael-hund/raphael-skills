@@ -1,18 +1,10 @@
 #!/usr/bin/env node
-// Liest UI-Inspiration (Refero, Navbar Gallery, Magic UI, React Bits, 21st)
-// über Jina Reader, sonst Firecrawl. Kein Login, kein Cache, Schreiben nur mit --out.
+// Liest UI-Inspiration (Refero, Navbar Gallery, Magic UI, React Bits, 21st,
+// Landdding, Awwwards, Siteinspire, Curated, GetLayers, Behance, Inspora, Swiped)
+// über Jina Reader, sonst Firecrawl; einzelne Quellen per fetch. shot über Playwright.
+// Kein Login, kein Cache, Schreiben nur mit --out (shot: nur --out-Verzeichnis).
 //
 //   node inspiration.mjs --help
-//   node inspiration.mjs refero search "<query>" [--limit 10] [--json]
-//   node inspiration.mjs refero get <styleId|url> [--out <datei.md>] [--json]
-//   node inspiration.mjs navbar list [typ] [--limit 20] [--json]
-//   node inspiration.mjs navbar get <slug|url> [--json]
-//   node inspiration.mjs magicui list [--grep <substr>] [--json]
-//   node inspiration.mjs magicui get <name> [--out <pfad.tsx>] [--json]
-//   node inspiration.mjs reactbits list [--grep <substr>] [--all] [--json]
-//   node inspiration.mjs reactbits get <Name> [--out <pfad.tsx>] [--json]
-//   node inspiration.mjs 21st search <kategorie|begriff> [--limit 20] [--json]
-//   node inspiration.mjs 21st get <@author/slug|url> [--json]
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -20,6 +12,9 @@ import { spawnSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
 const UA = 'raphael-web-inspiration/1.0';
+const BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128.0 Safari/537.36';
+const CLI_21ST = '/root/.local/bin/21st';
+const DEFAULT_SHOT_OUT = '/tmp/inspiration-shots';
 const FETCH_TIMEOUT_MS = 45_000;
 const FIRECRAWL_TIMEOUT_MS = 60_000;
 const JINA = 'https://r.jina.ai/';
@@ -37,18 +32,40 @@ const HELP = `Usage:
   node inspiration.mjs reactbits get <Name> [--out <pfad.tsx>] [--json]
   node inspiration.mjs 21st search <kategorie|begriff> [--limit 20] [--json]
   node inspiration.mjs 21st get <@author/slug|url> [--json]
+  node inspiration.mjs 21st code <suchbegriff|id> [--json]
+  node inspiration.mjs landdding list [<kategorie>] [--limit 20] [--json]
+  node inspiration.mjs landdding get <slug|url> [--json]
+  node inspiration.mjs awwwards list [<tag>] [--limit 30] [--json]
+  node inspiration.mjs awwwards get <slug|url> [--json]
+  node inspiration.mjs siteinspire list [<kategorie>] [--limit 20] [--json]
+  node inspiration.mjs siteinspire get <id-slug|url> [--json]
+  node inspiration.mjs curated list [--limit 30] [--json]
+  node inspiration.mjs getlayers list [--limit 40] [--grep <substr>] [--json]
+  node inspiration.mjs getlayers get <slug|url> [--json]
+  node inspiration.mjs behance search "<query>" [--limit 20] [--json]
+  node inspiration.mjs behance get <id|url> [--json]
+  node inspiration.mjs inspora list [--limit 20] [--json]
+  node inspiration.mjs swiped list [--limit 20] [--json]
+  node inspiration.mjs mobbin [--json]
+  node inspiration.mjs shot <url> [--out <verzeichnis>] [--mobile] [--full] [--wait <ms>] [--json]
   node inspiration.mjs --help
 
 Liest Seiten über https://r.jina.ai/<url>; Fallback: firecrawl scrape <url> -f markdown --only-main-content.
+siteinspire nur Firecrawl (Jina = Vercel 429). awwwards/getlayers/inspora: HTML per fetch.
 Registry-JSON (Magic UI, React Bits) per fetch. Timeout 45s, User-Agent ${UA}.
 Kein Cache, kein Login, keine Cookies. Schreiben nur mit --out.
+shot: Playwright-PNG nach --out (Default /tmp/inspiration-shots). PNG danach mit Read ansehen — ein Pfad ohne Ansehen zählt nicht als gesehen.
+Bei Bot-Schutz: raphael-chrome open <url>; raphael-chrome screenshot <id> <png>.
+Mobbin: kein Netz, nur MCP-Hinweis. Swiped: Design-Posts von X/LinkedIn, keine Websites.
+curated/inspora: nur list (kein get).
 
 Exit: 0 ok · 1 nichts gefunden · 2 Bedienfehler · 3 HOST_UNAVAILABLE (Kanal in der Meldung).
 
 Lizenz: Refero, Navbar Gallery, 21st = Inspiration/Analyse (Muster, Tokens, Struktur),
 keine Layout-/Asset-Kopie. Magic UI (MIT) und React Bits (MIT, Registry) = einzelne
 Komponente übernehmbar, danach Werkzeugtabelle in art-direction.md + Router-Anker
-#sections/#motion/#background, wie tool-usecase-router.md verlangt.`;
+#sections/#motion/#background, wie tool-usecase-router.md verlangt.
+Lizenz: alle Galerien nur Inspiration/Analyse; Screenshots nur intern (Design-DNA, PRUEFGEGEN), nie in Kundenauslieferung.`;
 
 function die(message) {
   console.error(`inspiration: ${message}\n\n${HELP}`);
@@ -89,19 +106,22 @@ function writeOut(file, content) {
 }
 
 function parseCli(argv) {
-  const flags = { json: false, all: false, limit: null, out: null, grep: null };
+  const flags = { json: false, all: false, mobile: false, full: false, limit: null, out: null, grep: null, wait: null };
   const positional = [];
-  const known = new Set(['--json', '--help', '--all', '--limit', '--out', '--grep']);
+  const known = new Set(['--json', '--help', '--all', '--mobile', '--full', '--limit', '--out', '--grep', '--wait']);
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === '--json') flags.json = true;
     else if (arg === '--all') flags.all = true;
-    else if (arg === '--limit' || arg === '--out' || arg === '--grep') {
+    else if (arg === '--mobile') flags.mobile = true;
+    else if (arg === '--full') flags.full = true;
+    else if (arg === '--limit' || arg === '--out' || arg === '--grep' || arg === '--wait') {
       const value = argv[i + 1];
       if (!value || value.startsWith('--')) die(`${arg} braucht einen Wert`);
       i += 1;
       if (arg === '--limit') flags.limit = value;
       else if (arg === '--out') flags.out = value;
+      else if (arg === '--wait') flags.wait = value;
       else flags.grep = value;
     } else if (arg.startsWith('--')) {
       if (!known.has(arg)) die(`unbekanntes Flag ${arg}`);
@@ -321,6 +341,338 @@ export function parse21stItem(markdown) {
   return { title, description, usage, dependencies, license, source };
 }
 
+
+function decodeHtmlEntities(value) {
+  return String(value)
+    .replace(/&quot;/g, '"')
+    .replace(/&#0*39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&amp;/g, '&');
+}
+
+function stripRefParam(url) {
+  const raw = String(url || '').trim();
+  if (!raw) return '';
+  try {
+    const parsed = new URL(raw);
+    parsed.searchParams.delete('ref');
+    const query = parsed.searchParams.toString();
+    return `${parsed.origin}${parsed.pathname}${query ? `?${query}` : ''}${parsed.hash}`;
+  } catch {
+    return raw.replace(/\?ref=[^&#]*/i, '').replace(/&ref=[^&#]*/i, '').replace(/\?$/, '');
+  }
+}
+
+export function parseLandddingList(markdown) {
+  const text = String(markdown || '');
+  const items = [];
+  const seen = new Set();
+  const re = /https?:\/\/(?:www\.)?landdding\.com\/l\/([a-z0-9-]+)/gi;
+  for (const match of text.matchAll(re)) {
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    const before = text.slice(Math.max(0, match.index - 800), match.index);
+    const prev = before.lastIndexOf('landdding.com/l/');
+    const window = prev >= 0 ? before.slice(prev) : before;
+    const alts = [...window.matchAll(/!\[[^\]]*?:\s*([^\]\n]+?)\s*—\s*website design on Landdding/gi)];
+    // Kategorie-Seiten (/c/<kat>) tragen den Titel als Link-Title "…" hinter der URL,
+    // nicht im Bild-Alt (gemessen 03.09.2026 an /c/agency).
+    const linkTitle = String(markdown).slice(match.index, match.index + 400).match(/^\S+\s+"([^"\n]+)"\)/)?.[1];
+    const title = (alts.at(-1)?.[1] || linkTitle || slug.replace(/-/g, ' ')).replace(/\s+/g, ' ').trim();
+    items.push({ title, url: `https://landdding.com/l/${slug}`, slug });
+  }
+  return items;
+}
+
+export function parseLandddingItem(markdown) {
+  const text = String(markdown || '');
+  const header = text.match(/^Title:\s*(.+)$/m)?.[1]?.trim() || '';
+  const title = header.replace(/\s+-\s+Landdding.*$/i, '').trim();
+  const body = markdownBody(text);
+  const visitMatch = body.match(/\[Visit Website\]\((https?:\/\/[^)]+)\)/i);
+  const visit = stripRefParam(visitMatch?.[1] || '');
+  let thumbnail = '';
+  const branded = body.match(/!\[[^\]]*website design on Landdding[^\]]*\]\((https?:\/\/[^)]+)\)/i);
+  if (branded) thumbnail = branded[1];
+  else {
+    const sanity = body.match(/\((https?:\/\/[^)]*cdn\.sanity\.io[^)]+)\)/i);
+    if (sanity) thumbnail = sanity[1];
+  }
+  return { title, visit, thumbnail };
+}
+
+export function parseAwwwardsList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  const re = /data-collectable-model-value="([^"]+)"/g;
+  for (const match of text.matchAll(re)) {
+    let obj;
+    try {
+      obj = JSON.parse(decodeHtmlEntities(match[1]));
+    } catch {
+      continue;
+    }
+    const slug = String(obj.slug || obj.collectableIdentifier || '').trim();
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    const rel = obj.images?.thumbnail || obj.collectableImage || '';
+    items.push({
+      title: String(obj.title || obj.collectableTitle || slug),
+      slug,
+      url: `https://www.awwwards.com/sites/${slug}`,
+      tags: Array.isArray(obj.tags) ? obj.tags.map((tag) => String(tag)) : [],
+      thumbnail: rel ? `https://assets.awwwards.com/awards/${rel}` : '',
+    });
+  }
+  return items;
+}
+
+export function parseAwwwardsItem(html) {
+  const text = String(html || '');
+  const title = decodeHtmlEntities(text.match(/<title>([^<]+)<\/title>/i)?.[1] || '').trim();
+  const og = text.match(/property=["']og:image["'][^>]*content=["']([^"']+)["']/i)
+    || text.match(/content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
+  const fromCard = parseAwwwardsList(text)[0];
+  return {
+    title,
+    screenshot: og?.[1] || fromCard?.thumbnail || '',
+    tags: fromCard?.tags || [],
+  };
+}
+
+export function parseSiteinspireList(markdown) {
+  const text = String(markdown || '');
+  const items = [];
+  const seen = new Set();
+  const re = /\[!\[([^\]]+)\]\((https?:\/\/r2\.siteinspire\.com[^)]+)\)\]\((https?:\/\/(?:www\.)?siteinspire\.com\/website\/(\d+-[a-z0-9-]+))\)/gi;
+  for (const match of text.matchAll(re)) {
+    const name = match[1].replace(/\s+/g, ' ').trim();
+    const idSlug = match[4].toLowerCase();
+    if (seen.has(idSlug)) continue;
+    if (/^mobbin$/i.test(name) || /mobbin\.com/i.test(match[3])) continue;
+    seen.add(idSlug);
+    const after = text.slice(match.index + match[0].length, match.index + match[0].length + 900);
+    const visitMatch = after.match(/\[Visit\s+[^\]]+?\s+website\]\((https?:\/\/[^)]+)\)/i);
+    let visit = visitMatch ? stripRefParam(visitMatch[1]) : '';
+    if (/mobbin\.com/i.test(visit)) visit = '';
+    items.push({
+      name,
+      url: `https://www.siteinspire.com/website/${idSlug}`,
+      visit,
+      thumbnail: match[2],
+    });
+  }
+  return items;
+}
+
+export function parseSiteinspireItem(markdown) {
+  const text = String(markdown || '');
+  const header = text.match(/^Title:\s*(.+)$/m)?.[1]?.trim() || '';
+  let title = header.replace(/\s+[–—-]\s*SiteInspire.*$/i, '').trim();
+  const body = markdownBody(text);
+  const similarAt = body.search(/^##\s+Similar/im);
+  const main = similarAt >= 0 ? body.slice(0, similarAt) : body;
+  if (!title) {
+    for (const match of main.matchAll(/!\[([^\]]+)\]\(https?:\/\/r2\.siteinspire\.com/gi)) {
+      const alt = match[1].replace(/\s+/g, ' ').trim();
+      if (/^mobbin$/i.test(alt) || /mobile/i.test(alt)) continue;
+      title = alt.replace(/\s*—\s*mobile.*$/i, '').trim();
+      break;
+    }
+  }
+  let visit = '';
+  const dest = markdownDestinations(main).find((url) => !/siteinspire\.com|mobbin\.com|r2\.siteinspire/i.test(url));
+  if (dest) visit = stripRefParam(dest);
+  if (!visit) {
+    const wrap = [...main.matchAll(/\]\((https?:\/\/[^)]+)\)/g)]
+      .map((match) => match[1])
+      .find((url) => !/siteinspire\.com|mobbin\.com|r2\.siteinspire/i.test(url));
+    if (wrap) visit = stripRefParam(wrap);
+  }
+  if (!visit) {
+    const named = main.match(/\[Visit\s+[^\]]+?\s+website\]\((https?:\/\/[^)]+)\)/i);
+    if (named && !/mobbin\.com|siteinspire\.com/i.test(named[1])) visit = stripRefParam(named[1]);
+  }
+  let thumbnail = '';
+  for (const match of main.matchAll(/!\[([^\]]*)\]\((https?:\/\/r2\.siteinspire\.com[^)]+)\)/gi)) {
+    if (/mobbin/i.test(match[1]) || /mobile/i.test(match[1]) || /mobbin-ghost/i.test(match[2])) continue;
+    thumbnail = match[2];
+    break;
+  }
+  const categories = [];
+  const seen = new Set();
+  const catRe = /\[([^\]]+)\]\(https?:\/\/(?:www\.)?siteinspire\.com\/websites(?:\?categories=|\/category\/)[^)]+\)/gi;
+  for (const match of body.matchAll(catRe)) {
+    const name = match[1].replace(/\\+\s*/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!name || seen.has(name.toLowerCase())) continue;
+    seen.add(name.toLowerCase());
+    categories.push(name);
+  }
+  return { title, visit, thumbnail, categories };
+}
+
+export function parseCuratedList(markdown) {
+  const text = String(markdown || '');
+  const items = [];
+  const re = /!\[(?:Image\s+\d+:\s*)?Screenshot of the (.+?) website\]\((https?:\/\/marketstorage\.b-cdn\.net[^)]+)\)/gi;
+  for (const match of text.matchAll(re)) {
+    const after = text.slice(match.index + match[0].length, match.index + match[0].length + 280).trimStart();
+    const videoMatch = after.match(/^\[Video[^\]]*\]\((https?:\/\/[^)]+\.mp4[^)]*)\)/i);
+    items.push({
+      name: match[1].replace(/\s+/g, ' ').trim(),
+      thumbnail: match[2],
+      video: videoMatch ? videoMatch[1] : null,
+    });
+  }
+  return items;
+}
+
+function findGetlayersThumb(html, slug) {
+  const escaped = String(slug || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  if (!escaped) return null;
+  // Live-HTML (gemessen 03.09.2026): templates/<slug>.webp ODER gehasht templates/<slug>-<hex>.webp
+  // (auch URL-kodiert in /_next/image?url=…%2Ftemplates%2F…).
+  const re = new RegExp(`templates(?:/|%2F)(${escaped}(?:-[0-9a-f]+)?)\\.webp`, 'i');
+  const match = String(html || '').match(re);
+  if (!match) return null;
+  return `https://storage.getlayers.ai/templates/${match[1]}.webp`;
+}
+
+export function parseGetlayersList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  const re = /<a[^>]*href="\/layer\/([a-z0-9-]+)"[^>]*>([^<]+)<\/a>/gi;
+  for (const match of text.matchAll(re)) {
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    const name = decodeHtmlEntities(match[2]).replace(/\s+/g, ' ').trim();
+    const after = text.slice(match.index + match[0].length, match.index + match[0].length + 500);
+    const cat = after.match(/class="card-sub">([^<]+)/i);
+    const category = decodeHtmlEntities(cat?.[1] || '').replace(/\s+/g, ' ').trim();
+    items.push({
+      name,
+      slug,
+      url: `https://www.getlayers.ai/layer/${slug}`,
+      category,
+      thumbnail: findGetlayersThumb(text, slug),
+    });
+  }
+  return items;
+}
+
+export function parseGetlayersItem(markdown, slug) {
+  const text = String(markdown || '');
+  const header = text.match(/^Title:\s*(.+)$/m)?.[1]?.trim() || '';
+  const title = header.replace(/\s+[–—-]\s*GetLayers.*$/i, '').trim();
+  const body = markdownBody(text);
+  const urls = [];
+  for (const match of body.matchAll(/https?:\/\/storage\.getlayers\.ai\/[^\s)"'\\]+/gi)) {
+    urls.push(match[0].replace(/\\+$/, ''));
+  }
+  for (const match of body.matchAll(/url=https?%3A%2F%2Fstorage\.getlayers\.ai%2F([^&)\]\s]+)/gi)) {
+    try { urls.push(`https://storage.getlayers.ai/${decodeURIComponent(match[1])}`); } catch { /* skip */ }
+  }
+  const uniqueUrls = unique(urls);
+  const needle = String(slug || '').toLowerCase();
+  const preview = (needle && uniqueUrls.find((url) => url.toLowerCase().includes(`/${needle}.`) || url.toLowerCase().includes(`/${needle}-`)))
+    || uniqueUrls[0]
+    || '';
+  const video = uniqueUrls.find((url) => /\.mp4(?:$|\?)/i.test(url))
+    || (body.match(/https?:\/\/[^\s)"']+\.mp4(?:\?[^\s)"']*)?/i) || [])[0]
+    || null;
+  return { title, preview, video };
+}
+
+export function parseBehanceSearch(markdown) {
+  const text = String(markdown || '');
+  const items = [];
+  const seen = new Set();
+  const re = /https?:\/\/(?:www\.)?behance\.net\/gallery\/(\d+)\/([A-Za-z0-9-]+)/g;
+  for (const match of text.matchAll(re)) {
+    const id = match[1];
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const slug = match[2];
+    items.push({
+      id,
+      title: slug.replace(/-/g, ' '),
+      url: `https://www.behance.net/gallery/${id}/${slug}`,
+    });
+  }
+  return items;
+}
+
+export function parseBehanceItem(markdown) {
+  const text = String(markdown || '');
+  const header = text.match(/^Title:\s*(.+)$/m)?.[1]?.trim() || '';
+  const title = header.split(/\s+::\s+/)[0].replace(/\s+-\s+(?:Behance|Adobe).*$/i, '').trim();
+  const images = unique(
+    [...text.matchAll(/https:\/\/mir-s3-cdn-cf\.behance\.net\/project_modules\/[^\s)"'\]]+/g)]
+      .map((match) => match[0].replace(/[.,;]+$/, '')),
+  ).slice(0, 12);
+  return { title, images };
+}
+
+export function parseInsporaList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  const re = /href="\/posts\/([a-z0-9-]+)"/gi;
+  for (const match of text.matchAll(re)) {
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    const after = text.slice(match.index + match[0].length, match.index + match[0].length + 1500);
+    const media = (after.match(/https:\/\/media\.inspora\.design\/[^\s"'>]+\.(?:webp|mp4)/i) || [])[0] || '';
+    items.push({
+      slug,
+      url: `https://www.inspora.design/posts/${slug}`,
+      media,
+    });
+  }
+  return items;
+}
+
+export function parseSwipedList(markdown) {
+  const text = markdownBody(String(markdown || ''));
+  const items = [];
+  const re = /(^|\n)([A-Z][A-Za-z][A-Za-z /&-]{0,48})\n+\s*!\[[^\]]*\]\((https?:\/\/[^)]+)\)\s*\n+\s*\*\*([^*]+)\*\*([^\n]*)\n+([\s\S]*?)\n+_([\d,]+)_\s+_([\d,]+)_\s+_([\d,]+)_/g;
+  for (const match of text.matchAll(re)) {
+    const category = match[2].trim();
+    if (/^(Markdown Content|Title|URL Source|Content)$/i.test(category)) continue;
+    const author = match[4].replace(/\s+/g, ' ').trim();
+    const afterName = match[5] || '';
+    const handleMatch = afterName.match(/@[A-Za-z0-9_.]+/);
+    const block = match[6] || '';
+    const video = (block.match(/\[Video[^\]]*\]\((https?:\/\/[^)]+)\)/i) || [])[1];
+    const photo = (block.match(/!\[[^\]]*\]\((https?:\/\/pbs\.twimg\.com\/media\/[^)]+)\)/i) || [])[1];
+    const textBody = block
+      .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
+      .replace(/\[Video[^\]]*\]\([^)]+\)/g, ' ')
+      .replace(/\bRead more\b/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 280);
+    items.push({
+      category,
+      author,
+      handle: handleMatch ? handleMatch[0] : '',
+      text: textBody,
+      media: video || photo || '',
+      likes: match[7],
+    });
+  }
+  return items;
+}
+
 function hostUnavailable(url, detail) {
   const error = new Error(`HOST_UNAVAILABLE ${url} (${detail})`);
   error.code = 'HOST_UNAVAILABLE';
@@ -328,17 +680,14 @@ function hostUnavailable(url, detail) {
 }
 
 function readViaFirecrawl(url) {
-  const run = spawnSync('firecrawl', ['scrape', url, '-f', 'markdown', '--only-main-content', '-o', '/dev/stdout'], {
+  // Kein -o /dev/stdout: spawnSync oeffnet /dev/stdout nicht (ENXIO, gemessen 03.09.2026).
+  const run = spawnSync('firecrawl', ['scrape', url, '-f', 'markdown', '--only-main-content'], {
     encoding: 'utf8',
     timeout: FIRECRAWL_TIMEOUT_MS,
     cwd: os.tmpdir(),
     maxBuffer: 12 * 1024 * 1024,
   });
   if (run.error) throw new Error(`firecrawl missing: ${run.error.message}`);
-  if (run.status !== 0) {
-    const detail = `${run.stderr || ''}${run.stdout || ''}`.split('\n').find(Boolean) || `exit ${run.status}`;
-    throw new Error(`firecrawl failed: ${detail}`);
-  }
   let body = run.stdout || '';
   const trimmed = body.trim();
   if (trimmed.startsWith('{')) {
@@ -347,7 +696,10 @@ function readViaFirecrawl(url) {
       body = parsed.markdown || parsed.data?.markdown || parsed.data?.content || body;
     } catch { /* raw markdown that happens to start with a brace */ }
   }
-  if (!String(body).trim()) throw new Error('firecrawl empty body');
+  if (!String(body).trim()) {
+    const detail = `${run.stderr || ''}${run.stdout || ''}`.split('\n').find(Boolean) || `exit ${run.status}`;
+    throw new Error(`firecrawl failed: ${detail}`);
+  }
   return { channel: 'firecrawl', httpStatus: 200, body: String(body) };
 }
 
@@ -394,6 +746,23 @@ async function readJson(url) {
     }
   } catch (error) {
     if (error && (error.code === 'HOST_UNAVAILABLE' || error.code === 'NOT_FOUND')) throw error;
+    throw hostUnavailable(url, `fetch: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+async function fetchHtml(url) {
+  try {
+    const res = await fetch(url, {
+      redirect: 'follow',
+      headers: { accept: 'text/html,application/xhtml+xml,*/*', 'user-agent': BROWSER_UA },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    const body = await res.text();
+    if (!res.ok) throw hostUnavailable(url, `fetch: HTTP ${res.status}`);
+    if (!body.trim()) throw hostUnavailable(url, 'fetch: empty body');
+    return body;
+  } catch (error) {
+    if (error && error.code === 'HOST_UNAVAILABLE') throw error;
     throw hostUnavailable(url, `fetch: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
@@ -647,7 +1016,361 @@ async function cmd21st(command, rest, flags) {
     emitJsonOrText(flags, payload, format21stItem(item));
     process.exit(0);
   }
+  if (command === 'code') {
+    const query = rest.join(' ').trim();
+    if (!query) die('21st code braucht einen Suchbegriff oder eine ID');
+    const loggedIn = Boolean(process.env.TWENTYFIRST_TOKEN || process.env.API_KEY_21ST)
+      || fs.existsSync(path.join(os.homedir(), '.config', '21st', 'auth.json'));
+    if (!loggedIn) {
+      console.error('inspiration: 21st CLI nicht eingeloggt: 21st login (Link aus /tmp/21st-auth-url.txt) oder API-Key von https://21st.dev/settings/api-keys als API_KEY_21ST');
+      process.exit(1);
+    }
+    const bin = fs.existsSync(CLI_21ST) ? CLI_21ST : '21st';
+    const looksId = /^(?:component:)?\d+$/i.test(query);
+    const args = looksId
+      ? ['get', query, '--json']
+      : ['search', query, '--type', 'c', '--limit', '5', '--json'];
+    const run = spawnSync(bin, args, {
+      encoding: 'utf8',
+      timeout: FETCH_TIMEOUT_MS,
+      maxBuffer: 12 * 1024 * 1024,
+      env: process.env,
+    });
+    if (run.stdout) process.stdout.write(run.stdout.endsWith('\n') ? run.stdout : `${run.stdout}\n`);
+    if (run.stderr) process.stderr.write(run.stderr);
+    if (run.error) {
+      console.error(`inspiration: 21st CLI: ${run.error.message}`);
+      process.exit(1);
+    }
+    process.exit(run.status == null ? 1 : run.status);
+  }
   die(`unbekanntes Kommando für 21st: ${command || '(fehlt)'}`);
+}
+
+
+function formatSimpleGet(title, fields) {
+  const lines = [`# ${title || ''}`.trimEnd(), ''];
+  for (const [label, value] of fields) {
+    if (value == null || value === '') continue;
+    if (Array.isArray(value)) {
+      if (!value.length) continue;
+      lines.push(`## ${label}`);
+      for (const item of value) lines.push(`- ${item}`);
+      lines.push('');
+    } else {
+      lines.push(`${label}: ${value}`, '');
+    }
+  }
+  return lines.join('\n').trimEnd();
+}
+
+function parseSlugTarget(raw, kind, re, prefix) {
+  const value = String(raw || '').trim();
+  const fromUrl = value.match(re);
+  const slug = (fromUrl ? fromUrl[1] : value.replace(/^\/+/, '').split('/').filter(Boolean).pop() || '').replace(/\/+$/, '');
+  if (!slug) die(`${kind} get braucht einen Slug oder eine URL`);
+  return { slug, url: `${prefix}${slug}` };
+}
+
+async function cmdLanddding(command, rest, flags) {
+  if (command === 'list') {
+    if (rest.length > 1) die('landdding list kennt höchstens eine Kategorie');
+    const cat = rest[0];
+    if (cat && !/^[a-z0-9-]+$/i.test(cat)) die(`ungültige Landdding-Kategorie ${cat}`);
+    const url = cat ? `https://landdding.com/c/${cat.toLowerCase()}` : 'https://landdding.com/';
+    const page = await readMarkdown(url);
+    const items = applyLimit(parseLandddingList(page.body), limitOf(flags, 20));
+    if (!items.length) emptyResult(flags);
+    emitJsonOrText(flags, items, formatList(items, ['title', 'url', 'slug']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die('landdding get braucht genau einen Slug oder eine URL');
+    const target = parseSlugTarget(rest[0], 'landdding', /landdding\.com\/l\/([a-z0-9-]+)/i, 'https://landdding.com/l/');
+    if (!/^[a-z0-9-]+$/i.test(target.slug)) die('landdding get braucht einen Slug oder eine URL');
+    const page = await readMarkdown(target.url);
+    const item = parseLandddingItem(page.body);
+    if (!item.title && !item.visit && !item.thumbnail) emptyResult(flags);
+    const payload = { slug: target.slug, url: target.url, ...item };
+    emitJsonOrText(flags, payload, formatSimpleGet(item.title || target.slug, [
+      ['Visit', item.visit],
+      ['Thumbnail', item.thumbnail],
+    ]));
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für landdding: ${command || '(fehlt)'}`);
+}
+
+async function cmdAwwwards(command, rest, flags) {
+  if (command === 'list') {
+    if (rest.length > 1) die('awwwards list kennt höchstens einen Tag');
+    const tag = rest[0];
+    if (tag && !/^[a-z0-9-]+$/i.test(tag)) die(`ungültiger Awwwards-Tag ${tag}`);
+    const url = tag
+      ? `https://www.awwwards.com/websites/${tag.toLowerCase()}/`
+      : 'https://www.awwwards.com/websites/';
+    const html = await fetchHtml(url);
+    const items = applyLimit(parseAwwwardsList(html), limitOf(flags, 30));
+    if (!items.length) emptyResult(flags);
+    emitJsonOrText(flags, items, formatList(items, ['title', 'url', 'slug']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die('awwwards get braucht genau einen Slug oder eine URL');
+    const target = parseSlugTarget(rest[0], 'awwwards', /awwwards\.com\/sites\/([a-z0-9-]+)/i, 'https://www.awwwards.com/sites/');
+    if (!/^[a-z0-9-]+$/i.test(target.slug)) die('awwwards get braucht einen Slug oder eine URL');
+    const html = await fetchHtml(target.url);
+    const item = parseAwwwardsItem(html);
+    if (!item.title && !item.screenshot) emptyResult(flags);
+    const payload = { slug: target.slug, url: target.url, ...item };
+    emitJsonOrText(flags, payload, formatSimpleGet(item.title || target.slug, [
+      ['Screenshot', item.screenshot],
+      ['Tags', item.tags],
+    ]));
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für awwwards: ${command || '(fehlt)'}`);
+}
+
+async function cmdSiteinspire(command, rest, flags) {
+  if (command === 'list') {
+    if (rest.length > 1) die('siteinspire list kennt höchstens eine Kategorie');
+    const cat = rest[0];
+    if (cat && !/^[a-z0-9-]+$/i.test(cat)) die(`ungültige Siteinspire-Kategorie ${cat}`);
+    const url = cat
+      ? `https://www.siteinspire.com/websites/category/${cat.toLowerCase()}`
+      : 'https://www.siteinspire.com/websites';
+    const page = readViaFirecrawl(url);
+    const items = applyLimit(parseSiteinspireList(page.body), limitOf(flags, 20));
+    if (!items.length) emptyResult(flags);
+    emitJsonOrText(flags, items, formatList(items, ['name', 'url', 'visit']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die('siteinspire get braucht genau eine id-slug oder URL');
+    const target = parseSlugTarget(rest[0], 'siteinspire', /siteinspire\.com\/website\/(\d+-[a-z0-9-]+)/i, 'https://www.siteinspire.com/website/');
+    if (!/^\d+-[a-z0-9-]+$/i.test(target.slug)) die('siteinspire get braucht eine id-slug oder URL');
+    const page = readViaFirecrawl(target.url);
+    const item = parseSiteinspireItem(page.body);
+    if (!item.title && !item.visit && !item.thumbnail) emptyResult(flags);
+    const payload = { slug: target.slug, url: target.url, ...item };
+    emitJsonOrText(flags, payload, formatSimpleGet(item.title || target.slug, [
+      ['Visit', item.visit],
+      ['Thumbnail', item.thumbnail],
+      ['Kategorien', item.categories],
+    ]));
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für siteinspire: ${command || '(fehlt)'}`);
+}
+
+async function cmdCurated(command, rest, flags) {
+  if (command === 'get') {
+    console.error('inspiration: nur list; Screenshot über shot <thumbnail-URL nicht nötig, Thumbnail ist bereits ein Screenshot>');
+    process.exit(2);
+  }
+  if (command !== 'list') die(`unbekanntes Kommando für curated: ${command || '(fehlt)'}`);
+  if (rest.length) die('curated list kennt keine Positionsargumente');
+  const page = await readMarkdown('https://curated.design/');
+  const items = applyLimit(parseCuratedList(page.body), limitOf(flags, 30));
+  if (!items.length) emptyResult(flags);
+  emitJsonOrText(flags, items, formatList(items, ['name', 'thumbnail', 'video']));
+  process.exit(0);
+}
+
+async function cmdGetlayers(command, rest, flags) {
+  if (command === 'list') {
+    if (rest.length) die('getlayers list kennt keine Positionsargumente');
+    const html = await fetchHtml('https://www.getlayers.ai/');
+    let items = parseGetlayersList(html);
+    if (flags.grep) {
+      const needle = String(flags.grep).toLowerCase();
+      items = items.filter((row) => `${row.name} ${row.slug} ${row.category}`.toLowerCase().includes(needle));
+    }
+    items = applyLimit(items, limitOf(flags, 40));
+    if (!items.length) emptyResult(flags);
+    emitJsonOrText(flags, items, formatList(items, ['name', 'url', 'category', 'slug']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die('getlayers get braucht genau einen Slug oder eine URL');
+    const target = parseSlugTarget(rest[0], 'getlayers', /getlayers\.ai\/layer\/([a-z0-9-]+)/i, 'https://www.getlayers.ai/layer/');
+    if (!/^[a-z0-9-]+$/i.test(target.slug)) die('getlayers get braucht einen Slug oder eine URL');
+    const page = await readMarkdown(target.url);
+    const item = parseGetlayersItem(page.body, target.slug);
+    if (!item.title && !item.preview) emptyResult(flags);
+    const payload = { slug: target.slug, url: target.url, ...item };
+    emitJsonOrText(flags, payload, formatSimpleGet(item.title || target.slug, [
+      ['Preview', item.preview],
+      ['Video', item.video],
+    ]));
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für getlayers: ${command || '(fehlt)'}`);
+}
+
+async function cmdBehance(command, rest, flags) {
+  if (command === 'search') {
+    const query = rest.join(' ').trim();
+    if (!query) die('behance search braucht eine Query');
+    const url = `https://www.behance.net/search/projects?field=${encodeURIComponent(query)}`;
+    const page = await readMarkdown(url);
+    const items = applyLimit(parseBehanceSearch(page.body), limitOf(flags, 20));
+    if (!items.length) emptyResult(flags);
+    emitJsonOrText(flags, items, formatList(items, ['id', 'title', 'url']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die('behance get braucht eine ID oder URL');
+    const raw = rest[0];
+    const fromUrl = String(raw).match(/behance\.net\/gallery\/(\d+)\/([A-Za-z0-9-]+)/i);
+    let id;
+    let slug = 'project';
+    let url;
+    if (fromUrl) {
+      id = fromUrl[1];
+      slug = fromUrl[2];
+      url = `https://www.behance.net/gallery/${id}/${slug}`;
+    } else if (/^\d+$/.test(String(raw))) {
+      id = String(raw);
+      url = `https://www.behance.net/gallery/${id}/${slug}`;
+    } else {
+      die('behance get braucht eine ID oder URL');
+    }
+    const page = await readMarkdown(url);
+    const item = parseBehanceItem(page.body);
+    if (!item.title && !item.images.length) emptyResult(flags);
+    const payload = { id, url, ...item };
+    emitJsonOrText(flags, payload, formatSimpleGet(item.title || id, [['Bilder', item.images]]));
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für behance: ${command || '(fehlt)'}`);
+}
+
+async function cmdInspora(command, rest, flags) {
+  if (command === 'get') {
+    console.error('inspiration: Detailseite hinter Vercel-Checkpoint (HTTP 429); Medien-URL aus list nutzen oder raphael-chrome');
+    process.exit(2);
+  }
+  if (command !== 'list') die(`unbekanntes Kommando für inspora: ${command || '(fehlt)'}`);
+  if (rest.length) die('inspora list kennt keine Positionsargumente');
+  const html = await fetchHtml('https://www.inspora.design/');
+  const items = applyLimit(parseInsporaList(html), limitOf(flags, 20));
+  if (!items.length) emptyResult(flags);
+  emitJsonOrText(flags, items, formatList(items, ['slug', 'url', 'media']));
+  process.exit(0);
+}
+
+async function cmdSwiped(command, rest, flags) {
+  if (command !== 'list') die(`unbekanntes Kommando für swiped: ${command || '(fehlt)'}`);
+  if (rest.length) die('swiped list kennt keine Positionsargumente');
+  const page = await readMarkdown('https://swiped.design/');
+  const items = applyLimit(parseSwipedList(page.body), limitOf(flags, 20));
+  if (!items.length) emptyResult(flags);
+  emitJsonOrText(flags, items, formatList(items, ['category', 'author', 'handle', 'likes']));
+  process.exit(0);
+}
+
+function cmdMobbin(command, rest, flags) {
+  if (command && command !== 'list') die(`unbekanntes Kommando für mobbin: ${command}`);
+  const payload = { source: 'mobbin', access: 'mcp', server: 'mobbin' };
+  const text = 'Mobbin läuft über den MCP-Server mobbin (OAuth, Profil raphael): Tools mcp__mobbin__* in der Session nutzen (Status: /root/tools/raphael-mcp-ondemand.sh status). Öffentliche Seite zeigt ohne Login nur die Landingpage.';
+  emitJsonOrText(flags, payload, text);
+  process.exit(0);
+}
+
+function waitMsOf(flags) {
+  if (flags.wait == null) return 4000;
+  const n = Number(flags.wait);
+  if (!Number.isInteger(n) || n < 0) die('--wait muss eine ganze Zahl >= 0 sein');
+  return n;
+}
+
+function shotFileSlug(targetUrl) {
+  let parsed;
+  try { parsed = new URL(targetUrl); } catch { die(`shot: ungültige URL ${targetUrl}`); }
+  const raw = `${parsed.hostname}${parsed.pathname}`.replace(/\/+$/, '');
+  return (raw.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'shot');
+}
+
+async function dismissCookies(page) {
+  const candidates = [
+    'button:has-text("Accept all")',
+    'button:has-text("Accept")',
+    'button:has-text("Akzeptieren")',
+    'button:has-text("Alle akzeptieren")',
+    'button:has-text("Got it")',
+  ];
+  for (const sel of candidates) {
+    try {
+      const btn = page.locator(sel).first();
+      if (await btn.isVisible({ timeout: 500 })) {
+        await btn.click();
+        await page.waitForTimeout(800);
+      }
+    } catch {
+      /* Banner-Variante nicht da */
+    }
+  }
+}
+
+async function cmdShot(rest, flags) {
+  const target = rest.join(' ').trim();
+  if (!target) die('shot braucht eine URL');
+  let parsed;
+  try { parsed = new URL(target); } catch { die(`shot: ungültige URL ${target}`); }
+  if (!/^https?:$/i.test(parsed.protocol)) die('shot braucht eine http(s)-URL');
+  const outDir = path.resolve(flags.out || DEFAULT_SHOT_OUT);
+  fs.mkdirSync(outDir, { recursive: true });
+  const slug = shotFileSlug(parsed.href);
+  const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
+  const browser = await chromium.launch({
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--use-gl=swiftshader',
+      '--disable-software-rasterizer',
+      '--force-color-profile=srgb',
+      '--disable-lcd-text',
+      '--hide-scrollbars',
+    ],
+  });
+  const viewports = [{ width: 1440, height: 900, label: '1440' }];
+  if (flags.mobile) viewports.push({ width: 390, height: 844, label: '390' });
+  const paths = [];
+  let title = '';
+  let finalUrl = parsed.href;
+  try {
+    for (const vp of viewports) {
+      const page = await browser.newPage({
+        viewport: { width: vp.width, height: vp.height },
+        userAgent: BROWSER_UA,
+        locale: 'en-US',
+      });
+      try {
+        await page.goto(parsed.href, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+        await page.waitForTimeout(waitMsOf(flags));
+        await dismissCookies(page);
+        title = await page.title();
+        finalUrl = page.url();
+        if (/Security Checkpoint|Just a moment|Attention Required/i.test(title || '')) {
+          throw Object.assign(new Error(`Bot-Schutz: Seite über raphael-chrome (VPS-Chrome mit echtem Profil) öffnen: raphael-chrome open ${parsed.href}; raphael-chrome screenshot <id> <png>`), { code: 'BOT_SHIELD' });
+        }
+        const dest = path.join(outDir, `${slug}-${vp.label}.png`);
+        await page.screenshot({ path: dest, fullPage: Boolean(flags.full) });
+        paths.push(dest);
+      } finally {
+        await page.close().catch(() => {});
+      }
+    }
+  } finally {
+    await browser.close().catch(() => {});
+  }
+  const payload = { paths, title, url: finalUrl, out: outDir };
+  const text = [`title: ${title}`, `url: ${finalUrl}`, ...paths.map((file) => `png: ${file}`)].join('\n');
+  emitJsonOrText(flags, payload, text);
+  process.exit(0);
 }
 
 async function main() {
@@ -658,19 +1381,33 @@ async function main() {
   }
   const { flags, positional } = parseCli(argv);
   const [source, command, ...rest] = positional;
-  if (!source) die('Quelle fehlt (refero|navbar|magicui|reactbits|21st)');
+  if (!source) die('Quelle fehlt (refero|navbar|magicui|reactbits|21st|landdding|awwwards|siteinspire|curated|getlayers|behance|inspora|swiped|mobbin|shot)');
   try {
     if (source === 'refero') await cmdRefero(command, rest, flags);
     else if (source === 'navbar') await cmdNavbar(command, rest, flags);
     else if (source === 'magicui') await cmdMagicui(command, rest, flags);
     else if (source === 'reactbits') await cmdReactbits(command, rest, flags);
     else if (source === '21st') await cmd21st(command, rest, flags);
+    else if (source === 'landdding') await cmdLanddding(command, rest, flags);
+    else if (source === 'awwwards') await cmdAwwwards(command, rest, flags);
+    else if (source === 'siteinspire') await cmdSiteinspire(command, rest, flags);
+    else if (source === 'curated') await cmdCurated(command, rest, flags);
+    else if (source === 'getlayers') await cmdGetlayers(command, rest, flags);
+    else if (source === 'behance') await cmdBehance(command, rest, flags);
+    else if (source === 'inspora') await cmdInspora(command, rest, flags);
+    else if (source === 'swiped') await cmdSwiped(command, rest, flags);
+    else if (source === 'mobbin') cmdMobbin(command, rest, flags);
+    else if (source === 'shot') await cmdShot([command, ...rest].filter(Boolean), flags);
     else die(`unbekannte Quelle ${source}`);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     if (error && error.code === 'HOST_UNAVAILABLE') {
       console.error(`inspiration: ${message}`);
       process.exit(3);
+    }
+    if (error && error.code === 'BOT_SHIELD') {
+      console.error(`inspiration: ${message}`);
+      process.exit(1);
     }
     console.error(`inspiration: ${message}`);
     process.exit(1);

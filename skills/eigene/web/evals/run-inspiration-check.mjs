@@ -3,7 +3,7 @@
  * run-inspiration-check.mjs — Parser und CLI von inspiration.mjs.
  *
  * Offline gegen Fixtures unter evals/fixtures/inspiration/. Netz nur mit --netz:
- * dann laufen fuenf Live-Aufrufe (Refero, Magic UI, React Bits, Navbar, 21st).
+ * dann laufen Live-Aufrufe (Refero, Magic UI, React Bits, Navbar, 21st plus Runde 2).
  *
  *   node evals/run-inspiration-check.mjs
  *   node evals/run-inspiration-check.mjs --netz
@@ -24,6 +24,15 @@ import {
   parseRegistryList,
   parse21stSearch,
   parse21stItem,
+  parseLandddingList,
+  parseLandddingItem,
+  parseAwwwardsList,
+  parseSiteinspireList,
+  parseCuratedList,
+  parseGetlayersList,
+  parseBehanceSearch,
+  parseInsporaList,
+  parseSwipedList,
 } from '../scripts/inspiration.mjs';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -39,6 +48,15 @@ const files = {
   registry: path.join(FIX, 'registry.json'),
   search21: path.join(FIX, '21st-search.md'),
   item21: path.join(FIX, '21st-item.md'),
+  landddingList: path.join(FIX, 'landdding-list.md'),
+  landddingItem: path.join(FIX, 'landdding-item.md'),
+  awwwardsList: path.join(FIX, 'awwwards-list.html'),
+  siteinspireList: path.join(FIX, 'siteinspire-list.md'),
+  curatedList: path.join(FIX, 'curated-list.md'),
+  getlayersList: path.join(FIX, 'getlayers-list.html'),
+  behanceSearch: path.join(FIX, 'behance-search.md'),
+  insporaList: path.join(FIX, 'inspora-list.html'),
+  swipedList: path.join(FIX, 'swiped-list.md'),
 };
 
 for (const [name, file] of Object.entries(files)) {
@@ -121,6 +139,75 @@ zeile(
   'parse21stItem: Usage, Dependencies, License, Source',
 );
 
+const landList = parseLandddingList(read(files.landddingList));
+zeile(landList.length >= 3, 'parseLandddingList findet mindestens 3 Einträge', `${landList.length} Treffer`);
+zeile(
+  landList.some((row) => row.slug === 'shadcn-space-6qf5j' && /Shadcn Space/i.test(row.title) && /landdding\.com\/l\/shadcn-space-6qf5j/.test(row.url)),
+  'parseLandddingList: Shadcn Space title/url/slug',
+);
+const landItem = parseLandddingItem(read(files.landddingItem));
+zeile(
+  landItem.title === 'Situation Normal' && landItem.visit === 'https://situationnormal.co/' && /cdn\.sanity\.io/.test(landItem.thumbnail),
+  'parseLandddingItem: title, visit ohne ?ref, thumbnail',
+);
+
+const awwList = parseAwwwardsList(read(files.awwwardsList));
+zeile(awwList.length === 2, 'parseAwwwardsList findet 2 data-collectable-model-value', `${awwList.length} Treffer`);
+zeile(
+  awwList[0]?.slug === 'trevor-noah'
+    && /Trevor Noah/i.test(awwList[0]?.title || '')
+    && awwList[0]?.url === 'https://www.awwwards.com/sites/trevor-noah'
+    && /assets\.awwwards\.com\/awards\/submissions\//.test(awwList[0]?.thumbnail || '')
+    && awwList[0]?.tags.includes('Culture & Education'),
+  'parseAwwwardsList: Trevor Noah title/slug/url/tags/thumbnail',
+);
+
+const siteList = parseSiteinspireList(read(files.siteinspireList));
+zeile(siteList.length >= 2 && siteList.every((row) => !/mobbin/i.test(row.name)), 'parseSiteinspireList filtert Mobbin', `${siteList.length} Treffer`);
+zeile(
+  siteList.some((row) => row.name === 'Pasqua Wines' && row.visit === 'https://www.pasqua.it/' && /13560-pasqua-wines/.test(row.url) && /r2\.siteinspire\.com/.test(row.thumbnail)),
+  'parseSiteinspireList: Pasqua name/url/visit ohne ref/thumbnail',
+);
+
+const curated = parseCuratedList(read(files.curatedList));
+zeile(curated.length === 3, 'parseCuratedList findet 3 Screenshots', `${curated.length} Treffer`);
+zeile(
+  curated[0]?.name === 'Weeksync' && /marketstorage\.b-cdn\.net/.test(curated[0]?.thumbnail || '') && /\.mp4/.test(curated[0]?.video || '')
+    && curated[1]?.name === 'Utopia Tokyo' && curated[1]?.video == null,
+  'parseCuratedList: Video nur direkt danach, sonst null',
+);
+
+const layers = parseGetlayersList(read(files.getlayersList));
+zeile(layers.length === 3 && new Set(layers.map((row) => row.slug)).size === 3, 'parseGetlayersList dedupt nach slug', `${layers.length} Treffer`);
+zeile(
+  layers.some((row) => row.slug === 'vesper' && row.name === 'Vesper' && row.category === 'SaaS' && row.thumbnail === 'https://storage.getlayers.ai/templates/vesper-06e69bbad0.webp')
+    && layers.some((row) => row.slug === 'stride' && row.thumbnail == null)
+    && layers.some((row) => row.slug === 'ai-studio' && row.thumbnail === 'https://storage.getlayers.ai/templates/ai-studio.webp'),
+  'parseGetlayersList: Vesper-Hash-Thumb, AI-Studio exakt, Stride ohne webp = null',
+);
+
+const behance = parseBehanceSearch(read(files.behanceSearch));
+zeile(behance.length === 3, 'parseBehanceSearch dedupt nach id', `${behance.length} Treffer`);
+zeile(
+  behance[0]?.id === '254833539' && /Real Estate Investment Platform UXUI Design/.test(behance[0]?.title) && !/[?]/.test(behance[0]?.url),
+  'parseBehanceSearch: id/title/url ohne Query',
+);
+
+const inspora = parseInsporaList(read(files.insporaList));
+zeile(inspora.length === 2, 'parseInsporaList dedupt nach slug', `${inspora.length} Treffer`);
+zeile(
+  inspora[0]?.slug === 'time-zones' && /inspora\.design\/posts\/time-zones/.test(inspora[0]?.url) && /media\.inspora\.design\/.+\.(webp|mp4)/.test(inspora[0]?.media),
+  'parseInsporaList: slug/url/media',
+);
+
+const swiped = parseSwipedList(read(files.swipedList));
+zeile(swiped.length === 3, 'parseSwipedList findet 3 Posts', `${swiped.length} Treffer`);
+zeile(
+  swiped[0]?.category === 'Personal' && swiped[0]?.author === 'Dinesh Subramani' && swiped[0]?.likes === '1,629' && /\.mp4/.test(swiped[0]?.media || '')
+    && swiped[2]?.handle === '@nickbakeddesign' && /pbs\.twimg\.com\/media/.test(swiped[2]?.media || '') && (swiped[2]?.text || '').length <= 280,
+  'parseSwipedList: category/author/handle/media/likes, Text ≤280',
+);
+
 {
   const help = spawnSync(process.execPath, [SCRIPT, '--help'], { encoding: 'utf8', timeout: 15000 });
   const aus = `${help.stdout || ''}${help.stderr || ''}`;
@@ -130,8 +217,12 @@ zeile(
       && /Refero, Navbar Gallery, 21st/.test(aus)
       && /Magic UI \(MIT\)/.test(aus)
       && /art-direction\.md/.test(aus)
-      && /#sections\/#motion\/#background/.test(aus),
-    '--help nennt Lizenzregel und Dateiname',
+      && /#sections\/#motion\/#background/.test(aus)
+      && /alle Galerien nur Inspiration\/Analyse/.test(aus)
+      && /PNG danach mit Read ansehen/.test(aus)
+      && /raphael-chrome/.test(aus)
+      && /X\/LinkedIn/.test(aus),
+    '--help nennt Lizenzregel, shot-Read und Dateiname',
   );
 }
 
@@ -145,6 +236,49 @@ zeile(
   const source = spawnSync(process.execPath, [SCRIPT, 'landbook', 'search', 'x'], { encoding: 'utf8', timeout: 15000 });
   const aus = `${source.stderr || ''}${source.stdout || ''}`;
   zeile(source.status === 2 && /unbekannte Quelle/.test(aus), 'unbekannte Quelle Exit 2');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'curated', 'get', 'x'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
+  zeile(proc.status === 2 && /nur list/.test(aus), 'curated get Exit 2');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'inspora', 'get', 'x'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
+  zeile(proc.status === 2 && /Vercel-Checkpoint/.test(aus), 'inspora get Exit 2');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'mobbin'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stdout || ''}${proc.stderr || ''}`;
+  zeile(proc.status === 0 && /mcp/i.test(aus), 'mobbin Exit 0 mit mcp');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'mobbin', '--json'], { encoding: 'utf8', timeout: 15000 });
+  let data = null;
+  try { data = JSON.parse((proc.stdout || '').trim()); } catch { data = null; }
+  zeile(proc.status === 0 && data?.source === 'mobbin' && data?.access === 'mcp' && data?.server === 'mobbin', 'mobbin --json source/access/server');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'shot'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
+  zeile(proc.status === 2 && /shot braucht eine URL/.test(aus), 'shot ohne URL Exit 2');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'shot', '--help'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stdout || ''}${proc.stderr || ''}`;
+  zeile(proc.status === 0 && /raphael-chrome/.test(aus), 'shot --help enthält raphael-chrome');
+}
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, '21st', 'code', 'hero'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
+  zeile(proc.status === 1 && /21st CLI nicht eingeloggt/.test(aus) && /API_KEY_21ST/.test(aus), '21st code ohne Login Exit 1');
 }
 
 if (NETZ) {
@@ -202,6 +336,85 @@ if (NETZ) {
       proc.status === 0 && Array.isArray(data) && data.length >= 1 && /21st\.dev\/@/.test(data[0]?.url || ''),
       'netz: 21st search hero ≥1',
       `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'}`,
+    );
+  }
+  {
+    const proc = run(['landdding', 'list', '--limit', '8']);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 5 && data[0].slug,
+      'netz: landdding list ≥5',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = run(['awwwards', 'list', '--limit', '15']);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 10 && /awwwards\.com\/sites\//.test(data[0]?.url || ''),
+      'netz: awwwards list ≥10',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = run(['siteinspire', 'list', '--limit', '8'], 120000);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 5 && data[0].name,
+      'netz: siteinspire list ≥5',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = run(['curated', 'list', '--limit', '8']);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 5 && data[0].thumbnail,
+      'netz: curated list ≥5',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = run(['getlayers', 'list', '--limit', '15']);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 10 && data[0].slug,
+      'netz: getlayers list ≥10',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = run(['behance', 'search', 'web design', '--limit', '8']);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 3 && /behance\.net\/gallery\//.test(data[0]?.url || ''),
+      'netz: behance search web design ≥3',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = run(['swiped', 'list', '--limit', '8']);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 3 && data[0].author,
+      'netz: swiped list ≥3',
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  {
+    const proc = spawnSync(process.execPath, [SCRIPT, 'shot', 'https://www.navbar.gallery/', '--out', '/tmp/inspiration-shots', '--wait', '4000', '--json'], {
+      encoding: 'utf8',
+      timeout: 90000,
+      maxBuffer: 12 * 1024 * 1024,
+    });
+    const data = parseOut(proc);
+    const png = Array.isArray(data?.paths) ? data.paths[0] : null;
+    let size = 0;
+    try { size = png && fs.existsSync(png) ? fs.statSync(png).size : 0; } catch { size = 0; }
+    zeile(
+      proc.status === 0 && png && fs.existsSync(png) && size > 20 * 1024,
+      'netz: shot navbar.gallery PNG > 20 KB',
+      `exit ${proc.status} png=${png || 'kein-pfad'} size=${size} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
     );
   }
 }

@@ -142,8 +142,8 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 |---|---|
 | **Bedarf** | Referenz-Looks für Art Direction, nicht zum Kopieren von Layout/Assets |
 | **Loop** | `art-direction` (vor design-DNA) |
-| **Default** | Godly (Marketing/Awwwards-Look) **oder** Mobbin (App/Flows) **oder** Refero (UI-Patterns) — **eine** Quelle passend zum Brief. App/Flows: Mobbin zuerst. Benannter Startpunkt für maschinenlesbare Design-Systeme: `styles.refero.design` (Unterseite des Katalogeintrags `Refero`, `resource-access.mjs open "Refero"`) — genau eine Referenz ziehen, nicht durchblättern. |
-| **Install/Use** | Erst MCP-Status: `/root/tools/raphael-mcp-ondemand.sh status`. Mobbin-MCP OFF → `raphael-chrome` oder AgentReach, 3–7 echte Screenshots/Notizen in `art-direction.md`. Nie ein Mobbin-Browse erfinden. Tiefzugriff: `node scripts/inspiration.mjs refero search "<query>"` / `refero get <styleId>` (DESIGN.md-Tokens zum Vergleich, nie 1:1) und `navbar list [typ]` / `navbar get <slug>` (Navigationsmuster für Sitemap/IA). **kein** npm |
+| **Default** | Refero-MCP (Styles→Screens→Flows, Reference-Lock nach `references/inspirations-quellen.md` §0) **oder** Mobbin-MCP (App/Flows) **oder** Godly — **eine** Quelle passend zum Brief. App/Flows: Mobbin zuerst. Benannter Startpunkt für maschinenlesbare Design-Systeme: `styles.refero.design` (Unterseite des Katalogeintrags `Refero`, `resource-access.mjs open "Refero"`) — genau eine Referenz ziehen, nicht durchblättern. |
+| **Install/Use** | MCP-Status: `claude mcp list` (refero) und `/root/tools/raphael-mcp-ondemand.sh status` (mobbin). Mobbin-MCP OFF → `raphael-chrome` oder AgentReach, 3–7 echte Screenshots/Notizen in `art-direction.md`. Nie ein Mobbin-Browse erfinden. Galerien-Tiefzugriff: `node scripts/inspiration.mjs refero|landdding|awwwards|siteinspire|curated|getlayers|behance|inspora|swiped|navbar …`; Sehen: `inspiration.mjs shot <url>` + PNG per Read. **kein** npm |
 | **Alternativen** | Awwwards, Land-book, Lapa Ninja, SiteInspire, Page Flows, Screenlane (siehe Bibliothek §Inspiration) |
 | **Gate** | Lizenz/Urheber: nur Muster analysieren; keine Assets/Copy/Logos übernehmen (`web-clone-playbook.md` wenn Nachbau) |
 | **Nie** | Referenz-HTML clonen ohne Lizenz-Check; 20 Galerien gleichzeitig öffnen |
@@ -248,7 +248,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Große Landing-Sektionen jenseits von Primitives |
 | **Loop** | `components` / `build` |
 | **Default** | Eigenes Tailwind-Markup nach `art-direction` + `landingpage-struktur.md`; shadcn-Blöcke nur als strukturelle Hilfe |
-| **Install/Use** | Kein Mega-Kit. Optional gezielt: shadcn blocks / einzelne Magic-UI-Section nach Prüfung. Tiefzugriff: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/`; Muster: `21st search <kategorie\|begriff>` (Code hinter Login, nie raten). Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
+| **Install/Use** | Kein Mega-Kit. Optional gezielt: shadcn blocks / einzelne Magic-UI-Section nach Prüfung. Tiefzugriff: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/`; Muster: `21st search <kategorie\|begriff>` (Code hinter Login, nie raten); `21st code <begriff>` (nur mit 21st-Login). Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
 | **Alternativen** | React Bits, 21st.dev, Cult UI, Float UI, Preline — Inspiration oder **eine** geprüfte Section |
 | **Gate** | Design-DNA einhalten; Copy aus G2; Mobile-First; keine fremden Logos/Stock aus dem Demo |
 | **Nie** | ganze Block-Library committen; Demo-Copy/Images aus dem Kit lassen |

@@ -204,7 +204,7 @@ wird): `references/anfaenger-pfad.md` §8.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill. Nie routen.
 - **AAA hier = Agentur-Rubrik**, nicht WCAG AAA (WCAG bleibt AA).
 - **Update an Bestandsseite = neuer Workspace/Worktree**, nie im Root-Checkout.
-- **Inspiration nur über `scripts/inspiration.mjs`** (Refero Styles, Navbar Gallery, Magic UI, React Bits, 21st) — 21st-Code ist hinter Login, nie raten.
+- **Inspiration: Refero-MCP zuerst (Styles→Screens→Flows, Reference-Lock), Galerien über `scripts/inspiration.mjs`, Sehen über `inspiration.mjs shot` + Read** — 21st-Code nur mit CLI-Login, nie raten.
 
 ## Evals
 

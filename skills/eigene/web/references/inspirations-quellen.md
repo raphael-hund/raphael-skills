@@ -1,118 +1,218 @@
-# Inspirations-Quellen — Tiefzugriff über `scripts/inspiration.mjs`
+# Inspirations-Quellen — Refero-MCP zuerst, Galerien über `scripts/inspiration.mjs`
 
-**Wofür:** Fünf Quellen maschinenlesbar holen, ohne Katalog-Dump und ohne Login.
-Einzelzugriff bleibt `resource-access.mjs show`/`open`. Dieses Skript ist der
-Tiefzugriff (Suche, Style-Seite, Registry-JSON, eine Komponente). CLI:
-`node scripts/inspiration.mjs --help`. Unbekanntes Flag = Exit 2. `--json`
-überall. Timeout 45 s, User-Agent `raphael-web-inspiration/1.0`. Kein Cache,
-kein Cookie, kein Schreiben außer `--out`.
+**Wofür:** Design-DNA und Look-Referenzen vor dem Bau. Primär Refero-MCP
+(Styles→Screens→Flows + Reference-Lock). Galerien und Komponenten nur als
+Ergänzung über `node scripts/inspiration.mjs --help`. Einzelzugriff bleibt
+`resource-access.mjs show`/`open`. Unbekanntes Flag = Exit 2. `--json`
+überall. Timeout 45 s. Kein Cache, kein Cookie, Schreiben nur mit `--out`
+(shot → Default `/tmp/inspiration-shots`).
 
-Lesen über `https://r.jina.ai/<url>`; Fallback `firecrawl scrape <url> -f markdown --only-main-content`.
+Lesen: Jina `https://r.jina.ai/<url>`, Fallback Firecrawl. Ausnahme
+siteinspire: direkt Firecrawl (Jina = 429). awwwards/getlayers/inspora:
+HTML per fetch mit Chrome-UA.
 
 ## Deckel
 
 Max. **3 Referenzen** pro Auftrag. Max. **1 Komponente pro Bedarf**. Danach
 Zeile in der Werkzeugtabelle (`art-direction.md`) plus Router-Anker
-`#sections` / `#motion` / `#background`, wie `tool-usecase-router.md` verlangt.
+`#sections` / `#motion` / `#background`.
 
 ## Lizenz
 
-Refero, Navbar Gallery, 21st = **Inspiration/Analyse** (Muster, Tokens,
-Struktur). Keine Layout- oder Asset-Kopie. Magic UI (MIT) und React Bits
-(MIT, Registry) = **eine** Komponente übernehmbar, danach Vendor-Pfad plus
-Werkzeugtabelle. Dieselbe Regel steht in `--help`.
+Alle Galerien = **Inspiration/Analyse** (Muster, Tokens, Struktur).
+Screenshots nur intern (Design-DNA, PRUEFGEGEN), nie in Kundenauslieferung.
+Keine Layout-/Asset-Kopie. Magic UI (MIT) und React Bits (MIT, Registry) =
+**eine** Komponente übernehmbar, danach Vendor-Pfad plus Werkzeugtabelle.
+
+## 0. Ablauf (Refero-MCP zuerst, dann Galerien, dann Screenshot)
+
+Nach Skill `/root/.claude/skills/refero-design/SKILL.md` und
+`references/mcp-tools.md`. Server: User-MCP `refero` (HTTP, Bearer) —
+Status `claude mcp list`. Toolnamen exakt mit Präfix `mcp__refero__…`.
+
+1. Brief in 8 Zeilen (WHAT/WHO/PLATFORM, Goal, Tone, Objection, Hook,
+   Constraints, Research needed, Path).
+2. `mcp__refero__refero_search_styles` mit 3–5 Suchwinkeln (breit, Domäne,
+   bekannte Marke).
+3. `mcp__refero__refero_get_style` für 3–4 UUIDs (`response_format: md`).
+4. Reference-Lock: Primärreferenz, Preserve, Borrow only, Role rules,
+   Reject, Token commitments — in `art-direction.md`.
+5. Produkt-UI: `mcp__refero__refero_search_screens` /
+   `mcp__refero__refero_get_screen` (`platform` web|ios). Journeys:
+   `mcp__refero__refero_search_flows` / `mcp__refero__refero_get_flow`.
+6. Galerien über `inspiration.mjs` nur als Ergänzung (max. 3 Referenzen).
+7. `inspiration.mjs shot <url>` für alles Visuelle; PNG per **Read** ansehen
+   (Pfad ohne Ansehen = nicht gesehen).
+8. Design-DNA-Tabelle in `art-direction.md`.
+
+Regeln: nicht eine Referenz kopieren; nicht zur sicheren Mitte mitteln;
+Token-Rollen nicht umdeuten; Bild-Rollen erhalten; kein Design „aus
+Erinnerung".
+
+## Mobbin
+
+MCP-Server `mobbin` (OAuth, Profil raphael). Status ON laut
+`raphael-mcp-ondemand.sh status`. Tools `mcp__mobbin__*` erscheinen nur in
+einer **neuen** Session. Öffentliche Seite ohne Login = Landingpage.
+App/Flows: Mobbin zuerst (Router-Default). Skript:
+`inspiration.mjs mobbin` → Exit 0, Hinweistext; `--json` →
+`{source:"mobbin",access:"mcp",server:"mobbin"}` — kein Netzaufruf.
 
 ## 1. Refero Styles — Loop `art-direction`
 
-**Wofür:** Design-DNA-Tokens als Vergleich zur eigenen `art-direction.md`.
-Nie 1:1 übernehmen.
+**Wofür:** Design-DNA-Tokens als Vergleich. Primär über MCP (§0); Skript
+nur Fallback/Offline.
 
 ```bash
 node scripts/inspiration.mjs refero search "saas dark" --limit 10
 node scripts/inspiration.mjs refero get <styleId|url> [--out DESIGN.md]
 ```
 
-Suche: `https://styles.refero.design/?q=<query>` → `{title, url, styleId}`;
-Links `/style/<uuid>`, Titel aus `### <Titel>`. Get: Seite
-`https://styles.refero.design/style/<uuid>` — Jina liefert den DESIGN.md-Block
-in einem Fence; Fence-Inhalt, sonst Volltext. Ohne `--out` stdout.
-
-**Ziehen:** Farbe, Typo, Radius, Dichte, Motion-Halt — gegen die eigene DNA
-halten, nicht kopieren.
+Suche `styles.refero.design/?q=` → `{title,url,styleId}`. Get: DESIGN.md-
+Fence. **Ziehen:** Farbe, Typo, Radius, Dichte, Motion — gegen eigene DNA,
+nicht kopieren.
 
 ## 2. Navbar Gallery — Loop `art-direction` / Sitemap-IA
 
-**Wofür:** Navigationsmuster für `sitemap`/`informationsarchitektur.md`.
-Kein Header-HTML übernehmen.
-
 ```bash
-node scripts/inspiration.mjs navbar list [static|dropdowns|mega-menu|side-bar|search-bar|<typ>] [--limit 20]
+node scripts/inspiration.mjs navbar list [static|dropdowns|mega-menu|…] [--limit 20]
 node scripts/inspiration.mjs navbar get <slug|url>
 ```
 
-Ohne Typ: `https://www.navbar.gallery/browse`. Mit Typ:
-`https://www.navbar.gallery/type/<typ>`. Einträge `{name, url}`, Links
-`/navbar/<slug>`. Get reduziert auf Titel, Beschreibung, Bild-/Video-URLs, Typ.
-
-**Ziehen:** Anzahl Items, Dropdown vs. Mega vs. Sidebar, Suche ja/nein.
+**Ziehen:** Item-Anzahl, Dropdown vs. Mega vs. Sidebar, Suche ja/nein. Kein
+Header-HTML übernehmen.
 
 ## 3. Magic UI (MIT) — Loop `components`
-
-**Wofür:** Eine Motion-/Marketing-Komponente, nicht das Starter-Kit.
 
 ```bash
 node scripts/inspiration.mjs magicui list [--grep <substr>]
 node scripts/inspiration.mjs magicui get <name> [--out src/components/vendor/magicui/<name>.tsx]
 ```
 
-Liste: `https://magicui.design/r/registry.json` (`items[]`, Name+Beschreibung).
-Get: `https://magicui.design/r/<name>.json` — `files[0].content` als Quelle;
-`dependencies`/`registryDependencies` mit ausgeben (`--json` komplett).
-
-**Ziehen:** Datei nach `src/components/vendor/magicui/`, eine Werkzeugzeile,
-Anker `#motion` oder `#sections`.
+Eine Motion-/Marketing-Komponente, Werkzeugtabelle, Anker `#motion`/`#sections`.
 
 ## 4. React Bits (MIT, Registry) — Loop `components`
-
-**Wofür:** Eine Komponente (Default-Variante TS-TW). `--all` listet alle.
 
 ```bash
 node scripts/inspiration.mjs reactbits list [--grep <substr>]
 node scripts/inspiration.mjs reactbits get DotField --out src/components/vendor/reactbits/
 ```
 
-Liste: `https://reactbits.dev/r/registry.json`. Get:
-`https://reactbits.dev/r/<Name>.json` — fehlt das Suffix, hängt `-TS-TW` an.
-Alle `files[]` ausgeben; `--out` legt das Verzeichnis an und schreibt jede
-Datei unter ihrem `path`.
+Default-Variante TS-TW. Vendor-Ordner + Werkzeugtabelle.
 
-**Ziehen:** Vendor-Ordner plus Werkzeugzeile, Anker `#sections` / `#motion` /
-`#background`.
-
-## 5. 21st.dev — Loop `components` (Muster, kein geratener Code)
-
-**Wofür:** Muster + Source-Link. Registry
-`https://21st.dev/r/<author>/<slug>` liefert **403 ohne Login**. Das Skript
-sagt ausdrücklich: *Code hinter Login; Quelle: \<Source-Link\>, falls
-vorhanden dort holen.* Nie raten, nie einloggen.
+## 5. 21st.dev — Loop `components` (Muster)
 
 ```bash
 node scripts/inspiration.mjs 21st search hero --limit 20
 node scripts/inspiration.mjs 21st get @author/slug
 ```
 
-Suche: `https://21st.dev/community/components/s/<slug>` über Jina. Links
-`/@<author>/components/<slug>` → `{title, author, url}`. Get extrahiert Titel,
-Beschreibung, Usage-Codeblock, Dependencies, Source-Link, License.
+Registry ohne Login = 403. Muster + Source-Link; Code nie raten. Mit CLI-
+Login siehe § „21st mit CLI".
 
-**Ziehen:** Struktur/Usage als Muster. Code nur über den Source-Link, wenn
-öffentlich; sonst Inspiration und weiter.
+## Landdding — Loop `art-direction`
+
+Landing-Looks. `landdding list [<kategorie>] [--limit 20]` (agency, ai,
+design …); `landdding get <slug|url>`. Einträge `{title,url,slug}`; get →
+title, visit, thumbnail. Lesen über `readMarkdown`.
+
+## Awwwards — Loop `art-direction`
+
+Award-Sites. `awwwards list [<tag>] [--limit 30]` (agency, e-commerce,
+portfolio …); HTML-fetch, Parser `parseAwwwardsList`. Get → title,
+screenshot (og:image), tags. ~31 Einträge/Seite.
+
+## Siteinspire — Loop `art-direction`
+
+Kuratierte Websites. **Nur Firecrawl** (Jina = Vercel-Checkpoint).
+`siteinspire list [<kategorie>] [--limit 20]`; get `<id-slug|url>`. Ausgabe
+`{name,url,visit,thumbnail}`; Mobbin-Werbekarte herausfiltern. shot trifft
+ebenfalls Checkpoint → raphael-chrome.
+
+## Curated.design — Loop `art-direction`
+
+Screenshot-/Video-Galerie. `curated list [--limit 30]` →
+`{name,thumbnail,video?}`. **Kein get** (SPA, leere Detailseite) — Exit 2,
+Thumbnail ist bereits Screenshot.
+
+## Getlayers — Loop `art-direction` / Prompt-Templates
+
+KI-Site-Templates. `getlayers list [--limit 40] [--grep <substr>]`; get `<slug|url>`.
+`{name,slug,url,category,thumbnail}`. Lizenz/Preis auf der Seite prüfen,
+nichts kopieren.
+
+## Behance — Loop `art-direction`
+
+Projekt-Suche. `behance search "<query>" [--limit 20]`; get `<id|url>` →
+title + images (max 12). Gallery-Links dedupen nach id.
+
+## Inspora — Loop `art-direction`
+
+Design-Posts mit Medien. `inspora list [--limit 20]` (HTML-fetch Startseite).
+`{slug,url,media}`. **Kein get** — Detail hinter Vercel-Checkpoint (429);
+Medien-URL aus list oder raphael-chrome.
+
+## Swiped — Loop `art-direction` (Posts, keine Websites)
+
+Design-Posts von X/LinkedIn. `swiped list [--limit 20]` →
+`{category,author,handle,text≤280,media,likes}`. Keine Website-Referenz.
+
+## Screenshot sehen (shot)
+
+```bash
+node scripts/inspiration.mjs shot <url> [--out <dir>] [--mobile] [--full] [--wait <ms>]
+```
+
+Playwright (dynamischer Import nur hier), Viewport 1440×900 (+390×844 mit
+`--mobile`), Cookie-Klick (Accept all / Accept / Akzeptieren / …), Default-
+Wait 4000 ms, Default-out `/tmp/inspiration-shots`. Bot-Schutz-Titel → Exit 1
+mit Hinweis `raphael-chrome open <url>` / `raphael-chrome screenshot`. **PNG
+danach mit Read ansehen** — ein Pfad ohne Ansehen zählt nicht. Deckel 3
+Referenzen; Screenshots nur intern.
+
+## 21st mit CLI
+
+CLI: `/root/.local/bin/21st`. Login `21st login` braucht Raphaels Browser
+(Google); Auth-URL ggf. `/tmp/21st-auth-url.txt`. Alternative: API-Key von
+https://21st.dev/settings/api-keys als `API_KEY_21ST` (oder
+`TWENTYFIRST_TOKEN` / `~/.config/21st/auth.json`). Dann:
+`inspiration.mjs 21st code <begriff|id>` bzw. `21st search … --json` /
+`21st get <id> --json`. Ohne Login bleibt `21st get` (Muster, Source-Link).
+
+## Lehren aus dem Video (Jack Roberts, „Fable 5.1 Just Solved AI Slop", 03.09.2026)
+
+1. Referenz-URL + Prompt „inspired by this, build it, make it a little
+   better" als One-Shot → bei uns: Reference-Lock aus Refero +
+   `art-direction.md`, nie ohne Referenz bauen.
+2. Mehrere Designs kombinieren statt eines klonen → Deckel 3 Referenzen,
+   Primär + Borrow.
+3. „UI sniping": einzelne Komponente gezielt holen → `magicui`/`reactbits`
+   get `--out` + Werkzeugtabelle.
+4. Bilder UND Videos als Referenz → shot-PNGs und Video-URLs aus
+   curated/getlayers/inspora in `art-direction.md` verlinken.
+5. Copy immer durch Anti-Slop → copywriting G0/G1 + `scan-ai-slop`, nie roh.
+
+Nicht-Tun: nicht ohne gute Referenzen bauen; nicht alles von Null designen;
+AI-Copy nicht roh lassen.
+
+## Lehren aus dem Video (Griffin Wooldridge, „I Tested Claude Fable 5.1 as a UI Designer", 03.09.2026)
+
+1. Ohne Referenzen baut das Modell generisch (Alignment-Fehler, Placeholder-
+   Logo, corporate statt consumer) → Referenzen sind Pflicht.
+2. Referenzen per MCP aktiv verlangen: `search screens` mit Queries wie
+   „personal portfolio homepage", Treffer öffnen, dann bauen → Refero
+   Styles→Screens, Mobbin für App/Flows, Queries nach Screen-Inhalt.
+3. Prompt-Ende „test it and iterate until the UI is bug-free" erzwingt die
+   visuelle Prüfung; „UX is great" ist keine Abnahme → `shot` + Read nach dem
+   Build, `shot-sweep --base` im Kritik-Leaf, Dark-Mode und Links prüfen.
+4. Screenshots nie als „copy this, replace the content" → Reference-Lock mit
+   Preserve/Borrow/Reject statt 1:1-Klon.
 
 ## Exit-Codes
 
 | Code | Bedeutung |
 |---|---|
 | 0 | ok |
-| 1 | nichts gefunden / leeres Ergebnis |
-| 2 | Bedienfehler (unbekanntes Flag, fehlendes Argument) |
+| 1 | nichts gefunden / leeres Ergebnis / Bot-Schutz (shot) |
+| 2 | Bedienfehler (unbekanntes Flag, fehlendes Argument, get nicht verfügbar) |
 | 3 | `HOST_UNAVAILABLE` — Netz/Jina/Firecrawl fehlgeschlagen; Meldung nennt den Kanal |
