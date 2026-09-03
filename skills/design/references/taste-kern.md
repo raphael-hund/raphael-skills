@@ -10,6 +10,8 @@
 >
 > Die deduplizierten Detail-Regeln (Typo/Farbe/Layout/Komponenten/Motion) stehen in
 > `design-doktrin.md`. Diese Datei ist der **prozedurale Kern** der Landing-Linie.
+>
+> `[fd]` = Ideen-Merge aus **frontend-design** (Anthropic, Apache-2.0), paraphrasiert.
 
 ## 1. Brief-Inference (Read the Room, vor allem anderen)
 Signale lesen: Seitenart (SaaS/consumer/agency/event Landing · dev/designer
@@ -27,6 +29,7 @@ Mikro-Animationen, Inter + slate-900.
 > *"Lese das als: \<Seitenart> fuer \<Zielgruppe>, \<Vibe>-Sprache, Richtung
 > \<Design-System oder Aesthetik>."*
 Bei echter Zweideutigkeit **genau eine** Frage. Sonst annehmen und bauen.
+Dazu Pflichtfeld `Signature-Element` (genau eins, Skalierung nach Dial in §3a). `[fd]`
 
 ## 3. Drei Dials (nach dem Read setzen)
 - `DESIGN_VARIANCE` 1 (symmetrisch) … 10 (asymmetrisch/chaotisch)
@@ -48,6 +51,33 @@ Baseline **8 / 6 / 4**, ausser der Read ueberschreibt. Presets:
 | Redesign overhaul | +2 | +2 | match |
 
 Dieselben Dials lassen sich an die ui-ux-DB uebergeben (`--variance/--motion/--density`).
+
+## 3a. Zwei-Pass (nach den Dials, VOR dem ersten Code) `[fd]`
+Der Plan wird einmal gegen sich selbst gehalten, bevor eine Zeile entsteht:
+1. **Gegenpruefen:** "Was wuerde jeder Agent aus diesem Brief bauen?" Wer den Brief
+   sinngemaess ein zweites Mal durchspielt und bei derselben Palette/Typo/Sektionsfolge
+   landet, hat den generischen Default beschrieben, keine Entscheidung getroffen.
+2. **Abweichung benennen:** Fuer jeden Teil, der wie dieser Default liest, eine Zeile —
+   was geaendert wird und warum es aus diesem Brief folgt (nicht aus Geschmack).
+3. **Erst dann Code**, und zwar nach dem revidierten Plan; Farben und Typo werden aus
+   ihm abgeleitet, nicht beim Bauen neu erfunden.
+
+Das ergaenzt den Copy-Selbstaudit (§7): der laeuft nach dem Bau, dieser Schritt davor.
+
+**Pflichtfeld `Signature-Element` im Design-Read (§2):** genau EIN benanntes Element,
+an das die Seite erinnert wird — nicht zwei, nicht "die Gesamtwirkung". Der Mut wird an
+diesem einen Ort ausgegeben, alles daneben bleibt still. Das Feld entfaellt nie; nur sein
+Ausschlag haengt am VARIANCE-Dial:
+
+| VARIANCE | Ausschlag des Signature-Elements |
+|---|---|
+| ≥ 7 (Premium/Editorial/Agency-creative, kein daempfender Sektor-Dial) | ungedaempft — Layout, Formsprache oder Typo duerfen die Traeger sein |
+| 5–6 (z.B. `kita`, `tanz-community`, `ads-lp` aus `stil-regeln.md` §1) | gedaempft — ein wiederkehrendes Motiv oder eine Typo-Pairing-Entscheidung, kein Layoutbruch |
+| ≤ 4 (z.B. `handwerk-local`, `b2b-dienst`) | klein und kontrolliert — ein Detail oder eine praezise Mikro-Interaktion, nie Farbmut oder Layoutbruch |
+
+Der Sektor-Dial aus `stil-regeln.md` §1 (Regel S15) ersetzt im Site-Build die Baseline
+oben und entscheidet damit auch diese Zeile. Layering/Parallax als Signature ist
+Premium-Ausnahme mit eigener Regel — `eigene/web/references/ui-layouts-catalog.md`.
 
 ## 4. Brief -> Design-System-Map
 Wenn der Brief einem echten System entspricht, das **offizielle** Paket nutzen (nicht
@@ -101,6 +131,10 @@ kein offizielles `liquid-glass.css`.
   Kein `border-t`+`border-b` auf jeder Zeile.
 - **Mobile-Collapse pro Sektion explizit** deklarieren (`w-full`, `px-4`), kein
   "Tailwind regelt das schon".
+- **Keine Umrandungen als Default** (Raphael 2x explizit, 28.08.2026: "Ich mag diese
+  Umrandungen immer nicht" / "Das muss nicht immer alles umrandet sein"): Karten,
+  Chips und Info-Boxen trennen ueber Flaeche, Weissraum oder sanften Schatten —
+  Border nur, wo sie funktional noetig ist (Inputs, Fokus-Ring, Tabellen).
 
 ## 6. Bilder & Assets (imagegen entfernt)
 Landing/Portfolio sind **visuelle Produkte** — reine Textseiten mit Fake-Screenshot-
@@ -140,6 +174,7 @@ Zahlen (92%, 4.1×, 5.8mm) nur wenn real oder als Mock markiert. Ein Copy-Regist
 ## 9. Landing-Pre-Flight (mechanisch, vor Ausgabe)
 Erst danach QA via impeccable-Detektoren. Kritische Boxen:
 - [ ] Design-Read (1 Zeile) deklariert, Dials begruendet (nicht still Baseline)?
+- [ ] Signature-Element benannt (genau eins) und Zwei-Pass-Abweichung notiert (§3a)?
 - [ ] Design-System aus §4 gewaehlt oder Aesthetik ehrlich gelabelt? **Ein** System?
 - [ ] Redesign-Modus erkannt + Audit gemacht (falls zutreffend)?
 - [ ] **Null Em-Dash** `—`/`–` irgendwo sichtbar (Doktrin §6, nicht verhandelbar)?

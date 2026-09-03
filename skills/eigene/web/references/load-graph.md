@@ -34,8 +34,8 @@ ein Video-Skill-Katalog ist kein Default-Stack.
 | Was | Datei / Skill | Wofür |
 |---|---|---|
 | Dach und Gates | `web/SKILL.md` | Ablauf, Screenshot-Pflicht, Gotchas |
-| Einstieg | `web/references/anfaenger-pfad.md` §1 | genau eine Auftrag-Zeile wählen |
-| Geschmack | `web/references/stil-regeln.md` | Pflicht vor Art-Direction |
+| Einstieg | `anfaenger-pfad.md` §1 | genau eine Auftrag-Zeile wählen |
+| Geschmack | `stil-regeln.md` | Pflicht vor Art-Direction |
 | Vorbilder | `web/references/muster-bibliothek/INDEX.md` + **2–3 Cases** | Sektor-passende Cases, nicht alle |
 | Design-Linie | Skill `design` → `taste-kern.md` **mit Dial-Override aus stil-regeln §1** | Bindend bleiben: Design-Read, Anti-Default-Disziplin, Hero-Fold-Regeln. Nicht bindend: Baseline-Dials 8/6/4 — die kommen aus stil-regeln §1 |
 | Doktrin | Skill `design` → `design-doktrin.md` | fusionierte Linie |
@@ -43,8 +43,8 @@ ein Video-Skill-Katalog ist kein Default-Stack.
 | Copy-Gates | Skill `copywriting` G0→G1→G2 | G0 `forbidden.md` und G1 immer beim Copy-Leaf im Bau; G2 ≥ 0.7 zum Launch |
 | Copy-/Slop-Bündel | Skill `web-anti-slop` | immer mitgeladen: Design-Detektoren, Copy-G1→G2, Oxlint bei Custom-TS/JS |
 | SEO On-Page | Skill `seo` (nur On-Page-Teil) | **Plan-Phase**: Keyword je Route, Sitemap-Entscheidung, Title/Meta/H1-Vorgabe ins `PLAN.md`. Loop-4-Vollprogramm bleibt On demand |
-| Werkzeuge | `web/references/tool-usecase-router.md` | Werkzeugtabelle vor `npm i` |
-| QA | `web/references/qa-faecher.md` | Fächer 1–6 |
+| Werkzeuge | `tool-usecase-router.md` | Werkzeugtabelle vor `npm i` |
+| QA | `qa-faecher.md` | Fächer 1–6 |
 
 Der Dial-Override ist wichtig: aus `taste-kern.md` bleiben Design-Read,
 Anti-Default-Disziplin und Hero-Fold-Regeln bindend. Die Baseline-Dials
@@ -89,4 +89,23 @@ Drei Fragen, alle drei müssen mit Ja beantwortbar sein:
 2. Ändert sie eine Entscheidung, die ich in diesem Schritt wirklich treffe?
 3. Ist sie nicht schon durch `design` oder `copywriting` abgedeckt?
 
-Ein Nein heisst: nicht laden.
+Ein Nein heisst: nicht laden. Quellenstatus und Ablauf vor dem Load in `quellen-ledger.md` prüfen.
+
+## 6. Nach dem Projekt
+
+Einmal je abgeschlossenem Kundenprojekt, vor dem Schliessen der Karte: die im
+Projekt **tatsächlich geladenen** Referenzdateien gegen §2 und §3 halten. Quelle
+ist der Ladeverlauf im `STATUS.md`, nicht die Erinnerung.
+
+Zwei Listen, je eine Zeile pro Datei:
+
+- **Nie geladen, steht aber in §2 (Always)** — Kandidat für §3 oder fürs
+  Streichen. Eine Always-Zeile, die kein Projekt braucht, kostet in jedem
+  Projekt Kontext.
+- **Immer nachgeladen, steht aber in §3 (On demand)** — Kandidat für §2. Wer
+  dieselbe Datei in jedem Projekt nachlädt, hat sie faktisch als Always.
+
+Das Ergebnis geht als **ein** Lernpunkt in Pflichtform an `skill-update`,
+Zielskill `web` — nicht als Sammelbericht und nicht als stille Änderung an
+dieser Datei. Findet der Abgleich nichts, ist auch das eine Zeile („Ladeprofil
+unverändert“), keine ausgelassene Prüfung.

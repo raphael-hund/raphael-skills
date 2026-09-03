@@ -43,5 +43,7 @@
   "run-site-build-load-path-check.mjs": 21,
   "run-resource-open-check.mjs": 14,
   "run-werkzeug-gate-check.mjs": 6,
-  "run-preview-vs-launch-check.mjs": 36
+  "run-preview-vs-launch-check.mjs": 36,
+  "run-kanon-pipeline-check.mjs": 20,
+  "run-x-bookmark-pipeline-check.mjs": 23
 }

@@ -13,8 +13,8 @@ Verifikations-Vertrag). Dieser Loop hier bleibt der Web-Sweep-Ablauf; `web` blei
 der einzige Website-Workflow-Owner. `visual-aaa` ist ausschließlich der terminale
 DoneClaim-Blocker, nie Workflow-Owner oder zweite Produktionspipeline.
 
-**Shot-Budget (seit 01.09.2026, hart):** Ein Kritik-Leaf liest höchstens ~12 Shots
-und nur verkleinerte. Volle PNG-Serien sprengen das 32-MB-Limit eines Agent-Turns —
+**Shot-Budget (seit 01.09.2026, hart):** Ein Kritik-Leaf liest höchstens 12 Shots
+(Hook denyt darüber) und nur stemgleiche `/small/`-JPGs. Volle PNG-Serien sprengen das 32-MB-Limit eines Agent-Turns —
 am 01.09. starben so 9 von 10 Kritikern eines AlpenEnergie-Laufs und zwei
 Burak-Judges, jeweils mit `Request too large (max 32MB)`. Vor jedem Kritik-Fan-out:
 
@@ -40,8 +40,9 @@ Erst Gesundheit (Konsole-Fehler, 404s, Ladezeit, Mobile-Viewport), dann Ästheti
    auf (z. B. täglich), Output in `state/health-sweeps/<datum>/`.
 2. Eine kostengünstige Vergleichs-Rolle vergleicht den neuen Sweep NUR gegen den
    Besucher-Blick-Katalog (Schritt 2 unten) und schreibt Auffälligkeiten
-   in ein Ledger: `state/screenshot-ledger.md` — eine Zeile pro Beobachtung
-   (Datum, Route, Befund, Screenshot-Pfad). Kein Fix, keine Bewertung, nur
+   in ein Ledger: der erst im Kundenprojekt erzeugte relative Ausgabepfad
+   **state/screenshot-ledger.md** — eine Zeile pro Beobachtung (Datum, Route,
+   Befund, Screenshot-Pfad). Kein Fix, keine Bewertung, nur
    Beobachtung.
 3. **3-4x-Regel:** Eine Beobachtung wird erst zum "Befund" (und landet auf der
    echten Fixliste), wenn dieselbe Auffälligkeit an derselben Stelle **3-4 Mal
@@ -111,9 +112,12 @@ Der statische Sweep bleibt Pflicht; Motion kann kein rotes Visual-, Functional-
 oder Regression-Gate ausgleichen.
 
 ### 2. Ansehen durch Kritik-Leaves (Pflicht, per Workflow delegiert)
-Jedes Kritik-Leaf öffnet JEDES ihm zugeteilte PNG. Builder-Prosa ersetzt das nicht.
+Jedes Kritik-Leaf liest JEDEN ihm zugeteilten Shot als stemgleichen `/small/`-JPG
+(vorher `/root/tools/shots-verkleinern.sh`). Das Manifest behält die PNG-Identität;
+der Read geht auf das verkleinerte JPG, nie auf das volle PNG. Hartes Budget
+12 Shots — der Hook denyt darüber. Builder-Prosa ersetzt das nicht.
 Die Kritik-Session delegiert die Reads per Workflow gemäß `kritik-matrix.md` an
-`visual-kritiker` / Grok / Kimi; der Parent/Controller öffnet oder liest nie PNGs.
+`visual-kritiker` / Grok / Kimi; der Parent/Controller öffnet oder liest nie Bilder.
 Er führt nur das Shot-Ledger (`pfad | viewport | gelesen-von | verdict`) und zählt
 Zeilen gegen `manifest.json`. PNG-Binaries in die Hauptsession = Fail. Befundliste:
 `befund: <shot-datei> | <was falsch ist> | <vermutete Ursache>`.
@@ -271,7 +275,7 @@ Abschluss-Checkliste (Pflichtzeilen im Report):
 ## Verbote (hart)
 - Kein fullPage-Screenshot, kein captureBeyondViewport (R20-Schein-Funde = Fullpage-Artefakte:
   fixed Elemente schweben mitten im Inhalt, leere Reveal-Flaechen).
-- Kein Panel ohne vorherigen PNG-Read aller zugeteilten Shots durch Kritik-Leaves.
+- Kein Panel ohne vorherigen `/small/`-JPG-Read aller zugeteilten Shots durch Kritik-Leaves.
 - Kein „fixed" ohne Nachher-Shot, der das belegt.
 - Keine Design-Entscheidung aus dem Code heraus (z.B. „sticky ist gesetzt" statt
   „auf dem Shot klebt der Tag sichtbar").

@@ -135,11 +135,36 @@ const FAELLE = {
     was: 'SaaS-Floskeln aus der Buzzword-Liste',
     body: '<p>Industry-leading, enterprise-grade, world-class: transform your business.</p>',
   },
-  'numbered-section-markers': {
-    was: '01/02/03 als Abschnitts-Nummern',
-    body: '<section><span>01</span><h2>Ortstermin</h2></section>'
-      + '<section><span>02</span><h2>Festpreis</h2></section>'
-      + '<section><span>03</span><h2>Uebergabe</h2></section>',
+  // 02.09.2026, Sync auf impeccable v4.0.5: die Regel heisst dort
+  // `numbered-section-labels` (nicht `numbered-section-markers`) UND liegt nur
+  // noch im DOM-Pfad (rules/checks.mjs) — der Regex-Analyzer, den der vendorte
+  // Stand hatte, ist im Original entfallen. Ein Fixture im Datei-Modus kann sie
+  // darum nicht mehr belegen; der Fall steht jetzt in
+  // run-browser-detect-check.mjs. Hier ersatzlos entfernt statt umbenannt: ein
+  // Fixture, das nie feuern kann, ist kein Beleg, sondern ein Dauerrot.
+  // --- Neu mit impeccable v4.0.5, 02.09.2026 --------------------------------
+  // Von den 14 neuen Regeln sind genau diese zwei im Datei-Modus herstellbar:
+  // beide sind CSS-Text-Scanner und laufen ueber detect-text.mjs (dort Zeile
+  // 666 und 673). Die uebrigen zwoelf haengen am gerenderten DOM (Groessen,
+  // Ueberdeckung, Scroll-Kante) und stehen in der Abdeckungsliste unten.
+  'marquee': {
+    was: 'Endlos-Schleife, die horizontal um 100% wandert',
+    // Nur Prozent-Reisen zaehlt (>= 20%): Pixel-Schleifen sind bespoke
+    // Produktanimationen, keine Ticker. Am Code gelesen, checks.mjs:1104-1113.
+    style: '@keyframes lauf{from{transform:translateX(0)}to{transform:translateX(-100%)}}'
+      + '.ticker{animation:lauf 20s linear infinite}',
+    body: '<div class="ticker">Logos, die vorbeiziehen.</div>',
+  },
+  'radial-halo': {
+    was: 'radialer Farbschleier auf dunkler Seite',
+    // Drei Bedingungen, alle am Code gelesen (checks.mjs:782, 825, 829, 831):
+    // die Seite muss dunkel sein, der letzte Stop transparent (Alpha <= 0.05)
+    // und der erste kraeftig (Alpha >= 0.7) UND bunt (Kanal-Spanne >= 24).
+    // Erster Versuch nutzte rgba(...,.55) und meldete nichts — nicht die Regel
+    // war stumm, der Schleier war zu blass fuer ihre Schwelle.
+    style: 'body{background:#0a0a12;color:#eee}'
+      + '.halo{background:radial-gradient(circle at 50% 0%, rgba(99,102,241,.85), transparent 60%)}',
+    body: '<div class="halo">Hero mit Schleier.</div>',
   },
   'design-system-font': {
     designMd: true,
@@ -538,11 +563,24 @@ for (let i = 0; i < offen.length; i += 6) console.log(`     ${offen.slice(i, i +
 // Luecke — nachgemessen 30.07.2026 an tiny-text, all-caps-body und
 // justified-text: alle drei liegen dort, keine feuert im Datei-Modus. Wer sie
 // pruefen will, braucht den Browser-Pfad, und dort deckt sie craft-check ab.
+// Nachgezogen 02.09.2026 mit dem Detektor-Sync auf impeccable v4.0.5: die
+// Suche las nur `id:` in `checks.mjs`. Die dortigen Pruefungen melden ihre
+// Funde aber teils als `type:`, und `script-error` liegt gar nicht in
+// checks.mjs, sondern im URL-Motor. Vier neue Browser-Regeln standen damit als
+// "in KEINEM Pfad erreichbar" da, obwohl der Browser-Pfad sie prueft — eine
+// Falschmeldung der Wache, nicht eine Luecke im Detektor.
 const NUR_IM_BROWSER = (() => {
-  const checks = path.join(SKILL, 'scripts', 'detector', 'rules', 'checks.mjs');
-  if (!fs.existsSync(checks)) return new Set();
-  const txt = fs.readFileSync(checks, 'utf8');
-  return new Set([...txt.matchAll(/id: '([a-z0-9-]+)'/g)].map((m) => m[1]));
+  const quellen = [
+    path.join(SKILL, 'scripts', 'detector', 'rules', 'checks.mjs'),
+    path.join(SKILL, 'scripts', 'detector', 'engines', 'browser', 'detect-url.mjs'),
+  ];
+  const ids = new Set();
+  for (const q of quellen) {
+    if (!fs.existsSync(q)) continue;
+    const txt = fs.readFileSync(q, 'utf8');
+    for (const m of txt.matchAll(/(?:id|type): '([a-z0-9-]+)'/g)) ids.add(m[1]);
+  }
+  return ids;
 })();
 const offenRegex = offen.filter((x) => !NUR_IM_BROWSER.has(x));
 console.log(`  davon ${offen.length - offenRegex.length} nur ueber den Browser-Pfad erreichbar (rules/checks.mjs — braucht gerendertes DOM)`);

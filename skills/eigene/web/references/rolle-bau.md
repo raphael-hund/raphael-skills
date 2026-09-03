@@ -1,7 +1,8 @@
-# Rolle: Bau-Session
+# Rolle: Bau-Phase
 
-Einstiegs-Ebene für die **Bau**-Session der Drei-Sessions-Ordnung
-(Plan / Kritik / Bau). Detail-Ebene: `loop2-ablauf.md` (Reihenfolge, Gates,
+Einstiegs-Ebene für die **Bau**-Phase der Drei-Phasen-Ordnung
+(Plan / Kritik / Bau, drei Phasen in **einem** Chat, Zustand auf Platte —
+Raphael 02.09.2026). Detail-Ebene: `loop2-ablauf.md` (Reihenfolge, Gates,
 Output-Pfade), `planner-executor-protokoll.md` (Handoff),
 `agent-roster.md` + `orchestrierung.md` (Rollen, Parallelität),
 `tool-usecase-router.md` (Werkzeugtabelle), `load-graph.md` (was geladen wird).
@@ -9,7 +10,7 @@ Output-Pfade), `planner-executor-protokoll.md` (Handoff),
 Chip-Leiste: **`/web` + `/orchestrate`**, Ultracode-Session-Default genügt —
 kein zusätzlicher `/ultracode`-Slash, kein `/design`.
 
-## Start der Session (hart)
+## Start der Phase (hart)
 
 ```bash
 node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
@@ -17,11 +18,11 @@ node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
 ```
 
 Exit 2 = gesperrt: ohne mindestens eine `KRITIK-n.md` baut niemand. Dann
-zurück an die Kritik-Session.
+zurück an die Kritik-Phase.
 
 ## Erster Turn = Dynamic Workflow
 
-Die Bau-Session startet **im ersten Turn** einen Dynamic Workflow. Kein
+Die Bau-Phase startet **im ersten Turn** einen Dynamic Workflow. Kein
 Solo-CSS im Parent, keine „ich schau mal schnell selbst“-Runde davor.
 `/orchestrate` ist der Controller-Owner.
 
@@ -40,29 +41,34 @@ an Leaves. Der Parent führt das Shot-Ledger
 
 Typischer Zuschnitt, adaptiv bis zur Live-Kapazität:
 
-| Paket | Wer |
-|---|---|
-| Sweep-Skript (kein Agent) | `shot-sweep --base <dev-url> --static --states --mobile` |
-| Visuelle Kritik derselben Shots | fremde tatsächliche Familien, `visual-kritiker` (Grok) + `kimi-recherche` |
-| Belegte Code-Ursache (datei:zeile) | `grok-worker`, Input = Shot-Pfad + CSS-Ausschnitt |
-| **Copy** | `kimi-worker` **oder** `sol-builder` (gleichberechtigt, explizit besetzt) |
-| Integration gemeinsamer UI-Flächen | **genau ein** `opus-builder` |
-| Code-Ursache / Ship-Review (Textausschnitt) | `sol-pruefer` — nie Bildpfade an Sol |
+| Paket | multi-family | claude-only |
+|---|---|---|
+| Sweep-Skript (kein Agent) | `shot-sweep --base <dev-url> --static --states --mobile` | dasselbe Skript |
+| Visuelle Kritik derselben Shots | fremde tatsächliche Familien, `visual-kritiker` (Grok) + `kimi-recherche` | zwei frische Sonnet-Instanzen, Label `claude-only, Instanz-Trennung` (`kritik-matrix.md`) |
+| Belegte Code-Ursache (datei:zeile) | `grok-worker`, Input = Shot-Pfad + CSS-Ausschnitt | Sonnet-Instanz, gleicher Input |
+| **Copy** | `kimi-worker` **oder** `sol-builder` (gleichberechtigt, explizit besetzt) | eigener Opus-**Copy-Leaf**, nie der Integrator-Leaf |
+| Integration gemeinsamer UI-Flächen | **genau ein** `opus-builder` | **genau ein** `opus-builder` |
+| Code-Ursache / Ship-Review (Textausschnitt) | `sol-pruefer` — nie Bildpfade an Sol | Sonnet-Instanz, Textausschnitt statt Pfad |
 
 Unabhängige Analysen und disjunkte Baupakete laufen parallel; abhängige oder
 write-set-überlappende Pakete laufen sequenziell oder in Worktrees. Kein Fable
-als Subagent, nie Haiku. Wer baut, reviewt nicht.
+als Subagent, nie Haiku als Urteil. Wer baut, reviewt nicht.
 
-## Copy im Bau: das absolute Copy-Verbot für Opus
+## Copy im Bau: wer schreiben darf, hängt am Profil
 
-Die Copy schreibt im Workflow **`kimi-worker` oder `sol-builder`** — nach dem
-Copy-Briefing aus `PLAN.md` (Zielgruppe, Ton, VOICE-Referenz, Keyword je Route,
-Proof-Lage). Das Briefing kommt aus der Plan-Session; die Bau-Session erfindet
-es nicht neu.
+Das Copy-Briefing kommt in beiden Profilen aus `PLAN.md` (Zielgruppe, Ton,
+VOICE-Referenz, Keyword je Route, Proof-Lage). Die Bau-Phase erfindet es nicht
+neu.
 
-**`opus-builder` schreibt nie Copy** — keine Headlines, keinen Fließtext, keine
-CTAs, keine Microcopy, keine Fehlermeldungen. Opus baut freigegebene Texte
-**unverändert** ein. Passt ein Text nicht ins Layout, meldet Opus den
+- **multi-family:** Copy schreibt **`kimi-worker` oder `sol-builder`**.
+  `opus-builder` hat ein **absolutes Copy-Verbot** — keine Headlines, keinen
+  Fließtext, keine CTAs, keine Microcopy, keine Fehlermeldungen.
+- **claude-only** (Raphael 02.09.2026): Copy schreibt ein **eigener
+  Opus-Copy-Leaf**, **nie** der Integrator-Leaf. G0 und G1 laufen im
+  Copy-Leaf, G2 judged eine Sonnet-Instanz zum Launch.
+
+In beiden Profilen gilt für den Integrator dasselbe: Er baut freigegebene Texte
+**unverändert** ein. Passt ein Text nicht ins Layout, meldet er den
 Layoutkonflikt zurück, statt den Text zu ändern.
 
 Vorschau-Copy darf Working-Copy sein: Platzhalter-Reviews und offene Zahlen
@@ -76,7 +82,7 @@ gate-frei — zwei Gates laufen schon beim Schreiben, eines erst zum Launch:
 |---|---|---|
 | G0 `forbidden.md` | im Copy-Leaf, vor Rückgabe | der schreibende Leaf selbst |
 | G1 (Orwell/Slop, `web-anti-slop`) | im Copy-Leaf, vor Rückgabe | der schreibende Leaf selbst |
-| G2 ≥ 0.7 | erst zum Launch | Judge einer fremden Familie (`rolle-launch.md`) |
+| G2 ≥ 0.7 | erst zum Launch | multi-family: Judge einer fremden Familie; claude-only: Sonnet-Judge (`rolle-launch.md`) |
 
 Kommt Copy ohne G0/G1-Beleg zurück, ist sie nicht fertig — nicht einbauen,
 zurück an denselben Leaf. Details: Skill `copywriting`.
@@ -87,11 +93,11 @@ Die Fixliste ist die Liste der Befunde, die die Merge-Regel aus
 `kritik-matrix.md` überlebt haben — nicht die Sammelmenge aller Leaf-Meinungen.
 
 - **Keine neue Kritik erfinden.** Fällt dem Parent im Bau etwas auf, das nicht
-  in `KRITIK-n.md` steht, geht es als Zeile an die Kritik-Session, nicht als
+  in `KRITIK-n.md` steht, geht es als Zeile an die Kritik-Phase, nicht als
   stiller Extra-Fix in den Build.
 - **Den Plan nicht umwerfen.** Jede Abweichung vom Plan bekommt eine eigene
   Zeile in `STATUS.md` („Abweichung: … Grund: …“); ob `PLAN.md` einen
-  Änderungsblock bekommt, entscheidet die Plan-Session.
+  Änderungsblock bekommt, entscheidet die Plan-Phase.
 - `park`-Befunde (`content-park`, `ops-park`) sind kein Bau-Blocker; sie bleiben
   `FAKT-GATE`-Zeilen für den Launch.
 
@@ -104,6 +110,19 @@ einem Fix = nicht geprüft** — ein Code-Diff ist kein Sichtbeweis.
 Jeder neue Build invalidiert alte G1-, Sweep- und Ship-QA (Run-Evidence-Kette,
 `run-evidence-contract.md`); nach jedem Build läuft
 `run-evidence.mjs bind-build --revision <build_revision>`.
+
+## Kostenspur (Fertig-Kriterium `STATUS.md` aktuell)
+
+Nach jedem Bau-Workflow läuft `/cost` (ersatzweise `/usage`); die Zahl kommt mit
+Datum als eigene Zeile in `STATUS.md`:
+
+```
+| Kosten | 02.09.2026 | /cost | 6:34 min | $4,53 |
+```
+
+Ohne diese Zeile ist `STATUS.md` nicht aktuell. Grund: Betriebsregel 3 verlangt
+für jede Zahl an Raphael genau eine benannte Quelle — ohne Spur gibt es sie für
+Projektkosten nicht.
 
 ## Werkzeugtabelle vor dem ersten `npm i`
 
@@ -132,6 +151,10 @@ aus `muster-bibliothek/INDEX.md`. Erst dann der `design`-Skill; Design-G1 ist
 `node /root/raphael-skills/skills/design/scripts/detect.mjs` Exit 0 — nie
 `npx impeccable detect`. Jede Section zitiert eine Regel-ID oder einen Case.
 Art-Direction ohne `stil-regeln.md` + Cases ist improvisierter Geschmack.
+
+Vor der ersten Zeile Code laufen Zwei-Pass und Signature-Element aus
+`design/references/taste-kern.md` §3a — dort steht auch, wie der Sektor-Dial den
+Ausschlag skaliert.
 
 Trust-/Social-Proof-Logos laufen **nicht** über `higgsfield`: Marken-Logos als
 Original beschaffen (offizielles Brand-Kit → `vectorlogo.zone`/`simpleicons.org`
@@ -165,9 +188,9 @@ Der Ultracode-Session-Default genügt; kein /ultracode-Slash nötig.
 Parent editiert keine CSS-/TSX-Datei und liest keine PNG-Binaries.
 Starte im ersten Turn JETZT einen Dynamic Workflow. Leaves, so viele wie Pakete:
 1. shot-sweep --base <dev-url> --static --states --mobile → manifest.json + PNG-Pfade
-2. visual-kritiker (Grok) und kimi-recherche unabhängig auf denselben Fold/Hover-Shots
-3. grok-worker nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt
-4. kimi-worker oder sol-builder für Copy nach dem Briefing aus PLAN.md
+2. zwei unabhängige Kritik-Leaves auf denselben Fold/Hover-Shots (Besetzung je Profil: kritik-matrix.md)
+3. eine Leaf nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt
+4. eigener Copy-Leaf nach dem Briefing aus PLAN.md — nie der Integrator
 5. opus-builder nur als Integrator für sichtbare UI-Fixes (baut Copy unverändert ein)
 Rückgabe an Plan: STATUS.md + KRITIK-n.md mit Shot-Pfaden, biggest_gap visuell,
 FAKT-GATE geparkt. Kein Solo-Debug von wipe.css im Parent.

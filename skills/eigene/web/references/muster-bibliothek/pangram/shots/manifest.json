@@ -1,0 +1,1732 @@
+{
+  "schema": "web/shot-sweep/v2",
+  "run_id": null,
+  "build_revision": null,
+  "capture_profile": {
+    "static": false,
+    "states": false,
+    "mobile": true
+  },
+  "base": "https://www.pangram.com",
+  "createdAt": "2026-09-02T20:28:11.008Z",
+  "static": false,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "state_matrix": {
+    "required": [],
+    "captured": [],
+    "not_applicable": [],
+    "failed": []
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": false,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-hover-00-Products.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Products"
+        },
+        {
+          "file": "home-desktop-hover-01-Solutions.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Solutions"
+        },
+        {
+          "file": "home-desktop-hover-02-Company.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Company"
+        },
+        {
+          "file": "home-desktop-hover-03-Resources.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Resources"
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y726.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 726
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "home-desktop-17-y12000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 12000
+        },
+        {
+          "file": "home-desktop-18-y12750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 12750
+        },
+        {
+          "file": "home-desktop-19-y13500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 13500
+        },
+        {
+          "file": "home-desktop-20-y14250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 14250
+        },
+        {
+          "file": "home-desktop-21-y14695.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 14695
+        },
+        {
+          "file": "home-desktop-click-y0-00-Allow_all.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Allow_all"
+        },
+        {
+          "file": "home-desktop-click-y0-01-Change_language.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Change_language"
+        },
+        {
+          "file": "home-desktop-click-y1500-00-Next.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Next"
+        },
+        {
+          "file": "home-desktop-click-y1500-01-Open_cookie_settings_wid.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Open_cookie_settings_wid"
+        },
+        {
+          "file": "home-desktop-click-y2250-00-Close_cookie_settings_wi.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 2250,
+          "target": "Close_cookie_settings_wi"
+        },
+        {
+          "file": "home-desktop-click-y4500-00-Play_the_Pangram_video.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 4500,
+          "target": "Play_the_Pangram_video"
+        },
+        {
+          "file": "home-desktop-click-y4500-01-01_Input_your_text.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 4500,
+          "target": "01_Input_your_text"
+        },
+        {
+          "file": "home-desktop-click-y4500-02-02_Scan_for_AI_content.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 4500,
+          "target": "02_Scan_for_AI_content"
+        },
+        {
+          "file": "home-desktop-click-y4500-03-03_View_results.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 4500,
+          "target": "03_View_results"
+        },
+        {
+          "file": "home-desktop-click-y4500-04-04_Access_past_records.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 4500,
+          "target": "04_Access_past_records"
+        },
+        {
+          "file": "home-desktop-click-y6000-00-AI_Detector_for_Educatio.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 6000,
+          "target": "AI_Detector_for_Educatio"
+        },
+        {
+          "file": "home-desktop-click-y6000-01-AI_Detector_for_Enterpri.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 6000,
+          "target": "AI_Detector_for_Enterpri"
+        },
+        {
+          "file": "home-desktop-click-y10500-00-01_Initial_training_proc.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 10500,
+          "target": "01_Initial_training_proc"
+        },
+        {
+          "file": "home-desktop-click-y10500-01-02_Continued_improvement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 10500,
+          "target": "02_Continued_improvement"
+        },
+        {
+          "file": "home-desktop-click-y10500-02-03_Consistent_retraining.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 10500,
+          "target": "03_Consistent_retraining"
+        },
+        {
+          "file": "home-desktop-click-y11250-00-01_Product_review.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "01_Product_review"
+        },
+        {
+          "file": "home-desktop-click-y11250-01-02_Blog_post.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "02_Blog_post"
+        },
+        {
+          "file": "home-desktop-click-y11250-02-03_News_article.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "03_News_article"
+        },
+        {
+          "file": "home-desktop-click-y12000-00-04_Novel_excerpt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12000,
+          "target": "04_Novel_excerpt"
+        },
+        {
+          "file": "home-desktop-click-y12000-01-05_Restaurant_review.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12000,
+          "target": "05_Restaurant_review"
+        },
+        {
+          "file": "home-desktop-click-y12000-02-06_Résumé.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12000,
+          "target": "06_Résumé"
+        },
+        {
+          "file": "home-desktop-click-y12000-03-001_What_is_AI_content_d.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12000,
+          "target": "001_What_is_AI_content_d"
+        },
+        {
+          "file": "home-desktop-click-y12000-04-002_How_does_Pangram_wor.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12000,
+          "target": "002_How_does_Pangram_wor"
+        },
+        {
+          "file": "home-desktop-click-y12000-05-003_How_accurate_is_Pang.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12000,
+          "target": "003_How_accurate_is_Pang"
+        },
+        {
+          "file": "home-desktop-click-y12750-00-004_What_is_Pangram_s_fa.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "004_What_is_Pangram_s_fa"
+        },
+        {
+          "file": "home-desktop-click-y12750-01-005_Is_Pangram_s_AI_dete.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "005_Is_Pangram_s_AI_dete"
+        },
+        {
+          "file": "home-desktop-click-y12750-02-006_Is_my_data_safe_if_I.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "006_Is_my_data_safe_if_I"
+        },
+        {
+          "file": "home-desktop-click-y12750-03-007_What_languages_does_.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "007_What_languages_does_"
+        },
+        {
+          "file": "home-desktop-click-y12750-04-008_What_AI_models_does_.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "008_What_AI_models_does_"
+        },
+        {
+          "file": "home-desktop-click-y12750-05-009_What_signals_does_Pa.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "009_What_signals_does_Pa"
+        },
+        {
+          "file": "home-desktop-click-y12750-06-010_How_are_schools_usin.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "010_How_are_schools_usin"
+        },
+        {
+          "file": "home-desktop-click-y12750-07-011_How_are_universities.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "011_How_are_universities"
+        },
+        {
+          "file": "home-desktop-click-y12750-08-012_Why_do_other_AI_dete.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "012_Why_do_other_AI_dete"
+        },
+        {
+          "file": "home-desktop-click-y13500-00-013_Why_do_other_AI_dete.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 13500,
+          "target": "013_Why_do_other_AI_dete"
+        },
+        {
+          "file": "home-desktop-click-y13500-01-014_Why_is_Pangram_the_b.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 13500,
+          "target": "014_Why_is_Pangram_the_b"
+        },
+        {
+          "file": "home-desktop-click-y14250-00-Previous_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 14250,
+          "target": "Previous_slide"
+        },
+        {
+          "file": "home-desktop-click-y14250-01-Next_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 14250,
+          "target": "Next_slide"
+        }
+      ],
+      "viewport_label": "desktop",
+      "label": "desktop",
+      "docHeight": 16195
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "static": false,
+      "shots": [
+        {
+          "file": "home-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "home-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "home-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "home-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "home-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "home-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "home-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "home-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "home-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "home-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "home-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "home-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "home-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "home-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "home-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "home-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "home-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "home-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "home-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "home-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "home-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "home-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "home-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "home-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "home-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "home-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "home-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "home-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "home-mobile-30-y12238.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 12238
+        },
+        {
+          "file": "home-mobile-31-y12660.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 12660
+        },
+        {
+          "file": "home-mobile-32-y13082.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 13082
+        },
+        {
+          "file": "home-mobile-33-y13504.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 13504
+        },
+        {
+          "file": "home-mobile-34-y13926.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 13926
+        },
+        {
+          "file": "home-mobile-35-y14348.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 14348
+        },
+        {
+          "file": "home-mobile-36-y14770.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 14770
+        },
+        {
+          "file": "home-mobile-37-y15192.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 15192
+        },
+        {
+          "file": "home-mobile-38-y15614.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 15614
+        },
+        {
+          "file": "home-mobile-39-y16036.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 16036
+        },
+        {
+          "file": "home-mobile-40-y16458.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 16458
+        },
+        {
+          "file": "home-mobile-41-y16880.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 16880
+        },
+        {
+          "file": "home-mobile-42-y17302.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 17302
+        },
+        {
+          "file": "home-mobile-43-y17724.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 17724
+        },
+        {
+          "file": "home-mobile-44-y18146.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 18146
+        },
+        {
+          "file": "home-mobile-45-y18568.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 18568
+        },
+        {
+          "file": "home-mobile-46-y18990.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 18990
+        },
+        {
+          "file": "home-mobile-47-y19412.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 19412
+        },
+        {
+          "file": "home-mobile-48-y19834.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 19834
+        },
+        {
+          "file": "home-mobile-49-y20256.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 20256
+        },
+        {
+          "file": "home-mobile-50-y20678.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 20678
+        },
+        {
+          "file": "home-mobile-51-y21100.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 21100
+        },
+        {
+          "file": "home-mobile-52-y21522.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 21522
+        },
+        {
+          "file": "home-mobile-53-y21944.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 21944
+        },
+        {
+          "file": "home-mobile-54-y22366.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 22366
+        },
+        {
+          "file": "home-mobile-55-y22788.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 22788
+        },
+        {
+          "file": "home-mobile-56-y23210.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 23210
+        },
+        {
+          "file": "home-mobile-57-y23632.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 23632
+        },
+        {
+          "file": "home-mobile-58-y24054.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 24054
+        },
+        {
+          "file": "home-mobile-59-y24476.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 24476
+        },
+        {
+          "file": "home-mobile-60-y24898.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 24898
+        },
+        {
+          "file": "home-mobile-61-y25320.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 25320
+        },
+        {
+          "file": "home-mobile-62-y25492.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 25492
+        },
+        {
+          "file": "home-mobile-click-y0-00-Close_banner.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 0,
+          "target": "Close_banner"
+        },
+        {
+          "file": "home-mobile-click-y422-00-Open_menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 422,
+          "target": "Open_menu"
+        },
+        {
+          "file": "home-mobile-click-y422-01-Text_Detection.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 422,
+          "target": "Text_Detection"
+        },
+        {
+          "file": "home-mobile-click-y422-02-Image_Detection_NEW.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 422,
+          "target": "Image_Detection_NEW"
+        },
+        {
+          "file": "home-mobile-click-y844-00-Weiter_mit_Google.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 844,
+          "target": "Weiter_mit_Google"
+        },
+        {
+          "file": "home-mobile-click-y844-01-Sign_up_with_email.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 844,
+          "target": "Sign_up_with_email"
+        },
+        {
+          "file": "home-mobile-click-y844-02-Open_cookie_settings_wid.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 844,
+          "target": "Open_cookie_settings_wid"
+        },
+        {
+          "file": "home-mobile-click-y1266-00-Back.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 1266,
+          "target": "Back"
+        },
+        {
+          "file": "home-mobile-click-y1266-01-Close_cookie_settings_wi.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 1266,
+          "target": "Close_cookie_settings_wi"
+        },
+        {
+          "file": "home-mobile-click-y1688-00-Continue_with_SSO.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 1688,
+          "target": "Continue_with_SSO"
+        }
+      ],
+      "viewport_label": "mobile",
+      "label": "mobile",
+      "docHeight": 26336
+    }
+  ]
+}

@@ -67,11 +67,14 @@ Quelle der Werte nennen: `globals.css`, `@theme`, DevTools-Extrakt oder
 ## 3. Sektionen-Inventar
 
 Reihenfolge von oben nach unten. Pattern-ID aus `stil-regeln.md` §4.
+Layout-Familie: genau eine aus **Split / Stack / Band / Raster / Akkordeon /
+Layering-Parallax-Scroll-Progress** (Liste und Reduced-Motion-Pflicht der
+letzten: `../ui-layouts-catalog.md` §Sektions-Layout-Familien).
 
-| # | Sektion | Pattern-ID | Wie gebaut (1 Satz) |
-|---|---|---|---|
-| 1 | | | |
-| 2 | | | |
+| # | Sektion | Layout-Familie | Pattern-ID | Wie gebaut (1 Satz) |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
 
 ## 4. Raphael-Urteil
 

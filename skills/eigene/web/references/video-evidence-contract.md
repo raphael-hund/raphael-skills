@@ -115,7 +115,7 @@ Raphael-Urteil bleibt der Case `kandidat`; ein Agent setzt kein GO.
 ## 5. Eingefrorene Erst-Fixture
 
 Der Plan
-`raphael-skills/skills/eigene/web/plans/2026-08-31-web-workflow-evidenzvertrag-plan.md`
+`/root/raphael-skills/skills/eigene/web/plans/2026-08-31-web-workflow-evidenzvertrag-plan.md`
 bindet die fünf IDs `WCrnS09vpfo`, `QUI6Ug4cHnE`, `bg0C-2iUUqM`,
 `VwGrXe2ricE` und `Ysr7oNDajJI`. Sein Source-to-Decision Ledger enthält
 10/12/8/10/8 Lessons, insgesamt 48, mit den Dispositionen 11 `ADOPT`, 27

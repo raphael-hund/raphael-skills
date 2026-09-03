@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.4.0
+version: 0.5.0
 description: >
   Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus
   impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-
@@ -35,10 +35,10 @@ requires_skills: []
 # Wie tief ist dieser Skill geprueft? Die Zahlen sind an Laeufe gebunden —
 # evals/run-doku-zahlen.mjs reisst, wenn eine hier falsch wird.
 eval_scorecard:
-  stand: 2026-07-30
+  stand: 2026-09-02
   laeufe:
-    - "evals/run-detect-check.mjs — 35 Faelle: Datei-Modus, 13 von 13 Regeln belegt, Typo-Skala in Variablen beide Richtungen"
-    - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
+    - "evals/run-detect-check.mjs — 36 Faelle: Datei-Modus, 14 von 14 dort herstellbaren Regeln belegt, Typo-Skala in Variablen beide Richtungen"
+    - "evals/run-browser-detect-check.mjs — 40 Faelle: 38 der 47 Browser-Regeln belegt, 9 ohne Fixture (Hover/Scroll/echte Bilder/Laufzeitfehler)"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
     - "evals/run-variablen-check.mjs — 9 Faelle: 8 Regeln — sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
     - "evals/run-flag-wache-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
@@ -47,7 +47,7 @@ eval_scorecard:
     - "evals/run-verweise-design.mjs — faehrt die gemeinsame Verweis-Wache fuer diesen Skill (Pfade, loads-Eintraege, fehlende Kernmodul-Importe)"
     - "evals/run-struktur-design.mjs — faehrt die vier Struktur-Wachen oben in EINEM Lauf (65s gemessen 01.08.2026, ohne Browser)"
     - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
-    - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-doku-zahlen.mjs — 10 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 5 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (120s)"
     - "evals/run-exit-vertrag-check.mjs — 9 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (20s)"
   grenzen:
@@ -170,7 +170,9 @@ blind. Der Regelsatz ergaenzt `de-14` (Textstimme, im web-Gate ein Blocker),
 freigegebener Liste `copywriting/references/floskel-verbote.md`. Das web-Gate
 haengt ihn automatisch an und schreibt es ins Urteil, wenn er fehlt.
 
-**Der Detektor hatte 46 Regeln und keinen Test** (Befund 30.07.2026). Aufgefallen
+**Der Detektor fuehrt heute 59 Regeln** in `registry/antipatterns.mjs` (Stand
+Re-Sync auf impeccable v4.0.5, 02.09.2026 — vorher 46). **46 Regeln und keinen
+Test** war der Befund vom 30.07.2026, aufgefallen
 an einer Seite mit `linear-gradient(90deg, #6366f1, #a855f7)` und
 `font-family: Inter`: `detect.mjs` meldete **nur** die Schriftart,
 `scan-ai-slop.mjs` fand auf derselben Datei beides. Zwei Prüfer, eine Seite,
@@ -183,26 +185,36 @@ Farb-Detektor wirkungslos. Behoben; Beleg:
 node evals/run-detect-check.mjs
 ```
 
-35 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **13 von
-46** Regeln haben einen Testfall, und **33 sind über den Datei-Modus
-grundsätzlich nicht erreichbar** — sie liegen in `rules/checks.mjs` und brauchen
-ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
+36 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: von den
+**59** Registry-Regeln haben **14** einen Testfall im Datei-Modus, und **45 sind
+über den Datei-Modus grundsätzlich nicht erreichbar** — sie liegen in
+`rules/checks.mjs` und brauchen ein gerendertes DOM. Keine einzige Regel ist im
+Datei-Modus herstellbar und dabei noch ohne Fixture. Im Datei-Modus ist damit
+**alles belegt, 14 von 14.**
 
 > **Korrektur einer Behauptung, die hier stand:** „dort deckt `craft-check` sie
-> ab" war ungemessen und ist falsch. Nachgezählt: 37 Browser-Regeln, davon haben
-> **11 ein fachliches Pendant** in `craft-check` (T1↔`overused-font`,
-> T2↔`ai-color-palette`/`gradient-text`, T5↔`repeated-section-kickers`,
-> M8↔`flat-type-hierarchy`, M3↔`line-length`, M11↔`border-accent-on-rounded` …).
-> Zwei weitere deckt axe (`low-contrast`→`color-contrast`,
-> `skipped-heading`→`heading-order`). **Rund 24 sind wirklich nur über den
-> Browser-Pfad des design-Detektors zu holen** — darunter `nested-cards`,
-> `cream-palette`, `oversized-h1`, `tiny-text`, `all-caps-body`,
-> `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
-> `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
-> **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (39 Fälle). **Alle 37 Browser-Regeln
-> sind belegt, keine offen.** Zusammen mit dem Datei-Modus (13 von 13) ist damit
-> jede Regel des Detektors durch mindestens einen Testfall gedeckt.
+> ab" war ungemessen und ist falsch. Nachgezählt am Code (02.09.2026):
+> **47 Browser-Regeln** in `rules/checks.mjs`, davon haben **8 ein fachliches
+> Pendant** in `craft-check` (T1↔`overused-font`, T2↔`ai-color-palette`,
+> T5↔`kicker-above-heading`, T8↔`em-dash-overuse`, M3↔`line-length`,
+> M8↔`flat-type-hierarchy`, M11↔`gpt-thin-border-wide-shadow`,
+> M12↔`monotonous-spacing`). Zwei weitere deckt axe
+> (`low-contrast`→`color-contrast`, `skipped-heading`→`heading-order`).
+> **37 sind wirklich nur über den Browser-Pfad des design-Detektors zu holen** —
+> darunter `nested-cards`, `cream-palette`, `oversized-h1`, `tiny-text`,
+> `all-caps-body`, `justified-text`, `tight-leading`, `cramped-padding`,
+> `dark-glow`, `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie
+> nicht.
+> **Stand 02.09.2026:** Der Browser-Pfad hat eine eigene Eval —
+> `node evals/run-browser-detect-check.mjs` (40 Fälle). **Alle 47 Browser-Regeln
+> stehen dort namentlich in der Abdeckungsliste; 38 sind durch ein Fixture
+> belegt, 9 bleiben offen** (`marquee`, `pulsing-dot`,
+> `shape-assembled-illustration`, `radial-halo`, `em-dash-overuse`,
+> `radial-spotlight-glow`, `repeated-container-text`, `blinking-cursor`,
+> `content-hidden-at-rest`). Sie brauchen Hover, Scroll, ein dunkles Theme,
+> echte Bilder oder einen Laufzeitfehler — eine statische Seite stellt sie nicht
+> her. Die Lücke steht hier und in der Eval-Ausgabe namentlich, damit sie nicht
+> in einer Prozentzahl verschwindet.
 >
 > Der Weg dahin ging über sechs Runden, und in jeder war der Grund für einen
 > fehlenden Befund derselbe: **die Regel liest etwas anderes, als ihr Name
@@ -213,9 +225,10 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > | `monotonous-spacing` | den **HTML-Text** (Tailwind-Klassen, `rem`) — nie `px` im Stylesheet |
 > | `image-hover-transform` | eine **CSS-Textsuche**, kein echter Hover nötig |
 > | `side-tab` / `border-accent-on-rounded` | `if/else` nach Kante: links/rechts vs. oben/unten |
-> | `hero-eyebrow-chip` | nur über einer **h1**, bei h2 schweigt sie |
-> | `single-font` / `overused-font` | erst ab **20 Textelementen** auf der Seite |
-> | `oversized-h1` | **drei** Bedingungen: ≥ 72px, ≥ 40 Zeichen, ≥ 28 % Viewport-Höhe |
+> | `hero-eyebrow-chip` | nur über einer **h1 ab 48px**, bei h2 schweigt sie; **drei** Styling-Zweige (tracked-caps, accent-bold, dash-prefix) |
+> | `overused-font` | erst ab **20 Textelementen** UND **≥ 15 %** Anteil an ihnen |
+> | `oversized-h1` | **drei** Bedingungen: ≥ 72px, ≥ 40 Zeichen, ≥ 28 % Viewport-Höhe **oder** ≥ 25 % Viewport-Fläche |
+> | `kicker-above-heading` | glattes Verbot ohne Zählung — **ein** Kicker genügt; steht über einer grossen h1 zugunsten von `hero-eyebrow-chip` zurück |
 >
 > Meine Annahme, `bounce-easing`, `layout-transition` und `image-hover-transform`
 > bräuchten echte Interaktion, war falsch — am Code nachgelesen lesen alle drei

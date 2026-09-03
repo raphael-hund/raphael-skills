@@ -1,20 +1,22 @@
-import { GENERIC_FONTS, OVERUSED_FONTS } from '../../shared/constants.mjs';
+import { GENERIC_FONTS, OVERUSED_FONTS, EM_DASH_FLOOR, EM_DASH_CHARS_PER_DASH } from '../../shared/constants.mjs';
 import { isNeutralColor } from '../../shared/color.mjs';
 import { extractGoogleFontFamilies } from '../../shared/fonts.mjs';
 import { checkSourceDesignSystem } from '../../design-system.mjs';
+import { scanCssTextForGlow, scanCssTextForGridBackground, scanCssTextForMarquee, scanCssTextForPseudoStripe, scanCssTextForRadialHalo } from '../../rules/checks.mjs';
 import { isFullPage } from '../../shared/page.mjs';
 import { applyInlineIgnores } from '../../shared/inline-ignores.mjs';
 import { finding } from '../../findings.mjs';
-import { filterByProviders } from '../../registry/antipatterns.mjs';
 import { profileFindings, profileStep } from '../../profile/profiler.mjs';
 
 // ---------------------------------------------------------------------------
 // Regex fallback (non-HTML files: CSS, JSX, TSX, etc.)
 // ---------------------------------------------------------------------------
 
-const hasRounded = (line) => /\brounded(?:-\w+)?\b/.test(line);
+const hasRounded = (line) =>
+  /\brounded(?:-\w+)?\b/.test(line.replace(/\brounded-none\b/g, ''));
 const hasBorderRadius = (line) => /border-radius/i.test(line);
 const isSafeElement = (line) => /<(?:blockquote|nav[\s>]|pre[\s>]|code[\s>]|a\s|input[\s>]|span[\s>])/i.test(line);
+
 
 /** Strip HTML to plain text — drops script/style/comments/tags so
  *  content-text analyzers don't false-positive on code or CSS. */
@@ -39,6 +41,221 @@ function shouldRunPageAnalyzers(content, filePath) {
   return !ext || PAGE_ANALYZER_EXTS.has(ext);
 }
 
+const JS_SOURCE_EXTS = new Set(['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs']);
+const REGEX_PREFIX_KEYWORDS = new Set(['await', 'case', 'default', 'delete', 'do', 'else', 'in', 'instanceof', 'new', 'of', 'return', 'throw', 'typeof', 'void', 'yield']);
+const BLOCK_BRACE_PREFIX_KEYWORDS = new Set(['do', 'else', 'finally', 'try']);
+
+function isInsideOpeningJsxTag(source) {
+  const tagStart = source.lastIndexOf('<');
+  if (tagStart === -1 || !/^<[A-Za-z][\w.:-]*/.test(source.slice(tagStart))) return false;
+
+  let quote = '';
+  for (let cursor = tagStart + 1; cursor < source.length; cursor++) {
+    const char = source[cursor];
+    if (quote) {
+      if (char === '\\') cursor++;
+      else if (char === quote) quote = '';
+    } else if (char === "'" || char === '"') {
+      quote = char;
+    } else if (char === '>') {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * Blank JavaScript comments without moving any following source. Regex
+ * findings keep their original line numbers, while prose examples inside
+ * comments cannot masquerade as rendered markup.
+ */
+function stripJsComments(content, options = {}) {
+  let state = 'code';
+  let output = '';
+  let lastSignificant = '';
+  let previousSignificant = '';
+  let antePreviousSignificant = '';
+  let currentWord = '';
+  let currentWordPrefix = '';
+  let wordSeparated = false;
+  let regexCharClass = false;
+  let jsxExpressionDepth = 0;
+  let lastClosedBraceKind = '';
+  const braceKinds = [];
+  const templateExpressionDepths = [];
+
+  const braceKind = (startsJsxExpression = false) => (
+    !startsJsxExpression && (
+      !lastSignificant ||
+      lastSignificant === ')' ||
+      lastSignificant === ';' ||
+      lastSignificant === '}' ||
+      (previousSignificant === '=' && lastSignificant === '>') ||
+      BLOCK_BRACE_PREFIX_KEYWORDS.has(currentWord)
+    ) ? 'block' : 'expression'
+  );
+
+  const recordSignificant = (char) => {
+    if (/\s/.test(char)) {
+      wordSeparated = true;
+      return;
+    }
+    const isWordChar = /[\w$]/.test(char);
+    if (isWordChar && (wordSeparated || !currentWord)) {
+      currentWord = '';
+      currentWordPrefix = lastSignificant;
+    } else if (!isWordChar) {
+      currentWordPrefix = '';
+    }
+    wordSeparated = false;
+    antePreviousSignificant = previousSignificant;
+    previousSignificant = lastSignificant;
+    lastSignificant = char;
+    currentWord = isWordChar ? currentWord + char : '';
+  };
+
+  for (let i = 0; i < content.length; i++) {
+    const char = content[i];
+    const next = content[i + 1];
+
+    if (state === 'line-comment') {
+      if (char === '\n') {
+        output += char;
+        state = 'code';
+      } else {
+        output += ' ';
+      }
+      continue;
+    }
+
+    if (state === 'block-comment') {
+      if (char === '*' && next === '/') {
+        output += '  ';
+        i++;
+        state = 'code';
+      } else {
+        output += char === '\n' ? '\n' : ' ';
+      }
+      continue;
+    }
+
+    if (state === 'regex') {
+      output += char;
+      if (char === '\\' && next) {
+        output += next;
+        i++;
+      } else if (char === '[') {
+        regexCharClass = true;
+      } else if (char === ']') {
+        regexCharClass = false;
+      } else if (char === '/' && !regexCharClass) {
+        state = 'code';
+        recordSignificant('/');
+      }
+      continue;
+    }
+
+    if (state === 'template' && char === '$' && next === '{') {
+      output += '${';
+      i++;
+      recordSignificant('$');
+      recordSignificant('{');
+      templateExpressionDepths.push(1);
+      braceKinds.push('expression');
+      if (jsxExpressionDepth) jsxExpressionDepth++;
+      state = 'code';
+      continue;
+    }
+
+    if (state !== 'code') {
+      output += char;
+      if (char === '\\' && next) {
+        output += next;
+        i++;
+      } else if (
+        (state === 'single-quote' && char === "'") ||
+        (state === 'double-quote' && char === '"') ||
+        (state === 'template' && char === '`')
+      ) {
+        state = 'code';
+        recordSignificant(char);
+      }
+      continue;
+    }
+
+    const jsxUrlSeparator = options.jsx && char === '/' && next === '/' &&
+      jsxExpressionDepth === 0 &&
+      (output.endsWith('http:') ||
+        output.endsWith('https:') ||
+        (/<[A-Za-z](?:[^>]*[^/])?>[^<]*$/.test(output.slice(output.lastIndexOf('\n') + 1)) &&
+          /^[\w.-]+\.[A-Za-z]{2,}(?=[:/?#\s<]|$)/.test(content.slice(i + 2))));
+    const afterPostfixUpdate = (lastSignificant === '+' || lastSignificant === '-') &&
+      previousSignificant === lastSignificant &&
+      antePreviousSignificant !== lastSignificant;
+    if (char === '/' && next === '/' && jsxUrlSeparator) {
+      output += '//';
+      i++;
+      recordSignificant('/');
+      recordSignificant('/');
+    } else if (char === '/' && next === '/') {
+      output += '  ';
+      i++;
+      state = 'line-comment';
+    } else if (char === '/' && next === '*') {
+      output += '  ';
+      i++;
+      state = 'block-comment';
+    } else if (templateExpressionDepths.length && char === '{') {
+      output += char;
+      templateExpressionDepths[templateExpressionDepths.length - 1]++;
+      braceKinds.push(braceKind());
+      if (jsxExpressionDepth) jsxExpressionDepth++;
+      recordSignificant(char);
+    } else if (templateExpressionDepths.length && char === '}') {
+      output += char;
+      const depthIndex = templateExpressionDepths.length - 1;
+      templateExpressionDepths[depthIndex]--;
+      lastClosedBraceKind = braceKinds.pop() || '';
+      if (jsxExpressionDepth) jsxExpressionDepth--;
+      recordSignificant(char);
+      if (templateExpressionDepths[depthIndex] === 0) {
+        templateExpressionDepths.pop();
+        state = 'template';
+      }
+    } else if (
+      char === '/' &&
+      (!lastSignificant ||
+        (/[=([{!?:;,&|+\-*%^~<>]/.test(lastSignificant) && !afterPostfixUpdate) ||
+        (lastSignificant === '}' && lastClosedBraceKind === 'block') ||
+        (previousSignificant === '=' && lastSignificant === '>') ||
+        (currentWordPrefix !== '.' && REGEX_PREFIX_KEYWORDS.has(currentWord)))
+    ) {
+      output += char;
+      state = 'regex';
+      regexCharClass = false;
+    } else {
+      output += char;
+      const startsJsxExpression = options.jsx && char === '{' && jsxExpressionDepth === 0 &&
+        (/<[A-Za-z](?:[^>]*[^/])?>[^<]*$/.test(output.slice(output.lastIndexOf('\n') + 1, -1)) ||
+          isInsideOpeningJsxTag(output.slice(0, -1)));
+      if (char === '{') braceKinds.push(braceKind(startsJsxExpression));
+      else if (char === '}') lastClosedBraceKind = braceKinds.pop() || '';
+      if (char === '{' && (jsxExpressionDepth || startsJsxExpression)) jsxExpressionDepth++;
+      else if (char === '}' && jsxExpressionDepth) jsxExpressionDepth--;
+      recordSignificant(char);
+      if (char === "'") state = 'single-quote';
+      else if (char === '"') state = 'double-quote';
+      else if (char === '`') state = 'template';
+    }
+  }
+
+  return output;
+}
+
+function stripCssComments(content) {
+  return content.replace(/\/\*[\s\S]*?\*\//g, comment => comment.replace(/[^\n]/g, ' '));
+}
+
 function firstOverusedGoogleFont(text) {
   return extractGoogleFontFamilies(text).find(f => OVERUSED_FONTS.has(f)) || '';
 }
@@ -53,23 +270,19 @@ const NEUTRAL_COLOR_KEYWORDS = new Set([
   'gainsboro', 'whitesmoke',
 ]);
 
-function hexChannels(color) {
-  const long = color.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})(?:[0-9a-f]{2})?$/i);
-  if (long) return [parseInt(long[1], 16), parseInt(long[2], 16), parseInt(long[3], 16)];
-  const short = color.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])(?:[0-9a-f])?$/i);
-  if (short) return [1, 2, 3].map((i) => parseInt(short[i] + short[i], 16));
-  return null;
-}
-
 /**
+ * AENDERUNG GEGENUEBER DEM ORIGINAL, 31.07.2026, nachgezogen 02.09.2026 beim
+ * Sync auf v4.0.5.
+ *
  * CSS-Variablen einmal aufloesen: `var(--x)` durch den hinterlegten Wert
  * ersetzen.
  *
- * Warum das hier steht und nicht in jeder Regel einzeln: dieselbe Blindheit
- * ist am 31.07.2026 DREIMAL aufgefallen — flat-type-hierarchy (Typo-Skala),
- * dark-glow (Schatten) und monotonous-spacing (Abstaende). Jedes Mal
- * funktionierte die Regel auf hingeschriebenem CSS und schwieg auf jedem
- * Projekt mit Design-Tokens, also genau dort, wofuer sie gebaut ist.
+ * Warum das hier steht und nicht in jeder Regel einzeln: dieselbe Blindheit ist
+ * am 31.07.2026 mehrfach aufgefallen — flat-type-hierarchy (Typo-Skala) und
+ * monotonous-spacing (Abstaende). Jedes Mal funktionierte die Regel auf
+ * hingeschriebenem CSS und schwieg auf jedem Projekt mit Design-Tokens, also
+ * genau dort, wofuer sie gebaut ist. (dark-glow loest v4.0.5 inzwischen selbst
+ * auf — dort ist der Zusatz nicht mehr noetig.)
  *
  * Der Browser-Pfad (rules/checks.mjs) hat das Problem nicht: getComputedStyle
  * liefert aufgeloeste Werte. Nur der Datei-Modus liest rohen Text.
@@ -89,6 +302,14 @@ export function varsAufloesen(content) {
   if (!werte.size) return content;
   return content.replace(/var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)/gi,
     (ganz, name) => (werte.has(name) ? werte.get(name) : ganz));
+}
+
+function hexChannels(color) {
+  const long = color.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})(?:[0-9a-f]{2})?$/i);
+  if (long) return [parseInt(long[1], 16), parseInt(long[2], 16), parseInt(long[3], 16)];
+  const short = color.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])(?:[0-9a-f])?$/i);
+  if (short) return [1, 2, 3].map((i) => parseInt(short[i] + short[i], 16));
+  return null;
 }
 
 /**
@@ -219,13 +440,14 @@ const REGEX_MATCHERS = [
   { id: 'ai-color-palette', regex: /\bfrom-(?:purple|violet|indigo)-(\d+)\b/g,
     test: (m, line) => /\bto-(?:purple|violet|indigo|blue|cyan|pink|fuchsia)-\d+\b/.test(line),
     fmt: (m) => `${m[0]} gradient` },
-  // --- Same palette in raw CSS ---
-  // Gap found 30.07.2026: `ai-color-palette` only had Tailwind branches. On a
-  // plain-CSS page with `linear-gradient(90deg, #6366f1, #a855f7)` — the exact
-  // indigo→violet tell — detect.mjs reported nothing, while scan-ai-slop.mjs
-  // flagged it as tell 01 on the same file. Two checkers, one page, one blind.
-  // Every other rule here already has both branches (see bounce-easing below);
-  // this one was simply missed. The hex list is the canonical Tailwind palette:
+  // AENDERUNG GEGENUEBER DEM ORIGINAL, 30.07.2026, nachgezogen 02.09.2026 beim
+  // Sync auf v4.0.5: `ai-color-palette` hat im Original nur Tailwind-Zweige.
+  // Auf einer handgeschriebenen Seite mit
+  //     linear-gradient(90deg, #6366f1, #a855f7)
+  // — dem bekanntesten Indigo→Violett-Tell — meldete detect.mjs NICHTS, waehrend
+  // scan-ai-slop.mjs auf derselben Datei Tell 01 fand. Zwei Pruefer, eine Seite,
+  // einer blind. Jede andere Regel hier hat beide Zweige (siehe bounce-easing
+  // direkt darunter). Die Hex-Liste ist die kanonische Tailwind-Palette:
   // indigo-500/600, violet-500/600, purple-500/600, fuchsia-500.
   { id: 'ai-color-palette',
     regex: /(?:linear|radial|conic)-gradient\([^)]*(#6366f1|#4f46e5|#8b5cf6|#7c3aed|#a855f7|#9333ea|#d946ef)[^)]*\)/gi,
@@ -233,8 +455,9 @@ const REGEX_MATCHERS = [
     fmt: (m) => `indigo/violet gradient in CSS (${m[1]})` },
   { id: 'ai-color-palette',
     regex: /(?:^|[;{\s])color\s*:\s*(#6366f1|#4f46e5|#8b5cf6|#7c3aed|#a855f7|#9333ea)\b/gi,
-    // Only on a heading line: a violet accent somewhere is a choice, a violet
-    // headline is the tell. Same condition the Tailwind branch above uses.
+    // Nur auf einer Heading-Zeile: ein violetter Akzent irgendwo ist eine Wahl,
+    // eine violette Headline ist der Tell. Dieselbe Bedingung wie im
+    // Tailwind-Zweig oben.
     test: (m, line) => /<h[1-3]|font-size\s*:\s*(?:[3-9]|\d\d)/i.test(line),
     fmt: (m) => `violet heading color in CSS (${m[1]})` },
   // --- Bounce/elastic easing ---
@@ -287,29 +510,14 @@ const REGEX_MATCHERS = [
 ];
 
 const REGEX_ANALYZERS = [
-  // Single font
-  (content, filePath) => {
-    const fontFamilyRe = /font-family\s*:\s*([^;}]+)/gi;
-    const fonts = new Set();
-    let m;
-    while ((m = fontFamilyRe.exec(content)) !== null) {
-      for (const f of m[1].split(',').map(f => f.trim().replace(/^['"]|['"]$/g, '').toLowerCase())) {
-        if (f && !GENERIC_FONTS.has(f)) fonts.add(f);
-      }
-    }
-    for (const f of extractGoogleFontFamilies(content)) fonts.add(f);
-    if (fonts.size !== 1 || content.split('\n').length < 20) return [];
-    const name = [...fonts][0];
-    const lines = content.split('\n');
-    let line = 1;
-    for (let i = 0; i < lines.length; i++) { if (lines[i].toLowerCase().includes(name)) { line = i + 1; break; } }
-    return [finding('single-font', filePath, `only font used is ${name}`, line)];
-  },
   // Flat type hierarchy
   (content, filePath) => {
     const sizes = new Set();
     const REM = 16;
     let m;
+    // Ohne diese Zeile sieht die Regel `font-size: var(--t-3xl)` nicht und
+    // meldet auf einer sauberen Token-Skala einen Fehlalarm (siehe
+    // varsAufloesen).
     content = varsAufloesen(content);
     const sizeRe = /font-size\s*:\s*([\d.]+)(px|rem|em)\b/gi;
     while ((m = sizeRe.exec(content)) !== null) {
@@ -323,16 +531,6 @@ const REGEX_ANALYZERS = [
     }
     const TW = { 'text-xs': 12, 'text-sm': 14, 'text-base': 16, 'text-lg': 18, 'text-xl': 20, 'text-2xl': 24, 'text-3xl': 30, 'text-4xl': 36, 'text-5xl': 48, 'text-6xl': 60, 'text-7xl': 72, 'text-8xl': 96, 'text-9xl': 128 };
     for (const [cls, px] of Object.entries(TW)) { if (new RegExp(`\\b${cls}\\b`).test(content)) sizes.add(px); }
-
-    // Variablen ueber die gemeinsame Funktion: `font-size: var(--t-3xl)` wird
-    // zum hinterlegten Wert, bevor der Groessen-Regex darueber laeuft.
-    //
-    // Eine eigene Aufloesung stand hier zuerst, mit "groesster Wert gewinnt"
-    // fuer Variablen, die in Media-Queries ueberschrieben werden. Nachgemessen
-    // an der Kontrollseite: mit der gemeinsamen Funktion (letzter Wert) ergibt
-    // sich 11.5–36px, ratio 3.1:1 — ueber der 2.0-Schwelle, also derselbe
-    // Befund. Die Sonderlogik war eine Annahme, kein gemessener Bedarf.
-
     if (sizes.size < 3) return [];
     const sorted = [...sizes].sort((a, b) => a - b);
     const ratio = sorted[sorted.length - 1] / sorted[0];
@@ -344,9 +542,9 @@ const REGEX_ANALYZERS = [
   },
   // Monotonous spacing (regex)
   (content, filePath) => {
-    // Dritter Fall derselben Blindheit (31.07.2026): 14 Bloecke mit
-    // `padding: 16px` wurden gefunden, dieselben 14 mit `padding: var(--s)`
-    // nicht — und Design-Systeme schreiben Abstaende immer so.
+    // Derselbe Fall (31.07.2026): 14 Bloecke mit `padding: 16px` wurden
+    // gefunden, dieselben 14 mit `padding: var(--s)` nicht — und
+    // Design-Systeme schreiben Abstaende immer so.
     content = varsAufloesen(content);
     const vals = [];
     let m;
@@ -369,15 +567,34 @@ const REGEX_ANALYZERS = [
     const dominant = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
     return [finding('monotonous-spacing', filePath, `~${dominant}px used ${maxCount}/${rounded.length} times (${Math.round(pct * 100)}%)`)];
   },
-  // Em-dash overuse: 5+ em-dashes or "--" in body text content
-  // (occasional em-dash use in prose is fine; the pattern fires only
-  // when count crosses into AI-cadence territory).
+  // Em-dash overuse (ADVISORY): the AI cadence tell is em-dash *saturation*,
+  // not the occasional dash. Humans use em-dashes legitimately, so this rule is
+  // advisory (surfaced separately, never a failure, hook-skipped by default) and
+  // its threshold is deliberately conservative. Two gates must both hold:
+  //   1. Absolute floor of EM_DASH_FLOOR (8) dashes — a page with a handful
+  //      never fires, no matter how short.
+  //   2. Density: at least one dash per EM_DASH_CHARS_PER_DASH (500) characters
+  //      of body text, so a long article that uses eight across several thousand
+  //      words is left alone while a short, dash-per-clause landing page is not.
+  // Raised from the old flat 5-dash floor, which fired on ordinary long prose.
+  //
+  // stripHtmlToText drops tags but leaves character-entity escapes intact, so
+  // a model that writes `&mdash;`, `&#8212;`, or `&#x2014;` renders an em-dash
+  // the counter never saw. Decode the em-dash entities (named, zero-padded
+  // decimal, upper/lower hex) to the literal glyph first. En-dash entities are
+  // deliberately left alone: the rule counts em-dashes, and the literal `–`
+  // was never counted either.
   (content, filePath) => {
-    const text = stripHtmlToText(content);
+    const text = stripHtmlToText(content)
+      .replace(/&mdash;|&#0*8212;|&#x0*2014;/gi, '—');
     let count = 0;
     const re = /[—]|--(?=\S)/g;
     while (re.exec(text) !== null) count++;
-    if (count < 5) return [];
+    if (count < EM_DASH_FLOOR) return [];
+    // Saturation gate: dashes must be dense in the prose, not sprinkled through
+    // a long document. textLength <= count * chars-per-dash means the density is
+    // at or above the threshold.
+    if (text.length > count * EM_DASH_CHARS_PER_DASH) return [];
     return [finding('em-dash-overuse', filePath, `${count} em-dashes in body text`)];
   },
   // Marketing buzzwords: SaaS phrase list
@@ -413,22 +630,6 @@ const REGEX_ANALYZERS = [
     if (count === 0) return [];
     return [finding('marketing-buzzword', filePath, `${count} buzzword phrase${count === 1 ? '' : 's'}: "${firstSample}"`)];
   },
-  // Numbered section markers (01 / 02 / 03 ...)
-  (content, filePath) => {
-    const text = stripHtmlToText(content);
-    const re = /\b(0[1-9]|1[0-2])\b/g;
-    const seen = new Set();
-    let m;
-    while ((m = re.exec(text)) !== null) seen.add(m[1]);
-    if (seen.size < 3) return [];
-    const sorted = [...seen].sort();
-    let sequential = 0;
-    for (let i = 1; i < sorted.length; i++) {
-      if (parseInt(sorted[i], 10) === parseInt(sorted[i - 1], 10) + 1) sequential++;
-    }
-    if (sequential < 2) return [];
-    return [finding('numbered-section-markers', filePath, `Sequence: ${sorted.slice(0, 6).join(', ')}`)];
-  },
   // Aphoristic cadence: manufactured-contrast + short-rebuttal
   (content, filePath) => {
     const text = stripHtmlToText(content);
@@ -450,40 +651,26 @@ const REGEX_ANALYZERS = [
     if (count < 3) return [];
     return [finding('aphoristic-cadence', filePath, `${count} aphoristic constructions: "${firstSample}"`)];
   },
-  // Dark glow (page-level: dark bg + colored box-shadow with blur)
+  // Dark glow / chromatic halo shadows (page-level). Shared scanner handles
+  // any color format, single-level var() resolution, zero-offset halos on
+  // any background, and text-shadow glows.
   (content, filePath) => {
-    // Aufloesen VOR der Hintergrund-Pruefung. Sie stand zuerst dahinter, und
-    // dann war die Regel weiter blind, sobald `background: var(--bg)` statt
-    // eines Hex-Werts dastand — vierter Fall derselben Klasse am selben Tag,
-    // diesmal in einer Regel, die ich eine Stunde vorher schon angefasst hatte.
-    content = varsAufloesen(content);
-
-    // Check if page has a dark background
-    const darkBgRe = /background(?:-color)?\s*:\s*(?:#(?:0[0-9a-f]|1[0-9a-f]|2[0-3])[0-9a-f]{4}\b|#(?:0|1)[0-9a-f]{2}\b|rgb\(\s*(\d{1,2})\s*,\s*(\d{1,2})\s*,\s*(\d{1,2})\s*\))/gi;
-    const twDarkBg = /\bbg-(?:gray|slate|zinc|neutral|stone)-(?:9\d{2}|800)\b/;
-    const hasDarkBg = darkBgRe.test(content) || twDarkBg.test(content);
-    if (!hasDarkBg) return [];
-
-    // Check for colored box-shadow with blur > 4px
-    // Design-Systeme legen Schatten IMMER in Tokens ab; ohne die Aufloesung
-    // oben war die Regel auf genau diesen Projekten blind.
-    const shadowRe = /box-shadow\s*:\s*([^;{}]+)/gi;
-    let m;
-    while ((m = shadowRe.exec(content)) !== null) {
-      const val = m[1];
-      const colorMatch = val.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
-      if (!colorMatch) continue;
-      const [r, g, b] = [+colorMatch[1], +colorMatch[2], +colorMatch[3]];
-      if ((Math.max(r, g, b) - Math.min(r, g, b)) < 30) continue; // skip gray
-      // Check blur: look for pattern like "0 0 20px" (third number > 4)
-      const pxVals = [...val.matchAll(/(\d+)px|(?<![.\d])\b(0)\b(?![.\d])/g)].map(p => +(p[1] || p[2]));
-      if (pxVals.length >= 3 && pxVals[2] > 4) {
-        const lines = content.substring(0, m.index).split('\n');
-        return [finding('dark-glow', filePath, `Colored glow (rgb(${r},${g},${b})) on dark page`, lines.length)];
-      }
-    }
-    return [];
+    const hits = scanCssTextForGlow(content);
+    if (hits.length === 0) return [];
+    const lines = content.substring(0, hits[0].index).split('\n');
+    return [finding('dark-glow', filePath, hits[0].snippet, lines.length)];
   },
+  // Radial-gradient background halo on a dark page (the gradient sibling
+  // of the dark-glow shadow tell).
+  (content, filePath) => {
+    const hits = scanCssTextForRadialHalo(content);
+    if (hits.length === 0) return [];
+    const lines = content.substring(0, hits[0].index).split('\n');
+    return [finding('radial-halo', filePath, hits[0].snippet, lines.length)];
+  },
+  // Auto-scrolling marquees (<marquee> or infinite horizontal loop
+  // animations).
+  (content, filePath) => scanCssTextForMarquee(content).map(hit => finding('marquee', filePath, hit.snippet)),
 ];
 
 // ---------------------------------------------------------------------------
@@ -618,18 +805,198 @@ function extractStyleBlocks(content, ext) {
 
 const CSS_IN_JS_EXTENSIONS = new Set(['.js', '.ts', '.jsx', '.tsx']);
 
+function findQuotedStringEnd(content, start, quote) {
+  for (let cursor = start + 1; cursor < content.length; cursor++) {
+    if (content[cursor] === '\\') cursor++;
+    else if (content[cursor] === quote) return cursor;
+  }
+  return -1;
+}
+
+function findRegexLiteralEnd(content, start) {
+  let inCharacterClass = false;
+  for (let cursor = start + 1; cursor < content.length; cursor++) {
+    const char = content[cursor];
+    if (char === '\\') {
+      cursor++;
+    } else if (char === '[') {
+      inCharacterClass = true;
+    } else if (char === ']') {
+      inCharacterClass = false;
+    } else if (char === '/' && !inCharacterClass) {
+      while (/[A-Za-z]/.test(content[cursor + 1] || '')) cursor++;
+      return cursor;
+    } else if (char === '\n' || char === '\r') {
+      return -1;
+    }
+  }
+  return -1;
+}
+
+function findTemplateExpressionEnd(content, start) {
+  let depth = 1;
+  let lastSignificant = '';
+  let previousSignificant = '';
+  let antePreviousSignificant = '';
+  let currentWord = '';
+  let currentWordPrefix = '';
+  let wordSeparated = false;
+  let lastClosedBraceKind = '';
+  const braceKinds = [];
+
+  const braceKind = () => (
+    lastSignificant === ')' ||
+    lastSignificant === ';' ||
+    lastSignificant === '}' ||
+    (previousSignificant === '=' && lastSignificant === '>') ||
+    BLOCK_BRACE_PREFIX_KEYWORDS.has(currentWord)
+      ? 'block'
+      : 'expression'
+  );
+
+  const recordSignificant = (char) => {
+    if (/\s/.test(char)) {
+      wordSeparated = true;
+      return;
+    }
+    const isWordChar = /[\w$]/.test(char);
+    if (isWordChar && (wordSeparated || !currentWord)) {
+      currentWord = '';
+      currentWordPrefix = lastSignificant;
+    } else if (!isWordChar) {
+      currentWordPrefix = '';
+    }
+    wordSeparated = false;
+    antePreviousSignificant = previousSignificant;
+    previousSignificant = lastSignificant;
+    lastSignificant = char;
+    currentWord = isWordChar ? currentWord + char : '';
+  };
+
+  for (let cursor = start; cursor < content.length; cursor++) {
+    const char = content[cursor];
+    const next = content[cursor + 1];
+    const afterPostfixUpdate = (lastSignificant === '+' || lastSignificant === '-') &&
+      previousSignificant === lastSignificant &&
+      antePreviousSignificant !== lastSignificant;
+    if (char === "'" || char === '"') {
+      cursor = findQuotedStringEnd(content, cursor, char);
+      if (cursor === -1) return -1;
+      recordSignificant(')');
+    } else if (char === '/' && next === '/') {
+      const lineEnd = content.indexOf('\n', cursor + 2);
+      if (lineEnd === -1) return -1;
+      cursor = lineEnd;
+    } else if (char === '/' && next === '*') {
+      const commentEnd = content.indexOf('*/', cursor + 2);
+      if (commentEnd === -1) return -1;
+      cursor = commentEnd + 1;
+    } else if (
+      char === '/' &&
+      (!lastSignificant ||
+        (/[=([{!?:;,&|+\-*%^~<>]/.test(lastSignificant) && !afterPostfixUpdate) ||
+        (lastSignificant === '}' && lastClosedBraceKind === 'block') ||
+        (previousSignificant === '=' && lastSignificant === '>') ||
+        (currentWordPrefix !== '.' && REGEX_PREFIX_KEYWORDS.has(currentWord)))
+    ) {
+      cursor = findRegexLiteralEnd(content, cursor);
+      if (cursor === -1) return -1;
+      recordSignificant(')');
+    } else if (char === '`') {
+      cursor = findTemplateLiteralEnd(content, cursor);
+      if (cursor === -1) return -1;
+      recordSignificant(')');
+    } else if (char === '{') {
+      depth++;
+      braceKinds.push(braceKind());
+      recordSignificant(char);
+    } else if (char === '}') {
+      depth--;
+      if (depth === 0) return cursor;
+      lastClosedBraceKind = braceKinds.pop() || '';
+      recordSignificant(char);
+    } else {
+      recordSignificant(char);
+    }
+  }
+  return -1;
+}
+
+function findTemplateLiteralEnd(content, start) {
+  for (let cursor = start + 1; cursor < content.length; cursor++) {
+    const char = content[cursor];
+    if (char === '\\') {
+      cursor++;
+    } else if (char === '`') {
+      return cursor;
+    } else if (char === '$' && content[cursor + 1] === '{') {
+      cursor = findTemplateExpressionEnd(content, cursor + 2);
+      if (cursor === -1) return -1;
+    }
+  }
+  return -1;
+}
+
+function findCSSinJSTemplates(content) {
+  const templates = [];
+  const tagRe = /\b(?:styled(?:\.\w+|\([^)]+\))|css)/g;
+  let match;
+  while ((match = tagRe.exec(content)) !== null) {
+    let cursor = match.index + match[0].length;
+    while (/\s/.test(content[cursor] || '')) cursor++;
+
+    if (content[cursor] === '<') {
+      let depth = 0;
+      while (cursor < content.length) {
+        const char = content[cursor];
+        if (char === '<') depth++;
+        else if (char === '>' && content[cursor - 1] !== '=') depth--;
+        cursor++;
+        if (depth === 0) break;
+      }
+      if (depth !== 0) continue;
+      while (/\s/.test(content[cursor] || '')) cursor++;
+    }
+
+    if (content[cursor] !== '`') continue;
+    const contentStart = cursor + 1;
+    cursor = findTemplateLiteralEnd(content, cursor);
+    if (cursor === -1) continue;
+
+    templates.push({
+      tagStart: match.index,
+      contentStart,
+      contentEnd: cursor,
+    });
+    tagRe.lastIndex = cursor + 1;
+  }
+  return templates;
+}
+
 function extractCSSinJS(content, ext) {
   ext = ext.toLowerCase();
   if (!CSS_IN_JS_EXTENSIONS.has(ext)) return [];
-  const blocks = [];
-  const re = /(?:styled(?:\.\w+|\([^)]+\))|css)\s*`([\s\S]*?)`/g;
-  let m;
-  while ((m = re.exec(content)) !== null) {
-    const before = content.substring(0, m.index);
+  return findCSSinJSTemplates(content).map((template) => {
+    const before = content.substring(0, template.tagStart);
     const startLine = before.split('\n').length;
-    blocks.push({ content: m[1], startLine });
+    return {
+      content: content.slice(template.contentStart, template.contentEnd),
+      startLine,
+    };
+  });
+}
+
+function stripCssInJsComments(content, ext) {
+  if (!CSS_IN_JS_EXTENSIONS.has(ext.toLowerCase())) return content;
+  const templates = findCSSinJSTemplates(content);
+  let output = '';
+  let cursor = 0;
+  for (const template of templates) {
+    output += content.slice(cursor, template.contentStart);
+    output += stripCssComments(content.slice(template.contentStart, template.contentEnd));
+    cursor = template.contentEnd;
   }
-  return blocks;
+  return output + content.slice(cursor);
 }
 
 function runRegexMatchers(lines, filePath, lineOffset = 0, blockContext = null, options = {}) {
@@ -685,24 +1052,24 @@ function runRegexMatchers(lines, filePath, lineOffset = 0, blockContext = null, 
 }
 
 /** Page-level analyzers that scan rendered text content (em-dash use,
- *  buzzword phrases, numbered section markers, aphoristic cadence).
+ *  buzzword phrases, aphoristic cadence).
  *  These are detector-agnostic — they work on any HTML/text source
  *  and don't need a parsed DOM. Exported so detectHtml can call them
  *  for `.html` files (which otherwise skip the regex engine). */
 const TEXT_CONTENT_ANALYZER_IDS = [
   'em-dash-overuse',
   'marketing-buzzword',
-  'numbered-section-markers',
   'aphoristic-cadence',
 ];
 
 function runTextContentAnalyzers(content, filePath, options = {}) {
   const profile = options?.profile;
   if (!shouldRunPageAnalyzers(content, filePath)) return [];
-  // The 4 text-content analyzers are at indices 3-6 in REGEX_ANALYZERS.
+  // The 3 text-content analyzers are at indices 2-4 in REGEX_ANALYZERS
+  // (single-font's removal on 2026-07-29 shifted every index down one).
   const findings = [];
   for (let i = 0; i < TEXT_CONTENT_ANALYZER_IDS.length; i++) {
-    const analyzer = REGEX_ANALYZERS[3 + i];
+    const analyzer = REGEX_ANALYZERS[2 + i];
     const ruleId = TEXT_CONTENT_ANALYZER_IDS[i];
     findings.push(...profileFindings(profile, {
       engine: 'regex',
@@ -717,25 +1084,12 @@ function runTextContentAnalyzers(content, filePath, options = {}) {
 function detectText(content, filePath, options = {}) {
   const profile = options?.profile;
   const findings = [];
-  // EINMAL zentral aufloesen statt in jeder Regel einzeln. Die Matcher lesen
-  // Zeilen; steht dort `font-family: var(--font)`, sieht keine Regel den Wert.
-  //
-  // Am 31.07.2026 in sechs Regeln nacheinander gefunden, jede einzeln
-  // repariert — bis der systematische Vergleich (run-variablen-check) zwei
-  // weitere zeigte: gradient-text und overused-font. Ab da ist der zentrale
-  // Schnitt die richtige Antwort: eine Stelle, alle Regeln.
-  //
-  // Zeilenweise ersetzt, damit die Zeilennummern im Bericht stimmen bleiben.
-  //
-  // Das ersetzt die drei lokalen Aufrufe NICHT. Gemessen: nimmt man sie heraus,
-  // fallen 2 von 5 Regeln im Variablen-Check und 4 Faelle im Detect-Check.
-  // Grund: die Matcher hier lesen ZEILEN, drei Regeln (flat-type-hierarchy,
-  // dark-glow, monotonous-spacing) laufen dagegen als eigene Funktionen ueber
-  // den ganzen Dateitext und bekommen diesen hier nie zu sehen. Beide Ebenen
-  // sind noetig — wer eine davon fuer ueberfluessig haelt, hat die andere
-  // gemessen.
-  const lines = varsAufloesen(content).split('\n');
   const ext = extFromFilePath(filePath);
+  const commentStrippedSource = JS_SOURCE_EXTS.has(ext) ? stripJsComments(content, {
+    jsx: ext === '.js' || ext === '.jsx' || ext === '.tsx',
+  }) : content;
+  const source = stripCssInJsComments(commentStrippedSource, ext);
+  const lines = source.split('\n');
 
   // Run regex matchers on the full file content (catches Tailwind classes, inline styles)
   // Enable block context for CSS files where related properties span multiple lines
@@ -744,7 +1098,34 @@ function detectText(content, filePath, options = {}) {
     profile,
     phase: 'source',
   }));
-  if (cssLike.has(ext)) findings.push(...scanInsetStripeCss(content, filePath));
+  // Pseudo-element stripes (::before/::after absolute bars) carry the same
+  // side-tab silhouette without any border token, so the line matchers can't
+  // see them (issue #394). The shared scanner already runs on full HTML pages
+  // via checkHtmlPatterns; give standalone stylesheets, component style
+  // blocks, and CSS-in-JS templates the same coverage. Each hit carries the
+  // rule's source offset, so the finding gets a real line and line-scoped
+  // inline ignores keep working.
+  const pseudoStripeFindings = (text, lineOffset) =>
+    scanCssTextForPseudoStripe(text).map(hit =>
+      finding(hit.id, filePath, hit.snippet, lineOffset + text.slice(0, hit.index).split('\n').length));
+
+  if (cssLike.has(ext)) {
+    findings.push(...scanInsetStripeCss(content, filePath));
+    findings.push(...pseudoStripeFindings(content, 0));
+  }
+
+  // Block-level CSS checks that need multiple declarations must run over the
+  // complete source, not line-by-line. This covers standalone stylesheets,
+  // component style blocks, inline styles, and CSS-in-JS templates.
+  findings.push(...profileFindings(profile, {
+    engine: 'regex',
+    phase: 'source',
+    ruleId: 'codex-grid-background',
+    target: filePath,
+  }, () => scanCssTextForGridBackground(source).map(hit => {
+    const line = source.substring(0, hit.index).split('\n').length;
+    return finding('codex-grid-background', filePath, hit.snippet, line);
+  })));
 
   // Extract and scan <style> blocks from Astro/Vue/Svelte components.
   const styleBlocks = profile
@@ -768,6 +1149,7 @@ function detectText(content, filePath, options = {}) {
     // reported every selector one line low. runRegexMatchers keeps startLine - 1
     // because it indexes its split lines from zero.
     findings.push(...scanInsetStripeCss(block.content, filePath, block.startLine - 2));
+    findings.push(...pseudoStripeFindings(block.content, block.startLine - 2));
   }
 
   // Extract and scan CSS-in-JS template literals
@@ -777,15 +1159,17 @@ function detectText(content, filePath, options = {}) {
       phase: 'extract',
       ruleId: 'css-in-js',
       target: filePath,
-    }, () => extractCSSinJS(content, ext))
-    : extractCSSinJS(content, ext);
+    }, () => extractCSSinJS(source, ext))
+    : extractCSSinJS(source, ext);
   for (const block of cssJsBlocks) {
-    const blockLines = block.content.split('\n');
+    const blockContent = stripCssComments(block.content);
+    const blockLines = blockContent.split('\n');
     findings.push(...runRegexMatchers(blockLines, filePath, block.startLine - 1, true, {
       profile,
       phase: 'css-in-js',
     }));
-    findings.push(...scanInsetStripeCss(block.content, filePath, block.startLine - 1));
+    findings.push(...scanInsetStripeCss(blockContent, filePath, block.startLine - 1));
+    findings.push(...pseudoStripeFindings(blockContent, block.startLine - 1));
   }
 
   if (options?.designSystem) {
@@ -811,12 +1195,10 @@ function detectText(content, filePath, options = {}) {
   // Page-level analyzers only run on full pages
   if (shouldRunPageAnalyzers(content, filePath)) {
     const analyzerIds = [
-      'single-font',
       'flat-type-hierarchy',
       'monotonous-spacing',
       'em-dash-overuse',
       'marketing-buzzword',
-      'numbered-section-markers',
       'aphoristic-cadence',
       'dark-glow',
     ];
@@ -831,10 +1213,9 @@ function detectText(content, filePath, options = {}) {
     }
   }
 
-  const byProvider = filterByProviders(deduped, options?.providers);
   // Inline `impeccable-disable*` waivers travel with the file; honor them unless
   // explicitly bypassed (`--no-config` / `--no-inline-ignores`).
-  return options?.inlineIgnores === false ? byProvider : applyInlineIgnores(byProvider, content);
+  return options?.inlineIgnores === false ? deduped : applyInlineIgnores(deduped, content);
 }
 
 export {
