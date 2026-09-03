@@ -1,14 +1,15 @@
-# Rolle: Kritik-Session
+# Rolle: Kritik-Phase
 
-Einstiegs-Ebene für die **Kritik**-Session der Drei-Sessions-Ordnung
-(Plan / Kritik / Bau). Detail-Ebene: `kritik-matrix.md` (Spawn-Plan, Gesetz),
+Einstiegs-Ebene für die **Kritik**-Phase der Drei-Phasen-Ordnung
+(Plan / Kritik / Bau, drei Phasen in **einem** Chat, Zustand auf Platte —
+Raphael 02.09.2026). Detail-Ebene: `kritik-matrix.md` (Spawn-Plan, Gesetz),
 `screenshot-kritik-loop.md` (Ablauf, Blind-A/B),
 `planner-executor-protokoll.md` (Handoff), `qa-faecher.md` +
 `agentur-rubrik.md` (Maßstäbe).
 
 Chip-Leiste: **`/web` + `/orchestrate`**, Effort high. Kein `/ultracode`-Slash.
 
-## Start der Session (hart)
+## Start der Phase (hart)
 
 ```bash
 node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
@@ -16,15 +17,15 @@ node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
 ```
 
 Exit 2 = gesperrt: ohne ausgefüllte `PRUEFGEGEN.md` startet die Kritik nicht.
-Dann zurück an die Plan-Session, nicht selbst eine Prüflinsen-Tabelle erfinden.
+Dann zurück an die Plan-Phase, nicht selbst eine Prüflinsen-Tabelle erfinden.
 
-## Was die Kritik-Session macht — und was nie
+## Was die Kritik-Phase macht — und was nie
 
 | Macht | Macht nie |
 |---|---|
 | Sweep-Skript, Flotte nach `kritik-matrix.md`, `KRITIK-n.md`, Shot-Ledger | Code schreiben, Deploy, PNG-Dump in den Parent, Plan umwerfen |
 
-**Kein Code.** Die Kritik-Session findet und belegt; die Bau-Session fixt.
+**Kein Code.** Die Kritik-Phase findet und belegt; die Bau-Phase fixt.
 
 ## `kritik-matrix.md` ist das Gesetz
 
@@ -34,23 +35,22 @@ Ad-hoc-„noch ein Kritiker“ ohne Achse aus der Tabelle.
 
 Drei Achsen, Überlappung ist Absicht:
 
-- **PAGE** — je Route **zwei Familien** auf denselben Shots
-  (A = `visual-kritiker`/Grok, B = `kimi-recherche` nach Opus-Bau, sonst
-  `opus-critic`). Katalog: Hierarchie, Spacing, Typo, Bildschnitt, CTA, Sektion.
+- **PAGE** — je Route **zwei unabhängige Leaves** auf denselben Shots.
+  Katalog: Hierarchie, Spacing, Typo, Bildschnitt, CTA, Sektion.
 - **SITE** — je eine Leaf über alle Fold/Key-Shots: buttons, typo, spacing,
   images.
 - **LENS** — je eine Leaf über alle Folds mit anderer Frage: **Design,
   Conversion, Copy, SEO, Trust**.
 
-Vier Familien sind Pflicht, sobald mehr als eine Route existiert: Grok, Kimi,
-Opus, GPT. Sol nur für Code-Ursachen zu überlebenden visuellen Befunden — nie
-Bildpfade an Sol. Luna nur zum Klassifizieren von >40 Shot-Pfaden, nie als
-Urteil. Kein Fable, nie Haiku.
+Wer welche Leaf besetzt und ob eine Familien-Pflicht gilt, hängt am aktiven
+Flottenprofil und steht **nur** in `kritik-matrix.md` — hier nicht zweitschreiben.
+Auch die drei Ausgänge je Durchlauf (`clear` / `miss-with-feedback` /
+`escalate`) stehen dort.
 
 Der Kritik-Auftrag nennt `ACTUAL_BUILDER_FAMILY` (tatsächlich gelaufenes
 Modell, nicht nur der angeforderte `agentType`). Fehlt sie, bricht der Kritiker
-korrekt ab. Still auf die Builderfamilie umgeleitete Kritik ist Self-Review und
-damit `BLOCKED` — auch bei sauberem PASS.
+korrekt ab. Derselbe Agent prüft seinen eigenen Bau nie: Self-Review bleibt in
+jedem Profil `BLOCKED` — auch bei sauberem PASS.
 
 ## Parent führt nur das Ledger
 
@@ -87,35 +87,35 @@ node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
 - 1440×900 Fold **und** 390×844 Mobil je geänderter Route, Hover-Shots für CTAs.
 - **fullPage ist kein Kritik-Input** — höchstens Übersichts-Anhang.
 - Jede Leaf bekommt nur `manifest.json` plus die PNG-Pfade ihrer Achse.
-  Leaves lesen nur `/small/`-JPGs (vorher `/root/tools/shots-verkleinern.sh`),
-  Budget ~12 Shots. Parent bekommt nur Verdict plus Pfad, nie das Bild.
+  Manifest behält die PNG-Identität; das Leaf liest die stemgleichen `/small/`-Kacheln (`<stem>.jpg` oder `<stem>-k1.jpg`, `-k2.jpg` …, native Auflösung)
+  (vorher `/root/tools/shots-verkleinern.sh`). Hartes Budget 12 Shots — der Hook
+  denyt darüber. Parent bekommt nur Verdict plus Pfad, nie das Bild.
 - Schlägt der Sweep fehl: Standard-Skript fixen, **nie** ein eigenes
   Ad-hoc-Playwright-Skript schreiben.
 
-## Wenn keine fremde Familie erreichbar ist
+## Wenn nur eine Modellfamilie da ist (Profil `claude-only`)
 
-Jeder Kritik-Auftrag nennt `ACTUAL_BUILDER_FAMILY` — das tatsächlich gelaufene
-Modell, nicht den angefragten `agentType`. Läuft die Kritik still auf der
-Builderfamilie, ist das `BLOCKED` und kein PASS.
+Das ist seit 02.09.2026 der Normalfall, kein Ausfall. Es wird trotzdem nicht so
+getan, als hätte jemand fremd geprüft:
 
-Ist wirklich keine fremde Familie erreichbar, wird nicht so getan, als hätte
-jemand fremd geprüft: Die Sichtprüfung wird ausdrücklich als **Eigenprüfung**
-deklariert, und der fehlende Fremdblick kommt als offener Punkt in
-`DECISIONS.md`. Erst Raphael entscheidet, ob das für diesen Stand reicht.
+- Jede Leaf ist eine **frische Instanz** und sieht nur die Shots plus
+  `PRUEFGEGEN.md`, nie den Build-Verlauf.
+- Jede Rückgabe trägt sichtbar `claude-only, Instanz-Trennung` — ausdrücklich
+  eine **schwächere** Garantie als Fremdfamilie, keine Äquivalenz.
+- Der Merge zählt die tatsächlich verschiedenen Familien; bei einer Familie ist
+  der deterministische Gate-Beleg (d) das primäre Urteil (`kritik-matrix.md`).
+- Ein stiller Familienwechsel oder ein Kritiker, der denselben Bau geprüft hat,
+  bleibt `BLOCKED` und kein PASS.
 
 ## Merge-Regel — ein Befund lebt nur mit zwei unabhängigen Leaves
 
-Der Controller merged, er ist kein fünfter Geschmack. Es überlebt, wer
+Die Bedingungen (a)-(d) und die Familien-Zählung stehen in `kritik-matrix.md`
+Abschnitt 4 MERGE — hier nicht wiederholen. Der Controller merged, er ist kein
+fünfter Geschmack; alles, was (a)-(d) nicht überlebt, ist Parkplatz.
 
-- (a) von **zwei PAGE-Leaves unabhängig** gefunden wurde, **oder**
-- (b) von einer **SITE-Achse und mindestens einer PAGE**, **oder**
-- (c) von einer **LENS und mindestens einer PAGE/SITE**, **oder**
-- (d) von **einer LENS mit deterministischem Gate-Beleg** (siehe unten).
-
-Alles andere ist Parkplatz, nicht Fixliste. Ein Einzelbefund einer Familie ist
-kein Befund. Bei PAGE laufen die zwei Familien zuerst unabhängig; danach
-bekommt jede die Befunde der anderen und darf nur **bestätigen oder
-widerlegen** — das ist der Gegencheck, keine Mehrheitsabstimmung.
+Bei PAGE laufen die zwei Leaves zuerst unabhängig; danach bekommt jede die
+Befunde der anderen und darf nur **bestätigen oder widerlegen** — das ist der
+Gegencheck, keine Mehrheitsabstimmung.
 
 ### (d) Warum SEO und Copy einen eigenen Weg brauchen
 

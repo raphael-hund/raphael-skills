@@ -14,7 +14,8 @@ der einzige Website-Workflow-Owner. `visual-aaa` ist ausschließlich der termina
 DoneClaim-Blocker, nie Workflow-Owner oder zweite Produktionspipeline.
 
 **Shot-Budget (seit 01.09.2026, hart):** Ein Kritik-Leaf liest höchstens 12 Shots
-(Hook denyt darüber) und nur stemgleiche `/small/`-JPGs. Volle PNG-Serien sprengen das 32-MB-Limit eines Agent-Turns —
+(Hook denyt darüber; ein Shot = alle seine Kacheln) und nur stemgleiche `/small/`-Kacheln plus optionale `/tmp/*-crop.jpg`
+aus dem Original-PNG. Volle PNG-Serien sprengen das 32-MB-Limit eines Agent-Turns —
 am 01.09. starben so 9 von 10 Kritikern eines AlpenEnergie-Laufs und zwei
 Burak-Judges, jeweils mit `Request too large (max 32MB)`. Vor jedem Kritik-Fan-out:
 
@@ -22,7 +23,7 @@ Burak-Judges, jeweils mit `Request too large (max 32MB)`. Vor jedem Kritik-Fan-o
 /root/tools/shots-verkleinern.sh <shot-verzeichnis>
 ```
 
-Das erzeugt daneben 1000px-JPGs (idempotent, ~85 % kleiner) und gibt den Zielpfad
+Das erzeugt daneben **native Kacheln** (seit 03.09.2026, Raphael: keine Verkleinerung mehr): jeder Shot bleibt in voller Auflösung und wird nur in Streifen unter 1,15 Megapixel zerlegt, damit das Modell nichts selbst herunterskaliert. Ein 1440×1500-Shot wird `<stem>-k1.jpg` + `<stem>-k2.jpg` (60 px Überlappung), ein 390×844-Mobile-Shot bleibt `<stem>.jpg`. Idempotent, ~60 % kleiner als PNG, und gibt den Zielpfad
 aus; die Leaf-Prompts zeigen auf dieses Verzeichnis. Braucht eine Achse mehr als
 12 Shots, wird sie in mehrere Leaves geteilt, nicht das Budget erhöht. Der Parent
 bekommt weiterhin nur Verdict plus Pfad, nie das Bild.
@@ -112,10 +113,14 @@ Der statische Sweep bleibt Pflicht; Motion kann kein rotes Visual-, Functional-
 oder Regression-Gate ausgleichen.
 
 ### 2. Ansehen durch Kritik-Leaves (Pflicht, per Workflow delegiert)
-Jedes Kritik-Leaf liest JEDEN ihm zugeteilten Shot als stemgleichen `/small/`-JPG
+Jedes Kritik-Leaf liest JEDEN ihm zugeteilten Shot als stemgleiche `/small/`-Kachel(n) (`<stem>.jpg` oder `<stem>-k1.jpg`, `-k2.jpg` …)
 (vorher `/root/tools/shots-verkleinern.sh`). Das Manifest behält die PNG-Identität;
-der Read geht auf das verkleinerte JPG, nie auf das volle PNG. Hartes Budget
-12 Shots — der Hook denyt darüber. Builder-Prosa ersetzt das nicht.
+der Read des Gesamtshots geht auf das verkleinerte JPG, nie auf das volle PNG.
+Die urteilstragende Stelle schneidet Bash aus dem Original-PNG:
+`python3 /root/tools/bild-ausschnitt.py <original.png> <x,y,w,h> -o /tmp/<name>-crop.jpg`.
+Nur dieser `/tmp`-Crop darf angelegt und gelesen werden; ein hochskalierter `/small/`-Ausschnitt
+zählt nicht als Beleg. Hartes Budget 12 Gesamtshots — der Hook denyt darüber; ein Crop eines
+bereits gezählten Shots zählt nicht extra. Builder-Prosa ersetzt das nicht.
 Die Kritik-Session delegiert die Reads per Workflow gemäß `kritik-matrix.md` an
 `visual-kritiker` / Grok / Kimi; der Parent/Controller öffnet oder liest nie Bilder.
 Er führt nur das Shot-Ledger (`pfad | viewport | gelesen-von | verdict`) und zählt
