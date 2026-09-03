@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 140,
+  "skill_count": 141,
   "skills": [
     {
       "name": "design",
@@ -289,6 +289,12 @@
       "version": "3.16.0",
       "path": "skills/imported/last30days/SKILL.md",
       "description": "Recherchiert, was Leute in den letzten 30 Tagen wirklich über ein Thema sagen — Posts und Engagement aus Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub und dem Web, inkl. doctor-Health-Check. Vendored aus last30days-skill (mvanhorn). VORAUSSETZUNG: SCRAPECREATORS_API_KEY (ohne Key laufen nur keyless/degradierte Quellen). Trigger: \"last30days\", \"was sagen Leute über\", \"Trend-/Ad-Library-Scan\", \"Recency-Recherche\"."
+    },
+    {
+      "name": "task-observer",
+      "version": "3.0.1",
+      "path": "skills/imported/task-observer/SKILL.md",
+      "description": "Monitors task execution for skill improvement opportunities. Use during ANY multi-step task, agentic workflow, or work session where the agent uses tools and produces deliverables. Captures patterns, user corrections, workflow insights, and methodology worth preserving as reusable skills. Also triggers in post-task feedback discussions and when the user mentions skill observations, improvements, the observation log, skill taxonomy, or asks the agent to watch for skill opportunities. Also known as \"One Skill to Rule Them All\". IMPORTANT: invoke this skill before the FIRST tool call of any session and before writing or proposing a plan — any turn that will involve a tool call counts. Pair with a CLAUDE.md instruction; description matching alone is not enforceable. Trigger: \"task-observer\", \"One Skill to Rule Them All\", \"observation log\"."
     },
     {
       "name": "thermo-nuclear-cursor",
