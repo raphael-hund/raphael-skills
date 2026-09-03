@@ -51,12 +51,11 @@ Erinnerung".
 
 ## Mobbin
 
-MCP-Server `mobbin` (OAuth, Profil raphael). Status ON laut
-`raphael-mcp-ondemand.sh status`. Tools `mcp__mobbin__*` erscheinen nur in
-einer **neuen** Session. Öffentliche Seite ohne Login = Landingpage.
-App/Flows: Mobbin zuerst (Router-Default). Skript:
-`inspiration.mjs mobbin` → Exit 0, Hinweistext; `--json` →
-`{source:"mobbin",access:"mcp",server:"mobbin"}` — kein Netzaufruf.
+MCP-Server `mobbin` (OAuth abgeschlossen 03.09.2026, Tools `search_screens`,
+`search_flows`, `search_sections` → `mcp__mobbin__*`, erscheinen in einer
+**neuen** Session). Öffentliche Seite ohne Login = Landingpage. App/Flows:
+Mobbin zuerst (Router-Default). Skript: `inspiration.mjs mobbin` → Hinweis,
+kein Netzaufruf. Token erneuern: `/root/tools/auth-relays/README.md`.
 
 ## 1. Refero Styles — Loop `art-direction`
 
@@ -172,12 +171,11 @@ Referenzen; Screenshots nur intern.
 
 ## 21st mit CLI
 
-CLI: `/root/.local/bin/21st`. Login `21st login` braucht Raphaels Browser
-(Google); Auth-URL ggf. `/tmp/21st-auth-url.txt`. Alternative: API-Key von
-https://21st.dev/settings/api-keys als `API_KEY_21ST` (oder
-`TWENTYFIRST_TOKEN` / `~/.config/21st/auth.json`). Dann:
-`inspiration.mjs 21st code <begriff|id>` bzw. `21st search … --json` /
-`21st get <id> --json`. Ohne Login bleibt `21st get` (Muster, Source-Link).
+CLI: `/root/.local/bin/21st`, eingeloggt (`21st whoami`, Token in
+`~/.config/21st/auth.json`, 03.09.2026). `inspiration.mjs 21st code <begriff|id>`
+liefert Treffer mit `installCommand`; `21st get <id> --json` den Code.
+Login erneuern: `/root/tools/auth-relays/README.md` (Google-2FA am Handy).
+Ohne Token bleibt `21st get` (Muster, Source-Link).
 
 ## Lehren aus dem Video (Jack Roberts, „Fable 5.1 Just Solved AI Slop", 03.09.2026)
 
