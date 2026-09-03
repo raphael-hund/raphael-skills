@@ -1,14 +1,15 @@
 ---
 name: handoff
-version: 0.4.0
+version: 0.5.0
 description: >
   Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am
   Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben
-  (PROGRESS.md/DECISIONS.md, Commit+Push, hartes /clear). (2) EXTERN: das
-  Gespräch zu einem redigierten Übergabe-Dokument für eine andere Instanz,
+  (PROGRESS.md/DECISIONS.md, Write-Set committen, hartes /clear). (2) EXTERN:
+  das Gespräch zu einem redigierten Übergabe-Dokument für eine andere Instanz,
   einen Subagenten oder eine externe Person verdichten (Verweis statt Duplikat,
   Ablage im OS-Temp). Fakten statt Anweisungen, inkl. Fallen/Sackgassen und
-  Secret-Redaktion. Trigger: "handoff", "übergeben", "vor /clear", "Session
+  Secret-Redaktion. Handoff ist Closeout: Brief schreiben, keine neue
+  Produktarbeit. Trigger: "handoff", "übergeben", "vor /clear", "Session
   beenden", "Session-Handoff fällig", "Handoff für einen anderen Agenten",
   "an Subagenten übergeben", "externe Übergabe", "handoff-ext".
 class: O
@@ -17,8 +18,8 @@ sensitivity: internal
 loads: [references/handoff-template.md]
 requires_skills: []
 completion_criteria:
-  - "Modus SESSION: PROGRESS.md aktualisiert (Stand, offene Punkte, nächster Schritt, Gates-Status), Repos committet + gepusht/gebackupt, Übergabe-Brief nach Template ohne Secrets im Klartext"
-  - "Modus EXTERN: Dokument verweist auf Artefakte statt sie zu duplizieren, Redaktion geprüft (keine Geheimnisse/PII), Ablage im OS-Temp-Verzeichnis statt im Repo"
+  - "Modus SESSION: Übergabe-Brief nach Template ohne Secrets im Klartext liegt; PROGRESS.md/DECISIONS.md nur falls schon vorhanden aktualisiert; Git nur für das Write-Set dieser Session (Hook-Fail = uncommitted + im Brief genannt); keine neue Produktarbeit im Handoff-Turn"
+  - "Modus EXTERN: Dokument verweist auf Artefakte statt sie zu duplizieren, Redaktion geprüft (keine Geheimnisse/PII), Ablage im OS-Temp-Verzeichnis statt im Repo; keine neue Produktarbeit im Handoff-Turn"
 ---
 
 # handoff — Übergabe (Session + Extern)
@@ -31,9 +32,9 @@ completion_criteria:
   Werkzeug/Modell oder externe Person ohne Zugriff auf unser Git-Ritual.
   Ablauf siehe Abschnitt "Modus EXTERN".
 
-**Lies zuerst (Modus SESSION):**
-`/root/raphael-command-center/AGENTS.md` (Session-Ritual, Regeln 3, 5, 9),
-das aktuelle `PROGRESS.md` / `DECISIONS.md` / `worklog/` des berührten Repos.
+**Lies zuerst (Modus SESSION):** das aktuelle `PROGRESS.md` / `DECISIONS.md` /
+`worklog/` der in **dieser Session berührten** Repos. Nicht `AGENTS.md`, nicht
+das Wiki, nicht unberührte Repos.
 
 ## Zweck (1 Satz)
 
@@ -45,18 +46,27 @@ Modellwechsel) verlustfrei weitermacht — denn nur Git-getrackte Dateien zähle
 - Sobald [`session-failover`](/root/.claude/skills/session-failover/SKILL.md)
   den Session-Handoff auslöst: `/handoff` schreiben, dann **hart `/clear`**.
 - Vor jedem Modellwechsel (= neue Session, Regel 6).
-- Am Session-Ende (Ritual: Commit + Push/Backup + Handoff, Regel 9).
+- Am Session-Ende (Ritual: Write-Set committen + Handoff, Regel 9).
 
-## Ablauf
+## Härtegrenze
 
-1. **Stand sichern** — PROGRESS.md: was erledigt, was WIP=1 gerade offen, Gates-Status.
-2. **Entscheidungen festhalten** — DECISIONS.md: was warum entschieden (damit die nächste
-   Session nicht neu diskutiert). Raphael-Nein zu einem Asset: Route + Dateipfad
-   + Ersatz in DECISIONS/DESIGN, nicht nur als Satz im Brief.
-3. **Nächster Schritt exakt** — eine konkrete, sofort startbare Anweisung.
-4. **Commit + Push/Backup** in jedem berührten Repo.
-5. **Übergabe-Brief** nach `references/handoff-template.md` — an den Anfang des nächsten
-   Prompts (Cache-Prefix).
+Handoff ist Closeout. Der Turn schreibt den Brief und hört auf.
+Keine neue Produktarbeit, kein Pilot, kein Skeleton, kein unstuck-Lauf.
+Nächster Schritt steht im Brief und startet in der **nächsten** Session.
+
+**Zeitbudget:** höchstens 8 Tool-Runden. Danach den Brief aus dem schon
+Gelesenen schreiben, auch wenn Git hakt.
+
+## Ablauf (SESSION)
+
+1. **Brief zuerst** — `references/handoff-template.md` ausfüllen und ablegen
+   (`/tmp/handoffs/` oder vorhandenes `PROGRESS.md`). Fertig = Datei existiert.
+2. **Stand nachziehen** — nur vorhandene `PROGRESS.md` / `DECISIONS.md` der
+   berührten Repos; nichts neu anlegen, keine extra Repos scannen.
+3. **Git nur Write-Set** — committen/pushen, was diese Session selbst
+   geschrieben hat. `git add -A` ist verboten. Precommit-Deny: Datei
+   unstaged lassen, Deny im Brief nennen, Turn nicht aufblähen.
+4. Stopp. Raphael `/clear`.
 
 ## Modus EXTERN — Übergabe an eine andere Instanz
 
@@ -76,6 +86,12 @@ kein PROGRESS.md — das Dokument selbst ist die Übergabe.
 6. Ablage im OS-Temp-Verzeichnis, nicht im Workspace/Repo — das Dokument ist eine
    Übergabe, kein Projekt-Artefakt.
 
+## Kein Abschluss mit neuer Arbeit (beide Modi)
+
+Der Bericht endet mit Stand, nächstem Schritt und Offen-Liste.
+Nicht mit „Soll ich mit Punkt X anfangen?“ und nicht mit dem Start von Punkt X.
+Produktentscheidungen und fehlende Zugangsdaten gehören in die Offen-Liste.
+
 ## Gotchas
 
 - **"Fast fertig, mach ich gleich" reicht nicht** — Stand lebt auf der Platte, nicht im
@@ -83,14 +99,12 @@ kein PROGRESS.md — das Dokument selbst ist die Übergabe.
 - Nach dem Handoff **hart** `/clear` — nicht "nur noch schnell". Kontext ist Verbrauchsgut.
 - Übergabe-Brief kurz und konkret: nächste Session soll in 30 Sekunden loslegen können,
   nicht erst 20 Min Kontext rekonstruieren.
-- Uncommittete Änderungen nie im Handoff "erwähnen" — erst committen, dann übergeben.
-- Fehlende Fallen/Sackgassen-Sektion kostet die nächste Session Zeit: bereits gescheiterte
-  Ansätze sind die teuerste, am schlechtesten wiederherstellbare Information — Code zeigt
-  das Was, nur der Handoff kennt das Warum und was schon nicht ging.
-- **"Ging nicht" gehört erst nach dem Schnellpfad in den Brief** — eine als unmöglich
-  übergebene Wand wird von der nächsten Session als Tatsache geerbt. Vorher
-  [unstuck](/root/raphael-skills/skills/methodik/unstuck/SKILL.md) fahren und die
-  Winkel-Liste mit übergeben; ohne Liste ist es eine Vermutung, kein Stand.
+- Uncommittete Änderungen nie im Handoff "erwähnen" — Write-Set erst committen, dann
+  übergeben; Hook-Fail im Brief als uncommitted nennen, nicht nachträglich debuggen.
+- Fehlende Fallen/Sackgassen-Sektion kostet die nächste Session Zeit — nur bereits
+  bekannte Fallen, kein unstuck-Lauf während des Handoffs.
+- **"Ging nicht" ohne Beleg ist Vermutung** — als offen markieren, nicht als Wand
+  vererben. unstuck gehört in die nächste Session, nicht in diesen Turn.
 - **EXTERN: Ungeprüfte Redaktion ist ein Leck, kein Detail** — Geheimnisse/PII vor
   Ablage aktiv suchen, nicht nur hoffen, dass keine drin sind.
 - **EXTERN: Referenz statt Kopie** hält Dokument und Quelle synchron — eine Kopie
