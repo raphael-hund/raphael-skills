@@ -4,6 +4,9 @@ Standardisiertes Format für Statics-Briefs. Ein Brief = eine Zelle in der
 Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe Blocker unten.
 
 **Pflicht vor jedem Brief, in Reihenfolge:**
+0. **Eigenes Lern-Register lesen**, wenn vorhanden: `/root/clients/<slug>/ads/lern-register.md`.
+   Eigene Winner/Loser mit Zahl schlagen jede Markt-Referenz. Was dort als tot
+   markiert ist, wird nicht wieder gebaut.
 1. **Style wählen, BEVOR Copy geschrieben wird.** Style-ID aus `visual-styles.md` (S1–S8)
    festlegen. Nie Copy schreiben und dann einen Rahmen suchen.
 2. **Clarity oder Curiosity ankreuzen.** Jede Static macht genau eines von beiden.
@@ -15,14 +18,19 @@ Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe Blocker unten.
 ## Angle [ID] × Style [ID] — [Kurztitel]
 
 **Angle:** [Winkel-Name + 1 Satz Referenz-Framing/Beleg, woher der Angle kommt]
+**Hypothese:** [ein Satz, warum diese Zelle Termine bringt — wird bei der
+  Wellen-Auswertung gegen den Terminpreis geprüft und ins Lern-Register getragen]
 **Visual Style:** [S1-S8 aus visual-styles.md, + Format 1:1/4:5/9:16]
 **Wirkung:** [Clarity | Curiosity — genau eines ankreuzen]
 **Copy-Bauform:** [1-6 aus copy-bauformen.md, ggf. + Primary-Text-Skelett 1-4]
 
 **Onscreen-Copy:**
-> [Text, in Rahmen-Sprache des gewählten Styles — Karte=Schlagzeile,
+> [Text, in Rahmen-Sprache des gewählten Styles —
 >  Post=Postsprache, Chat=Chatsprache, Schild=handschriftlich, Selfie=Storysprache.
->  Unter 35 Wörtern, Zahl+Zeit+Name wo möglich]
+>  Jede Onscreen-Zeile ist ein ganzer Satz mit Subjekt und Verb.
+>  Ein Satz, den ein Fremder in einer Sekunde versteht.
+>  Kein internes Wissen. Unter 35 Wörtern (gilt nicht bei Instant-Formular),
+>  Zahl+Zeit+Name wo möglich]
 
 **Primary Text:**
 > [Ganzer Text nach gewähltem Skelett, 600-1.200 Zeichen]
@@ -32,7 +40,9 @@ Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe Blocker unten.
   9:16 anlegen, Kern im zentrierten 1:1]
 
 **Grounding-Quelle:** [Pflichtfeld, echte Review/Winning-Ad/Ad-Kommentar/Kundenzitat aus
-  voc.md, PROOF.md oder Kunden-Wiki. Kein Beleg = kein Brief, siehe Blocker unten]
+  `/root/clients/<slug>/wiki/absprachen.md`, `/root/clients/<slug>/wiki/learnings.md`,
+  `/root/clients/<slug>/ads/lern-register.md` oder `raw/meetings`. Kein Beleg = kein Brief,
+  siehe Blocker unten]
 
 **Status:** [sofort produzierbar | wartet auf Material: <was fehlt> | Grounding fehlt]
 ```
@@ -54,8 +64,9 @@ auf 2–3 Favoriten clustern). Nicht kopieren: verweisen.
 ## Grounding-Pflicht (harter Blocker)
 
 Jedes Konzept braucht eine Quelle: echte Review, Winning-Ad, Ad-Kommentar oder Zitat aus
-`client-<slug>/wiki/voc.md` / `PROOF.md`. Keine erfundenen Claims, Statistiken,
-Testimonials, Chats oder Dashboard-Screens. Fehlt Rohmaterial für eine Zelle:
+`/root/clients/<slug>/wiki/absprachen.md`, `/root/clients/<slug>/wiki/learnings.md`,
+`/root/clients/<slug>/ads/lern-register.md` oder `raw/meetings`. Keine erfundenen Claims,
+Statistiken, Testimonials, Chats oder Dashboard-Screens. Fehlt Rohmaterial für eine Zelle:
 **stoppen und um Material bitten**, nicht ungegroundet weiterproduzieren. Dieselbe Härte
 wie claims-qa, nur schon am Brief statt erst am Text.
 

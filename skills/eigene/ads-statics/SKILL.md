@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.7.0
+version: 2.8.0
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -11,6 +11,9 @@ description: >
   Likeness/Szene, WHAT×WHO×WHEN für Varianten.
   v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte,
   nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy).
+  v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte
+  gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen,
+  keine Bedingungen, kein Bundle-Beiwerk onscreen.
   Trigger: "Statics bauen", "Static-Briefs",
   "Bildanzeigen", "Testwelle Statics", "S1-S8". Bild danach: Skill higgsfield.
 class: F
@@ -34,6 +37,7 @@ completion_criteria:
   - "Lern-Register des Kunden gelesen, wenn vorhanden; als tot markierte Bauformen werden nicht wieder gebaut"
   - "Jede Onscreen-Zeile ist ein ganzer Satz; Hook UND Deal stehen auf der Ad; nur der ICP fühlt sich angesprochen; Hypothese steht im Brief"
   - "copywriting/scripts/forbidden-check.py auf jedem Brief Exit 0"
+  - "Klarheits-Regel: ohne Case-Zahl onscreen höchstens drei Aussagen (Zustand, Versprechen mit Frist, Null). Umsatzschwelle, Bundle-Bestandteile und Garantiebedingungen stehen nie auf der Karte."
   - "Deliverable ist Text plus visuelle Idee je Karte (Onscreen, Primary, Szene, Stil-Chassis). Kein PNG, kein build.py, kein Layout-Skript im Skill-Output. Bild ist ein Folgeschritt."
 ---
 
@@ -53,6 +57,30 @@ Drei Pflicht-Referenzen liegen hier:
   zwölf Copy-Gesetze, was für Statics gilt, was wir nicht übernehmen.
 - `references/wettbewerber/` — CH/DE-Wettbewerber (Grigoletti, Mario Reinwarth, 28.08.2026)
   als Kontrast- und Baustein-Referenzen. Kontrast-Warnungen oben in jeder Datei beachten.
+
+## Klarheit vor Handwerk (Raphael, 03.09.2026)
+
+Wenn keine gute Zahl auf die Karte darf (kein Case, kein Screen), muss die Karte
+viel klarer werden, nicht voller. Die Formeln F01 bis F12 und C01 bis C06 sind Werkzeug,
+kein Pflichtprogramm. Auf einer Karte ohne Case:
+
+1. **Zustand in einem Satz**, den der Leser sofort mit Ja oder Nein beantwortet.
+   «Deine Kunden googeln dich. Bist du in den Top 3?»
+2. **Versprechen mit Frist.** «Wir bringen dich in 90 Tagen in die Top 3 bei Google.»
+3. **Null.** «Oder du zahlst 0 CHF.»
+
+Fertig. Kein «ab 20k Monatsumsatz», kein «mit Fotoshooting», kein «in deiner Stadt
+für deine Keywords», keine Mitwirkungsklausel. Das gehört ins Formular und in den Vertrag,
+nicht aufs Bild. Branche kommt als ein Wort in Zeile 1 oder als Szene im Bild.
+
+Test: Liest ein Fremder die Karte in einer Sekunde und kann das Versprechen in einem
+Satz nachsprechen? Wenn nicht, streichen, bis es geht.
+
+Anti-Beispiel (Welle 4 erste Fassung, 03.09. vormittags):
+«Neue Website mit Fotoshooting plus Top 3 bei Google in deiner Stadt in 90 Tagen,
+sonst keinen Rappen.» Sieben Bausteine in einem Satz, nicht nachsprechbar.
+
+Richtig: «Top 3 bei Google in 90 Tagen, oder du zahlst 0 CHF.»
 
 ## Deliverable (Raphael, 03.09.2026)
 
