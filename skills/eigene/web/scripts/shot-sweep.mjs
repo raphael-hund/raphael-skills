@@ -364,7 +364,10 @@ async function listTargets(page, selector, limit) {
     const loc = els.nth(i);
     if (!(await loc.isVisible().catch(() => false))) continue;
     const info = await loc.evaluate((e, idx) => ({
-      name: (e.getAttribute('aria-label') || e.innerText || e.id || '').trim().slice(0, 40),
+      // innerText ist vor dem Scroll ins Viewport oft leer (Reveal-Animationen);
+      // textContent liefert den Namen sofort, sonst hiesse jedes Target el<i>.
+      name: (e.getAttribute('aria-label') || e.innerText || e.textContent || e.id || '')
+        .replace(/\s+/g, ' ').trim().slice(0, 40),
       role: e.getAttribute('role') || e.tagName.toLowerCase(),
       id: e.id || '',
       idx,
