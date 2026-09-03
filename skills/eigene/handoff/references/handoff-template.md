@@ -35,7 +35,10 @@ Kopiere ausgefüllt an den Anfang des nächsten Prompts. Kurz, konkret, sofort s
   Logout noch nicht"), nicht Befehle ("Implementiere als nächstes Logout").
   Die nächste Session entscheidet die Handlung selbst — der Brief liefert
   Boden-Wahrheit, keine Anweisung.
-- Alles committet/gepusht, bevor dieser Brief geschrieben wird.
+- **Handoff ist Closeout:** der Brief startet keine neue Arbeit. Nächster
+  Schritt ist Anweisung für die *nächste* Session, nicht für diesen Turn.
+- Write-Set dieser Session committen, wenn es in einer Runde geht. Hook-Fail
+  oder Dirty außerhalb des Write-Sets: uncommitted lassen und hier nennen.
 - Keine Vermutungen als Fakten — offene Punkte klar als offen markieren.
 - Ein Task in OFFEN (WIP=1), nicht fünf halbfertige.
 - **Redaction:** keine Secret-Werte (API-Keys, Tokens, Passwörter) im
