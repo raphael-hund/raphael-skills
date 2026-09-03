@@ -22,9 +22,9 @@
     },
     {
       "name": "ads-statics",
-      "version": "2.7.0",
+      "version": "2.8.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
-      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte, nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy). Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\". Bild danach: Skill higgsfield."
+      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte, nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy). v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen, keine Bedingungen, kein Bundle-Beiwerk onscreen. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\". Bild danach: Skill higgsfield."
     },
     {
       "name": "ads-video",
