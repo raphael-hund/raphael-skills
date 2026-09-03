@@ -14,7 +14,7 @@
 - Wochenjob `weekly-web-reference-stamps` (Mo ~09:00 lokal) aktiv.
 - Map/Tickets 12,13,15,16 resolved unter `.scratch/web-setup-fable/`.
 
-**Offen (WIP=1):** MAKE-eigene Website als Pilot-Abnahme mit dem neuen Setup starten (`PLAN.md` + Blind-Abnahme-Kriterium).
+**Offen (WIP=1):** MAKE-Pilot Briefing/Cases bestätigen lassen (`/root/clients/make/website/pilot-2026-09-03/PLAN.md`); Skeleton steht.
 
 **Gates (final gemessen 2026-09-03):**
 - design: detect 36/36, browser 40/40, doku-zahlen 10/10, validate-skill OK
