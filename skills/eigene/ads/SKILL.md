@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 2.7.4
+version: 2.7.5
 description: >
   Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video),
   dann ICP, Research, Video-Skript, Statics, Performance.
@@ -31,6 +31,8 @@ source: >
   Pixel Conditioning, VSL hinter dem Formular, 6×6-Skalierung.
     v2.7.4 legt Zac Regan / @startrunningads daneben (41 Reel-Transkripte im Brain,
     Playbook zac-regan-startrunningads.md). Nicht mit Marc Evers vermischen.
+  v2.7.5 (03.09.2026): Foreplay-Export mit --media im Teil Research, Bilder werden
+  gelesen und wörtlich zitiert; Objektverkauf-Regel im Teil Statics.
 loads:
   - references/teil-strategie.md
   - references/teil-icp.md

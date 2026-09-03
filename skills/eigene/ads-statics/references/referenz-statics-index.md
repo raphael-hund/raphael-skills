@@ -46,6 +46,7 @@ Nicht aus dem Gedächtnis schreiben.
 8. **Hook zuerst, Deal direkt danach.** Bei Instant-Formular gibt es keine Landingpage:
    wer den Deal nicht auf der Ad sieht, weiss nicht, wofür «Jetzt bewerben» gilt.
 9. **Ein Angle pro Karte.** Proof + Garantie + Vergleich auf einer Static = keine davon.
+   Bei Objektverkauf: eine Botschaft je Welle, siehe `teil-statics.md` Abschnitt Objektverkauf.
 10. **Der 1-Sekunden-Test gilt für Fremde.** Wer die Ad nicht ohne Nachdenken versteht,
     scrollt. Internes Wissen (Listen, CRM, «13 von 87») fällt immer durch.
 

@@ -49,7 +49,7 @@ Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe Blocker unten.
 
 ## Batch-Kopf (INDEX, ein Dokument pro Welle)
 
-Am Dokumentanfang: Angle × Style-Matrix als Tabelle (● = sofort produzierbar,
+Am Dokumentanfang: Angle × Style-Matrix als Tabelle (bei Objektverkauf: Foto × Style-Matrix) (● = sofort produzierbar,
 ⌀ = wartet auf Material), gefolgt von einer Material-Liste an den Kunden/Raphael für
 alle ⌀-Zellen. So scannt der Reviewer den ganzen Batch in ~2 Minuten statt jeden Brief
 einzeln zu öffnen.

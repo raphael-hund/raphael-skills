@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.8.0
+version: 2.9.0
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -14,6 +14,8 @@ description: >
   v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte
   gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen,
   keine Bedingungen, kein Bundle-Beiwerk onscreen.
+  v2.9.0 (Raphael 03.09.2026): Objektverkauf (Immobilie, Neubau, Produkt mit Preis)
+  ist Produkt-Fakten-Preis-Button, keine Angle-Wahl; Abschnitt in teil-statics.md.
   Trigger: "Statics bauen", "Static-Briefs",
   "Bildanzeigen", "Testwelle Statics", "S1-S8". Bild danach: Skill higgsfield.
 class: F
@@ -33,9 +35,9 @@ requires_skills: [ads@^2]
 completion_criteria:
   - "Teil Statics in ads/references/teil-statics.md gelesen und befolgt"
   - "copy-formeln.md und referenz-statics-index.md gelesen; Hook-, Callout- und Angle-ID stehen im Brief"
-  - "Die Angle-Datei des gewählten Angles (references/angles/a01..a08) gelesen; die Referenz, von der die Bauform kommt, steht namentlich im Brief"
+  - "Dienstleistung: Die Angle-Datei des gewählten Angles (references/angles/a01..a08) gelesen; die Referenz, von der die Bauform kommt, steht namentlich im Brief. Objektverkauf: Abschnitt Objektverkauf in teil-statics.md befolgt, keine Angle-ID"
   - "Lern-Register des Kunden gelesen, wenn vorhanden; als tot markierte Bauformen werden nicht wieder gebaut"
-  - "Jede Onscreen-Zeile ist ein ganzer Satz; Hook UND Deal stehen auf der Ad; nur der ICP fühlt sich angesprochen; Hypothese steht im Brief"
+  - "Jede Onscreen-Zeile ist ein ganzer Satz; Hook UND Deal stehen auf der Ad; nur der ICP fühlt sich angesprochen; Hypothese steht im Brief. Objektverkauf: Fakten-Zeilen dürfen Aufzählung sein (Zimmer · m² · Preis), eine Botschaft je Welle, nur das Foto wechselt"
   - "copywriting/scripts/forbidden-check.py auf jedem Brief Exit 0"
   - "Klarheits-Regel: ohne Case-Zahl onscreen höchstens drei Aussagen (Zustand, Versprechen mit Frist, Null). Umsatzschwelle, Bundle-Bestandteile und Garantiebedingungen stehen nie auf der Karte."
   - "Deliverable ist Text plus visuelle Idee je Karte (Onscreen, Primary, Szene, Stil-Chassis). Kein PNG, kein build.py, kein Layout-Skript im Skill-Output. Bild ist ein Folgeschritt."
@@ -81,6 +83,13 @@ Anti-Beispiel (Welle 4 erste Fassung, 03.09. vormittags):
 sonst keinen Rappen.» Sieben Bausteine in einem Satz, nicht nachsprechbar.
 
 Richtig: «Top 3 bei Google in 90 Tagen, oder du zahlst 0 CHF.»
+
+## Objektverkauf (Raphael, 03.09.2026)
+
+Immobilie, Neubau, Produkt mit Preis: keine Angle-Wahl. Produkt gross, drei bis fünf Fakten,
+Preis, Verknappung klein, ein Button. Regel und Belege stehen in
+`../ads/references/teil-statics.md`, Abschnitt «Objektverkauf». Beispiel:
+`/root/clients/ak-omega/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
 
 ## Deliverable (Raphael, 03.09.2026)
 

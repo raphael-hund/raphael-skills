@@ -13,8 +13,10 @@ Schema-Tiefe: `../../ads-research/references/angle-dossier-schema.md`
    `/root/tools/foreplay/README.md`; 1 Credit pro Ad, 10'000/Monat):
    `fp ads "<suchwort>" --lang German --live --order longest_running --limit 25`
    und `fp export "<suchwort>" --lang German --live --order longest_running --limit 40
-   --out /root/clients/<slug>/ads/research/foreplay-<YYYY-MM-DD>/` → ein Markdown je Ad
-   plus `_index.md`. Konkurrenten per `fp brands "<name>"` und `fp brand-ads <brand_id>`.
+   --media --out /root/clients/<slug>/ads/research/foreplay-<YYYY-MM-DD>/` → ein Markdown
+   je Ad plus `_index.md` plus `media/`. Die Bilder mit Read ansehen und den wörtlichen
+   Onscreen-Text zitieren; Copy-Felder ersetzen das Bild nicht. Ab 30 Bildern zuerst
+   `/root/tools/shots-verkleinern.sh`, sonst greift das 20-MB-Limit im Kontext. Konkurrenten per `fp brands "<name>"` und `fp brand-ads <brand_id>`.
    Raphaels Boards (`fp boards`, `fp board-ads <id>`) und Swipefile (`fp swipefile`)
    sind kuratiertes Material und schlagen die Discovery-Suche.
    Meta Ad Library nur als Ergänzung, wenn der Token wirkt. Code 10: `ad_library: skipped`, weiter.
