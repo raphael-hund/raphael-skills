@@ -143,9 +143,13 @@ lädt und was nie: `references/load-graph.md`.
 ## Owner-Lage
 
 `web` ist der einzige Agency-Website-Workflow-Owner; `/web` und `/website-plan`
-setzen die Web-Lane. `design` ist Specialist-Call, `visual-aaa` das terminale
-Pixel-Gate, `visual-harness` eine alternative Lane, die einen gesetzten
-Web-Owner nie überschreibt. Detail: `references/rolle-plan.md`
+setzen die Web-Lane. `design` ist Specialist-Call, `visual-aaa` ist das **terminale**
+Pixel-Gate und kein zweiter Workflow-Owner, `visual-harness` eine alternative
+Lane, die einen gesetzten Web-Owner nie überschreibt.
+`website-plan` bleibt plan-only: keine Capture-Pflicht, kein Production-Code.
+Der Handoff prüft Receipt, Manifest-Hash und aktuelle Plan-Hashes, bevor `web`
+Baupakete aus Route-Abhängigkeiten, Write-Sets und Shared Owners bildet
+(`references/loop2-ablauf.md`). Detail: `references/rolle-plan.md`
 (Plan-Eingang, `website-plan`-v3-Vertrag, fail-closed) und
 `references/kritik-matrix.md` (Besetzung je Profil, Instanz-Trennung).
 
@@ -157,8 +161,8 @@ Ort.
 
 `web-anti-slop` ist immer mitgeladen und bündelt die Pflichtgates aus `design`,
 `copywriting` und der Oxlint-Installation. `taste`, `impeccable`, `ui-ux`,
-`kill-ai-slop`, `no-ai-slop`, `frontend-design`, `animate` sind **keine
-Pflicht-Loads** — sie routen auf `design` bzw. `copywriting`.
+`kill-ai-slop`, `no-ai-slop`, `frontend-design`, `animate` sind keine Pflicht-Loads
+— sie routen auf `design` bzw. `copywriting`.
 
 ## Loop-2 in einer Zeile
 
@@ -193,6 +197,8 @@ wird): `references/anfaenger-pfad.md` §8.
 - **Paket `motion`**, Import `motion/react` — nie `framer-motion`.
 - **Ein Icon-System**, Default Lucide. **Fonts** über die Adobe Fonts Library.
 - **Keine Dependency ohne Zeile in der Werkzeugtabelle** (`werkzeug-gate.mjs`).
+- **Nach der Router-Wahl `resource-access.mjs open "<Name>"` Pflicht** — ein
+  URL-Dump allein zählt nicht als Nutzung.
 - **Lighthouse/axe = 0** hart für den Launch, nicht die Vorschau.
 - **Haiku baut oder kritisiert keine Seite; Fable ist nie Subagent.**
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill. Nie routen.
