@@ -534,8 +534,14 @@ async function autoStatePass(page, entry, slug, label, matrix) {
     try {
       await target.loc.scrollIntoViewIfNeeded({ timeout: 1500 });
       const tag = await target.loc.evaluate((e) => e.tagName.toLowerCase()).catch(() => '');
-      await target.loc.click({ timeout: 2000 });
-      await page.waitForTimeout(STATIC ? 150 : 350);
+      // Vorzustand lesen: ein per Default offenes Target (z. B. erstes FAQ-Item)
+      // wuerde der Klick schliessen und der ARIA-Assert faelschlich als Fail werten.
+      const preExpanded = await target.loc.getAttribute('aria-expanded').catch(() => null);
+      const alreadyOpen = preExpanded === 'true';
+      if (!alreadyOpen) {
+        await target.loc.click({ timeout: 2000 });
+        await page.waitForTimeout(STATIC ? 150 : 350);
+      }
       const a11yPre = await collectA11y(page, target.loc);
       const expanded = a11yPre.aria?.expanded;
       const detailsOpen = tag === 'summary'
@@ -544,6 +550,7 @@ async function autoStatePass(page, entry, slug, label, matrix) {
       await captureState(page, entry, slug, label, target, 'open-expanded', ['Enter', 'Escape'], { escape: 'Escape' });
       matrixPush(matrix, 'captured', {
         route: entry.route, viewport: label, target: target.targetId, state: 'open-expanded',
+        ...(alreadyOpen ? { note: 'default-open, ohne Klick erfasst' } : {}),
       });
       n++;
       if (expanded !== 'true' && !detailsOpen && tag !== 'summary') {
@@ -555,7 +562,7 @@ async function autoStatePass(page, entry, slug, label, matrix) {
       await page.keyboard.press('Escape').catch(() => {});
       await page.waitForTimeout(80);
       const still = await target.loc.getAttribute('aria-expanded').catch(() => null);
-      if (still === 'true') await target.loc.click({ timeout: 1000 }).catch(() => {});
+      if (still === 'true' && !alreadyOpen) await target.loc.click({ timeout: 1000 }).catch(() => {});
     } catch (e) {
       matrixPush(matrix, 'failed', {
         route: entry.route, target: target.targetId, state: 'open-expanded',
