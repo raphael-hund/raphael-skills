@@ -19,7 +19,9 @@ verletzt diesen Router. Nach Wahl dieses Router-Falls kann
 `node scripts/resource-access.mjs open "<Name>"` nimmt die Katalog-URL und liest
 die offizielle Site (Fetch, sonst Firecrawl). Erst dieser Öffnen-/Lesen-Schritt
 zählt als Nutzung; `show` oder ein URL-Dump allein nicht. Unbekannter Name =
-Exit 1, nicht raten. Nie die 160er-Liste in die Antwort kippen.
+Exit 1, nicht raten. Nie die 160er-Liste in die Antwort kippen. Tiefzugriff
+(Suche, Style-Seite, Registry, eine Komponente) über
+`scripts/inspiration.mjs`; Doku `references/inspirations-quellen.md`.
 
 ## Ergebnis: die Werkzeugtabelle (Pflichtartefakt)
 
@@ -140,8 +142,8 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 |---|---|
 | **Bedarf** | Referenz-Looks für Art Direction, nicht zum Kopieren von Layout/Assets |
 | **Loop** | `art-direction` (vor design-DNA) |
-| **Default** | Godly (Marketing/Awwwards-Look) **oder** Mobbin (App/Flows) **oder** Refero (UI-Patterns) — **eine** Quelle passend zum Brief. App/Flows: Mobbin zuerst. |
-| **Install/Use** | Erst MCP-Status: `/root/tools/raphael-mcp-ondemand.sh status`. Mobbin-MCP OFF → `raphael-chrome` oder AgentReach, 3–7 echte Screenshots/Notizen in `art-direction.md`. Nie ein Mobbin-Browse erfinden. **kein** npm |
+| **Default** | Godly (Marketing/Awwwards-Look) **oder** Mobbin (App/Flows) **oder** Refero (UI-Patterns) — **eine** Quelle passend zum Brief. App/Flows: Mobbin zuerst. Benannter Startpunkt für maschinenlesbare Design-Systeme: `styles.refero.design` (Unterseite des Katalogeintrags `Refero`, `resource-access.mjs open "Refero"`) — genau eine Referenz ziehen, nicht durchblättern. |
+| **Install/Use** | Erst MCP-Status: `/root/tools/raphael-mcp-ondemand.sh status`. Mobbin-MCP OFF → `raphael-chrome` oder AgentReach, 3–7 echte Screenshots/Notizen in `art-direction.md`. Nie ein Mobbin-Browse erfinden. Tiefzugriff: `node scripts/inspiration.mjs refero search "<query>"` / `refero get <styleId>` (DESIGN.md-Tokens zum Vergleich, nie 1:1) und `navbar list [typ]` / `navbar get <slug>` (Navigationsmuster für Sitemap/IA). **kein** npm |
 | **Alternativen** | Awwwards, Land-book, Lapa Ninja, SiteInspire, Page Flows, Screenlane (siehe Bibliothek §Inspiration) |
 | **Gate** | Lizenz/Urheber: nur Muster analysieren; keine Assets/Copy/Logos übernehmen (`web-clone-playbook.md` wenn Nachbau) |
 | **Nie** | Referenz-HTML clonen ohne Lizenz-Check; 20 Galerien gleichzeitig öffnen |
@@ -232,7 +234,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Hover, Enter/Exit, Shared-Layout, gestische UI |
 | **Loop** | `components` / `build` |
 | **Default** | 1) CSS/Tailwind transitions 2) vendorierte Datei aus `references/ui-components/` 3) Motion — Paket `motion`, Import `motion/react` — nur wenn CSS nicht reicht (`motion-doktrin.md`) |
-| **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`) |
+| **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`). Eine Fremdkomponente: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/` (Default-Variante TS-TW); Muster ohne Login-Code: `21st search <begriff>`. Danach Werkzeugtabelle. |
 | **Alternativen** | Magic UI, Motion Primitives, Aceternity, Animata — **eine** Komponente nach AgentReach-Lizenz/Wartungscheck, nicht das Starter-Kit |
 | **Gate** | `useReducedMotion()` oder CSS `prefers-reduced-motion`; keine Layout-Shift-Fallen; Lighthouse a11y |
 | **Nie** | `framer-motion`; Motion für jeden Button-Hover; drei Motion-Libraries parallel; JS-Animation ohne Reduced-Motion — gilt für **jede** Bibliothek (gsap, react-spring, animejs, Lottie), nicht nur für den Default; die globale CSS-Media-Query stoppt JS nicht |
@@ -246,7 +248,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Große Landing-Sektionen jenseits von Primitives |
 | **Loop** | `components` / `build` |
 | **Default** | Eigenes Tailwind-Markup nach `art-direction` + `landingpage-struktur.md`; shadcn-Blöcke nur als strukturelle Hilfe |
-| **Install/Use** | Kein Mega-Kit. Optional gezielt: shadcn blocks / einzelne Magic-UI-Section nach Prüfung |
+| **Install/Use** | Kein Mega-Kit. Optional gezielt: shadcn blocks / einzelne Magic-UI-Section nach Prüfung. Tiefzugriff: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/`; Muster: `21st search <kategorie\|begriff>` (Code hinter Login, nie raten). Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
 | **Alternativen** | React Bits, 21st.dev, Cult UI, Float UI, Preline — Inspiration oder **eine** geprüfte Section |
 | **Gate** | Design-DNA einhalten; Copy aus G2; Mobile-First; keine fremden Logos/Stock aus dem Demo |
 | **Nie** | ganze Block-Library committen; Demo-Copy/Images aus dem Kit lassen |

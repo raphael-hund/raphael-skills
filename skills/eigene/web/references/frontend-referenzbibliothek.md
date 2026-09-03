@@ -19,6 +19,12 @@ Install und ohne Netz. `open` nimmt die Katalog-URL und holt die offizielle Site
 Ohne diesen Öffnen-/Lesen-Schritt gilt die Site nicht als genutzt. URL-Dump allein
 zählt nicht.
 
+**Tiefzugriff:** Suche, Style-Seite, Registry-JSON und eine einzelne Komponente
+laufen über `node scripts/inspiration.mjs` (Refero Styles, Navbar Gallery,
+Magic UI, React Bits, 21st). Doku und Lizenzdeckel:
+`references/inspirations-quellen.md`. Das ersetzt weder `show`/`open` noch die
+Listen unten.
+
 Pro Projekt nur die kleinste sinnvolle Auswahl öffnen. Vor Übernahme: Lizenz,
 Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
 

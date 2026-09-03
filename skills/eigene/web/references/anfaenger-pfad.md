@@ -33,7 +33,7 @@ Widerspruch gewinnt immer das Rollen-Dokument.
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
 | **Kunden-Vorschau** (Default, solange Raphael nicht „Launch“ sagt) | `screenshot-kritik-loop.md` → Skill **design** → `landingpage-struktur.md` oder `sitemap-section-planung.md` → `scripts/preview-befund-klasse.mjs` | Seite sieht geil aus (Shots gelesen). Inhalt (Satz, Wort, Bild, Sektion, Reviews) und Domain parken. Blocker: Ablauf, Sitemap, Idee, Design. |
-| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
+| **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + bei Look-/Komponenten-Recherche `inspirations-quellen.md` (`scripts/inspiration.mjs`) + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
 | **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |
 | **Website-Kritik** | `/web` + `/orchestrate` → `kritik-matrix.md` → shot-sweep `--base` → PAGE/SITE/LENS-Leaves | PRUEFGEGEN.md existiert; Ledger vollständig; KRITIK-n.md nach Merge |
@@ -47,7 +47,7 @@ Widerspruch gewinnt immer das Rollen-Dokument.
 | **Referenzseite nachbauen** (URL) | `web-clone-playbook.md` **zuerst** (Lizenz!) → dann Clone-Scripts | Lizenz-Check schriftlich vor Code |
 | **Screenshot/Bild nachbauen** | `rebuild-from-image.md` → `bildgenerierung.md` nur für echte Assets | Pixel-Check 1440/768/390 |
 | **Bilder generieren** | `tool-usecase-router.md` #grafik-baum → nur bei `#bilder` → `bildgenerierung.md` | AVIF + `bilder-index.json` |
-| **Komponenten/Tools wählen** (oder vor jedem `npm i`) | `tool-usecase-router.md` → **Werkzeugtabelle** in `client-<name>/web/art-direction.md` (Spalten: Bedarf\|Werkzeug\|Befehl\|Gate\|Router-Anker\|geprüft-am) | `werkzeug-gate.mjs` Exit 0 — ohne Tabelle kein Install |
+| **Komponenten/Tools wählen** (oder vor jedem `npm i`) | `tool-usecase-router.md` → **Werkzeugtabelle** in `client-<name>/web/art-direction.md` (Spalten: Bedarf\|Werkzeug\|Befehl\|Gate\|Router-Anker\|geprüft-am); einzelne Fremdkomponente nur über `inspirations-quellen.md` | `werkzeug-gate.mjs` Exit 0 — ohne Tabelle kein Install |
 | **Motion-Komponente einbauen** | `motion-doktrin.md` → `ui-components/INDEX.md` | `motion/react`, `useReducedMotion` |
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
 | **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
@@ -224,4 +224,5 @@ und die geladenen Dateipfade. Fehlt das → Skill nicht befolgt.
 | Genau eine Ressource nach Router-Wahl | `scripts/resource-access.mjs show "<Name>"` = lokale Metadaten; **Pflicht danach:** `node scripts/resource-access.mjs open "<exakter Name>"` öffnet die Katalog-URL und liest die Site. URL-Dump allein zählt nicht als Nutzung. |
 | 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
 
+| Inspiration / einzelne Fremdkomponente holen | `references/inspirations-quellen.md` |
 Was ein Site-Build nie lädt: §4 oben und `references/load-graph.md`.
