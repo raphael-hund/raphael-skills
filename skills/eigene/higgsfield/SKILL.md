@@ -1,9 +1,12 @@
 ---
 name: higgsfield
-version: 0.1.0
+version: 0.2.0
 description: >
   Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus
-  Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. Trigger:
+  Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext.
+  v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec
+  als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten.
+  Trigger:
   "/higgsfield", "Higgsfield", "GPT Image", "gpt_image_2", "Freisteller",
   "Expand Image", "Outpaint", "Hintergrund entfernen", "Website-Bild",
   "Ads-Static Bild".
@@ -27,6 +30,7 @@ completion_criteria:
   - "higgsfield generate cost vor generate create. Ausgabe der Cost-Zeile im Lauf genannt"
   - "Ergebnis per Read angesehen. Danach bilder.mjs add mit typ, motiv, style, modell, refs, prompt, quelle. Deutscher Bildtext steht im Index-motiv oder daneben"
   - "Personen-Nahaufnahme nur mit echter Personen-Referenz (Kunde oder Stock-Gesicht). Soul, Video, 3D-App nicht genutzt"
+  - "Ads-Static: Raphael sieht Logo, Look und Onscreen-Text bevor der Job laeuft. gpt_image_2 mit --image Logo, --image Look, Prompt = JSON-Spec plus Text-Fidelity. Logo nie neu zeichnen. Pillow-Overlay Fail."
 ---
 
 # higgsfield — Bilder fuer Website und Ads
@@ -85,6 +89,7 @@ higgsfield generate create gpt_image_2 \
 ```
 
    Edit, Expand, Freisteller, Upscale: `references/ops.md`.
+   Ads-Static (Logo, Look, JSON-Spec, Text-Fidelity): `references/ops.md` Abschnitt Ads-Static.
 6. **Lesen.** Datei mit Read oeffnen. Kopf am Rand, Fake-Gesicht, falsches Motiv
    → neuer Job oder Raphael, kein stilles „passt schon“.
 7. **Index plus Text.** Sofort:
@@ -106,6 +111,7 @@ node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh.
 - Kamera-Saetze nur bei `foto`.
 - Soul, Video, 3D-App, Relight, Angles, Character-Swap nur auf Raphael-Wort.
 - Credits vor Create. Kundenvault nicht ganz hochladen.
+- Ads-Static: Logo als --image compositen, nie neu zeichnen. Text nur die Spec-Strings, Umlaute 1:1, kein ß. Pillow-Overlay auf Copy und Logo ist Fail.
 - Ship der Seite bleibt `visual-aaa`. Dieses Skill liefert das Asset.
 
 ## Abgrenzung
@@ -115,4 +121,5 @@ node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh.
 | Hero, Produkt, markige Illustration, 3D-Icon, Glas-Deko | ja | — |
 | CSS, SVG-Text, Lucide, unDraw | nein | `tool-usecase-router.md` |
 | Video / Soul | nein | eigener Auftrag |
+| Trust-/Marken-Logo (Google, ProvenExpert, TÜV) | nein — nie generieren | `web` Schritt 4: Brand-Kit-Beschaffung |
 | CLI-Params, Trim, Layer, AVIF-Details | Verweis | `bildgenerierung.md` |

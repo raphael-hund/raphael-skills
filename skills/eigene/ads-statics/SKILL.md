@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.9.0
+version: 2.10.0
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -16,8 +16,11 @@ description: >
   keine Bedingungen, kein Bundle-Beiwerk onscreen.
   v2.9.0 (Raphael 03.09.2026): Objektverkauf (Immobilie, Neubau, Produkt mit Preis)
   ist Produkt-Fakten-Preis-Button, keine Angle-Wahl; Abschnitt in teil-statics.md.
+  v2.10.0 (Raphael 03.09.2026): Bild mit GPT Image 2. Logo, Look und Text als
+  --image-Referenzen, JSON-Spec, Logo nie neu zeichnen. Pillow-Overlay verboten.
+  Referenzen Raphael zuerst zeigen, dann Higgsfield. Beleg: PROPFIN-Welle 1.
   Trigger: "Statics bauen", "Static-Briefs",
-  "Bildanzeigen", "Testwelle Statics", "S1-S8". Bild danach: Skill higgsfield.
+  "Bildanzeigen", "Testwelle Statics", "S1-S8".
 class: F
 scope: agency
 sensitivity: internal
@@ -31,7 +34,7 @@ loads:
   - references/wettbewerber/grigoletti-ch.md
   - references/wettbewerber/mario-de.md
 loads_external: ["/root/.claude/forbidden.md"]
-requires_skills: [ads@^2]
+requires_skills: [ads@^2, higgsfield@^0]
 completion_criteria:
   - "Teil Statics in ads/references/teil-statics.md gelesen und befolgt"
   - "copy-formeln.md und referenz-statics-index.md gelesen; Hook-, Callout- und Angle-ID stehen im Brief"
@@ -40,7 +43,7 @@ completion_criteria:
   - "Jede Onscreen-Zeile ist ein ganzer Satz; Hook UND Deal stehen auf der Ad; nur der ICP fühlt sich angesprochen; Hypothese steht im Brief. Objektverkauf: Fakten-Zeilen dürfen Aufzählung sein (Zimmer · m² · Preis), eine Botschaft je Welle, nur das Foto wechselt"
   - "copywriting/scripts/forbidden-check.py auf jedem Brief Exit 0"
   - "Klarheits-Regel: ohne Case-Zahl onscreen höchstens drei Aussagen (Zustand, Versprechen mit Frist, Null). Umsatzschwelle, Bundle-Bestandteile und Garantiebedingungen stehen nie auf der Karte."
-  - "Deliverable ist Text plus visuelle Idee je Karte (Onscreen, Primary, Szene, Stil-Chassis). Kein PNG, kein build.py, kein Layout-Skript im Skill-Output. Bild ist ein Folgeschritt."
+  - "Deliverable ist Text plus visuelle Idee je Karte, Raphael sieht Logo/Look/Text-Referenzen, dann Higgsfield gpt_image_2 mit Logo plus Look plus JSON-Spec. Pillow-Overlay und neu gezeichnetes Logo sind Fail."
 ---
 
 # ads-statics → ads Teil Statics
@@ -91,17 +94,21 @@ Preis, Verknappung klein, ein Button. Regel und Belege stehen in
 `../ads/references/teil-statics.md`, Abschnitt «Objektverkauf». Beispiel:
 `/root/clients/ak-omega/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
 
-## Deliverable (Raphael, 03.09.2026)
+## Deliverable (Raphael, 03.09.2026, Bild-Schritt 03.09. abends)
 
-Der Skill gibt **nur Text und visuelle Idee**. Je Karte:
+Je Karte zuerst Text und Idee, **dann das Bild**, nicht Pillow.
 
 1. Onscreen-Zeilen (Callout, Problem oder Hook, Deal, CTA), ganze Sätze, unter 35 Wörter.
 2. Primary Text, erster Absatz trägt allein.
-3. Visuelle Idee: Szene in zwei Sätzen (wer, wo, was in der Hand, Blick), plus ein Satz zur Bildquelle (Handy, Shooting, vorhandenes Kundenfoto) und zum Stil-Chassis (S1 bis S8).
+3. Visuelle Idee: Szene in zwei Sätzen, Bildquelle, Stil-Chassis (S1 bis S8).
 4. IDs: Style, Angle, Hook, Callout, Grounding-Referenz.
+5. **Referenzen Raphael zeigen**, bevor Higgsfield läuft: Logo-Datei, Look (Website-Screenshot oder Winner-Ad), Onscreen-Text wortgleich. Fehlt das Logo, nicht bauen.
+6. **Bild** über Skill higgsfield, Job `gpt_image_2`. Drei `--image`: (1) Logo, (2) Look, (3) Inhaltfoto oder Portrait. Prompt = JSON-Spec plus Text-Fidelity-Regel aus `higgsfield/references/ops.md` Abschnitt Ads-Static. Logo compositen, nie neu zeichnen. Umlaute 1:1, kein ß, kein ae/oe/ue.
+7. Ergebnis mit Read prüfen: Headline vollständig, Logo lesbar, Text = Spec. Fail → neuer Job, kein Pillow-Flicken.
 
-Nicht im Output: PNGs, Render-Skripte, Pixel-Koordinaten, Kontaktbögen. Wer ein Bild will, ruft danach higgsfield oder bucht ein Shooting.
-Beispiel im Kundenordner: `/root/clients/make/ads/statics/welle-4-branchen/TEXT-UND-IDEE.md`.
+Pillow, ImageMagick-Text und `build.py` sind für Onscreen-Copy und Markenlogo **Fail**. Beleg: PROPFIN-Welle 1 (`/root/clients/propfin/ads/creatives/`), Umiken-Karten v1 Headline «Umike» und Logo-Matsch (KRITIK-KARTEN.md).
+Beispiel Text: `/root/clients/make/ads/statics/welle-4-branchen/TEXT-UND-IDEE.md`.
+Beispiel Bild: `/root/clients/propfin/ads/creatives/feed/07-haus-zu-gross.png`.
 
 Der Skill lernt aus den Referenzen. Er schreibt nicht aus dem Gedächtnis.
 Ein Brief ohne gelesene Angle-Datei ist unbelegt und wird nicht ausgeliefert.

@@ -2,7 +2,7 @@
 
 Ein Brief = ein Angle × ein Style (S1–S8) bei Dienstleistung und Angebot.
 Bei Objektverkauf gilt der Abschnitt «Objektverkauf» unten: eine Botschaft, das Foto wechselt.
-Kein Bild hier erzeugen.
+Bild erst nach Text und nach gezeigten Referenzen, über higgsfield, nie Pillow.
 Style wählen **bevor** Copy.
 
 ## Pflicht vor dem Schreiben
@@ -119,9 +119,13 @@ Nicht auf die Karte: wer baut, seit wann, wie oft; Auswahl-Fragen; Lage-Dreiklä
 alles, was der Käufer erst nach «Was ist das, was kostet es» wissen will.
 Beispiel: `/root/clients/ak-omega/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
 
-## Bild
+## Bild (Raphael, 03.09.2026 abends)
 
-Verweis an Skill `higgsfield` (`/higgsfield`). Beweis-Kontexte nie KI-generiert.
+Text und Idee zuerst. Raphael sieht Logo, Look und Onscreen-Text. Dann Skill `higgsfield`,
+Job `gpt_image_2`: `--image` Logo, `--image` Look (Website oder Winner-Ad), `--image`
+Inhaltfoto. Prompt = JSON-Spec plus Text-Fidelity-Regel in `higgsfield/references/ops.md`
+(Ads-Static). Logo compositen, nie neu zeichnen. Pillow-Overlay auf Copy und Logo ist Fail.
+Beweis-Kontexte (Screens, Cases, echte Gesichter) nie KI-generiert.
 
 Ein Brief, ein Style. Ein Angle bei Dienstleistung, eine Botschaft bei Objektverkauf. Keine Stil-Mischung in einer Karte.
 
@@ -141,4 +145,4 @@ Ein Brief, ein Style. Ein Angle bei Dienstleistung, eine Botschaft bei Objektver
 - ICP-Filter: nur der ICP fühlt sich angesprochen (Schwelle, Rolle, Ort oder ICP-Rechnung)
 - keine interne Zählung auf dem Bild
 - forbidden-check Exit 0
-- kein Bild in diesem Teil erzeugen
+- Bild über higgsfield gpt_image_2 mit Logo, Look, Text-Spec; Pillow-Overlay Fail

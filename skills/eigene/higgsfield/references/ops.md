@@ -23,3 +23,48 @@ Nicht in diesem Skill: Soul, Soul-ID, Video, 3D-Render-App, Relight, Angles,
 Character-Swap. Nur wenn Raphael den Namen nennt.
 
 Auth bleibt Dauer-Config. `hf` auf dem VPS ist HuggingFace.
+
+## Ads-Static (Raphael, 03.09.2026)
+
+PROPFIN-Welle 1 hat gezeigt: GPT Image 2 setzt Logo, Look und Text in einem Job,
+wenn alle drei als Referenzen hochgeladen werden. Pillow-Overlay auf Copy und
+Logo ist Fail (Umiken-Karten v1: Headline «Umike», Logo-Matsch).
+
+**Vor dem Job Raphael zeigen:** Logo-Datei, Look (Website-Screenshot oder Winner-Ad),
+Onscreen-Text wortgleich. Fehlt das Logo, nicht bauen.
+
+**Job**
+
+```bash
+higgsfield generate create gpt_image_2 \
+  --prompt "<JSON-Spec plus TEXT RENDERING RULE unten>" \
+  --image ./logo.png \
+  --image ./look-website.jpg \
+  --image ./inhalt.jpg \
+  --aspect-ratio 1:1 --resolution 4k --quality high --wait
+```
+
+Reihenfolge der `--image`: (1) Logo, (2) Look, (3) Inhaltfoto oder Portrait.
+Fehlt Inhaltfoto: nur Logo und Look, Spec beschreibt die Szene.
+Aspect: Feed `1:1` oder `4:3`. Stories `9:16` oder `3:4`. Kein `4:5` (API lehnt ab).
+
+**JSON-Spec Pflichtfelder:** brand.colors, brand.logo_placement («composite the
+provided logo, NEVER redraw»), typography (eyebrow, headline, sub, cta), format
+(aspect, 1080x1080 oder 1080x1350), layout-Zonen mit exaktem Text, constraints
+(Swiss German, umlauts exactly, no ß, no ae/oe/ue, safe_zone inner 85 percent,
+no em-dashes, no invented labels).
+
+**TEXT RENDERING RULE** (immer ans Prompt-Ende):
+
+```
+TEXT RENDERING RULE: Render every piece of visible text EXACTLY as written,
+character for character. Keep German umlaut characters (ä ö ü Ä Ö Ü) intact
+and do NOT replace them with ae oe ue. No ß. Do not invent, translate, drop
+or alter any text. Composite the provided logo reference without redrawing it.
+```
+
+**Nach dem Job:** Datei mit Read öffnen. Headline vollständig? Logo das echte,
+nicht nachgezeichnet? Text = Spec? Fail → neuer Job, kein Pillow-Flicken.
+
+Beleg-Creatives: `/root/clients/propfin/ads/creatives/feed/07-haus-zu-gross.png`,
+`05-3-monate-wunschpreis-portrait.png`, `09-geerbt.png`.

@@ -1,6 +1,6 @@
 ---
 name: ads
-version: 2.7.5
+version: 2.7.6
 description: >
   Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video),
   dann ICP, Research, Video-Skript, Statics, Performance.
@@ -33,6 +33,7 @@ source: >
     Playbook zac-regan-startrunningads.md). Nicht mit Marc Evers vermischen.
   v2.7.5 (03.09.2026): Foreplay-Export mit --media im Teil Research, Bilder werden
   gelesen und wörtlich zitiert; Objektverkauf-Regel im Teil Statics.
+  v2.7.6 (03.09.2026): Statics-Bild mit GPT Image 2 (Logo, Look, JSON-Spec); Pillow-Overlay Fail.
 loads:
   - references/teil-strategie.md
   - references/teil-icp.md
