@@ -124,9 +124,9 @@ Zielgruppe validieren, dann Format.
 
 ## MAKE-Transfer (konkret)
 
-- Unser Offer ist schon Ergebnis-first (Platz 1 in 30 Tagen, schriftlich). Die
-  Statics müssen die Website als Beiwerk führen, nicht als Produkt. Genau der
-  Welle-3-Fehler war: «wir bauen Websites» als Opener.
+- Unser Offer ist Ergebnis-first (Platz 1 in 30 Tagen, schriftlich). Die
+  Statics führen die Website als Beiwerk, nicht als Produkt; «wir bauen
+  Websites» ist kein geeigneter Opener.
 - Evers' «kein Interpretationsspielraum» bestätigt den Zwei-Fragen-Test
   (was macht die Firma, was bringt der Klick) und ergänzt: was passiert NACH
   dem Eintrag. Der CTA sollte den nächsten Schritt nennen («wir melden uns

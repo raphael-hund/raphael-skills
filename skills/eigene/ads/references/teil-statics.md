@@ -146,3 +146,4 @@ Ein Brief, ein Style. Ein Angle bei Dienstleistung, eine Botschaft bei Objektver
 - keine interne Zählung auf dem Bild
 - forbidden-check Exit 0
 - Bild über higgsfield gpt_image_2 mit Logo, Look, Text-Spec; Pillow-Overlay Fail
+- Format: in 4:5 generiert, danach outpaint auf 9:16 (Raphael 04.09.2026). Direkt-9:16 Fail

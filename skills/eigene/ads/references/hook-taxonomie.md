@@ -42,6 +42,8 @@ Klicks **filtern**. Nie mit Selbstvorstellung starten: sofort das Problem des Pr
 
 - Hook aus echter Kundensprache (voc.md), nicht aus Marketing-Floskeln.
 - Jede Zahl im Hook: belegt (PROOF.md), sonst raus (claims-qa blockt).
+- Der Leser kennt Franken, Anfragen und Platz 1. Eine interne Liste
+  («13 von 87 Namen») stoppt den Daumen nicht. Sie verwirrt ihn.
 - Keine unterstellten persönlichen Merkmale (Meta personal attributes).
 - Stil-Gate über copywriting (Anti-Floskel, Orwell-DE) vor G2.
 

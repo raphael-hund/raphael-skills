@@ -7,7 +7,7 @@ Schaltung → perf-analyse → nächste Testwelle.
 
 ## Worker-Reuse
 
-Hooks/Skripte/Copy laufen über **denselben Sonnet-Worker je Kunde** (Regel 2), nicht neue
+Hooks/Skripte/Copy laufen über **denselben Kimi-Worker je Kunde** (Regel 2), nicht neue
 Session pro Hook. Der Worker trägt Brand-Voice + Dossier stabil im Cache-Prefix.
 
 ## Andromeda-Struktur (Stand: Meta-Update ~Mitte 2025 — bei Änderung prüfen)
@@ -63,7 +63,7 @@ Müll-Zielgruppen. Darum sauber tracken, bevor irgendetwas live geht.
 
 - **G1 (immer zuerst):** LLM-ismus-/Passiv-Detektor + Meta-Policy-Verbotsliste (deterministisch).
 - **G2:** Rubrik `evals/rubrics/ads.md`, Schwelle 0.7. Ship-kritisch = Panel aus 3 Familien
-  (Sonnet + Sol + Kimi), Median gegen Rubrik, >20 % Divergenz = Flag an Raphael.
+  (Grok + Sol + Kimi), Median gegen Rubrik, >20 % Divergenz = Flag an Raphael.
 - **claims-qa:** Block-Gate. Output-Zeilenformat siehe claims-verbote.md.
 - **G4 (Outcome):** echte CTR/CPL/CVR aus Datei-Export korrigieren Rubriken rückwirkend;
   "Judge liebte es, Markt floppte" → permanentes Anti-Beispiel in evals/anti/.
@@ -116,6 +116,11 @@ resettet die Lernphase; neue Ad danebenschalten statt editieren.
 Frequency <3,0, Cost-per-QL ≤TCPL seit 2+ Wochen, 3+ Ersatz-Ads bereit. Rate: +20 % alle 5 Tage,
 nie +30 % in einem Schritt (resettet Lernen). Rollback-Trigger: Cost-per-QL >1,5× TCPL nach einem
 Scale-Schritt → Budget sofort 20–30 % zurücknehmen, 2 Wochen stabilisieren.
+
+**Write-back ins Lern-Register (Pflicht nach jeder Auswertung):** Jede Kill/Keep/Scale-Entscheidung
+schreibt eine Zeile in `/root/clients/<slug>/ads/lern-register.md`: Datum, Ad, Befund mit Zahl,
+Lehre in einem Satz. Hypothesen aus den Briefs werden gegen den Terminpreis geprüft und als
+bestätigt oder tot markiert. Ohne Write-back lernt der Skill nicht aus eigenen Daten.
 
 **Lead-Formulare vs. Landingpage:** LP-Conversion ≥5 % → LP nutzen; <~2 % → Lead-Formular mit
 "Higher Intent"-Typ (Review-Schritt) + Pflichtfeld Arbeits-E-Mail (kann nicht aus dem Profil

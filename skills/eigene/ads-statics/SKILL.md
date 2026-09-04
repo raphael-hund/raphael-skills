@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.10.1
+version: 2.11.0
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -19,6 +19,8 @@ description: >
   v2.10.0 (Raphael 03.09.2026): Bild mit GPT Image 2. Logo, Look und Text als
   --image-Referenzen, JSON-Spec, Logo nie neu zeichnen. Pillow-Overlay verboten.
   Referenzen Raphael zuerst zeigen, dann Higgsfield. Beleg: PROPFIN-Welle 1.
+  v2.11.0 (Raphael 04.09.2026): jede Static wird in 4:5 generiert (Text komplett
+  im 4:5), danach per Outpaint auf 9:16 erweitert. Nie direkt 9:16, nie 1:1.
   Trigger: "Statics bauen", "Static-Briefs",
   "Bildanzeigen", "Testwelle Statics", "S1-S8".
 class: F
@@ -43,6 +45,7 @@ completion_criteria:
   - "Jede Onscreen-Zeile ist ein ganzer Satz; Hook UND Deal stehen auf der Ad; nur der ICP fühlt sich angesprochen; Hypothese steht im Brief. Objektverkauf: Fakten-Zeilen dürfen Aufzählung sein (Zimmer · m² · Preis), eine Botschaft je Welle, nur das Foto wechselt"
   - "copywriting/scripts/forbidden-check.py auf jedem Brief Exit 0"
   - "Klarheits-Regel: ohne Case-Zahl onscreen höchstens drei Aussagen (Zustand, Versprechen mit Frist, Null). Umsatzschwelle, Bundle-Bestandteile und Garantiebedingungen stehen nie auf der Karte."
+  - "Format: 4:5 generieren, dann outpaint 9:16. Direkt-9:16 ist Fail."
   - "Deliverable ist Text plus visuelle Idee je Karte, Raphael sieht Logo/Look/Text-Referenzen, dann Higgsfield gpt_image_2 mit Logo plus Look plus JSON-Spec. Pillow-Overlay und neu gezeichnetes Logo sind Fail."
 ---
 

@@ -6,6 +6,8 @@ description: >
   Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext.
   v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec
   als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten.
+  v0.3.0 (Raphael 04.09.2026): Statics immer 4:5 generieren, dann outpaint
+  auf 9:16. Nie direkt 9:16.
   Trigger:
   "/higgsfield", "Higgsfield", "GPT Image", "gpt_image_2", "Freisteller",
   "Expand Image", "Outpaint", "Hintergrund entfernen", "Website-Bild",
@@ -30,6 +32,7 @@ completion_criteria:
   - "higgsfield generate cost vor generate create. Ausgabe der Cost-Zeile im Lauf genannt"
   - "Ergebnis per Read angesehen. Danach bilder.mjs add mit typ, motiv, style, modell, refs, prompt, quelle. Deutscher Bildtext steht im Index-motiv oder daneben"
   - "Personen-Nahaufnahme nur mit echter Personen-Referenz (Kunde oder Stock-Gesicht). Soul, Video, 3D-App nicht genutzt"
+  - "Ads-Static: generiert in 4:5 (Text komplett im 4:5), danach outpaint 9:16. Direkt-9:16 oder 1:1 ist Fail."
   - "Ads-Static: Raphael sieht Logo, Look und Onscreen-Text bevor der Job laeuft. gpt_image_2 mit --image Logo, --image Look, Prompt = JSON-Spec plus Text-Fidelity. Logo nie neu zeichnen. Pillow-Overlay Fail."
 ---
 
