@@ -26,7 +26,7 @@ Klammern.
 | 21st.dev Inspiration + Code | `node scripts/design-mcp.mjs 21st search "<query>"` → `21st get <id> --out <dir>` | Token aus `~/.config/21st/auth.json` oder `API_KEY_21ST`; einzelne Komponente nach Lizenzprüfung |
 | Öffentliche Galerien | `node scripts/inspiration.mjs <quelle> list\|search\|get`; danach `shot <url> --out <dir>` | öffentlich; Look analysieren, keine Layouts/Assets kopieren |
 | Komponenten-Registries | `node scripts/komponenten.mjs libs` → `search <@namespace\|name-aus-libs> "<query>"` (z.B. `@magicui`, `@react-bits`, `"Magic UI"`, `hyperui`; Query = ein bis zwei Wörter aus dem Komponentennamen, alle müssen vorkommen; `exit 1` heißt „kein Name passt", dann kürzer suchen) → `view <@namespace/name>` → `get <@namespace/name> --out <verzeichnis>` | eine Komponente; `get` druckt `lizenz prüfen`, wenn das Item keine Lizenz trägt: dann LICENSE des Repos/Docs lesen und in der Werkzeugtabelle nennen, sonst kein Einbau |
-| Pexels | `pexels-pp-cli photos curated --per-page 6 --json` (keyless); `photos search --query "<query>"` erst mit `PEXELS_API_KEY`; gewählte `src.large`-URL mit `curl -L` lokal speichern | Key fehlt im VPS (Login-Tabelle unten). **Foto-Default bleibt Shutterstock über `scripts/stock.mjs`**; Pexels nur ohne Shutterstock-Passung; nie Kundenbeweis |
+| Pexels | `pexels-pp-cli photos curated --per-page 6 --json` (keyless); `photos search --query "<query>" --per-page 6 --json` (Key `PEXELS_API_KEY` aus `api-keys.env`, seit 04.09.2026 vorhanden; Leaf: `set -a; . /root/.secrets/api-keys.env; set +a`); gewählte `src.large`-URL mit `curl -L` lokal speichern | **Foto-Default bleibt Shutterstock über `scripts/stock.mjs`**; Pexels nur ohne Shutterstock-Passung; nie Kundenbeweis |
 | Poly Haven | `polyhaven-pp-cli assets --type textures\|hdris\|models --categories <wert> --json` → `info <id>` → `files <id>`; ausgewählte URL mit `curl -L` lokal speichern | öffentlich, CC0 |
 | Iconify | `iconify-pp-cli icons --query "<query>" --prefixes <familien> --json` → `svg <prefix> <name> --deliver file:<pfad>`; Treffer ist Substring-Match: Icon-Namen lesen (`tooth` in `lucide` liefert nur `bluetooth`), bei Fehltreffer erst ohne `--prefixes` schauen, welche Familie das Motiv führt, dann bei der einen Produktfamilie bleiben oder das Motiv anders benennen | öffentlich; Lizenz über `collections` prüfen |
 | Fontshare | `fontshare-pp-cli fonts list --search "<query>" --limit 20 --json` → `fonts get <slug>` | öffentlich; Lizenzfeld prüfen; Suche liefert derzeit auch ungefilterten Katalog |
@@ -125,7 +125,6 @@ A11y und Router-Anker prüfen.
 | 21st Token fehlt/ist ungültig | `21st login` oder Key auf 21st.dev/mcp; Agent startet den Login-Flow | `design-mcp.mjs 21st …` |
 | Mobbin 401 | Agent führt `python3 /root/tools/auth-relays/mobbin-refresh.py --force` aus | `design-mcp.mjs mobbin …` |
 | Shutterstock 401 | Agent startet den Auth-Relay-Login im VPS-Chrome | `stock.mjs` |
-| Pexels-Suche 401 | Raphael holt einmal einen Key auf https://www.pexels.com/onboarding/ und legt ihn als `PEXELS_API_KEY=` in `/root/.secrets/api-keys.env` ab | `pexels-pp-cli photos search` |
 | Adobe Fonts | Kit-ID in `adobe-fonts-kit.mjs` | Embed |
 | Mobbin-Browse außerhalb des Clients | VPS-Chrome / AgentReach, echte Shots | Notizen in `art-direction.md` |
 

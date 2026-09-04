@@ -14,7 +14,7 @@ Für Raphaels Quellenliste (Galerien, UI-/Komponenten-Bibliotheken, Effekte, Ass
   - Doku: `zugangskarte.md` (Arbeitsverzeichnis, Schlüssel statt Domains, jede Quelle der Liste hat einen Weg, Login-Tabelle um Pexels-Key), `modus-inspiration.md` (Befehlsfolgen, Abschnitt „Komponenten ziehen", Lizenz-Regel), `tool-usecase-router.md` (Install/Use-Zellen), `SKILL.md` 0.33.1.
   - Abnahme durch frische Opus-Instanz (nur Doku, Zahnarzt-Zürich-Minilauf): 16 Aufrufe liefen; 6 Lücken gefunden und danach behoben (Basispfad, Galerie-Schlüssel, navbar-Typ, search-Token, Foto-Weg, Lizenz-Regel). Zweite Abnahme (frische Opus-Instanz): 19 Aufrufe liefen, FAIL wegen 6 Doku-/Verhaltenslücken (Docs-URLs nur mit --json, Mehrwort-Suche, Float UI/Shoogle tot, stock-Query, Iconify-Substring, PATH); alle sechs danach behoben (Commit nach `f2129b4`), dritte Abnahme nicht gelaufen.
 - OFFEN:
-  - `PEXELS_API_KEY` fehlt (Raphael: https://www.pexels.com/onboarding/ → `api-keys.env`); `photos curated` läuft keyless, `photos search` nicht.
+  - ~~PEXELS_API_KEY~~ seit 04.09.2026 nachmittags in `api-keys.env`; `photos search` live belegt (5264 Treffer „dentist").
   - Judge-Notizen ohne Fix: kinetics-`get` schreibt teils <200 B (Keyframes stehen auf der Seite); loadmore-`get` mit unbekanntem Slug → exit 3 statt 1; iconify `--out` nur als `--deliver file:`; Fontshare `list --search` filtert nicht (get-by-slug geht).
   - Cult UI / Motion Primitives: Registry hinter Vercel-Checkpoint (429) → Vendor/Docs.
   - MAKE Plan-Session (aus der Vormittagssession) weiterhin offen.
