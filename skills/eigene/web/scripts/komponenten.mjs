@@ -10,6 +10,7 @@ import { spawnSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
 const UA = 'raphael-web-komponenten/1.0';
+const BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128.0 Safari/537.36';
 const FETCH_TIMEOUT_MS = 45_000;
 const JINA = 'https://r.jina.ai/';
 const SHADCN_CLI = '/root/.npm/_npx/d66c5096c7023bfb/node_modules/shadcn/dist/index.js';
@@ -28,6 +29,8 @@ MCP/design-mcp für 21st.dev nutzen; HTML/npm-Dokumentation und Vendor-INDEX mit
 Registry-Lizenzen gelten nur mit Item-, package.json- oder LICENSE-Beleg, sonst „prüfen“.
 Exit: 0 ok · 1 nichts gefunden/Quellfehler · 2 Bedienfehler · 3 HOST_UNAVAILABLE.`;
 
+// Registries hinter Vercel-Checkpoint (429 auch via shadcn-CLI, gemessen 04.09.2026): in libs markiert, search meldet exit 3 mit Ersatzweg.
+const BLOCKED_REGISTRIES = Object.freeze({ '@cult-ui': 'Vercel-Checkpoint; Ersatz: resource-access.mjs open "Cult UI" oder Vendor-Snapshot anlegen', '@motion-primitives': 'Vercel-Checkpoint; Ersatz: npm i motion + resource-access.mjs open "Motion Primitives"', '@shoogle': 'Vercel-Checkpoint; Ersatz: open:https://shoogle.dev' });
 const EXTRA_LIBS = Object.freeze([
   { name: '21st.dev', aliases: ['21st'], route: '21st', way: 'node scripts/design-mcp.mjs 21st search|get …', license: 'prüfen', use: 'einzelne Community-Komponenten' },
   { name: 'shadcn/ui', aliases: ['shadcn'], route: 'vendor', way: 'vendor:shadcn-ui', license: 'MIT', use: 'Default-Primitives und Blocks' },
@@ -55,7 +58,7 @@ const EXTRA_LIBS = Object.freeze([
   { name: 'Shoogle', route: 'open', way: 'open:https://shoogle.dev (JS-App ohne statische Docs; im Browser ansehen)', license: 'prüfen', use: 'Komponenten' },
   { name: 'Float UI', route: 'html', way: 'html:https://floatui.com/components', license: 'prüfen', use: 'Tailwind-HTML-Sections' },
   { name: 'HyperUI', route: 'html', way: 'html:https://www.hyperui.dev/components/marketing/', license: 'MIT', use: 'Tailwind-HTML-Komponenten' },
-  { name: 'Meraki UI', route: 'html', way: 'html:https://merakiui.com/components', license: 'MIT', use: 'Tailwind-HTML-Komponenten' },
+  { name: 'Meraki UI', route: 'html', way: 'html:https://merakiui.com/components/application-ui/buttons', license: 'MIT', use: 'Tailwind-HTML-Komponenten' },
   { name: 'Preline UI', route: 'html', way: 'html:https://preline.co/docs/index.html; npm:preline', license: 'MIT', use: 'Tailwind-Komponenten' },
   { name: 'daisyUI', route: 'html', way: 'html:https://daisyui.com/components/; npm:daisyui', license: 'MIT', use: 'Tailwind-Komponenten' },
   { name: 'Mantine', route: 'npm', way: 'npm:@mantine/core; html:https://mantine.dev/core/package/', license: 'MIT', use: 'React-Komponenten außerhalb des Default-Stacks' },
@@ -63,20 +66,20 @@ const EXTRA_LIBS = Object.freeze([
   { name: 'Vanta.js', route: 'npm', way: 'npm:vanta; html:https://www.vantajs.com/', license: 'MIT', use: 'WebGL-Hintergründe nur nach Router-Budget' },
   { name: 'Three.js', route: 'npm', way: 'npm:three; html:https://threejs.org/docs/', license: 'MIT', use: '3D/WebGL nur nach Router-Budget' },
   { name: 'OGL', route: 'npm', way: 'npm:ogl; html:https://oframe.github.io/ogl/', license: 'MIT', use: 'WebGL nur nach Router-Budget' },
-  { name: 'PixiJS', route: 'npm', way: 'npm:pixi.js; html:https://pixijs.com/8.x/guides', license: 'MIT', use: '2D-WebGL nur nach Router-Budget' },
+  { name: 'PixiJS', route: 'npm', way: 'npm:pixi.js; html:https://pixijs.com/8.x/guides/', license: 'MIT', use: '2D-WebGL nur nach Router-Budget' },
   { name: 'React Three Fiber', route: 'npm', way: 'npm:@react-three/fiber; html:https://r3f.docs.pmnd.rs/getting-started/introduction', license: 'MIT', use: 'React/Three nur nach Router-Budget' },
   { name: 'Theatre.js', route: 'npm', way: 'npm:@theatre/core; html:https://www.theatrejs.com/docs/latest', license: 'Apache-2.0', use: 'Motion-Sequenzen nur nach Router-Budget' },
   { name: 'GSAP', route: 'npm', way: 'npm:gsap; html:https://gsap.com/docs/v3/', license: 'prüfen', use: 'Animation nur nach Router-Budget' },
-  { name: 'React Native Reusables', route: 'npm', way: 'npm:@react-native-reusables/cli; html:https://reactnativereusables.com', license: 'prüfen', use: 'React-Native-Primitives' },
+  { name: 'React Native Reusables', route: 'npm', way: 'npm:@react-native-reusables/cli; html:https://reactnativereusables.com/docs/components', license: 'prüfen', use: 'React-Native-Primitives' },
   { name: 'gluestack UI', route: 'npm', way: 'npm:@gluestack-ui/core; html:https://gluestack.io/ui/docs/components/all-components', license: 'prüfen', use: 'React-Native-Komponenten' },
-  { name: 'Tamagui', aliases: ['Tamagui UI'], route: 'npm', way: 'npm:tamagui; html:https://tamagui.dev/ui/intro', license: 'MIT', use: 'Universal/RN-Komponenten' },
-  { name: 'React Native Paper', route: 'npm', way: 'npm:react-native-paper; html:https://reactnativepaper.com/components', license: 'MIT', use: 'Material RN-Komponenten' },
-  { name: 'React Native UI Lib', aliases: ['RN UI Lib'], route: 'npm', way: 'npm:react-native-ui-lib; html:https://wix.github.io/react-native-ui-lib/docs/components', license: 'MIT', use: 'RN-Komponenten' },
-  { name: 'React Native Elements', route: 'npm', way: 'npm:@rneui/themed; html:https://reactnativeelements.com/docs/components/overview', license: 'MIT', use: 'RN-Komponenten' },
-  { name: 'UI Kitten', route: 'npm', way: 'npm:@ui-kitten/components; html:https://akveo.github.io/react-native-ui-kitten/docs/components/components-overview', license: 'MIT', use: 'Eva/RN-Komponenten' },
+  { name: 'Tamagui', aliases: ['Tamagui UI'], route: 'npm', way: 'npm:tamagui; html:https://tamagui.dev/ui/button', license: 'MIT', use: 'Universal/RN-Komponenten' },
+  { name: 'React Native Paper', route: 'npm', way: 'npm:react-native-paper; html:https://callstack.github.io/react-native-paper/docs/components/Button/Button', license: 'MIT', use: 'Material RN-Komponenten' },
+  { name: 'React Native UI Lib', aliases: ['RN UI Lib'], route: 'npm', way: 'npm:react-native-ui-lib; html:https://wix.github.io/react-native-ui-lib/docs/category/basic', license: 'MIT', use: 'RN-Komponenten' },
+  { name: 'React Native Elements', route: 'npm', way: 'npm:@rneui/themed; html:https://reactnativeelements.com/docs/components/button', license: 'MIT', use: 'RN-Komponenten' },
+  { name: 'UI Kitten', route: 'npm', way: 'npm:@ui-kitten/components; html:https://akveo.github.io/react-native-ui-kitten/docs/components/overview', license: 'MIT', use: 'Eva/RN-Komponenten' },
   { name: 'Composables UI', route: 'html', way: 'html:https://composables.com/ui', license: 'prüfen', use: 'Mobile UI' },
   { name: 'Jetpack Compose Samples', route: 'html', way: 'html:https://github.com/android/compose-samples', license: 'Apache-2.0', use: 'Android-Compose-Beispiele' },
-  { name: 'GetWidget', route: 'npm', way: 'npm:getwidget; html:https://docs.getwidget.dev', license: 'prüfen', use: 'Flutter-Widgets' },
+  { name: 'GetWidget', route: 'html', way: 'html:https://docs.getwidget.dev; pub:https://pub.dev/packages/getwidget (Flutter, kein npm)', license: 'MIT', use: 'Flutter-Widgets' },
 ]);
 
 function failUsage(message) {
@@ -193,6 +196,7 @@ export function parseDocsComponents(markdown, docsUrl = '') {
     if (!title || !href || /^(github|twitter|discord|login|sign in|home)$/i.test(title)) continue;
     try { if (base) href = new URL(href, base).href; } catch { continue; }
     if (!/^https?:\/\//i.test(href)) continue;
+    if (/\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(href)) continue;
     let pathname = '';
     try { pathname = new URL(href).pathname; } catch { continue; }
     if (!/(component|block|section|ui|docs)/i.test(pathname) && !/(button|card|hero|navbar|dialog|input|menu|table|form)/i.test(title)) continue;
@@ -317,7 +321,7 @@ function readLicenseEvidence(dir) {
 }
 
 function libsPayload(registries, vendors) {
-  const registryRows = registries.map((row) => ({ name: row.name, way: `registry:${row.name}`, license: 'prüfen', use: row.description || 'shadcn-kompatible Registry', url: row.url, status: row.status || undefined }));
+  const registryRows = registries.map((row) => ({ name: row.name, way: BLOCKED_REGISTRIES[row.name] ? `registry:${row.name} (BLOCKIERT: ${BLOCKED_REGISTRIES[row.name]})` : `registry:${row.name}`, license: 'prüfen', use: row.description || 'shadcn-kompatible Registry', url: row.url, status: row.status || undefined }));
   const byFolder = new Map(vendors.map((row) => [row.folder, row]));
   const extras = EXTRA_LIBS.flatMap((row) => {
     if (row.route !== 'vendor') return [row];
@@ -372,6 +376,7 @@ function runShadcnSearch(namespace, query) {
 }
 
 async function searchRegistry(registry, query) {
+  if (BLOCKED_REGISTRIES[registry.name]) throw hostUnavailable(registry.url.replace('/{name}.json', ''), BLOCKED_REGISTRIES[registry.name]);
   let unavailable = 0;
   for (const url of registryBaseUrls(registry.url)) {
     try {
@@ -392,7 +397,12 @@ async function searchDocs(lib, query) {
   if (!docsUrl) failUsage(`${lib.name} hat keinen HTML-Dokumentationsweg`);
   let targetUrl = docsUrl;
   if (/hyperui\.dev$/i.test(new URL(docsUrl).hostname) && /^[a-z0-9-]+$/i.test(query)) {
-    targetUrl = new URL(query.replace(/^\/+|\/+$/g, ''), `${docsUrl.replace(/\/+$/, '')}/`).href;
+    // HyperUI: Query als Slug probieren (pricing → /components/marketing/pricing); bei 404 den Index durchsuchen.
+    const slugUrl = new URL(query.replace(/^\/+|\/+$/g, ''), `${docsUrl.replace(/\/+$/, '')}/`).href;
+    try {
+      const head = await fetch(slugUrl, { method: 'GET', headers: { 'user-agent': BROWSER_UA }, signal: AbortSignal.timeout(15000) });
+      if (head.ok) targetUrl = slugUrl;
+    } catch { /* Index-Seite bleibt Ziel */ }
   }
   let rows = [];
   let channel = `${JINA}${targetUrl}`;
@@ -422,7 +432,9 @@ export function parseHtmlAnchors(html, docsUrl) {
     try { href = new URL(match[1], base).href; } catch { continue; }
     if (new URL(href).hostname !== base.hostname) continue;
     const pathname = new URL(href).pathname;
-    if (!/(component|block|section|ui|docs)/i.test(pathname) || pathname.replace(/\/$/, '') === base.pathname.replace(/\/$/, '')) continue;
+    if (/\.(png|jpe?g|webp|gif|svg|avif)$/i.test(pathname)) continue;
+    const hostDocs = /^docs\./i.test(base.hostname);
+    if ((!hostDocs && !/(component|block|section|ui|docs|gf-)/i.test(pathname)) || pathname.replace(/\/$/, '') === base.pathname.replace(/\/$/, '')) continue;
     const title = match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() || path.basename(pathname);
     const key = href.replace(/\/$/, '');
     if (seen.has(key)) continue;

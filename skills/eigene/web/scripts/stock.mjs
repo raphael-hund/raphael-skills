@@ -33,7 +33,7 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 const BILDER = path.join(HIER, 'bilder.mjs');
 
 const HELP = `Usage:
-  node stock.mjs search "<query>" [--limit 10] [--page 1] [--orientation horizontal|vertical|square] [--people <n>] [--no-people] [--color <hex>] [--type photo|illustration|vector] [--safe] [--json]
+  node stock.mjs search "<query>" [--limit 10] [--page 1] [--orientation horizontal|vertical|square] [--people <n>] [--no-people] [--color <hex>] [--type photo|illustration|vector|all] (Default photo) [--safe] [--json]
   node stock.mjs show <id> [--json]
   node stock.mjs preview <id> [--out <verzeichnis>]
   node stock.mjs license <id> [--size huge|medium|small] [--subscription <id>] [--search-id <sid>] [--editorial] [--out <verzeichnis>] [--sandbox] [--json]
@@ -463,12 +463,12 @@ async function cmdSearch(query, flags) {
     queryParams.people_model_released = true;
   }
   if (flags.color) queryParams.color = String(flags.color).replace(/^#/, '');
-  if (flags.type) {
-    if (!['photo', 'illustration', 'vector'].includes(flags.type)) {
-      die('--type muss photo|illustration|vector sein');
-    }
-    queryParams.image_type = flags.type;
+  // Foto-Default (zugangskarte.md): ohne --type nur Fotos, sonst mischt Shutterstock Vektoren und Illustrationen hinein.
+  const imageType = flags.type || 'photo';
+  if (!['photo', 'illustration', 'vector', 'all'].includes(imageType)) {
+    die('--type muss photo|illustration|vector|all sein');
   }
+  if (imageType !== 'all') queryParams.image_type = imageType;
   if (flags.safe) queryParams.safe = true;
 
   const raw = await apiFetch(token, apiBase(flags), 'GET', '/images/search', { query: queryParams });

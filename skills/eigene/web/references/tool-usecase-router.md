@@ -370,7 +370,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | PBR-Texturen, einfache 3D-Props |
 | **Loop** | `build` (nur mit 3D/Shader-Bedarf) |
 | **Default** | ambientCG oder Poly Haven (Lizenz pro Asset lesen) |
-| **Install/Use** | Poly Haven: `polyhaven-pp-cli assets --type textures\|hdris\|models --categories <wert> --json` → `info <id>` → `files <id>`; nur die gewählte Datei-URL mit `curl -L` lokal speichern (kein Download-`--out`). Andere Quellen: `resource-access.mjs open`, lokal versionieren, Lizenz/Attribution ins Projekt-Log. |
+| **Install/Use** | Poly Haven: `polyhaven-pp-cli assets --type textures\|hdris\|models --categories <wert> --json` → `info <id>` → `files <id>`; nur die gewählte Datei-URL mit `curl -L` lokal speichern (kein Download-`--out`). ambientCG: `curl -s 'https://ambientcg.com/api/v2/full_json?q=<begriff>&type=Material&limit=5&include=downloadData'` → `downloadLink` per `curl -L` (CC0). Andere Quellen: `resource-access.mjs open "<exakter Name>"`, lokal versionieren, Lizenz/Attribution ins Projekt-Log. |
 | **Alternativen** | Texturelabs, Kenney, Quaternius, FreePBR |
 | **Gate** | Lizenz/Attribution; Auflösung/LOD; keine Scraping-Pakete |
 | **Nie** | ganze Texture-Packs ungenutzt committen |

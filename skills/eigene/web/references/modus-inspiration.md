@@ -95,7 +95,9 @@ Router-Anker` in `art-direction.md` ergänzen. Der Anker ist je Einsatz
 | Design-MCP | `design-mcp.mjs` | Refero/Mobbin nur Inspiration; 21st einzeln |
 | Komponenten | `komponenten.mjs` | eine Komponente; Lizenz und Abhängigkeiten vor Einbau prüfen |
 | Galerien | `inspiration.mjs` | max. drei URLs, Shot-Leaf liest Dateien |
-| Flache REST-APIs | `*-pp-cli` aus `zugangskarte.md` | Asset lokal, Lizenz notieren |
+| Flache REST-APIs | `*-pp-cli` aus `zugangskarte.md` (Pexels, Poly Haven, Iconify, Fontshare, Codrops) | Asset lokal, Lizenz notieren |
+| Katalog-Quellen (Generatoren, Shader, Texturen, Illustrations-Kits, Foundries) | `resource-access.mjs open "<exakter Name>"` | Bot-Walls laufen über den Firecrawl-Kanal; `show` ist nur der lokale Katalog, kein Live-Beleg |
+| Fotos / Icons / Fonts im Look | Shutterstock `stock.mjs` → Pexels; `iconify-pp-cli` (Prefix-Tabelle in `zugangskarte.md`); Adobe Fonts `adobe-fonts-kit.mjs`, Fontshare | nur als Referenz im Lock, Einbau erst im Bau |
 
 ## Subagenten
 
@@ -113,7 +115,7 @@ heißt `gelesen-von`.
 
 Erster Lauf 04.09.2026 (MAKE): 4 Recherche-Leaves parallel, 4 Shot-Leaves,
 Lock + Gegenprüfung + Fix, 11 Agenten, 400k Tokens, 23 Minuten. Ergebnis
-`client-make/web/art-direction.md`.
+`art-direction.md` im Client-Ordner von MAKE (`/root/clients/client-make/web/`).
 
 ## Nie
 

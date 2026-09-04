@@ -67,7 +67,7 @@ const PACKAGE_IDENTITIES = Object.freeze({
   "React Three Fiber": { ecosystem: "npm", type: "package", package: "@react-three/fiber", requiredRuntimePeers: ["react", "three"], optionalCompanions: ["@react-three/drei"], source: "official React Three Fiber package metadata" },
   "Theatre.js": { ecosystem: "npm", type: "package", package: "@theatre/core", requiredRuntimePeers: [], optionalCompanions: ["@theatre/studio"], source: "official Theatre.js packages" },
   GSAP: { ecosystem: "npm", type: "package", package: "gsap", requiredRuntimePeers: [], optionalCompanions: [], source: "official GSAP package" },
-  tsParticles: { ecosystem: "npm", type: "package", package: "tsparticles", requiredRuntimePeers: [], optionalCompanions: [], source: "official tsParticles package" },
+  tsParticles: { ecosystem: "npm", type: "package", package: "@tsparticles/react", requiredRuntimePeers: [], optionalCompanions: [], source: "official tsParticles package" },
   "Vanta.js": { ecosystem: "npm", type: "package", package: "vanta", requiredRuntimePeers: ["three"], optionalCompanions: [], source: "official Vanta package and site" },
   LottieFiles: { ecosystem: "npm", type: "package", package: "@lottiefiles/dotlottie-react", requiredRuntimePeers: ["react"], optionalCompanions: [], source: "official LottieFiles React runtime" },
   Spline: { ecosystem: "npm", type: "package", package: "@splinetool/react-spline", requiredRuntimePeers: ["@splinetool/runtime", "react", "react-dom"], optionalCompanions: ["next"], source: "official Spline React package metadata" },
@@ -315,10 +315,22 @@ async function readViaFetch(url) {
   return { channel: "fetch", httpStatus: res.status, finalUrl: res.url || url, body };
 }
 
+function firecrawlEnv() {
+  // Keyless laeuft in das Free-Tier-Ratenlimit (8 Bot-Wall-Sites am 04.09.2026 nur mit Key lesbar).
+  if (process.env.FIRECRAWL_API_KEY) return process.env;
+  try {
+    const line = readFileSync("/root/.secrets/api-keys.env", "utf8").split("\n")
+      .map((l) => l.replace(/^export\s+/, "")).find((l) => l.startsWith("FIRECRAWL_API_KEY="));
+    if (line) return { ...process.env, FIRECRAWL_API_KEY: line.slice("FIRECRAWL_API_KEY=".length).trim().replace(/^["']|["']$/g, "") };
+  } catch { /* ohne Key weiter */ }
+  return process.env;
+}
+
 function readViaFirecrawl(url) {
   const run = spawnSync("firecrawl", ["scrape", url, "-f", "markdown", "--only-main-content"], {
     encoding: "utf8",
     timeout: 60000,
+    env: firecrawlEnv(),
   });
   if (run.error) throw new Error(`firecrawl missing: ${run.error.message}`);
   if (run.status !== 0) {
