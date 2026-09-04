@@ -11,7 +11,7 @@ PNG/`shot` gilt erst nach **Read** durch ein Kritik-Leaf.
 
 **Arbeitsverzeichnis:** alle `node scripts/<x>.mjs`-Aufrufe hier gelten mit
 `cd /root/raphael-skills/skills/eigene/web` (oder absolutem Skriptpfad).
-`*-pp-cli` liegen in `~/.local/bin`. Erstes Argument von `inspiration.mjs`
+`*-pp-cli` liegen in `~/.local/bin` (Leaf-Shell: `export PATH=$HOME/.local/bin:$PATH`). Erstes Argument von `inspiration.mjs`
 und `komponenten.mjs search` ist der **Schlüssel**, nicht die Domain:
 `--help` bzw. `komponenten.mjs libs` (Spalte `name`, Registry-Namespaces
 mit `@`) nennen ihn; Domain → Schlüssel steht in der Quellenwege-Tabelle in
@@ -25,13 +25,13 @@ Klammern.
 | Mobbin Screens/Flows/Sections | `node scripts/design-mcp.mjs mobbin screens\|flows\|sections "<query>" --platform web\|ios --out <dir>` | OAuth aus `.credentials.json`; Bilder nur als Dateien, nur Inspiration |
 | 21st.dev Inspiration + Code | `node scripts/design-mcp.mjs 21st search "<query>"` → `21st get <id> --out <dir>` | Token aus `~/.config/21st/auth.json` oder `API_KEY_21ST`; einzelne Komponente nach Lizenzprüfung |
 | Öffentliche Galerien | `node scripts/inspiration.mjs <quelle> list\|search\|get`; danach `shot <url> --out <dir>` | öffentlich; Look analysieren, keine Layouts/Assets kopieren |
-| Komponenten-Registries | `node scripts/komponenten.mjs libs` → `search <@namespace\|name-aus-libs> "<query>"` (z.B. `@magicui`, `@react-bits`, `"Magic UI"`, `hyperui`) → `view <@namespace/name>` → `get <@namespace/name> --out <verzeichnis>` | eine Komponente; `get` druckt `lizenz prüfen`, wenn das Item keine Lizenz trägt: dann LICENSE des Repos/Docs lesen und in der Werkzeugtabelle nennen, sonst kein Einbau |
+| Komponenten-Registries | `node scripts/komponenten.mjs libs` → `search <@namespace\|name-aus-libs> "<query>"` (z.B. `@magicui`, `@react-bits`, `"Magic UI"`, `hyperui`; Query = ein bis zwei Wörter aus dem Komponentennamen, alle müssen vorkommen; `exit 1` heißt „kein Name passt", dann kürzer suchen) → `view <@namespace/name>` → `get <@namespace/name> --out <verzeichnis>` | eine Komponente; `get` druckt `lizenz prüfen`, wenn das Item keine Lizenz trägt: dann LICENSE des Repos/Docs lesen und in der Werkzeugtabelle nennen, sonst kein Einbau |
 | Pexels | `pexels-pp-cli photos curated --per-page 6 --json` (keyless); `photos search --query "<query>"` erst mit `PEXELS_API_KEY`; gewählte `src.large`-URL mit `curl -L` lokal speichern | Key fehlt im VPS (Login-Tabelle unten). **Foto-Default bleibt Shutterstock über `scripts/stock.mjs`**; Pexels nur ohne Shutterstock-Passung; nie Kundenbeweis |
 | Poly Haven | `polyhaven-pp-cli assets --type textures\|hdris\|models --categories <wert> --json` → `info <id>` → `files <id>`; ausgewählte URL mit `curl -L` lokal speichern | öffentlich, CC0 |
-| Iconify | `iconify-pp-cli icons --query "<query>" --prefixes <familien> --json` → `svg <prefix> <name> --deliver file:<pfad>` | öffentlich; Lizenz über `collections` prüfen |
+| Iconify | `iconify-pp-cli icons --query "<query>" --prefixes <familien> --json` → `svg <prefix> <name> --deliver file:<pfad>`; Treffer ist Substring-Match: Icon-Namen lesen (`tooth` in `lucide` liefert nur `bluetooth`), bei Fehltreffer erst ohne `--prefixes` schauen, welche Familie das Motiv führt, dann bei der einen Produktfamilie bleiben oder das Motiv anders benennen | öffentlich; Lizenz über `collections` prüfen |
 | Fontshare | `fontshare-pp-cli fonts list --search "<query>" --limit 20 --json` → `fonts get <slug>` | öffentlich; Lizenzfeld prüfen; Suche liefert derzeit auch ungefilterten Katalog |
 | Codrops | `codrops-pp-cli posts list --search "<query>" --per-page 10 --json` → `posts get <id>` | öffentlich; Inspiration/Recherche, Code nur nach Lizenzprüfung |
-| Shutterstock | `scripts/stock.mjs` (`search` → `preview` → `license` → `add`) | Token in `api-keys.env`; Standardlizenz dokumentieren |
+| Shutterstock | `scripts/stock.mjs` (`search` → `preview` → `license` → `add`); englische Query mit ein bis zwei Motivwörtern (`dentist`, `dental practice`), keine Ortsnamen: `exit 1` = zu eng, breiter suchen | Token in `api-keys.env`; Standardlizenz dokumentieren |
 
 Status und Hilfe: jedes oben genannte Werkzeug mit `--help`; MCP-Token erneuern:
 `/root/tools/auth-relays/README.md`. Mobbin bei 401:
@@ -88,7 +88,8 @@ A11y und Router-Anker prüfen.
 | shadcn.io, Ruixen UI | `komponenten.mjs libs` → `search`; Registry-Treffer über `view`/`get`, Docs-Treffer vor Übernahme öffnen und Lizenz prüfen |
 | Untitled UI React | `npx untitledui@latest add`; Login bei Bedarf |
 | Park UI | `@park-ui/cli`/Panda nach offizieller Doku |
-| Hover.dev (`hover.dev`), Animata (`animata`), Shoogle (`shoogle`), Float UI (`"Float UI"`), HyperUI (`hyperui`), Meraki UI (`"Meraki UI"`) | `komponenten.mjs search <name> "<query>"` liest die Docs-Seite und listet Treffer-URLs; genau einen Treffer öffnen, Code an der Quelle kopieren, Lizenz prüfen |
+| Hover.dev (`hover.dev`), Animata (`animata`), Float UI (`"Float UI"`), HyperUI (`hyperui`), Meraki UI (`"Meraki UI"`) | `komponenten.mjs search <name> "<query>"` liest die Docs-Seite und listet Treffer-URLs in der Spalte `ziel`; genau einen Treffer öffnen, Code an der Quelle kopieren, Lizenz prüfen |
+| Shoogle | JS-App ohne statische Docs: `resource-access.mjs open` / VPS-Chrome; kein Skript-Weg |
 | Preline UI, daisyUI | offizielles npm-Paket; Docs für eine Komponente |
 | Ruixen UI, Park UI, Untitled UI React, Hover.dev | kein erfundener Registry-Code; bei Login/Checkpoint offen melden |
 | tsParticles, Vanta.js, Three.js, OGL | offizielles npm-Paket, nur mit Router-Budget |

@@ -40,7 +40,10 @@ Ohne Read der Shots = nicht gesehen. Ohne Lock = nicht fertig.
 3. **App/Flows, im Recherche-Leaf.**
    `node scripts/design-mcp.mjs mobbin screens|flows|sections "<query>"
    --platform web|ios --out <dir> --json`. Nach Screen-Inhalt suchen, nicht
-   nach Stimmungswörtern. Dateien und IDs plus eine DNA-Zeile zurückgeben;
+   nach Stimmungswörtern. Treffer sind Screens fremder Produkte (SaaS-Booking,
+   nicht Praxen): nach dem Screen-Element suchen (`appointment booking
+   calendar`, `pricing table`), Branchenwörter weglassen; passt nichts,
+   `refero screens` nehmen. Dateien und IDs plus eine DNA-Zeile zurückgeben;
    Bilddateien nicht in den Parent-Kontext laden.
 4. **21st-Inspiration, optional im Recherche-Leaf.**
    `node scripts/design-mcp.mjs 21st search "<query>" --json` → höchstens
@@ -74,9 +77,11 @@ node scripts/komponenten.mjs get <@namespace/name> --out src/components/vendor/<
 ```
 
 `search` nimmt einen Registry-Namespace (`@magicui`, `@react-bits`, `@aceternity`,
-`@shadcnblocks`, …) oder einen Namen aus `libs` (`"Magic UI"`, `hyperui`).
+`@shadcnblocks`, …) oder einen Namen aus `libs` (`"Magic UI"`, `hyperui`). Die
+Query sind ein bis zwei Wörter aus dem Komponentennamen; alle müssen
+vorkommen, `exit 1` heißt „kein Name passt" (kürzer suchen, andere Registry).
 Docs-Bibliotheken (HyperUI, Float UI, Meraki, Hover, Animata) liefern nur
-Treffer-URLs: Code an der Quelle kopieren. Druckt `get` `lizenz prüfen`, gilt:
+Treffer-URLs in der Spalte `ziel`: Code an der Quelle kopieren. Druckt `get` `lizenz prüfen`, gilt:
 LICENSE des Repos oder der Docs lesen und in der Werkzeugtabelle nennen; ohne
 Beleg kein Einbau.
 

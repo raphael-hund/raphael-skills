@@ -52,7 +52,7 @@ const EXTRA_LIBS = Object.freeze([
   { name: 'Park UI', route: 'html', way: 'html:https://park-ui.com/docs/components/accordion', license: 'prüfen', use: 'Panda-Komponenten' },
   { name: 'Hover.dev', route: 'html', way: 'html:https://www.hover.dev/components', license: 'prüfen', use: 'animierte React-Komponenten' },
   { name: 'Animata', route: 'html', way: 'html:https://animata.design/docs', license: 'prüfen', use: 'Copy-paste Motion-Komponenten' },
-  { name: 'Shoogle', route: 'html', way: 'html:https://shoogle.dev/components', license: 'prüfen', use: 'Komponenten' },
+  { name: 'Shoogle', route: 'open', way: 'open:https://shoogle.dev (JS-App ohne statische Docs; im Browser ansehen)', license: 'prüfen', use: 'Komponenten' },
   { name: 'Float UI', route: 'html', way: 'html:https://floatui.com/components', license: 'prüfen', use: 'Tailwind-HTML-Sections' },
   { name: 'HyperUI', route: 'html', way: 'html:https://www.hyperui.dev/components/marketing/', license: 'MIT', use: 'Tailwind-HTML-Komponenten' },
   { name: 'Meraki UI', route: 'html', way: 'html:https://merakiui.com/components', license: 'MIT', use: 'Tailwind-HTML-Komponenten' },
@@ -394,8 +394,42 @@ async function searchDocs(lib, query) {
   if (/hyperui\.dev$/i.test(new URL(docsUrl).hostname) && /^[a-z0-9-]+$/i.test(query)) {
     targetUrl = new URL(query.replace(/^\/+|\/+$/g, ''), `${docsUrl.replace(/\/+$/, '')}/`).href;
   }
-  const body = await fetchText(`${JINA}${targetUrl}`, 'text/markdown, text/plain, */*');
-  return { rows: parseDocsComponents(body, targetUrl), channel: `${JINA}${targetUrl}` };
+  let rows = [];
+  let channel = `${JINA}${targetUrl}`;
+  try {
+    const body = await fetchText(channel, 'text/markdown, text/plain, */*');
+    rows = parseDocsComponents(body, targetUrl);
+  } catch (error) {
+    if (error?.code !== 'HOST_UNAVAILABLE') throw error;
+  }
+  if (rows.length < 3) {
+    // Jina liefert bei manchen Docs (Float UI, HyperUI-Index) nur Fließtext ohne Links: rohes HTML lesen.
+    const html = await fetchText(targetUrl, 'text/html, */*');
+    const fromHtml = parseHtmlAnchors(html, targetUrl);
+    if (fromHtml.length > rows.length) { rows = fromHtml; channel = targetUrl; }
+  }
+  return { rows, channel };
+}
+
+export function parseHtmlAnchors(html, docsUrl) {
+  const rows = [];
+  const seen = new Set();
+  let base;
+  try { base = new URL(docsUrl); } catch { return rows; }
+  const re = /<a\b[^>]*href=["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  for (const match of String(html || '').matchAll(re)) {
+    let href;
+    try { href = new URL(match[1], base).href; } catch { continue; }
+    if (new URL(href).hostname !== base.hostname) continue;
+    const pathname = new URL(href).pathname;
+    if (!/(component|block|section|ui|docs)/i.test(pathname) || pathname.replace(/\/$/, '') === base.pathname.replace(/\/$/, '')) continue;
+    const title = match[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() || path.basename(pathname);
+    const key = href.replace(/\/$/, '');
+    if (seen.has(key)) continue;
+    seen.add(key);
+    rows.push({ name: title, title, url: href });
+  }
+  return rows;
 }
 
 function recursiveJsonFiles(root, max = 4000) {
@@ -531,11 +565,16 @@ async function cmdSearch(flags, rest) {
     else if (lib.route === 'html' || lib.route === 'npm') result = await searchDocs(lib, query);
     else failUsage(`${lib.name}: kein Suchweg definiert`);
   }
-  const needle = query.toLowerCase();
-  const rows = result.rows.filter((row) => `${row.name} ${row.title} ${row.description || ''} ${row.url || ''}`.toLowerCase().includes(needle));
+  // Mehrwort-Query: jedes Wort muss vorkommen (Reihenfolge egal); "hero section" trifft so auch "Hero Section Dark".
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+  const rows = result.rows.filter((row) => {
+    const hay = `${row.name} ${row.title} ${row.description || ''} ${row.url || ''}`.toLowerCase();
+    return words.every((w) => hay.includes(w));
+  });
   if (!rows.length) noResults(flags);
   const payload = rows.map((row) => ({ ...row, source: sourceName, channel: result.channel }));
-  emit(flags, payload, table(payload, ['target', 'title', 'description'], ['ziel', 'titel', 'beschreibung']));
+  const plain = payload.map((row) => ({ ...row, target: row.target || row.url || '' }));
+  emit(flags, payload, table(plain, ['target', 'title', 'description'], ['ziel', 'titel', 'beschreibung']));
 }
 
 async function cmdView(flags, rest) {
