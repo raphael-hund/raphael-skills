@@ -33,7 +33,9 @@ Ohne Read der Shots = nicht gesehen. Ohne Lock = nicht fertig.
    Flows. Regeln: nicht eine Referenz kopieren, nicht zur Mitte mitteln,
    Token-Rollen nicht umdeuten. Details: `inspirations-quellen.md` §0.
 3. **App/Flows:** Mobbin-MCP (`search_screens` / `search_flows`), Queries
-   nach dem, was auf dem Screen steht — nicht nach Stimmungswörtern.
+   nach dem, was auf dem Screen steht — nicht nach Stimmungswörtern. Beide
+   Tools liefern Preview-Bilder inline und `search_flows` sprengt 25k Tokens:
+   nur ein Leaf ruft sie auf und gibt Screen-IDs plus eine DNA-Zeile zurück.
 4. **Komponenten-Inspiration (optional):** 21st-MCP `search` → bis zu
    **drei** `get_component` (Builder-Plan, unbegrenzt; `get_usage` nur bei
    401/429 als Diagnose). Übernahme in den Bau nur über
