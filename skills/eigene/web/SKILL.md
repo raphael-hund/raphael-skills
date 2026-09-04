@@ -16,11 +16,11 @@ description: >
   "Website planen", "Website-Plan", "Landingpage planen",
   "Website-Kritik", "Website kritisieren", "kompletter Website-Plan".
 metadata:
-  raphael-version: "0.33.1"
+  raphael-version: "0.34.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: '["references/rolle-plan.md", "references/rolle-kritik.md", "references/rolle-bau.md", "references/rolle-launch.md", "references/kritik-matrix.md", "references/anfaenger-pfad.md", "references/stil-regeln.md", "references/muster-bibliothek/INDEX.md", "references/load-graph.md", "references/loop2-ablauf.md", "references/planner-executor-protokoll.md", "references/sitemap-section-planung.md", "references/qa-faecher.md", "references/landingpage-struktur.md", "references/informationsarchitektur.md", "references/web-clone-playbook.md", "references/rebuild-from-image.md", "references/bildgenerierung.md", "references/stock-bilder.md", "references/ui-components/INDEX.md", "references/motion-doktrin.md", "references/ui-layouts-catalog.md", "references/cro-diagnose.md", "references/experiment-programm.md", "references/conversion-elemente.md", "references/code-qualitaets-checkliste.md", "references/security-audit-playbook.md", "references/domain-safe-browsing-checkliste.md", "references/readonly-db-rolle.md", "references/design-systeme-vergleich.md", "references/radix-shadcn-tailwind-stack.md", "references/remotion-produktionsweg.md", "references/screenshot-kritik-loop.md", "references/tool-usecase-router.md", "references/frontend-referenzbibliothek.md", "references/inspirations-quellen.md", "references/modus-inspiration.md", "references/zugangskarte.md", "references/lexlin-design-prinzipien.md", "references/damien-design-methodik.md", "references/agentur-rubrik.md", "references/agent-roster.md", "references/run-evidence-contract.md", "references/templates/PRUEFGEGEN-template.md", "references/templates/statistics-page-template.html"]'
+  raphael-loads: '["references/rolle-plan.md", "references/rolle-kritik.md", "references/rolle-bau.md", "references/rolle-launch.md", "references/fold-duell.md", "references/kritik-matrix.md", "references/anfaenger-pfad.md", "references/stil-regeln.md", "references/muster-bibliothek/INDEX.md", "references/load-graph.md", "references/loop2-ablauf.md", "references/planner-executor-protokoll.md", "references/sitemap-section-planung.md", "references/landingpage-struktur.md", "references/qa-faecher.md", "references/agentur-rubrik.md", "references/tool-usecase-router.md", "references/modus-inspiration.md", "references/bildgenerierung.md", "references/screenshot-kritik-loop.md", "references/varianten-picker.md", "references/agent-roster.md", "references/run-evidence-contract.md", "references/templates/PRUEFGEGEN-template.md", "references/_archiv/INDEX.md"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","seo@^0","visual-aaa@^1","web-anti-slop@^0"]'
   raphael-completion-criteria: '["Rolle in einem Satz benannt (Plan|Kritik|Bau|Launch), genau ein Rollen-Dokument aus der Rollen-Tabelle geladen und vor dem ersten Edit die Auftrag-Zeile aus references/anfaenger-pfad.md 1 benannt — nur die dort gelisteten Dateien, nie die ganze loads-Liste", "session-gate.mjs mit --rolle und --client am Sessionstart gelaufen; Exit 2 heisst zurueck an die Vorsession, nicht weiterbauen", "Drei Phasen Plan/Kritik/Bau in einem Chat, Zustand auf Platte; Kritik-Flotte nach kritik-matrix.md samt Profil und drei Ausgaengen; PRUEFGEGEN.md vor Kritik; ohne KRITIK-n.md kein Bau", "Parent duenn: kein CSS/TSX-Edit, kein PNG-Read im Parent; jedes PNG liest ein Kritik-Leaf, Parent fuehrt nur das Shot-Ledger (pfad | viewport | gelesen-von | verdict) in STATUS.md", "Bau-Phase startet im ersten Turn einen Dynamic Workflow; Copy schreibt ein eigener Copy-Leaf (Profil: rolle-bau.md) nach einem Briefing aus wiki/absprachen.md UND DECISIONS.md, der Integrator baut sie unveraendert ein; /cost-Zeile mit Datum steht in STATUS.md", "Kunden-Vorschau blockt nur an Ablauf/Sitemap/Idee/Design; Inhalt und Domain parken als content-park/ops-park bzw. FAKT-GATE (scripts/preview-befund-klasse.mjs), nie als biggest_gap", "Vor dem ersten Sweep Build-Frische pruefen (find src -newer dist/index.html = 0) oder frisch bauen; Kritik-Auftrag traegt ACTUAL_BUILDER_FAMILY (human bei Bestandscode); Leaf-Bildlisten als Datei, nie Pfade im Prompt; jeder Leaf hat ein Zeitbudget mit StructuredOutput-Pflicht", "Ohne frischen shot-sweep --base nach einem Fix = nicht geprueft; Kritik-Befund lebt nur nach der Merge-Regel aus kritik-matrix.md: zwei unabhaengige Leaves, oder eine Linse mit deterministischem Gate-Beleg (SEO onpage-check.mjs, Copy G0/G1, Trust PROOF.md)", "Launch nur mit allen Gates aus references/rolle-launch.md gruen und Raphaels Signatur plus Deploy-Egress-Gate; Launch-Details werden dort geprueft, nicht hier"]'
 ---
@@ -56,7 +56,8 @@ Sag die Rolle in einem Satz an, lade **genau ein** Dokument, arbeite dort weiter
 | Rolle | Chips | Pflicht-Load | Fertig heißt |
 |---|---|---|---|
 | **Inspiration** | nur `/web` | `references/modus-inspiration.md` | Reference-Lock + Shot-Ledger in `art-direction.md`, kein Code |
-| **Plan** | nur `/web` | `references/rolle-plan.md` | `PLAN.md` + `PRUEFGEGEN.md` stehen, Copy-Briefing drin |
+| **Plan** | nur `/web` | `references/rolle-plan.md` | `PLAN.md` + `PRUEFGEGEN.md` stehen, Copy-Briefing drin, eine Art-Direction je Kunde aufgelöst, Fold-Duell-Zeilen bei Neuaufbau |
+| **Fold-Duell** (Welle 0 bei Neuaufbau/Redesign) | `/web` + `/orchestrate` | `references/fold-duell.md` | Raphael hat drei Folds gesehen und gewählt (`DECISIONS.md`); erst dann Welle 1 |
 | **Kritik** | `/web` + `/orchestrate` | `references/rolle-kritik.md` | `KRITIK-n.md` mit überlebender Fixliste + Shot-Ledger |
 | **Bau** | `/web` + `/orchestrate` | `references/rolle-bau.md` | Fixliste umgesetzt, Re-Sweep grün, `STATUS.md` aktuell |
 | **Launch** | wie Bau | `references/rolle-launch.md` | alle Launch-Gates grün, Raphaels Signatur liegt vor |
@@ -75,6 +76,11 @@ Bist du unsicher, welche Rolle: der Handoff-Prompt sagt es. Fehlt er, ist es
 Plan.
 
 ## Rote Linien (universell, gelten in jeder Rolle)
+
+- **Raphael sieht den Look, bevor Routen gebaut werden.** Bei Neuaufbau, Redesign oder «Look von null» ist Welle 0 das Fold-Duell (`references/fold-duell.md`): drei Fold-Richtungen, ein Montage-Bild im Eingang, seine Wahl in `DECISIONS.md`. Erstes Bild ≤30 Minuten nach Auftrag. Design-System und Routen warten. (MAKE 04.09.2026: 96 Minuten und 15 Leaves bis zum ersten Bild, dann «von null».)
+- **Referenzen sind Bilder, nicht Prosa.** Raphaels Referenzbilder und die Referenz-Folds gehen als `BILDLISTE.txt` an jeden Builder- und Judge-Leaf; Berichte tragen je Bild «gesehen:». Der Judge fragt blind «besser Build oder besser Referenz?» je Achse; «Referenz besser» auf Visual = FAIL.
+- **Kunden-`DESIGN.md` und Raphaels Referenz schlagen `stil-regeln.md`.** Regeln aus Handwerk-Cases (S2, S3, S4, S8-Fonts, S14) sind im Sektor `agency-dark`/`clone-parity` Hinweis, nicht Sperre. Bei Widerspruch steht die Auflösung als Zeile in `brand/DESIGN.md`.
+- **Komponenten vor Eigenbau.** Glow-Card, Bento, Carousel, Connector/Beam, Ticker, Marquee, Spotlight zuerst über `scripts/komponenten.mjs` (Magic UI, Aceternity, React Bits, 21st); Eigenbau nur mit Suchbeleg im Bericht.
 
 - **Jedes Bau-Paket läuft durch die Qualitätsschleife** (`orchestrate/references/qualitaetsschleife.md`): G1 deterministisch (`detect.mjs`, `scan-ai-slop.mjs`, `verify-*.mjs`, axe) → Judge anderer Familie mit Score je Dimension und VETO-Frage → unter Schwelle zurück an denselben Builder (≤3 Notizen) → max 3 Runden → `escalate`. Raphael sieht nur PASS oder `escalate`, nie Zwischenstände.
 - **Builder-Wahl:** `fable-builder` für Substanz, Integration und harte Fixes (Qualität vor Kosten, max zwei parallel), `opus-builder` für Breite; Copy nur `sol-builder`. Vor dem Fan-out `orchestrate/scripts/preflight.sh <worktree>`.
@@ -197,6 +203,9 @@ wird): `references/anfaenger-pfad.md` §8.
 
 ## Gotchas (kurz)
 
+- **`session-gate.mjs --client`** nimmt jeden Handoff-Ordner (`client-<name>/web/handoff` oder `<kunde>/website/<lauf>/handoff`); eine Art-Direction je Kunde liegt in `<kunde>/brand/DESIGN.md`.
+- **Referenzen mit ≤1 Nutzung** liegen unter `references/_archiv/` (Index dort); nicht in den Ladepfad zurückholen, ohne Nutzungsbeleg.
+
 - **Dev-Server nur über `raphael-preview start --cwd <dir> --port <n>`** (`/root/raphael-command-center/ops/bin/raphael-preview`); `shot-sweep` liest `--base` seit 04.09. aus `.ai/preview-<port>.json`. Nie `npx next start` plus `sleep` plus `curl` von Hand (Audit: 2806 Curl-Polls in 266 Sessions).
 - **`shot-sweep` ohne `--base` und ohne Preview-State** → Exit 2. Nie ohne echte Dev-URL, nie `file://`.
 - **Design-G1** nur `node …/design/scripts/detect.mjs`, nie `npx impeccable detect`.
@@ -222,8 +231,8 @@ Session-Gate hängen an `evals/run-preview-vs-launch-check.mjs`.
 Die beiden Referenz-Zuläufe haben je ein eigenes Gate:
 `evals/run-kanon-pipeline-check.mjs` bewacht den Weg von `/root/eingang` über
 `scripts/eingang-url-watch.mjs` in eine Case-Datei samt
-`references/quellen-ledger.md`; `evals/run-x-bookmark-pipeline-check.mjs` den
-Weg von `scripts/x-bookmarks-pull.mjs` in `references/x-bookmarks-ledger.md`.
+`references/_archiv/quellen-ledger.md`; `evals/run-x-bookmark-pipeline-check.mjs` den
+Weg von `scripts/x-bookmarks-pull.mjs` in `references/_archiv/x-bookmarks-ledger.md`.
 Website-Kandidaten aus den Bookmarks sammelt
 `references/muster-bibliothek/kandidaten.md` — ein Kandidat ist kein Case und
 kein Urteil.

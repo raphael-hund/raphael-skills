@@ -13,7 +13,7 @@ const SCRIPTS = path.join(WEB, 'scripts');
 const WATCH = path.join(SCRIPTS, 'eingang-url-watch.mjs');
 const BATCH = path.join(SCRIPTS, 'stamp-batch.mjs');
 const VIDEO = path.join(SCRIPTS, 'video-vorfilter.mjs');
-const QUELLEN = path.join(WEB, 'references', 'quellen-ledger.md');
+const QUELLEN = path.join(WEB, 'references', '_archiv', 'quellen-ledger.md');
 let checks = 0;
 
 function run(script, args = [], options = {}) {

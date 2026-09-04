@@ -15,7 +15,7 @@ Rohnotiz stehen. `t.co`-Kürzel bleiben unaufgelöst, und es wird keine
 Site-URL erfunden, wenn die Notiz nur einen X-Artikel verlinkt.
 
 Quelle je Zeile: `/root/raphael-brain/raw/x-bookmarks/<ID>.auswertung.md`.
-Status je ID: `../x-bookmarks-ledger.md`.
+Status je ID: `../_archiv/x-bookmarks-ledger.md`.
 
 ## Stand 02.09.2026
 

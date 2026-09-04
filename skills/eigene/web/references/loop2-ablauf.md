@@ -5,9 +5,17 @@
 
 ## Reihenfolge
 
-strategy → sitemap → copy → art-direction (design) → components → build → shot-sweep →
+strategy → sitemap → copy → **fold-duell (Welle 0, Raphael wählt den Look)** →
+art-direction (design, fixiert die gewählte Richtung als Tokens) → components →
+build → shot-sweep →
 qa-faecher/G1 → visual-aaa/ship/v2 → run-evidence `validate --ready` →
 Launch (Signatur) → cro-learn.
+
+Fold-Duell (`fold-duell.md`) ist bei Neuaufbau/Redesign Pflicht und läuft **vor**
+der Art-Direction: die Art-Direction schreibt die gewählte Richtung als Tokens
+fest, sie erfindet den Look nicht. Parallel zum Duell nur SEO-Map, Copy, Assets.
+Gate: `session-gate.mjs --rolle fold-duell` (PLAN.md-Abschnitt) und
+`--rolle bau` (GO-Zeile «Fold-Duell» in DECISIONS.md).
 
 ## strategy — Unterschritt „Meaning-Capture-Artefakt"
 

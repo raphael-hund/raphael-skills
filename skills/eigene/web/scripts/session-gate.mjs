@@ -20,9 +20,9 @@ const TEMPLATE = path.join(
   "templates",
   "PRUEFGEGEN-template.md",
 );
-const ROLLEN = new Set(["plan", "kritik", "bau"]);
+const ROLLEN = new Set(["plan", "kritik", "fold-duell", "bau"]);
 const USAGE =
-  "usage: node session-gate.mjs --rolle plan|kritik|bau --client <pfad>";
+  "usage: node session-gate.mjs --rolle plan|kritik|fold-duell|bau --client <handoff-ordner>  (z.B. /root/clients/client-<name>/web/handoff oder /root/clients/<kunde>/website/<lauf>/handoff)";
 
 function usage() {
   console.error(USAGE);
@@ -205,11 +205,74 @@ function befundZeilen(roh) {
     .filter((z) => z.replace(/^(?:[-*+]|\d+\.|#{1,6}|\|)\s*/, "").trim().length >= MIN_ZEICHEN_JE_BEFUND);
 }
 
+function foldDuellGewaehlt(client) {
+  // Neuaufbau/Redesign: Raphaels Wahl steht als GO-Zeile mit «Fold-Duell» in DECISIONS.md
+  // (im Handoff-Ordner oder eine Ebene darueber).
+  for (const kandidat of [path.join(client, "DECISIONS.md"), path.join(client, "..", "DECISIONS.md")]) {
+    if (!istEchteDatei(kandidat)) continue;
+    const roh = fs.readFileSync(kandidat, "utf8");
+    // Festes Format statt Textheuristik (Skill web, DECISIONS.md): Listen- oder Tabellenzeile,
+    // Praefix aus Datum und Autor, dann GO als ERSTES Wort des Entscheidungsfelds, dann «Fold-Duell».
+    //   - 2026-09-04 · Raphael · GO: Fold-Duell Richtung b
+    //   | 2026-09-04 | Raphael | GO | Fold-Duell Richtung b |
+    // Alles vor GO im Entscheidungsfeld («noch nicht GO», «NO GO», «kein GO») oeffnet nicht.
+    const gewaehlt = roh.split("\n").some((z) => {
+      const t = z.trim();
+      if (!/^(?:[-*+]\s|\|)/.test(t)) return false;
+      const felder = t.replace(/^(?:[-*+]\s+|\|\s*)/, "").replace(/\|\s*$/, "").split(/\s*[·|]\s*/);
+      const idx = felder.findIndex((f) => /^GO\b/.test(f.trim()));
+      if (idx < 0 || idx > 2) return false; // GO ist Feld 1 (ohne Praefix), 2 oder 3 (nach Datum, Autor)
+      const rest = felder.slice(idx).join(" ");
+      return /^GO\s*:?\s*Fold-Duell/i.test(rest.trim()) || /^GO\s*:?\s*$/.test(felder[idx].trim()) && /Fold-Duell/i.test(felder.slice(idx + 1).join(" "));
+    });
+    if (gewaehlt) return kandidat;
+  }
+  return null;
+}
+
+const FOLD_RICHTUNGEN_MIN = 3;
+
+function foldDuellZeilen(client) {
+  // Abschnitt «## Fold-Duell» in PLAN.md; zaehlt Tabellen-/Listenzeilen mit mindestens drei Feldern (slug | Achse | Referenzbilder | Copy-Quelle).
+  const plan = path.join(client, "PLAN.md");
+  if (!istEchteDatei(plan)) return -1;
+  const roh = fs.readFileSync(plan, "utf8");
+  // Abschnitt endet an der naechsten Ueberschrift oder am Dateiende (JS kennt kein \Z).
+  const m = roh.match(/^##+\s+Fold-Duell[^\n]*\n([\s\S]*?)(?=^##+\s|$(?![\s\S]))/m);
+  if (!m) return -1;
+  return m[1].split("\n").filter((z) => {
+    const t = z.trim();
+    if (!/^\|/.test(t) && !/^[-*+]\s/.test(t)) return false;
+    if (/^\|?\s*-{3,}/.test(t) || /slug\s*\|\s*Achse/i.test(t)) return false; // Trennzeile, Kopfzeile
+    return t.split("|").filter((f) => f.trim()).length >= 3;
+  }).length;
+}
+
+function planHatFoldDuell(client) {
+  return foldDuellZeilen(client) >= 0;
+}
+
+function foldDuell(client) {
+  const n = foldDuellZeilen(client);
+  if (n < FOLD_RICHTUNGEN_MIN) {
+    sperre(
+      `Fold-Duell gesperrt — PLAN.md braucht einen Abschnitt «## Fold-Duell» mit mindestens ${FOLD_RICHTUNGEN_MIN} Richtungszeilen slug | Achse | Referenzbilder | Copy-Quelle (gefunden: ${n < 0 ? "kein Abschnitt" : n}). Siehe references/fold-duell.md.`,
+    );
+  }
+  process.exit(0);
+}
+
 function bau(client) {
   const dateien = kritikDateien(client);
-  if (dateien.length < 1) {
+  if (planHatFoldDuell(client) && !foldDuellGewaehlt(client)) {
     sperre(
-      "Bau ohne Kritik-Befunde ist gesperrt — mindestens eine nicht-leere KRITIK-*.md nötig.",
+      "Bau gesperrt: PLAN.md enthaelt ein Fold-Duell, aber DECISIONS.md traegt keine GO-Zeile mit «Fold-Duell». Erst Raphaels Wahl eintragen (references/fold-duell.md Regel 8), dann Welle 1.",
+    );
+  }
+  if (dateien.length < 1) {
+    if (foldDuellGewaehlt(client)) process.exit(0); // Neuaufbau: Raphaels Fold-Wahl ist die Kritik-Vorphase
+    sperre(
+      "Bau ohne Kritik-Befunde ist gesperrt — mindestens eine nicht-leere KRITIK-*.md nötig (oder bei Neuaufbau: Fold-Duell-GO in DECISIONS.md).",
     );
   }
   const brauchbar = dateien.filter(
@@ -233,5 +296,6 @@ if (fileURLToPath(import.meta.url) === path.resolve(process.argv[1] || "")) {
   const aufgeloest = echterClient(client);
   if (rolle === "plan") plan(aufgeloest);
   else if (rolle === "kritik") kritik(aufgeloest);
+  else if (rolle === "fold-duell") foldDuell(aufgeloest);
   else bau(aufgeloest);
 }

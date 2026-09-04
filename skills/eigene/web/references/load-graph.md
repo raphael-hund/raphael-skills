@@ -89,7 +89,7 @@ Drei Fragen, alle drei müssen mit Ja beantwortbar sein:
 2. Ändert sie eine Entscheidung, die ich in diesem Schritt wirklich treffe?
 3. Ist sie nicht schon durch `design` oder `copywriting` abgedeckt?
 
-Ein Nein heisst: nicht laden. Quellenstatus und Ablauf vor dem Load in `quellen-ledger.md` prüfen.
+Ein Nein heisst: nicht laden. Quellenstatus und Ablauf vor dem Load in `_archiv/quellen-ledger.md` prüfen.
 
 ## 6. Nach dem Projekt
 

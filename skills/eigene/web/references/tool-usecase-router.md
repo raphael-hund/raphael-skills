@@ -172,7 +172,7 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 | **Loop** | `components` → `build` |
 | **Default** | Radix Primitive + shadcn/ui in `components/ui/` (Theme = Kunden-Tokens in Tailwind) |
 | **Install/Use** | Einmal: `npx shadcn@latest init` (falls neu). Danach **gezielt**: `npx shadcn@latest add button` · `add accordion` · `add dialog` · `add tabs` · `add select` … Nur was der Sitemap-Schnitt braucht. |
-| **Alternativen** | Origin UI / Untitled UI React / Park UI wenn Brief anderes System verlangt; Radix Themes nur bei internen Tools ohne Brand (siehe `design-systeme-vergleich.md`) |
+| **Alternativen** | Origin UI / Untitled UI React / Park UI wenn Brief anderes System verlangt; Radix Themes nur bei internen Tools ohne Brand (siehe `_archiv/design-systeme-vergleich.md`) |
 | **Gate** | Tastatur + Screenreader-Smoke; Bundle: keine ungenutzten `components/ui/*`; Markenfarben aus Brief, nicht shadcn-Default-Blau |
 | **Nie** | `add` für die gesamte Registry; daisyUI/HyperUI als Parallel-System neben shadcn |
 
@@ -261,7 +261,7 @@ Buttons, Zustände, Listen.
 |---|---|
 | **Bedarf** | Große Landing-Sektionen jenseits von Primitives |
 | **Loop** | `components` / `build` |
-| **Default** | Eigenes Tailwind-Markup nach `art-direction` + `landingpage-struktur.md`; shadcn-Blöcke nur als strukturelle Hilfe |
+| **Default** | **Erst ziehen, dann bauen** (MAKE 04.09.2026): Glow-Card, Bento, Case-Carousel, Connector/Beam, Number-Ticker, Marquee/Logo-Cloud, Spotlight, Border-Beam, Dock kommen aus `@magicui` (`bento-grid`, `border-beam`, `number-ticker`, `marquee`, `magic-card`, `animated-beam`), `@aceternity` (`spotlight`, `card-hover-effect`, `background-beams`), `@react-bits` oder 21st (`komponenten.mjs search`). Eigenes Tailwind-Markup nur für Layout und Sektionen ohne Spezialeffekt oder mit Berichtszeile «gesucht in …, nichts passte, weil …» |
 | **Install/Use** | Kein Mega-Kit. Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. 21st: `node scripts/design-mcp.mjs 21st search "<begriff>"` → `21st get <id> --out src/components/vendor/21st/`. Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
 | **Alternativen** | 21st.dev (`inspiration.mjs 21st code <id> --out src/components/vendor/21st/`, Builder-Plan), React Bits, Cult UI, Float UI, Preline — **eine** geprüfte Section |
 | **Gate** | Design-DNA einhalten; Copy aus G2; Mobile-First; keine fremden Logos/Stock aus dem Demo |
@@ -341,7 +341,7 @@ Buttons, Zustände, Listen.
 |---|---|
 | **Bedarf** | Motion-Explainers, Mikro-Illustrationen, Produkt-Loops |
 | **Loop** | `components` / `build` |
-| **Default** | Lottie sparsam **oder** kurzes Mute-Loop (Mixkit/Coverr/eigenes); schwere Product-Videos → `remotion-produktionsweg.md` |
+| **Default** | Lottie sparsam **oder** kurzes Mute-Loop (Mixkit/Coverr/eigenes); schwere Product-Videos → `_archiv/remotion-produktionsweg.md` |
 | **Install/Use** | `npm i lottie-react` bei Lottie; Datei lokal hosten; `prefers-reduced-motion` → statischer Frame |
 | **Alternativen** | Rive, Spline (3D-Interaktiv, Performance prüfen), Remotion für programmatisches Video |
 | **Gate** | Autoplay nur muted; Dateigröße; Reduced Motion; Tracking-freie Self-Host-Files |

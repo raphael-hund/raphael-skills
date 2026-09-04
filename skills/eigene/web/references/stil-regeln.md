@@ -23,6 +23,17 @@ Kandidat. Ein Agent stuft eine gelockte Regel nie zurück.
 
 **Richtung:** GO = so bauen · NO-GO = nie bauen.
 
+**Präzedenz (Raphael 04.09.2026, MAKE-Neustart):** Die Kunden-`DESIGN.md`,
+Raphaels Referenzbilder im Eingang und seine Worte in `DECISIONS.md` schlagen
+jede S-Regel dieser Datei. Eine Regel, deren Belege nur aus Handwerk-Cases
+stammen (S2, S3, S4, S8-Fontliste, S14), gilt im Sektor `agency-dark` und bei
+`clone-parity` nicht als Sperre, sondern als Hinweis. Wer eine Referenz von
+Raphael «wegregelt» (Typo-Hero statt Foto-Hero, all-sharp statt 20px-Karten,
+eine dunkle Sektion statt dunkler Seite), baut am Auftrag vorbei — genau das
+hat am 04.09.2026 zum «von null» geführt. Die Regeln sind Leitplanke, die
+Referenz ist Ziel; bei Konflikt steht die Auflösung als Zeile in
+`brand/DESIGN.md`, nicht als stiller Kompromiss im CSS.
+
 ---
 
 ## 1. Sektor-Dials (setzen VOR der Komponentenwahl)
@@ -38,8 +49,9 @@ gilt für Premium-Editorial, nicht für Handwerk, Kita oder Ads-Landings.
 | `tanz-community` | 6 | 5 | 4 | salsaflow |
 | `ads-lp` | 5 | 3 | 6 | — |
 | `b2b-dienst` | 4 | 2 | 5 | — |
-| `clone-parity` | match live | match live | match live | alpenenergie |
-| Fallback (unbekannter Sektor) | 4 | 3 | 5 | MAKE-Default → `handwerk-local`; eine Zeile Begründung in `art-direction.md` |
+| `agency-dark` | 7 | 5 | 5 | make-marketing-clone, leadfluss, seo-labs (dunkle Agentur-Landing: Foto-Hero, 20px-Karten mit Hairline, ein Glow-Akzent, Carousel/Bento erlaubt) |
+| `clone-parity` | match live | match live | match live | alpenenergie; Default bei «Look der Live-Seite weiterbauen» |
+| Fallback (unbekannter Sektor) | 4 | 3 | 5 | nur wenn weder `DESIGN.md` noch Live-Seite noch Referenz einen Sektor hergibt; eine Zeile Begründung in `brand/DESIGN.md`. MAKE selbst ist `agency-dark`, nie Fallback. |
 
 `clone-parity` heisst: Die Dials kommen aus der gemessenen Live-Seite, nicht
 aus einer Baseline. Ein Clone-Auftrag ist kein Redesign-Auftrag.
@@ -53,8 +65,8 @@ Die Regel dazu ist **S15** und ist verbindlich.
 | ID | Regel | Status | Belege |
 |---|---|---|---|
 | S1 | Nutze genau eine Akzentfarbe und nie als Vollfläche; Ausnahme die eine Schlusssektion nach S3 (`P-CTA-END`). | verbindlich | swisshelp-elektro, salsaflow, kraftwerk-garage, braun-services |
-| S2 | Setze eine Karte nur dort, wo gleich hohe Dinge verglichen werden; sonst tragen offene Raster, Bildflächen, Linien und Typografie. | verbindlich | braun-services, salsaflow |
-| S3 | Erlaube pro Seite höchstens eine dunkle Sektion und eine Akzent-Schlusssektion. | verbindlich | braun-services, swisshelp-elektro |
+| S2 | Setze eine Karte nur dort, wo gleich hohe Dinge verglichen werden; sonst tragen offene Raster, Bildflächen, Linien und Typografie. Scope: nicht `agency-dark` (dort sind Karten mit Hairline der Stil). | verbindlich (handwerk-local, kita, b2b-dienst) | braun-services, salsaflow |
+| S3 | Erlaube pro Seite höchstens eine dunkle Sektion und eine Akzent-Schlusssektion. Scope: nur helle Seiten; bei `theme: dark` in `DESIGN.md` gilt stattdessen: höchstens zwei helle Breaks. | verbindlich (helle Sektoren) | braun-services, swisshelp-elektro |
 | S5 | Lege über ein Foto-Hero einen Zonen-Verlauf in der Grundfarbe, der nur eine Zone verdunkelt. | verbindlich | braun-services |
 | S6 | Animiere einmalig beim Eintritt, danach ist Ruhe. | verbindlich | braun-services, salsaflow |
 | S9 | Verwende echte Fotos von echten Menschen. | verbindlich | swisshelp-elektro, salsaflow, kita-wunderkiste, braun-services |
@@ -101,16 +113,16 @@ Die Regel dazu ist **S15** und ist verbindlich.
 
 | ID | Regel | Status | Belege |
 |---|---|---|---|
-| S4 | Baue den Primär-CTA nie als Pille. | verbindlich | braun-services, kraftwerk-garage, swisshelp-elektro · **Ausnahme:** salsaflow |
+| S4 | Baue den Primär-CTA nie als Pille. Radius bis 12px ist keine Pille; `DESIGN.md` lockt den Wert. | verbindlich | braun-services, kraftwerk-garage, swisshelp-elektro · **Ausnahme:** salsaflow |
 | S5-N | Lege nie einen Wash, eine OKLAB-Staffel, einen `color-mix`-Verlauf oder einen orangen Farbschleier über ein Foto. | verbindlich | braun-services |
 | S6-N | Baue kein WebGL, keine Partikel, keinen Ken-Burns-Loop, keinen Scroll-Scrub und kein Mesh-/Liquid-Glass ohne DESIGN-Token. | verbindlich | braun-services |
 | S7 | Setze Inter nie als Display- oder Default-Landingfont. | verbindlich | salsaflow · **Body-Ausnahme:** kraftwerk-garage |
-| S8 | Verwende keine der gesperrten Fonts (Liste unten). | verbindlich | salsaflow |
+| S8 | Verwende keine der gesperrten Fonts (Liste unten) als Modell-Default. Scope: eine Kunden-`DESIGN.md` mit gelockter Schrift hebt die Sperre für diese Marke auf (MAKE: Poppins/Outfit). | verbindlich (nur ohne DESIGN.md-Lock) | salsaflow |
 | S9-N | Generiere keine KI-Personen und zeige keine Fake-Sterne oder erfundenen Bewertungszahlen. | verbindlich | kraftwerk-garage, swisshelp-elektro, salsaflow, braun-services |
 | S11 | Nummeriere nicht mit 01/02/03-Markern, ausser es ist eine echte Sequenz. | kandidat | kraftwerk-garage |
 | S12 | Baue keinen Cream-plus-`#F4F1EA`-plus-Serif-plus-Terracotta-Default, kein near-black-plus-acid-green und keinen Purple-/Indigo-Gradient. | verbindlich | kraftwerk-garage |
 | S13 | Zeige dasselbe Bildmotiv nie in zwei aufeinanderfolgenden Sektionen. | verbindlich | braun-services, salsaflow |
-| S14 | Baue keine generische Card-Soup aus drei Icon-Karten als Default-Raster. | kandidat | salsaflow, braun-services |
+| S14 | Baue keine generische Card-Soup aus drei Icon-Karten als Default-Raster. Scope: greift nicht, wenn die Kunden-Live-Seite oder Raphaels Referenz genau dieses Muster zeigt (`clone-parity`, `agency-dark`). | kandidat | salsaflow, braun-services |
 
 ### Belegstellen im Fliesstext
 
@@ -135,7 +147,9 @@ Die Regel dazu ist **S15** und ist verbindlich.
   plus Display-Sperre aus S7:
   Inter (als Default/Display), Plus Jakarta Sans, Geist, Manrope, Poppins, Outfit,
   DM Sans, Satoshi, Montserrat, Roboto, Fraunces, Instrument Serif,
-  Hanken Grotesk. Body nur Kraftwerk, siehe S7.
+  Hanken Grotesk. Body nur Kraftwerk, siehe S7. **Eine Kunden-`DESIGN.md`
+  hebt die Sperre für ihre Marke auf** (MAKE: Poppins Body Raphael 19.08.,
+  Outfit 04.09.); die Liste sperrt Modell-Defaults, nicht Markenentscheide.
 - **S9-N** — `/root/clients/kraftwerk/DESIGN.md:36` „Keine erfundenen
   Bewertungszahlen … keine Fake-Sterne mit Zahl."
   `/root/clients/swisshelp/DESIGN.md:123` „Personen: immer echtes Foto … nie

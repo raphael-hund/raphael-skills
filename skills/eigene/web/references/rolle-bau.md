@@ -26,6 +26,26 @@ Die Bau-Phase startet **im ersten Turn** einen Dynamic Workflow. Kein
 Solo-CSS im Parent, keine „ich schau mal schnell selbst“-Runde davor.
 `/orchestrate` ist der Controller-Owner.
 
+**Welle 0 bei Neuaufbau/Redesign = Fold-Duell** (`references/fold-duell.md`):
+drei Fold-Richtungen parallel (je ein `fable-builder`/`opus-builder`, 25 min),
+Montage per `scripts/fold-duell-montage.mjs`, Bild in
+`/root/eingang/ausgang/<kunde>/fold-duell/` per `SendUserFile`, Tunnel-Link.
+Parallel dürfen nur SEO-Map, Copy und Asset-Inventar laufen. Design-System,
+Pattern-Bibliothek und Routen starten erst nach Raphaels Wahl in
+`DECISIONS.md`. Kein Judge-PASS ersetzt diese Wahl.
+
+**Referenzbilder und Komponenten im Bau-Leaf (Pflicht):**
+- Jeder Builder-Prompt nennt `handoff/referenzen/BILDLISTE.txt`; der Leaf liest
+  jede Datei per Read und schreibt je Bild eine Zeile «gesehen: …» in seinen
+  Bericht. Ohne diese Zeilen ist das Paket nicht fertig (Judge-Frage).
+- Für Glow-Card, Bento, Carousel, Connector/Beam, Number-Ticker, Marquee,
+  Spotlight, Dock, Border-Beam zuerst `scripts/komponenten.mjs search
+  <@magicui|@aceternity|@react-bits|21st> "<name>"` und `get` nach
+  `src/components/vendor/<lib>/`; Eigenbau nur mit Zeile «gesucht in …, nichts
+  passte, weil …» im Bericht und Zeile in der Werkzeugtabelle. Am 04.09. lagen
+  drei 21st-Kandidaten (Logo Cloud, Stats, Bento) im Inspirationsordner und
+  wurden nie eingebaut; alle Muster entstanden flach von Hand.
+
 ## Der Parent ist Controller, nicht Builder
 
 | Parent macht | Parent macht nie |
@@ -195,7 +215,9 @@ Update an einer bestehenden Site = immer neuer Workspace/Worktree von `main`.
 /web /orchestrate — Bau, client-<name>. Du bist Controller, nicht der Builder.
 Der Ultracode-Session-Default genügt; kein /ultracode-Slash nötig.
 Parent editiert keine CSS-/TSX-Datei und liest keine PNG-Binaries.
-Starte im ersten Turn JETZT einen Dynamic Workflow. Leaves, so viele wie Pakete:
+Starte im ersten Turn JETZT einen Dynamic Workflow. Bei Neuaufbau/Redesign zuerst
+Welle 0 Fold-Duell (references/fold-duell.md): drei Richtungen, Montage, Bild an
+Raphael, Welle 1 erst nach seiner Wahl. Leaves, so viele wie Pakete:
 1. shot-sweep --base <dev-url> --static --states --mobile → manifest.json + PNG-Pfade
 2. zwei unabhängige Kritik-Leaves auf denselben Fold/Hover-Shots (Besetzung je Profil: kritik-matrix.md)
 3. eine Leaf nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt

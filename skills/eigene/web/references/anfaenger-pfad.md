@@ -16,13 +16,14 @@ unten. Nie die ganze `raphael-loads`-Liste auf einmal lesen.
 ## 1. Auftrag wählen (erster Treffer gewinnt)
 
 **Zuerst die Rolle, dann der Auftrag.** Jede Website-Arbeit läuft in einer von
-vier Sessions. Lade genau das eine Rollen-Dokument und fahre am Sessionstart
-das Gate — es sagt dir, ob deine Vorsession fertig ist:
+vier Phasen — drei Phasen in einem Chat (Plan/Kritik/Bau), nicht in getrennten
+Chats (Raphael 02.09.2026). Lade genau das eine Rollen-Dokument und fahre am
+Phasenstart das Gate — es sagt dir, ob deine Vorphase fertig ist:
 
 | Session | Chip | Pflicht-Load | Gate am Start |
 |---|---|---|---|
-| Plan | nur `/web` | `rolle-plan.md` | `node scripts/session-gate.mjs --rolle plan --client <pfad>` |
 | Inspiration | nur `/web` | `modus-inspiration.md` | kein Gate; Ergebnis ist `art-direction.md` mit Reference-Lock + Shot-Ledger |
+| Plan | nur `/web` | `rolle-plan.md` | `node scripts/session-gate.mjs --rolle plan --client <pfad>` |
 | Kritik | `/web` + `/orchestrate` | `rolle-kritik.md` | `--rolle kritik` — Exit 2 heißt: Plan-Session zuerst |
 | Bau | `/web` + `/orchestrate` | `rolle-bau.md` | `--rolle bau` — Exit 2 heißt: Kritik-Session zuerst |
 | Launch | wie Bau | `rolle-launch.md` | alle Gates dort grün + Raphaels Signatur |
@@ -34,13 +35,14 @@ Widerspruch gewinnt immer das Rollen-Dokument.
 | Du sollst … | Lade genau diese Dateien (Reihenfolge) | Fertig-Kriterium |
 |---|---|---|
 | **Kunden-Vorschau** (Default, solange Raphael nicht „Launch“ sagt) | `screenshot-kritik-loop.md` → Skill **design** → `landingpage-struktur.md` oder `sitemap-section-planung.md` → `scripts/preview-befund-klasse.mjs` | Seite sieht geil aus (Shots gelesen). Inhalt (Satz, Wort, Bild, Sektion, Reviews) und Domain parken. Blocker: Ablauf, Sitemap, Idee, Design. |
+| **Neuaufbau / Redesign / «Look von null»** einer Site | `rolle-plan.md` (Eine-Art-Direction-Regel) → `fold-duell.md` → `stil-regeln.md` Präzedenz + Sektor → dann erst Routen | Raphael hat drei Folds gesehen und gewählt (`DECISIONS.md`), bevor Welle 1 läuft |
 | **Neue Landingpage / Ads-LP** von null | `landingpage-struktur.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `loop2-ablauf.md` → Skill **design** (taste-Linie **in** design, nicht Skill `taste`) → `inspirations-quellen.md` §0 (Refero-MCP zuerst) → `tool-usecase-router.md` + `resource-access.mjs show` **und** `open "<Name>"` + bei Look-/Komponenten-Recherche `inspirations-quellen.md` (`scripts/inspiration.mjs`) + Werkzeugtabelle in `art-direction.md` **vor** npm i → `qa-faecher.md` | Form im Fold, Kontaktdaten zuletzt, axe=0, `werkzeug-gate.mjs` Exit 0 |
 | **Mehrseitige Website** planen | `sitemap-section-planung.md` → `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → `informationsarchitektur.md` → `loop2-ablauf.md` | Abnahme-Checkliste in sitemap-section-planung grün |
 | **Website-Plan ohne Build** | `website-plan` (intern) + `sitemap-section-planung.md` + `00-contract.md` | `plan-verification.json` PASS, kein Production-Code |
 | **Website-Kritik** | `/web` + `/orchestrate` → `kritik-matrix.md` → shot-sweep `--base` → PAGE/SITE/LENS-Leaves | PRUEFGEGEN.md existiert; Ledger vollständig; KRITIK-n.md nach Merge |
 | **Website-Bau** (Fixes umsetzen) | `/web` + `/orchestrate` → nur KRITIK-n.md-Überlebende → Re-Sweep | Jeder Fix hat Nachher-Shot; keine neue Kritik erfunden |
 | **Nur Design/Look polieren** | `stil-regeln.md` + `muster-bibliothek/INDEX.md` (2–3 Cases) → design-Skill (nicht taste/impeccable extra) + `screenshot-kritik-loop.md` + `shot-sweep.mjs` + Root-`DESIGN.md` Teil D / `DECISIONS.md` auf Raphael-Nein | Sweep + Kritik-Leaves haben PNGs gelesen + Fixliste leer; gesperrter Asset-Pfad kommt auf der Route nicht vor |
-| **Stil-Entscheidung / Art-Direction** (Pflicht-Load) | `stil-regeln.md` **immer** + `muster-bibliothek/INDEX.md` scannen → 2–3 passende Cases laden | Jede Build-Section zitiert eine Regel-ID oder einen Case; QA gleicht gegen Regelbuch ab |
+| **Stil-Entscheidung / Art-Direction** (Pflicht-Load) | `stil-regeln.md` **immer** + `muster-bibliothek/INDEX.md` scannen → 2–3 passende Cases laden | Jede Build-Section zitiert eine Regel-ID oder einen Case; QA gleicht gegen Regelbuch ab. Findet der INDEX-Scan **keine gestempelte fremde Case-Datei** (Urteil GO/gemischt, Status nicht `kandidat`), lautet die Ausgabe wörtlich „kein Kanon vorhanden, nur `/root/eingang` (7 Tage) und `stil-regeln.md` §1 gelten“ **und** es wird genau eine fremde Referenz-URL von Raphael angefordert — nicht ersatzweise ein House-Case als Kanon behandelt |
 | **Referenzseite einlernen** (Geschmack-Training) | `muster-bibliothek/_template.md` ausfüllen → INDEX-Zeile → Regel-Kandidaten in `stil-regeln.md` | Case-Datei + INDEX-Zeile + Raphael-Urteil vorhanden |
 | **Geschmack kalibrieren** (neue Seite studieren) | `scripts/muster-studie.mjs` → `muster-bibliothek/_template.md` → `muster-bibliothek/INDEX.md` | Tokens maschinell extrahiert, 1440×900 + 390×844 gelesen, INDEX-Zeile steht |
 | **Ship / Launch-Check** | `qa-faecher.md` → `agentur-rubrik.md` → `agent-roster.md` → `vercel-git-deploy.md` | Fächer 1–6 grün, Rubrik 1–25 oder Ausnahme; bei Custom-TS/JS `npx oxlint` Exit 0; Org-`origin` + Preview |
@@ -51,7 +53,7 @@ Widerspruch gewinnt immer das Rollen-Dokument.
 | **Komponenten/Tools wählen** (oder vor jedem `npm i`) | `tool-usecase-router.md` → **Werkzeugtabelle** in `client-<name>/web/art-direction.md` (Spalten: Bedarf\|Werkzeug\|Befehl\|Gate\|Router-Anker\|geprüft-am); einzelne Fremdkomponente nur über `inspirations-quellen.md` | `werkzeug-gate.mjs` Exit 0 — ohne Tabelle kein Install |
 | **Motion-Komponente einbauen** | `motion-doktrin.md` → `ui-components/INDEX.md` | `motion/react`, `useReducedMotion` |
 | **Popup / Lead-Magnet / Free-Tool** | `conversion-elemente.md` → `qa-faecher.md` Formular-Regeln | Kontaktdaten zuletzt, kein Fake-Thank-you mittendrin |
-| **CRO an Bestandsseite** | `cro-diagnose.md` → optional `experiment-programm.md` | Claims nur aus echten Analytics |
+| **CRO an Bestandsseite** | `cro-diagnose.md` → optional `_archiv/experiment-programm.md` | Claims nur aus echten Analytics |
 | **Security Formular/API** | `security-audit-playbook.md` (+ OWASP aus code-review bei Consent) | Fail-open-Defaults raus |
 | **Session übernehmen / Handoff** (Plan/Kritik/Bau, Rotation) | `rolle-<deine-session>.md` **zuerst** → `planner-executor-protokoll.md` (Chips, Detail-Ebene) → `PLAN.md` vollständig → `PRUEFGEGEN.md` → `STATUS.md` inkl. Shot-Ledger → höchste `KRITIK-n.md`. Plan = `/web`; Kritik/Bau = `/web` + `/orchestrate`. | PRUEFGEGEN.md da; nächster Schritt aus STATUS.md; Parent ohne CSS/PNG-Dump |
 
@@ -124,12 +126,12 @@ Outputs: `client-<name>/web/strategy.md`, `sitemap.md`, `copy/`, `art-direction.
 |---|---|
 | `frontend-referenzbibliothek.md` | Router-Zeile zeigt ausdrücklich hin (max 3 URLs) |
 | `ui-layouts-catalog.md` | Vokabular für ungewöhnliche Layouts |
-| `design-systeme-vergleich.md` | Brief verlangt fremdes System (Fluent/Carbon/…) |
-| `remotion-produktionsweg.md` | echtes Video/Composition, kein CSS-Motion |
-| `readonly-db-rolle.md` | Build braucht DB-Lesezugriff |
-| `domain-safe-browsing-checkliste.md` | Launch auf junger Domain |
+| `_archiv/design-systeme-vergleich.md` | Brief verlangt fremdes System (Fluent/Carbon/…) |
+| `_archiv/remotion-produktionsweg.md` | echtes Video/Composition, kein CSS-Motion |
+| `_archiv/readonly-db-rolle.md` | Build braucht DB-Lesezugriff |
+| `_archiv/domain-safe-browsing-checkliste.md` | Launch auf junger Domain |
 | `vercel-git-deploy.md` | Git-Anbindung, Org+privat, Vercel-Plugin-Skills |
-| `experiment-programm.md` | laufendes A/B-Programm, nicht ein Fix |
+| `_archiv/experiment-programm.md` | laufendes A/B-Programm, nicht ein Fix |
 | `templates/statistics-page-template.html` | Statistik-/Linkbait-Seite |
 
 ---
@@ -198,36 +200,36 @@ und die geladenen Dateipfade. Fehlt das → Skill nicht befolgt.
 | Mehrseitige Sitemap + Section-Plan (Pflicht-Format) | `references/sitemap-section-planung.md` |
 | IA-Wissen (Nav, URLs, Linkgraph) | `references/informationsarchitektur.md` |
 | Rollen / agentType / Parallel | `references/agent-roster.md` + `references/orchestrierung.md` |
+| Neues Modell bekommt eine Rolle (drei Pflicht-Fälle) | `evals/modell-eignung/README.md` |
 | Tools/Defaults statt Link-Dump | `references/tool-usecase-router.md` |
 | QA 6 Fächer + Formular-G1 | `references/qa-faecher.md` |
 | AAA Visual/SEO/Trust (≠ WCAG AAA) | `references/agentur-rubrik.md` |
 | Screenshots + Kritik-Panel + Blind-A/B | `references/screenshot-kritik-loop.md` |
 | Completion-Kette, run-evidence.json | `references/run-evidence-contract.md` |
-| Premium Landing-Regeln (15) | `references/lexlin-design-prinzipien.md` |
+| Premium Landing-Regeln (16) | `references/lexlin-design-prinzipien.md` |
 | Foundations→Components→Composition | `references/damien-design-methodik.md` |
 | URL-Referenz nachbauen + Lizenz | `references/web-clone-playbook.md` |
 | Bild/Screenshot nachbauen | `references/rebuild-from-image.md` |
 | Higgsfield / GPT Image 2 | Skill `higgsfield` zuerst; CLI-Katalog `references/bildgenerierung.md` |
+| Echtes Stock-Foto lizenzieren (Shutterstock) | `references/stock-bilder.md` |
 | Neue Illustration vs. bestehendes Asset; Inhalt+Stil referenzieren | Skill `higgsfield` + `references/bildgenerierung.md` Abschnitt **Neue Illustration vs. wiederverwenden** |
 | Motion-Regeln | `references/motion-doktrin.md` |
-| Echtes Stock-Foto lizenzieren (Shutterstock) | `references/stock-bilder.md` |
 | Copy-paste Motion-UI (beUI v2) | `references/ui-components/INDEX.md` |
 | Lokale Vendor-Komponenten (zehn Quellen, offline zuerst) | `resources/components/INDEX.md`, dann `resources/components/<site>/INDEX.md` |
 | Default-Stack Next/Tailwind/shadcn/`motion` | `references/radix-shadcn-tailwind-stack.md` |
 | Popup/Lead-Magnet | `references/conversion-elemente.md` |
 | CRO Bestandsseite | `references/cro-diagnose.md` |
-| A/B-Programm | `references/experiment-programm.md` |
+| A/B-Programm | `references/_archiv/experiment-programm.md` |
 | Security Formulare/Supply-Chain | `references/security-audit-playbook.md` |
 | Custom-Code gegen AI-Slop + Oxlint anti-slop | `references/code-qualitaets-checkliste.md` |
-| Junge Domain vor Launch | `references/domain-safe-browsing-checkliste.md` |
+| Junge Domain vor Launch | `references/_archiv/domain-safe-browsing-checkliste.md` |
 | Statistik-Linkbait HTML | `references/templates/statistics-page-template.html` |
 | Vercel-Git, Remotes Org+privat | `references/vercel-git-deploy.md` |
 | Adobe Fonts Library | `node scripts/adobe-fonts-kit.mjs show <Familie>` |
 | Genau eine Ressource nach Router-Wahl | `scripts/resource-access.mjs show "<Name>"` = lokale Metadaten; **Pflicht danach:** `node scripts/resource-access.mjs open "<exakter Name>"` öffnet die Katalog-URL und liest die Site. URL-Dump allein zählt nicht als Nutzung. |
-| 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
-
 | Inspiration-Modus (Refero/Mobbin/21st-MCP, Galerien, Shots über Leaves) | `references/modus-inspiration.md` |
 | Welche Quelle wie nutzen (MCP/Skript/Vendor/open/Login) | `references/zugangskarte.md` |
 | Inspiration / einzelne Fremdkomponente holen | `references/inspirations-quellen.md` |
-| Inspiration / einzelne Fremdkomponente holen | `references/inspirations-quellen.md` |
+| 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
+
 Was ein Site-Build nie lädt: §4 oben und `references/load-graph.md`.

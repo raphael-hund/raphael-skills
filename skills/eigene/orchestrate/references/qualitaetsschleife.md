@@ -81,10 +81,23 @@ const SCORE = {
       properties: { frage: { type: 'string' }, punkte: { type: 'number' }, beleg: { type: 'string' } },
       required: ['frage', 'punkte', 'beleg'] } },
     veto_riss: { type: 'boolean' },
+    // Blind-Vergleich gegen die Referenz (visuelle Pakete, Pflicht wenn opts.referenzFolds gesetzt):
+    // je Achse genau 'build' | 'referenz' | 'unentschieden'; luecke = die eine Stelle, an der die Referenz gewinnt.
+    blind: { type: 'object', additionalProperties: false, properties: {
+      visual: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
+      usability: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
+      creativity: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
+      content_trust: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
+      luecke: { type: 'string' },
+    }, required: ['visual', 'usability', 'creativity', 'content_trust', 'luecke'] },
     verdict: { type: 'string', enum: ['PASS', 'FAIL'] },
     notizen: { type: 'array', maxItems: 3, items: { type: 'string' } },
   },
   required: ['scores', 'veto_riss', 'verdict', 'notizen'],
+}
+// Das Script entscheidet, nicht der Judge-Freitext: Referenz besser auf Visual = FAIL, egal was verdict sagt.
+function blindFail(urteil) {
+  return !!(urteil && urteil.blind && urteil.blind.visual === 'referenz')
 }
 
 // Ein Paket durch die Schleife: bauen → G1 → Judge → ggf. zurück. Max 3 Runden.
@@ -116,9 +129,19 @@ async function mitSchleife(paket, opts) {
       log(`${opts.label}: Runde ${runde} G1 ${klasse} exit ${g1.exit}`)
       continue
     }
-    const urteil = await agent(`ACTUAL_BUILDER_FAMILY=${opts.builderFamily} (agentType ${opts.builderType}, Workflow ${opts.label}, Failover nein)\nROLLE: Judge, frische Instanz, andere Familie als der Builder. Du siehst NUR Artefakt, Rubrik, Golden-/Anti-Beispiele. Kein Builder-Verlauf.\nRUBRIK:\n${opts.rubrik}\nARTEFAKT: ${paket.artefakt}\nJe Frage 0/1/2 mit wörtlichem Beleg; Frage 1 ist VETO (<2 = veto_riss). verdict PASS nur wenn keine Frage <1, Summe/Max ≥ ${opts.schwelle || 0.7} und kein VETO-Riss. notizen: max 3, je Datei:Zeile oder Shot+Region. Reward-Hacking-Prüfung: gelöschte/aufgeweichte Checks, versteckte Elemente = VETO.`,
+    // opts.referenzFolds: Pfad einer Datei mit Referenz-Bildern (Raphaels Referenzen + Weltklasse-/Live-Fold), eine Zeile je Pfad.
+    const blindTeil = opts.referenzFolds
+      ? `\nBLIND-VERGLEICH (Pflichtfeld blind): Lies jede Datei aus ${opts.referenzFolds} und den Build-Fold aus dem Artefakt. Je Achse Visual · Usability · Creativity · Content-Trust genau 'build' | 'referenz' | 'unentschieden'; luecke = die eine Stelle, an der die Referenz gewinnt (Shot+Region). Gewinnt die Referenz auf Visual, ist das Paket FAIL, auch bei 12/12 Regelpunkten.`
+      : ''
+    const urteil = await agent(`ACTUAL_BUILDER_FAMILY=${opts.builderFamily} (agentType ${opts.builderType}, Workflow ${opts.label}, Failover nein)\nROLLE: Judge, frische Instanz, andere Familie als der Builder. Du siehst NUR Artefakt, Rubrik, Golden-/Anti-Beispiele. Kein Builder-Verlauf.\nRUBRIK:\n${opts.rubrik}\nARTEFAKT: ${paket.artefakt}${blindTeil}\nJe Frage 0/1/2 mit wörtlichem Beleg; Frage 1 ist VETO (<2 = veto_riss). verdict PASS nur wenn keine Frage <1, Summe/Max ≥ ${opts.schwelle || 0.7} und kein VETO-Riss. notizen: max 3, je Datei:Zeile oder Shot+Region. Reward-Hacking-Prüfung: gelöschte/aufgeweichte Checks, versteckte Elemente = VETO.`,
       { label: `${opts.label}:judge:r${runde}`, phase: opts.phase, agentType: opts.judgeType, effort: 'high', schema: SCORE })
     if (!urteil) return { status: 'BLOCKED', klasse: 'PROVIDER', grund: 'Judge ohne Rückgabe (Provider)', stand }
+    if (opts.referenzFolds && !urteil.blind) { notizen = ['Judge ohne blind-Feld trotz Referenzliste: Runde als FAIL, Judge-Prompt prüfen']; log(`${opts.label}: Runde ${runde} Judge ohne blind`); continue }
+    if (blindFail(urteil)) {
+      notizen = [`BLIND: Referenz gewinnt auf Visual — ${urteil.blind.luecke}`].concat((urteil.notizen || []).slice(0, 2))
+      log(`${opts.label}: Runde ${runde} FAIL (blind) — ${urteil.blind.luecke}`)
+      continue
+    }
     if (urteil.verdict === 'PASS') return { status: 'PASS', runden: runde, stand, urteil }
     notizen = urteil.notizen
     log(`${opts.label}: Runde ${runde} FAIL — ${notizen.join(' | ')}`)
@@ -196,6 +219,31 @@ Paketschnitt aus dieser Zahl ab (Beob. 78). Retry-Wrapper schreiben den `agentTy
 literal in jeden `agent()`-Aufruf, kein `...opts` allein (Guard prüft statisch, Beob. 73).
 Leaves schreiben ihr Ergebnis früh und inkrementell auf Disk; `StructuredOutput` ist nur
 der Zeiger (Beob. Wayfinder 04.09.).
+
+## Golden-Beispiele sind Dateien, und der Judge vergleicht blind (MAKE 04.09.2026)
+
+Für visuelle Pakete bekommt der Judge neben Artefakt und Rubrik eine
+**Bildliste** (Datei, nie Pfade im Prompt-String): Raphaels Referenzbilder
+(`handoff/referenzen/BILDLISTE.txt`) und ein bis zwei Referenz-Folds
+(`shots/ref-<slug>-fold.png`, bei Redesign die Live-Seite). Pflicht-Frage 2
+der Rubrik (VETO-fähig auf Visual):
+
+Der Vergleich ist **kein Rubrik-Punkt, sondern ein eigenes Schema-Feld
+`blind`** (unten im Baustein): je Achse `build | referenz | unentschieden` plus
+`luecke`. Das Script (`blindFail`) macht aus `visual: 'referenz'` ein FAIL mit
+der Lücke als erster Notiz, unabhängig vom Judge-`verdict`. Der Judge kann den
+Vergleich also nicht in Prosa weglächeln, und ein Judge ohne `blind`-Feld bei
+gesetzter Referenzliste zählt als FAIL der Runde. Dazu als normale Rubrik-Frage:
+
+```
+n Würde Raphael das «Bombe» nennen? Welche eine Stelle zuerst nicht? (0/1/2,
+  Beleg als Shot+Region)
+```
+
+Grund: Am 04.09. gaben Judges 10/12 PASS für Folds, die Raphael «Rotze»
+nannte. Die Rubrik mass Regeltreue (Gates, Tokens, Copy zeichengenau), nie
+«besser als die Referenz?». Regeltreue ist G1-Arbeit; der Judge ist für den
+Vergleich mit der Latte da.
 
 ## Domänen-Anker (welches G1, welche Rubrik)
 

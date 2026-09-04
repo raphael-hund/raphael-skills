@@ -25,7 +25,7 @@ import { basename, dirname, join, resolve } from "node:path";
 
 const DEFAULT_LIMIT = 50;
 const DEFAULT_RAW_DIR = "/root/raphael-brain/raw/x-bookmarks";
-const DEFAULT_LEDGER = "/root/raphael-skills/skills/eigene/web/references/x-bookmarks-ledger.md";
+const DEFAULT_LEDGER = "/root/raphael-skills/skills/eigene/web/references/_archiv/x-bookmarks-ledger.md";
 const SECRETS_FILE = "/root/.secrets/api-keys.env";
 const TWITTER = "/root/.local/bin/twitter";
 const MAX_CAPTURE_BYTES = 64 * 1024 * 1024;

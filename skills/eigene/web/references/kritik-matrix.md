@@ -35,6 +35,22 @@ Eine Tabelle, sonst nichts. Ohne diese Datei startet Kritik nicht.
 | Konsistenz   | web                | diese Matrix, Achse SITE                 | alle Folds nebeneinander|
 ```
 
+## Golden-Beispiele sind Bilder (MAKE 04.09.2026)
+
+Jeder Kritik- und Judge-Leaf bekommt neben den Build-Shots die
+**Referenz-Folds als Dateien**: Raphaels Referenzbilder
+(`handoff/referenzen/BILDLISTE.txt`) und ein bis zwei Weltklasse-Folds
+(`shots/ref-<slug>-fold.png`, z. B. seo-labs, leadfluss, oder die Live-Seite
+des Kunden bei Redesign), im Script als `opts.referenzFolds` (Datei mit einem
+Pfad je Zeile). Der Judge füllt das Schema-Feld `blind` (je Achse Visual ·
+Usability · Creativity · Content-Trust genau `build | referenz |
+unentschieden`, plus `luecke`); das Script (`blindFail` in
+`orchestrate/references/qualitaetsschleife.md`) macht aus `visual: 'referenz'`
+ein FAIL mit der Lücke als erster Notiz, unabhängig vom Judge-`verdict` und
+auch bei 12/12 Regelpunkten. Am 04.09. gaben Judges
+10/12 PASS für Folds, die Raphael «Rotze» nannte, weil die Rubrik Regeltreue
+mass und nie «besser als die Referenz?» fragte.
+
 ## Spawn (Kritik-Session, ein Workflow)
 
 Zuerst Skript, dann Leaves. Parent dispatcht und merged. Parent liest keine PNGs.

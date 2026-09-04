@@ -131,6 +131,27 @@ Vier Pflichtfragen schriftlich in `client-<name>/web/strategy.md`, Abschnitt
 (D) Was soll es repräsentieren? Aufschreiben, nicht denken — hier nur fragen,
 nicht designen. Fail = nicht an `art-direction` weitergehen.
 
+## Eine Art-Direction je Kunde (Pflicht, MAKE 04.09.2026)
+
+Bevor der Plan Tokens oder Look nennt: alle vorhandenen Stil-Quellen des Kunden
+listen (`brand/DESIGN.md`, `website-plan/art-direction.md`,
+`client-<name>/web/art-direction.md`, Inspirations-Lock, Live-Seite) und jeden
+Widerspruch benennen (MAKE hatte drei: Lock «weisses Canvas», Plan «#131a1a
+all-sharp», Raphael «dunkel, Anthrazit, 20px-Karten»). Auflösung: Raphaels
+jüngstes Wort gewinnt, dann die Live-Seite, dann `DESIGN.md`. Die Auflösung
+steht als datierte Zeile in `brand/DESIGN.md`; `art-direction.md`-Dateien
+verweisen nur noch dorthin. Ein Plan mit zwei gültigen Looks ist kein Plan.
+
+## Fold-Duell vor Welle 1 (Pflicht bei Neuaufbau, Redesign, «Look von null»)
+
+Der Plan legt drei Fold-Richtungen mit benannter Achse fest
+(`references/fold-duell.md`), eine davon immer «Live-Seite oder Raphaels
+jüngste Referenz, sauber weitergebaut». Die Bau-Phase startet damit; Welle 1
+(Design-System, Routen) wartet auf Raphaels Wahl in `DECISIONS.md`. Erstes
+Bild für Raphael spätestens 30 Minuten nach Auftrag. Fertig-Kriterium des Plans
+ist damit auch: `PLAN.md` enthält den Abschnitt «Fold-Duell» mit drei Zeilen
+`slug | Achse | Referenzbilder | Copy-Quelle`.
+
 ## Referenzen aus dem Briefkasten (Pflicht)
 
 Vor jeder Stilentscheidung: `ls -lt /root/eingang | head -20`; bildhafte Dateien
@@ -140,6 +161,12 @@ Build- und Kritik-Shots (die Massenware, die Parents historisch geflutet hat),
 nicht die Handvoll Referenzbilder, ohne die kein Stilurteil geht. Raphael legt
 Referenzen dort ab, ohne sie im Prompt zu erwähnen. Verwendetes kommt in den
 Plan; ist nichts relevant, steht dort in einem Satz warum.
+
+**Bilder bleiben Bilder.** Der Plan beschreibt eine Referenz in einer Zeile,
+aber die Datei geht als Pfad in `handoff/referenzen/BILDLISTE.txt` und wird von
+jedem Builder- und Judge-Leaf per Read gelesen (Bericht: Zeile «gesehen:» je
+Bild). Eine Prosa-Beschreibung («leuchtende Verbindungslinie mit Knoten») ist
+kein Ersatz; aus Prosa bauten die Leaves am 04.09. flache Karten ohne Glow.
 
 ## Handoff-Format (vier Blöcke, nichts weiter)
 

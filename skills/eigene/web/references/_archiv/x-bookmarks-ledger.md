@@ -4,7 +4,7 @@ Status-Werte: `roh` = gezogen, nicht gelesen. `ausgewertet: <kategorie>` =
 eine Auswertungsdatei
 `/root/raphael-brain/raw/x-bookmarks/<ID>.auswertung.md` existiert und traegt
 Kategorie und Kandidaten-Flag. Der Zusatz `website-kandidat` heisst, dass die
-ID zusaetzlich in `muster-bibliothek/kandidaten.md` steht — nicht, dass die
+ID zusaetzlich in `../muster-bibliothek/kandidaten.md` steht — nicht, dass die
 Seite abgerufen oder bewertet waere.
 
 `x-bookmarks-pull.mjs` schreibt neue Zeilen immer mit `roh`; den

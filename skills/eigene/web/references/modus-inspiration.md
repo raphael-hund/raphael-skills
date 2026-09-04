@@ -14,6 +14,14 @@ PNGs selbst.
 
 ## Fertig heißt
 
+**Lock-Ziel ist `<kunde>/brand/DESIGN.md`** (eine Art-Direction je Kunde, Raphael
+04.09.2026): das Reference-Lock steht dort als datierter Abschnitt; existiert
+schon ein Lock oder eine Live-Seite, wird der Widerspruch benannt und
+Raphaels jüngstes Wort gewinnt. `client-<name>/web/art-direction.md` verweist
+nur auf diesen Abschnitt und trägt Shot-Ledger und Werkzeugtabelle. Das Lock
+ist Vorschlag für das Fold-Duell (`fold-duell.md`), nie Ersatz für Raphaels
+Wahl am Bild.
+
 `client-<name>/web/art-direction.md` enthält:
 
 1. Brief in 8 Zeilen (WHAT/WHO/PLATFORM, Goal, Tone, Objection, Hook,

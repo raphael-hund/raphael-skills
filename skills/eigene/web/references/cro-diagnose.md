@@ -41,7 +41,7 @@ jede Art Website-Seite.
 - **Quick Wins** (sofort umsetzbar, wahrscheinlich sofortige Wirkung)
 - **High-Impact-Changes** (mehr Aufwand, aber deutlich mehr Wirkung)
 - **Test-Ideen** (Hypothesen für A/B-Tests statt Annahmen — siehe
-  `experiment-programm.md`)
+  `_archiv/experiment-programm.md`)
 - **Copy-Alternativen** für Headline/CTA: 2–3 Varianten mit Begründung
 
 ## Seitentyp-spezifische Brille

@@ -23,7 +23,7 @@ Review-Format, die zehn Standards, Eskalations-Trigger, Remedial-Hierarchie.
 
 1. **design-Doktrin lesen** (Pfad oben) — Frequenz-Gate zuerst. Die häufigste
    richtige Antwort ist „gar nicht animieren".
-2. **Werkzeug wählen** — Entscheidungstabelle in `motion-gsap.md`
+2. **Werkzeug wählen** — Entscheidungstabelle in `_archiv/motion-gsap.md`
    (CSS-Transition / Framer Motion / GSAP).
 3. **Fertige Komponente prüfen** — steht die Interaktion schon in
    `ui-components/INDEX.md` oder im Tresor (`bibliotheks-tresor.md`)?
@@ -74,7 +74,7 @@ Die globale CSS-Media-Query stoppt **keine** JS-Animation. Jede Komponente aus
 |---|---|
 | CSS-Transition/Animation | `@media (prefers-reduced-motion: reduce)` |
 | Framer Motion (`motion`) | `useReducedMotion()` |
-| GSAP | `gsap.matchMedia()` — **nicht** `useReducedMotion()`, siehe `motion-gsap.md` |
+| GSAP | `gsap.matchMedia()` — **nicht** `useReducedMotion()`, siehe `_archiv/motion-gsap.md` |
 
 Reduced Motion heißt sanfter, nicht null: Opacity- und Farbwechsel bleiben,
 Bewegung/Skalierung/Parallax fallen weg (design-Doktrin §8).

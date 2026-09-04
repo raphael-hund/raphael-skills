@@ -7,7 +7,7 @@ dieselben Truth-Dateien, aber alle harten Gates zählen jetzt.
 
 Detail-Ebene: `qa-faecher.md` (Fächer 1–6), `agentur-rubrik.md` (25 Merkmale),
 `run-evidence-contract.md`, `vercel-git-deploy.md`,
-`domain-safe-browsing-checkliste.md`, `security-audit-playbook.md`.
+`_archiv/domain-safe-browsing-checkliste.md`, `security-audit-playbook.md`.
 
 ## Der Unterschied zur Vorschau in einem Satz
 
@@ -62,7 +62,7 @@ eingesetzt oder Aussage gestrichen. Eine unklare echte Zahl (50 vs 60 Reviews,
   Weiterleitungen sauber. In der Vorschau ist das Ops und kein Design-Gate —
   beim Launch ist es Pflicht.
 - **Junge Domain + Formular** = Safe-Browsing-Risiko →
-  `domain-safe-browsing-checkliste.md` abarbeiten.
+  `_archiv/domain-safe-browsing-checkliste.md` abarbeiten.
 - Impressum und Datenschutz erreichbar und vollständig (DE); 404-Route
   gebrandet, Status 404, `noindex`, klarer Rückweg.
 - Consent vor nicht-essentiellem Tracking, wo nötig

@@ -124,7 +124,7 @@ Ein Import, der nicht in der `Export:`-Zeile steht, existiert nicht.
 | Drawer / Bottom-Sheet | `vaul` | Drag mit Snap-Points, iOS-Verhalten. |
 | Regler-Panel (Prototyp, Demo) | `leva` | Nur für Prototypen — nie im Kunden-Build. |
 | Springs, Layout-/Exit-Animationen in React | `motion` | Siehe `motion-doktrin.md`. |
-| Scroll-Sequenzen, Timelines, SVG | `gsap` | Abgrenzung zu `motion`: `motion-gsap.md`. |
+| Scroll-Sequenzen, Timelines, SVG | `gsap` | Abgrenzung zu `motion`: `_archiv/motion-gsap.md`. |
 | Zahlen animieren (Zähler, Preise, KPIs) | `@number-flow/react` | Ziffern-Übergang statt neu gerendertem Text. |
 | Echtzeit-/Streaming-Diagramme | `liveline` | Punkte kommen live rein, Chart scrollt mit der Zeit. |
 | Alle anderen Diagramme | `recharts` | Zusätzlich `dataviz`-Regeln beachten. |
@@ -160,7 +160,7 @@ Ein Import, der nicht in der `Export:`-Zeile steht, existiert nicht.
   Änderungen *an der Library selbst* müssten offengelegt werden; wir ändern sie nicht.
 - **GSAP Standard "no charge" License** (kein OSS-Kürzel):
   `gsap.com/standard-license`. Nicht mit MIT verwechseln. Vor dem ersten
-  kommerziellen Kunden-Build mit GSAP die Lizenzseite lesen — siehe `motion-gsap.md`.
+  kommerziellen Kunden-Build mit GSAP die Lizenzseite lesen — siehe `_archiv/motion-gsap.md`.
 
 Bei jeder neuen Library im Tresor: Lizenz aus der installierten `package.json`
 lesen und hier eintragen, bevor sie in einem Kundenprojekt landet.

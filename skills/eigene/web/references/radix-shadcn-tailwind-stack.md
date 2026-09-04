@@ -1,7 +1,7 @@
 # Default-Stack — Next.js + Tailwind + Radix/shadcn + Motion
 
 **Wofür:** Konkrete Setup-Entscheidungen für Raphaels Standard-Agenturprojekte
-(kein Enterprise-Marken-System nötig, siehe `design-systeme-vergleich.md` §1
+(kein Enterprise-Marken-System nötig, siehe `_archiv/design-systeme-vergleich.md` §1
 für die Abgrenzung). Motion-Prinzipien dupliziert dieser Skill nicht — die
 stehen in `motion-doktrin.md` (wann/wie animieren) und `ui-components/INDEX.md`
 (fertiger Motion-Code).
@@ -52,7 +52,7 @@ und Motion aus Fachwissen, nicht per WebFetch nachverifiziert diese Runde.
 6. **Motion-Entscheidungen (Timing, Kurven, Reduced-Motion) kommen aus
    `motion-doktrin.md` — hier nicht neu definieren.** `motion/react` ist nur die
    technische Umsetzung der dortigen Vier-Fragen-Prüfung.
-7. **Next.js App Router als Grundstruktur** (siehe `design-systeme-vergleich.md`
+7. **Next.js App Router als Grundstruktur** (siehe `_archiv/design-systeme-vergleich.md`
    §4): Radix-Dialog/Popover/DropdownMenu sind Client-Components (State,
    Browser-Events) — `"use client"` gezielt nur auf diese Komponenten setzen,
    Server Components bleiben Default für alles, was keine Interaktivität
@@ -74,7 +74,7 @@ und Motion aus Fachwissen, nicht per WebFetch nachverifiziert diese Runde.
   Overhead für simple Textfelder.
 - **Tabellen/Daten-Listen:** Radix `Table`/`DataList` als Grundgerüst, bei
   Analytics-lastigen Ansichten die Carbon-Data-Viz-Regeln aus
-  `design-systeme-vergleich.md` §3 für Diagramme daneben anwenden (Radix hat
+  `_archiv/design-systeme-vergleich.md` §3 für Diagramme daneben anwenden (Radix hat
   kein eigenes Chart-System).
 - **Vor jedem `AnimatePresence`-Einsatz:** prüfen, ob `useReducedMotion()`-
   Äquivalent aktiv ist — gilt genauso wie in `ui-components/INDEX.md` gefordert;
