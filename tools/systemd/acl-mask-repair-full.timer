@@ -1,0 +1,11 @@
+[Unit]
+Description=ACL-Maske Vollscan taeglich
+
+[Timer]
+OnCalendar=*-*-* 04:30
+RandomizedDelaySec=15min
+Persistent=true
+Unit=acl-mask-repair-full.service
+
+[Install]
+WantedBy=timers.target

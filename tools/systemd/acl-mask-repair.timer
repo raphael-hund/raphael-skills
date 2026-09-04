@@ -1,0 +1,11 @@
+[Unit]
+Description=ACL-Maske alle 10 Minuten pruefen
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=10min
+RandomizedDelaySec=60
+Unit=acl-mask-repair.service
+
+[Install]
+WantedBy=timers.target
