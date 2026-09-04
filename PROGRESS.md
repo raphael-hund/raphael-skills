@@ -1,5 +1,40 @@
 # PROGRESS — raphael-skills
 
+## Web-Inspiration + Komponenten-Zugänge (CLI-Presse) — 2026-09-04, zweite Session
+
+### Auftrag (1 Satz)
+Für Raphaels Quellenliste (Galerien, UI-/Komponenten-Bibliotheken, Effekte, Assets, Icons, Fonts, RN) soll der web-Skill echte Zugänge haben: wie holt der Agent Inspiration (Refero, Mobbin, 21st, Galerien) und wie zieht er Komponenten — mit printing-press, wo eine flache REST-API dahintersteht.
+
+### Stand
+- ERLEDIGT (alle mit Qualitätsschleife G1 → Fremd-Judge PASS, Commit `9bbf2fa`, gepusht auf `feat/web-workflow-evidenzvertrag-20260901`):
+  - `scripts/design-mcp.mjs`: Refero (styles/screens/flows, image → Datei), Mobbin (screens/flows/sections, SSE, Bilder als Dateien), 21st (search/get --out/inspiration/logo/theme) per JSON-RPC; Eval `run-design-mcp-check.mjs` 36/36 (+`--netz`). Sol-Build, Grok-Judge PASS Runde 2.
+  - `scripts/komponenten.mjs`: `libs` (292 shadcn-Registries aus `ui.shadcn.com/r/registries.json` + Vendor + npm + Docs-Libs, alle Namen aus Raphaels Liste), `search <@ns|name>`, `view`, `get --out` (eine Komponente, Werkzeugtabellen-Zeile + Router-Anker), `install-hint`; Eval `run-komponenten-check.mjs` 21/21 (+`--netz`). Sol-Build, Grok-Judge PASS.
+  - `scripts/inspiration.mjs`: 10 neue Galerien (`supahero cta recent fps posts loadmore kinetics notfound circleloaders umanmade`), Firecrawl-Key aus `api-keys.env` (Siteinspire läuft wieder), `navbar list` ohne Typ; Eval 62/62 (+`--netz`).
+  - printing-press-CLIs (cli-printing-press 4.31.6, `GOFLAGS=-buildvcs=false GOCACHE=/tmp/rh-gocache`): `pexels-pp-cli`, `polyhaven-pp-cli`, `iconify-pp-cli`, `fontshare-pp-cli`, `codrops-pp-cli` in `~/.local/bin`; Specs `/root/tools/printing-press/specs/*.yaml`, Library `/root/tools/printing-press/library/<name>/` (VERIFY.txt je CLI, verify PASS). Nicht in git (377 MB).
+  - Doku: `zugangskarte.md` (Arbeitsverzeichnis, Schlüssel statt Domains, jede Quelle der Liste hat einen Weg, Login-Tabelle um Pexels-Key), `modus-inspiration.md` (Befehlsfolgen, Abschnitt „Komponenten ziehen", Lizenz-Regel), `tool-usecase-router.md` (Install/Use-Zellen), `SKILL.md` 0.33.1.
+  - Abnahme durch frische Opus-Instanz (nur Doku, Zahnarzt-Zürich-Minilauf): 16 Aufrufe liefen; 6 Lücken gefunden und danach behoben (Basispfad, Galerie-Schlüssel, navbar-Typ, search-Token, Foto-Weg, Lizenz-Regel). Zweite Abnahme nach den Fixes: **nicht gelaufen**.
+- OFFEN:
+  - `PEXELS_API_KEY` fehlt (Raphael: https://www.pexels.com/onboarding/ → `api-keys.env`); `photos curated` läuft keyless, `photos search` nicht.
+  - Judge-Notizen ohne Fix: kinetics-`get` schreibt teils <200 B (Keyframes stehen auf der Seite); loadmore-`get` mit unbekanntem Slug → exit 3 statt 1; iconify `--out` nur als `--deliver file:`; Fontshare `list --search` filtert nicht (get-by-slug geht).
+  - Cult UI / Motion Primitives: Registry hinter Vercel-Checkpoint (429) → Vendor/Docs.
+  - MAKE Plan-Session (aus der Vormittagssession) weiterhin offen.
+
+### Entscheidungen
+- Kurskorrektur zu „keine CLI pro Site": jetzt ein Werkzeug pro **Zugangstyp** (MCP-Client, Komponenten-Skript, Galerie-Skript, printing-press für flache REST). Kein zweites Werkzeug für denselben Typ.
+- MCP-Server (JSON-RPC, SSE) **nicht** mit printing-press wrappen: der Generator flacht verschachtelte Bodies zu `--params-arguments-*`-Flags ab, `body_name` nestet nicht (Observation 30). Deshalb `design-mcp.mjs` als Node-Skript.
+- Grok als **Builder** für lange Leaves gesperrt (nur Judge): 4 grok-worker-Leaves starben nach 12–36 Tool-Calls am Budget-Guard („missing watchdog state") nach Stream-Timeouts, nicht am Zeitbudget (Observation 44). Sol baute alles durch.
+- Foto-Default bleibt Shutterstock (`stock.mjs`); Pexels nur ohne Passung.
+
+### Fallen
+- `cli-printing-press generate` bricht ohne `GOFLAGS=-buildvcs=false`; Root-GOCACHE teils nicht beschreibbar → `GOCACHE=/tmp/rh-gocache`.
+- Mobbin verlangt `Accept: application/json, text/event-stream` (sonst 406) und antwortet als SSE.
+- Firecrawl keyless läuft ins Ratenlimit; Key steht als `export FIRECRAWL_API_KEY=` in `api-keys.env` (export-Präfix beachten).
+- validate-skill.py rekursiv über `skills/eigene/web` ist wegen der ungetrackten Vendor-Snapshots unter `resources/components/` immer rot → nur `SKILL.md` direkt prüfen.
+- Workflow-Leaves: `RAPHAEL_SUBAGENT_MAX_*` gilt, aber der eigentliche Killer war der Stall-Watchdog (180 s) bei Grok-Latenz.
+
+### Nächster Schritt
+Zweite Abnahme (frische Instanz, nur `modus-inspiration.md` + `zugangskarte.md`) nach den sechs Doku-Fixes; danach MAKE Plan-Session.
+
 ## Web-Inspiration + MCP/CLI-Anbindung — 2026-09-04
 
 ### Auftrag (1 Satz)
