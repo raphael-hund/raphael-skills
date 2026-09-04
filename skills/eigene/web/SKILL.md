@@ -16,11 +16,11 @@ description: >
   "Website planen", "Website-Plan", "Landingpage planen",
   "Website-Kritik", "Website kritisieren", "kompletter Website-Plan".
 metadata:
-  raphael-version: "0.31.0"
+  raphael-version: "0.32.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: '["references/rolle-plan.md","references/rolle-kritik.md","references/rolle-bau.md","references/rolle-launch.md","references/kritik-matrix.md","references/anfaenger-pfad.md","references/stil-regeln.md","references/muster-bibliothek/INDEX.md","references/load-graph.md","references/loop2-ablauf.md","references/planner-executor-protokoll.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/inspirations-quellen.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/run-evidence-contract.md","references/templates/PRUEFGEGEN-template.md","references/templates/statistics-page-template.html"]'
+  raphael-loads: '["references/rolle-plan.md", "references/rolle-kritik.md", "references/rolle-bau.md", "references/rolle-launch.md", "references/kritik-matrix.md", "references/anfaenger-pfad.md", "references/stil-regeln.md", "references/muster-bibliothek/INDEX.md", "references/load-graph.md", "references/loop2-ablauf.md", "references/planner-executor-protokoll.md", "references/sitemap-section-planung.md", "references/qa-faecher.md", "references/landingpage-struktur.md", "references/informationsarchitektur.md", "references/web-clone-playbook.md", "references/rebuild-from-image.md", "references/bildgenerierung.md", "references/stock-bilder.md", "references/ui-components/INDEX.md", "references/motion-doktrin.md", "references/ui-layouts-catalog.md", "references/cro-diagnose.md", "references/experiment-programm.md", "references/conversion-elemente.md", "references/code-qualitaets-checkliste.md", "references/security-audit-playbook.md", "references/domain-safe-browsing-checkliste.md", "references/readonly-db-rolle.md", "references/design-systeme-vergleich.md", "references/radix-shadcn-tailwind-stack.md", "references/remotion-produktionsweg.md", "references/screenshot-kritik-loop.md", "references/tool-usecase-router.md", "references/frontend-referenzbibliothek.md", "references/inspirations-quellen.md", "references/modus-inspiration.md", "references/zugangskarte.md", "references/lexlin-design-prinzipien.md", "references/damien-design-methodik.md", "references/agentur-rubrik.md", "references/agent-roster.md", "references/run-evidence-contract.md", "references/templates/PRUEFGEGEN-template.md", "references/templates/statistics-page-template.html"]'
   raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","seo@^0","visual-aaa@^1","web-anti-slop@^0"]'
   raphael-completion-criteria: '["Rolle in einem Satz benannt (Plan|Kritik|Bau|Launch), genau ein Rollen-Dokument aus der Rollen-Tabelle geladen und vor dem ersten Edit die Auftrag-Zeile aus references/anfaenger-pfad.md 1 benannt — nur die dort gelisteten Dateien, nie die ganze loads-Liste", "session-gate.mjs mit --rolle und --client am Sessionstart gelaufen; Exit 2 heisst zurueck an die Vorsession, nicht weiterbauen", "Drei Phasen Plan/Kritik/Bau in einem Chat, Zustand auf Platte; Kritik-Flotte nach kritik-matrix.md samt Profil und drei Ausgaengen; PRUEFGEGEN.md vor Kritik; ohne KRITIK-n.md kein Bau", "Parent duenn: kein CSS/TSX-Edit, kein PNG-Read im Parent; jedes PNG liest ein Kritik-Leaf, Parent fuehrt nur das Shot-Ledger (pfad | viewport | gelesen-von | verdict) in STATUS.md", "Bau-Phase startet im ersten Turn einen Dynamic Workflow; Copy schreibt ein eigener Copy-Leaf (Profil: rolle-bau.md), der Integrator baut sie unveraendert ein; /cost-Zeile mit Datum steht in STATUS.md", "Kunden-Vorschau blockt nur an Ablauf/Sitemap/Idee/Design; Inhalt und Domain parken als content-park/ops-park bzw. FAKT-GATE (scripts/preview-befund-klasse.mjs), nie als biggest_gap", "Ohne frischen shot-sweep --base nach einem Fix = nicht geprueft; Kritik-Befund lebt nur nach der Merge-Regel aus kritik-matrix.md: zwei unabhaengige Leaves, oder eine Linse mit deterministischem Gate-Beleg (SEO onpage-check.mjs, Copy G0/G1, Trust PROOF.md)", "Launch nur mit allen Gates aus references/rolle-launch.md gruen und Raphaels Signatur plus Deploy-Egress-Gate; Launch-Details werden dort geprueft, nicht hier"]'
 ---
@@ -33,6 +33,7 @@ bist und welche eine Datei du dafür lädst. Alles Weitere steht dort.
 ## Was Raphael tippt
 
 - Website bauen / ändern / relaunchen / clonen → `/web`
+- Inspiration / Look / Referenzen holen, noch nichts planen → `/web` (Modus Inspiration: Refero-MCP, Mobbin-MCP, 21st-MCP, Galerien, Screenshots über Leaves).
 - Website planen, noch nichts bauen → `/web` (Rolle Plan). Nicht
   `/website-plan`, nicht `/ce-plan`, nicht 12 Plan-Skills.
 - Website-Kritik / Look / Conversion sichtbar prüfen → `/web` + `/orchestrate`
@@ -54,6 +55,7 @@ Sag die Rolle in einem Satz an, lade **genau ein** Dokument, arbeite dort weiter
 
 | Rolle | Chips | Pflicht-Load | Fertig heißt |
 |---|---|---|---|
+| **Inspiration** | nur `/web` | `references/modus-inspiration.md` | Reference-Lock + Shot-Ledger in `art-direction.md`, kein Code |
 | **Plan** | nur `/web` | `references/rolle-plan.md` | `PLAN.md` + `PRUEFGEGEN.md` stehen, Copy-Briefing drin |
 | **Kritik** | `/web` + `/orchestrate` | `references/rolle-kritik.md` | `KRITIK-n.md` mit überlebender Fixliste + Shot-Ledger |
 | **Bau** | `/web` + `/orchestrate` | `references/rolle-bau.md` | Fixliste umgesetzt, Re-Sweep grün, `STATUS.md` aktuell |
@@ -204,7 +206,8 @@ wird): `references/anfaenger-pfad.md` §8.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill. Nie routen.
 - **AAA hier = Agentur-Rubrik**, nicht WCAG AAA (WCAG bleibt AA).
 - **Update an Bestandsseite = neuer Workspace/Worktree**, nie im Root-Checkout.
-- **Inspiration: Refero-MCP zuerst (Styles→Screens→Flows, Reference-Lock), Galerien über `scripts/inspiration.mjs`, Sehen über `inspiration.mjs shot` + Read** — 21st-Code nur mit CLI-Login, nie raten.
+- **Inspiration nur im Modus `modus-inspiration.md`**: Refero-MCP zuerst, Mobbin-MCP für Flows, 21st-MCP (`get_usage` vor `get_component`), Galerien über `scripts/inspiration.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — keine CLI pro Site.
+- **Stock-Fotos nur über `scripts/stock.mjs`** (Shutterstock-Abo, Lizenznachweis `stock-lizenzen.json`) — nie Unsplash-Links in Kundenseiten.
 
 ## Evals
 

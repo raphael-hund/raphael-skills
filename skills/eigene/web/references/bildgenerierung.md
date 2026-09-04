@@ -18,6 +18,7 @@ Drei verschiedene Dinge, oft verwechselt. Erst einordnen, dann arbeiten:
 | Ich brauche… | Werkzeug | Nicht verwechseln mit |
 |---|---|---|
 | **Inhalts-Bild** auf der fertigen Seite (Hero-Foto, Produkt, Szene, Illustration) | **Higgsfield CLI** (dieses Dokument) | keine Design-Mockups, echte Assets |
+| **Echtes Foto** (Mensch, Ort, Produkt, KI-Verbot) | `scripts/stock.mjs` (Shutterstock-Abo, `references/stock-bilder.md`) | kein Higgsfield-Ersatz für Markenszenen |
 | **Design-Referenz-Mockup** je Sektion (wie soll die Sektion aussehen) | Image-first: `lexlin-design-prinzipien.md` + `rebuild-from-image.md` (ein Bild PRO Sektion). `imagegen-web` nur wenn Host-Skill + Router-Zeile — kein Default | erzeugt Layout-Vorlagen, keine Endkunden-Assets |
 | **UI selbst als Code** (Layout, Komponenten, Motion, Anti-Slop-QA) | **design** | kein Bildgenerator |
 | Allgemeine Marketing-Bild-Werkzeugkunde (Nicht-Higgsfield-Fälle, Web-Optimierung) | **image** (vendored) | Fallback/Nachschlagewerk |
@@ -223,7 +224,7 @@ Archiv-Rezept, falls Raphael Recraft ausdrücklich nennt.
 Nahaufnahme-Porträts realer Personen mit Recraft — KI-Gesichter fallen im Close-up auf
 und werden schnell unheimlich/fake. Menschen nur auf mittlere/weite Distanz, angeschnitten,
 von der Seite, in Bewegung, als Teil der Szene — nie das erkennbare Gesicht als Motiv.
-Braucht die Seite ein echtes, nahes Gesicht → **echtes Foto** (Shooting/Stock), nicht Recraft.
+Braucht die Seite ein echtes, nahes Gesicht → **echtes Foto** (Shooting oder Shutterstock via `stock.mjs`), nicht Recraft.
 
 **Das Recraft-Problem:** Recraft baut ungefragt gern einen **cinematischen, leicht
 getönten, filmischen Look** (Teal-Orange-Grade, Film-Tint). Das passt fast nie zu

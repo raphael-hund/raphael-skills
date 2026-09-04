@@ -22,6 +22,7 @@ das Gate — es sagt dir, ob deine Vorsession fertig ist:
 | Session | Chip | Pflicht-Load | Gate am Start |
 |---|---|---|---|
 | Plan | nur `/web` | `rolle-plan.md` | `node scripts/session-gate.mjs --rolle plan --client <pfad>` |
+| Inspiration | nur `/web` | `modus-inspiration.md` | kein Gate; Ergebnis ist `art-direction.md` mit Reference-Lock + Shot-Ledger |
 | Kritik | `/web` + `/orchestrate` | `rolle-kritik.md` | `--rolle kritik` — Exit 2 heißt: Plan-Session zuerst |
 | Bau | `/web` + `/orchestrate` | `rolle-bau.md` | `--rolle bau` — Exit 2 heißt: Kritik-Session zuerst |
 | Launch | wie Bau | `rolle-launch.md` | alle Gates dort grün + Raphaels Signatur |
@@ -209,6 +210,7 @@ und die geladenen Dateipfade. Fehlt das → Skill nicht befolgt.
 | Higgsfield / GPT Image 2 | Skill `higgsfield` zuerst; CLI-Katalog `references/bildgenerierung.md` |
 | Neue Illustration vs. bestehendes Asset; Inhalt+Stil referenzieren | Skill `higgsfield` + `references/bildgenerierung.md` Abschnitt **Neue Illustration vs. wiederverwenden** |
 | Motion-Regeln | `references/motion-doktrin.md` |
+| Echtes Stock-Foto lizenzieren (Shutterstock) | `references/stock-bilder.md` |
 | Copy-paste Motion-UI (beUI v2) | `references/ui-components/INDEX.md` |
 | Lokale Vendor-Komponenten (zehn Quellen, offline zuerst) | `resources/components/INDEX.md`, dann `resources/components/<site>/INDEX.md` |
 | Default-Stack Next/Tailwind/shadcn/`motion` | `references/radix-shadcn-tailwind-stack.md` |
@@ -224,5 +226,8 @@ und die geladenen Dateipfade. Fehlt das → Skill nicht befolgt.
 | Genau eine Ressource nach Router-Wahl | `scripts/resource-access.mjs show "<Name>"` = lokale Metadaten; **Pflicht danach:** `node scripts/resource-access.mjs open "<exakter Name>"` öffnet die Katalog-URL und liest die Site. URL-Dump allein zählt nicht als Nutzung. |
 | 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
 
+| Inspiration-Modus (Refero/Mobbin/21st-MCP, Galerien, Shots über Leaves) | `references/modus-inspiration.md` |
+| Welche Quelle wie nutzen (MCP/Skript/Vendor/open/Login) | `references/zugangskarte.md` |
+| Inspiration / einzelne Fremdkomponente holen | `references/inspirations-quellen.md` |
 | Inspiration / einzelne Fremdkomponente holen | `references/inspirations-quellen.md` |
 Was ein Site-Build nie lädt: §4 oben und `references/load-graph.md`.

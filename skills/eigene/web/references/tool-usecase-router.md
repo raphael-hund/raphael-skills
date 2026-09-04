@@ -114,7 +114,7 @@ Auftrag: *„Landingpage mit Motion-Hero, Icons, Stock-Foto, FAQ-Accordion“*
 |---|---|---|---|
 | FAQ-Accordion | shadcn/Radix Accordion | `npx shadcn@latest add accordion` | Tastatur, `aria-expanded`, ein Panel offen testen |
 | Icons | Lucide | `npm i lucide-react` → `import { Icon } from "lucide-react"` | eine Icon-Familie, 24px-Grid, `aria-hidden` dekorativ |
-| Stock-Foto | Unsplash (Lizenz lesen) **oder** Higgsfield wenn KI ok | Download + Attribution laut Lizenz; sonst `bildgenerierung.md` | Model-Release/Kundenrecht; nicht als Kundenbeweis ausgeben |
+| Stock-Foto | Shutterstock (`scripts/stock.mjs`) **oder** Higgsfield wenn KI ok | `stock search` → `preview` → `license --out` → `stock add`; sonst `bildgenerierung.md` | Model-Release/Kundenrecht; nicht als Kundenbeweis ausgeben |
 | Motion-Hero | CSS/Tailwind zuerst; sonst Motion (`motion`/`motion/react`) + vendorierte Motion aus `ui-components/` | Datei aus `references/ui-components/motion/` kopieren oder gezielt `npm i motion` | `useReducedMotion()`, LCP-Hero nicht mit schweren WebGL-Effekten blockieren |
 
 Verboten in diesem Szenario: Magic UI + Aceternity + daisyUI + Three.js parallel
@@ -315,8 +315,8 @@ Buttons, Zustände, Listen.
 | **Loop** | `art-direction` → Assets vor/während `build` |
 | **Default** | Skill **`higgsfield`** (`/higgsfield`), CLI-Details in `bildgenerierung.md` (GPT Image 2) |
 | **Install/Use** | Skill `higgsfield` zuerst, dann `bildgenerierung.md` + `scripts/bilder.mjs` (AVIF + Index) |
-| **Alternativen** | Kundenechte Fotos; Stock nur wenn Brief Stock/KI-Verbot: Unsplash/Pexels/Pixabay mit Lizenznotiz |
-| **Gate** | AVIF + `bilder-index.json`; Uncanny-Check bei KI-Menschen; kein Stock als „Kundenbeweis“ |
+| **Alternativen** | Kundenechte Fotos; **Shutterstock über `scripts/stock.mjs`** (Abo, Standardlizenz, `references/stock-bilder.md`) wenn echte Menschen/Orte/Produkte oder KI-Verbot; Unsplash/Pexels nur ohne Abo-Passung |
+| **Gate** | AVIF + `bilder-index.json`; Uncanny-Check bei KI-Menschen; kein Stock als „Kundenbeweis“; Stock: Zeile in `stock-lizenzen.json` |
 | **Nie** | Stock-Pipeline als Default wenn Higgsfield erlaubt; Nano Banana als Final; doppelte Bild-Doktrin erfinden |
 
 ### 10. Video / Lottie / Rive

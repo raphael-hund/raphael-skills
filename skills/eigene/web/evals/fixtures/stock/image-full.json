@@ -1,0 +1,96 @@
+{
+  "id": "2165394859",
+  "description": "Male caucasian executive ceo businessman leader with diverse partners team, managers group at meeting.",
+  "aspect": 0.7805,
+  "is_editorial": false,
+  "has_model_release": true,
+  "keywords": [
+    "kw1",
+    "kw2",
+    "kw3",
+    "kw4",
+    "kw5",
+    "kw6",
+    "kw7",
+    "kw8",
+    "kw9",
+    "kw10",
+    "kw11",
+    "kw12",
+    "kw13",
+    "kw14",
+    "kw15",
+    "kw16",
+    "kw17",
+    "kw18",
+    "kw19",
+    "kw20",
+    "kw21",
+    "kw22",
+    "kw23",
+    "kw24",
+    "office",
+    "meeting",
+    "team",
+    "business",
+    "manager"
+  ],
+  "categories": [
+    {
+      "name": "People",
+      "id": "13"
+    },
+    {
+      "name": "Business/Finance",
+      "id": "4"
+    }
+  ],
+  "contributor": {
+    "id": "301539971",
+    "name": "Ground Picture"
+  },
+  "model_releases": [
+    {
+      "id": "36636395"
+    },
+    {
+      "id": "36389051"
+    }
+  ],
+  "assets": {
+    "huge_jpg": {
+      "display_name": "Huge",
+      "dpi": 300,
+      "file_size": 7558416,
+      "format": "jpg",
+      "is_licensable": true,
+      "height": 4000,
+      "width": 3122
+    },
+    "preview_1000": {
+      "height": 1000,
+      "width": 780,
+      "url": "https://image.shutterstock.com/image-photo/male-caucasian-executive-ceo-businessman-1000w-2165394859.jpg"
+    },
+    "preview_1500": {
+      "height": 1500,
+      "width": 1170,
+      "url": "https://image.shutterstock.com/z/stock-photo-male-caucasian-executive-ceo-businessman-leader-with-diverse-partners-team-managers-group-at-2165394859.jpg"
+    },
+    "large_thumb": {
+      "height": 150,
+      "width": 117,
+      "url": "https://image.shutterstock.com/image-photo/male-caucasian-executive-ceo-businessman-150nw-2165394859.jpg"
+    },
+    "medium_jpg": {
+      "height": 1000,
+      "width": 780,
+      "format": "jpg"
+    },
+    "small_jpg": {
+      "height": 500,
+      "width": 390,
+      "format": "jpg"
+    }
+  }
+}

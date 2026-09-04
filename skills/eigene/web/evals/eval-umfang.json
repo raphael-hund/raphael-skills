@@ -46,5 +46,6 @@
   "run-preview-vs-launch-check.mjs": 36,
   "run-kanon-pipeline-check.mjs": 20,
   "run-x-bookmark-pipeline-check.mjs": 23,
-  "run-inspiration-check.mjs": 44
+  "run-inspiration-check.mjs": 44,
+  "run-stock-check.mjs": 20
 }
