@@ -20,7 +20,9 @@ probe() {
     -H 'content-type: application/json' \
     -d "{\"model\":\"$model\",\"max_tokens\":4,\"messages\":[{\"role\":\"user\",\"content\":\"ok\"}]}" 2>/dev/null || echo 000)
   t1=$(date +%s.%N)
-  printf 'FAMILIE %-6s %-22s %s %.1fs\n' "$fam" "$model" "$([ "$code" = 200 ] && echo OK || echo "DOWN($code)")" "$(echo "$t1-$t0" | bc)"
+  local note=""
+  [ "$code" = 402 ] && note=" GUTHABEN-LEER"
+  printf 'FAMILIE %-6s %-22s %s %.1fs%s\n' "$fam" "$model" "$([ "$code" = 200 ] && echo OK || echo "DOWN($code)")" "$(echo "$t1-$t0" | bc)" "$note"
 }
 echo "BASE_URL $BASE"
 probe fable  claude-fable-5-1
@@ -28,6 +30,9 @@ probe opus   claude-opus-5
 probe sol    gpt-5.6-sol
 probe luna   gpt-5.6-luna
 probe grok   claude-gw-xai-4.6
+# Grok-Guthaben direkt am VPS-Proxy (402 = Build usage balance exhausted; Mac-Gateway zeigt nur 503 auth_unavailable)
+gc=$(timeout 20 curl -s -o /tmp/pf-grok8317.json -w '%{http_code}' http://127.0.0.1:8317/v1/messages -H "Authorization: Bearer $KEY" -H 'anthropic-version: 2023-06-01' -H 'content-type: application/json' -d '{"model":"xai/grok-4.6","max_tokens":4,"messages":[{"role":"user","content":"ok"}]}' 2>/dev/null || echo 000)
+[ "$gc" = 402 ] && echo "FAMILIE grok   VPS-8317               DOWN(402) GUTHABEN-LEER: $(head -c 120 /tmp/pf-grok8317.json)"
 echo "BUDGET leaf_seconds=${RAPHAEL_SUBAGENT_MAX_SECONDS:-3600} leaf_tools=${RAPHAEL_SUBAGENT_MAX_TOOLS:-200} (raphael-subagent-budget-guard; Bau-Paket ≤ 2–3 Routen, Zeitbudget im Prompt)"
 echo "PROFIL $(cat /root/.claude/fleet-profile 2>/dev/null || echo multi-family)"
 if [ -n "$WT" ]; then
