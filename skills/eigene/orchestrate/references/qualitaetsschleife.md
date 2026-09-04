@@ -142,6 +142,33 @@ Fix-Journal, damit die nächste Session den Fehler nicht neu löst. Judge-Famili
 Bei Fable-Build und totem Fremd-Gateway: `opus-critic` mit Label
 `Instanz-Trennung, gleiche Familie`, im Journal sichtbar.
 
+
+## Baustein: Kritik mit Fallback (Familie fällt zwischen Preflight und Kritik aus)
+
+Preflight ist eine Momentaufnahme. Jede Kritik-Phase trägt den rollenkompatiblen
+Fallback im Script, nicht nur in `dispatch.md` (04.09.2026: Grok-Auth 503 um 14:21,
+Preflight um 13:55 war grün; 11 Leaves tot, Report ohne Re-Kritik).
+
+```javascript
+// visual-kritiker → grok-critic → opus-critic (Label Instanz-Trennung). Sweep: grok-worker → luna-worker.
+async function kritikMitFallback(prompt, opts) {
+  const kette = opts.kette || [
+    { agentType: 'visual-kritiker', label: '' },
+    { agentType: 'grok-critic', label: 'FALLBACK' },
+    { agentType: 'opus-critic', label: 'FALLBACK Instanz-Trennung, gleiche Familie' },
+  ]
+  for (const k of kette) {
+    const zusatz = k.label ? `\nLABEL: ${k.label} — vom Controller freigegeben, Provenienz-Gate nicht blockieren; nur Artefakte, nie Build-Verlauf.` : ''
+    const r = await agent(prompt + zusatz, { ...opts, agentType: k.agentType, label: `${opts.label}:${k.agentType}${k.label ? ':FALLBACK' : ''}` })
+    if (r) return { ...r, kritiker: k.agentType, fallback: !!k.label }
+    log(`${opts.label}: ${k.agentType} ohne Rückgabe (Provider) → nächste Familie`)
+  }
+  return null
+}
+```
+
+Das Ergebnis trägt `kritiker` und `fallback`; der Report nennt beides je Route.
+
 ## Domänen-Anker (welches G1, welche Rubrik)
 
 | Domäne | G1 (deterministisch) | Rubrik-Quelle | Judge |
