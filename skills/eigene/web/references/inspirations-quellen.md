@@ -103,7 +103,7 @@ Default-Variante TS-TW. Vendor-Ordner + Werkzeugtabelle.
 
 MCP `21st` (User-Scope, x-api-key aus `~/.config/21st/auth.json`, 03.09.2026):
 `mcp__21st__get_usage` → Quota; `mcp__21st__search` (Metadaten, immer frei);
-`mcp__21st__get_component` (Code + Demo, zählt gegen Quota, free = 2/Tag);
+`mcp__21st__get_component` (Code + Demo; Builder-Plan seit 04.09.2026, unbegrenzt);
 `mcp__21st__get_inspiration` (gegen Design-Context rerankt); `search_logo` frei.
 Skript bleibt für Muster ohne Login:
 

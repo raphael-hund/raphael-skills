@@ -34,9 +34,9 @@ Ohne Read der Shots = nicht gesehen. Ohne Lock = nicht fertig.
    Token-Rollen nicht umdeuten. Details: `inspirations-quellen.md` §0.
 3. **App/Flows:** Mobbin-MCP (`search_screens` / `search_flows`), Queries
    nach dem, was auf dem Screen steht — nicht nach Stimmungswörtern.
-4. **Komponenten-Inspiration (optional):** 21st-MCP `get_usage` zuerst.
-   Quota 0 → nur `search` (Metadaten) und `inspiration.mjs 21st search`.
-   Quota > 0 → `search` + höchstens **ein** `get_component`. Magic UI /
+4. **Komponenten-Inspiration (optional):** 21st-MCP `search` → bis zu
+   **drei** `get_component` (Builder-Plan, unbegrenzt; `get_usage` nur bei
+   401/429 als Diagnose). Magic UI /
    React Bits nur wenn der Lock eine Motion-/Section-Lücke hat:
    `inspiration.mjs magicui|reactbits list --grep` → ein `get`.
 5. **Galerien als Ergänzung, max. 3 URLs.** Quelle aus
@@ -65,7 +65,7 @@ zwei Dateien). Kein Enkel.
 ## Nie
 
 - Inspiration und Bau in einem Rutsch.
-- 21st-Code raten oder Quota ignorieren.
+- 21st-Code raten; mehr als drei Komponenten pro Bedarf ziehen.
 - Galerie clonen, Demo-Copy/Logos übernehmen.
 - Parent liest PNGs.
 - Neue CLI für eine Site aus der Tweet-Liste — zuerst `zugangskarte.md`.
