@@ -8,6 +8,7 @@
 set -u
 BASE="${ANTHROPIC_BASE_URL:-https://api.anthropic.com}"
 WT="${1:-}"
+PLAN_PATHS="${2:-}"   # optional: geplante Schreibpfade (Komma), dann blockt nur Überlappung
 KEYFILE=/etc/raphael-gateway/mac-gateway-key
 KEY="${ANTHROPIC_API_KEY:-}"
 if [ -z "$KEY" ] && [ -r "$KEYFILE" ]; then KEY="$(tr -d '\n' < "$KEYFILE")"; fi
@@ -33,7 +34,13 @@ probe grok   claude-gw-xai-4.6
 # Grok-Guthaben direkt am VPS-Proxy (402 = Build usage balance exhausted; Mac-Gateway zeigt nur 503 auth_unavailable)
 gc=$(timeout 20 curl -s -o /tmp/pf-grok8317.json -w '%{http_code}' http://127.0.0.1:8317/v1/messages -H "Authorization: Bearer $KEY" -H 'anthropic-version: 2023-06-01' -H 'content-type: application/json' -d '{"model":"xai/grok-4.6","max_tokens":4,"messages":[{"role":"user","content":"ok"}]}' 2>/dev/null || echo 000)
 [ "$gc" = 402 ] && echo "FAMILIE grok   VPS-8317               DOWN(402) GUTHABEN-LEER: $(head -c 120 /tmp/pf-grok8317.json)"
-echo "BUDGET leaf_seconds=${RAPHAEL_SUBAGENT_MAX_SECONDS:-3600} leaf_tools=${RAPHAEL_SUBAGENT_MAX_TOOLS:-200} (raphael-subagent-budget-guard; Bau-Paket ≤ 2–3 Routen, Zeitbudget im Prompt)"
+SJ_SEC=$(python3 -c "import json;print(json.load(open('/root/.claude/settings.json')).get('env',{}).get('RAPHAEL_SUBAGENT_MAX_SECONDS',''))" 2>/dev/null || sudo -n python3 -c "import json;print(json.load(open('/root/.claude/settings.json')).get('env',{}).get('RAPHAEL_SUBAGENT_MAX_SECONDS',''))" 2>/dev/null)
+ENV_SEC="${RAPHAEL_SUBAGENT_MAX_SECONDS:-}"; ENV_TOOLS="${RAPHAEL_SUBAGENT_MAX_TOOLS:-}"
+if [ -n "$ENV_SEC" ] && [ -n "$SJ_SEC" ] && [ "$ENV_SEC" != "$SJ_SEC" ]; then
+  echo "BUDGET WARN leaf_seconds=$ENV_SEC leaf_tools=${ENV_TOOLS:-?} (aus Session-Env, überschreibt settings.json=$SJ_SEC) — Zeitbudget im Leaf-Prompt an diese Zahl koppeln"
+else
+  echo "BUDGET leaf_seconds=${ENV_SEC:-${SJ_SEC:-3600}} leaf_tools=${ENV_TOOLS:-200} (raphael-subagent-budget-guard; Bau-Paket ≤ 2–3 Routen, Zeitbudget im Prompt)"
+fi
 echo "PROFIL $(cat /root/.claude/fleet-profile 2>/dev/null || echo multi-family)"
 if [ -n "$WT" ]; then
   # fremde Runs: workflow-json mit status running, deren Script den Worktree-Pfad nennt
@@ -50,7 +57,13 @@ if [ -n "$WT" ]; then
     newest=$(ls -t "$d"/agent-*.jsonl 2>/dev/null | head -1); [ -n "$newest" ] || continue
     age=$(( now - $(stat -c %Y "$newest") )); [ "$age" -lt 900 ] || continue
     if grep -q "$WT" "$newest" 2>/dev/null; then
-      echo "OWNER FREMDER-RUN $id laeuft in $WT (Aktivitaet vor ${age}s) — erst stoppen lassen, dann starten"; found=1
+      if [ -n "$PLAN_PATHS" ]; then
+        ov=0; for pp in $(echo "$PLAN_PATHS" | tr ',' ' '); do grep -q "$pp" "$newest" 2>/dev/null && ov=1; done
+        if [ "$ov" = 1 ]; then echo "OWNER FREMDER-RUN $id laeuft in $WT und beruehrt geplante Pfade (Aktivitaet vor ${age}s) — erst stoppen lassen"; found=1
+        else echo "OWNER Hinweis: fremder Run $id in $WT, Pfade disjunkt zu $PLAN_PATHS — parallel erlaubt"; found=1; fi
+      else
+        echo "OWNER FREMDER-RUN $id laeuft in $WT (Aktivitaet vor ${age}s) — erst stoppen lassen, dann starten (oder Schreibpfade als 2. Argument angeben)"; found=1
+      fi
     fi
   done
   [ "$found" = 0 ] && echo "OWNER frei: kein laufender Workflow nennt $WT"

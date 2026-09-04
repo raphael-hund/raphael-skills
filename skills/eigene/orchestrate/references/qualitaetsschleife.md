@@ -173,6 +173,29 @@ Blindtest-Integrität: Das Sweep-Skript schreibt die X/Y-Zuordnung **nur** nach
 `KEY-DO-NOT-READ.json`, nie in Logs, Manifest oder stdout im Artefakt-Ordner. Ein
 Kritiker fand die Auflösung am 04.09.2026 im Recapture-Log. Log-Zeile: `BLIND <slug> geschrieben`.
 
+
+## Provenienz-Zeile (Langform, Pflicht in jedem Kritiker-/Judge-Prompt)
+
+```
+ACTUAL_BUILDER_FAMILY=Claude (Anthropic, Modell claude-fable-5-1 über agentType fable-builder, Workflow <id>, Failover nein; Beleg: Workflow-Journal)
+```
+
+Kurzformen wie `claude-fable` liest das Gate als Platzhalter (Beob. 71). Bei Fremd-Gateway
+tot und Claude-Build steht die Bild-Achse bei `opus-critic` nur mit der ausdrücklichen
+Freigabe-Zeile `LABEL: Instanz-Trennung, gleiche Familie — vom Controller freigegeben`;
+ohne diese Zeile blockt `opus-critic` korrekt (Beob. 70). Text-Achsen (Code, Copy, SEO)
+gehen dann an `sol-pruefer`; Bild-Achsen ohne Grok und ohne Freigabe werden geparkt,
+nie still übersprungen.
+
+## Budget aus dem Preflight, nie hart
+
+`preflight.sh` zeigt `leaf_seconds`/`leaf_tools` aus der Session-Env; weicht sie von
+`settings.json` ab, steht die Quelle dabei. Scripts leiten Zeitbudget im Prompt und
+Paketschnitt aus dieser Zahl ab (Beob. 78). Retry-Wrapper schreiben den `agentType`
+literal in jeden `agent()`-Aufruf, kein `...opts` allein (Guard prüft statisch, Beob. 73).
+Leaves schreiben ihr Ergebnis früh und inkrementell auf Disk; `StructuredOutput` ist nur
+der Zeiger (Beob. Wayfinder 04.09.).
+
 ## Domänen-Anker (welches G1, welche Rubrik)
 
 | Domäne | G1 (deterministisch) | Rubrik-Quelle | Judge |

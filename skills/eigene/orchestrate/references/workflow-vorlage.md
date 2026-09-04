@@ -171,6 +171,13 @@ function verifierReplacementType(step) {
 // mit Ersatzrouten nutzt, startet die Session mit RAPHAEL_ALLOW_DYNAMIC_AGENTTYPE=1
 // und traegt jeden Ersatz sichtbar als FALLBACK ins Journal. Ohne Ersatzrouten:
 // agentType als String-Literal direkt in agent() schreiben.
+// LEAF-ERGEBNIS AUF DISK (Raphael 04.09.2026, Wayfinder Website-2k): Research- und Bau-Leaves
+// schreiben ihre Ergebnisdatei FRUEH und inkrementell; StructuredOutput ist nur der Zeiger.
+// Belegt: 4 von 5 parallelen grok-worker liefen 600-2300 s, wurden gedrosselt (0 output tokens)
+// und verloren die ganze Arbeit, weil die Datei erst am Ende geschrieben worden waere.
+// Dazu: Fremdfamilien-Leaves max 2-3 parallel je Familie, wenn preflight.sh fuer die Familie
+// ueber 5 s meldet, und jeder agent()-Aufruf im try/catch mit deklarierter Ersatzroute
+// (Recherche: grok -> opus-builder, Label FALLBACK, Modell im Ergebnis sichtbar).
 // Fehlerklasse benennen (Raphael 04.09.2026): TIMEOUT | PROVIDER | EMPTY | WRONG | ERROR.
 // Die Klasse steuert die Reaktion: TIMEOUT/PROVIDER → einmal gleiche Route, dann Ersatz;
 // EMPTY → einmal gleiche Route mit Hinweis; WRONG (Schema/FAIL/BLOCKED) → kein blinder Retry,
