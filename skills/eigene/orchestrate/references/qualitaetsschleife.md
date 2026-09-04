@@ -169,6 +169,10 @@ async function kritikMitFallback(prompt, opts) {
 
 Das Ergebnis trägt `kritiker` und `fallback`; der Report nennt beides je Route.
 
+Blindtest-Integrität: Das Sweep-Skript schreibt die X/Y-Zuordnung **nur** nach
+`KEY-DO-NOT-READ.json`, nie in Logs, Manifest oder stdout im Artefakt-Ordner. Ein
+Kritiker fand die Auflösung am 04.09.2026 im Recapture-Log. Log-Zeile: `BLIND <slug> geschrieben`.
+
 ## Domänen-Anker (welches G1, welche Rubrik)
 
 | Domäne | G1 (deterministisch) | Rubrik-Quelle | Judge |

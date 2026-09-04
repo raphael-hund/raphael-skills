@@ -118,7 +118,7 @@ Kontrakt und Anti-Muster: [`references/gruendlich.md`](references/gruendlich.md)
 
 - Controller in der Hauptsession: **1** (dünn, keine Screenshot-Reads)
 - Dynamic Workflow: **Default** bei >1 isolierbarem Paket, Website, visuellem QA oder Masse
-- parallele Leaf-Tasks: so viele wie isolierbare Pakete; `workflowSizeGuideline` ist **unrestricted**; `fable-builder` maximal zwei gleichzeitig (Sitze), weitere Pakete in Wellen oder auf `opus-builder`
+- parallele Leaf-Tasks: so viele wie isolierbare Pakete; `workflowSizeGuideline` ist **unrestricted**; **Claude-Familie gesamt (`fable-builder`, `opus-builder`, `opus-critic`) maximal zwei gleichzeitig** — drei Sitze, einer gehört dem Controller; größere Claude-Flotten in Wellen (`parallel` über Slices). 04.09.2026: zehn `opus-critic` parallel → fünf tot mit 503.
 - Nachkommen pro Worker: **0**
 - Reviewer nach **Bau:** **genau 1** familienfremde Prüfung pro gebautem Paket (`dispatch.md`)
 - **Kritik-Session (kein Bau):** Flotte nach `web/references/kritik-matrix.md` —
