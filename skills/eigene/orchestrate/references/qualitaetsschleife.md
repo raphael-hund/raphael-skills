@@ -94,7 +94,13 @@ async function mitSchleife(paket, opts) {
   for (let runde = 1; runde <= (opts.maxRunden || 3); runde++) {
     stand = await agent(`${paket.prompt}\nRUNDE ${runde}. ${notizen.length ? 'NOTIZEN DES JUDGES (jede beheben oder mit Beleg zurückweisen):\n- ' + notizen.join('\n- ') : ''}\nZeitbudget ${paket.minuten || 40} Minuten; 5 Minuten vor Ablauf StructuredOutput mit Stand.`,
       { label: `${opts.label}:bau:r${runde}`, phase: opts.phase, agentType: opts.builderType, effort: 'high', schema: RESULT })
-    if (!stand) return { status: 'BLOCKED', klasse: 'PROVIDER', grund: 'Builder ohne Rückgabe (Provider/Budget) — einmal gleiche Route wiederholen, dann Ersatz laut dispatch.md' }
+    if (!stand) {
+      // 429/Cooldown/Budget: genau ein Retry nach Pause, dann BLOCKED. Nie Folgephasen auf null starten.
+      log(`${opts.label}: Builder ohne Rückgabe in Runde ${runde} (Provider/Budget) — ein Retry`)
+      stand = await agent(`${paket.prompt}\nRUNDE ${runde} (RETRY nach Provider-Ausfall). Prüfe zuerst den Arbeitsbaum: was ist schon umgesetzt? Nur den Rest bauen.`,
+        { label: `${opts.label}:bau:r${runde}:retry`, phase: opts.phase, agentType: opts.builderType, effort: 'high', schema: RESULT })
+      if (!stand) return { status: 'BLOCKED', grund: 'Builder zweimal ohne Rückgabe (Provider/Budget)' }
+    }
     // Selbstcheck des Builders ist Pflichtfeld: erwartet/geliefert in einem Satz (RESULT.selbstcheck).
     if (stand.selbstcheck && /nicht erreicht|abweich|FAIL|offen/i.test(stand.selbstcheck)) log(`${opts.label}: Builder meldet Abweichung: ${stand.selbstcheck.slice(0, 200)}`)
     // G1 ist ein Script-Schritt: der Builder meldet den Exit, ein Leaf mit Bash bestätigt ihn read-only.
@@ -154,6 +160,8 @@ Bei Fable-Build und totem Fremd-Gateway: `opus-critic` mit Label
 - G1 zweimal hintereinander rot am selben Punkt → `ESCALATE` (Architektur,
   nicht Fix Nr. 3; Skill `debug`).
 - Provider-Ausfall des Judge → `BLOCKED`, nie stiller PASS.
+- Builder `null` (429, Cooldown, Wall-Clock) → genau ein Retry mit „prüfe erst den Arbeitsbaum“, dann `BLOCKED`. Folgephasen (Sweep, Kritik) starten nie auf `null` (04.09.2026: zehn Kritiker urteilten über einen unveränderten Build).
+- Fix-Leaves ≤ 30 Minuten Budget; drei Claude-Sitze tragen Controller + zwei Fable-Leaves, nicht mehr.
 
 ## Fallen
 
