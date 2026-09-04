@@ -48,6 +48,7 @@ abgeleitet aus dem, was bei uns nachweislich funktioniert hat:
   home-desktop-fold.jpg Region CTA“). Ohne Beleg zählt die Zahl nicht.
 - **Per Dimension schwellen, nie aggregieren.** Schwelle je Frage ≥ 1 von 2,
   Gesamt ≥ 0.7, VETO = 2. Aggregat allein versteckt den einen Riss.
+- **Bezugssystem abgleichen:** Jede Rubrik-Frage nennt die G1-Regel, die sie stützt, und beide messen denselben Bezug (Container vs. Spalte, mit/ohne Header). Sonst FAILt der Judge bei grünem Gate und die Schleife dreht leer (R67: Insel 60 % spaltenrelativ im Gate, containerrelativ in der Rubrik; Header-CTA vom Gate ausgeklammert, vom Judge gezählt).
 - **Anti-Beispiele mitgeben:** 1–2 Fälle aus `evals/anti/`, die hoch bewertet
   wurden und gefloppt sind. Das kalibriert den Judge härter als Prosa.
 
