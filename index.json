@@ -154,9 +154,9 @@
     },
     {
       "name": "orchestrate",
-      "version": "2.5.0",
+      "version": "2.6.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
+      "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Fable (fable-builder), Opus, Grok and Sol subagents; Luna for mass. Every build package runs the Qualitaetsschleife (G1 → foreign judge with score → retry ≤3 → escalate); Raphael only sees PASS or escalate. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
     },
     {
       "name": "printingpress",
@@ -214,7 +214,7 @@
     },
     {
       "name": "ultracode",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "path": "skills/eigene/ultracode/SKILL.md",
       "description": "Ultracode: sofort Dynamic Workflow starten und so viele Subagenten spawnen wie die Arbeit braucht — Opus, Grok, Kimi, Sol, Luna für Masse. Kein Ein-Builder-Deckel, kein 3-Item-Deckel. Trigger: /ultracode, ultracode, Ultracode-Effort."
     },
