@@ -36,6 +36,9 @@ runden-protokoll.md), gegenueber dem Original:
     eine Nicht-Claude-Familie vorkommt — nicht, ob ausgerechnet der
     VERIFIER-Agent aus der anderen Familie stammt (Rollen sind statisch
     nicht erkennbar). Das prüft die Cockpit-Letztverifikation, nicht der Regex.
+    Seit 02.09.2026 liest der Check `/root/.claude/fleet-profile` (Env
+    `RAPHAEL_FLEET_PROFILE` schlägt die Datei, Default `multi-family`); im
+    Profil `claude-only` übernimmt check_claude_only_fleet.
   - render()/verdict()/CLI-Grundgeruest (argparse, --json, --sample) 1:1
     uebernommen, SAMPLE auf unsere Regeln erweitert.
 
@@ -43,10 +46,28 @@ Stdlib only. Heuristisch (Regex/Text) — fuehrt die Datei nicht aus. Keine
 Netz-Calls, kein exec.
 """
 import argparse
+import os
 import re
 import sys
 
 FAIL, WARN, PASS = "FAIL", "WARN", "PASS"
+
+FLEET_PROFILE_PATH = "/root/.claude/fleet-profile"
+DEFAULT_FLEET_PROFILE = "multi-family"
+
+
+def fleet_profile():
+    """Aktives Flottenprofil. Env `RAPHAEL_FLEET_PROFILE` schlaegt die Datei
+    (Tests sind so deterministisch). Fehlt beides: `multi-family`."""
+    env = os.environ.get("RAPHAEL_FLEET_PROFILE", "").strip()
+    if env:
+        return env
+    try:
+        with open(FLEET_PROFILE_PATH, "r", encoding="utf-8") as fh:
+            value = fh.read().strip()
+    except OSError:
+        return DEFAULT_FLEET_PROFILE
+    return value or DEFAULT_FLEET_PROFILE
 
 
 def _strip_comments(src):
@@ -189,7 +210,8 @@ def check_model_fable(code, findings):
     blockt dieser Check die ganze Flotte (Livegang-Blocker §10).
     """
     masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
-    ERLAUBT = ("fable-advisor", "opus-builder")
+    # fable-builder: Fable als Builder-Leaf (Raphael 04.09.2026). Modell kommt aus der Agent-Datei.
+    ERLAUBT = ("fable-advisor", "fable-builder", "opus-builder")
     for key in ("model", "agentType"):
         for m in re.finditer(rf"\b{key}\s*:\s*['\"]([^'\"]+)['\"]", masked, re.I):
             value = m.group(1).strip()
@@ -197,7 +219,7 @@ def check_model_fable(code, findings):
                 continue
             if _is_real_fable(value):
                 findings.append((FAIL, _lineno(code, m.start()),
-                                 "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen ueber agentType 'fable-advisor' bzw. 'opus-builder' — dort stehen Low-Effort-, Child-Cap- und Build-Leitplanken."))
+                                 "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen ueber agentType 'fable-advisor', 'fable-builder' bzw. 'opus-builder' — dort stehen Effort-, Child-Cap- und Build-Leitplanken."))
 
 
 def check_multimodel_fleet(code, findings):
@@ -217,15 +239,58 @@ def check_multimodel_fleet(code, findings):
     Nicht-Claude-Familie (sol-pruefer/kimi-*/luna-worker) vorkommt.
     Warnung = starten erlaubt (Anbieter-Ausfall bleibt legitim), aber im
     Runden-Protokoll vermerken, warum nur eine Familie lief.
+
+    Seit 02.09.2026 profilabhaengig (`references/dispatch.md` ist die eine
+    Builder→Kritiker-Quelle): im Profil `claude-only` ist eine Nur-Claude-
+    Flotte der Normalfall und kein WARN; dort wird stattdessen die
+    Instanz-Trennung heuristisch geprueft.
     """
     if not re.search(r"\bagent\s*\(", code):
         return
-    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|sol-builder|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|visual-kritiker|opus-critic)['\"]", code):
+    if fleet_profile() == "claude-only":
+        check_claude_only_fleet(code, findings)
+        return
+    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|sol-builder|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|visual-kritiker|terra-bulk)['\"]", code) \
+            or re.search(r"['\"](sol-pruefer|sol-builder|grok-worker|grok-critic|visual-kritiker|luna-worker|terra-bulk)['\"]", code):
+        # zweiter Zweig: agentType kommt aus einer Variablen/Option (z.B. mitSchleife({judgeType:'sol-pruefer'}))
         return
     findings.append((WARN, 1,
                      "Nur Claude-Familie im Workflow (kein sol-pruefer/kimi-*/luna-worker als agentType). "
                      "Cross-Vendor-Verifier ist Empfehlung, kein Gate (Raphael 25.07.2026) — "
                      "wenn Anbieter-Ausfall der Grund ist, im Runden-Protokoll vermerken."))
+
+
+def check_claude_only_fleet(code, findings):
+    """Profil `claude-only`: Nur-Claude ist erlaubt, Fable als Worker nicht.
+
+    Zwei Heuristiken, beide WARN (Rollen sind statisch nicht sicher erkennbar,
+    das Urteil bleibt bei der Cockpit-Letztverifikation):
+      1. Fremdfamilien-agentTypes werden vom Proxy auf Fable umgeleitet und
+         sind hier `BLOCKED`, nicht Flottenbeleg.
+      2. Ist ein Review-Schritt erkennbar (Label/Phase/Prompt nennt Kritik,
+         Review, Verify, Judge), muessen Builder und Reviewer verschiedene
+         Modelle sein — Opus baut, Sonnet kritisiert. Nur Opus im ganzen
+         Workflow plus Review-Schritt = Self-Review.
+    """
+    fremd = re.search(
+        r"agentType\s*:\s*['\"](sol-pruefer|sol-builder|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|terra-bulk|visual-kritiker)['\"]",
+        code)
+    if fremd:
+        findings.append((WARN, _lineno(code, fremd.start()),
+                         f"Profil claude-only: `{fremd.group(1)}` ist nicht verfuegbar (Proxy leitet auf Fable um = BLOCKED). "
+                         "Besetzung nach der Profil-Tabelle in references/dispatch.md."))
+
+    if not re.search(r"(label|phase)\s*:\s*['\"][^'\"]*(kritik|critic|review|verify|judge|abnahme)",
+                     code, re.I) and not re.search(r"agentType\s*:\s*['\"][a-z-]*critic['\"]", code, re.I):
+        return
+
+    baut_opus = re.search(r"(agentType\s*:\s*['\"]opus-[a-z]+['\"]|model\s*:\s*['\"]opus['\"])", code, re.I)
+    hat_sonnet = re.search(r"(agentType\s*:\s*['\"]sonnet-[a-z]+['\"]|model\s*:\s*['\"]sonnet['\"])", code, re.I)
+    if baut_opus and not hat_sonnet:
+        findings.append((WARN, _lineno(code, baut_opus.start()),
+                         "Profil claude-only: Review-Schritt erkennbar, aber Builder und Reviewer laufen auf demselben "
+                         "Modell (nur Opus). Self-Review ist BLOCKED — Kritik als frische Sonnet-Instanz besetzen, "
+                         "Label `claude-only, Instanz-Trennung` (references/dispatch.md)."))
 
 
 def check_args_falle(code, findings):

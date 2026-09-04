@@ -1,9 +1,11 @@
 ---
 name: orchestrate
-version: 2.4.0
+version: 2.6.0
 description: >-
   Coordinate multi-step, website, visual, or mass work with Dynamic Workflows
-  and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass.
+  and Tasks. Spawn Fable (fable-builder), Opus, Grok and Sol subagents; Luna
+  for mass. Every build package runs the Qualitaetsschleife (G1 → foreign
+  judge with score → retry ≤3 → escalate); Raphael only sees PASS or escalate.
   Trigger: "orchestrieren", "delegieren", "Workflow", "Tasks", website,
   Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie,
   "Controller-Session", "Loop", "Graph", "Gauntlet", "Council", or
@@ -20,6 +22,7 @@ source: >
   ohne Vendoring), eigene Praxis aus 11 Workflow-Runden 2026-07-20.
 loads:
   - references/dispatch.md
+  - references/qualitaetsschleife.md
   - references/cross-model-harness.md
   - references/stages.md
   - references/gruendlich.md
@@ -27,7 +30,9 @@ loads:
 requires_skills: [eval@^0]
 completion_criteria:
   - "Bei mehr als einem isolierbaren Paket lief ein Dynamic Workflow plus Tasks"
-  - "Flotte nur über agentType: opus-builder/opus-critic, sol-builder/sol-pruefer, kimi-worker/kimi-critic, grok-worker/grok-critic/visual-kritiker, luna-worker für Masse"
+  - "Flotte nur über agentType: fable-builder/fable-advisor, opus-builder/opus-critic, sol-builder/sol-pruefer, grok-worker/grok-critic/visual-kritiker, luna-worker für Masse, terra-bulk (Kimi tot)"
+  - "Vor jedem Fan-out lief scripts/preflight.sh <worktree>: jede Familie OK/DOWN belegt, kein fremder Run im Worktree, Leaf-Budget bekannt; Pakete nach Budget geschnitten (Bau-Paket ≤ 2–3 Routen, Zeitbudget im Prompt)"
+  - "Jedes Bau-Paket lief durch die Qualitaetsschleife (references/qualitaetsschleife.md): G1-Exit 0 vor dem Judge, Judge anderer Familie mit Score je Dimension und VETO-Frage, ≤3 Runden, sonst ESCALATE — kein Artefakt erreicht Raphael ohne PASS oder ESCALATE"
   - "Worker sind Leaves: null Nachkommen, null Provider-CLIs, Rückgabe Verdict plus Pfad — keine PNGs im Parent"
   - "Jeder Auftrag nennt Ziel, Scope, Negativentscheidungen, Gate, Stop und erlaubte Pfade"
   - "Unabhängige Pakete parallel, abhängige geordnet; shared UI hat einen Opus-Integrator"
@@ -68,10 +73,30 @@ und Tasks großzügig und lässt Leaves die Arbeit in eigenem Kontext erledigen.
 | **GRUENDLICH** | Nutzer will einen gründlichen Durchlauf ohne Feedback-Schleifen | volle Stage-Queue, Meldung nur am Ende / bei BLOCKED |
 
 Für Websites mit mehreren Routen ist **WORKFLOW** der Default: unabhängige
-Seiten als parallele Tasks, gemeinsame UI bei einem `opus-builder`-Integrator.
+Seiten als parallele Tasks, gemeinsame UI bei einem Integrator (`fable-builder`
+wenn Qualität vor Kosten geht, sonst `opus-builder`).
 Aussagen wie „mach alles“, „richtig gut“, „perfekt“, „autonom“ oder „bis es
 fertig ist“ genehmigen den Workflow-Default, nicht Gauntlet, Council oder Cron.
 Worker bleiben Leaves. Mischformen werden nicht automatisch kombiniert.
+
+## Schritt 0 — Preflight (immer, vor dem ersten `agent()`)
+
+```bash
+bash /root/.claude/skills/orchestrate/scripts/preflight.sh <worktree-oder-arbeitsordner>
+```
+
+Liefert je Familie OK/DOWN über die tatsächliche Base-URL der Session, das
+Leaf-Budget (`RAPHAEL_SUBAGENT_MAX_SECONDS`/`MAX_TOOLS`) und ob ein fremder Run
+im Worktree läuft. Regeln:
+
+- DOWN-Familie → im Script als `BLOCKED` behandeln, Fallback rollenkompatibel
+  laut `dispatch.md`, sichtbar `FALLBACK` im Label. Kein 6×3-Minuten-Stall.
+- Fremder Run im Worktree → erst stoppen lassen (Session-Nachricht + Bestätigung),
+  dann starten. Ein Worktree hat einen Owner-Run.
+- Pakete nach Budget schneiden: Bau-Paket ≤ 2–3 Routen bzw. ≤ 40 Minuten Arbeit,
+  Zeitbudget und `StructuredOutput`-Pflicht 5 Minuten vor Ablauf im Prompt.
+  Vier Opus-Leaves à 5 Routen starben am 04.09.2026 alle bei 3601 s ohne Beleg.
+- Neu angelegte `agentType`s sieht erst die nächste Session (Registry-Snapshot).
 
 ## Schritt 1a — Stages und Task-Queue
 
@@ -93,7 +118,7 @@ Kontrakt und Anti-Muster: [`references/gruendlich.md`](references/gruendlich.md)
 
 - Controller in der Hauptsession: **1** (dünn, keine Screenshot-Reads)
 - Dynamic Workflow: **Default** bei >1 isolierbarem Paket, Website, visuellem QA oder Masse
-- parallele Leaf-Tasks: so viele wie isolierbare Pakete; `workflowSizeGuideline` ist **unrestricted**
+- parallele Leaf-Tasks: so viele wie isolierbare Pakete; `workflowSizeGuideline` ist **unrestricted**; `fable-builder` maximal zwei gleichzeitig (Sitze), weitere Pakete in Wellen oder auf `opus-builder`
 - Nachkommen pro Worker: **0**
 - Reviewer nach **Bau:** **genau 1** familienfremde Prüfung pro gebautem Paket (`dispatch.md`)
 - **Kritik-Session (kein Bau):** Flotte nach `web/references/kritik-matrix.md` —
@@ -109,17 +134,28 @@ Gauntlet/Council brauchen weiter eine wörtliche Nutzerwahl.
 
 ## Schritt 2 — Rollen und Flotte
 
+**Profil zuerst:** `/root/.claude/fleet-profile` sagt, welche Flotte gilt
+(fehlt die Datei: `multi-family`). Im Profil `claude-only` sind nur Opus
+(Bau, Copy im eigenen Copy-Leaf, Technik, Migration), Sonnet (read-only
+Kritik, Review, Recherche) und Haiku (Masse, Serie, Ledger — nie Urteil)
+als Subagent verfügbar; Kimi/Grok/Sol/Luna/Terra sind dort `BLOCKED`.
+Besetzung und Kritiker-Zuordnung je Profil: `references/dispatch.md`.
+
 - **Leader** = Cockpit (Fable, Fallback Opus 1M): zerlegt, dispatcht,
-  destilliert, verifiziert am Ende selbst. Nur an 2–3 Checkpoints.
+  destilliert, verifiziert am Ende selbst. Nur an 2–3 Checkpoints. Der
+  Leader baut nie selbst (Kontext 300k+, seriell, Cache); Fables Bauleistung
+  kommt über `fable-builder`-Leaves mit frischem Kontext.
 - **Fable-Advisor** = `fable-advisor` mit `effort: low`: schärft an benannten
   Checkpoints Kriterien. Er schreibt keinen Code, startet keine Kinder und
   prüft den eigenen Lauf nicht. Die Opus-Pakete startet der Workflow, so
   viele unabhängige wie die Arbeit hat.
 - **Worker:**
   - `opus-builder` — Frontend, Substanz, ein UI-Integrator
-  - `sol-builder` — begrenzter Code mit Gate
-  - `kimi-worker` — Synthese, Copy, Gegenposition (immer K3)
-  - `kimi-recherche` — lesende Recherche, kein Kritiker
+  - `fable-builder` — Fable 5.1 als Builder-Leaf (Raphael 04.09.2026): Frontend,
+    Integration, harte Fixes mit vollem Paketkontext; `effort: high`, max zwei
+    parallel; Review danach Fremdfamilie, Fallback `opus-critic` mit Label
+    `Instanz-Trennung, gleiche Familie`
+  - `sol-builder` — Backend, Gate-Code, einziger Copy-Writer (Kimi tot, 03.09.2026)
   - `grok-worker` — technische Fixes, Debugging, harte Engineering-Pakete (kluger Generalist)
   - `luna-worker` — Masse, Serie, mechanische Listen
     (**nur `work_type: mass`**, nie für Entscheidungen oder Substanz-Bau)
@@ -127,7 +163,6 @@ Gauntlet/Council brauchen weiter eine wörtliche Nutzerwahl.
 - **Kritiker** (immer andere Familie als der Builder, frische Session, read-only):
   - `opus-critic` — Code, Frontend, UX, Copy
   - `sol-pruefer` — Code, Architektur, Security, Ship-Gate
-  - `kimi-critic` — Copy, Claims, Gegenposition
   - `grok-critic` — technisches Urteil, Root-Cause
   - `visual-kritiker` — Screenshots und gerenderte Artefakte (Verdict plus Pfad, nie PNG)
 
@@ -140,16 +175,19 @@ Opus als Claude, dazu Kimi und Grok.
 Isolierbare Massenarbeit geht nur dann an `luna-worker`, wenn sie ein einziges
 klar begrenztes Paket bleibt. Sie wird nicht pro Datei oder Screenshot gefächert.
 **Opus nur über `opus-builder` oder `opus-critic`**, nie als roher
-`model:`-Override. Fable nur als `agentType:'fable-advisor'`; rohe
-Fable-Modell-Spawns bleiben verboten. Zuteilung je Aufgabenklasse,
+`model:`-Override. Fable als Worker nur über `agentType:'fable-builder'`
+(Raphael 04.09.2026: Frontend-Bau, Integration, harte Fixes; `effort: high`,
+maximal zwei parallel, nie Reviewer); daneben `fable-advisor` read-only.
+Rohe Fable-Modell-Spawns auf anderen agentTypes bleiben verboten. Zuteilung je Aufgabenklasse,
 Harness-Wahl (Terminal/Desktop/Codex-nativ/Kimi-nativ) und Degraded-Pfade:
 `references/cross-model-harness.md`. Auftragskontrakt: `references/dispatch.md`.
 
 Router-Kurzform: zusammenhängende Mini-Änderung → SOLO · mehrere Pakete/Seiten/
-Shots → Dynamic Workflow + Tasks · Frontend → `opus-builder` · Code/Gate →
-`sol-builder` · technischer Fix → `grok-worker` · Copy/Recherche → `kimi-worker`
-/`kimi-recherche` · Masse/Serie → `luna-worker` · danach genau ein Kritiker
-anderer Familie laut `dispatch.md`.
+Shots → Dynamic Workflow + Tasks · Frontend-Substanz/Integration/harter Fix →
+`fable-builder` (Qualität) oder `opus-builder` (Breite) · Backend/Gate/Copy →
+`sol-builder` · technischer Fix/Debug → `grok-worker` · Masse/Serie →
+`luna-worker` · Bulk/Migration → `terra-bulk` · danach je Paket die
+Qualitätsschleife mit Judge anderer Familie laut `dispatch.md`. Kimi tot.
 Quota-Fehler = weiterlaufen, das Gateway rotiert; sichtbarer Nicht-Fallback ist
 ein Vorfall. Grok 4.6 ist als Route freigegeben (CLIProxy 8318,
 xAI-OAuth) — Cockpit-Preset für Raphaels direkte Ansprache und `grok-worker` als
@@ -175,6 +213,18 @@ keine Subagenten, Tasks, Workflows, Provider-CLIs oder Nachkommen. Wechsle nicht
 zu einem anderen Item. Gib PASS/FAIL, Dateipfade und eine kurze Begründung zurück —
 keine PNGs, kein Base64, keine Transkripte. Bitte den Controller nur bei einer materiellen
 Produktentscheidung.“
+
+## Schritt 4a — Qualitätsschleife (jedes Bau-Paket, keine Ausnahme)
+
+Slop ist ein Systemproblem, kein Prompt-Problem. Deshalb lebt die Prüfung im
+Paket: **Bauen → G1 deterministisch → Judge anderer Familie mit Score →
+unter Schwelle zurück an denselben Builder mit ≤3 Notizen → max 3 Runden →
+sonst ESCALATE.** Raphael sieht nur PASS oder ESCALATE. Rubrik = 3–6
+Ja/Nein-Fragen aus unserer besten Arbeit, Frage 1 `[VETO]`, Score je
+Dimension, nie nur Aggregat. Baustein `mitSchleife()` und Domänen-Anker:
+[`references/qualitaetsschleife.md`](references/qualitaetsschleife.md).
+Die „eine Review-Fixrunde“ aus den Standardbudgets ist die Runde **nach** der
+Schleife (Site-weite Kritik), nicht ihr Ersatz.
 
 ## Schritt 5 — Dauer-Loop (LOOP)
 
@@ -268,8 +318,10 @@ Kein Council erzeugt Nachkommen oder eine zweite Angriffsrunde.
 
 - `haiku-worker` ist verboten und stillgelegt.
 - Masse, Massen-Lesen, Parsen und billige Klassifikation laufen über `luna-worker`.
-- Jedes gebaute Paket bekommt genau einen Kritiker aus einer anderen Familie.
-  Keine Kritikerflotte, kein Self-Review.
+- Jedes gebaute Paket bekommt genau einen Kritiker: im Profil `multi-family`
+  aus einer anderen Familie, im Profil `claude-only` eine frische
+  Sonnet-Instanz mit dem sichtbaren Label `claude-only, Instanz-Trennung`
+  (`references/dispatch.md`). Keine Kritikerflotte, kein Self-Review.
 - Kein Modell wird nur eingesetzt, damit eine Familie vertreten ist.
 - Ein Providerfehler startet weder Ersatzkritiker noch zusätzliche Builder.
 
@@ -279,8 +331,10 @@ Kein Council erzeugt Nachkommen oder eine zweite Angriffsrunde.
 - **Keine Nachkommen.** Worker starten keine Agenten, Tasks oder Workflows.
 - **Parent bleibt dünn.** Keine Screenshot-Binaries, keine Higgsfield-PNGs, keine Transkript-Dumps in die Hauptsession.
 - **Opus nur über `opus-builder` oder `opus-critic`**, nie als roher `model:`-Override.
-  Sonnet und Haiku nie als Subagent. Fable nur als `fable-advisor` auf low
-  effort; kein eigener Code und keine Children.
+  Sonnet und Haiku nie als Subagent — gilt im Profil `multi-family`; im Profil
+  `claude-only` sind sie die Kritik- bzw. Massenrolle (`references/dispatch.md`).
+  Fable als Worker nur über `fable-builder` (high, max zwei parallel, keine
+  Children, nie Self-Review); `fable-advisor` bleibt read-only auf low effort.
 - **Kein Reward-Hacking:** keine Checks aufweichen, keine Tests löschen oder
   überspringen, nichts erfinden, um grün zu werden. Gleichstand nach Änderung
   = revertieren.
@@ -307,9 +361,16 @@ Kein Council erzeugt Nachkommen oder eine zweite Angriffsrunde.
 - `unsupported model` beim Subagent → erst systemd-Log des Failover-Proxys,
   dann direkt gegen den internen Diagnoseweg testen; normale Clients bleiben auf 8318.
 - `check_model_fable` im Validator ist eine Text-Heuristik. Er erlaubt nur
-  `fable-advisor` und blockiert rohe Fable-Modell-Spawns sowie andere
-  Fable-Agenttypen. Die Cockpit-Letztprüfung verifiziert zusätzlich low effort
+  `fable-advisor` und `fable-builder` und blockiert rohe Fable-Modell-Spawns
+  sowie andere Fable-Agenttypen. Die Cockpit-Letztprüfung verifiziert zusätzlich low effort
   und fehlenden Eigenbau.
 - Zwei Agenten auf derselben Datei sind ein Race; Standard ist ohnehin ein Schreiber.
+- **Judge-Leaf führt kein G1 aus.** Ein `sol-pruefer` mit Provenienz-Gate blockiert
+  einen reinen Befehl („Builderfamilie nicht belegt“, Probe 04.09.2026). G1 fährt
+  `luna-worker` (Mechanik, kein Urteil) mit der Provenienz-Zeile im Prompt; der Judge
+  bekommt nur Artefakt + Rubrik + Provenienz.
+- **Validator-Warnung „nur Claude-Familie“** ist falsch positiv, wenn agentTypes über
+  Variablen/Optionen laufen (`mitSchleife({judgeType:'sol-pruefer'})`); seit 04.09.2026
+  erkennt `validate-workflow.py` auch String-Literale der Fremdfamilien.
 - Lange Läufe: Zwischenstand melden, nicht stumm warten.
 - **Cache-Prefix (Regel 12):** stabiler Kontext vorne, wechselnde Aufgabe hinten.

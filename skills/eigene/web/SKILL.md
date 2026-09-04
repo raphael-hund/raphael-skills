@@ -16,7 +16,7 @@ description: >
   "Website planen", "Website-Plan", "Landingpage planen",
   "Website-Kritik", "Website kritisieren", "kompletter Website-Plan".
 metadata:
-  raphael-version: "0.33.0"
+  raphael-version: "0.33.1"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
@@ -75,6 +75,9 @@ Bist du unsicher, welche Rolle: der Handoff-Prompt sagt es. Fehlt er, ist es
 Plan.
 
 ## Rote Linien (universell, gelten in jeder Rolle)
+
+- **Jedes Bau-Paket läuft durch die Qualitätsschleife** (`orchestrate/references/qualitaetsschleife.md`): G1 deterministisch (`detect.mjs`, `scan-ai-slop.mjs`, `verify-*.mjs`, axe) → Judge anderer Familie mit Score je Dimension und VETO-Frage → unter Schwelle zurück an denselben Builder (≤3 Notizen) → max 3 Runden → `escalate`. Raphael sieht nur PASS oder `escalate`, nie Zwischenstände.
+- **Builder-Wahl:** `fable-builder` für Substanz, Integration und harte Fixes (Qualität vor Kosten, max zwei parallel), `opus-builder` für Breite; Copy nur `sol-builder`. Vor dem Fan-out `orchestrate/scripts/preflight.sh <worktree>`.
 
 1. **Drei Phasen in einem Chat** (Raphael 02.09.2026). Plan / Kritik / Bau sind
    drei Workflow-Phasen, nie zwei gleichzeitig offen. Zustand lebt auf Platte in
@@ -194,7 +197,8 @@ wird): `references/anfaenger-pfad.md` §8.
 
 ## Gotchas (kurz)
 
-- **`shot-sweep` ohne `--base`** → Exit 2. Nie ohne echte Dev-URL, nie `file://`.
+- **Dev-Server nur über `raphael-preview start --cwd <dir> --port <n>`** (`/root/raphael-command-center/ops/bin/raphael-preview`); `shot-sweep` liest `--base` seit 04.09. aus `.ai/preview-<port>.json`. Nie `npx next start` plus `sleep` plus `curl` von Hand (Audit: 2806 Curl-Polls in 266 Sessions).
+- **`shot-sweep` ohne `--base` und ohne Preview-State** → Exit 2. Nie ohne echte Dev-URL, nie `file://`.
 - **Design-G1** nur `node …/design/scripts/detect.mjs`, nie `npx impeccable detect`.
 - **Paket `motion`**, Import `motion/react` — nie `framer-motion`.
 - **Ein Icon-System**, Default Lucide. **Fonts** über die Adobe Fonts Library.
@@ -206,7 +210,7 @@ wird): `references/anfaenger-pfad.md` §8.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill. Nie routen.
 - **AAA hier = Agentur-Rubrik**, nicht WCAG AAA (WCAG bleibt AA).
 - **Update an Bestandsseite = neuer Workspace/Worktree**, nie im Root-Checkout.
-- **Inspiration nur im Modus `modus-inspiration.md`**: Refero-MCP zuerst, Mobbin-MCP für Flows, 21st-MCP (`get_usage` vor `get_component`), Galerien über `scripts/inspiration.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — keine CLI pro Site.
+- **Inspiration nur im Modus `modus-inspiration.md`**: Refero/Mobbin/21st in Leaves über `scripts/design-mcp.mjs`, Galerien über `scripts/inspiration.mjs`, Komponenten über `scripts/komponenten.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — kein zweites Werkzeug für denselben Zugangstyp.
 - **Stock-Fotos nur über `scripts/stock.mjs`** (Shutterstock-Abo, Lizenznachweis `stock-lizenzen.json`) — nie Unsplash-Links in Kundenseiten.
 
 ## Evals

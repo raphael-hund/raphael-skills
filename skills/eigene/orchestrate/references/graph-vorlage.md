@@ -37,6 +37,8 @@ Stand: <Datum> · Läufe: <Run-IDs mit Datum anhängen>
 Ein Graph kompiliert zu einem Workflow-Script. Muster für die drei
 Grundformen:
 
+agentType ist in jedem agent()-Aufruf ein String-Literal, nie eine Variable oder Template-Ausdruck; ein Schreiber pro Datei je Paket; Worktrees per git worktree add plus absolute Pfade, nicht EnterWorktree.
+
 **Kette (research → brief → draft):** sequenzielle `await agent(...)`-Aufrufe,
 jeder bekommt die PFADE der Vorergebnisse (Slice-Falle!).
 

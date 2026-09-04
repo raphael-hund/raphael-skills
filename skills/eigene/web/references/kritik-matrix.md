@@ -45,7 +45,7 @@ Zuerst Skript, dann Leaves. Parent dispatcht und merged. Parent liest keine PNGs
 
 1  PAGE     je Route zwei unabhängige Leaves, dieselben Shots:
             multi-family: A = visual-kritiker (Grok)
-                          B = opus-critic (nur wenn Opus NICHT gebaut hat), sonst zweite Grok-Instanz mit anderem Katalog-Fokus (Kimi tot 03.09.2026)
+                          B = opus-critic (nur wenn weder Opus noch Fable gebaut hat), sonst zweite Grok-Instanz mit anderem Katalog-Fokus (Kimi tot 03.09.2026; Fable = Familie Claude)
             claude-only:  A = visual-kritiker (Sonnet)
                           B = zweite frische Sonnet-Instanz, anderer
                               Katalog-Fokus als A (opus-critic entfällt,
@@ -109,8 +109,9 @@ Die Familien-Pflicht hängt am aktiven Flottenprofil (`/root/.claude/fleet-profi
 
 - **multi-family:** drei Familien sind Pflicht, sobald mehr als eine Route
   existiert — Grok, Opus, GPT (Kimi tot, Raphael 03.09.2026; Sol nur Text-Input:
-  Code-Ursache, Copy, SEO — keine Bildpfade an Sol). Hat Opus gebaut, trägt Grok
-  die Bild-Achsen allein und Sol die Text-Achsen; Opus-Leaves entfallen. Masse
+  Code-Ursache, Copy, SEO — keine Bildpfade an Sol). Hat Opus oder Fable gebaut,
+  trägt Grok die Bild-Achsen allein und Sol die Text-Achsen; Opus-Leaves entfallen.
+  Jeder Kritik-Prompt beginnt mit `ACTUAL_BUILDER_FAMILY=<Familie> (agentType, Workflow-ID, Failover ja/nein)`. Masse
   >40 Shot-Pfade: Luna.
 - **claude-only:** eine Familie, deshalb keine Familien-Pflicht. Statt dessen
   **Instanz-Trennung**: jede Leaf ist eine frische Sonnet-Instanz, sieht nur

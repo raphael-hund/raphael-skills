@@ -163,3 +163,4 @@ Bei Fable-Build und totem Fremd-Gateway: `opus-critic` mit Label
 - Kein G1 vor dem Judge → der Judge wird zum einzigen Anker und ist gameable.
 - Notizen als Wunschliste → Builder verzettelt sich, Runde 2 ist schlechter.
 - Schleife im Controller-Kontext statt im Script → Kontext wächst, Cache platzt.
+- G1-Kette mit Zustand aus der Vorrunde (mkdir auf existierende Datei, fester Tempname) → gesundes Paket eskaliert nach drei roten Runden (Beleg: wf_a8156636 token-check, 04.09.). G1 läuft in `mktemp -d`; bei zweimal identischem G1-Fehlertext ohne Builder-Diff die Kette prüfen, nicht Runde 3 starten.

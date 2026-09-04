@@ -3,7 +3,7 @@
 > Herkunft: destilliert aus github.com/giannimassi/agent-retro, Commit
 > `b09bc15e05ea6d757eaa11756ba1ccfd351385dd`, Lizenz MIT (Copyright Gianni
 > Massi). Paraphrasiert, keine Übernahme von Code/Text. Ergänzt unsere
-> Runden-Protokoll-Praxis (Protokoll-Snapshot → Sonnet destilliert →
+> Runden-Protokoll-Praxis (Protokoll-Snapshot → Kimi destilliert →
 > Opus-Erfindungs-Check → Doktrin-Check) um eine Methode, WIE aus dem
 > Rohmaterial überhaupt Reibungspunkte gefunden werden — das war bei uns
 > bisher nicht systematisiert.
@@ -14,7 +14,7 @@ Unser Runden-Protokoll hält fest, WAS eine Runde tat (Funde, Fixes, Commits).
 Es sagt nichts darüber, WARUM eine Runde Reibung hatte — Korrekturen,
 Umwege, verworfene Ansätze. Bei größeren Retros (z.B. Sonderrunden,
 Skill-Nachschärfung) lohnt dieses Muster als Zusatzschritt vor der
-Sonnet-Destillation.
+Kimi-Destillation.
 
 ## Reibungspunkte finden (Signalwörter im Transkript)
 
@@ -74,7 +74,7 @@ nicht "Skill X verbessern".
 ## Einordnung als Wahl, kein Automatismus
 
 Dieses Muster ist ein *zusätzlicher Analyseschritt vor* der bestehenden
-Kette (Snapshot → Sonnet-Destillation → Opus-Erfindungs-Check →
+Kette (Snapshot → Kimi-Destillation → Opus-Erfindungs-Check →
 Doktrin-Check), kein Ersatz. Einsetzen, wenn eine Runde/Session spürbare
 Reibung hatte und die Ursache unklar ist — nicht bei jeder Routine-Runde
 (Overhead unnötig bei glatten Runden ohne Korrekturen).

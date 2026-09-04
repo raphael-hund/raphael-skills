@@ -47,7 +47,7 @@ Typischer Zuschnitt, adaptiv bis zur Live-Kapazität:
 | Visuelle Kritik derselben Shots | fremde tatsächliche Familien, `visual-kritiker` (Grok) + `opus-critic` (nur wenn Opus nicht gebaut hat) | zwei frische Sonnet-Instanzen, Label `claude-only, Instanz-Trennung` (`kritik-matrix.md`) |
 | Belegte Code-Ursache (datei:zeile) | `grok-worker`, Input = Shot-Pfad + CSS-Ausschnitt | Sonnet-Instanz, gleicher Input |
 | **Copy** | `sol-builder` (Kimi tot, Raphael 03.09.2026) | eigener Opus-**Copy-Leaf**, nie der Integrator-Leaf |
-| Integration gemeinsamer UI-Flächen | **genau ein** `opus-builder` | **genau ein** `opus-builder` |
+| Integration gemeinsamer UI-Flächen | **genau ein** `fable-builder` (Qualität) oder `opus-builder` | **genau ein** `opus-builder` |
 | Code-Ursache / Ship-Review (Textausschnitt) | `sol-pruefer` — nie Bildpfade an Sol | Sonnet-Instanz, Textausschnitt statt Pfad |
 
 Unabhängige Analysen und disjunkte Baupakete laufen parallel; abhängige oder
@@ -59,7 +59,8 @@ Ablauf `StructuredOutput` mit dem erreichten Stand zurückzugeben (offene Punkte
 `offen`, nie stumm weiterarbeiten). Der Harness-Watchdog tötet Leaves nach 60 Minuten
 ohne Rückgabe; ein Opus-Integrator lief so 63 Minuten und starb ohne Schema, der
 Parent musste den Stand aus dem Transkript rekonstruieren. Richtwerte: Integrator
-45 min, Kritik-Leaf 25 min, Copy-Leaf 20 min, Mini-Fix 15 min. Fable nur
+45 min, Routen-Leaf 2–3 Routen 40 min, Kritik-Leaf 25 min, Copy-Leaf 20 min, Mini-Fix 15 min.
+Vor dem Fan-out `orchestrate/scripts/preflight.sh <worktree>` (Familien OK/DOWN, Owner-Run, Budget). Fable nur
 über `fable-builder` (Raphael 04.09.2026), nie Haiku als Urteil. Wer baut, reviewt nicht.
 
 ## Copy im Bau: wer schreiben darf, hängt am Profil
@@ -199,7 +200,7 @@ Starte im ersten Turn JETZT einen Dynamic Workflow. Leaves, so viele wie Pakete:
 2. zwei unabhängige Kritik-Leaves auf denselben Fold/Hover-Shots (Besetzung je Profil: kritik-matrix.md)
 3. eine Leaf nur für belegte Code-Ursachen (datei:zeile), Input = Shot-Pfad + CSS-Ausschnitt
 4. eigener Copy-Leaf nach dem Briefing aus PLAN.md — nie der Integrator
-5. opus-builder nur als Integrator für sichtbare UI-Fixes (baut Copy unverändert ein)
+5. fable-builder (oder opus-builder) nur als Integrator für sichtbare UI-Fixes (baut Copy unverändert ein); jedes Bau-Paket mit Qualitätsschleife (G1 → Judge-Score → ≤3 Runden)
 Rückgabe an Plan: STATUS.md + KRITIK-n.md mit Shot-Pfaden, biggest_gap visuell,
 FAKT-GATE geparkt. Kein Solo-Debug von wipe.css im Parent.
 ```

@@ -25,7 +25,7 @@ gegen eine Rubrik (dafür eval-Panel, G2). Merksatz:
 
 - **Sonnet** (Claude-Familie)
 - **Sol** (GPT-5.6 via Codex, effort high — Dispatch siehe ROUTING.md)
-- **Kimi** (K3, effort high)
+- **Grok** (`grok-critic`, effort high; Kimi tot 03.09.2026)
 
 Jedes Mitglied bekommt dieselbe gerahmte Frage: Kern-Entscheidung, Kontext
 (relevante Dateien als Task-Ausschnitt, TB2), was auf dem Spiel steht.

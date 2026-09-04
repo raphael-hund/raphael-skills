@@ -21,10 +21,17 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 - **`luna-worker`** — Pflicht: Mechanik, Tests, klar begrenzte Umbauten.
 - **`grok-worker`** — schnelle Masse, Prototypen, vierte Perspektive (bevorzugt).
 - **`terra-bulk`** — Architektur, Multi-File-Volumen (bevorzugt).
-- **`opus-builder`** — teurer Claude-Bau, nie Default.
+- **`fable-builder`** — Fable 5.1 als Builder-Leaf: Default für Frontend-Substanz, Integration und harte Fixes, wenn Qualität vor Kosten geht (Raphael 04.09.2026). Max zwei parallel, nie Reviewer.
+- **`opus-builder`** — Claude-Bau für parallele Breite (mehr als zwei Leaves) und Routine-Frontend.
 - **`fable-advisor`** — nur benannter Low-Effort-Checkpoint für schwierige
   UI-/Website-Zerlegung; kein eigener Code.
-- Sonnet und Haiku nie als Subagent. Andere Fable-Agenttypen bleiben verboten.
+- Andere Fable-Agenttypen und rohe `model: fable`-Spawns bleiben verboten.
+
+Diese Zuteilung gilt für das Profil `multi-family` — dort sind Sonnet und Haiku
+nie Subagent. Im Profil `claude-only`
+baut Opus, kritisiert Sonnet read-only und macht Haiku die Masse; die
+Muster-Skelette oben werden entsprechend besetzt. Maßgeblich ist die
+Profil-Tabelle in `dispatch.md` — hier steht sie nicht ein zweites Mal.
 
 Im Workflow-Script diese Rollen mit `agentType:'…'` starten. `model:'opus'` und
 `model:'sonnet'` sind reine Claude-Overrides und zählen

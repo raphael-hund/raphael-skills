@@ -9,7 +9,7 @@ Start einmal, friert sie ein und arbeitet sie strikt in der Stage-Reihenfolge ab
 | Stage | Name | Inhalt | Beendet wenn |
 |---|---|---|---|
 | 1 | Planen | Scope, Negativentscheidungen, Task-Liste erzeugen | Liste eingefroren, jedes Task hat Gate |
-| 2 | Zuteilen | Tasks validieren, `depends_on` ordnen, `agentType` je Task | Jeder Owner bekannt, Verify-Familie ≠ Owner-Familie |
+| 2 | Zuteilen | Tasks validieren, `depends_on` ordnen, `agentType` je Task | Jeder Owner bekannt, Verifier laut Profil-Tabelle in `dispatch.md` |
 | 3 | Steps ausführen | Jeden Plan-Step in Abhängigkeitsreihenfolge | Jeder Step hat Ergebnis + Beleg |
 | 4 | Verify | Jeden Step unabhängig gegen sein Gate | Jeder Step PASS oder BLOCKED mit Beleg |
 | 5 | Review | Gesamte Runde prüfen | Reviewer-Urteil + Familienabdeckung belegt |
@@ -54,28 +54,32 @@ Runden-Protokoll (`references/runden-protokoll.md`) als Plan-Step-Map.
 ## Failover-Routing (Gateway-gekoppelt)
 
 Fremdmodelle laufen über das Failover-Gateway (Port 8317/8318), nicht als rohe
-Modell-Overrides. Der Router kennt die Familien je `agentType`:
+Modell-Overrides. Der Router kennt die Familien je `agentType`. Die Tabelle
+gilt für das Profil `multi-family`; im Profil `claude-only` ist jede
+Nicht-Claude-Zeile `BLOCKED` und der Ersatz kommt aus der Profil-Tabelle in
+`dispatch.md`:
 
 | agentType | Familie | Primär | Ersatz (andere Familie) |
 |---|---|---|---|
-| `luna-worker` | GPT | gpt-5.6-luna | kimi-worker oder opus-builder |
+| `luna-worker` | GPT | gpt-5.6-luna | opus-builder (Kimi tot) |
 | `terra-bulk` | GPT | gpt-5.6-terra | opus-builder |
-| `sol-pruefer` | GPT | gpt-5.6-sol | opus-builder + kimi-recherche (Panel; wie Degraded-Pfad in cross-model-harness.md) |
-| `kimi-worker` / `kimi-recherche` | Kimi | kimi-k3 | luna-worker (Mechanik) / opus-builder |
+| `sol-pruefer` | GPT | gpt-5.6-sol | grok-critic, sonst opus-critic mit Label Instanz-Trennung |
 | `grok-worker` | Grok | xai/grok-4.6 | luna-worker |
 | `opus-builder` | Claude | opus[1m] | — (Claude bleibt Claude) |
+| `fable-builder` | Claude | claude-fable-5-1 | — (Fable bleibt Fable; Review Sol/Grok) |
 
 Routing-Regeln:
 
 1. Ein leeres oder fehlerhaftes Ergebnis (`null`, Timeout, 429) ist ein
    **Routenausfall** — der Controller protokolliert ihn mit Beleg und setzt den
    Ersatz aus einer ANDEREN Familie ein. Kein stiller Provider-Wechsel.
-2. Verify-Owner und Step-Owner kommen aus unterschiedlichen Familien; der
-   Ersatz-Verifier muss ebenfalls familienfremd zu beiden sein.
+2. Verify-Owner und Step-Owner sind nie derselbe Agent; die Trennung — andere
+   Familie bzw. frische Instanz — richtet sich nach dem Profil in
+   `dispatch.md`. Der Ersatz-Verifier erfüllt dieselbe Trennung.
 3. Quota-Fehler = weiterlaufen, das Gateway rotiert die Seats; ein sichtbarer
    Nicht-Fallback ist ein Vorfall und wird gemeldet.
 4. Modell-Verbote werden nicht hier gepflegt — sie stehen einmal in den
    Rot-Linien von SKILL.md (Sonnet/Haiku nie, Opus nur `opus-builder`, Fable
-   nur `fable-advisor`) und gelten hier unverändert.
+   nur `fable-advisor`/`fable-builder`) und gelten hier unverändert.
 5. Jeder Routenausfall und jeder Ersatz steht im Runden-Protokoll unter
    „Routenausfälle/Ersatz".
