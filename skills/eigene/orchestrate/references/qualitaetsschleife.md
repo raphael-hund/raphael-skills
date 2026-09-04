@@ -195,6 +195,11 @@ Kritiker fand die Auflösung am 04.09.2026 im Recapture-Log. Log-Zeile: `BLIND <
 - Fix-Leaves ≤ 30 Minuten Budget; drei Claude-Sitze tragen Controller + zwei Fable-Leaves, nicht mehr.
 
 ## Fallen
+- G1-Befehle sind idempotent: frisches Tempdir (`mktemp -d`), kein Zustand aus der Vorrunde; bei rot den treffenden Befund ausgeben (`grep -n`, nie `grep -q`), damit die Notiz an den Builder konkret ist. Zweimal identischer G1-Fehlertext ohne Dateiänderung = Kette prüfen, nicht Runde 3 (Beob. 49).
+- Wortverbote nur mit Wortgrenze (`grep -nwE`, `\b…\b`) und ohne `-i`, wenn der Begriff als Substring in normalen Wörtern steckt („rungen“ in „Änderungen“, Beob. 53).
+- Judge ohne Rückgabe (kein StructuredOutput, Watchdog) → Runde als FAIL mit Notiz „Judge ohne Rückgabe“ werten und mit `kritikMitFallback` weiter, nie Workflow-Abbruch; Judge-Prompt: Urteil zuerst als StructuredOutput, Belege danach (Beob. 51, 55, 62).
+- Fallback-Script nie aus dem persistierten Script per agentType-Textersatz bauen: der pin-Hook hat `model:`-Literale injiziert, der Textersatz läuft auf dem alten Motor weiter. Original-Inline-Script neu senden oder alle `, model: '…'` per Regex entfernen (Beob. 64).
+- `grok-worker` nur für kurze Technikpakete (< 30 Tool-Calls); lange Bau-Leaves an `fable-builder`/`opus-builder`/`sol-builder`. Grok-Stream-Timeouts enden am Budget-Guard mit „missing watchdog state“ (Beob. 44).
 
 - Rubrik als Prosa („ist es überzeugend?“) → Judge rät, Schleife dreht leer.
 - Aggregat-Schwelle ohne Per-Dimension → ein Riss versteckt sich.
