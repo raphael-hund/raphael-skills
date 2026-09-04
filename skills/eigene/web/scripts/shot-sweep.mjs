@@ -36,7 +36,8 @@ const ERLAUBT = [
   'no-interact', 'states', 'state-sel', 'run-id', 'build-revision', 'state-spec', 'help',
 ];
 const HILFE = 'Aufruf: node shot-sweep.mjs --url <basis-url> --routes /,/preise'
-  + ' --out <ordner> [--mobile] [--static] [--states] [--run-id ID] [--build-revision SHA] [--state-spec FILE]';
+  + ' --out <ordner> [--mobile] [--static] [--states] [--run-id ID] [--build-revision SHA] [--state-spec FILE]'
+  + '\nOhne --base/--url: juengste .ai/preview-*.json in cwd (raphael-preview) -> http://127.0.0.1:<port>';
 if (args.includes('--help') || args.includes('-h')) {
   console.log(HILFE);
   console.log(`Erlaubt: ${ERLAUBT.map((k) => `--${k}`).join(' ')}`);
@@ -52,9 +53,36 @@ if (fremd.length) {
 // --base ist PFLICHT (kein stiller Default). Historischer Default 5280 erzeugte
 // leere Shots bei Anfaengern — siehe anfaenger-pfad.md §2 + SKILL Gotchas.
 // `--url` ist Alias (Doktrin und die anderen Pruefer).
-const baseRaw = get('base', get('url', null));
+// Fehlt --base/--url: juengste .ai/preview-*.json in cwd (raphael-preview, Feld port).
+function previewBaseFromCwd() {
+  const dir = path.join(process.cwd(), '.ai');
+  let names;
+  try {
+    names = fs.readdirSync(dir).filter((n) => /^preview-\d+\.json$/.test(n));
+  } catch {
+    return null;
+  }
+  const ranked = names.map((name) => {
+    const p = path.join(dir, name);
+    let mtime = 0;
+    let port = null;
+    try { mtime = fs.statSync(p).mtimeMs; } catch { /* fehlt */ }
+    try {
+      const j = JSON.parse(fs.readFileSync(p, 'utf8'));
+      const n = Number(j && j.port);
+      if (Number.isFinite(n) && n > 0) port = n;
+    } catch { /* unlesbar */ }
+    return { name, mtime, port };
+  }).filter((f) => f.port != null).sort((a, b) => b.mtime - a.mtime);
+  const pick = ranked[0];
+  if (!pick) return null;
+  console.error(`shot-sweep: base aus .ai/${pick.name}`);
+  return `http://127.0.0.1:${pick.port}`;
+}
+const baseRaw = get('base', get('url', null)) || previewBaseFromCwd();
 if (!baseRaw) {
   console.error(`shot-sweep: --base <url> ist Pflicht (z. B. --base http://127.0.0.1:3000).
+oder Dev-Server über raphael-preview starten
 Beispiel:
   node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \\
     --base http://127.0.0.1:3310 --out /tmp/shots --routes / --static`);

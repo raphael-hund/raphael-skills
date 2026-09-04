@@ -28,6 +28,12 @@ Kopiere ausgefüllt an den Anfang des nächsten Prompts. Kurz, konkret, sofort s
 ## Fallen & Sackgassen (Traps & Dead Ends)
 - <Ansatz, der schon probiert und verworfen wurde → warum er nicht ging>
 - <Was die nächste Session versucht sein wird zu tun, aber NICHT tun sollte>
+
+## Prompt für die nächste Session
+Originalauftrag (wörtlich): <…>
+Skills: /web /design /… (die in dieser Session geladenen)
+Worktree: </absoluter/pfad>
+Weiter mit: /aufnehmen <pfad-dieser-datei>
 ```
 
 ## Regeln

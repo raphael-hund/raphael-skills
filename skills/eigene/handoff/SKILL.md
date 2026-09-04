@@ -1,6 +1,6 @@
 ---
 name: handoff
-version: 0.5.0
+version: 0.6.0
 description: >
   Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am
   Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben
@@ -19,6 +19,7 @@ loads: [references/handoff-template.md]
 requires_skills: []
 completion_criteria:
   - "Modus SESSION: Übergabe-Brief nach Template ohne Secrets im Klartext liegt; PROGRESS.md/DECISIONS.md nur falls schon vorhanden aktualisiert; Git nur für das Write-Set dieser Session (Hook-Fail = uncommitted + im Brief genannt); keine neue Produktarbeit im Handoff-Turn"
+  - "Modus SESSION Pflicht-Abschluss: Datei liegt unter /root/eingang/ausgang/handoff/<projekt>-<YYYY-MM-DD>.md (nicht nur /tmp, nicht nur Repo), ist per SendUserFile mit display render zugestellt, und ihr letzter Block heißt 'Prompt für die nächste Session' und enthält Originalauftrag wörtlich + geladene Skills als /slash-Liste + Worktree-Pfad"
   - "Modus EXTERN: Dokument verweist auf Artefakte statt sie zu duplizieren, Redaktion geprüft (keine Geheimnisse/PII), Ablage im OS-Temp-Verzeichnis statt im Repo; keine neue Produktarbeit im Handoff-Turn"
 ---
 
@@ -59,14 +60,34 @@ Gelesenen schreiben, auch wenn Git hakt.
 
 ## Ablauf (SESSION)
 
-1. **Brief zuerst** — `references/handoff-template.md` ausfüllen und ablegen
-   (`/tmp/handoffs/` oder vorhandenes `PROGRESS.md`). Fertig = Datei existiert.
+1. **Brief zuerst** — `references/handoff-template.md` ausfüllen und unter
+   `/root/eingang/ausgang/handoff/<projekt>-<YYYY-MM-DD>.md` ablegen. Fertig =
+   Datei existiert.
 2. **Stand nachziehen** — nur vorhandene `PROGRESS.md` / `DECISIONS.md` der
    berührten Repos; nichts neu anlegen, keine extra Repos scannen.
 3. **Git nur Write-Set** — committen/pushen, was diese Session selbst
    geschrieben hat. `git add -A` ist verboten. Precommit-Deny: Datei
    unstaged lassen, Deny im Brief nennen, Turn nicht aufblähen.
-4. Stopp. Raphael `/clear`.
+4. **Pflicht-Abschluss** — die drei Punkte unten, keiner ist optional.
+5. Stopp. Raphael `/clear`.
+
+## Pflicht-Abschluss (SESSION) — drei Punkte, keiner optional
+
+1. **Ablage im Ausgang** — die Handoff-Datei liegt unter
+   `/root/eingang/ausgang/handoff/<projekt>-<YYYY-MM-DD>.md`. Nie nur unter
+   `/tmp`, nie nur im Repo. Eine Repo-Kopie ist optional zusätzlich erlaubt,
+   ersetzt die Ablage im Ausgang aber nicht: `/tmp` und Worktree sind vom Mac
+   aus nicht erreichbar, der Ausgang ist synchron.
+2. **Zustellen** — SendUserFile auf genau diese Datei, `display: render`.
+   Ohne Zustellung ist der Brief geschrieben, aber nicht übergeben.
+3. **Letzter Block der Datei** — heißt `Prompt für die nächste Session` und
+   enthält den Originalauftrag wörtlich (nicht paraphrasiert, nicht gekürzt),
+   die in dieser Session geladenen Skills als `/slash`-Liste und den
+   Worktree-Pfad. Damit startet die nächste Session ohne Rekonstruktion.
+
+Aufnehmende Seite: `/aufnehmen <pfad-zur-handoff-datei>`
+(`/root/.claude/commands/aufnehmen.md`) liest den Brief, prüft Worktree,
+Branch und Dev-Server und beginnt beim ersten offenen Punkt.
 
 ## Modus EXTERN — Übergabe an eine andere Instanz
 
@@ -97,6 +118,8 @@ Produktentscheidungen und fehlende Zugangsdaten gehören in die Offen-Liste.
 - **"Fast fertig, mach ich gleich" reicht nicht** — Stand lebt auf der Platte, nicht im
   Kontext. Ungespeichert = verloren.
 - Nach dem Handoff **hart** `/clear` — nicht "nur noch schnell". Kontext ist Verbrauchsgut.
+- **Brief nur in `/tmp` oder nur im Repo ist keine Übergabe** — beides sieht Raphael
+  am Mac nicht. Ausgang plus SendUserFile, sonst ist der Handoff nicht zugestellt.
 - Übergabe-Brief kurz und konkret: nächste Session soll in 30 Sekunden loslegen können,
   nicht erst 20 Min Kontext rekonstruieren.
 - Uncommittete Änderungen nie im Handoff "erwähnen" — Write-Set erst committen, dann

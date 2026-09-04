@@ -210,7 +210,7 @@ wird): `references/anfaenger-pfad.md` §8.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill. Nie routen.
 - **AAA hier = Agentur-Rubrik**, nicht WCAG AAA (WCAG bleibt AA).
 - **Update an Bestandsseite = neuer Workspace/Worktree**, nie im Root-Checkout.
-- **Inspiration nur im Modus `modus-inspiration.md`**: Refero/Mobbin/21st in Leaves über `scripts/design-mcp.mjs`, Galerien über `scripts/inspiration.mjs`, Komponenten über `scripts/komponenten.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — kein zweites Werkzeug für denselben Zugangstyp.
+- **Inspiration nur im Modus `modus-inspiration.md`**: Refero/Mobbin/21st in Leaves über `scripts/design-mcp.mjs`, Galerien über `scripts/inspiration.mjs`, Komponenten nach PASS über `komponenten.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — kein zweites Werkzeug für denselben Zugangstyp.
 - **Stock-Fotos nur über `scripts/stock.mjs`** (Shutterstock-Abo, Lizenznachweis `stock-lizenzen.json`) — nie Unsplash-Links in Kundenseiten.
 
 ## Evals
