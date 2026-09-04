@@ -57,13 +57,19 @@ Ohne Read der Shots = nicht gesehen. Ohne Lock = nicht fertig.
 
 | Job | agentType | Sieht |
 |---|---|---|
-| Refero/Mobbin-Recherche | kimi-recherche **oder** grok-worker | MCP-Output, keine PNGs nötig |
+| Refero/Mobbin-Recherche | kimi-recherche **oder** grok-worker | MCP-Output, keine PNGs nötig. Workflow-Leaves sehen `mcp__*`-Tools oft nicht (gemessen 04.09.2026): dann derselbe Server per JSON-RPC (`curl -X POST <url> -H 'Authorization: Bearer …'`, Token aus `.claude.json` bzw. `.credentials.json`), 21st über das CLI. Kein BLOCKED, solange der Endpunkt antwortet |
 | Screenshot **sehen** | visual-kritiker | nur PNG + Lock-Frage (eine DNA-Zeile) |
 | Lock schreiben | kimi-worker / sol-builder (kein Fließtext-Copy) | Brief, Refero-md, Shot-Verdicts |
 | Lock prüfen | grok-critic | Lock + Ledger, nicht den Recherche-Chat |
 
 Max. ein Shot-Leaf pro PNG-Bündel (Desktop+Mobil derselben URL = ein Leaf,
-zwei Dateien). Kein Enkel.
+zwei Dateien). Kein Enkel. Ist-Seite des Kunden gehört ins Ledger, ihre Shots
+nach `client-<name>/web/inspiration/shots/`, nie nach `/tmp`. Ledger-Spalte
+heißt `gelesen-von`.
+
+Erster Lauf 04.09.2026 (MAKE): 4 Recherche-Leaves parallel, 4 Shot-Leaves,
+Lock + Gegenprüfung + Fix, 11 Agenten, 400k Tokens, 23 Minuten. Ergebnis
+`client-make/web/art-direction.md`.
 
 ## Nie
 
