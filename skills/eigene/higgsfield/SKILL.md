@@ -1,6 +1,6 @@
 ---
 name: higgsfield
-version: 0.2.0
+version: 0.2.1
 description: >
   Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus
   Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext.

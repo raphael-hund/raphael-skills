@@ -30,8 +30,21 @@ PROPFIN-Welle 1 hat gezeigt: GPT Image 2 setzt Logo, Look und Text in einem Job,
 wenn alle drei als Referenzen hochgeladen werden. Pillow-Overlay auf Copy und
 Logo ist Fail (Umiken-Karten v1: Headline «Umike», Logo-Matsch).
 
-**Vor dem Job Raphael zeigen:** Logo-Datei, Look (Website-Screenshot oder Winner-Ad),
-Onscreen-Text wortgleich. Fehlt das Logo, nicht bauen.
+**Vor dem Job Raphael zeigen:** Logo-Datei, Look-Referenz, Onscreen-Text wortgleich.
+Fehlt das Logo, nicht bauen.
+
+**Was «Look» heisst (Raphael, 04.09.2026):** nicht irgendein Screenshot, sondern eine
+Referenz, die die Marke sichtbar trägt und aus der man ablesen kann:
+- Schriftart und Schriftschnitt (Serif oder Grotesk, Italic-Akzent, Caps oder nicht)
+- Farben als Hex (Primär, Sekundär, Akzent, Weiss)
+- Signaturelement (Bogen, Linie, Rahmen, Kachel), Buttonform (Pill, Kante)
+- Bildstil (Foto oder Typo, Licht, Grain, Farbverlauf)
+Quelle: Website-Screenshot mit Headline und Button, Brand-Kit, oder eine bestehende
+Winner-Ad der Marke. Diese vier Punkte stehen als Wörter in `brand.visual_identity`
+und `brand.colors` der JSON-Spec, nicht nur als Bild. Ein Look-Bild ohne die
+Spec-Wörter reicht nicht; die Spec-Wörter ohne Look-Bild reichen nicht.
+Ist die Marke neu und ohne Website: Look aus zwei bis drei Foreplay-Winner-Ads des
+Segments ableiten, die Wörter in die Spec schreiben, Raphael die Ableitung zeigen.
 
 **Job**
 

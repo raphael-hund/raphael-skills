@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.10.0
+version: 2.10.1
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -102,7 +102,7 @@ Je Karte zuerst Text und Idee, **dann das Bild**, nicht Pillow.
 2. Primary Text, erster Absatz trägt allein.
 3. Visuelle Idee: Szene in zwei Sätzen, Bildquelle, Stil-Chassis (S1 bis S8).
 4. IDs: Style, Angle, Hook, Callout, Grounding-Referenz.
-5. **Referenzen Raphael zeigen**, bevor Higgsfield läuft: Logo-Datei, Look (Website-Screenshot oder Winner-Ad), Onscreen-Text wortgleich. Fehlt das Logo, nicht bauen.
+5. **Referenzen Raphael zeigen**, bevor Higgsfield läuft: Logo-Datei, Look, Onscreen-Text wortgleich. Look = Schriftart, Farben als Hex, Signaturelement, Buttonform, Bildstil; als Referenzbild plus als Wörter in der JSON-Spec (Definition in `higgsfield/references/ops.md`, Ads-Static). Fehlt Logo oder Look, nicht bauen.
 6. **Bild** über Skill higgsfield, Job `gpt_image_2`. Drei `--image`: (1) Logo, (2) Look, (3) Inhaltfoto oder Portrait. Prompt = JSON-Spec plus Text-Fidelity-Regel aus `higgsfield/references/ops.md` Abschnitt Ads-Static. Logo compositen, nie neu zeichnen. Umlaute 1:1, kein ß, kein ae/oe/ue.
 7. Ergebnis mit Read prüfen: Headline vollständig, Logo lesbar, Text = Spec. Fail → neuer Job, kein Pillow-Flicken.
 
