@@ -33,7 +33,7 @@ bist und welche eine Datei du dafür lädst. Alles Weitere steht dort.
 ## Was Raphael tippt
 
 - Website bauen / ändern / relaunchen / clonen → `/web`
-- Inspiration / Look / Referenzen holen, noch nichts planen → `/web` (Modus Inspiration: Refero-MCP, Mobbin-MCP, 21st-MCP, Galerien, Screenshots über Leaves).
+- Inspiration / Look / Referenzen holen, noch nichts planen → `/web` (Modus Inspiration: Refero-MCP, Mobbin-MCP, 21st-MCP, Galerien, Komponenten-Router `scripts/komponenten.mjs`, Screenshots über Leaves).
 - Website planen, noch nichts bauen → `/web` (Rolle Plan). Nicht
   `/website-plan`, nicht `/ce-plan`, nicht 12 Plan-Skills.
 - Website-Kritik / Look / Conversion sichtbar prüfen → `/web` + `/orchestrate`
@@ -210,7 +210,7 @@ wird): `references/anfaenger-pfad.md` §8.
 - **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill. Nie routen.
 - **AAA hier = Agentur-Rubrik**, nicht WCAG AAA (WCAG bleibt AA).
 - **Update an Bestandsseite = neuer Workspace/Worktree**, nie im Root-Checkout.
-- **Inspiration nur im Modus `modus-inspiration.md`**: Refero/Mobbin/21st in Leaves über `scripts/design-mcp.mjs`, Galerien über `scripts/inspiration.mjs`, Komponenten nach PASS über `komponenten.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — kein zweites Werkzeug für denselben Zugangstyp.
+- **Inspiration nur im Modus `modus-inspiration.md`**: Refero/Mobbin/21st in Leaves über `scripts/design-mcp.mjs`, Galerien über `scripts/inspiration.mjs`, Komponenten über `scripts/komponenten.mjs`, Shots liest ein Leaf. Welche Quelle wie: `references/zugangskarte.md` — kein zweites Werkzeug für denselben Zugangstyp.
 - **Stock-Fotos nur über `scripts/stock.mjs`** (Shutterstock-Abo, Lizenznachweis `stock-lizenzen.json`) — nie Unsplash-Links in Kundenseiten.
 
 ## Evals

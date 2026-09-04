@@ -148,6 +148,20 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 | **Gate** | Lizenz/Urheber: nur Muster analysieren; keine Assets/Copy/Logos übernehmen (`web-clone-playbook.md` wenn Nachbau) |
 | **Nie** | Referenz-HTML clonen ohne Lizenz-Check; 20 Galerien gleichzeitig öffnen |
 
+### 1b. DESIGN.md-Export (optional, Tokens maschinell lintbar)
+
+**Anker:** `#design-md-export` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
+
+| | |
+|---|---|
+| **Bedarf** | Die Tokens aus `client-<name>/web/art-direction.md` sollen zusätzlich in einem fremden, maschinell prüfbaren Format vorliegen |
+| **Loop** | `art-direction`, **nach** der Tokens-Entscheidung — nie davor |
+| **Default** | **Kein Export.** `art-direction.md` bleibt die Quelle (Raphael 02.09.2026). Der Export ist ein Zusatzartefakt auf ausdrücklichen Wunsch, kein Schritt jedes Projekts |
+| **Install/Use** | Spec: `github.com/google-labs-code/design.md` (Apache-2.0, geprüft 02.09.2026). Linter ohne Install: `npx @google/design.md lint <pfad>/DESIGN.md`. Export wird **aus** `art-direction.md` geschrieben, nie umgekehrt zurückgelesen |
+| **Alternativen** | Keine — entweder dieses Format oder gar kein Export |
+| **Gate** | Linter Exit 0; jeder Token-Wert stammt wörtlich aus `art-direction.md`; Divergenz = `art-direction.md` gewinnt und der Export wird neu geschrieben |
+| **Nie** | Die Root-`DESIGN.md` überschreiben — die ist der Nein-Ledger (`anfaenger-pfad.md` §2 Punkt 3), nicht die Token-Datei. Kein `npm i` für den Linter, kein Import fremder Spec-Dateien als Stilquelle |
+
 ### 2. Design-System / Basis-Komponenten (Button, Dialog, Tabs, Accordion, Form)
 
 **Anker:** `#stack-primitives` — dieser Wert gehört in die Spalte Router-Anker der Werkzeugtabelle.
@@ -200,7 +214,7 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 | **Bedarf** | UI-Icons in einer Linie |
 | **Loop** | `components` / `build` |
 | **Default** | Lucide (`lucide-react`) — passt zu shadcn |
-| **Install/Use** | `npm i lucide-react` · `import { ArrowRight } from "lucide-react"` |
+| **Install/Use** | `npm i lucide-react` · `import { ArrowRight } from "lucide-react"`. Andere Familie: `iconify-pp-cli icons --query "<begriff>" --prefixes <familien> --json` → Lizenz mit `collections` prüfen → `iconify-pp-cli svg <prefix> <name> --deliver file:<pfad>`; genau eine Familie. |
 | **Alternativen** | Heroicons, Phosphor, Radix Icons, Tabler — nur eine Familie pro Produkt |
 | **Gate** | einheitliche Stroke/Größe; dekorative Icons `aria-hidden`; Markenlogos ≠ Icon-Set (Simple Icons nur für Marken-Markierungen mit Markenrecht) |
 | **Nie** | Lucide + Phosphor + Icons8 mischen; Icons8-Premium ohne Lizenz |
@@ -234,7 +248,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Hover, Enter/Exit, Shared-Layout, gestische UI |
 | **Loop** | `components` / `build` |
 | **Default** | 1) CSS/Tailwind transitions 2) vendorierte Datei aus `references/ui-components/` 3) Motion — Paket `motion`, Import `motion/react` — nur wenn CSS nicht reicht (`motion-doktrin.md`) |
-| **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`). Eine Fremdkomponente: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/` (Default-Variante TS-TW); Muster ohne Login-Code: `21st search <begriff>`. Danach Werkzeugtabelle. |
+| **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`). Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. Danach Werkzeugtabelle. |
 | **Alternativen** | Magic UI, Motion Primitives, Aceternity, Animata — **eine** Komponente nach AgentReach-Lizenz/Wartungscheck, nicht das Starter-Kit |
 | **Gate** | `useReducedMotion()` oder CSS `prefers-reduced-motion`; keine Layout-Shift-Fallen; Lighthouse a11y |
 | **Nie** | `framer-motion`; Motion für jeden Button-Hover; drei Motion-Libraries parallel; JS-Animation ohne Reduced-Motion — gilt für **jede** Bibliothek (gsap, react-spring, animejs, Lottie), nicht nur für den Default; die globale CSS-Media-Query stoppt JS nicht |
@@ -248,7 +262,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Große Landing-Sektionen jenseits von Primitives |
 | **Loop** | `components` / `build` |
 | **Default** | Eigenes Tailwind-Markup nach `art-direction` + `landingpage-struktur.md`; shadcn-Blöcke nur als strukturelle Hilfe |
-| **Install/Use** | Kein Mega-Kit. Optional gezielt: shadcn blocks / einzelne Magic-UI-Section nach Prüfung. Tiefzugriff: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/`; Muster: `21st search <kategorie\|begriff>` (Code hinter Login, nie raten); `21st code <begriff>` (nur mit 21st-Login). Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
+| **Install/Use** | Kein Mega-Kit. Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. 21st: `node scripts/design-mcp.mjs 21st search "<begriff>"` → `21st get <id> --out src/components/vendor/21st/`. Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
 | **Alternativen** | 21st.dev (`inspiration.mjs 21st code <id> --out src/components/vendor/21st/`, Builder-Plan), React Bits, Cult UI, Float UI, Preline — **eine** geprüfte Section |
 | **Gate** | Design-DNA einhalten; Copy aus G2; Mobile-First; keine fremden Logos/Stock aus dem Demo |
 | **Nie** | ganze Block-Library committen; Demo-Copy/Images aus dem Kit lassen |
@@ -272,7 +286,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Dekorativer Hintergrund ohne schwere 3D-Pipeline |
 | **Loop** | `art-direction` → `build` |
 | **Default** | **CSS zuerst** (Stufe 1). Generator erst, wenn Stufe 1 begründet nicht reicht |
-| **Install/Use** | Generator (Haikei, fffuel, Get Waves, Mesh Gradient …) → **SVG/CSS exportieren und committen**; Generator-Skript nicht in Produktion |
+| **Install/Use** | Generator über `node scripts/resource-access.mjs open "<exakter Name>"` öffnen → **SVG/CSS lokal exportieren und committen**; Generator-Skript nicht in Produktion. Wiederverwendbare Registry-Backgrounds über `komponenten.mjs search → view → get --out`, danach Werkzeugtabelle. |
 | **Alternativen** | BGJar, SVG Backgrounds, MagicPattern, Coolors nur für Palette; tsParticles/Vanta.js **nur** wenn der Brief einen Partikel-Hintergrund verlangt |
 | **Gate** | SVG auf eingebettete Skripte prüfen; Dateigröße; Kontrast Text/Hintergrund; bei tsParticles/Vanta zusätzlich Reduced-Motion-Fallback (statische Fläche) |
 | **Nie** | Generator-Runtime in den Client bundlen; unlizenzierte PNG-Texturen |
@@ -300,7 +314,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Bewusst „heavy“ Creative-Hero, nur wenn Brief/Performance es tragen |
 | **Loop** | `components` / `build` (nach Performance-Budget in art-direction) |
 | **Default** | Kein Shader. Wenn nötig: React Three Fiber **oder** leichter Canvas (OGL) mit Mobile-Fallback-Bild |
-| **Install/Use** | `npm i three @react-three/fiber @react-three/drei` nur bei R3F-Wahl; Lazy-load; Fallback `<Image>` |
+| **Install/Use** | `npm i three @react-three/fiber @react-three/drei` nur bei R3F-Wahl; weitere Runtime-Pakete laut `zugangskarte.md`. Shader-/Demo-Recherche: `codrops-pp-cli posts list --search "webgl" --per-page 10 --json` → `posts get <id>` oder `resource-access.mjs open "<Quelle>"`; Code erst nach Lizenzprüfung. Lazy-load; Fallback `<Image>`. |
 | **Alternativen** | Three.js vanilla, PixiJS, Theatre.js, GSAP (Lizenz!), Shadertoy nur zum Lernen |
 | **Gate** | Mobile FPS/Fallback; Reduced Motion → statisches Poster; Bundle-Budget dokumentiert; keine Autoplay-Audio |
 | **Nie** | Shadertoy-Demo 1:1 in Kundenprod; WebGL ohne Fallback; GSAP-Club-Plugins ohne Lizenz |
@@ -314,7 +328,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Hero-Foto, Produkt, Szene, 2D/3D-Illustration auf der Seite |
 | **Loop** | `art-direction` → Assets vor/während `build` |
 | **Default** | Skill **`higgsfield`** (`/higgsfield`), CLI-Details in `bildgenerierung.md` (GPT Image 2) |
-| **Install/Use** | Skill `higgsfield` zuerst, dann `bildgenerierung.md` + `scripts/bilder.mjs` (AVIF + Index) |
+| **Install/Use** | Skill `higgsfield` zuerst, dann `bildgenerierung.md` + `scripts/bilder.mjs` (AVIF + Index). Pexels-Fallback: `pexels-pp-cli photos search --query "<begriff>" --per-page 6 --json`; nur die gewählte `src.large`-URL mit `curl -L` lokal speichern (kein Download-`--out`). |
 | **Alternativen** | Kundenechte Fotos; **Shutterstock über `scripts/stock.mjs`** (Abo, Standardlizenz, `references/stock-bilder.md`) wenn echte Menschen/Orte/Produkte oder KI-Verbot; Unsplash/Pexels nur ohne Abo-Passung |
 | **Gate** | AVIF + `bilder-index.json`; Uncanny-Check bei KI-Menschen; kein Stock als „Kundenbeweis“; Stock: Zeile in `stock-lizenzen.json` |
 | **Nie** | Stock-Pipeline als Default wenn Higgsfield erlaubt; Nano Banana als Final; doppelte Bild-Doktrin erfinden |
@@ -342,7 +356,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Webfonts für Marke |
 | **Loop** | `art-direction` → `build` |
 | **Default** | Immer die **Adobe Fonts Library** nutzen. Familie dort wählen. Seite lädt über das hinterlegte Kit (`use.typekit.net/<id>.css` plus die Kit-`font-family`-Namen). Lokales Pack: `references/adobe-fonts/` (`head.html`, `tokens.css`, `next-head.tsx`). Quelle: `node scripts/adobe-fonts-kit.mjs files`. Liegen lizenzierte Kunden-Brand-Dateien vor, gelten diese Dateien zuerst — dann nur diese lokal einbinden. |
-| **Install/Use** | Immer die **Adobe Fonts Library**. `node scripts/adobe-fonts-kit.mjs apply <projekt>` schreibt Embed + Tokens nach `<projekt>/adobe-fonts/`. Familie nachschlagen: `node scripts/adobe-fonts-kit.mjs show Fieldwork` (Bibliothek `/root/tools/adobe-fonts-library`). Link aus `head.html` ins Dokument. Höchstens zwei Familien. Kein Adobe-Login. |
+| **Install/Use** | Immer die **Adobe Fonts Library**. `node scripts/adobe-fonts-kit.mjs apply <projekt>` schreibt Embed + Tokens nach `<projekt>/adobe-fonts/`. Familie nachschlagen: `node scripts/adobe-fonts-kit.mjs show Fieldwork` (Bibliothek `/root/tools/adobe-fonts-library`). Fontshare nur zur Recherche: `fontshare-pp-cli fonts list --search "<begriff>" --limit 20 --json` → `fonts get <slug>`; Lizenzfeld prüfen, nicht installieren. Höchstens zwei Familien. Kein Adobe-Login. |
 | **Alternativen** | Keine andere Foundry. Nur lizenzierte Kunden-Brand-Dateien ersetzen die Adobe Fonts Library. Typewolf/Fonts In Use nur zur Recherche. |
 | **Gate** | Kit-Embed im Dokument; keine Adobe-`.woff`/`.ttf` im Repo; Zeichensatz DE; Fallback-Stack |
 | **Nie** | Adobe-Bibliothek herunterladen; Adobe-Webfonts selbst hosten; Google-Fonts-CDN als Default; `next/font/google` als Default; fünf Familien |
@@ -356,7 +370,7 @@ Buttons, Zustände, Listen.
 | **Bedarf** | PBR-Texturen, einfache 3D-Props |
 | **Loop** | `build` (nur mit 3D/Shader-Bedarf) |
 | **Default** | ambientCG oder Poly Haven (Lizenz pro Asset lesen) |
-| **Install/Use** | Asset downloaden, lokal versionieren, Attribution in Projekt-Log |
+| **Install/Use** | Poly Haven: `polyhaven-pp-cli assets --type textures\|hdris\|models --categories <wert> --json` → `info <id>` → `files <id>`; nur die gewählte Datei-URL mit `curl -L` lokal speichern (kein Download-`--out`). Andere Quellen: `resource-access.mjs open`, lokal versionieren, Lizenz/Attribution ins Projekt-Log. |
 | **Alternativen** | Texturelabs, Kenney, Quaternius, FreePBR |
 | **Gate** | Lizenz/Attribution; Auflösung/LOD; keine Scraping-Pakete |
 | **Nie** | ganze Texture-Packs ungenutzt committen |

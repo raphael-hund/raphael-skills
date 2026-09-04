@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"records\": [{\"uuid\": \"48b87627-bbe6-415d-b314-632c38e40d95\", \"platform\": \"web\", \"page_url\": \"https://openai.com/chatgpt/pricing/\", \"refero_url\": \"https://refero.design/pages/48b87627-bbe6-415d-b314-632c38e40d95\", \"site\": {\"name\": \"OpenAI\"}, \"content\": \"Pricing\"}, {\"uuid\": \"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\", \"platform\": \"web\", \"page_url\": \"https://example.com/pricing\", \"refero_url\": \"https://refero.design/pages/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\", \"site\": {\"name\": \"Example\"}, \"content\": \"Plans\"}]}"
+      }
+    ],
+    "isError": false
+  }
+}

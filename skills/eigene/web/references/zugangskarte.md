@@ -9,87 +9,130 @@ die Zeile hier. Doku-Schwester: `inspirations-quellen.md` (Look),
 **Deckel:** max. 3 Look-Referenzen, 1 Komponente pro Bedarf, 6 Stock-Previews.
 PNG/`shot` gilt erst nach **Read** durch ein Kritik-Leaf.
 
-## Live-Zugänge (eingeloggt 03.09.2026)
+**Arbeitsverzeichnis:** alle `node scripts/<x>.mjs`-Aufrufe hier gelten mit
+`cd /root/raphael-skills/skills/eigene/web` (oder absolutem Skriptpfad).
+`*-pp-cli` liegen in `~/.local/bin`. Erstes Argument von `inspiration.mjs`
+und `komponenten.mjs search` ist der **Schlüssel**, nicht die Domain:
+`--help` bzw. `komponenten.mjs libs` (Spalte `name`, Registry-Namespaces
+mit `@`) nennen ihn; Domain → Schlüssel steht in der Quellenwege-Tabelle in
+Klammern.
 
-| Quelle | Weg | Login |
+## Live-Zugänge (geprüft 04.09.2026)
+
+| Quelle | Zugriff | Auth / Lizenzgrenze |
 |---|---|---|
-| Refero Styles/Screens/Flows | MCP `refero` (`mcp__refero__refero_search_styles` → `get_style`; Screens/Flows analog) | Bearer, dauerhaft |
-| Mobbin Screens/Flows/Sections | MCP `mobbin` (`mcp__mobbin__search_screens` / `search_flows` / `search_sections`); belegt 04.09.2026 in frischer Session: Screens 3 Treffer (Airtasker), Flows 3 (Front, Slite, Jobber). Antworten enthalten Preview-Bilder inline; `search_flows` läuft über 25k Tokens → nur im Leaf aufrufen, nie im Parent | OAuth, Token-Refresh per Cron |
-| 21st.dev Katalog + Code | MCP `21st` (`mcp__21st__search`, `get_component`, `get_inspiration`); Skript `inspiration.mjs 21st code <id> --out <dir>` (tsx + demo) | Token in `~/.config/21st/auth.json` + `API_KEY_21ST` |
-| Shutterstock | `scripts/stock.mjs` (search → preview → license → add) | Token in `api-keys.env`, App Raphael VPS CLI |
-| Navbar, Landdding, Awwwards, Siteinspire, Curated, Getlayers, Behance, Inspora, Swiped | `scripts/inspiration.mjs <quelle> list\|search\|get` + `shot` | öffentlich; Siteinspire nur Firecrawl; 21st-Code hinter Login → MCP |
+| Refero Styles/Screens/Flows | `node scripts/design-mcp.mjs refero styles search "<query>"` → `styles get <uuid>`; Screens/Flows analog | Bearer aus `~/.claude.json`; nur Inspiration, keine 1:1-Übernahme |
+| Mobbin Screens/Flows/Sections | `node scripts/design-mcp.mjs mobbin screens\|flows\|sections "<query>" --platform web\|ios --out <dir>` | OAuth aus `.credentials.json`; Bilder nur als Dateien, nur Inspiration |
+| 21st.dev Inspiration + Code | `node scripts/design-mcp.mjs 21st search "<query>"` → `21st get <id> --out <dir>` | Token aus `~/.config/21st/auth.json` oder `API_KEY_21ST`; einzelne Komponente nach Lizenzprüfung |
+| Öffentliche Galerien | `node scripts/inspiration.mjs <quelle> list\|search\|get`; danach `shot <url> --out <dir>` | öffentlich; Look analysieren, keine Layouts/Assets kopieren |
+| Komponenten-Registries | `node scripts/komponenten.mjs libs` → `search <@namespace\|name-aus-libs> "<query>"` (z.B. `@magicui`, `@react-bits`, `"Magic UI"`, `hyperui`) → `view <@namespace/name>` → `get <@namespace/name> --out <verzeichnis>` | eine Komponente; `get` druckt `lizenz prüfen`, wenn das Item keine Lizenz trägt: dann LICENSE des Repos/Docs lesen und in der Werkzeugtabelle nennen, sonst kein Einbau |
+| Pexels | `pexels-pp-cli photos curated --per-page 6 --json` (keyless); `photos search --query "<query>"` erst mit `PEXELS_API_KEY`; gewählte `src.large`-URL mit `curl -L` lokal speichern | Key fehlt im VPS (Login-Tabelle unten). **Foto-Default bleibt Shutterstock über `scripts/stock.mjs`**; Pexels nur ohne Shutterstock-Passung; nie Kundenbeweis |
+| Poly Haven | `polyhaven-pp-cli assets --type textures\|hdris\|models --categories <wert> --json` → `info <id>` → `files <id>`; ausgewählte URL mit `curl -L` lokal speichern | öffentlich, CC0 |
+| Iconify | `iconify-pp-cli icons --query "<query>" --prefixes <familien> --json` → `svg <prefix> <name> --deliver file:<pfad>` | öffentlich; Lizenz über `collections` prüfen |
+| Fontshare | `fontshare-pp-cli fonts list --search "<query>" --limit 20 --json` → `fonts get <slug>` | öffentlich; Lizenzfeld prüfen; Suche liefert derzeit auch ungefilterten Katalog |
+| Codrops | `codrops-pp-cli posts list --search "<query>" --per-page 10 --json` → `posts get <id>` | öffentlich; Inspiration/Recherche, Code nur nach Lizenzprüfung |
+| Shutterstock | `scripts/stock.mjs` (`search` → `preview` → `license` → `add`) | Token in `api-keys.env`; Standardlizenz dokumentieren |
 
-Status: `claude mcp list`. Token erneuern: `/root/tools/auth-relays/README.md`.
-Mobbin-Token lebt 60 min; Cron `mobbin-refresh.py` alle 40 min, bei 401 von Hand
+Status und Hilfe: jedes oben genannte Werkzeug mit `--help`; MCP-Token erneuern:
+`/root/tools/auth-relays/README.md`. Mobbin bei 401:
 `python3 /root/tools/auth-relays/mobbin-refresh.py --force`.
 
-Live-Beleg 04.09.2026: 11 Galerie-Shots durch ein visual-kritiker-Leaf gelesen —
-9 GALERIE, Mobbin ohne Login LANDING, Siteinspire BOT (auch im VPS-Chrome),
-Inspora-Startseite zeigt nur das Intro-Logo → Medien-URLs aus `inspora list` laden. Refero/Mobbin/21st-MCP je ein Live-Call ok.
+## Zugriffstypen — genau ein Werkzeug je Typ
 
-## Zugriffstypen (kein Extra-CLI)
-
-| Typ | Bedeutung | Wann |
+| Typ | Werkzeug | Gilt für |
 |---|---|---|
-| **MCP** | Live-Tools in der Session | Refero, Mobbin, 21st, Firecrawl |
-| **Skript** | `inspiration.mjs` / `stock.mjs` / `resource-access.mjs` | Galerien, Stock, Katalog-Open |
-| **Vendor** | lokale Kopie unter `resources/components/<site>/` zuerst | shadcn, Origin, beui, Rare UI, … |
-| **npm/Registry** | eine Komponente nach Router + Werkzeugtabelle | Magic UI, React Bits, Aceternity, Cult, Motion Primitives |
-| **Paket** | `npm i <pkg>` nach Werkzeugtabelle | daisyUI, Preline, three, lucide-react, gsap |
-| **open** | `resource-access.mjs open "<exakter Name>"` | Rest der 160er-Liste (Haikei, Unsplash, Lucide-Doku, …) |
-| **Login** | Raphael muss einmal einloggen; Agent startet den Flow | siehe Blocker unten |
-| **nein** | nicht für Site-Builds / anderer Skill | Kickresume, Superfile, FinderGit, Vibeindex |
+| **MCP-Client** | `design-mcp.mjs` | Refero, Mobbin, 21st.dev; JSON-RPC/SSE nicht mit printing-press wrappen |
+| **Komponenten-Skript** | `komponenten.mjs` | Registry, Vendor, npm-/Docs-Hinweis; `view`/`get` für `@namespace/name` |
+| **Galerie-Skript** | `inspiration.mjs` | Galerien und Shot-Dateien |
+| **REST-CLI** | `*-pp-cli` | flache REST-APIs: Pexels, Poly Haven, Iconify, Fontshare, Codrops |
+| **Vendor** | `resources/components/<site>/` | lokale Kopie zuerst |
+| **Paket/Original-CLI** | `npm i <pkg>` oder dokumentierte Anbieter-CLI | Runtime-Library bzw. Registry-Installation |
+| **Einzelzugriff** | `resource-access.mjs open "<exakter Name>"` | Docs, Generatoren und Quellen ohne tieferen Adapter |
+| **Nein** | kein Site-Build-Zugang | FinderGit, Superfile, Kickresume, Vibeindex |
 
-## Komponenten (eine, nicht das Kit)
+## Komponenten ziehen — ein Weg für UI-Bibliotheken
 
-Magic UI, React Bits → `inspiration.mjs magicui|reactbits get --out`. 21st → MCP
-`get_component` (Quota: `get_usage` zuerst). shadcn/ui Default:
-`npx shadcn@latest add`. Aceternity, Cult, Motion Primitives, Shadcn Blocks,
-Untitled UI, Park, Origin: Registry/CLI laut Router, eine Section.
-daisyUI, Preline, HyperUI, Meraki, Float, Hover, Animata, Shoogle, Ruixen,
-shadcn.io: `open` zur Recherche oder **eine** geprüfte Section. tsParticles,
-Vanta, Three.js, OGL, R3F, Pixi, Theatre, GSAP: Paket, nur mit Budget in der
-Werkzeugtabelle. Mantine: Docs + optional MCP der Library, nicht Default-Stack.
+```bash
+node scripts/komponenten.mjs libs
+node scripts/komponenten.mjs search <lib|@namespace> "<query>"
+node scripts/komponenten.mjs view <@namespace/name>
+node scripts/komponenten.mjs get <@namespace/name> --out src/components/vendor/<namespace>/
+```
 
-## Inspiration-Galerien (Look, nicht clonen)
+`libs` nennt Zugangsweg und Lizenzstatus, `search` begrenzt die gewählte
+Bibliothek, `view` zeigt Dateien und Abhängigkeiten, `get` schreibt genau das
+Registry-Item. HTML-/npm-Treffer werden über ihren dokumentierten Weg geöffnet;
+`view`/`get` gelten nur für `@namespace/name`. Danach Lizenz, Abhängigkeiten,
+A11y und Router-Anker prüfen.
 
-Landdding, Awwwards, Siteinspire, Curated, Getlayers, Behance, Inspora,
-Swiped, Navbar Gallery, Godly, Refero, Mobbin: Skript oder MCP wie oben.
-60fps.design, posts.design, supahero.io, loadmo.re, recent.design, cta.gallery,
-kinetics.colorion.co, 404.colorion.co, circleloaders, aicanvas.me, umanmade.com,
-codeshots.dev: `open` falls im Katalog, sonst Firecrawl/`shot` **eine** URL,
-max. 3. Siteinspire: Vercel-Checkpoint auch im VPS-Chrome → `siteinspire list` (Firecrawl) + Thumbnails. Inspora: Intro-Logo → Medien-URLs aus `inspora list`.
+## Quellenwege — Raphaels Liste vollständig
 
-## Assets (Lizenz lesen, dann lokal)
+| Quellen | Weg |
+|---|---|
+| navbar.gallery (`navbar`) | `inspiration.mjs navbar list [static\|dropdowns\|mega-menu\|side-bar\|search-bar]` (ohne Typ: die drei Haupttypen) → `navbar get <slug>` → `shot` |
+| styles.refero.design | `design-mcp.mjs refero styles search\|get`; öffentliche Style-URL bei ungültiger MCP-UUID einmal direkt lesen |
+| supahero.io (`supahero`) | `inspiration.mjs supahero list` → `supahero get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
+| cta.gallery (`cta`) | `inspiration.mjs cta list` → `cta get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
+| recent.design (`recent`, vormals godly.website) | `inspiration.mjs recent list` → `recent get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
+| 60fps.design (`fps`) | `inspiration.mjs fps list` → `fps get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
+| posts.design (`posts`) | `inspiration.mjs posts list` → `posts get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
+| loadmo.re (`loadmore`), kinetics.colorion.co (`kinetics`), 404.colorion.co (`notfound`), circleloaders.dominikakissi.com (`circleloaders`), umanmade.com (`umanmade`) | `inspiration.mjs <schlüssel> list`; Snippet-Seiten `get <slug\|url> --out <datei>` (CSS/SVG); live belegt 04.09.2026 (kinetics-Snippets sind teils <200 B, Keyframes stehen auf der Seite) |
+| inspora.design (`inspora`) | `inspiration.mjs inspora list`; Medien-URL lokal speichern und im Shot-Leaf lesen |
+| aicanvas.me | `komponenten.mjs search @aicanvas "<query>"` → `view @aicanvas/<name>` → `get @aicanvas/<name> --out <dir>` |
+| mantine.dev | npm-Paket + Mantine-Doku/Docs-MCP; kein Default-Stack |
+| codeshots.dev | `node scripts/inspiration.mjs shot https://codeshots.dev --out <dir>` zur Funktionssicht; Werkzeug, kein Referenzfundus |
+| findergit.app, superfile.dev, kickresume.com, vibeindex.dev | **nein** für Site-Builds |
+| React Bits (`@react-bits`), Magic UI (`@magicui`), Aceternity UI (`@aceternity`), Cult UI (`@cult-ui`, oft Vercel-Checkpoint → Vendor/Docs), Motion Primitives (`@motion-primitives`, dito), Origin UI (`vendor:coss-origin-ui`, AGPL), Shadcn Blocks (`@shadcnblocks`) | `komponenten.mjs search <@namespace> "<query>"` → `view @namespace/name` → `get @namespace/name --out <dir>` |
+| 21st.dev | `design-mcp.mjs 21st search\|get --out` |
+| shadcn/ui | lokale Vendor-Kopie zuerst; dann gezielt `npx shadcn@latest add <name>` |
+| shadcn.io, Ruixen UI | `komponenten.mjs libs` → `search`; Registry-Treffer über `view`/`get`, Docs-Treffer vor Übernahme öffnen und Lizenz prüfen |
+| Untitled UI React | `npx untitledui@latest add`; Login bei Bedarf |
+| Park UI | `@park-ui/cli`/Panda nach offizieller Doku |
+| Hover.dev (`hover.dev`), Animata (`animata`), Shoogle (`shoogle`), Float UI (`"Float UI"`), HyperUI (`hyperui`), Meraki UI (`"Meraki UI"`) | `komponenten.mjs search <name> "<query>"` liest die Docs-Seite und listet Treffer-URLs; genau einen Treffer öffnen, Code an der Quelle kopieren, Lizenz prüfen |
+| Preline UI, daisyUI | offizielles npm-Paket; Docs für eine Komponente |
+| Ruixen UI, Park UI, Untitled UI React, Hover.dev | kein erfundener Registry-Code; bei Login/Checkpoint offen melden |
+| tsParticles, Vanta.js, Three.js, OGL | offizielles npm-Paket, nur mit Router-Budget |
+| Shadertoy, GLSL Sandbox, The Book of Shaders, NodeToy, ShaderFrog, VertexShaderArt, WebGL Samples, Three.js Resources | `resource-access.mjs open`; Inspiration, Code/Lizenz separat prüfen |
+| Codrops | `codrops-pp-cli posts list\|get` |
+| PixiJS, React Three Fiber, Theatre.js, GSAP | offizielles npm-Paket; Docs per `resource-access.mjs open` |
+| Haikei, BGJar, Hero Patterns, SVG Backgrounds, fffuel, Get Waves, SVG Wave, MagicPattern, Mesh Gradient, WebGradients, uiGradients, Gradient Hunt, CSS Gradient, Grabient, InstantGradient, ColorFlow, Learn UI, Gradient Page, GradientsHub, Coolors, Photo Gradient, Colorffy, Gradients.app, PatternPad, Pattern Monster, Blobmaker, Blobmixer, Shape Divider, CSS Pattern, Patternico | `resource-access.mjs open`; SVG/CSS lokal exportieren, Generator nie einbetten |
+| Poly Haven | `polyhaven-pp-cli assets\|info\|files`; URL gezielt per `curl -L` speichern |
+| Texturelabs, Transparent Textures, Subtle Patterns, ambientCG, FreePBR, 3DTextures, ShareTextures, Kenney, Quaternius | `resource-access.mjs open`; Asset lokal speichern, Lizenz notieren |
+| Pexels | `pexels-pp-cli photos search\|get`; Download-URL gezielt per `curl -L` speichern |
+| Unsplash, Pixabay | `resource-access.mjs open`; nur ohne Shutterstock-Passung, Lizenz und API-Blocker beachten |
+| unDraw, ManyPixels, Storyset, Open Doodles, Humaaans, Blush, DrawKit, IRA Design, Illustrations.co | `resource-access.mjs open`; genau ein Kit, SVG lokal, Attribution prüfen |
+| LottieFiles, Spline, Rive, Mixkit, Coverr, Life of Vids | `resource-access.mjs open`; Datei lokal, Lizenz/Performance prüfen |
+| Lucide, Tabler Icons, Phosphor Icons, Heroicons, Remix Icon, Iconoir, Simple Icons, Radix Icons, Material Symbols, Iconify, Hugeicons | `iconify-pp-cli icons` → `svg --deliver file:<pfad>`; eine Familie, Collection-Lizenz prüfen |
+| Atlas Icons | `resource-access.mjs open "Atlas Icons"`; Iconify-Live-Katalog enthält die Familie derzeit nicht, daher offen prüfen |
+| SVG Repo, Icons8 | `resource-access.mjs open`; Rate-Limit bzw. Premium-Lizenz als offen behandeln |
+| Fontshare | `fontshare-pp-cli fonts list\|get` |
+| Google Fonts, Velvetyne, Open Foundry, Uncut, Use & Modify, Typewolf, Fonts In Use, Fontesk, Collletttivo, The League of Moveable Type, Omnibus Type, Atipo Foundry | `resource-access.mjs open`; Recherche/Lizenzprüfung, Adobe Fonts bleibt Router-Default |
+| React Native Reusables, gluestack UI, Tamagui UI, React Native Paper, React Native UI Lib, React Native Elements, UI Kitten, Composables UI, Jetpack Compose Samples, GetWidget | offizielles Paket/CLI + Docs; Expo/Plattform-Kompatibilität prüfen |
 
-Unsplash/Pexels/Pixabay nur ohne Shutterstock-Passung. Lottie, Spline, Rive,
-Mixkit, Coverr: `open` + Lizenz, eine Datei. Illustration-Kits (unDraw,
-Storyset, Humaaans, Blush, DrawKit, …): `open`, Attribution. Texturen/3D
-(Poly Haven, ambientCG, Kenney, …): Download lokal, Lizenz in die Tabelle.
-Icons: Default Lucide; andere Familien nur als **die eine** Familie.
-Fonts: Adobe Fonts Library, nicht Google Fonts als Default.
+## Grenzen
 
-## Shader / Generatoren
-
-Haikei, BGJar, Hero Patterns, fffuel, Mesh Gradient, Coolors, Blobmaker, …:
-`open`, Export lokal, nicht die Generator-Seite einbetten. Shadertoy,
-Book of Shaders, Codrops: Recherche, Code nur mit Lizenz.
+- Max. 3 Look-Referenzen, 1 Komponente pro Bedarf, 6 Stock-Previews.
+- Bilddateien und Shots zählen erst nach Read durch ein Kritik-Leaf als gesehen.
+- Stock, Demo-Fotos und Illustrationskits sind nie Kundenbeweis.
+- `--deliver file:<pfad>` ist bei Iconify der Dateiweg; Pexels/Poly Haven haben
+  keinen nativen Download-`--out`, deshalb nur die gewählte Datei per `curl -L`.
 
 ## Login / CLI, die Raphael einmal geben muss
 
 | Bedarf | Was Raphael tut | Danach |
 |---|---|---|
-| 21st Token tot | `21st login` oder Key auf 21st.dev/mcp. Plan **Builder** (64 €/Jahr, seit 04.09.2026): Code-Abrufe unbegrenzt | MCP + CLI |
-| Mobbin-Tools fehlen in der Session | neue Session nach OAuth | `mcp__mobbin__*` |
-| Shutterstock 401 | Auth-Relay README, Google im VPS-Chrome | `stock.mjs` |
+| 21st Token fehlt/ist ungültig | `21st login` oder Key auf 21st.dev/mcp; Agent startet den Login-Flow | `design-mcp.mjs 21st …` |
+| Mobbin 401 | Agent führt `python3 /root/tools/auth-relays/mobbin-refresh.py --force` aus | `design-mcp.mjs mobbin …` |
+| Shutterstock 401 | Agent startet den Auth-Relay-Login im VPS-Chrome | `stock.mjs` |
+| Pexels-Suche 401 | Raphael holt einmal einen Key auf https://www.pexels.com/onboarding/ und legt ihn als `PEXELS_API_KEY=` in `/root/.secrets/api-keys.env` ab | `pexels-pp-cli photos search` |
 | Adobe Fonts | Kit-ID in `adobe-fonts-kit.mjs` | Embed |
-| Mobbin-Browse ohne MCP | VPS-Chrome / AgentReach, echte Shots | Notizen in art-direction.md |
+| Mobbin-Browse außerhalb des Clients | VPS-Chrome / AgentReach, echte Shots | Notizen in `art-direction.md` |
 
 Kein Login: Rest der öffentlichen Galerien und Docs.
 
 ## Nie
 
-- Eine CLI pro Site aus der Tweet-Liste.
+- Kein zweites Werkzeug für denselben Zugangstyp; MCP bleibt `design-mcp.mjs`, Komponenten bleiben `komponenten.mjs`, Galerien bleiben `inspiration.mjs`, flache REST-APIs bleiben printing-press-CLIs.
 - Zwei UI-Kits parallel.
 - Katalog-Dump statt einer benannten Quelle.
 - Screenshot-Pfad ohne Read.

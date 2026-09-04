@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // Liest UI-Inspiration (Refero, Navbar Gallery, Magic UI, React Bits, 21st,
-// Landdding, Awwwards, Siteinspire, Curated, GetLayers, Behance, Inspora, Swiped)
+// Landdding, Awwwards, Siteinspire, Curated, GetLayers, Behance, Inspora, Swiped,
+// Supahero, CTA Gallery, Recent, 60fps, Posts, Loadmore, Kinetics, 404,
+// Circleloaders, Umanmade)
 // über Jina Reader, sonst Firecrawl; einzelne Quellen per fetch. shot über Playwright.
 // Kein Login, kein Cache, Schreiben nur mit --out (shot: nur --out-Verzeichnis).
 //
@@ -46,18 +48,40 @@ const HELP = `Usage:
   node inspiration.mjs behance get <id|url> [--json]
   node inspiration.mjs inspora list [--limit 20] [--json]
   node inspiration.mjs swiped list [--limit 20] [--json]
+  node inspiration.mjs supahero list [--limit 20] [--grep <substr>] [--json]
+  node inspiration.mjs supahero get <slug|url> [--out <datei>] [--json]
+  node inspiration.mjs cta list [--limit 20] [--grep <substr>] [--json]
+  node inspiration.mjs cta get <slug|url> [--out <datei>] [--json]
+  node inspiration.mjs recent list [--limit 20] [--grep <substr>] [--json]
+  node inspiration.mjs recent get <slug|url> [--out <datei>] [--json]
+  node inspiration.mjs fps list [--limit 20] [--grep <substr>] [--json]
+  node inspiration.mjs fps get <slug|url> [--out <datei>] [--json]
+  node inspiration.mjs posts list [--limit 20] [--grep <substr>] [--json]
+  node inspiration.mjs posts get <slug|url> [--out <datei>] [--json]
+  node inspiration.mjs loadmore list [--limit 20] [--json]
+  node inspiration.mjs loadmore get <slug|url> [--json]
+  node inspiration.mjs kinetics list [--limit 20] [--json]
+  node inspiration.mjs kinetics get <slug|url> --out <datei> [--json]
+  node inspiration.mjs notfound list [--limit 20] [--json]
+  node inspiration.mjs notfound get <slug|url> --out <datei> [--json]
+  node inspiration.mjs circleloaders list [--limit 20] [--json]
+  node inspiration.mjs circleloaders get <slug|url> --out <datei> [--json]
+  node inspiration.mjs umanmade list [--limit 20] [--json]
   node inspiration.mjs mobbin [--json]
   node inspiration.mjs shot <url> [--out <verzeichnis>] [--mobile] [--full] [--wait <ms>] [--json]
   node inspiration.mjs --help
 
 Liest Seiten über https://r.jina.ai/<url>; Fallback: firecrawl scrape <url> -f markdown --only-main-content.
 siteinspire nur Firecrawl (Jina = Vercel 429). awwwards/getlayers/inspora: HTML per fetch.
+supahero/loadmore/kinetics/notfound/circleloaders/umanmade: HTML; cta/recent/fps/posts-list: sitemap.xml (posts zusätzlich JSON-LD/HTML).
 Registry-JSON (Magic UI, React Bits) per fetch. Timeout 45s, User-Agent ${UA}.
 Kein Cache, kein Login, keine Cookies. Schreiben nur mit --out.
 shot: Playwright-PNG nach --out (Default /tmp/inspiration-shots). PNG danach mit Read ansehen — ein Pfad ohne Ansehen zählt nicht als gesehen.
 Bei Bot-Schutz: raphael-chrome open <url>; raphael-chrome screenshot <id> <png>.
-Mobbin: kein Netz, nur MCP-Hinweis. Swiped: Design-Posts von X/LinkedIn, keine Websites.
-curated/inspora: nur list (kein get).
+Mobbin: node scripts/design-mcp.mjs mobbin screens|flows|sections …
+Swiped: Design-Posts von X/LinkedIn, keine Websites. godly.website leitet nach recent.design.
+curated/inspora: nur list (kein get). get --out schreibt CSS/SVG-Snippet, sonst Markdown.
+Lizenz je Galerie: nur Inspiration.
 
 Exit: 0 ok · 1 nichts gefunden · 2 Bedienfehler · 3 HOST_UNAVAILABLE (Kanal in der Meldung).
 
@@ -673,10 +697,332 @@ export function parseSwipedList(markdown) {
   return items;
 }
 
+
+function cleanGalleryTitle(value) {
+  return decodeHtmlEntities(String(value || ''))
+    .replace(/\s+[|–—-]\s+(?:Supahero|CTA Gallery|Call-to-Action Design Inspiration|60fps.*|posts\.design).*$/i, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function titleFromSlug(slug, dropId = false) {
+  let value = String(slug || '');
+  if (dropId) value = value.replace(/^[a-z0-9]{7}-/i, '');
+  return value.split('-').filter(Boolean).map((part) => /^(?:ai|ui|ux|3d|xp)$/i.test(part)
+    ? part.toUpperCase()
+    : `${part.charAt(0).toUpperCase()}${part.slice(1)}`).join(' ');
+}
+
+function absoluteMedia(raw, origin) {
+  const value = decodeHtmlEntities(raw || '').trim();
+  if (!value || /^(?:data:|javascript:)/i.test(value)) return '';
+  try { return new URL(value, origin).href; } catch { return ''; }
+}
+
+function sitemapLocations(xml) {
+  return [...String(xml || '').matchAll(/<loc>([\s\S]*?)<\/loc>/gi)]
+    .map((match) => decodeHtmlEntities(match[1]).trim());
+}
+
+function mediaNear(text, index, origin, span = 1800) {
+  const chunk = text.slice(index, index + span);
+  const match = chunk.match(/<(?:img|video)\b[^>]*(?:src|poster)=["']([^"']+)["']/i);
+  return absoluteMedia(match?.[1], origin);
+}
+
+export function parseSupaheroList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  for (const match of text.matchAll(/<a\b[^>]*href=["']\/hero\/([a-z0-9-]+)["'][^>]*>/gi)) {
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    const chunk = text.slice(match.index, match.index + 1800);
+    const image = chunk.match(/<img\b[^>]*src=["']([^"']+)["'][^>]*>/i);
+    const alt = image?.[0].match(/\balt=["']([^"']*)["']/i)?.[1];
+    items.push({
+      slug,
+      title: cleanGalleryTitle(alt) || titleFromSlug(slug),
+      url: `https://supahero.io/hero/${slug}`,
+      media: absoluteMedia(image?.[1], 'https://supahero.io'),
+    });
+  }
+  return items;
+}
+
+export function parseCtaList(xml) {
+  const items = [];
+  const seen = new Set();
+  for (const raw of sitemapLocations(xml)) {
+    let url;
+    try { url = new URL(raw); } catch { continue; }
+    const match = url.pathname.match(/^\/cta\/([a-z0-9-]+)\/?$/i);
+    if (!match) continue;
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    items.push({ slug, title: titleFromSlug(slug), url: `https://www.cta.gallery/cta/${slug}`, media: '' });
+  }
+  return items;
+}
+
+export function parseRecentList(xml) {
+  const items = [];
+  const seen = new Set();
+  for (const raw of sitemapLocations(xml)) {
+    let url;
+    try { url = new URL(raw); } catch { continue; }
+    const match = url.pathname.match(/^\/i\/([a-z0-9-]+)\/?$/i);
+    if (!match) continue;
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    items.push({ slug, title: titleFromSlug(slug, true), url: `https://recent.design/i/${slug}`, media: '' });
+  }
+  return items;
+}
+
+export function parseRecentApi(json) {
+  const item = json?.json || json || {};
+  const media = Array.isArray(item.media) ? item.media.find((row) => row?.url) : null;
+  return {
+    title: String(item.title || '').trim(),
+    description: String(item.description || item.tagline || '').trim(),
+    media: absoluteMedia(media?.url || media?.poster?.url || item.cover?.url, 'https://cdn.recent.design'),
+    source: String(item.source?.url || '').trim(),
+  };
+}
+
+export function parseFpsList(xml) {
+  const items = [];
+  const seen = new Set();
+  for (const raw of sitemapLocations(xml)) {
+    let url;
+    try { url = new URL(raw); } catch { continue; }
+    const match = url.pathname.match(/^\/shots\/([a-z0-9-]+)\/?$/i);
+    if (!match || ['watch', 'filter'].includes(match[1].toLowerCase())) continue;
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    seen.add(slug);
+    items.push({ slug, title: titleFromSlug(slug), url: `https://60fps.design/shots/${slug}`, media: '' });
+  }
+  return items;
+}
+
+export function parsePostsList(input) {
+  const text = String(input || '');
+  const items = [];
+  const seen = new Set();
+  for (const script of text.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    let data;
+    try { data = JSON.parse(decodeHtmlEntities(script[1])); } catch { continue; }
+    const rows = data?.mainEntity?.itemListElement;
+    if (!Array.isArray(rows)) continue;
+    for (const row of rows) {
+      let url;
+      try { url = new URL(row?.url, 'https://posts.design'); } catch { continue; }
+      const slug = url.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      if (!slug || seen.has(slug)) continue;
+      seen.add(slug);
+      const anchor = text.search(new RegExp(`href=["']/${slug.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')}["']`, 'i'));
+      items.push({
+        slug,
+        title: cleanGalleryTitle(row?.name) || titleFromSlug(slug),
+        url: `https://posts.design/${slug}`,
+        media: anchor >= 0 ? mediaNear(text, anchor, 'https://posts.design') : '',
+      });
+    }
+  }
+  if (items.length) return items;
+  for (const raw of sitemapLocations(text)) {
+    let url;
+    try { url = new URL(raw); } catch { continue; }
+    const slug = url.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (!slug || slug.includes('/') || !/-20\d\d-\d\d-\d\d$/.test(slug) || seen.has(slug)) continue;
+    seen.add(slug);
+    items.push({ slug, title: titleFromSlug(slug.replace(/-20\d\d-\d\d-\d\d$/, '')), url: `https://posts.design/${slug}`, media: '' });
+  }
+  return items;
+}
+
+function metaContent(html, key) {
+  const text = String(html || '');
+  const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const forward = new RegExp(`<meta\\b[^>]*(?:property|name)=["']${escaped}["'][^>]*content=["']([^"']*)["'][^>]*>`, 'i');
+  const reverse = new RegExp(`<meta\\b[^>]*content=["']([^"']*)["'][^>]*(?:property|name)=["']${escaped}["'][^>]*>`, 'i');
+  return decodeHtmlEntities(text.match(forward)?.[1] || text.match(reverse)?.[1] || '');
+}
+
+function parseGalleryItem(html, origin) {
+  const text = String(html || '');
+  const rawTitle = metaContent(text, 'og:title') || decodeHtmlEntities(text.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '')
+    || decodeHtmlEntities(text.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || '').replace(/<[^>]+>/g, ' ');
+  const inlineImage = text.match(/<img\b[^>]*src=["']([^"']+)["']/i)?.[1] || '';
+  const socialImage = metaContent(text, 'og:image');
+  const image = /(?:supahero\.io|posts\.design)$/i.test(origin) ? (inlineImage || socialImage) : (socialImage || inlineImage);
+  const video = metaContent(text, 'og:video') || text.match(/<video\b[^>]*src=["']([^"']+)["']/i)?.[1] || '';
+  const links = [...text.matchAll(/<a\b[^>]*href=["'](https?:\/\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
+  const sourceLink = links.find((match) => /(?:visit website|view website|see original)/i.test(match[2].replace(/<[^>]+>/g, ' ')));
+  return {
+    title: cleanGalleryTitle(rawTitle),
+    description: metaContent(text, 'og:description') || metaContent(text, 'description'),
+    media: absoluteMedia(video || image, origin),
+    source: sourceLink ? decodeHtmlEntities(sourceLink[1]) : '',
+  };
+}
+
+export const parseSupaheroItem = (html) => parseGalleryItem(html, 'https://supahero.io');
+export const parseCtaItem = (html) => parseGalleryItem(html, 'https://www.cta.gallery');
+export const parseRecentItem = (html) => parseGalleryItem(html, 'https://recent.design');
+export const parseFpsItem = (html) => parseGalleryItem(html, 'https://60fps.design');
+export const parsePostsItem = (html) => parseGalleryItem(html, 'https://posts.design');
+
+export function parseLoadmoreList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  for (const match of text.matchAll(/<div\b[^>]*class=["'][^"']*\bpost\b[^"']*["'][^>]*>\s*<a\b[^>]*href=["'](?:https?:\/\/loadmo\.re)?\/posts\/([a-z0-9-]+)\/?["'][^>]*>/gi)) {
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    const relativeEnd = text.slice(match.index).search(/<div\b[^>]*class=["'][^"']*post-meta/i);
+    const end = relativeEnd >= 0 ? match.index + relativeEnd : -1;
+    const chunk = text.slice(match.index, end >= 0 ? Math.min(text.length, end + 900) : match.index + 2800);
+    const title = chunk.match(/class=["'][^"']*post-sitename[^"']*["'][^>]*>([\s\S]*?)<\/p>/i)?.[1]
+      ?.replace(/<[^>]+>/g, ' ');
+    const source = chunk.match(/background-image\s*:\s*url\((['"]?)([^)'"\s]+)\1\)/i)?.[2]
+      || chunk.match(/<(?:img|video)\b[^>]*(?:src|poster)=["']([^"']+)["']/i)?.[1]
+      || chunk.match(/<source\b[^>]*src=["']([^"']+)["']/i)?.[1];
+    seen.add(slug);
+    items.push({
+      slug,
+      title: cleanGalleryTitle(title) || titleFromSlug(slug),
+      url: `https://loadmo.re/posts/${slug}`,
+      image: absoluteMedia(source, 'https://loadmo.re'),
+    });
+  }
+  return items;
+}
+
+export function parseLoadmoreItem(html) {
+  const item = parseGalleryItem(html, 'https://loadmo.re');
+  const text = String(html || '');
+  const rawTitle = metaContent(text, 'og:title') || decodeHtmlEntities(text.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '');
+  const source = [...text.matchAll(/<a\b[^>]*href=["'](https?:\/\/[^"']+)["'][^>]*>/gi)]
+    .map((match) => decodeHtmlEntities(match[1]))
+    .find((url) => !/(?:loadmo\.re|instagram\.com|facebook\.com|x\.com|twitter\.com)/i.test(url));
+  return {
+    title: cleanGalleryTitle(rawTitle.replace(/\s+[–—-]\s+Mobile Design Inspiration[\s\S]*$/i, '')),
+    image: item.media,
+    source: source || '',
+  };
+}
+
+function stripTags(value) {
+  return decodeHtmlEntities(String(value || '').replace(/<[^>]+>/g, '')).trim();
+}
+
+function snippetSlug(raw) {
+  return String(raw || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+export function parseKineticsList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  for (const match of text.matchAll(/<pre\b[^>]*data-lang=["']css["'][^>]*>\s*<code[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/gi)) {
+    const before = text.slice(Math.max(0, match.index - 2200), match.index);
+    const names = [...before.matchAll(/<div\b[^>]*class=["'][^"']*\bname\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi)];
+    const title = stripTags(names.at(-1)?.[1]);
+    const slug = snippetSlug(title);
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    items.push({ slug, title, url: `https://kinetics.colorion.co/#${slug}`, snippet: stripTags(match[1]) });
+  }
+  return items;
+}
+
+export function parseNotfoundList(html) {
+  const text = String(html || '');
+  const script = text.match(/<script\b[^>]*id=["']copy-data["'][^>]*>([\s\S]*?)<\/script>/i)?.[1];
+  if (!script) return [];
+  let data;
+  try { data = JSON.parse(decodeHtmlEntities(script)); } catch { return []; }
+  return Object.entries(data).flatMap(([rawSlug, value]) => {
+    const slug = snippetSlug(rawSlug);
+    const title = String(value?.name || '').trim();
+    const snippet = String(value?.code || '');
+    return slug && title && snippet ? [{ slug, title, url: `https://404.colorion.co/#${slug}`, snippet }] : [];
+  });
+}
+
+export function parseCircleloadersList(html) {
+  const text = String(html || '');
+  const items = [];
+  const seen = new Set();
+  for (const match of text.matchAll(/<pre\b[^>]*id=["']src-([a-z0-9-]+)["'][^>]*>\s*<code[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/gi)) {
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    const before = text.slice(Math.max(0, match.index - 12000), match.index);
+    const headings = [...before.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/gi)];
+    const title = stripTags(headings.at(-1)?.[1]) || titleFromSlug(slug);
+    const snippet = stripTags(match[2]);
+    if (!snippet.startsWith('<svg')) continue;
+    seen.add(slug);
+    items.push({ slug, title, url: `https://circleloaders.dominikakissi.com/#${slug}`, snippet });
+  }
+  return items;
+}
+
+export function parseUmanmadeList(input) {
+  let data = input;
+  if (typeof input === 'string') {
+    const text = String(input || '');
+    try { data = JSON.parse(text); } catch {
+      const items = [];
+      const seen = new Set();
+      const re = /\{"type":6,"value":\d+\},"([a-z0-9-]+)",\{"type":6,"value":\d+\},"([^"<>]+)",\{"type":174/g;
+      for (const match of text.matchAll(re)) {
+        const slug = match[1].toLowerCase();
+        const title = decodeHtmlEntities(match[2]).trim();
+        if (seen.has(slug) || !title) continue;
+        seen.add(slug);
+        items.push({ slug, title, url: `https://www.umanmade.com/post/${slug}` });
+      }
+      return items;
+    }
+  }
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return [];
+  const items = [];
+  const seen = new Set();
+  for (const [key, value] of Object.entries(data)) {
+    const raw = String(value?.url || key);
+    const match = raw.match(/^\/post\/([a-z0-9-]+)\/?$/i);
+    if (!match) continue;
+    const slug = match[1].toLowerCase();
+    if (seen.has(slug)) continue;
+    const title = cleanGalleryTitle(String(value?.title || '').replace(/\s+on umanmade\.com$/i, '')) || titleFromSlug(slug);
+    seen.add(slug);
+    items.push({ slug, title, url: `https://www.umanmade.com/post/${slug}` });
+  }
+  return items;
+}
+
 function hostUnavailable(url, detail) {
   const error = new Error(`HOST_UNAVAILABLE ${url} (${detail})`);
   error.code = 'HOST_UNAVAILABLE';
   return error;
+}
+
+function firecrawlEnv() {
+  // Keyless laeuft in das Free-Tier-Ratenlimit (gemessen 04.09.2026); Key liegt in api-keys.env.
+  if (process.env.FIRECRAWL_API_KEY) return process.env;
+  try {
+    const line = fs.readFileSync('/root/.secrets/api-keys.env', 'utf8').split('\n').map((l) => l.replace(/^export\s+/, '')).find((l) => l.startsWith('FIRECRAWL_API_KEY='));
+    if (line) return { ...process.env, FIRECRAWL_API_KEY: line.slice('FIRECRAWL_API_KEY='.length).trim().replace(/^["']|["']$/g, '') };
+  } catch { /* ohne Key weiter, Ratenlimit wird als HOST_UNAVAILABLE gemeldet */ }
+  return process.env;
 }
 
 function readViaFirecrawl(url) {
@@ -686,6 +1032,7 @@ function readViaFirecrawl(url) {
     timeout: FIRECRAWL_TIMEOUT_MS,
     cwd: os.tmpdir(),
     maxBuffer: 12 * 1024 * 1024,
+    env: firecrawlEnv(),
   });
   if (run.error) throw new Error(`firecrawl missing: ${run.error.message}`);
   let body = run.stdout || '';
@@ -738,7 +1085,10 @@ async function readJson(url) {
       error.code = 'NOT_FOUND';
       throw error;
     }
-    if (!res.ok) throw hostUnavailable(url, `fetch: HTTP ${res.status}`);
+    if (!res.ok) {
+      const hint = [401, 403, 429].includes(res.status) ? '; möglicher Bot-Schutz/Login, mit raphael-chrome öffnen' : '';
+      throw hostUnavailable(url, `fetch: HTTP ${res.status}${hint}`);
+    }
     try {
       return JSON.parse(body);
     } catch (error) {
@@ -750,7 +1100,7 @@ async function readJson(url) {
   }
 }
 
-async function fetchHtml(url) {
+async function fetchHtml(url, expectedContent = null) {
   try {
     const res = await fetch(url, {
       redirect: 'follow',
@@ -758,8 +1108,16 @@ async function fetchHtml(url) {
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
     const body = await res.text();
-    if (!res.ok) throw hostUnavailable(url, `fetch: HTTP ${res.status}`);
+    if (!res.ok) {
+      const hint = [401, 403, 429].includes(res.status) ? '; möglicher Bot-Schutz/Login, mit raphael-chrome öffnen' : '';
+      throw hostUnavailable(url, `fetch: HTTP ${res.status}${hint}`);
+    }
     if (!body.trim()) throw hostUnavailable(url, 'fetch: empty body');
+    if ((/<title[^>]*>\s*(?:Just a moment|Sign in|Log in|Login)\b/i.test(body)
+      || /(?:cf-chl-|challenge-platform|vercel-security-checkpoint|enable javascript and cookies to continue)/i.test(body))
+      && !(expectedContent instanceof RegExp && expectedContent.test(body))) {
+      throw hostUnavailable(url, 'Bot-Schutz/Login; mit raphael-chrome öffnen');
+    }
     return body;
   } catch (error) {
     if (error && error.code === 'HOST_UNAVAILABLE') throw error;
@@ -889,11 +1247,14 @@ async function cmdNavbar(command, rest, flags) {
     if (rest.length > 1) die('navbar list kennt höchstens einen Typ');
     const type = rest[0];
     if (type && !/^[a-z0-9-]+$/i.test(type)) die(`ungültiger Navbar-Typ ${type}`);
-    const url = type
-      ? `https://www.navbar.gallery/type/${type.toLowerCase()}`
-      : 'https://www.navbar.gallery/browse';
-    const page = await readMarkdown(url);
-    const items = applyLimit(parseNavbarList(page.body), limitOf(flags, 20));
+    // /browse listet nur die Typen, keine Navbars (gemessen 04.09.2026): ohne Typ die Standardtypen zusammenziehen.
+    const types = type ? [type.toLowerCase()] : ['static', 'dropdowns', 'mega-menu'];
+    let all = [];
+    for (const t of types) {
+      const page = await readMarkdown(`https://www.navbar.gallery/type/${t}`);
+      all = all.concat(parseNavbarList(page.body));
+    }
+    const items = applyLimit(unique(all.map((i) => JSON.stringify(i))).map((i) => JSON.parse(i)), limitOf(flags, 20));
     if (!items.length) emptyResult(flags);
     emitJsonOrText(flags, items, formatList(items, ['name', 'url']));
     process.exit(0);
@@ -1295,6 +1656,179 @@ async function cmdSwiped(command, rest, flags) {
   process.exit(0);
 }
 
+
+const GALLERY_SOURCES = {
+  supahero: {
+    listUrl: 'https://supahero.io/', prefix: 'https://supahero.io/hero/', targetRe: /supahero\.io\/hero\/([a-z0-9-]+)/i,
+    parseList: parseSupaheroList, parseItem: parseSupaheroItem,
+  },
+  cta: {
+    listUrl: 'https://www.cta.gallery/sitemap.xml', prefix: 'https://www.cta.gallery/cta/', targetRe: /cta\.gallery\/cta\/([a-z0-9-]+)/i,
+    parseList: parseCtaList, parseItem: parseCtaItem,
+  },
+  recent: {
+    listUrl: 'https://recent.design/sitemap.xml', prefix: 'https://recent.design/i/', targetRe: /recent\.design\/i\/([a-z0-9-]+)/i,
+    parseList: parseRecentList, parseItem: parseRecentItem,
+  },
+  fps: {
+    listUrl: 'https://60fps.design/sitemap.xml', prefix: 'https://60fps.design/shots/', targetRe: /60fps\.design\/shots\/([a-z0-9-]+)/i,
+    parseList: parseFpsList, parseItem: parseFpsItem,
+  },
+  posts: {
+    listUrl: 'https://posts.design/', prefix: 'https://posts.design/', targetRe: /posts\.design\/([a-z0-9-]+)/i,
+    parseList: parsePostsList, parseItem: parsePostsItem,
+  },
+};
+
+function galleryMarkdown(source, payload) {
+  const lines = [`# ${payload.title || payload.slug}`, '', payload.description || '', ''];
+  if (payload.media) lines.push(`Medien-URL: ${payload.media}`, '');
+  if (payload.source) lines.push(`Original: ${payload.source}`, '');
+  lines.push(`Galerie: ${payload.url}`, '', `Lizenz: ${source} nur Inspiration.`);
+  return `${lines.join('\n').replace(/\n{3,}/g, '\n\n').trim()}\n`;
+}
+
+async function readGalleryItem(source, config, target) {
+  if (source === 'recent') {
+    const id = target.slug.split('-', 1)[0];
+    try {
+      const res = await fetch('https://api.recent.design/rpc/items/byId', {
+        method: 'POST',
+        headers: { accept: 'application/json', 'content-type': 'application/json', 'user-agent': UA },
+        body: JSON.stringify({ json: { id: target.slug } }),
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      });
+      const body = await res.text();
+      if (!res.ok) throw hostUnavailable(target.url, `Recent API HTTP ${res.status}`);
+      const item = parseRecentApi(JSON.parse(body));
+      if (item.media) return item;
+    } catch (error) {
+      if (error && error.code === 'HOST_UNAVAILABLE') throw error;
+      // Die öffentliche Detailseite bleibt der Fallback, falls sich das RPC-Format ändert.
+    }
+    if (!/^[a-z0-9]{7}$/i.test(id)) throw hostUnavailable(target.url, 'Recent-ID fehlt');
+  }
+  return config.parseItem(await fetchHtml(target.url));
+}
+
+async function cmdGallery(source, command, rest, flags) {
+  const config = GALLERY_SOURCES[source];
+  if (command === 'list') {
+    if (rest.length) die(`${source} list kennt keine Positionsargumente`);
+    const html = await fetchHtml(config.listUrl);
+    let items = config.parseList(html);
+    if (flags.grep) {
+      const needle = String(flags.grep).toLowerCase();
+      items = items.filter((row) => `${row.title} ${row.slug} ${row.url} ${row.media}`.toLowerCase().includes(needle));
+    }
+    items = applyLimit(items, limitOf(flags, 20));
+    if (!items.length) emptyResult(flags);
+    if (items.some((row) => !row.media)) {
+      items = await Promise.all(items.map(async (row) => {
+        if (row.media) return row;
+        const detail = await readGalleryItem(source, config, row);
+        return { ...row, title: detail.title || row.title, media: detail.media || '' };
+      }));
+    }
+    if (items.some((row) => !row.media)) throw hostUnavailable(config.listUrl, 'Medien-URL fehlt in Liste und Detailseite');
+    emitJsonOrText(flags, items, formatList(items, ['title', 'url', 'media']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die(`${source} get braucht genau einen Slug oder eine URL`);
+    const target = parseSlugTarget(rest[0], source, config.targetRe, config.prefix);
+    if (!/^[a-z0-9-]+$/i.test(target.slug)) die(`${source} get braucht einen Slug oder eine URL`);
+    const item = await readGalleryItem(source, config, target);
+    if (!item.title && !item.media && !item.description) emptyResult(flags);
+    const payload = { gallery: source, slug: target.slug, url: target.url, ...item, license: 'nur Inspiration' };
+    const markdown = galleryMarkdown(source, payload);
+    const out = flags.out ? writeOut(flags.out, markdown) : null;
+    if (flags.json) console.log(JSON.stringify({ ...payload, out }, null, 2));
+    else if (out) console.log(`geschrieben: ${out}`);
+    else console.log(markdown.trimEnd());
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für ${source}: ${command || '(fehlt)'}`);
+}
+
+const SNIPPET_SOURCES = {
+  kinetics: { url: 'https://kinetics.colorion.co/', parse: parseKineticsList, marker: /<pre\b[^>]*data-lang=["']css["']/i },
+  notfound: { url: 'https://404.colorion.co/', parse: parseNotfoundList, marker: /<script\b[^>]*id=["']copy-data["']/i },
+  circleloaders: { url: 'https://circleloaders.dominikakissi.com/', parse: parseCircleloadersList, marker: /<pre\b[^>]*id=["']src-[a-z0-9-]+["']/i },
+};
+
+function snippetTarget(raw, source, origin) {
+  const value = String(raw || '').trim();
+  let slug = value;
+  try {
+    const parsed = new URL(value);
+    if (parsed.origin !== new URL(origin).origin || !parsed.hash) die(`${source} get braucht einen Slug oder eine ${origin}-URL`);
+    slug = parsed.hash.slice(1);
+  } catch (error) {
+    if (error instanceof TypeError) slug = value;
+    else throw error;
+  }
+  slug = snippetSlug(slug);
+  if (!slug) die(`${source} get braucht einen Slug oder eine URL`);
+  return slug;
+}
+
+async function cmdSnippetSource(source, command, rest, flags) {
+  const config = SNIPPET_SOURCES[source];
+  const html = await fetchHtml(config.url, config.marker);
+  let items = config.parse(html);
+  if (command === 'list') {
+    if (rest.length) die(`${source} list kennt keine Positionsargumente`);
+    items = applyLimit(items.map(({ snippet, ...item }) => item), limitOf(flags, 20));
+    if (!items.length) emptyResult(flags);
+    emitJsonOrText(flags, items, formatList(items, ['title', 'url']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die(`${source} get braucht genau einen Slug oder eine URL`);
+    if (!flags.out) die(`${source} get braucht --out <datei>`);
+    const slug = snippetTarget(rest[0], source, config.url);
+    const item = items.find((row) => row.slug === slug);
+    if (!item) emptyResult(flags);
+    const out = writeOut(flags.out, `${item.snippet.replace(/\s+$/, '')}\n`);
+    emitJsonOrText(flags, { slug: item.slug, title: item.title, url: item.url, out }, `geschrieben: ${out}`);
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für ${source}: ${command || '(fehlt)'}`);
+}
+
+async function cmdLoadmore(command, rest, flags) {
+  const origin = 'https://loadmo.re/';
+  if (command === 'list') {
+    if (rest.length) die('loadmore list kennt keine Positionsargumente');
+    const items = applyLimit(parseLoadmoreList(await fetchHtml(origin)), limitOf(flags, 20));
+    if (!items.length) emptyResult(flags);
+    if (items.some((item) => !item.image)) throw hostUnavailable(origin, 'Bild-URL fehlt');
+    emitJsonOrText(flags, items, formatList(items, ['title', 'url', 'image']));
+    process.exit(0);
+  }
+  if (command === 'get') {
+    if (rest.length !== 1) die('loadmore get braucht genau einen Slug oder eine URL');
+    const target = parseSlugTarget(rest[0], 'loadmore', /loadmo\.re\/posts\/([a-z0-9-]+)/i, 'https://loadmo.re/posts/');
+    if (!/^[a-z0-9-]+$/i.test(target.slug)) die('loadmore get braucht einen Slug oder eine URL');
+    const item = parseLoadmoreItem(await fetchHtml(target.url));
+    if (!item.title && !item.image) emptyResult(flags);
+    const payload = { slug: target.slug, url: target.url, ...item, license: 'nur Inspiration' };
+    emitJsonOrText(flags, payload, formatSimpleGet(item.title || target.slug, [['Bild', item.image], ['Original', item.source], ['Lizenz', 'nur Inspiration']]));
+    process.exit(0);
+  }
+  die(`unbekanntes Kommando für loadmore: ${command || '(fehlt)'}`);
+}
+
+async function cmdUmanmade(command, rest, flags) {
+  if (command !== 'list') die(`unbekanntes Kommando für umanmade: ${command || '(fehlt)'} (nur list)`);
+  if (rest.length) die('umanmade list kennt keine Positionsargumente');
+  const items = applyLimit(parseUmanmadeList(await fetchHtml('https://www.umanmade.com/')), limitOf(flags, 20));
+  if (!items.length) emptyResult(flags);
+  emitJsonOrText(flags, items, formatList(items, ['title', 'url']));
+  process.exit(0);
+}
+
 function cmdMobbin(command, rest, flags) {
   if (command && command !== 'list') die(`unbekanntes Kommando für mobbin: ${command}`);
   const payload = { source: 'mobbin', access: 'mcp', server: 'mobbin' };
@@ -1443,7 +1977,7 @@ async function main() {
   }
   const { flags, positional } = parseCli(argv);
   const [source, command, ...rest] = positional;
-  if (!source) die('Quelle fehlt (refero|navbar|magicui|reactbits|21st|landdding|awwwards|siteinspire|curated|getlayers|behance|inspora|swiped|mobbin|shot)');
+  if (!source) die('Quelle fehlt (refero|navbar|magicui|reactbits|21st|landdding|awwwards|siteinspire|curated|getlayers|behance|inspora|swiped|supahero|cta|recent|fps|posts|loadmore|kinetics|notfound|circleloaders|umanmade|mobbin|shot)');
   try {
     if (source === 'refero') await cmdRefero(command, rest, flags);
     else if (source === 'navbar') await cmdNavbar(command, rest, flags);
@@ -1458,6 +1992,10 @@ async function main() {
     else if (source === 'behance') await cmdBehance(command, rest, flags);
     else if (source === 'inspora') await cmdInspora(command, rest, flags);
     else if (source === 'swiped') await cmdSwiped(command, rest, flags);
+    else if (GALLERY_SOURCES[source]) await cmdGallery(source, command, rest, flags);
+    else if (source === 'loadmore') await cmdLoadmore(command, rest, flags);
+    else if (SNIPPET_SOURCES[source]) await cmdSnippetSource(source, command, rest, flags);
+    else if (source === 'umanmade') await cmdUmanmade(command, rest, flags);
     else if (source === 'mobbin') cmdMobbin(command, rest, flags);
     else if (source === 'shot') await cmdShot([command, ...rest].filter(Boolean), flags);
     else die(`unbekannte Quelle ${source}`);
@@ -1469,7 +2007,7 @@ async function main() {
     }
     if (error && error.code === 'BOT_SHIELD') {
       console.error(`inspiration: ${message}`);
-      process.exit(1);
+      process.exit(3);
     }
     console.error(`inspiration: ${message}`);
     process.exit(1);

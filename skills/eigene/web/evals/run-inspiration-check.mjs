@@ -33,6 +33,22 @@ import {
   parseBehanceSearch,
   parseInsporaList,
   parseSwipedList,
+  parseSupaheroList,
+  parseSupaheroItem,
+  parseCtaList,
+  parseCtaItem,
+  parseRecentList,
+  parseRecentApi,
+  parseFpsList,
+  parseFpsItem,
+  parsePostsList,
+  parsePostsItem,
+  parseLoadmoreList,
+  parseLoadmoreItem,
+  parseKineticsList,
+  parseNotfoundList,
+  parseCircleloadersList,
+  parseUmanmadeList,
 } from '../scripts/inspiration.mjs';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -57,6 +73,21 @@ const files = {
   behanceSearch: path.join(FIX, 'behance-search.md'),
   insporaList: path.join(FIX, 'inspora-list.html'),
   swipedList: path.join(FIX, 'swiped-list.md'),
+  supaheroList: path.join(FIX, 'supahero-list.html'),
+  supaheroItem: path.join(FIX, 'supahero-item.html'),
+  ctaList: path.join(FIX, 'cta-list.xml'),
+  ctaItem: path.join(FIX, 'cta-item.html'),
+  recentList: path.join(FIX, 'recent-list.xml'),
+  fpsList: path.join(FIX, 'fps-list.xml'),
+  fpsItem: path.join(FIX, 'fps-item.html'),
+  postsList: path.join(FIX, 'posts-list.html'),
+  postsItem: path.join(FIX, 'posts-item.html'),
+  loadmoreList: path.join(FIX, 'loadmore-list.html'),
+  loadmoreItem: path.join(FIX, 'loadmore-item.html'),
+  kineticsList: path.join(FIX, 'kinetics-list.html'),
+  notfoundList: path.join(FIX, 'notfound-list.html'),
+  circleloadersList: path.join(FIX, 'circleloaders-list.html'),
+  umanmadeList: path.join(FIX, 'umanmade-list.json'),
 };
 
 for (const [name, file] of Object.entries(files)) {
@@ -208,6 +239,119 @@ zeile(
   'parseSwipedList: category/author/handle/media/likes, Text ≤280',
 );
 
+const supahero = parseSupaheroList(read(files.supaheroList));
+zeile(
+  supahero.length >= 3 && supahero[0]?.slug === 'anubi' && supahero[0]?.title === 'Anubi' && /heroes\/anubi\.webp/.test(supahero[0]?.media || ''),
+  'parseSupaheroList: mindestens 3 Hero-Sektionen mit Titel/URL/Medien-URL',
+  `${supahero.length} Treffer`,
+);
+const supaheroItem = parseSupaheroItem(read(files.supaheroItem));
+zeile(
+  supaheroItem.title === 'Anubi Hero Section' && /anubi\.webp/.test(supaheroItem.media) && supaheroItem.source === 'https://anubi.io/',
+  'parseSupaheroItem: Titel, Medien-URL und Original',
+);
+
+const ctas = parseCtaList(read(files.ctaList));
+zeile(
+  ctas.length === 4 && ctas.every((row) => row.title && /cta\.gallery\/cta\//.test(row.url)) && ctas.some((row) => row.slug === 'sapphicindex'),
+  'parseCtaList: nur /cta/<slug>, Titel und URL',
+  `${ctas.length} Treffer`,
+);
+const ctaItem = parseCtaItem(read(files.ctaItem));
+zeile(
+  ctaItem.title === 'N49p' && /framerusercontent\.com/.test(ctaItem.media) && ctaItem.source === 'https://www.n49p.com/',
+  'parseCtaItem: Titel, Medien-URL und Original',
+);
+
+const recent = parseRecentList(read(files.recentList));
+zeile(
+  recent.length === 4 && recent[0]?.title === 'Macos App Icon Screensaver' && recent.every((row) => /recent\.design\/i\//.test(row.url)),
+  'parseRecentList: /i/<slug>, lesbarer Titel und URL',
+  `${recent.length} Treffer`,
+);
+
+const recentApi = parseRecentApi({ json: { title: 'App Icon Screensaver', description: 'Motion reference', media: [{ url: 'https://cdn.recent.design/items/z3nbrck/0/3076x1986.mp4' }], source: { url: 'https://x.com/avstorm/status/1' } } });
+zeile(
+  recentApi.title === 'App Icon Screensaver' && /cdn\.recent\.design/.test(recentApi.media) && /x\.com\/avstorm/.test(recentApi.source),
+  'parseRecentApi: Titel, Medien-URL und Original',
+);
+
+const fps = parseFpsList(read(files.fpsList));
+zeile(
+  fps.length === 4 && fps.every((row) => !/\/shots\/(?:watch|filter)\b/.test(row.url)) && fps.some((row) => /Duolingo XP Gained/.test(row.title)),
+  'parseFpsList: nur einzelne Shots mit Titel und URL',
+  `${fps.length} Treffer`,
+);
+const fpsItem = parseFpsItem(read(files.fpsItem));
+zeile(
+  /Duolingo XP Gained Fab Pop Animation/.test(fpsItem.title) && /main\.mp4/.test(fpsItem.media) && /floating reward button/.test(fpsItem.description),
+  'parseFpsItem: Titel, Video und Beschreibung',
+);
+
+const posts = parsePostsList(read(files.postsList));
+zeile(
+  posts.length >= 4 && posts[0]?.title === 'ChatGPT: A new star enters the Chat' && /images\/posts\//.test(posts[0]?.media || '') && posts.every((row) => row.title && row.url),
+  'parsePostsList: JSON-LD plus HTML-Medien mit Titel/URL/Medien-URL',
+  `${posts.length} Treffer`,
+);
+const postsItem = parsePostsItem(read(files.postsItem));
+zeile(
+  postsItem.title === 'ChatGPT: A new star enters the Chat' && /images\/posts\//.test(postsItem.media) && /x\.com\/chatgpt/.test(postsItem.source),
+  'parsePostsItem: Titel, Medien-URL und Original',
+);
+
+
+const loadmore = parseLoadmoreList(read(files.loadmoreList));
+zeile(
+  loadmore.length === 3 && loadmore[1]?.title === 'Too Busy Foundation'
+    && loadmore.every((row) => row.slug && row.title && /loadmo\.re\/posts\//.test(row.url) && /loadmo\.re\/media\/.*\.(?:jpg|webp|png)/.test(row.image)),
+  'parseLoadmoreList: 3 mobile Websites mit Titel, URL und Bild',
+  `${loadmore.length} Treffer`,
+);
+const loadmoreItem = parseLoadmoreItem(read(files.loadmoreItem));
+zeile(
+  loadmoreItem.title === 'Sabrina Zeltner' && /sabrinazeltner-hp-cover\.jpg/.test(loadmoreItem.image) && loadmoreItem.source === 'https://sabrinazeltner.com/',
+  'parseLoadmoreItem: Titel, Bild und Original',
+);
+
+const kinetics = parseKineticsList(read(files.kineticsList));
+zeile(
+  kinetics.length === 3 && kinetics[0]?.slug === 'card-resize' && kinetics[0]?.title === 'Card Resize'
+    && /transition: height/.test(kinetics[0]?.snippet || '') && kinetics.every((row) => row.title && row.url && row.snippet),
+  'parseKineticsList: 3 Kinetic-Type-CSS-Snippets mit Titel/URL/Code',
+  `${kinetics.length} Treffer`,
+);
+
+const notfound = parseNotfoundList(read(files.notfoundList));
+zeile(
+  notfound.length === 3 && notfound[0]?.slug === 'vending-machine' && notfound[0]?.title === 'Out of Stock'
+    && /<div class="vend-404"/.test(notfound[0]?.snippet || '') && notfound.every((row) => row.title && row.url && row.snippet),
+  'parseNotfoundList: 3 404-CSS-Snippets aus copy-data',
+  `${notfound.length} Treffer`,
+);
+
+const circleloaders = parseCircleloadersList(read(files.circleloadersList));
+zeile(
+  circleloaders.length === 3 && circleloaders[0]?.slug === 'latitude' && circleloaders[0]?.title === 'Latitude'
+    && circleloaders.every((row) => row.title && row.url && /^<svg[\s>]/.test(row.snippet)),
+  'parseCircleloadersList: 3 dekodierte SVG-Loader mit Titel/URL',
+  `${circleloaders.length} Treffer`,
+);
+
+const umanmade = parseUmanmadeList(read(files.umanmadeList));
+zeile(
+  umanmade.length === 4 && umanmade[0]?.title === 'Dot Patterns by Zsolt Kacso'
+    && umanmade.every((row) => row.title && /^https:\/\/www\.umanmade\.com\/post\/[a-z0-9-]+$/.test(row.url)),
+  'parseUmanmadeList: nur Posts, Titel und kanonische Redirect-Ziel-URL',
+  `${umanmade.length} Treffer`,
+);
+
+{
+  const proc = spawnSync(process.execPath, [SCRIPT, 'supahero', 'get'], { encoding: 'utf8', timeout: 15000 });
+  const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
+  zeile(proc.status === 2 && /genau einen Slug oder eine URL/.test(aus), 'Galerie-get ohne Ziel Exit 2');
+}
+
 {
   const help = spawnSync(process.execPath, [SCRIPT, '--help'], { encoding: 'utf8', timeout: 15000 });
   const aus = `${help.stdout || ''}${help.stderr || ''}`;
@@ -221,7 +365,11 @@ zeile(
       && /alle Galerien nur Inspiration\/Analyse/.test(aus)
       && /PNG danach mit Read ansehen/.test(aus)
       && /raphael-chrome/.test(aus)
-      && /X\/LinkedIn/.test(aus),
+      && /X\/LinkedIn/.test(aus)
+      && /supahero list/.test(aus) && /cta list/.test(aus) && /recent list/.test(aus) && /fps list/.test(aus) && /posts list/.test(aus)
+      && /loadmore list/.test(aus) && /kinetics list/.test(aus) && /notfound list/.test(aus)
+      && /circleloaders list/.test(aus) && /umanmade list/.test(aus)
+      && /Lizenz je Galerie: nur Inspiration/.test(aus),
     '--help nennt Lizenzregel, shot-Read und Dateiname',
   );
 }
@@ -416,6 +564,38 @@ if (NETZ) {
       proc.status === 0 && Array.isArray(data) && data.length >= 3 && data[0].author,
       'netz: swiped list ≥3',
       `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  for (const source of ['supahero', 'cta', 'recent', 'fps', 'posts']) {
+    const proc = run([source, 'list', '--limit', '5'], 120000);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 3
+        && data.every((row) => row.title && row.url && row.media),
+      `netz: ${source} list ≥3 mit Titel/URL/Medien-URL`,
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  for (const source of ['loadmore', 'kinetics', 'notfound', 'circleloaders', 'umanmade']) {
+    const proc = run([source, 'list', '--limit', '3'], 120000);
+    const data = parseOut(proc);
+    zeile(
+      proc.status === 0 && Array.isArray(data) && data.length >= 3
+        && data.every((row) => row.title && row.url),
+      `netz: ${source} list ≥3 mit Titel/URL`,
+      `exit ${proc.status} n=${Array.isArray(data) ? data.length : 'kein-json'} ${(proc.stderr || '').split('\n')[0].slice(0, 120)}`,
+    );
+  }
+  for (const [source, list] of [['supahero', supahero], ['cta', ctas], ['recent', recent], ['fps', fps], ['posts', posts]]) {
+    const out = `/tmp/inspiration-eval-${source}-live.md`;
+    const proc = spawnSync(process.execPath, [SCRIPT, source, 'get', list[0].slug, '--out', out], {
+      encoding: 'utf8', timeout: 120000, maxBuffer: 12 * 1024 * 1024,
+    });
+    const content = fs.existsSync(out) ? read(out) : '';
+    zeile(
+      proc.status === 0 && /Medien-URL:/.test(content) && /Lizenz: .* nur Inspiration\./.test(content),
+      `netz: ${source} get --out schreibt Medien-URL und Lizenz`,
+      `exit ${proc.status}`,
     );
   }
   {
