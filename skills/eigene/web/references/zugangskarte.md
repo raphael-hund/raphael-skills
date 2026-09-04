@@ -15,7 +15,7 @@ PNG/`shot` gilt erst nach **Read** durch ein Kritik-Leaf.
 |---|---|---|
 | Refero Styles/Screens/Flows | MCP `refero` (`mcp__refero__refero_search_styles` → `get_style`; Screens/Flows analog) | Bearer, dauerhaft |
 | Mobbin Screens/Flows/Sections | MCP `mobbin` (`mcp__mobbin__search_screens` / `search_flows` / `search_sections`) | OAuth, **neue Session** nach Token |
-| 21st.dev Katalog + Code | MCP `21st` (`mcp__21st__search`, `get_component`, `get_inspiration`, `get_usage`); CLI `21st search`/`get` | Token in `~/.config/21st/auth.json` + `API_KEY_21ST` |
+| 21st.dev Katalog + Code | MCP `21st` (`mcp__21st__search`, `get_component`, `get_inspiration`); Skript `inspiration.mjs 21st code <id> --out <dir>` (tsx + demo) | Token in `~/.config/21st/auth.json` + `API_KEY_21ST` |
 | Shutterstock | `scripts/stock.mjs` (search → preview → license → add) | Token in `api-keys.env`, App Raphael VPS CLI |
 | Navbar, Landdding, Awwwards, Siteinspire, Curated, Getlayers, Behance, Inspora, Swiped | `scripts/inspiration.mjs <quelle> list\|search\|get` + `shot` | öffentlich; Siteinspire nur Firecrawl; 21st-Code hinter Login → MCP |
 

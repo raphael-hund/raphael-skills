@@ -36,7 +36,8 @@ Ohne Read der Shots = nicht gesehen. Ohne Lock = nicht fertig.
    nach dem, was auf dem Screen steht — nicht nach Stimmungswörtern.
 4. **Komponenten-Inspiration (optional):** 21st-MCP `search` → bis zu
    **drei** `get_component` (Builder-Plan, unbegrenzt; `get_usage` nur bei
-   401/429 als Diagnose). Magic UI /
+   401/429 als Diagnose). Übernahme in den Bau nur über
+   `inspiration.mjs 21st code <id> --out src/components/vendor/21st/`. Magic UI /
    React Bits nur wenn der Lock eine Motion-/Section-Lücke hat:
    `inspiration.mjs magicui|reactbits list --grep` → ein `get`.
 5. **Galerien als Ergänzung, max. 3 URLs.** Quelle aus

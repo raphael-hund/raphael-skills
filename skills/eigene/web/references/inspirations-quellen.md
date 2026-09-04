@@ -182,9 +182,13 @@ Referenzen; Screenshots nur intern.
 ## 21st mit CLI
 
 CLI: `/root/.local/bin/21st`, eingeloggt (`21st whoami`, Token in
-`~/.config/21st/auth.json`, 03.09.2026). `inspiration.mjs 21st code <begriff|id>`
-liefert Treffer mit `installCommand`; `21st get <id> --json` den Code.
-Login erneuern: `/root/tools/auth-relays/README.md` (Google-2FA am Handy).
+`~/.config/21st/auth.json`), Plan Builder (unbegrenzte Code-Abrufe, 04.09.2026).
+`inspiration.mjs 21st code <begriff>` sucht (JSON mit id + installCommand);
+`21st code <id> --out src/components/vendor/21st/` schreibt `<slug>.tsx` und
+`<slug>.demo.tsx` und nennt `registryDependencies`. Danach Zeile in der
+Werkzeugtabelle, Anker `#sections` oder `#motion`. Alternative im Projekt:
+`installCommand` direkt (`npx shadcn@latest add "…?api_key=$API_KEY_21ST"`,
+Key aus `api-keys.env`). Login erneuern: `/root/tools/auth-relays/README.md`.
 Ohne Token bleibt `21st get` (Muster, Source-Link).
 
 ## Lehren aus dem Video (Jack Roberts, „Fable 5.1 Just Solved AI Slop", 03.09.2026)

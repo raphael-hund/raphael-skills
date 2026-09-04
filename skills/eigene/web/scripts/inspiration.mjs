@@ -32,7 +32,7 @@ const HELP = `Usage:
   node inspiration.mjs reactbits get <Name> [--out <pfad.tsx>] [--json]
   node inspiration.mjs 21st search <kategorie|begriff> [--limit 20] [--json]
   node inspiration.mjs 21st get <@author/slug|url> [--json]
-  node inspiration.mjs 21st code <suchbegriff|id> [--json]
+  node inspiration.mjs 21st code <suchbegriff|id> [--out <verzeichnis>] [--json]
   node inspiration.mjs landdding list [<kategorie>] [--limit 20] [--json]
   node inspiration.mjs landdding get <slug|url> [--json]
   node inspiration.mjs awwwards list [<tag>] [--limit 30] [--json]
@@ -1036,12 +1036,36 @@ async function cmd21st(command, rest, flags) {
       maxBuffer: 12 * 1024 * 1024,
       env: process.env,
     });
-    if (run.stdout) process.stdout.write(run.stdout.endsWith('\n') ? run.stdout : `${run.stdout}\n`);
-    if (run.stderr) process.stderr.write(run.stderr);
     if (run.error) {
       console.error(`inspiration: 21st CLI: ${run.error.message}`);
       process.exit(1);
     }
+    // --out: Komponente + Demo als Dateien ablegen (Builder-Plan, 04.09.2026), sonst JSON durchreichen.
+    if (looksId && flags.out && run.status === 0) {
+      let parsed;
+      try { parsed = JSON.parse(run.stdout); } catch { die('21st get lieferte kein JSON'); }
+      const comp = parsed.component || parsed;
+      const code = comp.componentCode || '';
+      if (!code) emptyResult(flags);
+      const root = path.resolve(flags.out);
+      fs.mkdirSync(root, { recursive: true });
+      const slug = slugify(comp.name || `component-${comp.id || query}`) || `component-${query}`;
+      const compFile = safeJoin(root, `${slug}.tsx`);
+      fs.writeFileSync(compFile, code);
+      let demoFile = null;
+      if (comp.demoCode) { demoFile = safeJoin(root, `${slug}.demo.tsx`); fs.writeFileSync(demoFile, comp.demoCode); }
+      const deps = comp.registryDependencies && typeof comp.registryDependencies === 'object' ? comp.registryDependencies : {};
+      const payload = { id: String(comp.id || query), name: comp.name || null, component: compFile, demo: demoFile, installCommand: comp.installCommand || null, registryDependencies: deps };
+      const lines = [`component\t${compFile}`];
+      if (demoFile) lines.push(`demo\t${demoFile}`);
+      if (comp.installCommand) lines.push(`install\t${comp.installCommand}`);
+      const depNames = Object.keys(deps);
+      if (depNames.length) lines.push(`registryDependencies\t${depNames.join(', ')}`);
+      emitJsonOrText(flags, payload, lines.join('\n'));
+      process.exit(0);
+    }
+    if (run.stdout) process.stdout.write(run.stdout.endsWith('\n') ? run.stdout : `${run.stdout}\n`);
+    if (run.stderr) process.stderr.write(run.stderr);
     process.exit(run.status == null ? 1 : run.status);
   }
   die(`unbekanntes Kommando für 21st: ${command || '(fehlt)'}`);

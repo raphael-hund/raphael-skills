@@ -249,7 +249,7 @@ Buttons, Zustände, Listen.
 | **Loop** | `components` / `build` |
 | **Default** | Eigenes Tailwind-Markup nach `art-direction` + `landingpage-struktur.md`; shadcn-Blöcke nur als strukturelle Hilfe |
 | **Install/Use** | Kein Mega-Kit. Optional gezielt: shadcn blocks / einzelne Magic-UI-Section nach Prüfung. Tiefzugriff: `node scripts/inspiration.mjs magicui get <name> --out src/components/vendor/magicui/<name>.tsx` oder `reactbits get <Name> --out src/components/vendor/reactbits/`; Muster: `21st search <kategorie\|begriff>` (Code hinter Login, nie raten); `21st code <begriff>` (nur mit 21st-Login). Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
-| **Alternativen** | React Bits, 21st.dev, Cult UI, Float UI, Preline — Inspiration oder **eine** geprüfte Section |
+| **Alternativen** | 21st.dev (`inspiration.mjs 21st code <id> --out src/components/vendor/21st/`, Builder-Plan), React Bits, Cult UI, Float UI, Preline — **eine** geprüfte Section |
 | **Gate** | Design-DNA einhalten; Copy aus G2; Mobile-First; keine fremden Logos/Stock aus dem Demo |
 | **Nie** | ganze Block-Library committen; Demo-Copy/Images aus dem Kit lassen |
 

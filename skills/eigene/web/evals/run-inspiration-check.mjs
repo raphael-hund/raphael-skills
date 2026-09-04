@@ -286,6 +286,18 @@ zeile(
   );
 }
 
+{
+  // --out schreibt Komponente + Demo (Builder-Plan 04.09.2026); ohne Login bleibt Exit 1.
+  const proc = spawnSync(process.execPath, [SCRIPT, '21st', 'code', '4051', '--out', '/tmp/inspiration-eval-21st'], { encoding: 'utf8', timeout: 30000 });
+  const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
+  const eingeloggt = fs.existsSync(path.join(process.env.HOME || '/root', '.config', '21st', 'auth.json'));
+  const written = eingeloggt && fs.existsSync('/tmp/inspiration-eval-21st/hero-section.tsx') && fs.statSync('/tmp/inspiration-eval-21st/hero-section.tsx').size > 1000;
+  zeile(
+    eingeloggt ? (proc.status === 0 && /component\t/.test(aus) && written) : (proc.status === 1),
+    eingeloggt ? '21st code <id> --out schreibt Komponente > 1 KB' : '21st code --out ohne Login Exit 1',
+  );
+}
+
 if (NETZ) {
   console.log('\nInspiration — Netz\n');
   const run = (args, timeout = 90000) => spawnSync(process.execPath, [SCRIPT, ...args, '--json'], {
