@@ -59,7 +59,7 @@ higgsfield generate create gpt_image_2 \
 
 Reihenfolge der `--image`: (1) Logo, (2) Look, (3) Inhaltfoto oder Portrait.
 Fehlt Inhaltfoto: nur Logo und Look, Spec beschreibt die Szene.
-**Format (Raphael, 04.09.2026, gilt für alle Statics):** immer in `4:5` (1080x1350, `--aspect-ratio 4:5`; lehnt die API ab, dann `3:4` und auf 4:5 croppen) generieren, der Text sitzt komplett im 4:5. Danach mit `outpaint --aspect-ratio 9:16` nach oben und unten erweitern, nie im 9:16 direkt generieren. So passt dieselbe Karte in Feed (4:5) und Story (9:16), ohne dass Text in den Rand rutscht. Kein `1:1`, kein Direkt-9:16 für Statics.
+**Format (Raphael, 04.09.2026, gilt für alle Statics):** gpt_image_2 kennt kein 4:5 (geprüft 04.09.: nur 1:1, 4:3, 3:4, 16:9, 21:9, 9:16, 3:2, 2:3). Deshalb: in `3:4` generieren mit Safe-Zone-Anweisung in der Spec, dann `outpaint --aspect-ratio 4:5` (Feed-Master), dann `outpaint --aspect-ratio 9:16` (Story). Der Text sitzt komplett im 3:4-Kern, der Text sitzt komplett im 4:5. Danach mit `outpaint --aspect-ratio 9:16` nach oben und unten erweitern, nie im 9:16 direkt generieren. So passt dieselbe Karte in Feed (4:5) und Story (9:16), ohne dass Text in den Rand rutscht. Kein `1:1`, kein Direkt-9:16 für Statics.
 
 **JSON-Spec Pflichtfelder:** brand.colors, brand.logo_placement («composite the
 provided logo, NEVER redraw»), typography (eyebrow, headline, sub, cta), format
