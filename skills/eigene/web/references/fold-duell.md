@@ -76,10 +76,13 @@ const RICHTUNGEN = [
   { slug: 'glow-karten',   achse: 'Layout', prompt: '…Raphaels Referenzbilder ref-01..03: 20px-Karten, Hairline, roter Glow, Connector…' },
   { slug: 'beweis-editorial', achse: 'Dichte', prompt: '…seo-labs/leadfluss-Struktur: Beweis als Artefakt, Typo-Hero mit echtem Artefakt rechts…' },
 ]
-const BUILDER = ['fable-builder', 'fable-builder', 'opus-builder'] // Fable max zwei parallel
-const folds = await parallel(RICHTUNGEN.map((r, i) => () => agent(
+// agentType muss in jedem agent()-Aufruf ein String-Literal sein (subagent-guard, Obs. 73):
+// deshalb drei ausgeschriebene Funktionen live()/glow()/beweis() statt map() ueber ein Array.
+// Fable maximal zwei parallel: zwei fable-builder, ein opus-builder.
+const folds = await parallel([live, glow, beweis]) // je: agent(prompt, { agentType: 'fable-builder' | 'opus-builder', schema: RESULT })
+/* Muster je Richtung: */ async function live() { return agent(
   `${LEAF}\n${COMMON}\nFOLD-DUELL Richtung «${r.slug}» (Achse ${r.achse}). Baue NUR den Fold plus die erste Beweis-Sektion unter /duell/${r.slug}. Lies zuerst per Read: ${WS}/handoff/referenzen/BILDLISTE.txt (jede Datei). Echte Copy aus COPY-1.md, echte Assets. Komponenten zuerst über node ${WEB}/scripts/komponenten.mjs search … ziehen. ${r.prompt}\nDann: typecheck, detect.mjs, shot-sweep --base … --routes /duell/${r.slug} --mobile --static --out ${WS}/shots/duell/${r.slug}. Bericht ${WS}/handoff/leaves/duell-${r.slug}.md mit Zeile «gesehen:» je Referenzbild und «Komponenten: …». Zeitbudget 25 Minuten.`,
-  { label: `duell:${r.slug}`, phase: 'Fold-Duell', agentType: BUILDER[i], schema: RESULT })))
+  { label: 'duell:live-vertieft', phase: 'Fold-Duell', agentType: 'fable-builder', schema: RESULT }) }
 // Montage (kein Agent): node <web>/scripts/fold-duell-montage.mjs --shots <WS>/shots/duell --out /root/eingang/ausgang/<kunde>/fold-duell
 // Exit 2 = eine Richtung ohne Desktop- oder Mobil-Fold: Richtung nachziehen, nicht Welle 1 starten.
 return { phase: 'fold-duell', folds, montage: '/root/eingang/ausgang/<kunde>/fold-duell/desktop.png' }
