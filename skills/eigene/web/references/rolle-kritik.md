@@ -48,9 +48,21 @@ Auch die drei Ausgänge je Durchlauf (`clear` / `miss-with-feedback` /
 `escalate`) stehen dort.
 
 Der Kritik-Auftrag nennt `ACTUAL_BUILDER_FAMILY` (tatsächlich gelaufenes
-Modell, nicht nur der angeforderte `agentType`). Fehlt sie, bricht der Kritiker
-korrekt ab. Derselbe Agent prüft seinen eigenen Bau nie: Self-Review bleibt in
+Modell, nicht nur der angeforderte `agentType`). Ist der geprüfte Stand
+Bestandscode ohne Modell-Herkunft (Git-Autoren sind Menschen), lautet der Wert
+`human` plus Commit-SHAs; erst ab dem ersten Bau-Paket steht dort die
+Builder-Familie. Fehlt der Stempel, bricht der Kritiker korrekt ab (MAKE-Pilot
+03.09.2026: 11 Grok-Leaves BLOCKED auf dem Git-Bestand). Derselbe Agent prüft seinen eigenen Bau nie: Self-Review bleibt in
 jedem Profil `BLOCKED` — auch bei sauberem PASS.
+
+## Build-Frische vor dem Sweep
+
+Vor dem ersten Sweep prüft der Parent, ob das Build-Artefakt zur Quelle passt:
+`find src -newer dist/index.html -type f | wc -l` muss 0 sein, sonst frisch bauen
+(`vite build` in ein eigenes Ausgabeverzeichnis, nie in den Root-`dist/`). Ein
+stales `dist/` liefert einen Sweep vom falschen Stand; `--build-revision` bindet
+nur die Identität, nicht die Frische (MAKE-Pilot 03.09.2026: `dist/` vom 01.09.,
+zehn Quelldateien neuer, erster Sweep zeigte den alten Hero).
 
 ## Parent führt nur das Ledger
 

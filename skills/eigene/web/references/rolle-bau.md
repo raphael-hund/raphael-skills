@@ -44,15 +44,23 @@ Typischer Zuschnitt, adaptiv bis zur Live-Kapazität:
 | Paket | multi-family | claude-only |
 |---|---|---|
 | Sweep-Skript (kein Agent) | `shot-sweep --base <dev-url> --static --states --mobile` | dasselbe Skript |
-| Visuelle Kritik derselben Shots | fremde tatsächliche Familien, `visual-kritiker` (Grok) + `kimi-recherche` | zwei frische Sonnet-Instanzen, Label `claude-only, Instanz-Trennung` (`kritik-matrix.md`) |
+| Visuelle Kritik derselben Shots | fremde tatsächliche Familien, `visual-kritiker` (Grok) + `opus-critic` (nur wenn Opus nicht gebaut hat) | zwei frische Sonnet-Instanzen, Label `claude-only, Instanz-Trennung` (`kritik-matrix.md`) |
 | Belegte Code-Ursache (datei:zeile) | `grok-worker`, Input = Shot-Pfad + CSS-Ausschnitt | Sonnet-Instanz, gleicher Input |
-| **Copy** | `kimi-worker` **oder** `sol-builder` (gleichberechtigt, explizit besetzt) | eigener Opus-**Copy-Leaf**, nie der Integrator-Leaf |
+| **Copy** | `sol-builder` (Kimi tot, Raphael 03.09.2026) | eigener Opus-**Copy-Leaf**, nie der Integrator-Leaf |
 | Integration gemeinsamer UI-Flächen | **genau ein** `opus-builder` | **genau ein** `opus-builder` |
 | Code-Ursache / Ship-Review (Textausschnitt) | `sol-pruefer` — nie Bildpfade an Sol | Sonnet-Instanz, Textausschnitt statt Pfad |
 
 Unabhängige Analysen und disjunkte Baupakete laufen parallel; abhängige oder
-write-set-überlappende Pakete laufen sequenziell oder in Worktrees. Kein Fable
-als Subagent, nie Haiku als Urteil. Wer baut, reviewt nicht.
+write-set-überlappende Pakete laufen sequenziell oder in Worktrees.
+
+**Zeitbudget je Leaf (hart, MAKE-Pilot 03.09.2026):** Jeder Bau- und Kritik-Leaf
+bekommt im Prompt ein Budget in Minuten und die Anweisung, spätestens 5 Minuten vor
+Ablauf `StructuredOutput` mit dem erreichten Stand zurückzugeben (offene Punkte als
+`offen`, nie stumm weiterarbeiten). Der Harness-Watchdog tötet Leaves nach 60 Minuten
+ohne Rückgabe; ein Opus-Integrator lief so 63 Minuten und starb ohne Schema, der
+Parent musste den Stand aus dem Transkript rekonstruieren. Richtwerte: Integrator
+45 min, Kritik-Leaf 25 min, Copy-Leaf 20 min, Mini-Fix 15 min. Fable nur
+über `fable-builder` (Raphael 04.09.2026), nie Haiku als Urteil. Wer baut, reviewt nicht.
 
 ## Copy im Bau: wer schreiben darf, hängt am Profil
 
@@ -60,7 +68,7 @@ Das Copy-Briefing kommt in beiden Profilen aus `PLAN.md` (Zielgruppe, Ton,
 VOICE-Referenz, Keyword je Route, Proof-Lage). Die Bau-Phase erfindet es nicht
 neu.
 
-- **multi-family:** Copy schreibt **`kimi-worker` oder `sol-builder`**.
+- **multi-family:** Copy schreibt **`sol-builder`** (Kimi tot, Raphael 03.09.2026).
   `opus-builder` hat ein **absolutes Copy-Verbot** — keine Headlines, keinen
   Fließtext, keine CTAs, keine Microcopy, keine Fehlermeldungen.
 - **claude-only** (Raphael 02.09.2026): Copy schreibt ein **eigener

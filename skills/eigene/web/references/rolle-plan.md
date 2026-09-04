@@ -90,7 +90,28 @@ SERP-Research-Export, kein Ranking-Plan, kein technischer Audit. Diese
 Entscheidungen gehören in `PLAN.md`, weil sie die Sitemap formen; alles darüber
 hinaus ist ein eigener Loop-4-Auftrag.
 
-**Copy-Briefing:** Die Plan-Session schreibt das Briefing als Text in `PLAN.md`:
+**Copy-Briefing:** Die Plan-Session schreibt das Briefing als Text in `PLAN.md`.
+Quellen sind **beide** Kunden-Wahrheitsdateien: `/root/clients/<name>/wiki/absprachen.md`
+(jede Raphael-Ansage, auch ohne Decision-Eintrag) **und** `DECISIONS.md`. Tote
+Formulierungen, kanonische Zahlen und der CTA-Wortlaut stehen als eigene Zeilen im
+Briefing; ein Copy-Leaf, das nur eine der beiden Dateien kennt, schreibt Absprachen
+zurück in den Text (MAKE-Pilot 04.09.2026: Google-Rating und CTA aus `absprachen.md`
+rutschten durch, G2 0,49).
+Drei Felder sind Pflicht und werden in der Kritik-Phase gegen den Fold geprüft —
+ein leeres Feld ist kein Briefing, sondern ein Blocker der Plan-Abnahme:
+
+- **Pain** — der eine Satz, den der Besucher als sein Problem wiedererkennt.
+- **Person** — wer genau vor der Seite sitzt, in welcher Lage (Meaning-Frage A,
+  schärfer als „Zielgruppe“).
+- **Promise** — was die Seite verspricht, in der Sprache des Ergebnisses, nicht
+  der Leistung.
+
+Die Kritik-Phase prüft alle drei am Fold-Shot (1440×900 und 390×844): Steht Pain
+sichtbar über dem Fold? Ist Person daraus ablesbar? Ist Promise die Headline
+oder die Primäraktion? Ein Feld, das im Fold nicht wiederzufinden ist, ist ein
+Befund gegen den Fold, nicht gegen das Briefing.
+
+Dazu weiterhin:
 
 - **Zielgruppe** — konkret, keine Sammelbegriffe (Meaning-Frage A).
 - **Ton** — ein Vibe-Wort plus VOICE-Referenz
