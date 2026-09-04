@@ -12,7 +12,7 @@ Für Raphaels Quellenliste (Galerien, UI-/Komponenten-Bibliotheken, Effekte, Ass
   - `scripts/inspiration.mjs`: 10 neue Galerien (`supahero cta recent fps posts loadmore kinetics notfound circleloaders umanmade`), Firecrawl-Key aus `api-keys.env` (Siteinspire läuft wieder), `navbar list` ohne Typ; Eval 62/62 (+`--netz`).
   - printing-press-CLIs (cli-printing-press 4.31.6, `GOFLAGS=-buildvcs=false GOCACHE=/tmp/rh-gocache`): `pexels-pp-cli`, `polyhaven-pp-cli`, `iconify-pp-cli`, `fontshare-pp-cli`, `codrops-pp-cli` in `~/.local/bin`; Specs `/root/tools/printing-press/specs/*.yaml`, Library `/root/tools/printing-press/library/<name>/` (VERIFY.txt je CLI, verify PASS). Nicht in git (377 MB).
   - Doku: `zugangskarte.md` (Arbeitsverzeichnis, Schlüssel statt Domains, jede Quelle der Liste hat einen Weg, Login-Tabelle um Pexels-Key), `modus-inspiration.md` (Befehlsfolgen, Abschnitt „Komponenten ziehen", Lizenz-Regel), `tool-usecase-router.md` (Install/Use-Zellen), `SKILL.md` 0.33.1.
-  - Abnahme durch frische Opus-Instanz (nur Doku, Zahnarzt-Zürich-Minilauf): 16 Aufrufe liefen; 6 Lücken gefunden und danach behoben (Basispfad, Galerie-Schlüssel, navbar-Typ, search-Token, Foto-Weg, Lizenz-Regel). Zweite Abnahme nach den Fixes: **nicht gelaufen**.
+  - Abnahme durch frische Opus-Instanz (nur Doku, Zahnarzt-Zürich-Minilauf): 16 Aufrufe liefen; 6 Lücken gefunden und danach behoben (Basispfad, Galerie-Schlüssel, navbar-Typ, search-Token, Foto-Weg, Lizenz-Regel). Zweite Abnahme (frische Opus-Instanz): 19 Aufrufe liefen, FAIL wegen 6 Doku-/Verhaltenslücken (Docs-URLs nur mit --json, Mehrwort-Suche, Float UI/Shoogle tot, stock-Query, Iconify-Substring, PATH); alle sechs danach behoben (Commit nach `f2129b4`), dritte Abnahme nicht gelaufen.
 - OFFEN:
   - `PEXELS_API_KEY` fehlt (Raphael: https://www.pexels.com/onboarding/ → `api-keys.env`); `photos curated` läuft keyless, `photos search` nicht.
   - Judge-Notizen ohne Fix: kinetics-`get` schreibt teils <200 B (Keyframes stehen auf der Seite); loadmore-`get` mit unbekanntem Slug → exit 3 statt 1; iconify `--out` nur als `--deliver file:`; Fontshare `list --search` filtert nicht (get-by-slug geht).
@@ -33,7 +33,7 @@ Für Raphaels Quellenliste (Galerien, UI-/Komponenten-Bibliotheken, Effekte, Ass
 - Workflow-Leaves: `RAPHAEL_SUBAGENT_MAX_*` gilt, aber der eigentliche Killer war der Stall-Watchdog (180 s) bei Grok-Latenz.
 
 ### Nächster Schritt
-Zweite Abnahme (frische Instanz, nur `modus-inspiration.md` + `zugangskarte.md`) nach den sechs Doku-Fixes; danach MAKE Plan-Session.
+MAKE Plan-Session (Rolle Plan) aus `/root/clients/client-make/web/handoff/PLAN.md`; optional dritte Doku-Abnahme.
 
 ## Web-Inspiration + MCP/CLI-Anbindung — 2026-09-04
 
