@@ -196,7 +196,7 @@ export function parseDocsComponents(markdown, docsUrl = '') {
     if (!title || !href || /^(github|twitter|discord|login|sign in|home)$/i.test(title)) continue;
     try { if (base) href = new URL(href, base).href; } catch { continue; }
     if (!/^https?:\/\//i.test(href)) continue;
-    if (/\.(png|jpe?g|webp|gif|avif)(\?|$)/i.test(href)) continue;
+    if (/\.(png|jpe?g|webp|gif|avif|svg)(\?|$)/i.test(href)) continue;
     let pathname = '';
     try { pathname = new URL(href).pathname; } catch { continue; }
     if (!/(component|block|section|ui|docs)/i.test(pathname) && !/(button|card|hero|navbar|dialog|input|menu|table|form)/i.test(title)) continue;

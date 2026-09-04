@@ -32,6 +32,11 @@ Für Raphaels Quellenliste (Galerien, UI-/Komponenten-Bibliotheken, Effekte, Ass
 - validate-skill.py rekursiv über `skills/eigene/web` ist wegen der ungetrackten Vendor-Snapshots unter `resources/components/` immer rot → nur `SKILL.md` direkt prüfen.
 - Workflow-Leaves: `RAPHAEL_SUBAGENT_MAX_*` gilt, aber der eigentliche Killer war der Stall-Watchdog (180 s) bei Grok-Latenz.
 
+### Verifikation aller Quellen (Raphael 04.09.2026 abends, /orchestrate)
+- 155 Quellen aus der Liste in 9 Gruppen live über den dokumentierten Weg geprüft (grok-critic je Gruppe, Opus-Gegenprüfung der 26 nicht-PASS): 5 Befunde widerlegt (HEAD-403 bei GET-200, Startseite statt Tool-Pfad), 21 bestätigt und behoben (Commit `d405709`): resource-access.mjs lädt den Firecrawl-Key → Pixabay, Unsplash, Shadertoy, Icons8, SVG Repo, Subtle Patterns, LottieFiles, Life of Vids, InstantGradient, Gradient Page wieder lesbar; komponenten.mjs: RN-Docs-URLs (Paper, UI Lib, Elements, UI Kitten, Reusables, Tamagui), GetWidget = Flutter/pub.dev, Bild-Links raus, HyperUI-Slug mit Fallback, @cult-ui/@motion-primitives/@shoogle als BLOCKIERT mit Ersatzweg; stock.mjs Foto-Default; tsParticles-Paket vereinheitlicht; Katalog: NodeToy tot, IRA Design down, League-URL korrigiert; Zugangskarte: exakte open-Namen, Icon-Prefix-Tabelle, Bot-Wall-Hinweise, ambientCG-API, umanmade/loadmore eigene Zeilen, aicanvas Account-Pflicht.
+- Nachprüfung durch frische Opus-Instanz: 21/21 PASS. Endgültig nicht nutzbar: NodeToy (Domain tot), IRA Design (Origin 522), Cult UI/Motion Primitives-Registry (Vercel-Checkpoint, Ersatz dokumentiert), aicanvas-Code ohne Account, Unsplash-/Pixabay-API ohne eigene Keys (Seiten lesbar).
+- Observation 83: Verifikation misst den dokumentierten Weg, nicht HEAD/Katalog.
+
 ### Nächster Schritt
 MAKE Plan-Session (Rolle Plan) aus `/root/clients/client-make/web/handoff/PLAN.md`; optional dritte Doku-Abnahme.
 
