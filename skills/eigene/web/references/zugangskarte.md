@@ -79,7 +79,7 @@ Book of Shaders, Codrops: Recherche, Code nur mit Lizenz.
 
 | Bedarf | Was Raphael tut | Danach |
 |---|---|---|
-| 21st Quota leer / Token tot | `21st login` oder Key auf 21st.dev/mcp | MCP + CLI |
+| 21st Quota leer / Token tot | `21st login` oder Key auf 21st.dev/mcp; Free = 2 Code-Abrufe/Tag, Builder-Plan (6 $/Monat jährlich) hebt das auf | MCP + CLI |
 | Mobbin-Tools fehlen in der Session | neue Session nach OAuth | `mcp__mobbin__*` |
 | Shutterstock 401 | Auth-Relay README, Google im VPS-Chrome | `stock.mjs` |
 | Adobe Fonts | Kit-ID in `adobe-fonts-kit.mjs` | Embed |
