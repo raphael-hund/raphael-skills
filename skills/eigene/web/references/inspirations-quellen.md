@@ -157,6 +157,10 @@ Design-Posts mit Medien. `inspora list [--limit 20]` (HTML-fetch Startseite).
 `{slug,url,media}`. **Kein get** — Detail hinter Vercel-Checkpoint (429);
 Medien-URL aus list oder raphael-chrome.
 
+`shot` zeigt bei Inspora nur das blaue Logo, auch im VPS-Chrome mit echtem Profil
+(Intro-Animation der Site, gemessen 04.09.2026). Sehen: `inspora list` liefert
+16 Medien-URLs (webp/mp4) → einzelne Datei laden und per Read ansehen.
+
 ## Swiped — Loop `art-direction` (Posts, keine Websites)
 
 Design-Posts von X/LinkedIn. `swiped list [--limit 20]` →

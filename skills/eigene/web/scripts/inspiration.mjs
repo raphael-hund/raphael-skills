@@ -1296,11 +1296,49 @@ function shotFileSlug(targetUrl) {
 async function dismissCookies(page) {
   const candidates = [
     'button:has-text("Accept all")',
+    'button:has-text("Accept All")',
     'button:has-text("Accept")',
     'button:has-text("Akzeptieren")',
     'button:has-text("Alle akzeptieren")',
+    'button:has-text("Alle Cookies akzeptieren")',
     'button:has-text("Got it")',
+    'button:has-text("I agree")',
+    '[id*="accept"]:visible',
+    'a:has-text("Accept all")',
   ];
+  // Zwei Durchläufe: Modals wie bei Awwwards erscheinen erst nach dem ersten Wait
+  // (gemessen 04.09.2026: Klick kam vor dem Modal, PNG zeigte das Overlay).
+  for (let round = 0; round < 2; round++) {
+    let hit = false;
+    for (const sel of candidates) {
+      try {
+        const btn = page.locator(sel).first();
+        if (await btn.isVisible({ timeout: 400 })) {
+          await btn.click({ timeout: 2000 });
+          await page.waitForTimeout(800);
+          hit = true;
+          break;
+        }
+      } catch {
+        /* Banner-Variante nicht da */
+      }
+    }
+    if (hit) break;
+    await page.waitForTimeout(1500);
+  }
+  // Fallback: Overlay-Modal aus dem DOM entfernen, wenn der Klick es nicht schloss
+  // (Awwwards: <span class="button"> ohne Handler im Screenshot-Kontext, gemessen 04.09.2026).
+  try {
+    await page.evaluate(() => {
+      let n = 0;
+      for (const e of document.querySelectorAll('[class*="cookie"],[id*="cookie"],[class*="Cookie"],[class*="consent"],[id*="consent"]')) {
+        const r = e.getBoundingClientRect();
+        if (r.height > 80 && getComputedStyle(e).display !== 'none') { e.remove(); n++; }
+      }
+      if (n) { document.body.style.overflow = 'auto'; document.documentElement.style.overflow = 'auto'; }
+    });
+  } catch { /* Seite ohne DOM-Zugriff */ }
+  return;
   for (const sel of candidates) {
     try {
       const btn = page.locator(sel).first();

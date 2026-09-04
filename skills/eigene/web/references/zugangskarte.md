@@ -20,6 +20,12 @@ PNG/`shot` gilt erst nach **Read** durch ein Kritik-Leaf.
 | Navbar, Landdding, Awwwards, Siteinspire, Curated, Getlayers, Behance, Inspora, Swiped | `scripts/inspiration.mjs <quelle> list\|search\|get` + `shot` | öffentlich; Siteinspire nur Firecrawl; 21st-Code hinter Login → MCP |
 
 Status: `claude mcp list`. Token erneuern: `/root/tools/auth-relays/README.md`.
+Mobbin-Token lebt 60 min; Cron `mobbin-refresh.py` alle 40 min, bei 401 von Hand
+`python3 /root/tools/auth-relays/mobbin-refresh.py --force`.
+
+Live-Beleg 04.09.2026: 11 Galerie-Shots durch ein visual-kritiker-Leaf gelesen —
+9 GALERIE, Mobbin ohne Login LANDING, Siteinspire BOT (auch im VPS-Chrome),
+Inspora-Startseite zeigt nur das Intro-Logo → Medien-URLs aus `inspora list` laden. Refero/Mobbin/21st-MCP je ein Live-Call ok.
 
 ## Zugriffstypen (kein Extra-CLI)
 
@@ -52,7 +58,7 @@ Swiped, Navbar Gallery, Godly, Refero, Mobbin: Skript oder MCP wie oben.
 60fps.design, posts.design, supahero.io, loadmo.re, recent.design, cta.gallery,
 kinetics.colorion.co, 404.colorion.co, circleloaders, aicanvas.me, umanmade.com,
 codeshots.dev: `open` falls im Katalog, sonst Firecrawl/`shot` **eine** URL,
-max. 3. Siteinspire und Inspora-Detail: Bot-Schutz → `raphael-chrome`.
+max. 3. Siteinspire: Vercel-Checkpoint auch im VPS-Chrome → `siteinspire list` (Firecrawl) + Thumbnails. Inspora: Intro-Logo → Medien-URLs aus `inspora list`.
 
 ## Assets (Lizenz lesen, dann lokal)
 

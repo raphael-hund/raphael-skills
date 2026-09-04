@@ -278,7 +278,12 @@ zeile(
 {
   const proc = spawnSync(process.execPath, [SCRIPT, '21st', 'code', 'hero'], { encoding: 'utf8', timeout: 15000 });
   const aus = `${proc.stderr || ''}${proc.stdout || ''}`;
-  zeile(proc.status === 1 && /21st CLI nicht eingeloggt/.test(aus) && /API_KEY_21ST/.test(aus), '21st code ohne Login Exit 1');
+  // Seit 03.09.2026 ist das 21st-CLI eingeloggt; ohne Login gilt Exit 1 + Hinweis, mit Login Exit 0 + JSON.
+  const eingeloggt = fs.existsSync(path.join(process.env.HOME || '/root', '.config', '21st', 'auth.json'));
+  zeile(
+    eingeloggt ? (proc.status === 0 && /"type":\s*"component"|installCommand|"id"/.test(aus)) : (proc.status === 1 && /21st CLI nicht eingeloggt/.test(aus) && /API_KEY_21ST/.test(aus)),
+    eingeloggt ? '21st code mit Login Exit 0 + Treffer' : '21st code ohne Login Exit 1',
+  );
 }
 
 if (NETZ) {
