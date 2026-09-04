@@ -22,9 +22,9 @@
     },
     {
       "name": "ads-statics",
-      "version": "2.9.0",
+      "version": "2.10.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
-      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte, nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy). v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen, keine Bedingungen, kein Bundle-Beiwerk onscreen. v2.9.0 (Raphael 03.09.2026): Objektverkauf (Immobilie, Neubau, Produkt mit Preis) ist Produkt-Fakten-Preis-Button, keine Angle-Wahl; Abschnitt in teil-statics.md. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\". Bild danach: Skill higgsfield."
+      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte, nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy). v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen, keine Bedingungen, kein Bundle-Beiwerk onscreen. v2.9.0 (Raphael 03.09.2026): Objektverkauf (Immobilie, Neubau, Produkt mit Preis) ist Produkt-Fakten-Preis-Button, keine Angle-Wahl; Abschnitt in teil-statics.md. v2.10.0 (Raphael 03.09.2026): Bild mit GPT Image 2. Logo, Look und Text als --image-Referenzen, JSON-Spec, Logo nie neu zeichnen. Pillow-Overlay verboten. Referenzen Raphael zuerst zeigen, dann Higgsfield. Beleg: PROPFIN-Welle 1. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\"."
     },
     {
       "name": "ads-video",
@@ -34,7 +34,7 @@
     },
     {
       "name": "ads",
-      "version": "2.7.5",
+      "version": "2.7.6",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video), dann ICP, Research, Video-Skript, Statics, Performance. Video-Skripte klingen wie eine Sprachnachricht. Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"was zuerst\", \"Static oder Video\", \"Konto-Audit\", \"Ads Performance\", \"laufende Ads\", \"7 Tage\", \"30 Tage\"."
     },
@@ -100,9 +100,9 @@
     },
     {
       "name": "higgsfield",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "path": "skills/eigene/higgsfield/SKILL.md",
-      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
+      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten. Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
     },
     {
       "name": "idea-filter",
@@ -238,7 +238,7 @@
     },
     {
       "name": "web",
-      "version": "0.31.0",
+      "version": "0.32.0",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Plan\", \"Landingpage planen\", \"Website-Kritik\", \"Website kritisieren\", \"kompletter Website-Plan\"."
     },
