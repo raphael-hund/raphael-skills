@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 141,
+  "skill_count": 142,
   "skills": [
     {
       "name": "design",
@@ -81,6 +81,12 @@
       "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
     {
+      "name": "feedback-runde",
+      "version": "0.1.0",
+      "path": "skills/eigene/feedback-runde/SKILL.md",
+      "description": "Feuert, wenn ein Kunde Feedback zu einer bestehenden Website als Video, Loom, Supercut, Sprachnachricht oder Punkteliste liefert und die Punkte umgesetzt werden sollen. Verkettet die vorhandenen Bausteine in fester Reihenfolge: Transkript (watch) → Item-Liste mit Zeitstempel → Worktree feedback-rN → Qualitätsschleife je Item (orchestrate) → Deploy (deploy-vercel.sh) → Ergebnisliste plus URL nach /root/eingang/ausgang/. Ersetzt die Handkette aus watch, video-vorfilter.mjs, feedback-sortieren.py und Kritiker-Prompts, die im Agent-Audit vom 04.09.2026 in vier Projekten (sorglos, wilhelm, manuka, zemp) über 40 Sessions von Hand getippt wurde. Trigger: \"Kundenfeedback umsetzen\", \"Feedback-Video\", \"Loom\", \"Supercut\", \"der Kunde hat gesagt\", \"Änderungen vom Kunden\", \"feedback-runde\", \"Runde N\"."
+    },
+    {
       "name": "firecrawl",
       "version": "0.1.0",
       "path": "skills/eigene/firecrawl/SKILL.md",
@@ -94,7 +100,7 @@
     },
     {
       "name": "handoff",
-      "version": "0.5.0",
+      "version": "0.6.0",
       "path": "skills/eigene/handoff/SKILL.md",
       "description": "Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben (PROGRESS.md/DECISIONS.md, Write-Set committen, hartes /clear). (2) EXTERN: das Gespräch zu einem redigierten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person verdichten (Verweis statt Duplikat, Ablage im OS-Temp). Fakten statt Anweisungen, inkl. Fallen/Sackgassen und Secret-Redaktion. Handoff ist Closeout: Brief schreiben, keine neue Produktarbeit. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"Session-Handoff fällig\", \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
     },
@@ -238,7 +244,7 @@
     },
     {
       "name": "web",
-      "version": "0.33.0",
+      "version": "0.33.1",
       "path": "skills/eigene/web/SKILL.md",
       "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Plan\", \"Landingpage planen\", \"Website-Kritik\", \"Website kritisieren\", \"kompletter Website-Plan\"."
     },
