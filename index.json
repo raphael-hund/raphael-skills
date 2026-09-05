@@ -1,6 +1,6 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 142,
+  "skill_count": 143,
   "skills": [
     {
       "name": "design",
@@ -853,6 +853,12 @@
       "version": "0.1.0",
       "path": "vendor-packs/pstack/pstack-why/SKILL.md",
       "description": "\"Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds. Discovers available MCPs and queries each evidence category (source control, issue tracker, long-form docs, real-time chat, infrastructure observability, error tracking, product analytics warehouse) in parallel, then returns a cited read on decisions and tradeoffs. Use how for runtime behavior. Trigger: \\\"/pstack-why\\\"\""
+    },
+    {
+      "name": "second-brain",
+      "version": "0.2.1",
+      "path": "skills/imported/makerskills/second-brain/SKILL.md",
+      "description": "When you want to capture into, compile, query, lint, or connect your personal Second Brain. Wraps the Karpathy LLM Wiki schema (Obsidian or any markdown vault) — raw/ (unprocessed sources), wiki/ (AI-compiled interlinked topic pages), outputs/ (generated artifacts). Uses the installed vault configuration; on this VPS, /root/raphael-brain/ and its protected write workflow apply. Six modes — capture (drop something into raw/), compile (process unprocessed raw files into wiki pages, update INDEX.md), query (answer a question from the wiki, save to outputs/), lint (orphans / contradictions / stale / unprocessed raw / topic gaps), connect (suggest new wikilinks between pages), search (quick lookup). Triggers on \"/second-brain,\" \"/sb,\" \"capture this,\" \"save this to my brain,\" \"compile the wiki,\" \"process raw notes,\" \"query my wiki,\" \"ask my brain,\" \"lint the wiki,\" \"find connections,\" \"search my notes.\" Complements deep-research (external corpus) — this is the internal corpus."
     }
   ]
 }
