@@ -108,7 +108,7 @@ Welle braucht vor Produktion eine Stopp-Regel (Metrik + Mindestlaufzeit).
 
 ## Kalter Leser zuerst (Raphael, 06.09.2026)
 
-Der Leser kennt weder uns noch das Objekt. Die Headline sagt zuerst, was angeboten wird und wo; der Body sagt, was es ihm bringt; die Bullets sagen, was er genau bekommt. Erst danach Druck als Badge und CTA. Verknappung, Vergleich oder Frage ohne Objekt sind als Headline Fail. Der Preis darf Headline sein, wenn Objekt und Ort dabeistehen («Was bekommst du für CHF 1,92 Mio in Umiken?»); Preis allein ist Fail. Sechs Textelemente mit Hierarchie (Eyebrow, Headline, Body, Bullets, Badge, CTA) stehen in `../../ads-statics/SKILL.md`. Copy schreibt der Root, kein Leaf.
+Der Leser kennt weder uns noch das Objekt. Die Headline sagt allein, was angeboten wird, wo, und was es bringt; Bullets listen, was er bekommt (mindestens zwei); ein Body-Satz erklärt bei Bedarf. Dann CTA. Verknappung, Vergleich oder Frage ohne Objekt sind als Headline Fail. Der Preis darf Headline sein, wenn Objekt und Ort dabeistehen («Was bekommen Sie für CHF 1,92 Mio in Umiken bei Brugg?»); Preis allein ist Fail. Fünf Textelemente (Eyebrow, Headline, Body, Bullets, CTA), kein Badge, keine Dopplung zwischen Elementen: `../../ads-statics/SKILL.md`. Copy schreibt der Root, kein Leaf.
 
 ## Objektverkauf (Raphael, 03.09.2026)
 
@@ -145,7 +145,7 @@ Ein Brief, ein Style. Ein Angle bei Dienstleistung, eine Botschaft bei Objektver
 - Jede Onscreen-Zeile ist ein ganzer Satz (Subjekt + Verb), kein Telegramm
 - Handy-Test: ein Fremder versteht in einer Sekunde, was die Firma tut und was der Klick bringt
 - Headline-Test: nur die Headline gelesen, weiss ein Fremder, was angeboten wird und wo; keine Verknappung, kein Vergleich ohne Objekt als Headline; Preis nur zusammen mit Objekt und Ort
-- Alle sechs Textelemente vorhanden oder bewusst weggelassen (Badge ohne Fakt entfällt)
+- Headline und CTA vorhanden; Body oder Bullets (mindestens zwei); Eyebrow nur ohne Dopplung; kein Badge
 - Instant-Formular: Hook UND Deal in einer Ad — Hook first, danach der Klick-Grund in einem Satz
 - Weder Feature-Opener noch Hook ohne Klick-Grund
 - ICP-Filter: nur der ICP fühlt sich angesprochen (Schwelle, Rolle, Ort oder ICP-Rechnung)

@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.12.1
+version: 2.13.0
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -68,37 +68,35 @@ Drei Pflicht-Referenzen liegen hier:
 
 ## Kalter Leser zuerst (Raphael, 06.09.2026)
 
-Wer die Ad sieht, kennt uns nicht, kennt das Objekt nicht und hat nicht danach gesucht. Er ist abgelenkt. Bevor irgendein Handwerk greift, muss die Karte in dieser Reihenfolge antworten:
+Wer die Ad sieht, kennt uns nicht, kennt das Objekt nicht und hat nicht danach gesucht. Er ist abgelenkt. Die Karte muss in dieser Reihenfolge antworten:
 
-1. **Was bietest du an?** Objekt oder Leistung in einem Wort, plus Ort. Steht in der Headline. Ohne Ausnahme.
-2. **Was bringt es mir?** Der eine Nutzen in einem Satz. Steht im Body.
-3. **Was genau bekomme ich?** Drei prüfbare Fakten. Bullets.
-4. Erst dann Druck (Verknappung, Preis) als kleines Badge und der Klick als CTA.
+1. **Was bieten wir an, wo, und was bringt es?** Steht in der Headline. Die Headline trägt allein; alle anderen Elemente sind Zusatz.
+2. **Was genau bekommt er?** Bullets: die Liste, mindestens zwei Einträge. Oder ein Body-Satz, der die Headline erklärt. Gern beides.
+3. Dann der Klick.
 
-Verboten als Headline: Verknappung («12 von 17 verkauft»), Vergleiche ohne Objekt («Eine Terrasse, so gross wie eine Wohnung»), Fragen ohne Objekt. Der Leser weiss nicht, worum es geht, und scrollt. Beleg: 200+ gesichtete Immobilien-Ads (Foreplay 03. bis 06.09.2026), keine einzige Referenz startet mit Verknappung, alle Langläufer starten mit Objekt und Ort.
+Verboten als Headline: Verknappung («12 von 17 verkauft»), Vergleiche ohne Objekt («Eine Terrasse, so gross wie eine Wohnung»), Fragen ohne Objekt. Beleg: 200+ gesichtete Immobilien-Ads (Foreplay 03. bis 06.09.2026), keine einzige startet mit Verknappung, alle Langläufer starten mit Objekt und Ort. Verknappung höchstens als Bullet.
 
-Der Preis darf Headline sein, er ist oft der stärkste Filter. Bedingung: Preis, Objekt und Ort stehen zusammen, als Gegenwert oder als Frage. «Was bekommst du für CHF 1,92 Mio in Umiken?» / «Das bekommst du für CHF 1,92 Mio: ein Terrassenhaus bei Brugg.» Falsch ist nur der Preis allein («Ab CHF 1,92 Mio.»), weil dann niemand weiss, wofür. Fehlt ein belegter Preis, entfällt die Preis-Headline; er wird nicht geschätzt.
+Der Preis darf Headline sein, er ist oft der stärkste Filter. Bedingung: Preis, Objekt und Ort stehen zusammen, als Frage oder Aussage. «Was bekommen Sie für CHF 1,92 Mio in Umiken bei Brugg?» Preis allein («Ab CHF 1,92 Mio.») ist Fail. Fehlt ein belegter Preis, entfällt die Preis-Headline.
 
-Test vor jedem Brief: Lies nur die Headline. Weiss ein Fremder, was angeboten wird und wo? Nein → Headline neu.
+Test vor jedem Brief: Nur die Headline gelesen, weiss ein Fremder, was angeboten wird, wo, und was er davon hat? Nein → Headline neu.
 
-Anti-Beispiele (Umiken, 06.09. Fassung 2, verworfen): «Eine Terrasse, so gross wie eine Wohnung.» / «[12] von 17 sind verkauft.» / «Ab CHF [1,92] Mio.» (Preis ohne Objekt)
-Richtig: «Terrassenhaus mit über 100 m² Terrasse.» / «Was bekommst du für CHF 1,92 Mio in Umiken?» / Verknappung als Badge oben rechts.
+Anti-Beispiele (Umiken, 06.09., verworfen): «Eine Terrasse, so gross wie eine Wohnung.» / «[12] von 17 sind verkauft.» / «Ab CHF [1,92] Mio.»
+Richtig: «Terrassenhaus mit über 100 m² eigener Terrasse.» / «Was bekommen Sie für CHF 1,92 Mio in Umiken bei Brugg?»
 
-## Sechs Textelemente, feste Hierarchie (Raphael, 06.09.2026)
+## Fünf Textelemente, feste Hierarchie (Raphael, 06.09.2026)
 
-Jede Static trägt sechs Elemente, jedes mit genau einer Aufgabe. Grösse ist Rang (Headline = 100).
+Es gibt genau fünf Elemente. Kein Badge, kein Sticker. Grösse ist Rang (Headline = 100).
 
-| Rang | Element | Aufgabe | Grösse | Position |
+| Rang | Element | Aufgabe | Pflicht | Grösse |
 |---|---|---|---|---|
-| 1 | Headline | Was und wo | 100 | über der Textzone, im 1:1-Kern |
-| 2 | CTA | der Klick, ein Wortpaar, ein Button | 45 | unter den Bullets |
-| 3 | Body | der eine Nutzen, ein Satz mit Verb | 55 | unter der Headline |
-| 4 | Bullets | drei Fakten ohne Verb | 42 | unter dem Body |
-| 5 | Eyebrow | wer oder wo, Versalien | 36 | über der Headline |
-| 6 | Badge | ein Druckfakt, Sticker | 34 | auf dem Foto, oben rechts |
+| 1 | Headline | was, wo, was es bringt; trägt allein | immer | 100 |
+| 2 | CTA | der Klick, ein Wortpaar, ein Button, auf allen Karten gleich | immer | 45 |
+| 3 | Bullets | die Liste, was man bekommt, zwei bis vier Einträge, ohne Verb | Body oder Bullets, gern beide | 42 |
+| 4 | Body | ein Satz, der die Headline erklärt | Body oder Bullets, gern beide | 55 |
+| 5 | Eyebrow | Ort oder Objekt als Etikett, mit Pin-Icon | optional | 36 |
 
-Kein Element wiederholt ein anderes: Ort in Headline oder Eyebrow, Zahl in Badge oder Bullets. Headline mindestens doppelt so gross wie alles andere. Badge nur mit belegtem Fakt, sonst weglassen. Gesamt unter 35 Wörter. Copy schreibt der Root selbst, kein Leaf.
-Beispiel mit allen Elementen und Referenzen: `/root/clients/ak-omega/ads/statics/COPY-VARIANTEN-2026-09-06.md`.
+Keine Dopplung: ein Wort steht in genau einem Element. «Terrassenhaus» im Eyebrow heisst: nicht in Headline, nicht im Body. Ort in der Headline heisst: kein Ort-Eyebrow. Zu viel Text ist häufiger Fail als zu wenig; wenn Headline und Bullets reichen, gibt es keinen Body. Gesamt unter 35 Wörter. Copy schreibt der Root selbst, kein Leaf.
+Beispiel mit allen Varianten und Referenzen: `/root/clients/ak-omega/ads/statics/COPY-VARIANTEN-2026-09-06.md`.
 
 ## Klarheit vor Handwerk (Raphael, 03.09.2026)
 
