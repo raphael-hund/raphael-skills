@@ -1,8 +1,0 @@
-[Unit]
-Description=ACL-Maske fuer raphael-claude reparieren (inkrementell, letzte 15 min)
-
-[Service]
-Type=oneshot
-ExecStart=/root/tools/acl-mask-repair.sh
-TimeoutStartSec=120
-Nice=10

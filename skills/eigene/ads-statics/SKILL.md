@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.12.0
+version: 2.12.1
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -75,12 +75,14 @@ Wer die Ad sieht, kennt uns nicht, kennt das Objekt nicht und hat nicht danach g
 3. **Was genau bekomme ich?** Drei prüfbare Fakten. Bullets.
 4. Erst dann Druck (Verknappung, Preis) als kleines Badge und der Klick als CTA.
 
-Verboten als Headline: Verknappung («12 von 17 verkauft»), nackter Preis («Ab CHF 1,92 Mio»), Vergleiche ohne Objekt («Eine Terrasse, so gross wie eine Wohnung»), Fragen ohne Objekt. Der Leser weiss bei allen vieren nicht, worum es geht, und scrollt. Beleg: 200+ gesichtete Immobilien-Ads (Foreplay 03. bis 06.09.2026), keine einzige Referenz startet mit Verknappung, alle Langläufer starten mit Objekt und Ort. Preis nur als Gegenwert: «Das bekommst du für CHF 1,92 Mio.»
+Verboten als Headline: Verknappung («12 von 17 verkauft»), Vergleiche ohne Objekt («Eine Terrasse, so gross wie eine Wohnung»), Fragen ohne Objekt. Der Leser weiss nicht, worum es geht, und scrollt. Beleg: 200+ gesichtete Immobilien-Ads (Foreplay 03. bis 06.09.2026), keine einzige Referenz startet mit Verknappung, alle Langläufer starten mit Objekt und Ort.
+
+Der Preis darf Headline sein, er ist oft der stärkste Filter. Bedingung: Preis, Objekt und Ort stehen zusammen, als Gegenwert oder als Frage. «Was bekommst du für CHF 1,92 Mio in Umiken?» / «Das bekommst du für CHF 1,92 Mio: ein Terrassenhaus bei Brugg.» Falsch ist nur der Preis allein («Ab CHF 1,92 Mio.»), weil dann niemand weiss, wofür. Fehlt ein belegter Preis, entfällt die Preis-Headline; er wird nicht geschätzt.
 
 Test vor jedem Brief: Lies nur die Headline. Weiss ein Fremder, was angeboten wird und wo? Nein → Headline neu.
 
-Anti-Beispiele (Umiken, 06.09. Fassung 2, verworfen): «Eine Terrasse, so gross wie eine Wohnung.» / «[12] von 17 sind verkauft.» / «Ab CHF [1,92] Mio.»
-Richtig: «Terrassenhaus mit über 100 m² Terrasse.» / «Das bekommst du für CHF 1,92 Mio.» / Verknappung als Badge oben rechts.
+Anti-Beispiele (Umiken, 06.09. Fassung 2, verworfen): «Eine Terrasse, so gross wie eine Wohnung.» / «[12] von 17 sind verkauft.» / «Ab CHF [1,92] Mio.» (Preis ohne Objekt)
+Richtig: «Terrassenhaus mit über 100 m² Terrasse.» / «Was bekommst du für CHF 1,92 Mio in Umiken?» / Verknappung als Badge oben rechts.
 
 ## Sechs Textelemente, feste Hierarchie (Raphael, 06.09.2026)
 

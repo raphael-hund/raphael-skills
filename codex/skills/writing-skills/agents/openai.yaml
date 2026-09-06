@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Writing Skills"
-  short_description: "Codex adapter for the writing-skills skill"
-  default_prompt: "Use $writing-skills for this task."

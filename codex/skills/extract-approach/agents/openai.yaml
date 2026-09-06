@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Extract Approach"
-  short_description: "Codex adapter for the extract-approach skill"
-  default_prompt: "Use $extract-approach for this task."

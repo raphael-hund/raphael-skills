@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex No Ai Slop"
-  short_description: "Codex adapter for the no-ai-slop skill"
-  default_prompt: "Use $no-ai-slop for this task."

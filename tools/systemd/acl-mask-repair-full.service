@@ -1,9 +1,0 @@
-[Unit]
-Description=ACL-Maske fuer raphael-claude: Vollscan des Konfig-Scopes
-
-[Service]
-Type=oneshot
-ExecStart=/root/tools/acl-mask-repair.sh --full
-TimeoutStartSec=900
-Nice=15
-IOSchedulingClass=idle

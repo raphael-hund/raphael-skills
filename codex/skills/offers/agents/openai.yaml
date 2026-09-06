@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Offers"
-  short_description: "Codex adapter for the offers skill"
-  default_prompt: "Use $offers for this task."
