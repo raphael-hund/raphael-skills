@@ -1,6 +1,6 @@
 ---
 name: ads-statics
-version: 2.11.0
+version: 2.12.0
 description: >
   Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8.
   Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek
@@ -65,6 +65,38 @@ Drei Pflicht-Referenzen liegen hier:
   zwölf Copy-Gesetze, was für Statics gilt, was wir nicht übernehmen.
 - `references/wettbewerber/` — CH/DE-Wettbewerber (Grigoletti, Mario Reinwarth, 28.08.2026)
   als Kontrast- und Baustein-Referenzen. Kontrast-Warnungen oben in jeder Datei beachten.
+
+## Kalter Leser zuerst (Raphael, 06.09.2026)
+
+Wer die Ad sieht, kennt uns nicht, kennt das Objekt nicht und hat nicht danach gesucht. Er ist abgelenkt. Bevor irgendein Handwerk greift, muss die Karte in dieser Reihenfolge antworten:
+
+1. **Was bietest du an?** Objekt oder Leistung in einem Wort, plus Ort. Steht in der Headline. Ohne Ausnahme.
+2. **Was bringt es mir?** Der eine Nutzen in einem Satz. Steht im Body.
+3. **Was genau bekomme ich?** Drei prüfbare Fakten. Bullets.
+4. Erst dann Druck (Verknappung, Preis) als kleines Badge und der Klick als CTA.
+
+Verboten als Headline: Verknappung («12 von 17 verkauft»), nackter Preis («Ab CHF 1,92 Mio»), Vergleiche ohne Objekt («Eine Terrasse, so gross wie eine Wohnung»), Fragen ohne Objekt. Der Leser weiss bei allen vieren nicht, worum es geht, und scrollt. Beleg: 200+ gesichtete Immobilien-Ads (Foreplay 03. bis 06.09.2026), keine einzige Referenz startet mit Verknappung, alle Langläufer starten mit Objekt und Ort. Preis nur als Gegenwert: «Das bekommst du für CHF 1,92 Mio.»
+
+Test vor jedem Brief: Lies nur die Headline. Weiss ein Fremder, was angeboten wird und wo? Nein → Headline neu.
+
+Anti-Beispiele (Umiken, 06.09. Fassung 2, verworfen): «Eine Terrasse, so gross wie eine Wohnung.» / «[12] von 17 sind verkauft.» / «Ab CHF [1,92] Mio.»
+Richtig: «Terrassenhaus mit über 100 m² Terrasse.» / «Das bekommst du für CHF 1,92 Mio.» / Verknappung als Badge oben rechts.
+
+## Sechs Textelemente, feste Hierarchie (Raphael, 06.09.2026)
+
+Jede Static trägt sechs Elemente, jedes mit genau einer Aufgabe. Grösse ist Rang (Headline = 100).
+
+| Rang | Element | Aufgabe | Grösse | Position |
+|---|---|---|---|---|
+| 1 | Headline | Was und wo | 100 | über der Textzone, im 1:1-Kern |
+| 2 | CTA | der Klick, ein Wortpaar, ein Button | 45 | unter den Bullets |
+| 3 | Body | der eine Nutzen, ein Satz mit Verb | 55 | unter der Headline |
+| 4 | Bullets | drei Fakten ohne Verb | 42 | unter dem Body |
+| 5 | Eyebrow | wer oder wo, Versalien | 36 | über der Headline |
+| 6 | Badge | ein Druckfakt, Sticker | 34 | auf dem Foto, oben rechts |
+
+Kein Element wiederholt ein anderes: Ort in Headline oder Eyebrow, Zahl in Badge oder Bullets. Headline mindestens doppelt so gross wie alles andere. Badge nur mit belegtem Fakt, sonst weglassen. Gesamt unter 35 Wörter. Copy schreibt der Root selbst, kein Leaf.
+Beispiel mit allen Elementen und Referenzen: `/root/clients/ak-omega/ads/statics/COPY-VARIANTEN-2026-09-06.md`.
 
 ## Klarheit vor Handwerk (Raphael, 03.09.2026)
 
