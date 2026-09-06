@@ -22,7 +22,7 @@
     },
     {
       "name": "ads-statics",
-      "version": "2.12.1",
+      "version": "2.13.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
       "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte, nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy). v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen, keine Bedingungen, kein Bundle-Beiwerk onscreen. v2.9.0 (Raphael 03.09.2026): Objektverkauf (Immobilie, Neubau, Produkt mit Preis) ist Produkt-Fakten-Preis-Button, keine Angle-Wahl; Abschnitt in teil-statics.md. v2.10.0 (Raphael 03.09.2026): Bild mit GPT Image 2. Logo, Look und Text als --image-Referenzen, JSON-Spec, Logo nie neu zeichnen. Pillow-Overlay verboten. Referenzen Raphael zuerst zeigen, dann Higgsfield. Beleg: PROPFIN-Welle 1. v2.11.0 (Raphael 04.09.2026): jede Static wird in 4:5 generiert (Text komplett im 4:5), danach per Outpaint auf 9:16 erweitert. Nie direkt 9:16, nie 1:1. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\"."
     },
