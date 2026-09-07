@@ -1,0 +1,132 @@
+[
+  {
+    "name": "logo-google",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "logo",
+      "google",
+      "--max",
+      "1",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/logo-google"
+    ],
+    "tested_at": "2026-09-07T11:44:27.835Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 1,
+    "hashes_and_headers_valid": true
+  },
+  {
+    "name": "logo-stripe",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "logo",
+      "stripe",
+      "--max",
+      "1",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/logo-stripe"
+    ],
+    "tested_at": "2026-09-07T11:44:27.968Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 1,
+    "hashes_and_headers_valid": true
+  },
+  {
+    "name": "icon-phone",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "icon",
+      "phone",
+      "--max",
+      "3",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/icon-phone"
+    ],
+    "tested_at": "2026-09-07T11:44:28.112Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 3,
+    "hashes_and_headers_valid": true
+  },
+  {
+    "name": "photo-dachdecker",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "photo",
+      "dachdecker bei der arbeit",
+      "--max",
+      "3",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/photo-dachdecker"
+    ],
+    "tested_at": "2026-09-07T11:44:28.281Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 3,
+    "hashes_and_headers_valid": true
+  },
+  {
+    "name": "svgl-google",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "logo",
+      "google",
+      "--provider",
+      "svgl",
+      "--max",
+      "2",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/svgl-google"
+    ],
+    "tested_at": "2026-09-07T11:44:29.226Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 2,
+    "hashes_and_headers_valid": true
+  },
+  {
+    "name": "wikimedia-google",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "logo",
+      "google",
+      "--provider",
+      "wikimedia",
+      "--max",
+      "2",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/wikimedia-google"
+    ],
+    "tested_at": "2026-09-07T11:44:29.555Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 2,
+    "hashes_and_headers_valid": true
+  },
+  {
+    "name": "search-zurich-final",
+    "command": [
+      "/usr/bin/node",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/scripts/find-images.mjs",
+      "search",
+      "Zürich Altstadt Limmat",
+      "--max",
+      "2",
+      "--download",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/search-zurich-final"
+    ],
+    "tested_at": "2026-09-07T11:44:30.658Z",
+    "keys_removed": true,
+    "exit_code": 0,
+    "count": 2,
+    "hashes_and_headers_valid": true
+  }
+]

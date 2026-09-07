@@ -1,0 +1,46 @@
+:root {
+  color-scheme: light;
+  --background: #f6f4ef;
+  --foreground: #292824;
+  --card: #fffcf7;
+  --card-foreground: #292824;
+  --muted-foreground: #625f57;
+  --border: #d9d4c9;
+  --primary: #315b4b;
+  --primary-foreground: #fff;
+  --ring: #315b4b;
+  --accent: #e9e5db;
+  --accent-foreground: #292824;
+  --radius: .5rem;
+}
+body { margin: 0; background: var(--background); color: var(--foreground); font: 16px/1.6 system-ui, sans-serif; }
+.page-header, main, footer { width: min(1000px, calc(100% - 48px)); margin-inline: auto; }
+.page-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; border-bottom: 1px solid var(--border); }
+nav { display: flex; gap: 24px; }
+a { color: var(--primary); text-underline-offset: 4px; }
+nav a, .site-name { padding-block: 10px; }
+.site-name { font-weight: 650; text-decoration: none; }
+[aria-current="page"] { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--ring); outline-offset: 4px; }
+.intro { padding-block: 48px; max-width: 760px; }
+.eyebrow { font: 12px/1.5 ui-monospace, monospace; color: var(--muted-foreground); margin: 0 0 16px; }
+h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; letter-spacing: -.035em; margin: 0 0 24px; }
+h2 { font-size: 24px; line-height: 1.25; margin: 0 0 20px; letter-spacing: -.015em; }
+.lead { font-size: 18px; max-width: 62ch; }
+.native-link { display: inline-block; padding-block: 10px; }
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding-block: 32px 48px; border-top: 1px solid var(--border); }
+.baseline { padding-block: 32px; border-top: 1px solid var(--border); }
+.baseline p { max-width: 72ch; }
+.baseline label { display: block; margin-bottom: 8px; }
+.form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.baseline input, .baseline button { font: inherit; color: var(--foreground); background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 10px 16px; box-sizing: border-box; min-height: 44px; }
+.baseline input { width: 260px; max-width: 100%; }
+.baseline button { cursor: pointer; }
+footer { padding-block: 24px; color: var(--muted-foreground); font-size: 14px; border-top: 1px solid var(--border); }
+#details { margin-block: 40px; }
+@media (max-width: 720px) {
+  .page-header, main, footer { width: calc(100% - 40px); }
+  .page-header { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .intro { padding-block: 32px; }
+  .proof-grid { grid-template-columns: 1fr; gap: 32px; }
+}

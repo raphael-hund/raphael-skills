@@ -1,0 +1,59 @@
+{
+  "source": "https://www.youtube.com/watch?v=Kq4ZNZGATvY",
+  "uploader": "MotionSites AI",
+  "retrieved": "2026-09-06",
+  "files": [
+    {
+      "path": "motionsites-wellworks-90s.jpg",
+      "timeSeconds": 90,
+      "viewedBy": "leaf-1.2 and parent",
+      "role": "reference study only"
+    },
+    {
+      "path": "motionsites-wellworks-108s.jpg",
+      "timeSeconds": 108,
+      "viewedBy": "leaf-1.2 and parent",
+      "role": "reference study only"
+    },
+    {
+      "path": "leon-extraction-prompt.jpg",
+      "source": "https://x.com/LexnLin/status/2050179260892029179",
+      "retrieved": "2026-09-06",
+      "viewedBy": "leaf-1.3 and parent",
+      "role": "reference study only; screenshot of original extraction instruction"
+    },
+    {
+      "path": "viktor-separate-card-objects.jpg",
+      "source": "https://www.youtube.com/watch?v=8L5VAHO3KMo",
+      "timeSeconds": 555.933,
+      "sourceStreamSha256": "fbb3a146871dbbe639a063e777c378c8a1b65e7f737a95354857d6336ba4d387",
+      "fileSha256": "6705485b469211e350c7d87f468bbec150bc490ed2fc6e4faed138034e4db579",
+      "retrieved": "2026-09-06",
+      "viewedBy": "parent; leaf contact-sheet review recorded separately",
+      "role": "Separate foreground illustrations inside repeated card layouts; visible tool text names a wrong retained symbol, so this is not a completed identity-fidelity result",
+      "limits": "Reference study only. Frame scaled to960px by sampler; CSS viewport unknown; no audio or website-function check."
+    },
+    {
+      "path": "viktor-product-export-frames.jpg",
+      "source": "https://www.youtube.com/watch?v=raUcRcrfgoE",
+      "timeSeconds": 1163.933,
+      "sourceStreamSha256": "9e369b6d60bc8b0b5f6c36a4df5db781aa99d7318104299f6087d5b05d9962dd",
+      "fileSha256": "7b8030958e2d04fce229855c09da9f2077e49405982c5fa37646e92aae98dc40",
+      "retrieved": "2026-09-06",
+      "viewedBy": "parent; leaf contact-sheet review recorded separately",
+      "role": "Product source composition and separate Figma export frames; does not prove transparent individual outputs or a working shop",
+      "limits": "Reference study only. Frame scaled to960px by sampler; CSS viewport unknown; no audio or website-function check."
+    },
+    {
+      "path": "viktor-building-cutout-preview.png",
+      "source": "https://www.youtube.com/watch?v=bOCyOI3ZCRY",
+      "timeSeconds": 343.76,
+      "fileSha256": "5b1d149772c72a6990973642e4702c88d432d1dd9725b2c2994ddf76d27eb3db",
+      "retrieved": "2026-09-06",
+      "viewedBy": "leaf-1.6 and parent",
+      "role": "Visible building.png preview with removed sky and retained rectangular water base",
+      "limits": "Original-resolution video frame, not the pictured building.png file. Checkerboard in preview does not independently verify its alpha channel. Unknown CSS viewport; research only."
+    }
+  ],
+  "limits": "Screen-recording frames; unknown CSS viewport; no implementation or commercial asset licence implied."
+}

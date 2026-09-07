@@ -1,0 +1,112 @@
+[
+  {
+    "name": "pexels-zendesk",
+    "tested_at": "2026-09-07T11:27:30.092330+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-zendesk.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-zendesk.body",
+      "-w",
+      "%{http_code}",
+      "https://help.pexels.com/api/v2/help_center/en-us/articles/900005852323.json"
+    ],
+    "http_status": 200,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/pexels-zendesk.body"
+  },
+  {
+    "name": "pexels-sdk",
+    "tested_at": "2026-09-07T11:27:30.178707+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-sdk.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-sdk.body",
+      "-w",
+      "%{http_code}",
+      "https://raw.githubusercontent.com/pexels/pexels-javascript/master/README.md"
+    ],
+    "http_status": 404,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/pexels-sdk.body"
+  },
+  {
+    "name": "logodev-github",
+    "tested_at": "2026-09-07T11:27:29.896120+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logodev-github.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logodev-github.body",
+      "-w",
+      "%{http_code}",
+      "https://api.github.com/orgs/logodotdev/repos?per_page=100"
+    ],
+    "http_status": 404,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/logodev-github.body"
+  },
+  {
+    "name": "logo-dev-github-alt",
+    "tested_at": "2026-09-07T11:27:30.022356+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logo-dev-github-alt.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logo-dev-github-alt.body",
+      "-w",
+      "%{http_code}",
+      "https://api.github.com/orgs/logo-dev/repos?per_page=100"
+    ],
+    "http_status": 200,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/logo-dev-github-alt.body"
+  },
+  {
+    "name": "pexels-zendesk-search",
+    "tested_at": "2026-09-07T11:27:30.441215+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-zendesk-search.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-zendesk-search.body",
+      "-w",
+      "%{http_code}",
+      "https://help.pexels.com/api/v2/help_center/articles/search.json?query=rate%20limits&locale=en-us"
+    ],
+    "http_status": 200,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/pexels-zendesk-search.body"
+  }
+]

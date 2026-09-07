@@ -1,0 +1,417 @@
+{
+  "sites": [
+    {
+      "id": "rollers",
+      "url": "https://rollers.com.au/",
+      "category": "civil_equipment_hire",
+      "role": "primary_service_business_reference",
+      "reviewed_at": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://rollers.com.au/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Textfolge: Unternehmenspositionierung → Leistungen → Betriebskennzahlen → Flottenkategorien → Differenzierung → MoCrib → Ratgeber → Kundenstimmen → Angebotskontakt.",
+            "Unterscheidet Maschinenmiete mit und ohne Bedienpersonal; geografische Versorgung und erreichbare Depots konkretisieren die Leistung."
+          ],
+          "limitations": []
+        },
+        {
+          "url": "https://rollers.com.au/about/",
+          "type": "about",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Firmengeschichte, Leistungsbreite, Kennzahlen und benannte Führungskräfte mit regionalen Zuständigkeiten.",
+            "Familienführung wird mit Entscheidungswegen und Betreuung verbunden."
+          ],
+          "limitations": []
+        },
+        {
+          "url": "https://rollers.com.au/equipment/",
+          "type": "service_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Zehn benannte Maschinen-/Ausstattungskategorien, danach Kundenstimmen und Angebotskontakt.",
+            "Die Übersicht dient Auswahl und Weiterleitung statt der Wiederholung sämtlicher Detailinformationen."
+          ],
+          "limitations": []
+        },
+        {
+          "url": "https://rollers.com.au/equipment/smooth-drum-rollers/",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Kategorie und Mietgebiet → technische Daten/Angebot → Einsatzvorteile → Flottenvorteile → verwandte Ausstattung/Training → Kundenstimmen → Kontakt.",
+            "Technische Downloads und persönliches Angebot sind unterschiedliche nächste Schritte."
+          ],
+          "limitations": [
+            "Formulierungen zur Materialeignung unterscheiden sich vom geöffneten Auswahlratgeber; keine technischen Aussagen ungeprüft übernehmen."
+          ]
+        },
+        {
+          "url": "https://rollers.com.au/training/compacting-training/",
+          "type": "adjacent_service",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Kurze Schulungspositionierung, Ausbildung/Einweisung, Kontakt, Kundenstimmen und Angebotsabschluss.",
+            "Training ergänzt den Geräteeinsatz als angrenzende Dienstleistung."
+          ],
+          "limitations": [
+            "Text liefert wenig Tiefe zu Lernzielen, Voraussetzungen, Dauer und Buchung."
+          ]
+        },
+        {
+          "url": "https://rollers.com.au/resources/machine-specifications/",
+          "type": "technical_resource_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Technische Datenblätter sind nach Maschinenmodellen erreichbar; Text kündigt Kategorienfilter an.",
+            "Wiederkehrender Kundenstimmen-/Kontaktabschluss bindet Informationssuche an Beratung."
+          ],
+          "limitations": [
+            "Filterfunktion und PDF-Inhalte nicht getestet."
+          ]
+        },
+        {
+          "url": "https://rollers.com.au/choosing-the-right-roller-start-with-the-spec-not-the-machine/",
+          "type": "decision_guide",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Ratgeber ordnet die Auswahl nach Anforderungen, Material und geeigneter Maschinenklasse.",
+            "Geht vom Einsatzproblem zur Produktentscheidung; ist über den Newsbereich erreichbar."
+          ],
+          "limitations": [
+            "Fachliche Aussagen zur Verdichtung wurden nicht unabhängig geprüft."
+          ]
+        },
+        {
+          "url": "https://rollers.com.au/contact/",
+          "type": "contact",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Fünf Depotkontakte mit Anschriften und Rufnummern stehen vor dem Formular.",
+            "Formular fragt Unternehmen, Kontaktdaten, Anliegen und gewünschtes Depot ab; Telefonnummer ist ergänzend zur allgemeinen Rufnummer verfügbar."
+          ],
+          "limitations": [
+            "Formular wurde weder ausgefüllt noch gesendet; Routing und Validierung unbekannt."
+          ]
+        }
+      ],
+      "patterns": [
+        "Sitemap aus Beschaffungsaufgaben entwickeln: Angebot verstehen, Kategorie wählen, Eignung prüfen, Unterlagen holen, zuständigen Menschen erreichen.",
+        "Bei B2B-Vertrauen betriebliche Nachweise verwenden: Verfügbarkeit, Wartung, Qualifikation und Zuständigkeit.",
+        "Angrenzende Leistungen über ihre Beziehung zum Hauptauftrag verknüpfen, etwa Gerät und Einweisung."
+      ],
+      "limitations": [
+        "Nur Text-/Linkprüfung; keine bestätigte visuelle Hierarchie, Responsive-Qualität, Animation oder Videowirkung.",
+        "Zahlen, Testimonials und Leistungsbehauptungen sind Aussagen des Anbieters, keine unabhängig geprüften Ergebnisse.",
+        "Die gelesenen Seiten sind eine Stichprobe, kein vollständiger Domain-Crawl."
+      ]
+    },
+    {
+      "id": "faris_schmidt",
+      "url": "https://www.farisschmidt.de/",
+      "category": "b2b_webdesign_agency",
+      "role": "secondary_agency_reference_and_provenance",
+      "reviewed_at": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.farisschmidt.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Longform-Verkaufsfolge: Ergebnisversprechen → Probleme → Ergebnisse → Leistungsdifferenzierung → Projekte → Anbieter-Vergleich → Vierphasenprozess → Stimmen → Gründer → nächste Schritte → FAQ → Abschluss.",
+            "Ein kostenloses Konzept ist der wiederkehrende Einstieg; WhatsApp ist als zusätzlicher Kontakt verlinkt.",
+            "MK Börsenhandel, JANtronic und Jonah Struck werden als eigene Projekte beschrieben; das begründet eine gemeinsame Agenturherkunft als Anbieterangabe."
+          ],
+          "limitations": [
+            "Versprechen zu Conversion und automatischem Ranking sind nicht unabhängig belegt; Vergleichstabelle ist Selbstdarstellung.",
+            "Video-Link und Bildbeschreibungen belegen keine abgespielte Animation oder visuelle Qualität."
+          ]
+        },
+        {
+          "url": "https://www.farisschmidt.de/termin",
+          "type": "booking",
+          "evidence": [
+            "web_text_partial"
+          ],
+          "observations": [
+            "Wiederkehrendes CTA-Ziel der Homepage; Dokumenttitel bezeichnet Terminbuchung und Webseiten-Konzept."
+          ],
+          "limitations": [
+            "Abruf lieferte nur spärlichen Text. Kalender, Fragenfolge und Funktion sind nicht belegt."
+          ]
+        }
+      ],
+      "patterns": [
+        "Bei einer Agenturleistung kann ein klar umrissenes Erstgespräch-Artefakt den CTA konkreter machen.",
+        "Arbeitsproben nach Branche, Auftrag und Umfang beschreiben; das hilft Besuchern, Passung zu erkennen.",
+        "Mehrere Seiten einer nachgewiesenen Agenturfamilie bei der Mustersuche nicht als vollständig unabhängige Bestätigung zählen."
+      ],
+      "limitations": [
+        "Nur eine inhaltlich auswertbare Homepage und eine spärlich lesbare Terminroute; keine drei tiefen Unterseiten nachgewiesen.",
+        "https://www.farisschmidt.de/sitemap.xml und https://www.farisschmidt.de/robots.txt konnten über web nicht gelesen werden; daraus folgt keine Aussage über ihr tatsächliches Vorhandensein.",
+        "Nicht als alleinige Vorlage für sachliche Handwerks-/Service-Websites verwenden; Ton und Positionierungsintensität müssen zur Zielgruppe passen.",
+        "Keine unabhängigen Conversion-, Ranking- oder Performance-Daten; keine visuelle oder Motion-Prüfung in diesem Teilkorpus."
+      ]
+    },
+    {
+      "id": "leadfluss",
+      "url": "https://www.leadfluss.de/",
+      "category": "trade_business_marketing_agency",
+      "role": "primary_service_marketing_reference",
+      "reviewed_at": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.leadfluss.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Textfolge: Zielgruppe/Ergebnis → Nutzen → Kundenlogos → Leistungsziele → benannte Kundenergebnisse → Potenzialanalyse → Bewertungen → Team → Problem/Lösung → Standort → Kontakt.",
+            "Ergebnisbeispiele nennen Betrieb, Region, Gewerk und Leadmenge; Anfragebeginn zeigt Betriebsart und fünf Schritte.",
+            "Der sichtbare Text verbindet Neukunden, Personal und regionale Bekanntheit."
+          ],
+          "limitations": [
+            "Ergebniszahlen sind Anbieterangaben; Formularklicks und Videowiedergabe wurden nicht geprüft."
+          ]
+        },
+        {
+          "url": "https://www.leadfluss.de/vor-ort-videodreh",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Leistungsnutzen → Vertrauensargumente → fünf Arbeitsschritte → Materialeinsatz → Kunden → Anfrage.",
+            "Planung, Drehtag, Bearbeitung und Veröffentlichung machen Verantwortlichkeiten und Lieferumfang greifbar."
+          ],
+          "limitations": [
+            "Die Aussage über Videowirkung ist Marketingtext, kein gemessener Kausalnachweis."
+          ]
+        },
+        {
+          "url": "https://www.leadfluss.de/faq",
+          "type": "faq_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "FAQ gruppiert Einwände zu Angebot/Methode und Zusammenarbeit/Dreh.",
+            "Behandelt fehlende Vorkenntnisse, Eigenaufwand, geografische Reichweite, Eignung, Startdauer und Unsicherheit vor der Kamera."
+          ],
+          "limitations": []
+        },
+        {
+          "url": "https://www.leadfluss.de/blog",
+          "type": "editorial_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Beiträge nach Gewerk und Problem: PV-Leads, Badsanierung, Treppenlifte, Software und Marketing.",
+            "Titel, Datum, Themenlabels und Kurzbeschreibung ermöglichen eine Auswahl nach konkretem Bedarf."
+          ],
+          "limitations": [
+            "SEO-Traffic oder Wirkung dieser Themenarchitektur nicht gemessen."
+          ]
+        },
+        {
+          "url": "https://www.leadfluss.de/blog/solar-leads-kaufen",
+          "type": "comparison_guide",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Autor/Rolle, Datum, Lesezeit, Inhaltsverzeichnis; Ablauf, Kosten, Anbieter, Qualitätskriterien, Alternativen und FAQ.",
+            "Verbindet gewerkspezifische Vergleichssuche mit dem eigenen Angebot."
+          ],
+          "limitations": [
+            "Eigenes Angebot wird empfohlen; kein unabhängiger Anbieter-Vergleich. Preise und Anbieterqualität wurden nicht verifiziert."
+          ]
+        },
+        {
+          "url": "https://www.leadfluss.de/blog/interaktive-rechner-fuer-webseite",
+          "type": "tool_education_article",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Definition → Rechnerarten → behauptete Vorteile → Anwendungsbeispiele → Entwicklung/Einbindung → Gespräch.",
+            "Autor und Inhaltsverzeichnis vorhanden; mehrere servicebezogene Rechnerfälle werden erklärt."
+          ],
+          "limitations": [
+            "Artikel beschreibt Rechner; eine funktionierende Rechnerinteraktion wurde auf dieser Seite nicht beobachtet.",
+            "Behauptung, längere Nutzungszeit führe zu höherem Google-Ranking, ist hier nicht durch Google-Primärquellen belegt und darf keine Skill-Regel werden."
+          ]
+        },
+        {
+          "url": "https://www.leadfluss.de/anfrage",
+          "type": "qualification_funnel",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Potenzialanalyse mit angekündigtem Zeitaufwand; erstes von fünf Felder-/Fragepanels fragt Betriebsart ab.",
+            "Text kündigt anschliessende persönliche Rückmeldung an."
+          ],
+          "limitations": [
+            "Nur erster Zustand im Text belegt; Auto-Advance, spätere Fragen, Fehlerzustände, Datenschutzdialog und Übermittlung nicht getestet."
+          ]
+        }
+      ],
+      "patterns": [
+        "Eine Branchenagentur kann Vertrauen durch Gewerk, Region und konkreten Kundenfall statt austauschbarer Grössenbehauptungen aufbauen.",
+        "Service-Unterseite erklärt das Wie; FAQ fängt reale Hürden auf; Ratgeber bedient vorgelagerte Fragen.",
+        "Eine Qualifizierungsstrecke sollte Ergebnis und anschliessenden Kontakt erklären, bevor sie Informationen fordert."
+      ],
+      "limitations": [
+        "Keine visuellen oder Motion-Belege in diesem Teilkorpus; vorhandene Videoverlinkung bedeutet nicht abgespielt.",
+        "Leadzahlen und Kundenbeziehungen wurden als öffentliche Anbieterangaben erfasst, nicht unabhängig bestätigt.",
+        "Sieben Inhalts-/Anfragerouten geprüft, keine vollständige Erfassung aller Blogartikel."
+      ]
+    },
+    {
+      "id": "haubner_group",
+      "url": "https://www.haubnergroup.de/",
+      "category": "regional_real_estate_service",
+      "role": "primary_local_service_reference",
+      "reviewed_at": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.haubnergroup.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Eigentümer-Einstieg mit Bewertung; separater Käuferpfad; benannte Ansprechpartner und Kennzahlen.",
+            "Textfolge: lokale Positionierung/Bewertung → Nachweise → Käufernachfrage → Vorgehen → Fälle → weitere Vertrauens-/Ratgeberinhalte → Team → FAQ → Kontakt/Leistungslinks.",
+            "Begrenzt Zahlen teils durch Zeitstand und Teambilanz-Fussnote."
+          ],
+          "limitations": [
+            "Überlegenheit, Reviews und Ergebniszahlen nicht unabhängig geprüft. Rechner-/Kontaktfunktion nicht getestet."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/immobilie-verkaufen-bremen/",
+          "type": "local_service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Verkaufsziel → Beweise → vier Leistungsgründe → Leistungsvergleich → Kostenrisiko → drei Situationsfälle → verkaufte Objekte/Videoverweis → Bewertungswege → diskreter Verkauf → Marktdaten → FAQ.",
+            "Fälle ordnen Anlass, Massnahme und Ergebnis; Seiten verlinken Bewertung und spezifische Verkaufs-/Kaufthemen."
+          ],
+          "limitations": [
+            "Wettbewerbervergleich, Ergebnisse und Marktdaten sind Anbieterinhalte; keine unabhängige Leistungsprüfung."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/immobilienbewertung-bremen/",
+          "type": "conversion_service_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Ergebnisversprechen → Nachweise → Wertspanne und E-Mail-Report → Ablauf nach Eingabe → Kundenfälle → Medien → FAQ.",
+            "Unterscheidet automatische Orientierung und persönliche Prüfung; erklärt Kontaktfolge und Entscheidungsspielraum."
+          ],
+          "limitations": [
+            "Rechner und zugesagter Report wurden nicht angefordert oder auf Genauigkeit getestet."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/referenzen/",
+          "type": "proof_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Referenzobjekte nach Region mit Objektart, Fläche und Vermarktungsdauer.",
+            "Vor der Sammlung werden digitale und persönliche Bewertung als alternative Einstiege angeboten."
+          ],
+          "limitations": [
+            "Textabruf zeigt einige Kennzahlen als 0; Ursache unbekannt, mögliche dynamische Darstellung. Nicht als echte Geschäftszahl übernehmen.",
+            "Keine Filter-/Tab-Funktion getestet."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/immobilienmakler-bremen-neustadt/",
+          "type": "location_page",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Stadtteil-H1 → Nachweise/Bewertung → Nachrichten → Bewertungsnutzen → Angebote → Differenzierung → diskreter Verkauf → Team/Videoverweis → Faktoren → Ratgeber → lokales FAQ.",
+            "Verlinkt Stadtteilintention mit zentralen Verkaufs- und Bewertungsseiten."
+          ],
+          "limitations": [
+            "Mehrere Gesamtzahlen weichen von der gelesenen Homepage ab; unterschiedliche Stände/Bezugsgrössen möglich, Synchronität nicht belegt.",
+            "Lokaler Text ist zum Teil allgemein; kein Beweis für lokale Rankingqualität."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/kaufen/alle-angebote/",
+          "type": "inventory_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Käufer-Einstieg → Nachweise → Angebotsliste mit Preisfiltern → Finanzierung → Suchprofil → lokaler Markt → Team.",
+            "Angebotslinks enthalten Preis, Fläche, Zimmer und Typ; Suchprofil bietet einen Folgeschritt ohne passendes Listenresultat."
+          ],
+          "limitations": [
+            "Filter, Mehr-laden und Suchprofil nicht bedient; aktuelle Verfügbarkeit nicht geprüft."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/ueber-uns/",
+          "type": "about",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Gründergeschichte → Mission/Vision → Zeitachse → Team mit Rollen/Qualifikationen; mehrere Video-Aktionen im Text.",
+            "Zeitachse verbindet Entwicklungsschritte mit Unternehmensstruktur."
+          ],
+          "limitations": [
+            "Einige Counter erscheinen im Text als 0; kein Nachweis ihres Live-Zustands.",
+            "Unternehmenszahlen unterscheiden sich von der Homepage; Aktualität/Bezugsgrösse vor Wiederverwendung klären."
+          ]
+        }
+      ],
+      "patterns": [
+        "Navigationswege nach Nutzerauftrag trennen: verkaufen, Wert verstehen, kaufen.",
+        "Den Einstiegsnutzen konkret erklären: benötigte Eingabe, Ergebnis, Zeit, Kontakt danach und Grenzen.",
+        "Lokale Servicearchitektur aus zentraler Leistung, spezifischem Objekttyp, Ort, Beweisen und Ratgebern verknüpfen.",
+        "Proof-Inhalte benötigen ein gemeinsames Datenmodell mit Bezugszeit, Geltungsbereich und Quelle."
+      ],
+      "limitations": [
+        "Marketingclaims sind keine unabhängig verifizierten Leistungsnachweise.",
+        "Sieben Seitentypen untersucht; keine vollständige Sitemap oder alle Objektseiten gelesen.",
+        "Weder Layout/Mobile noch Zähleranimation, Filter, Rechner, Video oder Formular wurden in diesem Teilkorpus visuell/interaktiv geprüft."
+      ]
+    }
+  ]
+}

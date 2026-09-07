@@ -1,0 +1,34 @@
+HTTP/2 200 
+content-type: text/html; charset=utf-8
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+x-xss-protection: 1
+referrer-policy: origin-when-cross-origin
+access-control-allow-origin: unsplash.com
+x-powered-by: hero-app
+x-version: de911160688b646c069ab227352f5b4823431583
+content-language: en
+set-cookie: arpa_context=%7B%7D; path=/; max-age=7.0; expires=Thu, 01 Jan 1970 00:00:07 GMT; HttpOnly; secure
+set-cookie: un_sesh=Mllzait4RXllV3dLcHBpbExvSWVvYWhFc1l0RDV0SHFUUTNSMjJWWTRUZE1HMHVXMmNEZDYrM3h5ak5ZVWp0dmpvVWxoZmNyYldHb0pyNjZ2UXBnVXcrejBUUTg1eVBtY3VhQjR0L1g3UXRoRkZ6N0tpbnJzSVQyVzFIWjVBS1pVaXpCcmdtSzlQZTNMdzhlQUpEMjE0d3JMbk9jMitZTEcxaHZGa2VYL21tTXdhakpGL1RaSlVGc244UjJhN2hqNUN0eWxLdEpOOEJCWC9uZ0Qyb0VZWHNvYmhzL0tSVTRYK1dMTS9XYy9aNS83eVdNTFBURmVUbURIVUFEaHo3SXFzMFl5dUx0aTZLNHROWlRYN3ZjV3N0dmhsSUFTTlVHdTg2U3R3Y21IdVk9LS1kZVdwUWpNT09tVmdnSk9qeWNLeUJBPT0%3D--2f698a4ebd64a1936d8aa1b48c7c9c599a72065b; path=/; expires=Fri, 07 Sep 2029 11:13:32 GMT; secure; HttpOnly; SameSite=Lax
+etag: W/"fe959dc89f40ea8c382dfe64662a8dd4"
+cache-control: max-age=0, private, must-revalidate
+content-security-policy: default-src 'self' https: 'unsafe-inline'; img-src * 'self' https: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net www.googletagmanager.com d3js.org unpkg.com cdnjs.cloudflare.com cdn.statuspage.io; connect-src 'self' collector.unsplash.com cdn.statuspage.io *.amazonaws.com
+x-request-id: e45410bd-c87f-4756-9172-92071303b05b
+x-runtime: 0.159618
+via: 1.1 53bf0cff7786ab4189de275f76a50578.cloudfront.net (CloudFront), 1.1 varnish
+x-amz-cf-pop: WAW51-P3
+x-amz-cf-id: C_aarQEo7aDI-Bm7ZXsazy5PVJ26GcknPLDjOVRBhsf-zIDi1ZT3iA==
+fastly-is-origin: 1
+fastly-backend-name: F_rails_backend
+accept-ranges: bytes
+date: Mon, 07 Sep 2026 11:13:32 GMT
+x-served-by: cache-ber1080020-BER
+x-cache: Miss from cloudfront, MISS
+x-cache-hits: 0
+vary: Accept, Accept-Encoding
+strict-transport-security: max-age=31449600
+set-cookie: require_cookie_consent=true; Expires=Tue, 07 Sep 2027 11:13:32 GMT; path=/;
+set-cookie: xp-search-affiliate=experiment; expires=Tue, 07 Sep 2027 11:13:32 GMT; path=/;
+set-cookie: xp-search-freshness-curation=control; expires=Tue, 07 Sep 2027 11:13:32 GMT; path=/;
+content-length: 504411
+

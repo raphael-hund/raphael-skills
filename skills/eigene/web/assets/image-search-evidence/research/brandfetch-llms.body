@@ -1,0 +1,63 @@
+# Brandfetch
+
+- [Getting started](https://docs.brandfetch.com/get-started.md): The brand layer for products and AI agents
+- [Explore dataset](https://docs.brandfetch.com/playground/index.md): Try the Brandfetch APIs interactively in the Playground.
+- [Overview](https://docs.brandfetch.com/logo-api/overview.md): Instantly add any company logos to your app or website
+- [Parameters](https://docs.brandfetch.com/logo-api/parameters.md): Detailed reference of all Logo API parameters
+- [Brand API](https://docs.brandfetch.com/brand-api/overview.md): The brand layer for modern products
+- [Brand Context API](https://docs.brandfetch.com/brand-context-api/overview.md): Brand context built for AI agents
+- [Brand Search API](https://docs.brandfetch.com/brand-search-api/overview.md): Match brand names to their domain and logo
+- [Overview](https://docs.brandfetch.com/transaction-api/overview.md): Turn payment transactions into merchant data
+- [Brandfetch MCP](https://docs.brandfetch.com/mcp/overview.md): Connect Brandfetch to AI assistants
+- [Coverage and quality](https://docs.brandfetch.com/accuracy/coverage-and-quality.md)
+- [Data ingestion & operationalization](https://docs.brandfetch.com/delivery-methods/data-ingestion.md)
+- [REST API](https://docs.brandfetch.com/delivery-methods/rest-api.md): Fetch brand data on demand over HTTPS with a simple, typed REST interface.
+- [Overview](https://docs.brandfetch.com/delivery-methods/webhooks/overview.md): Get notified of changes by receiving events at your webhook URL.
+- [Setup a webhook](https://docs.brandfetch.com/delivery-methods/webhooks/setup.md): Start receiving event payloads
+- [Delivery behaviors](https://docs.brandfetch.com/delivery-methods/webhooks/delivery-behaviors.md): This section helps you understand different behaviors to expect regarding how Brandfetch sends events to your webhook endpoint.
+- [Best practices](https://docs.brandfetch.com/delivery-methods/webhooks/best-practices.md): Review these best practices to make sure your webhooks remain secure and function well with your integration.
+- [Event types](https://docs.brandfetch.com/delivery-methods/webhooks/event-types.md): Overview of subscribable event types
+- [GraphQL](https://docs.brandfetch.com/delivery-methods/graphql.md)
+- [Getting help](https://docs.brandfetch.com/support/getting-help.md): Our support team is always available and willing to assist you.
+- [Security & SOC2](https://docs.brandfetch.com/support/security-soc2.md): Our commitment to secure data handling and best-in-class practices.
+- [Zero data retention](https://docs.brandfetch.com/support/zero-data-retention.md): An enterprise feature that keeps request metadata — the brands you query and the users behind the requests — out of Brandfetch's records.
+- [Report inaccuracies](https://docs.brandfetch.com/support/report-inaccuracies.md): Report incorrect or missing brand info.
+- [Terms and Conditions](https://docs.brandfetch.com/support/terms-and-conditions.md)
+- [Service status](https://docs.brandfetch.com/support/service-status.md): Check the status of Brandfetch services.
+- [Brand API by domain](https://docs.brandfetch.com/reference/brand-api-domain.md): Get brand data using a domain name
+- [Brand API by ticker](https://docs.brandfetch.com/reference/brand-api-ticker.md): Get brand data using a Stock or ETF ticker
+- [Brand API by ISIN](https://docs.brandfetch.com/reference/brand-api-isin.md): Get brand data using an ISIN code
+- [Brand API by crypto](https://docs.brandfetch.com/reference/brand-api-crypto.md): Get brand data using a crypto symbol
+- [Brand API (auto-detect)](https://docs.brandfetch.com/reference/brand-api.md): Get brand data using a Domain, Email address, Brand ID, ISIN, Stock/ETF ticker, or Crypto symbol
+- [Brand API prefetch (HEAD)](https://docs.brandfetch.com/reference/brand-api-prefetch.md)
+- [Brand API prefetch by domain (HEAD)](https://docs.brandfetch.com/reference/brand-api-prefetch-domain.md)
+- [Brand Context API](https://docs.brandfetch.com/reference/brand-context-api.md): Get a structured, narrative-rich brand context for a domain — including identity, positioning, voice, and visual style.
+- [Brand Search API](https://docs.brandfetch.com/reference/brand-search-api.md): Search for brands by name, login to get a clientId
+- [Transaction API](https://docs.brandfetch.com/reference/transaction-api.md): Turn payment transactions into merchant data
+- [Viewer API](https://docs.brandfetch.com/reference/viewer-api.md): Returns the identity of the credential used to authenticate the request: an API key or a user session token (JWT). Use it to verify a credential during integration setup (a `200` response means the credential is valid; `401`/`403` means it is missing, unknown, or revoked) and to display which API ke…
+- [No-code integrations](https://docs.brandfetch.com/integrations/overview.md): Connect Brandfetch to Zapier, Make, and n8n without writing code
+- [Use Brandfetch with Microsoft Excel](https://docs.brandfetch.com/integrations/microsoft-excel.md)
+- [Use Brandfetch with Microsoft PowerPoint](https://docs.brandfetch.com/integrations/microsoft-powerpoint.md)
+- [Use Brandfetch with Google Sheets](https://docs.brandfetch.com/integrations/google-sheets.md)
+- [Use Brandfetch with Airtable](https://docs.brandfetch.com/integrations/airtable.md)
+- [Firecrawl](https://docs.brandfetch.com/comparisons/firecrawl.md): How Firecrawl's branding extraction compares to Brandfetch's brand data APIs
+- [Clearbit Logo API](https://docs.brandfetch.com/comparisons/clearbit.md): How Brandfetch's Logo API compares to Clearbit's discontinued Logo API
+- [Logo.dev](https://docs.brandfetch.com/comparisons/logo-dev.md): How Logo.dev's Logo API compares to Brandfetch's Logo API
+- [Google Favicon API](https://docs.brandfetch.com/comparisons/google-favicon-api.md): Why Google's unofficial favicon endpoint isn't a substitute for a real logo API
+- [DuckDuckGo Favicon API](https://docs.brandfetch.com/comparisons/duckduckgo-favicon-api.md): Why DuckDuckGo's icon endpoint isn't a substitute for a real logo API
+- [Migrating from Clearbit to Brandfetch Logo API](https://docs.brandfetch.com/guides/migrate-from-clearbit-logo-api.md): Complete guide to replacing Clearbit's deprecated Logo API with Brandfetch
+- [Guide to Logo Fair use](https://docs.brandfetch.com/guides/logo-fair-use.md): Understanding fair use principles for logo usage
+- [Overview](https://docs.brandfetch.com/use-cases/overview.md): Common use cases for brand data, each with a working example
+- [Sales personalization](https://docs.brandfetch.com/use-cases/sales-personalization.md): Auto-brand decks, proposals, and emails with your prospect's logo and colors
+- [Populate onboarding](https://docs.brandfetch.com/use-cases/populate-onboarding.md): Boost conversion and activation by personalizing your users' onboarding from their email domain
+- [Company autocomplete](https://docs.brandfetch.com/use-cases/company-autocomplete.md): Find your company as you type, with a logo on every result, powered by the Brand Search API
+- [Profiles & directory](https://docs.brandfetch.com/use-cases/profiles-and-directory.md): Put verified logos and brand data on every company record, in account lists, CRM contacts, job listings, and logo walls
+- [Logo picker](https://docs.brandfetch.com/use-cases/logo-picker.md): Let users search a brand and drop the right logo asset into the document, powered by the Brand Search API and Brand API
+- [Transaction enrichment](https://docs.brandfetch.com/use-cases/transaction-enrichment.md): Turn raw payment descriptors into clean merchant identity, category, and logo using the Transaction API
+- [Stock ticker logos](https://docs.brandfetch.com/use-cases/stock-ticker-logos.md): Show company logos in stock watchlists and portfolio cards using the Logo API's ticker route
+- [On-brand AI](https://docs.brandfetch.com/use-cases/on-brand-ai.md): Ground LLMs and agents with real brand context using the Brand Context API and Brandfetch MCP
+- [Changelog](https://docs.brandfetch.com/changelog/overview.md): Follow along with updates across Brandfetch’s API.
+
+## OpenAPI Specs
+
+- [openapi](/openapi.json)

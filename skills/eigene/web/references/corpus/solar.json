@@ -1,0 +1,621 @@
+{
+  "checked_at": "2026-09-06",
+  "scope": "Textanalyse der fünf Nutzerreferenzen mit relevanten Unterseiten; keine visuelle oder funktionale Verifikation.",
+  "sites": [
+    {
+      "id": "alpen-energie",
+      "url": "https://alpen-energie.ch/",
+      "category": "regional_solar_service",
+      "role": "user_positive_reference",
+      "pages": [
+        {
+          "url": "https://alpen-energie.ch/",
+          "type": "home",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Regionaler Solar-/Wärmepumpeneinstieg mit Nutzen-CTA und Video-Link; Systemübersicht, Erfolgszahlen, Kaufargumente, Partnerstatus, Produkte, Team/Gebiet, Kundenbelege, FAQ, Offerte.",
+            "Verantwortungsübernahme wird konkret über eigene Montage sowie Netz- und Förderanmeldung erklärt."
+          ],
+          "limitations": [
+            "Text enthält responsive Wiederholungen und 0+-Zählerstände; sichtbare Dopplung oder Animation daraus nicht ableiten.",
+            "Standort-/Preis-/Garantie-/Bewertungsbehauptungen sind Anbieterangaben, nicht unabhängig validiert."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/produkte/waermepumpe",
+          "type": "service_comparison_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Einstieg als Auswahlberatung zwischen Buderus und Panasonic; Nutzenzahlen, zwei markenspezifische Profile mit Detailverweisen, Fragen zu Altbau/Förderung/Einbau und Links zum Gesamtsystem.",
+            "Wählt nach Hausprofil statt nur nach Produktmerkmalen."
+          ],
+          "limitations": [
+            "Technische und finanzielle Behauptungen nicht validiert; genannte Detailseiten nicht geöffnet."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/referenzen",
+          "type": "project_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Projektverzeichnis nennt Personen, Modulzahlen, Anlagenleistung und Modulmodell; Detailseiten bilden eine eigene Familie unter /projekte/.",
+            "Projektparameter machen Arbeitsbelege vergleichbar."
+          ],
+          "limitations": [
+            "Aufgelistete Werte nicht rechnerisch/extern geprüft; Index ist kein vollständig untersuchtes Projektarchiv."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/produkte/energiemanager",
+          "type": "component_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Erklärt Energieüberwachung zuerst allgemein, dann nach Solarproduktion, Speicherzustand und Hausverbrauch; anschliessend Integration und Beratung.",
+            "Gerätefunktion wird über konkrete Nutzeraufgaben statt ausschliesslich Datenblattwerte beschrieben."
+          ],
+          "limitations": [
+            "Bild-Alttexte und Funktionscopy beweisen weder interaktive Demo noch Animation."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/solaranlage-basel",
+          "type": "regional_service_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Regionaler Hero mit Netzbetreibern und Anmeldung; System und Produkte, regionaler Service, Referenzen, Gemeinde-Verzeichnis, lokale Projektlinks, Kosten-/Förderungs-/Bewilligungs-FAQ.",
+            "Verknüpft regionale Nachfrage mit Service-, Orts- und Projektseiten."
+          ],
+          "limitations": [
+            "Regionale Leistungs-/Förderversprechen ungeprüft; wiederholter Extraktionstext kann Breakpointvarianten enthalten."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/projekte/ronald-g",
+          "type": "project_detail_compact",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Sehr knapper Projektnachweis: Dachbild-Alttext, Modulzahl, kWp, Installationszeit, benachbarte Projekte und Offertenabschluss.",
+            "Keine ausführliche Problem-Lösungs-Erzählung im extrahierten Projektteil."
+          ],
+          "limitations": [
+            "H1 wird als reine Modulzahl extrahiert; tatsächliche visuelle Gewichtung nicht beurteilt."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/anfrage",
+          "type": "lead_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Verfügbarkeits-/Ersparniseinstieg mit Beratung, Förder-/Garantiehinweisen, Bewertungs- und Partnerbelegen; danach drei Anbieterunterschiede.",
+            "Der Lead-Einstieg begründet das Gespräch mit eigener Ausführung und individueller Planung."
+          ],
+          "limitations": [
+            "Formularschritte, Eingabeverhalten und Versand nicht sichtbar bzw. nicht getestet."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/solaranlage/riehen",
+          "type": "local_service_leaf",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "H1 adressiert Riehen; mehrere Folgeüberschriften, FAQ und Abschluss sprechen weiterhin Basel an; Nachbarort-Links und Rückverweis zum Basel-Hub sind vorhanden.",
+            "Konkretes Gegenbeispiel für blossen Ortsnamenaustausch ohne konsequente lokale Antwort."
+          ],
+          "limitations": [
+            "Keine Rankingwirkung behauptet; Muster betrifft beobachteten Text und nicht automatisch alle Ortsseiten."
+          ]
+        },
+        {
+          "url": "https://alpen-energie.ch/blog/solaranlage-amortisation-wirtschaftlichkeit-schweiz-2026",
+          "type": "economic_advice_article",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Autor, Datum und Lesezeit; kurze Vorabantwort, Einflussfaktoren, zwei Rechenbeispiele mit Annahmen und Kritik an zu optimistischen Werberechnungen.",
+            "Rechenstruktur ist übertragbar, prognostizierte Renditen und Einsparwerte nicht."
+          ],
+          "limitations": [
+            "Keine unabhängige Rechnungs-/Förderprüfung; Artikelangaben nicht als belastbare finanzielle Empfehlung verwenden."
+          ]
+        }
+      ],
+      "patterns": [
+        "Regionale Verantwortung plus Systemangebot; separate Produkt-, Projekt-, Orts- und Beratungsfamilien.",
+        "Qualitätsgrenze: Ortsseiten müssen lokale Fragen tatsächlich beantworten; reproduzierte Basel-Copy auf Riehen ist kein Muster zum Übernehmen."
+      ],
+      "limitations": [
+        "Geprüft am 2026-09-06, nur Text; keine Browser-/Motion-Evidenz in dieser Teilrecherche.",
+        "Sitemap-XML über web nicht abrufbar; Familien aus verlinkten Seiten rekonstruiert, kein Vollcrawl."
+      ]
+    },
+    {
+      "id": "elephant-solar",
+      "url": "https://www.elephantsolar.de/",
+      "category": "regional_solar_service",
+      "role": "user_positive_reference",
+      "pages": [
+        {
+          "url": "https://www.elephantsolar.de/",
+          "type": "home",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Nutzen-/Beratungshero, früher Kundenbeleg, Herstellermarken, drei Leistungsbereiche, Kennzahlen, Kundenstimmen, Beratung, Produktkatalog, regionale Montagedauer, Unternehmen, Reviews.",
+            "Produktbereich nennt je Komponente Modell, Vorteile und Datenblatt; Beratung und Telefonnummer wiederholen sich an Entscheidungspunkten."
+          ],
+          "limitations": [
+            "Text enthält unterschiedliche Kundenzahlen und uneinheitliche Energieeinheiten; vor Wiederverwendung harmonisieren.",
+            "Tablabels und Videolink belegen keine beobachtete Interaktion."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/produkte/solaranlagen",
+          "type": "service_product",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Nutzenintro, sechs Eigenheimvorteile, konkreter Modulhersteller, Beratungs-/Telefonabschluss.",
+            "Kurze Produktseite: erst Alltagsergebnis, danach Modultechnik; keine umfangreiche Wissensbibliothek im Haupttext."
+          ],
+          "limitations": [
+            "Garantie-/Steuer-/Leistungsbehauptungen nicht unabhängig geprüft."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/produkte/waermepumpen",
+          "type": "service_product",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Wärmeeinstieg, sechs Vorteile, Beratung, Förderung für Niedersachsen, Funktionsprinzip und Anfrage.",
+            "PV-Verbindung sowie Heizkosten-/Versorgungsfragen tragen den Text."
+          ],
+          "limitations": [
+            "Ein Beratungsabsatz spricht noch von Solaranlagen; Vorlagenwechsel fachlich gegenlesen."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/ueber-uns",
+          "type": "company_team",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Mission und Serviceanspruch vor grossen Teambereichen; Namen und Funktionen getrennt nach Verwaltung/Vertrieb und Elektromontage.",
+            "Handwerksrollen machen die behauptete Umsetzungsfähigkeit greifbar."
+          ],
+          "limitations": [
+            "Kein Beleg, dass sämtliche genannten Personen aktuell angestellt sind."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/referenzen",
+          "type": "project_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Referenzliste verbindet Ort/Postleitzahl, Modulzahl, kWp und Umsetzungshinweis mit Detailseiten.",
+            "Praktisches Raster für vergleichbare regionale Projekte."
+          ],
+          "limitations": [
+            "Nicht jede verlinkte Referenz geöffnet."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/blog",
+          "type": "editorial_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Gemischter Index mit Kategorien News, Ratgeber und Blog, Datum, Auszug und Unternehmensautor.",
+            "Förderung, Gewinnspiel und Teamalltag dienen unterschiedlichen Informationsaufgaben."
+          ],
+          "limitations": [
+            "Index nicht als vollständiges SEO-Themencluster bewertet."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/referenzen/stefan-mattern",
+          "type": "project_detail_compact",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Extrahierter Hauptteil besteht aus Modulzahl, Leistung und Ort; danach übergreifende Kontaktaufforderung.",
+            "Knapper Projektnachweis, keine ausgearbeitete Fallstudie im Text."
+          ],
+          "limitations": [
+            "Fotos oder Galerien können in der Textansicht fehlen."
+          ]
+        },
+        {
+          "url": "https://www.elephantsolar.de/blog/foerderung-fuer-waermepumpen-2026",
+          "type": "editorial_article",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Datierter Ratgeber argumentiert mit künftig engerer Förderung und früher Planung; anschliessend Anbieterabschluss.",
+            "Gegenmuster: politische Prognose und Dringlichkeit ersetzen keine direkt belegten Programmkonditionen."
+          ],
+          "limitations": [
+            "Keine verlinkten offiziellen Förderquellen im gelesenen Artikeltext; Förderprognose nicht übernommen."
+          ]
+        }
+      ],
+      "patterns": [
+        "Regionaler Meisterbetrieb mit kompletter Produktwelt und niedrigschwelligem Beratungseinstieg.",
+        "Team nach tatsächlicher Arbeit gliedern; Projektindex liefert Fakten, ausführliche Fallstudie müsste ergänzt werden."
+      ],
+      "limitations": [
+        "Geprüft am 2026-09-06, nur Text; Erscheinungsbild, Timing und Scrollverhalten nicht geprüft.",
+        "Sitemap-XML nicht abrufbar; interne Navigation und Stichprobe statt Vollcrawl."
+      ]
+    },
+    {
+      "id": "priwatt",
+      "url": "https://priwatt.de/solaranlagen/",
+      "category": "solar_service_commerce_hybrid",
+      "role": "user_positive_reference",
+      "pages": [
+        {
+          "url": "https://priwatt.de/solaranlagen/",
+          "type": "turnkey_service_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Beratungs-/Montageangebot mit konkreten Leistungszusagen; direkte Kontaktkanäle, Ersparniseinstieg, Kaufmotive, Marken, alternative Sets, Montageumfang und Ressourcenbereich.",
+            "Trennt Vollservice von Selbstbau und Materialkauf; Kaufabsicht und Ausführungsmodell bleiben eigenständige Entscheidungen."
+          ],
+          "limitations": [
+            "Angegebene Ersparnis, Fristen, Siegel und Marktwerte nicht validiert.",
+            "Enthält auch Balkonkraftwerk-Rückgabe-Copy; Produktkontext bei übernommenen Modulen prüfen."
+          ]
+        },
+        {
+          "url": "https://priwatt.de/solaranlagen/komplettsets-sunenergyxt/",
+          "type": "self_build_category",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Pakete nach Haushalt/Verbrauch mit Modulen, Leistung, Speicher und Preis; danach Grössenhilfe, Lieferumfang, Aufgabenteilung und drei Ausführungswege.",
+            "Beratung bleibt als Ausweg für Unsicherheit erreichbar."
+          ],
+          "limitations": [
+            "Rechtliche und elektrische Selbstbaugrenzen der Quelle hier nicht geprüft oder als Anleitung übernommen."
+          ]
+        },
+        {
+          "url": "https://priwatt.de/solaranlagen/komplettsets-ohne-montage/",
+          "type": "supply_only_category",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Adressiert Käufer mit vorhandenem Elektriker; Paketmatrix mit optionaler Unterkonstruktion, Komponentendetails, zwei Ausführungswegen, Abholung und FAQ.",
+            "Macht Leistungsgrenze und zusätzliche Kosten vor Auswahl konkret."
+          ],
+          "limitations": [
+            "Optionen/Preisumschaltung nur als Text/Input vorhanden; Funktion nicht getestet."
+          ]
+        },
+        {
+          "url": "https://priwatt.de/blog/kosten-pv-anlage-mit-speicher/",
+          "type": "cost_advice_article",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Benannter Redakteur, Veröffentlichungs-/Aktualisierungsdatum und Lesezeit; Preisspanne, früher Beratungseinstieg, Kostenwahrnehmung und Eigenverbrauchsrechnung.",
+            "Ein vom Servicehub als Unternehmens-PV verlinkter Pfad führte beim erneuten Öffnen zu diesem allgemeinen Kostenartikel."
+          ],
+          "limitations": [
+            "Redirect kann sich ändern; Ziel beantwortet eine andere primäre Suchabsicht als der verlinkte Unternehmensanker.",
+            "Preise und Förderangaben nicht fachlich validiert."
+          ],
+          "requested_url": "https://priwatt.de/blog/pv-anlage-fuer-unternehmen/"
+        },
+        {
+          "url": "https://priwatt.de/solaranlagen/komplettsets/solaranlage-4-0-kwp-komplettset-mit-sunenergyxt-speicher/SW12065.1",
+          "type": "configurable_product_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Preis, Lieferung, Montageoption, Speicherauswahl, Warenkorb, Kaufabsicherung; danach Hilfe durch Menschen, Lieferumfang, Eignung und technische Tabelle.",
+            "Konfiguration erhält Kontext durch Haushaltsgrösse und Dachbedarf."
+          ],
+          "limitations": [
+            "Warenkorb nicht betätigt, Auswahl nicht getestet; Preisinformation nur Momentaufnahme."
+          ]
+        }
+      ],
+      "patterns": [
+        "Zwei Conversionmodelle getrennt halten: persönliches Komplettangebot versus unmittelbar kaufbares Set.",
+        "Konfiguration muss Eignung, Umfang und Zusatzkosten erklären; Artikel verlinken passend zur Ankerabsicht."
+      ],
+      "limitations": [
+        "Geprüft am 2026-09-06, nur Text; keine Kaufhandlung und keine Funnelprüfung.",
+        "Sitemap-XML nicht abrufbar; fünf Inhaltsendpunkte in Stichprobe, kein Vollcrawl."
+      ]
+    },
+    {
+      "id": "enpal",
+      "url": "https://www.enpal.de/",
+      "category": "national_energy_service",
+      "role": "user_positive_reference",
+      "pages": [
+        {
+          "url": "https://www.enpal.de/",
+          "type": "home",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Finanzierungs-/Nutzenhero, Energiemanager und Produktangebote, Pressebelege, Umsetzungsversprechen, zahlreiche regionale Kundenmotive, Auszeichnungen und FAQ.",
+            "Primärer Einstieg fragt nach Ersparnis; Eigenheim-Gesamtsystem verbindet Solar, Wärme, Speicher und Mobilität."
+          ],
+          "limitations": [
+            "Wechselnde Hero-Textfragmente oder Bildserien beweisen keine beobachtete Animation.",
+            "Anbieterkennzahlen, Auszeichnungen und Preisbehauptungen nicht unabhängig geprüft."
+          ]
+        },
+        {
+          "url": "https://www.enpal.de/enpal-one",
+          "type": "differentiation_product",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Erklärt Energiemanager über Vergütung, Tarif, Hardwarevernetzung und Alltag; danach Systempaket, Vergleich mit Alternativen, Auszeichnungen.",
+            "Höchstwert zur Vergütung erhält Konfigurations-/Batterie-/Marktbedingungen direkt im Text."
+          ],
+          "limitations": [
+            "Vergleich ist Anbieterpositionierung, keine unabhängige Bewertung; keine funktionierende Demo beobachtet."
+          ]
+        },
+        {
+          "url": "https://www.enpal.de/waermepumpe-rechner",
+          "type": "lead_funnel_shell",
+          "evidence": [
+            "web_text_partial"
+          ],
+          "observations": [
+            "Wärmepumpen-Rechnertitel und Zertifikats-/Kundenzufriedenheitshinweise sind lesbar."
+          ],
+          "limitations": [
+            "Eigentliche Fragen, Schritte, Ergebnis und Validierung nicht in Textabruf enthalten; nur Funnelhülle geprüft."
+          ]
+        },
+        {
+          "url": "https://www.enpal.de/informieren-c1",
+          "type": "lead_funnel_shell",
+          "evidence": [
+            "web_text_partial"
+          ],
+          "observations": [
+            "Solarrechner-Ziel des wiederkehrenden Ersparnis-CTA; minimaler indexierbarer Text."
+          ],
+          "limitations": [
+            "Kein Formularfluss oder Resultat geprüft; URL kann kampagnenabhängig sein."
+          ]
+        },
+        {
+          "url": "https://www.enpal.de/photovoltaik",
+          "type": "service_knowledge_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Verkaufsoberteil mit Leistungs-/Ratenargument, Vorteilen, Technik, Garantie, System, Anbietergründen und drei Prozessschritten.",
+            "Darunter tiefe Informationsarchitektur zu Funktion, Kosten/Förderung, Installation/Betrieb und Erträgen, mit Detailartikeln und eigener Datenanalyse."
+          ],
+          "limitations": [
+            "Sehr lange Textseite; untersuchte Abschnitte und Navigationsfamilien sind keine vollständige Faktenprüfung aller Inhalte."
+          ]
+        },
+        {
+          "url": "https://www.enpal.de/waermepumpe",
+          "type": "service_knowledge_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Angebot mit Preis-/Förderanker, Austauschversprechen, Produkteignung, Service, Finanzierung und Prozess; danach umfangreicher Ratgeber.",
+            "Planung, Betrieb, Altbau und Heizungsvergleich werden mit Kurzantworten, Tabellen und einem beschrifteten Kosten-/CO2-Rechner behandelt."
+          ],
+          "limitations": [
+            "Rechnerfelder sind textlich belegt, Berechnung und Interaktion nicht getestet; Zahlen sind keine validierte Beratung."
+          ]
+        },
+        {
+          "url": "https://www.enpal.de/easyflex",
+          "type": "financing_objection_page",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Erklärt Zahlungsbeginn, Laufzeit, Sondertilgung, Zinsstabilität und gebündelten Ablauf in einzelnen Abschnitten; verknüpft Finanzierung mit Energieberatung.",
+            "Eigene Seite widmet sich der Kaufhürde statt technische Merkmale nochmals zu wiederholen."
+          ],
+          "limitations": [
+            "Finanzkonditionen und Aussagen über Risiko nicht unabhängig geprüft."
+          ]
+        }
+      ],
+      "patterns": [
+        "Conversion zuerst; informative Tiefe wird nachgelagert und über Themenfamilien erschlossen.",
+        "Finanzierungs- und Systemargumente verdienen eigene Seitentypen, wenn sie wesentliche Kaufhürden bearbeiten."
+      ],
+      "limitations": [
+        "Geprüft am 2026-09-06, Textstichprobe; keine Conversiondaten oder geprüfte Nutzerinteraktion.",
+        "Sitemap-XML scheiterte am nicht unterstützten Content-Type; keine vollständige URL-Zählung."
+      ]
+    },
+    {
+      "id": "ekd-solar",
+      "url": "https://www.ekd-solar.de/",
+      "category": "national_energy_system_service",
+      "role": "user_positive_reference",
+      "pages": [
+        {
+          "url": "https://www.ekd-solar.de/",
+          "type": "home",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Systemhero mit Bewertungsbeleg, Erklärung der Komponenten, wirtschaftlicher Vergleich, Ersparnisrechner, Leistungszahlen und regionale Beratung/Standorte.",
+            "Navigation trennt System, Produkte, Ratgeber, Grossanlagen, Kundenbelege und Unternehmen."
+          ],
+          "limitations": [
+            "Erster Abruf war Challenge; später über primären Treffer/non-www-Weiterleitung vollständig textlich zugänglich.",
+            "Visualisierte Prozent-/Ersparnisangaben sind Anbieterbehauptungen."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/energiesystem/",
+          "type": "system_solution_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Komponentenübersicht, Haushaltsbeispiele, Wirtschaftlichkeitsvergleich, Rechner, Systemvernetzung, Winter-/Sommerbetrieb, Tarifwahl, Geräte und App.",
+            "Erklärt Zusammenspiel anhand Jahreszeit und Alltag statt nur einzelne Produkte zu sammeln."
+          ],
+          "limitations": [
+            "Saisonbeschriftungen/Diagramm-Alttexte belegen keine getestete interaktive Umschaltung; ökonomische Maximalbehauptungen ungeprüft."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/waermepumpe/",
+          "type": "ecosystem_service",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Positioniert Wärme als Teil des vorhandenen Energiesystems; erklärt Preissteuerung, Funktionsprinzip, Technologieauswahl und Partner.",
+            "Zentrale Beratung hilft bei Auswahl und Integration, statt nur ein einzelnes Gerät zu verkaufen."
+          ],
+          "limitations": [
+            "Kosten-/CO2- und Kompatibilitätsbehauptungen nicht unabhängig verifiziert."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/kundenerfahrungen/",
+          "type": "customer_story_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Kundenstory-Einstieg, Bewertungen und Designauszeichnungen; einzelne Kundenaussagen, Ersparnis-CTA, Anfrage und Revieweinbindung.",
+            "Verknüpft Erlebnisbelege unmittelbar mit der persönlichen Beratung."
+          ],
+          "limitations": [
+            "TrustIndex-Inhalt hinter Consent-Platzhalter; darin liegende Rezensionen nicht gelesen."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/energiemanagement-system/",
+          "type": "blocked_component_detail",
+          "evidence": [
+            "blocked"
+          ],
+          "observations": [],
+          "limitations": [
+            "Abruf lieferte nur eine Bot-Challenge; keine Inhalts-, Design- oder Motionanalyse dieser URL."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/solaranlage/schritt-fuer-schritt/",
+          "type": "process_explainer",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Fünf Phasen: Qualifizierung, Vor-Ort-Gespräch, Planung/Angebot, Montage/Anmeldung, Inbetriebnahme; zuerst Überblick, dann pro Phase Aufgabe und Ergebnis.",
+            "Erklärt, wer den nächsten Schritt übernimmt, welche Hausdaten nötig sind und wo die unverbindliche Entscheidung bleibt."
+          ],
+          "limitations": [
+            "Prozesscopy beschreibt Anbieterablauf; tatsächliche Einhaltung nicht geprüft."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/stromtarif/",
+          "type": "tariff_service",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Tarifnutzen und Preisvergleich, Kundenstory, Systembezug, Wechselbereich mit externem iframe und FAQ zu Zähler, Eignung, Abrechnung und Risiken.",
+            "Das FAQ benennt ausdrücklich Preisspitzen und fehlende Ersparnisgarantie."
+          ],
+          "limitations": [
+            "Checkout-iframe nicht geöffnet oder bedient; Vertrags-/Tarifdaten nicht verifiziert."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/finanzierung/",
+          "type": "financing_objection_page",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Anfangsinvestition als Problem, Unterstützung und externe Finanzpartner, Beratung, finanzierbare Bestandteile, Bedingungen und Vergleich zum Mieten.",
+            "Unterscheidet eigene Begleitung von der Leistung des Finanzierungspartners."
+          ],
+          "limitations": [
+            "Keine Bonitätsanfrage; Konditionen und Mietvergleich nicht unabhängig geprüft."
+          ]
+        },
+        {
+          "url": "https://www.ekd-solar.de/kundenerfahrungen/kundenstory-matthias/",
+          "type": "customer_case_study",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Haushaltssituation und Kundennutzen, Videoeinbettung, Projektübersicht, Herausforderung/Lösung, Komponenten, Dachausrichtung und App-Alltag.",
+            "Deutlich tiefere Fallstudie als ein reines Projektfoto mit Leistungszahl."
+          ],
+          "limitations": [
+            "YouTube-Consent-Platzhalter: Video nicht angesehen oder transkribiert; berichtete Resultate sind Anbieter-/Kundenaussagen."
+          ]
+        }
+      ],
+      "patterns": [
+        "Systemverständnis nach konkreten Nutzungssituationen aufbauen.",
+        "Prozess- und Fallstudienseiten nehmen Unsicherheit über Umsetzung; Tarife behandeln auch Bedingungen und Grenzen."
+      ],
+      "limitations": [
+        "Geprüft am 2026-09-06: acht Seiten mit Inhalt plus eine blockierte Komponentenseite.",
+        "Sitemap-XML nicht abrufbar; interne Linkfamilien, keine komplette Sitemap.",
+        "Keine Browser-/Animationsbeobachtung in diesem Research-Teil."
+      ]
+    }
+  ]
+}

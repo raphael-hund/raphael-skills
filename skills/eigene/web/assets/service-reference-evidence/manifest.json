@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-06",
+  "scope": "Desktop viewport screenshots, limited read-only browser interactions. No native video, no mobile emulation, no full-page visual audit.",
+  "counts": {
+    "requested_domains": 13,
+    "navigation_attempted_domains": 11,
+    "domains_with_persisted_pixels": 9,
+    "persisted_frames": 12,
+    "native_videos": 0,
+    "mobile_captures": 0,
+    "visually_captured_subpages": 1
+  },
+  "capabilities": {
+    "browser_surface": "control-browser documented CDP API",
+    "native_video_recording": "not_advertised",
+    "viewport_resize_or_mobile_emulation": "not_advertised",
+    "screenshot": "available",
+    "scroll_click": "available_but_multiple_timeouts"
+  },
+  "frames": [
+    {
+      "site_id": "seo-labs",
+      "url": "https://www.seo-labs.de/",
+      "file": "assets/service-reference-evidence/seo-labs--hero-with-consent.jpg",
+      "source_filename": "seo-labs--hero.jpg",
+      "captured_at": "2026-09-06T14:21:05.346Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "initial hero; consent panel overlaps lower cards",
+      "status": "partial_overlay",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 102452,
+      "sha256": "9489f2a36b9c8b6c6c5f114fea4917f6926d8b9e4a1fd947fda6afce04a21f15",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "seo-labs",
+      "url": "https://www.seo-labs.de/",
+      "file": "assets/service-reference-evidence/seo-labs--hero-consent-still-visible.jpg",
+      "source_filename": "seo-labs--hero-after-consent-attempt.jpg",
+      "captured_at": "2026-09-06T14:21:59.175Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "after consent click timeout; panel remains visible",
+      "status": "interaction_not_verified",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 103800,
+      "sha256": "46526e7a61644141d7ded1b0d44cd13cb28709cd88c9e23f57ae0f96c5df47a0",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "seo-labs",
+      "url": "https://www.seo-labs.de/websites",
+      "file": "assets/service-reference-evidence/seo-labs--websites-hero.jpg",
+      "source_filename": "seo-labs--websites-hero.jpg",
+      "captured_at": "2026-09-06T14:22:52.939Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "navigate to observed Websites service link",
+      "status": "ready_visible_viewport",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic",
+        "/root"
+      ],
+      "byte_size": 69853,
+      "sha256": "f85dd7acc4995db0f7a7aab9f50f72e5a611b9f8ab84db225669317dd4d05f07",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "alpen-energie",
+      "url": "https://alpen-energie.ch/",
+      "file": "assets/service-reference-evidence/alpen-energie--hero-unready.jpg",
+      "source_filename": "alpen-energie--hero.jpg",
+      "captured_at": "2026-09-06T14:23:20.129Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "initial hero; partially dark/incomplete heading, missing expected media/CTA",
+      "status": "unready",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 85413,
+      "sha256": "2ec5b61a1f99343af5bed59861d59a579f616d0dfc8ac5838cbd3ffd47dd95a4",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "elephantsolar",
+      "url": "https://www.elephantsolar.de/",
+      "file": "assets/service-reference-evidence/elephantsolar--hero-with-loading-and-consent.jpg",
+      "source_filename": "elephantsolar--hero.jpg",
+      "captured_at": "2026-09-06T14:23:54.534Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "initial hero; visible spinner and cookie panel",
+      "status": "unready_partial",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic",
+        "/root"
+      ],
+      "byte_size": 119628,
+      "sha256": "09f0024e9f595f4e9a3f671fcf23e02a867aec1d1d75fc6459d4c1410086a7fe",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "priwatt",
+      "url": "https://priwatt.de/solaranlagen/",
+      "file": "assets/service-reference-evidence/priwatt--solaranlagen-hero.jpg",
+      "source_filename": "priwatt--solaranlagen-hero.jpg",
+      "captured_at": "2026-09-06T14:24:11.225Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "navigate to requested category landing page",
+      "status": "ready_visible_viewport",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 165468,
+      "sha256": "0d00c7f5eda62a9fc18f4ee1e076d2335643e7622656cd0992e197bb8581a49c",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "enpal",
+      "url": "https://www.enpal.de/",
+      "file": "assets/service-reference-evidence/enpal--hero.jpg",
+      "source_filename": "enpal--hero.jpg",
+      "captured_at": "2026-09-06T14:24:22.071Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "initial hero with finance message",
+      "status": "ready_visible_viewport",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 162875,
+      "sha256": "6c3af02170c708a9e49e889740b1099e9869ccfbafe045479f569fedcaffd8f2",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "rollers",
+      "url": "https://rollers.com.au/",
+      "file": "assets/service-reference-evidence/rollers--hero.jpg",
+      "source_filename": "rollers--hero.jpg",
+      "captured_at": "2026-09-06T14:26:56.069Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "hero before Menu click; video background state",
+      "status": "ready_visible_viewport",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 109766,
+      "sha256": "262e4dd3a5d5645107e8a84c507b2544d75461184edacae124dd5699b16aa3d8",
+      "raster": {
+        "width": 1348,
+        "height": 926,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "farisschmidt",
+      "url": "https://www.farisschmidt.de/",
+      "file": "assets/service-reference-evidence/farisschmidt--hero.jpg",
+      "source_filename": "farisschmidt--hero.jpg",
+      "captured_at": "2026-09-06T14:27:11.761Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "initial hero; soft grey copy and sparse visible logo strip",
+      "status": "ready_visible_viewport",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence",
+        "/root/visual_critic"
+      ],
+      "byte_size": 73621,
+      "sha256": "271aa64ccbd99b1f9761732f51815c92d332af14c70ff4ce504a1312db3540e5",
+      "raster": {
+        "width": 1348,
+        "height": 926,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "mk-boersenhandel",
+      "url": "https://www.mk-boersenhandel.ch/",
+      "file": "assets/service-reference-evidence/mk-boersenhandel--blank-load-state.jpg",
+      "source_filename": "mk-boersenhandel--navigation-result.jpg",
+      "captured_at": "2026-09-06T14:28:24.850Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "after initial navigation timeout; DOM populated but screenshot blank",
+      "status": "unready_blank",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence"
+      ],
+      "byte_size": 9579,
+      "sha256": "0e23ae3ea7409a7c458b41c1df051c1bd381f2d429cd3d596c7a31ca0e3c6041",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "mk-boersenhandel",
+      "url": "https://www.mk-boersenhandel.ch/",
+      "file": "assets/service-reference-evidence/mk-boersenhandel--booking-section.jpg",
+      "source_filename": "mk-boersenhandel--hero-later.jpg",
+      "captured_at": "2026-09-06T14:28:37.086Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "later capture shows booking section, not hero; no booking action performed",
+      "status": "unexpected_scroll_position",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence"
+      ],
+      "byte_size": 68670,
+      "sha256": "f14223b3e6e7e340c7576fbf028a01179e53db7e9ef91a6158025c549c0a84a6",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    },
+    {
+      "site_id": "jantronic",
+      "url": "https://www.jantronic.com/",
+      "file": "assets/service-reference-evidence/jantronic--video-section-unready.jpg",
+      "source_filename": "jantronic--hero.jpg",
+      "captured_at": "2026-09-06T14:28:44.968Z",
+      "viewport": {
+        "width": null,
+        "height": null,
+        "dpr": null,
+        "device_emulation": false,
+        "status": "css_dimensions_and_dpr_not_measured"
+      },
+      "action": "initial capture shows video section, not hero; poster still blurred",
+      "status": "unexpected_scroll_position_unready",
+      "pixel_reviewed": true,
+      "reviewers": [
+        "/root/browser_evidence"
+      ],
+      "byte_size": 47751,
+      "sha256": "2e615469e33bdf165e80256bbb09e143293f29ead4cdb109416ca3de6a4287f9",
+      "raster": {
+        "width": 1348,
+        "height": 936,
+        "source": "saved_jpeg_pixel_dimensions"
+      },
+      "captured_at_source": "Browser runtime new Date().toISOString() immediately after screenshot/file write; runtime clock offset not independently verified"
+    }
+  ],
+  "observed_not_persisted": [
+    {
+      "site_id": "rollers",
+      "url": "https://rollers.com.au/#awb-open-oc__63",
+      "captured_at": "2026-09-06T14:26:59.321Z",
+      "action": "click visible Menu link",
+      "observed_result": "White panel on right, dimmed hero on left; About, Equipment, Training, Resources, News, Careers, Contact; footer quote and phone CTAs. Background video frame differs from pre-click frame.",
+      "pixel_reviewers": [
+        "/root/browser_evidence"
+      ],
+      "file": null,
+      "limitation": "Browser save succeeded and tool image was viewed, but file did not synchronize; absent after five-second poll. No reusable paired frame artifact."
+    },
+    {
+      "site_id": "jantronic",
+      "url": "https://www.jantronic.com/",
+      "captured_at": "2026-09-06T14:28:53.331Z",
+      "action": "Control+Home keyboard action; screenshot remains at video section",
+      "observed_result": "Video poster resolved to seated spokesperson with green play button; no playback started.",
+      "pixel_reviewers": [
+        "/root/browser_evidence"
+      ],
+      "file": null,
+      "limitation": "Browser-written frame did not synchronize; keyboard action did not visibly return to hero."
+    }
+  ],
+  "limitations": [
+    "Browser repeatedly timed out on CDP/Runtime/Input operations, including FAQ/menu/scroll attempts. No successful SEO Labs menu, FAQ, comparison-slider, or calculator transition was verified.",
+    "EKD navigation timed out; no browser pixels or DOM obtained. This browser run did not establish site bot detection.",
+    "Jonah Struck navigation ended in execution timeout and runtime reset; no pixels obtained.",
+    "After one final rebootstrap, tab creation timed out and selected tab was undefined. Leadfluss and Haubner navigation could not be issued; both are browser_unavailable_before_navigation.",
+    "No additional SEO Labs customer live sites or subpages visually captured in this run; text research in other corpus files is separate.",
+    "Ready-visible-viewport labels validate only the captured region; never infer full-page readiness, performance, accessibility, SEO success, conversion effect or implementation library."
+  ]
+}

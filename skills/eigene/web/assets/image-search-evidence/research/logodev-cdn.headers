@@ -1,0 +1,11 @@
+HTTP/2 401 
+content-type: application/json; charset=utf-8
+content-length: 150
+date: Mon, 07 Sep 2026 11:13:31 GMT
+cache-control: public, must-revalidate, proxy-revalidate, max-age=360000
+access-control-allow-origin: *
+x-cache: Error from cloudfront
+via: 1.1 c8809e7d250b8cf39350ecdac0e4a800.cloudfront.net (CloudFront)
+x-amz-cf-pop: TXL52-P2
+x-amz-cf-id: HrWCbniD17XK2DaVAxHcQcQ1eHV-vM2OjeDX8C5iGd_H0-vRMCZXeQ==
+

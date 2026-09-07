@@ -1,0 +1,16 @@
+HTTP/2 200 
+cache-control: public
+cf-cache-status: REVALIDATED
+cf-ray: a3754d3e7a383a84-FRA
+content-security-policy: worker-src * blob: data: 'unsafe-eval' 'unsafe-inline'; object-src data: ; base-uri 'self'; upgrade-insecure-requests; frame-ancestors 'self' https://dashboard.mintlify.com https://app.mintlify.com; form-action 'self' https://codesandbox.io;
+content-type: text/plain; charset=utf-8
+date: Mon, 07 Sep 2026 11:16:31 GMT
+etag: W/"yykQ65sLNLg2lkP-RyS-6FSp74PF3sBKuuOJt6aEFz8"
+server: Vercel
+strict-transport-security: max-age=63072000
+vary: rsc, accept-encoding
+x-frame-options: DENY
+x-matched-path: /_sites/[subdomain]/llms.txt
+x-vercel-cache: MISS
+x-vercel-id: fra1:fra1:iad1::iad1::m6snh-1788779791087-90b14a198f0e
+

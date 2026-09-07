@@ -1,0 +1,26 @@
+HTTP/2 401 
+content-type: application/json
+access-control-allow-origin: *
+access-control-allow-methods: *
+access-control-allow-headers: *
+access-control-expose-headers: Link,X-Total,X-Per-Page,X-RateLimit-Limit,X-RateLimit-Remaining
+x-powered-by: hero-app
+x-version: de911160688b646c069ab227352f5b4823431583
+content-language: en
+cache-control: no-cache
+content-security-policy: default-src 'self' https: 'unsafe-inline'; img-src * 'self' https: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net www.googletagmanager.com d3js.org unpkg.com cdnjs.cloudflare.com cdn.statuspage.io; connect-src 'self' collector.unsplash.com cdn.statuspage.io *.amazonaws.com
+x-request-id: 17af9153-2810-4d39-8ec9-65ec2d61a528
+x-runtime: 0.013903
+strict-transport-security: max-age=63072000; includeSubDomains
+via: 1.1 08a2794556cdd396493f9dc2fa3e6ea4.cloudfront.net (CloudFront), 1.1 varnish
+x-amz-cf-pop: WAW51-P3
+x-amz-cf-id: la9r4yRwzq7UH4G1wtV9nRmIKjDfDAJ6wavNi0I24O2BdJrKnnBH0g==
+accept-ranges: bytes
+date: Mon, 07 Sep 2026 11:13:32 GMT
+x-served-by: cache-ber1080044-BER
+x-cache: Error from cloudfront, MISS
+x-cache-hits: 0
+x-timer: S1788779612.892133,VS0,VE159
+vary: Accept-Encoding,Authorization,Accept-Language,client-geo-region,Accept
+content-length: 55
+

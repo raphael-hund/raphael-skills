@@ -1,0 +1,178 @@
+[
+  {
+    "name": "logodev-llms",
+    "tested_at": "2026-09-07T11:16:31.041431+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logodev-llms.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logodev-llms.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://docs.logo.dev/llms.txt"
+    ],
+    "http_status": 429,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/logodev-llms.body"
+  },
+  {
+    "name": "logodev-pricing-alt",
+    "tested_at": "2026-09-07T11:16:31.028511+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logodev-pricing-alt.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/logodev-pricing-alt.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://logo.dev/pricing"
+    ],
+    "http_status": 429,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/logodev-pricing-alt.body"
+  },
+  {
+    "name": "brandfetch-limits",
+    "tested_at": "2026-09-07T11:16:32.006413+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/brandfetch-limits.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/brandfetch-limits.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://docs.brandfetch.com/docs/rate-limits"
+    ],
+    "http_status": 404,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/brandfetch-limits.body"
+  },
+  {
+    "name": "brandfetch-guidelines",
+    "tested_at": "2026-09-07T11:16:31.997037+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/brandfetch-guidelines.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/brandfetch-guidelines.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://docs.brandfetch.com/docs/logo-api-guidelines"
+    ],
+    "http_status": 404,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/brandfetch-guidelines.body"
+  },
+  {
+    "name": "brandfetch-llms",
+    "tested_at": "2026-09-07T11:16:31.463222+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/brandfetch-llms.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/brandfetch-llms.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://docs.brandfetch.com/llms.txt"
+    ],
+    "http_status": 200,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/brandfetch-llms.body"
+  },
+  {
+    "name": "pexels-api-home",
+    "tested_at": "2026-09-07T11:16:31.087924+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-api-home.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-api-home.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://www.pexels.com/api/"
+    ],
+    "http_status": 403,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/pexels-api-home.body"
+  },
+  {
+    "name": "pexels-limits-alt",
+    "tested_at": "2026-09-07T11:16:31.131503+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-limits-alt.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/pexels-limits-alt.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://help.pexels.com/hc/en-us/articles/900005851566-How-do-I-get-unlimited-requests"
+    ],
+    "http_status": 403,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/pexels-limits-alt.body"
+  },
+  {
+    "name": "clearbit-official",
+    "tested_at": "2026-09-07T11:16:31.185792+00:00",
+    "command": [
+      "curl",
+      "-sS",
+      "-L",
+      "--max-time",
+      "30",
+      "-D",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/clearbit-official.headers",
+      "-o",
+      "/root/eingang/ausgang/web-erweiterung-2026-09-07/bildsuche/test/research/clearbit-official.body",
+      "-w",
+      "%{http_code}\n%{url_effective}",
+      "https://help.clearbit.com/hc/en-us/articles/36771739426071-Clearbit-Logo-API-Deprecation"
+    ],
+    "http_status": 403,
+    "curl_exit": 0,
+    "error": "",
+    "body": "research/clearbit-official.body"
+  }
+]

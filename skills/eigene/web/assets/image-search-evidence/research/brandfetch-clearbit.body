@@ -1,0 +1,73 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.brandfetch.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Clearbit Logo API
+
+> How Brandfetch's Logo API compares to Clearbit's discontinued Logo API
+
+<Warning>
+  Clearbit's Logo API shut down in December 2025 and no longer serves logos. If `logo.clearbit.com` is still in your codebase, see the [migration guide](/guides/migrate-from-clearbit-logo-api) to switch over.
+</Warning>
+
+For nearly a decade, Clearbit's Logo API was the default way to drop a company logo into an app with a single request to `https://logo.clearbit.com/{domain}`. It shut down in December 2025 as part of Clearbit's wind-down under HubSpot, so any integration still pointed at it is now broken. Here's how Brandfetch compares to what Clearbit's Logo API used to offer.
+
+## Brand quality & time to value
+
+Clearbit's Logo API pulled from a fixed dataset collected from public web sources. It didn't index new domains on the fly, so a domain that wasn't already in the dataset simply returned a 404. Brandfetch resolves brands live, if a domain isn't indexed yet, it's discovered on the spot, which is how the dataset holds [95% logo coverage in its core distribution and 86% even at the extreme long tail](/accuracy/coverage-and-quality) of small, non-tech businesses.
+
+Time to first logo is the same shape for both (a single request), but what happens when a logo can't be found differs. Clearbit returned a plain 404 with no fallback options. Brandfetch lets you choose a lettermark, its own mark, a transparent placeholder, or a 404, so you decide the outcome up front instead of debugging a broken image later.
+
+## Quick comparison
+
+|                  | Brandfetch                                                    | Clearbit Logo API (former)                       |
+| ---------------- | ------------------------------------------------------------- | ------------------------------------------------ |
+| Status           | Actively maintained                                           | Shut down, December 2025                         |
+| Free tier        | 1,000,000 requests/mo                                         | Free, no published request quota                 |
+| Attribution      | Never required                                                | Required, a visible link back to clearbit.com    |
+| Identifiers      | Domain, ticker, ISIN, crypto                                  | Domain only                                      |
+| Customization    | Size, format, theme, type, and fallback, all as path segments | Basic `size`, `format`, `greyscale` query params |
+| Fallback options | Lettermark, Brandfetch mark, transparent, 404                 | None, missing logos returned a plain 404         |
+
+## How requests compare
+
+**Clearbit (former)**
+
+<CodeGroup>
+  ```text theme={null}
+  https://logo.clearbit.com/nike.com
+  ```
+</CodeGroup>
+
+**Brandfetch**
+
+<CodeGroup>
+  ```text theme={null}
+  https://cdn.brandfetch.io/nike.com?c=BRANDFETCH_CLIENT_ID
+  ```
+</CodeGroup>
+
+Brandfetch was designed as a drop-in replacement: the same domain-based lookup, with a client ID added and a much richer set of optional parameters.
+
+## Why teams choose Brandfetch
+
+* **Actually maintained.** Clearbit's Logo API is gone for good. Brandfetch is actively developed and used in production by Canva, Typeform, and Experian.
+* **No attribution required.** Clearbit's free usage required a visible link back to clearbit.com on every page showing a logo. Brandfetch never asks for one.
+* **Richer identifiers.** Beyond domains, look up logos by stock/ETF ticker, ISIN, or crypto symbol.
+* **More control over output.** Theme variants, logo type variants (icon, logo, symbol), and four fallback strategies, none of which Clearbit's Logo API offered.
+
+<Tip>
+  Migrating existing Clearbit URLs? Follow the [step-by-step migration guide](/guides/migrate-from-clearbit-logo-api).
+</Tip>
+
+## Get started
+
+<CardGroup cols={2}>
+  <Card title="Logo API overview" icon="circles-overlap" href="/logo-api/overview" iconType="light" cta="Learn more">
+    See the full feature set and implementation guide
+  </Card>
+
+  <Card title="Get your client ID" icon="key" href="https://developers.brandfetch.com/register" iconType="light" cta="Register">
+    Free account, no credit card required
+  </Card>
+</CardGroup>

@@ -1,0 +1,27 @@
+HTTP/2 200 
+date: Mon, 07 Sep 2026 11:13:31 GMT
+server: mw-api-ext.eqiad.canary-867c5ddb6f-xvvm5
+x-content-type-options: nosniff
+x-search-id: ch3nyjkd7pglyfb4ozysm41ik
+content-security-policy: default-src 'self'; script-src 'none'; object-src 'none'
+x-frame-options: DENY
+content-disposition: inline; filename=api-result.json
+cache-control: private, must-revalidate, max-age=0
+content-type: application/json; charset=utf-8
+age: 0
+x-cache: cp3073 miss, cp3073 pass
+x-cache-status: pass
+strict-transport-security: max-age=106384710; includeSubDomains; preload
+report-to: { "group": "wm_nel", "max_age": 604800, "endpoints": [{ "url": "https://intake-logging.wikimedia.org/v1/events?stream=w3c.reportingapi.network_error&schema_uri=/w3c/reportingapi/network_error/1.0.0" }] }
+nel: { "report_to": "wm_nel", "max_age": 604800, "failure_fraction": 0.05, "success_fraction": 0.0}
+set-cookie: WMF-Last-Access=07-Sep-2026;Path=/;HttpOnly;secure;Expires=Fri, 09 Oct 2026 00:00:00 GMT
+x-client-ip: 2a01:239:4d2:4700::1
+vary: Accept-Encoding,X-Subdomain,Treat-as-Untrusted,X-Forwarded-Proto,Cookie,Authorization,User-Agent
+set-cookie: GeoIP=DE:::51.30:9.49:v4; Path=/; secure; Domain=.wikimedia.org
+set-cookie: NetworkProbeLimit=0.001;Path=/;Secure;SameSite=None;Max-Age=3600
+set-cookie: WMF-Uniq=ZWN1DtRA_TX1slOP_std7wPUAAAAAFvdZICx02bsdMxq6NzUIbqrP7gwycyfQNp8;Domain=commons.wikimedia.org;Path=/;HttpOnly;secure;SameSite=None;Expires=Tue, 07 Sep 2027 00:00:00 GMT
+content-length: 4728
+x-request-id: 5ae42318-22a9-45da-9d72-a78d6775ee5d
+x-analytics: 
+server-timing: cache;desc="pass", host;desc="cp3073",co_id;desc="903394989"
+

@@ -1,0 +1,619 @@
+{
+  "schemaVersion": "1.0",
+  "observedAt": "2026-09-06",
+  "scope": "SEOLabs primary-page text research and four explicitly attributed client websites",
+  "coverage": {
+    "sites": 5,
+    "uniquePagesRead": 30,
+    "fullDomainCrawl": false,
+    "browserVisualReview": false,
+    "motionReview": false,
+    "videoRecorded": false
+  },
+  "sites": [
+    {
+      "id": "seo-labs",
+      "url": "https://www.seo-labs.de/",
+      "category": "agency_service_business",
+      "role": "user_preferred_reference",
+      "observedAt": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.seo-labs.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Navigation trennt Leistungen, Unternehmen, Branchen, Ressourcen und zwei Fallstudienarten.",
+            "Abfolge: Ergebnisversprechen, Neuigkeiten/Referenzen, Kundenstimmen, Leistungen, Fallstudien, Vorteile, Prozess, Team, Analyseangebot, Ressourcen, FAQ, Abschluss-CTA.",
+            "Primäraktion Beratung, sekundär Fallstudien. Geschäftsergebnis prägt Copy stärker als Technik."
+          ],
+          "limitations": [
+            "Agentureigene Leistungs- und Marktbehauptungen unbestätigt.",
+            "Mehrfach extrahierte Blöcke beweisen weder sichtbare Wiederholung noch Animation."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/websites",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Website-Angebot verbindet Suchtraffic mit Anfragen; zeigt Portfolio, Vergleich, Prozess und Leistungsvorteile.",
+            "Prozesslabels: Onboarding, SEO-Kickoff, Konzept/Design, Entwicklung, Launch/Wartung.",
+            "Portfolio verweist auf echte Kundendomains; Ergebnisse und Ladezeiten werden als Eigenangaben beworben."
+          ],
+          "limitations": [
+            "20–30 Prozent mehr Leads sind keine unabhängig gemessene Conversion-Wirkung.",
+            "Zählerzustände und Vergleichsinteraktion müssen im Browser geprüft werden."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/seo",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Leistungspakete gliedern Technik, externe Signale, PR, Content und Conversion.",
+            "Fallstudien stehen zwischen Leistungsdarstellung und methodischem Ablauf.",
+            "Werkzeugliste und fünf Prozessschritte erläutern die Umsetzung."
+          ],
+          "limitations": [
+            "Agenturtheorie über Rankingmechanik ist keine technische Evidenz.",
+            "Keine Rankings oder Analytics geprüft."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/geo",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigene Leistungsseite für KI-Suche, mit Ergebnisversprechen und vier Leistungsbausteinen.",
+            "Quellenpräsenz, Links, Promptrecherche und Inhaltsstruktur werden einzeln erklärt.",
+            "Kundenfälle dienen als nächster Nachweisblock."
+          ],
+          "limitations": [
+            "30–40 Prozent mehr Anfragen sind eine unbestätigte Eigenbehauptung.",
+            "Bildnamen mit Floating belegen keine beobachtete Bewegung."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/immobilienmakler",
+          "type": "industry_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Zielgruppenspezifische Sprache: Alleinaufträge, Eigentümer, Region und Suchradius.",
+            "Branchenproblem, Methode, vier Bestandteile, passende Kundennachweise und Analyseangebot.",
+            "Exklusivität, Garantien und Dringlichkeit gehören zur beworbenen Verkaufslogik."
+          ],
+          "limitations": [
+            "Garantien, ROI und prognostizierte Aufträge nicht unabhängig bestätigt.",
+            "Nicht als allgemeine Empfehlung für Angstmotive oder künstliche Verknappung verwenden."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/website-cases",
+          "type": "website_case_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "14 benannte Website-Projekte mit Leistungen: Konzeption, Design, Entwicklung und teilweise SEO.",
+            "Filterlabels unterscheiden konkrete Arbeitsarten.",
+            "Separate Detailseiten ermöglichen Attribution über Live-Link und Projektbeschreibung."
+          ],
+          "limitations": [
+            "Filterfunktion nicht bedient.",
+            "Nicht alle 14 Projekte vertieft untersucht."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/cases",
+          "type": "seo_case_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigenständiger SEO-Fallstudienindex mit Branchen, Leistungs-Tags und Ergebnismetriken.",
+            "Enthält auch Fälle ohne Webdesign-Tag; Kundennennung allein belegt keine Website-Erstellung."
+          ],
+          "limitations": [
+            "Tags können Detailseiten widersprechen; Attribution pro Projekt prüfen.",
+            "Alle Metriken sind Agenturangaben."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/website-cases/haubner-group-immobilien",
+          "type": "website_case_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Live-Link zu HAUBNER; Konzeption, Design, Entwicklung und SEO werden ausdrücklich zugeordnet.",
+            "Figma, WordPress und Elementor werden als Projektwerkzeuge genannt.",
+            "Agentur erläutert getrennte Eigentümer- und Käuferwege."
+          ],
+          "limitations": [
+            "Urheberschaft durch Agentur-Eigenangabe belegt, nicht durch unabhängige Vertragsunterlagen.",
+            "Aktuelle Live-Version kann von beschriebenem Relaunch abweichen."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/website-cases/seniocon",
+          "type": "website_case_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Live-Link zu Seniocon; ausdrückliche Zuordnung von Konzeption, Design, Entwicklung und SEO.",
+            "Figma und Webflow genannt; beschrieben werden Badumbau-Keywordcluster und FAQ/Anfragenstruktur."
+          ],
+          "limitations": [
+            "Webflow ist historische Projektangabe, aktueller Stack nicht technisch geprüft.",
+            "Anfragezahlen sind Eigenangaben."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/website-cases/fuxhas",
+          "type": "website_case_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Live-Link zu FUX&HAS; Konzeption, Design, Entwicklung und SEO werden genannt.",
+            "Figma, WordPress und Elementor genannt.",
+            "Lokale Themencluster, Team, Prozess und Kontakt werden als Konzept erklärt."
+          ],
+          "limitations": [
+            "Ästhetische Überlegenheitsbehauptungen nicht als Bewertung übernehmen."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/website-cases/hamburger-dachwerk",
+          "type": "website_case_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Live-Link zu Hamburger Dachwerk; Konzeption, Design, Entwicklung und Webdesign genannt.",
+            "Figma, WordPress und Elementor genannt.",
+            "Projektbeschreibung erklärt regionale Leistungen, kostenlose Erstberatung und Prozess/FAQ."
+          ],
+          "limitations": [
+            "Local-SEO-Ziele sind keine gemessenen Rankings."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/cases/gastrorocket",
+          "type": "seo_case_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Projektsteckbrief, Ausgangslage, Massnahmen, SEO-/Geschäfts-KPIs, Vorher/Nachher-Bilder und Testimonial.",
+            "Kopf-Tags und Projekttext beschreiben SEO/GEO/PR; eine spätere Leistungsliste nennt zusätzlich Webdesign/Relaunch."
+          ],
+          "limitations": [
+            "Website-Urheberschaft bleibt wegen widersprüchlicher Attribution ungeklärt.",
+            "GastroRocket-Live-Seite wurde in diesem Teilkorpus nicht untersucht."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/ueber-uns",
+          "type": "about_team",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Leistungsbelege, Werte, Bürovorstellung und Team nach Fachbereichen.",
+            "Aufbau vermittelt reale Ansprechpartner und organisatorische Fähigkeiten."
+          ],
+          "limitations": [
+            "Teamgrössen und Erfolgszahlen sind Eigenangaben."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/karriere",
+          "type": "careers",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Mission, Arbeitskultur, Benefits, Werte, Büro, Mitarbeiterstimmen und Bewerbungsprozess.",
+            "Stellenliste zeigt Rolle, Arbeitsmodell und Ort; eigener Ansprechpartner."
+          ],
+          "limitations": [
+            "Keine Bewerbung oder einzelne Stellenanzeige geöffnet."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/news",
+          "type": "editorial_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "News/Blog-Kategorien mit datierten Beiträgen und Beratung als Abschlussaktion."
+          ],
+          "limitations": [
+            "Index enthält auch Dezember-2026-Datierungen zum Prüfdatum September 2026; Chronologie nicht als bestätigte Ereignisfolge behandeln.",
+            "Filter nicht bedient."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/news/seolabs-kundentour-2026",
+          "type": "editorial_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Datierter Artikel beschreibt Kundenbesuche und verlinkt ein YouTube-Video.",
+            "Persönliche Zusammenarbeit wird über konkretes Geschehen statt nur Wertelabel erklärt."
+          ],
+          "limitations": [
+            "Video nicht angesehen oder transkribiert; nur Link und Artikel gelesen."
+          ]
+        },
+        {
+          "url": "https://www.seo-labs.de/termin",
+          "type": "conversion_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigenständige Analyse-Seite erklärt erwartete Leistung, Zeitrahmen und benannten Ansprechpartner.",
+            "Einstieg reduziert Unsicherheit durch Ablauf- und Ergebnisbeschreibung."
+          ],
+          "limitations": [
+            "Buchungswidget im Text nicht prüfbar; kein Termin gebucht."
+          ]
+        }
+      ],
+      "patterns": [
+        "Getrennte Leistungs-, Branchen-, Nachweis- und Kontaktseiten.",
+        "Case-Index ist Rechercheausgangspunkt, keine Urheberschaftsgarantie.",
+        "Ergebnisorientierte Copy mit wiederkehrender Beratung als Hauptaktion."
+      ],
+      "limitations": [
+        "Textanalyse von 17 Seiten; kein Vollcrawl.",
+        "Keine visuelle Qualität, Animation, Mobilansicht, Quellcode, Sitemap.xml, Schema, Performance oder Conversion gemessen."
+      ],
+      "agencyAttribution": {
+        "sourceUrl": "https://www.seo-labs.de/",
+        "relationship": "agency_own_site",
+        "evidence": "Betreiberseite und eigenes Portfolio; keine unabhängige Performancebewertung."
+      }
+    },
+    {
+      "id": "haubner-group",
+      "url": "https://www.haubnergroup.de/",
+      "category": "real_estate_service",
+      "role": "user_preferred_and_agency_client",
+      "observedAt": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.haubnergroup.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigentümerbewertung im Hero priorisiert; Käufer erhalten einen separaten Angebotsweg.",
+            "Proof verbindet Betriebskennzahlen, konkrete Verkaufsfälle, Personen, Bewertungen, Qualifikationen und Büro.",
+            "Zusätzlich Käuferabfrage, Prozess, Ratgeber, FAQ und Kontaktoptionen."
+          ],
+          "limitations": [
+            "Bewertungen, Verkaufsdaten und Marktführerschaft sind Betreiberangaben.",
+            "Formular und Rechner nicht durchlaufen."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/immobilie-verkaufen-bremen/",
+          "type": "local_service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Verkäuferintention mit Nutzenargumenten, Leistungsvergleich, Kostenmodell und Verkaufsbeispielen.",
+            "Online-Schätzung und persönliche Bewertung sind zwei benannte Einstiege.",
+            "Marktdaten werden mit Quellenbenennung dargestellt; FAQ beantwortet Unterlagen, Preis, Dauer und diskreten Verkauf."
+          ],
+          "limitations": [
+            "Zahlen/Marktdaten nicht extern geprüft; juristische Texte nicht als Rechtsvorlage übernehmen.",
+            "Einzelner Abschluss-CTA zur Finanzierung wirkt nicht unmittelbar passend zur Verkäuferintention."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/immobilienbewertung-bremen/",
+          "type": "valuation_conversion",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Ergebnis wird konkret erklärt: sofortige Spanne und anschliessender persönlicher Report.",
+            "Seite erklärt Kontakt danach, Datenverwendung und Entscheidungsspielraum.",
+            "FAQ grenzt Online-Schätzung von persönlicher Objektprüfung ab."
+          ],
+          "limitations": [
+            "Weder Rechner noch E-Mail-Zustellung geprüft.",
+            "Daten- und Kontaktversprechen nur als Website-Copy beobachtet."
+          ]
+        },
+        {
+          "url": "https://www.haubnergroup.de/immobilienmakler-bremen-neustadt/",
+          "type": "local_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigener Orts-Intent, Bewertungseinstiege, News, Leistungsblöcke, Käuferangebote und Bewertungen.",
+            "Verlinkt Ortsseite mit dem übergeordneten Verkaufsangebot."
+          ],
+          "limitations": [
+            "Erster Abruf lief in Timeout; zweiter war erfolgreich.",
+            "Kennzahlen unterscheiden sich von der Startseite; Aktualität separat prüfen.",
+            "Ortsnennung allein belegt keinen eigenständigen lokalen Mehrwert."
+          ]
+        }
+      ],
+      "patterns": [
+        "Zwei Zielgruppen, eindeutig priorisierte Hauptaufgabe.",
+        "Konkrete Lead-Magnet-Leistung samt Erwartungsmanagement.",
+        "Leistungs-, Bewertungs- und Ortsseite haben unterschiedliche Seitenaufgaben."
+      ],
+      "limitations": [
+        "Vier Textseiten gelesen, nicht gesamte Domain.",
+        "Agentur-Case kann älteren Relaunch beschreiben; aktuelles Design nicht automatisch vollständig derselben Agentur zurechnen."
+      ],
+      "agencyAttribution": {
+        "sourceUrl": "https://www.seo-labs.de/website-cases/haubner-group-immobilien",
+        "relationship": "website_conception_design_development_and_seo_claimed_by_agency",
+        "evidence": "Eigene Website-Fallstudie benennt Leistungen, Tech Stack und direkten Live-Link."
+      }
+    },
+    {
+      "id": "seniocon",
+      "url": "https://www.seniocon.de/",
+      "category": "home_improvement_service",
+      "role": "agency_client_reference",
+      "observedAt": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.seniocon.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Navigation trennt Badumbau-Leistungen von Privat-/Gewerbe-/Hotel-Zielgruppen.",
+            "Referenzen nennen Umbautyp, Ort, Fläche, Dauer und Vorher/Nachher-Bilder; Eingabeelemente sind extrahiert.",
+            "Leistungen, Projekte, Betrieb und vierteiliger Prozess führen zur Beratungsanfrage."
+          ],
+          "limitations": [
+            "Referenz-Navigation führt zu Startseitenbereich, keine zusätzliche Referenzseite gezählt.",
+            "Bildvergleichsbedienung, Förderanspruch und Projektauthentizität nicht überprüft."
+          ]
+        },
+        {
+          "url": "https://www.seniocon.de/barrierearmer-umbau/",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Spezifischer Badumbau-Einstieg, Sicherheit/Selbstständigkeit, praktische Vorteile, Projekte und Beratung.",
+            "Telefon und E-Mail dienen als direkte Hilfe neben Formular-CTA."
+          ],
+          "limitations": [
+            "Barrierearm und barrierefrei nicht gleichsetzen; technische Normkonformität nicht überprüft.",
+            "Versprochene Bauzeit ist keine allgemeine Leistungszusage."
+          ]
+        },
+        {
+          "url": "https://www.seniocon.de/badsanierung-gewerbe/",
+          "type": "industry_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Gewerbeseite argumentiert über kurze Bauzeiten, wenig Betriebsunterbrechung und Nutzung durch Mitarbeitende/Besucher.",
+            "Grundstruktur bleibt wiedererkennbar, Einstieg und Vorteile wechseln mit der Zielgruppe."
+          ],
+          "limitations": [
+            "Wiederverwendeter Pflegekassen-/Ein-Tages-Badumbau-Block passt nicht offensichtlich zum Gewerbe-Intent.",
+            "Gezeigte Referenzen nicht als nachgewiesene Gewerbeprojekte einordnen."
+          ]
+        }
+      ],
+      "patterns": [
+        "Leistung und Zielgruppe als getrennte Informationsachsen.",
+        "Projektbeweise mit konkreten Metadaten statt beliebiger Galerie.",
+        "Zielgruppensprache über Alltag, Sicherheit oder Betriebsablauf."
+      ],
+      "limitations": [
+        "Drei Textseiten gelesen.",
+        "Barrierefreiheit der Website, Slider, Motion und aktueller Stack nicht geprüft."
+      ],
+      "agencyAttribution": {
+        "sourceUrl": "https://www.seo-labs.de/website-cases/seniocon",
+        "relationship": "website_conception_design_development_and_seo_claimed_by_agency",
+        "evidence": "Eigene Website-Fallstudie benennt Relaunch-Leistungen, Figma/Webflow und direkten Live-Link."
+      }
+    },
+    {
+      "id": "fuxhas",
+      "url": "https://fuxhas.de/",
+      "category": "real_estate_service",
+      "role": "agency_client_reference",
+      "observedAt": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://fuxhas.de/",
+          "type": "homepage",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Lokale Positionierung und frühe Immobilienangebote bedienen Suchende.",
+            "Persönliche Inhaber, Fachqualifikationen und konkrete Vermarktungsmittel begründen das Leistungsversprechen.",
+            "Beratung, Angebotssuche, Verkauf und Unternehmensvorstellung sind getrennte Navigationswege."
+          ],
+          "limitations": [
+            "Wiederholte Ortskeyword-Formulierungen sind kein Qualitätsbeweis.",
+            "Keine visuellen Farb- oder Motionaussagen aus Agenturbeschreibung übernommen."
+          ]
+        },
+        {
+          "url": "https://fuxhas.de/immobilie-verkaufen/",
+          "type": "service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigentümerseite mit Rückrufformular, benanntem Ansprechpartner und Leistungsargumenten.",
+            "Vermittlung und digitale Vermarktung werden über konkrete Aufgaben erklärt."
+          ],
+          "limitations": [
+            "Mehrere Abschnitte wiederholen ähnliche Nutzenbehauptungen.",
+            "Verkaufen/Kaufen/Verwalten im selben Abschnitt und Nordhorn-Schlussformulierung verwischen den Seitenfokus."
+          ]
+        },
+        {
+          "url": "https://fuxhas.de/ueber-uns/",
+          "type": "about_team",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Teammitglieder erhalten Rollen und individuelle berufliche Hintergründe.",
+            "Eigene Abschlussaktion lädt zum persönlichen Kennenlernen ein."
+          ],
+          "limitations": [
+            "Gründungs-/Geschäftsführungsjahre 2020 und 2017 wirken ohne Erklärung widersprüchlich; nicht als Tatsache übernehmen."
+          ]
+        }
+      ],
+      "patterns": [
+        "Persönlichkeit und fachliche Qualifikation ergänzen Angebotskatalog.",
+        "Teamseite liefert eigene Beweise, keine bloss verlängerte Startseite."
+      ],
+      "limitations": [
+        "Drei Textseiten gelesen.",
+        "Live-Website kann seit dem beschriebenen Relaunch verändert worden sein."
+      ],
+      "agencyAttribution": {
+        "sourceUrl": "https://www.seo-labs.de/website-cases/fuxhas",
+        "relationship": "website_conception_design_development_and_seo_claimed_by_agency",
+        "evidence": "Eigene Website-Fallstudie benennt Konzeption, Design, Entwicklung, SEO, WordPress/Elementor und direkten Live-Link."
+      }
+    },
+    {
+      "id": "hamburger-dachwerk",
+      "url": "https://www.hamburger-dachwerk.de/",
+      "category": "local_trade_service",
+      "role": "agency_client_reference",
+      "observedAt": "2026-09-06",
+      "pages": [
+        {
+          "url": "https://www.hamburger-dachwerk.de/",
+          "type": "homepage_local_service",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Frühes Anfrageformular ergänzt Telefon; Leistungen, Betrieb, Prozess, Region und FAQ folgen.",
+            "Dacharbeiten und Zimmerarbeiten bilden getrennte regionale Linkgruppen.",
+            "Drei Schritte erklären den Weg von Anfrage bis Abnahme."
+          ],
+          "limitations": [
+            "Schneefang-Abschnitt wiederholt in der Textausgabe den Wartungstext: redaktionelles Gegenbeispiel.",
+            "Dachdeckerei-Menü führt auf Startseitenbereich, keine zusätzliche Seite gezählt."
+          ]
+        },
+        {
+          "url": "https://www.hamburger-dachwerk.de/dachdecker-hamburg/",
+          "type": "local_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Hamburg-Seite übernimmt vergleichbare Leistungs-/Formular-/Prozess-/FAQ-Struktur.",
+            "Verknüpfung mit Norderstedt und weiterem Einzugsgebiet."
+          ],
+          "limitations": [
+            "Starke strukturelle Nähe zur Startseite; eigenständige lokale Projektnachweise in gelesenen Abschnitten fehlen.",
+            "Kein Beleg, dass flächendeckende Ortskopien SEO wirksam sind."
+          ]
+        },
+        {
+          "url": "https://www.hamburger-dachwerk.de/zimmermann-norderstedt/",
+          "type": "local_service_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observedAt": "2026-09-06",
+          "observations": [
+            "Eigener Leistungsfokus Holzbau mit Meisterkompetenz, Neubau/Sanierung und Vorteilen.",
+            "Vier statt drei Prozessschritte; Abnahme und Nachbetreuung als eigener Schritt.",
+            "Leistungsspezifische FAQ plus Links zu angrenzenden Regionen."
+          ],
+          "limitations": [
+            "Mehrere H1-Markierungen im Extrakt müssen im DOM geprüft werden.",
+            "Formular, Telefonlinks und Bewertungseinbindung nicht getestet."
+          ]
+        }
+      ],
+      "patterns": [
+        "Direkter Kontakt für Nachfrage mit konkretem Projektbedarf.",
+        "Verwandte Gewerke erhalten eigenen Seiteninhalt.",
+        "Regionale Links werden nach Leistung gruppiert."
+      ],
+      "limitations": [
+        "Drei Textseiten gelesen.",
+        "Ein Hamburg-Menüaufruf scheiterte; kanonische Ortsseite später erfolgreich abgerufen.",
+        "Keine vollständige Link- oder Ortsseitenprüfung."
+      ],
+      "agencyAttribution": {
+        "sourceUrl": "https://www.seo-labs.de/website-cases/hamburger-dachwerk",
+        "relationship": "website_conception_design_development_claimed_by_agency",
+        "evidence": "Eigene Website-Fallstudie benennt Konzeption, Design, Entwicklung/Webdesign, WordPress/Elementor und direkten Live-Link."
+      }
+    }
+  ]
+}

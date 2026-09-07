@@ -1,0 +1,47 @@
+[
+  {
+    "file": "chesapeake-products.png",
+    "url": "https://chesapeakeplywood.com/",
+    "source": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/17-galleries/screenshots/chesapeake-nav-products-hover.png",
+    "date": "2026-09-06",
+    "parentViewed": true,
+    "role": "Research evidence, not production artwork",
+    "exactStateManifest": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/17-galleries/states.json"
+  },
+  {
+    "file": "mindmarket-methods.png",
+    "url": "https://mindmarket.com/",
+    "source": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/17-galleries/screenshots/mindmarket-nav-mobile-methodology.png",
+    "date": "2026-09-06",
+    "parentViewed": true,
+    "role": "Research evidence, not production artwork",
+    "exactStateManifest": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/17-galleries/states.json"
+  },
+  {
+    "file": "offbrand-mobile.png",
+    "url": "https://www.itsoffbrand.com/",
+    "source": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/17-galleries/screenshots/offbrand-live-mobile-top.png",
+    "date": "2026-09-06",
+    "parentViewed": true,
+    "role": "Research evidence, not production artwork",
+    "exactStateManifest": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/17-galleries/states.json"
+  },
+  {
+    "file": "hyer-desktop.png",
+    "url": "https://www.flyhyer.com/",
+    "source": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/18-refero-design/hyer-desktop.png",
+    "date": "2026-09-06",
+    "parentViewed": true,
+    "state": "Initial page, consent overlay visible; CSS viewport 1440x1000 or390x900; geometry samples not verified breakpoints",
+    "role": "Research only"
+  },
+  {
+    "file": "hyer-mobile.png",
+    "url": "https://www.flyhyer.com/",
+    "source": "/root/eingang/ausgang/web-weiterarbeit-2026-09-06/18-refero-design/hyer-390.png",
+    "date": "2026-09-06",
+    "parentViewed": true,
+    "state": "Initial page, consent overlay visible; CSS viewport 1440x1000 or390x900; geometry samples not verified breakpoints",
+    "role": "Research only"
+  }
+]

@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "language": "de-CH",
+  "read_date": "2026-09-07",
+  "source": {
+    "repository": "https://github.com/attentiondotnet/emilkowalski_skills",
+    "commit": "f76beceb7d3fc8c43309cefad5a095a206103a4e",
+    "commit_date": "2026-07-09T17:12:50+02:00",
+    "github_fork_flag": false,
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 Emil Kowalski",
+    "license_path": "../../assets/vendor/emilkowalski-skills/LICENSE",
+    "snapshot_path": "../../assets/vendor/emilkowalski-skills",
+    "read_complete": true,
+    "skill_count": 4,
+    "reference_file_count": 1,
+    "skill_tree_line_count": 1434,
+    "additional_read_files": ["README.md", "LICENSE"]
+  },
+  "comparison": {
+    "upstream_repository": "https://github.com/emilkowalski/skills",
+    "upstream_commit": "6bf24434f7730ad169077756cf9c7cd7bd675fc6",
+    "upstream_commit_date": "2026-07-15T14:51:34Z",
+    "new_animation_rules": false,
+    "new_timing_or_easing_values": false,
+    "byte_identical_skills": ["animation-vocabulary", "apple-design", "emil-design-eng"],
+    "editorial_changes": [
+      {
+        "path": "skills/review-animations/SKILL.md",
+        "line": 13,
+        "upstream": "senior design engineer",
+        "fork": "senior motion-design reviewer"
+      },
+      {
+        "path": "skills/review-animations/STANDARDS.md",
+        "line": 3,
+        "change": "Der Fork ergänzt einen Link auf animations.dev."
+      }
+    ],
+    "missing_upstream_skills": ["find-animation-opportunities", "improve-animations"],
+    "existing_references_read": [
+      "/root/.claude/skills/design/references/animation-vokabular.md",
+      "/root/.claude/skills/design/references/motion-doktrin.md",
+      "/root/.claude/skills/design/references/motion-audit-workflow.md",
+      "/root/.claude/skills/design/references/apple-fluid-interfaces.md",
+      "/root/raphael-skills/skills/eigene/web/references/component-islands.md"
+    ],
+    "interpretation": "Der ältere Fork-Snapshot enthält zwei redaktionelle Abweichungen und weniger Skills. Die HTML/CSS/Vanilla-Rezepte des Moduls sind MAKE-Adaptionen."
+  },
+  "module": "motion-native.md",
+  "path_semantics": "path ist relativ zur Repository-Wurzel; snapshot_path ist relativ zu diesem Katalog. example_ids bezeichnen C01 bis C14 im Referenzmodul.",
+  "skills": [
+    {
+      "name": "animation-vocabulary",
+      "path": "skills/animation-vocabulary/SKILL.md",
+      "snapshot_path": "../../assets/vendor/emilkowalski-skills/skills/animation-vocabulary/SKILL.md",
+      "purpose": "Eine beschriebene Bewegung ihrem genauen Fachbegriff zuordnen und ähnliche Effekte unterscheiden.",
+      "commit": "f76beceb7d3fc8c43309cefad5a095a206103a4e",
+      "git_blob": "cd0af50454bfe33a1e8c4ea24cc0c3c737d0f5e0",
+      "reference_files": [],
+      "key_rules": [
+        "Zuerst den wahrgenommenen Effekt verstehen; reine Schlagwortsuche reicht nicht.",
+        "Bei einer Benennungsfrage den besten Begriff zuerst nennen, höchstens zwei nahe Alternativen ergänzen.",
+        "Die englische Glossardefinition bei wörtlicher Auskunft unverändert zitieren.",
+        "Morph, Crossfade, Shared Element und Layout Animation voneinander unterscheiden.",
+        "Fehlenden Begriff oder Annäherung ausdrücklich benennen.",
+        "Eine Benennungsfrage erfordert noch keine Animation oder Implementierung.",
+        "Das vollständige Glossar bleibt in animation-vokabular.md; keine zweite Kopie anlegen."
+      ],
+      "html_css_translation": {
+        "default_stack": "HTML/CSS; JavaScript nur nach Wahl des Effekts",
+        "patterns": [
+          {"term": "Fade / Translate / Scale", "api": "CSS transition oder WAAPI", "example_ids": ["C03", "C04", "C05"]},
+          {"term": "Stagger / Scroll reveal", "api": "IntersectionObserver und begrenzter WAAPI-Delay", "example_ids": ["C07"]},
+          {"term": "View transition / Shared element transition", "api": "Native View Transitions; benannte Elemente pro Snapshot eindeutig halten", "example_ids": ["C08"]},
+          {"term": "Spring", "api": "linear() für vorbestimmte Annäherung; physikalischer Controller für Velocity", "example_ids": ["C10", "C12"]},
+          {"term": "Clip-path / Before-after slider", "api": "clip-path: inset() mit zugänglichem Range-Input", "example_ids": ["C11"]},
+          {"term": "Loop / Idle animation", "api": "CSS animation mit Pause und statischem Reduced-Motion-Ersatz", "example_ids": ["C13"]}
+        ],
+        "motion_island": "Für die Begriffsklärung ist keine Runtime nötig. Die gewählte Interaktion bestimmt einen möglichen Inselbedarf.",
+        "existing_reference": "/root/.claude/skills/design/references/animation-vokabular.md"
+      },
+      "fork_delta": "Bytegleich mit dem Originalstand; auch der Haupttext der vorhandenen lokalen Referenz ist identisch."
+    },
+    {
+      "name": "emil-design-eng",
+      "path": "skills/emil-design-eng/SKILL.md",
+      "snapshot_path": "../../assets/vendor/emilkowalski-skills/skills/emil-design-eng/SKILL.md",
+      "purpose": "Motion nach Zweck und Häufigkeit auswählen und UI-Komponenten mit konkreten Zeit-, Easing-, Performance- und Accessibility-Vorgaben bauen.",
+      "commit": "f76beceb7d3fc8c43309cefad5a095a206103a4e",
+      "git_blob": "4911235325272b124f1f298b9040e7f539a03b34",
+      "reference_files": [],
+      "key_rules": [
+        "Keyboard-Aktionen und 100+/Tag wiederholte Interaktionen ohne Animation ausführen; häufige Effekte entfernen oder reduzieren.",
+        "Für jede Animation einen Zweck festhalten: Orientierung, Zustand, Feedback, Erklärung oder verständlicher Zustandswechsel.",
+        "UI grundsätzlich unter 300 ms halten; Modal-/Drawer-Quellbudget 200–500 ms nur mit dokumentierter Ausnahme ausnutzen.",
+        "Press 100–160 ms, Tooltip/Popover 125–200 ms und Dropdown/Select 150–250 ms als Quellbudgets verwenden.",
+        "Enter/Exit: cubic-bezier(0.23, 1, 0.32, 1); sichtbare Ortswechsel: cubic-bezier(0.77, 0, 0.175, 1); Drawer: cubic-bezier(0.32, 0.72, 0, 1).",
+        "Hover/Farbe kann ease verwenden, konstante Bewegung linear; träges ease-in auf UI vermeiden.",
+        "Entry mit Scale 0.9–0.97 und Opacity; Popover-Origin am Trigger, Modal-Origin zentral; kein Scale 0.",
+        "Press-Feedback mit Scale 0.97; Hover nur bei hover:hover und pointer:fine.",
+        "CSS-Transitions für rasche Toggles, @starting-style für Entry, WAAPI für programmatische Kontrolle verwenden.",
+        "Springs für frei unterbrechbare Gesten mit Velocity; Bounce 0.1–0.3 nur bei begründetem spielerischem oder momentumgetragenem Effekt.",
+        "Transform/Opacity explizit animieren; keine pauschale GPU-Garantie für CSS, WAAPI, Clip oder Motion-Shorthands annehmen.",
+        "Reduced Motion entfernt selbstlaufende Bewegung; Text, Farbe, kurzer Fade oder sofortiger Wechsel erhalten Rückmeldung.",
+        "Nach dem ersten offenen Tooltip im Cluster Delay und Animation auslassen.",
+        "Stagger 30–80 ms, ohne Interaktion zu sperren; beim bewussten Hold 2 s linear und Rücknahme 200 ms ease-out.",
+        "Gesten brauchen Capture, Pointer-ID, Grenzwiderstand und gerichtete Release-Velocity mit klaren Einheiten.",
+        "Bei Crossfade zunächst Timing prüfen; Blur 2 px gezielt einsetzen, animierten Blur unter 20 px halten und profilieren.",
+        "Unter Last, in Slow Motion, bei rascher Umkehr und auf echten Touchgeräten prüfen."
+      ],
+      "html_css_translation": {
+        "default_stack": "Native HTML-Elemente, CSS-Transitions und Vanilla JS",
+        "rule_ids": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R18", "R20"],
+        "example_ids": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C10", "C11", "C12"],
+        "patterns": [
+          {"situation": "Navbar", "api": "details/summary + @starting-style; Exit im kompakten Beispiel sofort"},
+          {"situation": "Dialog", "api": "dialog.showModal()/close(), display/overlay allow-discrete, echter Link-Fallback"},
+          {"situation": "Rascher Toggle", "api": "CSS-Transition oder WAAPI vom berechneten Zwischenwert; finished-Abbruch behandeln"},
+          {"situation": "Scroll-Reveal", "api": "Observer auf dekorative Fläche, WAAPI mit gedeckeltem Stagger; Inhalt im HTML sichtbar"},
+          {"situation": "Spring-ähnlicher fester Ablauf", "api": "CSS linear() mit Bezier-Fallback; ohne Velocity-Handoff"},
+          {"situation": "Formular", "api": "Native Validierung, Live-Region und sofortiger Textstatus statt Pflichtanimation"}
+        ],
+        "motion_island": "Nur bei React-Motion-/Gesten- oder Layout-Komponenten; frameworkfreies motion direkt als Vanilla-Modul möglich.",
+        "existing_reference": "/root/.claude/skills/design/references/motion-doktrin.md",
+        "adaptation_note": "Kurs-Begrüssung nicht übernehmen. Widersprüche zu GPU, reinem Fade, Spring-Parametern und Dauer im Modul ausdrücklich auflösen."
+      },
+      "fork_delta": "Bytegleich mit dem Originalstand; der vorhandene Bestand kondensiert diesen Skill bereits."
+    },
+    {
+      "name": "review-animations",
+      "path": "skills/review-animations/SKILL.md",
+      "snapshot_path": "../../assets/vendor/emilkowalski-skills/skills/review-animations/SKILL.md",
+      "purpose": "Animationscode mit Belegen und konkreten Werten prüfen; fundierte Freigabe oder Blockade statt allgemeinem Code-Review liefern.",
+      "commit": "f76beceb7d3fc8c43309cefad5a095a206103a4e",
+      "git_blob": "6b46fd3325057d7235b0090d23190e3c5eab6521",
+      "reference_files": ["skills/review-animations/STANDARDS.md"],
+      "reference_git_blobs": {"skills/review-animations/STANDARDS.md": "b6dc9b19a1e1f8b39c9fdddf096ea97c25035815"},
+      "disable_model_invocation": true,
+      "key_rules": [
+        "Nur Motion prüfen; fremde Funktionsfehler oder allgemeine Codequalität liegen ausserhalb des Skillumfangs.",
+        "Zweck und Nutzungshäufigkeit belegen; Animationen ohne Nutzen zuerst entfernen.",
+        "Easing und Dauer anhand STANDARDS.md mit exakten Zahlen prüfen.",
+        "Ursprung, Anfangsscale und Ein-/Austrittspfad prüfen; Modal-Zentrierung ist korrekt.",
+        "Schnelle oder gestengetriebene Änderungen müssen sich vom sichtbaren Zwischenstand umleiten lassen.",
+        "Explizite Transform-/Opacity-Animation verlangen; Layout-, Paint- und Main-Thread-Arbeit unter Last prüfen.",
+        "Reduced Motion, Pointer-/Hover-Gating und weiter nutzbare Rückmeldung sind Voraussetzung.",
+        "Bewusste Hold-Phase und Systemreaktion erhalten unterschiedliche Zeitbudgets.",
+        "Motion muss zur übrigen Website passen; Stagger, Blur und Bounce benötigen einen konkreten Anlass.",
+        "Befunde als eine Tabelle Before | After | Why mit file:line und anschliessendem Block-/Approve-Urteil ausgeben.",
+        "Werte aus STANDARDS.md statt aus Erinnerung übernehmen; bei unklarer Wirkung Slow Motion und reale Geräte verlangen.",
+        "Quellkonflikte gegen reine Fades und pauschale GPU-Behauptungen nicht als automatische Accessibility-Blockade übertragen."
+      ],
+      "html_css_translation": {
+        "default_stack": "Prüfung nativer Komponenten und ihrer Browser-Lebenszyklen",
+        "example_ids": ["C04", "C05", "C07", "C08", "C14"],
+        "checks": [
+          "Dialog bei laufendem Entry schliessen und bei laufendem Exit erneut öffnen; Fokus und entfernten Scrim kontrollieren.",
+          "WAAPI finished-Ablehnung bei cancel behandeln und persistierende Effekte bereinigen.",
+          "Reduced Motion zur Laufzeit wechseln; Endzustand und sichtbare HTML-Inhalte erhalten.",
+          "View-Transition-Update trotz ausgelassener Animation genau einmal ausführen.",
+          "Ohne JavaScript und ohne neue CSS-/JS-APIs bleiben native Links und Controls verwendbar.",
+          "Bei Motion-Inseln Hydration, Portal-CSS, alternative Bedienung und tatsächlich geladene Bytes prüfen."
+        ],
+        "motion_island": "Ein Review selbst benötigt keine Runtime. Bei Bibliothekskomponenten die echte Insel und deren Primitive-Lebenszyklus prüfen.",
+        "existing_references": [
+          "/root/.claude/skills/design/references/motion-doktrin.md",
+          "/root/.claude/skills/design/references/motion-audit-workflow.md"
+        ]
+      },
+      "fork_delta": "SKILL.md ändert nur senior design engineer zu senior motion-design reviewer; STANDARDS.md ergänzt nur den Link auf animations.dev."
+    },
+    {
+      "name": "apple-design",
+      "path": "skills/apple-design/SKILL.md",
+      "snapshot_path": "../../assets/vendor/emilkowalski-skills/skills/apple-design/SKILL.md",
+      "purpose": "Direkte Gesten, kontinuierliche Spring-Physik, räumliche Orientierung, Materialien und zugängliches Interface-Design erklären.",
+      "commit": "f76beceb7d3fc8c43309cefad5a095a206103a4e",
+      "git_blob": "66f56807cb503fd482b86c4e0aaee5a080918242",
+      "reference_files": [],
+      "key_rules": [
+        "Feedback beim Pointerdown beginnen; während direkter Manipulation dem Pointer 1:1 folgen.",
+        "Griffversatz und Pointer-Capture erhalten; weitere Pointer, Cancel und Capture-Verlust behandeln.",
+        "Jede frei greifbare Bewegung vom aktuellen Präsentationswert übernehmen und ohne Eingabesperre umleiten.",
+        "Bei Gestenende gerichtete Release-Velocity weiterreichen; X/Y-Physik getrennt führen.",
+        "Standard-Dämpfungsverhältnis 1.0, bei Momentum etwa 0.8; Response 0.3–0.4 s je Interaktion laut Quelltabelle.",
+        "Dämpfungsverhältnis niemals direkt als Motion-damping-Koeffizient einsetzen; response, duration und visualDuration unterscheiden.",
+        "Ziel aus current + (velocity / 1000) * decay / (1 - decay) projizieren; decay 0.998 oder 0.99 als Quellwerte.",
+        "Grenzwiderstand mit rubberband und Konstante 0.55 zunehmend verstärken.",
+        "Etwa 10 px Hysterese für konkurrierende Gesten prüfen; Scrollen und alternative Bedienung erhalten.",
+        "Ein-/Austrittspfad und Trigger-Origin erhalten; Mirror-Easing nur innerhalb eines passenden reversiblen Ablaufs verwenden.",
+        "Transform-/Opacity-Rendering profilieren und rAF für zeitgerechte lokale Updates verwenden.",
+        "Transparente Materialien nach Hierarchie und Lesbarkeit wählen; unnötiges Stapeln heller Glasflächen vermeiden.",
+        "Reduced Motion, reduzierte Transparenz und höheren Kontrast als drei unabhängige Präferenzen behandeln.",
+        "Grosse selbstlaufende Hintergründe, langsame Dauerschwingung und abrupte Helligkeitssprünge vermeiden.",
+        "Sound und Haptik optional, kausal und zweckgebunden halten; Status, Erfolg und Fehler visuell/semantisch erkennbar lassen.",
+        "Typografie nach Grösse und Kontext staffeln; Nutzer-Schriftgrösse, systemische Schriftwahl und rem/em berücksichtigen.",
+        "Zweck, Kontrolle, Verantwortung, Vertrautheit, Anpassbarkeit, Einfachheit, Sorgfalt und Freude in konkreten Interaktionen prüfen.",
+        "Interaktiv prototypisieren und mit echten Menschen, realen Geräten und langsam abgespielter Motion testen."
+      ],
+      "html_css_translation": {
+        "default_stack": "Native Pointer Events und CSS; Bibliothekscontroller für echte Gestenphysik",
+        "rule_ids": ["R04", "R05", "R06", "R08", "R09", "R13", "R14", "R15", "R17", "R18", "R19", "R20"],
+        "example_ids": ["C02", "C04", "C09", "C10", "C12", "C13", "C14"],
+        "patterns": [
+          {"need": "Direkte Manipulation", "api": "Pointer Events, setPointerCapture, Pointer-ID, requestAnimationFrame, achsengerechtes touch-action"},
+          {"need": "Kontinuierlicher Flick/Snap", "api": "Aktueller Wert plus jüngste Velocity in px/s an physikalischen Spring-Controller übergeben"},
+          {"need": "Festes federähnliches Timing", "api": "CSS linear()-Annäherung ohne Velocity-Zustand; Bezier-Fallback"},
+          {"need": "Material und Kontrast", "api": "backdrop-filter mit deckender Basis und Media Queries für Transparenz/Kontrast"},
+          {"need": "Status und Feedback", "api": "Native Zustände, aria-live/role=status, Fehlertext und sichtbarer Fokus"},
+          {"need": "Typografie", "api": "Bestehende apple-fluid-interfaces.md für font-optical-sizing, rem/em, Tracking und Zeilenhöhe verwenden"}
+        ],
+        "motion_island": "React-Sheet, Reorder, layoutId oder Hook-basierter Velocity-Controller in eine vollständige Astro-Insel. Frameworkfreies motion erfordert keine React-Insel.",
+        "island_reference": "/root/raphael-skills/skills/eigene/web/references/component-islands.md",
+        "existing_reference": "/root/.claude/skills/design/references/apple-fluid-interfaces.md",
+        "adaptation_note": "Globale CSS-Transitions nicht pauschal ablehnen; für einfache Zustandswechsel bleiben sie unterbrechbar. Physikalische Geschwindigkeitskontinuität gesondert prüfen."
+      },
+      "fork_delta": "Bytegleich mit dem Originalstand; lokaler Haupttext identisch, lokale Überschrift und Herkunftsvorspann angepasst."
+    }
+  ]
+}
