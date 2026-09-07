@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Copywriting"
-  short_description: "Codex adapter for the copywriting skill"
-  default_prompt: "Use $copywriting for this task."

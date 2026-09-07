@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Design"
-  short_description: "Codex adapter for the design skill"
-  default_prompt: "Use $design for this task."
