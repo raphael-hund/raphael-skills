@@ -1,0 +1,3328 @@
+{
+  "schema_version": 1,
+  "research_date": "2026-09-06",
+  "source": "Foreplay und öffentliche Medien",
+  "ad_library": "skipped",
+  "meta_ui": "blocked",
+  "meta_api": "not_used",
+  "meta_ui_reason": "VPS-Chrome-Initialisierung nach WebSocket-Verbindung im Timeout; keine Navigation in Meta.",
+  "advertiser": {
+    "name": "Marc Evers Marketing & Consulting",
+    "foreplay_brand_id": "NpGYS0ICLLMk5yCnhLTO",
+    "provider_page_id": "153435324518729",
+    "instagram_url": "https://www.instagram.com/marc.mev/",
+    "identity": "Name und konkreter externer Angebotslink aus öffentlichem Profil stimmen mit Anzeigenziel überein.",
+    "identity_link": "https://go.client-acquisition-accelerator.de/"
+  },
+  "counts": {
+    "provider_total": 509,
+    "active_fetched": 11,
+    "active_unique_files": 10,
+    "unique_ads_fetched": 144,
+    "image_records": 97,
+    "image_assets_screened": 72,
+    "enlarged_images": 10,
+    "full_realtime_playbacks": 0,
+    "meta_ui_views": 0
+  },
+  "active_ads": [
+    {
+      "ad_id": "4541298832863590",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=bPfhNAxFg4feZeh3kebo",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=4541298832863590",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-09-03T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 79.15,
+      "local_duration_seconds": 79.145375,
+      "publisher_platform": [
+        "instagram"
+      ],
+      "link_url": "http://fb.me/",
+      "function": "direct_offer",
+      "visual_observation": "Selfie mit Handmikrofon, Webdesigner-Callout und Ergebnisbehauptung. Ab ca.30s werden Gesprächsausschnitte, später Chat-Belege und Markenlogos eingeblendet.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-4541298832863590-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60,
+        65,
+        70,
+        75
+      ],
+      "sha256": "234f5c53039e446deab748dfda3e31d38739ec231e0e6bd096031bba70f8247b",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1089581404016327",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=tCaj9MTyKte5LG9imVpi",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1089581404016327",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-09-02T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 79.15,
+      "local_duration_seconds": 79.145375,
+      "publisher_platform": [
+        "instagram"
+      ],
+      "link_url": "http://fb.me/",
+      "function": "direct_offer",
+      "visual_observation": "Exakte Mediendatei-Dublette des Pitches 4541298832863590.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-4541298832863590-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60,
+        65,
+        70,
+        75
+      ],
+      "sha256": "234f5c53039e446deab748dfda3e31d38739ec231e0e6bd096031bba70f8247b",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback",
+      "duplicate_of": "4541298832863590"
+    },
+    {
+      "ad_id": "2111916986367171",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iHfwMRM4zLjdgZDAsJIp",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=2111916986367171",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-08-07T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 42.33,
+      "local_duration_seconds": 42.32712,
+      "publisher_platform": [
+        "instagram"
+      ],
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "function": "result_proof",
+      "visual_observation": "Kleine Dreiergesprächsaufnahme auf schwarzem Hochformat. Eine feste Ergebnisüberschrift rahmt den Ausschnitt.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-2111916986367171-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40
+      ],
+      "sha256": "3977a8f5b0620db71f6b4e90c11aa08d69ec4b794a45608c257364add1108fb8",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1388339999962652",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=X2pDUjVVsnjXhoHvBlHl",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1388339999962652",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-08-07T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 688.05,
+      "local_duration_seconds": 688.053696,
+      "publisher_platform": [
+        "instagram"
+      ],
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "function": "long_testimonial",
+      "visual_observation": "Zwei Gesprächspartner in kleinem Querformat auf schwarzem Hochformat. Die feste Überschrift beschreibt einen behaupteten Kundenfortschritt.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-1388339999962652-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        25,
+        50,
+        75,
+        100,
+        125,
+        150,
+        175,
+        200,
+        225,
+        250,
+        275,
+        300,
+        325,
+        350,
+        375,
+        400,
+        425,
+        450,
+        475,
+        500,
+        525,
+        550,
+        575,
+        600,
+        625,
+        650,
+        675
+      ],
+      "sha256": "6bf53603dd8694902ed5f8e07fb36011e23b92f09f5af17769ee914beb9e52dd",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1773187347440506",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=QH81ODq5emYGTxdW9n0f",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1773187347440506",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-08-07T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 61.88,
+      "local_duration_seconds": 61.88,
+      "publisher_platform": [
+        "instagram"
+      ],
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "function": "consulting_proof",
+      "visual_observation": "Kleine Bildschirmaufnahme des Ads-Managers mit Gesprächsecke. Die feste Headline nennt günstige Leads und einen Mitarbeiterfilter; Tabellen sind für unabhängige Zahlenprüfung zu klein.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-1773187347440506-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60
+      ],
+      "sha256": "3b8b8220a589e290f9edc5d6bbe6f3986d727cda95255196a9a6b7234fa62a8a",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1025214016799116",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BCs2JuwNYxzddm1fLfYX",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1025214016799116",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-08-07T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 126.46,
+      "local_duration_seconds": 126.455011,
+      "publisher_platform": [
+        "instagram"
+      ],
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "function": "economics_example",
+      "visual_observation": "Kleine Bildschirmaufnahme auf schwarzem Hochformat. Die feste Headline formuliert einen zukünftigen ROAS. Der Transkripttext enthält ein hypothetisches Wirtschaftlichkeitsmodell.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-1025214016799116-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        45,
+        50,
+        55,
+        60,
+        65,
+        70,
+        75,
+        80,
+        85,
+        90,
+        95,
+        100,
+        105,
+        110,
+        115,
+        120,
+        125
+      ],
+      "sha256": "7b176b02eb2ac11c25f3f1a1a86919af8b1843418253533b692149f4430a8698",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "2553412068444602",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Y9BtmyTAXAUtO0rjo4D0",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=2553412068444602",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-05-10T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 18.43,
+      "local_duration_seconds": 18.433787,
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "link_url": "https://urlgeni.us/youtube/ov2Y2",
+      "function": "youtube_invitation",
+      "visual_observation": "Selfie-Ansprache mit eingeblendeter YouTube-Karte über die Positionierung der Agentur im Markt.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-2553412068444602-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15
+      ],
+      "sha256": "1ef30daf4e6311f69097537a21574c12e34557356cecc5b7651130eb6e0f4fdb",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1436726611585785",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JSbQGawWAbmEkI6PtH7Q",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1436726611585785",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-05-10T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 15.48,
+      "local_duration_seconds": 15.484853,
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "link_url": "https://urlgeni.us/youtube/XAVyDW",
+      "function": "youtube_invitation",
+      "visual_observation": "Selfie-Ansprache und YouTube-Karte mit einem Versprechen zusätzlicher Agenturtermine.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-1436726611585785-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15
+      ],
+      "sha256": "da1434fa0fc48562cd5f09366aa7e33410a1729e8e7340ff2676771fa0b43d14",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "806079518989296",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=muyaI9kLZG3TpwBascla",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=806079518989296",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-05-09T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 11.58,
+      "local_duration_seconds": 11.5839,
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "link_url": "https://urlgeni.us/youtube/LqWbIm",
+      "function": "youtube_invitation",
+      "visual_observation": "Selfie am Arbeitsplatz mit Karte einer Framework-Präsentation für Webdesignkunden.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-806079518989296-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10
+      ],
+      "sha256": "c71f267e61cdacd8f16dd1e458398456a42727ff79d924af0b960295f9a21bdc",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1240144881289442",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=jZtvWC4aCxWtyEaDXN7j",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1240144881289442",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-05-09T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 17.899977,
+      "local_duration_seconds": 17.899728,
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "link_url": "https://urlgeni.us/youtube/LqWbIm",
+      "function": "youtube_invitation",
+      "visual_observation": "Balkon-Selfie mit Karte eines YouTube-Videos über wirtschaftlichen Aufbau durch Ads.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-1240144881289442-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15
+      ],
+      "sha256": "bb3b28b071ab536e29c0ce09c65a3f1cffc044359f0f6b5c64f8560ac6d542c3",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    },
+    {
+      "ad_id": "1516884643180139",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iU2v9KqEnsTf3ieLnx7B",
+      "meta_reference_url": "https://www.facebook.com/ads/library/?id=1516884643180139",
+      "meta_reference_opened": false,
+      "started_running_utc": "2026-05-09T07:00:00+00:00",
+      "provider_live": true,
+      "provider_duration_seconds": 22.329977,
+      "local_duration_seconds": 22.334739,
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "link_url": "https://urlgeni.us/youtube/BKHaqO",
+      "function": "youtube_invitation",
+      "visual_observation": "Sitzender Sprecher und Videokarte mit als Erfahrung aus Kundenarbeit beschriebenen Learnings.",
+      "evidence_path": "belege/screenshot-2026-09-06-evers-ad-1516884643180139-kontakt.jpg",
+      "sample_seconds": [
+        0,
+        5,
+        10,
+        15,
+        20
+      ],
+      "sha256": "1a0e5b033ff12fc3122c9c4e623793090adea7ef65b5470a8141ac3e62b60ad8",
+      "audio_status": "vollständiges Foreplay-Transkript gelesen; kein persönliches vollständiges Abhören",
+      "visual_status": "gesichtete lokale Frame-Stichproben; kein vollständiges Echtzeit-Playback"
+    }
+  ],
+  "historical_images": [
+    {
+      "ad_id": "1379486803905494",
+      "id": "y1tZJuer48WMfwnddv3a",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=y1tZJuer48WMfwnddv3a",
+      "live": false,
+      "started_running": 1759820400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1732305727482065",
+      "id": "wJxdD6fslGtSsmmI9zNK",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=wJxdD6fslGtSsmmI9zNK",
+      "live": false,
+      "started_running": 1759820400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "798197086401708",
+      "id": "NgRqk4B4x38fYYJT21aC",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=NgRqk4B4x38fYYJT21aC",
+      "live": false,
+      "started_running": 1759820400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1529165245181522",
+      "id": "Uwk7yev6brdXXSRVJ3XF",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Uwk7yev6brdXXSRVJ3XF",
+      "live": false,
+      "started_running": 1759906800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "2269899283535617",
+      "id": "YZfC12k7cjw1TkuQ7Tlc",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=YZfC12k7cjw1TkuQ7Tlc",
+      "live": false,
+      "started_running": 1759906800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1113305767535843",
+      "id": "e9CmdfR6M00HLDStLhVi",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=e9CmdfR6M00HLDStLhVi",
+      "live": false,
+      "started_running": 1760166000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1337443531153437",
+      "id": "kFHip3wv9jLu45AxzhNn",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=kFHip3wv9jLu45AxzhNn",
+      "live": false,
+      "started_running": 1760166000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1587827345729036",
+      "id": "Qr4XKsxTcZlUh6riKIGf",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Qr4XKsxTcZlUh6riKIGf",
+      "live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "2298467090628121",
+      "id": "VcLgJ9NFJ3qTnBkL6KhA",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=VcLgJ9NFJ3qTnBkL6KhA",
+      "live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "838146548613647",
+      "id": "BQ5T2PYdONwz7dWWPFrJ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BQ5T2PYdONwz7dWWPFrJ",
+      "live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1337179061184269",
+      "id": "hrShABAzFG8km20WuRyM",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hrShABAzFG8km20WuRyM",
+      "live": false,
+      "started_running": 1763280000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/no-funnel-ads/"
+    },
+    {
+      "ad_id": "1889843335074210",
+      "id": "qndZQqU4AJwvFAjUflD7",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=qndZQqU4AJwvFAjUflD7",
+      "live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "873938301737367",
+      "id": "hq8RKwmGy4X4DXLexCeQ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hq8RKwmGy4X4DXLexCeQ",
+      "live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "1087257926689416",
+      "id": "z9D5gLjMTCocZNnIPdHw",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=z9D5gLjMTCocZNnIPdHw",
+      "live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "1147975610860709",
+      "id": "fH9mmKemWhwteJZt0AFW",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=fH9mmKemWhwteJZt0AFW",
+      "live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "743480524677871",
+      "id": "U4C6v0qjxUDaNAO6WZFh",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=U4C6v0qjxUDaNAO6WZFh",
+      "live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "1432900624845424",
+      "id": "yeU5AZOCcNFQ7IrE83U2",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=yeU5AZOCcNFQ7IrE83U2",
+      "live": false,
+      "started_running": 1763971200000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "24840658732301788",
+      "id": "xOBYxrrMWAJIeIZFzRMm",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xOBYxrrMWAJIeIZFzRMm",
+      "live": false,
+      "started_running": 1763971200000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "4216182628629610",
+      "id": "BJJKaJ2CQqJsDlK8SKoN",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BJJKaJ2CQqJsDlK8SKoN",
+      "live": false,
+      "started_running": 1763971200000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "2327704247702659",
+      "id": "tEJjFbX0Lj9VaHeFdfAX",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=tEJjFbX0Lj9VaHeFdfAX",
+      "live": false,
+      "started_running": 1765353600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1574169250291857",
+      "id": "R2V31pMGuran80GFxZZ4",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=R2V31pMGuran80GFxZZ4",
+      "live": false,
+      "started_running": 1765353600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1542162430259807",
+      "id": "nQsI8sHCIMu357Y4Qikk",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=nQsI8sHCIMu357Y4Qikk",
+      "live": false,
+      "started_running": 1765353600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1379791843879262",
+      "id": "slykcOvxplwx28bfXGUk",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=slykcOvxplwx28bfXGUk",
+      "live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1194173266020586",
+      "id": "BBjKq5WF1c0GTGKoGJXG",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BBjKq5WF1c0GTGKoGJXG",
+      "live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "737603052690948",
+      "id": "LLoPRRoult9P0AHW6Jza",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=LLoPRRoult9P0AHW6Jza",
+      "live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "900398806276356",
+      "id": "VvwyPrUUz8ESQkcTmfPQ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=VvwyPrUUz8ESQkcTmfPQ",
+      "live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1556117642270917",
+      "id": "59qQPfAU2O1wp25gPpPy",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=59qQPfAU2O1wp25gPpPy",
+      "live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1050883997167211",
+      "id": "GukH4NhFXNcUe54jahRc",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=GukH4NhFXNcUe54jahRc",
+      "live": false,
+      "started_running": 1765958400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "818563287674263",
+      "id": "RsnfxIAvZJCJslyH9ppk",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=RsnfxIAvZJCJslyH9ppk",
+      "live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1106743381403518",
+      "id": "pPG7VEfRc5sDCqZHWloJ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=pPG7VEfRc5sDCqZHWloJ",
+      "live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "571755882699400",
+      "id": "JjQXeRbi6PkKEOfWMpfA",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JjQXeRbi6PkKEOfWMpfA",
+      "live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1354140849276165",
+      "id": "iNhpANKuoxq1ZdZUOJsP",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iNhpANKuoxq1ZdZUOJsP",
+      "live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1564818584645855",
+      "id": "RNdY7u5mAJLQCxJhtmdg",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=RNdY7u5mAJLQCxJhtmdg",
+      "live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "2142608929607639",
+      "id": "5PAgOq7d5fhKcVvHbkN8",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=5PAgOq7d5fhKcVvHbkN8",
+      "live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "880884137956486",
+      "id": "OL36JJ9c7t4hSedsq9Ev",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=OL36JJ9c7t4hSedsq9Ev",
+      "live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1681313935901442",
+      "id": "iYP9rINsoCLWNpcO6eID",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iYP9rINsoCLWNpcO6eID",
+      "live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "839393902249188",
+      "id": "dTGh0mvvTmeLp1rESUVU",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=dTGh0mvvTmeLp1rESUVU",
+      "live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1415207226992823",
+      "id": "JrBbGEAdtdyMPbQ6PVAk",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JrBbGEAdtdyMPbQ6PVAk",
+      "live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1406451597875742",
+      "id": "W4iMS4kyvQZl0vA5E5i1",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=W4iMS4kyvQZl0vA5E5i1",
+      "live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "881964614728699",
+      "id": "CpG21UxQktDiF20EFjVD",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CpG21UxQktDiF20EFjVD",
+      "live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "746072811847550",
+      "id": "YlHtbsHeK2RrIxwpLnaO",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=YlHtbsHeK2RrIxwpLnaO",
+      "live": false,
+      "started_running": 1766995200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "886731670477345",
+      "id": "fYpOMskuzJF7bKK1t667",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=fYpOMskuzJF7bKK1t667",
+      "live": false,
+      "started_running": 1767081600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "846347025056769",
+      "id": "KctlY9VsKmE7yZgzwllj",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=KctlY9VsKmE7yZgzwllj",
+      "live": false,
+      "started_running": 1768032000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "4347125525563595",
+      "id": "xs9h7iQ7VvmNC6EkUacB",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xs9h7iQ7VvmNC6EkUacB",
+      "live": false,
+      "started_running": 1769673600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1187071940256026",
+      "id": "hIUXWAfISfsyLgr3Oxcc",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hIUXWAfISfsyLgr3Oxcc",
+      "live": false,
+      "started_running": 1769673600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1567155211248512",
+      "id": "H0f1X6kicC0KMQmmQw9H",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=H0f1X6kicC0KMQmmQw9H",
+      "live": false,
+      "started_running": 1772352000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1245602363662442",
+      "id": "zYB2DyoF6rf6xgPvAmmn",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=zYB2DyoF6rf6xgPvAmmn",
+      "live": false,
+      "started_running": 1772352000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "930144276061170",
+      "id": "UtHfEeyRwruzFgabDLZ8",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=UtHfEeyRwruzFgabDLZ8",
+      "live": false,
+      "started_running": 1773730800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "903901475778721",
+      "id": "YHjEWV2ifymqCqhCl3Hk",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=YHjEWV2ifymqCqhCl3Hk",
+      "live": false,
+      "started_running": 1773730800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "2227421824750578",
+      "id": "CbBslmRiagP59O9vW2Kh",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CbBslmRiagP59O9vW2Kh",
+      "live": false,
+      "started_running": 1773730800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1844230233560361",
+      "id": "u2gsEV1hWJPpzzF0Ym2x",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=u2gsEV1hWJPpzzF0Ym2x",
+      "live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "1978307413560361",
+      "id": "Jn1BwgoZntBC95SvUOwd",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Jn1BwgoZntBC95SvUOwd",
+      "live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "1039611295420188",
+      "id": "ho4lnIx9LxAAnskoD5ft",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=ho4lnIx9LxAAnskoD5ft",
+      "live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "2236526470484769",
+      "id": "XU0kIH9KuhUpBVIo0XeL",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=XU0kIH9KuhUpBVIo0XeL",
+      "live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "993995949736106",
+      "id": "TeiOTvAuk5MD3BgbPxxu",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TeiOTvAuk5MD3BgbPxxu",
+      "live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/"
+    },
+    {
+      "ad_id": "1847585976240016",
+      "id": "bKW6pmBLQxNQ2YUyNyw9",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=bKW6pmBLQxNQ2YUyNyw9",
+      "live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v1/"
+    },
+    {
+      "ad_id": "988971867217232",
+      "id": "jCeBD7WjzLWP00lXObuf",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=jCeBD7WjzLWP00lXObuf",
+      "live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v2/"
+    },
+    {
+      "ad_id": "2404585846716818",
+      "id": "IsqDT2I0AEaeNaN2Nirx",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=IsqDT2I0AEaeNaN2Nirx",
+      "live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v2/"
+    },
+    {
+      "ad_id": "1535282574776155",
+      "id": "t3uduhHJ3qEbIq69AXrJ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=t3uduhHJ3qEbIq69AXrJ",
+      "live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v1/"
+    },
+    {
+      "ad_id": "2064490071144781",
+      "id": "G0L26OTBdPsnSXRzTEwQ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=G0L26OTBdPsnSXRzTEwQ",
+      "live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v1/"
+    },
+    {
+      "ad_id": "1343122564355651",
+      "id": "Y3QCw3BzugUPinIa6BCL",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Y3QCw3BzugUPinIa6BCL",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "3465952776897699",
+      "id": "uWRuSecE65rxmzdQriA4",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=uWRuSecE65rxmzdQriA4",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1434894078678289",
+      "id": "aSqXZgO7QP1WfHgOELor",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=aSqXZgO7QP1WfHgOELor",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1725175502246125",
+      "id": "TMsGg4z80fgoOn6HkPkL",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TMsGg4z80fgoOn6HkPkL",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "4587840011445251",
+      "id": "th4eMcgBCn7xS6fUK4iF",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=th4eMcgBCn7xS6fUK4iF",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1753368269434834",
+      "id": "g9eo1XymD0M6SnR5eVn0",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=g9eo1XymD0M6SnR5eVn0",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "819127157691553",
+      "id": "XHWn9oWRonwFsgB8ApKj",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=XHWn9oWRonwFsgB8ApKj",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1009691284926342",
+      "id": "SDJVuCWQCCz85cK8PwwW",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=SDJVuCWQCCz85cK8PwwW",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "2279689866104188",
+      "id": "mQEpVKgX0AXucTI01kgE",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=mQEpVKgX0AXucTI01kgE",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "2946976385639930",
+      "id": "vGHzL13n7dEAmlxbSVEM",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=vGHzL13n7dEAmlxbSVEM",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1006609235153011",
+      "id": "wEz8BbU8i58rZ0Ycb1nB",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=wEz8BbU8i58rZ0Ycb1nB",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1016967040858404",
+      "id": "VB30gzaC4bKDrYhvgZKD",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=VB30gzaC4bKDrYhvgZKD",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1333778488817579",
+      "id": "DYOGOUwQ4MFsmDJZK3an",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=DYOGOUwQ4MFsmDJZK3an",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "26987302047585384",
+      "id": "sDGPQanLXkdOaViTCn3k",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=sDGPQanLXkdOaViTCn3k",
+      "live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "1614003906235086",
+      "id": "5bK47hZALjixnNLp96en",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=5bK47hZALjixnNLp96en",
+      "live": false,
+      "started_running": 1763280000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/no-funnel-ads/"
+    },
+    {
+      "ad_id": "1606618754592486",
+      "id": "TxqBbNynGiNusw0plqJu",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TxqBbNynGiNusw0plqJu",
+      "live": false,
+      "started_running": 1781852400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "27479891164960476",
+      "id": "ckbp66vC8PZDv2ZXWFqV",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=ckbp66vC8PZDv2ZXWFqV",
+      "live": false,
+      "started_running": 1782284400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "939312339121920",
+      "id": "7aCMGw3u9DNYqEEpORSC",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=7aCMGw3u9DNYqEEpORSC",
+      "live": false,
+      "started_running": 1782284400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1990018828547717",
+      "id": "rDrF2GrCzAG8liwJfSWG",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=rDrF2GrCzAG8liwJfSWG",
+      "live": false,
+      "started_running": 1782284400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1672021627111272",
+      "id": "JpOeQdt8IyENvE5p8q2r",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JpOeQdt8IyENvE5p8q2r",
+      "live": false,
+      "started_running": 1766995200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1023308983635032",
+      "id": "H5kAkGVoRhdpsu2Q18Dc",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=H5kAkGVoRhdpsu2Q18Dc",
+      "live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1425326806092485",
+      "id": "yvQUhcLJYSHkXn2diSz0",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=yvQUhcLJYSHkXn2diSz0",
+      "live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "2241379723281596",
+      "id": "xaE5bOqExOmTl4gRilLh",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xaE5bOqExOmTl4gRilLh",
+      "live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "2062310077709386",
+      "id": "r53tVu4K57rp2xPo0cIj",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=r53tVu4K57rp2xPo0cIj",
+      "live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1059268530372561",
+      "id": "3MJ5t87BAtrQAFP6ljmQ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=3MJ5t87BAtrQAFP6ljmQ",
+      "live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "2038228703443800",
+      "id": "wrwSwSefw9kRoBcEPEQP",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=wrwSwSefw9kRoBcEPEQP",
+      "live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1347171747502679",
+      "id": "TSPW9FkY6aVRz45Gi5zi",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TSPW9FkY6aVRz45Gi5zi",
+      "live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1359979979000553",
+      "id": "CNgQVIcz72GqlexgWmwm",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CNgQVIcz72GqlexgWmwm",
+      "live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1286212870108787",
+      "id": "vCWNI5LLwq4UqLdWKZlk",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=vCWNI5LLwq4UqLdWKZlk",
+      "live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1705825333983452",
+      "id": "H50OETAaiuyS0IuChdcj",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=H50OETAaiuyS0IuChdcj",
+      "live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1279538967461288",
+      "id": "I6TjgmyHX6oCWUbkbawy",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=I6TjgmyHX6oCWUbkbawy",
+      "live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1644798217253531",
+      "id": "th4DaYg5AOthtDTsSLlQ",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=th4DaYg5AOthtDTsSLlQ",
+      "live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/"
+    },
+    {
+      "ad_id": "1626168132184640",
+      "id": "F8PdR26jCDAsJxBC4a6v",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=F8PdR26jCDAsJxBC4a6v",
+      "live": false,
+      "started_running": 1786518000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/"
+    },
+    {
+      "ad_id": "1067884165732668",
+      "id": "iXlvVm2EZ3kqDkl62BhR",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iXlvVm2EZ3kqDkl62BhR",
+      "live": false,
+      "started_running": 1786518000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/"
+    },
+    {
+      "ad_id": "675875661802444",
+      "id": "gbCJegMGnBPLpWQUjkv0",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=gbCJegMGnBPLpWQUjkv0",
+      "live": false,
+      "started_running": 1760166000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    },
+    {
+      "ad_id": "2326407751180853",
+      "id": "p9WL4BwP0WYrKdanD1N0",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=p9WL4BwP0WYrKdanD1N0",
+      "live": false,
+      "started_running": 1772352000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/"
+    },
+    {
+      "ad_id": "1203819328327150",
+      "id": "GdkL6FnoDvHmDcVoBFhI",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=GdkL6FnoDvHmDcVoBFhI",
+      "live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/"
+    }
+  ],
+  "skill_findings": [
+    {
+      "id": "F1",
+      "topic": "content-kontinuitaet",
+      "claim": "Fünf getrennte, bei Foreplay als aktiv gelistete Anzeigen laden zu YouTube ein. Content-Zuführung kann somit über eigene Anzeigen erfolgen.",
+      "evidence_ad_ids": [
+        "2553412068444602",
+        "1436726611585785",
+        "806079518989296",
+        "1240144881289442",
+        "1516884643180139"
+      ],
+      "limit": "Tatsächlicher Spend, Kampagnenziel, Retargeting und Erfolg sind nicht bekannt."
+    },
+    {
+      "id": "F2",
+      "topic": "hook-skript",
+      "claim": "Direktes Angebot, Testimonial und Content-Einladung sind verschiedene Creative-Aufgaben. Vor der Skriptstruktur die Aufgabe bestimmen.",
+      "evidence_ad_ids": [
+        "4541298832863590",
+        "1388339999962652",
+        "806079518989296"
+      ],
+      "limit": "Beobachtete Formen, kein kontrollierter Wirksamkeitsvergleich."
+    },
+    {
+      "id": "F3",
+      "topic": "offer-positionierung",
+      "claim": "Beruf, Umsatzreife und gewünschte Kundentickets erscheinen als sichtbare Qualifikationsmerkmale im Creative.",
+      "evidence_ad_ids": [
+        "1614003906235086",
+        "1425326806092485",
+        "1606618754592486"
+      ],
+      "limit": "Die Zahlen gehören zu seinem Angebot und sind kein Standard für andere Kundensegmente."
+    },
+    {
+      "id": "F4",
+      "topic": "funnel-formular",
+      "claim": "Einige Statics nennen den persönlichen Rückruf nach Anmeldung; andere bieten Video, Dokument oder Value Call an. CTA und Folgeerfahrung pro Anzeige bestimmen.",
+      "evidence_ad_ids": [
+        "1606618754592486",
+        "1359979979000553",
+        "1067884165732668"
+      ],
+      "limit": "Die tatsächliche Formular- oder VSL-Abfolge wurde nicht durchlaufen."
+    },
+    {
+      "id": "F5",
+      "topic": "proof-adanalyse",
+      "claim": "Vier verschiedene Proof-Videos verwenden dieselbe Angebotsbeschreibung. Eine Angebotsbasis lässt sich mit verschiedenen Belegformen verbinden.",
+      "evidence_ad_ids": [
+        "2111916986367171",
+        "1388339999962652",
+        "1773187347440506",
+        "1025214016799116"
+      ],
+      "limit": "Die Wiederverwendung belegt keine Skalierung eines wirtschaftlich erfolgreichen Winners."
+    },
+    {
+      "id": "F6",
+      "topic": "offer-positionierung",
+      "claim": "Ergebnisabhängige Vergütung, kostenloser Content und kostenloser Value Call sind im Material verschiedene Eintrittsangebote.",
+      "evidence_ad_ids": [
+        "903901475778721",
+        "1614003906235086",
+        "1359979979000553"
+      ],
+      "limit": "Vertragsbedingungen der dargestellten Garantie liegen nicht vor."
+    },
+    {
+      "id": "F7",
+      "topic": "budget-messung",
+      "claim": "Sichtbare Kontoansicht, Kundenbericht, Prognose und hypothetische Rechnung behalten unterschiedliche Belegstärken.",
+      "evidence_ad_ids": [
+        "1773187347440506",
+        "1025214016799116",
+        "1006609235153011"
+      ],
+      "limit": "Keine unabhängigen Werbekontodaten; 9000/350 ergibt ungefähr25,7, nicht30."
+    }
+  ],
+  "limitations": [
+    "Anbieter-Aktivstatus ist keine unabhängig bestätigte Meta-Auslieferung.",
+    "Keine verifizierten Performancezahlen.",
+    "Kein vollständiges Echtzeit-Playback; Bildstichproben und Provider-Transkripte.",
+    "509 insgesamt gemeldet,144 eindeutige Datensätze tatsächlich geholt.",
+    "72 Bild-URLs sind keine72 eigenständigen Konzepte."
+  ],
+  "qa_correction": "Der ursprünglich vermutete Beschnitt bei1644798217253531 ist durch unabhängige Root-Sichtung widerlegt; das Original ist intakt.",
+  "provenance": {
+    "historical_origin": "/root/raphael-brain/raw/bookmark-2026-09-06-marc-evers-ads-inventar.json",
+    "localization_date": "2026-09-07"
+  },
+  "all_fetched_metadata": [
+    {
+      "id": "wEz8BbU8i58rZ0Ycb1nB",
+      "ad_id": "1006609235153011",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=wEz8BbU8i58rZ0Ycb1nB",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "SDJVuCWQCCz85cK8PwwW",
+      "ad_id": "1009691284926342",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=SDJVuCWQCCz85cK8PwwW",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "VB30gzaC4bKDrYhvgZKD",
+      "ad_id": "1016967040858404",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=VB30gzaC4bKDrYhvgZKD",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "H5kAkGVoRhdpsu2Q18Dc",
+      "ad_id": "1023308983635032",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=H5kAkGVoRhdpsu2Q18Dc",
+      "provider_live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "BCs2JuwNYxzddm1fLfYX",
+      "ad_id": "1025214016799116",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BCs2JuwNYxzddm1fLfYX",
+      "provider_live": true,
+      "started_running": 1786086000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 126.46
+    },
+    {
+      "id": "ho4lnIx9LxAAnskoD5ft",
+      "ad_id": "1039611295420188",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=ho4lnIx9LxAAnskoD5ft",
+      "provider_live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "GukH4NhFXNcUe54jahRc",
+      "ad_id": "1050883997167211",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=GukH4NhFXNcUe54jahRc",
+      "provider_live": false,
+      "started_running": 1765958400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "3MJ5t87BAtrQAFP6ljmQ",
+      "ad_id": "1059268530372561",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=3MJ5t87BAtrQAFP6ljmQ",
+      "provider_live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "A7tNgMmn6MusBu2txA6v",
+      "ad_id": "1060599959950174",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=A7tNgMmn6MusBu2txA6v",
+      "provider_live": false,
+      "started_running": 1786258800000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 60.05
+    },
+    {
+      "id": "iXlvVm2EZ3kqDkl62BhR",
+      "ad_id": "1067884165732668",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iXlvVm2EZ3kqDkl62BhR",
+      "provider_live": false,
+      "started_running": 1786518000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "iOPDKk8wkBpMmxLpVFe0",
+      "ad_id": "1074359981705908",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iOPDKk8wkBpMmxLpVFe0",
+      "provider_live": false,
+      "started_running": 1786777200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": 54.12
+    },
+    {
+      "id": "z9D5gLjMTCocZNnIPdHw",
+      "ad_id": "1087257926689416",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=z9D5gLjMTCocZNnIPdHw",
+      "provider_live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "tCaj9MTyKte5LG9imVpi",
+      "ad_id": "1089581404016327",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=tCaj9MTyKte5LG9imVpi",
+      "provider_live": true,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 79.15
+    },
+    {
+      "id": "JLYSB3WYxgH9s02jnwQQ",
+      "ad_id": "1091284800131004",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JLYSB3WYxgH9s02jnwQQ",
+      "provider_live": false,
+      "started_running": 1788073200000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 56.08
+    },
+    {
+      "id": "RqsdnO8uZ6S3eCQHVIIH",
+      "ad_id": "1092357806462575",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=RqsdnO8uZ6S3eCQHVIIH",
+      "provider_live": false,
+      "started_running": 1786777200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": 53.89
+    },
+    {
+      "id": "FGqoCwsaA4KtfZa8xq69",
+      "ad_id": "1094042713199638",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=FGqoCwsaA4KtfZa8xq69",
+      "provider_live": false,
+      "started_running": 1788591600000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 33.39
+    },
+    {
+      "id": "pPG7VEfRc5sDCqZHWloJ",
+      "ad_id": "1106743381403518",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=pPG7VEfRc5sDCqZHWloJ",
+      "provider_live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "e9CmdfR6M00HLDStLhVi",
+      "ad_id": "1113305767535843",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=e9CmdfR6M00HLDStLhVi",
+      "provider_live": false,
+      "started_running": 1760166000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "fH9mmKemWhwteJZt0AFW",
+      "ad_id": "1147975610860709",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=fH9mmKemWhwteJZt0AFW",
+      "provider_live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "vIMhcRxn7ZOxVE3rtEog",
+      "ad_id": "1155981626779497",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=vIMhcRxn7ZOxVE3rtEog",
+      "provider_live": false,
+      "started_running": 1786777200000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 51.27
+    },
+    {
+      "id": "hIUXWAfISfsyLgr3Oxcc",
+      "ad_id": "1187071940256026",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hIUXWAfISfsyLgr3Oxcc",
+      "provider_live": false,
+      "started_running": 1769673600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "BBjKq5WF1c0GTGKoGJXG",
+      "ad_id": "1194173266020586",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BBjKq5WF1c0GTGKoGJXG",
+      "provider_live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "GdkL6FnoDvHmDcVoBFhI",
+      "ad_id": "1203819328327150",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=GdkL6FnoDvHmDcVoBFhI",
+      "provider_live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "jZtvWC4aCxWtyEaDXN7j",
+      "ad_id": "1240144881289442",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=jZtvWC4aCxWtyEaDXN7j",
+      "provider_live": true,
+      "started_running": 1778310000000,
+      "display_format": "VIDEO",
+      "link_url": "https://urlgeni.us/youtube/LqWbIm",
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "provider_video_duration": 17.899977
+    },
+    {
+      "id": "zYB2DyoF6rf6xgPvAmmn",
+      "ad_id": "1245602363662442",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=zYB2DyoF6rf6xgPvAmmn",
+      "provider_live": false,
+      "started_running": 1772352000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "5efcWYmhIjuDMPnN92zy",
+      "ad_id": "1267053716494563",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=5efcWYmhIjuDMPnN92zy",
+      "provider_live": false,
+      "started_running": 1788418800000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 79.15
+    },
+    {
+      "id": "I6TjgmyHX6oCWUbkbawy",
+      "ad_id": "1279538967461288",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=I6TjgmyHX6oCWUbkbawy",
+      "provider_live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "vCWNI5LLwq4UqLdWKZlk",
+      "ad_id": "1286212870108787",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=vCWNI5LLwq4UqLdWKZlk",
+      "provider_live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "cACfwfZqOBjTbW9wOTYu",
+      "ad_id": "1318848913477679",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=cACfwfZqOBjTbW9wOTYu",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 57.21
+    },
+    {
+      "id": "DYOGOUwQ4MFsmDJZK3an",
+      "ad_id": "1333778488817579",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=DYOGOUwQ4MFsmDJZK3an",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "R4kanbCh5zfmbaHzf1Rv",
+      "ad_id": "1334271202251542",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=R4kanbCh5zfmbaHzf1Rv",
+      "provider_live": false,
+      "started_running": 1785654000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 18.86
+    },
+    {
+      "id": "hrShABAzFG8km20WuRyM",
+      "ad_id": "1337179061184269",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hrShABAzFG8km20WuRyM",
+      "provider_live": false,
+      "started_running": 1763280000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/no-funnel-ads/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "kFHip3wv9jLu45AxzhNn",
+      "ad_id": "1337443531153437",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=kFHip3wv9jLu45AxzhNn",
+      "provider_live": false,
+      "started_running": 1760166000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "pAjjkqedqO1lLZ7t2scl",
+      "ad_id": "1338955347954902",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=pAjjkqedqO1lLZ7t2scl",
+      "provider_live": false,
+      "started_running": 1785654000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 24.45
+    },
+    {
+      "id": "Y3QCw3BzugUPinIa6BCL",
+      "ad_id": "1343122564355651",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Y3QCw3BzugUPinIa6BCL",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "TSPW9FkY6aVRz45Gi5zi",
+      "ad_id": "1347171747502679",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TSPW9FkY6aVRz45Gi5zi",
+      "provider_live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "iNhpANKuoxq1ZdZUOJsP",
+      "ad_id": "1354140849276165",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iNhpANKuoxq1ZdZUOJsP",
+      "provider_live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "0WxxUmtcuR1sSgF5Vm0Z",
+      "ad_id": "1355292276140857",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=0WxxUmtcuR1sSgF5Vm0Z",
+      "provider_live": false,
+      "started_running": 1785913200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 126.46
+    },
+    {
+      "id": "CNgQVIcz72GqlexgWmwm",
+      "ad_id": "1359979979000553",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CNgQVIcz72GqlexgWmwm",
+      "provider_live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "UhebuApkE7lswPYlRH6E",
+      "ad_id": "1375133301398073",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=UhebuApkE7lswPYlRH6E",
+      "provider_live": false,
+      "started_running": 1788159600000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 56.08
+    },
+    {
+      "id": "y1tZJuer48WMfwnddv3a",
+      "ad_id": "1379486803905494",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=y1tZJuer48WMfwnddv3a",
+      "provider_live": false,
+      "started_running": 1759820400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "slykcOvxplwx28bfXGUk",
+      "ad_id": "1379791843879262",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=slykcOvxplwx28bfXGUk",
+      "provider_live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "X2pDUjVVsnjXhoHvBlHl",
+      "ad_id": "1388339999962652",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=X2pDUjVVsnjXhoHvBlHl",
+      "provider_live": true,
+      "started_running": 1786086000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 688.05
+    },
+    {
+      "id": "W4iMS4kyvQZl0vA5E5i1",
+      "ad_id": "1406451597875742",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=W4iMS4kyvQZl0vA5E5i1",
+      "provider_live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "JrBbGEAdtdyMPbQ6PVAk",
+      "ad_id": "1415207226992823",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JrBbGEAdtdyMPbQ6PVAk",
+      "provider_live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "yvQUhcLJYSHkXn2diSz0",
+      "ad_id": "1425326806092485",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=yvQUhcLJYSHkXn2diSz0",
+      "provider_live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "yeU5AZOCcNFQ7IrE83U2",
+      "ad_id": "1432900624845424",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=yeU5AZOCcNFQ7IrE83U2",
+      "provider_live": false,
+      "started_running": 1763971200000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "aSqXZgO7QP1WfHgOELor",
+      "ad_id": "1434894078678289",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=aSqXZgO7QP1WfHgOELor",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "JSbQGawWAbmEkI6PtH7Q",
+      "ad_id": "1436726611585785",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JSbQGawWAbmEkI6PtH7Q",
+      "provider_live": true,
+      "started_running": 1778396400000,
+      "display_format": "VIDEO",
+      "link_url": "https://urlgeni.us/youtube/XAVyDW",
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "provider_video_duration": 15.48
+    },
+    {
+      "id": "iU2v9KqEnsTf3ieLnx7B",
+      "ad_id": "1516884643180139",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iU2v9KqEnsTf3ieLnx7B",
+      "provider_live": true,
+      "started_running": 1778310000000,
+      "display_format": "VIDEO",
+      "link_url": "https://urlgeni.us/youtube/BKHaqO",
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "provider_video_duration": 22.329977
+    },
+    {
+      "id": "Uwk7yev6brdXXSRVJ3XF",
+      "ad_id": "1529165245181522",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Uwk7yev6brdXXSRVJ3XF",
+      "provider_live": false,
+      "started_running": 1759906800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "t3uduhHJ3qEbIq69AXrJ",
+      "ad_id": "1535282574776155",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=t3uduhHJ3qEbIq69AXrJ",
+      "provider_live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v1/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "nQsI8sHCIMu357Y4Qikk",
+      "ad_id": "1542162430259807",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=nQsI8sHCIMu357Y4Qikk",
+      "provider_live": false,
+      "started_running": 1765353600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "59qQPfAU2O1wp25gPpPy",
+      "ad_id": "1556117642270917",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=59qQPfAU2O1wp25gPpPy",
+      "provider_live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "RNdY7u5mAJLQCxJhtmdg",
+      "ad_id": "1564818584645855",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=RNdY7u5mAJLQCxJhtmdg",
+      "provider_live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "H0f1X6kicC0KMQmmQw9H",
+      "ad_id": "1567155211248512",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=H0f1X6kicC0KMQmmQw9H",
+      "provider_live": false,
+      "started_running": 1772352000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "7xt0Elkz98tdLz4osmay",
+      "ad_id": "1569829301355879",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=7xt0Elkz98tdLz4osmay",
+      "provider_live": false,
+      "started_running": 1785913200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 61.88
+    },
+    {
+      "id": "R2V31pMGuran80GFxZZ4",
+      "ad_id": "1574169250291857",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=R2V31pMGuran80GFxZZ4",
+      "provider_live": false,
+      "started_running": 1765353600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "C5Zm6Xf4K6xspsLy8hxS",
+      "ad_id": "1587517069404219",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=C5Zm6Xf4K6xspsLy8hxS",
+      "provider_live": false,
+      "started_running": 1785654000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 21.67
+    },
+    {
+      "id": "Qr4XKsxTcZlUh6riKIGf",
+      "ad_id": "1587827345729036",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Qr4XKsxTcZlUh6riKIGf",
+      "provider_live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "bhpmkAZZs2Z9cfpfgS0L",
+      "ad_id": "1587844566157870",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=bhpmkAZZs2Z9cfpfgS0L",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 51.11
+    },
+    {
+      "id": "TxqBbNynGiNusw0plqJu",
+      "ad_id": "1606618754592486",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TxqBbNynGiNusw0plqJu",
+      "provider_live": false,
+      "started_running": 1781852400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "5bK47hZALjixnNLp96en",
+      "ad_id": "1614003906235086",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=5bK47hZALjixnNLp96en",
+      "provider_live": false,
+      "started_running": 1763280000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/no-funnel-ads/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "F8PdR26jCDAsJxBC4a6v",
+      "ad_id": "1626168132184640",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=F8PdR26jCDAsJxBC4a6v",
+      "provider_live": false,
+      "started_running": 1786518000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "CfPcRqAuKCmOZxVO2xR3",
+      "ad_id": "1629285421965929",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CfPcRqAuKCmOZxVO2xR3",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 57.21
+    },
+    {
+      "id": "th4DaYg5AOthtDTsSLlQ",
+      "ad_id": "1644798217253531",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=th4DaYg5AOthtDTsSLlQ",
+      "provider_live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "xzwXnujXGDbFSega4eDQ",
+      "ad_id": "1645109447007696",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xzwXnujXGDbFSega4eDQ",
+      "provider_live": false,
+      "started_running": 1787814000000,
+      "display_format": "VIDEO",
+      "link_url": "https://instagram.com/marc.mev",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 81.34
+    },
+    {
+      "id": "e4KsLMlV2wrDh8OGLVFg",
+      "ad_id": "1650392323178505",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=e4KsLMlV2wrDh8OGLVFg",
+      "provider_live": false,
+      "started_running": 1786777200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": 55.4
+    },
+    {
+      "id": "JpOeQdt8IyENvE5p8q2r",
+      "ad_id": "1672021627111272",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JpOeQdt8IyENvE5p8q2r",
+      "provider_live": false,
+      "started_running": 1766995200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "iYP9rINsoCLWNpcO6eID",
+      "ad_id": "1681313935901442",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iYP9rINsoCLWNpcO6eID",
+      "provider_live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "myWfyRFHi1Qr17BOVqOa",
+      "ad_id": "1699196791147947",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=myWfyRFHi1Qr17BOVqOa",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 51.11
+    },
+    {
+      "id": "H50OETAaiuyS0IuChdcj",
+      "ad_id": "1705825333983452",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=H50OETAaiuyS0IuChdcj",
+      "provider_live": false,
+      "started_running": 1786172400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "TMsGg4z80fgoOn6HkPkL",
+      "ad_id": "1725175502246125",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TMsGg4z80fgoOn6HkPkL",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "wJxdD6fslGtSsmmI9zNK",
+      "ad_id": "1732305727482065",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=wJxdD6fslGtSsmmI9zNK",
+      "provider_live": false,
+      "started_running": 1759820400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "g9eo1XymD0M6SnR5eVn0",
+      "ad_id": "1753368269434834",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=g9eo1XymD0M6SnR5eVn0",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "QH81ODq5emYGTxdW9n0f",
+      "ad_id": "1773187347440506",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=QH81ODq5emYGTxdW9n0f",
+      "provider_live": true,
+      "started_running": 1786086000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 61.88
+    },
+    {
+      "id": "8oBpirraSJ1tpbj0rCLA",
+      "ad_id": "1778842673248534",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=8oBpirraSJ1tpbj0rCLA",
+      "provider_live": false,
+      "started_running": 1785654000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 21.76
+    },
+    {
+      "id": "TYer9UiCZRD4tOTUAbu2",
+      "ad_id": "1797566338325984",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TYer9UiCZRD4tOTUAbu2",
+      "provider_live": false,
+      "started_running": 1785913200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 688.05
+    },
+    {
+      "id": "u2gsEV1hWJPpzzF0Ym2x",
+      "ad_id": "1844230233560361",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=u2gsEV1hWJPpzzF0Ym2x",
+      "provider_live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "bKW6pmBLQxNQ2YUyNyw9",
+      "ad_id": "1847585976240016",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=bKW6pmBLQxNQ2YUyNyw9",
+      "provider_live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v1/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "qndZQqU4AJwvFAjUflD7",
+      "ad_id": "1889843335074210",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=qndZQqU4AJwvFAjUflD7",
+      "provider_live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "gdfNxqAHTElOeH9b5jdp",
+      "ad_id": "1925291148857015",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=gdfNxqAHTElOeH9b5jdp",
+      "provider_live": false,
+      "started_running": 1787986800000,
+      "display_format": "VIDEO",
+      "link_url": "https://instagram.com/marc.mev",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 71.47
+    },
+    {
+      "id": "cyzCibayriuZaUpIwZbG",
+      "ad_id": "1958556144778956",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=cyzCibayriuZaUpIwZbG",
+      "provider_live": false,
+      "started_running": 1788159600000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 93.25
+    },
+    {
+      "id": "Jn1BwgoZntBC95SvUOwd",
+      "ad_id": "1978307413560361",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Jn1BwgoZntBC95SvUOwd",
+      "provider_live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "rDrF2GrCzAG8liwJfSWG",
+      "ad_id": "1990018828547717",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=rDrF2GrCzAG8liwJfSWG",
+      "provider_live": false,
+      "started_running": 1782284400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "wrwSwSefw9kRoBcEPEQP",
+      "ad_id": "2038228703443800",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=wrwSwSefw9kRoBcEPEQP",
+      "provider_live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "r53tVu4K57rp2xPo0cIj",
+      "ad_id": "2062310077709386",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=r53tVu4K57rp2xPo0cIj",
+      "provider_live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "G0L26OTBdPsnSXRzTEwQ",
+      "ad_id": "2064490071144781",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=G0L26OTBdPsnSXRzTEwQ",
+      "provider_live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v1/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "iHfwMRM4zLjdgZDAsJIp",
+      "ad_id": "2111916986367171",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=iHfwMRM4zLjdgZDAsJIp",
+      "provider_live": true,
+      "started_running": 1786086000000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 42.33
+    },
+    {
+      "id": "sOSkbzs24wwM1kWrQJOC",
+      "ad_id": "2122849651601527",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=sOSkbzs24wwM1kWrQJOC",
+      "provider_live": false,
+      "started_running": 1788073200000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 93.25
+    },
+    {
+      "id": "5PAgOq7d5fhKcVvHbkN8",
+      "ad_id": "2142608929607639",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=5PAgOq7d5fhKcVvHbkN8",
+      "provider_live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "F0fwTbJphPuADxNQfeff",
+      "ad_id": "2158976421373241",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=F0fwTbJphPuADxNQfeff",
+      "provider_live": false,
+      "started_running": 1787814000000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 93.25
+    },
+    {
+      "id": "RooFKgCWFRkjZ84tvwNK",
+      "ad_id": "2172021583344407",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=RooFKgCWFRkjZ84tvwNK",
+      "provider_live": false,
+      "started_running": 1786431600000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": 6.13
+    },
+    {
+      "id": "CbBslmRiagP59O9vW2Kh",
+      "ad_id": "2227421824750578",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CbBslmRiagP59O9vW2Kh",
+      "provider_live": false,
+      "started_running": 1773730800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "XU0kIH9KuhUpBVIo0XeL",
+      "ad_id": "2236526470484769",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=XU0kIH9KuhUpBVIo0XeL",
+      "provider_live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "xaE5bOqExOmTl4gRilLh",
+      "ad_id": "2241379723281596",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xaE5bOqExOmTl4gRilLh",
+      "provider_live": false,
+      "started_running": 1785567600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "YZfC12k7cjw1TkuQ7Tlc",
+      "ad_id": "2269899283535617",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=YZfC12k7cjw1TkuQ7Tlc",
+      "provider_live": false,
+      "started_running": 1759906800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "mQEpVKgX0AXucTI01kgE",
+      "ad_id": "2279689866104188",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=mQEpVKgX0AXucTI01kgE",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "VcLgJ9NFJ3qTnBkL6KhA",
+      "ad_id": "2298467090628121",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=VcLgJ9NFJ3qTnBkL6KhA",
+      "provider_live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "p9WL4BwP0WYrKdanD1N0",
+      "ad_id": "2326407751180853",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=p9WL4BwP0WYrKdanD1N0",
+      "provider_live": false,
+      "started_running": 1772352000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "tEJjFbX0Lj9VaHeFdfAX",
+      "ad_id": "2327704247702659",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=tEJjFbX0Lj9VaHeFdfAX",
+      "provider_live": false,
+      "started_running": 1765353600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "IsqDT2I0AEaeNaN2Nirx",
+      "ad_id": "2404585846716818",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=IsqDT2I0AEaeNaN2Nirx",
+      "provider_live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v2/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "xOBYxrrMWAJIeIZFzRMm",
+      "ad_id": "24840658732301788",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xOBYxrrMWAJIeIZFzRMm",
+      "provider_live": false,
+      "started_running": 1763971200000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "Y9BtmyTAXAUtO0rjo4D0",
+      "ad_id": "2553412068444602",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=Y9BtmyTAXAUtO0rjo4D0",
+      "provider_live": true,
+      "started_running": 1778396400000,
+      "display_format": "VIDEO",
+      "link_url": "https://urlgeni.us/youtube/ov2Y2",
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "provider_video_duration": 18.43
+    },
+    {
+      "id": "sDGPQanLXkdOaViTCn3k",
+      "ad_id": "26987302047585384",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=sDGPQanLXkdOaViTCn3k",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "ckbp66vC8PZDv2ZXWFqV",
+      "ad_id": "27479891164960476",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=ckbp66vC8PZDv2ZXWFqV",
+      "provider_live": false,
+      "started_running": 1782284400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "vGHzL13n7dEAmlxbSVEM",
+      "ad_id": "2946976385639930",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=vGHzL13n7dEAmlxbSVEM",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "gqKL7yqIjwtHJQaxZYvg",
+      "ad_id": "3100293663695506",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=gqKL7yqIjwtHJQaxZYvg",
+      "provider_live": false,
+      "started_running": 1788073200000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 43.07
+    },
+    {
+      "id": "AiYtUnR1dddfRwBRl7Jd",
+      "ad_id": "3447262625433013",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=AiYtUnR1dddfRwBRl7Jd",
+      "provider_live": false,
+      "started_running": 1786777200000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 51.73
+    },
+    {
+      "id": "uWRuSecE65rxmzdQriA4",
+      "ad_id": "3465952776897699",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=uWRuSecE65rxmzdQriA4",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "MEJ7gBNxdgYAEQDKcv3h",
+      "ad_id": "3826088604196318",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=MEJ7gBNxdgYAEQDKcv3h",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 62.61
+    },
+    {
+      "id": "BJJKaJ2CQqJsDlK8SKoN",
+      "ad_id": "4216182628629610",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BJJKaJ2CQqJsDlK8SKoN",
+      "provider_live": false,
+      "started_running": 1763971200000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "jAktU8IUokMgx8lTyFKg",
+      "ad_id": "4270835626550736",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=jAktU8IUokMgx8lTyFKg",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 60.69
+    },
+    {
+      "id": "xs9h7iQ7VvmNC6EkUacB",
+      "ad_id": "4347125525563595",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=xs9h7iQ7VvmNC6EkUacB",
+      "provider_live": false,
+      "started_running": 1769673600000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "a6175UFmXzRB1iuCu32s",
+      "ad_id": "4357242614515525",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=a6175UFmXzRB1iuCu32s",
+      "provider_live": false,
+      "started_running": 1786777200000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": 54.73
+    },
+    {
+      "id": "qCb2W8KMGY3WAIKGj5hn",
+      "ad_id": "4425522601004824",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=qCb2W8KMGY3WAIKGj5hn",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 60.69
+    },
+    {
+      "id": "fTNsVqQ3zZKph3lHJBoc",
+      "ad_id": "4503781929940059",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=fTNsVqQ3zZKph3lHJBoc",
+      "provider_live": false,
+      "started_running": 1786431600000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/nfa-freebie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": 6.13
+    },
+    {
+      "id": "bPfhNAxFg4feZeh3kebo",
+      "ad_id": "4541298832863590",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=bPfhNAxFg4feZeh3kebo",
+      "provider_live": true,
+      "started_running": 1788418800000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 79.15
+    },
+    {
+      "id": "th4eMcgBCn7xS6fUK4iF",
+      "ad_id": "4587840011445251",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=th4eMcgBCn7xS6fUK4iF",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "JjQXeRbi6PkKEOfWMpfA",
+      "ad_id": "571755882699400",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=JjQXeRbi6PkKEOfWMpfA",
+      "provider_live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "gbCJegMGnBPLpWQUjkv0",
+      "ad_id": "675875661802444",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=gbCJegMGnBPLpWQUjkv0",
+      "provider_live": false,
+      "started_running": 1760166000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "LLoPRRoult9P0AHW6Jza",
+      "ad_id": "737603052690948",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=LLoPRRoult9P0AHW6Jza",
+      "provider_live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "U4C6v0qjxUDaNAO6WZFh",
+      "ad_id": "743480524677871",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=U4C6v0qjxUDaNAO6WZFh",
+      "provider_live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "YlHtbsHeK2RrIxwpLnaO",
+      "ad_id": "746072811847550",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=YlHtbsHeK2RrIxwpLnaO",
+      "provider_live": false,
+      "started_running": 1766995200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "NgRqk4B4x38fYYJT21aC",
+      "ad_id": "798197086401708",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=NgRqk4B4x38fYYJT21aC",
+      "provider_live": false,
+      "started_running": 1759820400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "muyaI9kLZG3TpwBascla",
+      "ad_id": "806079518989296",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=muyaI9kLZG3TpwBascla",
+      "provider_live": true,
+      "started_running": 1778310000000,
+      "display_format": "VIDEO",
+      "link_url": "https://urlgeni.us/youtube/LqWbIm",
+      "publisher_platform": [
+        "instagram",
+        "whatsapp"
+      ],
+      "provider_video_duration": 11.58
+    },
+    {
+      "id": "RsnfxIAvZJCJslyH9ppk",
+      "ad_id": "818563287674263",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=RsnfxIAvZJCJslyH9ppk",
+      "provider_live": false,
+      "started_running": 1766044800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "XHWn9oWRonwFsgB8ApKj",
+      "ad_id": "819127157691553",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=XHWn9oWRonwFsgB8ApKj",
+      "provider_live": false,
+      "started_running": 1779865200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "BQ5T2PYdONwz7dWWPFrJ",
+      "ad_id": "838146548613647",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=BQ5T2PYdONwz7dWWPFrJ",
+      "provider_live": false,
+      "started_running": 1762934400000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "dTGh0mvvTmeLp1rESUVU",
+      "ad_id": "839393902249188",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=dTGh0mvvTmeLp1rESUVU",
+      "provider_live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "KctlY9VsKmE7yZgzwllj",
+      "ad_id": "846347025056769",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=KctlY9VsKmE7yZgzwllj",
+      "provider_live": false,
+      "started_running": 1768032000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "hq8RKwmGy4X4DXLexCeQ",
+      "ad_id": "873938301737367",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hq8RKwmGy4X4DXLexCeQ",
+      "provider_live": false,
+      "started_running": 1763884800000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "OL36JJ9c7t4hSedsq9Ev",
+      "ad_id": "880884137956486",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=OL36JJ9c7t4hSedsq9Ev",
+      "provider_live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "CpG21UxQktDiF20EFjVD",
+      "ad_id": "881964614728699",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=CpG21UxQktDiF20EFjVD",
+      "provider_live": false,
+      "started_running": 1766131200000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "fYpOMskuzJF7bKK1t667",
+      "ad_id": "886731670477345",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=fYpOMskuzJF7bKK1t667",
+      "provider_live": false,
+      "started_running": 1767081600000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "pMAj8dPVaA39r9atE6ud",
+      "ad_id": "897138853224774",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=pMAj8dPVaA39r9atE6ud",
+      "provider_live": false,
+      "started_running": 1788332400000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 62.61
+    },
+    {
+      "id": "VvwyPrUUz8ESQkcTmfPQ",
+      "ad_id": "900398806276356",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=VvwyPrUUz8ESQkcTmfPQ",
+      "provider_live": false,
+      "started_running": 1765872000000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "facebook",
+        "instagram",
+        "audience_network",
+        "messenger",
+        "threads"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "YHjEWV2ifymqCqhCl3Hk",
+      "ad_id": "903901475778721",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=YHjEWV2ifymqCqhCl3Hk",
+      "provider_live": false,
+      "started_running": 1773730800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "UtHfEeyRwruzFgabDLZ8",
+      "ad_id": "930144276061170",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=UtHfEeyRwruzFgabDLZ8",
+      "provider_live": false,
+      "started_running": 1773730800000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "kGtKY1DeVlTD0w8eigRa",
+      "ad_id": "933396409069094",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=kGtKY1DeVlTD0w8eigRa",
+      "provider_live": false,
+      "started_running": 1786258800000,
+      "display_format": "VIDEO",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 60.41
+    },
+    {
+      "id": "7aCMGw3u9DNYqEEpORSC",
+      "ad_id": "939312339121920",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=7aCMGw3u9DNYqEEpORSC",
+      "provider_live": false,
+      "started_running": 1782284400000,
+      "display_format": "IMAGE",
+      "link_url": "http://fb.me/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "hnDqQl9tJkRVjQaq1lwP",
+      "ad_id": "952754654491450",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=hnDqQl9tJkRVjQaq1lwP",
+      "provider_live": false,
+      "started_running": 1785999600000,
+      "display_format": "VIDEO",
+      "link_url": "https://go.client-acquisition-accelerator.de/garantie/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": 42.33
+    },
+    {
+      "id": "jCeBD7WjzLWP00lXObuf",
+      "ad_id": "988971867217232",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=jCeBD7WjzLWP00lXObuf",
+      "provider_live": false,
+      "started_running": 1779433200000,
+      "display_format": "IMAGE",
+      "link_url": "https://go.client-acquisition-accelerator.de/v2/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    },
+    {
+      "id": "TeiOTvAuk5MD3BgbPxxu",
+      "ad_id": "993995949736106",
+      "foreplay_url": "https://app.foreplay.co/discovery?ad=TeiOTvAuk5MD3BgbPxxu",
+      "provider_live": false,
+      "started_running": 1777878000000,
+      "display_format": "IMAGE",
+      "link_url": "https://www.instagram.com/",
+      "publisher_platform": [
+        "instagram"
+      ],
+      "provider_video_duration": null
+    }
+  ]
+}

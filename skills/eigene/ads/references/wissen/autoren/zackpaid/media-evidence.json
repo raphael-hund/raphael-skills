@@ -1,0 +1,223 @@
+{
+  "scope": "11 photo attachments in the initial 50 @zackpaid posts; all 11 were downloaded and individually inspected with view_image. Three separate video attachments were not downloaded or watched by this media subtask.",
+  "inspection_date": "2026-09-07",
+  "method": "Direct visual inspection of each original photo attachment, supplemented by the corresponding post text for context. Findings are paraphrases. These are creator-provided images, not independent account access or personal Meta Ads Library sightings.",
+  "items": [
+    {
+      "source_id": "2094180862300426421",
+      "source_url": "https://x.com/zackpaid/status/2094180862300426421",
+      "path": "evidence/posts/2094180862300426421.jpg",
+      "viewed": true,
+      "observations": [
+        "Whiteboard photograph with eleven numbered Meta recommendations. Large legible handwritten text; no underlying account report or experiment is shown."
+      ],
+      "embedded_text_summary": "Empfiehlt breite Zielgruppen, saubere CAPI-/Eventdaten, Tests verschiedener Konzepte, getrennte Bild-/Videokampagnen, Geduld nach Start, ein Creative-Namensschema, eine kleine Kampagnenstruktur, einfache Smartphone-Produktion, vorbeugende Creative-Erneuerung, Zusammenfassung englischsprachiger Länder sowie Bewertung der Abschlussrate je Creative.",
+      "numeric_or_categorical_claims": [
+        "52.000 Datenpunkte als Plattformbehauptung",
+        "50 Varianten würden als eine Anzeige behandelt",
+        "5–7 Tage nicht eingreifen und 50 Conversions pro Woche",
+        "maximal zwei Kampagnen: ABO-Test und Gewinner-Skalierung",
+        "Creative-Rotation bei CPM +20%, CTR -15%, Frequenz >3",
+        "USA, UK, Kanada und Australien zusammenfassen"
+      ],
+      "leadgen_application": "Saubere CRM-Ereignisse, dokumentierte Konzeptunterschiede und Creative-bezogene Abschlussqualität als Prüfaufgaben übernehmen. Kampagnenzahl, Ländergruppierung, Trennung nach Format, Wartezeit und Fatigue-Schwellen an Budget, Gebiet, qualifizierten Ereignissen und Kohorten prüfen.",
+      "limits": [
+        "Alle Empfehlungen sind die Heuristiken des Autors, keine verifizierten Plattformgesetze.",
+        "Eine schwache Abschlussrate kann auch von Angebot, Terminierung, Verkäufer, Erreichbarkeit oder Messung verursacht werden; die Ad ist nicht automatisch die Ursache.",
+        "Kein Beleg für die Datenpunktzahl oder die pauschale Andromeda-Aussage im Bild."
+      ],
+      "sha256": "bb9074aecdc95b6c9ead159237124e6fc4e16c77b1b6c48f3a75edfc076ad7fd"
+    },
+    {
+      "source_id": "2093292469379084331",
+      "source_url": "https://x.com/zackpaid/status/2093292469379084331",
+      "path": "evidence/posts/2093292469379084331.jpg",
+      "viewed": true,
+      "observations": [
+        "Whiteboard photograph containing seven rules, ending with purchase optimization; no account evidence shown."
+      ],
+      "embedded_text_summary": "Betont sehr frühen Hook, Creative als Auswahlhilfe für das Publikum, vertikales Video, zurückhaltende Eingriffe nach Start, Creative-Wechsel bei hoher Frequenz, Kampagnen-Konsolidierung und Optimierung auf das wirtschaftliche Ergebnis statt Klicks.",
+      "numeric_or_categorical_claims": [
+        "Hook innerhalb 1,5 Sekunden",
+        "9:16 als allgemeiner Standard und behauptete günstigere Reels-CPMs",
+        "3–4 Tage abwarten",
+        "bei Frequenz 3 abschalten",
+        "ein Ziel pro Kampagne",
+        "auf Käufe optimieren"
+      ],
+      "leadgen_application": "Frühe Verständlichkeit und das richtige messbare Ereignis testen. Für Leadgen qualifizierte Leads, stattgefundene Termine oder Abschlüsse passend zur verfügbaren Datenmenge wählen. Keine Purchase-Events für einen bloßen Formularabschluss erfinden.",
+      "limits": [
+        "Purchase-Empfehlung ist direkt handelsorientiert und darf nicht unverändert auf Leadgen übertragen werden.",
+        "Frequenz 3 ist kein universeller Abschaltwert, 1,5 Sekunden keine garantierte Leistungsschwelle und 9:16 kein Beleg gegen andere Platzierungen.",
+        "Die Wartezeit unterscheidet sich vom anderen Whiteboard des Autors; beide als kontextabhängige Heuristiken behandeln."
+      ],
+      "sha256": "434684374f8262495edfaecc88d59061b268c258afe7d3bd43405729777bed30"
+    },
+    {
+      "source_id": "2096273652056789208",
+      "source_url": "https://x.com/zackpaid/status/2096273652056789208",
+      "path": "evidence/posts/2096273652056789208.png",
+      "viewed": true,
+      "observations": [
+        "Designed diagnostic chart with six metrics; show rate is highlighted red as the weak funnel step."
+      ],
+      "embedded_text_summary": "Ein Beispielkonto wird vom Klick bis zum Kunden betrachtet. Der Autor stellt akzeptabel wirkende Klick-/Leadkosten und Buchungs-/Abschlussraten einer schwachen Anwesenheitsquote gegenüber, um die Diagnose auf den mittleren Funnel statt allein den CPL zu richten.",
+      "visible_values": {
+        "cpc_usd": 1.9,
+        "cpl_usd": 38,
+        "booking_rate": 0.64,
+        "show_rate": 0.31,
+        "close_rate": 0.22,
+        "shown_cost_per_customer_usd": 1190
+      },
+      "leadgen_application": "Funnelstufen mit expliziten Nennern, identischer Kohorte und reifem Beobachtungsfenster erfassen. Den wirtschaftlich relevanten Engpass identifizieren, nicht pauschal den CPL senken.",
+      "limits": [
+        "Die sichtbaren Richtwerte sind ausdrücklich grob; Branche, Zeitraum, Stichprobe und Definitionen fehlen.",
+        "Interner Rechenwiderspruch: Der Folgepost definiert Kundenkosten als CPL/(Buchungsrate × Anwesenheitsrate × Abschlussrate). Mit den Bildwerten ergibt das etwa 870,60 USD, nicht 1.190 USD. Keine kohärente Fallrechnung aus diesen Zahlen ableiten, solange der Unterschied ungeklärt ist.",
+        "Die Behauptung, die am weitesten unter einem Benchmark liegende Stufe sei automatisch der wichtigste Engpass, berücksichtigt Umsetzbarkeit und erwarteten Deckungsbeitrag nicht."
+      ],
+      "sha256": "80ba99a654a99f84c0c6a59198e59da51be37d15c9ac9d25d8d77714623b7ff2"
+    },
+    {
+      "source_id": "2096273654975955005",
+      "source_url": "https://x.com/zackpaid/status/2096273654975955005",
+      "path": "evidence/posts/2096273654975955005.png",
+      "viewed": true,
+      "observations": [
+        "Designed before/after graphic with a red 31% bar and green 69% bar, attributed to sending one video between booking and appointment."
+      ],
+      "embedded_text_summary": "Der Autor behauptet, ein kurzes Vorbereitungs-Video habe die Anwesenheitsquote bei unveränderten Anzeigen und Ausgaben von 31 auf 69 Prozent erhöht. Das Post-Textargument erklärt den Multiplikationseffekt mittlerer Funnelraten auf Kundenkosten.",
+      "leadgen_application": "Ein Terminvorbereitungs-Video mit Erwartung, Ablauf, Nutzen und organisatorischen Details als konkrete Show-up-Hypothese testen. Buchungskohorten sowie Nachrichten-Zustellung und Teilnahme nachhalten.",
+      "limits": [
+        "Der Vorherbalken ist sprachlich zugleich als gebucht, aber nie erschienen beschrieben, während die Grafik insgesamt Anwesenheitsquote nennt. Diese Beschriftung ist widersprüchlich.",
+        "Keine Fallzahl, Zeitspanne, Kontrollgruppe oder weiteren Prozessänderungen dokumentiert; nicht als kausaler Beweis oder garantierte Verdopplung verwenden.",
+        "69/31 entspricht rund 2,23; 'ungefähr doppelt' bleibt eine grobe Autorenbeschreibung."
+      ],
+      "sha256": "3b7cc71ac4ee4280b05ade7244c5e6d360f34fccfef3a1db76f1e8874381eaf2"
+    },
+    {
+      "source_id": "2096569352350749037",
+      "source_url": "https://x.com/zackpaid/status/2096569352350749037",
+      "path": "evidence/posts/2096569352350749037.jpg",
+      "viewed": true,
+      "observations": [
+        "Hand-drawn conceptual chart contrasts a sudden red spike with a jagged green improvement curve over years of practice."
+      ],
+      "embedded_text_summary": "Veranschaulicht, dass gute Ergebnisse aus zahlreichen Versuchen und fortgesetzter Verbesserung entstehen, während die Vorstellung eines einzelnen Genialitätsmoments verkürzt ist.",
+      "leadgen_application": "Wiederholbare Ideen-, Produktions- und Lernzyklen aufsetzen, in denen neue Konzepte auf dokumentierten Beobachtungen aufbauen.",
+      "limits": [
+        "Die Grafik ist eine Metapher ohne empirische Daten.",
+        "Weder feste Gewinnwahrscheinlichkeit noch garantierte Anzahl erfolgreicher Creatives aus Produktionsmenge ableiten.",
+        "Mehr Menge allein belegt keine Verbesserung von Leadqualität oder Wirtschaftlichkeit."
+      ],
+      "sha256": "1bc8e55b3967a9e5b66624b2dcbabc1c3e75744645760e3245b77eb3e8622d9b"
+    },
+    {
+      "source_id": "2096356196483518475",
+      "source_url": "https://x.com/zackpaid/status/2096356196483518475",
+      "path": "evidence/posts/2096356196483518475.jpg",
+      "viewed": true,
+      "observations": [
+        "Hand-drawn two-box comparison uses driveway cleaning to contrast a plain service statement with a strongly visible cleaning outcome."
+      ],
+      "embedded_text_summary": "Ein besonders deutlich sichtbarer Ergebnisreiz soll den bereits vorhandenen Wunsch ansprechen, etwa eine Nahaufnahme davon, wie Schmutz beim Reinigen einer Einfahrt verschwindet.",
+      "leadgen_application": "Für sichtbare Dienstleistungen den tatsächlichen Arbeitsvorgang und die nachvollziehbare Veränderung filmen. Eine klare, wahrheitsgemäße Demonstration statt austauschbarer Leistungsbehauptung testen.",
+      "limits": [
+        "Konzeptionelle Empfehlung ohne Leistungsdaten.",
+        "Die Betonung eines Reizes rechtfertigt keine manipulierten Vorher-Nachher-Bilder oder übertriebene Ergebnisse.",
+        "Für abstrakte Dienstleistungen erst prüfen, welche echte Demonstration den Mechanismus verständlich zeigt."
+      ],
+      "sha256": "a5eb2567a57ba359211822c379df8a706430602caba79f8078c266764cccbb6e"
+    },
+    {
+      "source_id": "2094898843179692315",
+      "source_url": "https://x.com/zackpaid/status/2094898843179692315",
+      "path": "evidence/posts/2094898843179692315.jpg",
+      "viewed": true,
+      "observations": [
+        "Screenshot of three active-labeled library cards with a third-party saving extension. Advertisers: Loudoun County Milling Company, Ideas Garden Landscaping, Kingdom Landscape. Static/carousel-style local business imagery and directions/call/contact CTAs are visible.",
+        "Displayed running durations are about 2,412.3, 1,997.3 and 1,012.3 days; these are extension annotations."
+      ],
+      "embedded_text_summary": "Lokale Anbieter bewerben Landschaftsmaterial beziehungsweise Gartengestaltung mit Bildern realer Angebote und Kontaktmöglichkeiten. Das Bild illustriert langlebige recherchierbare Anzeigen.",
+      "leadgen_application": "Lokale Wettbewerber nach Angebot, Region, sichtbarem Beweis und Kontakt-CTA untersuchen. Lange sichtbare Laufzeit als Anlass zur Untersuchung verwenden.",
+      "limits": [
+        "Nur die vom Autor veröffentlichte Bildschirmaufnahme wurde gesehen, nicht die Bibliothek live bedient.",
+        "Laufdauer beweist weder durchgehende Auslieferung noch Spend, Rentabilität oder qualifizierte Leads.",
+        "Die dritte Karte und ihre Inhalte sind teilweise abgeschnitten; die vollständige Anzeige wurde nicht geöffnet."
+      ],
+      "sha256": "d4ab876b00367197b7f6a6de7477678987963893a8ee6784beff4a2a1014265c"
+    },
+    {
+      "source_id": "2094790378633441773",
+      "source_url": "https://x.com/zackpaid/status/2094790378633441773",
+      "path": "evidence/posts/2094790378633441773.jpg",
+      "viewed": true,
+      "observations": [
+        "Wide library screenshot with approximately 590 results, active-ad filter and third-party extension overlays. Five visible cards relate to Black Girl Vitamins. Visible durations include 689.3, 122.3, 80.3, 689.3 and 46.3 days.",
+        "Only upper card areas and text beginnings are visible; the creative assets are mostly outside the screenshot."
+      ],
+      "embedded_text_summary": "Der Autor zeigt eine Rechercheansicht eines Vitaminanbieters und kommentiert mehrere lange laufende Anzeigen.",
+      "leadgen_application": "Rechercheansichten, Filter und Variantenbeobachtung als Arbeitsmethode übernehmen; Shop-/Supplement-Werbeaussagen nicht als Leadgen-Regeln behandeln.",
+      "limits": [
+        "Das Bild allein bestätigt nur zwei sichtbare Anzeigen über 600 Tage, nicht die sechs im Post erwähnten.",
+        "Kampagnenziele, Ergebnisse und Spend fehlen.",
+        "Kein kreativer Breakdown der überwiegend abgeschnittenen Anzeigen möglich.",
+        "Gesundheitliche Aussagen im Screenshot sind Werbeaussagen des jeweiligen Anbieters und wurden nicht geprüft."
+      ],
+      "sha256": "f64f82c1e197913c85baf94f579471587834440c560c3e4ce9a859acc78caf54"
+    },
+    {
+      "source_id": "2093335785453875705",
+      "source_url": "https://x.com/zackpaid/status/2093335785453875705",
+      "path": "evidence/posts/2093335785453875705.png",
+      "viewed": true,
+      "observations": [
+        "Single active-labeled library card for Fierce Nature, library ID 1658825728312404, start date 2024-11-18, extension running count 648.3 days.",
+        "The paused/embedded player shows hands handling a cosmetic jar, at approximately 0:05 of 0:12. Product copy refers to magnesium tallow cream; CTA is Shop now."
+      ],
+      "embedded_text_summary": "Eine lange gelistete Produktanzeige zeigt ein konkretes Handelsprodukt mit Kauf-CTA und gesundheitsbezogenen Nutzenbehauptungen.",
+      "leadgen_application": "Als Beispiel für die Recherche visueller Produktdemonstrationen nutzbar. Eine mögliche Leadgen-Übertragung wäre ein echter Arbeitsprozess mit Kontakt-CTA; dies ist eine eigene Ableitung, keine im Bild belegte Leadgen-Fallstudie.",
+      "limits": [
+        "Nur das Foto mit einem Videostandbild wurde betrachtet; der zusätzlich angehängte Film wurde von diesem Subtask nicht angesehen.",
+        "Keine Aussagen zu Hook-Ablauf, Audio, Schnitt oder Video-Gesamtstruktur aus diesem Standbild ableiten.",
+        "Laufzeit und Gesundheitswerbung belegen keine Wirksamkeit oder Anzeigenprofitabilität."
+      ],
+      "sha256": "1ba6e28bda6ed09b5c1219803caabd7ab0a09d45f998aa7f4325fdc41b345b56"
+    },
+    {
+      "source_id": "2093972741322145904",
+      "source_url": "https://x.com/zackpaid/status/2093972741322145904",
+      "path": "evidence/posts/2093972741322145904.jpg",
+      "viewed": true,
+      "observations": [
+        "Hand-drawn continuum contrasts less publicly visible service outcomes with visible improvements such as windows, med spa, driveways and a new roof."
+      ],
+      "embedded_text_summary": "Der Autor schlägt vor, bei öffentlich sichtbaren Ergebnissen soziale Wahrnehmung als möglichen Werbewinkel zu untersuchen, während bei weniger sichtbaren Leistungen die Problemlösung im Vordergrund stehen kann.",
+      "leadgen_application": "Sichtbarkeit und soziale Anerkennung als eine von mehreren Kundenmotivationen in Interviews prüfen. Einfahrten oder Fassaden könnten sich für nachvollziehbare Ergebnis- und Nachbarschaftsbeispiele eignen.",
+      "limits": [
+        "Die Zuordnung der Branchen ist eine konzeptionelle Vereinfachung, keine gemessene Skala.",
+        "Sichtbare Dienstleistungen werden nicht ausschließlich wegen Status gekauft; Sicherheit, Funktion, Kosten und Zeit können stärker sein.",
+        "Keine fiktiven Nachbarreaktionen oder Kundenmotive als Tatsachen ausgeben."
+      ],
+      "sha256": "10e77ce7fa7a12a5098da0013cb79389d40b26022012d94803067f7214ed786a"
+    },
+    {
+      "source_id": "2093972743113109617",
+      "source_url": "https://x.com/zackpaid/status/2093972743113109617",
+      "path": "evidence/posts/2093972743113109617.jpg",
+      "viewed": true,
+      "observations": [
+        "Hand-drawn comparison of twenty review graphics at 0.04–0.15% and one client-on-camera video at 5.84%, with a same-account/same-period annotation and 481 USD spending note."
+      ],
+      "embedded_text_summary": "Ein Kundenstatement vor der Kamera wird als glaubwürdigere Evidenz für ein Ergebnis gegenüber dekorativen Bewertungsbildern vorgeschlagen. Der Posttext bezeichnet die Prozentwerte als Klickraten eines Immobilienkontos.",
+      "leadgen_application": "Echte Kundeninterviews mit konkretem Ausgangsproblem, Ablauf und Ergebnis als Proof-Format testen. Vergleichbare Zielgruppen sowie Kosten pro qualifiziertem Termin und Abschluss bewerten.",
+      "limits": [
+        "Der Autor selbst nennt kleine Stichprobe und warme Zielgruppe; es ist kein sauberer Formatvergleich.",
+        "Das Bild verschweigt diese wesentlichen Einschränkungen, die erst im Posttext stehen.",
+        "Die 481 USD und 93.372 Impressionen werden im Posttext den zwanzig Bewertungsbildern zugeordnet; Spend/Impressionen des Videos sind nicht angegeben.",
+        "CTR beweist keine besseren qualifizierten Leads oder Abschlüsse; keine generelle Überlegenheit von Testimonials gegenüber Statics ableiten."
+      ],
+      "sha256": "5cbc9f0701cfadc17d8c6fca4c7fef260a13feb08a5c7b562e233a3a64c2e458"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ Eine halbe Seite, die ein Skript tragen kann. Nicht ein Dossier-Roman.
 1. Was der User in diesem Chat gesagt hat
 2. `/root/clients/client-<slug>/wiki/` (ICP, Offer, Proof, Voice, voc)
 3. Öffentliche Website, Profile, Bewertungen
-4. Brain `wiki/company/` nur wenn die Dateien wirklich da sind
+4. Ergänzende ausdrücklich gelieferte Materialien und lokale Skill-Referenzen
 
 Fehlt alles: `kunden-layer: fehlt`. Weiter mit Teil Research oder mit dem,
 was der User nachliefert. Rollen und Schmerzen nicht erfinden.

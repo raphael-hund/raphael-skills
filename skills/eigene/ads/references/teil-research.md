@@ -1,36 +1,61 @@
 # Teil Research — Angles mit Beleg
 
-Ausgang ist ein Angle-Dossier. Kein Creative.
+Ausgang ist ein Angle-Dossier oder bei reiner Library-/Playback-Anfrage ein
+Rechercheprotokoll. Kein Creative.
 
-Schema-Tiefe: `../../ads-research/references/angle-dossier-schema.md`
+Schema-Tiefe: `craft/dossier-schema.md`
 (Pfad gilt von dieser Datei aus).
+Für eine reine Library-/Playback-Anfrage reicht das Rechercheprotokoll aus
+`meta-ads-library.md`; ein vollständiges Angle-Dossier nur, wenn es zum Auftrag gehört.
 
 ## Holen
 
-1. Teil ICP, wenn schon da
-2. Website, Profile, Bewertungen. Pro Fund: URL, Datum, Zitat
-3. Foreplay zuerst (Key liegt in `/root/.secrets/api-keys.env`, CLI `fp`, Doku
-   `/root/tools/foreplay/README.md`; 1 Credit pro Ad, 10'000/Monat):
-   `fp ads "<suchwort>" --lang German --live --order longest_running --limit 25`
-   und `fp export "<suchwort>" --lang German --live --order longest_running --limit 40
-   --media --out /root/clients/<slug>/ads/research/foreplay-<YYYY-MM-DD>/` → ein Markdown
-   je Ad plus `_index.md` plus `media/`. Die Bilder mit Read ansehen und den wörtlichen
-   Onscreen-Text zitieren; Copy-Felder ersetzen das Bild nicht. Ab 30 Bildern zuerst
-   `/root/tools/shots-verkleinern.sh`, sonst greift das 20-MB-Limit im Kontext. Konkurrenten per `fp brands "<name>"` und `fp brand-ads <brand_id>`.
-   Raphaels Boards (`fp boards`, `fp board-ads <id>`) und Swipefile (`fp swipefile`)
-   sind kuratiertes Material und schlagen die Discovery-Suche.
-   Meta Ad Library nur als Ergänzung, wenn der Token wirkt. Code 10: `ad_library: skipped`, weiter.
-   Wenn Material da ist, Hormozi-Methode (`hormozi-paid-ads.md`): die am längsten laufenden
-   Ads mit meistem Engagement suchen (Laufzeit = Markt-Votum), ~50 Gewinner
-   transkribieren, Sprache des Avatars übernehmen, modellieren statt kopieren.
-   Vor dem Dossier das eigene Lern-Register `/root/clients/<slug>/ads/lern-register.md`
-   lesen. Markt-Votum (Laufzeit) belegt nur die Bauform; über Angle und Botschaft
-   entscheiden eigene Resultate am Terminpreis. Ein Markt-Learning, das einer
+Bei „nur geliefertes Material“ keine Website-, Library- oder Foreplay-Suche
+starten. Vorhandene lokale Grundlagen nutzen und die gelieferten Bilder/Videos
+nach `meta-ads-library.md` prüfen; fehlenden Kontext als Lücke nennen.
+
+1. Vor der Suche vorhandenen ICP und das eigene Lern-Register
+   `/root/clients/<slug>/ads/lern-register.md` lesen. Über `wissen/index.md`
+   passende Themen und Autorenreferenzen als Prüfraster wählen. Bereits
+   gelesene Grundlagen nicht erneut laden. Fehlender Kundenkontext blockiert
+   keine allgemeine Library-Recherche; Annahmen zum Markt ausweisen.
+   Die historische Hormozi-Recherche mit „Gewinnern“, ungefähr 50 Ads und
+   eigenen Versionen ist kein Nachweis für Performance und keine Pflichtmenge.
+   Sie erweitert den Auftrag nicht um Feed-Aktionen oder Creative-Produktion.
+   Für Suche, Beurteilung und Abschluss gelten die Belegregeln in
+   `meta-ads-library.md`.
+2. Website, Profile, Bewertungen. Pro Fund: URL, Datum, kurzes Zitat.
+3. **Meta Ads Library im sichtbaren Browser recherchieren.** Vorher
+   `meta-ads-library.md` lesen: Suche und Filter bedienen, Anzeigen öffnen,
+   Bilder ansehen und ausgewählte Videos abspielen. Playbacks kommen vor
+   Hook-/Struktur-Empfehlungen. Browser-Zugang hängt nicht vom API-Token ab.
+   Bei ausdrücklich auf geliefertes Material begrenztem Auftrag entfällt die
+   Live-Suche; Umfang im Protokoll nennen.
+4. Ein bereits verbundener Foreplay-Zugang kann Suche und Materialsicherung
+   ergänzen. Vorher verfügbare Integration, ihre aktuelle Hilfe und den
+   autorisierten Umfang prüfen. Falls die CLI `fp` vorhanden ist, deren
+   `--help` für Suche, Brand-Anzeigen, Boards und Medienexport verwenden;
+   keine API-Schlüssel, festen Toolpfade oder Kontingente voraussetzen.
+   Exportierte Anzeigen mit ID, Quelle, Zeitpunkt und Medien lokal sichern.
+   Die Bilder ansehen und den wörtlichen Onscreen-Text zitieren; Copy-Felder
+   ersetzen das Bild nicht. Große Bildmengen als lesbare Kontaktbögen
+   sichten und wichtige Originale öffnen. Bereits kuratierte Boards und
+   Swipefiles können die Discovery-Suche fokussieren.
+   Ein Meta-API-Fehler wird separat notiert und beendet die Browser-Recherche nicht.
+   Foreplay-Medien bekommen ihre eigene Quellenangabe; sie zählen nicht als
+   Sichtung in der Meta-Oberfläche. Ausgewählte Videos nach dem Playback bei
+   Bedarf mit `scripts/media-extract.sh` im geladenen Ads-Skill vertiefen
+   (siehe `meta-ads-library.md`); Extraktion und Sichtung separat protokollieren.
+   Langläufer und wiederkehrende Varianten sind Recherchekandidaten, keine
+   nachgewiesenen Gewinner. Laufzeit und Engagement belegen weder Rentabilität
+   noch die Wirkung eines Angles. Über eigene Botschaften entscheiden eigene
+   Resultate am Terminpreis. Ein Markt-Learning, das einer
    Absprache oder einem eigenen Befund widerspricht, wird im Dossier als verworfen
    markiert, nicht als Empfehlung geführt.
-4. Ein Markt-Segment über `../scripts/load-wissen.py --skill ads --kunde <slug>`
+5. Ein Markt-Segment über den im Einstieg genannten `scripts/load-wissen.py`,
+   sofern nicht bereits geladen.
 
-## Schreiben
+## Angle-Dossier schreiben
 
 Mindestens:
 
@@ -41,20 +66,23 @@ Mindestens:
 - Awareness
 - Format: statics, video oder beide
 - Streit Static-first vs Video-first genannt, nicht still entschieden
+- Bei Konkurrenz-Recherche: Suchkontext, Ad-Links/-IDs, visuelle Belege und
+  Playback-Abdeckung aus `meta-ads-library.md`; Beobachtung und Testhypothese trennen
 
 Ablage, wenn Kundenrepo da:
 `/root/clients/<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
 Sonst dorthin, wo der User die Datei haben will.
 
-## Gate
+## Gate für das Angle-Dossier
 
 ```
-python3 /root/raphael-skills/skills/eigene/copywriting/scripts/forbidden-check.py <dossier.md>
+python3 "$ADS_ROOT/scripts/text-check.py" <dossier.md>
 ```
 
-Kein Token in der Datei. Kein Satz 1:1 aus einer fremden Ad.
+Kein Token in der Datei. Kurze, klar markierte Quellenzitate sind Belege;
+keine fremden Ad-Sätze als eigene Creative-Empfehlung übernehmen.
 
-## Übergabe
+## Übergabe des Angle-Dossiers
 
 ```
 DOSSIER=<pfad>

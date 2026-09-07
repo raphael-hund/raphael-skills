@@ -1,6 +1,9 @@
 ---
 name: "ads"
-description: "Router für Meta-/Paid-Ads (Loop 3): Voice-of-Customer, Angles, Strategie, Testwellen, Kill-Keep-Scale, Claims-QA, Performance-Analyse, Konto-Audits mit deterministischem Scoring, Testwellen-Signifikanz. Delegiert Skripte an `ads-video` und Statics-Briefs an `ads-statics` — dies ist der Familien- Einstieg, der entscheidet, welcher Fulfillment-Skill dranmuss. Trigger: \"Ads bauen\", \"Hooks schreiben\", \"Creatives\", \"Anzeigentexte\", \"Testwelle\", \"Konto-Audit\", \"Health-Score\", \"Testwelle auswerten\", \"Ad-Fatigue prüfen\""
+description: "Paid Ads für Lead-Generation: Strategie, ICP, visuelle Konkurrenz-Recherche, Statics, sprechbare Video-Skripte, Drehbriefs und Auswertung bis zum Abschluss. Recherchiert die Meta Ads Library im Browser mit Playbacks und Bildbelegen. Enthält eine eigene Wissensbibliothek mit Autorenreferenzen, Quellen, Leadgen-Übertragung und Aussagegrenzen. Verbindet Wispr-Diktate, Creative-Produktion und das Kunden-Lern-Register. Für Ads bauen, Hooks, Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek, Konto-Audits, Creator-Wissen und 7/30-Tage-Auswertungen. Wissen und Referenzen liegen im Skill; Second Brain ist für Nutzung und Aktualisierung nicht erforderlich."
+metadata:
+  raphael-version: "4.0.0"
+  raphael-source: "skills/eigene/ads/SKILL.md"
 ---
 
 # ads — Kimi source adapter

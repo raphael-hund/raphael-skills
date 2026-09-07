@@ -1,137 +1,165 @@
-# Hormozi Paid-Ads-Doktrin ($100M Leads + Trainings)
+# Alex Hormozi: Paid Ads für qualifizierte Anfragen
 
-Quellen, vollständig transkribiert 19.08.2026:
-- «Learn Paid Ads in 30 Minutes!» (Q&A, 30 min), `youtube fSbqaTlWaYI`
-- «$100M Leads — Paid Ads Playbook Pt I» (47 min), `youtube 3aCkeyDDpmM`
-- Roh-Transkripte: `/root/clients/make/ads/research/hormozi-2026-08-19/`
-Dazu $100M-Leads-Frameworks aus dem Advisor-Profil (marketingskills/marketing-council).
+Quellenbasis: Auswertung vom 19.08.2026, überarbeitet am 07.09.2026.
 
-Das ist die Grundschule für «Wie macht man Paid Ads». Die Teile Strategie, Research,
-Statics und Video setzen das hier in MAKE-Handwerk um. Wo diese Datei und ein älterer
-Teil streiten, gilt: erst messen, dann entscheiden, nie still weichen.
+- **H1:** [Learn Paid Ads in 30 Minutes!](https://www.youtube.com/watch?v=fSbqaTlWaYI), Q&A.
+- **H2:** [$100M Leads: Paid Ads Playbook, Teil I](https://www.youtube.com/watch?v=3aCkeyDDpmM), Training.
 
----
+Diese Datei enthält die bisherigen Arbeitslehren als eigene Zusammenfassung mit
+Lead-Generation-Transfer. Die frühere Auswertung ordnete nicht jeden Satz eindeutig
+H1 oder H2 zu; sofern nicht genauer markiert, gilt das Quellenpaar als Herkunft.
+Es sind Empfehlungen und Erfahrungsberichte des Autors, keine unabhängig geprüften
+Plattformgesetze. Die Trainings wurden für diese Überarbeitung nicht erneut abgespielt.
+Es werden keine Kundendaten, Kundenvorgaben oder privaten Transkripte benötigt.
 
-## Die vier Probleme von Paid Ads
+## 1. Vier Entscheidungen vor dem Start
 
-Paid Ads = Reichweite mieten statt Publikum besitzen. Reichweite ist garantiert,
-die einzige Frage ist Effizienz. Vier Probleme, in Reihenfolge:
+Hormozi ordnet Paid Ads als bezahlten Zugang zu Aufmerksamkeit ein und zerlegt die
+Arbeit in Plattform, Käuferansprache, Botschaft und Kontaktgewinnung.
 
-1. **Wo schalten?** Plattform, die du als Konsument kennst, wo deine Käufer sind,
-   Mindest-Spend passt. Pro-Tipp: schalte dort, wo deine Konkurrenz schaltet.
-   Wenn sie es dort schaffen, schaffst du es dort. Erst replizieren, dann variieren.
-2. **Wer sieht die Ad?** (härtestes Problem, siehe Targeting unten)
-3. **Was sagt die Ad?** Call out → Value → CTA (siehe unten)
-4. **Wie bekommst du die Kontaktdaten?** Landingpage oder Instant-Formular,
-   kongruent zur Ad (gleiche Worte, gleiche Farben, gleiche Person).
+1. **Plattform:** Wo erreicht man passende Käufer, in welcher Nutzungssituation,
+   mit welchem Format und welchen wirtschaftlichen Voraussetzungen? Vorhandene
+   Konkurrenzanzeigen sind ein Recherchehinweis. Sie beweisen keinen Gewinn und
+   garantieren nicht, dass ein anderes Angebot dort funktioniert.
+2. **Publikum:** Wer braucht die Leistung, kann sie beauftragen und erfüllt ihre
+   Voraussetzungen? Geografie, Sprache, Leistungsgebiet und Ausschlüsse klären.
+3. **Botschaft:** Relevante Person erkennen lassen, welchen Nutzen sie prüfen kann
+   und warum die nächste Handlung sinnvoll ist.
+4. **Kontaktweg:** Formular oder Landingpage hält das Versprechen der Ad ein und
+   erklärt, welcher Inhalt, Rückruf oder Termin nach dem Eintrag folgt.
 
-## Ad-Aufbau: Call out → Value → CTA
+Bezahlte Auslieferung garantiert weder eine bestimmte Reichweite noch passende
+Aufmerksamkeit, qualifizierte Kontakte oder Verkäufe.
 
-- **Jede Sekunde der Ad verkauft die nächste Sekunde.** Die Headline verkauft die
-  erste Zeile, die erste Zeile den Rest.
-- **80 % der Arbeit gehen in die ersten 5 Sekunden** (Ogilvy: 80 Cents des Dollars
-  in die Headline). Wenn der Anfang nicht hält, ist der Rest egal.
-- **CTA: klar, nicht clever.** Sag exakt, was zu tun ist. Der Leser ist in Eile,
-  weiss nichts von dir, liest auf Grundschul-Niveau. Unter dritte-Klasse-Niveau
-  schreiben verdoppelt die Antwortrate.
+## 2. Einstieg, Nutzen und nächster Schritt
 
-## Die vier Callout-Typen (wie der Hook die richtige Person ruft)
+Seine Grundstruktur verbindet Käuferansprache, Nutzen und CTA. Ein Einstieg soll
+Interesse am folgenden Teil wecken. Der besondere Fokus auf die ersten Sekunden
+ist eine Priorisierungsheuristik; die historische 80-Prozent-Angabe ist keine
+belegte optimale Arbeitszeitverteilung. Ein starker Hook rettet kein unpassendes
+Angebot oder einen unklaren Folgeprozess.
 
-1. **Label:** «I'm looking for five Chino Hills residents…», Hormozis erste Ad ever,
-   Text-only, kein Bild, hat sofort verkauft. = unser C01/C02.
-2. **Yes-Fragen:** «Schwitzt du nachts?» Eine Kette von impliziten Ja-Antworten. = unser C03.
-3. **If-Then:** «Wenn du über 10'000 im Monat in Ads steckst, kann ich dir 20 % sparen.» = C04.
-4. **Resultat:** «Gym in Colorado eröffnet und muss Kunden zurückerstatten, zu voll.»
-   Bizarre, seltene Ergebnisse stoppen. = unser F01/F03.
+Vier von ihm genutzte Anspracheformen:
 
-Nicht-verbal (bei Statics = das Bild):
+| Form | Übertragung auf Lead-Generation | Grenze |
+|---|---|---|
+| Zielgruppenbezeichnung | Rolle, Region oder passende betriebliche Situation erkennen lassen | Keine erfundene Kapazitätszahl oder unbegründete Umsatzschwelle einsetzen |
+| Zustimmungsfrage | Eine reale Situation aufgreifen, die passende Interessenten wiedererkennen | Nicht mit suggestiven Fragen einen Bedarf unterstellen |
+| Bedingung und Nutzen | Bei einer nachprüfbaren Voraussetzung einen tatsächlich lieferbaren Vorteil erklären | Einsparungen und Zeiträume brauchen eigene Belege |
+| Auffälliges Ergebnis | Einen eigenen belegten Fall früh zeigen | Ungewöhnlicher Einzelfall ist kein typisches Ergebnisversprechen |
 
-- **Kontrast:** Bewegung, helle Farben, Abweichung stoppt. Still und grau verliert.
-- **Likeness:** Die Person auf der Ad sieht aus wie der KÄUFER, nicht wie du.
-  Ärzte → Kittel. Installateure → Rohre im Hintergrund. «Wenn du selbst in der Ad bist
-  und deine Kunden aussehen wie du, kein Zufall.»
-- **Szene:** die visuelle Ja-Frage. Lokales Wahrzeichen, die eigene Werkstatt,
-  der eigene Schmerz als Bild. Lokal-Referenz hebt die Aufmerksamkeit sofort.
+Einfache Wörter, kurze Sätze und ein präziser CTA helfen beim Verständnis. Die alte
+Behauptung einer verdoppelten Antwortrate durch ein bestimmtes Schulsprachniveau
+bleibt eine unbestätigte Trainingsaussage; keine Verdopplung versprechen. Die
+Zielperson braucht klare Sprache, keine herablassende Ansprache.
 
-## WHAT × WHO × WHEN (Ideation-Framework für unendliche Varianten)
+Visuelle Ansprache kann über Kontrast, erkennbare Berufssituation oder einen
+vertrauten Ort erfolgen. Kleidung, Werkzeug, Arbeitsplatz und Umfeld können
+Relevanz vermitteln. Weder helle Farben noch sichtbare Bewegung gewinnen immer.
+Personen müssen nicht oberflächlich einem demografischen Klischee entsprechen.
 
-- **WHAT**: die Value-Equation als Karotten und Stöcke. Zeige BEIDE Richtungen:
-  Dream Outcome vs. Nightmare, Wahrscheinlichkeit vs. Risiko, Speed vs. langsam,
-  Ease vs. Aufwand. «Zeig den Traum UND den Pfad ohne deine Lösung, besonders bei
-  Problemen, die mit der Zeit schlimmer werden.»
-- **WHO**: Status durch fremde Augen. Der Käufer will das Ergebnis vor allem in den
-  Augen anderer: Frau, Kollegen, Rivalen, Kinder. Beschreib den Benefit aus DEREN
-  Perspektive («die Frau sieht den Gürtel zwei Löcher enger»). Verlangen kommt aus
-  Mangel. Spiel die Klaviertaste, bei der er den Mangel fühlt.
-- **WHEN**: die Timeline. Vergangenheit (wie es war), Gegenwart (wie es ist),
-  Zukunft («wenn du so weitermachst, in 5 Jahren…»). Positiv und negativ.
+## 3. WHAT × WHO × WHEN als Ideenraster
 
-8 Variablen × viele Perspektiven × 3 Zeiten = unendlich viele ehrliche Varianten
-desselben Offers. Das ist die Antwort auf «uns gehen die Angles aus».
+**WHAT:** Gewünschtes Ergebnis, wahrgenommene Erfolgschance, Zeit bis zum Nutzen
+und nötiger Aufwand. Dazu jeweils die Situation ohne Verbesserung betrachten.
+Diese acht positiven/negativen Perspektiven sind Fragen zur Ideenfindung, keine
+acht zwingenden Botschaften in einer Ad. Verschlechterungen nicht erfinden.
 
-## Kreativ-Volumen und Test-Disziplin
+**WHO:** Welche Personen beurteilen das Ergebnis mit? Bei einer betrieblichen
+Leistung können Geschäftsführung, Mitarbeitende, Kunden oder Auftraggeber andere
+Nutzenperspektiven haben. Statusmotive zuerst aus Gesprächen belegen; keine
+pauschale Unterstellung über Familien-, Konkurrenz- oder Geschlechterrollen.
 
-- **Top-1-% schalten 11× mehr Creative-Tests.** «Die Plattform hat dich nicht gecappt.
-  Gecappt ist, wie gut deine Ad ist.»
-- **Hook-Fabrik:** 10 Value-Bodies aufnehmen, 30 Hooks aufnehmen, spleissen →
-  300 Varianten. Bester Hook × bester Body = Winner.
-- **70/20/10:** 70 % der Ressourcen auf den Winner und seine Permutationen, 20 % auf
-  Angrenzendes, 10 % auf wilde Ideen. Gilt für Budget UND Arbeitszeit.
-- **Winner abuse:** Einen Gewinner ~100× variieren (Hooks, Subheads, Fonts, Filter,
-  Reihenfolge). «I will use and abuse it until it doesn't work at all.»
-  80 % der Ressourcen gehen ins Neuaufbereiten von Winnern, nicht ins Erfinden.
-- **Top 5–10 % der Ads sezieren:** erste 3 Sekunden der Besten abschneiden und auf
-  den Rest des Bestands pflanzen.
+**WHEN:** Wie war die Situation, wie ist sie jetzt, was wäre bei einer realistischen
+Veränderung künftig anders? Vergangenheits-/Gegenwarts-/Zukunftsperspektiven
+können dasselbe Angebot unterschiedlich verständlich machen.
 
-## Targeting
+Anwendung: ein belegtes Angebot wählen, eine relevante Perspektive ändern und
+festhalten, welches Verständnis- oder Qualifikationsproblem die Variante lösen soll.
+Die Anzahl rechnerisch kombinierbarer Varianten ist kein Produktionsziel.
 
-- **Lookalike-Qualität = Listen-Qualität.** Kundenliste > Opt-ins > kalt.
-  Käufer-Lookalike schlägt alles.
-- **Puddle first:** erst die engste Pfütze (höchster ROI), dann Teich, dann Ozean.
-  Die Effizienz der Pfütze finanziert die Ineffizienz der Weite.
-- **Lokal ist schon eng.** Im 3-Meilen-Radius maximal EINEN Filter dazu (Alter ODER
-  Geschlecht). Lokales Vertrauen ist himmelhoch: «wir sind neben dem X an der
-  Y-Strasse» verkauft fast allein.
-- **Andromeda-Ergänzung (2026):** Inhalt targetet: der Avatar steht in Copy und Bild,
-  Meta findet ihn. Manuelles Targeting ist nur noch grober Vorschlag.
+## 4. Funktionierende Konzepte weiterentwickeln
 
-## Friction = Lead-Qualität (die Waage)
+Hormozi empfiehlt viele Versuche und die erneute Nutzung funktionierender
+Bausteine. Seine Beispiele umfassen 30 Hooks × 10 Hauptteile, eine 70/20/10-
+Ressourcenverteilung, intensive Überarbeitung bestehender Gewinner und das
+Übertragen der ersten Sekunden besonders guter Ads. Andere Formulierungen nennen
+80 Prozent für die Wiederverwendung. Das sind unterschiedliche Orientierungen,
+kein gleichzeitig einzuhaltender Budgetplan. Die behaupteten elfmal mehr Tests
+bei Spitzenanbietern sind ohne zugrunde liegende Vergleichsdaten nicht kausal.
 
-- Zu viele schlechte Leads → Reibung ERHÖHEN (Application, mehr Felder, VSL).
-- Zu wenige Leads → Reibung SENKEN.
-- Null Reibung + schlechte Leads → Targeting ist falsch, nicht die Ad.
-- Gute Reibung filtert (Application, Video), schlechte Reibung nervt (langsame Seite).
-- Bei MAKE: das Instant-Formular mit der 20k-Frage IST die gute Reibung.
+Für Leads heißt das:
 
-## Proof schlägt Promise (aus dem Q&A)
+- Ein Gewinner erfüllt ein vereinbartes wirtschaftliches Ziel nach ausreichender
+  Reifezeit: passende Anfragen, stattgefundene Gespräche und tragfähige Abschlüsse.
+- Hook und Hauptteil nur kombinieren, wenn Versprechen, Person und Handlung
+  zusammenpassen. Der beste isolierte Hook ergibt nicht automatisch die beste Ad.
+- Neue Konzepte, veränderte Argumente und reine Ausführungsvarianten getrennt
+  kennzeichnen. Schrift- oder Filterwechsel ist nicht automatisch ein neuer Test.
+- Produktionskapazität, erlaubter Testverlust und erwartete Ereigniszahl bestimmen
+  Umfang und Laufzeit. Keine festen 100 Varianten oder 300 Ads erzwingen.
 
-- «Everyone makes promises, very few have proof. Die Promise ist nicht unique,
-  dein Proof ist es.» ~80 % der Hormozi-Ads sind Proof.
-- **Proof-Kontinuum** (was am schwersten zu fälschen ist, gewinnt): live > aufgezeichnet,
-  persönlich > virtuell, «sieht aus wie ich» > fremd, exakt mein Wunschergebnis >
-  ähnliches Ergebnis. Baue Proof, der auf dieser Skala weit rechts steht.
-- Brand-Bedenken? «Let your clients talk. Let proof do the talking.»
+## 5. Publikum und Ausweitung
 
-## Research-Methode (Ad Library)
+Die Qualität eines Lookalike-Ausgangssignals hängt von den übermittelten Beispielen
+ab. Bei Leads sind qualifizierte Kontakte oder gewonnene Kunden häufig aussage-
+kräftiger als alle Formulareinträge, sofern Menge, Aktualität und Datennutzung
+passen. Ein Kunden-Lookalike schlägt breite Auslieferung nicht automatisch.
 
-1. Ad Library / Feed der Konkurrenz: die Ads mit der LÄNGSTEN Laufzeit und meistem
-   Engagement suchen. Laufzeit = der Markt hat abgestimmt.
-2. ~50 Gewinner-Ads transkribieren (Hook, Value, CTA, Linguistik des Avatars).
-3. Modellieren, nicht kopieren: die Sprache des Käufers übernehmen
-   («gym owners» vs «club owners» vs «trainers»: nimm, was DER Markt sagt),
-   daraus 10 eigene Versionen bauen.
-4. Feed-Hack: auf jede Ad der Branche klicken, bis der Feed voller Branchen-Ads ist.
-   Die beste laufende Schule.
+Sein Bild von kleiner Pfütze, Teich und Ozean beschreibt den Versuch, zuerst
+naheliegende Käufer wirtschaftlich zu erreichen und dann den Markt zu erweitern.
+Es ist keine Pflicht, jedes Konto eng zu starten. Kleine regionale Märkte können
+bereits ohne zusätzliche Filter stark begrenzt sein. Die genannte Drei-Meilen-
+Regel mit höchstens einem weiteren Filter ist ein lokales Beispiel, keine Norm.
 
-## MAKE-Transfer
+Die Botschaft kann helfen, die passende Zielperson anzusprechen; Plattform-
+Automatisierung ersetzt weder tatsächliche Gebietsbeschränkungen noch die Wahl
+des richtigen Optimierungsereignisses. Die frühere pauschale Andromeda-Ergänzung
+war kein Teil der belegten Hormozi-Trainings und gilt nicht als seine Lehre.
 
-- Callout-Typ 1 (Label) ist unsere C01-Schwelle: «Wir suchen 4 Betriebe ab 50'000
-  Franken im Monat.» Hormozis erste Ad war genau das, Text-only.
-- WHAT/WHO/WHEN erzeugt die nächsten Wellen-Varianten ohne neue Angles zu erfinden:
-  Platz 1 aus Sicht des Empfehlungsgebers («ich hab dir doch die Firma empfohlen,
-  die steht bei Google ganz oben»), Zukunfts-Zeile («in 12 Monaten hat der Betrieb
-  gegenüber die Anfragen, die du verlierst»).
-- Proof-Kontinuum erklärt, warum der echte SERP + echtes Dominic-Foto unsere
-  stärksten Assets sind: prüfbar, live, spezifisch.
-- Friction-Waage: Lead-Qualität fällt → Formular-Friction hoch (Zusatzfrage),
-  Volumen fällt → Friction runter. Nicht die Ad opfern, wenn das Targeting schief ist.
+## 6. Reibung auf ihren Zweck prüfen
+
+Hormozi beschreibt die Spannung zwischen vielen leichten Anmeldungen und
+stärkerer Vorqualifizierung. Application, Fachfragen oder ein erklärendes Video
+können Erwartungen klären. Technische Hindernisse und langsame Seiten helfen dabei
+nicht. Mehr Felder allein belegen keine bessere Qualität.
+
+Vor einer Änderung den Engpass trennen: Eignung, Erreichbarkeit, Buchung,
+Teilnahme, Abschluss oder Kapazität. Bei schlechter Qualität können Botschaft,
+Eintrittsangebot, Auslieferung, Fragen oder Rückmeldeereignisse die Ursache sein.
+Bei geringem Volumen können Nachfrage, Budget, Tracking, Angebot oder unnötige
+Hürden beteiligt sein. Keine automatische Schuldzuweisung an Targeting oder Ad.
+
+Eine zusätzliche Frage braucht einen nachweisbaren Qualifikationszweck. Wirkung
+an qualifizierten und stattgefundenen Gesprächen sowie Akquisitionskosten prüfen;
+CPL und Formularquote erklären allein nicht, ob die Änderung sinnvoll ist.
+
+## 7. Belege konkret und überprüfbar machen
+
+Im Q&A betont Hormozi die Unterscheidbarkeit eigener Beweise gegenüber austausch-
+baren Versprechen. Der historische Anteil von ungefähr 80 Prozent Proof-Ads ist
+unbestätigt; keine vorgeschriebene Mischung für ein anderes Konto. [H1]
+
+Sein Proof-Raster betrachtet unmittelbare Beobachtbarkeit, Aufzeichnung,
+Persönlichkeit, Ähnlichkeit der Ausgangslage und Nähe zum gewünschten Ergebnis.
+Diese Dimensionen helfen bei der Auswahl; eine Live-Darstellung ist nicht allein
+wahrheitskräftiger und ein Testimonial beweist keine Kausalität.
+
+Für Dienstleistungen eignen sich zum Beispiel ein dokumentierter Arbeitsablauf,
+ein nachvollziehbarer Vorher-/Nachher-Fall oder eine konkrete Kundenaussage.
+Ausgangslage, Zeitraum, Leistungsumfang und Bedingungen nennen. Fremde Kunden-
+ergebnisse bleiben bei ihrer Quelle und werden nicht zum eigenen Versprechen.
+
+## 8. Aus der Werbebibliothek lernen
+
+Seine Rechercheidee: wiederkehrende und lang laufende Konkurrenzanzeigen finden,
+Einstieg, Argumentation, Käuferwortschatz, Beleg und CTA zerlegen und daraus eigene
+Varianten entwickeln. Die historischen Mengenangaben von etwa 50 Analysen und
+zehn eigenen Versionen sind Beispiele, keine Pflichtzahlen.
+
+Laufzeit, Engagement und viele Varianten sind Auswahlhinweise, kein Nachweis
+profitabler Gewinner. Creatives im Kontext von Angebot, Zielperson und Folgeweg
+betrachten. Öffentliche Inhalte beobachten und Quellen dokumentieren; fremde
+Texte, Ergebnisse oder Designs nicht als eigene übernehmen. Ein Feed kann
+Recherchematerial liefern, aber künstliches Serienklicken auf Anzeigen ist kein
+notwendiger Arbeitsschritt.

@@ -14,6 +14,10 @@ tags: [ads, maerkte, local-service-handwerk, hook, offer, geo]
 
 Diese Anzeigen suchen Hausbesitzer und Handwerker mit Ort, Preis und kurzem Check.
 
+## Geltung dieser Marktbeobachtung
+
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+
 ## Regeln
 
 - n = 133 Ads im Segment `local-service-handwerk`.
@@ -28,10 +32,10 @@ Diese Anzeigen suchen Hausbesitzer und Handwerker mit Ort, Preis und kurzem Chec
 
 ## Taktiken
 
-- Setze Region oder Gewerk in Satz 1.
-- Nenne eine prüfbare Zahl: Anfragen, Platz 1, 0 Euro Anzahlung.
-- Führe in einen Check oder ein Instant-Formular.
-- Übernimm SEOLabs-Cases mit Ort und Anfragen-Zahl.
+- Mache Servicegebiet und passende Käufer erkennbar; die genaue Platzierung folgt der Botschaft.
+- Zeige einen eigenen prüfbaren Beleg; fremde Anfragenzahlen, Rankings oder Konditionen nicht übernehmen.
+- Führe zum tatsächlichen nächsten Schritt: etwa Anruf, Check, Formular oder Termin.
+- Nutze die Funktion eines lokalen Cases als Referenz; für eigene Aussagen sind eigene Cases nötig.
 - Lade dieses Segment für MAKE.
 
 ## Beispiele
@@ -52,5 +56,10 @@ Diese Anzeigen suchen Hausbesitzer und Handwerker mit Ort, Preis und kurzem Chec
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:13`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:51`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:529`
+
+## Historische Herkunft
+
+Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die operativen Quellen stehen im Skill. Für die Nutzung müssen diese Dateien nicht existieren.
+
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:122`
 - `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:22`

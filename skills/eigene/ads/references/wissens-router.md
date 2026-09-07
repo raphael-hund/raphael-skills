@@ -1,6 +1,7 @@
 # Wissens-Router — ads
 
-Ein Skill, sechs Teile. Pflicht im Skill. Brain optional.
+Ein Skill mit aufgabenbezogenen Teilen und lokaler Wissensbibliothek.
+Der zentrale Einstieg ist [wissen/index.md](wissen/index.md).
 
 ## Teile
 
@@ -18,7 +19,8 @@ python3 /root/raphael-skills/skills/eigene/ads/scripts/load-wissen.py \
   --skill ads --kunde <slug>
 ```
 
-Genau ein Segment aus `references/maerkte/`. Fehlt Wiki: `BRAIN=skipped`.
+Ein zum Auftrag passendes Segment aus `references/maerkte/`.
+Der Loader benötigt weder Brain noch eine Notion-Verbindung.
 
 ## Tiefe (nur wenn der Teil sie nennt)
 
@@ -26,21 +28,24 @@ Pfade gelten von `ads/references/` aus.
 
 | Frage | Datei |
 |---|---|
-| Hook-Formeln F1–F13 | `../../ads-video/references/hook-formeln.md` |
-| Architekturen A1–A7 | `../../ads-video/references/skript-architekturen.md` |
-| Gemessene Sprache | `../../ads-video/references/voice-dna-ads.md` |
-| Video-Formate (Talking Head, B-Roll, Green Screen, Skit, Split Screen) | `../../ads-video/references/video-visuals.md` |
-| Dossier-Schema | `../../ads-research/references/angle-dossier-schema.md` |
-| Static-Styles S1–S8 | `../../ads-statics/references/visual-styles.md` |
-| Copy-Bauformen | `../../ads-statics/references/copy-bauformen.md` |
+| Hooks, Skriptarchitektur, gesprochene Sprache und Videoformen | [craft/video.md](craft/video.md) |
+| Dossier-Schema | [craft/dossier-schema.md](craft/dossier-schema.md) |
+| Static-Styles, Copy-Bauformen und Brief | [craft/statics.md](craft/statics.md) |
+| Konkrete Referenzen und Ursprung der Formeln | [craft/referenzkatalog.md](craft/referenzkatalog.md) |
+| Leadqualität, CAC, Tracking, Tests und Skalierung | [wissen/leadgen-betriebsmodell.md](wissen/leadgen-betriebsmodell.md) |
+| Autoren, einzelne Learnings, Vollständigkeit und Quellen | [wissen/index.md](wissen/index.md) |
 | Konto / Testwelle / 7-30-Tage | `loop3-ablauf.md` |
 | Video sehen, Frames, Transkript | `/root/raphael-skills/skills/eigene/watch/SKILL.md` |
+| Marc Evers: Offer, Proof, Video, Testen und Quellenabdeckung | `marc-evers-playbook.md` |
+| Diktat, Wispr, Drehbrief und kontinuierliche Video-Produktion | `video-produktion.md` |
+| Visuelle Meta Ads Library und Playback-Belege | `meta-ads-library.md` |
 | Claims | `claims-verbote.md` |
 | Zac Regan / @startrunningads (Hooks, Copy, Creative, Funnel) | `zac-regan-startrunningads.md` |
-| Zac-Regan Volltranskripte (41 Reels) | `/root/raphael-brain/raw/resource-2026-08-30-startrunningads-*.md` |
+| Detaillierter Bestand zu Evers und Regan | [wissen/bestand/index.md](wissen/bestand/index.md) |
+| Neues Creator-Wissen aufnehmen | [wissen/quellenpflege.md](wissen/quellenpflege.md) |
 
 ## Übergabe
 
-Strategie nennt Static-first oder Video-first plus Konzept-Achsen.
+Strategie nennt die begründete Formatwahl plus Konzept-Achsen.
 ICP füllt Felder. Research schreibt `DOSSIER=` plus `SEGMENT=`.
 Video und Statics lesen das Dossier. Ohne Dossier: ICP plus User.

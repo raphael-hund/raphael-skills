@@ -1,5 +1,104 @@
 # Teil Strategie — was zuerst, was ein Konzept ist
+# Strategie: eine wirtschaftlich relevante Lernfrage lösen
 
+Grundlage ist [wissen/leadgen-betriebsmodell.md](wissen/leadgen-betriebsmodell.md).
+Ziel sind passende Kontakte und wirtschaftliche Abschlüsse im gewählten Horizont.
+Klicks, billige Formularabsendungen und Plattform-ROAS sind Zwischenbeobachtungen.
+
+## Ausgangspunkt
+
+Vorhandenes Kundenmaterial und das beauftragte Ziel lesen. Angebot, ICP, Proof,
+Servicegebiet, tatsächlichen Folgeschritt und verfügbare Bearbeitungskapazität
+benennen. Fehlt Kundenwissen, mit offen bezeichneten Annahmen arbeiten; allgemeine
+Recherche ist auch ohne Kundenkonto möglich.
+
+Drei kurze Denkzeilen genügen:
+1. **OBSERVE:** Was zeigen Kundenstimmen, eigene Ads, Funnel und gereifte Kohorten?
+2. **THINK:** Welcher Engpass ist plausibel und welche wirtschaftliche Grenze gilt?
+3. **CREATE:** Welche konkrete Variante oder Prozessänderung prüft diese Vermutung?
+
+## Konzept und Variante trennen
+
+Ein strategisches Konzept verbindet **Persona × Angle × Offer**. Proof und CTA
+müssen dazu passen. Hook, Darstellung, Format und Schnitt sind Varianten, die
+trotz gleichem Konzept relevante Wirkungsunterschiede erzeugen können.
+
+Keine feste Rangfolge „Angle vor Offer vor Persona“ erzwingen. Bei unklarem
+Kaufproblem zuerst ICP/Offer prüfen; bei tragfähigem Offer und schwachem Einstieg
+kann eine Hook-Iteration die richtige Frage sein. Nicht gleichzeitig alle
+Eigenschaften verändern und anschliessend einer einzigen die Wirkung zuschreiben.
+
+## Format auswählen
+
+| Ausgangslage | Möglicher erster Test |
+|---|---|
+| Kurzes Angebot lässt sich mit vorhandenem Bild und echtem Beleg erklären | Static |
+| Leistung braucht eine Demonstration, persönliche Erklärung oder glaubwürdige Kundenaussage | Video |
+| Botschaft ist erprobt, anderes Format noch unbewertet | Botschaft passend ins Format übertragen |
+| Formatvergleich ist die eigentliche Frage und Exposition finanzierbar | Begrenzter paralleler Vergleich |
+
+Static-first, Video-first oder parallel ausdrücklich mit einem Grund benennen.
+Es gibt weder fünf Pflicht-Statics noch eine feste Mindestzahl Videos. Ein
+Static-Erfolg garantiert keinen Video-Erfolg; Übergang, Bild und gesprochene
+Behauptung müssen in der neuen Form funktionieren. Objektverkauf folgt den
+konkreten Gestaltungsregeln in [teil-statics.md](teil-statics.md).
+
+## Testvertrag
+
+Vor Produktion kurz festhalten:
+
+- Hypothese und gezielt veränderte Eigenschaft.
+- Vergleich: bestehende Version, Kontrollgruppe oder klar bezeichnete Erstvalidierung.
+- Primäre Geschäftsstufe und Qualitätsgrenze; z. B. Kosten je passendem wahrgenommenem Gespräch.
+- Ausgabenrahmen, erwartete Ereignismenge, notwendige Kohortenreife und Review-Zeitpunkt.
+- Vorgehen bei wenig Auslieferung, defektem Tracking oder überschrittener Verlustgrenze.
+
+Die Testmenge folgt aus diesen Bedingungen und der Produktionskapazität. Creative-
+Diversität kann verschiedene Käufersituationen erschliessen; viele kaum ausgelieferte
+Varianten liefern wenig Vergleichswissen. Unterschiedliche Botschaften und gezielte
+Iterationen erfüllen verschiedene Aufgaben. Autorenspezifische Mengen in den
+Playbooks sind Beispiele, keine allgemeine Produktionsquote.
+
+## Auslieferung und Andromeda einordnen
+
+Metas Andromeda-Dokumentation beschreibt eine Retrieval-Stufe vor dem Ranking.
+Sie belegt weder „zwölf Creatives sind Pflicht“ noch „Targeting ist bedeutungslos“.
+Wissen dazu und die datierten Primärquellen stehen im Betriebsmodell.
+
+Servicegebiet und weitere tatsächliche Controls prüfen, Suggestions davon trennen.
+Automatische Budgetverteilung bevorzugt Varianten; das ist keine randomisierte
+Messung. Wenig Spend bedeutet zunächst unbewertet. Für einen sauberen Vergleich
+kann kontrollierte Exposition sinnvoll sein; für laufende wirtschaftliche
+Optimierung darf adaptive Verteilung die bessere Wahl sein.
+
+## Proof, Formular und Vertrieb
+
+Fremde Kundenerfolge sind Referenzen für eine Beweisform, keine eigenen Ergebnisse.
+Ein Name oder eine Zahl ist für die erste Zeile nicht zwingend. Eine sichtbare
+Demonstration kann den relevanten Beweis tragen. Fehlendes Material ausdrücklich nennen.
+
+Leadqualität an der ganzen Kette prüfen: Botschaft, nächster Schritt, Formular,
+Kontakt, Buchung, Erscheinen und Sales. Instant Forms sind weder grundsätzlich
+schlecht noch grundsätzlich die beste Wahl. Ein zusätzlicher Pflichtschritt
+muss einen konkreten Auswahl- oder Informationszweck erfüllen.
+
+Optimierungsereignis und CRM-Rückmeldung nach [Betriebsmodell](wissen/leadgen-betriebsmodell.md)
+prüfen. Rohlead, qualifizierter Lead und gebuchtes Gespräch nicht vertauschen.
+Eine Umsatzfrage oder ein neues Pixel ist keine allgemeine Reparatur.
+
+## Ausgabe
+
+```
+Konzept: Persona=… × Angle=… × Offer=…
+Test: Hypothese=… | Vergleich=… | bewusst verändert=…
+Format: Static-first / Video-first / parallel — Grund=…
+Messen: Geschäftsstufe=… | Qualitäts-/Kosten-Grenze=… | Reife=…
+```
+
+Für eine reine Quellen-/Library-Sichtung reicht das beauftragte Rechercheergebnis.
+Produktionsauftrag führt zu Brief oder Skript mit benötigten eigenen Belegen,
+tatsächlichem CTA und einem begründeten nächsten Test. Bestehende kundenspezifische
+Entscheidungen bleiben bei ihrem Kontext; sie werden nicht zu allgemeinen Skill-Regeln.
 Brain bleibt optional. Dieser Teil gilt ohne Wiki.
 Wiki da: lesen erlaubt, nie Pflicht.
 
@@ -63,9 +162,11 @@ Top-1-% testen 11× mehr Creative. «Die Plattform cappt dich nicht — deine Ad
   dann Body-Gewinner.
 - **Winner nie verschieben** (George Clem): neue Tests laufen nebenher, nie statt.
 - **Testing als Schachspiel** (Evers, `marc-evers-playbook.md`): Hypothese →
-  Markt-Feedback → schärfere Hypothese. Der nächste Zug zählt. Ad brennt =
-  Hook brennt, der Body bleibt. Loser ins Nie-wieder-Regelwerk, Winner in die
-  Scaling-Kampagne. 1–3 Ads mit 50 €/Tag sind Sterben auf Raten statt Testing.
+  Markt-Feedback → schärfere Hypothese. Varianten neben wirtschaftlich tragenden
+  Ads testen. Eine schwächere Ad zuerst diagnostizieren; eine neue Hook ist eine
+  mögliche Antwort, nicht der Beweis, dass der Body unverändert bleiben muss.
+  Budget und Variantenmenge aus der eigenen Testfrage ableiten. Evers' verschiedene
+  Budgetbeispiele gehören zu verschiedenen Phasen und sind keine allgemeinen Mindestwerte.
 - **3–5 Botschaften, nicht 30 Mini-Variablen.** Erst Callout × Offer-Claim
   validieren, dann Format.
 - **6×6 nach Winner:** 6 Winkel (Problem, Lösung, Social Proof, Preis, FOMO, Angst)
@@ -80,9 +181,11 @@ Zielgröße: **qualifizierte Anfrage**, nicht CTR.
 CTR > 2 % bei MAKE = Warnung. Oft Klick-Köder, keine Käufer.
 
 Instant Form: schlechte Leads. Pixel lernt Submit statt Gespräch. Lead-Event nur bei qualifizierter Antwort.
-**Pixel Conditioning (Evers):** erweiterte Logik schliesst Brokies aus (bei ihm 0–5k
-Umsatz). Meta sieht den Kill-Zweig nicht und optimiert auf zahlungsfähige Segmente.
-Zielgrösse ist Kosten pro qualifizierter Verkaufsopportunität, nicht CPL.
+**Pixel Conditioning (Evers):** Seine Lehre verbindet Qualifizierungsfragen mit
+dem Optimierungsziel. Ob ein Ausschlusszweig ein Lead-Event meldet, muss im
+konkreten Formular und Event-Setup geprüft werden; das ist durch ein Lehrvideo
+nicht belegt. Eigenes Qualifizierungsmerkmal wählen, seine Umsatzgrenze nicht kopieren.
+Zielgrösse bleibt die qualifizierte Verkaufsopportunität.
 
 Kill-Kurzregeln (Vollversion mit TCPL-Herleitung: `loop3-ablauf.md`):
 
