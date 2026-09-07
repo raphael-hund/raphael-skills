@@ -1,0 +1,45 @@
+{
+ "profile": "heikstepo",
+ "generated_at": "2026-09-07",
+ "sources": 125,
+ "learnings": 214,
+ "sources_with_learnings": 103,
+ "videos": 111,
+ "carousel_videos": 5,
+ "images": 2,
+ "date_range": [
+  "2023-12-11T11:51:24.000Z",
+  "2026-09-06T21:04:15.000Z"
+ ],
+ "transcript_sources": {
+  "transcript_apify": 88,
+  "transcript_whisper_local": 23,
+  "none": 7,
+  "caption_only": 7
+ },
+ "disposition_counts": {
+  "relevant": 103,
+  "non_ads_context": 3,
+  "repeated_idea": 3,
+  "lifestyle_no_claim": 7,
+  "not_analyzed": 7,
+  "non_video_context": 2
+ },
+ "topic_counts": {
+  "funnel-qualification": 26,
+  "targeting-delivery": 24,
+  "hooks-copy": 23,
+  "production": 10,
+  "testing": 16,
+  "measurement-economics": 14,
+  "scaling": 11,
+  "offer-icp": 25,
+  "sales-nurture": 33,
+  "agency-operations": 10,
+  "creative-research": 18,
+  "source-context": 4
+ },
+ "retrieval": "apify~instagram-scraper run pVIOmhzFq3G9giT5N dataset 7SQF3c06h3Zyb8Csy resultsType=posts resultsLimit=200",
+ "crawl_note": "Crawled 237/240 pages, 0 failed requests",
+ "note": "Feed-Abruf und Transkripte über Apify, 28 Sprachspuren lokal mit whisper.cpp; Kontaktbögen lokal dekodiert. Aussagen sind Paraphrasen, keine Transkriptkopien."
+}

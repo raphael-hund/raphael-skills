@@ -42,6 +42,7 @@ Pfade gelten von `ads/references/` aus.
 | Claims | `claims-verbote.md` |
 | Zac Regan / @startrunningads (Hooks, Copy, Creative, Funnel) | `zac-regan-startrunningads.md` |
 | Detaillierter Bestand zu Evers und Regan | [wissen/bestand/index.md](wissen/bestand/index.md) |
+| Heik Stepanjan / @heikstepo (Kampagnenstruktur, Copy als Targeting, Webinar-Show-up, Widersprüche) | [wissen/autoren/heikstepo/index.md](wissen/autoren/heikstepo/index.md) |
 | Neues Creator-Wissen aufnehmen | [wissen/quellenpflege.md](wissen/quellenpflege.md) |
 
 ## Übergabe
