@@ -34,15 +34,15 @@
     },
     {
       "name": "ads",
-      "version": "2.8.0",
+      "version": "4.0.0",
       "path": "skills/eigene/ads/SKILL.md",
-      "description": "Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video), dann ICP, Research, Video-Skript, Statics, Performance. Konkurrenz-Recherche visuell in der Meta Ads Library im Browser, mit Video-Playbacks, Screenshots und belegten Creative-Breakdowns. Video-Skripte klingen wie eine Sprachnachricht. Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"was zuerst\", \"Static oder Video\", \"Konto-Audit\", \"Ads Performance\", \"laufende Ads\", \"7 Tage\", \"30 Tage\", \"Meta Ads Library\", \"Werbebibliothek\", \"Konkurrenz-Ads\", \"Ad-Playback\"."
+      "description": "Paid Ads für Lead-Generation: Strategie, ICP, visuelle Konkurrenz-Recherche, Statics, sprechbare Video-Skripte, Drehbriefs und Auswertung bis zum Abschluss. Recherchiert die Meta Ads Library im Browser mit Playbacks und Bildbelegen. Enthält eine eigene Wissensbibliothek mit Autorenreferenzen, Quellen, Leadgen-Übertragung und Aussagegrenzen. Verbindet Wispr-Diktate, Creative-Produktion und das Kunden-Lern-Register. Für Ads bauen, Hooks, Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek, Konto-Audits, Creator- Wissen und 7/30-Tage-Auswertungen. Wissen und Referenzen liegen im Skill; Second Brain ist für Nutzung und Aktualisierung nicht erforderlich."
     },
     {
       "name": "brain",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "path": "skills/eigene/brain/SKILL.md",
-      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff). Ein Creator-Profil (alle Reels/Videos) läuft als einspeisen→verdichten→sichten nach references/creator-feed.md, nicht als ein watch-Aufruf. Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\", \"alle Reels transkribieren\", \"Creator-Feed ins Brain\", \"Nuggets thematisch\"."
+      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff). Ein Creator-Profil (alle Reels/Videos) läuft als einspeisen→verdichten→sichten nach references/creator-feed.md, mit Medien-IDs, Carousel-Videos und Abdeckungslücken. Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\", \"alle Reels transkribieren\", \"Creator-Feed ins Brain\", \"Nuggets thematisch\"."
     },
     {
       "name": "copywriting",
@@ -100,7 +100,7 @@
     },
     {
       "name": "seo",
-      "version": "0.7.6",
+      "version": "0.7.7",
       "path": "skills/eigene/seo/SKILL.md",
       "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\", \"Citation Outreach\", \"LLM mentions\"."
     },
