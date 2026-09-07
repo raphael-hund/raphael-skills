@@ -34,8 +34,8 @@ Trend, „gefragt wird nach…") zeigt auf einen abgelegten Export mit Quelle + 
 
 - Kimi (1M): großes SERP-/Keyword-Volumen aufräumen.
 - Luna: klassifizieren, schnelle Exploration.
-- Sonnet: IA, Briefs, Qualitäts-Pass.
-- Haiku/Luna: Massen-Produktion + Monitoring/Refresh.
+- Sol oder Grok: IA, Briefs, Qualitäts-Pass.
+- Luna: Massen-Produktion + Monitoring/Refresh.
 
 ## Egress (Rot-Klasse: Publish auf Produktion)
 

@@ -139,6 +139,10 @@ Dankeschön anbieten (z. B. Gutschein — bei G2/TrustRadius ausdrücklich erlau
 Tagen nachfassen. Realistische Konversion: 50 % → 10 Bewertungen aus 20 Anfragen. 10
 Bewertungen sind die Schwelle für die Aufnahme ins Grid.
 
+## Borja-Taktiken (2026-08)
+
+Zehn Linkbuilding-Taktiken, Missing Visual, Article Trailer, Trojan-Listicle-Outreach mit 5.000-RD-Filter, Journalisten-Score mit Schwelle 3 und Statistikseite ohne Backlinks: `playbooks-borjafat.md` Abschnitte 7 und 8. Exchange-Netzwerke und Parasite bleiben Graustufen.
+
 ## Gotchas
 
 - **Erfundene Statistiken sind irreversibel.** Eine vom Journalisten entlarvte Zahl zerstört

@@ -43,6 +43,8 @@ Thin Affiliation, User-generated Spam, Machine-generated Traffic.
 
 „nie“ = auch mit Go nicht ausführen (Hacks, Bots, Malware, Fake-Promi, Phone-Farm).
 
+Borja-Zuordnung vollständig: `playbooks-borjafat.md` Abschnitt 14 (Exchange-Netzwerk, Parasite-Masse, bezahlte Listicle-Slots = Go; Keyword-Review-Skript, GBP-Keyword-Name, Massen-Kommentare, Produkt ohne Disclosure = nie).
+
 ## Weiße Nachbarn, oft verwechselt
 
 - Gästebeitrag mit `rel=sponsored`/`nofollow` = Werbung, kein Graustufen-Zweig.

@@ -112,6 +112,10 @@ naheliegendste.
    CRM" vs. "Top CRM-Software") — entweder zusammenführen oder bewusst nach Intent
    differenzieren (eine als Best-of, eine als Vergleich).
 
+## Datenbasis Borja (2026-08)
+
+Studie über 534.888 interne Links: 4+ kontextuelle Inbound-Links 24,7 % Rank-Rate gegen 12,2 %, Nav/Footer zählen nicht, variierte Anker 42,2 % gegen 17,3 %. Sechs-Schritt-Audit, Link-Ledger und Link-Satz-Regel: `playbooks-borjafat.md` Abschnitte 4 und 6.
+
 ## Gotchas
 
 - **Pflicht-Links zuerst prüfen, bevor über "mehr Content" nachgedacht wird.** Eine fehlende

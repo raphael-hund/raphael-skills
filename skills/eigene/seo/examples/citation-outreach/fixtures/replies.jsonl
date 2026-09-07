@@ -1,0 +1,2 @@
+{"smartlead_message_id": "fixture-blurb-1", "email": "lea.steiner@kmu-digital.example", "domain": "kmu-digital.example", "classification": "interested_blurb", "received_at": "2026-08-21T09:00:00Z", "body": "Send a short blurb and the comparison URL. We can add a mention in the existing list."}
+{"smartlead_message_id": "fixture-fee-1", "email": "nina.graf@swiss-handwerk.example", "domain": "swiss-handwerk.example", "classification": "interested_fee", "received_at": "2026-08-22T11:30:00Z", "body": "Possible as a paid mention. 80 USD.", "fee_amount": 80, "currency": "USD"}

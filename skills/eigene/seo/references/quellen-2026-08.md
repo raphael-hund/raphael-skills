@@ -3,7 +3,23 @@
 Eine Zeile = ein Fakt. Kein fremder Wortlaut. Rohkorpus:
 `/root/raphael-brain/raw/2026-08-13-seo-skill-corpus/`.
 
-## @borjafat (X, Agent Reach + Thread-Fetch, 2026-08-13)
+## @borjafat (X, Agent Reach + Thread-Fetch, 2026-08-13; Nachzug 2026-09-07)
+
+Vollständige Playbook-Bibliothek aus 22 Artikeln (28.07. bis 07.09.2026): `playbooks-borjafat.md`.
+Roh: `raw/2026-08-13-seo-skill-corpus/borjafat/articles/` und `raw/2026-09-07-borjafat-articles/articles/`.
+Hier nur die Kurzfakten, die vor dem 13.08. schon eingetragen waren, plus die neuen Kernzahlen:
+
+- Topical Authority: Themen-Tiefe korreliert 0,329 mit Position, Backlinks 0,174; bei fixierter Tiefe fällt Backlinks auf 0,020 (2026-08-14, 2088271101604295096).
+- Information Gain: Abdeckung ohne Neues 48 % AIO-Zitatrate, Neues ohne Abdeckung 29 %, beides 53 % (2026-08-16, 2088991211285561457).
+- YouTube in 78 % der Kauf-Antworten in AI Mode; Median-Video 10:34, 140 von 202 mit Kapiteln (2026-08-17, 2089345908550820335).
+- „<Nische> statistics 2026": 24,4 % von Seite 1 gehen an Sites unter 1.000 RD; Seite 1 im Median 174 Tage alt (2026-08-18, 2089706011665858632).
+- Von AI Mode zitierte Listicles: 297 von 496 auf Sites unter 5.000 RD, 462 mit Kontaktweg (2026-08-19, 2090071174822740454).
+- Tier-Liste 2027: 61,8 % der AIO-Zitate sind Listicles, 37 % der zitierten Seiten außerhalb Top 20, 396 von 651 Domains genau einmal zitiert (2026-08-25, 2092246693068583414).
+- Video-GEO: YouTube Top 10 bei 86 von 140 „best X software"; AIO und AI Mode je 63 YouTube-Zitate in 100 Fragen, ChatGPT 0 (2026-09-02, 2095133322191970796).
+- Page-Refresh: Baseline mit gleichen Berichtszeiträumen, Vendor-Beschreibung gegen aktuelle Quelle prüfen, alte Zeile neben neue (2026-09-07, 2096929697716162715).
+- ChatGPT-Post 19.08.: Reddit 15 % → 0 %, Docs/Help 32 %, `site:`-Suchen ~17 %; Tagesstand (2090030550522236979).
+
+Ältere Kurzfakten (2026-08-13):
 
 - Money-Pages: 4–11 kontextuelle interne Links, Anker variieren, Nav/Footer ignorieren (2026-08-12, 2087569194447413600 / article 2086834254734831616).
 - GSC 12-Monats-Export: Queries mit Rank ohne eigene Seite = Lücke (2026-08-11, 2087204477203796343).

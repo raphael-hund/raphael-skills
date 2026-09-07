@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.7.7
+version: 0.8.0
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -23,7 +23,8 @@ source: >
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
   AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract);
   Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube; buildinpublic/Sturm, Diamante, Sanders/StudioHawk, Patel);
-  mal_shaik/wespreadjam Vercel-Citation-Audit 2026-09-07 (Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke).
+  mal_shaik/wespreadjam Vercel-Citation-Audit 2026-09-07 (Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke);
+  @borjafat 22 X-Artikel 28.07. bis 07.09.2026 als Playbook-Bibliothek (references/playbooks-borjafat.md).
   Details siehe references/quellen-2026-08.md
 loads:
   - references/wissens-router.md
@@ -43,6 +44,7 @@ loads:
   - references/gsc-read.md
   - references/quellen-2026-08.md
   - references/creator-lehren-2026-08.md
+  - references/playbooks-borjafat.md
 requires_skills: [copywriting@^0, eval@^0]
 completion_criteria:
   - "Tech-QA 0 Blocker (Meta/Schema/Canonical/Links) — G1 hart"
@@ -86,7 +88,8 @@ sichtbar wird, und bei Decay auffrischen.
 | **Graustufen / asozial** | `references/graustufen.md` — nur nach Raphael-Go |
 | **Citation Outreach / LLM mentions** | `references/citation-outreach-automation.md` + `scripts/citation_outreach.py` |
 | **Owned Assets / Vergleichs-Hub / Preis-Prompt-Lücke** (KI-Zitate, Hypothesen) | `references/ideen-ai-sichtbarkeit-aeo.md` Abschnitt „Owned Assets" + Brain `seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` |
-| Named-Source-Mechaniken (Borja, Edward, Tony, Brain) | `references/quellen-2026-08.md` |
+| **Borja-Playbooks** (Buy-Intent-Seitentypen, GSC-Regex und Lücken-Loop, Page-Refresh, Topical Map, Information Gain, 4 kontextuelle Links, Statistikseite, 10 Linkbuilding-Taktiken, Trojan-Listicle, Journalisten-Score, LinkedIn, YouTube, Video-GEO, GEO-Loops, Local-Wochenloop, Agent-Jobs, Tier-Liste) | `references/playbooks-borjafat.md` |
+| Named-Source-Mechaniken kurz (Borja, Edward, Tony, Brain, mal_shaik) | `references/quellen-2026-08.md` |
 | Spezialtiefe Brain | `references/wissens-router.md` |
 
 Brain-Präfix immer `/root/raphael-brain/wiki/craft/seo/`. 1–3 Seiten, nie alle.
@@ -132,5 +135,6 @@ Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 - Graustufen nicht im Default. Erst Go, dann `graustufen.md`, jede Zeile gelabelt.
 - Vendor-Studienzahlen sind kein Kundenbeleg.
 - Citation Outreach: Client-Config Pflicht, live Target-Page Pflicht, Human Approval für send/spend, Vendorzahlen kein Kundenbeleg.
-- Ein Fakt ein Ort: neue Mechanik steht in `quellen-2026-08.md` oder im Brain, nicht doppelt.
+- Ein Fakt ein Ort: Borja-Tiefe in `playbooks-borjafat.md`, Kurzfakten anderer Quellen in `quellen-2026-08.md` oder im Brain.
+- Borja-Zahlen sind Vendor-Snapshots (US, ein Tag). Sie priorisieren, sie belegen nichts im Kundenreport.
 - Codex/Kimi/Grok-Adapter dürfen nur zeigen. Dieselbe Trigger-Liste wie dieses Frontmatter.

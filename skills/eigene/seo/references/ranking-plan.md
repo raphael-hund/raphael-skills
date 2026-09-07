@@ -33,6 +33,10 @@ ein Risiko-Label aus `graustufen.md`. Ohne Flag bleibt dieser Block weg.
 
 Schwellen sind Heuristik im Skript, keine Kunden-KPI.
 
+## Borja-Ergänzung je Klasse
+
+quick_win und refresh: Abschnitte 3.3 und 3.4 in `playbooks-borjafat.md` (dieselbe URL, Title an die Buyer-Frage, Baseline mit gleichen Zeiträumen). content_gap: Abschnitt 3.2 (Volumen, SERP, Kannibalisierung vor der neuen Seite). money: Abschnitt 6 (4 kontextuelle Links, Nav zählt nicht).
+
 ## Quellen für die Default-Aktionen
 
 Mechaniken und Daten liegen nicht hier. Siehe:

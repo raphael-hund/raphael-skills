@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "name": "crowdreply-citation-outreach-pipeline-v1",
+  "engine": "skills/eigene/seo/scripts/citation_outreach.py",
+  "stdlib_only": true,
+  "network": false,
+  "human_gate": {
+    "engine_never": ["send", "publish", "pay"],
+    "approve_kinds": ["send", "offer"],
+    "approval_binds": "sha256 of canonical JSON payload; mutation revokes approval",
+    "payment": "unimplemented; live_verified is required before payment_eligible"
+  },
+  "cadence_profiles": {
+    "hook_2_3": {"delays_days": [0, 2, 3], "person_switch_days": 2},
+    "prompt_4_9": {"delays_days": [0, 4, 9], "person_switch_days": 4},
+    "mix": "blocked"
+  },
+  "exit_codes": {
+    "0": "success",
+    "1": "usage or validation error",
+    "2": "blocked (tenant, connector, cadence mix, human-gate, invalid approval, BLOCKED_TARGET_PAGES)",
+    "3": "internal error"
+  },
+  "config_contract": {
+    "schema_version": 1,
+    "allowed_top_level_keys": [
+      "schema_version",
+      "client_id",
+      "campaign_id",
+      "cadence_profile",
+      "mode",
+      "own_domains",
+      "close_rate_formula_id",
+      "notes",
+      "brand",
+      "target_pages",
+      "live",
+      "connectors",
+      "fixtures",
+      "workspace"
+    ],
+    "mode": ["offline", "live"],
+    "brand": {
+      "target_link_url": "required; must not be a homepage"
+    },
+    "target_pages": {
+      "type": "list of objects",
+      "required_fields": ["url", "published"],
+      "published": "boolean",
+      "live_requires": "at least one published:true non-homepage page whose url matches brand.target_link_url"
+    },
+    "fixture_path_base": "config_dir",
+    "blocked": {
+      "BLOCKED_TARGET_PAGES": 2
+    }
+  },
+  "commands": [
+    "init",
+    "doctor",
+    "import-citations",
+    "build-shortlist",
+    "import-contacts",
+    "create-drafts",
+    "import-replies",
+    "propose-placement",
+    "approve",
+    "verify-placement",
+    "weekly-report",
+    "export",
+    "demo"
+  ],
+  "doctor": {
+    "offline": "READY",
+    "live_connectors": ["CrowdReply", "Sheets", "Smartlead", "Snov", "Prospeo", "Hunter", "ZeroBounce", "Slack"],
+    "live_statuses": ["READY", "AUTH_REQUIRED", "MISSING", "BLOCKED"],
+    "secrets": "never printed"
+  },
+  "normalization": {
+    "url": "lowercase scheme/host; drop fragment and default port; posix-norm path; root path /; keep query",
+    "email": "trim+lowercase identity; keep original",
+    "dedupe": "sha256 of NUL-joined normalized key fields"
+  },
+  "tables": {
+    "cited_urls": {
+      "grain": "one observation per campaign, pull, model, prompt, canonical URL",
+      "dedupe": ["client_id", "campaign_id", "pull_id", "model", "prompt_id", "canonical_url"],
+      "status": ["captured", "normalized", "classified", "retained", "excluded", "blocked"]
+    },
+    "shortlist": {
+      "grain": "one editorial page per campaign+canonical URL",
+      "eligibility": ["editorial blog/news", "page_type in article|listicle|comparison|guide|review_roundup", "not social/ugc/review/directory/homepage/product/own site"],
+      "order": "citation_count DESC, distinct_model_count DESC, canonical_url ASC"
+    },
+    "contacts": {
+      "max_per_domain": 5,
+      "generic_max": 2,
+      "drop": ["invalid email", "zerobounce invalid"],
+      "keep": ["valid", "catch_all"]
+    },
+    "drafts": {
+      "steps": 3,
+      "sent_by_engine": false,
+      "cadence_profile_id": "required, never mixed"
+    },
+    "replies": {
+      "classification": ["interested_blurb", "interested_fee", "not_fit", "wrong_person", "out_of_office", "existing_relationship", "bounce"]
+    },
+    "placements": {
+      "offer": "proposed -> approval_pending -> approved_reserved|declined",
+      "live": "not_started -> live_verified|not_live|dropped",
+      "payment": "not_due -> reserved -> eligible_after_live; paid unimplemented"
+    },
+    "approvals": {
+      "kinds": ["send", "offer"],
+      "fields": ["payload_hash", "payload_json", "status", "approved_by"]
+    },
+    "weekly_reports": {
+      "stalls": [
+        "shortlist_without_contact_48h",
+        "verified_contact_without_draft_48h",
+        "unsent_draft_48h",
+        "unclassified_reply_24h",
+        "live_mention_dropped"
+      ]
+    },
+    "events": {
+      "grain": "append-only audit row"
+    }
+  }
+}

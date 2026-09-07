@@ -110,6 +110,10 @@ Brain-Seite mit `confidence: low`, promotet 2026-09-07. Vier Hypothesen zum Prü
 
 Im Ranking-Plan landet das als KI-Engine-Aktion je Engine, nie als Mittelwert.
 
+## Borja-Loops und Engine-Unterschiede (2026-08/09)
+
+Elf tägliche GEO-Loops (Citation Tracker mit dreifachem Sampling, Prompt Coverage, Competitor Sources, Answer Gaps, llms.txt, Entity-Audit, Freshness, Decay), Copilot-90-Tage-Plan, YouTube- und LinkedIn-Anteile je Engine, Video-GEO: `playbooks-borjafat.md` Abschnitte 9 und 10. Engine-Aktionen im Ranking-Plan weiter getrennt.
+
 ## Was aktiv schadet
 
 - Separaten "KI-Content" statt normalem Content schreiben (Google-Spam-Risiko).
