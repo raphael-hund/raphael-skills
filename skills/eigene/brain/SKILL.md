@@ -128,7 +128,7 @@ Ziel: Material liegt zitierfähig in `raw/`, mit Herkunft und Hash.
    **Gotcha:** Meldet der Check „Hash abweichend", wird **nie** neu baselined. Dann läuft
    `scripts/raw-baseline-anhang-pruefen.py` und weist nach, ob die Datei nur gewachsen ist.
 
-Kundenmaterial bleibt im Kundenrepo `/root/clients/client-<name>/` (TB4). Ins zentrale
+Kundenmaterial bleibt im Kundenrepo `/root/clients/<slug>/` (TB4). Ins zentrale
 Brain nur verallgemeinert, ohne Kundennamen.
 
 ---

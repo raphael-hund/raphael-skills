@@ -1,6 +1,6 @@
 # Skript-Analyse — aus gezogenen Ads die Struktur extrahieren
 
-Quelle der Muster: `/root/clients/client-make/ads/research-2026-08-03/01-explainer-skript-muster.md`
+Quelle der Muster: `/root/clients/make/ads/research-2026-08-03/01-explainer-skript-muster.md` (Stand 07.09.2026 auf Disk nicht vorhanden)
 und `02-storytime-ads.md` (belegte Recherche vom 03.08.2026, jede Zeile dort mit Link).
 Hier steht die Auswertungs-Methodik, dort die Belege.
 

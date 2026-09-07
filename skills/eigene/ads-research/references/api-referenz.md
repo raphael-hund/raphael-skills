@@ -1,7 +1,7 @@
 # ads_archive — API-Referenz (kondensiert)
 
 Volle Fassung mit allen Quell-Links:
-`/root/clients/client-make/ads/research-2026-08-03/03-ad-library-api.md` (Stand 03.08.2026,
+`/root/clients/make/ads/research-2026-08-03/03-ad-library-api.md` (Stand 03.08.2026,
 Graph API v26.0). Hier nur, was `scripts/ad-library.py` bedient.
 
 ## Geografie entscheidet, nicht der Firmensitz

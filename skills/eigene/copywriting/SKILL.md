@@ -34,8 +34,8 @@ completion_criteria:
 # copywriting — deutscher Klartext in Brand-Voice
 
 **Lies zuerst (brand-voice-Slot):**
-`/root/raphael-brain/business/` (voice-Dateien, falls zentral) **und** zur Laufzeit
-`/root/clients/client-<name>/wiki/VOICE.md` (kundenspezifische Voice):
+`/root/raphael-brain/wiki/company/voice/` (README plus `2026-07-20-eigene-ad-sprachmuster.md`) **und** zur Laufzeit
+`/root/clients/<slug>/wiki/VOICE.md` (kundenspezifische Voice; VOICE.md liegt nicht in jedem Kundenrepo):
 der Kunde gewinnt bei Widerspruch. Außerdem `/root/raphael-brain/wiki/craft/hooks/`.
 
 **Kein Extra-Load:** `no-ai-slop` ist ein Router auf diesen Skill. Site-Build

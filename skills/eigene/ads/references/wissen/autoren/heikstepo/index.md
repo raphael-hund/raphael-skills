@@ -37,7 +37,7 @@ Themen: `offer-icp`, `creative-research`, `hooks-copy`, `production`, `testing`,
 - **Conversion-Event nach Qualifizierung:** Meta erst auf qualifizierte Leads oder gebuchte Termine optimieren, nicht auf rohe Formular-Leads.
 - **Ein-Variablen-Tests und Front-/Back-End-Kongruenz:** Ad, Landingpage und Verkaufsgespräch müssen dasselbe Versprechen tragen.
 
-Nicht 1:1 übertragbar: Webinar-Funnels, Setter/Closer-Modelle, Low-Ticket-Ascension, YouTube-Nurture-Ketten und die genannten Budgetgrössen (1'000 bis 3'000 USD/Tag; MAKE liegt bei 250 CHF/Tag).
+Nicht 1:1 übertragbar: Webinar-Funnels, Setter/Closer-Modelle, Low-Ticket-Ascension, YouTube-Nurture-Ketten und die genannten Budgetgrössen (1'000 bis 3'000 USD/Tag). MAKEs interner Planungsstand liegt als vertraulicher Brain-Kandidat `wiki/_candidates/2026-09-07-makes-tagesbudget-liegt-bei-ungefaehr-250.md` vor (Stand 07.09.2026 noch nicht freigegeben).
 
 ## Widersprüche und nicht übernommene Regeln
 

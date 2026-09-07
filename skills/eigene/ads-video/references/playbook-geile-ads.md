@@ -7,14 +7,14 @@ Craft-Referenzen dieses Skills (`hook-formeln.md`, `skript-architekturen.md`,
 
 Dieses Playbook ist **kundenneutral**. Es hält die Regeln, die im Markt messbar tragen.
 Die Zahlen eines einzelnen Kontos gehören ins Kunden-Playbook
-(`/root/clients/client-<slug>/ads/playbook-<slug>.md`), nicht hierher.
+(`/root/clients/<slug>/ads/playbook-<slug>.md`), nicht hierher.
 
 ## 0. Wie dieses Playbook benutzt wird
 
 Vor dem Schreiben, in dieser Reihenfolge:
 
 1. **Winner des Kunden laden: falls vorhanden.** Existiert
-   `/root/clients/client-<slug>/ads/korpus/eigene-ads.md`, die Top-Ads nach
+   `/root/clients/<slug>/ads/korpus/eigene-ads.md`, die Top-Ads nach
    Spend × Hookrate bestimmen und die Winner-Basis notieren. Existiert ein Kunden-Playbook
    `playbook-<slug>.md`, dessen Instanz-Belege dazu lesen.
    **Kein eigener Korpus da** → reiner Markt-Referenz-Pfad, und das Winner-Basis-Feld sagt
@@ -248,7 +248,7 @@ Verbote).
 - Markt-Referenz-Ads: 711 Records; 176 unvollständig/Notion-Lücke: **nur Volltext** für
   Phase-1-Zitate nutzen. `[UNVOLLSTÄNDIG. Nur in Notion]` ausschließen, nicht erfinden.
 - Ein eigener Performance-Korpus ist optional und liegt beim Kunden:
-  `/root/clients/client-<slug>/ads/korpus/eigene-ads.md`. Fehlt er, ist das kein Fehler:
+  `/root/clients/<slug>/ads/korpus/eigene-ads.md`. Fehlt er, ist das kein Fehler:
   dann trägt der Markt-Pfad, und das Winner-Basis-Feld sagt es ehrlich.
 - Drafts und Konzepte im Kundenordner sind Stil- und Dialekt-Referenz, **nicht**
   Beat-Skelett-Quelle. Skelett-Quelle = `winner` / `laufend` mit Performance oder klarem Flight.

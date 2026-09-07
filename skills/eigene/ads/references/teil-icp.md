@@ -9,7 +9,7 @@ Eine halbe Seite, die ein Skript tragen kann. Nicht ein Dossier-Roman.
 ## Holen, in dieser Reihenfolge
 
 1. Was der User in diesem Chat gesagt hat
-2. `/root/clients/client-<slug>/wiki/` (ICP, Offer, Proof, Voice, voc)
+2. `/root/clients/<slug>/wiki/` (ICP, Offer, Proof, Voice, voc)
 3. Öffentliche Website, Profile, Bewertungen
 4. Ergänzende ausdrücklich gelieferte Materialien und lokale Skill-Referenzen
 

@@ -250,6 +250,6 @@ Kanonische Gate-Reihenfolge und ihre Gotchas:
 - **Ein Kandidat pro Buch** wird nie freigegeben, weil er zu viel auf einmal behauptet.
   Eine These, eine Seite.
 - **Kundenmaterial** (interne PDFs eines Kunden) gehört ins Kundenrepo unter
-  `/root/clients/client-<name>/raw/`, nicht ins zentrale Brain (TB4).
+  `/root/clients/<slug>/raw/` (TB4). Das zentrale Brain bleibt kundenfrei.
 - **Regel-19-konform berichten:** pass/fail mit eingefügtem Beleg (Befehl + Ausgabe),
   nie eine Gedankengang-Erklärung verlangen oder liefern.

@@ -1,7 +1,7 @@
 # Autopsie — AlpenEnergie Offerte Session fc17bade (2026-08-06)
 
 **Session:** `fc17bade-58f2-4a3a-8c8c-ecab3671be5c`  
-**Artefakt:** [`/root/clients/client-alpenenergie/offerte-v2/`](/root/clients/client-alpenenergie/offerte-v2/)  
+**Artefakt:** [`/root/clients/alpenenergie/offerte-v2/`](/root/clients/alpenenergie/offerte-v2/)
 **Stand geprüft:** v14 PNGs unter `export/v14/check-*.png`
 
 ## Was Raphael wollte

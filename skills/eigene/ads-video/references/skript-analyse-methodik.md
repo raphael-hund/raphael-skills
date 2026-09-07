@@ -67,6 +67,6 @@ Skripte) keine Phase 2, sonst ist das "Skelett" geraten statt abgeleitet.
 Diese Methodik läuft in Schritt 3 (Referenz-Skripte analysieren) des `ads-video`-
 Ablaufs, bevor in Schritt 4 nach Skelett geschrieben wird. Referenz-Set: bestehende
 Kundenskripte (`ads/skripte/` des Kunden) plus bei Bedarf Wettbewerbs-/Swipe-Material.
-Bei MAKE: `/root/clients/client-make/ads/skripte/2026-07-22-MAKE-Ad-Skripte.md` (6 Skripte,
+Bei MAKE: `/root/clients/make/ads/skripte/2026-07-22-MAKE-Ad-Skripte.md` (Stand 07.09.2026 auf Disk nicht vorhanden; 6 Skripte,
 2 Bodies × Hook-Varianten) ist selbst schon ein Ergebnis dieser Methodik und kann direkt
 als Referenz-Set für Phase 1 dienen.

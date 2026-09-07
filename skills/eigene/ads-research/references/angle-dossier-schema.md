@@ -6,7 +6,7 @@ ads-video und ads-statics lesen nur diesen Pfad.
 
 ## Ablage
 
-`/root/clients/client-<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
+`/root/clients/<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
 
 MAKE (`kunde: make`) nutzt denselben Pfad unter `client-make`, wenn das Repo da ist.
 Onboarding: zuerst Kundenrepo, Brain `wiki/company/` nur wenn vorhanden.
@@ -140,7 +140,7 @@ Das Dossier nennt den Streit und wählt mit Grund.
 - <was fehlt>
 
 ## Übergabe
-DOSSIER: /root/clients/client-<slug>/ads/research/<datum>-angle-dossier.md
+DOSSIER: /root/clients/<slug>/ads/research/<datum>-angle-dossier.md
 SEGMENT: <slug>
 ```
 

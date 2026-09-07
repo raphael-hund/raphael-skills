@@ -26,6 +26,6 @@ Fehlt die Skill-Datei: FAIL. Fehlt nur das Wiki: weiter.
 
 ## Kunden-Onboarding
 
-Zuerst `/root/clients/client-<slug>/wiki/`.
+Zuerst `/root/clients/<slug>/wiki/`.
 MAKE-Brain `wiki/company/` nur wenn vorhanden.
 Fehlt beides: `kunden-layer: fehlt`, weiter mit öffentlichen Quellen.

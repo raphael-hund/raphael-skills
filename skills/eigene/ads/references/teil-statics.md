@@ -1,4 +1,4 @@
-# Teil Statics — Briefs, die ein Bild tragen
+# Teil Statics: Briefs, die ein Bild tragen
 
 Ein Brief = ein Angle × ein Style (S1–S8) bei Dienstleistung und Angebot.
 Bei Objektverkauf gilt der Abschnitt «Objektverkauf» unten: eine Botschaft, das Foto wechselt.
@@ -54,9 +54,9 @@ Pro Brief:
   (keine Listen-Quote, kein CRM-Bruch, kein «13 von 87»).
   Jede Zeile hat Subjekt und Verb. Kein Telegramm («Platz 1 / 30 Tage / kein Rappen» ist tot).
   Raphaels eigene Ads sind Material, nie die einzige Vorlage.
-- Instant-Formular — Hook UND Deal in einer Ad (die eine Regel):
+- Instant-Formular: Hook UND Deal in einer Ad (die eine Regel).
   Hook zuerst (Ergebnis, Callout oder Schmerz). Nie «Wir bauen …» als Opener.
-  **Direkt danach steht, was der Klick bringt** — in einem Satz:
+  **Direkt danach steht, was der Klick bringt**, in einem Satz:
   etwa der angebotene Check und der tatsächliche nächste Kontakt.
   Bei direktem Instant-Form-Klick erklärt keine vorgeschaltete Landingpage den Deal. Wer ihn nicht auf der Ad sieht,
   weiss nicht, wofür «Jetzt bewerben» gilt.
@@ -68,7 +68,7 @@ Pro Brief:
 - ICP-Filter: Rolle, Situation, Region oder belegte Voraussetzungen machen die
   Passung erkennbar. Creative allein garantiert keine Qualifikation; Formulare,
   Kontakt und spätere Qualität gemeinsam prüfen.
-  Der Callout ist ein Element, kein Angle — er steuert WER bleibt, der Angle steuert WAS
+  Der Callout steuert als eigenes Element, WER bleibt; der Angle steuert, WAS
   die Ad will (Proof, Problem, Outcome, Verlust, Vergleich, Mechanismus, Garantie, Haltung).
 - Friction-Waage (Hormozi): Reibung nach der diagnostizierten Lücke wählen.
   Eine sinnvolle Frage kann Passung klären, eine unnötige kann gute Kontakte
@@ -120,10 +120,10 @@ Preisanker, Verknappung als kleines Element, ein Button. Alle Karten einer Welle
 dieselbe Botschaft, nur das Foto wechselt (Aussen, Innen, Drohne, Portal-Look).
 Beleg: Foreplay-Langläufer Specht Cuxhaven 529 Tage, Blumenauer München 345 Tage,
 BUWOG Havel Lichter 142 Tage, Haus Arbor 142 Tage (Sichtung 03.09.2026, Dossier
-`/root/clients/ak-omega/ads/research/2026-09-03-angle-dossier-statics.md`).
+`/root/clients/<slug>/ads/research/2026-09-03-angle-dossier-statics.md`).
 Nicht auf die Karte: wer baut, seit wann, wie oft; Auswahl-Fragen; Lage-Dreiklänge;
 alles, was der Käufer erst nach «Was ist das, was kostet es» wissen will.
-Beispiel: `/root/clients/ak-omega/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
+Beispiel: `/root/clients/<slug>/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
 
 ## Bild (Raphael, 03.09.2026 abends)
 
@@ -146,7 +146,7 @@ Ein Brief, ein Style. Ein Angle bei Dienstleistung, eine Botschaft bei Objektver
 - Handy-Test: ein Fremder versteht in einer Sekunde, was die Firma tut und was der Klick bringt
 - Headline-Test: nur die Headline gelesen, weiss ein Fremder, was angeboten wird und wo; keine Verknappung, kein Vergleich ohne Objekt als Headline; Preis nur zusammen mit Objekt und Ort
 - Headline und CTA vorhanden; Body oder Bullets (mindestens zwei); Eyebrow nur ohne Dopplung; kein Badge
-- Instant-Formular: Hook UND Deal in einer Ad — Hook first, danach der Klick-Grund in einem Satz
+- Instant-Formular: Hook UND Deal in einer Ad; Hook first, danach der Klick-Grund in einem Satz
 - Weder Feature-Opener noch Hook ohne Klick-Grund
 - ICP-Filter: nur der ICP fühlt sich angesprochen (Schwelle, Rolle, Ort oder ICP-Rechnung)
 - keine interne Zählung auf dem Bild
