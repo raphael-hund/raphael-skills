@@ -176,7 +176,7 @@ Zwei-Pass-Ablauf "Plan gegen den generischen Default gegenpruefen, Abweichung
 benennen, erst dann Code" als neuer §3a in `references/taste-kern.md`; (2) das
 Pflichtfeld `Signature-Element` (genau ein Element, an das die Seite erinnert
 wird) im Design-Read, bei uns anders als in der Quelle dial-abhaengig skaliert,
-weil `eigene/web/references/stil-regeln.md` §1 (Regel S15) die VARIANCE fuer die
+weil `eigene/_archiv/web-1.6.0-bis-2026-09-06/references/stil-regeln.md` §1 (Regel S15) die VARIANCE fuer die
 meisten Sektoren daempft; (3) der dritte AI-Slop-Cluster "Broadsheet/Hairline"
 als benanntes Verbot in `references/design-doktrin.md` §6, neben den schon
 vorhandenen Clustern Cream/Serif und Near-black+Neon. Die uebrigen Regeln der

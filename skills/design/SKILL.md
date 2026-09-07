@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.5.0
+version: 0.7.0
 description: >
   Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus
   impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-
@@ -8,8 +8,8 @@ description: >
   Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem
   Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der
   web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard ->
-  ui-ux-Linie, finale QA IMMER ueber die deterministischen
-  impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger:
+  ui-ux-Linie, passende QA ueber die deterministischen
+  impeccable-Detektoren und den kill-ai-slop-Scanner. Trigger:
   "Design polieren", "UI review", "sieht nach AI aus", "Slop entfernen",
   "Farben/Typo/Layout fixen", "Animation/Motion pruefen", "Kontrast/OKLCH",
   "Dashboard designen", "Referenz-Site als Stilvorlage", "Stitch",
@@ -54,8 +54,8 @@ eval_scorecard:
     - "Der URL-Modus von detect.mjs braucht puppeteer und laeuft auf diesem Rechner nicht — die Evals laden den Detektor per Playwright direkt in die Seite"
     - "Ein gruener Lauf heisst 'die bekannten Slop-Muster sind raus', nicht 'das Design ist gut'"
 completion_criteria:
-  - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
-  - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
+  - "Zur geänderten Oberfläche passende Detektoren ausgeführt; echte Funde behoben, bewusste Ausnahmen und nicht geprüfte Bereiche benannt"
+  - "Bei Slop-Prüfung den passenden Scanner verwenden und Funde triagieren; ein grüner Scan ersetzt keine gerenderte Sichtprüfung"
   - "Rubrik erfuellt: Kontrast WCAG AA (Body 4.5:1), EINE Theme-/Akzent-/Radius-Linie, Hero passt in Viewport, kein sichtbarer Em-Dash, Motion motiviert + reduced-motion, Bilder statt Fake-Screenshots"
   - "Register bewusst gewaehlt (Landing=taste ODER App=ui-ux) und im Design-Read benannt"
 gotchas:
@@ -86,7 +86,7 @@ gewaehlt und begruendet, ist in Ordnung. Das schaerft jeden Fund unten: erst
 fixen, was niemand entschieden hat.
 
 ## Immer zuerst: Design-Read (1 Zeile)
-Vor jeder Zeile Code eine Zeile ausgeben:
+Bei einer neuen visuellen Entscheidung den Design-Read knapp festhalten:
 > *"Lese das als: \<Seitenart> fuer \<Zielgruppe>, \<Vibe>-Sprache, Richtung \<System/Aesthetik>."*
 Nur EINE Rueckfrage, falls der Read echt zweideutig ist — sonst annehmen und weiter.
 
@@ -111,45 +111,32 @@ Wahl nach: (1) Task-Cue ("Landingpage" vs "Dashboard"), (2) konkrete Seite/Route
 2. Stack aus dem Projekt erkennen (package.json etc.), Empfehlungen daran binden.
 3. Doktrin anwenden. Karten hier als legitime Datencontainer (nicht verschachtelt).
 
-## Screenshot-Pflicht — nach JEDER sichtbaren Aenderung (Raphael-Regel, hart)
+## Sichtbare Änderungen prüfen
 
-Nichts Visuelles wird gebaut, geaendert oder als fertig gemeldet ohne
-Screenshot-Zyklus. Kein "muesste jetzt passen" — nur belegte Sicht.
+Vor einer Designentscheidung relevante neue Referenzen aus `/root/eingang`
+(letzte sieben Tage) und vorhandene Kundenvorgaben tatsächlich ansehen.
+Ein neues Asset vor dem Einbau auf Motiv, Kanten und Auflösung prüfen.
 
-Die Pflicht hat zwei Richtungen. Nach vorn: **vor** Build-Start `/root/eingang`
-(letzte 7 Tage) nach abgelegten Referenz-Screenshots durchsehen und die
-relevanten per Read oeffnen. Ein ausdruecklicher Auftrag "Referenz als
-Stilvorlage" ist dafuer nicht noetig — die abgelegte Datei ist der Auftrag.
+Nach einem zusammenhängenden sichtbaren Änderungspaket den aktuellen Stand
+rendern und die betroffenen Ansichten ansehen. Erneut prüfen nach einem
+relevanten Fix oder offenem Befund. Bei Shared Components deren tatsächliche
+Konsumenten einbeziehen; eine lokale Änderung erzwingt keinen erneuten Review
+aller unveränderten Seiten. Es gibt keine Mindestzahl Renderzyklen.
 
-1. Nach JEDER Aenderung rendern (Chrome headless `--screenshot`, Playwright,
-   `pdftoppm`, Figma `get_screenshot`) und das PNG **per Read ansehen**.
-   Ausnahme mit gleichem Ziel: Laeuft die Arbeit unter einem Workflow-Owner
-   mit Leaf-Vertrag (z.B. web-Skill), erfuellt das **Kritik-Leaf** diese
-   Pflicht — der Controller/Parent liest nie ein PNG. Die Pflicht entfaellt
-   nicht, sie wechselt den Ort (web/SKILL.md, Praezedenz-Absatz).
-2. **Jedes Asset einzeln ansehen, BEVOR es eingebaut wird:** Freisteller
-   wirklich freigestellt (kein sichtbarer Hintergrund-Kasten auf farbiger
-   Flaeche)? Richtiges Produkt/Motiv? Stil konsistent zu den Nachbar-Assets?
-   Nicht freigestellt -> Higgsfield `image_background_remover`, dann erneut ansehen.
-3. Kleinlich triagieren: Bildkanten, Farbsprung Asset- vs. Seitenhintergrund,
-   falsches Motiv, Abschnitt, Matsch-Aufloesung = Fehler -> fixen -> ERNEUT
-   Screenshot. Erst melden, wenn der letzte Zyklus sauber war.
-4. In JEDEN Subagent-Prompt fuer visuelle Arbeit diese Pflicht explizit
-   hineinschreiben (rendern + Read + nachbessern, mind. 2 Zyklen).
-5. Bei PDF-Export zusaetzlich `pdffonts <datei.pdf>` laufen lassen: Nur die
-   CI-Fonts duerfen eingebettet sein. Faellt etwas auf Arimo/Roboto/Arial o. ae.
-   zurueck, war der Webfont beim Headless-Render nicht da -> Fonts lokal per
-   `@font-face` buendeln (nie auf Netz-@import verlassen), neu rendern.
-6. **Nach JEDEM Fix ALLES nochmal pruefen, nicht nur die geaenderte Stelle.**
-   Wer einen Fehler fixt (Pfad, Layout, Bild-Quelle, CSS) und dann nur die
-   gefixte Seite anschaut, uebersieht dasselbe Problem auf den anderen Seiten.
-   Nach jedem Fix: ALLE Seiten/Assets erneut rendern und ansehen. Beispiel:
-   Bild-Pfad auf Seite 3 gefixt -> Seiten 1-11 alle nochmal ansehen, ob die
-   Bilder ueberall laden. Erst wenn ALLE Seiten sauber sind, ist die Arbeit
-   fertig.
+Innerhalb eines Web-Auftrags bestimmt `web/references/qa-faecher.md` die
+benötigten Belege. Der damit ausgestattete Owner führt Render/Browserprüfungen
+aus; ein Dateiworker ohne diese Werkzeuge liefert Dateien und seinen Prüfbedarf.
+Ein vorhandener gültiger visueller Beleg wird wiederverwendet. Motion und
+Interaktion werden zusätzlich am tatsächlichen Verhalten geprüft.
 
-## Finale QA — IMMER, unabhaengig von der Linie
-Kein Interface gilt als fertig, bevor BEIDE Scanner gruen sind.
+Bei PDF-Export außerdem `pdffonts <datei.pdf>` prüfen: eingebettete Schriften
+müssen zum Designvertrag passen. Fehlende Webfonts vor einem erneuten Render
+im Rahmen der jeweiligen Lizenz beheben.
+
+## Finale QA passend zur Änderung
+Die betroffenen Ansichten rendern und passende Detektoren wählen. Bei einer
+umfassenden Slop-Prüfung ergänzen sich beide Scanner. Ein kleiner UI-Fix
+erfordert keinen vollständigen Scan aller unveränderten Dateien.
 
 ```bash
 node scripts/detect.mjs <geaenderte .html/.css/.jsx/.tsx-Dateien>
@@ -170,7 +157,7 @@ blind. Der Regelsatz ergaenzt `de-14` (Textstimme, im web-Gate ein Blocker),
 freigegebener Liste `copywriting/references/floskel-verbote.md`. Das web-Gate
 haengt ihn automatisch an und schreibt es ins Urteil, wenn er fehlt.
 
-**Der Detektor fuehrt heute 59 Regeln** in `registry/antipatterns.mjs` (Stand
+**Der Detektor fuehrt heute 59 Regeln** in `scripts/detector/registry/antipatterns.mjs` (Stand
 Re-Sync auf impeccable v4.0.5, 02.09.2026 — vorher 46). **46 Regeln und keinen
 Test** war der Befund vom 30.07.2026, aufgefallen
 an einer Seite mit `linear-gradient(90deg, #6366f1, #a855f7)` und
@@ -188,13 +175,13 @@ node evals/run-detect-check.mjs
 36 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: von den
 **59** Registry-Regeln haben **14** einen Testfall im Datei-Modus, und **45 sind
 über den Datei-Modus grundsätzlich nicht erreichbar** — sie liegen in
-`rules/checks.mjs` und brauchen ein gerendertes DOM. Keine einzige Regel ist im
+`scripts/detector/rules/checks.mjs` und brauchen ein gerendertes DOM. Keine einzige Regel ist im
 Datei-Modus herstellbar und dabei noch ohne Fixture. Im Datei-Modus ist damit
 **alles belegt, 14 von 14.**
 
 > **Korrektur einer Behauptung, die hier stand:** „dort deckt `craft-check` sie
 > ab" war ungemessen und ist falsch. Nachgezählt am Code (02.09.2026):
-> **47 Browser-Regeln** in `rules/checks.mjs`, davon haben **8 ein fachliches
+> **47 Browser-Regeln** in `scripts/detector/rules/checks.mjs`, davon haben **8 ein fachliches
 > Pendant** in `craft-check` (T1↔`overused-font`, T2↔`ai-color-palette`,
 > T5↔`kicker-above-heading`, T8↔`em-dash-overuse`, M3↔`line-length`,
 > M8↔`flat-type-hierarchy`, M11↔`gpt-thin-border-wide-shadow`,
@@ -260,16 +247,16 @@ Regeln auch dadurch „bestanden", dass sie auf alles anschlagen.
 Ablauf beider Scanner identisch (Scope -> Scan -> Triage -> Report -> Fix):
 1. **Scope**: Default = Frontend-Source, `node_modules`/`dist`/`.git`/Lockfiles
    raus.
-2. **Scan**: beide Scripte laufen lassen (`--json` fuer maschinelle Weiterverarbeitung).
+2. **Scan**: die für den Scope gewählten Scripte ausführen (`--json` fuer maschinelle Weiterverarbeitung).
 3. **Triage**: jeder Fund ist ein Hinweis, kein Urteil — pro Fund entscheiden
    Slop vs. bewusste, verteidigbare Entscheidung (Brand-Token, Logo, echte
    Illustration bleibt).
-4. **Report**: gruppierte Zusammenfassung vor jeder Aenderung zeigen (Tell,
-   file:line, ein Satz Begruendung, Fix-Richtung), Freigabe einholen statt
-   blind durchzufixen.
+4. **Report**: Befunde mit file:line und Begründung zusammenfassen. Bei einem
+   Änderungsauftrag die gedeckten Fixes ausführen; ein reiner Review-Auftrag
+   liefert den Bericht. Nur echte Produkt-/Scope-Entscheidungen vorlegen.
 5. **Fix**: erst Tokens/Theme, dann Komponenten, dann Einzelstellen, zuletzt
    Copy (`references/ai-slop-fixes.md`) — kleinstmoeglicher Diff, danach
-   erneut scannen bis der Count sinkt/auf 0 steht. Bestaetigte Ausnahmen per
+   die betroffenen Funde erneut prüfen. Bewusste Ausnahmen per
    `deslop-ignore-next-line <id>` (ID-scoped, nie global) im Code pinnen.
 
 Detektor-Details: `references/impeccable-detektoren.md` (Layout/Farbe/

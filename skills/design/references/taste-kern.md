@@ -77,7 +77,7 @@ Ausschlag haengt am VARIANCE-Dial:
 
 Der Sektor-Dial aus `stil-regeln.md` §1 (Regel S15) ersetzt im Site-Build die Baseline
 oben und entscheidet damit auch diese Zeile. Layering/Parallax als Signature ist
-Premium-Ausnahme mit eigener Regel — `eigene/web/references/ui-layouts-catalog.md`.
+Premium-Ausnahme mit eigener Regel — `eigene/_archiv/web-1.6.0-bis-2026-09-06/references/ui-layouts-catalog.md`.
 
 ## 4. Brief -> Design-System-Map
 Wenn der Brief einem echten System entspricht, das **offizielle** Paket nutzen (nicht

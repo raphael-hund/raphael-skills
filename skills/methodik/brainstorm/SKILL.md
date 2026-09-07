@@ -1,49 +1,55 @@
 ---
 name: brainstorm
-version: 1.0.0
+version: 2.0.0
 description: >-
-  Kompatibilitäts-Adapter für /brainstorm. Enthält keine eigene
-  Brainstorm-Logik: Zielklärung läuft über plan (GRILL/SPEC), die
-  Perspektiven-Arbeit über den kanonischen Workflow `ultracode` mit
-  mode "brainstorm" (drei Luna-Perspektiven, je ein frischer
-  Sol-Kritiker, Synthese erst nach PASS aller drei). Trigger:
-  /brainstorm, "brainstorme", "Lösungsrichtungen entwickeln".
+  Expliziter Ideenmodus ohne Kritikerwellen. Klärt das Ziel und entwickelt bis
+  zu drei Perspektiven strikt nacheinander; anschließend synthetisiert der
+  Parent einmal. Keine Umsetzung. Trigger: /brainstorm, "brainstorme" oder
+  "Lösungsrichtungen entwickeln".
 class: O
 scope: agency
 sensitivity: internal
 completion_criteria:
-  - "Workflow ultracode (mode brainstorm) gestartet und Ergebnis mit PASS aller drei Perspektiven berichtet"
+  - "Ziel, Grenzen und Entscheidungskriterien sind festgehalten"
+  - "Ein bis drei Perspektiven wurden strikt nacheinander erarbeitet"
+  - "Keine Perspektive hat Child-Agenten oder Kritiker gestartet"
+  - "Eine Synthese nennt Empfehlung, Trade-offs und offene Entscheidung"
+  - "Keine Umsetzung ohne ausdrückliche Freigabe"
 ---
 
-# brainstorm — Adapter auf plan + ultracode
+# brainstorm — sequenzielle Perspektiven, eine Synthese
 
-Dieser Skill delegiert nur. Er brainstormt nie selbst inline.
+Dieser Skill ist nur für Ideen und Entscheidungen. Er implementiert nichts und
+startet keine Kritiker-, Council- oder Gauntlet-Wellen.
 
-## Ablauf (zwingend)
+## Harter Vertrag
 
-1. **Zielklärung** über [`plan/SKILL.md`](/root/raphael-skills/skills/methodik/plan/SKILL.md),
-   Stufe `GRILL` (Annahmen unklar) oder `SPEC` (Idee da, Wie offen).
-2. Danach Workflow `ultracode` starten mit:
+- Das Ziel wird mit `plan` auf GRILL- oder SPEC-Niveau geklärt.
+- Standard ist **eine** Perspektive. Wenn echte Alternativen helfen, sind bis
+  zu drei Perspektiven erlaubt: konservativ, ausgewogen, ambitioniert.
+- Perspektiven laufen strikt nacheinander. Gleichzeitig aktive Agenten: 1.
+- Jede Perspektive ist ein Leaf: keine Child-Agenten, Workflows oder
+  Provider-CLI-Spawns.
+- Keine Reviewer pro Perspektive und keine Reparaturrunden.
+- Der Parent synthetisiert genau einmal und benennt Empfehlung, Trade-offs,
+  Risiken und die noch nötige Nutzerentscheidung.
+- Kimi, Grok oder andere Modelle werden nur bei ausdrücklicher Modellwahl
+  verwendet; Vielfalt wird nicht künstlich durch Providerzahl erzeugt.
 
-```json
-{
-  "mode": "brainstorm",
-  "task": "<das geklärte Problem in einem prüfbaren Satz>",
-  "paths": ["</absoluter/ablage-pfad/für/die/spec>"],
-  "gate": "<ausführbarer Check, z.B. Spec-Datei existiert und Lint besteht>"
-}
-```
+## Ablauf
 
-3. Der Workflow erzeugt **drei Luna-Items** mit bewusst unterschiedlichen
-   Perspektiven: konservativ, ausgewogen, ambitioniert.
-4. Jede Perspektive bekommt einen **separaten frischen Sol-Kritiker**
-   (andere Modellfamilie, max. 3 Runden).
-5. **Synthese erst nach PASS aller drei Items.**
-6. **Keine Umsetzung**, bevor Raphael die Spec ausdrücklich freigegeben hat.
+1. Problem, Nicht-Ziele, Constraints und Entscheidungskriterien festhalten.
+2. Nur bei echtem Nutzen 2–3 disjunkte Perspektiven definieren.
+3. Jeweils eine Perspektive vollständig erarbeiten und beenden, dann die
+   nächste beginnen.
+4. Der Parent vergleicht die Ergebnisse deterministisch entlang der vorher
+   festgelegten Kriterien.
+5. Eine kompakte Spec oder Entscheidungsvorlage schreiben.
+6. Vor jeder Umsetzung Raphaels ausdrückliche Freigabe abwarten.
 
 ## Verbote
 
-- Kein Inline-Brainstorm ohne Workflow.
-- Keine eigene Perspektiven-Logik hier pflegen — `plan` bleibt kanonisch,
-  der Workflow [`ops/workflows/ultracode.js`](/root/raphael-command-center/ops/workflows/ultracode.js)
-  ist die einzige ausführbare Quelle.
+- Kein automatischer Aufruf von `ultracode`.
+- Keine drei Kritiker je Perspektive und keine „PASS aller Stimmen“-Bedingung.
+- Kein paralleles Perspektiven-Fan-out.
+- Kein Commit, Push, Deploy oder Veröffentlichen.

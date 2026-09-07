@@ -1,6 +1,6 @@
 ---
 name: research
-version: 0.2.0
+version: 0.2.1
 description: >
   Recherchiert eine Sachfrage gegen vertrauenswürdige Primärquellen (Docs,
   Source Code, Specs, First-Party-APIs) im Hintergrund und hält die Befunde
@@ -89,11 +89,15 @@ Kommt eine Quelle nicht herein, in dieser Reihenfolge weiterrücken — nicht ab
 und nicht „nicht verfügbar" melden, bevor die Kette durch ist:
 
 1. **Offizielle API / First-Party-Endpunkt** (bevorzugt, stabilstes Format).
-2. **Browser/Fetch** auf die HTML-Seite (WebFetch, `agent-reach`).
-3. **Wayback Machine** (`https://web.archive.org/web/<url>`) — deckt 404, Paywall-Wände
+2. **Firecrawl** (`firecrawl search` / `firecrawl scrape` oder MCP `firecrawl`)
+   für öffentliche Webseiten. Skill:
+   [`firecrawl`](/root/raphael-skills/skills/eigene/firecrawl/SKILL.md).
+3. **Browser/Fetch** auf die HTML-Seite (WebFetch, `agent-reach`, bei Login
+   `raphael-chrome`).
+4. **Wayback Machine** (`https://web.archive.org/web/<url>`) — deckt 404, Paywall-Wände
    und seit der Recherche geänderte Seiten ab; im Brief immer den Snapshot-Zeitstempel
    mitzitieren, nicht so tun, als wäre es der Live-Stand.
-4. **Bezahlte API** (z. B. Apify) — kostet Geld, deshalb letzter Schritt und nur mit
+5. **Bezahlte API** (z. B. Apify) — kostet Geld, deshalb letzter Schritt und nur mit
    vorhandenem Key.
 
 - **Reddit zwingend über Apify.** Die VPS-IP ist bei Reddit geblockt; direkter Abruf
@@ -102,6 +106,31 @@ und nicht „nicht verfügbar" melden, bevor die Kette durch ist:
   erst prüfen, dann losschicken.
 - Jede Stufe, die genutzt wurde, gehört in die Quellenangabe (Live-Abruf vs. Archiv-
   Snapshot vs. Scraper-Ausgabe sind unterschiedlich starke Belege).
+
+## Agent-Reach: Fan-out und visueller Kritiker
+
+`agent-reach` bleibt der Beschaffungsweg; die Orchestrierung sitzt darum herum.
+
+1. **Vor dem Abruf:** `agent-reach doctor --json` einmal ausführen. Der Befund
+   entscheidet nur, welche Route trägt; kein Worker erfindet eine Ersatzroute.
+2. **Luna-Fan-out direkt nach der Routenwahl:** Jede unabhängige Quelle, Plattform,
+   Unterfrage oder Ergebnisdatei bekommt ein eigenes `luna-worker`-Paket mit
+   disjunktem `write_set`. Der Auftrag enthält `agentType: luna-worker`, Effort
+   `max`, exakten Agent-Reach-Befehl, Quellenpfad, Output-Schema und ein
+   maschinenprüfbares Gate. Gemeinsame Synthese und `BRIEF.md` bleiben beim Lead.
+3. **Zusammenführen nach dem Fan-out:** Erst wenn alle Luna-Pakete ihre echten
+   Abrufe und Quellenbelege geliefert haben, dedupliziert der Lead und schreibt
+   den einen zitierten Brief. Agenten-Reports gelten bis zum Cross-Review als
+   untrusted.
+4. **Visual-Kritiker nur am visuellen Artefakt:** Wenn Agent-Reach Bilder,
+   Screenshots, gerenderte Seiten, Folien oder PDFs liefert, folgt nach Render und
+   `visual-g1.py` ein separater `visual-kritiker` aus einer anderen Modellfamilie.
+   Er prüft die echten PNGs, nicht URL, Code oder Worker-Zusammenfassung. Rückgabe
+   ausschließlich `verdict`, genau eine `biggest_gap`, `beleg`, `confidence`.
+5. **Kein visueller Kritiker bei reinem Text-/Datenabruf:** Text, JSON, HTML und
+   Quellenlisten gehen durch das normale Cross-Review; der visuelle Kritiker wird
+   nicht als allgemeiner Recherche-Prüfer eingesetzt. `fail` routet nur die
+   benannte größte Lücke in eine begrenzte Fix-Runde.
 
 ## Gotchas
 

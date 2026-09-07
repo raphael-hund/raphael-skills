@@ -1,11 +1,9 @@
 # impeccable-Detektoren — deterministische QA
 
-> Der **finale QA-Schritt** fuer JEDE Linie (Landing wie App). Deterministischer,
-> offline laufender Anti-Pattern-Detektor (aus impeccable, Apache-2.0). Kein Netz,
-> kein npx, kein API-Key. Node ≥ 18.
->
-> **Regel: Interface gilt erst als fertig, wenn der Detektor auf allen geaenderten
-> UI-Dateien Exit 0 liefert UND die Handrubrik unten sitzt.**
+> Offline-Detektor für passende UI-Prüfungen (impeccable, Apache-2.0).
+> Kein Netz, kein npx, kein API-Key. Node ≥ 18.
+> Scope nach Änderung wählen, Funde triagieren und echte Fehler beheben.
+> Ein grüner Scan ersetzt weder die gerenderte Sichtprüfung noch die Handrubrik.
 
 ## Ausfuehren
 
@@ -21,7 +19,7 @@ node scripts/detect.mjs --quiet src/         # nur Fund-Zaehler
 ```
 
 **Exit-Codes (verbindlich):**
-- `0` = sauber -> fertig.
+- `0` = keine Funde im geprüften Scope.
 - `2` = Funde vorhanden -> fixen, erneut laufen.
 - `1` = Fehler (Pfad falsch, Node kaputt) -> beheben, nicht ignorieren.
 

@@ -301,6 +301,9 @@ def validate_skill_file(path: Path) -> SkillFile:
         elif not fields[req]["nonempty"]:
             sf.fail(f"Pflichtfeld leer: {req}")
 
+    # Konkrete Auslöser sind eine inhaltliche Review-Frage. Ein wörtliches
+    # "Trigger:"-Suffix belegt sie nicht; Pflichtfeld und Nichtleere oben bleiben.
+
     if "version" in fields and fields["version"]["nonempty"]:
         v = fields["version"]["raw"].strip()
         if not SEMVER_RE.match(v):
