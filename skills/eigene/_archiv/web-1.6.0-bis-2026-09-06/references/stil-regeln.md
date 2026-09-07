@@ -1,38 +1,28 @@
 # Stil-Regeln — Go's & No-Go's (lebendes Regelbuch)
 
-**Pflicht-Load vor jeder Art-Direction** (Beschluss Raphael 30.08.2026).
-Diese Datei ist die einzige Quelle für „wie eine geile Seite aussieht".
-Wer eine Regel ändern will, braucht Belege in `muster-bibliothek/` — nie
-ad hoc im Chat.
+Diese Datei erschließt vorhandene Stilhinweise und deren Herkunft. Sie wird
+für eine offene Art-Direction-Frage geladen. Kundenrichtung und aktuelle
+Nutzerentscheidungen sind Inputs, keine durch allgemeine Muster zu ersetzenden Defaults.
 
-## Schema
+## Geltung und Herkunft
 
-| ID | Regel (1 Satz, imperativ) | Richtung | Status | Belege |
-|---|---|---|---|---|
-| S-xx | … | GO / NO-GO | kandidat / bestätigt / verbindlich | Case-Slug oder M-ID |
+| Angabe | Bedeutung |
+|---|---|
+| Herkunft | Benannte Nutzerentscheidung, Kundenvertrag, Studie oder Detektor |
+| Scope | Genau der Kunde, Sektor, Seitentyp oder globale Auftrag, für den der Beleg gilt |
+| Status | kandidat, bestätigt oder innerhalb seines Scopes verbindlich |
 
-**Status-Logik:**
-- **kandidat** — aus 1–2 Studien beobachtet.
-- **bestätigt** — mindestens 3 konkordante Belege in der Muster-Bibliothek.
-- **verbindlich** — von Raphael in einer `DESIGN.md` gelockt ODER durch einen
-  deterministischen Check erzwungen (`craft-check.mjs` / `scan-ai-slop.mjs`).
+Eine Kunden-`DESIGN.md` macht ihre Entscheidung für diesen Kunden verbindlich.
+Sie erzeugt kein allgemeines Verbot für andere Kunden. Die Existenz eines
+Detektors beweist weder die fachliche Richtigkeit noch globale Verbindlichkeit
+einer Stilregel. Mehrere Studien bestätigen eine Beobachtung; sie ersetzen
+keine ausdrückliche allgemeine Nutzerentscheidung.
 
-**House-Lock-Regel (30.08.2026):** Was in einer Kunden-`DESIGN.md` steht, hat
-Raphael gelockt. Solche Regeln starten sofort als **verbindlich**, nicht als
-Kandidat. Ein Agent stuft eine gelockte Regel nie zurück.
-
-**Richtung:** GO = so bauen · NO-GO = nie bauen.
-
-**Präzedenz (Raphael 04.09.2026, MAKE-Neustart):** Die Kunden-`DESIGN.md`,
-Raphaels Referenzbilder im Eingang und seine Worte in `DECISIONS.md` schlagen
-jede S-Regel dieser Datei. Eine Regel, deren Belege nur aus Handwerk-Cases
-stammen (S2, S3, S4, S8-Fontliste, S14), gilt im Sektor `agency-dark` und bei
-`clone-parity` nicht als Sperre, sondern als Hinweis. Wer eine Referenz von
-Raphael «wegregelt» (Typo-Hero statt Foto-Hero, all-sharp statt 20px-Karten,
-eine dunkle Sektion statt dunkler Seite), baut am Auftrag vorbei — genau das
-hat am 04.09.2026 zum «von null» geführt. Die Regeln sind Leitplanke, die
-Referenz ist Ziel; bei Konflikt steht die Auflösung als Zeile in
-`brand/DESIGN.md`, nicht als stiller Kompromiss im CSS.
+Die Tabellen unten behalten ihre historischen Belege. Wo dort nur ein Kunde
+oder dessen Case als Quelle steht, gilt die Vorschrift innerhalb dieses Scopes;
+außerhalb dient sie als Hinweis. Allgemeine aktuelle Nutzerregeln bleiben
+verbindlich. Neueste Nutzerworte gehen vor; eine Auflösung steht im bestehenden
+Kunden-Designvertrag und wird von anderen Planorten referenziert.
 
 ---
 
@@ -72,13 +62,13 @@ Die Regel dazu ist **S15** und ist verbindlich.
 | S9 | Verwende echte Fotos von echten Menschen. | verbindlich | swisshelp-elektro, salsaflow, kita-wunderkiste, braun-services |
 | S10 | Setze genau eine H1 pro Seite. | verbindlich | swisshelp-elektro |
 | S15 | Setze die Sektor-Dials VOR der Komponentenwahl; die taste-kern-Baseline 8/6/4 gilt im Site-Build nicht. | verbindlich | Raphael 30.08.2026 |
-| S16 | Gib jeder Sektion eine Pattern-ID aus dem Katalog in §4 und schreibe sie in `art-direction.md`. | verbindlich | Raphael 30.08.2026 |
+| S16 | Wenn eine Sektion ein konkretes Katalogpattern verwendet, notiere dessen ID in `art-direction.md`; sonst genügt die beschriebene Designentscheidung. | verbindlich | Raphael 30.08.2026 |
 | S17 | Halte ein mittleres Aktionsband ruhig: die Fläche bleibt `surface`, nur die Aktion trägt Farbe. | kandidat | braun-services |
 | S18 | Nimm bei einem Clone-Auftrag die Dials aus der gemessenen Live-Seite. | verbindlich | alpenenergie |
 | S19 | Schreibe jede Headline (H1/H2) SEO-direkt und scannbar: Sie nennt Leistung, Keyword und Kernaussage selbst — keine Poesie. Der Eyebrow trägt nie die Kernbotschaft; er ist höchstens ein kurzes Kontext-Label und darf ersatzlos entfallen. Test: Eyebrow abdecken — die Headline muss allein verständlich bleiben. | verbindlich | Raphael 01.09.2026 |
 | S20 | Definiere pro Site genau sechs sichtbare Typo-Stufen als Tokens (H1/H2/H3/Body 1/Body 2/Label) und ziehe sie sitewide durch. Zwei H2 derselben Ebene rendern nie in verschiedener Größe; Semantik-Hierarchie und Sicht-Hierarchie decken sich. | verbindlich | Raphael 01.09.2026 (braun-services) |
 | S21 | KI-generierte oder KI-regenerierte Motive werden auf der Seite nicht als KI gekennzeichnet und nicht verteidigt („Keine Bildagentur"-Sätze sind No-Go, M1). Gesichter dürfen KI-generiert werden, aber ausschließlich referenzbasiert auf echten Fotos der echten Person — nie frei erfunden. S9 (echte Menschen) bleibt der Maßstab fürs Motiv. | verbindlich | Raphael 01.09.2026 (braun-services) |
-| S22 | Entscheide Detailfragen ohne Geschäftsgewicht (Zahlenformat einer Bewertung, URL-/Preview-Wahl, Anzeigevariante) selbst per Default und nenne sie im Abschluss. An Raphael gehen nur Geschmack am Screenshot, Geld, Kundenkontakt und Irreversibles. | verbindlich | Raphael 01.09.2026 („Das ist mir im Webdesign-Skill scheißegal") |
+| S22 | Entscheide Detailfragen ohne Geschäftsgewicht (Zahlenformat einer Bewertung, URL-/Preview-Wahl, Anzeigevariante) selbst per Default und nenne sie im Abschluss. Eine tatsächlich offene Produkt-/Geschmacksentscheidung wird am konkreten Ergebnis vorgelegt; bereits autorisierte Aktionen folgen dem aktuellen Auftrag. | verbindlich | Raphael 01.09.2026 („Das ist mir im Webdesign-Skill scheißegal") |
 | S23 | Prüfe jede Typo-Stufe am gerenderten Bild, nicht am Token: Zwei Stufen, die sich um weniger als ~20 Prozent Schriftgrösse unterscheiden, sind für den Betrachter EINE Stufe. Eine Seite entscheidet sich pro Ebene für eine Lautstärke und mischt nicht. | verbindlich | braun-services 01.09.2026 (gemessen: H2 34px gegen H3 32px = keine Hierarchie) |
 | S24 | Gib einem beschriftungslosen Icon-Ziel nie die volle Signalfarbe der Hauptaktion; es braucht Umriss oder eigenen Grund, sonst verschwindet das Icon. Icons in Buttons mit fester Breite und ohne Innenabstand tragen `shrink-0`. | verbindlich | braun-services 01.09.2026 (gemessen: svgBox 0x20 bei korrekter Farbe) |
 | S25 | Behandle Token-Aliase nicht als Flächenstufen: Wenn zwei Namen auf denselben Farbwert zeigen, erzeugt ihr Wechsel keinen sichtbaren Wechsel. Vor dem Rhythmus-Entwurf die tatsächlich verschiedenen Werte zählen. | verbindlich | braun-services 01.09.2026 (--surface = --paper, --surface-deep = --warm-grey) |

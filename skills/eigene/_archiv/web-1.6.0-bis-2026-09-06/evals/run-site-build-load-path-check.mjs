@@ -1,210 +1,106 @@
 #!/usr/bin/env node
-/**
- * run-site-build-load-path-check.mjs — Site-Build laedt keine Einzel-Skills
- * und nutzt den gelieferten Lookup.
- *
- * Treibt die echten Skripte: resource-access.mjs show / check und
- * shot-sweep.mjs ohne --base. Kein Mock der Lookup-Funktion.
- */
+/** Check declared skill paths and the real resource/CLI contracts without model calls. */
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const HIER = path.dirname(fileURLToPath(import.meta.url));
-const WEB = path.join(HIER, '..');
-const SKILL = path.join(WEB, 'SKILL.md');
-const WEBSITE_PLAN = path.join(WEB, '..', 'website-plan', 'SKILL.md');
-const HANDOFF = path.join(WEB, 'references', 'loop2-ablauf.md');
-const QA = path.join(WEB, 'references', 'qa-faecher.md');
-const ACCESS = path.join(WEB, 'scripts', 'resource-access.mjs');
-const SWEEP = path.join(WEB, 'scripts', 'shot-sweep.mjs');
-const DESIGN = path.join(WEB, '..', '..', 'design', 'SKILL.md');
-const COPY = path.join(WEB, '..', 'copywriting', 'SKILL.md');
-const LOOP = path.join(WEB, 'references', 'screenshot-kritik-loop.md');
-const GROK_IMP = '/root/.grok/skills/impeccable/SKILL.md';
-const GROK_UIUX = '/root/.grok/skills/ui-ux-pro-max/SKILL.md';
-const CLAUDE_IMP = '/root/.claude/plugins/cache/impeccable/impeccable/4.0.4/skills/impeccable/SKILL.md';
-const CLAUDE_DESIGN_PLUGIN = '/root/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.13.0/.claude/skills/design/SKILL.md';
-const GROK_PLUGIN_IMP = '/root/.grok/installed-plugins/impeccable-plugin-54fcaebb/plugin/skills/impeccable/SKILL.md';
-const GROK_CFG = '/root/.grok/config.toml';
-
-let fehler = 0;
-let geprueft = 0;
-const zeile = (ok, text, detail) => {
-  geprueft++;
-  if (!ok) fehler++;
-  console.log(`  [${ok ? 'OK' : '!!'}]   ${text}`);
-  if (detail) console.log(`         ${detail}`);
-};
-
-const skill = fs.readFileSync(SKILL, 'utf8');
-const websitePlan = fs.readFileSync(WEBSITE_PLAN, 'utf8');
-const handoff = fs.readFileSync(HANDOFF, 'utf8');
-const u2Handoff = [websitePlan, skill, handoff].join('\n');
-const qa = fs.readFileSync(QA, 'utf8');
-const design = fs.readFileSync(DESIGN, 'utf8');
-
-console.log('\nSite-Build Load-Path — Einzel-Skills nicht Pflicht, Lookup echt\n');
-
-zeile(
-  /keine Pflicht-Loads/.test(skill)
-    && /routen auf `design` bzw\.\s*`copywriting`/.test(skill),
-  'web SKILL.md: design + copywriting, Einzel-Skills keine Pflicht-Loads',
-);
-zeile(
-  !/Mitgeladene Skills \(keine Dateien\): `design`, `impeccable`, `taste`, `ui-ux`/.test(skill),
-  'web SKILL.md listet taste/impeccable/ui-ux nicht mehr als Mitgeladen',
-);
-zeile(
-  /plan-manifest\.json/.test(websitePlan)
-    && /plan-verification\.json/.test(websitePlan)
-    && /manifest_sha256/.test(websitePlan)
-    && /aktuelle Plan-Hashes/.test(websitePlan),
-  'website-plan SKILL.md bindet v3-Manifest, Receipt und aktuelle Plan-Hashes',
-);
-zeile(
-  /`web` ist der einzige Agency-Website-Workflow-Owner/.test(skill)
-    && /`visual-aaa` ist das \*\*terminale\*\*[\s\S]*kein zweiter Workflow-Owner/.test(skill)
-    && /keine Capture-Pflicht/.test(skill)
-    && /keine Capture-Pflicht/.test(websitePlan)
-    && /Kein Production-Code/.test(websitePlan),
-  'U1 bleibt erhalten: web ist Owner, visual-aaa terminales Gate, website-plan plan-only',
-);
-zeile(
-  !/sequential-page-controller/.test(u2Handoff)
-    && !/Child-Agenten|keine Agent-|keine versteckten Agenten/i.test(u2Handoff)
-    && /Legacy-only-Pläne[\s\S]*bestehen nicht mehr/.test(websitePlan),
-  'U2-Handoff enthaelt keinen toten Controller, No-Agent-Vertrag oder aktiven Legacy-Pfad',
-);
-zeile(
-  /Receipt, Manifest-Hash und\s+aktuelle Plan-Hashes/.test(skill)
-    && /Receipt, Manifest-Hash und\s+aktuelle Plan-Hashes/.test(handoff)
-    && /Route-Abhängigkeiten, Write-Sets und Shared Owners/.test(skill)
-    && /Abhängigkeiten oder überlappende Pfade erzwingen Reihenfolge/.test(handoff)
-    && /disjunkte\nPakete dürfen parallel laufen/.test(handoff),
-  'web-Handoff prueft Receipt und aktuelle Hashes vor adaptiver Paketbildung',
-);
-zeile(
-  /requires_skills:\s*\[\]/.test(design) && /Site-Build kommt über/.test(design),
-  'design SKILL.md: kein impeccable-Require, Site-Build über web',
-);
-zeile(
-  /AI-Slop-Sequenz/.test(qa) && /design ZUERST/.test(qa) && /copywriting G1→G2/.test(qa),
-  'qa-faecher.md: eine Slop-Sequenz (design zuerst, dann copywriting G1→G2)',
-);
-zeile(
-  /rules\.de\.mjs/.test(qa),
-  'qa-faecher.md haengt DE-Regeln an scan-ai-slop',
-);
-zeile(
-  /G1 anti-slop/.test(qa) && /npx oxlint/.test(qa) && /install-anti-slop/.test(qa),
-  'qa-faecher.md Fach 4 verlangt oxlint anti-slop bei Custom-TS/JS',
-);
-const codeQ = fs.readFileSync(path.join(WEB, 'references', 'code-qualitaets-checkliste.md'), 'utf8');
-zeile(
-  /Oxlint anti-slop/.test(codeQ) && /install-anti-slop/.test(codeQ) && /dmmulroy\/anti-slop/.test(codeQ),
-  'code-qualitaets-checkliste.md nennt Oxlint anti-slop und Install-Befehl',
-);
-
-const copy = fs.readFileSync(COPY, 'utf8');
-const reqZeile = (copy.match(/^requires_skills:.*$/m) || [''])[0];
-zeile(
-  /eval@\^0/.test(reqZeile) && !/no-ai-slop/.test(reqZeile),
-  'copywriting requires nur eval, nicht no-ai-slop',
-);
-
-const loop = fs.readFileSync(LOOP, 'utf8');
-const bIstKimi = /Visuelle Kritik B \| `kimi-recherche`/.test(loop);
-const bIstOpus = /Visuelle Kritik B \| `opus-critic`/.test(loop);
-const webPaar = /Grok \+ `kimi-recherche` nach Opus-Bau/.test(skill)
-  && /Kritiker = Grok \+ `kimi-recherche`/.test(skill);
-zeile(
-  bIstKimi && !bIstOpus && webPaar,
-  'Kritik-Paarung einheitlich: A=Grok, B=kimi-recherche (kein opus-critic als B)',
-);
-
-function grokRouter(pfad, verboten) {
-  const txt = fs.readFileSync(pfad, 'utf8');
-  const kurz = txt.split(/\n/).length <= 30;
-  const doktrin = verboten.some((m) => txt.includes(m));
-  return { kurz, doktrin, txt };
+const WEB = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const ROOT = path.resolve(WEB, '../../..');
+const SOURCES = [
+  path.join(WEB, 'SKILL.md'),
+  path.join(ROOT, 'skills/design/SKILL.md'),
+  path.join(ROOT, 'skills/eigene/copywriting/SKILL.md'),
+  path.join(ROOT, 'skills/eigene/website-plan/SKILL.md'),
+  path.join(ROOT, 'skills/eigene/visual-aaa/SKILL.md'),
+];
+const ACCESS = path.join(WEB, 'scripts/resource-access.mjs');
+const SWEEP = path.join(WEB, 'scripts/shot-sweep.mjs');
+let errors = 0;
+let checked = 0;
+function check(ok, message, detail = '') {
+  checked++;
+  if (!ok) errors++;
+  console.log(`  [${ok ? 'OK' : '!!'}] ${message}${detail ? `: ${detail}` : ''}`);
 }
-const imp = grokRouter(GROK_IMP, ['award-winning design director', 'Core principles:']);
-zeile(
-  imp.kurz && !imp.doktrin && /design\/scripts\/detect\.mjs/.test(imp.txt),
-  'Grok-Host impeccable ist kurzer Router auf design detect',
-);
-const uiux = grokRouter(GROK_UIUX, ['Searchable database of UI/UX', 'Rule Categories by Priority']);
-zeile(
-  uiux.kurz && !uiux.doktrin && /ui-ux-db-nutzung\.md/.test(uiux.txt),
-  'Grok-Host ui-ux-pro-max ist kurzer Router auf ui-ux-db-nutzung',
-);
 
-const ccImp = grokRouter(CLAUDE_IMP, ['award-winning design director', 'Core principles:']);
-zeile(
-  ccImp.kurz && !ccImp.doktrin && /design\/scripts\/detect\.mjs/.test(ccImp.txt),
-  'Claude Plugin-Cache impeccable ist kurzer Router auf design detect',
-);
-const ccDes = grokRouter(CLAUDE_DESIGN_PLUGIN, ['Gemini AI', 'corporate identity program', 'GEMINI_API_KEY']);
-zeile(
-  ccDes.kurz && !ccDes.doktrin && /raphael-skills\/skills\/design/.test(ccDes.txt),
-  'Claude Plugin-Cache design ist Router auf kanonisches design',
-);
-const grokPlug = grokRouter(GROK_PLUGIN_IMP, ['award-winning design director', 'Core principles:']);
-zeile(
-  grokPlug.kurz && !grokPlug.doktrin && /design\/scripts\/detect\.mjs/.test(grokPlug.txt),
-  'Grok-Plugin-Kopie impeccable ist kurzer Router',
-);
-const grokCfg = fs.readFileSync(GROK_CFG, 'utf8');
-const plugBlock = grokCfg.match(/\[plugins\]\s*enabled\s*=\s*\[([\s\S]*?)\]/);
-const plugListe = plugBlock ? plugBlock[1] : '';
-zeile(
-  Boolean(plugBlock) && !/"impeccable"/.test(plugListe),
-  'Grok config.toml laedt Plugin impeccable nicht',
-);
+// Use the registry's frontmatter parser for conventional and portable metadata.
+const parse = spawnSync('python3', ['-B', '-c', `
+import importlib.util, json, sys
+from pathlib import Path
+spec = importlib.util.spec_from_file_location('registry', sys.argv[1])
+gen = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(gen)
+result = []
+for filename in sys.argv[2:]:
+    source = Path(filename)
+    fm = gen.parse_frontmatter(source.read_text())
+    fields = {}
+    for target, keys in [('loads', ['loads', 'raphael-loads']), ('requires', ['requires_skills', 'requires-skills', 'raphael-requires-skills'])]:
+        values = []
+        for key in keys:
+            values.extend(gen.parse_list_value(fm['top'].get(key, ''), fm['top_blocks'].get(key, [])))
+            raw = fm['nested'].get('metadata', {}).get(key)
+            if raw:
+                values.extend(gen.parse_list_value(gen.scalar_value(raw), []))
+        fields[target] = list(dict.fromkeys(values))
+    result.append(dict(name=gen.scalar_value(fm['top'].get('name', '')), source=str(source.resolve()), **fields))
+print(json.dumps(result))
+`, path.join(ROOT, 'tools/build-skill-registry.py'), ...SOURCES], { encoding: 'utf8', timeout: 15000 });
+check(parse.status === 0, 'existing frontmatter parser reads all five active entrypoints', parse.error?.message || parse.stderr?.trim());
+let entries = [];
+if (parse.status === 0) {
+  try { entries = JSON.parse(parse.stdout); }
+  catch (error) { check(false, 'frontmatter output is valid JSON', error.message); }
+}
+check(entries.length === SOURCES.length, 'all declared entrypoints were inspected');
+const byName = new Map(entries.map((entry) => [entry.name, entry]));
+const absorbed = ['taste', 'ui-ux', 'ui-ux-pro-max', 'impeccable', 'emil-design-eng', 'apple-design'];
+const web = byName.get('web');
+const design = byName.get('design');
+const copy = byName.get('copywriting');
+check(web && ['design', 'copywriting', 'website-plan', 'visual-aaa'].every((name) => web.requires.includes(name)), 'Web exposes the available specialist skills');
+check(web && ![...absorbed, 'web-anti-slop'].some((name) => web.requires.includes(name)), 'Web has no absorbed-source or duplicate anti-slop dependency');
+check(design && !absorbed.some((name) => design.requires.includes(name)), 'Design does not require its absorbed sources again');
+check(copy && !copy.requires.includes('no-ai-slop'), 'Copy has no duplicate no-ai-slop dependency');
+
+for (const entry of entries) {
+  check(Boolean(entry.name) && fs.realpathSync(entry.source) === entry.source, `${entry.name}: canonical source resolves`);
+  for (const load of entry.loads) {
+    const target = path.resolve(path.dirname(entry.source), load);
+    check(fs.existsSync(target) && fs.statSync(target).isFile(), `${entry.name}: declared load exists`, load);
+  }
+  for (const name of entry.requires) {
+    const target = path.join('/root/.claude/skills', name, 'SKILL.md');
+    check(fs.existsSync(target) && fs.statSync(target).isFile(), `${entry.name}: specialist source resolves`, name);
+  }
+}
+for (const host of ['codex', 'kimi']) {
+  const bridge = path.join(ROOT, host, 'skills/web/SKILL.md');
+  const body = fs.existsSync(bridge) ? fs.readFileSync(bridge, 'utf8') : '';
+  const adapterTarget = body.match(/Read the complete canonical source file before acting:\s*`([^`]+)`/)?.[1];
+  const resolved = adapterTarget && path.isAbsolute(adapterTarget) && fs.existsSync(adapterTarget)
+    ? fs.realpathSync(adapterTarget)
+    : (fs.existsSync(bridge) ? fs.realpathSync(bridge) : null);
+  check(resolved === fs.realpathSync(SOURCES[0]), `${host}: Web bridge resolves the canonical source (link or source adapter)`);
+}
 
 function show(name) {
   return spawnSync('node', [ACCESS, 'show', name], { encoding: 'utf8', timeout: 15000 });
 }
-
-for (const [name, marker] of [
-  ['React Bits', 'reactbits.dev'],
-  ['GSAP', 'gsap.com'],
-  ['Lucide', 'lucide.dev'],
-]) {
-  const r = show(name);
-  const aus = `${r.stdout || ''}${r.stderr || ''}`;
-  zeile(
-    r.status === 0 && aus.includes(name) && /https:\/\//.test(aus) && aus.includes(marker),
-    `resource-access show "${name}" liefert URL/Metadaten`,
-    r.status === 0 ? null : (r.stderr || aus).split('\n')[0],
-  );
+for (const [name, marker] of [['React Bits', 'reactbits.dev'], ['GSAP', 'gsap.com'], ['Lucide', 'lucide.dev']]) {
+  const result = show(name);
+  const output = `${result.stdout || ''}${result.stderr || ''}`;
+  check(result.status === 0 && output.includes(name) && output.includes(marker) && /https:\/\//.test(output),
+    `resource-access show ${name}: real URL and metadata`, result.error?.message || (result.status ? result.stderr?.split('\n')[0] : ''));
 }
+const unknown = show('DieseBibliothekGibtEsNicht');
+check(unknown.status === 1 && /Resource not found/.test(`${unknown.stderr || ''}${unknown.stdout || ''}`),
+  'unknown resource returns an honest failure (exit 1)', unknown.error?.message);
+const sweep = spawnSync('node', [SWEEP], { encoding: 'utf8', timeout: 15000 });
+check(sweep.status === 2 && /--base/.test(`${sweep.stderr || ''}${sweep.stdout || ''}`),
+  'shot-sweep without --base returns usage (exit 2)', sweep.error?.message);
 
-{
-  const r = show('DieseBibliothekGibtEsNicht');
-  const aus = `${r.stderr || ''}${r.stdout || ''}`;
-  zeile(
-    r.status === 1 && /Resource not found/.test(aus),
-    'resource-access show Unbekannt = ehrlicher Fail (Exit 1)',
-  );
-}
-
-zeile(
-  /resource-access\.mjs open/.test(skill) && /URL-Dump allein zählt nicht/.test(skill),
-  'web SKILL.md: open nach Router-Wahl Pflicht, URL-Dump zählt nicht',
-);
-
-{
-  const r = spawnSync('node', [SWEEP], { encoding: 'utf8', timeout: 15000 });
-  const aus = `${r.stderr || ''}${r.stdout || ''}`;
-  zeile(
-    r.status === 2 && /--base/.test(aus),
-    'shot-sweep ohne --base = Exit 2 Usage',
-  );
-}
-
-console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
-if (fehler) process.exit(1);
-console.log('Load-Path und Lookups stimmen.');
+console.log(`\n${checked - errors}/${checked} checks passed.`);
+if (!checked || errors) process.exit(1);
+console.log('Declared load paths and real resource/CLI contracts verified; provider and visual quality not tested.');

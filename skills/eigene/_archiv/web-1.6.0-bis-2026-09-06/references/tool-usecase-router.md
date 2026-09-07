@@ -1,72 +1,50 @@
-# Tool-Use-Case-Router — Frontend-Tools fest im Loop 2
+# Werkzeugwahl für konkrete Web-Aufgaben
 
-**Wofür:** Verbindlicher Entscheidungsbaum für die Tweet-/AgentReach-Tools.
-Agenten wählen **Default + Install/Use + Gate**, nicht eine 160-Link-Liste.
+**Wofür:** Passendes Werkzeug für einen tatsächlichen Bedarf finden.
+Vorhandenen Projektstack zuerst nutzen; diese Referenz löst keine Installation aus.
 
-**Wann laden:** Immer in den Schritten `art-direction`, `components` und
-`build`, sobald UI-Inspiration, Komponenten, Icons, Fonts, Hintergründe,
-Motion, Shader, Stock-Media oder React-Native-UI gebraucht werden.
+**Wann laden:** Wenn eine neue Komponenten-, Quellen- oder Asset-Entscheidung
+ansteht. Eine Änderung mit vorhandenen Mitteln braucht diese Tabelle nicht.
 
 **Goldstandard-Muster:** `bildgenerierung.md` (Bedarf → Baum → Befehl → Gate
 → Wann-nie). Diese Datei ist dasselbe für Code-/Asset-Tools.
 
-**Kandidaten-URLs** stehen nur in `frontend-referenzbibliothek.md`. Hier gibt
-es **keine Galerie-Dumps**. Ein Agent, der die 160 Links in die Antwort kippt,
-verletzt diesen Router. Nach Wahl dieses Router-Falls kann
-`node scripts/resource-access.mjs show "<Name>"` genau einen Katalogeintrag
-(URL + sicheren Modus) nachschlagen; `show` bleibt lokal und installiert nie.
-**Nach jeder Router-Wahl ist `open` Pflicht:**
-`node scripts/resource-access.mjs open "<Name>"` nimmt die Katalog-URL und liest
-die offizielle Site (Fetch, sonst Firecrawl). Erst dieser Öffnen-/Lesen-Schritt
-zählt als Nutzung; `show` oder ein URL-Dump allein nicht. Unbekannter Name =
-Exit 1, nicht raten. Nie die 160er-Liste in die Antwort kippen. Tiefzugriff
-(Suche, Style-Seite, Registry, eine Komponente) über
-`scripts/inspiration.mjs`; Doku `references/inspirations-quellen.md`.
+**Raphaels Quellen:** [zugangskarte.md](zugangskarte.md#raphaels-quellen-vom-05092026)
+ordnet die am 05.09.2026 genannten Websites, Tools und Libraries ihrem Bedarf zu;
+`frontend-referenzbibliothek.md` ist ihr durchsuchbarer Katalog. Seine passende
+Auswahl hat Vorrang vor alten Refero-/Godly-Defaults. Vorhandenen Projektstack
+beachten; eine gezielte Fremdkomponente ist nicht automatisch ein zweites UI-Kit.
 
-## Ergebnis: die Werkzeugtabelle (Pflichtartefakt)
+**Tatsächliche Nutzung:** konkretes Beispiel/Doku/Code über den in der Zugangskarte
+benannten Weg lesen, visuelle Eigenschaften am Bild/Browser ansehen und die
+Auswahl im Projekt verwenden. `resource-access.mjs show` ist nur eine lokale
+Auskunft, `open` nur Textzugriff. Ein erfolgreicher spezialisierter `get` oder
+ein gelesener Vendor-Baustein braucht keinen zusätzlichen Homepage-Abruf.
+Quelle → übernommene Eigenschaft → Einsatzdatei → Prüfung im bestehenden Plan
+oder Ergebnis festhalten; Details in `inspirations-quellen.md`.
 
-Der Router wird nicht "gelesen", er wird **gezogen**. Ergebnis ist immer eine
-Tabelle in `client-<name>/web/art-direction.md`, geschrieben **bevor** der erste
-Install läuft. Nur der Block zwischen exakt diesen Markern ist die
-Werkzeugtabelle; eine frühere Token- oder Entscheidungstabelle zählt nicht:
+## Neue Werkzeugentscheidungen dokumentieren
 
-<!-- WERKZEUGTABELLE:START -->
-| Bedarf | Werkzeug | Befehl | Gate | Router-Anker | geprüft-am |
-|---|---|---|---|---|---|
-| FAQ-Sektion | shadcn Accordion | `npx shadcn@latest add accordion` | axe = 0, `aria-expanded` | `#faq` | 2026-08-03 |
-| Feature-Icons | Lucide | `npm i lucide-react` | genau ein Icon-System | `#icons` | 2026-08-03 |
-<!-- WERKZEUGTABELLE:ENDE -->
+Neue relevante Werkzeuge mit Bedarf, Quelle und Prüfmethode im bestehenden
+Projektplan festhalten. Bei wenigen Entscheidungen genügt ein kurzer Eintrag;
+Bestandsabhängigkeiten brauchen keine nachträgliche Rechtfertigung.
 
-- Die Marker `<!-- WERKZEUGTABELLE:START -->` und
-  `<!-- WERKZEUGTABELLE:ENDE -->` stehen je genau einmal; dazwischen steht nur
-  die Werkzeugtabelle.
-- Eine Zeile pro Bedarf, jede Zeile mit Router-Anker.
-- Abweichung vom Default: ein Satz Grund **plus** AgentReach-Beleg (Datum, URL,
-  Lizenzstand) in derselben Zeile.
-- **Kein Paket in `package.json` ohne Zeile in dieser Tabelle.**
-- Geprüft wird das am Ende deterministisch:
-  `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle <pfad>/art-direction.md --profile node|static|cms`
-  — genau eines der Profile `node`, `static`, `cms` wählen. `node` verlangt
-  `package.json` und prüft dessen Abhängigkeiten. `static` und `cms` verlangen
-  keine `package.json`; vorhandene Quellen und Abhängigkeiten werden weiterhin
-  geprüft. Für alle Profile gelten echte Tabellenzeilen mit gültigem
-  Router-Anker · genau ein Icon-System (auch bei Subpath-Importen) · kein
-  `framer-motion` · Reduced Motion in jeder animierenden Datei, **egal welche
-  Animations-Bibliothek** (`motion`, gsap, react-spring, animejs, Lottie …) ·
-  keine Abhängigkeit (auch `dev`/`optional`) ohne Zeile, die selbst einen
-  gültigen Anker trägt. Das Gate liest echte Import-Pfade, keine Stichwörter —
-  ein auskommentierter Hinweis zählt nicht.
+Für Projekte, die den bestehenden `werkzeug-gate.mjs` ausdrücklich nutzen, gilt
+weiter dessen Tabellenformat mit `WERKZEUGTABELLE:START` / `WERKZEUGTABELLE:ENDE`
+und Spalten `Bedarf | Werkzeug | Befehl | Gate | Router-Anker | geprüft-am`.
+Das Gate prüft den vollständigen erklärten Stack. Es ist eine optionale
+Projektkonvention, kein Einstiegsgate für kleine Änderungen oder fremde Repos.
 
-## Harte Regeln (vor jedem Default)
+## Regeln bei einer tatsächlichen Werkzeugentscheidung
 
 1. **Problem zuerst:** einen Bedarf aus der Tabelle wählen, nicht „irgendwas
    Schönes aus der Liste“.
-2. **Ein Default pro Bedarf.** Alternativen nur mit Begründung im Projekt-Log
-   (Lizenz, fehlendes Primitive, Brief verlangt anderen Look).
+2. **Eine passende Lösung pro Bedarf.** Bestehenden Stack und Raphaels
+   passende Quelle wählen; den Auswahlgrund im vorhandenen Projektplan festhalten.
 3. **Nie die ganze Bibliothek installieren.** shadcn/Magic/Aceternity/Three
    nur gezielt, eine Komponente oder ein Effekt nach dem anderen.
-4. **Lizenz + Aktualität vor Install:** `agent-reach doctor --json`, dann
-   offizielle Doku/Repo/Lizenz der gewählten Quelle öffnen. Unklar → anderen
+4. **Lizenz + Aktualität vor Install:** offizielle Doku/Repo/Lizenz der
+   gewählten Quelle öffnen. Bei einem Zugriffsproblem den vorhandenen Adapter prüfen. Unklar → anderen
    Default-Kandidaten derselben Zeile, nicht raten.
 5. **Raphael-Stack bleibt Default:** Next.js App Router + Tailwind + Radix/
    shadcn (kopierter Code in `components/ui/`) + Motion als Paket `motion` mit
@@ -103,8 +81,8 @@ Frage lautet nie „welches Tool", sondern **welches Medium** die Fläche brauch
 
 - Von oben nach unten lesen, die **erste** passende Zeile gewinnt.
 - Zwei Zeilen wirken passend → die billigere nehmen (A vor B vor D vor E vor G).
-- Jede Antwort landet als eigene Zeile in der Werkzeugtabelle, mit dem Anker des
-  Ziels, nicht mit `#grafik-baum`.
+- Eine relevante neue Auswahl kurz im vorhandenen Plan begründen. Bei Nutzung
+  der Werkzeugtabelle den Anker des Ziels verwenden.
 
 ## Schnellwahl — Messlatte-Szenario
 
@@ -142,8 +120,8 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 |---|---|
 | **Bedarf** | Referenz-Looks für Art Direction, nicht zum Kopieren von Layout/Assets |
 | **Loop** | `art-direction` (vor design-DNA) |
-| **Default** | Refero-MCP (Styles→Screens→Flows, Reference-Lock nach `references/inspirations-quellen.md` §0) **oder** Mobbin-MCP (App/Flows) **oder** Godly — **eine** Quelle passend zum Brief. App/Flows: Mobbin zuerst. Benannter Startpunkt für maschinenlesbare Design-Systeme: `styles.refero.design` (Unterseite des Katalogeintrags `Refero`, `resource-access.mjs open "Refero"`) — genau eine Referenz ziehen, nicht durchblättern. |
-| **Install/Use** | MCP-Status: `claude mcp list` (refero) und `/root/tools/raphael-mcp-ondemand.sh status` (mobbin). Mobbin-MCP OFF → `raphael-chrome` oder AgentReach, 3–7 echte Screenshots/Notizen in `art-direction.md`. Nie ein Mobbin-Browse erfinden. Galerien-Tiefzugriff: `node scripts/inspiration.mjs refero|landdding|awwwards|siteinspire|curated|getlayers|behance|inspora|swiped|navbar …`; Sehen: `inspiration.mjs shot <url>` + PNG per Read. **kein** npm |
+| **Default** | Landing/Marke: Landdding, Godly (`godly.design`), Awwwards, SiteInspire, Behance, Inspora oder Umanmade nach passender Arbeit durchsuchen. Produkt-Screens/Flows: Mobbin. Templates: Modulify. Die konkreten Zugriffe stehen in `zugangskarte.md`; Refero und weitere Katalogquellen ergänzen eine offene Frage. |
+| **Install/Use** | Galerie `list/search → get`, Mobbin über `design-mcp.mjs`, sonst konkrete Quelle per Firecrawl/Browser. Für den Look das tatsächliche Beispiel ansehen; für Flows mehrere Zustände beziehungsweise die Interaktion. Login-/Checkpoint-Seiten sind kein Referenzbefund. Quelle und übertragene Eigenschaft im bestehenden Plan festhalten. |
 | **Alternativen** | Awwwards, Land-book, Lapa Ninja, SiteInspire, Page Flows, Screenlane (siehe Bibliothek §Inspiration) |
 | **Gate** | Lizenz/Urheber: nur Muster analysieren; keine Assets/Copy/Logos übernehmen (`web-clone-playbook.md` wenn Nachbau) |
 | **Nie** | Referenz-HTML clonen ohne Lizenz-Check; 20 Galerien gleichzeitig öffnen |
@@ -160,7 +138,7 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 | **Install/Use** | Spec: `github.com/google-labs-code/design.md` (Apache-2.0, geprüft 02.09.2026). Linter ohne Install: `npx @google/design.md lint <pfad>/DESIGN.md`. Export wird **aus** `art-direction.md` geschrieben, nie umgekehrt zurückgelesen |
 | **Alternativen** | Keine — entweder dieses Format oder gar kein Export |
 | **Gate** | Linter Exit 0; jeder Token-Wert stammt wörtlich aus `art-direction.md`; Divergenz = `art-direction.md` gewinnt und der Export wird neu geschrieben |
-| **Nie** | Die Root-`DESIGN.md` überschreiben — die ist der Nein-Ledger (`anfaenger-pfad.md` §2 Punkt 3), nicht die Token-Datei. Kein `npm i` für den Linter, kein Import fremder Spec-Dateien als Stilquelle |
+| **Nie** | Die Root-`DESIGN.md` überschreiben — sie kann aktuelle Projektentscheidungen enthalten, nicht die Token-Datei. Kein `npm i` für den Linter, kein Import fremder Spec-Dateien als Stilquelle |
 
 ### 2. Design-System / Basis-Komponenten (Button, Dialog, Tabs, Accordion, Form)
 
@@ -172,7 +150,7 @@ Jede Zeile: **Bedarf** · **Loop-Schritt** · **Default** · **Install/Use** ·
 | **Loop** | `components` → `build` |
 | **Default** | Radix Primitive + shadcn/ui in `components/ui/` (Theme = Kunden-Tokens in Tailwind) |
 | **Install/Use** | Einmal: `npx shadcn@latest init` (falls neu). Danach **gezielt**: `npx shadcn@latest add button` · `add accordion` · `add dialog` · `add tabs` · `add select` … Nur was der Sitemap-Schnitt braucht. |
-| **Alternativen** | Origin UI / Untitled UI React / Park UI wenn Brief anderes System verlangt; Radix Themes nur bei internen Tools ohne Brand (siehe `_archiv/design-systeme-vergleich.md`) |
+| **Alternativen** | Mantine bei passendem oder vorhandenem React-System; Origin UI / Untitled UI React / Park UI wenn Brief anderes System verlangt; Radix Themes nur bei internen Tools ohne Brand (siehe `_archiv/design-systeme-vergleich.md`) |
 | **Gate** | Tastatur + Screenreader-Smoke; Bundle: keine ungenutzten `components/ui/*`; Markenfarben aus Brief, nicht shadcn-Default-Blau |
 | **Nie** | `add` für die gesamte Registry; daisyUI/HyperUI als Parallel-System neben shadcn |
 
@@ -248,8 +226,8 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Hover, Enter/Exit, Shared-Layout, gestische UI |
 | **Loop** | `components` / `build` |
 | **Default** | 1) CSS/Tailwind transitions 2) vendorierte Datei aus `references/ui-components/` 3) Motion — Paket `motion`, Import `motion/react` — nur wenn CSS nicht reicht (`motion-doktrin.md`) |
-| **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`). Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. Danach Werkzeugtabelle. |
-| **Alternativen** | Magic UI, Motion Primitives, Aceternity, Animata — **eine** Komponente nach AgentReach-Lizenz/Wartungscheck, nicht das Starter-Kit |
+| **Install/Use** | `npm i motion` (NICHT `framer-motion`), `import { motion, useReducedMotion } from "motion/react"` · Komponente **ganz** aus `ui-components/motion/` kopieren (inkl. `lib/ease.ts` / `lib/utils.ts`). Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. Auswahl und Einsatzort im bestehenden Plan festhalten. |
+| **Quellenwahl** | Transitions.dev für CSS/JS-Übergänge, Amicro für Micro-Interactions, Kinetics für CSS-Bewegung/Zustandswechsel, Circle Loaders für SVG-Ladezustände; Magic UI, React Bits oder Aceternity für passende React-Effekte. Rezept/Komponente öffnen und gezielt integrieren; Motion-Neins bleiben bindend. |
 | **Gate** | `useReducedMotion()` oder CSS `prefers-reduced-motion`; keine Layout-Shift-Fallen; Lighthouse a11y |
 | **Nie** | `framer-motion`; Motion für jeden Button-Hover; drei Motion-Libraries parallel; JS-Animation ohne Reduced-Motion — gilt für **jede** Bibliothek (gsap, react-spring, animejs, Lottie), nicht nur für den Default; die globale CSS-Media-Query stoppt JS nicht |
 
@@ -262,8 +240,8 @@ Buttons, Zustände, Listen.
 | **Bedarf** | Große Landing-Sektionen jenseits von Primitives |
 | **Loop** | `components` / `build` |
 | **Default** | **Erst ziehen, dann bauen** (MAKE 04.09.2026): Glow-Card, Bento, Case-Carousel, Connector/Beam, Number-Ticker, Marquee/Logo-Cloud, Spotlight, Border-Beam, Dock kommen aus `@magicui` (`bento-grid`, `border-beam`, `number-ticker`, `marquee`, `magic-card`, `animated-beam`), `@aceternity` (`spotlight`, `card-hover-effect`, `background-beams`), `@react-bits` oder 21st (`komponenten.mjs search`). Eigenes Tailwind-Markup nur für Layout und Sektionen ohne Spezialeffekt oder mit Berichtszeile «gesucht in …, nichts passte, weil …» |
-| **Install/Use** | Kein Mega-Kit. Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. 21st: `node scripts/design-mcp.mjs 21st search "<begriff>"` → `21st get <id> --out src/components/vendor/21st/`. Eine Komponente pro Bedarf, dann Werkzeugtabelle. |
-| **Alternativen** | 21st.dev (`inspiration.mjs 21st code <id> --out src/components/vendor/21st/`, Builder-Plan), React Bits, Cult UI, Float UI, Preline — **eine** geprüfte Section |
+| **Install/Use** | Kein Mega-Kit. Komponente ziehen: `node scripts/komponenten.mjs libs` → `search <lib\|@ns> "<begriff>"` → `view <@ns/name>` → `node scripts/komponenten.mjs get @ns/name --out src/components/vendor/<ns>/`. 21st: `node scripts/design-mcp.mjs 21st search "<begriff>"` → `21st get <id> --out src/components/vendor/21st/`. Nur die benötigten Dateien übernehmen; Einsatzort im bestehenden Plan festhalten. |
+| **Weitere passende Quellen** | Beautiful UI und AI Elements für Agent-/AI-Interfaces; AI Canvas und AI CSS für passende Blocks/Stile; Beste UI und Modulify nach ihrem tatsächlichen Export-/Templateformat. 21st, Magic UI, React Bits und Aceternity gezielt nach Component-Bedarf suchen. Aktueller Zugang und Stack stehen in `zugangskarte.md`. |
 | **Gate** | Design-DNA einhalten; Copy aus G2; Mobile-First; keine fremden Logos/Stock aus dem Demo |
 | **Nie** | ganze Block-Library committen; Demo-Copy/Images aus dem Kit lassen |
 
@@ -315,7 +293,7 @@ Buttons, Zustände, Listen.
 | **Loop** | `components` / `build` (nach Performance-Budget in art-direction) |
 | **Default** | Kein Shader. Wenn nötig: React Three Fiber **oder** leichter Canvas (OGL) mit Mobile-Fallback-Bild |
 | **Install/Use** | `npm i three @react-three/fiber @react-three/drei` nur bei R3F-Wahl; weitere Runtime-Pakete laut `zugangskarte.md`. Shader-/Demo-Recherche: `codrops-pp-cli posts list --search "webgl" --per-page 10 --json` → `posts get <id>` oder `resource-access.mjs open "<Quelle>"`; Code erst nach Lizenzprüfung. Lazy-load; Fallback `<Image>`. |
-| **Alternativen** | Three.js vanilla, PixiJS, Theatre.js, GSAP (Lizenz!), Shadertoy nur zum Lernen |
+| **Quellenwahl** | Paper Shaders für passende Shader-Effekte; Canvas UI für HTML-in-Canvas/WebGL/WebGPU und seine dokumentierten Wrapper. Aktuelle Demo und Code öffnen, Runtime/SSR/Performance prüfen. Three.js, PixiJS und weitere Quellen nur für einen tatsächlich benötigten anderen Ansatz. |
 | **Gate** | Mobile FPS/Fallback; Reduced Motion → statisches Poster; Bundle-Budget dokumentiert; keine Autoplay-Audio |
 | **Nie** | Shadertoy-Demo 1:1 in Kundenprod; WebGL ohne Fallback; GSAP-Club-Plugins ohne Lizenz |
 
@@ -389,11 +367,24 @@ Buttons, Zustände, Listen.
 | **Gate** | iOS+Android-Parität der genutzten Components; A11y-APIs; Reanimated-Version |
 | **Nie** | Web-shadcn 1:1 nach RN kopieren; RN-Kit auf reine Marketing-Website ziehen |
 
-## AgentReach-Pflicht vor Install (kurz)
+### Werkzeuge und Spezialanwendungen
 
-Vor jeder Empfehlung oder Installation `agent-reach doctor --json` ausführen
-und den aktiven öffentlichen Web-/Search-Kanal verwenden. Danach die
-öffentliche Website und offizielle Doku der gewählten Quelle öffnen; bei Code
+**Anker:** `#tools`
+
+| | |
+|---|---|
+| **Bedarf** | Neues Web-Werkzeug, Code-Darstellung, passende Git-/Dateiarbeit oder Karriere-/Profilwebsite |
+| **Loop** | Werkzeugauswahl, Entwicklungsarbeit oder beauftragter Export |
+| **Default** | Vorhandener Arbeitsweg. Bei neuer Auswahl: VibeIndex für Tool-Discovery, CodeShots für Code-Darstellung, FinderGit für macOS-Git-Dateiarbeit, Superfile für Terminal-Dateiarbeit, Kickresume für Profil-/Karrierewebsites. |
+| **Install/Use** | Den konkreten Anbieter-/Funktions-/Templatezugang aus `zugangskarte.md` öffnen. Gewählten Export in der Website verwenden oder die tatsächlich beauftragte Werkzeugaktion ausführen. FinderGit nur mit verfügbarem Mac-Zugriff bedienen. |
+| **Alternativen** | Die Produktseite als benannte UX-Referenz untersuchen, wenn deren Bedienmuster zum Auftrag passt; ansonsten vorhandene Projektwerkzeuge verwenden. |
+| **Gate** | Quelle, Auswahlgrund, tatsächliche Aktion/Exportdatei und gegebenenfalls gerenderter Einsatzort belegt. Reiner Quellenzugriff wird als solcher bezeichnet. |
+| **Nie** | Linux-Installation einer macOS-App behaupten; einen Verzeichnisfund als ausgeführten Builder ausgeben; Werkzeuge für einen Nutzungszähler installieren. |
+
+## Quellenprüfung bei neuer Installation
+
+Den verfügbaren Web-/Search-Kanal für die aktuelle Quellenprüfung verwenden.
+Die öffentliche Website und offizielle Doku der gewählten Quelle öffnen; bei Code
 zusätzlich offizielles Repository und Lizenzdatei prüfen.
 
 Im Projekt-Log festhalten: Datum, URL, Lizenzstand, Version/Release und jede

@@ -1,8 +1,8 @@
 # Motion im Web-Build — wo die Werte stehen, und was hier dazukommt
 
-**Diese Datei enthält keine Motion-Regeln.** Sie stehen vollständig in
-`/root/raphael-skills/skills/design/references/motion-doktrin.md` (224 Zeilen,
-Fusion aus `emil-design-eng` + `review-animations` inkl. STANDARDS.md, MIT).
+Die allgemeinen Motion-Werte stehen in
+`/root/raphael-skills/skills/design/references/motion-doktrin.md`
+(Fusion aus `emil-design-eng` + `review-animations` inkl. STANDARDS.md, MIT).
 Dort: Frequenz-Gate, Zweck-Liste, Easing-Kurven, Dauer-Tabelle, Physicality,
 Interruptibility, Performance, Accessibility, Kohäsion, Stagger, Recipes,
 Review-Format, die zehn Standards, Eskalations-Trigger, Remedial-Hierarchie.
@@ -27,13 +27,44 @@ Review-Format, die zehn Standards, Eskalations-Trigger, Remedial-Hierarchie.
    (CSS-Transition / Framer Motion / GSAP).
 3. **Fertige Komponente prüfen** — steht die Interaktion schon in
    `ui-components/INDEX.md` oder im Tresor (`bibliotheks-tresor.md`)?
-   Ein selbstgebauter Toast-Stapel ist ein Craft-Befund, kein Sparen.
+   Passenden Code über `inspirations-quellen.md` tatsächlich lesen und integrieren.
 4. **Vollaudit über ein ganzes Repo** → `design`-Skill,
    `design/references/motion-audit-workflow.md` (4-Fragen-Gate + 8 Audit-Kategorien).
    Einzelnes Diff-Review kommt mit der design-Doktrin allein aus.
 5. **Gesten, Drag, Sheets, „iOS-Feel"** → `design`-Skill,
    `design/references/apple-fluid-interfaces.md` (Velocity-Handoff,
    Momentum-Projektion, Rubber-banding, Materials).
+
+## Scroll-Referenz in konkrete Bewegung übersetzen
+
+Für eine gewählte Scroll-/Layer-Referenz vor dem Bau im bestehenden Plan
+festhalten: **Zweck → Ebenen/Elemente → Auslöser → Verlauf → Endzustand →
+mobile und reduzierte Variante**. Werte im Quellcode prüfen, falls verfügbar;
+aus dem Video geschätzte Wege oder Geschwindigkeiten als Ableitung benennen.
+
+- **Layering:** Benannte Vorder-, Mittel- und Hintergründe nur trennen, wenn sie
+  unabhängig laufen sollen. Beispiel: hinterer Berg, mittlerer Berg,
+  Produktansicht, vordere Baumlinie. Pro Ebene Überdeckung und relativen
+  Bewegungsweg bestimmen. Anzahl und Motiv folgen dem Auftrag; vier Ebenen sind
+  keine Vorgabe. Assets nach `bildgenerierung.md` Abschnitt Layering; Text und
+  Bedienung bleiben echte DOM-Elemente.
+- **Auslöser unterscheiden:** Ein Reveal startet beim Sichtbarwerden;
+  Scrubbing bindet Fortschritt an die Scrollposition; Pointer-Parallax folgt
+  dem Zeiger. Eine automatisch laufende Animation ist kein Beleg für
+  Scroll-Reaktion. Bei Scrubbing muss dieselbe Scrollposition denselben Zustand
+  ergeben, auch rückwärts; Ein-/Ausstieg und Unterbrechung mitplanen.
+- **Scrollen bleibt bedienbar:** „Scroll lock“ aus einer Demo bedeutet nicht
+  automatisch gesperrtes natives Scrollen. Pinning nur mit benanntem Bereich
+  und sauberem Ausstieg; Seite, Anker und CTA bleiben erreichbar. Keine neue
+  Scroll-Library allein für einen Reveal installieren.
+- **Mobil passend umsetzen:** Ein Kartenstapel darf zur normalen Liste,
+  Pointer-Effekt zur ruhigen Komposition werden. Aussage, Inhalt und Bedienung
+  erhalten; die gewählte Variante ausdrücklich festlegen. Reduced Motion zeigt
+  den verständlichen Inhalt ohne Parallax oder notwendige Scroll-Wartezeit.
+
+Ein neuer Motion-Effekt braucht den Zweck aus der zentralen Design-Doktrin;
+eine Referenz erzeugt keine Animationspflicht. Den laufenden Übergang nach
+`qa-faecher.md` prüfen, einschließlich sichtbarer Nähte zwischen Abschnitten.
 
 ## Die Token in `ui-components/lib/ease.ts` — und der eine Konflikt
 
@@ -52,14 +83,8 @@ Ease-Out-Kurven, beide erfüllen die Regel „CSS-Standard-Easings sind zu schwa
 | **Neuer eigener CSS/Motion-Code im Projekt** | `cubic-bezier(0.23, 1, 0.32, 1)` | design ist die kanonische Quelle. Ein Projekt mit zwei Ease-Out-Kurven hat keine Motion-Sprache. |
 | Beides im selben Projekt | Eine wählen und in den Projekt-Tokens festschreiben | Der Unterschied ist klein, die Uneinheitlichkeit ist der Befund. |
 
-**Diese Tabelle war bis 29.07.2026 eine Bitte.** Nichts hat je nachgezählt, wie viele
-Kurven ein Projekt wirklich benutzt. In dieser Bibliothek lagen **drei** statt der zwei
-oben genannten: `cubic-bezier(0.4, 0, 0.2, 1)` (Material-Default) in
-`ui-components/motion/theme-toggle.tsx` — von niemandem entschieden, einfach da.
-Seitdem prüft `scripts/motion-check.mjs` es, und das G1-Tor führt ihn als sechsten
-Qualitäts-Prüfer. Ab drei Kurven ist es Blocker; zwei bleiben die dokumentierte
-Übergangslage. Details und Belege im `web`-SKILL, Abschnitt „Die Motion-Entscheidung
-war eine Bitte, kein Prüfer".
+`scripts/motion-check.mjs` erkennt Kurven und weitere Quelltextmuster.
+Die tatsächliche Wirkung braucht die Runtime-Prüfung aus `qa-faecher.md`.
 
 Wer eine Komponente aus `ui-components/` **anfasst**, zieht sie auf die
 Projekt-Kurve — ab dann gehört die Datei dem Projekt (gleiche Logik wie bei
@@ -109,7 +134,7 @@ einblenden.
 
 `craft-check.mjs` misst am gerenderten DOM: M18 (`prefers-reduced-motion`
 vorhanden, wenn animiert wird), M19 (`transition-property: all`), T7
-(Springy-Hover-Reflex), M20 (Anzahl animierter Elemente als INFO — Ziel ist
-**ein** Signature-Moment pro Seite). Alles andere aus der design-Doktrin
+(Springy-Hover-Reflex), M20 (Anzahl animierter Elemente als INFO, keine
+Vorgabe für die Zahl der Effekte). Alles andere aus der design-Doktrin
 — Easing-Richtung, Dauer, Origin, Interruptibility — ist **nicht** maschinell
 geprüft und braucht den Review nach dem Tabellen-Format der design-Doktrin.

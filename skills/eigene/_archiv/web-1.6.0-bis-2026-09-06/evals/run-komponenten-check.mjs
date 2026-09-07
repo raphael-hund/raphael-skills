@@ -137,6 +137,8 @@ try {
   const libs = run(['libs', '--json']);
   const data = jsonOut(libs);
   const required = [
+    'Beautiful UI', 'AI CSS', 'Transitions.dev', 'Amicro', 'Canvas UI',
+    'AI Elements', 'AI Canvas', 'Beste UI', 'Paper Shaders', 'Mantine',
     'React Bits', 'Magic UI', '21st.dev', 'Aceternity UI', 'shadcn.io', 'shadcn/ui',
     'Untitled UI React', 'Shadcn Blocks', 'Shoogle', 'Ruixen UI', 'Hover.dev', 'Animata',
     'Motion Primitives', 'Cult UI', 'Park UI', 'Origin UI', 'Float UI', 'Preline UI',

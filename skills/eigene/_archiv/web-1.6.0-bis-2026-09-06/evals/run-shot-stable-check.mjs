@@ -33,8 +33,6 @@ import { altlastWeg, wegwerfen, wegwerfOrdner } from './lib/wegwerf.mjs';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const SWEEP = path.join(HIER, '..', 'scripts', 'shot-sweep.mjs');
-const SKILL_MD = path.join(HIER, '..', 'SKILL.md');
-const LOOP_MD = path.join(HIER, '..', 'references', 'screenshot-kritik-loop.md');
 const FIXTURE = path.join(HIER, 'fixtures', 'shot-stable.html');
 const PORT = Number(process.env.SHOT_STABLE_PORT || 5477);
 const FRIST_MS = 180000;
@@ -177,7 +175,6 @@ if (!fs.existsSync(SWEEP) || !fs.existsSync(FIXTURE)) {
 }
 
 const quelle = fs.readFileSync(SWEEP, 'utf8');
-const skillText = `${fs.readFileSync(SKILL_MD, 'utf8')}\n${fs.readFileSync(LOOP_MD, 'utf8')}`;
 
 console.log('Shot-Stable-Check: Quelle, dann zwei echte Sweep-Laeufe\n');
 console.log('Quelle von shot-sweep.mjs:\n');
@@ -189,8 +186,8 @@ zeile(/playwright/i.test(quelle), 'Playwright ist der Capture-Weg',
 zeile(shotAufrufe.length === 1 && shotMitOpts,
   'genau ein page.screenshot, und der nutzt SHOT_OPTS',
   `${shotAufrufe.length} Aufrufe, SHOT_OPTS am Aufruf: ${shotMitOpts}`);
-zeile(/animations:\s*['"]disabled['"]/.test(quelle) && /SHOT_OPTS/.test(quelle),
-  "SHOT_OPTS setzt animations: 'disabled'");
+zeile(/animations:\s*STATIC\s*\?\s*['"]disabled['"]\s*:\s*['"]allow['"]/.test(quelle),
+  'Animationen nur im stabilisierten Profil deaktiviert');
 zeile(/caret:\s*['"]hide['"]/.test(quelle) && /SHOT_OPTS/.test(quelle),
   "SHOT_OPTS setzt caret: 'hide'");
 zeile(!/fullPage:\s*true/.test(quelle), 'fullPage ist nicht wahr');
@@ -221,18 +218,16 @@ zeile(/state_matrix/.test(quelle)
   'state_matrix mit validatorgeprueften not_applicable-Gruenden');
 zeile(/playwright_ref/.test(quelle) && /keyboard/.test(quelle) && /axe/.test(quelle),
   'State-Receipts: Keyboard/Axe oder validierte Playwright-Ref');
-zeile(/nur Hover/.test(quelle),
-  '--states nur Hover ist FAIL (Quelle nennt den Fall)');
-zeile(/Playwright/.test(skillText)
-  && /stabile Screenshots/i.test(skillText)
-  && /Screenshots testen/i.test(skillText),
-  'Skill-Text verlangt testen + Playwright + stabile Screenshots');
-zeile(!/raphael-chrome/.test(skillText.split('Screenshot-Pflicht')[1] || skillText)
-  || /kein Ersatz|kein .*raphael-chrome|nicht .*raphael-chrome/i.test(skillText),
-  'raphael-chrome ist kein Standard-Sweep');
 
 const SEITE = wegwerfOrdner('shot-stable-seite-');
 fs.copyFileSync(FIXTURE, path.join(SEITE, 'index.html'));
+fs.appendFileSync(path.join(SEITE, 'index.html'), '<button onclick="fetch(\'/consent\',{method:\'POST\'})">Akzeptieren</button><button onclick="fetch(\'/submit\',{method:\'POST\'})">Senden</button>');
+const writesPath = path.join(SEITE, 'writes.json');
+fs.writeFileSync(writesPath, '[]');
+const serverScript = path.join(SEITE, 'server.cjs');
+fs.writeFileSync(serverScript, `const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
+const writes=[];http.createServer((req,res)=>{if(req.method==='POST'){writes.push(req.url);fs.writeFileSync(${JSON.stringify(writesPath)},JSON.stringify(writes));res.end('{}');return;}
+const p=path.join(${JSON.stringify(SEITE)},req.url==='/'?'index.html':req.url);try{res.end(fs.readFileSync(p));}catch{res.statusCode=404;res.end('not found');}}).listen(${PORT},'127.0.0.1');`);
 const kennung = `probe-${process.pid}.txt`;
 fs.writeFileSync(path.join(SEITE, kennung), 'shot-stable');
 
@@ -246,7 +241,7 @@ if (belegt.stdout && belegt.stdout.trim() !== '000') {
 }
 
 const serverLog = path.join(SEITE, 'server.log');
-const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'],
+const server = spawn('node', [serverScript],
   { cwd: SEITE, stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')] });
 
 let bereit = false;
@@ -277,7 +272,7 @@ function laufSweep(label) {
       '--out', out,
       '--routes', '/',
       '--static',
-      '--no-interact',
+      ...(label === 'a' ? ['--no-interact'] : []),
     ], { encoding: 'utf8', timeout: FRIST_MS, maxBuffer: 8 * 1024 * 1024 });
   } catch (e) {
     code = e.status ?? 1;
@@ -302,6 +297,12 @@ if (LAUNCH_FAIL_RE.test(a.text) || a.code === 2) {
 }
 
 zeile(a.code === 0, 'Sweep A endet mit Exit 0', `Exit ${a.code}`);
+zeile(JSON.parse(fs.readFileSync(writesPath, 'utf8')).length === 0,
+  '--no-interact sendet weder Consent noch Submit');
+const manifestA = JSON.parse(fs.readFileSync(path.join(a.out, 'manifest.json'), 'utf8'));
+zeile(manifestA.status === 'PASS' && manifestA.capture_profile?.presentation === 'stabilized'
+  && manifestA.capture_profile?.modified_dom === true,
+  'Capture-Receipt kennzeichnet stabilisierte Darstellung und eigenen Erfolg');
 
 const foldA = path.join(a.out, 'home-desktop-00-fold.png');
 zeile(fs.existsSync(foldA), 'Fold-PNG A existiert', foldA);
@@ -337,6 +338,8 @@ if (LAUNCH_FAIL_RE.test(b.text)) {
 }
 
 zeile(b.code === 0, 'Sweep B endet mit Exit 0', `Exit ${b.code}`);
+zeile(JSON.parse(fs.readFileSync(writesPath, 'utf8')).length === 0,
+  'normaler Capture sendet weder Consent noch Submit');
 
 const foldB = path.join(b.out, 'home-desktop-00-fold.png');
 zeile(fs.existsSync(foldB), 'Fold-PNG B existiert', foldB);

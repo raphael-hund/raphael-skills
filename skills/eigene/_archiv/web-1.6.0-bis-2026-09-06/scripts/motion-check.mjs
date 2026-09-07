@@ -34,8 +34,9 @@
     Distanz passt, ob sie unterbrechbar ist. Das steht in der Doktrin und
     braucht Augen. Dieser Pruefer zaehlt nur, was zaehlbar ist.
 
-  Liest QUELLTEXT, keine URL — wie der Slop-Scanner, aus demselben Grund:
-  die Kurven stehen in CSS/TSX, nicht im gerenderten DOM.
+  Standard: QUELLTEXT-Teilcheck. --url + --selector pruefen zusaetzlich beim
+  Laden beobachtete Bewegung unter normaler und reduzierter Bewegung.
+  Eingabe-abhaengige Bewegung prueft der passende Projekt-Browsertest.
 
     node motion-check.mjs <projektordner> [--json]
 
@@ -50,7 +51,7 @@ const args = process.argv.slice(2);
 // 31.07.2026 druckte dieses Skript darauf nur seine Aufrufzeile — die Meldung
 // las sich wie "Argument fehlt", und wer sich vertippt hat, sucht am falschen
 // Ende. Exit 2 war schon richtig, der Text nicht.
-const FLAG_ERLAUBT = ['json', 'help'];
+const FLAG_ERLAUBT = ['json', 'help', 'url', 'selector'];
 {
   const fremd = args.filter((a) => a.startsWith('--') && !FLAG_ERLAUBT.includes(a.slice(2)));
   if (fremd.length) {
@@ -60,14 +61,17 @@ const FLAG_ERLAUBT = ['json', 'help'];
   }
 }
 const alsJson = args.includes('--json');
-const wurzel = args.find((a) => !a.startsWith('--'));
+const wurzel = args.find((a, i) => !a.startsWith('--') && !['--url', '--selector'].includes(args[i - 1]));
+const get = (key) => { const i = args.indexOf(`--${key}`); return i < 0 ? null : args[i + 1]; };
+const runtimeUrl = get('url');
+const runtimeSelector = get('selector');
 
 // --help ist kein Fehlerfall. Beide Faelle drucken dieselbe Zeile, aber sie
 // bedeuten Verschiedenes: wer --help tippt, hat bekommen was er wollte
 // (Exit 0, Hilfe auf stdout); wer den Ordner vergisst, hat einen Fehler
 // (Exit 2, Meldung auf stderr). Bis zum 31.07.2026 endeten beide mit Exit 2 —
 // in einer Kette liest das jedes Skript als "Pruefer kaputt".
-const hilfe = 'Aufruf: node motion-check.mjs <projektordner> [--json]';
+const hilfe = 'Aufruf: node motion-check.mjs <projektordner> [--json] [--url <url> --selector <betroffenes-element>]';
 if (args.includes('--help')) {
   console.log(hilfe);
   process.exit(0);
@@ -78,6 +82,10 @@ if (!wurzel) {
 }
 if (!fs.existsSync(wurzel) || !fs.statSync(wurzel).isDirectory()) {
   console.error(`Kein Ordner: ${wurzel}`);
+  process.exit(2);
+}
+if (!!runtimeUrl !== !!runtimeSelector || [runtimeUrl, runtimeSelector].some(value => value?.startsWith('--'))) {
+  console.error('Runtime-Pruefung braucht --url und --selector zusammen.');
   process.exit(2);
 }
 
@@ -226,6 +234,52 @@ if (hatAnimation && !hatReducedMotion) {
   });
 }
 
+let runtime = { status: 'NOT_CHECKED', scope: 'reduced-motion-target' };
+if (runtimeUrl) {
+  let browser;
+  try {
+    const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
+    browser = await chromium.launch({ headless: true, channel: 'chrome' });
+    const observations = {};
+    for (const preference of ['no-preference', 'reduce']) {
+      const page = await browser.newPage({ reducedMotion: preference });
+      const response = await page.goto(runtimeUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      if (!response?.ok()) throw new Error(`navigation failed: ${response?.status()}`);
+      await page.locator(runtimeSelector).first().waitFor({ state: 'visible', timeout: 5000 });
+      observations[preference] = await page.locator(runtimeSelector).first().evaluate(async (target) => {
+        const elements = [target, ...target.querySelectorAll('*')];
+        const samples = [];
+        for (let i = 0; i < 4; i++) {
+          samples.push(elements.map(el => {
+            const rect = el.getBoundingClientRect(), style = getComputedStyle(el);
+            return { x: rect.x, y: rect.y, width: rect.width, height: rect.height, transform: style.transform,
+              translate: style.translate, rotate: style.rotate, scale: style.scale };
+          }));
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        const moving = elements.some((_, index) => samples.slice(1).some(sample =>
+          ['x', 'y', 'width', 'height'].some(key => Math.abs(sample[index][key] - samples[0][index][key]) > 0.5)
+          || ['transform', 'translate', 'rotate', 'scale'].some(key => sample[index][key] !== samples[0][index][key])));
+        const spatial = /^(transform|translate|rotate|scale|left|right|top|bottom|width|height|offsetDistance|offsetPath|offsetRotate)$/;
+        const spatialAnimations = target.getAnimations({ subtree: true }).filter(animation => animation.playState === 'running'
+          && animation.effect?.getKeyframes().some(frame => Object.keys(frame).some(key => spatial.test(key)))).length;
+        return { reduced: matchMedia('(prefers-reduced-motion: reduce)').matches, moving, spatialAnimations, sample_ms: 400 };
+      });
+      await page.close();
+    }
+    const reduced = observations.reduce;
+    const normal = observations['no-preference'];
+    if (!normal.moving && normal.spatialAnimations === 0) throw new Error('keine Bewegung am Ziel beobachtet; Interaktion zuerst im Projekt-Browsertest ausloesen');
+    const failed = !reduced.reduced || reduced.moving || reduced.spatialAnimations > 0;
+    runtime = { status: failed ? 'FAIL' : 'PASS', scope: 'reduced-motion-target', url: runtimeUrl, selector: runtimeSelector, observations };
+    if (failed) befunde.push({ id: 'M-motion-runtime', stufe: 'BLOCK', was: 'Bewegung am Ziel bleibt unter Reduced Motion aktiv',
+      fix: 'Die betroffene Bewegung unter prefers-reduced-motion reduzieren; eine unbenutzte Query reicht nicht.', stellen: [runtimeSelector] });
+  } catch (error) {
+    runtime = { status: 'BLOCKED', scope: 'reduced-motion-target', url: runtimeUrl, selector: runtimeSelector, error: error.message };
+  } finally {
+    await browser?.close();
+  }
+}
 const block = befunde.filter((b) => b.stufe === 'BLOCK').length;
 const warn = befunde.filter((b) => b.stufe === 'WARN').length;
 
@@ -241,6 +295,7 @@ if (alleDateien.length === 0) {
 
 if (alsJson) {
   console.log(JSON.stringify({
+    scope: 'motion-source-patterns', runtime,
     wurzel, dateienGelesen: alleDateien.length, nichtLesbar,
     kurvenAnzahl: anzahl, block, warn, befunde,
   }, null, 2));
@@ -248,7 +303,7 @@ if (alsJson) {
   // liess den --json-Modus voellig ohne JSON zurueck (gemessen 01.08.2026).
   // Ein Automat bekam dann eine Klartext-Fehlermeldung, wo er ein Objekt
   // erwartete — und das JSON-Feld `nichtLesbar` sah nie jemand.
-  if (nichtLesbar.length) process.exit(2);
+  if (nichtLesbar.length || runtime.status === 'BLOCKED') process.exit(2);
   process.exit(block > 0 ? 1 : 0);
 }
 
@@ -265,8 +320,10 @@ if (nichtLesbar.length) {
 }
 
 console.log(`\nmotion-check — ${alleDateien.length} Dateien unter ${wurzel}\n`);
+console.log(`Quelltext-Teilcheck. Reduced-Motion-Wirkung: ${runtime.status}.`);
+if (runtime.status === 'BLOCKED') { console.error(runtime.error); process.exit(2); }
 if (!befunde.length) {
-  console.log(`Eine Motion-Sprache: ${anzahl} Kurve(n), keine nackten Defaults, Reduced Motion vorhanden.\n`);
+  console.log(`${anzahl} Kurve(n), keine Quelltextbefunde. Ohne Runtime-Pruefung ist die Wirkung nicht geprueft.\n`);
   process.exit(0);
 }
 for (const b of befunde) {

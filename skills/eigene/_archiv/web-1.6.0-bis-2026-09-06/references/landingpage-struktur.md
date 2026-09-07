@@ -5,7 +5,9 @@
 (Kontaktdaten zuletzt). Reihenfolge nach Überzeugungskraft. Testimonials als Beweis-Masse.
 
 **Herkunft:** Synthese aus einem Facebook-Ads-Kurs (Q1) + Ads-Coach-Reel (Q2),
-konsolidiert in `/root/agency-os-plan/analysis/source-lessons-2026-07-19.md` (Abschnitt 2).
+konsolidiert am 19.07.2026 in einer früheren lokalen Quellenauswertung. Diese
+Auswertung ist in der aktuellen Installation nicht auffindbar; quantitative
+Wirkungsbehauptungen daraus gelten hier als nicht belegt.
 Status der Quelle: Kandidat/Review — ⭐-Punkte sind belastbar, ⚠️/Hypothesen sind als solche
 markiert und **selbst per A/B-Test zu verifizieren** (echte Analytics, G4).
 
@@ -15,9 +17,8 @@ markiert und **selbst per A/B-Test zu verifizieren** (echte Analytics, G4).
 
 - **Kein Menü, kein Blog, kein "About us".** Nur ein CTA, der exakt zur Anzeige passt.
 - **Formular direkt einbetten** — nicht hinter eine "Apply Now"-Button-Seite legen.
-  *Beleg: ein Extra-Klick auf eine separate Formularseite halbierte die Conversion.*
-- **CTA/Formular im oder knapp unter dem Fold**, nicht ans Seitenende. *Fast 100 % sehen
-  oberhalb des Folds, nur ~5 % scrollen bis zum Ende.*
+  Ob eingebettet oder separate Seite besser funktioniert, am konkreten Nutzerweg prüfen.
+- **CTA/Formular im oder knapp unter dem Fold**, nicht ans Seitenende. Die tatsächlich erreichte Scrolltiefe nur aus vorhandenen Analytics ableiten.
 
 ## 2. Formular = Kette kleiner Mikro-Commitments
 

@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const DOK = path.join(HIER, '..', 'references', 'bildgenerierung.md');
 const SKILL = path.join(HIER, '..', 'SKILL.md');
+const ROUTER = path.join(HIER, '..', 'references', 'anfaenger-pfad.md');
 const ENV = '/usr/local/bin/higgsfield-env';
 const WRAP = '/usr/local/bin/higgsfield';
 
@@ -37,6 +38,7 @@ if (!fs.existsSync(DOK)) {
 }
 const text = fs.readFileSync(DOK, 'utf8');
 const skill = fs.existsSync(SKILL) ? fs.readFileSync(SKILL, 'utf8') : '';
+const router = fs.existsSync(ROUTER) ? fs.readFileSync(ROUTER, 'utf8') : '';
 
 const start = text.indexOf('## Neue Illustration vs. wiederverwenden');
 const ende = text.indexOf('## Der Entscheidungsbaum');
@@ -71,8 +73,9 @@ zeile(
   'Abschnitt verbietet Recraft für Illustration',
 );
 zeile(
-  skill.includes('Neue Illustration vs. wiederverwenden'),
-  'SKILL.md routet auf den neuen Abschnitt',
+  skill.includes('references/anfaenger-pfad.md') && router.includes('Neue Illustration vs. wiederverwenden')
+    && router.includes('references/bildgenerierung.md'),
+  'SKILL.md erschließt den Illustration-Abschnitt über den vorhandenen Reference-Router',
 );
 
 zeile(fs.existsSync(ENV), `Env-Quelle existiert: ${ENV}`);

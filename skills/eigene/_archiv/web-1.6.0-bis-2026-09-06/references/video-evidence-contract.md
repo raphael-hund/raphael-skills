@@ -1,147 +1,92 @@
-# Video-Evidence-Vertrag — externe Lehren bleiben bis zum Beleg Kandidaten
+# Video-Referenzen untersuchen und für Web nutzen
 
-Stand: 01.09.2026.
+Stand: 05.09.2026. Gilt für eine Video-/Scroll-Demo als Referenz oder als Quelle
+für eine beauftragte Skill-Änderung. Der aktuelle Auftrag bestimmt Ergebnis,
+Prüfung und Ablage. Eine Videoanalyse startet keinen zusätzlichen Website-Bau.
 
-Dieser Vertrag gilt, wenn `watch-video` Material für den Website-Workflow liefert.
-Er trennt beobachtete Quelle, übertragbare Lesson und spätere Regeländerung. Ein
-Video ersetzt weder lokale QA noch Raphaels Art-Direction-Urteil.
+## Quelle und relevante Abläufe tatsächlich prüfen
 
-## 1. Web-Evidence-Handoff
+1. Für Download und lokale Frames den vorhandenen Skill
+   [watch](/root/raphael-skills/skills/eigene/watch/SKILL.md) nutzen. Eine lokale
+   Datei braucht keinen Download. Originalquelle unverändert behalten.
+2. Vorhandene Untertitel zuerst prüfen. Meldet der Extraktor „kein Transkript“,
+   bei Bedarf mit `yt-dlp --skip-download --list-subs <url>` nachsehen; auch X
+   kann Captions liefern. Bei VTT Wort-Tags entfernen und überlappende oder
+   wiederholte Cues zeitlich sauber behandeln, Originaldatei erhalten. Lokale
+   Transkription nur für benötigte Sprache ohne brauchbare Captions.
+3. Bei Screenshares nach Kapiteln und Szenenwechseln sichten. Relevante
+   Interaktionen als zeitliche Bildfolge ansehen; für kleinen Text einen Frame
+   in ausreichender Auflösung öffnen. Hook-Kadenz für Reels und pauschale
+   Screenshotmengen sind kein Maß für eine Website-Demo.
+4. Quelle und Aussage trennen: Ein Frame zeigt einen Zustand, eine Bildfolge
+   einen beobachteten Verlauf, das Transkript die Erklärung des Sprechers.
+   Für Timing oder Eingabereaktion den relevanten Ablauf ausreichend dicht
+   ansehen; ein einzelner Screenshot und ein Dateihash genügen dafür nicht.
+   Eine erreichbare Originalseite zusätzlich untersuchen, wenn ihr Code oder
+   tatsächliches Verhalten für die Umsetzung benötigt wird.
 
-Ein Handoff ist nur vollständig, wenn alle Felder belegt sind. Ein leeres Feld
-heißt `nicht geprüft`, nie PASS.
+## Kurzer Beleg im bestehenden Plan oder Ergebnis
 
-| Feld | Vertrag |
-|---|---|
-| Video-ID | Stabile Plattform-ID, bei YouTube die elfstellige ID. |
-| Titel | Originaltitel der Quelle; nicht aus dem Inhalt erfinden. |
-| Quelle | Kanonische URL und Abrufdatum. |
-| Quellenfamilie | Familie des Evidence-Autors; sie wird gegen den Skeptiker geprüft. |
-| Transcript-Methode | Captions, lokales Whisper oder anderes benanntes Verfahren samt Frame-Gegencheck. |
-| Transcript-Anfang / Transcript-Ende | Tatsächlich geprüfter Bereich `MM:SS–MM:SS`; fehlende Endzeit blockiert Bestätigung. |
-| Frame-Belege | Zeitmarke plus absoluter Frame-/Sheet-Pfad für jeden visuellen Claim; die Zeitmarke liegt im Lesson-Bereich. |
-| Zeitmarken | Pro Lesson mindestens ein Bereich `MM:SS–MM:SS`. |
-| Lesson | Eine prüfbare Aussage, keine Geschmacksnote und kein Creator-Score. |
-| betroffene Phase | `Strategy/IA`, `Copy/Visual System`, `Basisbuild`, `Motion-Polish`, `QA` oder `visual-aaa`. |
-| Caveat | Werbeinteresse, Messlücke, Übertragbarkeitsgrenze oder Gegenbeleg. |
-| Confidence | `high`, `medium`, `low` oder `uncertain`, mit kurzer Begründung. |
-| Promotion-Status | `kandidat`, `bestätigt` oder `verbindlich`. |
-| Skeptiker-Receipt | Ab `bestätigt`: fremde Familie, Datum, Source-Hash, Findings und offene Einschränkungen. |
-| Promotion-Receipt | Bei `verbindlich`: Kandidat, Skeptiker-Receipt, Zielrevision und messbares Gate. |
+Kein zusätzliches Pflichtformular. Festhalten, soweit für den Befund relevant:
 
-Schemaform:
+- **Quelle:** kanonische URL, Abrufdatum, Plattform-/Video-ID oder lokale Datei,
+  Dauer und Originaltitel, falls verfügbar. Einen Repost-Autor nicht mit dem
+  Sprecher verwechseln; getrennte Post-/Media-IDs benennen.
+- **Coverage:** gelesene Untertitel-/Transkriptbereiche und Methode; davon
+  getrennt tatsächlich gesehene Bildfolgen mit Zeitmarken und lokalen Belegen.
+  Audio/Transkript kann `vorhanden`, `fehlt`, `stumm` oder `nicht geprüft` sein.
+  Fehlende Sprache blockiert eine belegte rein visuelle Aussage nicht.
+- **Befund:** konkrete Beobachtung mit Zeitbereich, daraus abgeleiteter
+  Mechanismus und Grenze. `beobachtet`, `abgeleitet` und `unbekannt` trennen.
+  Nicht gezeigte Mobile-Zustände, DOM-Technik oder Backendwirkung bleiben
+  unbekannt. Widersprechen Bild und Erklärung einander, den Konflikt benennen.
+- **Anwendung:** übernommene Eigenschaft, vorhandener Zielpfad und passende
+  Prüfung; bei reiner Analyse nur die begründete Entscheidung. Unsicherheit
+  und fehlende Prüfung ausdrücklich benennen.
 
-```yaml
-video_id: WCrnS09vpfo
-title: "Originaltitel"
-source: "https://youtu.be/WCrnS09vpfo"
-source_family: creator
-transcript_method: captions-plus-frame-check
-transcript_start: "00:00"
-transcript_end: "21:15"
-frames:
-  - timecode: "03:08"
-    path: "/tmp/watch-video/body/f_54.jpg"
-lessons:
-  - timecode: "03:08–05:17"
-    lesson: "Primary Journey schlägt Featuremenge."
-    phase: "Strategy/IA"
-    caveat: "Kein pauschales Kürzungsgebot für komplexe Produkte."
-    confidence: medium
-    visual_claim: false
-status: kandidat
-skeptic_receipt: null
-promotion_receipt: null
-```
+Video-/Frame-Dateien in `/tmp` sind Arbeitsmaterial. Benötigte dauerhafte
+Belege mit Herkunft im bestehenden Projekt-/Auftragsort sichern; Dateien für
+Raphael nach `/root/eingang/ausgang/<thema>/`. Kein automatischer Brain-Kandidat,
+zusätzlicher Ledger oder Modellfamilien-Review für jede Web-Videoquelle.
 
-## 2. Fail-closed Evidence-Regeln
+## Aus dem Befund eine gezielte Änderung machen
 
-- Fehlende Video-ID, URL, Transcript-Endzeit, Lesson, Lesson-Zeitmarke, Phase,
-  Caveat, Confidence oder Promotion-Status verhindert die Promotion zu
-  `bestätigt`.
-- Ein visueller Claim braucht einen Frame-Beleg mit Zeitmarke und absolutem
-  Pfad am behaupteten Zeitpunkt. Ein rein transkriptbasierter visueller Claim
-  bleibt `kandidat`.
-- Transcript und Frame müssen dieselbe Aussage tragen. Widerspruch senkt die
-  Confidence und wird im Caveat sichtbar.
-- `bestätigt` braucht einen vollständigen fremdfamiliären Skeptiker-Receipt;
-  `verbindlich` zusätzlich einen Promotion-Receipt mit Zielrevision und Gate.
-- Creator-Wertungen wie „perfect score“, allgemeine Tool-Versprechen und
-  Modell-Rangfolgen werden ohne datierten lokalen Benchmark nie verbindlich.
-- Creator-Demos und Werbung belegen eine Beobachtung, aber keine Conversion-
-  Wirkung und keine globale Geschmacksregel.
-- Jede spätere Regel- oder Eval-Änderung nennt Source, Zeitmarke, Caveat,
-  exakten Zielpfad, U/KTD-Referenz und messbares Gate.
+`inspirations-quellen.md` führt von der untersuchten Eigenschaft zum Einbau;
+`motion-doktrin.md` beschreibt Ebenen, Auslöser, Verlauf und mobile Variante.
+`qa-faecher.md` prüft das aktuelle Ergebnis. Eine beobachtete Produktdemo ist
+kein Beleg für ihre echte Integration, Conversion oder Leistung.
 
-## 3. Promotion-Pipeline
+Bei ausdrücklich beauftragter Skill-Änderung den vorhandenen Bedeutungsort
+über `skill-update` ändern und prüfen. Bereits vorhandene Regeln bestätigen,
+widersprechende kürzen. Review nach konkreter offener Frage und verfügbaren
+Werkzeugen; keine feste Reviewerzahl, fremde Modellfamilie oder zusätzliche
+Promotion-Freigabe. Subjektive Art Direction bleibt beim Nutzer.
+Creator-Scores, Modell-Rangfolgen, Kostenversprechen und „one shot“-Aussagen
+sind ohne passende unabhängige Messung keine allgemeinen Defaults.
 
-Die einzige Reihenfolge lautet **kandidat → bestätigt → verbindlich**.
+## Geprüfter Anlass: X-Video vom Nutzer
 
-### kandidat
+Quelle: [Post 2095866538247049506](https://x.com/celineodier/status/2095866538247049506),
+abgerufen 05.09.2026; Media-ID `2095866243119185920`, Dauer 16:12,85.
+Eigene Ableitungen aus Quelluntertiteln und angesehenen Bildfolgen:
 
-- Raw-Eintrag und Brain-Kandidat sind persistiert.
-- Quelle, Coverage, Lessons und Caveats sind sichtbar.
-- Der Eintrag ändert weder `stil-regeln.md` noch Defaults, Router oder
-  Produktionsregeln.
+| Zeitbereich | Beobachtung / Erklärung | Konsequenz im vorhandenen Web-Skill |
+|---|---|---|
+| 00:57–01:28 | Mobile-Demo zeigt andere Tab-Anordnung und Kartenfolge als Desktop. | Mobile Variante ausdrücklich wählen und bedienen. |
+| 02:42–03:23 / 06:19–06:55 | Diktat-Demo stellt Eingabe und Ergebnis in Zielprogrammen gegenüber. | Produktnutzen als verständliche Folge; Simulation von echter Integration unterscheiden. |
+| 04:16–05:10 | Fora als Referenz; Sprecher zerlegt die Szene in Berge, Produktansicht und Vordergrund. | Komposition in benannte Ebenen und Bewegungswege übersetzen. |
+| 05:11–05:50 | 21st.dev mit Komponenten-Demo und „Copy prompt“; genaues verwendetes Hintergrund-Item wird nicht wiedergefunden. | Komponentenweg tatsächlich nutzen; unbekannte Item-ID nicht erfinden. |
+| 09:25–10:14 | Wachstumssequenz und Tastatur-Seite; sichtbare harte Bildkante um 10:05, vom Sprecher als Fehler benannt. | Eintritt, Wechsel, Austritt und Rückweg prüfen; Naht nach Fix gezielt erneut ansehen. |
+| 10:54–11:23 | Brand Guidelines sowie Pain, Person, Promise. | Bereits in `rolle-plan.md` enthalten; keine zweite Checkliste. |
+| 11:24–12:10 / 13:26–13:48 | Sprecher relativiert „scroll lock“, empfiehlt später pauschales Screenshotten. | Zweckgebundene, bedienbare Motion; Umfang der Bildprüfung folgt dem konkreten Ablauf. |
 
-### bestätigt
+Die Demonstrationen zeigen keine gemessene Conversion-Steigerung. Aussagen zu
+Modellen/Kosten am Videoende wurden nicht als Tool- oder Modellpolicy übernommen.
 
-- Das Handoff-Schema ist vollständig und die Quelle ist erreichbar oder als
-  eingefrorener Beleg vorhanden.
-- Eine fremde Modellfamilie liefert einen **Skeptiker-Receipt**. Sie prüft
-  Kernfakten, Frame-/Transcript-Bindung, Übertragbarkeit und Werbeinteressen.
-- Der Receipt nennt Prüferfamilie, Datum, Source-Hash, Findings und offene
-  Einschränkungen. Dieselbe Familie wie der Evidence-Autor zählt nicht.
-- Ein fehlgeschlagener, unstrukturierter oder nur behaupteter Gegencheck zählt
-  nicht als Skeptiker-PASS.
+## Historische Belege
 
-### verbindlich
-
-- Der bestätigte Kandidat hat einen exakten Zielpfad und ein ausführbares,
-  messbares Gate oder Eval.
-- Eine visuelle Geschmacksentscheidung besitzt Raphaels ausdrückliches Urteil.
-- Der Promotion-Receipt bindet Kandidat, Skeptiker-Receipt, Zielrevision und
-  geändertes Gate. Erst dann darf eine Regel oder ein Default wechseln.
-
-Promotion ist keine Umbenennung im Text. Ohne die Receipts bleibt der Status
-`kandidat`, auch wenn die Lesson plausibel klingt.
-
-## 4. Visuelle Cases
-
-Websites und Frames laufen über `muster-bibliothek/_template.md`. Quelle,
-Capture, Frame-Beleg, Do-not-copy-Grenze und Lizenzstatus sind Pflicht. Ohne
-Raphael-Urteil bleibt der Case `kandidat`; ein Agent setzt kein GO.
-
-## 5. Eingefrorene Erst-Fixture
-
-Der Plan
-`/root/raphael-skills/skills/eigene/web/plans/2026-08-31-web-workflow-evidenzvertrag-plan.md`
-bindet die fünf IDs `WCrnS09vpfo`, `QUI6Ug4cHnE`, `bg0C-2iUUqM`,
-`VwGrXe2ricE` und `Ysr7oNDajJI`. Sein Source-to-Decision Ledger enthält
-10/12/8/10/8 Lessons, insgesamt 48, mit den Dispositionen 11 `ADOPT`, 27
-`CONFIRM_EXISTING`, 6 `REJECT`, 4 `DEFER` und
-`unexplained_lessons=0`. Jede Lesson steht genau einmal im Ledger und bindet
-Timecode, exakten Zielpfad, U/KTD, messbares Gate und Caveat. `REJECT` nennt
-den Grund; `DEFER` die Wiedereintrittsbedingung. Bis ein fremdfamiliärer
-Skeptiker-Receipt vorliegt, bleiben alle fünf Quellen Kandidaten.
-
-## 6. Runtime-Provenance-Gate
-
-Das Gate parst die Tabellen der Plan-Sektion `Runtime Provenance and
-Limitations` semantisch und bindet Rolle, tatsächliches Modell und Disposition
-an Workflow- und Worker-ID:
-
-- Research `wf_ef2e1083-612`: `agent-a8b91d246a573f5f2`,
-  `agent-ad5324d3618bef292` und `agent-a0f692fd1c978c66b` liefen auf
-  `gpt-5.6-sol`; der Ecosystem-Worker bleibt `recovered/unstructured`.
-- Review `wf_761399ea-c3b`: Design und Product liefen auf `gpt-5.6-sol`,
-  Adversarial auf `grok-4.6-build`. Die konkreten drei FAILED-Worker bleiben
-  FAILED und zählen nicht als Coverage.
-- Workflow-Metadaten und angeforderte Modell-Labels sind kein Runtime-Beweis.
-  Maßgeblich bleibt die je Worker gebundene Tabellen-Disposition.
-
-Negativtests schreiben ausschließlich temporäre Plankopien. Fehlende Video-,
-Workflow- oder Worker-ID, fehlendes Lesson-Feld, falsche Rolle oder falsches
-Modell, gelöschte FAILED-/`recovered/unstructured`-Disposition und ein
-Fable-Claim für Adversarial müssen rot werden; der Hash des geprüften Originals
-bleibt unverändert.
+Der [Plan vom 31.08.2026](../plans/2026-08-31-web-workflow-evidenzvertrag-plan.md)
+mit fünf Quellen, 48 Lessons und damaligen Worker-/Review-Receipts bleibt
+unverändert. `evals/run-video-evidence-check.mjs` prüft dessen Ledger und
+Runtime-Provenance separat. Historische Kandidaten-/Promotionfelder und feste
+Phasen sind keine zusätzlichen Anforderungen an den heutigen Auftrag.

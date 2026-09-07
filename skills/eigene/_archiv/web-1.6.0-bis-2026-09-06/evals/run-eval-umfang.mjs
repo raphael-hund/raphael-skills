@@ -45,6 +45,8 @@ const HIER = path.dirname(fileURLToPath(import.meta.url));
 
 // Evals, die hier NICHT mitlaufen, mit Grund. Ohne diese Liste sieht "alle
 // geprueft" nach Vollstaendigkeit aus, obwohl drei fehlen.
+// run-verweise-check misst einen veränderlichen Datenbestand. Sein Minimum 1
+// verhindert eine leere Messung; Regressionen der Auflösung prüft run-kanon.
 const AUSGENOMMEN = {
   'run-sabotage.mjs': 'beschaedigt Pruefer (gemessen 31.07.2026: 3:31) — eigener Lauf',
   'run-eval-umfang.mjs': 'diese Datei',

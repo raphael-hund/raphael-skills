@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
- * run-video-evidence-check.mjs — Video-Handoff, Source-to-Decision-Ledger
- * und Runtime-Provenance fail-closed prüfen.
+ * run-video-evidence-check.mjs — aktuelle Web-1.2-Dokumentstruktur sowie
+ * historisches Source-to-Decision-Ledger und Runtime-Provenance prüfen.
  *
- * Der Standardlauf liest den persistierten Plan und die echten U5-Artefakte.
- * Negative Szenarien verändern ausschließlich temporäre Plankopien.
+ * Das ist kein Website- oder Modellverhaltenstest. Der Standardlauf liest den
+ * persistierten historischen Plan und die echten U5-Artefakte. Negative
+ * Szenarien verändern ausschließlich temporäre Plankopien.
  */
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
@@ -17,8 +18,10 @@ const WEB = path.join(HIER, '..');
 const PLAN_DEFAULT = '/root/raphael-skills/skills/eigene/web/plans/2026-08-31-web-workflow-evidenzvertrag-plan.md';
 const WATCH = '/root/.claude/skills/watch-video/SKILL.md';
 const BRAIN = '/root/raphael-brain';
+const SKILL = path.join(WEB, 'SKILL.md');
 const CONTRACT = path.join(WEB, 'references', 'video-evidence-contract.md');
-const LOAD = path.join(WEB, 'references', 'load-graph.md');
+const INSPIRATIONS = path.join(WEB, 'references', 'inspirations-quellen.md');
+const QA = path.join(WEB, 'references', 'qa-faecher.md');
 const TEMPLATE = path.join(WEB, 'references', 'muster-bibliothek', '_template.md');
 const INDEX = path.join(WEB, 'references', 'muster-bibliothek', 'INDEX.md');
 const CANDIDATE = path.join(BRAIN, 'wiki', '_candidates', '2026-08-31-webskill-workflow-lehren-aus-fuenf-videos.md');
@@ -31,9 +34,6 @@ const VIDEOS = [
   { id: 'Ysr7oNDajJI', count: 8, end: '12:55' },
 ];
 const DISPOSITIONS = new Set(['ADOPT', 'CONFIRM_EXISTING', 'REJECT', 'DEFER']);
-const PHASEN = new Set(['Strategy/IA', 'Copy/Visual System', 'Basisbuild', 'Motion-Polish', 'QA', 'visual-aaa']);
-const CONFIDENCE = new Set(['high', 'medium', 'low', 'uncertain']);
-const PROMOTION_STATUS = new Set(['kandidat', 'bestätigt', 'verbindlich']);
 
 let fehler = 0;
 let geprueft = 0;
@@ -240,89 +240,6 @@ function provenancePruefen(plan) {
   return errors;
 }
 
-function zeitSekunden(value) {
-  const match = /^(\d{1,3}):([0-5]\d)$/.exec(String(value || '').trim());
-  return match ? Number(match[1]) * 60 + Number(match[2]) : null;
-}
-
-function timecodeBereiche(value) {
-  return [...String(value || '').matchAll(/(\d{1,3}:[0-5]\d)\s*[–-]\s*(\d{1,3}:[0-5]\d)/g)]
-    .map((match) => [zeitSekunden(match[1]), zeitSekunden(match[2])])
-    .filter(([start, end]) => start != null && end != null && end > start);
-}
-
-function vorhanden(value) {
-  return Array.isArray(value) ? value.length > 0 : String(value ?? '').trim().length > 0;
-}
-
-function handoffFehler(record, promotion = false) {
-  const errors = [];
-  for (const key of ['video_id', 'title', 'source', 'source_family', 'transcript_method', 'transcript_start', 'transcript_end', 'frames', 'lessons', 'status']) {
-    if (!(key in record) || record[key] === '' || record[key] == null) errors.push(`${key} fehlt`);
-  }
-  try {
-    const source = new URL(record.source);
-    if (!['http:', 'https:'].includes(source.protocol)) errors.push('Source-URL ungültig');
-  } catch {
-    errors.push('Source-URL ungültig');
-  }
-  const transcriptStart = zeitSekunden(record.transcript_start);
-  const transcriptEnd = zeitSekunden(record.transcript_end);
-  if (transcriptStart == null || transcriptEnd == null || transcriptEnd <= transcriptStart) {
-    errors.push('Transcript-Anfang/Ende ungültig');
-  }
-  if (!PROMOTION_STATUS.has(record.status)) errors.push('Status ungültig');
-
-  const validFrames = [];
-  if (!Array.isArray(record.frames)) {
-    errors.push('Frame-Belege ungültig');
-  } else {
-    for (const frame of record.frames) {
-      const frameTime = frame && typeof frame === 'object' ? zeitSekunden(frame.timecode) : null;
-      if (frameTime == null || !path.isAbsolute(String(frame?.path || ''))) {
-        errors.push('Frame-Beleg braucht Zeitmarke und absoluten Pfad');
-      } else {
-        validFrames.push({ ...frame, seconds: frameTime });
-      }
-    }
-  }
-
-  if (!Array.isArray(record.lessons) || !record.lessons.length) errors.push('Lessons fehlen');
-  for (const lesson of record.lessons || []) {
-    for (const key of ['timecode', 'lesson', 'phase', 'caveat', 'confidence']) {
-      if (!String(lesson[key] || '').trim()) errors.push(`Lesson ${key} fehlt`);
-    }
-    const ranges = timecodeBereiche(lesson.timecode);
-    if (!ranges.length) errors.push('Lesson-Timecode ungültig');
-    if (lesson.phase && !PHASEN.has(lesson.phase)) errors.push(`Lesson phase ungültig: ${lesson.phase}`);
-    if (lesson.confidence && !CONFIDENCE.has(lesson.confidence)) errors.push(`Lesson confidence ungültig: ${lesson.confidence}`);
-    if (lesson.visual_claim) {
-      const matchingFrame = validFrames.some((frame) => ranges.some(([start, end]) => frame.seconds >= start && frame.seconds <= end));
-      if (!matchingFrame) errors.push('visueller Claim ohne Frame-Beleg am behaupteten Zeitpunkt');
-    }
-  }
-
-  if (promotion && ['bestätigt', 'verbindlich'].includes(record.status)) {
-    const receipt = record.skeptic_receipt;
-    const receiptComplete = receipt && typeof receipt === 'object'
-      && ['family', 'date', 'source_hash', 'findings', 'limitations'].every((key) => vorhanden(receipt[key]));
-    const sameFamily = receiptComplete
-      && String(receipt.family).toLowerCase() === String(record.source_family).toLowerCase();
-    if (!receiptComplete || sameFamily) errors.push('vollständiger fremdfamiliärer Skeptiker-Receipt fehlt');
-  }
-  if (record.status === 'verbindlich') {
-    const receipt = record.promotion_receipt;
-    if (!receipt || typeof receipt !== 'object'
-      || !['candidate_id', 'skeptic_receipt_id', 'target_revision', 'gate'].every((key) => vorhanden(receipt[key]))) {
-      errors.push('vollständiger Promotion-Receipt fehlt');
-    }
-    if (/perfect|score|modell.?rang|model ranking/i.test(record.claim_type || '') && !record.benchmark_receipt) {
-      errors.push('Creator-Score oder Modell-Rangfolge ohne Benchmark darf nicht verbindlich sein');
-    }
-  }
-  return errors;
-}
-
 function planZelleMutieren(plan, lessonId, index, value) {
   return plan.split('\n').map((line) => {
     if (!line.startsWith(`| ${lessonId} |`)) return line;
@@ -340,7 +257,7 @@ function temporaereMutation(plan, name, mutate, expectedFragment = '') {
     const changed = fs.readFileSync(copy, 'utf8');
     const errors = [...ledgerPruefen(changed), ...provenancePruefen(changed)];
     const ok = errors.length > 0 && (!expectedFragment || errors.some((error) => error.includes(expectedFragment)));
-    zeile(ok, `Temp-Plan-Mutation wird rot: ${name}`, errors[0] || 'Mutation blieb unerkannt');
+    zeile(ok, `Historische Temp-Plan-Mutation wird rot: ${name}`, errors[0] || 'Mutation blieb unerkannt');
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
@@ -369,76 +286,45 @@ if (planOnly) {
   process.exit(planErrors.length ? 1 : 0);
 }
 
-console.log('\nVideo-Evidence-, Ledger- und Provenance-Vertrag\n');
-zeile(planErrors.length === 0, 'Persistierter Plan besteht Ledger und semantische Runtime-Provenance', planErrors.slice(0, 3).join(' | '));
-
-const valid = {
-  video_id: 'fixture-video', title: 'Fixture', source: 'https://example.test/video', source_family: 'creator',
-  transcript_method: 'captions-plus-frame-check', transcript_start: '00:00', transcript_end: '10:00',
-  frames: [{ timecode: '03:10', path: '/tmp/watch-video/frame-001.jpg' }], status: 'bestätigt',
-  skeptic_receipt: {
-    id: 'skeptic-1', family: 'grok', date: '2026-09-01', source_hash: 'sha256:fixture',
-    findings: ['Frame und Transcript gebunden'], limitations: ['Keine Conversion-Messung'],
-  },
-  lessons: [{ timecode: '03:00–03:20', lesson: 'Basis vor Motion', phase: 'Basisbuild', caveat: 'Creator-Demo', confidence: 'medium', visual_claim: true }],
-};
-zeile(handoffFehler(valid, true).length === 0, 'Vollständiger Web-Evidence-Handoff kann bestätigt werden');
-for (const [label, mutate, marker] of [
-  ['fehlende Video-ID', (x) => { delete x.video_id; }, 'video_id'],
-  ['fehlende Transcript-Endzeit', (x) => { delete x.transcript_end; }, 'transcript_end'],
-  ['fehlendes Lesson-Feld', (x) => { delete x.lessons[0].lesson; }, 'Lesson lesson'],
-  ['fehlende Lesson-Zeitmarke', (x) => { x.lessons[0].timecode = ''; }, 'timecode'],
-  ['fehlendes Caveat', (x) => { x.lessons[0].caveat = ''; }, 'caveat'],
-  ['fehlender Promotion-Status', (x) => { delete x.status; }, 'status'],
-]) {
-  const fixture = structuredClone(valid); mutate(fixture);
-  const errors = handoffFehler(fixture, true);
-  zeile(errors.some((error) => error.includes(marker)), `${label} verhindert Promotion`, errors.join(' | '));
-}
-{
-  const fixture = structuredClone(valid); fixture.frames = [];
-  const errors = handoffFehler(fixture, true);
-  zeile(errors.some((error) => /Frame-Beleg/.test(error)), 'Rein transkriptbasierter visueller Claim bleibt unbestätigt', errors.join(' | '));
-}
-{
-  const fixture = structuredClone(valid); delete fixture.frames[0].path;
-  const errors = handoffFehler(fixture, true);
-  zeile(errors.some((error) => /absoluten Pfad/.test(error)), 'Frame-Beleg ohne Pfad verhindert Promotion', errors.join(' | '));
-}
-{
-  const fixture = structuredClone(valid); fixture.skeptic_receipt.family = fixture.source_family;
-  const errors = handoffFehler(fixture, true);
-  zeile(errors.some((error) => /fremdfamiliär/.test(error)), 'Gleichfamiliärer Skeptiker verhindert Promotion', errors.join(' | '));
-}
-for (const claimType of ['perfect creator score', 'Modell-Rangfolge']) {
-  const fixture = structuredClone(valid); fixture.status = 'verbindlich'; fixture.claim_type = claimType; delete fixture.benchmark_receipt;
-  const errors = handoffFehler(fixture, true);
-  zeile(errors.some((error) => /Rangfolge|Creator-Score/.test(error)), `${claimType} wird ohne Benchmark nicht verbindlich`, errors.join(' | '));
-}
-
+console.log('\nAktuelle Web-1.2-Dokumentstruktur (kein Website- oder Modellverhalten)\n');
+const skill = lese(SKILL);
 const contract = lese(CONTRACT);
-zeile(Boolean(contract) && /kandidat\s*→\s*bestätigt\s*→\s*verbindlich/i.test(contract)
-  && /Skeptiker/i.test(contract) && /Frame-Beleg/i.test(contract),
-'Video-Evidence-Vertrag beschreibt Schema, Promotion-Pipeline und Skeptiker-Pflicht');
+zeile(Boolean(contract) && /Quelle und Aussage trennen/.test(contract)
+  && /- \*\*Quelle:\*\*/.test(contract) && /- \*\*Coverage:\*\*/.test(contract)
+  && /Ein Frame zeigt einen Zustand, eine Bildfolge\s+einen beobachteten Verlauf, das Transkript die Erklärung des Sprechers/.test(contract)
+  && /\*\*Coverage:\*\*[\s\S]{0,240}tatsächlich gesehene Bildfolgen mit Zeitmarken und lokalen Belegen/.test(contract),
+'Aktuelle Dokumentstruktur: Quelle, Coverage und passende Beobachtungsbelege sind getrennt');
+zeile(Boolean(contract)
+  && /Audio\/Transkript kann `vorhanden`, `fehlt`, `stumm` oder `nicht geprüft` sein/.test(contract)
+  && /Fehlende Sprache blockiert eine belegte rein visuelle Aussage nicht/.test(contract),
+'Aktuelle Dokumentstruktur: belegte visuelle Evidenz ist ohne Captions zulässig');
+const inspirations = lese(INSPIRATIONS);
+zeile(Boolean(skill) && skill.includes('[video-evidence-contract.md](references/video-evidence-contract.md)')
+  && skill.includes('[inspirations-quellen.md](references/inspirations-quellen.md)')
+  && contract.includes('`inspirations-quellen.md` führt von der untersuchten Eigenschaft zum Einbau')
+  && inspirations.includes('**Quelle/konkretes Item → übernommene Eigenschaft → Einsatzort → Prüfung.**'),
+'Aktuelle Dokumentstruktur: Web routet die untersuchte Quelle zu Einsatzort und Prüfung');
+const qa = lese(QA);
+zeile(Boolean(qa) && /Eintritt, Wechsel und\s+Austritt/.test(qa) && /harte Bildkanten/.test(qa)
+  && /schmaler Touch-Ansicht\s+die gewählte mobile Variante bedienen/.test(qa)
+  && /Bei einer Naht die Stelle dichter erfassen und nach dem\s+Fix erneut prüfen/.test(qa),
+'Aktuelle Dokumentstruktur: Scroll-Nähte und die mobile Variante haben gezielte QA');
 const watch = lese(WATCH);
-const watchFields = ['Video-ID', 'Titel', 'Quelle', 'Transcript-Methode', 'Anfang', 'Ende', 'Frame-Belege', 'Zeitmarken', 'Lesson', 'betroffene Phase', 'Caveat', 'Confidence'];
-zeile(watchFields.every((field) => watch.includes(field)), 'watch-video enthält den optionalen vollständigen Web-Evidence-Handoff', watchFields.filter((field) => !watch.includes(field)).join(', '));
+const watchContractPointer = '/root/raphael-skills/skills/eigene/web/references/video-evidence-contract.md';
+zeile(Boolean(watch) && watch.includes(watchContractPointer),
+'Aktuelle Dokumentstruktur: watch-video verweist den Web-Handoff an den Web-Video-Vertrag',
+watch ? `Pointer fehlt: ${watchContractPointer}` : `Quelle nicht lesbar: ${WATCH}`);
 
-const load = lese(LOAD);
-const phases = ['Strategy/IA', 'Copy/Visual System', 'statischer Basisbuild', 'optionaler Motion-Polish', 'QA', '`visual-aaa`'];
-let cursor = -1;
-const ordered = phases.every((phase) => { const next = load.indexOf(phase, cursor + 1); cursor = next; return next >= 0; });
-zeile(ordered && /keine Vorratsloads/i.test(load) && /offene Entscheidung/i.test(load)
-  && load.includes('Skill `design`') && load.includes('Skill `copywriting`') && load.includes('Skill `visual-aaa`'),
-'Load-Graph bindet Spezialisten an die sechs Phasen und verbietet Vorratsloads');
+console.log('\nHistorische Fünf-Video-Artefakte und Ledger-/Runtime-Provenance (kein aktuelles Verhalten)\n');
+zeile(planErrors.length === 0, 'Historischer persistierter Plan besteht Ledger und Runtime-Provenance', planErrors.slice(0, 3).join(' | '));
 
 const template = lese(TEMPLATE);
 const index = lese(INDEX);
 zeile(/\| Status \| `?kandidat/i.test(template) && /Raphael-Urteil/.test(template)
   && /ohne Raphael-Urteil[\s\S]{0,100}kandidat/i.test(template),
-'Muster-Template hält einen Case ohne Raphael-Urteil auf kandidat');
+'Historisches Muster-Template hält einen Case ohne Raphael-Urteil auf kandidat');
 zeile(/ohne Raphael-Urteil[\s\S]{0,120}kandidat/i.test(index) && /Frame-Beleg/i.test(index),
-'Muster-INDEX beschreibt Kandidatenstatus und Frame-Belegschwelle');
+'Historischer Muster-INDEX beschreibt Kandidatenstatus und Frame-Belegschwelle');
 
 for (const video of VIDEOS) {
   const rawPath = path.join(BRAIN, 'raw', `bookmark-2026-08-31-webskill-video-${video.id}.md`);
@@ -446,12 +332,12 @@ for (const video of VIDEOS) {
   zeile(Boolean(raw) && /status:\s*candidate/.test(raw) && raw.includes(video.id)
     && raw.includes(`https://youtu.be/${video.id}`) && raw.includes(`00:00–${video.end}`)
     && /## Kernlehren/.test(raw) && /## Caveats/.test(raw) && /Skeptiker[\s\S]{0,100}ausstehend/i.test(raw),
-  `Brain-Raw ${video.id}: Quelle, Coverage, Kernlehren, Caveats und Kandidatenstatus`);
+  `Historisches Brain-Raw ${video.id}: Quelle, Coverage, Kernlehren, Caveats und Kandidatenstatus`);
 }
 const candidate = lese(CANDIDATE);
 zeile(Boolean(candidate) && /status:\s*candidate/.test(candidate) && VIDEOS.every((video) => candidate.includes(video.id))
   && /Skeptiker[\s\S]{0,100}ausstehend/i.test(candidate) && /keine (?:Promotion|Änderung).*stil-regeln/i.test(candidate),
-'Brain-Kandidat bindet alle fünf Quellen und bleibt bis zum Skeptiker-Receipt kandidat');
+'Historischer Brain-Kandidat bindet alle fünf Quellen und seinen damaligen Kandidatenstatus');
 
 for (const [name, mutate, fragment] of [
   ['eingefrorenes Video fehlt', (p) => p.replace('#### WCrnS09vpfo', '#### VIDEO-ID-FEHLT'), 'WCrnS09vpfo'],
@@ -474,9 +360,9 @@ for (const [name, mutate, fragment] of [
 ]) temporaereMutation(plan, name, mutate, fragment);
 
 const planSha256After = createHash('sha256').update(fs.readFileSync(planPath, 'utf8')).digest('hex');
-zeile(planSha256After === planSha256, 'Temp-Plan-Mutationen lassen das geprüfte Original unverändert',
+zeile(planSha256After === planSha256, 'Historische Temp-Plan-Mutationen lassen das geprüfte Original unverändert',
   planSha256After === planSha256 ? '' : `${planSha256} → ${planSha256After}`);
 
-console.log(`\n${geprueft - fehler}/${geprueft} wie erwartet.`);
+console.log(`\n${geprueft - fehler}/${geprueft} Dokument-/Struktur- und historische Integritätschecks wie erwartet.`);
 if (fehler) process.exit(1);
-console.log('Video-Evidence, Ledger und Runtime-Provenance sitzen.');
+console.log('Web-1.2-Dokumentstruktur und historische Fünf-Video-Integrität sind konsistent; Website- und Modellverhalten wurden nicht geprüft.');

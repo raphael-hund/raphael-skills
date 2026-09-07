@@ -12,7 +12,7 @@
  *   falsches Gruen — jedes leere oder unvollstaendige Manifest muss reissen
  *   falsches Rot   — ein echter, vollstaendiger Sweep muss durchgehen
  *
- * Braucht weder Browser noch Server.
+ * Manifest-Faelle ohne Browser; Capture-/State-Faelle mit eigenem lokalen Server.
  *
  *   node evals/run-sweep-check.mjs
  *
@@ -22,6 +22,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -263,41 +264,6 @@ sag('');
   const pathN = await import('node:path');
   const HIER_ = pathN.dirname(new URL(import.meta.url).pathname);
   const SWEEP = pathN.join(HIER_, '..', 'scripts', 'shot-sweep.mjs');
-  const quelleSweep = fsN.readFileSync(SWEEP, 'utf8');
-
-  sag('\nU4B State-Capture — Quelle:\n');
-  const srcChecks = [
-    [/capture_profile/.test(quelleSweep) && /static:\s*STATIC/.test(quelleSweep)
-      && /states:\s*STATES/.test(quelleSweep) && /mobile:\s*MOBILE/.test(quelleSweep),
-      'capture_profile ehrlich fuer --static/--states/--mobile'],
-    [/web\/shot-sweep\/v2/.test(quelleSweep) && /run_id/.test(quelleSweep)
-      && /build_revision/.test(quelleSweep),
-      'Schema v2 plus run_id/build_revision'],
-    [/state-focus/.test(quelleSweep) && /open-expanded/.test(quelleSweep)
-      && /state-hover/.test(quelleSweep),
-      'getrennte hover/focus/open-expanded Receipts'],
-    [/page\.route\s*\(/.test(quelleSweep) && /fulfill/.test(quelleSweep)
-      && /assert_loading|loading/.test(quelleSweep),
-      'Loading per Intercept-Hold, dann Terminalcapture'],
-    [/setup failed/.test(quelleSweep) && /state_matrix/.test(quelleSweep),
-      'Setup-Fehler landet in failed, nicht als PASS'],
-    [/keyboard/.test(quelleSweep) && /axe/.test(quelleSweep)
-      && /playwright_ref/.test(quelleSweep) && /aria/.test(quelleSweep),
-      'State-Receipts tragen Keyboard/ARIA/Axe oder Playwright-Ref'],
-    [/nur Hover/.test(quelleSweep),
-      'states=true nur Hover ist FAIL'],
-    [/FRISCH geladener Seite/.test(quelleSweep),
-      'Reload vor Klickpass bleibt'],
-    [/animations:\s*['"]disabled['"]/.test(quelleSweep)
-      && !/fullPage:\s*true/.test(quelleSweep),
-      'animations disabled, kein fullPage'],
-  ];
-  for (const [ok, was] of srcChecks) {
-    gezaehlt += 1;
-    if (!ok) rot++;
-    sag(`  [${ok ? 'OK' : 'ROT'}]   ${was}`);
-  }
-
   sag('\nU4B State-Capture — echter Sweep gegen Fixture:\n');
   const PORT_S = Number(process.env.STATE_SWEEP_PORT || 5491);
   const ordner = fsN.mkdtempSync(pathN.join(osN.tmpdir(), 'sweep-states-'));
@@ -362,8 +328,13 @@ document.getElementById('contact').addEventListener('submit',async e=>{
 </script>
 </body></html>`);
   const bookingReceipt = pathN.join(ordner, 'booking-receipt.json');
+  const bookingEvidence = pathN.join(ordner, 'booking-test.log');
+  fsN.writeFileSync(bookingEvidence, 'Isolierte Receipt-Fixture; kein Produktbeleg.\n');
   fsN.writeFileSync(bookingReceipt, JSON.stringify({
+    route: '/', viewport: 'desktop', target: 'booking', state: 'open-expanded', status: 'PASS',
+    run_id: 'u4b-run', build_revision: 'rev-u4b', base_url: `http://127.0.0.1:${PORT_S}`,
     test: 'tests/booking.spec.ts',
+    evidence: [{ path: bookingEvidence, sha256: createHash('sha256').update(fsN.readFileSync(bookingEvidence)).digest('hex') }],
     shots: ['booking-open.png'],
     axe: { violations: 0 },
     keyboard: ['Tab', 'Enter'],
@@ -374,6 +345,11 @@ document.getElementById('contact').addEventListener('submit',async e=>{
   const specPath = pathN.join(ordner, 'state-spec.json');
   fsN.writeFileSync(specPath, JSON.stringify({
     schema: 'web/state-spec/v1',
+    targets: [
+      { id: 'action-a', selector: '#aktion-a', states: ['hover', 'focus'] },
+      { id: 'action-b', selector: '#aktion-b', states: ['focus'] },
+      { id: 'menu', selector: '#menubtn', states: ['open-expanded'] },
+    ],
     scenarios: [
       {
         id: 'contact-submit',
@@ -382,6 +358,7 @@ document.getElementById('contact').addEventListener('submit',async e=>{
         prepare: { selector: 'input[name=name]', fill: 'Ada' },
         trigger: { selector: 'form#contact button[type=submit]', action: 'click' },
         hold: { url: '**/api/submit' },
+        request: { method: 'POST', post_data: '{}', count: 1 },
         assert_loading: { selector: '#loading:not([hidden])' },
         success: { status: 200, body: '{"ok":true}', assert: { selector: '[role=status]:not([hidden])' } },
         error: { status: 400, body: '{"ok":false}', assert: { selector: '[role=alert]:not([hidden])' } },
@@ -391,7 +368,7 @@ document.getElementById('contact').addEventListener('submit',async e=>{
         route: '/',
         states: ['empty'],
         setup: { evaluate: "document.getElementById('items').innerHTML=''" },
-        assert: { selector: '#items:empty' },
+        assert: { selector: '#items:empty', state: 'attached' },
       },
       {
         id: 'broken-setup',
@@ -402,7 +379,7 @@ document.getElementById('contact').addEventListener('submit',async e=>{
       },
     ],
     playwright_refs: [
-      { id: 'booking-complex', test: 'tests/booking.spec.ts', receipt: bookingReceipt },
+      { id: 'booking-complex', route: '/', viewport: 'desktop', target: 'booking', state: 'open-expanded', test: 'tests/booking.spec.ts', receipt: bookingReceipt },
     ],
     not_applicable: [],
   }));
@@ -450,7 +427,7 @@ document.getElementById('contact').addEventListener('submit',async e=>{
         '--base', `http://127.0.0.1:${PORT_S}`,
         '--out', out,
         '--routes', '/',
-        '--static', '--states', '--mobile', '--no-interact',
+        '--static', '--states', '--mobile',
         '--run-id', 'u4b-run',
         '--build-revision', 'rev-u4b',
         '--state-spec', specPath,
@@ -516,6 +493,8 @@ document.getElementById('contact').addEventListener('submit',async e=>{
       const brokenShot = shots.some((s) => /broken-setup/.test(JSON.stringify(s)));
       live(!brokenShot, 'Setup-Fehler erzeugt keinen Success-Shot');
       const captured = matrix.captured || [];
+      live(captured.some(c => c.viewport === 'mobile' && c.target === 'contact-submit' && c.state === 'success'),
+        'mobiler Erfolg stammt von mobilem Target-State');
       live(captured.some((c) => c.playwright_ref || /booking/.test(JSON.stringify(c))),
         'Playwright-Ref als captured', JSON.stringify(captured.filter((c) => c.playwright_ref)).slice(0, 200));
       const sample = shots.find((s) => /focus|open-expanded|loading/.test(String(s.state || s.kind || '')));
@@ -529,11 +508,86 @@ document.getElementById('contact').addEventListener('submit',async e=>{
         && !kinds.some((k) => /focus|open|loading|success|error|empty/.test(String(k || '')));
       live(!hoverOnly && profile.states === true,
         'states=true ist nicht nur Hover', kinds.slice(0, 20).join(','));
-      live(sweepCode === 1 || sweepCode === 0,
-        'Sweep endet mit Exit 0 oder 1 (nicht 2)', `Exit ${sweepCode}`);
+      live(sweepCode === 1 && man?.status === 'FAIL',
+        'kaputtes Setup verhindert erfolgreiches Capture-Receipt', `Exit ${sweepCode}`);
     }
   }
   try { fsN.rmSync(ordner, { recursive: true, force: true }); } catch { /* tmp */ }
+}
+
+// Explizite Hover-Ziele und echte Scroll-Abdeckung duerfen nicht still fehlen.
+{
+  const { createServer } = await import('node:http');
+  const { spawn } = await import('node:child_process');
+  const SWEEP = path.join(HIER, '..', 'scripts', 'shot-sweep.mjs');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sweep-coverage-'));
+  const server = createServer((req, res) => {
+    const status = req.url === '/server-error' ? 500 : req.url === '/not-found' ? 404 : 200;
+    res.writeHead(status, { 'content-type': 'text/html; charset=utf-8' });
+    res.end(`<!doctype html><html lang="de"><head><meta charset="utf-8">
+      <title>${status === 404 ? 'Seite nicht gefunden' : 'Capture-Test'}</title>
+      <style>body{margin:0;font:20px sans-serif}section{min-height:1100px;padding:24px}
+      #hidden{display:none}button:hover{background:#163632;color:white}</style></head><body>
+      <section><h1>Lokale Capture-Fixture</h1><p>Erreichbare und fehlende Ziele getrennt pruefen.</p>
+      <button id="cta">Weiter</button><button id="hidden">Versteckt</button>
+      <button class="repeated">A</button><button class="repeated">B</button></section>
+      <section><h2>Mittlere Sektion</h2></section><section><h2>Letzte Sektion</h2></section>
+      ${req.url === '/locked' ? '<script>window.scrollTo=()=>{};</script>' : ''}
+      ${req.url === '/jump' ? '<script>const scroll=window.scrollTo.bind(window);window.scrollTo=(v,y)=>scroll(0,(typeof v==="object"?v.top:y)>0?document.documentElement.scrollHeight:0);</script>' : ''}
+      </body></html>`);
+  });
+  const cases = [
+    { name: 'fehlendes Hover-Ziel', route: '/', args: ['--hover', '#absent'], code: 1, error: /hover.*found 0/ },
+    { name: 'verdecktes Hover-Ziel', route: '/', args: ['--hover', '#hidden'], code: 1, error: /hover #hidden/ },
+    { name: 'mehrdeutiges Hover-Ziel', route: '/', args: ['--hover', '.repeated'], code: 1, error: /hover.*found 2/ },
+    { name: 'Scroll-Lock vor Seitenende', route: '/locked', args: [], code: 1, error: /scroll coverage incomplete/ },
+    { name: 'Sprung ueberspringt mittlere Inhalte', route: '/jump', args: [], code: 1, error: /scroll coverage gap/ },
+    { name: 'allow-404 verbirgt keinen HTTP 500', route: '/server-error', args: ['--allow-404'], code: 1, error: /HTTP 500/ },
+    { name: 'allow-404 verbirgt keinen Hover-Fehler', route: '/not-found', args: ['--allow-404', '--hover', '#absent'], code: 1, error: /hover.*found 0/ },
+    { name: 'beabsichtigte 404 laesst sich aufnehmen', route: '/not-found', args: ['--allow-404'], code: 0 },
+    { name: 'eindeutiges Hover-Ziel und ganze Seite', route: '/', args: ['--hover', '#cta', '--mobile'], code: 0, hover: true },
+    { name: 'no-interact und hover widersprechen sich', route: '/', args: ['--hover', '#cta', '--no-interact'], code: 2 },
+  ];
+  try {
+    await new Promise((resolve, reject) => {
+      server.once('error', reject);
+      server.listen(0, '127.0.0.1', resolve);
+    });
+    const base = `http://127.0.0.1:${server.address().port}`;
+    for (const [index, c] of cases.entries()) {
+      const out = path.join(dir, String(index));
+      const child = spawn('node', [SWEEP, '--base', base, '--routes', c.route, '--out', out, ...c.args],
+        { stdio: ['ignore', 'pipe', 'pipe'] });
+      let log = '';
+      child.stdout.on('data', data => { log += data; });
+      child.stderr.on('data', data => { log += data; });
+      const timer = setTimeout(() => child.kill('SIGTERM'), 60000);
+      let code;
+      try {
+        code = await new Promise((resolve, reject) => {
+          child.once('error', reject);
+          child.once('exit', resolve);
+        });
+      } finally { clearTimeout(timer); }
+      const manifestPath = path.join(out, 'manifest.json');
+      const man = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath, 'utf8')) : null;
+      const routes = man?.routes || [];
+      let ok = code === c.code;
+      if (c.code === 1) ok &&= man?.status === 'FAIL' && routes.some(r => c.error.test(r.error || ''));
+      if (c.code === 0) ok &&= man?.status === 'PASS' && routes.length === (c.hover ? 2 : 1)
+        && routes.every(r => r.scroll_coverage?.status === 'PASS' && r.shots.length
+          && r.scroll_coverage.captured_to >= r.scroll_coverage.doc_height
+          && (!c.hover || (r.hover_checks?.length === 1 && r.hover_checks[0].status === 'PASS'
+            && r.shots.some(s => s.kind === 'hover'))));
+      gezaehlt++;
+      if (!ok) rot++;
+      sag(`  [${ok ? 'OK' : 'ROT'}] ${c.name}`);
+      if (!ok) sag(`       Exit ${code}, manifest=${man?.status}; ${log.slice(-1600)}`);
+    }
+  } finally {
+    await new Promise(resolve => server.close(resolve));
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 }
 
 // Selbst zaehlen statt Listen zu addieren.

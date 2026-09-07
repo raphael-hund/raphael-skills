@@ -86,7 +86,7 @@ Lizenz je Galerie: nur Inspiration.
 Exit: 0 ok · 1 nichts gefunden · 2 Bedienfehler · 3 HOST_UNAVAILABLE (Kanal in der Meldung).
 
 Lizenz: Refero, Navbar Gallery, 21st = Inspiration/Analyse (Muster, Tokens, Struktur),
-keine Layout-/Asset-Kopie. Magic UI (MIT) und React Bits (MIT, Registry) = einzelne
+keine Layout-/Asset-Kopie. Magic UI (MIT) und React Bits (MIT + Commons Clause, Registry) = einzelne
 Komponente übernehmbar, danach Werkzeugtabelle in art-direction.md + Router-Anker
 #sections/#motion/#background, wie tool-usecase-router.md verlangt.
 Lizenz: alle Galerien nur Inspiration/Analyse; Screenshots nur intern (Design-DNA, PRUEFGEGEN), nie in Kundenauslieferung.`;

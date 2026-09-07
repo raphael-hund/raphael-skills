@@ -1,23 +1,67 @@
 # Zugangskarte — wie der Agent eine Quelle wirklich nutzt
 
-**Wofür:** Raphael nennt eine Site oder Bibliothek. Der Agent nimmt den
-**einen** Weg in der Tabelle, nicht 160 CLIs und nicht die ganze Galerie.
-Einzelzugriff bleibt `resource-access.mjs show`/`open`. Tiefzugriff nur über
-die Zeile hier. Doku-Schwester: `inspirations-quellen.md` (Look),
-`stock-bilder.md` (Fotos), `tool-usecase-router.md` (Default vor Alternative).
+**Wofür:** Der konkrete Bedarf bestimmt, welche benannte Quelle der Agent
+untersucht und verwendet. [inspirations-quellen.md](inspirations-quellen.md)
+beschreibt den Weg vom Fund zum belegten Einsatz im Projekt; der
+[Router](tool-usecase-router.md) ordnet technische Bedarfe zu.
 
-**Deckel:** max. 3 Look-Referenzen, 1 Komponente pro Bedarf, 6 Stock-Previews.
-PNG/`shot` gilt erst nach **Read** durch ein Kritik-Leaf.
+Die Scripts liegen unter `/root/raphael-skills/skills/eigene/web/scripts/`.
+Die verkürzten Aufrufe unten beziehen sich auf diesen absoluten Pfad. Vor
+Ausführung `--help` für aktuelle Flags nutzen. `inspiration.mjs` nimmt einen
+Quellenschlüssel, `komponenten.mjs` einen Namen oder Namespace aus `libs`.
+Astra kann diese Shellwege auch ohne native MCP-Tools nutzen; der Root übernimmt
+Browser-/Shellaktionen für Leaves, denen diese Werkzeuge fehlen.
 
-**Arbeitsverzeichnis:** alle `node scripts/<x>.mjs`-Aufrufe hier gelten mit
-`cd /root/raphael-skills/skills/eigene/web` (oder absolutem Skriptpfad).
-`*-pp-cli` liegen in `~/.local/bin` (Leaf-Shell: `export PATH=$HOME/.local/bin:$PATH`). Erstes Argument von `inspiration.mjs`
-und `komponenten.mjs search` ist der **Schlüssel**, nicht die Domain:
-`--help` bzw. `komponenten.mjs libs` (Spalte `name`, Registry-Namespaces
-mit `@`) nennen ihn; Domain → Schlüssel steht in der Quellenwege-Tabelle in
-Klammern.
+Quellenmenge folgt der offenen Entscheidung. Bilder muss der tatsächlich
+sehfähige Owner/Agent ansehen; eine feste Kritik-Leaf-Pflicht gibt es nicht.
+`open` liest Text, `show` nur Metadaten. Ein konkreter anderer erfolgreicher
+Quellenzugriff braucht kein zusätzliches Homepage-`open`.
 
-## Live-Zugänge (geprüft 04.09.2026)
+## Raphaels Quellen vom 05.09.2026
+
+32 eindeutige Ziele einschließlich GetLayers und Godly (`godly.design`, Nachtrag
+06.09.2026); Mobbin einmal, alleinstehende `http://` ohne Ziel verworfen.
+Diese Quellen bilden den bevorzugten Pool bei passenden neuen Gestaltungs- und
+Komponentenentscheidungen. „Verfügbar“ bedeutet hier einen benannten Zugang;
+Aktualität, Anmeldung, Lizenz und tatsächlicher Abruf werden im jeweiligen Lauf
+geprüft. Die Live-Befunde vom 05.09.2026 sind Momentaufnahmen.
+
+| Quelle | Bedarf und konkreter Zugriff | Grenze vor Anwendung |
+|---|---|---|
+| [GetLayers](https://www.getlayers.ai/) | Website-/Landing-Komposition: `inspiration.mjs getlayers list --grep "<thema>"` → `get <slug>`; zurückgegebene Preview ansehen. Einbindung nach `inspirations-quellen.md` | Galerie-Preview belegt Gestaltung; Interaktion am laufenden Beispiel prüfen, Nutzungsrechte vor Übernahme |
+| [Godly](https://godly.design/) | Website-/Landing-Inspiration: `resource-access.mjs open "Godly"`; konkretes Werk im Browser öffnen und ansehen | `godly.design` ist der gewünschte Zugang; der bestehende `recent`-Adapter gehört zu `recent.design` (vormals `godly.website`). Interaktion am laufenden Beispiel prüfen |
+| [Landdding](https://landdding.com/) | Landing-Komposition: `inspiration.mjs landdding list` → `get <slug>`; verlinkte Site ansehen | Galerieeintrag und echte Site unterscheiden |
+| [Awwwards](https://www.awwwards.com/websites/) | Art Direction/Interaktion: `inspiration.mjs awwwards list` → `get <slug>`; passende ausgezeichnete Site öffnen | Award ist kein A11y-/Performancebeleg |
+| [SiteInspire](https://www.siteinspire.com/) | Typografie/Layout: `inspiration.mjs siteinspire list` → `get <id-slug>`; Visit-Ziel ansehen | Direkter Zugriff kann Checkpoint liefern; Firecrawl/Browser prüfen |
+| [Mobbin](https://mobbin.com/) | Produkt-Screens/Flows: `design-mcp.mjs mobbin screens\|flows\|sections "<query>" --platform web --out <absoluter-Ordner>` | Tatsächliche Bilddateien ansehen; öffentliche Landingpage belegt keine Flow-Recherche |
+| [Behance](https://www.behance.net/for_you?tracking_source=nav20) | Branding/Case-Gestaltung: `inspiration.mjs behance search "<query>"` → `get <id>`; Projektbilder ansehen | Persönlicher Feed kann Anmeldung brauchen; echte Projekt-Suche statt leerem Feed |
+| [Inspora](https://www.inspora.design/) | Aktuelle Layout-/Motionarbeiten: `inspiration.mjs inspora list`; konkretes Werk und zugehörige Medien ansehen | Intro/Logo oder Detail-Checkpoint ist keine gesehene Referenz; vorhandenen Browser/Firecrawl prüfen |
+| [Modulify](https://modulify.ai/templates) | Webflow-/Site-Templates: Templatekarte → echte Vorschau → dokumentierter Clone-/Exportweg | Vorschau ist kein erfolgter Clone; Account/Premium und Zielstack prüfen |
+| [Kinetics](https://kinetics.colorion.co/) | CSS-Bewegung/Zustandswechsel: `inspiration.mjs kinetics list` → `get <slug> --out <absolute-Datei>` | CSS-Snippet kann nur einen Teil liefern; nötiges HTML/React/Keyframes aus Originaldetail lesen |
+| [Circle Loaders](https://circleloaders.dominikakissi.com/) | Ladeindikator: `inspiration.mjs circleloaders list` → `get <slug> --out <absolute-Datei>` | SVG, Keyframes, Lizenz und Reduced Motion prüfen |
+| [VibeIndex](https://vibeindex.dev/) | Werkzeugauswahl: Kategorie UI Generators → konkretes Tooldetail → Anbieter öffnen | Verzeichnisfund ist kein ausgeführter Builder |
+| [404 Colorion](https://404.colorion.co/) | Passende Fehlerseite: `inspiration.mjs notfound list` → `get <slug> --out <absolute-Datei>` | HTML/CSS lesen, eigene Inhalte einsetzen, Fehlerroute und Bewegung prüfen |
+| [FinderGit](https://findergit.app/) | Mac-Git-Dateiarbeit oder Datei-/Diff-UX: offizielle Feature-/Detailseite; vorhandene Mac-App im entsprechenden Auftrag bedienen | macOS-Anwendung; auf dem Linux-VPS nur Quellenzugriff, kein erfundener App-Lauf |
+| [Mantine](https://mantine.dev/) | React-Primitives/Formulare: `komponenten.mjs search Mantine "<Komponente>"`; offizielle Component-/Setup-Doku öffnen | Vorhandenen Stack erhalten; Provider/CSS/React-Version prüfen. MCP nur nach tatsächlicher Discovery |
+| [CodeShots](https://codeshots.dev/) | Code-Darstellung in Portfolio/Doku: Editor/Demo mit eigenem Code untersuchen, benötigten Export lokal verwenden | Kein Bild einer Codezeile als Beleg ihrer Funktion; Exportformat und Rechte prüfen |
+| [AI Canvas](https://aicanvas.me/) | Interaktive Blocks: Komponentenübersicht → konkretes Detail, etwa `/components/tilted-coverflow` → dokumentierte Registry | Ohne Account lieferte `@aicanvas/tilted-coverflow` beim Test einen AccountRequired-Platzhalter; nur echtes Component-Payload einbauen |
+| [Superfile](https://superfile.dev/) | Terminal-Dateiarbeit oder Datei-UX: Getting-Started-/Funktionsdoku; vorhandene Installation bei passendem Auftrag nutzen | Doku gelesen ist keine ausgeführte Dateioperation; kein zusätzliches Tool für triviale Shellarbeit installieren |
+| [Kickresume](https://kickresume.com/) | Karriere-/Profilwebsite: `/en/online-web/` und konkrete Vorlage/Export ansehen | Websitebereich vorhanden; Account/Export und Nutzungszweck prüfen |
+| [Umanmade](https://umanmade.com/) | Digitale Arbeiten/Portfolio: `inspiration.mjs umanmade list` → verlinkte Arbeit im Browser öffnen | `list` liefert Entdeckung, kein `get`-Adapter; Werk wirklich ansehen |
+| [Beautiful UI](https://beautifului.dev/) | Agent-/Daten-UI: `resources/components/beautifului/INDEX.md` → konkrete TSX-Datei, Atoms und Tokens; aktuelles Site-Beispiel | Lokaler React-Port mit Demo-Daten, kein offizielles Agent-SDK; 20 lokale gegenüber 21 Live-Komponenten; echte Daten/Callbacks anbinden |
+| [AI CSS](https://aicss.dev/) | Agent-Thinking-/Tool-/Streaming-Blöcke: konkretes Detail `/components/thinking-state` → Code `/r/thinking-state.json` und Lizenz lesen | Free/CLI MIT, Pro separat; konkreten React-/CSS-Stack prüfen |
+| [Transitions.dev](https://transitions.dev/) | Gezielte CSS/JS-Übergänge: lokaler Vendor-Index → Rezept, etwa `01-card-resize.md`, plus `_root.css`; aktuelle Detaildemo | Rezepte mit eigenen Nutzungsbedingungen, Tooling MIT; Pro nicht pauschal im Snapshot |
+| [Amicro](https://amicro.vercel.app/) | Micro-Interactions: Beispiel ansehen; im offiziell verlinkten Repo liefert [fade-in.json](https://github.com/Subhan-code/Amicro--Micro-transitions-/blob/main/registry/ui/fade-in.json) TSX | MIT; React/framer-motion-Abhängigkeiten lesen; im Motion-Stack Import kompatibel auf `motion/react` übertragen und testen |
+| [Canvas UI](https://canvasui.dev/) | HTML-in-Canvas/WebGL/WebGPU: `/docs/installation` → konkrete Demo/Registry, etwa `/r/liquid-react.json` | MIT + Commons Clause; Browserfallback prüfen. Das geprüfte Liquid-Item importiert einen fehlenden `../rect-cache`-Helper; Download allein ist nicht baubar |
+| [AI Elements](https://elements.ai-sdk.dev/) | AI-Chat-/Conversation-UI: `/docs/setup` → `/components/conversation` und gewählte Quelldateien | Apache-2.0; AI SDK-/React-/Tailwind-Voraussetzungen des gewählten Bausteins prüfen |
+| [React Bits](https://reactbits.dev/) | Passender React-Effekt: `inspiration.mjs reactbits list` → `get <Name> --out <absoluter-Ordner>` oder `komponenten.mjs` | MIT + Commons Clause; Variante JS/TS und CSS/Tailwind wählen, Dependencies je Item lesen |
+| [21st.dev](https://21st.dev/) | Gesuchte Community-Komponente: `design-mcp.mjs 21st search "<Baustein>"` → `get <id> --out <absoluter-Ordner>` | Auth, Quota und Lizenz je Item prüfen; Code, Demo und alle Imports lesen. Button 3824 benötigt zusätzlich `spinner-1` |
+| [Beste UI](https://ui.beste.co/) | shadcn-/Tailwind-Blocks: konkretes `/block/<slug>` → dokumentiertes `/r/<slug>` | Free-Repo MIT, Site-/Pro-Lizenz hat eigene Bedingungen; Herkunft und Payload prüfen |
+| [Magic UI](https://magicui.design/) | React-Marketingeffekt: `komponenten.mjs search @magicui "<Baustein>"` → `view/get`; alternativ `inspiration.mjs magicui get <name>` | Open-Source-Komponente und Pro-Template unterscheiden; benötigte CSS/Dependencies übernehmen |
+| [Aceternity UI](https://ui.aceternity.com/) | Passender React-Background/Block: `komponenten.mjs search @aceternity "<Baustein>"` → `view/get` | Component-Demo/Code und eigene Lizenz unter `/licence` prüfen; keine Demo-Assets als Kundenmaterial |
+| [Paper Shaders](https://shaders.paper.design/) | Gestalterisch begründeter Shader: `/mesh-gradient`, offizielle Doku; `@paper-design/shaders` beziehungsweise `@paper-design/shaders-react` | Apache-2.0; GPU-/Browserkosten, Reduced Motion und statischen Fallback prüfen |
+
+## Weitere vorhandene Zugänge (Stand 04.09.2026; bei Nutzung prüfen)
 
 | Quelle | Zugriff | Auth / Lizenzgrenze |
 |---|---|---|
@@ -48,7 +92,7 @@ Status und Hilfe: jedes oben genannte Werkzeug mit `--help`; MCP-Token erneuern:
 | **Vendor** | `resources/components/<site>/` | lokale Kopie zuerst |
 | **Paket/Original-CLI** | `npm i <pkg>` oder dokumentierte Anbieter-CLI | Runtime-Library bzw. Registry-Installation |
 | **Einzelzugriff** | `resource-access.mjs open "<exakter Name>"` | Docs, Generatoren und Quellen ohne tieferen Adapter |
-| **Nein** | kein Site-Build-Zugang | FinderGit, Superfile, Kickresume, Vibeindex |
+| **Spezialwerkzeuge** | offizieller Zugang nach Einsatzzweck | FinderGit, Superfile, Kickresume und VibeIndex nach der aktuellen Tabelle oben |
 
 ## Komponenten ziehen — ein Weg für UI-Bibliotheken
 
@@ -65,7 +109,7 @@ Registry-Item. HTML-/npm-Treffer werden über ihren dokumentierten Weg geöffnet
 `view`/`get` gelten nur für `@namespace/name`. Danach Lizenz, Abhängigkeiten,
 A11y und Router-Anker prüfen.
 
-## Quellenwege — Raphaels Liste vollständig
+## Ergänzende Quellenwege
 
 | Quellen | Weg |
 |---|---|
@@ -77,9 +121,6 @@ A11y und Router-Anker prüfen.
 | 60fps.design (`fps`) | `inspiration.mjs fps list` → `fps get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
 | posts.design (`posts`) | `inspiration.mjs posts list` → `posts get <slug\|url> [--out <datei>]` → `shot`; live belegt 04.09.2026 |
 | loadmo.re (`loadmore`) | `inspiration.mjs loadmore list` → `loadmore get <slug\|url>` (JSON mit Quelle) → `shot`; live belegt 04.09.2026 |
-| kinetics.colorion.co (`kinetics`), 404.colorion.co (`notfound`), circleloaders.dominikakissi.com (`circleloaders`) | `inspiration.mjs <schlüssel> list` → `get <slug\|url> --out <datei>` schreibt CSS/SVG; live belegt 04.09.2026 (kinetics-Snippets teils <200 B, Keyframes stehen auf der Seite) |
-| umanmade.com (`umanmade`) | `inspiration.mjs umanmade list` (nur list, kein get) → URL im Shot-Leaf; live belegt 04.09.2026 |
-| inspora.design (`inspora`) | `inspiration.mjs inspora list`; Medien-URL lokal speichern und im Shot-Leaf lesen |
 | aicanvas.me | `komponenten.mjs search @aicanvas "<query>"` → `view`; `get` liefert ohne Account nur einen Stub (AccountRequired) → Login nötig, sonst nur Inspiration |
 | mantine.dev | `komponenten.mjs search Mantine "<komponente>"` (Docs) bzw. `npm view @mantine/core`; kein Default-Stack |
 | codeshots.dev | `node scripts/inspiration.mjs shot https://codeshots.dev --out <dir>` zur Funktionssicht; Werkzeug, kein Referenzfundus |
@@ -114,8 +155,8 @@ A11y und Router-Anker prüfen.
 
 ## Grenzen
 
-- Max. 3 Look-Referenzen, 1 Komponente pro Bedarf, 6 Stock-Previews.
-- Bilddateien und Shots zählen erst nach Read durch ein Kritik-Leaf als gesehen.
+- Nur die für die Entscheidung und Prüfung benötigten Quellen/Bausteine laden.
+- Bilddateien und Shots zählen erst nach tatsächlichem Ansehen als gesehen.
 - Stock, Demo-Fotos und Illustrationskits sind nie Kundenbeweis.
 - `--deliver file:<pfad>` ist bei Iconify der Dateiweg; Pexels/Poly Haven haben
   keinen nativen Download-`--out`, deshalb nur die gewählte Datei per `curl -L`.
@@ -134,7 +175,7 @@ Kein Login: Rest der öffentlichen Galerien und Docs.
 
 ## Nie
 
-- Kein zweites Werkzeug für denselben Zugangstyp; MCP bleibt `design-mcp.mjs`, Komponenten bleiben `komponenten.mjs`, Galerien bleiben `inspiration.mjs`, flache REST-APIs bleiben printing-press-CLIs.
+- Vorhandenen passenden Adapter verwenden; dokumentierten Browser-/Fetch-Ersatz bei Zugangslücken nutzen, keine zweite allgemeine Zugangsschicht bauen.
 - Zwei UI-Kits parallel.
 - Katalog-Dump statt einer benannten Quelle.
 - Screenshot-Pfad ohne Read.

@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 // preview-befund-klasse.mjs — Vorschau vs Launch: was darf blocken?
 //
-// Preview-Blocker sind langsam: Ablauf, Sitemap, Idee, Design.
-// Inhalt ist ein Swap (Satz, Wort, Bild, Sektion, Review-Platzhalter) —
-// in der Vorschau parken, nicht biggest_gap. Launch bleibt hart bei
-// erfundenem Proof als echte Behauptung.
+// Advisory für Befundtexte, kein Abnahmegate. Ein ausdrücklich verlangtes
+// Ergebnis und anwendbare Funktionsfehler können auch die Vorschau blockieren.
+// Der Owner bestimmt den Scope; Textheuristik kann ihn nicht ersetzen.
 //
 // Usage:
 //   node preview-befund-klasse.mjs "50 vs 60 Google-Bewertungen"
@@ -37,13 +36,19 @@ const OPS =
 const INHALT =
   /google-bewertung|bewertungszahl|\breviews?\b|\d+\s*(?:vs|oder|statt|\/)\s*\d+|stunden[- ]?(?:versprechen|sla)|lieferzeit|werktage|tippfehler|rechtschreib|erfunden|fake[- ]?(?:review|bewertung|proof|logo)|ki-person|platzhalter|placeholder|satz.{0,60}falsch|wort tauschen|bild tauschen|copy[- ]nit|sektionstext/i;
 
+const FUNKTION =
+  /HTTP\s*[45]\d\d|(?:formular|submit|button|navigation).{0,50}(?:funktioniert nicht|sendet nicht|fehler|timeout)|(?:dialog|menü|menu).{0,45}(?:nicht (?:schließen|schliessen|öffnen|oeffnen))|(?:tastatur)?fokus.{0,35}(?:verschwindet|verloren|gefangen)/i;
+
 function visualBlock() {
   return { klasse: "visual-block", preview: "block", launch: "block" };
 }
 
-export function klassifiziereBefund(text) {
+export function klassifiziereBefund(text, { required = false } = {}) {
   const roh = String(text ?? "").trim();
   if (!roh) return { klasse: "leer", preview: "ignore", launch: "ignore" };
+
+  if (required) return { klasse: "auftrag-block", preview: "block", launch: "block" };
+  if (FUNKTION.test(roh)) return { klasse: "funktion-block", preview: "block", launch: "block" };
 
   // Reihenfolge ist die Fachaussage: ein handfester Gestaltungsbefund oder ein
   // Design-Urteil blockt, auch wenn im selben Satz eine Zahl steht. Danach
@@ -78,11 +83,11 @@ export function klassifiziereBefund(text) {
       launch: fake ? "launch-block" : "park",
     };
   }
-  return { klasse: "sonst", preview: "visual-first", launch: "visual-first" };
+  return { klasse: "sonst", preview: "review", launch: "review" };
 }
 
-export function darfBiggestGapSein(text, phase = "preview") {
-  const treffer = klassifiziereBefund(text);
+export function darfBiggestGapSein(text, phase = "preview", options) {
+  const treffer = klassifiziereBefund(text, options);
   if (phase === "launch") {
     return treffer.launch === "block" || treffer.launch === "launch-block";
   }

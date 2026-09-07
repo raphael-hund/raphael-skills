@@ -1,30 +1,103 @@
 #!/usr/bin/env node
-// g1-gate.mjs — deterministisches Auslieferungs-Gate fuer Websites (Regel 14:
-// "fertig" ist eine Umgebungstatsache, kein Selbsturteil des Agenten).
+// g1-gate.mjs — technische Prüfungen für einen benannten Web-Auftrag.
 //
-// Bisheriges Problem: shot-sweep.mjs setzt Exit 1 nur bei Navigationsfehlern,
-// visual-diff.mjs nur bei Exception. Kein Skript hat je an Qualitaet blockiert.
-// Dieses Gate buendelt die harten Checks und liefert EINEN Exit-Code.
+//   node g1-gate.mjs --base URL --run-id ID --build-revision SHA \
+//     --routes /,/kontakt --out DIR [--src PROJEKT] [--checks axe,links]
 //
-//   node g1-gate.mjs --base http://127.0.0.1:3000 --routes /,/leistungen \
-//                    --src <projektwurzel> --build <dist>
-//
-// `--src` ist nicht optional: Import- und Motion-Check lesen den Quellcode.
-// Ohne sie bleiben zwei Fragen ungestellt, und uebersprungen ist nicht
-// bestanden — der Lauf endet dann mit Exit 2 statt Exit 0.
-//
-// Exit 0 = alle aktivierten Checks bestanden. Exit 1 = mindestens ein Check
-// gerissen. Exit 2 = Gate selbst kaputt (Tool fehlt, Server tot) — das ist
-// bewusst KEIN Pass, aber unterscheidbar von einem echten Qualitaetsfehler.
-//
-// Budget-Datei (optional, --budget): ueberschreibt DEFAULT_BUDGET.
+// Ohne --checks laufen die bisherigen Prüfer. Ausgewählte Quelltextchecks
+// brauchen --src; fehlende Werkzeuge oder Inputs ergeben keinen PASS.
+// Exit 0 = bestanden, 1 = fehlgeschlagene Prüfung, 2 = ungeprüft/Toolfehler.
+// Ein Import lädt nur die wiederverwendbaren Vertragsfunktionen.
 
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const args = process.argv.slice(2);
+// State-Abdeckung ist an Route, Viewport, Target und Zustand gebunden.
+const SWEEP_NA_REASONS = new Set(['static-page', 'no-form', 'no-async-data']);
+
+export function sweepRequiredGedeckt(req, matrix) {
+  const fields = ['route', 'viewport', 'target', 'state'];
+  const complete = (record) => record && fields.every((field) => typeof record[field] === 'string' && record[field].trim());
+  if (!complete(req)) return false;
+  const same = (record) => complete(record) && fields.every((field) => record[field] === req[field]);
+  const captured = (matrix.captured || []).some((record) => same(record)
+    && (record.status === undefined || record.status === 'PASS') && record.ok !== false
+    && (!req.playwright_ref || record.playwright_ref === req.playwright_ref));
+  const notApplicable = (matrix.not_applicable || []).some((record) => same(record) && SWEEP_NA_REASONS.has(record.reason));
+  return captured || notApplicable;
+}
+
+export function sweepVertrag(manifest, ident) {
+  if (!manifest || typeof manifest !== 'object' || Array.isArray(manifest)) return ['Manifest ist kein Objekt'];
+  const errors = [];
+  if (manifest.schema !== 'web/shot-sweep/v2') errors.push('schema muss web/shot-sweep/v2 sein');
+  if (!ident?.runId || !ident?.buildRevision || manifest.run_id !== ident.runId || manifest.build_revision !== ident.buildRevision) {
+    errors.push('run-id/build-revision fehlen oder Identitaet weicht ab');
+  }
+  if (manifest.status !== 'PASS') errors.push(`Sweep-Ergebnis ist ${manifest.status || 'NOT_RUN'}, nicht PASS`);
+  const routes = manifest.routes;
+  if (!Array.isArray(routes) || !routes.length || routes.some((route) => !route || !Array.isArray(route.shots))) {
+    return [...errors, 'routes mit Shot-Listen fehlen'];
+  }
+  const profile = manifest.capture_profile;
+  if (!profile || ['static', 'states', 'mobile'].some((key) => typeof profile[key] !== 'boolean')) errors.push('capture_profile unvollständig');
+  const matrix = manifest.state_matrix;
+  if (!matrix || ['required', 'captured', 'not_applicable', 'failed'].some((key) => !Array.isArray(matrix[key]))) {
+    errors.push('state_matrix unvollständig');
+  } else {
+    if (matrix.failed.length) errors.push(`${matrix.failed.length} state_matrix.failed`);
+    if (matrix.not_applicable.some((record) => !SWEEP_NA_REASONS.has(record?.reason))) errors.push('ungueltige N/A-Gruende');
+    const gaps = matrix.required.filter((record) => !sweepRequiredGedeckt(record, matrix));
+    if (gaps.length) errors.push(`${gaps.length} required gap(s): ${gaps.map((record) => JSON.stringify(record)).join(', ')}`);
+    if (matrix.required.length && profile?.states !== true) errors.push('deklarierte Zustände ohne states-Profil');
+    for (const record of matrix.captured) {
+      if (!record || (record.status !== undefined && record.status !== 'PASS') || record.ok === false) {
+        errors.push('captured enthält keinen erfolgreichen Zustand');
+        continue;
+      }
+      const hasShot = routes.some((route) => route.route === record.route
+        && route.viewport_label === record.viewport && route.shots.some((shot) =>
+          shot?.state === record.state && shot.target === record.target && typeof shot.file === 'string'));
+      const external = record.playwright_ref && Array.isArray(record.evidence) && record.evidence.length > 0
+        && record.evidence.every((ref) => typeof ref?.path === 'string' && path.isAbsolute(ref.path)
+          && fs.existsSync(ref.path) && fs.statSync(ref.path).isFile()
+          && createHash('sha256').update(fs.readFileSync(ref.path)).digest('hex') === ref.sha256);
+      if (!hasShot && !external) errors.push(`captured ohne zugehörige Belegdatei: ${JSON.stringify(record)}`);
+    }
+  }
+  if (profile?.mobile) {
+    for (const route of new Set(routes.map((r) => r.route))) {
+      if (!routes.some((r) => r.route === route && r.viewport_label === 'mobile' && r.shots?.length)) errors.push(`Mobile-Route fehlt: ${route}`);
+    }
+  }
+  return errors;
+}
+
+export function writeG1Report(file, identity, results, exitCode = 0, detail = {}) {
+  if (!identity.runId || !identity.buildRevision || !identity.base) throw new Error('G1-Identität fehlt');
+  const complete = Array.isArray(results) && results.length > 0 && results.every((r) => r.ok === true && r.skipped !== true);
+  const status = exitCode === 2 || !results?.length || results?.some((r) => r.skipped) ? 'BLOCKED'
+    : exitCode === 0 && complete ? 'PASS' : 'FAIL';
+  const report = {
+    ...detail,
+    schema: 'web/g1-report/v2', run_id: identity.runId, build_revision: identity.buildRevision,
+    base: identity.base, base_url: identity.base, routes: identity.routes,
+    status, ok: status === 'PASS', exit_code: status === 'PASS' ? 0 : exitCode || 1,
+    results,
+  };
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const temp = `${file}.tmp-${process.pid}-${process.hrtime.bigint()}`;
+  fs.writeFileSync(temp, JSON.stringify(report, null, 2) + '\n');
+  fs.renameSync(temp, file);
+  return report;
+}
+
+export function runGate(args = process.argv.slice(2)) {
+
 const get = (k, d) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : d; };
 const has = (k) => args.includes(`--${k}`);
 
@@ -32,7 +105,7 @@ const has = (k) => args.includes(`--${k}`);
 // Gate klaglos die falsche Adresse und meldet ein gruenes Ergebnis fuer nichts.
 const KNOWN = [
   'base', 'url', 'routes', 'out', 'src', 'build', 'budget', 'strict', 'no-shots',
-  'run-id', 'build-revision', 'state-spec', 'help',
+  'run-id', 'build-revision', 'state-spec', 'checks', 'help',
 ];
 const unknown = args.filter((a) => a.startsWith('--') && !KNOWN.includes(a.slice(2)));
 if (unknown.length) {
@@ -48,14 +121,22 @@ if (unknown.length) {
 if (args.includes('--help') || args.includes('-h')) {
   console.log('Aufruf: node g1-gate.mjs [--url <basis>] [--routes a,b] [--src <ordner>]');
   console.log('                          [--build <ordner>] [--budget <datei.json>]');
-  console.log('                          [--out <ordner>] [--strict] [--no-shots]');
+  console.log('                          --base URL --run-id ID --build-revision SHA');
+  console.log('                          [--out <ordner>] [--checks axe,links,...] [--strict] [--no-shots]');
   console.log('Fuehrt alle Qualitaets-Pruefer gegen eine laufende Seite aus.');
   console.log('Exit 0 = bestanden, 1 = Qualitaet gerissen, 2 = Tor selbst kaputt.');
   process.exit(0);
 }
 
 // --url ist ein Alias fuer --base (die Doktrin nennt es --url, das Skript hiess --base).
-const BASE = get('base', get('url', 'http://localhost:5280')).replace(/\/$/, '');
+const base = get('base', get('url', null));
+const RUN_ID = get('run-id', process.env.SHOT_SWEEP_RUN_ID || null);
+const BUILD_REVISION = get('build-revision', process.env.SHOT_SWEEP_BUILD_REVISION || null);
+if (!base || !RUN_ID || !BUILD_REVISION) {
+  console.error('--base, --run-id und --build-revision sind Pflicht');
+  process.exit(2);
+}
+const BASE = base.replace(/\/$/, '');
 const ROUTES = get('routes', '/').split(',').map((r) => r.trim()).filter(Boolean)
   .map((r) => (r.startsWith('/') ? r : `/${r}`));
 
@@ -95,7 +176,7 @@ function seitenImBuild(dir) {
 // von a3, Lauf B las es als seines. Die Folge war ein Urteil ueber die falsche
 // Seite — in beide Richtungen, unreproduzierbar, und niemand haette es gemerkt.
 // Betrifft ebenso g1-report.json und die Screenshots.
-const OUT = get('out', fs.mkdtempSync(path.join(os.tmpdir(), 'g1-gate-')));
+const OUT = get('out', null) || fs.mkdtempSync(path.join(os.tmpdir(), 'g1-gate-'));
 
 // Alte Laufordner altern lassen.
 //
@@ -992,15 +1073,7 @@ function checkTastatur() {
 
 function checkSweep() {
   const sweep = path.join(SKILL_DIR, 'shot-sweep.mjs');
-  // FEHLENDE DATEI ist etwas anderes als ABSTURZ. Ein Absturz wird unten zum
-  // FAIL (nachgemessen 30.07.2026 mit Exit 3) — das reicht. Eine fehlende Datei
-  // ergab dagegen SKIP, und weil shot-sweep aus gutem Grund keine Pflichtfamilie
-  // ist, wurde daraus Exit 0: gruenes Tor ohne einen einzigen Screenshot.
-  //
-  // Nachgerechnet 30.07.2026 an der Schlusslogik: sieben Familien gruen plus
-  // shot-sweep als SKIP -> fehltGanz 0, failed 0 -> Exit 0. Die Screenshot-
-  // Pflicht ist Raphaels harte Regel; ein Tor, das sie stillschweigend
-  // ueberspringt, sagt das Gegenteil von dem, was es bedeuten soll.
+  // Ist Capture für diesen Lauf ausgewählt, muss es tatsächlich ausführbar sein.
   if (!fs.existsSync(sweep)) {
     record('shot-sweep', false, `shot-sweep.mjs fehlt (${sweep}) — ohne ihn entsteht kein Screenshot`);
     return;
@@ -1011,11 +1084,11 @@ function checkSweep() {
   const stateSpec = get('state-spec', null);
   const argv = [
     sweep, '--base', BASE, '--routes', ROUTES.join(','), '--out', shotDir,
-    '--static', '--states', '--mobile',
+    '--static', '--mobile',
     '--run-id', runId == null ? '' : String(runId),
     '--build-revision', buildRevision == null ? '' : String(buildRevision),
   ];
-  if (stateSpec) argv.push('--state-spec', stateSpec);
+  if (stateSpec) argv.push('--states', '--state-spec', stateSpec);
   try {
     let sweepFehler = null;
     try {
@@ -1077,93 +1150,23 @@ function sweepMaengel(manifest, verlangt, shotDir) {
   return maengel;
 }
 
-// Kanonisches Ship-Profil: schema/identity/capture_profile/state_matrix fail-closed.
-// Nicht in sweepMaengel, damit evals/run-sweep-check.mjs die alten Route-Fixtures
-// weiter ohne v2-Felder durchlassen kann.
-const SWEEP_NA_REASONS = new Set(['static-page', 'no-form', 'no-async-data']);
 
-function sweepZustandNamen(manifest) {
-  const kinds = [];
-  for (const r of manifest.routes || []) {
-    for (const s of r.shots || []) {
-      const st = s.state || (String(s.kind || '').startsWith('state-')
-        ? String(s.kind).slice('state-'.length) : '');
-      if (st) kinds.push(String(st).replace(/^state-/, ''));
-    }
-  }
-  for (const c of (manifest.state_matrix && Array.isArray(manifest.state_matrix.captured)
-    ? manifest.state_matrix.captured : [])) {
-    if (c && c.state) kinds.push(String(c.state).replace(/^state-/, ''));
-  }
-  return kinds;
+const checks = {
+  lighthouse: checkLighthouse, axe: checkAxe, links: checkLinks, 'ai-slop': checkSlop,
+  craft: checkCraft, formular: checkFormular, importe: checkImporte, motion: checkMotion,
+  tastatur: checkTastatur, 'shot-sweep': checkSweep,
+};
+const selectedChecks = has('checks') ? get('checks', '').split(',').map((s) => s.trim())
+  : Object.keys(checks).filter((name) => name !== 'shot-sweep' || !has('no-shots'));
+if (!selectedChecks.length || selectedChecks.some((name) => !checks[name]) || new Set(selectedChecks).size !== selectedChecks.length) {
+  console.error(`--checks braucht eindeutige Werte aus ${Object.keys(checks).join(',')}`);
+  process.exit(2);
 }
-
-function sweepRequiredGedeckt(req, matrix) {
-  const cap = (matrix.captured || []).some((c) => {
-    if (req.playwright_ref) return !!c.playwright_ref && (!req.id || c.id === req.id);
-    if (req.id && c.id) return c.id === req.id && (!req.state || c.state === req.state);
-    return c.state === req.state && (!req.route || c.route === req.route);
+function finish(code) {
+  writeG1Report(path.join(OUT, 'g1-report.json'), { runId: RUN_ID, buildRevision: BUILD_REVISION, base: BASE, routes: ROUTES }, results, code, {
+    budget: BUDGET, budgetDatei: budgetFile, budgetGelockert: BUDGET_GELOCKERT, required_checks: selectedChecks,
   });
-  const na = (matrix.not_applicable || []).some((n) => {
-    const reason = typeof n === 'string' ? n : n && n.reason;
-    if (!SWEEP_NA_REASONS.has(reason)) return false;
-    if (req.state && n && (n.state === req.state || (n.states || []).includes(req.state))) return true;
-    if (req.applicability && reason) return true;
-    return false;
-  });
-  return cap || na;
-}
-
-function sweepVertrag(manifest, ident) {
-  const maengel = [];
-  if (manifest === null || typeof manifest !== 'object' || Array.isArray(manifest)) {
-    return ['Manifest ist kein Objekt'];
-  }
-  if (manifest.schema !== 'web/shot-sweep/v2') {
-    maengel.push(`schema ist ${JSON.stringify(manifest.schema)}, erwartet web/shot-sweep/v2`);
-  }
-  const runId = ident && ident.runId;
-  const buildRevision = ident && ident.buildRevision;
-  if (!runId || !buildRevision) {
-    maengel.push('run-id/build-revision fehlen — anonyme Sweeps gelten nicht');
-  } else if (manifest.run_id !== runId || manifest.build_revision !== buildRevision) {
-    maengel.push(`Identitaet weicht ab: manifest run_id=${JSON.stringify(manifest.run_id)} build_revision=${JSON.stringify(manifest.build_revision)}, erwartet ${runId}/${buildRevision}`);
-  }
-  const p = manifest.capture_profile;
-  if (!p || typeof p !== 'object' || p.static !== true || p.states !== true || p.mobile !== true) {
-    maengel.push(`capture_profile muss static/states/mobile alle true sein, ist ${JSON.stringify(p)}`);
-  }
-  const m = manifest.state_matrix;
-  if (!m || typeof m !== 'object' || Array.isArray(m)) {
-    maengel.push('state_matrix fehlt');
-  } else {
-    for (const feld of ['required', 'captured', 'not_applicable', 'failed']) {
-      if (!Array.isArray(m[feld])) maengel.push(`state_matrix.${feld} fehlt oder ist keine Liste`);
-    }
-    const failed = Array.isArray(m.failed) ? m.failed : [];
-    if (failed.length) {
-      maengel.push(`${failed.length} state_matrix.failed: ${failed.slice(0, 3).map((f) => f.error || f.id || f.state).join(', ')}`);
-    }
-    const nas = Array.isArray(m.not_applicable) ? m.not_applicable : [];
-    const ungueltig = nas.filter((n) => !SWEEP_NA_REASONS.has(typeof n === 'string' ? n : n && n.reason));
-    if (ungueltig.length) {
-      maengel.push(`ungueltige N/A-Gruende: ${ungueltig.map((n) => (typeof n === 'string' ? n : n && n.reason)).join(', ')}`);
-    }
-    if (Array.isArray(m.required) && Array.isArray(m.captured) && Array.isArray(m.not_applicable)) {
-      const luecken = m.required.filter((req) => !sweepRequiredGedeckt(req, m));
-      if (luecken.length) {
-        maengel.push(`${luecken.length} required gap(s): ${luecken.slice(0, 3).map((r) => r.id || r.state).join(', ')}`);
-      }
-    }
-  }
-  const kinds = sweepZustandNamen(manifest);
-  const hatFocus = kinds.some((k) => k === 'focus');
-  const hatOpen = kinds.some((k) => k === 'open' || k === 'open-expanded');
-  const nurHover = kinds.length > 0 && kinds.every((k) => k === 'hover');
-  if (p && p.states === true && (nurHover || !hatFocus || !hatOpen)) {
-    maengel.push(`states-Profil ohne focus/open oder nur hover (gesehen: ${[...new Set(kinds)].join(',') || 'keine'})`);
-  }
-  return maengel;
+  process.exit(code);
 }
 
 // --- main ------------------------------------------------------------------
@@ -1184,40 +1187,14 @@ console.log('');
 
 if (!checkServer()) {
   console.log('\nServer nicht erreichbar — Gate kann nicht urteilen.');
-  process.exit(2);
+  finish(2);
 }
 
-checkLighthouse();
-checkAxe();
-checkLinks();
-checkSlop();
-checkCraft();
-checkFormular();
-checkImporte();
-checkMotion();
-checkTastatur();
-// `--no-shots` schaltet den Screenshot-Sweep ab. Bis 30.07.2026 wortlos: der
-// Bericht meldete "10 Check(s) gruen" und der elfte fehlte einfach in der Liste.
-//
-// Die Screenshot-Pflicht ist eine harte Raphael-Regel ("Design wird NUR noch an
-// Screenshots entschieden"). Ein Flag, das sie aushebelt, darf nicht dieselbe
-// Schlusszeile erzeugen wie ein vollstaendiger Lauf — sonst liest der Naechste
-// ein Gruen, das die wichtigste Pruefung nie gesehen hat. Dasselbe Muster wie
-// beim gelockerten Budget: erkauftes Gruen muss dafuer geradestehen.
-if (has('no-shots')) {
-  record('shot-sweep', true, '--no-shots gesetzt — KEINE Screenshots geprueft', true);
-} else {
-  checkSweep();
-}
+for (const name of selectedChecks) checks[name]();
 
 const failed = results.filter((r) => !r.ok && !r.skipped);
 const skipped = results.filter((r) => r.skipped);
 const reportPath = path.join(OUT, 'g1-report.json');
-fs.writeFileSync(reportPath, JSON.stringify({
-  base: BASE, routes: ROUTES, budget: BUDGET,
-  budgetDatei: budgetFile, budgetGelockert: BUDGET_GELOCKERT,
-  results,
-}, null, 2));
 
 console.log(`\nReport: ${reportPath}`);
 // Frueher stand hier pauschal "(Tool fehlt)". Das ist die falsche Faehrte: bei
@@ -1294,12 +1271,12 @@ if (failed.length && failed.every((r) => KAPUTT_RE.test(r.detail || ''))) {
   console.log(`\nG1 KANN NICHT URTEILEN (Exit 2) — ${failed.length} Pruefer abgestuerzt, keiner mit Befund:`);
   for (const r of failed) console.log(`  ${r.name}: ${r.detail}`);
   console.log('Das ist kein Urteil ueber die Seite. Ursache beheben, dann erneut.');
-  process.exit(2);
+  finish(2);
 }
 
 if (failed.length) {
   console.log(`\nG1 GERISSEN (Exit 1) — ${failed.length} Check(s): ${failed.map((r) => r.name).join(', ')}`);
-  process.exit(1);
+  finish(1);
 }
 
 // Uebersprungen ist nicht bestanden. Fehlt zu viel Werkzeug, hat das Gate nichts
@@ -1340,13 +1317,13 @@ if (failed.length) {
 // Feld. In QUALITAET aufgenommen wuerde er stattdessen Exit 2 erzwingen — das
 // waere sachlich falsch: ein abgestuerzter Browser ist kein Urteil ueber die
 // Seite. Die Frage ist damit geprueft, nicht offen.
-const QUALITAET = ['lighthouse', 'axe', 'ai-slop', 'craft', 'formular', 'motion', 'tastatur'];
+const QUALITAET = selectedChecks;
 const fehltGanz = QUALITAET.filter((q) =>
   !results.some((r) => r.name.startsWith(q) && !r.skipped));
-if (fehltGanz.length) {
+if (fehltGanz.length || skipped.length) {
   console.log(`\nG1 KANN NICHT URTEILEN (Exit 2) — kein einziger Lauf in: ${fehltGanz.join(', ')}.`);
   console.log('Uebersprungen ist nicht bestanden. Werkzeug nachinstallieren bzw. --src setzen, dann erneut.');
-  process.exit(2);
+  finish(2);
 }
 
 // Letzte Huerde: gruen fuer EINIGE Seiten ist kein gruen fuer die Website.
@@ -1354,7 +1331,7 @@ if (fehltGanz.length) {
 // Die erste Fassung fragte nur, ob --routes ueberhaupt gesetzt ist. Wer 2 von 28
 // Seiten nannte, bekam Gruen fuers Ganze — dieselbe Luecke, nur eine Ebene tiefer.
 // Es zaehlt nicht, ob Routen genannt wurden, sondern ob ALLE genannt wurden.
-if (SRC) {
+if (SRC && !has('checks')) {
   const geprueft = new Set(ROUTES.map((r) => r.replace(/\/$/, '') || '/'));
   // Der Routen-Zaehler zaehlt AUSGELIEFERTE Seiten -> Build, nicht Quelle.
   const ungesehen = seitenImBuild(LESEORDNER)
@@ -1366,7 +1343,7 @@ if (SRC) {
     console.log(`Ungesehen: ${zeigen}${ungesehen.length > 12 ? ` … (+${ungesehen.length - 12})` : ''}`);
     console.log('Ungesehen ist nicht bestanden. Alle Routen mit --routes benennen');
     console.log('(vollstaendige Liste: node scripts/pruefstand.mjs --dir <build> --routen).');
-    process.exit(2);
+    finish(2);
   }
 }
 
@@ -1378,3 +1355,8 @@ if (BUDGET_GELOCKERT.length) {
 } else {
   console.log(`\nG1 BESTANDEN (Exit 0) — ${results.length - skipped.length} Check(s) gruen.`);
 }
+
+finish(0);
+}
+
+if (fileURLToPath(import.meta.url) === path.resolve(process.argv[1] || '')) runGate();

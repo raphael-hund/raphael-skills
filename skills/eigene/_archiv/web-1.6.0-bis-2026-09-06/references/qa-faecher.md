@@ -1,255 +1,165 @@
-# QA-Fächer (parallel, Schwarm gemischt)
+# Qualitätsnachweise nach Auftrag
 
-**Kunden-Vorschau (G1):** nur Fach 2 visuell — frische Shots plus
-`node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>` = Exit 0.
-Ablauf, Sitemap, Idee und Design blocken; Fakten-Nits parken als FAKT-GATE.
-Lighthouse/axe, Copy-G2 und Proof-Wahrheit sind ausschließlich Launch-Gates.
+Wähle vor der Prüfung die verlangten Eigenschaften und betroffenen Routen,
+Ansichten oder Funktionen. Eine Vorschau darf ausdrücklich provisorische
+Inhalte enthalten. Bereits verlangtes Verhalten wird auch in der Vorschau
+geprüft. Veröffentlichung ergänzt die tatsächlichen Produktionsanforderungen.
 
-Sechs Fächer: 1–4 parallel (gemischte Modellfamilien), danach 5 SEO und 6 Trust
-(können parallel zueinander laufen, brauchen aber fertige Routes/Content) für den
-Launch. G1 zuerst, dann fachlicher G2-Blick. Rollen: `agent-roster.md`.
-AAA-Raster: `agentur-rubrik.md`.
+## Eigenschaften und Belege
 
-## Drei Freigabedimensionen (getrennt, nicht verrechenbar)
+| Eigenschaft | Passender Nachweis | Aussagegrenze |
+|---|---|---|
+| Inhalt und Voice | Verwendeter Text, Kundenabsprachen, VOICE und benannte Quellen | Ein sichtbarer Claim beweist seine Wahrheit nicht. |
+| Darstellung | Jede Sektion im Umfang tatsächlich ansehen, einschließlich ihrer relevanten Hover-/Fokuszustände; mit Referenz und Nachbarsektionen vergleichen | Ein Bild beweist weder Bedienung noch Datenübermittlung. |
+| Bedienung | Konkrete Aktion mit erwartetem und tatsächlichem Ergebnis | DOM-Veränderung allein ist noch kein richtiges Verhalten. |
+| Übermittlung | Request-Inhalt, Response, UI-Zustand und kontrollierter Speicher-/Empfangsnachweis | Ein Mock prüft den Frontendvertrag, keine echte CRM-Zustellung. |
+| Bewegung | Laufzeit am betroffenen Element, normale und reduzierte Bewegung | Quelltextmuster oder stabilisierte Shots beweisen keine Wirkung. |
+| Barrierefreiheit | Passende automatische Regeln plus tatsächliche Tastatur-/Fokus-/Reflow-Prüfung | axe allein beweist keine vollständige WCAG-Konformität. |
+| Technik | Vorhandene Build-/Typ-/Lint-/Integrationstests, relevante Links, Assets und On-Page-Prüfungen | Syntax-PASS ist kein Funktions-PASS. |
+| Regression | Diff und erneut geprüfte betroffene Funktionen/Shared-Konsumenten | Unverlangte Nebenänderungen werden nicht durch bessere Gestaltung ausgeglichen. |
 
-| Dimension | Eigenständiger PASS-Beleg |
-|---|---|
-| **Visuell** | Kanonischer Screenshot-Sweep, PNG-Read durch Kritik-Leaves, Kritik-Loop und bei Ship das terminale `visual-aaa`-Manifest. |
-| **Funktional** | Feste Nutzeraufgaben bestehen; Route×Viewport×Target×State-Matrix und target-lokale A11y sind vollständig; Formulare, Links und Recovery-Pfade funktionieren. |
-| **Regression** | Vorher/Nachher gegen denselben Auftrag und dieselbe Build-Revision; nur verlangter Scope geändert, alle geänderten und betroffenen Nachbarrouten erneut geprüft. |
+Visuell, funktional und Regression bleiben getrennte Ergebnisse. Gesamt-PASS
+setzt alle **anwendbaren** verlangten Ergebnisse voraus. `FAIL`, `BLOCKED`,
+`NOT_RUN` und begründetes `N/A` sind unterscheidbar. N/A bezieht sich auf genau
+die betreffende Anforderung; eine fremde Route oder ein anderes Target deckt
+keine Prüflücke. Plan-only und Inspiration benötigen keine Build-Receipts.
 
-Gesamt-PASS gibt es nur bei **Visuell PASS**, **Funktional PASS** und
-**Regression PASS**. Keine Dimension darf eine andere aufrechnen: Eine attraktive Seite mit
-kaputtem Formular bleibt funktional rot; ein technisch grüner Flow mit sichtbarer
-Qualitätslücke bleibt visuell rot; eine gute lokale Änderung mit Nebenänderungen
-an Navigation, Tokens oder anderen Routen bleibt Regression rot. Ein neuer Build
-invalidiert ältere Sweep-, G1- und Ship-Receipts.
+## Prüfstand und Identität
 
-## Web-G1: Basis und Receipt-Identität explizit
-
-```bash
-node /root/raphael-skills/skills/eigene/web/scripts/g1-gate.mjs \
-  --base <echte-dev-oder-live-url> --routes <route1,route2> \
-  --src <projekt-root> --build <build-root> --out <run-out>/g1 \
-  --run-id <run-id> --build-revision <revision>
-```
-
-`--base`, `--run-id` und `--build-revision` sind Pflicht; kein stiller Host-/Port-
-Default und kein anonymer Bericht. Fehlend = Aufruffehler/Exit 2 vor Browserstart.
-Der Bericht `web/g1-report/v2`, das Manifest `web/shot-sweep/v2` und
-`run-evidence.json` müssen dieselbe Run-ID, Build-Revision und Basis tragen.
-G1 startet den kanonischen Sweep mit `--static --states --mobile` und lehnt ein
-Manifest mit abweichendem `capture_profile`, fehlender Mobile-Route, unvollständiger
-State-Matrix oder Hover-only-Evidence ab.
-
-## Motion-Freigabe (erst nach stabilem Basisstand)
-
-Motion-Polish beginnt erst, wenn der **statische Basisstand PASS** und die
-**funktionale Dimension PASS** auf derselben Build-Revision sind. Erst danach
-zählen Motion-Belege: reale Eingabe und Timing, ein eigener Reduced-Motion-Pass
-sowie Lifecycle-Prüfung für Fresh Load, Hard Reload, Back/Forward, Resize und
-Unterbrechung mit Recovery. Motion ist eine zusätzliche Prüfung; sie repariert
-kein rotes statisches, funktionales oder Regression-Gate.
-
-**AI-Slop-Sequenz (fest, kein optionaler Zusatzschritt):** design ZUERST (Fach 2, `detect.mjs`
-Exit 0 **und** `scan-ai-slop.mjs` mit 0 Treffern — der Scanner endet IMMER mit Exit 0,
-auch bei Funden, deshalb zaehlt bei ihm die Trefferzahl aus dem `--json`-Feld `hits`,
-nie sein Exit-Code; nachgemessen 02.08.2026) → **danach copywriting G1→G2** auf denselben Seiten (Fach 1,
-Voice/Floskel-Check). Siehe SKILL.md "Look & QA".
-
-## Fach 1 — Conversion
-- Ein klares Ziel je Seite? CTA über dem Fold + wiederholt? Landing = eine Aktion
-  (kein Menü/Blog), Formular direkt eingebettet statt hinter einer Button-Seite.
-- Value Proposition in < 5 Sek erfassbar? Proof (Zahlen/Logos/Testimonials belegt)?
-- Reibung raus: Formularfelder minimal, Einwände vorweggenommen.
-
-### Harte QA-Regeln Formular (G1, blockieren den Launch)
-
-**Zuerst der Prüfer, dann der Blick.** `node scripts/formular-check.mjs --url <url>`
-(im G1-Tor enthalten) misst, was messbar ist: falscher `input-type` (F1, BLOCK),
-Einfüge-Sperre (F3, BLOCK), fehlendes `autocomplete` (F2), Feldhöhe (F4),
-iOS-Zoom bei Schrift unter 16px (F5), Kontaktdaten zu früh (F6), Absende-Knopf
-(F7). **Die Lücke war real:** axe und craft-check ließen ein E-Mail-Feld mit
-`type="text"` beide durch (gemessen 29.07.) — das kostet auf einer Landingpage
-mehr Leads als jeder Kontrastfehler, den beide zuverlässig finden.
-
-Was das Skript **nicht** kann, bleibt Handarbeit: es liest Feldnamen, nicht die
-Fragen dahinter. F6 erkennt „E-Mail steht vor einer Sachfrage", aber nicht, ob
-die Sachfrage überhaupt qualifiziert.
-
-- **Reihenfolge = Mikro-Commitments, Kontaktdaten IMMER zuletzt:** Identifikation
-  ("Welche Beschreibung passt zu dir?") → Qualifizierung (Branche, Team-Größe,
-  **Website-URL** statt Firmenname) → **erst zuletzt** Kontaktdaten (Name → E-Mail →
-  Telefon). Kontaktdaten nie als erste Frage. *Beleg: Kontaktdaten nach vorne gezogen →
-  Conversion brach ein; zurück ans Ende → Conversion vervierfacht.*
-- **Drop-off pro Slide messen:** Conversion jedes einzelnen Slides tracken, Ausreißer-Frage
-  finden und fixen. *Beleg: offene Frage → ~40 % Drop-off auf Slide 3; ein URL-Freitextfeld
-  27 % Drop-off vs. 3–4 % sonst.*
-- **Offene Textfelder ersetzen:** sobald die häufigsten Antworten bekannt sind, Freitext →
-  Radio-Select (springt automatisch weiter; weniger Tipp-Reibung als Checkbox).
-
-### Harte QA-Regel Thank-You-/Zwischenseiten (G1)
-- **Vor dem letzten Schritt KEIN Abschluss-Wording** ("Danke", "Glückwunsch", "Geschafft") —
-  das schließt die Schleife im Kopf, der Nutzer schließt den Tab. Stattdessen "Fast geschafft"/
-  "Letzter Schritt" + Fortschrittsanzeige. *Beleg: ein 1,5-s-Ladescreen mit "Thank you" zwischen
-  zwei Schritten reichte zum Abbruch; Fix "Please wait".*
-- Danach zuerst eine Identitätsaussage zum Zustimmen, dann No-Show-/No-BS-Policy
-  (Konsistenzprinzip). *Beleg: ein Identitäts-Textblock hob die Show-Rate 60 % → ~75 %.*
-
-### Testimonial-Check
-- Video oder echter Screenshot (voller Name/Handle) statt Fließtext; nach **Identität/Branche**
-  gelabelt; Video-Schnitt **Hook-first** (stärkster Moment zuerst, nicht die Vorstellung).
-- **Menge NICHT wegkürzen** — Volumen ist der Beweis. *Beleg: Reduktion auf die 4 größten
-  halbierte die Conversion.*
-
-## Fach 2 — Design (→ design)
-- G1: `node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>` = Exit 0
-  **und** `node /root/raphael-skills/skills/design/scripts/scan-ai-slop.mjs <projekt-root> --rules=/root/raphael-skills/skills/design/scripts/rules.de.mjs`
-  triagiert (keine offenen P0-Slop-Funde). Niemals `npx impeccable detect` — das
-  trifft die unpatchte npm-Version, nicht die lokalen Regeln. Den Scanner nicht
-  über Skill `kill-ai-slop` extra laden — er sitzt in design.
-- Visuelle Hierarchie, Kontrast, Rhythmus/Spacing, konsistente Tokens.
-- Landing → taste-Kern + `lexlin-design-prinzipien.md` / `damien-design-methodik.md`;
-  App/Dashboard → ui-ux-DB.
-- Premium/Ship: Screenshot-Kritik-Loop inkl. **Blind-A/B** (`screenshot-kritik-loop.md`
-  Schritt 3b) und Stichprobe gegen `agentur-rubrik.md` Visual-Zeilen.
-- Immer ZUERST vor Fach 1 Voice-/Floskel-Check laufen lassen (siehe AI-Slop-Sequenz oben).
-
-### Grafik-Assets-Gate
-Greift, sobald Freisteller, Layer-Stapel oder eigene Hintergrund-Grafiken im Spiel sind.
-Pass nur, wenn alle fünf Punkte stimmen:
-- **(A) Kanten sauber:** Alpha ohne Halo/Restrand, Motiv nirgends angeschnitten — Köpfe
-  von Personen niemals (harte Regel, Personen-Crops immer per Screenshot prüfen).
-- **(B) Trim eng:** links/rechts endet das Bild am letzten Motiv-Pixel (Alpha-Trim);
-  oben/unten ist bewusster Raum für Schatten/optische Balance erlaubt (siehe
-  `bildgenerierung.md`, Abschnitt "freistellen + eng zuschneiden"). Abstand kommt aus
-  dem CSS, nie aus dem Bild.
-- **(C) Layer logisch:** Überdeckungsreihenfolge nachvollziehbar, `z-index`-Stufen in
-  `art-direction.md` des Projekts dokumentiert.
-- **(D) Mobile-Fallback da:** statische Variante oder Poster für Reduced-Motion vorhanden.
-- **(E) Screenshot nach Einbau:** Asset im echten Web-Kontext sichtbar, kein Broken Image,
-  Farben stimmen mit der Quelle überein.
-- **(F) Raphael-Nein:** Root-`DESIGN.md` Teil D und `DECISIONS.md` nennen keine
-  Sperre, die dieses Asset oder diesen Dateipfad auf dieser Route verbietet.
-  `rg` auf den gesperrten Pfad in der Seiten-Copy und im Hero liefert 0 Treffer.
-
-Fail = ein Punkt offen → zurück in den Bildgenerierungs-/Freisteller-Schritt, nicht im
-Layout nachbessern. (F) rot = kein Ship, auch wenn (A)–(E) grün sind.
-
-## Fach 3 — A11y
-- **Launch-Fach:** G1: axe = 0 Fehler (hart; nicht Vorschau). Farbkontrast AA,
-  Fokus-Reihenfolge, Alt-Texte, Labels.
-- Tastatur-Navigation vollständig, ARIA korrekt (nicht überladen).
-- **Target-lokal statt Seitenpauschale:** Für jeden Schlüssel aus
-  `Route × Viewport × Target × State` enthält der Capture-Beleg die echte
-  Tastatursequenz, den erwarteten und tatsächlichen Fokus, Rolle + Accessible
-  Name, ARIA-/Live-Region-Ergebnis, Escape-/Recovery-Pfad und Axe auf dem DOM
-  **nach** dem Übergang. Ein globaler Axe-Lauf oder ein Shot eines anderen
-  Buttons deckt dieses Target nicht ab.
-- Fokus-, Open/Expanded-, Loading-, Empty-, Error- und Success-Zustände bleiben
-  funktional rot, wenn Setup, Fokusassert, ARIA-State, Live-Region oder Recovery
-  fehlschlägt — auch bei visuell korrektem Screenshot.
-
-## Fach 4 — Technik
-- **Launch-Fach:** G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO;
-  nicht Vorschau), Link-Check, HTML-validate.
-- Meta/OG/Schema vorhanden, Canonical korrekt, keine Broken Links, responsive.
-- **G1 Werkzeug-Gate (hart):** `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle
-  <pfad>/art-direction.md` = Exit 0. Prueft deterministisch: genau EIN Icon-System,
-  null `framer-motion`-Importe (vendorierte Komponenten nutzen `motion/react`),
-  `useReducedMotion` in jeder animierenden Datei, keine Dependency ohne Zeile in
-  der Werkzeugtabelle aus Schritt 5d. Rot = kein Launch, wie jedes andere G1-Fach.
-  "Router wurde gelesen" ist keine gueltige Antwort auf dieses Gate.
-- **G1 anti-slop (hart, nur Custom-TS/JS):** Plugin im Repo, `npx oxlint` Exit 0.
-  Richtet Skill `install-anti-slop` ein. Detail und Regel-Liste:
-  `code-qualitaets-checkliste.md`. Kein Ersatz für `scan-ai-slop.mjs` (das ist
-  Text/Markup in Fach 2). CMS-only ohne eigene `.ts`/`.js` = nicht anwenden.
-
-## Fach 5 — SEO
-- G1: pro indexierbarer Route unique title (≤60), meta (≤160), clean slug, genau eine H1,
-  Canonical, keine Broken Links (Teil von Lighthouse/HTML-Scan = 0 Fehler).
-- G1 Index: Marketing-Routen liefern crawlbaren HTML-Inhalt (SSR/SSG/Prerender) — reines
-  Client-Empty-Shell ohne Inhalt = Fail.
-- G2: `seo`-Skill (Loop 4) ziehen wenn Content-Seiten/Blog/Local — Keyword-Intent,
-  Information-Gain, Schema-Tiefe; nicht nur Lighthouse-SEO-Subscore.
-- Checkliste: `agentur-rubrik.md` Zeilen 11–17. Fail → kein Launch für öffentliche URLs.
-
-## Fach 6 — Trust
-
-**Launch-only.** Eine Kunden-Vorschau darf mit Fach 6 rot raus (offene Zahlen,
-Domain, Platzhalter-Reviews), solange Fach 2 visuell sitzt und Ablauf/Sitemap/Idee
-stehen. Inhalt ist ein Swap. Launch: kein erfundener Proof als echt.
-
-- G1: Impressum + Datenschutz erreichbar und vollständig (DE); 404-Route gebrandet,
-  Status 404, `noindex`, klarer Rückweg.
-- G1 Proof: jede sichtbare Zahl/Logo/Testimonial ist in `PROOF.md`/Dossier belegt —
-  erfundene Claims = Fail (nicht „später belegen“). Unklare echte Zahl
-  (50 vs 60 Reviews, 24 vs 28h) = FAKT-GATE bis Launch, kein Erfinden.
-- G2: Testimonials Video/Screenshot+Identität (Fach-1-Regeln); keine KI-Personen in
-  Beweis-Kontexten ohne Raphael-Freigabe; Partner-Logos nur freigegeben; Consent vor
-  nicht-essentiellem Tracking wo nötig (`security-audit-playbook.md`).
-- Checkliste: `agentur-rubrik.md` Zeilen 18–25. Fail → kein Launch (wie Fach 5).
-
-## Optional — Persona-QA
-Je eine Perspektive: Beginner · Engineer · Business-Owner. Findet Blindstellen, die die
-Fach-QA übersieht. Kein Gate, nur Zusatzsignal.
-
-## Regel
-Kein Launch, solange ein G1-Fach (1–6) rot ist. Findings → `client-<name>/wiki/qa-<datum>.md`.
-Kunden-Vorschau: Fach 2 rot = nicht zeigen. Fach 6 Trust-Zahlen und Custom-Domain
-sind kein Vorschau-Blocker.
-
-
-## Kontexttiefe: Prosa gegen Stichpunkte (Fach 5, hart)
-
-Eine Seite kann jedes SEO-Gate bestehen und trotzdem dünn wirken. Der Unterschied
-zwischen einer tragenden und einer dünnen Seite ist **nicht die Wortzahl**, sondern
-das Verhältnis erklärender Absätze zu Listenpunkten.
-
-Gemessener Referenzmaßstab (acht Weltklasse-Seiten, 01.09.2026):
-
-| | Absätze ab 25 Wörtern |
-|---|---|
-| inhaltlich tragende Seiten | 17–170 |
-| dünne Seiten | 0–7 |
-
-**Messung** (auf dem gerenderten Build, nicht auf der Quelle):
+Prüfe die tatsächlich ausgelieferte Revision, Basis-URL, Routen und Zustände.
+Bei geändertem Build sind alte G1-, Capture-, Funktions- und Ship-Belege ungültig.
+`run-evidence-contract.md` beschreibt die maschinelle Zusammenführung.
 
 ```bash
-python3 - <<'EOF'
-import re,glob
-def txt(s): return ' '.join(re.sub(r'<[^>]+>',' ',s).split())
-for f in sorted(glob.glob('dist/*/index.html')):
-    h=open(f,encoding='utf-8').read()
-    m=re.search(r'<main.*?</main>',h,re.S); body=m.group(0) if m else h
-    ps=[len(txt(p).split()) for p in re.findall(r'<p[^>]*>(.*?)</p>',body,re.S)]
-    print(f.split('/')[1], sum(1 for w in ps if w>=25), len(re.findall(r'<li',body)))
-EOF
+node /root/raphael-skills/skills/eigene/web/scripts/g1-gate.mjs   --base <url> --routes <routen> --src <projekt> --build <build>   --out <run-out>/g1 --run-id <run-id> --build-revision <revision>
 ```
 
-**Kontextlücke** = H2-Sektion mit mindestens 4 Listenpunkten und **keinem** Absatz ab
-25 Wörtern. Jede solche Sektion bekommt einen Einleitungsabsatz von 45–80 Wörtern
-**vor** der Liste, der erklärt, was der Leser gleich sieht und warum es für ihn zählt —
-keine Wiederholung der Liste.
+Der G1-Checkumfang muss zum Auftrag passen. Ein grüner technischer Teilcheck
+wird nicht als erfolgreiche fachliche Nutzerreise ausgegeben. Testfehler und
+fehlende Umgebung bleiben offen, auch wenn andere Checks bestanden haben.
 
-**Drei Messfallen, die Befunde überzeichnen:**
-- **FAQ-Sektionen sind keine Lücke.** Accordion-Antworten liegen in `<div>` und als
-  `FAQPage`-JSON-LD, nicht in `<p>`. Immer ausschließen.
-- **Nav und Footer mitzählen** hebt jede Route gleichmäßig an. Nur `<main>` messen.
-- **Zitat- und Testimonial-Sektionen sind keine Lücke.** Vier Kundenstimmen zählen
-  als „4 Listenpunkte ohne Erklärabsatz“, tragen aber bereits Prosa — nur eben
-  fremde. Ein erklärender Vorspann über Zitate ist Füllsel und schwächt sie.
-  Ausschließen, wenn die Kinder Namen, Ort oder Bewertungsquelle tragen.
+## Darstellung und Gestaltung
 
-**Regel dahinter:** Die Metrik findet Kandidaten, nicht Urteile. Vor jedem Fix die
-Sektion ansehen — schließt der Absatz eine echte Erklärlücke, oder erfüllt er nur
-den Zähler? Im zweiten Fall die Metrik korrigieren, nicht die Seite.
+Den aktuellen Build tatsächlich ansehen. Bei einer ganzen Seite oder Site gilt
+**jede Sektion jeder beauftragten Route**, einschließlich Footer und wiederholter
+Bausteine. Bei lokalem Fix gelten dessen Fläche, Übergänge zu Nachbarsektionen
+und betroffene gemeinsame Konsumenten. Die vorhandene Route-/Sektionsliste aus
+Plan oder Code mit dem gerenderten Stand abgleichen; ungesichtete Bereiche bleiben
+ungeprüft. Fehlende Liste im bestehenden Prüfbericht ergänzen.
 
-**Klon-Prüfung bei Orts-/Varianten-Seiten.** Tragen mehrere Seiten dieselben H2 mit
-ausgetauschtem Ortsnamen („Was wir in *X* räumen“), ist die Seite strukturell ein Klon —
-sie besteht jedes Gate und wirkt im Blindvergleich trotzdem generisch. Prüfen mit
-`grep -h '<h2' dist/*/index.html | sed 's/[A-ZÄÖÜ][a-zäöüß]*$//' | sort | uniq -c | sort -rn`.
+Auf drei Ebenen prüfen:
 
-**Vorsicht bei Hierarchie-Vorwürfen.** „Die Hierarchie ergibt keinen Sinn“ meint fast nie
-kaputte Schachtelung. Erst messen (`h3_vor_erstem_h2`), bevor umgebaut wird — häufiger
-ist der wahre Befund **Monotonie**: dieselbe Kachelraster-Sektion auf jeder Route.
+- **Sektion:** Hierarchie, Textlesbarkeit, Bildmotiv/-schnitt/-auflösung, Balance,
+  Abstände sowie ruhende und bediente Zustände der vorhandenen Komponenten.
+- **Seite:** Tatsächliche Inhaltskanten, Text-/Bildbreiten, Spaltenausrichtung,
+  vertikalen Rhythmus, Oberflächen, Typografie und Übergänge aufeinander beziehen.
+  Gleiche `max-width`-Tokens genügen nicht: innere Paddings, Grid-Spalten und
+  lokale Overrides können den sichtbaren Inhalt trotzdem versetzen.
+- **Site:** Seiten bei gleichen Viewports nebeneinander vergleichen: Breiten,
+  Schriftrollen, Buttons, Bildsprache, Navigation und Footer sollen einem
+  erkennbaren System folgen. Bewusste Full-Bleed-Flächen, schmale Lesespalten
+  und wechselnde Layouts sind zulässig; unbeabsichtigte Sprünge sind Befunde.
+
+Desktop und Mobil je Sektion abdecken. 1440×900 und 390×844 sind mögliche
+Vergleichsdefaults, keine vollständige Responsive-Abnahme. Reflow bei 320
+CSS-Pixeln und betroffene Zwischenbreiten prüfen. `screenshot-kritik-loop.md`
+beschreibt Aufnahme und tatsächlichen Bildzugriff; vollständige Flächenabdeckung
+ist keine feste Screenshotquote.
+
+Die vorhandenen Designscanner bleiben Teilprüfungen:
+`/root/raphael-skills/skills/design/scripts/detect.mjs` sowie
+`scan-ai-slop.mjs --json`; bei deutschem Text `--rules=…/rules.de.mjs`.
+Beim Slopscanner Ergebnisse aus `hits` triagieren, nicht nur Exit 0 lesen.
+Ein bewusst gewähltes Kundenmuster ist nicht durch einen generischen Treffer widerlegt.
+
+Assets vor Verwendung auf Motiv, Kanten, Auflösung und tatsächliche Herkunft
+prüfen; anschließend im Seitenkontext. Aktuelle Asset-/Motiv-Neins gelten für
+ihren benannten Umfang. `visual-aaa` liefert bei zusätzlichem visuellem
+Prüfbedarf einen wiederverwendbaren Beleg, keinen zweiten Gesamtabschluss.
+
+## Konkrete Nutzerwege
+
+Für Navigation, Menü, Dialog oder Tastaturweg: Ausgangszustand → Handlung →
+erwarteter Zustand → Rückweg. Fokus, Accessible Name, relevante ARIA-Zustände
+und Escape-Verhalten am tatsächlichen betroffenen Target prüfen. Ein Screenshot
+eines offenen Menüs belegt nicht, dass es sich öffnen oder schließen lässt.
+
+Bei Ganzseitenabnahme interaktive Komponenten und ihre unterschiedlichen Varianten
+aus DOM und Code erfassen: Buttons/Links, Karten, Menü, Accordion, Tabs, Carousel
+und vorhandene weitere Controls. Je Variante Hover und Tastaturfokus ansehen,
+Aktivierung und Rückweg bedienen; nur tatsächlich hoverfähige Geräte verlangen
+Hover, Touch braucht einen vollständigen eigenen Weg. `--hover` prüft nur die
+genannten Selektoren, `--states` nur die deklarierte State-Spec.
+
+Alle Linkziele im Umfang auflösen: interne Routen und Anker, externe Ziele,
+Downloads sowie `mailto:`/`tel:`. HTTP-Erreichbarkeit allein beweist weder das
+richtige Ziel noch einen bedienbaren Link. Primäre Wege und unterschiedliche
+Linkvarianten tatsächlich anklicken; kein unbeabsichtigter Submit oder Tracking-
+Overlay darf sie blockieren. Externe Dienste ohne Zugriff bleiben benannt ungeprüft.
+
+Formularabnahme: gültige Absendung, Validierungsfehler und technische Ablehnung
+mit verständlicher Recovery. Anzahl und Inhalt der Requests, Response und
+Erfolgsmeldung gegeneinander prüfen; Fehler dürfen keinen UI-Erfolg vortäuschen.
+`formular-check.mjs` prüft Feldstruktur und Bedienungsdetails; ohne zusätzlichen
+Szenarionachweis ist eine Absendung **nicht geprüft**. Echte Zustellung nur am
+autorisierten kontrollierten Ziel testen.
+
+Vorhandene Projekt-E2E-Tests bevorzugen. Für einfache Zustandsproben kann die
+bestehende `state-spec.json` konkrete Schritte, Targets und Erwartungen halten.
+Der Schlüssel ist Route × Viewport × Target × State. Normales Capture klickt
+keine beliebigen Buttons und wiederholt keine Schreibaktion als vermeintliches Undo.
+
+## Bewegung
+
+Den betroffenen Ablauf in Normal- und Reduced-Motion-Modus ausführen. Bei
+Ganzseitenabnahme umfasst das alle Sektionen mit Reveal-/Scrollbindung und
+die unterschiedlichen interaktiven Animationen, auch unterhalb des Heros. Die
+Präferenz muss am tatsächlich animierten Element wirken. `motion-check.mjs`
+ohne Runtimeziel ist ein Quelltextscanner; für die Wirkungsprobe Ziel-URL und
+betroffenes Element angeben. Fresh Load, Reload, Resize oder Unterbrechung
+werden geprüft, wenn die Änderung diesen Lebenszyklus berührt.
+
+Bei Scroll-/Layer-Szenen vorwärts und rückwärts durch **Eintritt, Wechsel und
+Austritt** gehen. Auf Sprünge, harte Bildkanten, freigelegte Hintergründe,
+abgeschnittene Ebenen und unter Overlays versteckte Texte/CTAs achten.
+Pinning muss enden und den nächsten Inhalt freigeben. Auf schmaler Touch-Ansicht
+die gewählte mobile Variante bedienen; ein Desktop-Kartenstapel muss dort
+nicht gleich animieren, sein Inhalt muss vollständig erreichbar bleiben.
+
+Ein tatsächlich angesehener kurzer Mitschnitt oder gezielte Bildfolgen belegen
+den untersuchten Übergang; passende Zustands-/Scrollmessungen prüfen die
+erwartete Reaktion. Bei einer Naht die Stelle dichter erfassen und nach dem
+Fix erneut prüfen. Keine pauschale Frame-, Pixel- oder Screenshotquote.
+Einzelbilder beurteilen Erscheinung, nicht flüssiges Timing oder Eingabereaktion.
+
+`--static` deaktiviert Bewegung und kann Reveals sichtbar machen. Solche
+Aufnahmen sind stabilisierte Vergleichsbilder; normales Laden und tatsächliche
+Sichtbarkeit werden dadurch nicht bewiesen.
+
+## Inhalte, Technik und Veröffentlichung
+
+Neue/geänderte Copy folgt `copywriting`: Kunden-Voice und Quellen, G0/G1,
+auftragsgemäße abschließende Prüfung. Bei Web-Ship gilt die bestehende Rubrik
+`/root/raphael-command-center/evals/rubrics/web.md` mit ihrer Schwelle; ein
+unveränderter gültiger Text braucht keine erneute vollständige Schreibschleife.
+
+Technische Checks aus dem Projekt nutzen. Bei Custom-TS/JS passende Lint-/Typ-
+und Verhaltensprüfungen; Oxlint anti-slop nach `code-qualitaets-checkliste.md`,
+wenn dieser Projektvertrag gilt. Neue Dependencies werden nach dem
+`tool-usecase-router.md` entschieden, ohne bei einem kleinen Fix die Toolchain
+ungefragt zu ersetzen.
+
+Je Route Title/Description, H1 und Heading-Struktur, Canonical, Robots-
+Meta/HTTP-Header, interne Verlinkung und crawlbaren Inhalt prüfen; Sitemap und
+strukturierte Daten, soweit für den Auftrag relevant. Erwartete Indexierbarkeit
+vorher aus Preview-/Produktionsziel ableiten: ein beabsichtigtes Preview-`noindex`
+ist kein Fehler. `onpage-check.mjs` liefert technische Hinweise; `seo` wird
+für echte Intent-/IA-/Contentfragen geladen. SEO-PASS ersetzt keine Frontendprüfung.
+Lighthouse-Laborwerte und gemessene Feld-Performance bleiben getrennt.
+
+Vor Launch: sichtbare Aussagen und Proof belegen, offene Inhalte auflösen,
+Ziel/Domain/HTTPS, Datenschutz/Consent und tatsächliche Integrationen passend
+zum Projekt prüfen. Details: `rolle-launch.md`. Eine sinnvolle Checkliste
+richtet sich nach der Website; fixe Wortzahlen oder Screenshotmengen sind
+keine Ersatzabnahme. „AAA“ in `agentur-rubrik.md` meint das Agentur-Raster,
+nicht WCAG AAA.

@@ -27,6 +27,35 @@ Drei verschiedene Dinge, oft verwechselt. Erst einordnen, dann arbeiten:
 Für Websites gilt: **Art Direction kommt aus `design`** (Look, Palette, Register) →
 diese Referenz setzt die Art Direction in konkrete Bilder um.
 
+## Bildwelt im Projekt
+
+Vor einer Bildentscheidung den Projekt-Index und vorhandene Dateien tatsächlich
+ansehen, einschließlich relevanter neuer Referenzen in `/root/eingang`. Je
+benötigter Sektion Motiv und Bildart bestimmen: echtes Projektfoto, Shooting,
+Produktaufnahme, Freisteller, technische Linie, flache Illustration oder 3D-Szene.
+Palette, Licht, Perspektive, Textur, Ausschnitt und Maßstab mit den benachbarten
+Sektionen vergleichen. Dateiname und Indexeintrag allein beschreiben keinen Look.
+
+Passt ein vorhandenes Asset inhaltlich und stilistisch, verwenden. Passt das
+Motiv, aber Ausschnitt oder Qualität fehlen, die passende Bearbeitung wählen.
+Fehlt ein geeigneter Inhalt oder verlangt der Auftrag neue Bilder, `higgsfield`
+mit **GPT Image 2** nutzen: Inhaltsreferenz für das Motiv, vorhandene Shooting-/
+Illustrationsbilder oder Seitenansichten als Stilreferenz. Jede Datei im Prompt
+ihrem Zweck zuordnen; nur die benannten Eigenschaften der Stilvorlage übernehmen.
+So entstehen passende neue Motive innerhalb der vorhandenen Bildwelt.
+
+Ein beauftragter Website-/Bildumbau mit erlaubten KI-Assets deckt diese nötigen
+Bildjobs ab. Kosten prüfen und vorhandene Budget-/Kundenvorgaben einhalten;
+Routine-Motivwahl und Einbau benötigen keine zweite Freigaberunde. Eine neue
+materielle Stilentscheidung oder ein ausdrückliches Verbot bleibt beim Auftrag.
+
+Nach dem Job die Originaldatei mit dem vorhandenen Bildwerkzeug öffnen
+(in Codex `view_image`), relevante Details und anschließend den eingebauten
+Ausschnitt auf Desktop und Mobil ansehen. Motiv, Schärfe, Kanten, Textfreiraum
+und Kongruenz zur Seite prüfen. Der Jobstatus allein ist keine Bildabnahme.
+In `bilder-index.json` Referenzdateien und Prompt erhalten. Der Index-Bildtext
+dient der Ablage; sichtbare Captions nur mit für Besucher hilfreicher Zusatzinfo.
+
 ## Vorbereitung (Auth ist dauerhaft — kein Session-Login)
 
 Die Higgsfield-CLI liegt als `higgsfield` / `higgs` in `/usr/local/bin`.
@@ -101,11 +130,13 @@ higgsfield generate create gpt_image_2 \
 ```
 
 Danach:
-1. Bild per Read ansehen. Abnahme (Raphael oder visual-aaa bei Ship).
+1. Bild mit dem vorhandenen Bildwerkzeug ansehen. Abnahme gegen Motiv und Stil;
+   subjektive Richtungswahl bei Raphael, Routineprüfung beim ausführenden Owner.
 2. Freistellen + Trim (unten).
 3. `bilder.mjs add`.
-4. Einbau. **Ausfaden** ins Layout (CSS-Maske / Gradient auf die Kante,
-   die an Fläche/Text grenzt). Abstand bleibt CSS, nicht Canvas.
+4. Einbau und Ausschnitt im Layout prüfen. **Ausfaden** nur, wenn die gewählte
+   Bildsprache es verlangt; gerahmte Fotos und klare Kanten dürfen bestehen.
+   Abstand bleibt CSS, nicht Canvas.
 5. Dummy-Marken oder Wasserzeichen aus dem Generate entfernen.
 
 Eine Sektion nach der anderen. Asset nicht im Code neu zeichnen.
@@ -115,8 +146,8 @@ Eine Sektion nach der anderen. Asset nicht im Code neu zeichnen.
 - Inhalt erfinden, obwohl eine echte Vorlage existiert (Map, Produkt, Ort).
 - Seiten-Screenshot als Inhaltkontext behandeln (er ist Stilkontext).
 - Stilkontext weglassen, wenn Screenshot oder Marken-Illustration da ist.
-- Recraft für Illustration (Recraft nur fotorealistisch ohne Referenz).
-- Einbauen vor Abnahme.
+- Recraft für Illustration oder Foto als alternativen Final-Weg verwenden.
+- Einbauen ohne die Datei und den vorgesehenen Ausschnitt anzusehen.
 
 ## Der Entscheidungsbaum (verbindlich)
 
@@ -170,10 +201,8 @@ eigene Formulierung, keine Übernahme.)*
 Bilder. Genau das ist das „Add Image 1 / Add Image 2 / …"-Prinzip.
 
 **GPT Image 2 ist außerdem der beste Illustrator.** Jede **markenspezifische** stilisierte Illustration
-(2D, 3D-Render, Icon-Szenen, „geile Illustrationen") läuft über GPT Image 2 — **auch
-ohne Referenz**. Recraft ist dafür die falsche Wahl (das ist der Realismus-Weg unten).
-Mit Stil-Referenz (bestehende Illustrationen) wird es noch treffsicherer, aber
-zwingend ist sie hier nicht.
+(2D, 3D-Render, Icon-Szenen) läuft über GPT Image 2. Mindestens eine passende
+Stilreferenz aus dem Projekt oder der Recherche mitgeben, nach `higgsfield`.
 
 Zwei Arten von Referenz — meist gemischt:
 
@@ -207,82 +236,18 @@ einer Stil-Referenz einen sauberen Start-Prompt zu ziehen, den man dann kürzt/a
 higgsfield generate cost gpt_image_2 --prompt "…"                      # vorab
 higgsfield generate create gpt_image_2 \
   --prompt "<Motiv + was aus den Referenzen übernommen wird>" \
-  --image ./shooting-01.jpg --image ./shooting-02.jpg \        # Add Image 1, 2, …
+  --image ./shooting-01.jpg --image ./shooting-02.jpg \
   --aspect-ratio 16:9 --resolution 4k --quality high --wait
 ```
 Params (`gpt_image_2`): `aspect_ratio` (1:1,4:3,3:4,16:9,9:16,3:2,2:3) ·
 `resolution` (1k,2k,4k, Default 2k → **auf 4k setzen** für Finals) ·
 `quality` (low,medium,high; Default high) · `image_references` (Array).
 
-### 2. Recraft V4.1 (`recraft_v4_1`) — abgeschaltet
+### 2. Previews
 
-Raphael 17.08.2026: Recraft nicht nutzen. Foto ohne lokale Datei → Inhalt und
-Stil **suchen**, dann `gpt_image_2`. Der Block darunter bleibt nur als
-Archiv-Rezept, falls Raphael Recraft ausdrücklich nennt.
-
-**Gesichter echter Menschen: nur aus Distanz oder beiläufig.** Keine
-Nahaufnahme-Porträts realer Personen mit Recraft — KI-Gesichter fallen im Close-up auf
-und werden schnell unheimlich/fake. Menschen nur auf mittlere/weite Distanz, angeschnitten,
-von der Seite, in Bewegung, als Teil der Szene — nie das erkennbare Gesicht als Motiv.
-Braucht die Seite ein echtes, nahes Gesicht → **echtes Foto** (Shooting oder Shutterstock via `stock.mjs`), nicht Recraft.
-
-**Das Recraft-Problem:** Recraft baut ungefragt gern einen **cinematischen, leicht
-getönten, filmischen Look** (Teal-Orange-Grade, Film-Tint). Das passt fast nie zu
-dem, was wir machen, und wirkt billig-generisch. Dagegen wird **hart** gegengesteuert:
-
-- **JSON-Prompting** (strukturierter Prompt, siehe Vorlage unten) — Farbe, Stil,
-  Licht, Komposition **explizit** benennen, statt Recraft raten zu lassen.
-- Im Prompt Farbe/Grade **negativ** festnageln: „flat neutral grade, no cinematic
-  color grading, no teal-orange, no film tint, true-to-life color".
-- **NICHT** das Color-Grading benutzen: weder die Parameter `colors` /
-  `background_color` erzwingen noch das separate `color_grading_lut`-Modell. Farbe
-  wird im Prompt beschrieben, nicht per Grading-Feature aufgezwungen.
-- **Kein Illustrations-Weg:** stilisierte Illustration läuft IMMER über GPT Image 2
-  (markenspezifisch) bzw. `#illustration-flat` (generisch) — Recraft bleibt der
-  Realismus-Weg. `--model-type vector`/`utility_vector` nur für rein technische
-  Vektor-Utilities, nie als Illustrations-Alias.
-
-**Rezept:**
-```bash
-higgsfield generate cost recraft_v4_1 --prompt "…"
-higgsfield generate create recraft_v4_1 \
-  --prompt '<JSON-Prompt, siehe Vorlage>' \
-  --model-type standard \                # vector = nur technische Vektor-Utilities, NICHT Illustration
-  --aspect-ratio 16:9 --resolution 2k --wait
-```
-Params (`recraft_v4_1`): `aspect_ratio` · `resolution` (1k,2k → **2k**, mehr geht
-nicht) · `model_type` (standard,vector,utility,utility_vector) · `colors`,
-`background_color` **nicht nutzen**.
-
-### 3. Previews → Nano Banana 2 (`nano_banana_flash`) — und sonst nie
-
-Nano Banana **nur** als **Nano Banana 2** (`nano_banana_flash`) für schnelle,
-wegwerfbare Previews (Komposition/Idee testen, bevor das teure Final auf GPT Image 2
-oder Recraft läuft). Kann Referenzen und bis 4k, aber im Website-Flow **ausschließlich
-Preview**. Kein finales Asset aus Nano Banana. Andere Nano-Varianten (Pro/Lite/Stylist)
-nicht verwenden.
-
-## JSON-Prompt-Vorlage für Recraft (gegen den Filmlook)
-
-Recraft ohne Struktur = generischer cinematic Slop. Diesen JSON-Block als Prompt
-übergeben, Felder ausfüllen, `negative` immer mit den Anti-Grade-Begriffen:
-
-```json
-{
-  "subject": "<was genau, konkret>",
-  "composition": "<Bildausschnitt, Perspektive, Platz für Text/Overlay>",
-  "style": "<z. B. clean product photography / cinematic photo / photoreal 3D render>",
-  "palette": "<echte Marken-/Shooting-Farben, exakt benannt>",
-  "lighting": "<soft daylight / studio softbox / … — flat und natürlich>",
-  "background": "<beschrieben, nicht per background_color erzwungen>",
-  "mood": "<nüchtern, klar — NICHT 'cinematic'>",
-  "negative": "no cinematic color grading, no teal-orange, no film tint, no vignette, flat neutral true-to-life color"
-}
-```
-
-Herkunft der Methode: strukturiertes Prompting (das „JSON-Prompting-Skill"-Prinzip) +
-`image-to-prompt` als Extraktor. Ziel ist Kontrolle über Farbe/Stil, nicht Recrafts
-Default-Ästhetik.
+Nano Banana 2 (`nano_banana_flash`) nur für ausdrücklich benötigte, wegwerfbare
+Kompositionspreviews; Final bleibt `gpt_image_2`. Eine Preview ist kein Pflichtschritt.
+Recraft ist abgeschaltet. Seine alten Rezepte stehen in der Versionsgeschichte.
 
 ## Bild-Bearbeitung mit Higgsfield (nicht nur erzeugen)
 
@@ -348,15 +313,18 @@ zusammensetzen. Fünf Regeln:
 2. **Stacking vorher festlegen.** Vor der Generierung benannte Ebenen und ihre
    `z-index`-Stufen definieren: Der Hintergrund liegt hinten (niedrigste Stufe), der
    Mittelgrund darüber und der Vordergrund oben (höchste Stufe). Diese Reihenfolge
-   dokumentieren; die Umsetzung prüft das [Grafik-Assets-Gate](./qa-faecher.md).
+   im vorhandenen Kompositionsplan dokumentieren. Bewegungswege und Varianten
+   folgen [motion-doktrin.md](./motion-doktrin.md).
 3. **Transparenz und Überdeckungen prüfen.** Freigestellte Layer bleiben Alpha-Assets.
    Vor dem Einbau Alpha-Kanten auf saubere Ränder ohne Halo prüfen und jede
-   Überdeckung im zusammengesetzten Stack kontrollieren; die Umsetzung prüft das
-   [Grafik-Assets-Gate](./qa-faecher.md).
+   Überdeckung im zusammengesetzten Stack kontrollieren, auch an den äußersten
+   Bewegungspositionen. Perspektive, Licht und Anschlüsse müssen zusammenpassen;
+   verschobene Ebenen dürfen keine leeren Kanten freilegen. Prüfung nach
+   [qa-faecher.md](./qa-faecher.md).
 4. **Reduced-Motion-Zustand und statischen Fallback bereitstellen.** Umsetzung nach der
-   [motion-doktrin.md](./motion-doktrin.md). Zusätzlich ist ein flaches Composite-Bild
-   als Pflicht-Asset zu erzeugen; es dient als statischer Fallback für Nutzer ohne
-   Motion. Den Einbau prüft das [Grafik-Assets-Gate](./qa-faecher.md).
+   [motion-doktrin.md](./motion-doktrin.md). Ein ruhender, korrekt zusammengesetzter
+   DOM-Stack kann der Fallback sein. Ein zusätzliches flaches Composite-Bild nur
+   erzeugen, wenn der Auslieferungsweg es braucht; Inhalt und CTA bleiben zugänglich.
 5. **Trim und CSS-Abstand anwenden.** Jeden Layer nach der Freistellung nach der
    Freisteller-Regel oben trimmen: links/rechts IMMER hart bis zur Alpha-Grenze;
    oben/unten gilt dieselbe Ausnahme wie beim Freistellen (Schatten/optische Balance,
@@ -365,9 +333,8 @@ zusammensetzen. Fünf Regeln:
 *(Idee sinngemäß nach Leon Lin, „How To Actually Design With AI", X-Post vom
 12.07.2026 — eigene Formulierung, keine Übernahme.)*
 
-Die projektspezifische Layer-Ordnung (welche Ebenen eine Szene überhaupt hat) steht im
-Asset-Kompositions-Abschnitt der Art Direction des Kunden:
-`/root/clients/client-<name>/web/art-direction.md`.
+Die projektspezifische Layer-Ordnung steht im vorhandenen Plan oder
+Asset-Kompositions-Abschnitt der Art Direction des Kunden.
 
 ## Bild-Index + AVIF — Pflicht bei JEDEM Bild
 
@@ -435,7 +402,7 @@ zurück (Haushaltsauflösung 17.08.2026: Polo-Foto trotz Nein).
 5. **Recraft nicht aufrufen**, ausser Raphael nennt den Job-Type.
 6. **Nahes Gesicht** nur mit echter Personen-Datei (Kunde oder Stock).
 7. **Kein Color-Grading-Job** (`colors`/`background_color`/`color_grading_lut` aus).
-8. **Auflösung: 4k oder 2k** (GPT 4k, Recraft max 2k). Nie 1k für Finals.
+8. **Auflösung: 4k oder 2k** nach Einsatzgröße; GPT Image 2 bevorzugt 4k. Nie 1k für Finals.
 9. **Nano Banana nur als Nano Banana 2 (`nano_banana_flash`) für Previews.**
 10. Vorab **immer** `higgsfield generate cost`; Jobs mit `--wait` bzw. `higgsfield generate wait` abholen.
 11. **Jedes** Bild (generiert wie geliefert) sofort → **AVIF** via
@@ -447,9 +414,9 @@ zurück (Haushaltsauflösung 17.08.2026: Polo-Foto trotz Nein).
 
 ## Guardrails (Kundenprojekte)
 
-- **Nur wo erlaubt.** Manche Kunden wollen **nur echte Fotos** (siehe
-  `innocenti-redesign-local-project`: „Nur echte Projekte/Bilder") — dann keine
-  KI-Generierung, echte Assets verwenden. Vor KI-Bildern für Kundenwebsites klären.
+- **Kundenvorgaben anwenden.** Bei „Nur echte Projekte/Bilder“ echte Assets
+  verwenden. Bereits erlaubte KI-Assets im Auftragsumfang selbst ausführen;
+  eine zusätzliche Frage ist nur bei einer ungelösten materiellen Vorgabe nötig.
 - **Datenminimierung (TB2):** an Higgsfield geht nur das nötige Referenzmaterial,
   nie der ganze Kunden-Vault. Kundenmaterial bleibt im Kundenrepo.
 - **Credits sind endlich** — `higgsfield account status` im Blick, Previews billig

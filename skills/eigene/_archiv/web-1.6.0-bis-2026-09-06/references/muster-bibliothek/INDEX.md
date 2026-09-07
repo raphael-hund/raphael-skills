@@ -1,7 +1,10 @@
 # Muster-Bibliothek — INDEX
 
-Eine Zeile pro Studie. Vor jeder Art-Direction scannen und **2–3 passende
-Cases** laden, nie alle.
+Hier stehen Website-Studien; [Raphaels persönliche Favoriten](favoriten.md)
+sammeln zusätzlich ausgewählte Posts, Bilder, Videos und Websites. Vor neuer
+Art-Direction den passenden Index scannen und nur relevante Einträge laden.
+Speichern und Wiederfinden beschreibt [inspirations-quellen.md](../inspirations-quellen.md#persönliche-favoriten).
+Die folgenden Statusangaben und der Studienablauf gelten für Website-Studien.
 
 **Urteils-Werte:** `GO` · `NO-GO` · `gemischt` · `GO-house-lock`
 (= Raphael hat es in der Kunden-`DESIGN.md` gelockt; gilt sofort als

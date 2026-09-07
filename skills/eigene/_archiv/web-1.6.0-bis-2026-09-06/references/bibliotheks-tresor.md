@@ -7,7 +7,7 @@ mit README, Typdatei und echten Exportnamen. Kein Internet nötig, kein Raten
 von Props, keine erfundenen Imports.
 
 **Herkunft der Auswahl:** Emil Kowalskis kuratierte Liste
-(`/root/tools/vendor/emilkowalski-skills/skills/pick-ui-library/SKILL.md`, MIT)
+(`/root/raphael-skills/skills/imported/emil-skills/pick-ui-library/SKILL.md`, MIT)
 plus Raphaels Stack-Entscheidungen aus `radix-shadcn-tailwind-stack.md`. Die
 Liste ist bewusst **eine Antwort pro Aufgabe**, keine Auswahl. Wer davon
 abweicht, begründet es.

@@ -1,32 +1,23 @@
-# Frontend-Referenzbibliothek — Kandidaten hinter dem Router
+# Frontend-Referenzbibliothek — Quellen nach Bedarf
 
-Diese Bibliothek ist die **Kandidaten-Karte** zur Tweet-Sammlung. Sie ist
-**keine Installationsliste** und **kein erster Output** eines Agents.
+Raphaels benannte Quellen sind der bevorzugte Auswahlpool für neue Gestaltung
+und neue Komponenten. Die [Zugangskarte](zugangskarte.md#raphaels-quellen-vom-05092026)
+ordnet seine Liste vom 05.09.2026 konkreten Aufgaben und Zugriffen zu.
+Kundenreferenzen, ein festgelegter Look und der vorhandene Projektstack bleiben
+maßgeblich. Eine passende benannte Quelle muss nicht erst gegen Refero, Godly
+oder shadcn begründet werden.
 
-**Zuerst immer** `tool-usecase-router.md` (Bedarf → Default → Install/Use →
-Gate → Nie). Die URLs hier sind nur Alternativen und Recherchequellen **nach**
-Default-Wahl.
+Nutze den passenden Eintrag aus [tool-usecase-router.md](tool-usecase-router.md)
+und untersuche ein konkretes Beispiel, Rezept oder eine Komponente. Der Katalog
+ist kein Nutzungsbeleg. `resource-access.mjs show "<Name>"` löst nur lokal auf;
+`open` liest Webinhalt. Spezialisierte `list/search → get`, ein gelesener lokaler
+Vendor-Baustein oder eine offizielle Doku mit Code sind gleichwertige Zugriffe.
+Ein zusätzlicher Homepage-Abruf ist dann unnötig.
 
-> **Ausgabe-Deckel:** Nie mehr als 3 URLs aus dieser Datei in eine Antwort, nie
-> eine ganze Kategorie zitieren, nie diese Datei als Ersatz für den Router laden.
-
-**Einzelzugriff:** Nach der Router-Wahl genau eine benannte Ressource mit
-`node scripts/resource-access.mjs show "<Name>"` nachschlagen, danach **dieselbe**
-Ressource mit `node scripts/resource-access.mjs open "<Name>"` öffnen und lesen.
-Der Name ist exakt und Groß-/Kleinschreibung gilt. `show` liest diese Datei und
-liefert genau einen Eintrag (URL, Kategorie, Router-Modus und Metadaten) ohne
-Install und ohne Netz. `open` nimmt die Katalog-URL und holt die offizielle Site.
-Ohne diesen Öffnen-/Lesen-Schritt gilt die Site nicht als genutzt. URL-Dump allein
-zählt nicht.
-
-**Tiefzugriff:** Suche, Style-Seite, Registry-JSON und eine einzelne Komponente
-laufen über `node scripts/inspiration.mjs` (Refero Styles, Navbar Gallery,
-Magic UI, React Bits, 21st). Doku und Lizenzdeckel:
-`references/inspirations-quellen.md`. Das ersetzt weder `show`/`open` noch die
-Listen unten.
-
-Pro Projekt nur die kleinste sinnvolle Auswahl öffnen. Vor Übernahme: Lizenz,
-Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
+[Inspiration und tatsächliche Anwendung](inspirations-quellen.md) beschreibt
+Auswahl, Sichtprüfung und Übernahme ins Projekt. Nur den benötigten Ausschnitt
+laden und verwenden. Anzahl der Quellen folgt der Entscheidung; alle Links
+auf jeder Website abzuarbeiten wäre keine sinnvolle Nutzung.
 
 ## Herkunft und Aktualitätsprüfung
 
@@ -41,6 +32,9 @@ Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
   verwendet. Links bleiben trotzdem zeitveränderlich und müssen bei Nutzung
   erneut über AgentReach, die offizielle Website und gegebenenfalls das
   offizielle Repository geprüft werden.
+- Ergänzung 05.09.2026: Raphaels direkte Liste mit 30 eindeutigen Zielen; der
+  doppelte Mobbin-Link ist einmal erfasst, alleinstehende `http://` sind keine Ziele.
+- Ergänzung 06.09.2026: Godly auf Raphaels Wunsch unter `https://godly.design/`.
 - Der im Original enthaltene Mobbin-Affiliate-Link ist hier bewusst auf die
   neutrale Hauptadresse `https://mobbin.com/` normalisiert.
 
@@ -49,8 +43,8 @@ Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
 1. **Problem zuerst:** Inspiration, Component-System, Effekt, Asset, Icon oder
    Font als getrennte Bedarfe behandeln. Nicht fünf Bibliotheken für denselben
    Zweck einführen.
-2. **Router vor Liste:** Default und Install-Befehl stehen in
-   `tool-usecase-router.md`. Diese Datei erst danach für Alternativen öffnen.
+2. **Bedarf vor Auswahl:** Vorhandenen Stack und Raphaels passende Quellen
+   berücksichtigen; Zugriff und Integrationsprüfung stehen in `tool-usecase-router.md`.
 3. **Offizielle Quelle zuerst:** Bei Code und Paketen immer offizielle Doku,
    Repository, Paketname, Release-Aktivität und Lizenz abgleichen. Eine Galerie
    oder ein Showcase ist kein Herkunftsnachweis.
@@ -66,8 +60,8 @@ Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
    ungeprüft übernehmen.
 7. **Qualitäts-Gates:** Tastaturbedienung, sichtbarer Fokus, Reduced Motion,
    Kontrast, Ladezeit, Mobile-Verhalten und SSR/Hydration am echten Build testen.
-8. **Aktualität:** Vor Verwendung mit AgentReach die aktuelle Domain sowie die
-   offizielle Doku öffnen. Bei Umleitung, aufgegebener Pflege oder unklarer
+8. **Aktualität:** Vor Verwendung mit dem verfügbaren Quellenwerkzeug die aktuelle
+   Domain sowie die offizielle Doku öffnen. Bei Umleitung, aufgegebener Pflege oder unklarer
    Lizenz einen anderen Kandidaten wählen.
 
 ## Lokale Vendor-Bibliothek
@@ -75,14 +69,16 @@ Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
 Für die folgenden zehn Quellen ist die lokale Kopie unter
 `resources/components/<site>/` die primäre Arbeitsgrundlage. Zuerst den
 jeweiligen `INDEX.md` lesen, dann nur benötigte Payload-Dateien und Abhängigkeiten
-öffnen. Die Live-URL dient höchstens zur Aktualitätskontrolle; sie ist nie die
+öffnen. Die Live-URL dient für die aktuelle Demo, Doku und Aktualitätskontrolle; sie ist nie die
 einzige Bezugsquelle. Auswahl weiterhin nach Bedarf, Router, genau einem UI-Kit,
 Accessibility und Bundle-Kosten treffen.
 
 - **Beautiful UI — `beautifului.dev`:** `resources/components/beautifului/`.
-  20 Agent-/Daten-UI-Komponenten, Atoms und Tailwind-v4-Tokens. MIT; abweichende
-  Copyright-Nennung von Repo und Site vor Kundeneinsatz prüfen. Wählen für
-  Agent-Traces, Approval, Streaming, Tabellen und AI-native Workflows.
+  20 Agent-/Daten-UI-Komponenten als React-Port mit Demo-Daten, Atoms und
+  Tailwind-v4-Tokens. Kein offizielles Agent-SDK: echte Daten/Callbacks müssen
+  passend angebunden werden. MIT des lokalen Ports; Herkunft und abweichende
+  Copyright-Nennung vor Kundeneinsatz prüfen. Die Live-Site listete am
+  05.09.2026 21 Komponenten; neue Bausteine direkt dort untersuchen.
 - **beui.dev — `beui.dev`:** `resources/components/beui-dev/`. Vollständiger
   offizieller Snapshot mit 81 Registry-Slugs, Motion-/Agent-Komponenten,
   Previews und Registry-Routes. MIT. Wählen für breite Motion- und
@@ -134,17 +130,18 @@ keinen anderen Vendor-Snapshot.
 ## Website- und UI-Inspiration
 
 **Bedarf:** Look-Recherche für die Art Direction; Ergebnis ist eine Design-DNA-Tabelle, keine Sammlung.
-**Default (Router):** Godly **oder** Mobbin **oder** Refero — eine Quelle → im Browser/AgentReach öffnen  [`#inspiration`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
-**Gate:** max. 3 Referenz-URLs; Design-DNA-Tabelle steht vor dem ersten Sektionsentwurf
+**Auswahl (Router):** Raphaels passende Galerie aus der Zugangskarte; Mobbin für Produkt-Screens/Flows  [`#inspiration`]
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
+**Beleg:** konkrete Referenz angesehen; übertragene Eigenschaft und Einsatzort im bestehenden Plan benannt
 **Nie:** Ganze Galerie-Kategorien zitieren; fremde Copy/Logos/Layouts übernehmen
 
 
 Nur zur Recherche und Musteranalyse. Sichtbare Arbeiten bleiben urheberrechtlich
 geschützt; keine Assets oder Layouts ohne Rechte kopieren.
 
-- [Godly](https://godly.website/)
-- [Awwwards](https://www.awwwards.com/)
+- [Godly](https://godly.design/)
+- [GetLayers](https://www.getlayers.ai/)
+- [Awwwards](https://www.awwwards.com/websites/)
 - [Land-book](https://land-book.com/)
 - [Lapa Ninja](https://www.lapa.ninja/)
 - [One Page Love](https://onepagelove.com/)
@@ -170,18 +167,26 @@ geschützt; keine Assets oder Layouts ohne Rechte kopieren.
 - [Commerce Cream](https://commercecream.com/)
 - [Admire The Web](https://www.admiretheweb.com/)
 - [Mobbin](https://mobbin.com/)
+- [Landdding](https://landdding.com/)
+- [Behance](https://www.behance.net/for_you?tracking_source=nav20)
+- [Inspora](https://www.inspora.design/)
+- [Modulify](https://modulify.ai/templates)
+- [Umanmade](https://umanmade.com/)
 
 ## React, UI und Komponenten
 
 **Bedarf:** Interaktive Primitives und Marketing-Sections im Agentur-Stack.
 **Default (Router):** Radix + shadcn/ui → `npx shadcn@latest add <komponente>`  [`#stack-primitives`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** axe = 0 und vollständiger Tastaturpfad am echten Build
 **Nie:** Zwei UI-Kits parallel; ganze Registry auf Vorrat adden
 
 
 Vor Verwendung exakten Paketnamen, Framework-/React-Version, Lizenz,
-Barrierefreiheit, SSR-Kompatibilität und Wartungsaktivität prüfen.
+Barrierefreiheit, SSR-Kompatibilität und Wartungsaktivität prüfen. React Bits
+und Canvas UI stehen unter MIT mit Commons Clause; AI Elements und Paper Shaders
+unter Apache-2.0 (geprüft 05.09.2026). Für jeden konkreten Baustein den aktuellen
+Originalbeleg lesen; Free-/Pro- und Site-Bedingungen können sich unterscheiden.
 
 - [React Bits](https://reactbits.dev/)
 - [Magic UI](https://magicui.design/)
@@ -211,11 +216,24 @@ Partikel- und Effekt-Hintergründe (tsParticles, Vanta.js) sind keine UI-Kits un
 stehen deshalb nicht hier. Siehe `tool-usecase-router.md` `#background` oder
 `#webgl` mit Reduced-Motion-Gate.
 
+- [Kinetics](https://kinetics.colorion.co/)
+- [Circle Loaders](https://circleloaders.dominikakissi.com/)
+- [404 Colorion](https://404.colorion.co/)
+- [Mantine](https://mantine.dev/)
+- [AI Canvas](https://aicanvas.me/)
+- [Beautiful UI](https://beautifului.dev/)
+- [AI CSS](https://aicss.dev/)
+- [Transitions.dev](https://transitions.dev/)
+- [Amicro](https://amicro.vercel.app/)
+- [Canvas UI](https://canvasui.dev/)
+- [AI Elements](https://elements.ai-sdk.dev/)
+- [Beste UI](https://ui.beste.co/)
+
 ## Shader, WebGL und Creative Coding
 
 **Bedarf:** Bewegter GPU-Hintergrund — nur wenn der Brief ihn ausdrücklich fordert.
 **Default (Router):** Bewusstes Nein: statisches AVIF-Hero + CSS-Parallax  [`#webgl`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** Mobile-Fallback definiert, Reduced Motion aktiv, Lighthouse bleibt bei 0
 **Nie:** Shader „weil es cool aussieht"; Demo-Code ohne Lizenz kopieren
 
@@ -239,12 +257,13 @@ Copy-paste-fertige Komponenten.
 - [GSAP](https://gsap.com/)
 - [tsParticles](https://particles.js.org/)
 - [Vanta.js](https://www.vantajs.com/)
+- [Paper Shaders](https://shaders.paper.design/)
 
 ## Gradients, SVGs und Hintergründe
 
 **Bedarf:** Sektions-Hintergrund, Farbverlauf, Texturanmutung.
 **Default (Router):** Tailwind/CSS-Gradient aus den Marken-Tokens (kein Paket)  [`#background`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** exportiertes SVG ohne `<script>`/externe Referenzen; Textkontrast bleibt AA
 **Nie:** Generator-Runtime bundlen; Preset-Palette statt Markenfarben
 
@@ -287,7 +306,7 @@ Produktion übernehmen und SVGs vor Einbau auf eingebettete Skripte/Links prüfe
 
 **Bedarf:** PBR-Texturen und einfache 3D-Props — nur mit echtem 3D-Bedarf.
 **Default (Router):** Nicht verwenden; bei echtem Bedarf ambientCG oder Poly Haven  [`#texturen`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** Lizenz und Attribution pro Asset dokumentiert; Auflösung/LOD geprüft
 **Nie:** Ganze Texture-Packs ungenutzt committen
 
@@ -315,7 +334,7 @@ Alternativen zur Router-Zeile `#texturen`.
 
 **Bedarf:** Foto, Produkt oder Szene auf der fertigen Seite.
 **Default (Router):** Higgsfield nach `bildgenerierung.md` → `hf generate create gpt_image_2 …`  [`#bilder`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** jedes Bild AVIF + Zeile in `bilder-index.json`; bei Personen Model-Release
 **Nie:** Stock als Default neben Higgsfield; Stockmaterial als Kundenbeweis ausgeben
 
@@ -332,7 +351,7 @@ Kundenbeweis ausgeben.
 
 **Bedarf:** Flache Vektor-Illustrationen für Sektionen, leere Zustände und Erklärbilder.
 **Default (Router):** siehe Router-Zeile für flache Illustration  [`#illustration-flat`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** Lizenz gelesen und notiert; Farben auf Marken-Tokens gezogen. Für die
 projektweite Auswahl gilt ausschließlich der Router-Eintrag `#illustration-flat`.
 **Nie:** Attributionspflicht übersehen; die Auswahlregel aus dem Router durch keine
@@ -357,7 +376,7 @@ Kundennutzung erlaubt sind.
 
 **Bedarf:** Bewegtbild, Lottie-Mikroanimation oder interaktives 3D auf der Seite.
 **Default (Router):** Lottie sparsam **oder** kurzer stummer Loop; schwere Videos über den Remotion-Weg  [`#video`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** Autoplay nur stumm; Reduced Motion liefert Standbild; Dateien selbst gehostet
 **Nie:** externe Lottie-CDN ohne Fallback; Spline-Hero auf schwachem Mobilgerät ohne Poster
 
@@ -376,7 +395,7 @@ Beleg für echte Kundenarbeit.
 
 **Bedarf:** Icon-Set für UI, Listen und Feature-Blöcke.
 **Default (Router):** Lucide → `npm i lucide-react`  [`#icons`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** genau EIN Icon-System im Projekt; dekorative Icons `aria-hidden="true"`
 **Nie:** Zwei Icon-Sets mischen; Premium-Sets ohne Lizenz
 
@@ -431,7 +450,7 @@ Schrift niemals allein anhand einer Galerie in Produktion übernehmen.
 
 **Bedarf:** Native App-UI — außerhalb von Loop 2, nur bei App-Auftrag.
 **Default (Router):** React Native Reusables **oder** gluestack, an die Expo/RN-Version gekoppelt  [`#mobile`]
-**Diese Liste ist:** Alternativen/Inspiration — erst öffnen, wenn der Default begründet ausgeschieden ist.
+**Diese Liste ist:** bedarfsbezogener Auswahlpool; aktuelle Nutzerquelle und Projektstack bestimmen die Wahl.
 **Gate:** iOS+Android-Parität der genutzten Komponenten; Reanimated-Version passend
 **Nie:** RN-Kit auf eine Marketing-Website ziehen
 
@@ -449,6 +468,19 @@ Accessibility-APIs, Gesten, Reanimated-Version und Release-Aktivität prüfen.
 - [Composables UI](https://composables.com/ui)
 - [Jetpack Compose Samples](https://github.com/android/compose-samples)
 - [GetWidget](https://www.getwidget.dev/)
+
+## Werkzeuge und Spezialanwendungen
+
+**Bedarf:** Werkzeugrecherche, Code-Darstellung, Git-/Dateiarbeit oder ein passender
+Karriere-/Produktfluss. [`#tools`] in `tool-usecase-router.md` ordnet den Einsatz zu.
+Website/UX untersuchen und die Anwendung bedienen sind unterschiedliche Aufgaben.
+Nur bei passendem Auftrag einsetzen; Plattform, Zugang und Lizenz aktuell prüfen.
+
+- [VibeIndex](https://vibeindex.dev/)
+- [FinderGit](https://findergit.app/)
+- [CodeShots](https://codeshots.dev/)
+- [Superfile](https://superfile.dev/)
+- [Kickresume](https://kickresume.com/)
 
 ## Projektbezogener AgentReach-Check
 

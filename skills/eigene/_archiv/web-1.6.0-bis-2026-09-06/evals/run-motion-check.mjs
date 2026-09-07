@@ -28,7 +28,8 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync, spawn } from 'node:child_process';
+import http from 'node:http';
 import { fileURLToPath } from 'node:url';
 
 const HIER = path.dirname(fileURLToPath(import.meta.url));
@@ -177,8 +178,8 @@ console.log('\nVerdrahtung im G1-Tor:\n');
 {
   const gate = fs.readFileSync(path.join(HIER, '..', 'scripts', 'g1-gate.mjs'), 'utf8');
   const proben = [
-    ['checkMotion() wird aufgerufen', /^checkMotion\(\);$/m.test(gate)],
-    ["motion zaehlt als Qualitaets-Pruefer", /QUALITAET = \[[^\]]*'motion'/.test(gate)],
+    ['Motion ist als gezielter G1-Check waehlbar', /motion:\s*checkMotion/.test(gate)],
+    ['G1 fuehrt nur ausgewaehlte Checks aus', /selectedChecks/.test(gate)],
     ['ein Lauf ueber 0 Dateien besteht nicht', gate.includes('dateienGelesen === 0')],
     // Nach Schreibweise zu suchen war falsch: der leere Lauf wird ueber
     // `parsed.fehler` abgefangen, nicht ueber `parsed.block === null`. Beide
@@ -272,6 +273,34 @@ console.log('\nVerdrahtung im G1-Tor:\n');
     'Exit 2 auf einem sauberen Ordner — die Wache ist zu scharf');
 
   fs.rmSync(ordner, { recursive: true, force: true });
+}
+
+const runtimeDir = fs.mkdtempSync(path.join(os.tmpdir(), 'web-upgrade-browser-motion-'));
+const runtimeHtml = (works) => `<!doctype html><html><style>
+.box{width:80px;height:80px;background:red;animation:move 10s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes move{to{transform:translateX(400px)}}
+@media(prefers-reduced-motion:reduce){${works ? '.box{animation:none}' : '.unused{color:blue}'}}
+</style><div class="box"></div></html>`;
+const runtimeServer = http.createServer((req, res) => { res.setHeader('content-type', 'text/html'); res.end(runtimeHtml(req.url === '/good')); });
+await new Promise(resolve => runtimeServer.listen(0, '127.0.0.1', resolve));
+try {
+  for (const [name, expected] of [['bad', 1], ['good', 0]]) {
+    fs.writeFileSync(path.join(runtimeDir, 'index.html'), runtimeHtml(name === 'good'));
+    const result = await new Promise(resolve => {
+      const child = spawn('node', [PRUEFER, runtimeDir, '--url', `http://127.0.0.1:${runtimeServer.address().port}/${name}`, '--selector', '.box', '--json']);
+      let stdout = '', stderr = '';
+      child.stdout.on('data', d => { stdout += d; }); child.stderr.on('data', d => { stderr += d; });
+      const timer = setTimeout(() => child.kill('SIGTERM'), 30000);
+      child.on('close', code => { clearTimeout(timer); resolve({ code, stdout, stderr }); });
+    });
+    let report; try { report = JSON.parse(result.stdout); } catch { report = null; }
+    zeile(result.code === expected && report?.runtime?.status === (expected ? 'FAIL' : 'PASS'),
+      name === 'bad' ? 'unwirksamer Reduced-Motion-Selektor faellt im Browser durch' : 'wirksame Reduced Motion besteht am betroffenen Element',
+      JSON.stringify(result));
+  }
+} finally {
+  await new Promise(resolve => runtimeServer.close(resolve));
+  fs.rmSync(runtimeDir, { recursive: true, force: true });
 }
 
 const gesamt = geprueft;

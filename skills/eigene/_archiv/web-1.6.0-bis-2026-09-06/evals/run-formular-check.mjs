@@ -23,7 +23,8 @@
  * Braucht einen Browser (Playwright), aber keinen fremden Server — der Lauf
  * startet seinen eigenen.
  */
-import { spawnSync } from 'node:child_process';
+import { spawnSync, spawn } from 'node:child_process';
+import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -263,9 +264,11 @@ for (const f of FAELLE) {
     { encoding: 'utf8', timeout: 90000 });
   let blocker = null;
   let ids = [];
+  let fieldScope = false;
   try {
     const j = JSON.parse(r.stdout || '');
     blocker = j.blockers.length;
+    fieldScope = j.scope === 'form-fields' && j.submission === 'not_checked';
     // Bis 29.07.2026 zaehlte diese Eval nur die ANZAHL Blocker. Damit war
     // belegt, DASS etwas anschlug — nicht WELCHE Regel. Von den neun Regeln
     // (F0-F8) waren faktisch zwei geprueft (F1, F3); F6 hatte keinen Fall,
@@ -280,7 +283,7 @@ for (const f of FAELLE) {
   // Anzahl und Exit geprueft (wie bisher).
   const fehlendeIds = (f.erwartet.ids || []).filter((x) => !ids.includes(x));
   const ok = r.status === f.erwartet.exit && blocker === f.erwartet.blocker
-    && fehlendeIds.length === 0;
+    && fehlendeIds.length === 0 && fieldScope;
   console.log(`${ok ? 'OK  ' : 'ROT '} ${f.name.padEnd(20)} exit=${r.status} blocker=${blocker}  ${f.was}`);
   if (!ok) {
     rot++;
@@ -309,7 +312,56 @@ if (offen.length) {
   console.log('  Umbau faellt ihr Ausfall nicht auf.');
 }
 
-console.log(`\n${FAELLE.length - rot}/${FAELLE.length} wie erwartet.`);
+let scenarioChecks = 0;
+let backendWrites = 0;
+const scenarioServer = http.createServer((req, res) => {
+  if (req.method === 'POST') { backendWrites++; res.statusCode = 500; res.end('{}'); return; }
+  const buggy = req.url === '/broken';
+  res.setHeader('content-type', 'text/html');
+  res.end(`<!doctype html><html lang="de"><title>Formularweg</title><style>body{font:18px sans-serif;padding:30px}input,button{min-height:44px}</style>
+  <h1>Kontakt</h1><form><label for="email">E-Mail</label><input id="email" type="email" autocomplete="email" required><button>Senden</button></form><p id="status" role="status"></p>
+  <script>document.querySelector('form').onsubmit=async e=>{e.preventDefault();const r=await fetch('/submit',{method:'POST',body:'test@example.test'});document.querySelector('#status').textContent=${buggy ? "'Erfolgreich'" : "r.ok?'Erfolgreich':'Fehler, bitte erneut versuchen'"};};</script></html>`);
+});
+await new Promise(resolve => scenarioServer.listen(0, '127.0.0.1', resolve));
+try {
+  for (const [route, expectedExit] of [['/good', 0], ['/broken', 1], ['/wrong-payload', 1]]) {
+    const out = path.join(wurzel, route.slice(1) + '-scenario');
+    const spec = path.join(wurzel, route.slice(1) + '-state-spec.json');
+    fs.writeFileSync(spec, JSON.stringify({ scenarios: [{
+      id: 'contact', target: 'contact', route, viewport: 'mobile', states: route === '/good' ? ['success', 'error'] : ['error'],
+      prepare: { selector: '#email', fill: 'test@example.test' }, trigger: { selector: 'button' },
+      request: { method: 'POST', post_data: route === '/wrong-payload' ? 'wrong@example.test' : 'test@example.test', count: 1 }, hold: { url: '**/submit' },
+      success: { status: 200, body: '{"ok":true}', assert: { selector: '#status', text: 'Erfolgreich' } },
+      error: { status: 500, body: '{"ok":false}', assert: { selector: '#status', text: 'Fehler, bitte erneut versuchen', not_text: 'Erfolgreich' } },
+    }] }));
+    const result = await new Promise(resolve => {
+      const child = spawn('node', [path.join(HIER, '..', 'scripts', 'shot-sweep.mjs'),
+        '--base', `http://127.0.0.1:${scenarioServer.address().port}`, '--routes', route, '--out', out,
+        '--states', '--mobile', '--state-spec', spec, '--run-id', 'form-eval', '--build-revision', 'form-rev']);
+      let stdout = '', stderr = '';
+      child.stdout.on('data', d => { stdout += d; }); child.stderr.on('data', d => { stderr += d; });
+      const timer = setTimeout(() => child.kill('SIGTERM'), 90000);
+      child.on('close', code => { clearTimeout(timer); resolve({ code, stdout, stderr }); });
+    });
+    let receipt; try { receipt = JSON.parse(fs.readFileSync(path.join(out, 'functional.json'), 'utf8')); } catch { receipt = null; }
+    const checks = receipt?.checks || [];
+    const good = result.code === expectedExit && receipt?.status === (expectedExit ? 'FAIL' : 'PASS')
+      && (expectedExit || (checks.length === 2 && checks.every(check => check.viewport === 'mobile'
+        && check.actual.request.count === 1 && check.actual.response.backend === 'mocked'
+        && check.evidence.every(item => fs.existsSync(item.path) && item.sha256.length === 64))));
+    scenarioChecks++;
+    if (!good) rot++;
+    console.log(`${good ? 'OK' : 'ROT'} ${route}: Request/Response/UI auf echtem Mobil-Viewport, Exit ${result.code}`);
+    if (!good) console.log(JSON.stringify({ result, receipt }));
+  }
+  scenarioChecks++;
+  if (backendWrites) rot++;
+  console.log(`${backendWrites ? 'ROT' : 'OK'} isolierte Mock-Szenarien erzeugen ${backendWrites} echte Backend-Schreibanfragen`);
+} finally {
+  await new Promise(resolve => scenarioServer.close(resolve));
+}
+
+console.log(`\n${FAELLE.length + scenarioChecks - rot}/${FAELLE.length + scenarioChecks} wie erwartet.`);
 if (rot) {
   console.log('Die Erkennung stimmt nicht wie dokumentiert. Erst reparieren, dann ausliefern.');
   process.exit(1);

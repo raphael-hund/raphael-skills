@@ -58,7 +58,8 @@ const STRICT = args.includes('--strict');
 // gemacht und soll Exit 0 auf stdout bekommen.
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
   console.log('usage: formular-check.mjs --url <url> [--json] [--strict]');
-  console.log('Prueft Formulare einer laufenden Seite auf Bedienbarkeit.');
+  console.log('Prueft Formularfelder einer laufenden Seite; Absendung und Zustellung bleiben ungeprueft.');
+  console.log('Formularwege: explizite Request/Response/UI-Erwartungen im vorhandenen shot-sweep --state-spec oder Projekt-Playwright-Test.');
   console.log('Exit 0 = sauber, 1 = Befund, 2 = Werkzeug/Umgebung kaputt.');
   process.exit(0);
 }
@@ -433,9 +434,10 @@ const warns = findings.filter((f) => f.level === 'WARN');
 const infos = findings.filter((f) => f.level === 'INFO');
 
 if (AS_JSON) {
-  console.log(JSON.stringify({ url: URL_, blockers, warns, infos }, null, 2));
+  console.log(JSON.stringify({ url: URL_, final_url: ZIEL_URL, scope: 'form-fields', submission: 'not_checked', blockers, warns, infos }, null, 2));
 } else {
   console.log(`formular-check — ${URL_}`);
+  console.log('Teilcheck: Formularfelder. Absendung und Zustellung nicht geprueft.');
   if (UMGELEITET) console.log(`  (weitergeleitet auf ${ZIEL_URL} — geprueft wurde diese Seite)`);
   console.log();
   for (const f of [...blockers, ...warns, ...infos]) {

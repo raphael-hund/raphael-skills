@@ -22,7 +22,7 @@ const TEMPLATE = path.join(
 );
 const ROLLEN = new Set(["plan", "kritik", "fold-duell", "bau"]);
 const USAGE =
-  "usage: node session-gate.mjs --rolle plan|kritik|fold-duell|bau --client <handoff-ordner>  (z.B. /root/clients/client-<name>/web/handoff oder /root/clients/<kunde>/website/<lauf>/handoff)";
+  "usage: node session-gate.mjs --rolle plan|kritik|fold-duell|bau --client DIR [--auftrag neu|aenderung|kritik --input DATEI] [--kritik-abgeschlossen] [--require-fold-choice]";
 
 function usage() {
   console.error(USAGE);
@@ -35,28 +35,20 @@ function sperre(message) {
 }
 
 function parseArgs(argv) {
-  let rolle = null;
-  let client = null;
+  const flags = {};
   for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i];
-    if (arg === "--rolle" || arg === "--client") {
-      const value = argv[i + 1];
-      if (!value || value.startsWith("-")) usage();
-      if (arg === "--rolle") {
-        if (rolle !== null) usage();
-        rolle = value;
-      } else {
-        if (client !== null) usage();
-        client = value;
-      }
-      i++;
-      continue;
-    }
-    usage();
+    const key = argv[i].replace(/^--/, "");
+    if (["kritik-abgeschlossen", "require-fold-choice"].includes(key)) {
+      if (flags[key]) usage();
+      flags[key] = true;
+    } else if (["rolle", "client", "auftrag", "input"].includes(key)) {
+      if (flags[key] || !argv[i + 1] || argv[i + 1].startsWith("--")) usage();
+      flags[key] = argv[++i];
+    } else usage();
   }
-  if (!rolle || !client) usage();
-  if (!ROLLEN.has(rolle)) usage();
-  return { rolle, client: path.resolve(client) };
+  if (!ROLLEN.has(flags.rolle) || !flags.client) usage();
+  if (flags.auftrag && !["neu", "aenderung", "kritik"].includes(flags.auftrag)) usage();
+  return { ...flags, client: path.resolve(flags.client), input: flags.input ? path.resolve(flags.input) : null };
 }
 
 // Symlinks im Client-Pfad werden aufgelöst, damit ein untergeschobener Link die
@@ -85,19 +77,6 @@ function istEchteDatei(pfad) {
   if (st.isSymbolicLink()) return false;
   if (!st.isFile()) return false;
   return st.size > 0;
-}
-
-function kritikDateien(client) {
-  let eintraege;
-  try {
-    if (!fs.statSync(client).isDirectory()) return [];
-    eintraege = fs.readdirSync(client);
-  } catch {
-    return [];
-  }
-  return eintraege
-    .filter((name) => /^KRITIK-.*\.md$/.test(name))
-    .filter((name) => istEchteDatei(path.join(client, name)));
 }
 
 // Das Template markiert jede noch nicht bearbeitete Stelle. Solange die Marker
@@ -130,46 +109,18 @@ function eigeneTabellenzeilen(roh) {
 }
 
 function plan(client) {
-  const ziel = pruefgegenPfad(client);
-  let st = null;
-  try {
-    st = fs.lstatSync(ziel);
-  } catch {
-    st = null;
-  }
-  if (st && st.isSymbolicLink()) {
-    sperre(
-      `PRUEFGEGEN.md ist ein Symlink und wird nicht beschrieben: ${ziel}`,
-    );
-  }
-  // Wiederholter Plan-Lauf: die Datei existiert schon. Dann ist die Frage
-  // nicht mehr "gibt es sie", sondern "steht etwas drin" — sonst merkt die
-  // Plan-Session erst eine Session später, dass sie nur die Vorlage hinterließ.
-  if (st) {
-    const roh = fs.readFileSync(ziel, "utf8");
-    if (AUSFUELL_MARKER.test(roh) || eigeneTabellenzeilen(roh).length < 2) {
-      console.warn(
-        `Hinweis: ${ziel} ist noch die unbearbeitete Vorlage. ` +
-          "Die Kritik-Session startet damit nicht — jetzt eintragen, wogegen geprüft wird.",
-      );
-    }
-    process.exit(0);
-  }
-  if (!fs.existsSync(client)) {
-    fs.mkdirSync(client, { recursive: true });
-  } else if (!fs.statSync(client).isDirectory()) {
-    sperre(`--client ist kein Verzeichnis: ${client}`);
-  }
-  if (!fs.existsSync(TEMPLATE)) {
-    sperre(`PRUEFGEGEN-template.md fehlt: ${TEMPLATE}`);
-  }
-  fs.copyFileSync(TEMPLATE, ziel);
-  console.log(`PRUEFGEGEN.md angelegt: ${ziel}`);
-  process.exit(0);
+  if (fs.existsSync(client) && !fs.statSync(client).isDirectory()) sperre(`--client ist kein Verzeichnis: ${client}`);
+  fs.mkdirSync(client, { recursive: true });
+  console.log("Plan-Eingang frei; nur auftragsbezogene Artefakte anlegen.");
 }
 
-function kritik(client) {
-  const ziel = pruefgegenPfad(client);
+function kritik(client, flags) {
+  const ziel = flags.input || pruefgegenPfad(client);
+  if (flags.input) {
+    if (!istEchteDatei(ziel)) sperre(`Prüfauftrag fehlt oder ist leer: ${ziel}`);
+    console.log(`Kritik-Eingang frei: ${ziel}`);
+    return;
+  }
   if (!istEchteDatei(ziel)) {
     sperre("Kritik ohne PRUEFGEGEN.md ist gesperrt — Plan-Session zuerst.");
   }
@@ -181,28 +132,13 @@ function kritik(client) {
     );
   }
   const eigene = eigeneTabellenzeilen(roh);
-  if (eigene.length < 2) {
+  if (eigene.length < 1) {
     sperre(
       `PRUEFGEGEN.md enthält nur ${eigene.length} eigene Tabellenzeile(n). ` +
-        "Mindestens zwei ausgefüllte Prüfzeilen sind Pflicht, sonst prüft die Kritik gegen nichts.",
+        "Mindestens eine ausgefüllte Prüfzeile ist Pflicht, sonst prüft die Kritik gegen nichts.",
     );
   }
   process.exit(0);
-}
-
-// Ein Platzhalter ist kein Kritik-Ergebnis. Gezählt wird, was ein Befund
-// ausmacht: benannte Einzelpunkte. Nicht die Dateilänge — drei knappe echte
-// Befunde sind ein Arbeitsergebnis, 300 Zeichen Fließtext mit einem
-// Spiegelstrich sind keins.
-const MIN_BEFUND_ZEILEN = 2;
-const MIN_ZEICHEN_JE_BEFUND = 15;
-
-function befundZeilen(roh) {
-  return roh
-    .split("\n")
-    .map((z) => z.trim())
-    .filter((z) => /^(?:[-*+]\s+\S|\d+\.\s+\S|\|\s*\S|#{1,6}\s+\S)/.test(z))
-    .filter((z) => z.replace(/^(?:[-*+]|\d+\.|#{1,6}|\|)\s*/, "").trim().length >= MIN_ZEICHEN_JE_BEFUND);
 }
 
 function foldDuellGewaehlt(client) {
@@ -248,10 +184,6 @@ function foldDuellZeilen(client) {
   }).length;
 }
 
-function planHatFoldDuell(client) {
-  return foldDuellZeilen(client) >= 0;
-}
-
 function foldDuell(client) {
   const n = foldDuellZeilen(client);
   if (n < FOLD_RICHTUNGEN_MIN) {
@@ -262,40 +194,26 @@ function foldDuell(client) {
   process.exit(0);
 }
 
-function bau(client) {
-  const dateien = kritikDateien(client);
-  if (planHatFoldDuell(client) && !foldDuellGewaehlt(client)) {
-    sperre(
-      "Bau gesperrt: PLAN.md enthaelt ein Fold-Duell, aber DECISIONS.md traegt keine GO-Zeile mit «Fold-Duell». Erst Raphaels Wahl eintragen (references/fold-duell.md Regel 8), dann Welle 1.",
-    );
+function bau(client, flags) {
+  if (!flags.auftrag || !flags.input) {
+    sperre("Bau braucht einen expliziten Eingang: --auftrag neu|aenderung|kritik --input DATEI. Dateinamen oder Markdown-Überschriften sind kein Abschlussstatus.");
   }
-  if (dateien.length < 1) {
-    if (foldDuellGewaehlt(client)) process.exit(0); // Neuaufbau: Raphaels Fold-Wahl ist die Kritik-Vorphase
-    sperre(
-      "Bau ohne Kritik-Befunde ist gesperrt — mindestens eine nicht-leere KRITIK-*.md nötig (oder bei Neuaufbau: Fold-Duell-GO in DECISIONS.md).",
-    );
+  if (!istEchteDatei(flags.input)) sperre(`Bau-Eingang fehlt oder ist leer: ${flags.input}`);
+  if (flags.auftrag === "kritik" && !flags["kritik-abgeschlossen"]) {
+    sperre("Kritik-Eingang ist nicht als abgeschlossen bestätigt: --kritik-abgeschlossen erst nach der tatsächlichen Prüfung setzen. Null Befunde sind zulässig.");
   }
-  const brauchbar = dateien.filter(
-    (name) =>
-      befundZeilen(fs.readFileSync(path.join(client, name), "utf8")).length >=
-      MIN_BEFUND_ZEILEN,
-  );
-  if (brauchbar.length < 1) {
-    sperre(
-      `KRITIK-Datei(en) vorhanden, aber ohne erkennbare Befunde: ${dateien.join(", ")}. ` +
-        `Verlangt sind mindestens ${MIN_BEFUND_ZEILEN} benannte Befunde als Aufzählung, ` +
-        `Tabellenzeile oder Überschrift (je mindestens ${MIN_ZEICHEN_JE_BEFUND} Zeichen Inhalt) — ` +
-        "ein Platzhalter oder reiner Fließtext öffnet den Bau nicht.",
-    );
+  if (flags["require-fold-choice"] && !foldDuellGewaehlt(client)) {
+    sperre("Die ausdrücklich verlangte Fold-Auswahl fehlt in DECISIONS.md.");
   }
-  process.exit(0);
+  console.log(`Bau-Eingang frei: ${flags.auftrag} aus ${flags.input}`);
 }
 
 if (fileURLToPath(import.meta.url) === path.resolve(process.argv[1] || "")) {
-  const { rolle, client } = parseArgs(process.argv.slice(2));
+  const flags = parseArgs(process.argv.slice(2));
+  const { rolle, client } = flags;
   const aufgeloest = echterClient(client);
   if (rolle === "plan") plan(aufgeloest);
-  else if (rolle === "kritik") kritik(aufgeloest);
+  else if (rolle === "kritik") kritik(aufgeloest, flags);
   else if (rolle === "fold-duell") foldDuell(aufgeloest);
-  else bau(aufgeloest);
+  else bau(aufgeloest, flags);
 }

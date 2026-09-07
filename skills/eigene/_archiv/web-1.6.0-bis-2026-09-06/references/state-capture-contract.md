@@ -1,147 +1,116 @@
-# State-Capture-Vertrag (U4)
+# Zustände und Funktionsbelege
 
-Dieser Vertrag beschreibt die bereits von `scripts/shot-sweep.mjs` erzeugten Zustands-Receipts. Er erweitert den normalen Route-/Viewport-Sweep; er ersetzt weder Funktionsprüfungen noch den visuellen Vergleich.
+`scripts/shot-sweep.mjs` nimmt Seiten auf. Standardmäßig stellt es keine
+Cookie-Zustimmung her und klickt weder Buttons noch Formulare. Zustände kommen
+nur aus ausdrücklich ausgewählten Targets oder Szenarien. Vorhandene Projekt-
+und Browsertests bleiben für komplexe Abläufe zuständig.
 
-## Aufruf und Schemas
+## Aufruf und Identität
 
-Zustände werden mit `--states` aufgenommen. Eine deklarative Spec kommt über `--state-spec <datei>`; ohne Pfad wird bei aktivem `--states` eine vorhandene `web/state-spec.json` im Arbeitsverzeichnis verwendet.
+`--states --state-spec <datei>` lädt `web/state-spec/v1`. Bei `--states` ohne
+Pfad wird eine vorhandene `web/state-spec.json` im Arbeitsverzeichnis gelesen.
+Ohne deklarierte Zustände gibt es keine automatische Zustandsquote.
+`--no-interact` verhindert auch angeforderte State-Aktionen; solche Anforderungen
+bleiben dann unerfüllt. Ein reiner Aufnahmeauftrag braucht kein `--states`.
 
-- State-Spec: exakt `web/state-spec/v1`
-- Manifest: exakt `web/shot-sweep/v2`
-- Laufidentität im Manifest: `run_id` und `build_revision`
-- Tatsächliches Profil: `capture_profile: { static, states, mobile }`
+Das Manifest nutzt `web/shot-sweep/v2` mit `run_id` und `build_revision`. Für eine Run-Abnahme sind `--run-id` und
+`--build-revision` sowie dieselbe `--base` wie in den übrigen Belegen nötig.
+Capture ohne Laufidentität bleibt als Bildwerkzeug möglich, ist aber kein
+aktueller Run-Beleg.
 
-`run_id` und `build_revision` kommen aus den gleichnamigen Flags beziehungsweise den vorhandenen `SHOT_SWEEP_*`-Umgebungsvariablen; ohne Angabe stehen sie auf `null`.
-
-## Matrix und Status
-
-Die kanonische Capture-Identität ist:
+Jede Anforderung hat exakt die Identität:
 
 ```text
 route|viewport|target|state
 ```
 
-Ein Screenshot gilt nie für zwei Targets. `state_matrix` führt getrennte Arrays:
+`target` ist eine stabile fachliche ID, kein frei austauschbarer Bildname.
+`state_matrix` enthält `required`, `captured`, `not_applicable` und `failed`.
+Ein Desktop-Newsletter belegt keinen mobilen Checkout. Ein fehlgeschlagener
+Aufbau erzeugt keinen Success-Eintrag. Offene Anforderungen werden als Fehler
+geführt. N/A braucht dieselben vier Identitätsfelder und einen unterstützten,
+begründeten Grund (`static-page`, `no-form` oder `no-async-data`); ein fremdes N/A
+oder bloße Prosa schließt keine Lücke.
 
-- `required`: durch Spec, Applicability oder Playwright-Referenz verlangte Zustände.
-- `captured`: tatsächlich aufgenommene Zustände oder eingelesene bestehende Playwright-Receipts.
-- `not_applicable`: nur begründete Nicht-Anwendbarkeit.
-- `failed`: Setup-, Capture- oder Assertion-Fehler sowie nach der Reconciliation fehlende Pflichtzustände.
+## Explizite Targets
 
-Ein Setup-Fehler erzeugt kein Success-Receipt. Nach dem Sweep wird jedes `required` gegen `captured`, zulässiges `not_applicable` und bereits vorhandenes `failed` abgeglichen; ein sonst offener Eintrag wird mit `required state not captured` zu `failed`.
+`targets` nennt Selector, stabile ID und die gewählten Zustände `hover`, `focus`
+oder `open-expanded`. Es gibt keine generische Button-Suche als Klickauftrag.
+Fokusprüfung nutzt die tatsächliche Tastatur-/Fokusfolge. Escape und beobachtete
+Recovery werden festgehalten; ein zweiter allgemeiner Klick gilt nicht als Undo.
+Route und Viewport können je Target feststehen. Ohne diese Angaben expandiert
+der Auftrag auf die gewählten Routen und Viewports.
 
-## Automatische Zustände
+## Formularszenarien
 
-Mit `--states` nimmt der Desktop-Pass je eigenem Target auf:
-
-- `hover`
-- `focus`
-- `open-expanded`
-
-Der Focus-Receipt trägt `Tab` und `Shift+Tab` als Keyboard-Pfad und prüft das Target gegen `document.activeElement`. Der Open-/Expanded-Pass klickt das Target, prüft `aria-expanded="true"` beziehungsweise ein offenes `details`, nimmt den Receipt auf und nutzt `Escape` sowie nötigenfalls einen erneuten Klick zur Recovery. Ein Lauf mit `states: true`, der ausschließlich Hover-Zustände enthält, ist FAIL.
-
-## Deklarierte Loading-, Empty-, Error- und Success-Zustände
-
-Eine `scenario`-Deklaration verwendet nur die im Sweep vorhandenen Schritte:
-
-- optional `prepare.selector` plus `prepare.fill`
-- `trigger.selector`; der Sweep klickt dieses Target
-- `hold.url` für `page.route(...)`
-- optional `assert_loading.selector`
-- `success` beziehungsweise `error` mit `status`, `body` und optional `assert.selector`
-- für `empty`: optional `setup.evaluate` und `assert.selector`
-
-Beim Intercept-Hold wird die passende Request nach dem Trigger gehalten. Während sie gehalten ist, wird `loading` aufgenommen. Danach erfüllt der Sweep die Request mit der deklarierten Success- oder Error-Antwort, wartet optional auf deren Assertion-Selektor und nimmt den Terminalzustand auf. Fehlt `hold.url`, wird der Request nicht getroffen oder schlägt Setup/Assertion fehl, landet der Zustand in `failed`.
-
-`empty` wird nach einem frischen Route-Load über `setup.evaluate` hergestellt und gegen den optionalen Selektor aufgenommen.
-
-### Applicability und N/A
-
-Die automatische Applicability ist absichtlich eng:
-
-| Erkannt auf der Route | Automatisch `required` |
-| --- | --- |
-| `form` | `loading`, `error`, `success` |
-| Async-Signal (`fetch`, `XMLHttpRequest`, `aria-live` oder `aria-busy`) | `loading` |
-| Liste (`ul`, `ol`, `tbody` oder `[role="list"]`) | `empty` |
-| deklarierter Submit-Scenario | die in `states` genannten `loading`-/`success`-/`error`-Zustände über Trigger und Intercept-Hold |
-
-Für `not_applicable` sind ausschließlich diese Gründe erlaubt:
-
-- `static-page`: weder Form noch Liste noch Async-Signal; gilt für `loading`, `empty`, `error`, `success`.
-- `no-form`: ohne Form wird `success` als nicht anwendbar markiert.
-- `no-async-data`: ohne Async-Signal und ohne Form wird `loading` als nicht anwendbar markiert.
-
-Jeder andere Grund ist ein Setup-Fehler in `state_matrix.failed`; N/A ist kein Ersatz für einen fehlgeschlagenen Aufbau.
-
-## Receipt-Inhalt und Accessibility
-
-Ein State-Screenshot enthält neben Datei, Route, Viewport, Target und State die vorhandenen Receipt-Felder:
-
-- `keyboard`
-- `focus`
-- `role`
-- `name`
-- `aria` mit `expanded`, `busy`, `invalid`, `controls`
-- `live` mit Rolle, `aria-live` und Text
-- `escape`
-- `axe`
-
-Axe läuft, sofern `axe-core` vorhanden ist, für WCAG-2A/2AA und schreibt Anzahl sowie IDs der Violations. Ist Axe nicht vorhanden oder nicht ausführbar, enthält das Receipt den Messfehler; daraus wird nicht still ein Axe-PASS.
-
-Für einen komplexen, bereits durch Playwright abgedeckten Zustand nutzt die Spec `playwright_refs` mit `id`, `test` und `receipt`. `shot-sweep` führt diesen Test nicht erneut aus. Es verlangt eine vorhandene, parsebare Receipt-JSON und übernimmt daraus `keyboard`, `focus`, `role`, `name`, `aria`, `live`, `escape`, `axe` und `shots` als `captured`. Fehlende oder nicht parsebare Receipts werden `failed`.
-
-## Mobile, Reload und stabile Aufnahme
-
-`--mobile` setzt `capture_profile.mobile` und ergänzt je Route einen Mobile-Sweep mit `390x844`. Der automatische und deklarative U4-State-Pass läuft derzeit nur für `desktop`; Mobile bleibt als eigene Route-/Viewport-Aufnahme im Manifest sichtbar.
-
-Nach dem State-Pass wird die Route frisch geladen, bevor der normale Scroll-Pass beginnt. Auch der spätere Klick-Pass startet von einer frisch geladenen Seite, damit State- oder Klick-Nebenwirkungen nicht als Baseline weitergetragen werden.
-
-Jeder PNG-Capture läuft über den einen Playwright-`page.screenshot`-Pfad mit `animations: "disabled"`, verstecktem Caret, gesetzten Fonts und CSS-Skalierung. `fullPage` ist `false`; `captureBeyondViewport` wird nicht aktiviert. Mit `--static` kommen Reduced Motion, ausgeschaltete CSS-Animationen/Transitions und der Reveal-Vorlauf hinzu.
-
-## Visual, functional und regression bleiben getrennt
-
-- **Visual:** PNG pro Route, Viewport, Target und State; das ist das Material für die visuelle Prüfung.
-- **Functional/Accessibility:** Intercept-Hold, Selektor-Assertions, Focus-/ARIA-/Live-/Escape-Daten, Axe-Messung und `state_matrix` belegen nur die ausgeführten Checks.
-- **Regression:** stabile Viewports, deaktivierte Animationen, Reloads, `capture_profile` und Laufidentität machen getrennte Lauf-/Pixelvergleiche möglich. Der Sweep selbst macht aus einem funktionalen Receipt keinen visuellen oder Regression-PASS.
-
-## Kleines valides `state-spec.json`
+Die bestehende Spec unterstützt einen kleinen kontrollierten Submit-Fall:
+`prepare` füllt explizite Felder; `trigger.selector` benennt die Aktion;
+`hold.url` fängt die erwartete Anfrage ab. `request` legt Methode, Payload und
+Anzahl fest. `success` und `error` bestimmen die simulierte Antwort sowie die
+zu prüfende UI. Optional zeigt `assert_loading` den wartenden Zustand.
 
 ```json
 {
   "schema": "web/state-spec/v1",
-  "scenarios": [
-    {
-      "id": "contact-submit",
-      "route": "/",
-      "states": ["loading", "success", "error"],
-      "prepare": { "selector": "input[name=name]", "fill": "Ada" },
-      "trigger": {
-        "selector": "form#contact button[type=submit]",
-        "action": "click"
-      },
-      "hold": { "url": "**/api/submit" },
-      "assert_loading": { "selector": "#loading:not([hidden])" },
-      "success": {
-        "status": 200,
-        "body": "{\"ok\":true}",
-        "assert": { "selector": "[role=status]:not([hidden])" }
-      },
-      "error": {
-        "status": 400,
-        "body": "{\"ok\":false}",
-        "assert": { "selector": "[role=alert]:not([hidden])" }
-      }
+  "scenarios": [{
+    "id": "contact-submit",
+    "target": "contact-form",
+    "route": "/kontakt",
+    "viewport": "mobile",
+    "states": ["success", "error"],
+    "prepare": {"selector": "input[name=email]", "fill": "isolated@example.test"},
+    "trigger": {"selector": "form#contact button[type=submit]"},
+    "hold": {"url": "**/lead"},
+    "request": {"method": "POST", "post_data": "isolated@example.test", "count": 1},
+    "success": {
+      "status": 200, "body": "ok",
+      "assert": {"selector": "[role=status]", "text": "Gesendet"}
     },
-    {
-      "id": "items-empty",
-      "route": "/",
-      "states": ["empty"],
-      "setup": { "evaluate": "document.getElementById('items').innerHTML=''" },
-      "assert": { "selector": "#items:empty" }
+    "error": {
+      "status": 500, "body": "error",
+      "assert": {"selector": "[role=alert]", "text": "Erneut versuchen"}
     }
-  ],
-  "playwright_refs": [],
-  "not_applicable": []
+  }]
 }
 ```
+
+Payload und UI-Erwartung müssen zum tatsächlichen Projekt passen. Diese Fixture
+ist kein universelles Formularformat. Ein HTTP-Fehler mit Erfolgsmeldung,
+falsche Payload oder falsche Anfragezahl ist kein Funktions-PASS. Ein bewusst
+hergestellter Empty-Zustand kann weiter `setup.evaluate` und `assert` verwenden;
+das beweist den dargestellten Zustand, nicht automatisch den echten Datenweg.
+
+`functional.json` (`web/functional/v1`) bindet Run, Revision, Basis und genaue
+Zustandsidentitäten. Es enthält Erwartung, beobachtete Request/Response/UI-Daten
+und gehashte Bildbelege. Intercepts sind ausdrücklich `backend: mocked`:
+Sie prüfen Frontend-Verhalten an einer kontrollierten Antwort und belegen
+keine CRM-Zustellung. Fehlende oder unvollständige Prüfungen sind `NOT_CHECKED`.
+Echte Backend-/Datenwirkung verlangt den dafür vorhandenen Integrationstest
+oder eine autorisierte Probe am bestimmten Ziel.
+
+## Bestehende Playwright-Belege und Accessibility
+
+`playwright_refs` übernimmt aktuelle Receipts vorhandener Tests; der Sweep
+führt sie nicht aus. Es verlangt PASS, passende Run-/Build-/Basisbindung und
+gehashte existierende Belegdateien. Fehlende oder fremde Receipts sind Fehler.
+
+Fokus, Rolle, Accessible Name, ARIA, Live-Region, Escape und Axe beschreiben nur
+die tatsächlich gemessene Eigenschaft. Ein fehlendes Axe-Paket ist eine
+Prüflücke. Allgemeines Seiten-Axe ersetzt keine Tastatur-/Fokusprüfung am
+veränderten Control.
+
+## Bildprofile und Grenzen
+
+`--mobile` ergänzt 390×844 neben Desktop. Deklarierte Szenarien laufen auch
+mobil; ein explizites `viewport` begrenzt sie. Reflow bei 320 CSS-Pixeln bleibt
+bei Bedarf eine eigene Prüfung.
+
+`capture_profile` nennt `static`, `states`, `mobile`, `presentation` und
+`modified_dom`. Normaler Capture trägt `presentation: runtime`; `--static`
+trägt `stabilized`, schaltet Bewegung aus und kann Reveals sichtbar stellen.
+Diese Eingriffe machen Vergleichsbilder stabil, beweisen aber weder originales
+Ladeverhalten noch Reduced Motion. Jeder Shot trägt einen SHA256-Hash.
+
+Ein Bild zeigt Aussehen. Ein Szenario belegt nur seine ausgeführten Aktionen
+und Assertions. Ein Regressionsergebnis braucht einen passenden Vergleich mit
+dem bisherigen Stand; keines dieser Ergebnisse ersetzt die anderen.

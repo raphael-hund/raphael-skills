@@ -460,7 +460,7 @@ export function parse21stComponentFiles(text) {
   const raw = String(text || '');
   const title = raw.match(/^#\s+(.+)$/m)?.[1]?.trim() || 'component';
   const base = title.replace(/\s+—\s+.*$/, '').trim() || 'component';
-  const fences = [...raw.matchAll(/##\s+(Component|Demo)\s*\n```tsx\n([\s\S]*?)```/g)];
+  const fences = [...raw.matchAll(/##\s+(Component|Demo)(?:\s+\([^)\n]+\))?\s*\n```tsx\n([\s\S]*?)```/g)];
   let component = null;
   let demo = null;
   for (const fence of fences) {

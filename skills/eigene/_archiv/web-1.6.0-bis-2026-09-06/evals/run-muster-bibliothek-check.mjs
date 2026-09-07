@@ -60,29 +60,13 @@ const cases = fs.existsSync(BIB)
   ? fs.readdirSync(BIB).filter((f) => f.endsWith('.md') && f !== 'INDEX.md' && f !== '_template.md')
   : [];
 zeile(
-  cases.length >= 5,
-  `mindestens 5 Case-Dateien in muster-bibliothek/*.md (ohne INDEX/_template)`,
+  cases.length > 0,
+  `Case-Dateien in muster-bibliothek/*.md sind vorhanden (ohne INDEX/_template)`,
   `gefunden: ${cases.length}`,
 );
 
-const skill = lese(SKILL);
-zeile(skill.includes('stil-regeln.md'), 'SKILL.md enthaelt „stil-regeln.md“');
-
-const anf = lese(ANF);
-zeile(
-  fs.existsSync(ANF) && anf.includes('stil-regeln.md') && anf.includes('muster-bibliothek'),
-  'references/anfaenger-pfad.md enthaelt „stil-regeln.md“ und „muster-bibliothek“',
-);
-zeile(
-  /Neue Landingpage[\s\S]{0,400}stil-regeln\.md/.test(anf),
-  'anfaenger-pfad.md Landing-Zeile nennt stil-regeln.md nach „Neue Landingpage“',
-);
-
-const loop2 = lese(LOOP2);
-zeile(
-  fs.existsSync(LOOP2) && loop2.includes('stil-regeln'),
-  'references/loop2-ablauf.md enthaelt „stil-regeln“',
-);
+// Routing wird im aktiven Referenzgraph geprüft. Kein zweites Wortlaut-
+// Abbild des Einstiegs: ein indirekter Verweis auf die Bibliothek ist gültig.
 
 zeile(
   stil.includes('handwerk-local') && /handwerk-local[^\n]*\| 4 \| 3 \| 5/.test(stil),

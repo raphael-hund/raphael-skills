@@ -1,27 +1,29 @@
-# Sitemap- & Section-Planung — das verbindliche Step-by-Step-Format
+# Sitemap- und Abschnittsplanung für größere Websites
 
-> Entstanden 05.08.2026 nach Raphael-Rüge im Sorglos-Projekt: Ein Plan mit „5 Unterseiten
-> und je einer Sektionsliste" ist ZU DÜNN. Dieses Dokument definiert, was ein fertiger
-> Website-Plan enthalten MUSS, bevor irgendetwas gebaut wird. Es ergänzt
-> `informationsarchitektur.md` (dort: IA-Wissen/Muster — hier: der Arbeitsablauf und
-> das Pflicht-Ausgabeformat). Muster-Beispiel in voller Tiefe:
-> `/root/website-projects/sorglos-entruempeln/docs/masterplan/75-sitemap-sections-komplett.md`.
+Diese Referenz vertieft größere Sitemap-/Abschnittsplanungen. Der aktuelle
+Auftrag begrenzt die Routen; eine kleine Änderung braucht dieses Format nicht.
+`rolle-plan.md` bestimmt den Einstieg, `website-plan` einen gegebenenfalls
+benötigten maschinellen Planvertrag. Inhalt und Beispiele hier helfen dabei,
+die beauftragten Seiten ausreichend konkret zu beschreiben.
 
-## Die 5 Schritte (Reihenfolge fix, kein Überspringen)
+Herkunft: Sorglos-Projekt, 05.08.2026. Das damalige ausführliche Muster liegt in
+`/root/website-projects/sorglos-entruempeln-next/docs/masterplan/75-sitemap-sections-komplett.md`.
+Es ist ein Kundenbeispiel, kein Pflichtumfang für andere Projekte.
+
+## Fünf Bestandteile eines ausführlichen Plans
 
 ```
-Schritt 1  VOLLE Sitemap        — alle Seiten, die die Site je braucht, in Ausbaustufen
+Schritt 1  VOLLE Sitemap        — beauftragte Seiten und ausdrücklich gewünschte Ausbaustufen
 Schritt 2  Section-Design-System — Layer + Layout-Patterns EINMAL definieren
-Schritt 3  Section-Plan je Seite — jede Sektion: Inhalt konkret + Layer + Pattern + Bild
+Schritt 3  Section-Plan je Seite — Inhalt, Layout und bei Bedarf Pattern/Bild
 Schritt 4  Querschnitt           — Funnel/CTA-System, Bildliste, interne Links
-Schritt 5  Bau-Reihenfolge       — Schritte mit verify:-Gates und Freigabepunkten
+Schritt 5  Bau-Reihenfolge       — Abhängigkeiten und passende Nachweise
 ```
 
 ## Schritt 1 — Volle Sitemap (Denkfehler-Schutz)
 
-**Regel: Erst das VOLLE Zielbild denken, dann in Stufen schneiden.** Der klassische
-Fehler ist, nur die Seiten zu planen, die sofort gebaut werden — das produziert eine
-Mini-Site ohne Wachstumspfad. Stattdessen:
+**Zielbild im beauftragten Umfang planen.** Für eine ausdrücklich gewünschte
+Ausbaustrategie zusätzlich Kandidaten und Stufen betrachten:
 
 1. Alle Seitenkandidaten sammeln: Kern-Services, Preis-/Kosten-Seite, Über-uns,
    B2B-Varianten, Orts-/Stadtteilseiten, Geld-/Zuschuss-Themen, Ratgeber/Blog.
@@ -41,26 +43,14 @@ untereinander verlinken).
 über feste Lokal-Slots (Ort-Beschreibung, lokale Entsorgungs-/Behörden-Fakten,
 lokaler Case) + Recherche-Checkliste pro Ort. Ohne Recherche keine Ortsseite.
 
-## Schritt 2 — Section-Design-System (Layer + Patterns)
+## Schritt 2 — Vorhandenes visuelles System und nötige Layouts
 
-Bevor Seiten geplant werden: das Vokabular EINMAL definieren, damit jede Sektion
-in Schritt 3 mit einem Wort beschreibbar ist statt jedes Mal neu erfunden.
-
-**Layer (Hintergrund-Ebenen) — 4 Stück, projektspezifisch einfärben:**
-
-| Layer | Rolle | Regel |
-|---|---|---|
-| L0 Papier | Grundfarbe, ruhige Inhalte | Standard |
-| L1 Tonfläche | warmes Full-bleed-Band als Rhythmus-Brecher | nie 2× direkt hintereinander |
-| L2 Karte | weiße Karte mit Schatten für alles Zählbare | liegt AUF L0/L1 |
-| L3 Akzent | dunkle Conversion-Fläche | GENAU 2× pro Seite: Hero-Funnel + Abschluss-CTA |
-
-**Layout-Patterns — benannte Bausteine (P1…Pn), je mit Desktop- UND Mobil-Aufbau:**
-mindestens Split-Hero, Karten-Reihe, Text+Bild-Split (gespiegelt alternierend),
-Step-Leiste, Tabelle, Akkordeon, Review-Strip, CTA-Band. Plus feste Maße
-(Content-Breite, Text-Spalten-Max, Sektions-Padding D/M, Schriftgrößen,
-Touch-Ziele) und die Sektions-Anatomie
-(Eyebrow → H2-als-Antwort → Answer-first-Lead → Pattern-Körper → max. 1 Ausleitung).
+Kundenrichtung, Tokens und bereits freigegebene Komponenten referenzieren.
+Neue Flächen-/Typo-/Layoutregeln nur entscheiden, wenn der Auftrag diese Arbeit
+verlangt. Offene Raster, Split-Hero, Karten oder Prozessschritte sind mögliche
+Muster, keine Mindestliste. Wiederverwendete Patterns nach Bedarf benennen;
+keine feste Layerzahl oder Wiederholungsquote. Relevantes Verhalten bei anderen
+Breiten an den tatsächlich verwendeten Komponenten beschreiben.
 
 ## Schritt 3 — Section-Plan je Seite (die eigentliche Arbeit)
 
@@ -75,39 +65,41 @@ Tabelle je Sektion:
 
 „Inhalt KONKRET" heißt: nicht „USPs zeigen", sondern die tatsächlichen 3 Karten
 mit ihren Aussagen, die tatsächlichen Tabellenzeilen, die FAQ-Fragen wörtlich.
-Hero-Copy (Eyebrow/H1/Sub/Checks) wird ausformuliert, nicht beschrieben.
+Wenn Texte zum Auftrag gehören, liefert der geltende Copy-Owner ausformulierte
+Hero-Copy. Sonst enthält der Plan Textbedarf, Quellen und vorhandene freigegebene
+Copy; ein Planauftrag erzeugt keine ungefragte Textproduktion.
 Fehlende Fakten (Preise, Zahlen) werden als benanntes **FAKT-GATE** geführt
 (z. B. „Ruben-Gate", „50 vs 60 Google-Bewertungen", „24 vs 28 Stunden"),
-blockieren aber nur den Zahlen-Launch, nie den Bau und nie die Kunden-Vorschau.
+werden nach ihrer Wirkung eingeordnet: bereits verlangte Inhalte müssen auch
+in einer Vorschau stimmen; bewusst provisorische Aussagen bleiben markiert.
 Custom-Domain noch nicht an Vercel ist Ops, kein Plan-Blocker.
 
-**Dramaturgie-Prüfung je Seite:** Ein gemeinsames Skelett
-(Hero → Kernangst-Sektion → Substanz → Beweis → Mensch → FAQ → Abschluss-Funnel),
-aber pro Seite EINE andere Kernangst, die Sektion 2 abräumt. Seiten dürfen
-kürzer sein (pragmatische Zielgruppe = weniger Sektionen), nie länger als nötig.
+**Dramaturgie je Seite:** Die Reihenfolge folgt dem Seitenjob und tatsächlichen
+Informationsbedarf. Angebot, Beweis, Person und FAQ sind mögliche Bausteine;
+keine davon wird allein wegen eines festen Skeletts eingefügt.
 
 ## Schritt 4 — Querschnitt
 
 - **Ein Funnel-System:** eine Komponente, pro Seite nur Prefill + `lead_source` —
   als Tabelle festhalten.
 - **Eine Bild-Produktionsliste** über alle Seiten (ein Generierungslauf,
-  Stil-Referenz-Doktrin aus `bildgenerierung.md`). Launch-Regel: Bilder blockieren nie.
+  Stilhinweise aus `bildgenerierung.md`), sofern neue Bilder beauftragt sind.
 - Interne-Link-Matrix, sofern nicht schon in Schritt 1 vollständig.
 
 ## Schritt 5 — Bau-Reihenfolge
 
-Nummerierte Schritte, jeder mit `verify:`-Zeile (Screenshot-Sweep, Link-Check,
-Review-Instanz) und expliziten Freigabe-Gates (pro Stufe, nicht pro Seite).
-Schritt 0 ist immer das Fundament: Nav/Footer/Breadcrumb/Funnel-Komponente/
-Section-Baukasten — erst dann Seiten.
+Schritte mit passendem Nachweis nach `qa-faecher.md` und echten Abhängigkeiten.
+Gemeinsame Komponenten haben einen Owner; abhängige Seiten folgen danach.
+Unabhängige Teile dürfen parallel entstehen. Bereits autorisierte Arbeit
+braucht keine zusätzliche Freigaberunde.
 
 ## Abnahme-Checkliste (der Plan ist erst fertig, wenn alles ✅)
 
-- [ ] Volle Sitemap inkl. Ausbaustufen UND Nicht-bauen-Liste mit Begründungen
+- [ ] Beauftragte Sitemap, bei Strategieauftrag zusätzlich gewünschte Ausbaustufen
 - [ ] URL-Map-Tabelle + wörtliche Header/Footer/Breadcrumb-Spec
-- [ ] Layer- und Pattern-Vokabular definiert (mit Mobil-Verhalten + Maßen)
+- [ ] Bestehendes visuelles System referenziert; neue Layoutentscheidungen nur bei Bedarf
 - [ ] JEDE Seite: Besucher + Job + Sektionstabelle mit konkretem Inhalt je Sektion
-- [ ] Hero-Copy je Seite ausformuliert
-- [ ] Fakten-Gates benannt (blockieren Zahlen, nicht Bau, nicht Vorschau)
-- [ ] Funnel-/lead_source-Tabelle + Bildliste
-- [ ] Bau-Reihenfolge mit verify: und Freigabe-Gates
+- [ ] Copybedarf und Quellen je Seite; ausformulierte Copy nur wenn beauftragt
+- [ ] Faktenlücken mit Wirkung auf den konkreten Auftrag benannt
+- [ ] Benötigte Nutzerwege und Assets beschrieben
+- [ ] Bau-Reihenfolge mit tatsächlichen Abhängigkeiten und passenden Nachweisen

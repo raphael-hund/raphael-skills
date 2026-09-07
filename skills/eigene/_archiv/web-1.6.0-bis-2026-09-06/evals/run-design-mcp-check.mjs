@@ -172,6 +172,27 @@ console.log('\nDesign-MCP — Parser (offline) und CLI\n');
   zeile(logos.length === 1 && logos[0].title === 'Vercel' && /svgl\.app\/library\/vercel\.svg/.test(logos[0].svg), 'parse21stLogo');
   const comp = parse21stComponentFiles(extractMcpText(readJson(files.get21)));
   zeile(/PricingTable/.test(comp.component || '') && /Demo/.test(comp.demo || '') && /Pricing table/i.test(comp.title), 'parse21stComponentFiles');
+  const usageDemo = parse21stComponentFiles(`# Button — Rounded
+install: npx shadcn@latest add "https://21st.dev/r/shugar/button-1?api_key=$API_KEY_21ST"
+
+## Component
+\`\`\`tsx
+import { Spinner } from "@/components/ui/spinner-1";
+export const Button = () => <Spinner />;
+\`\`\`
+
+## Demo (usage)
+\`\`\`tsx
+import { Button } from "@/components/ui/button-1";
+export default function RoundedDemo() {
+  return <Button>Upload</Button>;
+}
+\`\`\`
+`);
+  zeile(
+    /spinner-1/.test(usageDemo.component || '') && /RoundedDemo/.test(usageDemo.demo || ''),
+    'parse21stComponentFiles: echte get3824-Form Demo (usage), Spinner-Abhängigkeit bleibt sichtbar',
+  );
   const theme = parse21stThemeCss(extractMcpText(readJson(files.theme21)));
   zeile(/Violet Bloom/i.test(theme.title) && /--primary:\s*#7033ff/.test(theme.css), 'parse21stThemeCss');
 }

@@ -1,198 +1,68 @@
-# Rolle: Plan-Session
+# Website planen
 
-Einstiegs-Ebene für die **Plan**-Session der Drei-Sessions-Ordnung
-(Plan / Kritik / Bau, Raphael 01.09.2026). Detail-Ebene:
-`planner-executor-protokoll.md`, `sitemap-section-planung.md`,
-`landingpage-struktur.md`, `informationsarchitektur.md`.
+Ergebnis ist ein umsetzbarer Plan für den verlangten Umfang. Der Plan enthält
+Ziel, aktuelle Kundenentscheidungen, Inhalte/Funktionen, Abhängigkeiten und
+messbare Abnahme. Eine Plan-only-Aufgabe erzeugt keinen Production-Code und
+braucht keine Build-Aufnahmen. Unabhängige Recherche darf delegiert werden.
 
-Chip-Leiste: **nur `/web`**, Effort high. Nie `/orchestrate`, nie `/ultracode`,
-nie `/design`, nie `/visual-aaa`.
+## Vorhandene Wahrheit auflösen
 
-## Start der Session (hart)
+Lies den konkreten Projektstand und die relevanten Kundenquellen: Absprachen,
+`DECISIONS.md`, ICP/OFFER/PROOF/VOICE und vorhandenes `brand/DESIGN.md`.
+Neueste Nutzerworte entscheiden. Widersprüchliche Designfassungen werden im
+bestehenden Designvertrag aufgelöst; andere Pläne verweisen darauf.
 
-```bash
-node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
-  --rolle plan --client /root/clients/client-<name>/web/handoff
-```
+Vor einer offenen Stilentscheidung relevante Eingangsdateien der letzten sieben
+Tage prüfen und verwendete Bildreferenzen tatsächlich ansehen. Der Plan nennt
+Quelle und Zweck. Neue globale Stilregeln folgen nicht aus einem Kunden-Lock.
 
-Exit 0 = frei. Fehlt `PRUEFGEGEN.md`, legt das Gate sie aus
-`references/templates/PRUEFGEGEN-template.md` an — sie wird danach ausgefüllt,
-nicht als Template stehen gelassen.
+## Passende Plantiefe
 
-## Was die Plan-Session macht — und was nie
-
-| Macht | Macht nie |
+| Umfang | Planort und Inhalt |
 |---|---|
-| `PLAN.md`, `PRUEFGEGEN.md`, Reihenfolge, Copy-Briefing | Production-Code, Build-/Kritik-Shot-Reads (Eingang-Referenzen: max 3, siehe unten), Subagenten, Workflows |
+| Kleine Änderung | Bestehender Auftrag/Issue oder kurzer Abschnitt im aktuellen Plan: Verhalten, Grenze, Prüfbedingung. |
+| Landingpage | Vorhandener `PLAN.md` bzw. Projektplan: Zielgruppe, Angebot, Seitenjob, Abschnitte, Inhalte, Funktionen und Abnahme; `landingpage-struktur.md` unterstützt. |
+| Mehrere Routen / Shared Owners | `sitemap-section-planung.md`; bei maschinellem Routen-/Write-Vertrag `website-plan` mit v3-Manifest und Validator. |
 
-Kein Screenshot-Sweep, keine Kritik-Flotte, keine finale Copy. Ergebnis der
-Plan-Session sind zwei Textdateien und ein Handoff-Prompt.
+`PLAN.md` enthält den **aktuellen Planstand**. Abgelöste Entscheidungen bleiben
+im vorhandenen Decision Log, gelten aber nicht weiter. Ist ein v3-Paket kanonisch,
+verweist `PLAN.md` darauf; dieselbe Spezifikation wird nicht daneben wiederholt.
+Ein Abschnittsplan ergänzt die fachliche Beschreibung, widerspricht aber weder
+Route-Abhängigkeiten noch Schreibgrenzen. Bei Änderungen Vertrag aktualisieren
+und erneut validieren, bevor der Build ihn konsumiert.
 
-## Die zwei Truth-Dateien
+## Inhalte und Gestaltung
 
-Ablageort (absolut, beim ersten Handoff anlegen):
-`/root/clients/client-<name>/web/handoff/`
+Halte fest, für wen die Seite ist, welches Problem sie löst und welche Handlung
+sie ermöglichen soll. Claims und konkrete Zahlen brauchen benannte Quellen.
+Offene Fakten stehen als `FAKT-GATE` mit ihrer Wirkung auf die Abnahme im Plan.
+Eine ausdrücklich provisorische Vorschau darf gekennzeichnete Slots verwenden;
+ein verlangtes entscheidendes Faktum bleibt eine echte offene Anforderung.
 
-- **`PLAN.md`** — das Original. Nie zusammenfassen, nie umschreiben, nur per
-  datiertem Änderungsblock ergänzen („Änderung 01.09: …“). Eine frische Session
-  liest PLAN.md immer vollständig. Eine Zusammenfassung von Zusammenfassungen
-  ist verboten.
-- **`PRUEFGEGEN.md`** — der Prüflinsen-Vertrag. Format und Beispielzeilen:
-  `references/templates/PRUEFGEGEN-template.md`. Eine Tabelle
-  (Linse | Skill/Quelle | Datei/Referenz | Shot/Viewport | Prüffrage), sonst
-  nichts. Ohne diese Datei startet die Kritik-Session nicht.
+Für Copy: Problem, Person, Versprechen, Ton, relevante Absprachen und Proof-Lage
+an den geltenden Copy-Owner geben. Verlangt der Planauftrag bereits reale Copy,
+liefert dieser Owner sie mit den Copychecks. Sonst genügt das Copy-Briefing.
+SEO nur laden, wenn Keyword, Indexierung oder Informationsarchitektur eine
+tatsächliche Planentscheidung sind.
 
-`STATUS.md` und `KRITIK-n.md` schreiben Kritik und Bau, nicht Plan.
+Eine festgelegte Referenzrichtung bleibt bestehen. Bei offener Richtung zuerst
+ein repräsentatives sichtbares Beispiel planen; mehrere Varianten nach
+`fold-duell.md` nur bei entsprechendem Entscheidungsbedarf. Ein Modellurteil
+ersetzt keine subjektive Wahl Raphaels. Pattern-IDs werden für tatsächlich
+verwendete Muster notiert, nicht als Pflichtschmuck jeder Sektion.
 
-**Abgrenzung:** Dieses Session-Handoff ist nicht das Run-Evidence-Handoff.
-`PLAN.md` ersetzt weder einen `website-plan`-v3-Vertrag noch
-`run-evidence.json`. Ist der Plan ein v3-Plan, verweist `PLAN.md` auf dessen
-Pfad und Hash; die Bau-Session läuft trotzdem durch alle Gates.
+## Abnahme und Übergabe
 
-## Sitemap und Section-Plan
+Die Prüffragen folgen `qa-faecher.md`: Inhalt, Darstellung, konkrete Nutzerwege,
+Technik und Revision soweit anwendbar. Bei umfangreicher Kritik kann der
+bestehende `PRUEFGEGEN.md` die ausgewählten Fragen bündeln; ein anderer gültiger
+Auftrag braucht dafür keine fünf Pflichtlinsen oder leere Zusatzdatei.
 
-Landing → `landingpage-struktur.md`. Mehrseitig →
-`sitemap-section-planung.md`; die dortige Abnahme-Checkliste ist bindend
-(5 Schritte, keine Auslassung: volle Sitemap → Section-Design-System →
-Section-Plan je Seite → Querschnitt → Bau-Reihenfolge). Beide nie zusammen
-laden — entweder Landing oder Multi-Page.
+Ein v3-Plan besteht nur mit `PLAN_VERIFIED=YES`, gültigem
+`website-plan/verification/v3`-Receipt, passendem `manifest_sha256` und aktuellen
+Plan-Hashes. Overlap, fehlende Owner und überholte Inputs bleiben offen.
 
-IA-Wissen (Nav, URLs, Linkgraph): `informationsarchitektur.md`.
-
-## Verhältnis website-plan (v3) ↔ Section-Plan
-
-Beide dürfen nebeneinander existieren, aber sie haben verschiedene Rollen:
-
-- Das **v3-Manifest** (`plan-manifest.json` + `plan-verification.json`,
-  Schema `website-plan/verification/v3`) ist die **maschinelle Wahrheit**:
-  Route-Abhängigkeiten, Write-Sets, Shared Owners, Hashes. Der Build liest
-  seine Pakete daraus.
-- Der **Section-Plan** aus `sitemap-section-planung.md` ist die **menschliche
-  Sicht**: welche Sektion welchen Job hat, welcher Layer, welches Pattern.
-
-**Bei Divergenz gewinnt v3.** Weicht der Section-Plan vom Manifest ab, wird der
-Section-Plan nachgezogen und die Abweichung als datierter Änderungsblock in
-`PLAN.md` vermerkt — nie umgekehrt still am Manifest vorbeigebaut.
-
-Ist `website-plan/` Baukanon, gilt fail-closed: v3-Validator Exit 0,
-`PLAN_VERIFIED=YES`, `manifest_sha256` gleich dem aktuellen Manifest-SHA-256,
-jeder attestierte Plan-Hash gleich dem aktuellen Planartefakt. Hash-Drift,
-`OWNER-BLOCKER`, doppelte Owner oder Write-Set-Overlap bleiben `BLOCKED`.
-Inhalt und unklare Zahlen sind dagegen `FAKT-GATE` / `content-park` — kein
-Blocker.
-
-## SEO- und Copy-Grundlage (Plan legt sie, schreibt sie nicht)
-
-**SEO:** Die Plan-Session lädt den Skill `seo` für Keyword- und
-Sitemap-Entscheidungen auf **On-Page-Level** — Keyword je Route, Title/H1-Absicht,
-URL- und Nav-Struktur. Das ist nicht das Loop-4-Vollprogramm: kein
-SERP-Research-Export, kein Ranking-Plan, kein technischer Audit. Diese
-Entscheidungen gehören in `PLAN.md`, weil sie die Sitemap formen; alles darüber
-hinaus ist ein eigener Loop-4-Auftrag.
-
-**Copy-Briefing:** Die Plan-Session schreibt das Briefing als Text in `PLAN.md`.
-Quellen sind **beide** Kunden-Wahrheitsdateien: `/root/clients/<name>/wiki/absprachen.md`
-(jede Raphael-Ansage, auch ohne Decision-Eintrag) **und** `DECISIONS.md`. Tote
-Formulierungen, kanonische Zahlen und der CTA-Wortlaut stehen als eigene Zeilen im
-Briefing; ein Copy-Leaf, das nur eine der beiden Dateien kennt, schreibt Absprachen
-zurück in den Text (MAKE-Pilot 04.09.2026: Google-Rating und CTA aus `absprachen.md`
-rutschten durch, G2 0,49).
-Drei Felder sind Pflicht und werden in der Kritik-Phase gegen den Fold geprüft —
-ein leeres Feld ist kein Briefing, sondern ein Blocker der Plan-Abnahme:
-
-- **Pain** — der eine Satz, den der Besucher als sein Problem wiedererkennt.
-- **Person** — wer genau vor der Seite sitzt, in welcher Lage (Meaning-Frage A,
-  schärfer als „Zielgruppe“).
-- **Promise** — was die Seite verspricht, in der Sprache des Ergebnisses, nicht
-  der Leistung.
-
-Die Kritik-Phase prüft alle drei am Fold-Shot (1440×900 und 390×844): Steht Pain
-sichtbar über dem Fold? Ist Person daraus ablesbar? Ist Promise die Headline
-oder die Primäraktion? Ein Feld, das im Fold nicht wiederzufinden ist, ist ein
-Befund gegen den Fold, nicht gegen das Briefing.
-
-Dazu weiterhin:
-
-- **Zielgruppe** — konkret, keine Sammelbegriffe (Meaning-Frage A).
-- **Ton** — ein Vibe-Wort plus VOICE-Referenz
-  (`/root/clients/client-<name>/wiki/VOICE.md`).
-- **Keyword je Route** — aus der SEO-Entscheidung oben.
-- **Proof-Lage je Route** — was echt belegt ist (`PROOF.md`) und was
-  Platzhalter bleibt.
-
-**Plan schreibt keine finale Copy** und startet dafür keine Subagenten. Das
-Briefing ist Text; die Copy schreibt später im Bau-Workflow `kimi-worker` oder
-`sol-builder` (`rolle-bau.md`).
-
-## Meaning-Capture (vor der Sitemap)
-
-Vier Pflichtfragen schriftlich in `client-<name>/web/strategy.md`, Abschnitt
-`Meaning`: (A) Für wen? (B) Welches Problem? (C) Welches Gefühl (ein Vibe-Wort)?
-(D) Was soll es repräsentieren? Aufschreiben, nicht denken — hier nur fragen,
-nicht designen. Fail = nicht an `art-direction` weitergehen.
-
-## Eine Art-Direction je Kunde (Pflicht, MAKE 04.09.2026)
-
-Bevor der Plan Tokens oder Look nennt: alle vorhandenen Stil-Quellen des Kunden
-listen (`brand/DESIGN.md`, `website-plan/art-direction.md`,
-`client-<name>/web/art-direction.md`, Inspirations-Lock, Live-Seite) und jeden
-Widerspruch benennen (MAKE hatte drei: Lock «weisses Canvas», Plan «#131a1a
-all-sharp», Raphael «dunkel, Anthrazit, 20px-Karten»). Auflösung: Raphaels
-jüngstes Wort gewinnt, dann die Live-Seite, dann `DESIGN.md`. Die Auflösung
-steht als datierte Zeile in `brand/DESIGN.md`; `art-direction.md`-Dateien
-verweisen nur noch dorthin. Ein Plan mit zwei gültigen Looks ist kein Plan.
-
-## Fold-Duell vor Welle 1 (Pflicht bei Neuaufbau, Redesign, «Look von null»)
-
-Der Plan legt drei Fold-Richtungen mit benannter Achse fest
-(`references/fold-duell.md`), eine davon immer «Live-Seite oder Raphaels
-jüngste Referenz, sauber weitergebaut». Die Bau-Phase startet damit; Welle 1
-(Design-System, Routen) wartet auf Raphaels Wahl in `DECISIONS.md`. Erstes
-Bild für Raphael spätestens 30 Minuten nach Auftrag. Fertig-Kriterium des Plans
-ist damit auch: `PLAN.md` enthält den Abschnitt «Fold-Duell» mit drei Zeilen
-`slug | Achse | Referenzbilder | Copy-Quelle`.
-
-## Referenzen aus dem Briefkasten (Pflicht)
-
-Vor jeder Stilentscheidung: `ls -lt /root/eingang | head -20`; bildhafte Dateien
-der letzten 7 Tage per `Read` ansehen — **höchstens 3 Stück**, und nur
-Kundenreferenzen aus dem Briefkasten. Das PNG-Verbot der Rollen-Tabelle meint
-Build- und Kritik-Shots (die Massenware, die Parents historisch geflutet hat),
-nicht die Handvoll Referenzbilder, ohne die kein Stilurteil geht. Raphael legt
-Referenzen dort ab, ohne sie im Prompt zu erwähnen. Verwendetes kommt in den
-Plan; ist nichts relevant, steht dort in einem Satz warum.
-
-**Bilder bleiben Bilder.** Der Plan beschreibt eine Referenz in einer Zeile,
-aber die Datei geht als Pfad in `handoff/referenzen/BILDLISTE.txt` und wird von
-jedem Builder- und Judge-Leaf per Read gelesen (Bericht: Zeile «gesehen:» je
-Bild). Eine Prosa-Beschreibung («leuchtende Verbindungslinie mit Knoten») ist
-kein Ersatz; aus Prosa bauten die Leaves am 04.09. flache Karten ohne Glow.
-
-## Handoff-Format (vier Blöcke, nichts weiter)
-
-1. **Auftrag** — was die Empfänger-Session jetzt tut (imperativ, 1–5 Punkte).
-2. **Quellen** — Dateipfade: immer `PLAN.md` + `PRUEFGEGEN.md` + `STATUS.md`,
-   plus die aktuelle `KRITIK-n.md`. Keine Inhalte inline duplizieren.
-3. **Grenzen** — was ausdrücklich nicht Teil des Auftrags ist, inkl. aktueller
-   Raphael-Neins (aus `DESIGN.md`/`DECISIONS.md` referenziert).
-4. **Rückgabe** — erledigte Pakete mit Beleg (Gate-Ausgabe, Screenshot-Pfad),
-   Blocker als `BLOCKED` mit Grund, offene Entscheidungen für Raphael.
-
-Ausgefüllte Beispiele beider Richtungen: `planner-executor-protokoll.md`.
-
-## Vorschau vs Launch (Plan-Sicht)
-
-Die Plan-Session plant für eine geile Kunden-Vorschau. Preview-Blocker sind
-**Ablauf, Sitemap, Idee, Design**. Satz, Wort, Bild, Sektion,
-Review-Platzhalter, 50 vs 60, Domain/Vercel sind Swaps und werden geparkt —
-sie kommen nicht als Blocker in den Bau-Auftrag. Unklare echte Zahl =
-Working-Zahl plus `FAKT-GATE`-Eintrag in `PLAN.md`, damit der Launch sie
-abarbeitet (`rolle-launch.md`).
-
-## Session-Rotation
-
-Ab ~70–80 % Kontextauslastung proaktiv rotieren: `STATUS.md` aktualisieren,
-5–10 Zeilen Rotations-Handoff ans Ende (erledigt / aktueller Schritt / nächster
-Schritt / aktive Neins). Die frische Session startet mit einem Prompt und liest
-`PLAN.md` vollständig. Verboten: die Zusammenfassung der alten Session als
-Ersatz für `PLAN.md`. Detail: `planner-executor-protokoll.md`.
+Fertig: Jede verlangte Seite/Funktion ist beschrieben, verbindliche Vorgaben
+und Vorschläge sind unterscheidbar, Abhängigkeiten und Prüfkriterien sind klar.
+Die Übergabe referenziert Quellen und Grenzen nach
+`planner-executor-protokoll.md`; sie startet keine ungefragte nächste Phase.

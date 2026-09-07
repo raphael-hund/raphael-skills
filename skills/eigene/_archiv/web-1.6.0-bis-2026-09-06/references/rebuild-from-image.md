@@ -109,14 +109,14 @@ Rasterbild verstecken statt im DOM.
 
 ### 3. Deterministischer Rebuild-Prompt — der Build-Handoff
 
-Die Implementierungs-Rolle bekommt **nur**, nicht das Bild zur freien
-Neuinterpretation:
+Die Implementierungs-Rolle bekommt die tatsächlich betrachtete Referenz und
+die festgelegten Vorgaben; sie eröffnet keine neue Designrichtung:
 
 - die Region-Map aus Schritt 2 (Sections, IDs, Reihenfolge, Tokens)
 - die Renderstrategie-Entscheidung pro Element
 - den `copyMode`-Entscheid (design-only vs. binding)
 - die Responsive-/Interaction-Vorgaben (siehe unten)
-- Akzeptanz-Viewports: **1440, 768, 390 px** (bei dichten Apps zusätzlich 1024)
+- Akzeptanz-Viewports: Referenzbreite und die für den Auftrag relevanten weiteren Ansichten
 
 Responsive aus einem einzelnen Bild: alle Nicht-Referenz-Breiten sind
 `inferred`. Pro Section vorab festlegen — Container/Seitenränder,
@@ -141,8 +141,7 @@ Kartenbild).
 
 Bestehenden Stack bewahren, Section-Reihenfolge/Geometrie/Typohierarchie/
 Bildbalance/visuelle Signaturen erhalten. Für Umsetzung, Stack-Wahl und
-Motion-Komponenten gilt der normale Build-Schritt aus dem Haupt-SKILL.md
-(Abschnitt Ablauf, Punkt 6) — hier keine Parallelregeln.
+Motion-Komponenten gelten `rolle-bau.md` und die passende QA-Auswahl.
 
 ### 5. Pixel-Treue-Check — gegen echte Renderings beweisen, nicht per Gefühl
 
@@ -151,22 +150,24 @@ Motion-Komponenten gilt der normale Build-Schritt aus dem Haupt-SKILL.md
 3. Sections einzeln vergleichen, nicht nur den Gesamteindruck.
 4. Getrennt bewerten: Layout/Geometrie, Typografie, Farbe/Material, Assets/Crop, Responsive, Interaction, Accessibility. Kein einzelner Pixel- oder Wahrnehmungsscore reicht als Gesamturteil.
 5. Pro Iteration nur die fehlerhafte Achse reparieren, keine neue Designrichtung nebenbei einführen.
-6. Erst Referenzbreite sperren, danach 768 und 390 px abschließen.
-7. Frischer Reviewer gibt frei — der Builder darf sich nicht selbst abnehmen (deckt sich mit dem `qa-faecher`-Grundsatz im Haupt-SKILL.md).
+6. Referenzbreite und die für den Auftrag relevanten weiteren Viewports prüfen.
+7. Zusätzliche unabhängige Bildprüfung bei entsprechender Anforderung oder
+   ungelöstem Dissens; Umfang und tatsächlichen Bildzugriff benennen.
 
 Antialiasing, dynamische Daten und Videos dürfen mit begründeten Masken
 behandelt werden — ganze schwache Sections nie maskieren, sondern
-neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
+gezielt korrigieren. Eine verlangte, aber nicht ausführbare Prüfung bleibt
+`BLOCKED`; die bloße Abwesenheit eines zusätzlichen Reviewers erzeugt kein Gate.
 
 ## Fertig-Kriterium (ohne Vendor-Gate-Scripts, gleicher Maßstab)
 
 - sichtbare Referenzfläche vollständig abgedeckt (Header/Footer/Overlays mit explizitem Entscheid)
 - observed/inferred/unknown sauber getrennt dokumentiert
 - keine statische Attrappe an Stelle erwarteter Funktion (siehe Blocker-Liste oben)
-- Screenshots auf 1440, 768, 390 px vorhanden
-- alle sieben Fidelity-Achsen (Layout, Typo, Farbe, Assets, Responsive, Interaction, A11y) einzeln bewertet, keine offen
-- Lighthouse/axe = 0 (Haupt-SKILL.md G1, gilt unverändert)
-- frischer Reviewer hat freigegeben, keine offenen hohen Risiken
+- Aussagekräftige Bilder der Referenzbreite und beauftragten weiteren Ansichten vorhanden
+- Beauftragte Eigenschaften geprüft; aus dem Bild nicht ableitbares Verhalten bleibt als unbekannt benannt
+- Passende technische und A11y-Checks nach `qa-faecher.md` bestanden
+- Keine offenen auftragsrelevanten Fehler; gegebenenfalls verlangte Zweitprüfung belegt
 
 ## Bewusst weggelassen
 

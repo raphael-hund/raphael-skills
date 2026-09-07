@@ -9,27 +9,20 @@
  *
  * Usage:
  *   node resource-access.mjs check
- *   node resource-access.mjs show <exakter-Name> [--json]
- *   node resource-access.mjs open <exakter-Name> [--json]
+ *   node resource-access.mjs show <Name|Katalog-URL> [--json]
+ *   node resource-access.mjs open <Name|Katalog-URL> [--url <Detail-URL>] [--out <absoluter-Pfad>] [--json]
  */
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { readFileSync, writeFileSync } from "node:fs";
+import { dirname, isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CATALOG_PATH = join(HERE, "..", "references", "frontend-referenzbibliothek.md");
 const ROUTER_PATH = join(HERE, "..", "references", "tool-usecase-router.md");
 const INSPIRATION_CATEGORY = "Website- und UI-Inspiration";
-
-// The external contract deliberately binds only the 133 requested resources.
-// It hashes sorted, exact `name<TAB>officialUrl` pairs, never catalog prose.
-const REQUESTED_CONTRACT = Object.freeze({
-  count: 133,
-  extraInspirationCount: 27,
-  sha256: "6f7d266145227d7cb5dbd45ba5f91cc33fe991a62da61a283fe3e62f91b597c4",
-});
+const TOOLS_CATEGORY = "Werkzeuge und Spezialanwendungen";
 
 const CATEGORY_ADAPTERS = Object.freeze({
   [INSPIRATION_CATEGORY]: Object.freeze({ kind: "inspiration-source", mode: "browser-research", routerAnchor: "#inspiration" }),
@@ -43,6 +36,7 @@ const CATEGORY_ADAPTERS = Object.freeze({
   Icons: Object.freeze({ kind: "icon-source", mode: "selected-icon-family", routerAnchor: "#icons" }),
   "Fonts und Typografie": Object.freeze({ kind: "font-source", mode: "adobe-kit-embed", routerAnchor: "#fonts" }),
   "React Native und Mobile UI": Object.freeze({ kind: "mobile-ecosystem", mode: "official-docs-only", routerAnchor: "#mobile" }),
+  [TOOLS_CATEGORY]: Object.freeze({ kind: "research-source", mode: "official-docs-only", routerAnchor: "#tools" }),
 });
 
 // Values are official, resolved package or CLI identities. A CLI is an access
@@ -158,7 +152,7 @@ function parseCatalog(rawCatalog) {
   for (const [index, line] of rawCatalog.split(/\r?\n/).entries()) {
     const heading = line.match(/^##\s+(.+)$/);
     if (heading) { category = heading[1]; continue; }
-    const bullet = line.match(/^- \[([^\]]+)\]\((https:\/\/[^)]+)\)$/);
+    const bullet = line.match(/^- \[([^\]]+)\]\(([^)]+)\)$/);
     if (!bullet || !CATEGORY_ADAPTERS[category]) continue;
     const [name, officialUrl] = bullet.slice(1);
     const base = CATEGORY_ADAPTERS[category];
@@ -182,7 +176,7 @@ function targetProjectPlan(resource, identity) {
   if (identity.type !== "package") return null;
   return Object.freeze({
     target: "target project",
-    condition: `Only after ${resource.routerAnchor} is selected and its Werkzeugtabelle row exists.`,
+    condition: `Only after ${resource.routerAnchor} is selected for the current project.`,
     ecosystem: identity.ecosystem,
     package: identity.package,
     requiredRuntimePeers: identity.requiredRuntimePeers,
@@ -204,16 +198,15 @@ function usePlan(resource) {
     "self-host-after-license": "Verify web-embedding rights, download only selected files, and self-host them.",
     "official-docs-only": "Use only for a native-app brief and verify platform compatibility in official documentation.",
   };
-  return `${plans[resource.mode]} Follow ${resource.routerAnchor} in tool-usecase-router.md.`;
+  const plan = resource.category === TOOLS_CATEGORY
+    ? "Read the named tool's official documentation for the concrete project need; do not infer an unverified registry or package."
+    : plans[resource.mode];
+  return `${plan} Follow ${resource.routerAnchor} in tool-usecase-router.md.`;
 }
 
 function adapter(resource) {
   const packageIdentity = PACKAGE_IDENTITIES[resource.name] ?? nonPackage(resource);
   return { ...resource, usePlan: usePlan(resource), packageIdentity, targetProjectPlan: targetProjectPlan(resource, packageIdentity) };
-}
-
-function pairHash(resources) {
-  return createHash("sha256").update(resources.map(({ name, officialUrl }) => `${name}\t${officialUrl}`).sort().join("\n")).digest("hex");
 }
 
 function validateIdentity(resource, identity, failures) {
@@ -229,28 +222,58 @@ function validateIdentity(resource, identity, failures) {
     }
     if (identity.requiredRuntimePeers?.some((peer) => identity.optionalCompanions?.includes(peer))) failures.push(`${resource.name}: a runtime peer cannot be optional`);
     const plan = targetProjectPlan(resource, identity);
-    if (!plan || plan.target !== "target project" || !plan.condition.includes(resource.routerAnchor) || !plan.condition.includes("Werkzeugtabelle") || plan.package !== identity.package || plan.requiredRuntimePeers !== identity.requiredRuntimePeers || plan.optionalCompanions !== identity.optionalCompanions) failures.push(`${resource.name}: missing router-conditioned target-project plan metadata`);
+    if (!plan || plan.target !== "target project" || !plan.condition.includes(resource.routerAnchor) || plan.package !== identity.package || plan.requiredRuntimePeers !== identity.requiredRuntimePeers || plan.optionalCompanions !== identity.optionalCompanions) failures.push(`${resource.name}: missing router-conditioned target-project plan metadata`);
   }
+}
+
+function parsedHttpsUrl(value) {
+  try {
+    const parsed = new URL(value);
+    if (parsed.protocol !== "https:" || !parsed.hostname || parsed.username || parsed.password) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function normalizedHost(value) {
+  const parsed = value instanceof URL ? value : parsedHttpsUrl(value);
+  return parsed ? parsed.hostname.toLowerCase().replace(/^www\./, "") : null;
+}
+
+function catalogUrlKey(value) {
+  const parsed = parsedHttpsUrl(value);
+  if (!parsed) return null;
+  parsed.hash = "";
+  parsed.hostname = normalizedHost(parsed);
+  parsed.pathname = parsed.pathname.replace(/\/+$/, "") || "/";
+  return parsed.toString();
 }
 
 function validate(resources) {
   const failures = [];
-  const requested = resources.filter((resource) => resource.category !== INSPIRATION_CATEGORY);
-  const extras = resources.filter((resource) => resource.category === INSPIRATION_CATEGORY);
-  const names = resources.map(({ name }) => name);
-  const urls = resources.map(({ officialUrl }) => officialUrl);
+  const names = resources.map(({ name }) => name.trim().toLowerCase());
+  const urls = resources.map(({ officialUrl }) => catalogUrlKey(officialUrl) ?? officialUrl);
   const duplicateNames = names.filter((name, index) => names.indexOf(name) !== index);
   const duplicateUrls = urls.filter((url, index) => urls.indexOf(url) !== index);
   const anchors = routerAnchors();
+  const validEntries = resources.filter((resource) => {
+    const parsed = parsedHttpsUrl(resource.officialUrl);
+    return parsed
+      && !/\s/.test(resource.officialUrl)
+      && (!parsed.port || parsed.port === "443")
+      && VALID_KINDS.has(resource.kind)
+      && VALID_MODES.has(resource.mode)
+      && anchors.has(resource.routerAnchor);
+  });
 
-  if (requested.length !== REQUESTED_CONTRACT.count) failures.push(`requested count is ${requested.length}, expected ${REQUESTED_CONTRACT.count}`);
-  if (extras.length !== REQUESTED_CONTRACT.extraInspirationCount) failures.push(`extra inspiration count is ${extras.length}, expected ${REQUESTED_CONTRACT.extraInspirationCount}`);
-  if (pairHash(requested) !== REQUESTED_CONTRACT.sha256) failures.push("requested name<TAB>officialUrl SHA-256 does not match the contract");
+  if (!validEntries.length) failures.push("catalog has zero valid resource entries");
   if (duplicateNames.length) failures.push(`duplicate resource names: ${[...new Set(duplicateNames)].join(", ")}`);
   if (duplicateUrls.length) failures.push(`duplicate official URLs: ${[...new Set(duplicateUrls)].join(", ")}`);
 
   for (const resource of resources) {
-    if (!/^https:\/\/[^\s]+$/.test(resource.officialUrl)) failures.push(`${resource.name}: invalid official URL`);
+    const parsedUrl = parsedHttpsUrl(resource.officialUrl);
+    if (!parsedUrl || /\s/.test(resource.officialUrl) || (parsedUrl.port && parsedUrl.port !== "443")) failures.push(`${resource.name}: invalid official URL`);
     if (!VALID_KINDS.has(resource.kind)) failures.push(`${resource.name}: invalid kind ${resource.kind}`);
     if (!VALID_MODES.has(resource.mode)) failures.push(`${resource.name}: invalid mode ${resource.mode}`);
     if (!anchors.has(resource.routerAnchor)) failures.push(`${resource.name}: unknown router anchor ${resource.routerAnchor}`);
@@ -260,7 +283,9 @@ function validate(resources) {
 }
 
 const FETCH_TIMEOUT_MS = 20000;
-const MIN_BODY_CHARS = 200;
+const MIN_CONTENT_CHARS = 120;
+const MIN_CONTENT_WORDS = 18;
+const MIN_UNIQUE_WORDS = 10;
 const EXCERPT_CHARS = 480;
 
 function siteMarkers(name, officialUrl) {
@@ -295,15 +320,124 @@ function excerptAround(body, marker) {
   return text.slice(start, start + EXCERPT_CHARS);
 }
 
-function loginWallOnly(body, marker) {
-  const text = String(body);
-  if (marker) return false;
-  if (text.trim().length >= MIN_BODY_CHARS) return false;
-  return /log[\s-]?in|sign[\s-]?in|anmelden/i.test(text);
+function normalizeReadableText(value) {
+  return String(value)
+    .replace(/\r/g, "")
+    .split("\n")
+    .map((line) => line.replace(/[\t\f\v ]+/g, " ").trim())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
-async function readViaFetch(url) {
-  const res = await fetch(url, {
+function decodeHtmlEntities(value) {
+  const named = { amp: "&", apos: "'", gt: ">", lt: "<", nbsp: " ", quot: '"' };
+  return String(value).replace(/&(#x[0-9a-f]+|#[0-9]+|amp|apos|gt|lt|nbsp|quot);/gi, (entity, key) => {
+    const lower = key.toLowerCase();
+    if (lower.startsWith("#")) {
+      const point = Number.parseInt(lower.slice(lower.startsWith("#x") ? 2 : 1), lower.startsWith("#x") ? 16 : 10);
+      return Number.isInteger(point) && point >= 0 && point <= 0x10ffff ? String.fromCodePoint(point) : entity;
+    }
+    return named[lower] ?? entity;
+  });
+}
+
+function htmlToReadableText(html) {
+  const withoutNonContent = String(html)
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<(script|style|noscript|template|svg)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, " ")
+    .replace(/<(?:br|hr)\b[^>]*>/gi, "\n")
+    .replace(/<\/(?:article|aside|blockquote|dd|div|dl|dt|figcaption|figure|footer|form|h[1-6]|header|li|main|nav|ol|p|pre|section|table|td|th|tr|ul)\s*>/gi, "\n")
+    .replace(/<[^>]+>/g, " ");
+  return normalizeReadableText(decodeHtmlEntities(withoutNonContent));
+}
+
+function readableContent(body, contentType = "") {
+  const raw = String(body);
+  const htmlLike = /(?:text\/html|application\/xhtml\+xml)/i.test(contentType)
+    || /<!doctype\s+html|<html\b|<body\b|<main\b|<article\b/i.test(raw);
+  return htmlLike ? htmlToReadableText(raw) : normalizeReadableText(raw);
+}
+
+function contentStats(content) {
+  const words = String(content).match(/[\p{L}\p{N}][\p{L}\p{N}'’._/-]*/gu) ?? [];
+  const uniqueWords = new Set(words.map((word) => word.toLowerCase()));
+  return { chars: String(content).length, words: words.length, uniqueWords: uniqueWords.size };
+}
+
+function blockedContentReason(content, rawBody, httpStatus) {
+  if (httpStatus === 401) return "upstream requires authentication (HTTP 401)";
+  if (httpStatus === 403) return "upstream denied access (HTTP 403)";
+
+  const text = String(content);
+  const raw = String(rawBody);
+  const titleText = htmlToReadableText(raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "");
+  const sourceCues = text.match(/\b(?:component|documentation|example|installation|usage|source code|copy and paste|props)\b/gi) ?? [];
+  const accountLoginTitle = /^(?:log[\s-]?in|sign[\s-]?in)(?:\s*(?:[|—:-]|\bto\b).*)?$/i.test(titleText);
+  const documentedExample = (!accountLoginTitle && /\b(?:component|documentation|guide|template)\b/i.test(titleText))
+    || (/<(?:pre|code)\b/i.test(raw) && sourceCues.length >= 1)
+    || (text.length >= 800 && sourceCues.length >= 2 && contentStats(text).uniqueWords >= 30);
+  const passwordForm = /<input\b[^>]*\btype\s*=\s*["']?password\b/i.test(raw);
+  const authCue = /\b(?:log[\s-]?in|sign[\s-]?in|anmelden|authentication|required account)\b/i.test(text);
+  if (passwordForm && authCue && !documentedExample) return "authentication form instead of source content";
+
+  const checkpoint = [
+    /\b(?:security|account|identity) checkpoint\b/i,
+    /\b(?:complete|pass) (?:the )?(?:security|human) check\b/i,
+    /\bverify (?:that )?you(?:'re| are) (?:a )?human\b/i,
+    /\bchecking (?:your )?browser before accessing\b/i,
+    /\b(?:captcha|cf-chl-|challenge-platform|cloudflare ray id)\b/i,
+  ].find((pattern) => pattern.test(text) || pattern.test(raw));
+  if (checkpoint) return "security checkpoint instead of source content";
+
+  const parkedDomain = [
+    /\bthis domain(?: name)? is (?:available )?for sale\b/i,
+    /\bbuy this domain\b/i,
+    /\bmake an offer (?:for|on) this domain\b/i,
+    /\bdomain (?:brokerage|parking service)\b/i,
+  ].find((pattern) => pattern.test(text));
+  if (parkedDomain) return "domain-sale page instead of source content";
+
+  const titleWall = /\b(?:access denied|security checkpoint)\b/i.test(titleText)
+    || /\bdomain(?: name)? (?:is )?(?:available )?for sale\b/i.test(titleText)
+    || (accountLoginTitle && !documentedExample);
+  const shortAuthWall = text.length < 1200
+    && /\b(?:log[\s-]?in|sign[\s-]?in) to (?:continue|view|access)\b/i.test(text);
+  const shortPaywall = text.length < 1200
+    && /\b(?:subscribe|upgrade) to (?:continue|read|view|access)\b/i.test(text);
+  if (titleWall || shortAuthWall || shortPaywall) return "access wall instead of source content";
+  return null;
+}
+
+function accessError(code, classification, message, details = {}) {
+  return Object.assign(new Error(message), { code, classification, ...details });
+}
+
+function assertAllowedTargetUrl(resource, requestedUrl = resource.officialUrl) {
+  const official = parsedHttpsUrl(resource.officialUrl);
+  const target = parsedHttpsUrl(requestedUrl);
+  if (!official || !target || (target.port && target.port !== "443")) {
+    throw accessError("INVALID_DETAIL_URL", "WRONG", "detail URL must be an absolute HTTPS URL without credentials or a non-standard port");
+  }
+  if (normalizedHost(official) !== normalizedHost(target)) {
+    throw accessError(
+      "INVALID_DETAIL_URL",
+      "WRONG",
+      `detail URL host ${target.hostname} does not match catalog host ${official.hostname} (www is ignored)`,
+    );
+  }
+  return target.toString();
+}
+
+function responseContentType(response) {
+  return response?.headers && typeof response.headers.get === "function"
+    ? response.headers.get("content-type") || ""
+    : "";
+}
+
+async function readViaFetch(url, fetchImpl = globalThis.fetch) {
+  if (typeof fetchImpl !== "function") throw new Error("fetch is unavailable");
+  const res = await fetchImpl(url, {
     redirect: "follow",
     headers: {
       accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -312,7 +446,13 @@ async function readViaFetch(url) {
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   });
   const body = await res.text();
-  return { channel: "fetch", httpStatus: res.status, finalUrl: res.url || url, body };
+  return {
+    channel: "fetch",
+    httpStatus: Number.isInteger(res.status) ? res.status : null,
+    finalUrl: res.url || url,
+    contentType: responseContentType(res),
+    body,
+  };
 }
 
 function firecrawlEnv() {
@@ -337,56 +477,141 @@ function readViaFirecrawl(url) {
     const detail = `${run.stderr || ""}${run.stdout || ""}`.split("\n").find(Boolean) || `exit ${run.status}`;
     throw new Error(`firecrawl failed: ${detail}`);
   }
-  return { channel: "firecrawl", httpStatus: 200, finalUrl: url, body: run.stdout || "" };
+  return {
+    channel: "firecrawl",
+    httpStatus: null,
+    finalUrl: url,
+    contentType: "text/markdown",
+    body: run.stdout || "",
+  };
 }
 
-async function openOfficialPage(resource) {
+function upstreamHttpFailure(resource, targetUrl, status) {
+  const blocked = status === 401 || status === 403;
+  return accessError(
+    blocked ? "CONTENT_BLOCKED" : "UPSTREAM_HTTP",
+    blocked ? "BLOCKED" : "UPSTREAM_HTTP",
+    `upstream returned HTTP ${status} for ${targetUrl}`,
+    { httpStatus: status, resourceName: resource.name, url: targetUrl },
+  );
+}
+
+function inspectPage(resource, targetUrl, page) {
+  if (Number.isInteger(page.httpStatus) && (page.httpStatus < 200 || page.httpStatus >= 300)) {
+    throw upstreamHttpFailure(resource, targetUrl, page.httpStatus);
+  }
+
+  const finalUrl = parsedHttpsUrl(page.finalUrl || targetUrl);
+  if (!finalUrl || (finalUrl.port && finalUrl.port !== "443") || normalizedHost(finalUrl) !== normalizedHost(targetUrl)) {
+    throw accessError(
+      "UNEXPECTED_REDIRECT",
+      "WRONG",
+      `source redirected outside the selected catalog host: ${page.finalUrl || "(unknown)"}`,
+      { httpStatus: page.httpStatus ?? null },
+    );
+  }
+
+  const contentType = String(page.contentType || "");
+  if (contentType && !/^(?:text\/|application\/(?:[a-z0-9.+-]*\+)?(?:json|xml)|application\/(?:javascript|xhtml\+xml|markdown))/i.test(contentType)) {
+    throw accessError(
+      "WRONG_CONTENT_TYPE",
+      "WRONG",
+      `source returned non-readable content type ${contentType}`,
+      { httpStatus: page.httpStatus ?? null },
+    );
+  }
+
+  const body = String(page.body || "");
+  const content = readableContent(body, contentType);
+  const blockedReason = blockedContentReason(content, body, page.httpStatus);
+  if (blockedReason) {
+    throw accessError(
+      "CONTENT_BLOCKED",
+      "BLOCKED",
+      `${blockedReason} from ${targetUrl}`,
+      { httpStatus: page.httpStatus ?? null },
+    );
+  }
+
+  const stats = contentStats(content);
+  if (stats.chars < MIN_CONTENT_CHARS || stats.words < MIN_CONTENT_WORDS || stats.uniqueWords < MIN_UNIQUE_WORDS) {
+    throw accessError(
+      "CONTENT_EMPTY",
+      "EMPTY",
+      `source returned too little readable content from ${targetUrl} (chars=${stats.chars}, words=${stats.words}, unique=${stats.uniqueWords})`,
+      { httpStatus: page.httpStatus ?? null, stats },
+    );
+  }
+
   const markers = siteMarkers(resource.name, resource.officialUrl);
-  let lastError = "";
-  let page = null;
-  try {
-    page = await readViaFetch(resource.officialUrl);
-  } catch (error) {
-    lastError = error instanceof Error ? error.message : String(error);
-  }
-  const fetchOk = page && page.httpStatus >= 200 && page.httpStatus < 400;
-  const fetchMarker = page ? findMarker(page.body, markers) : null;
-  if (page && fetchOk && loginWallOnly(page.body, fetchMarker)) {
-    throw new Error(`empty or login-wall body without site marker from ${resource.officialUrl}`);
-  }
-  if (page && fetchOk && !fetchMarker) {
-    throw new Error(`fetched ${resource.officialUrl} but found no site marker (${markers.join(", ") || "none"})`);
-  }
-  if (!fetchOk || !page) {
-    try {
-      page = readViaFirecrawl(resource.officialUrl);
-    } catch (error) {
-      const firecrawlError = error instanceof Error ? error.message : String(error);
-      const why = lastError ? `${lastError}; ${firecrawlError}` : firecrawlError;
-      const fail = new Error(`HOST_UNAVAILABLE ${resource.name} ${resource.officialUrl} (${why})`);
-      fail.code = "HOST_UNAVAILABLE";
-      throw fail;
-    }
-  }
-  const marker = findMarker(page.body, markers);
-  if (!marker || loginWallOnly(page.body, marker)) {
-    throw new Error(`empty or login-wall body without site marker from ${resource.officialUrl}`);
-  }
-  const body = String(page.body);
+  const marker = findMarker(content, markers);
+  const contentSha256 = createHash("sha256").update(content).digest("hex");
   return Object.freeze({
-    url: resource.officialUrl,
-    finalUrl: page.finalUrl,
+    url: targetUrl,
+    finalUrl: finalUrl.toString(),
     channel: page.channel,
-    httpStatus: page.httpStatus,
-    bytes: Buffer.byteLength(body),
+    httpStatus: page.httpStatus ?? null,
+    contentType: contentType || null,
+    bytes: Buffer.byteLength(content),
+    rawBytes: Buffer.byteLength(body),
+    contentSha256,
     marker,
-    excerpt: excerptAround(body, marker),
+    readStatus: "CONTENT_READ",
+    successMeaning: "Source text was fetched and returned. This does not prove visual inspection or application in a project.",
+    excerpt: excerptAround(content, marker),
+    content,
   });
+}
+
+function preferredFailure(resource, targetUrl, fetchFailure, fallbackFailure) {
+  const semanticCodes = new Set([
+    "CONTENT_BLOCKED",
+    "CONTENT_EMPTY",
+    "INVALID_DETAIL_URL",
+    "UNEXPECTED_REDIRECT",
+    "UPSTREAM_HTTP",
+    "WRONG_CONTENT_TYPE",
+  ]);
+  if (fetchFailure && semanticCodes.has(fetchFailure.code)) {
+    fetchFailure.fallbackError = fallbackFailure instanceof Error ? fallbackFailure.message : String(fallbackFailure || "");
+    return fetchFailure;
+  }
+  if (fallbackFailure && semanticCodes.has(fallbackFailure.code)) return fallbackFailure;
+  const fetchMessage = fetchFailure instanceof Error ? fetchFailure.message : String(fetchFailure || "fetch failed");
+  const fallbackMessage = fallbackFailure instanceof Error ? fallbackFailure.message : String(fallbackFailure || "Firecrawl failed");
+  return accessError(
+    "HOST_UNAVAILABLE",
+    "HOST_UNAVAILABLE",
+    `neither fetch nor Firecrawl returned readable source content for ${resource.name} ${targetUrl} (${fetchMessage}; ${fallbackMessage})`,
+    { httpStatus: null },
+  );
+}
+
+async function openOfficialPage(resource, options = {}) {
+  const targetUrl = assertAllowedTargetUrl(resource, options.url ?? resource.officialUrl);
+  const fetchImpl = options.fetchImpl ?? globalThis.fetch;
+  const firecrawlReader = options.firecrawlReader ?? readViaFirecrawl;
+  let fetchFailure = null;
+  try {
+    const page = await readViaFetch(targetUrl, fetchImpl);
+    return inspectPage(resource, targetUrl, page);
+  } catch (error) {
+    fetchFailure = error;
+  }
+
+  let fallbackFailure = null;
+  try {
+    const page = await firecrawlReader(targetUrl);
+    return inspectPage(resource, targetUrl, page);
+  } catch (error) {
+    fallbackFailure = error;
+  }
+  throw preferredFailure(resource, targetUrl, fetchFailure, fallbackFailure);
 }
 
 function usage(message) {
   if (message) console.error(message);
-  console.error("usage: resource-access.mjs check | show <exakter-Name> [--json] | open <exakter-Name> [--json]");
+  console.error("usage: resource-access.mjs check | show <Name|Katalog-URL> [--json] | open <Name|Katalog-URL> [--url <Detail-URL>] [--out <absoluter-Pfad>] [--json]");
   process.exit(2);
 }
 
@@ -410,11 +635,56 @@ function printShow(item, json) {
   }
 }
 
-function printOpen(item, opened, json) {
-  if (json) console.log(JSON.stringify({ ...item, opened }, null, 2));
-  else {
-    console.log(`${item.name}\n  URL: ${opened.url}\n  Final: ${opened.finalUrl}\n  Kanal: ${opened.channel}\n  Status: ${opened.httpStatus}\n  Marker: ${opened.marker}\n  Bytes: ${opened.bytes}\n  Gelesen: ${opened.excerpt}`);
+function resolveResource(resources, query) {
+  const normalizedName = String(query).normalize("NFKC").trim().toLowerCase();
+  const byName = resources.find(({ name }) => name.normalize("NFKC").trim().toLowerCase() === normalizedName);
+  if (byName) return byName;
+  const urlKey = catalogUrlKey(query);
+  if (!urlKey) return null;
+  return resources.find(({ officialUrl }) => catalogUrlKey(officialUrl) === urlKey) ?? null;
+}
+
+function saveOpenedContent(opened, outPath) {
+  if (!isAbsolute(outPath)) {
+    throw accessError("INVALID_OUTPUT_PATH", "WRONG", "--out requires an absolute path");
   }
+  writeFileSync(outPath, opened.content, "utf8");
+  return outPath;
+}
+
+function printOpen(item, opened, json, savedTo = null) {
+  const result = savedTo ? { ...opened, savedTo } : opened;
+  if (json) console.log(JSON.stringify({ ...item, opened: result }, null, 2));
+  else {
+    const status = opened.httpStatus === null ? "unbekannt (Provider meldet keinen HTTP-Status)" : opened.httpStatus;
+    console.log(`${item.name}\n  URL: ${opened.url}\n  Final: ${opened.finalUrl}\n  Kanal: ${opened.channel}\n  HTTP-Status: ${status}\n  Bytes: ${opened.bytes}\n  SHA-256: ${opened.contentSha256}\n  Erfolg: ${opened.readStatus} — ${opened.successMeaning}`);
+    if (savedTo) console.log(`  Gespeichert: ${savedTo}`);
+    else console.log(`\n--- Gelesener Quellinhalt ---\n${opened.content}`);
+  }
+}
+
+function parseCommandArgs(args) {
+  const options = { json: false, url: null, out: null };
+  const positional = [];
+  for (let index = 0; index < args.length; index++) {
+    const arg = args[index];
+    if (arg === "--json") {
+      if (options.json) usage("--json may be supplied only once");
+      options.json = true;
+      continue;
+    }
+    if (arg === "--url" || arg === "--out") {
+      const key = arg.slice(2);
+      if (options[key] !== null) usage(`${arg} may be supplied only once`);
+      const value = args[++index];
+      if (!value || value.startsWith("--")) usage(`${arg} requires a value`);
+      options[key] = value;
+      continue;
+    }
+    if (arg.startsWith("--")) usage(`Unknown option: ${arg}`);
+    positional.push(arg);
+  }
+  return { positional, options };
 }
 
 async function main() {
@@ -425,54 +695,54 @@ async function main() {
 
 usage:
   node resource-access.mjs check
-  node resource-access.mjs show <exakter-Name> [--json]
-  node resource-access.mjs open <exakter-Name> [--json]
+  node resource-access.mjs show <Name|Katalog-URL> [--json]
+  node resource-access.mjs open <Name|Katalog-URL> [--url <Detail-URL>] [--out <absoluter-Pfad>] [--json]
 
 check  Katalog + Router-Anker + Paketmetadaten (lokal, kein Netz)
-show   genau einen Eintrag (lokal, kein Netz)
-open   Katalog-URL öffnen und Site lesen (Fetch, sonst Firecrawl)`);
+show   genau einen Eintrag per Name oder exakter Katalog-URL (lokal, kein Netz)
+open   Katalog- oder gleichnamige Detail-URL lesen (Fetch, sonst Firecrawl);
+       CONTENT_READ belegt Textzugriff, keine visuelle Sichtung oder Projektanwendung`);
     process.exit(0);
   }
-  const json = args.includes("--json");
-  const cleanArgs = args.filter((arg) => arg !== "--json");
-  if (!command || args.length !== cleanArgs.length + (json ? 1 : 0)) usage();
+  if (!command) usage();
+  const { positional, options } = parseCommandArgs(args);
 
   const resources = loadCatalogOrDie();
 
   if (command === "check") {
-    if (cleanArgs.length || json) usage("check accepts no arguments");
-    console.log(`Resource access: OK (${REQUESTED_CONTRACT.count} requested + ${REQUESTED_CONTRACT.extraInspirationCount} extra inspiration sources; sorted pair SHA-256; router and package metadata valid)`);
+    if (positional.length || options.json || options.url || options.out) usage("check accepts no arguments");
+    console.log(`Resource access: OK (${resources.length} catalog entries; URLs, metadata, router anchors and uniqueness valid)`);
     process.exit(0);
   }
   if (command === "show") {
-    if (cleanArgs.length !== 1) usage("show requires one exact resource name");
-    const resource = resources.find(({ name }) => name === cleanArgs[0]);
-    if (!resource) { console.error(`Resource not found: ${cleanArgs[0]}`); process.exit(1); }
-    printShow(adapter(resource), json);
+    if (positional.length !== 1 || options.url || options.out) usage("show requires one resource name or catalog URL; only --json is optional");
+    const resource = resolveResource(resources, positional[0]);
+    if (!resource) { console.error(`Resource not found in catalog: ${positional[0]}`); process.exit(1); }
+    printShow(adapter(resource), options.json);
     process.exit(0);
   }
   if (command === "open") {
-    if (cleanArgs.length !== 1) usage("open requires one exact resource name");
-    const resource = resources.find(({ name }) => name === cleanArgs[0]);
-    if (!resource) { console.error(`Resource not found: ${cleanArgs[0]}`); process.exit(1); }
+    if (positional.length !== 1) usage("open requires one resource name or catalog URL");
+    if (options.out && !isAbsolute(options.out)) usage("--out requires an absolute path");
+    const resource = resolveResource(resources, positional[0]);
+    if (!resource) { console.error(`Resource not found in catalog: ${positional[0]}`); process.exit(1); }
     const item = adapter(resource);
     try {
-      const opened = await openOfficialPage(resource);
-      printOpen(item, opened, json);
+      const opened = await openOfficialPage(resource, { url: options.url ?? resource.officialUrl });
+      const savedTo = options.out ? saveOpenedContent(opened, options.out) : null;
+      printOpen(item, opened, options.json, savedTo);
       process.exit(0);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      if (error && error.code === "HOST_UNAVAILABLE") {
-        console.error(`Resource open: HOST_UNAVAILABLE`);
-        console.error(`  name: ${resource.name}`);
-        console.error(`  url: ${resource.officialUrl}`);
-        console.error(`  error: ${message}`);
-        process.exit(3);
-      }
-      console.error(`Resource open: FAIL`);
+      const classification = error?.classification || "ERROR";
+      console.error(`Resource open: ${classification}`);
       console.error(`  name: ${resource.name}`);
-      console.error(`  url: ${resource.officialUrl}`);
+      console.error(`  url: ${options.url ?? resource.officialUrl}`);
+      if (Number.isInteger(error?.httpStatus)) console.error(`  upstream HTTP: ${error.httpStatus}`);
       console.error(`  error: ${message}`);
+      if (error?.code === "INVALID_DETAIL_URL") process.exit(2);
+      if (classification === "HOST_UNAVAILABLE" || classification === "UPSTREAM_HTTP") process.exit(3);
+      if (classification === "BLOCKED") process.exit(4);
       process.exit(1);
     }
   }
@@ -481,8 +751,13 @@ open   Katalog-URL öffnen und Site lesen (Fetch, sonst Firecrawl)`);
 
 export {
   parseCatalog,
+  validate,
   adapter,
   openOfficialPage,
+  resolveResource,
+  assertAllowedTargetUrl,
+  readableContent,
+  saveOpenedContent,
   siteMarkers,
   CATALOG_PATH,
 };
