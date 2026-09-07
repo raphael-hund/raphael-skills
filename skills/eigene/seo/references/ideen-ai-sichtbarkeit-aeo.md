@@ -76,10 +76,39 @@ Grund-Idee für ein einfaches, manuelles Monitoring, wenn kein Spezial-Tool zur 
 - Monatlich 10–20 wichtige Kunden-Queries in ChatGPT, Perplexity und Google prüfen.
 - Pro Query festhalten: erscheint eine AI-Antwort? wird der Kunde zitiert? wer sonst?
 - Als einfache Tabelle fahren: `Query | Google-AI-Overview | ChatGPT | Perplexity | Kunde zitiert? | Wettbewerber zitiert?`.
+- Prompt-Set einfrieren und drei Cluster erzwingen: Kernleistung, Vergleich („X vs Y", „Alternative
+  zu X"), Preis („günstigste", „zu teuer", „kostenlos"). Im Vercel-Audit (2026-09) gingen alle
+  preissensiblen Prompts an Wettbewerber, obwohl Vercel den Rest dominierte.
+- Pro Prompt und Engine drei Zustände statt ja/nein: **verlinkt**, **nur erwähnt**, **fehlt**.
+  Verlinkt ist das Ziel. Engines getrennt lassen, im Vercel-Audit lag ChatGPT bei 13/18 und
+  Gemini bei 2/13 für dieselbe Marke.
 - **Zitiert ≠ empfohlen.** Zitiert zu werden heißt, der Content war nützlich zum Nachschlagen —
   auf die tatsächliche Shortlist zu kommen hängt vom web-weiten Konsens (Reviews, Foren,
   Presse) ab und ist kaum durch eigenen Content allein steuerbar. Erwartung beim Kunden
   entsprechend setzen.
+
+## Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke (Mechanik, 2026-09)
+
+Aus dem Vercel-Citation-Audit von @mal_shaik (Zahlen und Nachprüfung in `quellen-2026-08.md`,
+Tiefe im Brain-Kandidaten `2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md`).
+Ein einzelnes Audit eines Tool-Anbieters über eine Marke, Prompt-Set nicht veröffentlicht,
+Kandidat mit `confidence: low`. Vier Hypothesen zum Prüfen am Kunden, keine Regeln:
+
+1. **Owned Asset besetzt eine Fragekategorie.** Laut Audit wird Vercels SDK-Doku bei Fragen
+   zitiert, die nichts mit Hosting zu tun haben. Übertragung: eigenes Werkzeug (Rechner,
+   Konfigurator, Vorlagenpaket) mit eigener Doku und eigener URL je Ergebnis. Ergänzt „AI-Referral-Formate" in `creator-lehren-2026-08.md`.
+2. **Vergleichs-Hub statt Einzelseite.** Hub-URL, je Wettbewerber eine Plattform-Seite, je
+   entscheidendem Feature eine eigene URL, technisch und Feature für Feature. Der Autor
+   führt darauf zurück, dass die KI für jede Vergleichsfrage etwas Konkretes zu zitieren hat. Fairness-Regeln aus Brain
+   `seo-competitor-pages.md` gelten unverändert.
+3. **Jede Vorlage, jede Anleitung eine eigene URL, und jede Anleitung endet mit dem Schritt, der
+   auf das Angebot zeigt.** Bei Vercel: hunderte Templates als je eine indexierte Seite, Kurse
+   mit „deploy to Vercel" als letztem Schritt.
+4. **Preis-Cluster bewusst entscheiden.** Entweder ehrliche Preis- und Alternativen-Seite, die
+   zitierbar ist, oder dokumentiert aufgeben. Cheap-Modifier nur bei passendem Intent
+   (`creator-lehren-2026-08.md`, Brain `seo-cheap-modifier-ctr.md`).
+
+Im Ranking-Plan landet das als KI-Engine-Aktion je Engine, nie als Mittelwert.
 
 ## Was aktiv schadet
 

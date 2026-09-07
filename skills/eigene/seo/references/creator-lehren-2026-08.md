@@ -50,6 +50,7 @@ Kurze Scout-Seiten (`audience-first-seo-zielt-auf-personen-nicht-volumen.md` usw
 - **Zero-Click.** Zitiert-werden ist die Aufgabe, nicht nur Klicks zählen. → `seo-zero-click-und-zitierbarkeit.md`
 
 - **Harry IG / StudioHawk.** Information Gain und Cluster nach Umsatz vor gleichmäßigem Aufwand. 1-127 ist Sprecher-Claim. → `seo-harrysanders-ig.md`
+- **Owned Assets und Vergleichs-Hub (Kandidat, confidence low).** Anbieter-Audit zu Vercel: verlinkt statt nur erwähnt, eigenes Werkzeug, je Feature eine Vergleichs-URL, Preis-Cluster als blinder Fleck. Hypothesen zum Prüfen am Kunden. → `_candidates/2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md`, Mechanik in `ideen-ai-sichtbarkeit-aeo.md`
 
 Creator-Zahlen bleiben Claims, keine MAKE-Messung.
 Graustufen (Massen-PR, Listicle-Spam, Parasite) nicht Default — Raphael-Go, dann `graustufen.md`.

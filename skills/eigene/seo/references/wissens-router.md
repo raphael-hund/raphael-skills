@@ -53,6 +53,7 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | GA4 / Analytics versteckt AI-Traffic | Skill: `creator-lehren-2026-08.md` — Brain: `seo-analytics-ai-traffic.md` |
 | Frische, Republish, Deindex | Skill: `creator-lehren-2026-08.md` — Brain: `seo-freshness-deindex.md` |
 | Neue Site: IA und interne Links | Skill: `creator-lehren-2026-08.md` — Brain: `seo-internal-links-ia.md` |
+| Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke, verlinkt vs. erwähnt (Vercel-Audit 2026-09) | Skill: `ideen-ai-sichtbarkeit-aeo.md` Abschnitt „Owned Assets". Brain: `_candidates/2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` (Kandidat, bis Sichtung nur als Hinweis, nicht als Beleg) |
 
 **Regel:** Die operativen `references/` des Skills (Loop-4-Ablauf, Tech-QA-Checkliste)
 bleiben der **Kern** jeder Arbeit; die Brain-Seiten sind die **tiefe

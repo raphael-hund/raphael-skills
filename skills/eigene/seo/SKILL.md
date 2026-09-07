@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.7.6
+version: 0.7.7
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -22,7 +22,8 @@ source: >
   distribb-skill (kein LICENSE, nur Paraphrase/Ideen, keine wörtliche
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
   AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract);
-  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube; buildinpublic/Sturm, Diamante, Sanders/StudioHawk, Patel) —
+  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube; buildinpublic/Sturm, Diamante, Sanders/StudioHawk, Patel);
+  mal_shaik/wespreadjam Vercel-Citation-Audit 2026-09-07 (Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke).
   Details siehe references/quellen-2026-08.md
 loads:
   - references/wissens-router.md
@@ -84,6 +85,7 @@ sichtbar wird, und bei Decay auffrischen.
 | **KI-Suche** (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | `references/ideen-ai-sichtbarkeit-aeo.md` |
 | **Graustufen / asozial** | `references/graustufen.md` — nur nach Raphael-Go |
 | **Citation Outreach / LLM mentions** | `references/citation-outreach-automation.md` + `scripts/citation_outreach.py` |
+| **Owned Assets / Vergleichs-Hub / Preis-Prompt-Lücke** (KI-Zitate, Hypothesen) | `references/ideen-ai-sichtbarkeit-aeo.md` Abschnitt „Owned Assets" + Brain-Kandidat `2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` |
 | Named-Source-Mechaniken (Borja, Edward, Tony, Brain) | `references/quellen-2026-08.md` |
 | Spezialtiefe Brain | `references/wissens-router.md` |
 
@@ -117,6 +119,7 @@ Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 
 - research fertig = SERP-Ausriss + GSC-Export liegen als Datei.
 - ranking-plan fertig = alle sechs Pflichtsektionen nicht leer, fünf Engines genannt.
+- ki-audit fertig = eingefrorenes Prompt-Set mit Kern-, Vergleichs- und Preis-Cluster, je Engine „verlinkt / erwähnt / fehlt", Wettbewerber daneben.
 - gsc-read fertig = Query-/Page-Zeilen im Export **oder** Setup-Fallback-Text.
 - graustufen fertig = Raphael-Go dokumentiert + jedes Item hat Penalty/Ban/rechtlich.
 - citation-outreach fertig = doctor + schema + idempotenter Demo-Lauf, kein external side effect.
