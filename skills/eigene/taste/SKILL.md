@@ -1,5 +1,6 @@
 ---
 name: taste
+disable-model-invocation: true
 version: 0.2.0
 description: >
   Router auf die taste-Linie in design. Feuert NUR bei explizitem "/taste"

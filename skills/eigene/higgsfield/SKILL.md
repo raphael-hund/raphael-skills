@@ -22,7 +22,7 @@ loads:
   - references/foto-prompt.md
   - references/illustration.md
   - references/ops.md
-requires_skills: [web@^0]
+requires_skills: [web@^1]
 completion_criteria:
   - "Medium steht schriftlich: foto oder illustration. CSS/SVG/Text laeuft nicht durch Higgsfield"
   - "Final-Job ist gpt_image_2. nano_banana_flash nur als benannter Preview. recraft_v4_1 nicht aufgerufen"
@@ -41,7 +41,7 @@ completion_criteria:
 ## Herkunft, Job, Problem
 
 **Herkunft:** Raphael 17.08.2026 plus CLI-Doktrin in
-`/root/raphael-skills/skills/eigene/web/references/bildgenerierung.md`.
+`/root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/bildgenerierung.md`.
 
 **Job:** Ein Bild erzeugen oder bearbeiten und ins Projekt legen.
 
@@ -98,7 +98,7 @@ higgsfield generate create gpt_image_2 \
 7. **Index plus Text.** Sofort:
 
 ```bash
-node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh.png \
+node /root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/scripts/bilder.mjs add "$DIR" ./roh.png \
   --typ "Hero-Foto" --motiv "<deutsch, konkret was zu sehen ist>" \
   --style "<Kamera oder Illustrationsfamilie>" --modell gpt_image_2 \
   --ref "inhalt.jpg,stil-1.jpg" --quelle generiert --datum 2026-08-17

@@ -1,71 +1,54 @@
 #!/usr/bin/env bash
-# orchestrate Preflight (04.09.2026): vor jedem Fan-out.
-# 1. Jede Modellfamilie über die tatsächliche Base-URL der Session anpingen (10 s).
-# 2. Fremden laufenden Workflow im Ziel-Worktree erkennen.
-# 3. Leaf-Budget (Sekunden/Tool-Calls) ausgeben, damit Pakete danach geschnitten werden.
-# Ausgabe: eine Zeile je Familie OK/DOWN, dann BUDGET, dann OWNER. Exit 0 immer;
-# der Controller entscheidet (DOWN-Familie = im Script als BLOCKED behandeln, Fallback laut dispatch.md).
+# Lokale Startbedingungen des gewaehlten Adapters; keine Providerinferenz.
+# Exit 0: lokale Voraussetzungen erfuellt; 1: BLOCKED; 2: ungueltiger Aufruf.
 set -u
-BASE="${ANTHROPIC_BASE_URL:-https://api.anthropic.com}"
-WT="${1:-}"
-PLAN_PATHS="${2:-}"   # optional: geplante Schreibpfade (Komma), dann blockt nur Überlappung
-KEYFILE=/etc/raphael-gateway/mac-gateway-key
-KEY="${ANTHROPIC_API_KEY:-}"
-if [ -z "$KEY" ] && [ -r "$KEYFILE" ]; then KEY="$(tr -d '\n' < "$KEYFILE")"; fi
-if [ -z "$KEY" ] && sudo -n test -r "$KEYFILE" 2>/dev/null; then KEY="$(sudo -n cat "$KEYFILE" | tr -d '\n')"; fi
-probe() {
-  local fam="$1" model="$2" code t0 t1
-  t0=$(date +%s.%N)
-  code=$(timeout 15 curl -s -o /dev/null -w '%{http_code}' "$BASE/v1/messages" \
-    -H "x-api-key: $KEY" -H "Authorization: Bearer $KEY" -H 'anthropic-version: 2023-06-01' \
-    -H 'content-type: application/json' \
-    -d "{\"model\":\"$model\",\"max_tokens\":4,\"messages\":[{\"role\":\"user\",\"content\":\"ok\"}]}" 2>/dev/null || echo 000)
-  t1=$(date +%s.%N)
-  local note=""
-  [ "$code" = 402 ] && note=" GUTHABEN-LEER"
-  printf 'FAMILIE %-6s %-22s %s %.1fs%s\n' "$fam" "$model" "$([ "$code" = 200 ] && echo OK || echo "DOWN($code)")" "$(echo "$t1-$t0" | bc)" "$note"
-}
-echo "BASE_URL $BASE"
-probe fable  claude-fable-5-1
-probe opus   claude-opus-5
-probe sol    gpt-5.6-sol
-probe luna   gpt-5.6-luna
-probe grok   claude-gw-xai-4.6
-# Grok-Guthaben direkt am VPS-Proxy (402 = Build usage balance exhausted; Mac-Gateway zeigt nur 503 auth_unavailable)
-gc=$(timeout 20 curl -s -o /tmp/pf-grok8317.json -w '%{http_code}' http://127.0.0.1:8317/v1/messages -H "Authorization: Bearer $KEY" -H 'anthropic-version: 2023-06-01' -H 'content-type: application/json' -d '{"model":"xai/grok-4.6","max_tokens":4,"messages":[{"role":"user","content":"ok"}]}' 2>/dev/null || echo 000)
-[ "$gc" = 402 ] && echo "FAMILIE grok   VPS-8317               DOWN(402) GUTHABEN-LEER: $(head -c 120 /tmp/pf-grok8317.json)"
-SJ_SEC=$(python3 -c "import json;print(json.load(open('/root/.claude/settings.json')).get('env',{}).get('RAPHAEL_SUBAGENT_MAX_SECONDS',''))" 2>/dev/null || sudo -n python3 -c "import json;print(json.load(open('/root/.claude/settings.json')).get('env',{}).get('RAPHAEL_SUBAGENT_MAX_SECONDS',''))" 2>/dev/null)
-ENV_SEC="${RAPHAEL_SUBAGENT_MAX_SECONDS:-}"; ENV_TOOLS="${RAPHAEL_SUBAGENT_MAX_TOOLS:-}"
-if [ -n "$ENV_SEC" ] && [ -n "$SJ_SEC" ] && [ "$ENV_SEC" != "$SJ_SEC" ]; then
-  echo "BUDGET WARN leaf_seconds=$ENV_SEC leaf_tools=${ENV_TOOLS:-?} (aus Session-Env, überschreibt settings.json=$SJ_SEC) — Zeitbudget im Leaf-Prompt an diese Zahl koppeln"
+cwd=""
+provider=""
+required=()
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --cwd|--provider|--require)
+      [ "$#" -ge 2 ] || { printf 'ERROR missing value for %s\n' "$1"; exit 2; }
+      case "$1" in
+        --cwd) cwd="$2" ;;
+        --provider) provider="$2" ;;
+        --require) required+=("$2") ;;
+      esac
+      shift 2
+      ;;
+    --help)
+      printf 'Usage: preflight.sh --cwd /absolute/project [--provider kimi|codex|claude] [--require TOOL ...]\n'
+      exit 0
+      ;;
+    /*)
+      [ -z "$cwd" ] || { printf 'ERROR unexpected argument\n'; exit 2; }
+      cwd="$1"; shift
+      ;;
+    *) printf 'ERROR unknown argument: %s\n' "$1"; exit 2 ;;
+  esac
+done
+case "$cwd" in /*) ;; *) printf 'ERROR --cwd must be absolute\n'; exit 2 ;; esac
+case "$provider" in ''|kimi|codex|claude) ;; *) printf 'ERROR unknown provider\n'; exit 2 ;; esac
+status=0
+if [ -d "$cwd" ]; then
+  printf 'WORKSPACE PASS %s\n' "$cwd"
 else
-  echo "BUDGET leaf_seconds=${ENV_SEC:-${SJ_SEC:-3600}} leaf_tools=${ENV_TOOLS:-200} (raphael-subagent-budget-guard; Bau-Paket ≤ 2–3 Routen, Zeitbudget im Prompt)"
+  printf 'WORKSPACE BLOCKED directory missing: %s\n' "$cwd"
+  status=1
 fi
-echo "PROFIL $(cat /root/.claude/fleet-profile 2>/dev/null || echo multi-family)"
-if [ -n "$WT" ]; then
-  # fremde Runs: workflow-json mit status running, deren Script den Worktree-Pfad nennt
-  found=0
-  # Ein laufender Run hat noch keine wf_*.json (die entsteht beim Ende); er hat ein
-  # subagents/workflows/wf_*/journal.jsonl mit started-Zeilen ohne result/failed und Aktivitaet < 15 min.
-  now=$(date +%s)
-  for jl in /root/.claude/projects/*/*/subagents/workflows/wf_*/journal.jsonl; do
-    [ -f "$jl" ] || continue
-    d=$(dirname "$jl"); id=$(basename "$d")
-    [ -f "$(dirname "$(dirname "$(dirname "$d")")")/workflows/$id.json" ] && continue   # beendet
-    started=$(grep -c '"type":"started"' "$jl" 2>/dev/null); done_=$(grep -cE '"type":"(result|failed)"' "$jl" 2>/dev/null)
-    [ "${started:-0}" -gt "${done_:-0}" ] || continue
-    newest=$(ls -t "$d"/agent-*.jsonl 2>/dev/null | head -1); [ -n "$newest" ] || continue
-    age=$(( now - $(stat -c %Y "$newest") )); [ "$age" -lt 900 ] || continue
-    if grep -q "$WT" "$newest" 2>/dev/null; then
-      if [ -n "$PLAN_PATHS" ]; then
-        ov=0; for pp in $(echo "$PLAN_PATHS" | tr ',' ' '); do grep -q "$pp" "$newest" 2>/dev/null && ov=1; done
-        if [ "$ov" = 1 ]; then echo "OWNER FREMDER-RUN $id laeuft in $WT und beruehrt geplante Pfade (Aktivitaet vor ${age}s) — erst stoppen lassen"; found=1
-        else echo "OWNER Hinweis: fremder Run $id in $WT, Pfade disjunkt zu $PLAN_PATHS — parallel erlaubt"; found=1; fi
-      else
-        echo "OWNER FREMDER-RUN $id laeuft in $WT (Aktivitaet vor ${age}s) — erst stoppen lassen, dann starten (oder Schreibpfade als 2. Argument angeben)"; found=1
-      fi
-    fi
-  done
-  [ "$found" = 0 ] && echo "OWNER frei: kein laufender Workflow nennt $WT"
-fi
-exit 0
+if [ -n "$provider" ]; then required+=("$provider"); fi
+for tool in "${required[@]}"; do
+  if [[ ! "$tool" =~ ^[a-zA-Z0-9][a-zA-Z0-9._+-]*$ ]]; then
+    printf 'ERROR invalid tool name\n'; exit 2
+  fi
+  if command -v "$tool" >/dev/null 2>&1; then
+    printf 'TOOL PASS %s installed\n' "$tool"
+  else
+    printf 'TOOL BLOCKED %s missing\n' "$tool"
+    status=1
+  fi
+done
+printf 'PROVIDER NOT_RUN %s: local installation does not prove authentication or inference\n' "${provider:-none-selected}"
+printf 'OWNERSHIP NOT_RUN: root checks write_set; cli-worker acquires its directory lease at start\n'
+if [ "$status" -eq 0 ]; then printf 'PREFLIGHT PASS local prerequisites only\n'; else printf 'PREFLIGHT BLOCKED\n'; fi
+exit "$status"

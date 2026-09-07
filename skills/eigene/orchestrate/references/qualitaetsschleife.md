@@ -1,282 +1,68 @@
-# Qualitätsschleife — Score-Loop in jedem Bau-Paket (04.09.2026)
+# Qualitaetsschleife: Befund, Korrektur, Nachweis
 
-**Kern in einem Satz:** Kein Artefakt erreicht Raphael, bevor eine fremde
-Instanz es gegen eine Rubrik aus unserer besten Arbeit gemessen hat und die
-Zahl über der Schwelle liegt; darunter geht es mit den Notizen an denselben
-Builder zurück, bis zu drei Mal, dann Eskalation.
+Diese Referenz gilt fuer die im Auftrag verlangten Eigenschaften. Der
+Gesamtowner waehlt die Pruefungen und nimmt das Ergebnis an; bei Web ist das
+`web`. Ein Fachpruefer liefert seinen begrenzten Beleg.
 
-Slop ist ein Systemproblem. Ein Gefühl („klingt nach KI“) lässt sich nicht
-fixen, eine Zahl schon. Deshalb ist die Schleife Teil des Pakets, nicht ein
-Extra-Schritt am Ende.
+## Ablauf je zusammenhaengendem Aenderungspaket
 
-Belege aus dem 30-Tage-Scan (04.09.2026): Plan-Execute-Verify-Replan
-(arXiv 2603.11445: Score 0–1 je Teilfrage, Ergebnis-Erhalt über Retries,
-konfigurierbare Stop-Bedingungen); PROCTOR (arXiv 2609.02246: elf Wege, wie
-ein Judge-Signal kippt — Cache-Antworten, kaputte Ground Truth, stiller
-Parser-Fallback; Fix war ein struktureller Anker, kein besseres Rubrik-Prosa);
-Future AGI (Per-Dimension-Schwellen statt Aggregat: 0.85 gesamt versteckt 0.62
-auf einer Achse); Agent Cookbooks agents-orchestrator (Retry-Cap 3, vierter
-Fehlschlag eskaliert); Claude-Code-Docs Workflows (Loop im Script, nicht im
-Kontext des Controllers).
+1. **Ergebnis bestimmen.** Akzeptanz aus Auftrag und aktuellem Plan ableiten.
+   Die betroffenen Inputs, Revisionen, Pfade und Benutzerzustaende festhalten.
+2. **Direkte Checks ausfuehren.** Vorhandene passende Tests und Pruefer nutzen.
+   Der ausfuehrende Prozess braucht die erforderlichen Werkzeuge; Dateiworker
+   liefern Inputs, Root fuehrt deren Shell-/Browserpruefungen aus.
+3. **Offene Fachfrage pruefen.** Wenn die direkten Checks sie nicht beantworten,
+   aktuelle Artefakte und Kriterien an einen geeigneten Pruefer geben.
+   Weitere Stimmen nur fuer einen konkreten Erkenntnisgewinn oder Dissens.
+4. **Befund behandeln.** Bestaetigte auftragsrelevante Fehler korrigieren oder
+   einen falschen Befund mit Beleg zurueckweisen. Jede Korrektur nennt Ursache,
+   geaenderte Stelle und erwartetes Verhalten.
+5. **Betroffenes erneut pruefen.** Nach einer relevanten Aenderung die davon
+   betroffenen Checks wiederholen. Abgeschlossene unveraenderte Eigenschaften
+   brauchen keine automatische neue Runde.
 
-## Die fünf Schritte je Paket
+Fertig ist das Paket, wenn jede verlangte Eigenschaft fuer den aktuellen Stand
+belegt ist und kein bestaetigter relevanter Fehler offen bleibt. Es gibt keine
+universelle Screenshotzahl, feste Modellflotte, Mindestzahl von Reviewrunden
+oder automatische Score-Schwelle. Ein vom Auftrag verlangter Vergleich behaelt
+seine konkreten Kriterien; ein Modellwert ersetzt Raphaels Geschmacksurteil nicht.
 
-| # | Schritt | Wer | Beleg |
-|---|---|---|---|
-| 1 | Bauen | Builder-Leaf (`fable-builder` / `opus-builder` / `sol-builder` / `grok-worker`) | Dateien + Gate-Exit im StructuredOutput |
-| 2 | G1 deterministisch | Befehl, ausgeführt von `luna-worker` (Mechanik, kein Urteil) mit Provenienz-Zeile | Exit-Code; rot = zurück an Builder ohne Judge |
-| 3 | G2 Judge | Kritiker **anderer Familie**, frische Instanz, sieht nur Artefakt + Rubrik | Score je Dimension 0/1/2, Zitat als Beweis, VETO-Frage |
-| 4 | Entscheiden | Script | `PASS` wenn jede Dimension ≥ Schwelle UND kein VETO-Riss; sonst Notizen an Builder |
-| 5 | Wiederholen | derselbe Builder mit Notizen, frischer Kontext | max 3 Runden; dann `escalate` mit Belegen |
+## Beleg je Eigenschaft
 
-Raphael sieht nur Runde-PASS oder `escalate`. Zwischenstände stehen im
-Journal, nicht im Chat.
+| Eigenschaft | Nachweis |
+|---|---|
+| Fakten, Angebot, Copy | Benannte Quelle und tatsaechlich verwendeter Text |
+| Sichtbare Gestaltung | Aktueller Render, passende Ansicht und Region |
+| Bedienung | Aktion, erwartete Zustandsaenderung, Fokus/Recovery soweit betroffen |
+| Uebermittlung | Erwartete UI und Netzwerk-/Datenwirkung am kontrollierten Ziel |
+| Bewegung | Laufzeitprobe der betroffenen Animation, einschliesslich Reduced Motion |
+| Code/Build/Regression | Passende ausgefuehrte Tests, Exitcodes und Diff fuer denselben Stand |
 
-## Rubrik aus unserer besten Arbeit
+Fuer Web besitzt [qa-faecher.md](/root/raphael-skills/skills/eigene/web/references/qa-faecher.md)
+die konkrete Auswahl. Ein normales Capture fuehrt keine fachlichen Schreibaktionen
+aus. Ein Bild einer Erfolgsmeldung beweist keine erfolgreiche Uebermittlung.
 
-Die Rubrik ist keine Prosa („sieht es gut aus?“), sondern 3–6 Ja/Nein-Fragen,
-abgeleitet aus dem, was bei uns nachweislich funktioniert hat:
+## Rueckgabe und Annahme
 
-- **Quelle:** `evals/rubrics/<domain>.md` des Repos (Web: `agentur-rubrik.md`,
-  `qa-faecher.md`; Copy: `copywriting` G0/G1 + VOICE; Ads: Referenz-Anzeige
-  v10). Fehlt die Rubrik, ist `rubric-author` (Skill `eval`) der erste
-  Auftrag, mit 2–3 Golden-Beispielen aus `evals/golden/` als Maßstab.
-- **Frage 1 ist immer `[VETO]`** und die harte Ship-Bedingung (0 verbotene
-  Claims, Gate exit 0, Köpfe nie angeschnitten). Ein Riss dort = FAIL, egal
-  wie die Summe steht.
-- **Jede Frage nennt den Beweisort** („Zitat aus data/reviews.ts“, „Shot
-  home-desktop-fold.jpg Region CTA“). Ohne Beleg zählt die Zahl nicht.
-- **Per Dimension schwellen, nie aggregieren.** Schwelle je Frage ≥ 1 von 2,
-  Gesamt ≥ 0.7, VETO = 2. Aggregat allein versteckt den einen Riss.
-- **Bezugssystem abgleichen:** Jede Rubrik-Frage nennt die G1-Regel, die sie stützt, und beide messen denselben Bezug (Container vs. Spalte, mit/ohne Header). Sonst FAILt der Judge bei grünem Gate und die Schleife dreht leer (R67: Insel 60 % spaltenrelativ im Gate, containerrelativ in der Rubrik; Header-CTA vom Gate ausgeklammert, vom Judge gezählt).
-- **Anti-Beispiele mitgeben:** 1–2 Fälle aus `evals/anti/`, die hoch bewertet
-  wurden und gefloppt sind. Das kalibriert den Judge härter als Prosa.
+Jeder Check nennt Frage, Ergebnisstatus, Artefakt/Revision und Belegpfad.
+`PASS`, `FAIL`, `BLOCKED`, `NOT_RUN` und begruendetes `N/A` bleiben getrennt.
+Der Consumer liest den Status im Ergebnis sowie den echten Exitcode; eine Datei
+oder ein Exit 0 bei inhaltlichem FAIL erfuellt kein Gate.
 
-## Was den Judge ehrlich hält (aus PROCTOR)
+Root prueft Run-/Versuchsidentitaet und aktuelle Inputs vor Annahme. Ein
+`timeout`, `cancelled`, `failed`, verlorener Supervisor oder ueberholter Versuch
+wird nicht durch spaete Ausgabe aktuell. Transporterfolg bestaetigt nur die
+Rueckgabe; fachliche Abnahme braucht die verlangten Checks.
 
-1. **Externer Anker vor dem Judge.** G1 (Gate-Script, Lint, Test, Pixel-G1,
-   `verify-*.mjs`) läuft immer zuerst und entscheidet allein über rot. Der
-   Judge misst nur, was G1 schon bestanden hat.
-2. **Der Judge sieht nie den Builder-Verlauf**, nur Artefakt, Rubrik,
-   Golden/Anti-Beispiele und `ACTUAL_BUILDER_FAMILY`. Er benotet nie eine
-   Zusammenfassung.
-3. **Antwortform ist strukturell fixiert** (Schema: `scores[]`, `beleg[]`,
-   `veto`, `verdict`, `notizen[]`). Keine Freitext-Begründung, kein „erkläre
-   deinen Gedankengang“ (Regel 19).
-4. **Reward-Hacking-Tore sind Judge-Fragen:** „Wurde ein Check gelöscht,
-   aufgeweicht, übersprungen? Ist etwas versteckt (display:none, sr-only,
-   aria-hidden), das das Gate täuscht?“ Ein Ja ist VETO.
-5. **Notizen sind konkret und wenige.** Max 3 Punkte, jeder mit Datei:Zeile
-   oder Shot+Region. Zehn Punkte lähmen den Builder (Gauntlet-Regel).
-6. **Ergebnis-Erhalt.** Runde n+1 startet vom Stand n, nicht von null. Der
-   Builder bekommt Diff-Stand + Notizen, nicht den ganzen Auftrag neu.
+Ein Review sieht Artefakt, relevante Kriterien und notwendige Provenienz,
+nicht nur die Selbstdarstellung des Builders. Befunde nennen eine konkrete
+Stelle, Auswirkung und Pruefmoeglichkeit. Modell-/Familienwahl folgt dem
+aktuellen Nutzer-/Hostvertrag; Fehlerhistorie ist keine dauerhafte Sperrliste.
 
-## Baustein für Workflow-Scripts
+## Begrenzte Wiederaufnahme
 
-```javascript
-const SCORE = {
-  type: 'object', additionalProperties: false,
-  properties: {
-    scores: { type: 'array', items: { type: 'object', additionalProperties: false,
-      properties: { frage: { type: 'string' }, punkte: { type: 'number' }, beleg: { type: 'string' } },
-      required: ['frage', 'punkte', 'beleg'] } },
-    veto_riss: { type: 'boolean' },
-    // Blind-Vergleich gegen die Referenz (visuelle Pakete, Pflicht wenn opts.referenzFolds gesetzt):
-    // je Achse genau 'build' | 'referenz' | 'unentschieden'; luecke = die eine Stelle, an der die Referenz gewinnt.
-    blind: { type: 'object', additionalProperties: false, properties: {
-      visual: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
-      usability: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
-      creativity: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
-      content_trust: { type: 'string', enum: ['build', 'referenz', 'unentschieden'] },
-      luecke: { type: 'string' },
-    }, required: ['visual', 'usability', 'creativity', 'content_trust', 'luecke'] },
-    verdict: { type: 'string', enum: ['PASS', 'FAIL'] },
-    notizen: { type: 'array', maxItems: 3, items: { type: 'string' } },
-  },
-  required: ['scores', 'veto_riss', 'verdict', 'notizen'],
-}
-// Das Script entscheidet, nicht der Judge-Freitext: Referenz besser auf Visual = FAIL, egal was verdict sagt.
-function blindFail(urteil) {
-  return !!(urteil && urteil.blind && urteil.blind.visual === 'referenz')
-}
-
-// Ein Paket durch die Schleife: bauen → G1 → Judge → ggf. zurück. Max 3 Runden.
-async function mitSchleife(paket, opts) {
-  // opts: { builderType, judgeType, rubrik, g1Cmd, label, phase, maxRunden = 3, schwelle = 0.7 }
-  let notizen = []
-  let stand = null
-  for (let runde = 1; runde <= (opts.maxRunden || 3); runde++) {
-    stand = await agent(`${paket.prompt}\nRUNDE ${runde}. ${notizen.length ? 'NOTIZEN DES JUDGES (jede beheben oder mit Beleg zurückweisen):\n- ' + notizen.join('\n- ') : ''}\nZeitbudget ${paket.minuten || 40} Minuten; 5 Minuten vor Ablauf StructuredOutput mit Stand.`,
-      { label: `${opts.label}:bau:r${runde}`, phase: opts.phase, agentType: opts.builderType, effort: 'high', schema: RESULT })
-    if (!stand) {
-      // 429/Cooldown/Budget: genau ein Retry nach Pause, dann BLOCKED. Nie Folgephasen auf null starten.
-      log(`${opts.label}: Builder ohne Rückgabe in Runde ${runde} (Provider/Budget) — ein Retry`)
-      stand = await agent(`${paket.prompt}\nRUNDE ${runde} (RETRY nach Provider-Ausfall). Prüfe zuerst den Arbeitsbaum: was ist schon umgesetzt? Nur den Rest bauen.`,
-        { label: `${opts.label}:bau:r${runde}:retry`, phase: opts.phase, agentType: opts.builderType, effort: 'high', schema: RESULT })
-      if (!stand) return { status: 'BLOCKED', grund: 'Builder zweimal ohne Rückgabe (Provider/Budget)' }
-    }
-    // Selbstcheck des Builders ist Pflichtfeld: erwartet/geliefert in einem Satz (RESULT.selbstcheck).
-    if (stand.selbstcheck && /nicht erreicht|abweich|FAIL|offen/i.test(stand.selbstcheck)) log(`${opts.label}: Builder meldet Abweichung: ${stand.selbstcheck.slice(0, 200)}`)
-    // G1 ist ein Script-Schritt: der Builder meldet den Exit, ein Leaf mit Bash bestätigt ihn read-only.
-    // G1 ist ein Befehl, kein Urteil: luna-worker (Masse/Mechanik) fuehrt ihn aus, nie der Judge.
-    const g1 = await agent(`ACTUAL_BUILDER_FAMILY=${opts.builderFamily} (agentType ${opts.builderType}). Du bist ein Leaf-Worker, read-only Mechanik, kein Urteil. Führe genau aus: ${opts.g1Cmd}. Gib exit-Code und die letzten 30 Zeilen zurück. Nichts ändern, keine Subagenten.`,
-      { label: `${opts.label}:g1:r${runde}`, phase: opts.phase, agentType: 'luna-worker', effort: 'low', schema: G1 })
-    if (!g1) return { status: 'BLOCKED', klasse: 'PROVIDER', grund: 'G1-Leaf ohne Rückgabe', stand }
-    if (g1.exit !== 0) {
-      // Fehlerklasse fuer den Builder benennen: leerer Tail = EMPTY (Befehl/Pfad pruefen), sonst ERROR.
-      const klasse = (g1.tail || '').trim() ? 'ERROR' : 'EMPTY'
-      notizen = [`G1 ${klasse} (exit ${g1.exit}): ${(g1.tail || '(leere Ausgabe — Existenz-Check von Pfad/Befehl zuerst)').slice(0, 600)}`]
-      log(`${opts.label}: Runde ${runde} G1 ${klasse} exit ${g1.exit}`)
-      continue
-    }
-    // opts.referenzFolds: Pfad einer Datei mit Referenz-Bildern (Raphaels Referenzen + Weltklasse-/Live-Fold), eine Zeile je Pfad.
-    const blindTeil = opts.referenzFolds
-      ? `\nBLIND-VERGLEICH (Pflichtfeld blind): Lies jede Datei aus ${opts.referenzFolds} und den Build-Fold aus dem Artefakt. Je Achse Visual · Usability · Creativity · Content-Trust genau 'build' | 'referenz' | 'unentschieden'; luecke = die eine Stelle, an der die Referenz gewinnt (Shot+Region). Gewinnt die Referenz auf Visual, ist das Paket FAIL, auch bei 12/12 Regelpunkten.`
-      : ''
-    const urteil = await agent(`ACTUAL_BUILDER_FAMILY=${opts.builderFamily} (agentType ${opts.builderType}, Workflow ${opts.label}, Failover nein)\nROLLE: Judge, frische Instanz, andere Familie als der Builder. Du siehst NUR Artefakt, Rubrik, Golden-/Anti-Beispiele. Kein Builder-Verlauf.\nRUBRIK:\n${opts.rubrik}\nARTEFAKT: ${paket.artefakt}${blindTeil}\nJe Frage 0/1/2 mit wörtlichem Beleg; Frage 1 ist VETO (<2 = veto_riss). verdict PASS nur wenn keine Frage <1, Summe/Max ≥ ${opts.schwelle || 0.7} und kein VETO-Riss. notizen: max 3, je Datei:Zeile oder Shot+Region. Reward-Hacking-Prüfung: gelöschte/aufgeweichte Checks, versteckte Elemente = VETO.`,
-      { label: `${opts.label}:judge:r${runde}`, phase: opts.phase, agentType: opts.judgeType, effort: 'high', schema: SCORE })
-    if (!urteil) return { status: 'BLOCKED', klasse: 'PROVIDER', grund: 'Judge ohne Rückgabe (Provider)', stand }
-    if (opts.referenzFolds && !urteil.blind) { notizen = ['Judge ohne blind-Feld trotz Referenzliste: Runde als FAIL, Judge-Prompt prüfen']; log(`${opts.label}: Runde ${runde} Judge ohne blind`); continue }
-    if (blindFail(urteil)) {
-      notizen = [`BLIND: Referenz gewinnt auf Visual — ${urteil.blind.luecke}`].concat((urteil.notizen || []).slice(0, 2))
-      log(`${opts.label}: Runde ${runde} FAIL (blind) — ${urteil.blind.luecke}`)
-      continue
-    }
-    if (urteil.verdict === 'PASS') return { status: 'PASS', runden: runde, stand, urteil }
-    notizen = urteil.notizen
-    log(`${opts.label}: Runde ${runde} FAIL — ${notizen.join(' | ')}`)
-  }
-  // Drei Runden mit derselben Notiz = Aufgabe zu gross, nicht Builder zu dumm: Paket kleiner schneiden.
-  return { status: 'ESCALATE', klasse: 'WRONG', grund: 'drei Runden ohne PASS — Paket kleiner schneiden oder anderer Builder', stand, notizen }
-}
-```
-
-`RESULT` und `G1` (`{ exit: number, tail: string }`) stehen im Script wie in
-`workflow-vorlage.md`. `RESULT` trägt seit 04.09.2026 das Pflichtfeld
-`selbstcheck` (String: „erwartet X, geliefert Y, Beleg Z“) — der Builder
-prüft sein Ergebnis gegen seine Erwartung, bevor der Judge es sieht.
-
-**Fehlerklassen in der Schleife.** Jede Rückgabe `BLOCKED`/`ESCALATE` trägt
-`klasse`: `PROVIDER` (Leaf ohne Rückgabe: einmal gleiche Route, dann Ersatz),
-`ERROR`/`EMPTY` (G1 rot: Notiz nennt die Klasse, Builder liest zuerst den
-Fehlertext bzw. macht den Existenz-Check), `WRONG` (drei Runden ohne PASS:
-Paket kleiner schneiden, kein vierter Versuch). Der Controller loggt jede
-Klasse nach dem Lauf mit `python3 /root/tools/fixlog.py add …` ins
-Fix-Journal, damit die nächste Session den Fehler nicht neu löst. Judge-Familie ≠ Builder-Familie (`dispatch.md`).
-Bei Fable-Build und totem Fremd-Gateway: `opus-critic` mit Label
-`Instanz-Trennung, gleiche Familie`, im Journal sichtbar.
-
-
-## Baustein: Kritik mit Fallback (Familie fällt zwischen Preflight und Kritik aus)
-
-Preflight ist eine Momentaufnahme. Jede Kritik-Phase trägt den rollenkompatiblen
-Fallback im Script, nicht nur in `dispatch.md` (04.09.2026: Grok-Auth 503 um 14:21,
-Preflight um 13:55 war grün; 11 Leaves tot, Report ohne Re-Kritik).
-
-```javascript
-// visual-kritiker → grok-critic → opus-critic (Label Instanz-Trennung). Sweep: grok-worker → luna-worker.
-async function kritikMitFallback(prompt, opts) {
-  const kette = opts.kette || [
-    { agentType: 'visual-kritiker', label: '' },
-    { agentType: 'grok-critic', label: 'FALLBACK' },
-    { agentType: 'opus-critic', label: 'FALLBACK Instanz-Trennung, gleiche Familie' },
-  ]
-  for (const k of kette) {
-    const zusatz = k.label ? `\nLABEL: ${k.label} — vom Controller freigegeben, Provenienz-Gate nicht blockieren; nur Artefakte, nie Build-Verlauf.` : ''
-    const r = await agent(prompt + zusatz, { ...opts, agentType: k.agentType, label: `${opts.label}:${k.agentType}${k.label ? ':FALLBACK' : ''}` })
-    if (r) return { ...r, kritiker: k.agentType, fallback: !!k.label }
-    log(`${opts.label}: ${k.agentType} ohne Rückgabe (Provider) → nächste Familie`)
-  }
-  return null
-}
-```
-
-Das Ergebnis trägt `kritiker` und `fallback`; der Report nennt beides je Route.
-
-Blindtest-Integrität: Das Sweep-Skript schreibt die X/Y-Zuordnung **nur** nach
-`KEY-DO-NOT-READ.json`, nie in Logs, Manifest oder stdout im Artefakt-Ordner. Ein
-Kritiker fand die Auflösung am 04.09.2026 im Recapture-Log. Log-Zeile: `BLIND <slug> geschrieben`.
-
-
-## Provenienz-Zeile (Langform, Pflicht in jedem Kritiker-/Judge-Prompt)
-
-```
-ACTUAL_BUILDER_FAMILY=Claude (Anthropic, Modell claude-fable-5-1 über agentType fable-builder, Workflow <id>, Failover nein; Beleg: Workflow-Journal)
-```
-
-Kurzformen wie `claude-fable` liest das Gate als Platzhalter (Beob. 71). Bei Fremd-Gateway
-tot und Claude-Build steht die Bild-Achse bei `opus-critic` nur mit der ausdrücklichen
-Freigabe-Zeile `LABEL: Instanz-Trennung, gleiche Familie — vom Controller freigegeben`;
-ohne diese Zeile blockt `opus-critic` korrekt (Beob. 70). Text-Achsen (Code, Copy, SEO)
-gehen dann an `sol-pruefer`; Bild-Achsen ohne Grok und ohne Freigabe werden geparkt,
-nie still übersprungen.
-
-## Budget aus dem Preflight, nie hart
-
-`preflight.sh` zeigt `leaf_seconds`/`leaf_tools` aus der Session-Env; weicht sie von
-`settings.json` ab, steht die Quelle dabei. Scripts leiten Zeitbudget im Prompt und
-Paketschnitt aus dieser Zahl ab (Beob. 78). Retry-Wrapper schreiben den `agentType`
-literal in jeden `agent()`-Aufruf, kein `...opts` allein (Guard prüft statisch, Beob. 73).
-Leaves schreiben ihr Ergebnis früh und inkrementell auf Disk; `StructuredOutput` ist nur
-der Zeiger (Beob. Wayfinder 04.09.).
-
-## Golden-Beispiele sind Dateien, und der Judge vergleicht blind (MAKE 04.09.2026)
-
-Für visuelle Pakete bekommt der Judge neben Artefakt und Rubrik eine
-**Bildliste** (Datei, nie Pfade im Prompt-String): Raphaels Referenzbilder
-(`handoff/referenzen/BILDLISTE.txt`) und ein bis zwei Referenz-Folds
-(`shots/ref-<slug>-fold.png`, bei Redesign die Live-Seite). Pflicht-Frage 2
-der Rubrik (VETO-fähig auf Visual):
-
-Der Vergleich ist **kein Rubrik-Punkt, sondern ein eigenes Schema-Feld
-`blind`** (unten im Baustein): je Achse `build | referenz | unentschieden` plus
-`luecke`. Das Script (`blindFail`) macht aus `visual: 'referenz'` ein FAIL mit
-der Lücke als erster Notiz, unabhängig vom Judge-`verdict`. Der Judge kann den
-Vergleich also nicht in Prosa weglächeln, und ein Judge ohne `blind`-Feld bei
-gesetzter Referenzliste zählt als FAIL der Runde. Dazu als normale Rubrik-Frage:
-
-```
-n Würde Raphael das «Bombe» nennen? Welche eine Stelle zuerst nicht? (0/1/2,
-  Beleg als Shot+Region)
-```
-
-Grund: Am 04.09. gaben Judges 10/12 PASS für Folds, die Raphael «Rotze»
-nannte. Die Rubrik mass Regeltreue (Gates, Tokens, Copy zeichengenau), nie
-«besser als die Referenz?». Regeltreue ist G1-Arbeit; der Judge ist für den
-Vergleich mit der Latte da.
-
-## Domänen-Anker (welches G1, welche Rubrik)
-
-| Domäne | G1 (deterministisch) | Rubrik-Quelle | Judge |
-|---|---|---|---|
-| Website-Route | `verify-*.mjs` des Repos, `detect.mjs`, `scan-ai-slop.mjs`, axe | `agentur-rubrik.md`, `qa-faecher.md`, PLAN §-Tabelle | `visual-kritiker` (Shot) + `sol-pruefer` (Text) |
-| Copy | `forbidden-check.py` (G0), G1-Regeln | VOICE.md, `evals/golden/` | `opus-critic` (Sol-Copy) / `sol-pruefer` (Fable/Opus-Copy) |
-| Code / Backend | Tests, tsc, oxlint | Repo-Rubrik, Ship-Gate | `sol-pruefer` / `grok-critic` |
-| Bild / Static | `visual-g1.py` (Pixel) | Referenz-Anzeige, `fail-katalog.md` | `visual-kritiker` |
-| Recherche / Brief | Quellen-Check (jede Zahl hat URL) | Brief-Rubrik | `opus-critic` |
-
-## Stop-Bedingungen (fest, nicht verhandelbar im Leaf)
-
-- PASS in Runde ≤ 3 → weiter.
-- Runde 3 FAIL → `ESCALATE` an Raphael mit Scores je Runde und den letzten
-  Notizen. Keine Runde 4, kein zweiter Builder derselben Familie.
-- G1 zweimal hintereinander rot am selben Punkt → `ESCALATE` (Architektur,
-  nicht Fix Nr. 3; Skill `debug`).
-- Provider-Ausfall des Judge → `BLOCKED`, nie stiller PASS.
-- Builder `null` (429, Cooldown, Wall-Clock) → genau ein Retry mit „prüfe erst den Arbeitsbaum“, dann `BLOCKED`. Folgephasen (Sweep, Kritik) starten nie auf `null` (04.09.2026: zehn Kritiker urteilten über einen unveränderten Build).
-- Fix-Leaves ≤ 30 Minuten Budget; drei Claude-Sitze tragen Controller + zwei Fable-Leaves, nicht mehr.
-
-## Fallen
-- G1-Befehle sind idempotent: frisches Tempdir (`mktemp -d`), kein Zustand aus der Vorrunde; bei rot den treffenden Befund ausgeben (`grep -n`, nie `grep -q`), damit die Notiz an den Builder konkret ist. Zweimal identischer G1-Fehlertext ohne Dateiänderung = Kette prüfen, nicht Runde 3 (Beob. 49).
-- Wortverbote nur mit Wortgrenze (`grep -nwE`, `\b…\b`) und ohne `-i`, wenn der Begriff als Substring in normalen Wörtern steckt („rungen“ in „Änderungen“, Beob. 53).
-- Judge ohne Rückgabe (kein StructuredOutput, Watchdog) → Runde als FAIL mit Notiz „Judge ohne Rückgabe“ werten und mit `kritikMitFallback` weiter, nie Workflow-Abbruch; Judge-Prompt: Urteil zuerst als StructuredOutput, Belege danach (Beob. 51, 55, 62).
-- Fallback-Script nie aus dem persistierten Script per agentType-Textersatz bauen: der pin-Hook hat `model:`-Literale injiziert, der Textersatz läuft auf dem alten Motor weiter. Original-Inline-Script neu senden oder alle `, model: '…'` per Regex entfernen (Beob. 64).
-- `grok-worker` nur für kurze Technikpakete (< 30 Tool-Calls); lange Bau-Leaves an `fable-builder`/`opus-builder`/`sol-builder`. Grok-Stream-Timeouts enden am Budget-Guard mit „missing watchdog state“ (Beob. 44).
-
-- Rubrik als Prosa („ist es überzeugend?“) → Judge rät, Schleife dreht leer.
-- Aggregat-Schwelle ohne Per-Dimension → ein Riss versteckt sich.
-- Judge liest die Builder-Zusammenfassung → benotet eine Erzählung.
-- Kein G1 vor dem Judge → der Judge wird zum einzigen Anker und ist gameable.
-- Notizen als Wunschliste → Builder verzettelt sich, Runde 2 ist schlechter.
-- Schleife im Controller-Kontext statt im Script → Kontext wächst, Cache platzt.
-- G1-Kette mit Zustand aus der Vorrunde (mkdir auf existierende Datei, fester Tempname) → gesundes Paket eskaliert nach drei roten Runden (Beleg: wf_a8156636 token-check, 04.09.). G1 läuft in `mktemp -d`; bei zweimal identischem G1-Fehlertext ohne Builder-Diff die Kette prüfen, nicht Runde 3 starten.
+Bei Tool-/Providerfehler zuerst Fehlerklasse, bestehenden Run und moegliche
+Teilresultate pruefen. Ein gleicher Infrastrukturfehler wird hoechstens einmal
+gezielt wiederholt, danach bleibt das Paket `BLOCKED`. Freie Arbeit wird
+fertiggestellt. Ein weiterer fachlicher Versuch braucht eine neue begruendete
+Korrektur, keinen neuen Reviewer allein fuer eine hoehere Note.

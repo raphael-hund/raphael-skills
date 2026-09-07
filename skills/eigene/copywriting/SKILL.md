@@ -1,6 +1,6 @@
 ---
 name: copywriting
-version: 0.11.0
+version: 0.14.0
 description: >
   Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web,
   SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von
@@ -20,15 +20,15 @@ source: >
   robpalmer99/claude-code-copywriting-skills (CC-BY-4.0), Stand 2026-07-21
 loads: [references/voice-dna.md, references/kanaele.md, references/beispiele-gute-copy.md, references/orwell-de.md, references/floskel-verbote.md, references/cta-framework.md, references/vsl-framework.md, references/ai-slop-patterns-en.md, references/mental-models-en.md, references/copy-editing-sweeps.md, references/voice-analysis.md, references/direct-response-klassiker.md, references/sprachstile-referenz.md]
 loads_external: ["/root/.claude/forbidden.md"]
-requires_skills: [eval@^0]
+requires_skills: []
 completion_criteria:
   - "scripts/forbidden-check.py auf dem Entwurf gelaufen, Exit 0 (harte Sperre, vor allem anderen); Skript-Ausgabe im Output zitiert"
   - "Skript-Hinweise (A1/A5/A6/A7/B6b) einzeln beurteilt: je Hinweis 'gefixt' oder 'bewusst behalten weil <Grund>'"
   - "G1 grün: Orwell-Regeln 2-5 + Passiv-/Nominalstil-Detektor + Floskelliste (inkl. quantifizierter Interpunktions-Schwellen) = 0 Treffer"
   - "voice-dna.md Selbstcheck (5 Fragen) = 5x ja"
   - "Selbstkritik-Zwischenschritt durchlaufen: 'was ist an diesem Entwurf noch offensichtlich KI-generiert?' beantwortet, vor G2"
-  - "G2 Judge: unabhängiger Eval-Agent (andere Modellfamilie), Regeln 1+6 (Override) + Brand-Voice-Treue >= 0.7"
-  - "Kontext-Disziplin belegt: entweder <=3 Referenzdateien + Kundenmaterial gelesen, oder Subagent-Split mit Aufteilung im Output genannt"
+  - "Unabhängige Prüfung nur bei beauftragtem Review oder begründetem Risiko; dann tatsächlichen Prüfer, Umfang und Textbelege nennen"
+  - "Nur für den Text relevante Quellen geladen; Delegation folgt unabhängigen Teilaufgaben, nicht einer festen Dateizahl"
 ---
 
 # copywriting — deutscher Klartext in Brand-Voice
@@ -39,7 +39,7 @@ completion_criteria:
 der Kunde gewinnt bei Widerspruch. Außerdem `/root/raphael-brain/wiki/craft/hooks/`.
 
 **Kein Extra-Load:** `no-ai-slop` ist ein Router auf diesen Skill. Site-Build
-lädt nur `copywriting` (G1→G2). `/no-ai-slop` extra nur auf ausdrücklichen Wunsch.
+lädt nur `copywriting` (G0/G1; G2 bei Bedarf). `/no-ai-slop` extra nur auf ausdrücklichen Wunsch.
 
 ## Zweck (1 Satz)
 
@@ -53,13 +53,13 @@ aktiv, ein Wort = eine Bedeutung) plus Zinssers vier Prinzipien
 (Simplicity, Brevity, Clarity, Humanity). Siehe `/root/.claude/CLAUDE.md`.
 
 **2. `forbidden.md` ist das härteste Gate.** Aktive Datei: `/root/.claude/forbidden.md`.
-Ein Treffer = Fail. Läuft VOR G1. Trage neuen Slop sofort dort nach (Abschnitt F),
-statt ihn im Kopf zu behalten.
+Ein Treffer = Fail. Läuft VOR G1. Neue Funde werden am aktuellen Text behoben;
+globale Regeländerungen gehören in einen separat geprüften Skill-Update.
 
 **Web-Einstieg (Bau-Workflow des web-Skills):** Schreibt ein Copy-Leaf
-(`kimi-worker` oder `sol-builder`) Website-Copy, fährt es G0 (`forbidden.md`)
-und G1 **selbst vor der Rückgabe** und legt die Belege bei; G2 ≥ 0.7 läuft erst
-zum Launch durch einen Judge fremder Familie. Copy ohne G0/G1-Beleg gilt als
+(Besetzung laut aktuellem Nutzer-/Hostvertrag) Website-Copy, fährt es G0 (`forbidden.md`)
+und G1 **selbst vor der Rückgabe** und legt die Belege bei. Eine unabhängige
+Launch-Prüfung folgt dem konkreten Auftrag und Risiko. Copy ohne G0/G1-Beleg gilt als
 nicht fertig und wird nicht eingebaut. Vertrag: `web/references/rolle-bau.md`.
 
 **Werkzeuge (in `scripts/`):**
@@ -83,34 +83,31 @@ ausschließlich Zeichensetzung. Es meidet Zitate, Backtick-Vorlagen,
 Überschriften, Tabellen und Quellenangaben. Was es trotzdem anfasst,
 gehört vor dem Schreiben geprüft.
 
-**`forbidden.md` liegt außerhalb eines Git-Repos.** Nach jeder Änderung sichern:
-`cp /root/.claude/forbidden.md /root/raphael-skills/skills/eigene/copywriting/references/forbidden-backup.md`
+`forbidden.md` wird im Kundenlauf nur gelesen. Eine separat beauftragte,
+geprüfte globale Regeländerung aktualisiert auch die vorhandene Sicherung
+`references/forbidden-backup.md`; ein einzelner Textfund löst das nicht aus.
 
-**3. Modell-Wahl für den Schreib-Schritt.**
+**3. Copy-Owner und Prüfung.** Der aktuelle Nutzer-/Hostvertrag bestimmt
+Writer, Modell und Werkzeuge. Im Web-Auftrag schreibt der benannte Copy-Owner
+neue/geänderte Produktionscopy; der UI-Integrator übernimmt den Wortlaut und
+meldet Layoutkonflikte zurück. Historische Flottenprofile sind keine neue
+Copyfreigabe. Eine unabhängige Prüfung wird mit tatsächlichem Prüfer und Umfang
+benannt; Fähigkeiten folgen dem aktuellen Host, nicht alten Provider-Incidents.
 
-| Aufgabe | Modell | Grund |
-|---|---|---|
-| Deutsche Verkaufs-Copy schreiben | `kimi-worker` oder `sol-builder` (gleichberechtigt) | Copy-Owner laut Rollenlogik 01.09.2026; Opus schreibt nie Copy |
-| Ad-Copy, kreative Angles | `kimi-worker` | Ads-Spezialist, knapper Output |
-| Umschreiben/Kürzen mechanisch | `luna-worker` | exakte Vorgabe, kein Eigenleben |
-| Eval/Judge | `sol-pruefer` oder `kimi-recherche` | andere Familie als der Schreiber |
+**4. Kontext gezielt halten.** Nur passende Kanal-, Voice- und Quellenreferenzen
+laden. Bei großem Korpus relevante Auszüge mit Herkunft auswählen. Unabhängige
+Recherchepakete können delegiert werden; die Dateizahl erzwingt keinen Fan-out.
 
-Fable schreibt **keine** Copy: zu wortreich. Ein Modell schreibt nie den
-eigenen Text ab: Schreiber und Prüfer sind immer verschiedene Familien.
+**5. Prüfung nach Bedarf.** G0/G1 und die eigene Textprüfung gehören zum
+Schreiben. Eine unabhängige Prüfung braucht einen ausdrücklichen Review-Auftrag
+oder ein konkretes Risiko mit zusätzlichem Erkenntniswert. Dann relevante
+Voice-Regeln und den Entwurf übergeben; Befunde mit Textbelegen verlangen.
+Subjektive Abnahme bleibt beim Nutzer, keine feste Agentenquote.
 
-**4. Writer-Kontext unter 50 %.** Über 50 % Füllstand fällt die Textqualität hart
-ab. Braucht der Auftrag mehr Material (langer Korpus, viele Referenzen):
-pro Teilstück einen eigenen Subagenten einsetzen.
-Faustregel: mehr als 3 Referenzdateien + Kundenmaterial → splitten.
-
-**5. Der Eval-Agent ist unabhängig.** Kein Text geht raus, den der Schreiber
-selbst freigegeben hat. Prüfauftrag an den Eval-Agenten enthält immer:
-`forbidden.md`, `references/voice-dna.md`, die VOICE.md des Kunden, den Entwurf.
-Rückgabe: pass/fail je Regel mit **eingefügtem Beleg aus dem Text**.
-Nie "erkläre dein Denken" fragen (Fable-Gotcha, Regel 19).
-
-**6. Handedit vor Veröffentlichung.** Jeder Draft geht als Entwurf an Raphael,
-nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
+**6. Ergebnis und Veröffentlichung trennen.** Ein Entwurfsauftrag liefert
+Entwurf und Prüfergebnis. Ein bereits autorisierter Außenabschluss folgt dem
+Host-/Projektvertrag; eine erforderliche subjektive Entscheidung wird am
+konkreten Text vorgelegt.
 
 ## Ablauf
 
@@ -159,7 +156,7 @@ nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
 4. **Selbstkritik-Zwischenschritt (billig, vor dem teuren G2):** Entwurf laut durchlesen und
    knapp beantworten: "Was macht diesen Text noch offensichtlich KI-generiert?" Die Antwort
    direkt einarbeiten, bevor G2 läuft: hebt die Qualität vor dem Judge-Call günstig an.
-5. **G2 (unabhängiger Eval-Agent, andere Modellfamilie als der Schreiber):**
+5. **G2 (bei beauftragtem Review oder konkretem Risiko):**
    Prüfauftrag bekommt: den Entwurf, `/root/.claude/forbidden.md`,
    `references/voice-dna.md`, die VOICE.md des Kunden. Geprüft wird:
    - Orwell-Regel **1** (abgedroschene Metaphern)
@@ -169,17 +166,17 @@ nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
    - **forbidden.md**: Gegenprüfung, ob der Schreiber Treffer übersehen hat
 
    Rückgabe: pass/fail je Regel **mit wörtlich eingefügtem Beleg aus dem Text**.
-   Nie "erkläre dein Denken" fragen (Regel 19 / Fable-Gotcha).
 
-   **Jeder Fund des Eval-Agenten, der ein neues Muster zeigt, wird sofort in
-   `forbidden.md` Abschnitt F nachgetragen**: mit kaputtem Beispiel und Fix.
-   Die Harness wird bei jedem Durchlauf besser, sonst wiederholt sich der Fehler.
+   Ein möglicher neuer allgemeiner Fund geht mit Quelle, Fehlbeispiel,
+   Geltungsbereich und Gegenprobe in den bestehenden Lern-/Skill-Update-Weg.
+   Der Kundenlauf ändert weder `forbidden.md` noch globale Skillregeln.
 6. **Hook & CTA**: nach `references/cta-framework.md` (Hook = drei Funktionen + 1,8-s-Regel,
    Curious-vs-Committed-Diagnose, Financial Qualification über die Situation). Für
    Persuasion-Framing (Anchoring, Verlust-Aversion, Decoy-Effekt etc.) siehe
    `references/mental-models-en.md`: ersetzt keine echte Voice-of-Customer-Recherche.
-7. **Zweit-Edit bleibt hier:** Wenn der Text nach G2 noch nach KI klingt, denselben
-   Ablauf G0→G1→G2 erneut fahren. Skill `no-ai-slop` nicht extra laden.
+7. **Zweit-Edit bleibt hier:** Konkrete Textbefunde gezielt korrigieren und die
+   betroffenen Checks wiederholen. Keine vollständige neue Review-Runde ohne
+   neue Änderung oder offene Frage. Skill `no-ai-slop` nicht extra laden.
 8. **Verkaufs-/VSL-Struktur**: bei Long-Form (VSL, Sales-Page, Nurture) nach
    `references/vsl-framework.md`: Reihenfolge nach Überzeugungskraft, Identitäts-Commitment
    auf Danke-Seiten, Nurture aus Empfängerperspektive.
@@ -192,9 +189,11 @@ nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
    ergänzen. Bei langer Copy (Sales-Page, Landingpage) zusätzlich optional die
    Seven-Sweeps (`references/copy-editing-sweeps.md`) als Qualitäts-Gate vor Auslieferung.
 
-10. **Übergabe als Entwurf.** Ausgeliefert wird: Entwurf + Eval-Bericht + Liste der
-   `forbidden.md`-Nachträge. Nie "fertig, kann live". Raphael handeditiert vor
-   Veröffentlichung. Das gehört zum Verfahren.
+10. **Übergabe nach Auftrag.** Ausgeliefert werden Text, passende Prüfergebnisse
+   und offene Fakten. Im Web-Auftrag bleiben neue/geänderte Blöcke der Umfang;
+   bereits gültige unveränderte Copy wird nicht neu geschrieben. Eine verlangte
+   subjektive Textwahl bleibt Raphael vorbehalten. Veröffentlichung folgt der
+   tatsächlich vorhandenen Autorisierung und dem geprüften Ziel.
 
 ## Gotchas
 
@@ -202,11 +201,12 @@ nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
   `references/beispiele-gute-copy.md` enthalten Slop ("Kein Warten, kein Vertrösten",
   "It's not an event. It's a workshop.", das Nervensystem/Gehirn-Bild). Übernommen
   wird das Beweis- und Aufbau-Muster, nie die kaputte Formulierung.
-- **Eval-Agent muss eine andere Modellfamilie sein.** Ein Modell findet den eigenen
-  Slop nicht. Es hat ihn erzeugt, weil es ihn für gut hält.
-- **Kontext über 50 % = Textqualität fällt.** Bemerkbar an: längeren Sätzen,
-  mehr Hedging, Rückwärts-Referenzen. Bei diesen Symptomen Kontext prüfen,
-  nicht am Text herumdoktern.
+- **Prüfumfang und Unabhängigkeit benennen.** Ein zweiter Prüfer untersucht den
+  tatsächlichen Text gegen Voice und Quellen; Familiennamen allein beweisen
+  keine bessere Qualität. Die aktuelle Modell-/Rollenwahl steht im Hostvertrag.
+- **Quellenkontext prüfen.** Bei vagen Aussagen oder unklaren Rückbezügen die
+  konkrete Voice-/Faktenquelle heranziehen. Eine pauschale Füllstandsgrenze
+  ersetzt keine Prüfung des Textes.
 - **Kürzen ist kein Kanal-Transfer.** Eine Landingpage auf 90 Wörter gekürzt ist
   keine Ad. Pro Kanal aus dem Kern-Satz neu bauen (`references/kanaele.md`).
 
@@ -215,8 +215,6 @@ nie direkt live. Der Skill liefert Entwurf + Eval-Bericht, nicht "fertig".
   darf Regelbruch belohnen, wenn er den Text menschlicher macht.
 - **Voice-Slot: Kunde vor Zentrale.** Ein globaler Skill kopiert nie Kundeninhalt — VOICE.md
   wird zur Laufzeit als Verweis geladen (scope/sensitivity!).
-- **Judge-Prompt nie nach dem Denkweg fragen ("erklaere dein Denken"-Muster)** → Fable `reasoning_extraction`-Refusal, stiller
-  Opus-Fallback (Regel 19). Immer "pass/fail + eingefügter Beweis".
 - Deutsch ist nicht Englisch: Nominalstil ("die Durchführung der Optimierung") und
   Funktionsverbgefüge ("zur Anwendung bringen") sind die deutschen Haupt-Floskeln. Der
   Detektor zielt darauf, nicht auf englische Passiv-Marker.

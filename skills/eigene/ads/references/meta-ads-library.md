@@ -144,6 +144,34 @@ Playback-/Audiolücken genannt und jede Empfehlung auf beobachtete Stellen
 zurückgeführt ist. Ein Blocker ist ein ehrlicher Teilstand, keine abgeschlossene
 visuelle Meta-Recherche. Unabhängige Recherche dennoch fertigstellen.
 
+## Strukturierte Vorerfassung mit adlib.py
+
+Die Graph-API `ads_archive` ist auf diesem Server gesperrt. Meta antwortet mit
+Fehler 10 und Subcode 2332002, weil die Ad-Library-Zugriffsprüfung des Kontos
+aussteht. Geprüft am 07.09.2026 gegen sechs Varianten: Länder DE und US,
+`ad_type` ALL und POLITICAL_AND_ISSUE_ADS, API-Versionen v21.0 und v23.0, dazu
+Nutzer- und System-User-Token. Alle sechs liefern denselben Fehler. Im Dossier
+gehört das als `meta_api: failed` mit diesem Grund vermerkt.
+
+Die öffentliche Oberfläche bleibt davon unberührt und liefert ohne Login
+Treffer. `/root/raphael-command-center/ops/bin/adlib.py` steuert das Dauer-Chrome
+über CDP, scrollt die Trefferliste und gibt je Anzeige Bibliotheks-ID, Status,
+Startdatum, Werbetreibenden, Seitenlink, Text, Domain, CTA, Medienart,
+Creative-URL und die entschlüsselte Ziel-URL samt UTM-Parametern aus.
+
+```
+adlib.py "bestattungsvorsorge" --land DE --limit 30 \
+  --json /tmp/recherche.json --bilder /tmp/creatives
+```
+
+Weitere Schalter: `--seite <page_id>` für die Bibliothek eines Werbetreibenden
+und `--status active|inactive|all`.
+
+Das Werkzeug ersetzt die visuelle Sichtung nicht. Es liefert die Kandidatenliste
+und lädt die Creatives als Dateien, damit jede verwendete Anzeige danach wirklich
+angesehen wird. Für `ad_library: ok` zählt weiterhin nur die gesichtete Anzeige,
+und Videoanzeigen brauchen das Playback in der Oberfläche.
+
 ## Quellenbasis
 
 - [Meta Ads Library](https://www.facebook.com/ads/library/): operative Oberfläche;

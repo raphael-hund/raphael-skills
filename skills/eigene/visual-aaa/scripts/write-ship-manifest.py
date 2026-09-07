@@ -4,38 +4,48 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
+import hashlib
+import importlib.util
+import os
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 
-_EVIDENCE_FILE = re.compile(r"\b[^\s,;]+\.(?:png|jpg|jpeg|webp)\b", re.IGNORECASE)
-_EVIDENCE_REGION = re.compile(
-    r"\b(?:region|oben|unten|links|rechts|mitte|top|bottom|left|right|center|zentral)\b",
-    re.IGNORECASE,
-)
-
-
-def _critic_contract_ok(v: object) -> bool:
-    if not isinstance(v, dict):
-        return False
-    required = ("verdict", "biggest_gap", "beleg", "confidence")
-    if any(not isinstance(v.get(k), str) or not v[k].strip() for k in required):
-        return False
-    beleg = v["beleg"]
-    if len(beleg.split()) < 4 or not _EVIDENCE_FILE.search(beleg) or not _EVIDENCE_REGION.search(beleg):
-        return False
-    if v["verdict"] == "pass":
-        return v["confidence"] == "HIGH" and v["biggest_gap"] == "none"
-    return v["verdict"] == "fail" and v["confidence"] in {"HIGH", "MED", "LOW"} and v["biggest_gap"] != "none"
+_SHIP_SCHEMA = "visual-aaa/ship/v2"
+def _write_atomic(path: Path, payload: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temp_path = Path(handle.name)
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, path)
+    except BaseException:
+        if temp_path is not None:
+            temp_path.unlink(missing_ok=True)
+        raise
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--schema", default=_SHIP_SCHEMA)
+    ap.add_argument("--run-id", required=True)
+    ap.add_argument("--build-revision", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--render-dir", required=True)
     ap.add_argument("--g1", required=True)
+    ap.add_argument("--sweep", help="Web: current shot-sweep manifest.json")
     ap.add_argument("--critics", required=True)
     ap.add_argument("--self-read", default="false")
     ap.add_argument("--self-read-notes", default="")
@@ -44,8 +54,22 @@ def main() -> int:
     ap.add_argument("--acceptance", default=None, help="optional acceptance_checks.json")
     args = ap.parse_args()
 
+    if args.schema != _SHIP_SCHEMA:
+        print(
+            f"FATAL: unsupported schema {args.schema!r}; new ship manifests require {_SHIP_SCHEMA}",
+            file=sys.stderr,
+        )
+        return 2
+    run_id = args.run_id.strip()
+    build_revision = args.build_revision.strip()
+    if not run_id or not build_revision:
+        print("FATAL: run_id and build_revision must be non-empty", file=sys.stderr)
+        return 2
+
     render_dir = Path(args.render_dir)
     g1 = json.loads(Path(args.g1).read_text())
+    if not isinstance(g1, dict):
+        raise ValueError("g1 must be an object")
     critics = json.loads(Path(args.critics).read_text())
     if isinstance(critics, dict) and "verdicts" in critics:
         verdicts = critics["verdicts"]
@@ -55,15 +79,38 @@ def main() -> int:
         print("FATAL: critics must be list or {verdicts:[]}", file=sys.stderr)
         return 2
 
+    if not isinstance(verdicts, list):
+        raise ValueError("critic verdicts must be a list")
+
     pages = []
-    for png in sorted(render_dir.glob("*.png")):
-        pages.append(
-            {
-                "id": png.stem,
-                "render": str(png.resolve()),
-                "source": "",
-            }
-        )
+    inputs = {}
+    base_url = ""
+    sweep_path = Path(args.sweep) if args.sweep else render_dir / "manifest.json"
+    is_web = g1.get("schema") == "web/g1-report/v2"
+    if is_web:
+        if not sweep_path.is_file():
+            print("FATAL: web ship requires --sweep manifest.json", file=sys.stderr)
+            return 2
+        sweep = json.loads(sweep_path.read_text())
+        if not isinstance(sweep, dict) or not isinstance(sweep.get("routes"), list):
+            raise ValueError("sweep must contain a routes list")
+        base_url = g1.get("base_url") or g1.get("base", "")
+        for kind, source in (("g1", Path(args.g1)), ("sweep", sweep_path)):
+            inputs[kind] = {"path": str(source.resolve()), "sha256": hashlib.sha256(source.read_bytes()).hexdigest()}
+        for route in sweep["routes"]:
+            if not isinstance(route, dict) or not isinstance(route.get("shots"), list):
+                raise ValueError("sweep route must contain a shots list")
+            for shot in route["shots"]:
+                if not isinstance(shot, dict) or not isinstance(shot.get("file"), str):
+                    raise ValueError("sweep shot must name its file")
+                png = (sweep_path.parent / shot["file"]).resolve()
+                pages.append({"id": png.stem, "render": str(png), "source": route.get("route", ""),
+                              "route": route.get("route"), "viewport": route.get("viewport_label"),
+                              "sha256": hashlib.sha256(png.read_bytes()).hexdigest() if png.is_file() else ""})
+    else:
+        for png in sorted(render_dir.glob("*.png")):
+            pages.append({"id": png.stem, "render": str(png.resolve()), "source": "",
+                          "sha256": hashlib.sha256(png.read_bytes()).hexdigest()})
 
     acceptance = []
     if args.acceptance:
@@ -74,33 +121,14 @@ def main() -> int:
     self_read = str(args.self_read).lower() in ("1", "true", "yes")
     g1_exit = 0 if g1.get("ok") else 1
 
-    # ok computation (same rules as validate)
-    ok = self_read and g1_exit == 0 and len(pages) > 0
-    # Every critic record must satisfy the exact four-field contract.
-    if not verdicts or any(not _critic_contract_ok(v) for v in verdicts):
-        ok = False
-
-    # latest pass HIGH per page
-    by_page: dict[str, list] = {}
-    for v in verdicts:
-        if isinstance(v, dict):
-            by_page.setdefault(v.get("page_id", ""), []).append(v)
-    for p in pages:
-        vs = by_page.get(p["id"], [])
-        if not vs:
-            ok = False
-            break
-        best = sorted(vs, key=lambda x: x.get("round", 0))[-1]
-        if best.get("verdict") != "pass" or best.get("confidence") != "HIGH":
-            ok = False
-            break
-    for c in acceptance:
-        if c.get("status") != "pass":
-            ok = False
+    ok = self_read and g1_exit == 0 and bool(pages)
 
     manifest = {
-        "schema": "visual-aaa/ship/v1",
+        "schema": _SHIP_SCHEMA,
+        "run_id": run_id,
+        "build_revision": build_revision,
         "ok": ok,
+        "status": "PASS" if ok else "FAIL",
         "project": args.project,
         "version_label": args.version_label,
         "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -112,12 +140,26 @@ def main() -> int:
         "critic_verdicts": verdicts,
         "acceptance_checks": acceptance,
     }
+    if is_web:
+        manifest["base_url"] = base_url
+        manifest["inputs"] = inputs
+    validator_path = Path(__file__).with_name("validate-ship-manifest.py")
+    module_spec = importlib.util.spec_from_file_location("visual_ship_validator", validator_path)
+    validator = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(validator)
+    errors = validator.manifest_errors(manifest)
+    if errors:
+        ok = False
+        manifest.update(ok=False, status="FAIL", errors=errors)
     out = Path(args.out)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
+    _write_atomic(out, json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
     print(f"wrote {out} ok={ok}")
     return 0 if ok else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except (OSError, ValueError, TypeError, KeyError) as exc:
+        print(f"FATAL: invalid ship input: {exc}", file=sys.stderr)
+        sys.exit(2)

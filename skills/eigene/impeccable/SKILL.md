@@ -1,5 +1,6 @@
 ---
 name: impeccable
+disable-model-invocation: true
 version: 0.2.0
 description: >
   Router auf Kommandosprache + Craft-Floor in design. Feuert NUR bei

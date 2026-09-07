@@ -125,7 +125,8 @@ streit_genannt: ja | nein
 `/root/raphael-skills/skills/eigene/ads/references/segment-map.md`.
 
 MAKE testet neue Angles zuerst als Static.
-Evers prüft ein Offer zuerst als Video.
+Evers beschreibt je nach Phase Static-Tests und Video-/VSL-Strecken; die
+konkrete Quelle nennen, kein pauschales Video-first daraus ableiten.
 Eigene Daten vom 02.08.2026 zeigen bei gleichem Spend kaum Formatunterschied.
 Das Dossier nennt den Streit und wählt mit Grund.
 

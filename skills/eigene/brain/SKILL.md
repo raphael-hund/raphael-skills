@@ -1,6 +1,6 @@
 ---
 name: brain
-version: 0.2.0
+version: 0.3.0
 description: >
   Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi:
   `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als
@@ -8,7 +8,7 @@ description: >
   `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und
   autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff).
   Ein Creator-Profil (alle Reels/Videos) läuft als einspeisen→verdichten→sichten
-  nach references/creator-feed.md, nicht als ein watch-Aufruf. Verdrahtet auf
+  nach references/creator-feed.md, mit Medien-IDs, Carousel-Videos und Abdeckungslücken. Verdrahtet auf
   die vorhandenen Brain-Skripte statt auf Freitext. Trigger: "ins Brain", "einspeisen",
   "Brain aufräumen", "was weiß ich über", "Kandidaten sichten", "Wissen verdichten",
   "Brain prüfen", "brain", "Notiz ablegen", "Second Brain", "alle Reels transkribieren",
@@ -200,7 +200,28 @@ Ziel: eine Antwort **nur** aus freigegebenem Wissen, mit offengelegten Quellen.
 5. **Ausgabe:** Antwort plus Liste der konsultierten Seiten mit Pfad und Datum. Längere
    Ausarbeitungen nach `/root/raphael-brain/exports/`. Fehlt der Beleg, lautet die Antwort
    **„nicht belegt"** — nie eine plausible Ergänzung.
-6. Flüchtiges (Mail, Kalender, CRM) wird live abgefragt, nicht ins Brain kopiert.
+6. **Quellwortlaut.** Beim Verdichten und in Recherche-Briefen fremden Text in eigener
+   indirekter Rede wiedergeben. Wörtliche Übernahme nur als kurzes markiertes Zitat
+   (`"..."` oder `>`), nie unmarkiert im Fließtext. Die Antwort organisiert nach Aussage
+   (wo Quellen sich treffen, wo sie abweichen), nicht als Gang durch die Quelle.
+   Rohablage bleibt unberührt: `raw/`, Transkript-Volltext, `customer-language/` und
+   Creator-Nuggets bleiben wörtlich und mit Herkunft; sobald derselbe Satz in Wiki oder
+   Brief erscheint, ist er Zitat. „Aufnahme vollständig / kein Kürzen“ gilt nur fürs Einspeisen.
+
+   Richtig: Zwei Quellen zur Hook-Rate. Die Schwelle steht in eigenen Sätzen; ein kurzes
+   markiertes Zitat; der Rest umformuliert. Falsch: Transkript- oder Wiki-Passagen
+   unmarkiert in den Fließtext kippen.
+
+   Beispiel (CORRECT): Beide Outlets sind sich einig über die Basis: die Brücke schloss
+   am 3. März, nachdem Prüfer Risse in den Schweißnähten fanden, und der Staat rechnet
+   mit etwa acht Monaten Reparatur. Unterschied ist die Betonung. Das Ledger behandelt
+   es als lokale Wirtschaftsgeschichte. Der Dispatch rahmt es als Finanzierungsversagen;
+   sein Leitartikel nennt die Schließung „entirely foreseeable.“ Zusammen erklärt das
+   Ledger, wen es jetzt trifft, und der Dispatch, wie es so weit kam — keine der beiden
+   Darstellungen allein gibt das ganze Bild. Organisiert nach Übereinstimmung und
+   Differenz, nicht als Gang durch einen Artikel. Jede Quelle in ein, zwei Sätzen
+   indirekter Rede; ein kurzes markiertes Zitat; jeder andere Claim umformuliert.
+7. Flüchtiges (Mail, Kalender, CRM) wird live abgefragt, nicht ins Brain kopiert.
 
 ---
 

@@ -119,8 +119,8 @@ verschluckt hat. Das ist der häufigste stille Fehler, deshalb hier prüfen und 
 später.
 
 Sehr lange Werke: Kapitel einzeln durch je einen frischen Subagenten laufen lassen
-(`orchestrate`, 4–6 parallel, nie mehr — RAM). Jeder Subagent bekommt **nur seinen
-Zeilenbereich**, nicht das ganze Buch.
+(`orchestrate`, parallel ohne künstliche Obergrenze). Jeder Subagent bekommt **nur
+seinen Zeilenbereich**, nicht das ganze Buch.
 
 ### Schritt 4 — Je Kapitel die fünf Blöcke
 

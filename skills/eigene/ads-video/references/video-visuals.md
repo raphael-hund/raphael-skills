@@ -32,7 +32,8 @@ Beispiel-Tabellenform (aus MAKE-Referenz):
 | Proof-Satz mit Kundenname | ECHT: Kunden-Website-Screen |
 | Abschluss/CTA | nichts |
 
-Onscreen sagt etwas anderes als die Stimme. Overlay ab Frame 0.
+Headline-Overlay ergänzt die Aussage. Untertitel geben den Sprechtext korrekt
+wieder. Ein früher Overlay hilft nur, wenn er lesbar ist und zur Aussage passt.
 
 ## Fünf Dreh-Formate
 
@@ -75,12 +76,13 @@ Die fünf Dreh-Formate oben bleiben der MAKE-Default nach Static-Sieg.
 Wenn ein Video-Winner steht, kommt horizontale Skalierung dazu, nicht nur mehr Spend.
 Sechs Winkel (Problem, Lösung, Social Proof, Preis, FOMO, Angst) mal die Formate
 UGC, Static, Split Screen, Green Screen, High Production, Screen Recording/Proof.
-Playbook: `../ads/references/marc-evers-playbook.md` Abschnitt 14.
+Playbook: `../../ads/references/marc-evers-playbook.md`, Varianten nach Belegen.
 
 ## One-Frame-Test
 
 Pause bei Sekunde 0. Der Frame muss allein als Static tragen:
-ICP oder Ort sichtbar, eine Zahl oder ein Name, Overlay lesbar, CTA noch nicht nötig.
+Thema und Relevanz erkennbar, vorhandener Overlay lesbar, CTA noch nicht nötig.
+Zahl, Name und Ortsbezug nur einsetzen, wenn sie zur Aussage passen und belegt sind.
 Fällt der Test: Format oder Overlay ändern, nicht nur den Sprechsatz.
 
 ## Illustrations-Stil-Rezept (Prompt-Baustein)
@@ -117,7 +119,7 @@ Zwei Referenz-Rollen im Prompt benennen:
 
 Modellwahl, Auflösung, KI-Menschen-Regeln und Asset-Indexierung sind nicht Teil dieses
 Skills. Operative Doktrin:
-`/root/raphael-skills/skills/eigene/web/references/bildgenerierung.md`.
+`/root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/bildgenerierung.md`.
 Kurzfassung für Video-Illustrationen: **Illustrationen (2D/3D, stilisiert) → GPT Image 2**,
 auch ohne Referenz: GPT Image ist der beste Illustrator, Recraft ist dafür falsch.
 Auflösung mindestens 2k, besser 4k. Uncanny-Check gilt auch für Illustrationen mit
