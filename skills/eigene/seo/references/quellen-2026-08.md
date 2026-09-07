@@ -82,7 +82,7 @@ Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-neilpatel-capture.md`.
 ## @mal_shaik / wespreadjam (X-Bookmark 2026-09-07)
 
 Roh: `/root/raphael-brain/raw/bookmark-2026-09-07-seo-malshaik-vercel-ai-citation-audit.md`.
-Kandidat: `/root/raphael-brain/wiki/_candidates/2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md`.
+Brain: `/root/raphael-brain/wiki/craft/seo/seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` (approved 2026-09-07, confidence low).
 
 - Vercel laut Audit 48 % Citation Share in der KI-Suche, Cloudflare 29 %, Netlify 20 %; ChatGPT 13/18 Prompts, Gemini 2/13 (2026-09-06, X-Status 2096746289920926027). Anbieter-Claim, Prompt-Set nicht veröffentlicht.
 - Sechs Hebel: eigenes Framework, eigene Bibliothek, Vergleichs-Hub mit 13 Einzelseiten, Template-Galerie je eine URL, Kurse mit Deploy-Abschluss, eigene Doku-Site (2026-09-06, ebd.).

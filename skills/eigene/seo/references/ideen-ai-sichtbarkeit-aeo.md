@@ -90,9 +90,9 @@ Grund-Idee für ein einfaches, manuelles Monitoring, wenn kein Spezial-Tool zur 
 ## Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke (Mechanik, 2026-09)
 
 Aus dem Vercel-Citation-Audit von @mal_shaik (Zahlen und Nachprüfung in `quellen-2026-08.md`,
-Tiefe im Brain-Kandidaten `2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md`).
+Tiefe im Brain `seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md`).
 Ein einzelnes Audit eines Tool-Anbieters über eine Marke, Prompt-Set nicht veröffentlicht,
-Kandidat mit `confidence: low`. Vier Hypothesen zum Prüfen am Kunden, keine Regeln:
+Brain-Seite mit `confidence: low`, promotet 2026-09-07. Vier Hypothesen zum Prüfen am Kunden, keine Regeln:
 
 1. **Owned Asset besetzt eine Fragekategorie.** Laut Audit wird Vercels SDK-Doku bei Fragen
    zitiert, die nichts mit Hosting zu tun haben. Übertragung: eigenes Werkzeug (Rechner,

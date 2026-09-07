@@ -85,7 +85,7 @@ sichtbar wird, und bei Decay auffrischen.
 | **KI-Suche** (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | `references/ideen-ai-sichtbarkeit-aeo.md` |
 | **Graustufen / asozial** | `references/graustufen.md` — nur nach Raphael-Go |
 | **Citation Outreach / LLM mentions** | `references/citation-outreach-automation.md` + `scripts/citation_outreach.py` |
-| **Owned Assets / Vergleichs-Hub / Preis-Prompt-Lücke** (KI-Zitate, Hypothesen) | `references/ideen-ai-sichtbarkeit-aeo.md` Abschnitt „Owned Assets" + Brain-Kandidat `2026-09-07-seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` |
+| **Owned Assets / Vergleichs-Hub / Preis-Prompt-Lücke** (KI-Zitate, Hypothesen) | `references/ideen-ai-sichtbarkeit-aeo.md` Abschnitt „Owned Assets" + Brain `seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` |
 | Named-Source-Mechaniken (Borja, Edward, Tony, Brain) | `references/quellen-2026-08.md` |
 | Spezialtiefe Brain | `references/wissens-router.md` |
 
