@@ -16,6 +16,7 @@ erforderlich. Kundeneigene Daten werden nur für den konkreten Auftrag ergänzt.
 | Welche Formeln und tatsächlichen Beispiele tragen die Entscheidung? | [Referenzkatalog](../craft/referenzkatalog.md) |
 | Was bedeuten 7/30 Tage, pausieren, weiterlaufen oder skalieren? | [Performance](../loop3-ablauf.md) |
 | Woher stammt eine Lehre, wie vollständig ist ein Profil erfasst? | Autorenregister unten; je Autor `sources.jsonl` und `learnings.jsonl` |
+| Was sind MAKEs eigene Ads-Beschlüsse und die Betriebskadenz? | [MAKE-Ads-Regeln](make/ads-regeln.md) — geht im Konfliktfall jedem Creator-Rat vor |
 | Wie ergänze ich ein Profil oder aktualisiere eine Aussage? | [Quellenpflege](quellenpflege.md) |
 
 ## Autoren und Herkunft
@@ -27,7 +28,7 @@ erforderlich. Kundeneigene Daten werden nur für den konkreten Auftrag ergänzt.
 | @brillaas | [Autorenreferenz](autoren/brillaas/index.md) | Seine erfassten Ansätze, Grenzen und Leadgen-Übertragung |
 | Nick Theriot / @nicktheriot_ | [Autorenreferenz](autoren/nicktheriot_/index.md) | Kontoführung und Creative-Tests; Käufe und qualifizierte Anfragen unterscheiden |
 | Heik Stepanjan / @heikstepo | [Autorenreferenz](autoren/heikstepo/index.md) | Meta-Ads für Info-Offers und Webinare: Copy als Zielgruppenwahl, Kampagnenstruktur, Show-up; Übertragung auf lokale Leadgen ausdrücklich prüfen |
-| Marc Evers | [Playbook](../marc-evers-playbook.md), [Detailbestand](bestand/index.md) | Agentur-Offer, Proof, Formulare, Varianten und Sales-Kontext |
+| Marc Evers | [Autorenreferenz](autoren/marc-evers/index.md), [Playbook](../marc-evers-playbook.md), [Detailbestand](bestand/index.md) | Agentur-Offer, Proof, Formulare, Varianten und Sales-Kontext; zusätzlich seine eigenen ausgespielten Anzeigen |
 | Zac Regan / @startrunningads | [Playbook](../zac-regan-startrunningads.md), [Detailbestand](bestand/index.md) | Hooks, Copy, Leadqualität, Content und Engpässe |
 | Alex Hormozi | [Playbook](../hormozi-paid-ads.md) | Käuferansprache, Wertargumentation, Proof und Reibung als auswählbare Modelle |
 

@@ -36,7 +36,8 @@ Pfade gelten von `ads/references/` aus.
 | Autoren, einzelne Learnings, Vollständigkeit und Quellen | [wissen/index.md](wissen/index.md) |
 | Konto / Testwelle / 7-30-Tage | `loop3-ablauf.md` |
 | Video sehen, Frames, Transkript | `/root/raphael-skills/skills/eigene/watch/SKILL.md` |
-| Marc Evers: Offer, Proof, Video, Testen und Quellenabdeckung | `marc-evers-playbook.md` |
+| Marc Evers: Offer, Proof, Video, Testen und Quellenabdeckung | `marc-evers-playbook.md`, [wissen/autoren/marc-evers/index.md](wissen/autoren/marc-evers/index.md) |
+| MAKE-eigene Ads-Beschlüsse, Anrede/H17/Statics, Betriebskadenz | [wissen/make/ads-regeln.md](wissen/make/ads-regeln.md) |
 | Diktat, Wispr, Drehbrief und kontinuierliche Video-Produktion | `video-produktion.md` |
 | Visuelle Meta Ads Library und Playback-Belege | `meta-ads-library.md` |
 | Claims | `claims-verbote.md` |
