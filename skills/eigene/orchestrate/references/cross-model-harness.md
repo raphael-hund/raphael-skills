@@ -21,13 +21,13 @@ Nie rückwärts routen („noch Quota bei X, also alles X").
 | `fable-builder` | Claude (Fable 5.1) | Frontend, Integration, harte Fixes mit vollem Paketkontext; Default-Builder bei „maximale Qualität“ | high, max zwei parallel |
 | `opus-builder` | Claude | Frontend, Substanz, ein UI-Integrator | high |
 | `opus-critic` | Claude | Read-only Kritik nach Nicht-Opus-Build | high |
-| `sol-builder` | GPT | begrenzter Code mit Gate | max |
-| `sol-pruefer` | GPT | Ship-Review nach Nicht-GPT-Build | max |
+| `sol-worker` | GPT | begrenzter Code mit Gate | max |
+| `sol-critic` | GPT | Ship-Review nach Nicht-GPT-Build | max |
 | `grok-worker` | Grok | technische Fixes, Debugging, hartes Engineering | high |
 | `grok-critic` | Grok | Read-only technisches Urteil nach Nicht-Grok-Build | high |
-| `visual-kritiker` | Grok | read-only visuell; Verdict plus Pfad, nie PNG | high |
+| `grok-critic` | Grok | read-only visuell; Verdict plus Pfad, nie PNG | high |
 | `luna-worker` | GPT | Masse, Serie, mechanische Listen | max |
-| `terra-bulk` | GPT | Multi-File-Migration, Architektur-Umbau | max |
+| `terra-worker` | GPT | Multi-File-Migration, Architektur-Umbau | max |
 
 **Verboten als Subagent:** Haiku und Sonnet. Fable nur als `fable-advisor`
 (read-only) oder `fable-builder` (Builder-Leaf, Raphael 04.09.2026); rohe
@@ -44,14 +44,14 @@ kommt aus der Profil-Tabelle in `dispatch.md` — nicht von hier.
 
 | Aufgaben-Klasse | Minimum-Flotte | Warum |
 |---|---|---|
-| Feature / Website | `fable-builder` (oder `opus-builder`) + `sol-pruefer` | Qualitäts-Default Fable; visuell extra `visual-kritiker` |
-| Code-Paket | `sol-builder` + `opus-critic` | Sol baut, Opus prüft |
-| Copy | `sol-builder` + `opus-critic` | Sol schreibt (einziger Copy-Writer), Opus prüft |
+| Feature / Website | `fable-builder` (oder `opus-builder`) + `sol-critic` | Qualitäts-Default Fable; visuell extra `grok-critic` |
+| Code-Paket | `sol-worker` + `opus-critic` | Sol baut, Opus prüft |
+| Copy | `sol-worker` + `opus-critic` | Sol schreibt (einziger Copy-Writer), Opus prüft |
 | Recherche | `luna-worker` (Masse) + `opus-critic` | Kimi tot |
-| Visuelles QA | `visual-kritiker` (Verdict + Pfad) | nach Grok-Build: `opus-critic` oder `sol-pruefer` |
+| Visuelles QA | `grok-critic` (Verdict + Pfad) | nach Grok-Build: `opus-critic` oder `sol-critic` |
 | Masse / Serie | `luna-worker` + `opus-critic` | Luna nur Masse, Kritik andere Familie |
-| Bulk/Migration | `terra-bulk` + `opus-critic` | Terra=GPT, also nicht `sol-pruefer` |
-| Technischer Fix | `grok-worker` + `sol-pruefer` | Grok baut klug, Sol prüft |
+| Bulk/Migration | `terra-worker` + `opus-critic` | Terra=GPT, also nicht `sol-critic` |
+| Technischer Fix | `grok-worker` + `sol-critic` | Grok baut klug, Sol prüft |
 
 **Luna nur für Masse:** `luna-worker` bekommt Serien, Listen und mechanische
 Edits — nicht Entscheidungen, nicht Frontend-Substanz, nicht visuelles Urteil.
@@ -63,7 +63,7 @@ Edits — nicht Entscheidungen, nicht Frontend-Substanz, nicht visuelles Urteil.
 | Standard-Orchestrierung im Terminal | Claude Code + Agent-Tool (`agentType:…`) über Gateway |
 | Claude Desktop / RAPHAEL-Session | dieselben `agentType`s; Failover schreibt die Lane anhand der Rollen-Nadel um |
 | Ein großes GPT-Schreibpaket, native Sichtbarkeit | `codex-first` oder `codex exec --profile luna\|terra\|sol` |
-| Riesen-Kontext / DE-Volumen nativ | `fable-builder` (1M-Kontext) oder `terra-bulk` |
+| Riesen-Kontext / DE-Volumen nativ | `fable-builder` (1M-Kontext) oder `terra-worker` |
 | Codex als Sub-Orchestrator (Seats ok) | Sol plant → Luna/Terra `multi_agent_v2` (max_depth=1, max_threads=6); Cross-Familie zurück ins Claude-Cockpit |
 | T3-Thread | **ein** Harness pro Thread; Modell-Logik lebt im Harness, nicht in T3 |
 | Hermes | nie als Router/Cockpit; Output nur Candidates |
@@ -78,7 +78,7 @@ Edits — nicht Entscheidungen, nicht Frontend-Substanz, nicht visuelles Urteil.
 ## Degraded-Pfade (nicht improvisieren)
 
 1. **Codex/GPT tot** (`degraded-gpt.flag` oder Incident): `luna-worker` /
-   `terra-bulk` / `sol-pruefer` → `opus-builder` + `grok-critic`
+   `terra-worker` / `sol-critic` → `opus-builder` + `grok-critic`
    für Regel 8. Melden, nicht verschweigen.
 2. **Claude-Seats voll:** Gateway rotiert die drei Claude-Sitze; danach BLOCKED, kein Fremd-Fallback für Frontend.
    (ROUTING). Kein PAYG-Ausweichen.
@@ -106,7 +106,7 @@ Parallele Writer: disjunkte `write_set`. Index/Lock: ein Owner am Ende.
 
 - Alles auf einer Familie, „später mal Sol“ → **kein** Cross-Model.
 - Leader schreibt den Plan nach dem Distill selbst → Selbstbestätigung.
-- Parent liest Screenshot-PNGs selbst statt `visual-kritiker` mit Pfad-Rückgabe.
+- Parent liest Screenshot-PNGs selbst statt `grok-critic` mit Pfad-Rückgabe.
 - Gleiche Familie baut und ship-reviewed → Regel 8 verletzt.
 - Fable als rohes `model` oder anderer `agentType` → verboten.
   Erlaubt sind `agentType:'fable-advisor'` (low, read-only) und

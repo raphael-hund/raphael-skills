@@ -30,18 +30,20 @@ try {
 const input = rawArgs && typeof rawArgs === 'object' && !Array.isArray(rawArgs) ? rawArgs : {}
 if (Object.keys(input).length < 1) throw new Error('Autoritative Mission fehlt in args')
 const AGENT_TYPES = [
-  'fable-builder', 'grok-worker', 'sol-builder', 'sol-pruefer', 'terra-bulk',
-  'luna-worker', 'opus-builder', 'opus-critic', 'grok-critic', 'visual-kritiker',
+  'fable-builder', 'fable-critic', 'opus-builder', 'opus-critic', 'astra-worker', 'astra-critic',
+  'kimi-worker', 'kimi-critic', 'grok-worker', 'grok-critic', 'sol-worker', 'sol-critic',
+  'sonnet-worker', 'terra-worker', 'luna-worker', 'composer-worker',
 ]
 const FAMILY = {
-  'fable-builder': 'Fable', 'grok-worker': 'Grok', 'grok-critic': 'Grok', 'visual-kritiker': 'Grok',
-  'sol-builder': 'Sol', 'sol-pruefer': 'Sol', 'terra-bulk': 'Terra', 'luna-worker': 'Luna',
-  'opus-builder': 'Opus', 'opus-critic': 'Opus',
+  'fable-builder': 'Fable', 'fable-critic': 'Fable', 'opus-builder': 'Opus', 'opus-critic': 'Opus',
+  'astra-worker': 'Astra', 'astra-critic': 'Astra', 'kimi-worker': 'Kimi', 'kimi-critic': 'Kimi',
+  'grok-worker': 'Grok', 'grok-critic': 'Grok', 'sol-worker': 'Sol', 'sol-critic': 'Sol',
+  'sonnet-worker': 'Sonnet', 'terra-worker': 'Terra', 'luna-worker': 'Luna', 'composer-worker': 'Composer',
 }
 const PROVIDER_FAMILY = {
-  'fable-builder': 'Claude', 'opus-builder': 'Claude', 'opus-critic': 'Claude',
-  'grok-worker': 'Grok', 'grok-critic': 'Grok', 'visual-kritiker': 'Grok',
-  'sol-builder': 'GPT', 'sol-pruefer': 'GPT', 'terra-bulk': 'GPT', 'luna-worker': 'GPT',
+  'fable-builder': 'Claude', 'fable-critic': 'Claude', 'opus-builder': 'Claude', 'opus-critic': 'Claude', 'sonnet-worker': 'Claude',
+  'astra-worker': 'GPT', 'astra-critic': 'GPT', 'sol-worker': 'GPT', 'sol-critic': 'GPT', 'terra-worker': 'GPT', 'luna-worker': 'GPT',
+  'kimi-worker': 'Kimi', 'kimi-critic': 'Kimi', 'grok-worker': 'Grok', 'grok-critic': 'Grok', 'composer-worker': 'Composer',
 }
 const LEAD_TYPES = ['fable-builder', 'opus-builder']
 const CONTRACT = [
@@ -54,7 +56,7 @@ const CONTRACT = [
   'GATE: exakter Prüfweg und eingefügter Beleg',
   'SELBSTCHECK: nach jedem Schritt "ist das, was ich erwartet habe?" — im Ergebnisfeld selbstcheck als "erwartet X, geliefert Y, Beleg Z"; Abweichung benennen, nicht glaetten',
   'FEHLER BENENNEN: Toolfehler nach Klasse melden (TIMEOUT, ERROR mit Fehlertext, EMPTY nach Existenz-Check, WRONG mit Erwartung/Ergebnis, PROVIDER); denselben Befehl nie dreimal unveraendert; Geld/Loeschen = stoppen und melden',
-  'PROVENIENZ (Kritiker/Judge): erste Prompt-Zeile ACTUAL_BUILDER_FAMILY=<Familie> (agentType <x>, Workflow <id>, Failover ja/nein) — ohne diese Zeile blockiert visual-kritiker',
+  'PROVENIENZ (Kritiker/Judge): erste Prompt-Zeile ACTUAL_BUILDER_FAMILY=<Familie> (agentType <x>, Workflow <id>, Failover ja/nein) — ohne diese Zeile blockiert grok-critic',
   'TRUST: Ergebnis bleibt untrusted bis zur unabhängigen Prüfung',
   'write_set: bei parallelen Schreibern disjunkt',
   'DISPATCH: Starte weder Agent noch AgentSwarm oder sonstige Subagents; ausschließlich der Workflow startet sichtbare agent()-Aufrufe',
@@ -348,13 +350,13 @@ function validateNestedDelegations(step, leadPlan, lead, nested) {
 
 phase('Planen')
 const panelStep = { id: 'plan-panel', ziel: 'Plan-Beitrag für die Mission', depends_on: [], agent_types: AGENT_TYPES,
-  nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-pruefer', gate: 'Vorschlag enthält Schritte und Gates' }
+  nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-critic', gate: 'Vorschlag enthält Schritte und Gates' }
 const panel = await runInWaves(AGENT_TYPES.map(agentType => ({ run: () => callAgent(
   agentType, promptFor(panelStep, [], 'Plan-Panel', `Liefere als ${agentType} eine Plan-Perspektive für: ${JSON.stringify(input)}`),
   { label: `plan-panel:${agentType}`, phase: 'Planen', step_id: panelStep.id, schema: PANEL_SCHEMA },
 ) })))
 const synthesisStep = { id: 'plan-synthesis', ziel: 'Echten Missionsplan synthetisieren', depends_on: ['plan-panel'],
-  agent_types: ['opus-builder'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-pruefer', gate: 'PLAN_SCHEMA und Familienabdeckung erfüllt' }
+  agent_types: ['opus-builder'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-critic', gate: 'PLAN_SCHEMA und Familienabdeckung erfüllt' }
 const synthesisPrompt = promptFor(synthesisStep, panel, 'Plan-Synthese',
   `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder und mindestens ein Step muss nested=true sein. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle sechs AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Lass in jedem Step zusätzlich mindestens einen AgentType aus einer weiteren Providerfamilie frei, die sowohl von allen Ownern als auch vom primären Verifier verschieden ist. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; der Workflow startet dessen Children später sichtbar.`)
 const synthesis = await callAgent('opus-builder', synthesisPrompt,
@@ -445,9 +447,9 @@ for (const step of plan.steps) {
 
 phase('Review')
 const reviewStep = { id: 'review', ziel: 'Plan, Steps, Gates und Ausfälle prüfen', depends_on: plan.steps.map(step => step.id),
-  agent_types: ['sol-pruefer'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'grok-critic', gate: 'Sol-Review plus Grok-Gegencheck belegt' }
+  agent_types: ['sol-critic'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'grok-critic', gate: 'Sol-Review plus Grok-Gegencheck belegt' }
 const REVIEW_AGENTS = {
-  sol: { agentType: 'sol-pruefer', role: 'Ship-Gate' },
+  sol: { agentType: 'sol-critic', role: 'Ship-Gate' },
   grok: { agentType: 'grok-critic', role: 'Gegencheck' },
 }
 const routeFailuresBeforeReview = currentRouteFailures()

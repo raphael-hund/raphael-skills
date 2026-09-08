@@ -124,7 +124,7 @@ und nicht „nicht verfügbar" melden, bevor die Kette durch ist:
    untrusted.
 4. **Visual-Kritiker nur am visuellen Artefakt:** Wenn Agent-Reach Bilder,
    Screenshots, gerenderte Seiten, Folien oder PDFs liefert, folgt nach Render und
-   `visual-g1.py` ein separater `visual-kritiker` aus einer anderen Modellfamilie.
+   `visual-g1.py` ein separater `grok-critic` aus einer anderen Modellfamilie.
    Er prüft die echten PNGs, nicht URL, Code oder Worker-Zusammenfassung. Rückgabe
    ausschließlich `verdict`, genau eine `biggest_gap`, `beleg`, `confidence`.
 5. **Kein visueller Kritiker bei reinem Text-/Datenabruf:** Text, JSON, HTML und

@@ -57,8 +57,8 @@ Drei Regeln zur Latte:
 | Rolle | Wer | Was |
 |---|---|---|
 | **Lead** | Cockpit (Opus) | zerlegt in kleinste einzeln bewertbare Stücke, verteilt, hält den Stand — baut nicht selbst |
-| **Builder** | `fable-builder` (Substanz, max zwei parallel), `opus-builder` (Breite), `grok-worker` (Code/Tempo), `sol-builder` (Architektur/Copy), `luna-worker` (nur Masse) | baut ein Stück |
-| **Kritiker** | **andere Familie als der Builder**: `sol-pruefer` / `grok-critic` / `visual-kritiker` / `opus-critic` | vergleicht gegen die Latte, benennt **die eine größte Lücke** |
+| **Builder** | `fable-builder` (Substanz, max zwei parallel), `opus-builder` (Breite), `grok-worker` (Code/Tempo), `sol-worker` (Architektur/Copy), `luna-worker` (nur Masse) | baut ein Stück |
+| **Kritiker** | **andere Familie als der Builder**: `sol-critic` / `grok-critic` / `grok-critic` / `opus-critic` | vergleicht gegen die Latte, benennt **die eine größte Lücke** |
 | **Glätter** | ein frischer Agent nach jeder großen Welle | gleicht die unabhängig verbesserten Stücke zu einem Ganzen an |
 
 **Harte Kopplung an Regel 8:** Builder und Kritiker sind nie dieselbe Familie.
@@ -113,7 +113,7 @@ ZIEL:        <ein Satz, was am Ende existiert>
 LATTE:       <Datei/URLs/Screenshots — inspizierbar>
 REGELN:      <Rot-Klassen, Tabus, Marke/Doktrin, Zielordner>
 FLOTTE:      Builder je Stück nach work_type (Fable/Opus/Grok/Sol; Luna nur mass),
-             Kritiker IMMER andere Familie (sol-pruefer/grok-critic/visual-kritiker/opus-critic)
+             Kritiker IMMER andere Familie (sol-critic/grok-critic/grok-critic/opus-critic)
 KRITIKER:    blind A/B gegen die Latte, am echten Artefakt, EINE größte Lücke
 STAND:       workbench.md fortschreiben (Screenshot + Verdikt + offene Lücke je Stück)
 FREI:        Zerlegung, Reihenfolge, Anzahl Runden bestimmst du

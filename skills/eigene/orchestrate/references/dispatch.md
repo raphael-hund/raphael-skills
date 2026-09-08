@@ -4,9 +4,9 @@
 
 ```
 ROLLE:      Leader | Worker | Verifier
-agentType:  fable-builder | opus-builder | opus-critic | sol-builder | sol-pruefer |
-            grok-worker | grok-critic | visual-kritiker | luna-worker | terra-bulk
-            (kimi-* tot, Raphael 03.09.2026)
+agentType:  fable-builder | opus-builder | opus-critic | sol-worker | sol-critic |
+            grok-worker | grok-critic | grok-critic | luna-worker | terra-worker
+            (Kimi K3 ist aktiv; nur der angefragte `kimi-worker`/`kimi-critic` bindet Kimi)
 MODELL:     opus | sol | terra | luna | kimi   (nur wenn kein agentType)
 EFFORT:     standard | medium | high | max               (explizit!)
 HARNESS:    claude-agent | mcp-codex | mcp-kimi | codex-native | kimi-native
@@ -17,7 +17,7 @@ GATE:       <welches r-eval-Gate / Shell-Befehl der Output bestehen muss>
 TRUST:      untrusted-bis-cross-review | trusted
 PROVENIENZ: (nur Kritiker/Judge) erste Prompt-Zeile
             ACTUAL_BUILDER_FAMILY=<Familie> (agentType <x>, Workflow <id>, Failover ja/nein)
-            — fehlt sie, blockiert visual-kritiker/opus-critic fail-closed
+            — fehlt sie, blockiert grok-critic/opus-critic fail-closed
 write_set:  <disjunkte Dateiliste bei parallelen Writern>
 ```
 
@@ -29,13 +29,13 @@ Claude-Override und zählt **nicht** als Cross-Model-Flotte.
 
 | Modell / agentType | Effort |
 |---|---|
-| Fable (`fable-builder`) | high — nie xhigh/max (denkt sonst das Deliverable doppelt); max zwei parallel |
+| Fable (`fable-builder`, `fable-critic`) | high; Fable baut nur nach zwei FAIL aus Stufe 2 |
 | Opus (`opus-builder` / `opus-critic`) | high |
-| Sol (`sol-builder` / `sol-pruefer`) | max |
-| Terra (`terra-bulk`) | max |
-| Luna (`luna-worker`) | max |
-| Kimi K3 (`kimi-worker` / `kimi-recherche` / `kimi-critic`) | high — nie HighSpeed, nie K2.7 |
-| Grok (`grok-worker` / `grok-critic` / `visual-kritiker`) | high |
+| Sol (`sol-worker` / `sol-critic`) | high; xhigh/max erst nach FAIL oder finaler Auslieferung |
+| Terra (`terra-worker`) | high |
+| Luna (`luna-worker`) | high |
+| Kimi K3 (`kimi-worker` / `kimi-worker` / `kimi-critic`) | high — nie HighSpeed, nie K2.7 |
+| Grok (`grok-worker` / `grok-critic` / `grok-critic`) | high |
 
 ## Builder → Kritiker (genau einer)
 
@@ -67,29 +67,34 @@ Copy schreibt ein eigener Opus-Copy-Leaf, nie der Integrator-Leaf.
 
 ### Profil `multi-family`
 
-Luna/Sol/Terra zählen als GPT. Self-Review ist `BLOCKED`.
+Luna/Sol/Terra/Astra zählen als GPT. Self-Review ist `BLOCKED`.
+Jeder Dynamic Workflow im Profil `multi-family` nennt für jeden Leaf einen
+globalen `agentType` und verwendet mindestens zwei Modellfamilien. Ohne diese
+beiden Bedingungen blockiert der PreToolUse-Hook `workflow-multimodel-hook.py`
+den Workflow vor dem Start. Ein `model:`-Override zählt nicht als
+Fremdfamilien-Beleg.
 
-| Builder | Default-Kritiker | Alternative |
+| Builder | Erste Kritik (Stufe 2, andere Familie) | Abnahme vor Auslieferung (Stufe 1, andere Familie) |
 |---|---|---|
-| `fable-builder` | `sol-pruefer` (Text/Code), `visual-kritiker` (Shot) | `grok-critic`; Fremd-Gateway tot → `opus-critic` mit Label `Instanz-Trennung, gleiche Familie` |
-| `opus-builder` | `sol-pruefer` | `grok-critic`; visuell `visual-kritiker` (Kimi tot) |
-| `sol-builder` | `opus-critic` | `grok-critic`, `kimi-critic` |
-| `terra-bulk` | `opus-critic` | `grok-critic`, `kimi-critic` |
-| `luna-worker` | `opus-critic` | `grok-critic` |
-| `kimi-worker` | `sol-pruefer` | `opus-critic`, `grok-critic` |
-| `grok-worker` | `sol-pruefer` | `opus-critic`, `kimi-critic` |
+| `fable-builder` (Frontend, Copy) | `grok-critic` (UI, Shot), `sol-critic` (nur Code) | `astra-critic`, `kimi-critic` |
+| `kimi-worker` (Frontend, Copy, Research) | `grok-critic`, `opus-critic` | `fable-critic`, `astra-critic` |
+| `astra-worker` (Frontend, Copy) | `grok-critic`, `opus-critic` | `fable-critic`, `kimi-critic` |
+| `opus-builder` (Frontend) | `grok-critic` (UI, Shot), `sol-critic` (nur Code) | `kimi-critic`, `astra-critic` |
+| `grok-worker` (Technik, Backend, Research) | `sol-critic`, `opus-critic` | `fable-critic`, `astra-critic`, `kimi-critic` |
+| `sol-worker` (Backend) | `grok-critic`, `opus-critic` | `fable-critic`, `kimi-critic` |
+| `sonnet-worker` / `terra-worker` / `luna-worker` | `grok-critic`, `sol-critic` | `astra-critic`, `kimi-critic` |
 
-`visual-kritiker` ist der visuelle Gate-Kritiker nach jedem Nicht-Grok-Build.
-Nach einem Grok-Build prüft `opus-critic` oder `sol-pruefer` auch das Bild.
+`grok-critic` ist der visuelle Gate-Kritiker nach jedem Nicht-Grok-Build.
+Nach einem Grok-Build prüft `opus-critic` oder `sol-critic` auch das Bild.
 
 ## Muster
 
 - **Advisor:** Leader (Opus-Cockpit) nur an 2–3 Checkpoints; dazwischen laufen Worker allein.
 - **Assembly-Line:** Recherche → `/clear` → Draft → `/clear` → Polish (Kontext-Hygiene).
 - **Standard-Flotte (Cross-Model):** Dynamic Workflow mit `opus-builder` /
-  `sol-builder` / `kimi-worker` / `grok-worker`, `luna-worker` nur für Masse,
-  Verifier anderer Familie (`sol-pruefer` / `opus-critic` / `grok-critic` /
-  `kimi-critic` / `visual-kritiker`).
+  `sol-worker` / `kimi-worker` / `grok-worker`, `luna-worker` nur für Masse,
+  Verifier anderer Familie (`sol-critic` / `opus-critic` / `grok-critic` /
+  `kimi-critic` / `grok-critic`).
   Zuteilung in `cross-model-harness.md`.
 - **Adversarial verification / Tournament:** mehrere Worker bauen Varianten, Verifier/Panel
   wählt — für ship-kritische Outputs.

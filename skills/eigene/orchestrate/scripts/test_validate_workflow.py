@@ -42,23 +42,43 @@ class MultiModelValidationTest(unittest.TestCase):
             "const result = await agent('work', {model:'sonnet'})"
         )
         self.assertTrue(
-            any("sol-pruefer" in message for message in messages), messages
+            any("Multi-Modell-Flotte" in message or "agentType" in message for message in messages), messages
         )
-        self.assertTrue(
-            any("kimi" in message for message in messages), messages
-        )
-        self.assertTrue(
-            any("luna-worker" in message for message in messages), messages
-        )
+
+
+    def test_rejects_all_fable_agent_types(self):
+        if self.PROFILE != "multi-family":
+            self.skipTest("multi-family only")
+        messages = self.messages("const x = await agent('x', {agentType:'fable-builder'})")
+        self.assertTrue(any("Multi-Modell-Flotte" in m for m in messages), messages)
+
+    def test_accepts_two_families(self):
+        if self.PROFILE != "multi-family":
+            self.skipTest("multi-family only")
+        messages = self.messages("""
+const x = await agent('x', {agentType:'luna-worker'})
+const y = await agent('y', {agentType:'grok-critic'})
+""")
+        self.assertFalse(any("Multi-Modell-Flotte" in m for m in messages), messages)
+
+    def test_rejects_untyped_leaves_trotz_zwei_alibi_familien(self):
+        if self.PROFILE != "multi-family":
+            self.skipTest("multi-family only")
+        messages = self.messages("""
+const a = await agent('a')
+const b = await agent('b', {agentType:'luna-worker'})
+const c = await agent('c', {agentType:'grok-critic'})
+""")
+        self.assertTrue(any("ohne literal agentType" in m for m in messages), messages)
 
     def test_accepts_required_cross_vendor_fleet(self):
         messages = self.messages(
             """
-const sol = await agent('judge', {agentType:'sol-pruefer'})
-const kimi = await agent('critic', {agentType:'kimi-recherche'})
+const sol = await agent('judge', {agentType:'sol-critic'})
+const kimi = await agent('critic', {agentType:'kimi-worker'})
 const luna = await agent('verify', {agentType:'luna-worker'})
 const writer = await agent('write', {agentType:'sonnet-worker'})
-const mechanic = await agent('check', {agentType:'terra-bulk'})
+const mechanic = await agent('check', {agentType:'terra-worker'})
 """
         )
         self.assertFalse(
@@ -103,7 +123,7 @@ const mechanic = await agent('check', {agentType:'terra-bulk'})
         code = (
             "export const meta = { name: 'x', description: 'y' }\n"
             "await agent(p, { agentType: 'fable-builder', effort: 'high' })\n"
-            "await agent(q, { agentType: 'sol-pruefer' })\n"
+            "await agent(q, { agentType: 'sol-critic' })\n"
         )
         findings = VALIDATOR.validate(code)
         self.assertFalse([f for f in findings if f[0] == VALIDATOR.FAIL and 'fable' in f[2].lower()], findings)
@@ -111,9 +131,9 @@ const mechanic = await agent('check', {agentType:'terra-bulk'})
     def test_accepts_gateway_dd_aliases(self):
         """Transport-IDs sind Grok/Kimi/Sol, kein Fable-FAIL."""
         for body in (
-            "const x = await agent('x', {model:'claude-fable-5-dd-korg', agentType:'visual-kritiker'})",
+            "const x = await agent('x', {model:'claude-fable-5-dd-korg', agentType:'grok-critic'})",
             "const x = await agent('x', {model:'claude-fable-5-dd-3k-imik', agentType:'kimi-worker'})",
-            "const x = await agent('x', {model:'claude-fable-5-dd-los-6.5-tpg', agentType:'sol-builder'})",
+            "const x = await agent('x', {model:'claude-fable-5-dd-los-6.5-tpg', agentType:'sol-worker'})",
             "const x = await agent('x', {model:'claude-gw-dd-6.4-korg/iax', agentType:'grok-worker'})",
         ):
             with self.subTest(body=body):
@@ -162,16 +182,16 @@ const kritik = await agent('critic', {agentType:'sonnet-worker', label:'Kritik'}
             "const result = await agent('work', {model:'sonnet'})"
         )
         self.assertFalse(
-            any("sol-pruefer" in message for message in messages), messages
+            any("sol-critic" in message for message in messages), messages
         )
 
     def test_accepts_required_cross_vendor_fleet(self):
         """Fremdfamilien sind hier BLOCKED, nicht Flottenbeleg."""
         messages = self.messages(
-            "const sol = await agent('judge', {agentType:'sol-pruefer'})"
+            "const sol = await agent('judge', {agentType:'sol-critic'})"
         )
         self.assertTrue(
-            any("nicht verfuegbar" in message and "sol-pruefer" in message
+            any("nicht verfuegbar" in message and "sol-critic" in message
                 for message in messages),
             messages,
         )

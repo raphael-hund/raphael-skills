@@ -31,7 +31,7 @@ runden-protokoll.md), gegenueber dem Original:
     model:'fable' im Workflow-Script bleibt trotzdem ein WARN: es umgeht die
     Agenten-Definition mit ihren Leitplanken (Bounded Task, kein Reward-Hacking,
     Selbstbenotungs-Verbot).
-  - check_multimodel_fleet: seit 28.07.2026 WARN (nicht FAIL) bei
+  - check_multimodel_fleet: multi-family blockiert Workflows mit nur einer Familie;
     Claude-only-Flotten. Grenze der Heuristik: sie sieht nur, OB irgendwo
     eine Nicht-Claude-Familie vorkommt — nicht, ob ausgerechnet der
     VERIFIER-Agent aus der anderen Familie stammt (Rollen sind statisch
@@ -223,41 +223,50 @@ def check_model_fable(code, findings):
 
 
 def check_multimodel_fleet(code, findings):
-    """WARN (kein FAIL) seit 28.07.2026 — vorher Historie in zwei Schritten:
+    """multi-family: Workflow ohne echte Fremdfamilien-Agenten ist FAIL.
 
-    Bis 25.07.2026: FAIL, wenn nicht Sol, Kimi UND Luna als `agentType`
-    vorkamen. Ein OpenAI-Ausfall (biscuit_baker_service_me_circuit_open)
-    legte Sol und Luna gleichzeitig lahm — die Regel war nicht mehr
-    erfuellbar, obwohl Claude und Kimi lieferten. Raphael strich die
-    Pflicht (Flotten-Wahl frei).
-
-    25.-28.07.2026: kompletter No-Op — damit prüfte NICHTS mehr die
-    Empfehlung "Verifier aus anderer Modellfamilie", obwohl
-    eval/SKILL.md sie weiter als Kriterium führt (Kritik-Runde 28.07.).
-
-    Jetzt: WARN, wenn ein Workflow agent() nutzt, aber keine einzige
-    Nicht-Claude-Familie (sol-pruefer/kimi-*/luna-worker) vorkommt.
-    Warnung = starten erlaubt (Anbieter-Ausfall bleibt legitim), aber im
-    Runden-Protokoll vermerken, warum nur eine Familie lief.
-
-    Seit 02.09.2026 profilabhaengig (`references/dispatch.md` ist die eine
-    Builder→Kritiker-Quelle): im Profil `claude-only` ist eine Nur-Claude-
-    Flotte der Normalfall und kein WARN; dort wird stattdessen die
-    Instanz-Trennung heuristisch geprueft.
+    Dynamic Workflow ``agent()`` erbt ohne ``agentType`` den Root Fable. Ein
+    ``model:``-Wert ist kein belastbarer Fremdmodell-Nachweis; nur ein globaler
+    Agent-Typ bindet den Gateway-Alias. Deshalb muss jeder substanzielle
+    Workflow im multi-family-Profil mindestens zwei Modellfamilien per
+    ``agentType`` nennen. Massenauswertung nutzt Stufe 2 (Sonnet/Luna/Terra),
+    Urteil/Bau Stufe 1; ein Kritiker kommt aus einer anderen Familie.
     """
     if not re.search(r"\bagent\s*\(", code):
         return
     if fleet_profile() == "claude-only":
         check_claude_only_fleet(code, findings)
         return
-    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|sol-builder|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|visual-kritiker|terra-bulk)['\"]", code) \
-            or re.search(r"['\"](sol-pruefer|sol-builder|grok-worker|grok-critic|visual-kritiker|luna-worker|terra-bulk)['\"]", code):
-        # zweiter Zweig: agentType kommt aus einer Variablen/Option (z.B. mitSchleife({judgeType:'sol-pruefer'}))
+
+    found = re.findall(r'agentType\s*:\s*[\'"]([^\'"]+)[\'"]', code)
+    total_agents = len(re.findall(r"\bagent\s*\(", code))
+    if len(found) < total_agents:
+        findings.append((FAIL, 1,
+                         f"{total_agents - len(found)} von {total_agents} agent()-Aufrufen ohne literal agentType: "
+                         "untypisierte Leaves erben Fable. Jeder einzelne Leaf braucht einen globalen agentType."))
+    family = {
+        "fable-builder": "Claude", "fable-critic": "Claude",
+        "opus-builder": "Claude", "opus-critic": "Claude",
+        "sonnet-worker": "Claude", "web-research": "Claude",
+        "astra-worker": "GPT", "astra-critic": "GPT",
+        "sol-worker": "GPT", "sol-critic": "GPT",
+        "luna-worker": "GPT", "terra-worker": "GPT",
+        "grok-worker": "Grok", "grok-critic": "Grok",
+        "kimi-worker": "Kimi", "kimi-critic": "Kimi",
+    }
+    families = {family[t] for t in found if t in family}
+    if not found:
+        findings.append((FAIL, 1,
+                         "Dynamic Workflow ohne agentType: alle agent()-Leaves erben Fable. "
+                         "Jeder Leaf braucht einen globalen agentType; im multi-family-Profil "
+                         "muessen mindestens zwei Modellfamilien vorkommen."))
         return
-    findings.append((WARN, 1,
-                     "Nur Claude-Familie im Workflow (kein sol-pruefer/kimi-*/luna-worker als agentType). "
-                     "Cross-Vendor-Verifier ist Empfehlung, kein Gate (Raphael 25.07.2026) — "
-                     "wenn Anbieter-Ausfall der Grund ist, im Runden-Protokoll vermerken."))
+    if len(families) < 2:
+        shown = ", ".join(sorted(families)) or "keine bekannte Familie"
+        findings.append((FAIL, 1,
+                         f"Dynamic Workflow ist keine Multi-Modell-Flotte ({shown}). "
+                         "Mindestens zwei Modellfamilien per agentType sind Pflicht; "
+                         "ein model:-Override zaehlt nicht."))
 
 
 def check_claude_only_fleet(code, findings):
@@ -273,7 +282,7 @@ def check_claude_only_fleet(code, findings):
          Workflow plus Review-Schritt = Self-Review.
     """
     fremd = re.search(
-        r"agentType\s*:\s*['\"](sol-pruefer|sol-builder|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|terra-bulk|visual-kritiker)['\"]",
+        r"agentType\s*:\s*['\"](sol-critic|sol-worker|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|terra-worker|grok-critic)['\"]",
         code)
     if fremd:
         findings.append((WARN, _lineno(code, fremd.start()),

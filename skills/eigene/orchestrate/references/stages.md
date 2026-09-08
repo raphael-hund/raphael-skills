@@ -23,7 +23,7 @@ ce-compound ≙ Stage 5.
 ```
 - id:         <eindeutig, z. B. T1>
   stage:      1..5
-  owner:      <agentType, z. B. luna-worker | opus-builder | sol-pruefer>
+  owner:      <agentType, z. B. luna-worker | opus-builder | sol-critic>
   depends_on: [<Task-IDs, leer bei Stage 1/2>]
   gate:       <ausführbarer Prüfbefehl oder benanntes eval-Gate>
   status:     pending | running | pass | blocked | failed
@@ -42,8 +42,8 @@ kompakt, z. B.:
 STAGES T1..T4
   T1 [pass]    stage=3 owner=luna-worker   gate=pytest -q
   T2 [running] stage=3 owner=opus-builder  depends=T1
-  T3 [pending] stage=4 owner=sol-pruefer   depends=T2
-  T4 [pending] stage=5 owner=sol-pruefer   depends=T3
+  T3 [pending] stage=4 owner=sol-critic   depends=T2
+  T4 [pending] stage=5 owner=sol-critic   depends=T3
 ```
 
 Ein Task wechselt nur `pending → running → pass|blocked|failed`. Ein `failed`
@@ -62,8 +62,8 @@ Nicht-Claude-Zeile `BLOCKED` und der Ersatz kommt aus der Profil-Tabelle in
 | agentType | Familie | Primär | Ersatz (andere Familie) |
 |---|---|---|---|
 | `luna-worker` | GPT | gpt-5.6-luna | opus-builder (Kimi tot) |
-| `terra-bulk` | GPT | gpt-5.6-terra | opus-builder |
-| `sol-pruefer` | GPT | gpt-5.6-sol | grok-critic, sonst opus-critic mit Label Instanz-Trennung |
+| `terra-worker` | GPT | gpt-5.6-terra | opus-builder |
+| `sol-critic` | GPT | gpt-5.6-sol | grok-critic, sonst opus-critic mit Label Instanz-Trennung |
 | `grok-worker` | Grok | xai/grok-4.6 | luna-worker |
 | `opus-builder` | Claude | opus[1m] | — (Claude bleibt Claude) |
 | `fable-builder` | Claude | claude-fable-5-1 | — (Fable bleibt Fable; Review Sol/Grok) |

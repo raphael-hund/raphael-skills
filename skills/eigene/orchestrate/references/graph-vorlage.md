@@ -17,7 +17,7 @@ Stand: <Datum> · Läufe: <Run-IDs mit Datum anhängen>
 | research | opus-builder | brain-hot + Keyword-Brief | research.md | nein |
 | brief | opus-builder | research.md | brief.md | nein |
 | draft | opus-builder | NUR brief.md (bewusst eng) | draft.md | nein |
-| score | sol-pruefer | draft.md + Rubrik | verdict JSON | ja, max 3 |
+| score | sol-critic | draft.md + Rubrik | verdict JSON | ja, max 3 |
 | publish-vorschlag | luna-worker | draft.md final | Inbox-Eintrag | nein |
 
 ## Routen + Checkpoints
@@ -66,7 +66,7 @@ for (let briefRunde = 0; briefRunde < 2; briefRunde++) {
       `. Schreibe nach ${DIR}/draft.md. Frozen Rules: ${FROZEN}`,
       { label: `draft:b${briefRunde}r${runde}`, phase: 'Draft', agentType: 'opus-builder' })
     verdict = await agent(`${LONGHORIZON} Bewerte ${DIR}/draft.md gegen die Rubrik: ${RUBRIK}.`,
-      { label: `score:b${briefRunde}r${runde}`, phase: 'Score', agentType: 'sol-pruefer', schema: VERDICT })
+      { label: `score:b${briefRunde}r${runde}`, phase: 'Score', agentType: 'sol-critic', schema: VERDICT })
     if (verdict && verdict.pass) break
   }
   if (verdict && verdict.pass) break
@@ -98,10 +98,10 @@ Output-Ordner je Input (Schreib-Rennen).
 
 ## Beispiel: Kunden-Onboarding-Graph (Vault-Accelerator-Muster)
 
-Node 1 „research" — Worker: sol-pruefer (Urteil/Tiefe).
-  Liest: /root/raphael-brain/wiki/hot.md, /root/clients/client-<slug>/wiki/
+Node 1 „research" — Worker: sol-critic (Urteil/Tiefe).
+  Liest: /root/raphael-brain/wiki/hot.md, /root/clients/<slug>/wiki/
   (ICP/OFFER/PROOF/VOICE aus Loop 1), vergangene Kampagnen/Reports
-  (/root/clients/client-<slug>/state/). Output: Cohort-Brief (wer, welches
+  (/root/clients/<slug>/state/). Output: Cohort-Brief (wer, welches
   Angle, welcher Beweis zieht).
 Node 2 „landingpage" — Skill: web (Loop 2), Worker nach Modell-Matrix.
   Input: Cohort-Brief aus Node 1 (Pfad, kein Inline-Dump). Output: Seite +

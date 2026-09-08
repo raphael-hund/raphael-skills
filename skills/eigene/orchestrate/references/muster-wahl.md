@@ -6,7 +6,7 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 | Aufgaben-Form | Muster | Skelett |
 |---|---|---|
 | Viele gleichartige Einheiten bearbeiten (N Dateien umbauen, N Seiten schreiben, N Repos sichten) | **Fan-out-Pipeline** | `pipeline(items, schreib(luna-worker/kimi-worker/grok-worker), pruef(grok-worker/luna-worker), fixWennRot(luna-worker))` — je Einheit eigene Datei, geteilte Dateien zentral am Ende; Sol nimmt die Stichprobe ab. Bei einem Publish-/Live-Node am Ende ist der `pruef()`-Schritt der Selbst-QA-Schritt vor Veröffentlichung — nie direkt von Schreiber zu Publish ohne ihn. Für Codex-/Kimi-Adapter, die das private CLAUDE.md nicht erben, muss der Loop-/Workflow-Prompt den Baustein „long horizon session, human is away“ sowie Autonomie, Nicht-Stoppen bis Gate/Budget und die Rot-Klassen explizit enthalten. |
-| Qualität eines bestehenden Stands prüfen/heben | **Kritik-Flotte** | `sol-pruefer`=Urteil, `kimi-recherche`=Gegenperspektive, `luna-worker`=Mechanik parallel; Grok ergänzt → je Fund Verify (Default: widerlegt) → passender Fixer → Sol-Abnahme |
+| Qualität eines bestehenden Stands prüfen/heben | **Kritik-Flotte** | `sol-critic`=Urteil, `kimi-worker`=Gegenperspektive, `luna-worker`=Mechanik parallel; Grok ergänzt → je Fund Verify (Default: widerlegt) → passender Fixer → Sol-Abnahme |
 | Echte Streitfrage / Architektur-Entscheidung | **Council** | Sol, Kimi und Claude mit Gegensatz-Linsen (First-Principles / Executor / Outsider), anonym als Antwort A/B/C, 2 Peer-Rankings (erst Einzelbewertung, dann `FINAL RANKING:`), Sol-Chairman (5 Abschnitte: einig / Streit / blinde Flecken / Empfehlung / eine erste Handlung) — dann SOFORT umsetzen |
 | Unbekanntes Terrain erkunden (Web, Codebase, Vendor-Repo) | **Recherche-Sweep** | mehrere Sucher mit VERSCHIEDENEN Zugängen parallel (Community-Meinung / Doku / Code lesen / Gegenprobe), danach Synthese-Agent; Warnliste ist Pflicht-Output |
 | Etwas Fremdes übernehmen (Repo, Skill, Wissen) | **Vendor-Kette** | je Quelle: clone → Lizenz → Red-Flag-Check (Hooks/Netz/exec/Auto-Update) → destillieren in BESTEHENDE Strukturen (nie Masseninstall) → Luna-Validate → Buchführung (VENDORING) |
@@ -15,12 +15,12 @@ Phasen kombinieren (Hybrid ist der Normalfall bei großen Aufgaben).
 
 ## Worker-Zuteilung (Standard)
 
-- **`sol-pruefer`** — Pflicht: Urteil, Design-Kritik, Chairman, finale Abnahme.
-- **`kimi-recherche` / `kimi-worker`** — Pflicht: unabhängige dritte
+- **`sol-critic`** — Pflicht: Urteil, Design-Kritik, Chairman, finale Abnahme.
+- **`kimi-worker` / `kimi-worker`** — Pflicht: unabhängige dritte
   Modellfamilie; Gegenprobe bzw. Frontend/deutscher Text.
 - **`luna-worker`** — Pflicht: Mechanik, Tests, klar begrenzte Umbauten.
 - **`grok-worker`** — schnelle Masse, Prototypen, vierte Perspektive (bevorzugt).
-- **`terra-bulk`** — Architektur, Multi-File-Volumen (bevorzugt).
+- **`terra-worker`** — Architektur, Multi-File-Volumen (bevorzugt).
 - **`fable-builder`** — Fable 5.1 als Builder-Leaf: Default für Frontend-Substanz, Integration und harte Fixes, wenn Qualität vor Kosten geht (Raphael 04.09.2026). Max zwei parallel, nie Reviewer.
 - **`opus-builder`** — Claude-Bau für parallele Breite (mehr als zwei Leaves) und Routine-Frontend.
 - **`fable-advisor`** — nur benannter Low-Effort-Checkpoint für schwierige

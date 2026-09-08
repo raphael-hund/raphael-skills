@@ -1,4 +1,4 @@
-# Kritiker-Kontrakt — visual-kritiker
+# Kritiker-Kontrakt — grok-critic
 
 ## Rolle
 
