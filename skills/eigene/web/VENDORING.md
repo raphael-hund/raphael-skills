@@ -61,3 +61,12 @@ Eintrag hier ergänzen, bevor der Code im Repo landet — mit Herkunft, Lizenz,
 Copyright-Zeile, Umfang und der Frage, ob etwas geändert wurde. Fehlt eine
 Angabe, gehört das hingeschrieben; eine Lücke, die man sieht, ist harmlos
 gegenüber einer, die niemand kennt.
+
+
+## 4. `assets/vendor/` und `references/corpus/` (seit 2.0.0)
+
+Quellkopien und Kataloge aus MAKE Web Astra: Emil-Kowalski-Motion (attentiondotnet/emilkowalski_skills, MIT), Astro-/shadcn-Beispiel (MIT), UI-Skills-Katalog, Bibliotheks- und Galeriekorpora. Herkunft, Commit und Lizenz stehen je Datei im jeweiligen Korpus-JSON und in `references/ui-skills-coverage.md`.
+
+## 5. `assets/react-starter/`
+
+Aus `create-next-app` 16.3.4 (MIT) erzeugt, ergänzt um shadcn `button`/`badge` (MIT) und Magic UI `marquee` (MIT). Registry-Items tragen ihre Lizenz im Item-JSON; beim Kopieren in Kundenprojekte den MIT-Text mitführen.

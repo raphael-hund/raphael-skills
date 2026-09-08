@@ -1,25 +1,30 @@
 ---
 name: raphael-chrome
-version: 0.1.0
+version: 0.3.1
 description: >-
-  Steuert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit Logins und
-  Passwort-Autofill. Nutzen für Browser-Arbeit, Trello/Airtable/Google-UI,
-  API-Keys aus Web-Oberflächen holen, Screenshots, Klicks. Prefer this over
-  Orca computer-use for websites. Triggers: chrome, browser, trello login,
-  airtable, CDP, 9222, Passwort autofill, website klicken.
+  Steuert und repariert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222)
+  mit persistenten Logins und Passwort-Autofill. Nutzen fuer Login, Session,
+  Autofill und Klick im eigenen Chrome. Oeffentliche Suche, Scrape und PDF
+  zuerst ueber firecrawl. Trigger: chrome, browser, VPS-Browser,
+  Cloudflare, CAPTCHA, Renderer, CDP, 9222, Passwort autofill, website klicken.
 class: O
 scope: agency
 sensitivity: internal
+source: Eigene Capability-Primitive fuer Raphaels verwalteten VPS-Chrome
 completion_criteria:
-  - "Aktion im VPS-Chrome ausgeführt und per Screenshot oder DOM-State verifiziert"
+  - "scripts/browser-doctor.sh check endet mit exit 0 und meldet health=ok, runtime=ok sowie mindestens einen Renderer"
+  - "scripts/smoke-browser-runtime.sh meldet PASS fuer Runtime, contenteditable-Ersatz und Challenge-Erkennung/-Warten"
+  - "Die angeforderte Browser-Aktion ist per DOM-State oder Screenshot belegt"
+  - "Eine interaktive CAPTCHA-, Turnstile- oder MFA-Pruefung wurde an Raphael uebergeben statt automatisiert geloest"
 ---
 
 # raphael-chrome — VPS Chrome steuern
 
 ## Wann
 
-Jede Web-UI-Aufgabe auf dem VPS: einloggen, durchklicken, API-Key anlegen,
-Formular ausfüllen, Screenshot, Session prüfen. **Nicht** für HTTP-API mit
+Login, Session, Autofill, Klick und Screenshot im eigenen VPS-Chrome.
+API-Key aus einer Web-Oberfläche holen. **Nicht** für öffentliche Suche,
+Scrape oder PDF: zuerst Skill `firecrawl`. **Nicht** für HTTP-API mit
 bereits vorhandenem Token in `/root/.secrets/api-keys.env`.
 
 ## Architektur (kurz)
@@ -37,12 +42,17 @@ Desktop-Apps (nicht Browser-DOM) → Skill `computer-use` / `orca-computer`.
 
 ```bash
 raphael-chrome health
+/root/raphael-skills/skills/raphael-chrome/scripts/browser-doctor.sh check
+/root/raphael-skills/skills/raphael-chrome/scripts/browser-doctor.sh repair
+/root/raphael-skills/skills/raphael-chrome/scripts/smoke-browser-runtime.sh
 raphael-chrome tabs
 raphael-chrome open https://trello.com/
 raphael-chrome snapshot <id> 8000
 raphael-chrome screenshot <id> /tmp/out.png
 raphael-chrome click <id> 'css-selector'          # Default = menschlicher Mausklick
 raphael-chrome type <id> 'input[name=x]' 'text'   # Default = Tasten mit Delay
+raphael-chrome upload <id> '#upload-files' /abs/bild-a.png /abs/bild-b.png
+raphael-chrome download-generated <id> /abs/mockup.png
 raphael-chrome human-click <id> 'css-selector'
 raphael-chrome human-type <id> 'css-selector' 'text'
 raphael-chrome press <id> Enter
@@ -65,14 +75,14 @@ Env (optional):
 
 ## Arbeitsablauf
 
-1. `health` — wenn tot: `systemctl status raphael-chrome` (nicht selbst mit Passwort starten).
-2. `open <url>` oder bestehenden Tab aus `tabs` nehmen. Open injiziert Stealth und wartet soft auf Challenges.
-3. Bei Bot-Check: `challenge <id>` → `wait-challenge <id> 25000` → erneut `snapshot`.
-4. `snapshot` / `screenshot` lesen.
-5. Interagieren mit `click` / `type` / `press` (menschlich standard).
-6. Login-Form: `autofill-hint` → Chrome füllt gespeicherte Credentials → `press Enter`.
-7. API-Keys / Tokens: aus UI kopieren via `eval` nur den **sichtbaren** Key-Wert, dann nach `/root/.secrets/api-keys.env` schreiben (`chmod 600`). **Nie** in Git, Chat-Logs minimal halten.
-8. Fertig: Tab `close` wenn Müll.
+1. `scripts/browser-doctor.sh check` ausfuehren. Bei Exit 10, 11 oder 14 einmal `repair`, danach erneut `check`; nur Exit 0 mit `health=ok` und `runtime=ok` ist arbeitsfaehig.
+2. `open <url>` oder bestehenden Tab aus `tabs` nehmen. `open` injiziert Stealth und wartet soft auf Challenges.
+3. Nach Navigation `snapshot` pruefen. Leerer Titel/URL trotz `health` ist ein Renderer-Fehler: `repair`, dann Navigation einmal wiederholen.
+4. Bei Bot-Check `challenge <id>` → `wait-challenge <id> 25000` → erneut `snapshot` ausfuehren.
+5. `snapshot` oder `screenshot` lesen und mit `click`, `type` oder `press` interagieren.
+6. Login-Form: `autofill-hint` ausfuehren. Nur wenn `has_pass: true` und das Feld danach tatsaechlich gefuellt ist, absenden; sonst Raphael fuer die einmalige Eingabe ueber VNC anfragen.
+7. API-Keys/Tokens nur als sichtbaren Wert auslesen, nach `/root/.secrets/api-keys.env` schreiben und `chmod 600` setzen. Ausgabe und Git-Logs frei von Secrets halten.
+8. Aktion mit DOM-State oder Screenshot verifizieren; Muell-Tabs schliessen.
 
 ## Botschutz / Cloudflare (was geht, was nicht)
 
@@ -83,30 +93,43 @@ Env (optional):
 - Challenge-Erkennung + Warten (JS-Challenge / „Just a moment“)
 
 **Harte Grenze:**
-- Interaktives Turnstile/Captcha, bei dem ein Mensch klicken muss → Raphael per VNC
-- Schlechte VPS-IP-Reputation → bleibt Rest-Risiko
+- Interaktives Turnstile, CAPTCHA, MFA oder Passwort ohne funktionierendes Browser-Autofill → Raphael per VNC
+- Schlechte VPS-IP-Reputation → alternativen legitimen Netzwerkzugang oder API-Zugang nutzen, nicht die Pruefung umgehen
 
 ## Codex / Sol
 
-Für Computer-Control-Aufgaben `sol-worker` oder `codex exec` mit diesem Skill.
-Web = immer CDP (`raphael-chrome`). Orca computer nur für native Desktop-Fenster.
+Login und Session immer über CDP `127.0.0.1:9222` (`raphael-chrome`).
+Öffentliche Suche, Scrape, PDF zuerst `firecrawl`.
+Orca computer nur für native Desktop-Fenster.
+
+`codex exec` und die Codex-TUI nutzen denselben Chrome über MCP `vps-chrome`
+(`@playwright/mcp --cdp-endpoint http://127.0.0.1:9222`) in:
+`/root/tools/model-lanes/codex-home`, `/root/.codex-1`, `/root/.codex-2`, `/root/.codex`.
+In der TUI: `/mcp` zeigt `vps-chrome`.
+Passwörter bleiben in Chrome (`gnome-libsecret`). Autofill über die Login-UI,
+nicht über eine Google-Password-Manager-API.
+
+Der eingebaute Codex-Browser der ChatGPT-Desktop-App ist hier nicht der Weg.
+Offizielle Doku: Browser ist in Codex CLI / IDE-Extension nicht verfügbar.
 
 ## Verbote
 
 - Keine Passwort-DB dumpfen / `Login Data` entschlüsseln.
 - Keine Secrets in Repo/PROGRESS/Worklog im Klartext.
 - Kein `--remote-debugging-address=0.0.0.0`.
-- Interaktives Captcha: Raphael per VNC, nicht raten.
+- Keine CAPTCHA-/Turnstile-Umgehung, kein Solver-Dienst, kein Fingerprint- oder Proxy-Rotationsversuch.
+- Interaktive Identitaetspruefung: Raphael per VNC, nicht raten.
 
-## Wenn CDP hängt
+## Wenn CDP oder Renderer haengt
 
-Symptom: `Runtime.evaluate` Timeout, Browser-Version antwortet noch.
+Symptome: `Runtime.evaluate` Timeout, Screenshot-Fehler, leere URL nach Navigation oder `health` antwortet trotz fehlender Renderer.
 
-1. `bash /root/raphael-command-center/tools/kill-playwright-cdp-noise.sh`
-2. Sonst: `sudo -n systemctl restart raphael-chrome`
-3. Erneut `raphael-chrome health`
+1. `scripts/browser-doctor.sh check` ausfuehren.
+2. Bei Exit 10/11/14 genau einmal `scripts/browser-doctor.sh repair` ausfuehren. Exit 14 bedeutet: CDP-HTTP und Renderer leben, aber die Seiten-Runtime antwortet nicht.
+3. `check` erneut ausfuehren und eine harmlose Seite per `goto` + `snapshot` pruefen.
+4. Bleibt der Check rot, Dienststatus und Root-Screenshot sichern und Raphael informieren.
 
-Ursache oft: zu viele Playwright-MCP-Prozesse auf Port 9222.
+`repair` beendet verwaiste Playwright-CDP-Prozesse nur im Fehlerfall und startet den verwalteten Dienst neu. Das persistente Profil bleibt erhalten.
 
 ## Runbook
 

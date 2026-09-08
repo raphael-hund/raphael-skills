@@ -81,105 +81,40 @@ ${body}
 // Nur Regeln, die sich mit einer statischen Seite herstellen lassen. Was fehlt,
 // steht unten in der Abdeckung — nicht verschwiegen.
 const FAELLE = {
-  // --- Drei aus der "offen"-Liste, nachgetragen 30.07.2026 ------------------
-  // Die Liste fuehrte sie als "braucht mehr als eine statische Seite". Am
-  // echten Browser-Pfad nachgemessen stimmte das fuer diese drei nicht — sie
-  // brauchen nur die richtige Seite. Eine Regel als unerreichbar zu fuehren,
-  // die es nicht ist, ist dieselbe Sorte Fehler wie eine erfundene Luecke:
-  // man hoert auf zu suchen.
-  'ai-color-palette': {
-    was: 'Indigo-Violett-Verlauf, im gerenderten DOM gemessen',
-    style: '.v{background:linear-gradient(90deg,#6366f1,#a855f7);padding:40px;color:#fff}',
-    body: '<div class="v">Verlauf</div>',
-    // Der Verlauf auf Weiss reisst zusaetzlich den Kontrast — sachlich richtig.
-    mit: ['low-contrast'],
+  // --- Frueher standen hier acht Fixtures doppelt ---------------------------
+  // 02.09.2026, Nachlauf zu Ticket 12: `ai-color-palette`, `overused-font`,
+  // `hero-eyebrow-chip`, `clipped-overflow-container`, `bounce-easing`,
+  // `layout-transition`, `icon-tile-stack` und `image-hover-transform` hatten je
+  // zwei Eintraege in diesem Objektliteral. In JS gewinnt der letzte Schluessel:
+  // die oberen acht wurden nie ausgefuehrt, lasen sich im Quelltext aber wie
+  // geprueft. Die Berichtszahl war davon unberuehrt (`Object.keys` dedupliziert,
+  // 46 Eintraege sind 38 Faelle) — falsch war der Quelltext, nicht das Urteil.
+  // Wer eine dieser acht Regeln haerten will, aendert sonst die tote Kopie und
+  // sieht keine Wirkung. Die toten Kopien sind entfernt; gelaufen ist immer die
+  // untere Fassung, sie steht weiter unten mit ihren Kommentaren.
+  // --- Neu mit impeccable v4.0.5, 02.09.2026 --------------------------------
+  // Zwei der 14 neuen Regeln lassen sich mit einer statischen Seite am
+  // Browser-Pfad herstellen. Die uebrigen brauchen Hover, Scroll, echte Bilder
+  // oder einen Laufzeitfehler und stehen in der Abdeckungsliste am Ende.
+  'numbered-section-labels': {
+    was: 'winzige 01/02/03-Marker neben Abschnitts-Ueberschriften',
+    // Vier Bedingungen, am Code gelesen (checks.mjs:2539-2557 und 2621):
+    // h2-h4, Label <= 13px, Ueberschrift >= 1.3x groesser, und das Label muss
+    // bewusst gestaltet sein (hier: Mono + Tracking). Dazu mindestens zwei
+    // VERSCHIEDENE Zahlen — dreimal dieselbe waere ein anderes Muster.
+    style: '.num{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:1px;'
+      + 'color:#5b6875;margin:0}h2{font-size:30px;margin:2px 0 20px}',
+    body: [...Array(3)].map((_, i) =>
+      `<section><p class="num">0${i + 1}</p><h2>Abschnitt ${i + 1}</h2>`
+      + '<p>Erklaerender Text im Abschnitt.</p></section>').join(''),
   },
-  'overused-font': {
-    was: 'Inter als Hauptschrift ueber 15% der Textelemente',
-    // Die Regel greift erst ab 20 Textelementen (Absicht: auf einer
-    // Drei-Zeilen-Seite ist "Hauptschrift" keine Aussage). Erster Versuch hatte
-    // drei und meldete nichts — das Fixture war zu klein, nicht die Regel stumm.
-    style: 'body{font-family:Inter,sans-serif}',
-    body: Array.from({ length: 24 },
-      (_, i) => `<p>Absatz ${i + 1} mit genug Text zum Messen.</p>`).join(''),
-    mit: ['single-font'],
-  },
-  'single-font': {
-    was: 'nur eine einzige Schrift auf der ganzen Seite',
-    style: 'body{font-family:Inter,sans-serif}',
-    body: Array.from({ length: 24 },
-      (_, i) => `<p>Absatz ${i + 1} mit genug Text zum Messen.</p>`).join(''),
-    mit: ['overused-font'],
-  },
-  // --- Drei weitere aus der "offen"-Liste, 30.07.2026 -----------------------
-  // Auch diese standen als "braucht mehr als eine statische Seite". Am echten
-  // Browser-Pfad nachgemessen: alle drei brauchen nur die richtige Seite.
-  // Damit ist die Liste zum zweiten Mal in derselben Runde zu lang gewesen —
-  // eine Regel als unerreichbar zu fuehren, die es nicht ist, kostet genauso
-  // viel wie eine erfundene Luecke: man hoert auf zu suchen.
-  'hero-eyebrow-chip': {
-    was: 'getracktes Uppercase-Label ueber der H1',
-    // Verlangt ausdruecklich eine H1 — erster Versuch nutzte h2 und meldete
-    // nichts. Das Fixture war falsch, nicht die Regel stumm.
-    style: '.eyebrow{text-transform:uppercase;font-size:12px;letter-spacing:.14em;'
-      + 'color:#5b6875;margin:0}h1{font-size:48px;margin:4px 0 24px}',
-    body: '<p class="eyebrow">Sanierung</p><h1>Wohnungen in Karlsruhe</h1>'
-      + '<p>Nach dem Ortstermin bekommen Sie einen Festpreis.</p>',
-  },
-  'repeated-section-kickers': {
-    was: 'drei Uppercase-Kicker ueber drei Ueberschriften',
-    style: '.kicker{text-transform:uppercase;font-size:12px;letter-spacing:.14em;'
-      + 'color:#5b6875}h2{font-size:32px;margin:4px 0 24px}',
-    body: '<p class="kicker">Leistung</p><h2>Bad sanieren</h2>'
-      + '<p class="kicker">Leistung</p><h2>Kueche bauen</h2>'
-      + '<p class="kicker">Leistung</p><h2>Wohnung raeumen</h2>',
-  },
-  'clipped-overflow-container': {
-    was: 'overflow:hidden schneidet ein absolut positioniertes Kind ab',
-    style: '.clip{overflow:hidden;position:relative;height:80px;background:#eee;margin:16px 0}'
-      + '.raus{position:absolute;top:-40px;left:10px;width:120px;height:120px;background:#c33}',
-    body: '<div class="clip"><div class="raus"></div></div>',
-  },
-  // --- Die letzten vier, 30.07.2026 -----------------------------------------
-  // Sie standen als "brauchen Hover bzw. Scroll". Die Bedingungen gelesen statt
-  // geglaubt: keine davon simuliert eine Interaktion. Sie lesen CSS-Deklarationen
-  // (animation-name, transition-property, img:hover-REGEL im Quelltext) und
-  // Layout-Werte. Am Browser-Pfad nachgemessen loesen alle vier auf einer
-  // statischen Seite aus.
-  //
-  // Damit war die Liste dreimal in derselben Runde zu lang: 13 offen, davon 13
-  // erreichbar. "Braucht Hover" klang plausibel, weil die Regeln von Hover
-  // HANDELN — geprueft wird aber die Deklaration, nicht das Verhalten.
-  'bounce-easing': {
-    was: 'Animation mit bounce/elastic im Namen',
-    style: '@keyframes bounceIn{from{transform:scale(.9)}to{transform:scale(1)}}'
-      + '.b{animation:bounceIn .5s ease}',
-    body: '<div class="b">Bounce</div>',
-  },
-  'layout-transition': {
-    was: 'transition auf width/height statt transform/opacity',
-    style: '.lt{transition:width .3s ease,height .3s ease;background:#eee;padding:8px}',
-    body: '<div class="lt">Layout-Transition</div>',
-  },
-  'icon-tile-stack': {
-    was: 'Icon-Kachel ueber der Ueberschrift gestapelt',
-    style: '.tile{width:64px;height:64px;background:#e2e6ea;display:flex;'
-      + 'align-items:center;justify-content:center}.tile svg{width:24px;height:24px}'
-      + 'h3{font-size:20px;margin:8px 0 0}',
-    body: '<div><div class="tile"><svg viewBox="0 0 24 24"><rect width="24" height="24"/></svg>'
-      + '</div><h3>Bad sanieren</h3></div>',
-  },
-  'image-hover-transform': {
-    was: 'img:hover { transform } im Stylesheet',
-    // Anbieter-gebunden (--gemini). Ueber `detect.mjs` ohne Flag bleibt sie
-    // still; die Filterung sitzt in den Node-Engines, nicht im Browser. Diese
-    // Eval injiziert direkt, also greift kein Gating — genau deshalb ist sie
-    // hier ueberhaupt pruefbar.
-    style: 'img:hover{transform:scale(1.05)}',
-    body: '<img src="data:image/svg+xml;base64,'
-      + 'PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj4'
-      + '8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2NjYyIvPjwvc3ZnPg=="'
-      + ' alt="Werkstatt" width="200" height="200">',
+  'undersized-ui-text': {
+    was: 'funktionaler Text unter der 11px-Grenze',
+    // Trennt sich von `tiny-text` ueber die Funktion, nicht die Groesse
+    // (checks.mjs:3410, 3425): der Text muss interaktiv, Moebel oder kurz
+    // (<= 20 Zeichen) sein. Ein Link mit 9px erfuellt beides.
+    style: 'a.mini{font-size:9px}',
+    body: '<p><a class="mini" href="/agb">Bedingungen</a></p>',
   },
   'tiny-text': {
     was: 'Fliesstext unter der Lesbarkeitsgrenze',
@@ -224,16 +159,11 @@ const FAELLE = {
     was: 'Ueberschriften-Ebene uebersprungen (h1 -> h3)',
     body: '<h3>Direkt zur dritten Ebene</h3><p>Text darunter.</p>',
   },
-  'single-font': {
-    was: 'nur eine Schriftart auf der ganzen Seite',
-    // Zwei Bedingungen, beide am Code gelesen: die Seite braucht mindestens
-    // 20 Textelemente (`totalTextElements >= 20`), und danach darf nur EINE
-    // Schrift uebrig sein. Erster Versuch zog nur die H1 auf Georgia — drei
-    // Elemente, also lief der ganze Block nie an. Nicht die Regel war stumm,
-    // sondern die Seite zu klein.
-    style: 'h1{font-family:Georgia,serif}',
-    body: [...Array(22)].map((_, i) => `<p>Absatz Nummer ${i + 1} mit genug Text darin.</p>`).join(''),
-  },
+  // `single-font` ist am 29.07.2026 im Original entfallen (belegt im Kommentar
+  // engines/regex/detect-text.mjs:1007: "single-font's removal on 2026-07-29").
+  // Beim Sync auf v4.0.5 am 02.09.2026 mitgezogen: die ID steht in keiner
+  // Registry mehr, ein Fixture dafuer kann nur rot sein. Die Sache selbst deckt
+  // `overused-font` ab (dieselbe Seite, dieselbe Schrift).
   'cream-palette': {
     was: 'creme-/beigefarbener Seitenhintergrund',
     // isCreamColor: alle Kanaele >= 209, warme Ordnung r>=g>=b, Waerme 6-48.
@@ -397,20 +327,35 @@ const FAELLE = {
       + '<p>Text unter der Ueberschrift.</p></div>',
   },
   'hero-eyebrow-chip': {
-    was: 'getracktes Mini-Label ueber der Ueberschrift',
-    // Text 2-60 Zeichen, Schrift <= 14px, uppercase UND letter-spacing >= 1.6px
-    // (das ist die "klassische" Variante; die andere waere fett in Akzentfarbe).
-    style: '.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;'
-      + 'color:#5b6875;margin-bottom:8px}',
+    was: 'fettes Akzent-Label ueber der Hero-Ueberschrift',
+    // Text 2-60 Zeichen, Schrift <= 14px, h1 >= 48px. Drei Zweige, hier Zweig B
+    // (checks.mjs:473): normale Gross-/Kleinschreibung, aber fett UND in
+    // Akzentfarbe.
+    //
+    // 02.09.2026, Sync auf v4.0.5: das Fixture nutzte vorher die getrackte
+    // Uppercase-Variante (Zweig A). Die feuert weiter, aber v4.0.5 hat mit
+    // `kicker-above-heading` ein glattes Kicker-Verbot dazugestellt, das auf
+    // derselben Seite zuerst greift — gemeldet wurde dann der Kicker, nicht der
+    // Hero-Chip. Zweig B trennt die beiden sauber: der Kicker-Filter verlangt
+    // Uppercase (checks.mjs:2424), dieses Label ist es nicht.
+    style: '.eyebrow{font-size:13px;font-weight:800;color:#c2410c;margin-bottom:8px}'
+      + 'h1.hero{font-size:56px}',
     // Die Regel gilt NUR fuer h1 (`headingTag !== 'h1' -> return []`) — bei h2
     // schweigt sie zu Recht, das war mein erster Versuch. Der Kicker muss also
     // direkt vor einer h1 stehen; das Geruest bringt seine eigene h1 mit, hier
     // kommt eine zweite mit Label davor.
-    body: '<div><p class="eyebrow">Meisterbetrieb</p><h1>Sanierung aus einer Hand</h1></div>',
+    body: '<div><p class="eyebrow">Meisterbetrieb seit 1998</p>'
+      + '<h1 class="hero">Sanierung aus einer Hand</h1></div>',
   },
-  'repeated-section-kickers': {
-    was: 'dasselbe Kicker-Muster ueber mehreren Abschnitten',
-    // Braucht mehrere Vorkommen desselben Musters (candidates.length >= minCount).
+  // 02.09.2026, Sync auf impeccable v4.0.5: hiess im vendorten Stand
+  // `repeated-section-kickers` und zaehlte Wiederholungen. Das Original hat die
+  // Regel durch `kicker-above-heading` ersetzt — ein glattes Verbot ohne
+  // Zaehlung ("one kicker is one too many", checks.mjs:495). Dieselbe Seite,
+  // strengere Regel, neuer Name.
+  'kicker-above-heading': {
+    was: 'Kicker-Label ueber Ueberschriften',
+    // Braucht keine Wiederholung mehr; die Seite bringt trotzdem vier mit,
+    // damit der Fall auch das alte Muster weiter abdeckt.
     style: '.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;'
       + 'color:#5b6875;margin-bottom:8px}',
     body: [...Array(4)].map((_, i) =>

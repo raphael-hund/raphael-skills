@@ -97,6 +97,16 @@ case "$URL" in
         -o "$WORK/video.%(ext)s" "$URL"
     fi
     ;;
+  *instagram.com*)
+    # Cookies zuerst (wenn sie leben), sonst Apify — der stabile Weg.
+    COOKIES="/root/.secrets/instagram-cookies-netscape.txt"
+    if ! yt-dlp --cookies "$COOKIES" \
+      -f "bv*[height<=720]+ba/b[height<=720]/b" --merge-output-format mp4 \
+      -o "$WORK/video.%(ext)s" "$URL"; then
+      echo "Hinweis: Instagram via yt-dlp/Cookies fehlgeschlagen — Apify." >&2
+      /root/raphael-command-center/ops/bin/ig-video-holen "$URL" "$WORK/video.mp4"
+    fi
+    ;;
   *)
     yt-dlp -f "bv*[height<=720]+ba/b[height<=720]/b" --merge-output-format mp4 \
       -o "$WORK/video.%(ext)s" "$URL"

@@ -1,0 +1,20 @@
+---
+import Page from '../layouts/Page.astro';
+---
+<Page title="Service details | Hybrid proof" description="An ordinary static service page that works without client JavaScript.">
+  <article class="intro" aria-labelledby="page-title">
+    <p class="eyebrow">Static service page / ordinary document navigation</p>
+    <h1 id="page-title">Service details</h1>
+    <p class="lead">Content and navigation remain available before, after, or without JavaScript.</p>
+    <section id="details" aria-labelledby="details-title">
+      <h2 id="details-title">What the integration includes</h2>
+      <ul>
+        <li>Semantic pages generated as static HTML.</li>
+        <li>Real shadcn components where their behavior is useful.</li>
+        <li>Shared CSS tokens for the page and dialog portal.</li>
+      </ul>
+      <p>This page imports no React component and no component stylesheet. It uses a normal document link to return home.</p>
+    </section>
+    <a class="native-link" href="/">← Back to the integration proof</a>
+  </article>
+</Page>

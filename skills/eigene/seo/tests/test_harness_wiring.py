@@ -45,6 +45,9 @@ class HarnessWiringTests(unittest.TestCase):
         for path in adapters:
             if not path.exists():
                 continue
+            if path.resolve() == (CANON / "SKILL.md").resolve():
+                # Symlink auf die kanonische Datei: kein Adapter, nichts zu prüfen.
+                continue
             text = path.read_text(encoding="utf-8")
             self.assertIn("/root/raphael-skills/skills/eigene/seo/SKILL.md", text)
             for token in TRIGGERS:

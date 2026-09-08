@@ -1,0 +1,198 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.brandfetch.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Parameters
+
+> Detailed reference of all Logo API parameters
+
+## URL Structure
+
+The Logo API uses a structured URL format that allows you to customize logo retrieval through path and query parameters:
+
+#### Short version
+
+<CodeGroup>
+  ```html Domain theme={null}
+  <img
+    src="https://cdn.brandfetch.io/domain/nike.com?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Ticker theme={null}
+  <img
+    src="https://cdn.brandfetch.io/ticker/NKE?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html ISIN theme={null}
+  <img
+    src="https://cdn.brandfetch.io/isin/US6541061031?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Crypto theme={null}
+  <img
+    src="https://cdn.brandfetch.io/crypto/BTC?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Auto-detection (legacy) theme={null}
+  <img
+    src="https://cdn.brandfetch.io/nike.com?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+</CodeGroup>
+
+#### Full version with all parameters
+
+<CodeGroup>
+  ```html Domain theme={null}
+  <img
+    src="https://cdn.brandfetch.io/domain/nike.com/w/400/h/400/theme/dark/fallback/lettermark/type/icon?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Ticker theme={null}
+  <img
+    src="https://cdn.brandfetch.io/ticker/NKE/w/400/h/400/theme/dark/fallback/lettermark/type/icon?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html ISIN theme={null}
+  <img
+    src="https://cdn.brandfetch.io/isin/US6541061031/w/400/h/400/theme/dark/fallback/lettermark/type/icon?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Crypto theme={null}
+  <img
+    src="https://cdn.brandfetch.io/crypto/BTC/w/400/h/400/theme/dark/fallback/lettermark/type/icon?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Auto-detection (legacy) theme={null}
+  <img
+    src="https://cdn.brandfetch.io/nike.com/w/400/h/400/theme/dark/fallback/lettermark/type/icon?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+</CodeGroup>
+
+<Tip>
+  To use Logo API, you must include your client ID with every request. To get
+  your client ID, register for free from our [Developer
+  Portal](https://developers.brandfetch.com/register).
+</Tip>
+
+***
+
+## identifier
+
+**Type:** `string` **Required**
+
+Identifier to retrieve brand assets. Accepted formats:
+
+* **Domain:** `nike.com`
+* **Brand ID:** `id_0dwKPKT`
+* **ISIN:** `US6541061031`
+* **Stock or ETF ticker:** `NKE`
+* **Crypto symbol:** `BTC`, `ETH` (uppercase preferred)
+
+To avoid potential naming collisions between identifier types, you can use explicit type routes with the pattern `{type}/{identifier}`:
+
+* `domain/nike.com` - Query by domain name
+* `ticker/NKE` - Query by Stock or ETF ticker
+* `isin/US6541061031` - Query by ISIN code
+* `crypto/BTC` - Query by Crypto symbol
+
+**Examples:**
+
+<CodeGroup>
+  ```html Domain theme={null}
+  <img
+    src="https://cdn.brandfetch.io/domain/nike.com?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Ticker theme={null}
+  <img
+    src="https://cdn.brandfetch.io/ticker/NKE?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html ISIN theme={null}
+  <img
+    src="https://cdn.brandfetch.io/isin/US6541061031?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Crypto theme={null}
+  <img
+    src="https://cdn.brandfetch.io/crypto/BTC?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+
+  ```html Auto-detection (legacy) theme={null}
+  <img
+    src="https://cdn.brandfetch.io/nike.com?c=BRANDFETCH_CLIENT_ID"
+    alt="Logo by Brandfetch"
+  />
+  ```
+</CodeGroup>
+
+If you omit the type prefix (e.g., `nike.com` instead of `domain/nike.com`), the API will auto-detect the identifier type. The detection order is: Domain → Stock or ETF ticker → ISIN → Crypto symbol. However, **we recommend using explicit type routes** to prevent collisions and ensure accurate results.
+
+## theme
+
+**Type:** `enum<string>`
+
+* `light`: The light version of the logo
+* `dark`: The dark version of the logo
+
+## fallback
+
+**Type:** `enum<string>`
+
+* `brandfetch`: The Brandfetch logo
+* `transparent`: A see-through placeholder for custom background options
+* `lettermark`: A square icon featuring the first letter of the brand's name (applies only to type=icon)
+* `404`: HTTP status 404 and a see-through placeholder for custom background options
+
+**Default:** Varies by type
+
+* `brandfetch` for `icon`
+* `transparent` for `logo` and `symbol`
+
+## h
+
+**Type:** `number`
+
+Height of the logo. The ratio of the logo is always respected.
+
+## w
+
+**Type:** `number`
+
+Width of the logo. The ratio of the logo is always respected.
+
+## type
+
+**Type:** `enum<string>`
+
+* `icon`: (default) The icon used on social profiles (e.g., Tesla's social icon)
+* `logo`: The horizontal logo, usually seen on large surfaces (e.g., Tesla's logo)
+* `symbol`: The universal mark that abstractly represents the brand (e.g., Tesla's T symbol)

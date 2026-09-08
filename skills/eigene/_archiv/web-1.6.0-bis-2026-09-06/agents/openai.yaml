@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web"
+  short_description: "Plan, build, audit, and improve websites"
+  default_prompt: "Use $web to plan, build, review, or improve this website."

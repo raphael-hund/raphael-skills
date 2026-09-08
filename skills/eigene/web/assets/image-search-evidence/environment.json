@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-09-07T11:16:30.901587+00:00",
+  "command": "env | grep -i \"serp\\|google\\|bing\\|unsplash\\|pexels\\|brandfetch\"",
+  "matching_variable_names": [],
+  "values_saved": false,
+  "additional_logo_key_names": []
+}

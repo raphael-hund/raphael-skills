@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-09-07",
+  "helpers": [
+    {
+      "path": "scripts/text-check.py",
+      "origin": "raphael-skills/skills/eigene/copywriting/scripts/forbidden-check.py",
+      "sha256": "7b18542d3a83f2450a30f857eb8c05152f286411aaa4ad1b258a8b1e978a08c7",
+      "relationship": "Byte-identical snapshot of existing first-party checker; all runtime rules are embedded.",
+      "maintenance": "Change the shared Ads helper deliberately and rerun scripts/test-text-check.sh. The historical docstring path is descriptive, not a runtime dependency."
+    },
+    {
+      "path": "scripts/media-extract.sh",
+      "origin": "First-party Ads implementation informed by the existing first-party watch sampling workflow.",
+      "relationship": "Portable extraction with explicit tool checks, supplied cookies only, no private-path fallback and honest evidence status."
+    }
+  ],
+  "rights": "Existing first-party code and new local work. No third-party skill implementation or license was copied. External binaries retain their own licenses and are not redistributed here."
+}

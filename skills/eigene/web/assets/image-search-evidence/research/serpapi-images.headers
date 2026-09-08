@@ -1,0 +1,18 @@
+HTTP/2 401 
+date: Mon, 07 Sep 2026 11:13:31 GMT
+content-type: application/json; charset=utf-8
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+x-download-options: noopen
+x-permitted-cross-domain-policies: none
+referrer-policy: strict-origin-when-cross-origin
+cache-control: no-cache
+x-request-id: 7f4491fd-2048-4a9f-9602-1072effeb177
+x-runtime: 0.001814
+vary: accept-encoding
+cf-cache-status: BYPASS
+server: cloudflare
+cf-ray: a37548db3ab9761f-TXL
+alt-svc: h3=":443"; ma=86400
+

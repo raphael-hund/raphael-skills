@@ -1,0 +1,401 @@
+{
+  "base": "https://www.farisschmidt.de",
+  "createdAt": "2026-08-31T10:30:53.844Z",
+  "static": true,
+  "states": true,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-hover-00-Home.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Home"
+        },
+        {
+          "file": "home-desktop-hover-01-Leistungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Leistungen"
+        },
+        {
+          "file": "home-desktop-hover-02-Referenzen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Referenzen"
+        },
+        {
+          "file": "home-desktop-hover-03-Prozess.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Prozess"
+        },
+        {
+          "file": "home-hover-00.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "state-hover",
+          "selector": "button",
+          "index": 0
+        },
+        {
+          "file": "home-hover-01.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "state-hover",
+          "selector": "button",
+          "index": 1
+        },
+        {
+          "file": "home-hover-02.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "state-hover",
+          "selector": "nav",
+          "index": 0
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "home-desktop-17-y11920.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11920
+        },
+        {
+          "file": "home-desktop-click-y0-00-Klar_passt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        },
+        {
+          "file": "home-desktop-click-y10500-00-Wie_lange_dauert_eine_We.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 10500,
+          "target": "Wie_lange_dauert_eine_We"
+        },
+        {
+          "file": "home-desktop-click-y11250-00-Wie_viel_kostet_eine_Web.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 11250,
+          "target": "Wie_viel_kostet_eine_Web"
+        },
+        {
+          "file": "home-desktop-click-y11250-01-Wann_macht_eine_Zusammen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 11250,
+          "target": "Wann_macht_eine_Zusammen"
+        },
+        {
+          "file": "home-desktop-click-y11250-02-Sind_die_Webseiten_SEO_o.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 11250,
+          "target": "Sind_die_Webseiten_SEO_o"
+        },
+        {
+          "file": "home-desktop-click-y11250-03-Beinhaltet_eine_Webseite.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 11250,
+          "target": "Beinhaltet_eine_Webseite"
+        },
+        {
+          "file": "home-desktop-click-y11250-04-Was_muss_ich_vorbereiten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 11250,
+          "target": "Was_muss_ich_vorbereiten"
+        },
+        {
+          "file": "home-desktop-click-y11920-00-Was_muss_ich_vorbereiten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 11920,
+          "target": "Was_muss_ich_vorbereiten"
+        }
+      ],
+      "docHeight": 13420
+    }
+  ]
+}

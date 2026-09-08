@@ -1,0 +1,26 @@
+{
+  "source": "adobe-fonts",
+  "loadPath": "official-typekit-embed",
+  "selfHostAdobeWebfonts": false,
+  "downloadLibrary": false,
+  "brandFilesOverride": true,
+  "libraryRoot": "/root/tools/adobe-fonts-library",
+  "secretStore": "/root/tools/secrets/adobe-fonts.env",
+  "kit": {
+    "id": "eyi4vmc",
+    "projectId": "eyi4vmc",
+    "accountId": "362341668",
+    "name": "MAKE",
+    "embedUrl": "https://use.typekit.net/eyi4vmc.css",
+    "embedRel": "stylesheet"
+  },
+  "families": [
+    { "cssName": "fieldwork", "role": "body", "fallback": "sans-serif" },
+    { "cssName": "fieldwork-hum", "role": "body", "fallback": "sans-serif" },
+    { "cssName": "gill-sans-nova", "role": "body", "fallback": "sans-serif" },
+    { "cssName": "benton-modern-display-conden", "role": "display", "fallback": "serif" },
+    { "cssName": "alternate-gothic-condensed-a", "role": "display", "fallback": "sans-serif" },
+    { "cssName": "alternate-gothic-compressed", "role": "display", "fallback": "sans-serif" }
+  ],
+  "defaultFamilies": ["fieldwork", "benton-modern-display-conden"]
+}

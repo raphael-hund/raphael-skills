@@ -1,257 +1,190 @@
 ---
 name: web
 description: >
-  Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn
-  eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie,
-  Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen,
-  Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router
-  (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen.
-  UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und
-  wird von hier progressiv nachgeladen — nicht als Extra-Skills
-  taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design.
-  Trigger: "Website bauen", "Landingpage bauen",
-  "Landingpage für einen Kunden", "Sitemap", "Webseite launchen", "CRO",
-  "Referenzseite nachbauen", "Website clonen", "Popup/Lead-Magnet",
-  "Screenshot nachbauen", "aus Bild bauen".
+  Dach-Skill für Website- und Landingpage-Projekte in der Claude-Code-Harness:
+  Plan, Fold-Duell, Bau, Kritik und Launch als Phasen mit Gates und Screenshots.
+  Baut React-Projekte (Next.js App Router, TypeScript, Tailwind v4, shadcn/ui)
+  und installiert Komponenten aus den verbundenen Registries, MCP-Servern und
+  npm-Bibliotheken (21st.dev, shadcn, Mantine, Magic UI, Aceternity, Kibo und
+  weitere), statt sie nachzubauen. Trägt SEO-Seitenkarte, DESIGN.md, Design-Depth-
+  Kapitel, Motion-Regeln, Bildsuche, GPT-Image, Muster-Bibliothek und Stil-Regeln.
+  Subagenten: Fable, Astra und Kimi zuerst, Opus und Grok dazu, Sol nur Backend,
+  Luna/Sonnet/Terra nur Serien. Trigger: "Website bauen", "Landingpage bauen",
+  "Sitemap", "Webseite launchen", "CRO", "Referenzseite nachbauen", "Website
+  clonen", "Screenshot nachbauen", "aus Bild bauen", "Website planen",
+  "Website-Kritik", "kompletter Website-Plan", "DESIGN.md".
 metadata:
-  raphael-version: "0.19.0"
+  raphael-version: "4.0.0"
+  raphael-changelog: '["0.34.0 (04.09.2026): Fold-Duell als Welle 0, Referenzen als Bilder, Blind-Judge, Komponenten vor Eigenbau", "2.0.0 bis 2.2.0 (07.09.2026): MAKE Web Astra mit 56 Galerien, 50 UI-Bibliotheken, Motion-Regeln, Bildsuche, GPT-Image, 14 Design-Depth-Kapiteln", "3.0.0 (08.09.2026): React-first, verifizierte Registries, react-starter, 21st-CLI und Design Context, shadcn- und Mantine-MCP", "4.0.0 (08.09.2026): Zusammenführung 0.34.0 + 2.2.0 + 3.0.0: Rollen, Gates, Skripte und Muster-Bibliothek aus 0.34.0, Wissensmodule aus 2.2.0, React-Stack und Registries aus 3.0.0; Agentenkatalog auf Fable/Astra/Kimi + Opus/Grok; Workflow-Tool statt /orchestrate; Playwright-Loader für alle Screenshot-Skripte"]'
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: '["references/anfaenger-pfad.md","references/loop2-ablauf.md","references/sitemap-section-planung.md","references/qa-faecher.md","references/landingpage-struktur.md","references/informationsarchitektur.md","references/web-clone-playbook.md","references/rebuild-from-image.md","references/bildgenerierung.md","references/ui-components/INDEX.md","references/motion-doktrin.md","references/ui-layouts-catalog.md","references/cro-diagnose.md","references/experiment-programm.md","references/conversion-elemente.md","references/code-qualitaets-checkliste.md","references/security-audit-playbook.md","references/domain-safe-browsing-checkliste.md","references/readonly-db-rolle.md","references/design-systeme-vergleich.md","references/radix-shadcn-tailwind-stack.md","references/remotion-produktionsweg.md","references/screenshot-kritik-loop.md","references/tool-usecase-router.md","references/frontend-referenzbibliothek.md","references/lexlin-design-prinzipien.md","references/damien-design-methodik.md","references/agentur-rubrik.md","references/agent-roster.md","references/templates/statistics-page-template.html"]'
-  raphael-requires-skills: '["copywriting@^0","design@^0","eval@^0","visual-aaa@^1"]'
-  raphael-completion-criteria: '["Anfänger-Pfad: vor erstem Edit Auftrag aus references/anfaenger-pfad.md §1 benannt + nur gelistete Dateien geladen", "Lighthouse/axe = 0 Fehler (G1, hart)", "Formular-Reihenfolge: Kontaktdaten zuletzt; Drop-off pro Slide gemessen (G1, hart)", "G2 auf jedem Ship-Copy-Block >= 0.7", "Launch nur mit Raphaels Signatur + Deploy-Egress-Gate", "Bei Website-Referenz-Nachbau: Lizenz-Check aus web-clone-playbook.md dokumentiert vor Launch", "Bei components/art-direction/build mit UI-Tools: tool-usecase-router.md angewendet; Defaults+Install/Use dokumentiert; keine 160-Link-Dump-Antwort", "Messlatte-Szenario (Motion-Hero+Icons+Stock/FAQ): vier Default-Zeilen aus Router ohne Galerie-Dump", "Werkzeugtabelle in client-<name>/web/art-direction.md existiert vor dem ersten npm i; jede Zeile nennt Bedarf, Werkzeug, Befehl, Gate und Router-Anker", "Keine Dependency in package.json ohne Zeile in der Werkzeugtabelle (Nachweis: node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> Exit 0)", "Custom-TS/JS: anti-slop eingerichtet und npx oxlint Exit 0 (Nachweis in qa-faecher Fach 4 + code-qualitaets-checkliste.md; CMS-only ausgenommen)", "Design-G1 nur via node design/scripts/detect.mjs (nie npx impeccable detect)", "shot-sweep immer mit --base <echte-Dev-URL> (ohne --base: Exit 2; kein stiller Default-Port)", "screenshot-kritik-loop inkl. Blind-A/B (3b) gegen Weltklasse-Referenz dokumentiert", "visual-aaa (G1 Exit 0 + visual-kritiker pass HIGH + visual-ship.json valid) — DoneClaim ohne Manifest verboten", "QA-Faecher 1-6 gruen (Conversion/Design/A11y/Technik/SEO/Trust); agentur-rubrik Zeilen 1-25 erfuellt oder Ausnahme dokumentiert", "Multi-Agent-Web-Lauf: Seite = opus-builder; Kritik mindestens zwei Familien (Grok/Opus/Sol) plus Gegencheck; nie Haiku", "Raphael-Nein derselben Session steht in DESIGN.md/DECISIONS.md mit Route+Dateipfad; gesperrter Pfad kommt auf der Route nicht mehr vor (rg vor Ship)"]'
+  raphael-loads: '["references/anfaenger-pfad.md", "references/rolle-plan.md", "references/rolle-kritik.md", "references/rolle-bau.md", "references/rolle-launch.md", "references/fold-duell.md", "references/kritik-matrix.md", "references/agent-roster.md", "references/stack.md", "references/component-registries.md", "references/21st-dev.md", "references/stil-regeln.md", "references/muster-bibliothek/INDEX.md", "references/design-depth.md", "references/design-depth/INDEX.md", "references/motion-native.md", "references/image-search.md", "references/gpt-image.md", "references/seo-pages.md", "references/screenshots.md", "references/load-graph.md", "references/loop2-ablauf.md", "references/tool-usecase-router.md", "references/modus-inspiration.md", "references/zugangskarte.md"]'
+  raphael-requires-skills: '["copywriting@^0","design@^0","seo@^0","higgsfield@^0"]'
+  raphael-completion-criteria: '["Rolle in einem Satz benannt (Plan|Kritik|Bau|Launch), genau ein Rollen-Dokument geladen, Preflight aus dem Abschnitt Vor dem ersten Edit gelaufen", "Website ist ein React-Projekt aus assets/react-starter; jede vereinbarte Route der SEO-Seitenkarte ist prerendert und trägt Inhalt, Metadaten und Links im Response-HTML (curl-Beleg am Produktionsbuild)", "Wiederverwendbare Komponenten kommen aus den konfigurierten Registries, npm oder 21st mit Herkunft, Lizenz und entfernten Abhängigkeiten in DESIGN.md; Eigenbau nur mit Suchbeleg", "Bei Neuaufbau/Redesign hat Raphael das Fold-Duell gesehen und in DECISIONS.md gewählt, bevor Routen gebaut wurden", "Plan, Fold-Duell, Bau und Kritik als Phasen in einem Chat, Zustand auf Platte (PLAN.md, PRUEFGEGEN.md, STATUS.md, KRITIK-n.md); Neuaufbau: Fold-Duell-GO öffnet den ersten Bau, danach öffnet nur KRITIK-n.md den nächsten Bau", "Parent dünn: kein CSS/TSX-Edit, kein PNG-Read im Parent; jedes PNG liest ein Kritik-Leaf, Parent führt das Shot-Ledger", "Fold-Duell und Bau starten im ersten Turn einen Dynamic Workflow (multi-family); Fable/Astra/Kimi primär, Opus ergänzend; nach jedem Bau genau ein Stufe-2-Kritiker anderer Familie, zweiter nur nach FAIL; vor Auslieferung genau eine Stufe-1-Abnahme", "Screenshots über scripts/shot-sweep.mjs mit --base (1440×900 Fold und 390×844), nach jedem Fix frischer Sweep; DESIGN.md mit CSS und gerendertem Stand abgeglichen", "Launch nur mit allen Gates aus rolle-launch.md grün und Raphaels Signatur; kein Push, Deploy oder Versand ohne Auftrag"]'
 ---
 
-# web — Loop 2: Website
+# web: Website-Skill (Claude Code)
 
-## Start hier (Anfänger zuerst)
+Diese Datei ist der **Router**. Sie sagt, welche Phase du bist, welche eine Datei
+du dafür lädst und welche Gates gelten. Das Handbuch steht in den Referenzen.
 
-1. Lies **`references/anfaenger-pfad.md`** — wähle **eine** Auftrag-Zeile (§1).
-2. Lade **nur** die dort genannten Dateien. Nicht die ganze loads-Liste.
-3. Vor dem ersten Edit: Auftrag + geladene Pfade in einem Satz nennen.
-4. Visuell? → Sweep mit **`--base`** (siehe Gotchas), jedes PNG per Read ansehen.
+## Was Raphael tippt
 
-Detail-Ablauf und Gates: `references/loop2-ablauf.md`.
+- Website bauen / ändern / relaunchen / clonen → `/web`
+- Inspiration / Look / Referenzen holen, noch nichts planen → `/web` (Modus Inspiration: Refero-MCP, 21st-MCP, Galerien, Komponenten-Registries, Screenshots über Leaves)
+- Website planen, noch nichts bauen → `/web` (Rolle Plan)
+- Website-Kritik / Look / Conversion sichtbar prüfen → `/web` (Rolle Kritik, Workflow)
+- Nur DESIGN.md → `/web` (Rolle Plan, Ausgabe DESIGN.md)
 
-**Lies zuerst (Projekt):**  
-`/root/clients/client-<name>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`
-(Dossier Loop 1), `/root/raphael-brain/wiki/hot.md`.  
-Alles Visuelle → Skill **design** (nicht hier neu erfinden).
+Kein `/orchestrate`, kein `/ultracode`, keine Skill-Liste. Bau- und Kritik-Phase
+starten im ersten Turn einen Dynamic Workflow über das Workflow-Tool (Profil
+`multi-family`); `web` lädt seine internen Spezialisten selbst.
 
-**Mitgeladene Skills (keine Extra-Dateien):** nur `design` (Linien, Detektoren,
-`scan-ai-slop`) und `copywriting` (G1→G2).
-`taste`, `impeccable`, `ui-ux`, `kill-ai-slop`, `no-ai-slop`, `frontend-design` /
-`design-taste-frontend`, `animate` sind **keine Pflicht-Loads** — sie routen
-auf `design/` bzw. `copywriting` oder bleiben still. Ein Site-Build lädt nicht jedes Einzel-Skill.
+## Welche Phase bin ich? (ein Pflicht-Load)
 
-## Zweck (1 Satz)
+Sag die Rolle in einem Satz an und lade **genau ein Rollen-Dokument**. Danach lädt die Auftrag-Zeile aus `anfaenger-pfad.md` nur die dort genannten Fachreferenzen.
 
-Aus dem Dossier eine konversionsstarke, technisch fehlerfreie Website bauen und
-aus echten Analytics verbessern.
-
-## Eingang aus `website-plan` (fail-closed)
-
-Wenn ein FULL-Plan unter `website-plan/` als Baukanon genannt ist, beginnt `build`
-erst bei `PLAN_VERIFIED=YES` aus dessen Validator. `RUN_COMPLETE`, eine gewählte
-Designrichtung oder vorhandene Briefs reichen nicht. Bei rotem Critic,
-`OWNER-BLOCKER` oder fehlendem Route-/Mockup-Manifest bleibt der Build BLOCKED;
-der Web-Skill entscheidet keine Kundenfakten eigenmächtig.
-
-## Workspace-pro-Version (Raphael 10.08.2026, bindend für Bestandsseiten)
-
-Update an einer bestehenden Site = immer neuer Workspace/Worktree von `main`
-(in Orca: „New Workspace" — das IST ein Git-Worktree). Name egal, umbenennen
-erlaubt. `main` trägt nur flache Squash-Commits.
-
-- **Gefällt Raphael** → EIN Squash-Commit auf `main` (`git merge --squash`),
-  Push/Deploy nur auf sein Wort, dann Workspace + Branch löschen.
-- **Gefällt nicht** → Workspace + Branch ersatzlos löschen UND das Abgelehnte
-  als Verboten-Eintrag in Root-`DESIGN.md`/`DECISIONS.md` schreiben. Erst dann
-  gilt das Nein als eingearbeitet.
-- **Raphael-Nein in derselben Session** (ein Asset, ein Motiv, ein Muster):
-  sofort Route + Dateipfad + Ersatz in `DESIGN.md`/`DECISIONS.md` schreiben,
-  Datei per `bilder.mjs reject` löschen, Code auf den Ersatz umstellen.
-  Gesperrter Pfad darf auf dieser Route nicht mehr vorkommen. Ein späterer
-  Workspace-Kill ersetzt das nicht. Beleg 17.08.2026: Haushaltsauflösung
-  sollte Illustration, live blieb `hero-polo-dokumentar.webp`, weil die
-  Ausnahme vom 13.08. das Foto festhielt.
-- Historie/Archiv-Ordner sind KEINE Quelle: nichts aus `git log`, alten Plänen
-  oder Handoffs wieder einbauen. Was nicht im aktuellen Code oder `DESIGN.md`
-  steht, ist verworfen. Muster-Repo: Wilhelm-Bedachung (`CLAUDE.md` dort).
-- Nie alte Workspaces liegen lassen; nie parallel im Root-Checkout bauen.
-
-## Worker-Besetzung (Raphael 14.08.2026 — ersetzt 05.08.)
-
-Eine Seite entsteht als Trio, nicht als Einzel-Agent:
-
-| Job | Wer | Nie |
+| Rolle | Pflicht-Load | Fertig heisst |
 |---|---|---|
-| Bauen (Frontend, Layout, Copy ins Markup) | **`opus-builder`** | Haiku, Luna als Builder, Kimi als Default-Bau |
-| Visuelle Kritik derselben Seite | **zwei Familien**, nie die des Builders: Opus gebaut → Grok + `kimi-recherche`. Sol sieht keine Bilder. | ein Kritiker allein; Haiku; Luna als Urteil; Opus prüft Opus |
-| Code-Ursache | **`sol-pruefer`** (Textausschnitt, keine Bildpfade) | visuelle Meinung ohne Code; Screenshot-Pfade an Sol |
+| **Inspiration** | `references/modus-inspiration.md` | Reference-Lock + Shot-Ledger in `art-direction.md`; Code entsteht erst im Bau |
+| **Plan** | `references/rolle-plan.md` | `PLAN.md`, `PRUEFGEGEN.md`, `SEO-PAGE-MAP.json`, `DESIGN.md`-Seed, Copy-Briefing, eine Art-Direction je Kunde, Fold-Duell-Zeilen bei Neuaufbau |
+| **Fold-Duell** (Welle 0 bei Neuaufbau/Redesign) | `references/fold-duell.md` | Raphael hat drei Folds gesehen und gewählt (`DECISIONS.md`); erst dann Welle 1 |
+| **Kritik** | `references/rolle-kritik.md` | `KRITIK-n.md` mit überlebender Fixliste + Shot-Ledger |
+| **Bau** | `references/rolle-bau.md` | Fixliste umgesetzt, Re-Sweep grün, `STATUS.md` aktuell, alle Routen der Seitenkarte gebaut |
+| **Launch** | `references/rolle-launch.md` | alle Launch-Gates grün, Raphaels Signatur liegt vor |
 
-Die zwei visuellen Kritiker laufen zuerst unabhängig. Danach bekommt jeder die Befunde des anderen und darf nur **bestätigen oder widerlegen** — das ist der Gegencheck. Fixliste = überlebende Befunde, nicht Mehrheit einer Familie.
-
-Kimi bleibt erlaubt für Recherche/Zweitstimme, nicht als Seiten-Builder. Mapping und Parallel: `agent-roster.md`. Kritik-Ablauf: `screenshot-kritik-loop.md` + `orchestrierung.md`.
-
-## Reference-Routing — welche Datei wann
-
-| Anliegen | Datei |
-|---|---|
-| Erster Einstieg / Auftrag wählen | `references/anfaenger-pfad.md` |
-| Loop-2 Reihenfolge, Meaning-Capture, Gates, Output-Pfade | `references/loop2-ablauf.md` |
-| Ads-Landing: eine Aktion, Formular-Reihenfolge | `references/landingpage-struktur.md` |
-| Mehrseitige Sitemap + Section-Plan (Pflicht-Format) | `references/sitemap-section-planung.md` |
-| IA-Wissen (Nav, URLs, Linkgraph) | `references/informationsarchitektur.md` |
-| Rollen / agentType / Parallel | `references/agent-roster.md` |
-| Tools/Defaults statt Link-Dump | `references/tool-usecase-router.md` |
-| QA 6 Fächer + Formular-G1 | `references/qa-faecher.md` |
-| AAA Visual/SEO/Trust (≠ WCAG AAA) | `references/agentur-rubrik.md` |
-| Screenshots + Kritik-Panel + Blind-A/B | `references/screenshot-kritik-loop.md` |
-| Premium Landing-Regeln (15) | `references/lexlin-design-prinzipien.md` |
-| Foundations→Components→Composition | `references/damien-design-methodik.md` |
-| URL-Referenz nachbauen + Lizenz | `references/web-clone-playbook.md` |
-| Bild/Screenshot nachbauen | `references/rebuild-from-image.md` |
-| Higgsfield / GPT Image 2 | Skill `higgsfield` zuerst; CLI-Katalog `references/bildgenerierung.md` |
-| Neue Illustration vs. bestehendes Asset; Inhalt+Stil referenzieren (Map/Dresden-Fall) | Skill `higgsfield` + `references/bildgenerierung.md` Abschnitt **Neue Illustration vs. wiederverwenden** |
-| Motion-Regeln | `references/motion-doktrin.md` |
-| Copy-paste Motion-UI | `references/ui-components/INDEX.md` |
-| Default-Stack Next/Tailwind/shadcn/`motion` | `references/radix-shadcn-tailwind-stack.md` |
-| Popup/Lead-Magnet | `references/conversion-elemente.md` |
-| CRO Bestandsseite | `references/cro-diagnose.md` |
-| A/B-Programm | `references/experiment-programm.md` |
-| Security Formulare/Supply-Chain | `references/security-audit-playbook.md` |
-| Custom-Code gegen AI-Slop + Oxlint anti-slop (nach Build) | `references/code-qualitaets-checkliste.md` |
-| Junge Domain vor Launch | `references/domain-safe-browsing-checkliste.md` |
-| Statistik-Linkbait HTML | `references/templates/statistics-page-template.html` |
-| Vercel-Git, Remotes Org+privat, Plugin-Skills | `references/vercel-git-deploy.md` |
-| Adobe Fonts Library | `node scripts/adobe-fonts-kit.mjs show Fieldwork` |
-| Genau eine Ressource nach Router-Wahl (exakte Groß-/Kleinschreibung) | `show` = lokale Metadaten; **Pflicht danach:** `node scripts/resource-access.mjs open "<exakter Name>"` öffnet die Katalog-URL und liest die Site. URL-Dump allein zählt nicht als Nutzung. |
-| 160er-Katalog (nur nach Router-Zeile, max 3 URLs) | `references/frontend-referenzbibliothek.md` |
-
-Vollständige Auftrag→Datei-Matrix inkl. „nicht laden“: `anfaenger-pfad.md`.
-
-## Portabilitätsvertrag
-
-- Koordination hält Plan, Freigaben, Abschlussbeweis.
-- Rollen = Fähigkeiten, keine fest verdrahteten Provider.
-- Nur Host-Werkzeuge nutzen; fehlende nie vortäuschen.
-- Hintergrund-Jobs nur auf Nutzer-Wunsch; Gates (Egress, Screenshot, Abschluss) immer.
-
-## Screenshot-Pflicht (hart)
-
-Design wird **nur** an Screenshots entschieden. Kanonischer Capture-Weg ist
-Playwright über `scripts/shot-sweep.mjs`. Chrome-CLI und `raphael-chrome`
-sind kein Ersatz für den Sweep.
+Jede Rolle startet mit dem Gate:
 
 ```bash
-node /root/raphael-skills/skills/eigene/web/scripts/shot-sweep.mjs \
-  --base http://127.0.0.1:<PORT> \
-  --out /tmp/<projekt>-shots \
-  --routes /
+node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
+  --rolle plan|kritik|fold-duell|bau --client /root/clients/<kunde>/web/handoff
 ```
 
-- Fold 1440×730, dann 1440×1500 @ 750 px Scroll, sequentiell pro Seite, Hover+Klick-Pass, `--static` für Kritik — **nie** fullPage / captureBeyondViewport.
-- **`--base` Pflicht** (ohne Flag: Exit 2). Früherer Default-Port 5280 entfällt.
-- Jeder Shot: Playwright `page.screenshot`, `animations: 'disabled'`, `caret: 'hide'`. Fonts und Seite sind vor dem Shot gesetzt.
-- Stabile Screenshots: wiederholbar, nicht leer, Viewport-Vertrag 1440×730 im Fold. Nach Änderung am Sweep: Screenshots testen mit `node evals/run-shot-stable-check.mjs`.
-- Jedes PNG per Read ansehen; nach jedem Fix **alle** betroffenen Routen erneut.
-- Kritik bekommt nur `manifest.json` + PNGs. Ablauf: `screenshot-kritik-loop.md`.
-- Plan-Mockups sind Soll; Web-Screenshots sind Ist. Build-QA erfasst pro betroffener
-  Route Desktop/Mobile sowie relevante Normal-, Loading-, Empty-, Error- und
-  Success-Zustände. Reveal-Zwischenstände, unklare Cookie-/Datenzustände und
-  Full-Page-Captures ohne lesbare Section-Zuordnung sind kein PASS.
-- Motion-Abnahme prüft Trigger, Element, Dauer, Easing, Stagger und
-  `prefers-reduced-motion` gegen den Planvertrag; ein statisches Bild allein
-  beweist keine funktionierende Animation.
+Exit 0 = frei, Exit 2 = gesperrt (zurück an die Vorphase). Launch läuft unter `--rolle bau`. Kanonischer Handoff ist `/root/clients/<kunde>/web/handoff`; bestehende Pfade `/root/clients/client-<name>/web/handoff` und `/root/clients/<kunde>/website/<lauf>/handoff` bleiben akzeptierte Aliase. Fehlt der Handoff-Prompt, ist es Plan.
 
-## Look & QA (design = einzige Design-Quelle)
+## Vor dem ersten Edit (Preflight, jede Session)
 
-| Aufgabe | Linie | Referenz |
+1. Harness prüfen: `claude mcp list` zeigt `21st`, `shadcn`, `mantine`, `refero` als Connected; `id` und `stat` des Projektordners vergleichen, Schreibprobe (`touch`) auf Projekt und Skill-Quelle; `test -r /root/.secrets/api-keys.env`, sonst `sudo /root/raphael-command-center/ops/bin/heal-secrets-acl.sh`. Ergebnis in einer Zeile.
+2. `references/anfaenger-pfad.md` §1: **eine** Auftrag-Zeile wählen, nur die dort genannten Dateien laden.
+3. Vor Art-Direction: `references/stil-regeln.md` (Sektor-Dials §1) + 2 bis 3 Cases aus `references/muster-bibliothek/INDEX.md` + `references/design-depth.md` mit den Kapiteln aus `references/design-depth/INDEX.md`, die die Sektion braucht.
+4. Projekt lesen: `/root/clients/<kunde>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`, `/root/raphael-brain/wiki/hot.md`.
+5. Referenzen holen: `ls -lt /root/eingang | head -20`, bildhafte Dateien der letzten 7 Tage durch `astra-worker`, `kimi-worker` oder `fable-builder` ansehen lassen; in der Plan-Phase höchstens drei Bilder, kein Produktionsbau.
+6. Auftrag + geladene Pfade in einem Satz nennen.
+
+## Rote Linien (gelten in jeder Rolle)
+
+- **Raphael sieht den Look, bevor Routen gebaut werden.** Bei Neuaufbau, Redesign oder «Look von null» ist Welle 0 das Fold-Duell: drei Fold-Richtungen, ein Montage-Bild im Eingang, seine Wahl in `DECISIONS.md`. Erstes Bild ≤30 Minuten nach Auftrag.
+- **Referenzen sind Bilder.** Referenzbilder und Referenz-Folds gehen als `BILDLISTE.txt` an jeden Builder- und Judge-Leaf; Berichte tragen je Bild «gesehen:». Der Judge fragt blind «besser Build oder besser Referenz?» je Achse; «Referenz besser» auf Visual = FAIL.
+- **Kunden-`DESIGN.md` und Raphaels Referenz schlagen `stil-regeln.md`.** Ein Widerspruch wird als Zeile in `brand/DESIGN.md` aufgelöst.
+- **React-Stack, Komponenten holen statt nachbauen.** Neue Sites starten aus `assets/react-starter` (`references/stack.md`). Jede Komponentenfamilie zuerst über die konfigurierten Registries, das shadcn-MCP, 21st (MCP oder CLI mit Design Context) und npm nach `references/component-registries.md`; Eigenbau nur mit Zeile «gesucht in …, nichts passte, weil …» im Bericht und in `DESIGN.md`. HTML-first und Astro-Inseln gelten nur noch für bestehende HTML-Projekte (`references/component-islands.md`).
+- **Jede SEO-Route wird gebaut.** `SEO-PAGE-MAP.json` (`references/seo-pages.md`) ist der Umfang; keine Homepage-only-Lieferung, keine leeren Routen, kein kopierter Ortstext. Beleg ist `curl` am Produktionsbuild.
+- **Screenshots sind der einzige Design-Beweis.** `scripts/shot-sweep.mjs` mit Pflicht-`--base`, über HTTP, 1440×900 Fold **und** 390×844, `--static`; nach jedem Fix frischer Sweep. Aufnahmeregeln und Headless-Fallen: `references/screenshots.md`. Zusätzlich vor der Abnahme: jede Datei in `components/ui/` einem Registry-Eintrag oder einer festgehaltenen Eigenbau-Begründung in `DESIGN.md` zuordnen.
+- **Parent bleibt dünn; Bau-Session = Controller.** Der Parent editiert keine CSS-/TSX-Datei und liest keine PNG-Binaries. Jedes PNG liest ein Kritik-Leaf; der Parent führt das Shot-Ledger (`pfad | viewport | gelesen-von | verdict`) in `STATUS.md`. Bau- und Kritik-Phase **müssen** im ersten Turn einen Dynamic Workflow starten.
+- **Drei Sessions in einem Chat, Kritik-Flotte nur nach `references/kritik-matrix.md`.** Plan, Kritik und Bau sind drei Workflow-Phasen mit Zustand auf Platte. Genau ein Stufe-2-Kritiker anderer Familie nach jedem Bau, `effort: high`; Abnahme aus Stufe 1 vor Auslieferung. Ein Befund lebt nur nach der Merge-Regel: zwei unabhängige Leaves oder eine Linse mit deterministischem Gate-Beleg (SEO `onpage-check.mjs`, Copy G0/G1, Trust `PROOF.md`). Wer baut, prüft nicht. Provenienz aus `ANGEFRAGTES MODELL` plus Fallback-Hinweis.
+- **Copy schreibt nie der Integrator.** Copy kommt aus einem eigenen Copy-Leaf (`astra-worker`, dann `kimi-worker`, dann `fable-builder`) mit `forbidden-check.py`-Beleg; der Integrator baut sie unverändert ein.
+- **Kunden-Vorschau ist kein Launch.** Vorschau-Blocker sind nur Ablauf, Sitemap, Idee, Design; Inhalt und Domain parken als `content-park`/`ops-park` oder FAKT-GATE (`scripts/preview-befund-klasse.mjs`), nie als `biggest_gap`. Der Web-Skill entscheidet keine Kundenfakten eigenmächtig.
+- **Launch nur mit Raphaels Signatur** plus Deploy-Egress-Gate. Kein Push, Deploy oder Versand ohne Auftrag; Zustimmung zum Ergebnis ist keine Freigabe dafür.
+- **Gates werden nicht umgebaut, um durchzukommen.** Ein fälschlich blockendes Gate ist ein Befund in `STATUS.md` (was blockt, warum fälschlich, kleinster Fix-Vorschlag); keine Session editiert Hooks, Validatoren oder fremde Skills, um ein Gate zu öffnen.
+
+## Subagenten (Claude-Code-Harness, Raphael 08.09.2026)
+
+| Job | Zuerst | Dazu | Nie |
+|---|---|---|---|
+| Plan, Architektur, Design-Richtung | Hauptsession (Fable), `astra-worker`, `kimi-worker` | | Sol, Luna, Sonnet, Haiku |
+| Frontend, UI, Integration | `fable-builder` (max zwei parallel), `astra-worker`, `kimi-worker` | `opus-builder` (Breite) | Sol |
+| Copy | `astra-worker` | `kimi-worker`, `fable-builder` | Opus, Sol, Haiku |
+| Technik, Debug, Browser, Toolchain | `grok-worker` | | |
+| Backend, API, Tests | `grok-worker`, `sol-worker` | `composer-worker` | Frontend über Sol |
+| Research, Gegenposition | `kimi-worker`, `grok-worker` | `web-research` (Haiku, nur Fetch) | Astra |
+| Kartierung, Serien, Massen-Read | `sonnet-worker`, `luna-worker`, `terra-worker`, `Explore` | | Urteil, Design |
+| Erste Kritik nach Bau (Stufe 2) | `grok-critic` (visuell), `opus-critic` (Code/UX; nach Fable-Build als Instanz-Trennung gekennzeichnet, nie nach Opus) | `sol-critic` (nur Code/Backend) | gleiche Familie wie Builder |
+| Abnahme vor Auslieferung (Stufe 1) | `fable-critic`, `astra-critic`, `kimi-critic` (andere Familie als Builder) | | nach eigenem Bau |
+
+Rollen-Wörterbuch mit Kontextpaketen: `references/agent-roster.md`. Spawn-Plan
+der Kritik: `references/kritik-matrix.md`. Jedes Paket nennt Ziel, Eingaben,
+`write_set`, Prüfbefehl, Stop-Bedingung, Zeitbudget und Rückgabeformat; Reviews
+zusätzlich `ACTUAL_BUILDER_FAMILY`. Serienarbeit (URL-Proben, Massen-Checks)
+läuft als Skript oder Stufe-3-Leaf, nie als offenes 50er-Paket an Stufe 2
+(Observation 0063).
+
+## Wissensmodule (bedarfsweise, nie alle)
+
+| Thema | Datei | Wann |
 |---|---|---|
-| Landing/Kampagne | taste | design → `/root/raphael-skills/skills/design/references/taste-kern.md` |
-| App/Dashboard | ui-ux | design → `/root/raphael-skills/skills/design/references/ui-ux-db-nutzung.md` |
-| Design-G1 | impeccable | `node /root/raphael-skills/skills/design/scripts/detect.mjs` Exit 0 (Detektoren: `/root/raphael-skills/skills/design/references/impeccable-detektoren.md`) |
-| Doktrin | fusioniert | design → `/root/raphael-skills/skills/design/references/design-doktrin.md` |
+| Stack, Projektstruktur, Client/Server-Grenze, Export | `references/stack.md`, `assets/react-starter/README.md` | vor dem ersten Bau-Paket |
+| Registries, npm, MCP, Suchreihenfolge je Komponentenjob | `references/component-registries.md`, `references/21st-dev.md`, `references/ui-libraries.md` | vor jeder neuen Komponentenfamilie |
+| Werkzeugtabelle, Icon/Font/Motion-Defaults, `werkzeug-gate.mjs` | `references/tool-usecase-router.md`, `references/zugangskarte.md` | art-direction, components, build |
+| Stil-Regeln, Muster-Bibliothek, Sektor-Dials | `references/stil-regeln.md`, `references/muster-bibliothek/INDEX.md` | vor jeder Art-Direction |
+| Design-Depth: Anatomie, Effekte, UX, 14 Kapitel mit Messwerten | `references/design-depth.md`, `references/design-anatomy.md`, `references/design-effects.md`, `references/design-ux-decisions.md`, `references/design-depth/INDEX.md` | vor der ersten Komponente eines Neuaufbaus; pro Sektion das passende Kapitel |
+| DESIGN.md-Vertrag und Abgleich | `assets/DESIGN.template.md`, `references/design-contract.md` | Plan und Reconcile |
+| Inspiration: Refero, Galerien, Service-Referenzen, Creator-Methoden | `references/modus-inspiration.md`, `references/inspiration.md`, `references/inspiration-galleries.md`, `references/service-learning.md`, `references/creator-methods.md`, `references/video-methods.md` | Modus Inspiration |
+| Motion | `references/motion-native.md` (CSS, WAAPI, View Transitions, `motion/react`), `references/motion-doktrin.md` (wann animieren), `scripts/motion-check.mjs` | build, polish |
+| Bilder: Suche, GPT-Image, Bibliothek, Image-to-Code, Scrollcraft | `references/image-search.md` + `scripts/find-images.mjs`, `references/gpt-image.md`, `references/image-library.md`, `references/image-to-code.md`, `references/scrollcraft.md`, `references/bildgenerierung.md`, `scripts/bilder.mjs`, `scripts/stock.mjs` | art-direction, build |
+| SEO-Seitenkarte und Release-Vergleich | `references/seo-pages.md`, `scripts/validate-page-map.mjs`, `scripts/onpage-check.mjs` | Plan und Launch |
+| Screenshots und QA | `references/screenshots.md`, `references/screenshot-kritik-loop.md`, `references/qa-faecher.md`, `scripts/shot-sweep.mjs`, `scripts/capture-site.mjs`, `scripts/axe-run.mjs`, `scripts/tastatur-check.mjs`, `scripts/formular-check.mjs`, `scripts/craft-check.mjs`, `scripts/g1-gate.mjs` | Kritik, Bau, Launch |
+| Landingpage, Sitemap, IA, Conversion | `references/landingpage-struktur.md`, `references/sitemap-section-planung.md`, `references/informationsarchitektur.md`, `references/conversion-elemente.md`, `references/cro-diagnose.md` | Plan |
+| UI-Skills-Taktiken, Beautiful UI, externe Skills | `references/ui-skills.md`, `references/ui-playbook.md`, `references/beautiful-ui.md`, `references/external-skills-2026-09.md` | bei konkreter Schwäche |
+| Klon und Rebuild aus Bild | `references/web-clone-playbook.md`, `references/rebuild-from-image.md`, `scripts/web-clone/` | Referenz nachbauen |
+| Bestehende Projekte, Abhängigkeiten, weitere Skills | `references/existing-web.md`, `references/dependencies.md`, `references/load-graph.md` | Übernahme, Skill-Kombination |
+| Launch, Deploy, Evidence | `references/rolle-launch.md`, `references/vercel-git-deploy.md`, `references/run-evidence-contract.md`, `scripts/run-evidence.mjs` | Launch |
 
-**AI-Slop-Sequenz (ein Satz-Ort, Detail `qa-faecher.md`):** design ZUERST
-(`detect.mjs` Exit 0 **und** `scan-ai-slop.mjs` mit `--rules=…/rules.de.mjs`
-bei deutschem Text) → danach copywriting G1→G2. Nie `npx impeccable detect`.
-Einzel-Skills `taste`/`impeccable`/`kill-ai-slop` dafür nicht extra laden.
+Volle Auftrag→Datei-Matrix: `references/anfaenger-pfad.md` §8. Was ein
+Site-Build lädt und was nie: `references/load-graph.md`.
 
-## Landingpage (Kurz)
+## Ablauf in einer Zeile
 
-- Eine Aktion; Formular **im Fold** eingebettet.
-- Mikro-Commitments → **Kontaktdaten zuletzt** (G1).
-- Big Idea → FAQ/„Für wen“ → Testimonials → Details.
-- Testimonials: Video/Screenshot, Menge nicht wegkürzen.  
-Detail: `landingpage-struktur.md`.
+strategy → SEO-Seitenkarte → copy-Briefing → Referenzrichtung (**stil-regeln + Cases + design-depth**) → Fold-Duell (Neuaufbau) → gewählte Art-Direction als Tokens → components (Registries, Werkzeugtabelle) → build (alle Routen) → shot-sweep → Kritik-Flotte → Fixliste → Re-Sweep → SEO+Trust → Abnahme Stufe 1 → run-evidence `validate --ready` → Launch (Signatur) → cro-learn.
+Detail-Ablauf und Gates: `references/loop2-ablauf.md`.
 
-## Ablauf (Detail: `loop2-ablauf.md`)
+## Gotchas (kurz)
 
-1. **strategy** — Ziel/Pfad; Meaning A–D schriftlich (`strategy.md`).
-2. **sitemap** — Landing → `landingpage-struktur.md`; Multi-Page → `sitemap-section-planung.md` (Abnahme dort bindend).
-3. **copy** — sektionsweise, copywriting G1→G2.
-4. **art-direction** — design-Skill; G1 = `detect.mjs`. Premium: lexlin + damien.  
-   URL-Vorlage → `web-clone-playbook.md` zuerst. Bild-Vorlage → `rebuild-from-image.md`.  
-   Assets → Grafik-Baum im Router, dann Skill `higgsfield` (`bildgenerierung.md` = CLI).  
-   `imagegen-web`/`imagegen-mobile` = **kein Default** (nur Host+Router).
-5. **components** — 5a Bedarf → 5b Router-Zeile → 5c **Pflicht:** genau einen
-   Namen mit `scripts/resource-access.mjs show "<Name>"` nachschlagen (nie die
-   gesamte Liste; unbekannter Name = Exit 1, nicht raten) → **5c-open Pflicht:**
-   dieselbe Ressource mit `scripts/resource-access.mjs open "<Name>"` öffnen und
-   lesen. Erst danach gilt die Site als genutzt oder ein Asset/eine Komponente
-   als übernommen. `show`/URL-Dump allein zählt nicht. → Abweichung belegt → **5d
-   Werkzeugtabelle** in `art-direction.md`. Ohne Tabelle kein `npm i`.
-   Inspiration App/Flows: Mobbin. MCP oft OFF — Status
-   `/root/tools/raphael-mcp-ondemand.sh status`, dann `raphael-chrome` oder
-   AgentReach. Nie Fake-Browse.
-6. **build** — nur Tabellen-Zeilen installieren; **Seite baut `opus-builder`**. Review = andere Familie, mindestens zwei Kritiker + Gegencheck (`screenshot-kritik-loop.md` §3). Nie Haiku. Security/OWASP bei Formularen/Consent (`/root/raphael-skills/skills/methodik/code-review/references/owasp-checkliste.md`). Echtes Custom-UI → `code-qualitaets-checkliste.md` (inkl. Oxlint `anti-slop` bei TS/JS).
-7. **qa-faecher** — 1–4 parallel, dann 5 SEO + 6 Trust. Fach 2 = Screenshot-Loop; Premium = Blind-A/B 3b. Fach 4 = `werkzeug-gate.mjs` + bei Custom-TS/JS `npx oxlint` Exit 0.
-8. **Launch** — Signatur + Deploy-Egress-Gate. Nie autonom. Junge Domain → Safe-Browsing-Checkliste.  
-   Git/Vercel: `references/vercel-git-deploy.md` (`origin`=Org, `personal`=raphael-hund).
-9. **cro-learn** — nur echte Analytics (G4).
+- **Dev-Server nur über `raphael-preview start --cwd <dir> --port <n>`**; `shot-sweep` liest `--base` aus `.ai/preview-<port>.json`. Statischer Export: `scripts/pruefstand.mjs` liefert `out/` wie Vercel aus. Keine handgebauten Warteschleifen mit `curl`.
+- **Playwright** kommt aus `scripts/lib/playwright-loader.mjs` (Reihenfolge `PLAYWRIGHT_ROOT`, Projekt, `/root/.local/share/web-skill-node`). Fehlt es: Installationsbefehl aus der Fehlermeldung, nie ein Ad-hoc-Skript.
+- **Headless und View Transitions:** bei `@view-transition{navigation:auto}` Tests headed unter `xvfb-run -a` oder Kontext mit `reducedMotion:'reduce'`; vor jeder Controller-Diagnose `:active-view-transition` und rAF-Ticks messen (Observation 0013).
+- **Session-Wechsel** (Codex und Claude, root und raphael-claude): fremdes Eigentum in Repo, `/tmp`-Ausgabepfaden und `.npm` vor dem ersten Schreibschritt beheben (Observations 0037 bis 0040, 0061). Build-Skripte kopieren byteweise, QA-Skripte prüfen den Ausgabeordner vor dem Browserstart.
+- **Deploy** aus frischem Worktree erst nach `vercel link --project <name>`; Beleg ist ein Treffer im HTML der echten Domain, nie der READY-Status (Observations 0025, 0035). Tracking-Skript und Datenschutz-Abschnitt sind eine Lieferung (0029).
+- **Grüne Tests belegen keinen frischen Build** (0051): vor dem Sweep `find src -newer out/index.html` leer oder frisch bauen. Leere Bildflächen in Vollseiten-Captures sind Capture-Verdacht (0050, 0054).
+- **Paket `motion`, Import `motion/react`**, nie `framer-motion`. **Ein Icon-System**, Default Lucide. Fonts über `next/font` mit `latin` + `latin-ext`, Adobe Fonts über `scripts/adobe-fonts-kit.mjs`.
+- **Keine Dependency ohne Zeile in der Werkzeugtabelle** (`werkzeug-gate.mjs`); nach jedem `shadcn add` die `package.json`-Diff lesen.
+- **Lighthouse/axe = 0** hart für den Launch, nicht die Vorschau. **AAA hier = Agentur-Rubrik**, WCAG bleibt AA.
+- **Update an Bestandsseite = neuer Worktree**, nie im Root-Checkout.
+- **Stock-Fotos nur über `scripts/stock.mjs`** (Shutterstock, Lizenznachweis) oder `scripts/find-images.mjs` (Logos/Icons ohne Rechte-Rückfrage, Fotos als Referenz für GPT-Image).
+- **Dokumentarfotos** brauchen eine Inhaltsfreigabe am Original (Displays, Logos auf Kleidung, Kennzeichen, Namensschilder); Kontaktbögen sind nur Auswahlhilfe (Observation 0021).
 
-## Loop-2 (verbindlich, eine Zeile)
+## Feedback-Pfad
 
-strategy → sitemap → copy → art-direction → components (Tabelle) → build →
-QA 1–4 ‖ dann SEO+Trust → Launch (Signatur) → cro-learn.
+- Raphael-Nein zu einem Asset/Motiv/Muster → `DESIGN.md`/`DECISIONS.md`, Datei per `bilder.mjs reject` löschen, Code auf den Ersatz umstellen.
+- Raphael-Nein zur **Methode** → eine Observation im task-observer-Log (Zielskill `web`), kein neuer Skill.
+- **Kritik hat X übersehen** → Fehlzeile in `PRUEFGEGEN.md`; bei Wiederholung Zeile in `references/agentur-rubrik.md`.
+- Geschmackskalibrierung an einer Referenz → `muster-bibliothek`.
 
-## Gotchas
+## Evals
 
-- **Anfänger lädt alles** → falsch. Nur `anfaenger-pfad.md` §1.
-- **`shot-sweep` ohne `--base`** → Exit 2 (Usage); nie ohne echte Dev-URL.
-- **`shot-sweep` schlägt fehl → Standard-Skript fixen, NIE eigenes Ad-hoc-Playwright-Skript schreiben.** Forensik 10.08.2026: beide Fehl-Sessions wichen nach einem Fehler/aus Bequemlichkeit auf eigene Skripte aus (1440×900, 12-Shot-Cap, kein Hover/Klick, kein Static) — genau das ist verboten. Auch alte `scratch/shot-*.cjs`-Skripte im Projekt nie wiederverwenden.
-- **Kritik nur auf selbst angesehene Shots.** „Jedes PNG per Read" ist wörtlich: Read-Aufrufe auf PNGs müssen die Shot-Zahl decken, Agent-Berichte ersetzen das nicht.
-- **`webdesigner-pro`** unter `~/.claude/skills/` = Fremdskill (Mac-Pfade). Nie routen; Kanon = `web` + `design`.
-- **Design-G1** nur `node …/design/scripts/detect.mjs`, nie `npx impeccable detect`.
-- **Tools** über `tool-usecase-router.md`, nicht Link-Dumps (max 3 URLs aus Bibliothek).
-- **Paket `motion`**, Import `motion/react` — nie `framer-motion`.
-- **Ein Icon-System**, Default Lucide.
-- **Fonts:** Immer die **Adobe Fonts Library** nutzen. Seite lädt über Kit-Embed. Nachschlagen: `node scripts/adobe-fonts-kit.mjs show <Familie>`. Keine Adobe-`.woff` ins Skill-Repo. Nur Kunden-Brand-Dateien gehen vor.
-- **Lighthouse/axe = 0** hart; Fertig = Environment-Tatsache.
-- Build ≠ Review (Regel 8). Deploy = Rot + Signatur.
-- **Haiku baut oder kritisiert keine Seite.** Builder = Opus. Kritiker = Grok + `kimi-recherche` (Gegencheck). Sol für Code, keine Shots. Opus prüft Opus nicht. Codex-CLI (`codex` auf PATH) ist optionaler Ship-Review, kein Pflicht-Wrapper. Fehlt die CLI: ehrlich sagen, nicht vortäuschen.
-- **GitHub öffentlich ≠ frei nutzbar** — Lizenz-Check im Clone-Playbook.
-- Junge Domain + Formular = Safe-Browsing-Risiko.
-- Motion ohne `useReducedMotion` = Fail.
-- Bilder: Skill `higgsfield`, CLI in `bildgenerierung.md`; AVIF + Index; `reject` löscht Datei+Index.
-- Raphael sagt Nein zu einem sichtbaren Asset: DESIGN/DECISIONS-Sperre **und**
-  `reject` **und** Code-Pfad weg. Nur Datei löschen reicht nicht.
-- AAA hier = Agentur-Rubrik, nicht WCAG AAA (WCAG bleibt AA).
+Alle Prüfer liegen in `evals/`; Umfang zeigt `node evals/run-eval-umfang.mjs`.
+Vorschau-vor-Launch-Vertrag und Session-Gate hängen an
+`evals/run-preview-vs-launch-check.mjs`. Referenz-Zuläufe:
+`evals/run-kanon-pipeline-check.mjs` (Eingang → Case) und
+`evals/run-x-bookmark-pipeline-check.mjs` (X-Bookmarks → Ledger).
 
-## Evals (Umfang)
+## Geteilte Abhängigkeiten
 
-run-eval-umfang.mjs — 48 Evals
-`node evals/run-adobe-fonts-check.mjs`   # 34 Faelle
-`node evals/run-shot-stable-check.mjs`   # 20 Faelle
-`craft-check.mjs` hat **23 echte Pruefstellen**.
-**7 von 10** zusammengesetzten Widgets.
+- `/root/raphael-skills/skills/design/` (taste-kern, ui-ux-db-nutzung, impeccable-detektoren, design-doktrin, `design/scripts/detect.mjs`, `design/scripts/scan-ai-slop.mjs`)
+- `/root/raphael-skills/skills/eigene/copywriting/` (`copywriting/scripts/forbidden-check.py`, `/root/.claude/forbidden.md`)
+- `/root/raphael-skills/skills/eigene/seo/`
+- `/root/raphael-skills/skills/eigene/visual-aaa/` (terminales Pixel-Gate, nur über Pfad; nicht als Slash verlinkt)
+- `/root/raphael-skills/skills/eigene/eval/` (nur über Pfad)
+- `/root/raphael-command-center/ops/bin/raphael-preview`, `heal-secrets-acl.sh`
+- `/root/tools/shots-verkleinern.sh` (Kacheln für Kritik-Leaves)
 
-- "evals/run-adobe-fonts-check.mjs"
-- "evals/run-shot-stable-check.mjs"
-- "evals/run-eval-umfang.mjs"
-- "evals/run-site-build-load-path-check.mjs"
-- "evals/run-resource-open-check.mjs"
-"48 weitere Pruefer-Evals"
+Aus dem Ablauf gestrichen, weil nicht mehr vorhanden: `web-anti-slop`,
+`/root/tools/uikit-vault` (Archiv: `references/_archiv/vault-abhaengig/`),
+`orchestrate` als Chip (ersetzt durch das Workflow-Tool).
+
+## Versionierung und Rückverweise
+
+Gepflegte Quelle: `/root/raphael-skills/skills/eigene/web`, verlinkt nach
+`/root/.claude/skills/web`, `/root/.codex/skills/web`, `/root/.agents/skills/web`.
+Vor jedem Umbau, der Pfade ändert: `grep -rl "<alter-pfad>" /root/raphael-brain/wiki`
+und `python3 /root/raphael-brain/scripts/externe-pfade-check.py`; tote Ziele in
+`/root/raphael-command-center/ops/review-inbox.md` melden (Observation 0004).

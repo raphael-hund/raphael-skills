@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Scrollcraft · isolierte Runtimeprobe</title>
+<link rel="icon" href="assets/real/poster.webp"><link rel="stylesheet" href="scrollcraft.css"><link rel="stylesheet" href="probe.css">
+</head>
+<body>
+<header><h1>Ein Asset. Drei Bewegungswege.</h1>
+<p>Lokale Runtimeprobe: Video, Bildsequenz und Bewegung eines einzelnen Bildes.</p>
+<nav aria-label="Testmodus"><a href="?mode=video">Video</a><a href="?mode=sequence">Canvas</a><a href="?mode=asset">Einzelasset</a><a href="?mode=still">Still</a></nav>
+<p id="description">GPT Image 2 → Kling 3.0 Turbo; akzeptierte erste 1,5 Sekunden. Später angeschnittene Garage verworfen.</p><p id="state" role="status">Poster. JavaScript erweitert die Darstellung, falls erlaubt.</p></header>
+<main><section id="act" data-sc-act="pin" data-sc-span="3" data-sc-clip-map="travel">
+<div data-sc-stage><figure class="media">
+<img id="poster" src="assets/real/poster.webp" width="640" height="360" alt="Erster Frame der vom Parent bereitgestellten animierten Szene" fetchpriority="high">
+<video id="clip" muted playsinline preload="none" aria-hidden="true"></video>
+<canvas id="sequence" width="640" height="360" aria-hidden="true"></canvas>
+<img id="asset" src="assets/real/poster.webp" width="640" height="360" alt="" hidden>
+</figure><p class="caption">Die sichtbare Bewegung folgt der Scrollposition. Text und Navigation bleiben echte HTML-Elemente.</p></div>
+</section></main>
+<footer><p>Ende der Probe. Zurückscrollen prüft den Rückwärtslauf.</p><a href="#top" id="top-link">Zum Anfang</a></footer>
+<script src="scrollcraft.js"></script><script type="module" src="adapter.js"></script>
+</body></html>

@@ -1,5 +1,7 @@
 # Web-Clone-Playbook — Referenzseite als Vorlage nachbauen
 
+**Verbund (08.09.2026):** Klon-Skripte laden Playwright über `scripts/lib/playwright-loader.mjs`; der Vendor-Pfad `/root/tools/vendor/claude-skill-web-clone` existiert nicht mehr. Für das Nachbauen aus Referenzbildern statt URL: [image-to-code.md](image-to-code.md).
+
 **Wofür:** Wenn eine bestehende Website (Kunden-Wunschreferenz, Wettbewerber-
 Landingpage) als Vorlage für ein neues Projekt dienen soll — "baue mir etwas
 Ähnliches wie Website X", "clone diese Landingpage als Baseline".
@@ -161,6 +163,7 @@ Material.
 - [ ] Screenshot-Vergleich gegen Original
 - [ ] Mehrseitig: Routen-Abgleich gemacht
 - [ ] Interaktionsreich: Hover/Click/Scroll-Zustände geprüft
+- [ ] Zustands-Shots (Hover/Fokus) je interaktiver Komponente vorhanden und gelesen — EVIDENCE: Pfade
 - Nicht verifizierbare Punkte (ehrlich dokumentieren, nichts vorspiegeln):
 ```
 

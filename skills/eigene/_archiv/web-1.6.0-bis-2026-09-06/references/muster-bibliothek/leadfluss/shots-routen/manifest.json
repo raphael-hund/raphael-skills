@@ -1,0 +1,759 @@
+{
+  "schema": "web/shot-sweep/v2",
+  "run_id": null,
+  "build_revision": null,
+  "capture_profile": {
+    "static": true,
+    "states": false,
+    "mobile": false
+  },
+  "base": "https://www.leadfluss.de",
+  "createdAt": "2026-09-02T17:31:21.044Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "state_matrix": {
+    "required": [],
+    "captured": [],
+    "not_applicable": [],
+    "failed": []
+  },
+  "routes": [
+    {
+      "route": "/anfrage",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "anfrage-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "anfrage-desktop-hover-00-nav0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "nav0"
+        },
+        {
+          "file": "anfrage-desktop-hover-01-Kundenergebnisse.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Kundenergebnisse"
+        },
+        {
+          "file": "anfrage-desktop-hover-02-Unser_Team.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Unser_Team"
+        },
+        {
+          "file": "anfrage-desktop-hover-03-Blog.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Blog"
+        },
+        {
+          "file": "anfrage-desktop-hover-04-Karriere.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Karriere"
+        },
+        {
+          "file": "anfrage-desktop-hover-05-FAQ.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "FAQ"
+        },
+        {
+          "file": "anfrage-desktop-hover-06-Leadfluss_anfragen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Leadfluss_anfragen"
+        },
+        {
+          "file": "anfrage-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "anfrage-desktop-click-y0-00-Fachbetrieb.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Fachbetrieb"
+        },
+        {
+          "file": "anfrage-desktop-click-y0-01-Vertriebsfirma.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Vertriebsfirma"
+        },
+        {
+          "file": "anfrage-desktop-click-y0-02-Schlechte_Anfragenqualit.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Schlechte_Anfragenqualit"
+        }
+      ],
+      "viewport_label": "desktop",
+      "label": "desktop",
+      "docHeight": 1500
+    },
+    {
+      "route": "/faq",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "faq-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "faq-desktop-hover-00-nav0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "nav0"
+        },
+        {
+          "file": "faq-desktop-hover-01-Kundenergebnisse.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Kundenergebnisse"
+        },
+        {
+          "file": "faq-desktop-hover-02-Unser_Team.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Unser_Team"
+        },
+        {
+          "file": "faq-desktop-hover-03-Blog.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Blog"
+        },
+        {
+          "file": "faq-desktop-hover-04-Karriere.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Karriere"
+        },
+        {
+          "file": "faq-desktop-hover-05-FAQ.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "FAQ"
+        },
+        {
+          "file": "faq-desktop-hover-06-Leadfluss_anfragen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "hover",
+          "target": "Leadfluss_anfragen"
+        },
+        {
+          "file": "faq-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "faq-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "faq-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "faq-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "faq-desktop-05-y2391.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 2391
+        },
+        {
+          "file": "faq-desktop-click-y0-00-Muss_ich_Vorkenntnisse_i.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Muss_ich_Vorkenntnisse_i"
+        },
+        {
+          "file": "faq-desktop-click-y0-01-Warum_setzt_ihr_so_stark.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Warum_setzt_ihr_so_stark"
+        },
+        {
+          "file": "faq-desktop-click-y0-02-Bietet_ihr_eine_Rundum-s.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Bietet_ihr_eine_Rundum-s"
+        },
+        {
+          "file": "faq-desktop-click-y0-03-Funktioniert_eure_Method.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Funktioniert_eure_Method"
+        },
+        {
+          "file": "faq-desktop-click-y0-04-Für_welche_Art_von_Betri.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Für_welche_Art_von_Betri"
+        },
+        {
+          "file": "faq-desktop-click-y0-05-Wie_unterscheidet_sich_L.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Wie_unterscheidet_sich_L"
+        },
+        {
+          "file": "faq-desktop-click-y0-06-Was_genau_versteht_ihr_u.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Was_genau_versteht_ihr_u"
+        },
+        {
+          "file": "faq-desktop-click-y0-07-Kann_ich_euch_auch_in_eu.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Kann_ich_euch_auch_in_eu"
+        },
+        {
+          "file": "faq-desktop-click-y0-08-Was_passiert_wenn_ich_ak.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Was_passiert_wenn_ich_ak"
+        },
+        {
+          "file": "faq-desktop-click-y0-09-Wie_lange_dauert_es_vom_.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Wie_lange_dauert_es_vom_"
+        },
+        {
+          "file": "faq-desktop-click-y0-10-Wie_viel_Zeit_muss_ich_a.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Wie_viel_Zeit_muss_ich_a"
+        },
+        {
+          "file": "faq-desktop-click-y0-11-Ich_fühle_mich_unwohl_vo.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "Ich_fühle_mich_unwohl_vo"
+        },
+        {
+          "file": "faq-desktop-click-y750-00-Kommt_ihr_für_die_Videod.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Kommt_ihr_für_die_Videod"
+        },
+        {
+          "file": "faq-desktop-click-y750-01-Wie_läuft_der_Start_eine.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Wie_läuft_der_Start_eine"
+        },
+        {
+          "file": "faq-desktop-click-y750-02-Was_wenn_ich_plötzlich_z.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Was_wenn_ich_plötzlich_z"
+        },
+        {
+          "file": "faq-desktop-click-y750-03-Funktioniert_das_System_.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Funktioniert_das_System_"
+        },
+        {
+          "file": "faq-desktop-click-y750-04-Wie_stellt_ihr_sicher_da.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Wie_stellt_ihr_sicher_da"
+        },
+        {
+          "file": "faq-desktop-click-y750-05-Mit_wie_vielen_Leads_pro.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Mit_wie_vielen_Leads_pro"
+        },
+        {
+          "file": "faq-desktop-click-y750-06-Sind_die_generierten_Lea.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Sind_die_generierten_Lea"
+        },
+        {
+          "file": "faq-desktop-click-y750-07-Wie_schnell_kann_ich_mit.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 750,
+          "target": "Wie_schnell_kann_ich_mit"
+        },
+        {
+          "file": "faq-desktop-click-y1500-00-Gibt_es_versteckte_Koste.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Gibt_es_versteckte_Koste"
+        },
+        {
+          "file": "faq-desktop-click-y1500-01-Ist_das_Erstgespräch_wir.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Ist_das_Erstgespräch_wir"
+        },
+        {
+          "file": "faq-desktop-click-y1500-02-Gibt_es_lange_Vertragsla.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Gibt_es_lange_Vertragsla"
+        },
+        {
+          "file": "faq-desktop-click-y1500-03-Wie_viel_Werbebudget_sol.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Wie_viel_Werbebudget_sol"
+        },
+        {
+          "file": "faq-desktop-click-y1500-04-Wie_viele_Betriebe_betre.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Wie_viele_Betriebe_betre"
+        },
+        {
+          "file": "faq-desktop-click-y1500-05-Wir_haben_bereits_jemand.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 1500,
+          "target": "Wir_haben_bereits_jemand"
+        },
+        {
+          "file": "faq-desktop-click-y2250-00-Wer_steckt_eigentlich_hi.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 2250,
+          "target": "Wer_steckt_eigentlich_hi"
+        },
+        {
+          "file": "faq-desktop-click-y2250-01-Kann_ich_mit_anderen_Par.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 2250,
+          "target": "Kann_ich_mit_anderen_Par"
+        },
+        {
+          "file": "faq-desktop-click-y2250-02-Habt_ihr_Erfahrung_in_me.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 2250,
+          "target": "Habt_ihr_Erfahrung_in_me"
+        },
+        {
+          "file": "faq-desktop-click-y2250-03-Ich_war_mit_anderen_Agen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 2250,
+          "target": "Ich_war_mit_anderen_Agen"
+        },
+        {
+          "file": "faq-desktop-click-y2391-00-Cookie-Einstellungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 2391,
+          "target": "Cookie-Einstellungen"
+        }
+      ],
+      "viewport_label": "desktop",
+      "label": "desktop",
+      "docHeight": 3891
+    }
+  ]
+}

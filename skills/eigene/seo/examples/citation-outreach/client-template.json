@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "client_id": "REPLACE_CLIENT_ID",
+  "campaign_id": "REPLACE_CAMPAIGN_ID",
+  "cadence_profile": "prompt_4_9",
+  "mode": "offline",
+  "own_domains": ["example.com"],
+  "close_rate_formula_id": "live_placements_over_shortlist",
+  "workspace": null,
+  "notes": "Copy to a client-local path. Do not store live customer data in raphael-skills. mode=offline is the only engine mode that may run without a published target page. Switching mode to live while any target_pages.published is false is BLOCKED_TARGET_PAGES. Engine never sends, publishes, or pays.",
+  "brand": {
+    "name": "REPLACE_BRAND_NAME",
+    "who_for": "REPLACE_ICP_ONE_LINE",
+    "offer": "REPLACE_OFFER_ONE_LINE",
+    "target_link_url": "https://example.com/compare/REPLACE_SLUG",
+    "mention_angle": "REPLACE_MENTION_ANGLE",
+    "do_not_say": [
+      "REPLACE_FORBIDDEN_CLAIM_FROM_DISCOVERY"
+    ]
+  },
+  "target_pages": [
+    {
+      "id": "comparison-or-use-case-1",
+      "title": "REPLACE_PAGE_TITLE",
+      "url": "https://example.com/compare/REPLACE_SLUG",
+      "page_type": "comparison",
+      "status": "planned",
+      "published": false
+    }
+  ],
+  "live": {
+    "enabled": false,
+    "status": "BLOCKED_TARGET_PAGES",
+    "requires_published_target_page": true,
+    "human_approval": ["send", "spend"]
+  },
+  "connectors": {},
+  "fixtures": {
+    "citations": "fixtures/citations.jsonl",
+    "contacts": "fixtures/contacts.jsonl",
+    "replies": "fixtures/replies.jsonl"
+  }
+}

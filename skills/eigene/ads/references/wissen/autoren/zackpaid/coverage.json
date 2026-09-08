@@ -1,0 +1,152 @@
+{
+  "sources": 954,
+  "learnings": 778,
+  "sources_with_learnings": 362,
+  "disposition_counts": [
+    {
+      "disposition": "article_unavailable",
+      "count": 23
+    },
+    {
+      "disposition": "context",
+      "count": 107
+    },
+    {
+      "disposition": "duplicate_quote",
+      "count": 12
+    },
+    {
+      "disposition": "media_unreviewed",
+      "count": 17
+    },
+    {
+      "disposition": "non_ads_context",
+      "count": 13
+    },
+    {
+      "disposition": "personal_or_motivational_context",
+      "count": 19
+    },
+    {
+      "disposition": "promotion",
+      "count": 203
+    },
+    {
+      "disposition": "promotion_only",
+      "count": 4
+    },
+    {
+      "disposition": "promotion_with_media_gap",
+      "count": 60
+    },
+    {
+      "disposition": "relevant",
+      "count": 333
+    },
+    {
+      "disposition": "repeat",
+      "count": 51
+    },
+    {
+      "disposition": "repeated_full_article",
+      "count": 3
+    },
+    {
+      "disposition": "repeated_idea",
+      "count": 13
+    },
+    {
+      "disposition": "reply_or_offer_without_method",
+      "count": 19
+    },
+    {
+      "disposition": "sales_cta",
+      "count": 9
+    },
+    {
+      "disposition": "unavailable",
+      "count": 61
+    },
+    {
+      "disposition": "unclassified",
+      "count": 7
+    }
+  ],
+  "article_gaps": 0,
+  "media_gaps": 216,
+  "date_range": {
+    "min": "2023-10-21T18:57:11.000Z",
+    "max": "2026-09-06T13:18:30.000Z"
+  },
+  "inputs": [
+    "analysis-zackpaid/shard-1-v2.json",
+    "analysis-zackpaid/shard-2-v2.json",
+    "analysis-zackpaid/shard-3-v2.json",
+    "analysis-zackpaid/shard-4-v2.json",
+    "discovery/zack-article-probe.json",
+    "discovery/zack-native-probe.json",
+    "discovery/zack-pinned-full.json",
+    "discovery/zack-pinned.json",
+    "discovery/zack-scripts.json",
+    "discovery/zack-search-probe.json",
+    "discovery/zackpaid-articles-final.json",
+    "discovery/zackpaid-batch1-main.json",
+    "discovery/zackpaid-batch1-v2-main.json",
+    "discovery/zackpaid-batch1-v2.json",
+    "discovery/zackpaid-batch1.json",
+    "discovery/zackpaid-batch2-main.json",
+    "discovery/zackpaid-batch2-v2-main.json",
+    "discovery/zackpaid-batch2-v2.json",
+    "discovery/zackpaid-batch2.json",
+    "discovery/zackpaid-batch3-v2-main.json",
+    "discovery/zackpaid-batch3-v2.json",
+    "discovery/zackpaid-broad-final.json",
+    "discovery/zackpaid-final.json",
+    "discovery/zackpaid-native.json",
+    "discovery/zackpaid-pinned-context-delta.json",
+    "discovery/zackpaid-posts.json",
+    "discovery/zackpaid-public-links-batch1.json",
+    "discovery/zackpaid-timeline-full.json",
+    "discovery/zackpaid-year1-delta.json",
+    "discovery/zackpaid-year1-v2-main.json",
+    "discovery/zackpaid-year1-v2.json",
+    "discovery/zackpaid-year2-delta.json",
+    "discovery/zackpaid-year2-v2-main.json",
+    "discovery/zackpaid-year2-v2.json",
+    "/root/raphael-skills/skills/eigene/ads/references/wissen/autoren/zackpaid/media-evidence.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-01-02-status.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-03-04-status.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-05-08-status.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-09-12-status.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-46-49-status.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-50-54-status.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-55-59-status.json",
+    "analysis-zackpaid/shard-2-output/learnings.jsonl",
+    "analysis-zackpaid/shard-3-output/learnings.jsonl",
+    "analysis-zackpaid/shard1-annotations.json",
+    "analysis-zackpaid/annotations.json",
+    "analysis-zackpaid/catalog-annotations.json",
+    "analysis-zackpaid/article-initial-annotations.json",
+    "analysis-zackpaid/article-owned-annotations.json",
+    "analysis-zackpaid/shard4-analysis/annotations.json",
+    "analysis-zackpaid/shard4-analysis/article-annotations.json",
+    "analysis-zackpaid/shard-3-output/article-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/delta-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-01-02-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-03-04-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-05-08-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-09-12-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-46-49-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-50-54-annotations.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-55-59-annotations.json",
+    "analysis-zackpaid/shard-2-output/dispositions.json",
+    "analysis-zackpaid/shard-3-output/dispositions.json",
+    "analysis-zackpaid/shard4-analysis/dispositions.json",
+    "analysis-zackpaid/owned-dispositions.json",
+    "analysis-zackpaid/shard-2-enrichment/delta-dispositions.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-46-49-dispositions.json",
+    "analysis-zackpaid/shard-2-enrichment/articles-50-54-dispositions.json"
+  ],
+  "generated_at": "2026-09-07",
+  "note": "zusammengeführt aus den Shard-Ausgaben des Codex-Laufs vom 07.09.2026"
+}

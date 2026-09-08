@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "2 result(s) across 21st.dev (metadata only).\n\n### [component] Pricing table  [id: 8374]\nby dgearsonu1\npricing table\npreview: https://cdn.21st.dev/user_x/pricing-table/default/preview.webp\ninstall: npx shadcn@latest add \"https://21st.dev/r/dgearsonu1/pricing-table?api_key=$API_KEY_21ST\"\n\u2192 get the code: get_component({ id: 8374 })\n\n### [component] Pricing Section  [id: 6247]\nby uilayout.contact\nProfessional pricing table components featuring subscription plans\npreview: https://cdn.21st.dev/user_y/pricing-section/default/preview.webp\ninstall: npx shadcn@latest add \"https://21st.dev/r/uilayout.contact/pricing-section?api_key=$API_KEY_21ST\"\n\u2192 get the code: get_component({ id: 6247 })\n"
+      }
+    ]
+  }
+}

@@ -1,83 +1,57 @@
 ---
 name: ads
-version: 2.7.4
 description: >
-  Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video),
-  dann ICP, Research, Video-Skript, Statics, Performance.
-  Video-Skripte klingen wie eine Sprachnachricht.
-  Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch.
-  Läuft ohne Second Brain.
-  Trigger: "Ads bauen", "Ad-Skript", "Video-Skript", "Ads Scripts",
-  "Static-Briefs", "Angle-Dossier", "ICP für Ads", "Hooks schreiben",
-  "Creatives", "Testwelle", "was zuerst", "Static oder Video",
-  "Konto-Audit", "Ads Performance", "laufende Ads", "7 Tage", "30 Tage".
-class: F
-scope: agency
-sensitivity: internal
-source: >
-  Fusion Loop-3 plus Korpus 711. v2.2.0 legt Strategie in teil-strategie
-  (Static-first, Konzept-Achsen, Andromeda). Brain bleibt optional.
-  v2.7.0 legt die Hormozi-Doktrin in hormozi-paid-ads (4 Probleme,
-  Callout-Typen, WHAT×WHO×WHEN, 70/20/10, Friction-Waage), destilliert aus
-  den zwei Paid-Ads-Trainings (Transkripte 19.08.2026).
-  v2.7.1 legt das Marc-Evers-Playbook dazu (Kanal-Videos analysiert:
-  Ergebnis statt Produkt verkaufen, drei USPs, Instant-Form ohne
-  Interpretationsspielraum, Static-Spearhead, Testing als Schachspiel,
-  Eimer-Modell, Fast-/Slow-Lane).
-  v2.7.2 schliesst die Lernschleife: Lern-Register pro Kunde
-  (`client/ads/lern-register.md`), Pflicht-Lektüre vor Briefs, Write-back nach
-  jeder Auswertung, Hypothese-Feld im Brief-Schema, Formular-Regeln.
-  v2.7.3 zieht das 39. Kanal-Video und 90 Instagram-Reels nach: Flow vor Reibung,
-  Pixel Conditioning, VSL hinter dem Formular, 6×6-Skalierung.
-    v2.7.4 legt Zac Regan / @startrunningads daneben (41 Reel-Transkripte im Brain,
-    Playbook zac-regan-startrunningads.md). Nicht mit Marc Evers vermischen.
-loads:
-  - references/teil-strategie.md
-  - references/teil-icp.md
-  - references/teil-research.md
-  - references/teil-video.md
-  - references/teil-statics.md
-  - references/loop3-ablauf.md
-  - references/segment-map.md
-  - references/wissens-router.md
-  - references/claims-verbote.md
-  - references/hormozi-paid-ads.md
-  - references/marc-evers-playbook.md
-  - references/zac-regan-startrunningads.md
-loads_external: ["/root/.claude/forbidden.md"]
-requires_skills: [copywriting@^0, watch@^0]
-completion_criteria:
-  - "Genau ein Teil gewählt und dessen Datei gelesen"
-  - "Genau ein Markt-Segment geladen über scripts/load-wissen.py"
-  - "copywriting/scripts/forbidden-check.py auf jedem Ship-Text Exit 0"
-  - "Keine erfundene Kundenzahl"
-  - "Schaltung nur mit Raphaels Signatur"
-  - "Teil Performance: 7-Tage- und 30-Tage-Zahlen als Datei, jedes Video-Ad mit Spend über watch (Frames gelesen, Transkript gezogen oder ehrlich keins)"
-  - "Strategie-Frage Static-first vs Video-first im Output genannt, nicht still entschieden; Konzept als Persona × Angle × Offer geschrieben"
+  Paid Ads für Lead-Generation: Strategie, ICP, visuelle Konkurrenz-Recherche, Statics,
+  sprechbare Video-Skripte, Drehbriefs und Auswertung bis zum Abschluss. Recherchiert die
+  Meta Ads Library im Browser mit Playbacks und Bildbelegen. Enthält eine eigene
+  Wissensbibliothek mit Autorenreferenzen, Quellen, Leadgen-Übertragung und Aussagegrenzen.
+  Verbindet Wispr-Diktate, Creative-Produktion und das Kunden-Lern-Register. Für Ads bauen,
+  Hooks, Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek, Konto-Audits, Creator-
+  Wissen und 7/30-Tage-Auswertungen. Wissen und Referenzen liegen im Skill; Second Brain ist
+  für Nutzung und Aktualisierung nicht erforderlich.
+metadata:
+  raphael-version: "4.2.0"
+  raphael-class: "F"
+  raphael-scope: "agency"
+  raphael-sensitivity: "internal"
+  raphael-loads: "[\"references/wissen/index.md\", \"references/wissen/leadgen-betriebsmodell.md\", \"references/wissen/quellenpflege.md\", \"references/teil-strategie.md\", \"references/teil-icp.md\", \"references/teil-research.md\", \"references/teil-video.md\", \"references/teil-statics.md\", \"references/loop3-ablauf.md\", \"references/claims-verbote.md\"]"
+  raphael-requires-skills: "[]"
+  raphael-changelog: "[\"4.2.0 (07.09.2026): Eric-Steigner-Autorenregister unter wissen/autoren/eric-steigner (109 YouTube-Videos, 93 Reels, 3.960 Aussagen, Widerspruchstabelle, ChatGPT-Ads-Befund); Plattformseite wissen/plattformen/chatgpt-ads.md (offizieller OpenAI-Stand DACH 31.08.2026, Format, Gebote, erlaubte und verbotene Kategorien, Leadgen-Anwendung); Router und Wissen-Index verdrahtet\", \"4.1.0 (07.09.2026): Marc-Evers-Autorenregister unter wissen/autoren/marc-evers (508 Learnings, 118 Quellen, eigene Ads verlinkt); MAKE-eigene Ads-Beschluesse und Betriebskadenz unter wissen/make/ads-regeln.md (13.08.-Regeln Anrede/H17/Statics, Hook- und Testing-Lehren, apply.py-Kadenz 31.08. ersetzt 28.08.); Router und Wissen-Index verdrahtet\", \"4.0.0 (07.09.2026): Wissensbibliothek im Skill unter references/wissen (Zack/@zackpaid, George Clem, @brillaas, Nick Theriot, Bestand Evers/Regan), Leadgen-Betriebsmodell, Quellenpflege, craft/, Meta-Ads-Library-Playbacks, portable Helfer text-check.py und media-extract.sh, Frontmatter auf metadata-Form; Claude und Codex laden dieselbe Quelle. Umbau lief in Codex Desktop (Thread 01a077e3), Arbeitsverzeichnis /tmp/ads-four-creators-2026-09-06\", \"3.0.0 (06.09.2026): Marc-Evers-Quellen neu ausgewertet, aktuelle Reels und Carousel-Videos erfasst, Werbeformen gesichtet; Quellenarten und Messgrenzen getrennt; video-produktion.md, Wispr-Vorlagen und fortlaufendes Lernen ergÃ¤nzt\", \"2.7.7 (06.09.2026): Kalter Leser zuerst im Teil Statics, sechs Textelemente in ads-statics\", \"2.7.6 (03.09.2026): Statics-Bild mit GPT Image 2 aus Logo, Look, JSON-Spec; Pillow-Overlay Fail\", \"2.7.5 (03.09.2026): Foreplay-Export mit Medien im Teil Research, Objektverkauf-Regel im Teil Statics\", \"2.7.4 (30.08.2026): Zac Regan / @startrunningads aus 41 Reels\", \"2.7.3 (28.08.2026): Evers 39. Video und 90 Reels: Flow vor Reibung, Pixel Conditioning, VSL hinter Formular, 6x6\", \"2.7.2: Lern-Register pro Kunde, Write-back nach Auswertung, Hypothese im Brief\", \"2.7.1: Marc-Evers-Playbook\", \"2.7.0 (19.08.2026): Hormozi-Doktrin aus zwei Paid-Ads-Trainings\", \"2.2.0: Strategie in teil-strategie (Static-first, Konzept-Achsen, Andromeda)\", \"2.0.0 (13.08.2026): ein Skill, vier Teile, ohne Brain-Pflicht; Fusion Loop-3 plus Korpus 711\"]"
+  raphael-completion-criteria: "[\"Passender Teil und lokal auflösbare Referenzen gelesen\", \"Originalquelle, Aussage und Leadgen-Anwendung getrennt\", \"Keine erfundenen Kundenergebnisse oder unbelegten Performance-Gewinner\", \"Sichtungs- und Erfassungslücken ausgewiesen\", \"Kontoaktionen nur im autorisierten Umfang\"]"
 ---
 
-# ads — Strategie, ICP, Research, Video, Statics, Performance
+# ads — Lead-Generation von der Botschaft bis zum Abschluss
 
-Grundschule «Wie macht man Paid Ads»: `references/hormozi-paid-ads.md`
-(4 Probleme, Call out → Value → CTA, Callout-Typen, WHAT×WHO×WHEN,
-Kreativ-Volumen 70/20/10, Targeting, Friction-Waage, Proof > Promise).
-Praxis aus dem Agentur-Alltag: `references/marc-evers-playbook.md`
-(Ergebnis statt Produkt, drei USPs, Instant-Form ohne Interpretationsspielraum,
-Spearhead-Validierung, Testing als Schachspiel, Eimer-Modell, Pixel Conditioning, 6×6).
-Ad-Handwerk aus 41 Reels: `references/zac-regan-startrunningads.md`
-(Call-Out-Hooks, Vier-Schritte-Ad, Creative über Targeting, Messaging Pockets;
-Volltranskripte in `raw/resource-2026-08-30-startrunningads-*.md`).
-Hormozi und Evers gelten immer mit. Zac-Regan zusätzlich, sobald Hooks, Copy
-oder Video-Skripte geschrieben werden. Nicht mit Evers vermischen.
+Start bei `references/wissen/index.md`: Themen, Autoren und lokale Detailbelege.
+MAKEs eigene Ads-Beschlüsse und die Betriebskadenz stehen in
+`references/wissen/make/ads-regeln.md` und gehen im Konfliktfall jedem
+Creator-Rat vor.
+Für Entscheidungen über Qualität, Kosten, Tests oder Wachstum zusätzlich
+`references/wissen/leadgen-betriebsmodell.md`. Aus E-Commerce übernommene Ideen
+werden auf Anfrage, Qualifizierung, Termin, Gespräch und Abschluss geprüft.
+Ein Kauf-ROAS oder Warenkorbwert wird nicht einfach in CPL umbenannt.
+
+Kundenauftrag, eigenes Lern-Register und überprüfte Resultate haben Vorrang.
+Autorenaussage, beobachtetes Beispiel und unsere Anwendung bleiben getrennt.
+Fremde Budgets, Quoten und Umsatzwerte sind keine Vorgaben für den Kunden.
+Bei Bedarf liefern die lokalen Playbooks von Hormozi, Marc Evers und Zac Regan
+ergänzende Muster. Nicht alle Autoren für jede Aufgabe laden.
 
 ## Schritt 0
 
+`ADS_ROOT` bezeichnet den Ordner der tatsächlich geladenen `SKILL.md`.
+Diesen absoluten Pfad für Shell-Aufrufe einsetzen; er kann im Plugin-Cache,
+in einer lokalen Installation oder im Quellverzeichnis liegen. Claude und
+Codex verwenden denselben Skill und dieselben enthaltenen Helfer.
+
 ```bash
-python3 /root/raphael-skills/skills/eigene/ads/scripts/load-wissen.py --skill ads --kunde <slug>
+python3 "$ADS_ROOT/scripts/load-wissen.py" --skill ads --kunde <slug>
 ```
 
-Craft-Kern plus genau ein Segment unter `references/maerkte/`.
-Wiki fehlt: `BRAIN=skipped`. Skill läuft weiter.
+Der Loader nennt lokale Wissenspfade und das passende Segment unter
+`references/maerkte/`. Ohne bekannten Kunden `--segment` aus dem Auftrag wählen
+oder `uebertragbar` verwenden; keine MAKE-Annahmen einsetzen. Die aufgelösten
+Dateien tatsächlich lesen. Der Loader führt keine Brain-Abfrage aus.
 
 ## Welcher Teil
 
@@ -85,17 +59,25 @@ Wiki fehlt: `BRAIN=skipped`. Skill läuft weiter.
 |---|---|
 | Was zuerst, Konzept, Static oder Video | `references/teil-strategie.md` |
 | Wer kauft, was tut weh | `references/teil-icp.md` |
-| Angles, Konkurrenz, Dossier | `references/teil-research.md` |
+| Angles, Konkurrenz, Dossier, Meta Ads Library, Werbebibliothek, Ad-Playbacks | `references/teil-research.md` |
 | **Video-Ad-Skript (Ads Scripts)** | `references/teil-video.md` |
+| Wispr-Diktat, Drehbrief, regelmässige Video-Produktion | `references/teil-video.md` → `references/video-produktion.md` |
 | Static-Brief | `references/teil-statics.md` |
 | Laufende Ads, 7/30 Tage, Kill/Keep | `references/loop3-ablauf.md` (Abschnitt Performance) |
+| Wissen eines Creators ergänzen, alle Posts/Themen erschliessen | `references/wissen/quellenpflege.md` |
 
-Nur diese eine Datei lesen. Tiefe erst, wenn der Teil sie nennt.
-`loads:` im Frontmatter ist das Manifest, kein Lade-Befehl.
+Den passenden Teil lesen, Detailwissen über dessen Links gezielt ergänzen.
+`metadata.raphael-loads` ist das Dateimanifest, kein Lade-Befehl.
 
 Video ist der Default, wenn der User „Skript" oder „Ads Scripts" sagt.
 Performance ist der Default bei „Zahlen", „7 Tage", „30 Tage", „laufende Ads".
-Jedes Video mit Spend läuft durch watch.
+Jedes Video mit Spend wird visuell und sprachlich ausgewertet. Der enthaltene
+Helfer `scripts/media-extract.sh` liefert Kontaktbögen, Body-Frames und
+verfügbare Untertitel. Extraktion ist keine Sichtung: Bilder tatsächlich
+öffnen, Sprachquelle lesen oder anhören, fehlendes Transkript ausweisen.
+Konkurrenz-Recherche startet im Teil Research; dort gehört die visuelle Meta
+Ads Library zum Ablauf. Vor Empfehlungen aus Video-Ads die Playbacks ansehen.
+Eine reine Library-Recherche liefert Recherche und Belege, keine ungefragten Creatives.
 
 Testwelle / was zuerst / Static oder Video: zuerst `references/teil-strategie.md`.
 Auch bei direktem Skript- oder Statics-Einstieg: die drei Strategie-Zeilen
@@ -103,8 +85,12 @@ Auch bei direktem Skript- oder Statics-Einstieg: die drei Strategie-Zeilen
 
 ## Reihenfolge
 
+Bei reiner Library-/Playback-/Materialanalyse gelten die Belege und der Umfang
+aus Teil Research; keine ungefragte Formatentscheidung oder CREATE-Ausgabe.
+Die folgenden Strategie-Zeilen gelten für Strategie, Angle-Dossier und Produktion.
+
 Strategie-Frage **nicht still** entscheiden. Im Output nennen:
-Static-first (Default) oder Video-first plus Grund.
+Static-first, Video-first oder ein begründeter paralleler Test plus Grund.
 Dann drei Denkzeilen: OBSERVE, THINK (Unit Economics), CREATE.
 Nicht alle zehn Prinzipien abspulen.
 
@@ -112,8 +98,32 @@ ICP → Research → Video oder Statics.
 Fehlt ICP: holen oder `kunden-layer: fehlt` schreiben, dann Craft-Kern.
 
 Konto, Kill/Keep/Scale: `references/loop3-ablauf.md` nur bei Bedarf.
-Claims vor Schaltung: Sol, frische Session, `references/claims-verbote.md`.
+Claims vor Schaltung: `references/claims-verbote.md` und eine zur Aufgabe passende Prüfung.
 Geld: Signatur. Nie autonom schalten.
+
+## Enthaltene Werkzeuge
+
+- `python3 "$ADS_ROOT/scripts/text-check.py" <entwurf.md>` prüft Copy lokal;
+  Exit 1 bedeutet harte Muster. Hinweise fachlich beurteilen. Dieser Filter
+  belegt weder rechtliche Freigabe noch die Richtigkeit von Kundenzahlen.
+- `bash "$ADS_ROOT/scripts/media-extract.sh" --doctor` prüft die benötigten
+  Medienwerkzeuge. Mit Video-URL oder lokalem Dateipfad entstehen lokale
+  Analyseartefakte; die Ausgabe nennt den tatsächlichen Sichtungsstatus.
+- Ergänzende Copywriting-, Watch- oder Bildwerkzeuge nur nutzen, wenn sie
+  vorhanden und für den Auftrag sinnvoll sind. Live-Konto- oder Foreplay-
+  Zugänge sind optionale autorisierte Integrationen; keine Secrets voraussetzen.
+
+## Creator-Wissen aktualisieren
+
+Nur bei entsprechendem Auftrag `references/wissen/quellenpflege.md` verwenden.
+Inventar, paraphrasierte Learnings, Original-URLs, Autor/Datum, Kontext und
+Übertragungsgrenzen unter `references/wissen/` halten. Die Themenübersicht macht
+jede Wissenseinheit auffindbar; Autorenregister erhalten die Herkunft.
+Threads, Replies, Artikel und Medien mitprüfen, sobald sie Inhalt tragen.
+Ein vollständiger Scraper-Lauf beweist nur den zugänglichen Umfang. Lücken und
+nicht übertragbare Themen behalten einen begründeten Eintrag.
+Eine Speicherung im Second Brain erfolgt nur auf ausdrücklichen Auftrag.
+Gewöhnliche Ad-Produktion startet keinen Creator-Import oder Skill-Umbau.
 
 ## Rot
 

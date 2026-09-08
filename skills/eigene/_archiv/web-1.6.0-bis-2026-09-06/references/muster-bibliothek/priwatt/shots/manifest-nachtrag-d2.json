@@ -1,0 +1,555 @@
+{
+  "base": "https://priwatt.de",
+  "createdAt": "2026-08-31T14:25:05.548Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/balkonkraftwerk-mit-speicher/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-07-y4258.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4258
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y2250-00-Balkonkraftwerk_mit_Spei.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Balkonkraftwerk_mit_Spei"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y2250-01-So_funktioniert_ein_Balk.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "So_funktioniert_ein_Balk"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3000-00-So_lohnt_sich_ein_Set_mi.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "So_lohnt_sich_ein_Set_mi"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3000-01-Welches_Set_passt_zu_mir.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "Welches_Set_passt_zu_mir"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3000-02-Integrierter_Wechselrich.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "Integrierter_Wechselrich"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3000-03-Das_kostet_ein_Balkonkra.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "Das_kostet_ein_Balkonkra"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3000-04-Häufig_gestellte_Fragen_.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "Häufig_gestellte_Fragen_"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3750-00-Mehr_lesen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Mehr_lesen"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3750-01-Newsletter_abonnieren.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Newsletter_abonnieren"
+        }
+      ],
+      "docHeight": 5758
+    },
+    {
+      "route": "/store-in-deiner-naehe/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "store-in-deiner-naehe__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-08-y4615.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4615
+        },
+        {
+          "file": "store-in-deiner-naehe__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        }
+      ],
+      "docHeight": 6115
+    },
+    {
+      "route": "/solaranlagen/komplettsets-ohne-montage/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-10-y6232.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6232
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-click-y4500-00-FAQs.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "FAQs"
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-click-y4500-01-Welches_Komplettset_pass.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "Welches_Komplettset_pass"
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-click-y5250-00-Wie_groß_sollte_der_Batt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Wie_groß_sollte_der_Batt"
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-click-y6000-00-Mehr_lesen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6000,
+          "target": "Mehr_lesen"
+        },
+        {
+          "file": "solaranlagen__komplettsets-ohne-montage__-desktop-click-y6000-01-Newsletter_abonnieren.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6000,
+          "target": "Newsletter_abonnieren"
+        }
+      ],
+      "docHeight": 7732
+    }
+  ]
+}

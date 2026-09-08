@@ -1,0 +1,299 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.brandfetch.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Overview
+
+> Instantly add any company logos to your app or website
+
+[Logo API](https://brandfetch.com/developers/logo-api) is a simple CDN link that gives you access to any brand’s latest logos. It’s customizable with powerful transformation capabilities and is meant to be directly embedded in your HTML tags so the logo always remains up-to-date.
+
+## Implementation guide
+
+The Logo API is a free product. Before you deploy your application to a live
+environment, be sure to consult our [rate limits](#rate-limits) and
+review our [usage guidelines](#usage-guidelines) to ensure a smooth launch.
+
+<Steps>
+  <Step title="Embed your logo">
+    To avoid potential naming collisions between identifier types, you can use explicit type routes with the pattern `{type}/{identifier}`.
+
+    To embed a logo, simply use an `img` tag with the following `src` attribute:
+
+    <CodeGroup>
+      ```html Domain theme={null}
+      <img
+        src="https://cdn.brandfetch.io/domain/nike.com?c=BRANDFETCH_CLIENT_ID"
+        alt="Logo by Brandfetch"
+      />
+      ```
+
+      ```html Ticker theme={null}
+      <img
+        src="https://cdn.brandfetch.io/ticker/AAPL?c=BRANDFETCH_CLIENT_ID"
+        alt="Logo by Brandfetch"
+      />
+      ```
+
+      ```html Crypto theme={null}
+      <img
+        src="https://cdn.brandfetch.io/crypto/BTC?c=BRANDFETCH_CLIENT_ID"
+        alt="Logo by Brandfetch"
+      />
+      ```
+
+      ```html ISIN theme={null}
+      <img
+        src="https://cdn.brandfetch.io/isin/US0378331005?c=BRANDFETCH_CLIENT_ID"
+        alt="Logo by Brandfetch"
+      />
+      ```
+
+      ```html Auto-detection (legacy) theme={null}
+      <img
+        src="https://cdn.brandfetch.io/nike.com?c=BRANDFETCH_CLIENT_ID"
+        alt="Logo by Brandfetch"
+      />
+      ```
+    </CodeGroup>
+
+    <Note>
+      Without a type prefix, the API will auto-detect the identifier type by order (domain → ticker → isin → crypto).
+    </Note>
+  </Step>
+
+  <Step title="Register an account and get your Client ID">
+    <Tip>
+      Logo API is free to use and <u>we don't ask for any attribution</u>.
+    </Tip>
+
+    Each request must include your unique client ID. This ensures your usage stays within fair limits and logos render reliably.
+
+    To get your client ID, register for free from our [Developer Portal](https://developers.brandfetch.com/register).
+  </Step>
+
+  <Step title="Implement additional features">
+    Beyond simply swapping out the base URL, Brandfetch's Logo API offers powerful features to enhance your logo fetching experience:
+
+    * **Logo types:** Access not just logo icons, but also brand symbols and main logos.
+
+    * **Theme variants:** Access dark or light logos, display them on any background.
+
+    * **Customizable sizing:** Adjust the logo’s height and width to fit your needs.
+
+    * **Smart fallbacks:** Even when a logo isn’t available, you’ll get fallbacks.
+
+    * **Flexible identifiers:** Query directly by domain (e.g., `nike.com`), Stock or ETF ticker (e.g., `NKE`, `QQQ`), ISIN (e.g., `US6541061031`), or Crypto symbol (e.g., `BTC`, `ETH`).
+
+    Explore these options in our Logo API [parameters page](/logo-api/parameters).
+  </Step>
+</Steps>
+
+***
+
+## Default icon
+
+Get the brand's default logo icon.
+
+<CodeGroup>
+  ```html Domain theme={null}
+  <img
+    src="https://cdn.brandfetch.io/nike.com?c=BRANDFETCH_CLIENT_ID"
+    alt="Logos by Brandfetch"
+  />
+  ```
+
+  ```html Ticker theme={null}
+  <img
+    src="https://cdn.brandfetch.io/ticker/NKE?c=BRANDFETCH_CLIENT_ID"
+    alt="Logos by Brandfetch"
+  />
+  ```
+
+  ```html Crypto theme={null}
+  <img
+    src="https://cdn.brandfetch.io/crypto/BTC?c=BRANDFETCH_CLIENT_ID"
+    alt="Logos by Brandfetch"
+  />
+  ```
+</CodeGroup>
+
+### PNG or JPG instead of WEBP
+
+By default Logo API serves logos in the modern and highly efficient WebP format. You can use others formats by specifying the file extension in the URL.
+
+`logo`, `symbol` type variants support an additional `svg` format.
+
+```html theme={null}
+<img
+  src="https://cdn.brandfetch.io/:domain/icon.png?c=BRANDFETCH_CLIENT_ID"
+  alt="Logos by Brandfetch"
+/>
+```
+
+### Logo sizing / Retina
+
+Customize the logo’s dimensions by adding `w` (width) and `h` (height) query parameters to the URL. The ratio of the logo is always respected.
+
+For Retina displays, double the size values for optimal display. e.g., for a 64x64 icon display, set `h=128` and `w=128`.
+
+```html theme={null}
+<img
+  src="https://cdn.brandfetch.io/:domain/h/128/w/128/icon.png?c=BRANDFETCH_CLIENT_ID"
+  alt="Logos by Brandfetch"
+/>
+```
+
+### Type variants
+
+Request different types of logos by using the `type` path parameter.
+
+Available variants are: `icon`, `symbol`, and `logo`.
+
+```html theme={null}
+<img
+  src="https://cdn.brandfetch.io/:domain/symbol?c=BRANDFETCH_CLIENT_ID"
+  alt="Logos by Brandfetch"
+/>
+```
+
+### Dark and light themes
+
+Ensure the logo looks great regardless of the background color of your application.
+
+```html theme={null}
+<img
+  src="https://cdn.brandfetch.io/:domain/theme/light/logo?c=BRANDFETCH_CLIENT_ID"
+  alt="Logos by Brandfetch"
+/>
+```
+
+### Multiple fallbacks
+
+Specify a fallback option to be used when the a logo is not available.
+[See all fallbacks](/logo-api/parameters).
+
+```html theme={null}
+<img
+  src="https://cdn.brandfetch.io/:domain/fallback/lettermark/icon?c=BRANDFETCH_CLIENT_ID"
+  alt="Logos by Brandfetch"
+/>
+```
+
+## Usage guidelines
+
+<AccordionGroup>
+  <Accordion title="Authentication" defaultOpen="true">
+    **To use Logo API, you must include your client ID with every request.**
+
+    Adding your client ID provides reliable access, supports fair usage, and keeps consistent performance across all requests.
+
+    [Create a free account](https://developers.brandfetch.com/register) and access your client ID from the developer portal.
+
+    Include your client ID in each request as shown in the example below:
+
+    ```html theme={null}
+    <img
+      src="https://cdn.brandfetch.io/:domain?c=BRANDFETCH_CLIENT_ID"
+      alt="Logos by Brandfetch"
+    />
+    ```
+  </Accordion>
+
+  <Accordion title="Hotlinking">
+    **We require logo links to be directly embedded in your applications.**
+
+    Embedding logo links directly within your HTML image tags guarantees that the logo remains up-to-date at all times. It also ensures a faster and more reliable implementation.
+
+    <Info>
+      When embedding a logo link, HTTP requests must include the `Referer` header
+      with the request origin. Your HTTP `Referrer-Policy` header must be set to one
+      of: `origin`, `origin-when-cross-origin`, `strict-origin`,
+      `strict-origin-when-cross-origin` (browser default), or `unsafe-url`.
+    </Info>
+
+    <Warning>
+      <b>Programmatic access</b> to logo images is not permitted and may result in
+      rate limiting or blocking. Scraping logos will also lead to a block.
+    </Warning>
+
+    If your use case requires caching, please [contact us](https://brandfetch.com/developers/contact/sales) for a custom setup.
+  </Accordion>
+
+  <Accordion title="Replicating Brandfetch">
+    **You cannot replicate the core user experience of Brandfetch.**
+
+    The best way to ensure that your application doesn’t violate this guideline is by integrating Brandfetch into an existing app that offers more value than just the Brandfetch integration.
+
+    Some examples:
+
+    * ✅ The [Typeform integration](https://brandfetch.com/developers/customers/typeform) improves the user’s onboarding by presenting brand logos. Without this integration, the app still has a lot of value to its users.
+    * ✅ The [Pitch integration](https://brandfetch.com/developers/customers/pitch) brings brand logos inside Pitch’s editor to streamline the creation of presentations. Without this integration, the app still has a lot of value to its users.
+    * 🚫 A logo search that only returns logos from Logo API. Without the integration, the app has no content and no value to users.
+    * 🚫 An unofficial Logo API that allows users to access brand logos via Logo API. Without the API, the app has no content and no value to users.
+
+    If you're unsure about your use case, please [contact us](https://brandfetch.com/developers/contact).
+  </Accordion>
+</AccordionGroup>
+
+## Rate limits
+
+We offer a fair use rate limit of <b>1,000,000 requests per month</b> for free, which is designed to cover most small to medium applications, and paid plans include monthly volumes from 5 to 20 million requests — see the [pricing page](https://brandfetch.com/developers/pricing). These are soft limits and you won't immediately be blocked if you exceed yours. Traffic that runs far beyond your allowance can eventually be refused with a `429` carrying [`quota_exceeded`](#errors).
+
+If your usage approaches your limit, we’ll send you a friendly heads-up so you can adjust your usage or explore an upgrade.
+
+To maintain platform reliability, request throughput limits also apply:
+
+* 1,000 requests every 5 minutes per IP
+
+* 2,400 requests every 5 minutes per customer
+
+Exceeding these throughput limits returns an HTTP 429 status code, without an `x-bf-error` header. See [Errors](#errors) for how to tell a throughput block from the other reasons a request can be refused. Let us know if your application requires higher throughput.
+
+For enterprises, we provide custom solutions, including SLA agreements, custom terms, and flexible caching options to ensure optimal performance at scale. These plans are tailored to meet the needs of high-volume users.
+
+Feel free to [contact us](https://brandfetch.com/developers/contact/sales) to discuss the right plan for your use case.
+
+## Errors
+
+When the Logo CDN refuses a request, the response carries an `x-bf-error` header naming the exact reason. A Logo API URL usually lives inside an `<img>` tag, where no response body ever reaches your page, so read that header in your browser's network panel.
+
+`403` responses also return a JSON body with an `error` code, a `message` written for a human, and a `docs` link. The other statuses are header-only. Some refusals are answered with a `302` redirect to our [usage guidelines](#usage-guidelines) instead of an error status; inside an `<img>` tag, that renders as a broken image.
+
+<Note>
+  The throughput limits under [rate limits](#rate-limits) are enforced separately, so those responses carry no `x-bf-error` header. The presence of the header is what tells you the CDN refused the request for one of the reasons below.
+</Note>
+
+| `x-bf-error`                  | Status | What happened                                                                                     | What to do                                                                                                                                                                                                                                                                               |
+| ----------------------------- | ------ | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `client_id_invalid_signature` | `403`  | The `?c=` client ID is present but doesn't verify. This is almost always a transcription error.   | Copy the client ID from your [developer dashboard](https://developers.brandfetch.com) instead of reading it off a screenshot. The message names the characters that get confused most often: lowercase `l` against capital `I` and the digit `1`, and the digit `0` against capital `O`. |
+| `client_id_disabled`          | `403`  | The client ID has been disabled.                                                                  | [Contact us](https://brandfetch.com/developers/contact).                                                                                                                                                                                                                                 |
+| `region_unavailable`          | `403`  | The Logo CDN isn't available in the viewer's country.                                             | Nothing you can change in the request.                                                                                                                                                                                                                                                   |
+| `client_id_expired`           | `410`  | The client ID carries an expiry that has passed.                                                  | Use a client ID from your [developer dashboard](https://developers.brandfetch.com).                                                                                                                                                                                                      |
+| `quota_exceeded`              | `429`  | Your organization has served far beyond its monthly Logo CDN allowance.                           | Raise your allowance and the block lifts within seconds. It also lifts on its own when your next billing period starts.                                                                                                                                                                  |
+| `rate_limited`                | `429`  | The request was refused as abusive traffic.                                                       | Stop the source of the traffic, or [contact us](https://brandfetch.com/developers/contact) if you believe your traffic was caught by mistake.                                                                                                                                            |
+| `client_id_required`          | `302`  | The request carried no `?c=` client ID and no usable `Referer`.                                   | Add `?c=YOUR_CLIENT_ID` to the URL.                                                                                                                                                                                                                                                      |
+| `user_agent_required`         | `302`  | The request sent no `User-Agent` header at all. This applies whether or not you send a client ID. | Send a `User-Agent` header.                                                                                                                                                                                                                                                              |
+| `hotlink_blocked`             | `302`  | The `Referer` is one we don't serve logo traffic for, including `cdn.brandfetch.io` itself.       | Embed the URL in your own pages with your own client ID, and check the `Referrer-Policy` requirements under [usage guidelines](#usage-guidelines).                                                                                                                                       |
+| `automated_traffic`           | `302`  | The request looks programmatic rather than a logo embedded in a page.                             | Embed the URL in an `<img>` tag. If your use case needs server-side access or caching, [contact us](https://brandfetch.com/developers/contact/sales) for a custom setup.                                                                                                                 |
+
+<Warning>
+  A valid client ID does not exempt a request from the `automated_traffic` check. A command-line fetch with a working client ID is still redirected, because Logo API URLs are meant to be embedded in your pages rather than fetched by a script.
+</Warning>
+
+### Once a request is accepted
+
+Anything past the checks above reaches the image itself. None of these responses carry an `x-bf-error` header.
+
+| Status | When                                                                                                                                                                                 | What you get                                                                                                                                |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `200`  | A logo was found.                                                                                                                                                                    | The image, with `ETag` and `Last-Modified` headers. WebP unless you asked for another format.                                               |
+| `200`  | The brand is unknown, the identifier doesn't resolve, the brand has no matching asset, or the URL itself can't be parsed (for example a malformed domain such as `brandfetch..com`). | A fallback image rather than an error status. Which one you get is set by the [`fallback`](/logo-api/parameters#fallback) value in the URL. |
+| `404`  | You asked for `fallback/404` and no logo could be produced.                                                                                                                          | An empty body. The `404` is cached for up to 7 days, so it can keep coming back for a while after a logo becomes available.                 |
+| `503`  | A temporary failure on our side, not something your request caused.                                                                                                                  | Retry. There's nothing to change in the request.                                                                                            |
+
+There's no `4xx` for an unsupported `format` or an out of range size either: an unrecognized `format` falls back to WebP, a `w` or `h` value that isn't a positive integer is ignored, and an unrecognized `fallback` value becomes the default.
+
+<Tip>
+  You can see all of these responses for your own traffic under **Usage History** in your [developer dashboard](https://developers.brandfetch.com), filtered by status class.
+</Tip>

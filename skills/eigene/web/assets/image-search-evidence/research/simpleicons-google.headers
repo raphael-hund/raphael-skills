@@ -1,0 +1,18 @@
+HTTP/2 200 
+date: Mon, 07 Sep 2026 11:13:31 GMT
+content-type: image/svg+xml
+access-control-allow-origin: *
+cache-control: public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+via: 1.1 fly.io, 1.1 fly.io
+fly-request-id: 01KYJYWNFMP1325D264BQB4GWN-fra
+age: 3584323
+last-modified: Mon, 27 Jul 2026 23:34:48 GMT
+cf-cache-status: HIT
+vary: accept-encoding
+speculation-rules: "/cdn-cgi/speculation"
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=KcDsiSDlVm1gHNQJocIIXDy%2Fs%2FoT7dyOvRl%2FnxPdQ5JOfT5mBb%2BwWLrjJavKYQN7RGPqps57VaOf0y4iHU5yg5f7ZvSHf70gghImQ87afzzbW4RsKvfCodl%2BeLf6uJmIMdrRcM1lZ5cmSke01TQVIPa6"}]}
+cf-ray: a37548dc783ee504-TXL
+alt-svc: h3=":443"; ma=86400
+

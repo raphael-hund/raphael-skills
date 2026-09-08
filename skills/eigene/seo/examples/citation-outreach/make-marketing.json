@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "client_id": "make-marketing",
+  "campaign_id": "make-llm-mentions-2026",
+  "cadence_profile": "prompt_4_9",
+  "mode": "offline",
+  "own_domains": ["make-marketing.agency"],
+  "close_rate_formula_id": "live_placements_over_shortlist",
+  "notes": "Agency pilot. No secrets. Offline demo is allowed. Live outreach is BLOCKED_TARGET_PAGES until a non-homepage comparison or use-case page is published. Cadence is prompt_4_9 only; mix with hook_2_3 is blocked.",
+  "brand": {
+    "name": "MAKE Marketing",
+    "who_for": "Schweizer Betriebe ab 10 Mitarbeitenden",
+    "offer": "Website und Google-Sichtbarkeit aus einer Hand",
+    "target_link_url": "https://make-marketing.agency/wissen/website-relaunch",
+    "mention_angle": "Agentur statt Baukasten, wenn der Betrieb schon zehn Mitarbeitende hat und die Website mitziehen muss",
+    "do_not_say": [
+      "garantiert Platz eins",
+      "Platz 1 bei Google schriftlich garantiert",
+      "Leads explodieren lassen",
+      "10x-Wachstum",
+      "Growth Hack",
+      "Funnel-Maschine",
+      "vollautomatisch skalieren",
+      "Kunden auf Knopfdruck",
+      "den Markt dominieren",
+      "disruptiv",
+      "sofort mehr Umsatz",
+      "Wir kuemmern uns um alles",
+      "massgeschneidert",
+      "mehr Sichtbarkeit",
+      "synergy",
+      "I hope this email finds you well",
+      "CrowdReply 1860 mentions",
+      "4% to 40% visibility"
+    ]
+  },
+  "target_pages": [
+    {
+      "id": "website-relaunch",
+      "title": "Website-Relaunch",
+      "url": "https://make-marketing.agency/wissen/website-relaunch",
+      "page_type": "guide",
+      "status": "planned",
+      "published": false
+    },
+    {
+      "id": "baukasten-vs-agentur",
+      "title": "Baukasten vs Agentur",
+      "url": "https://make-marketing.agency/wissen/baukasten-vs-agentur",
+      "page_type": "comparison",
+      "status": "planned",
+      "published": false
+    }
+  ],
+  "live": {
+    "enabled": false,
+    "status": "BLOCKED_TARGET_PAGES",
+    "reason": "Website-Relaunch and Baukasten-vs-Agentur are planned with published:false. Live mode needs a published non-homepage target page.",
+    "requires_published_target_page": true,
+    "human_approval": ["send", "spend"]
+  },
+  "connectors": {},
+  "fixtures": {
+    "citations": "fixtures/citations.jsonl",
+    "contacts": "fixtures/contacts.jsonl",
+    "replies": "fixtures/replies.jsonl"
+  }
+}

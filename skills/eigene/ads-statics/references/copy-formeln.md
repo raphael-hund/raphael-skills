@@ -45,7 +45,9 @@ Deshalb muss der Leser VOR dem Klick wissen, wofür er sich einträgt.
 
 ### Onscreen-Beispiele je Hook
 
-- **F01** Das ist Felix. Er macht jeden Monat 50.000 Euro. / AlpenEnergie: Platz 1 in 30 Tagen.
+Die Beispiele sind Referenz-Zitate aus Gewinner-Ads bzw. gesprochene Video-Zeilen. Auf neuen MAKE-Statics gilt die Satz-Pflicht: jede Zeile ein ganzer Satz mit Subjekt und Verb (copy-bauformen.md). Fragmente nur, wenn sie wörtlich aus dem geschützten Winner-Overlay kommen.
+
+- **F01** Das ist Felix. Er macht jeden Monat 50.000 Euro. / AlpenEnergie: Platz 1 in 31 Tagen.
 - **F02** Googel deine Firma so, wie ein Fremder es tut. Würdest du anrufen?
 - **F03** Die Anfrage, die nie als verloren zählt.
 - **F04** Der Empfohlene googelt dich. Dann ruft er woanders an. / Dein Shop wächst. Dein E-Mail-Marketing schläft.
@@ -53,8 +55,8 @@ Deshalb muss der Leser VOR dem Klick wissen, wofür er sich einträgt.
 - **F06** Eine teure Website allein macht keinen Platz 1.
 - **F07** Ihr habt diese Versprechen schon gehört. Deshalb zeigen wir 30 Tage echte Anfragen, keine Slides.
 - **F08** Wenn du schon drei Agenturen bezahlt hast und die Anfragen ausbleiben, kennst du dieses Gefühl.
-- **F09** Für den Chef, der 50–200k im Monat macht und dessen Seite den Betrieb nicht bestätigt.
-- **F10** Neue Seite plus Platz 1 in 30 Tagen. Sonst keinen Rappen.
+- **F09** Für den Chef, der 100–250k im Monat macht und dessen Seite den Betrieb nicht bestätigt.
+- **F10** Neue Seite plus Platz 1 in 31 Tagen. Sonst keinen Rappen.
 - **F11** Das hier ist Sascha. 15–25 Kunden. 2.000 Euro.
 - **F12** Chefs kaufen keine Website. Sie kaufen die nächste Anfrage, die nicht verloren geht.
 
@@ -64,10 +66,17 @@ Deshalb muss der Leser VOR dem Klick wissen, wofür er sich einträgt.
 
 Ein Callout ist ein Filter-Element. Er steht als Eyebrow oder erste Zeile und sorgt dafür,
 dass sich nur der ICP angesprochen fühlt. Der Angle (was die Ad will) steuert ihn.
+Grenze: Der Callout filtert ÜBER der Hook — die Hook selbst liest nie Voraussetzungen vor
+(BEST-NEU, 17.08.: CPL 178 gegen Winner 50). Quali-Listen gehören ins Formular.
+
+Hormozi-Mapping (`ads/references/hormozi-paid-ads.md`): seine vier Callout-Typen sind
+Label (= C01/C02), Yes-Frage (= C03), If-Then (= C04) und Resultat (= F01/F03 als Hook).
+Dazu nicht-verbal: Kontrast, Likeness (Person sieht aus wie der Käufer, nicht wie wir),
+Szene (visuelle Ja-Frage: Wahrzeichen, Werkstatt, Alltag des ICP).
 
 | ID | Name | Struktur | Wann |
 |---|---|---|---|
-| C01 | Schwellen-Callout | `Für [ICP] mit [Zahl] + [Ziel mit Zahl/Zeit]` | Immer zuerst auf Cold. «Selbstständige» ist unsichtbar. |
+| C01 | Schwellen-Callout | `Für [ICP] mit [Zahl] + [Ziel mit Zahl/Zeit]` | Immer zuerst auf Cold — als kleine Filter-Zeile ÜBER dem Hook (Welle-1-Vertrag). Die Hook selbst liest keine Voraussetzungen vor, die Umsatz-Quali bleibt im Formular (BEST-NEU, 17.08.: CPL 178). «Selbstständige» ist unsichtbar. |
 | C02 | Rollen-Callout | `Wenn du [Rolle] in [Firmentyp] bist` | Solution-aware, B2B an Entscheider. Rolle plus Kontext. |
 | C03 | Ja-Frage-Callout | `Kennst du [Rechnung, die nur der ICP kennt]?` | Problem-aware. Zieht den Leser in seine Logik. |
 | C04 | If-Then-Callout | `Wenn [Lage], dann [nächster Schritt].` | Solution-aware, unter dem Hook. |
@@ -76,11 +85,11 @@ dass sich nur der ICP angesprochen fühlt. Der Angle (was die Ad will) steuert i
 
 ### Onscreen-Beispiele je Callout
 
-- **C01** Für Betriebe mit 50–200k Umsatz im Monat. / Wir suchen 5 Dachdecker in der Ostschweiz, die in 30 Tagen auf Platz 1 wollen.
+- **C01** Für Betriebe mit 100–250k Umsatz im Monat. / Wir suchen 5 Dachdecker in der Ostschweiz, die in 31 Tagen auf Platz 1 wollen.
 - **C02** Wenn du Inhaber eines Betriebs mit Werkstatt bist, nicht Marketingleiter.
 - **C03** Jeder Betrieb kennt diese Rechnung: Empfehlung raus, Anruf kommt nicht.
 - **C04** Wenn der Empfohlene dich googelt und die Seite den Betrieb nicht trägt, trag dich ein.
-- **C05** Für Betriebe ab 50k im Monat. Unter dieser Linie lohnt sich das System nicht.
+- **C05** Für Betriebe mit 100–250k im Monat. Unter dieser Linie lohnt sich das System nicht.
 - **C06** Ostschweiz, 2026. Eure Seite bestätigt den Betrieb nicht.
 
 ---
@@ -102,9 +111,13 @@ Der Angle ist das Ziel der Ad. Er steuert, welche Formeln greifen.
 
 Beispiel Outcome (A03) in drei Schreibweisen, gleicher Angle, anderes Kleid:
 
-- Claim: In 30 Tagen auf Platz 1 bei Google.
-- Callout-Form: Wir suchen vier Betriebe, die in 30 Tagen auf Platz 1 sein wollen.
-- Ergebnis-Form: Wir bringen dich in 30 Tagen auf Platz 1 für die Keywords, die deine Kunden suchen.
+- Claim: In 31 Tagen auf Platz 1 bei Google.
+- Callout-Form: Wir suchen vier Betriebe, die in 31 Tagen auf Platz 1 sein wollen.
+- Ergebnis-Form: Wir bringen dich in 31 Tagen auf Platz 1 für die Keywords, die deine Kunden suchen.
+
+Mehr Varianten aus einem Angle: WHAT × WHO × WHEN (`ads/references/hormozi-paid-ads.md`) —
+Benefit und Gegenbild, Benefit aus fremden Augen (Empfehlungsgeber, Kunde, Konkurrent),
+Benefit in Vergangenheit/Gegenwart/Zukunft. Das ersetzt «neuen Angle erfinden».
 
 ---
 
@@ -118,7 +131,17 @@ Beispiel Outcome (A03) in drei Schreibweisen, gleicher Angle, anderes Kleid:
 | Product-aware | kennt euch | F01, F10 | ja |
 | Most-aware | war schon auf der Seite | F10, Offer, Review | ja, oben erlaubt |
 
-MAKE-ICP (Inhaber, 50k+) liegt zwischen Problem- und Solution-aware. Deshalb: Callout plus Outcome, dann Mechanismus, dann Formular.
+MAKE-ICP (Inhaber, Ads-Copy 100–250k, Formular-Boden 20k) liegt zwischen Problem- und Solution-aware. Deshalb: Callout plus Outcome, dann Mechanismus, dann Formular.
+
+Zac Regan (startrunningads, 6 Reels gelesen) sagt dasselbe kürzer:
+1. If you're [Avatar], pay attention.
+2. Sag das Problem.
+3. Sag, wie ihr es löst.
+4. Sag den nächsten Schritt.
+Zusatz-Hooks: «Most [Avatar] deal with [Problem] because…», «[Job] is hard.», «We will [Outcome] in [Frist].», «[Problem] has nothing to do with [Glauben].»
+Wenn Schritt 1 die falsche Person trifft, trägt kein Hook.
+
+Matt Shiver: Angle ist die Hülle, nicht der Pain. Sieben Hüllen: Mistake, New method, Proof, Story, Benefit, Contrarian, Guarantee. Ein Offer, ein Pain, sieben Wrapper.
 
 ---
 

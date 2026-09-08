@@ -1,9 +1,14 @@
 ---
 name: higgsfield
-version: 0.1.0
+version: 0.2.1
 description: >
   Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus
-  Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. Trigger:
+  Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext.
+  v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec
+  als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten.
+  v0.3.0 (Raphael 04.09.2026): Statics immer 4:5 generieren, dann outpaint
+  auf 9:16. Nie direkt 9:16.
+  Trigger:
   "/higgsfield", "Higgsfield", "GPT Image", "gpt_image_2", "Freisteller",
   "Expand Image", "Outpaint", "Hintergrund entfernen", "Website-Bild",
   "Ads-Static Bild".
@@ -17,7 +22,7 @@ loads:
   - references/foto-prompt.md
   - references/illustration.md
   - references/ops.md
-requires_skills: [web@^0]
+requires_skills: [web@^1]
 completion_criteria:
   - "Medium steht schriftlich: foto oder illustration. CSS/SVG/Text laeuft nicht durch Higgsfield"
   - "Final-Job ist gpt_image_2. nano_banana_flash nur als benannter Preview. recraft_v4_1 nicht aufgerufen"
@@ -27,6 +32,8 @@ completion_criteria:
   - "higgsfield generate cost vor generate create. Ausgabe der Cost-Zeile im Lauf genannt"
   - "Ergebnis per Read angesehen. Danach bilder.mjs add mit typ, motiv, style, modell, refs, prompt, quelle. Deutscher Bildtext steht im Index-motiv oder daneben"
   - "Personen-Nahaufnahme nur mit echter Personen-Referenz (Kunde oder Stock-Gesicht). Soul, Video, 3D-App nicht genutzt"
+  - "Ads-Static: generiert in 4:5 (Text komplett im 4:5), danach outpaint 9:16. Direkt-9:16 oder 1:1 ist Fail."
+  - "Ads-Static: Raphael sieht Logo, Look und Onscreen-Text bevor der Job laeuft. gpt_image_2 mit --image Logo, --image Look, Prompt = JSON-Spec plus Text-Fidelity. Logo nie neu zeichnen. Pillow-Overlay Fail."
 ---
 
 # higgsfield — Bilder fuer Website und Ads
@@ -34,7 +41,7 @@ completion_criteria:
 ## Herkunft, Job, Problem
 
 **Herkunft:** Raphael 17.08.2026 plus CLI-Doktrin in
-`/root/raphael-skills/skills/eigene/web/references/bildgenerierung.md`.
+`/root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/bildgenerierung.md`.
 
 **Job:** Ein Bild erzeugen oder bearbeiten und ins Projekt legen.
 
@@ -85,12 +92,13 @@ higgsfield generate create gpt_image_2 \
 ```
 
    Edit, Expand, Freisteller, Upscale: `references/ops.md`.
+   Ads-Static (Logo, Look, JSON-Spec, Text-Fidelity): `references/ops.md` Abschnitt Ads-Static.
 6. **Lesen.** Datei mit Read oeffnen. Kopf am Rand, Fake-Gesicht, falsches Motiv
    → neuer Job oder Raphael, kein stilles „passt schon“.
 7. **Index plus Text.** Sofort:
 
 ```bash
-node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh.png \
+node /root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/scripts/bilder.mjs add "$DIR" ./roh.png \
   --typ "Hero-Foto" --motiv "<deutsch, konkret was zu sehen ist>" \
   --style "<Kamera oder Illustrationsfamilie>" --modell gpt_image_2 \
   --ref "inhalt.jpg,stil-1.jpg" --quelle generiert --datum 2026-08-17
@@ -106,6 +114,7 @@ node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh.
 - Kamera-Saetze nur bei `foto`.
 - Soul, Video, 3D-App, Relight, Angles, Character-Swap nur auf Raphael-Wort.
 - Credits vor Create. Kundenvault nicht ganz hochladen.
+- Ads-Static: Logo als --image compositen, nie neu zeichnen. Text nur die Spec-Strings, Umlaute 1:1, kein ß. Pillow-Overlay auf Copy und Logo ist Fail.
 - Ship der Seite bleibt `visual-aaa`. Dieses Skill liefert das Asset.
 
 ## Abgrenzung
@@ -115,4 +124,5 @@ node /root/raphael-skills/skills/eigene/web/scripts/bilder.mjs add "$DIR" ./roh.
 | Hero, Produkt, markige Illustration, 3D-Icon, Glas-Deko | ja | — |
 | CSS, SVG-Text, Lucide, unDraw | nein | `tool-usecase-router.md` |
 | Video / Soul | nein | eigener Auftrag |
+| Trust-/Marken-Logo (Google, ProvenExpert, TÜV) | nein — nie generieren | `web` Schritt 4: Brand-Kit-Beschaffung |
 | CLI-Params, Trim, Layer, AVIF-Details | Verweis | `bildgenerierung.md` |

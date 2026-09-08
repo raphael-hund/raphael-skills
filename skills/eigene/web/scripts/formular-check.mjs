@@ -64,9 +64,9 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
 }
 if (!URL_) { console.error('usage: formular-check.mjs --url <url> [--json] [--strict]'); process.exit(2); }
 
-const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
-
-const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+const { loadPlaywright, launchChromium } = await import(new URL('./lib/playwright-loader.mjs', import.meta.url));
+const { chromium } = loadPlaywright();
+const browser = await launchChromium(chromium);
 let abbruch = false;
 // Vor dem try deklariert: die Ausgabe steht NACH dem finally, und eine
 // Konstante aus dem try-Block ist dort nicht sichtbar (ReferenceError,

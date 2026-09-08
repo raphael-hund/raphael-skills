@@ -1,0 +1,18 @@
+[
+  {
+    "phrase": "Werbebriefing Vorlage",
+    "replacement": "Bitte nutze den Ads-Skill und ordne mein folgendes Diktat zu einem Ad-Briefing. ICP und Situation: [ausfüllen]. Persona × Angle × Offer: [ausfüllen]. Lieferbares Ergebnis und Mechanismus: [ausfüllen]. Eigener Proof mit Quelle: [ausfüllen oder fehlt]. Echte Kundensprache und Einwände: [ausfüllen]. CTA und tatsächlicher Folgeprozess: [ausfüllen]. Vergleichsbasis und Testfrage: [ausfüllen]. Format und Aufnahmebedingungen: [ausfüllen]. Fehlende Informationen markieren; keine Zahlen, Fristen oder Garantien ergänzen. Hier beginnt mein Diktat:"
+  },
+  {
+    "phrase": "Werbeskript aus Diktat",
+    "replacement": "Bitte nutze den Ads-Skill, um mein folgendes Diktat als sprechbares Ad-Skript auszuarbeiten. Behalte meine natürliche Sprache, ordne den Ablauf und kürze Wiederholungen. Jeder Claim braucht meine Angabe oder eine konkrete Quelle. Fehlenden Proof markieren. Gib den zusammenhängenden Sprechtext, begründete Hook-Alternativen und die sichtbare Umsetzung wichtiger Aussagen aus. Prüfe, dass CTA und nächster Schritt zu meinem tatsächlichen Angebot passen. Ergänze keine eigene Kundenzahl, Garantie, Knappheit oder erfundene Methodennamen. Hier ist mein Diktat:"
+  },
+  {
+    "phrase": "Werbevideo Drehplan",
+    "replacement": "Bitte erstelle aus dem folgenden freigegebenen Ad-Skript einen aufnehmbaren Drehbrief. Tabelle: geschätzter Zeitbereich, Sprechtext, sichtbare Handlung oder Einblendung, benötigtes eigenes Belegmaterial. Plane den ersten Frame, lesbare Screens und einen verständlichen Abschluss. Untertitel müssen die Sprache korrekt wiedergeben. Markiere Material, das fehlt. Verändere keine belegte Zahl oder Offer-Bedingung. Keine Aufnahme, Veröffentlichung oder Schaltung als erfolgt ausgeben. Hier ist das Skript:"
+  },
+  {
+    "phrase": "Werbelernen festhalten",
+    "replacement": "Bitte nutze den Ads-Skill und formuliere aus meinem folgenden Diktat einen Eintrag für das Lern-Register des genannten Kunden. Erfasse Creative-ID oder Link, Zeitraum, Zielgruppe und Offer, ursprüngliche Hypothese, tatsächliche Messwerte mit Quelle, Datenlücken, Interpretation und genau den nächsten begründeten Test. Trenne Beobachtung von Erklärung. Eine lange Laufzeit ist kein Performance-Beweis. Nicht selbst schalten oder Budgets ändern. Hier ist meine Auswertung:"
+  }
+]

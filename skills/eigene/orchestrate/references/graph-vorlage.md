@@ -14,10 +14,10 @@ Stand: <Datum> · Läufe: <Run-IDs mit Datum anhängen>
 ## Nodes
 | Node | Worker (agentType) | Kontext-Pack | Output | Loop? |
 |---|---|---|---|---|
-| research | kimi-recherche | brain-hot + Keyword-Brief | research.md | nein |
-| brief | sonnet-worker | research.md | brief.md | nein |
-| draft | kimi-worker | NUR brief.md (bewusst eng) | draft.md | nein |
-| score | sol-pruefer | draft.md + Rubrik | verdict JSON | ja, max 3 |
+| research | opus-builder | brain-hot + Keyword-Brief | research.md | nein |
+| brief | opus-builder | research.md | brief.md | nein |
+| draft | opus-builder | NUR brief.md (bewusst eng) | draft.md | nein |
+| score | sol-critic | draft.md + Rubrik | verdict JSON | ja, max 3 |
 | publish-vorschlag | luna-worker | draft.md final | Inbox-Eintrag | nein |
 
 ## Routen + Checkpoints
@@ -37,12 +37,15 @@ Stand: <Datum> · Läufe: <Run-IDs mit Datum anhängen>
 Ein Graph kompiliert zu einem Workflow-Script. Muster für die drei
 Grundformen:
 
+agentType ist in jedem agent()-Aufruf ein String-Literal, nie eine Variable oder Template-Ausdruck; ein Schreiber pro Datei je Paket; Worktrees per git worktree add plus absolute Pfade, nicht EnterWorktree.
+
 **Kette (research → brief → draft):** sequenzielle `await agent(...)`-Aufrufe,
 jeder bekommt die PFADE der Vorergebnisse (Slice-Falle!).
 
 **Loop-in-Node (draft ↔ score, max 3, danach Rückroute → brief):**
 ```javascript
-// LONGHORIZON gehört in JEDEN Node-Prompt (Pflicht bei kimi/luna — die erben
+// LONGHORIZON gehört in JEDEN Node-Prompt (Pflicht bei Luna und bei jedem
+// ausdrücklich gewählten Fremdmodell — die erben
 // das private CLAUDE.md nicht und bleiben sonst bei Unsicherheit stehen):
 const LONGHORIZON = 'Long horizon session, human is away — autonom arbeiten, ' +
   'nicht rückfragen, bei Unsicherheit weiterarbeiten. Rot-Klassen bleiben bindend.'
@@ -55,15 +58,15 @@ for (let briefRunde = 0; briefRunde < 2; briefRunde++) {
   if (briefRunde > 0) {
     await agent(`${LONGHORIZON} Überarbeite ${DIR}/brief.md grundlegend — der ` +
       `Draft scheiterte 3x am Score, letzte Mängel: ${JSON.stringify(verdict.maengel)}.`,
-      { label: 'brief:neu', phase: 'Brief', agentType: 'sonnet-worker' , stallMs: 0 })
+      { label: 'brief:neu', phase: 'Brief', agentType: 'opus-builder' , stallMs: 0 })
   }
   for (let runde = 0; runde < 3; runde++) {
     await agent(`${LONGHORIZON} Schreibe/überarbeite den Artikel nach ${DIR}/brief.md` +
       (verdict ? ` und diesen Mängeln: ${JSON.stringify(verdict.maengel)}` : '') +
       `. Schreibe nach ${DIR}/draft.md. Frozen Rules: ${FROZEN}`,
-      { label: `draft:b${briefRunde}r${runde}`, phase: 'Draft', agentType: 'kimi-worker' })
+      { label: `draft:b${briefRunde}r${runde}`, phase: 'Draft', agentType: 'opus-builder' })
     verdict = await agent(`${LONGHORIZON} Bewerte ${DIR}/draft.md gegen die Rubrik: ${RUBRIK}.`,
-      { label: `score:b${briefRunde}r${runde}`, phase: 'Score', agentType: 'sol-pruefer', schema: VERDICT })
+      { label: `score:b${briefRunde}r${runde}`, phase: 'Score', agentType: 'sol-critic', schema: VERDICT })
     if (verdict && verdict.pass) break
   }
   if (verdict && verdict.pass) break
@@ -95,10 +98,10 @@ Output-Ordner je Input (Schreib-Rennen).
 
 ## Beispiel: Kunden-Onboarding-Graph (Vault-Accelerator-Muster)
 
-Node 1 „research" — Worker: sol-pruefer (Urteil/Tiefe).
-  Liest: /root/raphael-brain/wiki/hot.md, /root/clients/client-<slug>/wiki/
+Node 1 „research" — Worker: sol-critic (Urteil/Tiefe).
+  Liest: /root/raphael-brain/wiki/hot.md, /root/clients/<slug>/wiki/
   (ICP/OFFER/PROOF/VOICE aus Loop 1), vergangene Kampagnen/Reports
-  (/root/clients/client-<slug>/state/). Output: Cohort-Brief (wer, welches
+  (/root/clients/<slug>/state/). Output: Cohort-Brief (wer, welches
   Angle, welcher Beweis zieht).
 Node 2 „landingpage" — Skill: web (Loop 2), Worker nach Modell-Matrix.
   Input: Cohort-Brief aus Node 1 (Pfad, kein Inline-Dump). Output: Seite +

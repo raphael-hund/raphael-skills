@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Research"
-  short_description: "Codex adapter for the research skill"
-  default_prompt: "Use $research for this task."

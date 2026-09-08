@@ -1,6 +1,6 @@
 ---
 name: watch
-version: 0.3.0
+version: 0.3.2
 description: >
   Feuert, wenn ein Video (YouTube, Instagram, TikTok, Loom, Vimeo, Riverside, Zoom
   oder eine lokale Datei) inhaltlich analysiert oder als
@@ -48,13 +48,15 @@ Transkript zeitlich aligned ergeben einen Scene-by-Scene-Breakdown statt nur Tex
 - Konkurrenz-/Swipe-Analyse: „Was macht dieser Hook / dieses Reel stark?"
 - Content-Recherche: Transkript eines YT-Videos ohne Whisper/API-Kosten.
 - Vorlagenbau: Struktur eines funktionierenden Videos abstrahieren (→ `wiki/craft/hooks/`).
+- Ads-Performance: `ads` Teil Performance ruft diesen Helper für jedes Video mit Spend.
+  Ablauf und Ablage stehen in `ads/references/loop3-ablauf.md` Abschnitt Performance.
 
 ## Quellen
 
 | Quelle | Download | Transkript | Hinweis |
 |---|---|---|---|
 | YouTube | yt-dlp | Auto-Subs (json3) | Standardfall, bestes Transkript |
-| Instagram / TikTok | yt-dlp | keins → Frames-only | On-Screen-Text trägt die Botschaft |
+| Instagram / TikTok | yt-dlp je Post-URL | keins → Frames-only; Whisper wenn Raphael transkribieren will | Keine Profil-Playlist. Ganzer Account: [brain creator-feed](../brain/references/creator-feed.md) |
 | Loom | yt-dlp (öffentlicher Share-Link) | keins → Frames-only | Private Links brauchen Login = Stopp, kein Cookie-Basteln |
 | Vimeo | yt-dlp | keins → Frames-only | Passwortgeschützt = Stopp |
 | Riverside | i. d. R. **kein** Direkt-Download | — | Aufnahme lokal exportieren, dann als Dateipfad übergeben |

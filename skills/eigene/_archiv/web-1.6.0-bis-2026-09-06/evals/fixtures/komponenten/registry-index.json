@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "magicui",
+  "homepage": "https://magicui.design",
+  "items": [
+    {
+      "name": "marquee",
+      "title": "Marquee",
+      "type": "registry:ui",
+      "description": "An infinite scrolling component that can be used to display text, images, or videos."
+    },
+    {
+      "name": "hero-video-dialog",
+      "title": "Hero Video Dialog",
+      "type": "registry:ui",
+      "description": "A hero video dialog component."
+    }
+  ]
+}

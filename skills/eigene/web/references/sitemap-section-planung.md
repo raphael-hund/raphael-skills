@@ -76,8 +76,10 @@ Tabelle je Sektion:
 „Inhalt KONKRET" heißt: nicht „USPs zeigen", sondern die tatsächlichen 3 Karten
 mit ihren Aussagen, die tatsächlichen Tabellenzeilen, die FAQ-Fragen wörtlich.
 Hero-Copy (Eyebrow/H1/Sub/Checks) wird ausformuliert, nicht beschrieben.
-Fehlende Fakten (Preise, Zahlen) werden als benanntes Gate geführt
-(z. B. „Ruben-Gate"), blockieren aber nur den Zahlen-Launch, nie den Bau.
+Fehlende Fakten (Preise, Zahlen) werden als benanntes **FAKT-GATE** geführt
+(z. B. „Ruben-Gate", „50 vs 60 Google-Bewertungen", „24 vs 28 Stunden"),
+blockieren aber nur den Zahlen-Launch, nie den Bau und nie die Kunden-Vorschau.
+Custom-Domain noch nicht an Vercel ist Ops, kein Plan-Blocker.
 
 **Dramaturgie-Prüfung je Seite:** Ein gemeinsames Skelett
 (Hero → Kernangst-Sektion → Substanz → Beweis → Mensch → FAQ → Abschluss-Funnel),
@@ -106,6 +108,6 @@ Section-Baukasten — erst dann Seiten.
 - [ ] Layer- und Pattern-Vokabular definiert (mit Mobil-Verhalten + Maßen)
 - [ ] JEDE Seite: Besucher + Job + Sektionstabelle mit konkretem Inhalt je Sektion
 - [ ] Hero-Copy je Seite ausformuliert
-- [ ] Fakten-Gates benannt (blockieren Zahlen, nicht Bau)
+- [ ] Fakten-Gates benannt (blockieren Zahlen, nicht Bau, nicht Vorschau)
 - [ ] Funnel-/lead_source-Tabelle + Bildliste
 - [ ] Bau-Reihenfolge mit verify: und Freigabe-Gates

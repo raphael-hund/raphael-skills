@@ -14,6 +14,7 @@
 | Video-Skript | scrollt, Ton evtl. aus | Bild + Aussage in Sek. 1 | 15–60 Sek. | letzte 3 Sek. |
 | Landingpage | hat geklickt, prüft | Versprechen + Beweis im Viewport | 400–1200 W | 1, wiederholt |
 | E-Mail | kennt uns bereits | EIN Gedanke, Betreff trägt | 80–200 W | 1 Link |
+| Kunden-WhatsApp / Kundenmail | kennt uns, will Klarheit | Offener Punkt + eine Bitte | 40–180 W | höchstens eine nummerierte Liste |
 | SEO-Artikel | sucht Antwort | Antwort im ersten Absatz | 800–2000 W | 1 am Ende |
 | X / LinkedIn | scrollt, sozialer Kontext | Behauptung oder Zahl in Zeile 1 | 40–200 W | oft keiner |
 
@@ -73,6 +74,19 @@ Detail: Skill `web` / `website-plan`.
 - Kein Bild-Header nötig. Text-Mails lesen sich persönlicher.
 
 Detail: Skill `emails` (Sequenzen), copywriting nur für Ton.
+
+---
+
+## Kunden-WhatsApp und kurze Kundenmail
+
+**Leser-Zustand:** Kennt uns. Will wissen, was fertig ist und was er tun soll.
+
+- Primärskill: `kunden-chat`. copywriting nur für forbidden.md, nicht für den Ton.
+- Kein `Hey` / `HEU` / `Hoi`. Anrede: `Hallo` + Vorname, Hochdeutsch. Schweizer nur in Wörtern (Grüsse, TWINT, CHF).
+- Zuerst Chat und Dateien über WhatsApp-MCP lesen, dann schreiben.
+- Eine Nachricht = ein Thema. Bitten nummerieren.
+
+Detail: Skill `kunden-chat`.
 
 ---
 

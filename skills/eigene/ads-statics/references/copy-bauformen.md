@@ -19,8 +19,10 @@ kombinieren sich in jedem Brief (siehe `brief-schema.md`).
    [Ziel mit Zahl/Zeit]. Filterlose Callouts („Selbstständige") ziehen hohe CTR bei
    Anti-ICP-Zustrom; gefilterte Callouts mit klarer Schwelle bringen die bessere
    Kosten/Termin-Rate.
-3. **Maximal zwei Textstufen plus CTA.** Headline (gross) → Subline/Proof-Stack (klein) →
-   CTA. Lange Copy funktioniert nur getarnt als natives Format (siehe Bauform 4).
+3. **Maximal zwei Textstufen plus CTA.** Textstufen begrenzen nur die Anzahl der Textblöcke,
+   nie die Grammatik: Jede Textstufe bleibt ein ganzer Satz. Headline (gross) →
+   Subline/Proof-Stack (klein) → CTA. Lange Copy funktioniert nur getarnt als natives Format
+   (siehe Bauform 4).
    Gilt für Typo-Karten (S1). Auf Foto, Screen und Story bleiben es Sätze.
    Drei Fragment-Zeilen ohne Verb sind kein Proof-Stack.
 4. **Nativer Rahmen als Trojaner.** Die am längsten laufenden Statics sehen aus wie Content,
@@ -38,8 +40,8 @@ Sprache bleibt Betriebsergebnis („Anfragen", „Auslastung"), nie Marketingmec
 den Rest trägt. Zahl + Zeitraum + Name, wo das Material es hergibt.
 
 **Satz-Pflicht (hart):** Jede Onscreen-Zeile ist ein ganzer Satz mit Subjekt und Verb,
-kein Telegramm. «Platz 1 bei Google in 30 Tagen / oder du zahlst keinen Rappen» ist
-tot. «Wir bringen dich in 30 Tagen auf Platz 1. Sonst zahlst du nichts.» lebt.
+kein Telegramm. «Platz 1 bei Google in 31 Tagen / oder du zahlst keinen Rappen» ist
+tot. «Wir bringen dich in 31 Tagen auf Platz 1. Sonst zahlst du nichts.» lebt.
 Kürzen nie so weit, dass das Subjekt fällt. Der 1-Sekunden-Test verlangt einen
 verständlichen Satz, nicht das kürzeste Wortgerüst. Formeln dazu: `copy-formeln.md`.
 

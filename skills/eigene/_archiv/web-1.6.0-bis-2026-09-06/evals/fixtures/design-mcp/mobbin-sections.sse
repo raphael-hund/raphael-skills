@@ -1,0 +1,3 @@
+event: message
+data: {"jsonrpc": "2.0", "id": 1, "result": {"content": [{"type": "text", "text": "{\"query\": \"pricing\", \"page\": 1, \"has_next_page\": true, \"sections\": [{\"index\": 0, \"id\": \"370a227d-3a6b-4449-a5d0-dc9464b8dfdd\", \"image_url\": \"https://mobbin.com/api/mcp/short/GF7jFJgd\", \"mobbin_url\": \"https://mobbin.com/sites/sections/370a227d-3a6b-4449-a5d0-dc9464b8dfdd\", \"site_name\": \"AngelList\"}]}"}]}}
+

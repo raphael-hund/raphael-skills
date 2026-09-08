@@ -72,8 +72,15 @@ erhalten"). Kein Aufräumen.
 
 **Verwerfen:** vorher explizit bestätigen lassen — Branchname, betroffene
 Commits und Worktree-Pfad nennen, auf das exakte Wort "verwerfen" (oder
-"discard") warten. Erst danach ins Hauptverzeichnis wechseln, Worktree
-aufräumen (Schritt 6), dann Branch erzwungen löschen (`git branch -D`).
+"discard") warten. Erst danach:
+
+1. Ins Hauptverzeichnis wechseln
+2. `reject-worktree.sh <worktree-path> "<reason>"` aufrufen (löscht Worktree + Branch + schreibt Verboten-Eintrag in `DECISIONS.md`)
+3. Worktree aufräumen (Schritt 6) — nur falls `reject-worktree.sh` nicht schon alles erledigt hat
+
+**Wichtig:** Der `reject-worktree.sh`-Hook **ersetzt** das manuelle Löschen. Er erzwingt das "Neueste löscht Altes"-Prinzip: Worktree + Branch weg, Verboten-Eintrag geschrieben, Altlasten entfernt.
+
+**Cleanup nach Verwerfen:** Nach jedem Verwerfen automatisch `cleanup-old-worktrees.sh` aufrufen. Dadurch bleibt nur der neueste Worktree erhalten — alle älteren (inkl. Git-Historie, Branches, Dateien) werden gelöscht. Es gibt immer genau eine Wahrheit.
 
 ## Schritt 6: Workspace aufräumen
 

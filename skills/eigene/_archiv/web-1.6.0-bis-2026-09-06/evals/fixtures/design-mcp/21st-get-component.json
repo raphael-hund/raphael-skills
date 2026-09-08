@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "# Pricing table \u2014 default.tsx\npricing table\n\ninstall: npx shadcn@latest add \"https://21st.dev/r/dgearsonu1/pricing-table?api_key=$API_KEY_21ST\"\n\n## Component\n```tsx\nexport function PricingTable() {\n  return <div>Pricing</div>;\n}\n```\n\n## Demo\n```tsx\nexport default function Demo() {\n  return <PricingTable />;\n}\n```\n"
+      }
+    ]
+  }
+}

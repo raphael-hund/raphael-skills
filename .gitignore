@@ -19,3 +19,15 @@ __pycache__/
 .claude/worktrees/
 .claude/checkpoints/
 .claude/agent-registry.json
+
+# web-Skill Binaries (1.5GB Shots/Vendor-Assets, nie ins Repo)
+skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/resources/
+skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/muster-bibliothek/**/*.png
+skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/muster-bibliothek/**/*.jpg
+skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/muster-bibliothek/**/*.webp
+skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/muster-bibliothek/**/*.mp4
+*.bak-livegang-*
+
+# macOS AppleDouble-Reste und Ad-hoc-Backups
+._*
+*.bak-*

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Platzhalter">
+  <!-- Platzhalter-"Foto" fuer die Anti-Set-Fixtures. Bewusst eine echte Datei und
+       kein data:-URI: nur so verhalten sich Ladezeit, width/height und CLS-Pruefung
+       wie bei einem richtigen Bild. Bewusst KEIN KI-Verlauf (T2) — flache Flaechen. -->
+  <rect width="800" height="600" fill="#dfd8cd"/>
+  <rect y="380" width="800" height="220" fill="#c8bfb1"/>
+  <rect x="70" y="150" width="240" height="230" fill="#8d8377"/>
+  <rect x="360" y="90" width="180" height="290" fill="#6f665c"/>
+  <rect x="590" y="200" width="150" height="180" fill="#a2988a"/>
+  <rect x="0" y="372" width="800" height="8" fill="#153043"/>
+</svg>

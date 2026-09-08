@@ -1,0 +1,72 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.brandfetch.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Logo.dev
+
+> How Logo.dev's Logo API compares to Brandfetch's Logo API
+
+Logo.dev started as a hosted logo image API, built by the same team behind Clearbit's Logo API as its successor, retrieving company logos from a domain, ticker, ISIN, or crypto symbol through a simple image URL. It's since grown into a broader brand data platform, with search, company data, and transaction lookup products alongside the logo endpoint. The comparison below focuses on the two Logo APIs specifically; see [Beyond logos](#beyond-logos) for how the wider platforms stack up.
+
+## Brand quality & time to value
+
+Both APIs resolve in a single request, so time to first logo is about the same either way. The real difference shows up once you're live and requesting logos for domains you haven't hand-picked in a demo: Brandfetch publishes its actual [coverage numbers](/accuracy/coverage-and-quality). A logo resolves for 95% of brands in the core distribution, and 86% even at the extreme long tail of small, non-tech businesses. Logo.dev doesn't publish comparable figures, so there's no way to check how it performs outside the brands you happen to test.
+
+## Quick comparison
+
+|                          | Brandfetch                                                     | Logo.dev                                                        |
+| ------------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- |
+| Free tier                | 1,000,000 requests/mo                                          | 500,000 requests/mo                                             |
+| Attribution on free tier | Never required                                                 | Required for commercial use                                     |
+| Identifiers              | Domain, ticker, ISIN, crypto                                   | Domain, ticker, ISIN, crypto, name                              |
+| Formats                  | PNG, JPG, WebP (default), SVG (free, on `logo`/`symbol` types) | JPG, PNG, WebP, SVG (Enterprise plans only)                     |
+| Logo type variants       | Icon, logo, symbol                                             | Not on the image API (wordmark only via the Pro-plan Brand API) |
+| Theme variants           | Light, dark                                                    | Light, dark, auto                                               |
+| Fallback options         | Lettermark, Brandfetch mark, transparent, 404                  | Monogram, 404                                                   |
+| Greyscale                | Apply via CSS `filter`                                         | Built-in parameter                                              |
+
+## How requests compare
+
+Both APIs work the same way: a CDN URL built from a domain (or other identifier), with your key passed as a query parameter.
+
+**Logo.dev**
+
+<CodeGroup>
+  ```text theme={null}
+  https://img.logo.dev/nike.com?token=LOGO_DEV_PUBLISHABLE_KEY
+  ```
+</CodeGroup>
+
+**Brandfetch**
+
+<CodeGroup>
+  ```text theme={null}
+  https://cdn.brandfetch.io/nike.com?c=BRANDFETCH_CLIENT_ID
+  ```
+</CodeGroup>
+
+## Why teams choose Brandfetch
+
+* **No attribution, on any plan.** Logo.dev's free "Community" tier requires a visible link back to Logo.dev for commercial use. Brandfetch never asks for one.
+* **SVG and type variants included for free.** Logo.dev reserves SVG for Enterprise customers. Brandfetch includes SVG output and icon/logo/symbol variants on every plan.
+* **Reliable at scale.** Brandfetch runs at 100% uptime and is trusted in production by Canva, Typeform, and Experian.
+
+## Beyond logos
+
+Logo.dev isn't just a logo API either. It also offers a Search API (name-to-domain matching), a Describe API (structured company data: name, description, colors, socials), a Brand API (full brand profile: logo, brandmark, banners, colors, description, socials), and an early-access Transaction API (merchant identification from card transactions).
+
+Brandfetch's broader suite covers similar ground: [Brand API](/brand-api/overview) for a full brand profile, [Brand Context API](/brand-context-api/overview) for LLM-ready brand context, [Brand Search API](/brand-search-api/overview) for name-to-domain matching, [Transaction API](/transaction-api/overview) for merchant identification, and an [MCP server](/mcp/overview) that exposes all of it to AI assistants like Claude and Cursor.
+
+If you're evaluating the two platforms as a whole rather than just their logo endpoints, compare those products directly rather than relying on the logo-only comparison above.
+
+## Get started
+
+<CardGroup cols={2}>
+  <Card title="Logo API overview" icon="circles-overlap" href="/logo-api/overview" iconType="light" cta="Learn more">
+    See the full feature set and implementation guide
+  </Card>
+
+  <Card title="Get your client ID" icon="key" href="https://developers.brandfetch.com/register" iconType="light" cta="Register">
+    Free account, no credit card required
+  </Card>
+</CardGroup>

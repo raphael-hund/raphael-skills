@@ -1,0 +1,391 @@
+{
+  "reviewed": "2026-09-06",
+  "sites": [
+    {
+      "id": "peter",
+      "url": "https://www.peter.at/",
+      "category": "solar energy service",
+      "role": "integrated energy offer, mobile art direction and offer configurator",
+      "pages": [
+        {
+          "url": "https://www.peter.at/",
+          "type": "home",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Separate desktop/mobile hero assets; real HTML overlay",
+            "Product cards, system diagram and embedded offer journey"
+          ],
+          "limitations": [
+            "Product cards not linked to individual detail routes; no full domain architecture claim"
+          ]
+        },
+        {
+          "url": "https://www.peter.at/anfragen",
+          "type": "offer",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Federal-state to roof-choice progression; mobile household step and Back observed",
+            "Request counter generated from date-dependent JavaScript"
+          ],
+          "limitations": [
+            "No submission; no verified CRM count"
+          ]
+        },
+        {
+          "url": "https://www.peter.at/kontakt",
+          "type": "contact",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Visible HubSpot form differs from hidden legacy form",
+            "Required-field error observed"
+          ],
+          "limitations": [
+            "No message delivery tested"
+          ]
+        }
+      ],
+      "patterns": [
+        "mobile art direction",
+        "system diagram with HTML legend",
+        "stepwise configurator",
+        "service-card detail links"
+      ],
+      "limitations": [
+        "Browser sample of three pages; no SEO performance, business proof or full accessibility certification"
+      ],
+      "study": "references/service-sites-solar.md"
+    },
+    {
+      "id": "profinanz",
+      "url": "https://www.profinanz-mentoring.de/",
+      "category": "mentoring personal service",
+      "role": "typography, method graphics, product evidence and broken booking counterexample",
+      "pages": [
+        {
+          "url": "https://www.profinanz-mentoring.de/",
+          "type": "home",
+          "evidence": [
+            "dom",
+            "screenshot"
+          ],
+          "observations": [
+            "Serif/sans hierarchy, olive accent and team imagery",
+            "Mentoring detail is an anchor, not a distinct route"
+          ],
+          "limitations": [
+            "No full-page animation or complete SEO audit"
+          ]
+        },
+        {
+          "url": "https://www.profinanz-mentoring.de/freie-termine",
+          "type": "contact",
+          "evidence": [
+            "dom",
+            "screenshot"
+          ],
+          "observations": [
+            "Calendly invalid URL visibly blocks booking on desktop/mobile"
+          ],
+          "limitations": [
+            "No successful CTA click or appointment submission"
+          ]
+        },
+        {
+          "url": "https://www.profinanz-mentoring.de/archive/freie-termine-old",
+          "type": "broken-contact",
+          "evidence": [
+            "dom",
+            "screenshot"
+          ],
+          "observations": [
+            "Linked archive booking target returns HTTP 404"
+          ],
+          "limitations": [
+            "Only observed linked target, no whole-domain claim"
+          ]
+        }
+      ],
+      "patterns": [
+        "method explanation",
+        "product screenshot plus HTML text",
+        "embedded booking verification"
+      ],
+      "limitations": [
+        "Financial assertions not verified; 2 of 29 saved images misframed and excluded as section proof"
+      ],
+      "study": "references/service-sites-specialists.md"
+    },
+    {
+      "id": "tradingfreaks",
+      "url": "https://www.tradingfreaks.com/",
+      "category": "service consulting education agency",
+      "role": "TradingFreaks service patterns and observed counterexamples",
+      "pages": [
+        {
+          "url": "https://www.tradingfreaks.com/",
+          "type": "home",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Personen-Hero, zwei priorisierte CTAs, produktnahe Leistungsabbildungen und Medien-Tabs"
+          ],
+          "limitations": [
+            "Finanz- und Ergebnisbehauptungen ungeprüft; mobile Fixleisten überdecken Karten"
+          ]
+        },
+        {
+          "url": "https://www.tradingfreaks.com/trading-lernen",
+          "type": "learning-hub",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Eigenständiger Lernhub mit Themenkarten und vertikalem Lernweg"
+          ],
+          "limitations": [
+            "Die nächsten Schritte sind benannt, besitzen aber keine Inhaltslinks"
+          ]
+        },
+        {
+          "url": "https://www.tradingfreaks.com/bewerbungsformular?utm_campaign=kennenlernen",
+          "type": "contact",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Typeform mit geladener erster Erfahrungsfrage auf Desktop und Mobil"
+          ],
+          "limitations": [
+            "Keine Antworten eingegeben oder Buchung abgesendet"
+          ]
+        }
+      ],
+      "patterns": [
+        "Personen-Hero, zwei priorisierte CTAs, produktnahe Leistungsabbildungen und Medien-Tabs",
+        "Eigenständiger Lernhub mit Themenkarten und vertikalem Lernweg",
+        "Typeform mit geladener erster Erfahrungsfrage auf Desktop und Mobil"
+      ],
+      "limitations": [
+        "Three-role browser sample, no ranking/conversion measurement or full domain claim",
+        "Finanz- und Ergebnisbehauptungen ungeprüft; mobile Fixleisten überdecken Karten",
+        "Die nächsten Schritte sind benannt, besitzen aber keine Inhaltslinks",
+        "Keine Antworten eingegeben oder Buchung abgesendet"
+      ],
+      "study": "references/service-sites-specialists.md"
+    },
+    {
+      "id": "mission-mittelstand",
+      "url": "https://www.mission-mittelstand.de/",
+      "category": "service consulting education agency",
+      "role": "Mission Mittelstand service patterns and observed counterexamples",
+      "pages": [
+        {
+          "url": "https://www.mission-mittelstand.de/",
+          "type": "home",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Personenkomposition, Kompetenzkarten und wiederholter Erstgespräch-CTA"
+          ],
+          "limitations": [
+            "Marktführerschaft und Ergebniszahlen nicht unabhängig geprüft"
+          ]
+        },
+        {
+          "url": "https://www.mission-mittelstand.de/beratung",
+          "type": "offer",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Getrennte Kompetenzfelder, Liefermodell und namentliche Berater"
+          ],
+          "limitations": [
+            "FAQ klickbar, aber DIV ohne reguläre Tastaturfokussierbarkeit"
+          ]
+        },
+        {
+          "url": "https://www.mission-mittelstand.de/mission-mittelstand-erstgespraech",
+          "type": "contact",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "iClosed nach echtem CTA auf beiden Viewports geladen"
+          ],
+          "limitations": [
+            "Mobile Einführung fehlt; Widgetname und Ansprache wechseln; kein Versand"
+          ]
+        }
+      ],
+      "patterns": [
+        "Personenkomposition, Kompetenzkarten und wiederholter Erstgespräch-CTA",
+        "Getrennte Kompetenzfelder, Liefermodell und namentliche Berater",
+        "iClosed nach echtem CTA auf beiden Viewports geladen"
+      ],
+      "limitations": [
+        "Three-role browser sample, no ranking/conversion measurement or full domain claim",
+        "Marktführerschaft und Ergebniszahlen nicht unabhängig geprüft",
+        "FAQ klickbar, aber DIV ohne reguläre Tastaturfokussierbarkeit",
+        "Mobile Einführung fehlt; Widgetname und Ansprache wechseln; kein Versand"
+      ],
+      "study": "references/service-sites-specialists.md"
+    },
+    {
+      "id": "matthias-aumann",
+      "url": "https://www.matthias-aumann.de/",
+      "category": "service consulting education agency",
+      "role": "Matthias Aumann service patterns and observed counterexamples",
+      "pages": [
+        {
+          "url": "https://www.matthias-aumann.de/",
+          "type": "home",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Zielgruppenansprache und personenbezogene Kundenkarten"
+          ],
+          "limitations": [
+            "Gleicher Kundenname mit unterschiedlichen Kennzahlen und ungeklärten Zeiträumen"
+          ]
+        },
+        {
+          "url": "https://www.matthias-aumann.de/erfolgsgeschichten",
+          "type": "cases",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Branchenfilter wechselt Fälle; mobile Hero-Komposition ohne grosse Vordergrundfigur"
+          ],
+          "limitations": [
+            "Filter erzeugt keine eigenständige indexierbare Branchenroute; mobile Überdeckungen"
+          ]
+        },
+        {
+          "url": "https://www.matthias-aumann.de/bewerben",
+          "type": "contact",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "iClosed im Kontrollzustand nach allen Cookies und längerer Wartezeit sichtbar"
+          ],
+          "limitations": [
+            "Cookieauswahl und Wartezeit gleichzeitig verändert, daher Ursache nicht isoliert; kein Versand"
+          ]
+        }
+      ],
+      "patterns": [
+        "Zielgruppenansprache und personenbezogene Kundenkarten",
+        "Branchenfilter wechselt Fälle; mobile Hero-Komposition ohne grosse Vordergrundfigur",
+        "iClosed im Kontrollzustand nach allen Cookies und längerer Wartezeit sichtbar"
+      ],
+      "limitations": [
+        "Three-role browser sample, no ranking/conversion measurement or full domain claim",
+        "Gleicher Kundenname mit unterschiedlichen Kennzahlen und ungeklärten Zeiträumen",
+        "Filter erzeugt keine eigenständige indexierbare Branchenroute; mobile Überdeckungen",
+        "Cookieauswahl und Wartezeit gleichzeitig verändert, daher Ursache nicht isoliert; kein Versand"
+      ],
+      "study": "references/service-sites-specialists.md"
+    },
+    {
+      "id": "adhouse",
+      "url": "https://www.adhouse.com/",
+      "category": "service consulting education agency",
+      "role": "ADHOUSE service patterns and observed counterexamples",
+      "pages": [
+        {
+          "url": "https://www.adhouse.com/",
+          "type": "home",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Monospace, Rahmen und nummerierte Leistungswechsel bilden ein konsistentes System"
+          ],
+          "limitations": [
+            "Eigenangaben und Partnerbeziehungen nicht als fremde Leistungsbeweise verwenden"
+          ]
+        },
+        {
+          "url": "https://www.adhouse.com/#kontakt",
+          "type": "contact-anchor",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Cal.com Kalender und leere Buchungsmaske nach Datum/Zeitauswahl"
+          ],
+          "limitations": [
+            "Keine Anfrage abgesendet; neun sichtbar markierte Pflichtangaben"
+          ]
+        },
+        {
+          "url": "https://www.fullstack.de/",
+          "type": "external-offer",
+          "evidence": [
+            "dom",
+            "screenshot",
+            "state_sequence"
+          ],
+          "observations": [
+            "Externer Zielgruppenverteiler; keine interne fachliche Unterseite gefunden"
+          ],
+          "limitations": [
+            "FULLSTACK ist externe Ersatzreferenz; Zielseiten dort nicht vertieft"
+          ]
+        }
+      ],
+      "patterns": [
+        "Monospace, Rahmen und nummerierte Leistungswechsel bilden ein konsistentes System",
+        "Cal.com Kalender und leere Buchungsmaske nach Datum/Zeitauswahl",
+        "Externer Zielgruppenverteiler; keine interne fachliche Unterseite gefunden"
+      ],
+      "limitations": [
+        "Three-role browser sample, no ranking/conversion measurement or full domain claim",
+        "Eigenangaben und Partnerbeziehungen nicht als fremde Leistungsbeweise verwenden",
+        "Keine Anfrage abgesendet; neun sichtbar markierte Pflichtangaben",
+        "FULLSTACK ist externe Ersatzreferenz; Zielseiten dort nicht vertieft"
+      ],
+      "study": "references/service-sites-specialists.md"
+    }
+  ]
+}

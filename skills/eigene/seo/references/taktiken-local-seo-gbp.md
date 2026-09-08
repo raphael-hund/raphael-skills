@@ -112,6 +112,10 @@ Kundenreport brauchen den eigenen Nachweis, z. B. GBP-Insights-Export).
 4. `tel:`-Link fürs Telefon, Google Maps eingebettet (lazy-loaded wegen Ladezeit).
 5. Bing Places und Apple Business Connect claimen.
 
+## Borja-Benchmarks und Wochen-Loop (2026-08)
+
+1.000 Maps-Platzierungen in fünf Home-Service-Kategorien: Top-3-Median 97,5 Reviews, #1 Median 54 Fotos, in 71 von 100 Suchen hatte eine Firma unter #1 mehr Reviews. Sechs Setup-Schritte plus Wochen-Loop (Foto, Post, Review-Link, Freitag-Check): `playbooks-borjafat.md` Abschnitt 11.
+
 ## Gotchas
 
 - **Swap-Test vor jedem Multi-Standort-Rollout.** Austauschbare Standortseiten sind ein

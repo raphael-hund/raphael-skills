@@ -1,11 +1,9 @@
 # impeccable-Detektoren — deterministische QA
 
-> Der **finale QA-Schritt** fuer JEDE Linie (Landing wie App). Deterministischer,
-> offline laufender Anti-Pattern-Detektor (aus impeccable, Apache-2.0). Kein Netz,
-> kein npx, kein API-Key. Node ≥ 18.
->
-> **Regel: Interface gilt erst als fertig, wenn der Detektor auf allen geaenderten
-> UI-Dateien Exit 0 liefert UND die Handrubrik unten sitzt.**
+> Offline-Detektor für passende UI-Prüfungen (impeccable, Apache-2.0).
+> Kein Netz, kein npx, kein API-Key. Node ≥ 18.
+> Scope nach Änderung wählen, Funde triagieren und echte Fehler beheben.
+> Ein grüner Scan ersetzt weder die gerenderte Sichtprüfung noch die Handrubrik.
 
 ## Ausfuehren
 
@@ -21,7 +19,7 @@ node scripts/detect.mjs --quiet src/         # nur Fund-Zaehler
 ```
 
 **Exit-Codes (verbindlich):**
-- `0` = sauber -> fertig.
+- `0` = keine Funde im geprüften Scope.
 - `2` = Funde vorhanden -> fixen, erneut laufen.
 - `1` = Fehler (Pfad falsch, Node kaputt) -> beheben, nicht ignorieren.
 
@@ -57,19 +55,19 @@ Regel-IDs kommagetrennt, oder weglassen/`*` fuer alle. **Grund IMMER dahinter.**
 
 ---
 
-## Was geprueft wird — 46 Regeln (Kurzreferenz)
+## Was geprueft wird — 59 Regeln (Kurzreferenz)
 
-Severity: (W)=warning, (a)=advisory. IDs sind zum gezielten Ignorieren/Scopen da.
+Severity: (W)=warning, (a)=advisory, (E)=error. IDs sind zum gezielten Ignorieren/Scopen da.
 
 **Borders & Cards**
 - `side-tab` (W) — dicke farbige Seitenborder (der bekannteste AI-Tell)
 - `border-accent-on-rounded` — Akzentborder an gerundetem Element
 - `nested-cards` — verschachtelte Cards (immer falsch)
 - `icon-tile-stack` — Icon-Kachel ueber Heading gestapelt (Feature-Card-Reflex)
+- `edge-flush-cards` — Karten im Scroller kleben an der Container-Kante
 
 **Typografie**
 - `overused-font` (W) — ueberstrapazierte Font (Inter u.a.)
-- `single-font` — eine Font fuer alles
 - `flat-type-hierarchy` — flache Groessen-Hierarchie
 - `italic-serif-display` — Italic-Serif-Display-Headline
 - `oversized-h1` — Hero-Headline > ~6rem
@@ -81,6 +79,8 @@ Severity: (W)=warning, (a)=advisory. IDs sind zum gezielten Ignorieren/Scopen da
 - `wide-tracking` — weites Tracking auf Body
 - `justified-text` — Blocksatz
 - `skipped-heading` — uebersprungene Heading-Ebene
+- `heading-rhythm` — Heading klebt am Block darueber (Luft oben < Luft unten)
+- `undersized-ui-text` — funktionaler Text (Links, Labels, Zellen) unter 11px
 
 **Farbe & Kontrast**
 - `low-contrast` (W) — zu geringer Textkontrast
@@ -88,6 +88,8 @@ Severity: (W)=warning, (a)=advisory. IDs sind zum gezielten Ignorieren/Scopen da
 - `ai-color-palette` — generische AI-Palette
 - `cream-palette` — Cream/Beige-Default-Palette
 - `dark-glow` — Dark Mode mit leuchtenden Akzenten
+- `radial-halo` — radialer Farbschleier als Deko-Glow auf dunkler Seite
+- `radial-spotlight-glow` — weicher Akzent-"Spotlight" hinter Hero/Section
 - `gradient-text` (W) — Gradient-Text
 
 **Layout & Spacing**
@@ -96,11 +98,17 @@ Severity: (W)=warning, (a)=advisory. IDs sind zum gezielten Ignorieren/Scopen da
 - `body-text-viewport-edge` — Body-Text an Viewport-Kante
 - `text-overflow` — Inhalt laeuft aus Container
 - `clipped-overflow-container` — positioniertes Kind vom Overflow geclippt
+- `text-occlusion` — Text liegt unter einem deckenden Element, teils unlesbar
+- `first-viewport-column-overflow` — eine Spalte sprengt den ersten Viewport, die andere passt
+- `content-hidden-at-rest` (E) — grosser Textanteil bleibt opacity:0/hidden (fehlgeschlagenes Reveal)
 
 **Motion**
 - `bounce-easing` — Bounce/Elastic-Easing
 - `layout-transition` — Animation von Layout-Properties (width/height/top/left)
 - `image-hover-transform` (a) — Bild-Hover-Transform-Reflex
+- `marquee` — endlos horizontal laufender Ticker
+- `pulsing-dot` — pulsender Status-Punkt als Deko
+- `blinking-cursor` (a) — blinkender Text-Cursor als Deko im Hero
 
 **Copy / Anti-Slop**
 - `em-dash-overuse` — Em-Dash-Uebernutzung *(design verschaerft: null Em-Dash, siehe Doktrin §6)*
@@ -108,14 +116,17 @@ Severity: (W)=warning, (a)=advisory. IDs sind zum gezielten Ignorieren/Scopen da
 - `aphoristic-cadence` — aphoristischer Copy-Rhythmus
 - `theater-slop-phrase` (a) — Theater-/Craftsman-Framing-Copy
 - `hero-eyebrow-chip` — Hero-Eyebrow/Pill-Chip
-- `repeated-section-kickers` (a) — wiederholte Section-Kicker
-- `numbered-section-markers` (a) — nummerierte Marker 01/02/03
+- `repeated-container-text` — derselbe Text mehrfach in EINEM Container
+- `numbered-section-labels` (a) — winzige 01/02/03-Marker neben Ueberschriften
+- `kicker-above-heading` — Kicker/Eyebrow-Label ueber einer Ueberschrift (glattes Verbot)
 
 **Bilder & Bg-Muster**
 - `broken-image` — kaputtes/Placeholder-Bild
 - `repeating-stripes-gradient` (a) — Repeating-Gradient-Streifen
 - `codex-grid-background` (a) — dekoratives Gitter-Bg
 - `gpt-thin-border-wide-shadow` (a) — Haarlinie + breiter Schatten
+- `shape-assembled-illustration` (a) — Illustration aus SVG-Grundformen zusammengesetzt
+- `script-error` (E) — unbehandelter JS-Fehler beim Laden (nur Browser-Pfad)
 
 **Design-System-Kohaerenz (nur mit DESIGN.md)**
 - `design-system-font` — Font ausserhalb DESIGN.md

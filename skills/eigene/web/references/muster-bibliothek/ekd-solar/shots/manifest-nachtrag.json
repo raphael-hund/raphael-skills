@@ -1,0 +1,2940 @@
+{
+  "base": "https://www.ekd-solar.de",
+  "createdAt": "2026-08-31T10:38:13.965Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/energiesystem/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "energiesystem__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "energiesystem__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "energiesystem__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "energiesystem__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "energiesystem__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "energiesystem__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "energiesystem__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "energiesystem__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "energiesystem__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "energiesystem__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "energiesystem__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "energiesystem__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "energiesystem__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "energiesystem__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "energiesystem__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "energiesystem__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "energiesystem__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "energiesystem__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "energiesystem__-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "energiesystem__-desktop-17-y12000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12000
+        },
+        {
+          "file": "energiesystem__-desktop-18-y12750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12750
+        },
+        {
+          "file": "energiesystem__-desktop-19-y13500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 13500
+        },
+        {
+          "file": "energiesystem__-desktop-20-y14250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 14250
+        },
+        {
+          "file": "energiesystem__-desktop-21-y15000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 15000
+        },
+        {
+          "file": "energiesystem__-desktop-22-y15750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 15750
+        },
+        {
+          "file": "energiesystem__-desktop-23-y16030.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 16030
+        },
+        {
+          "file": "energiesystem__-desktop-click-y2250-00-el6.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "el6"
+        },
+        {
+          "file": "energiesystem__-desktop-click-y3000-00-el7.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "el7"
+        }
+      ],
+      "docHeight": 17530
+    },
+    {
+      "route": "/stromspeicher/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "stromspeicher__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "stromspeicher__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "stromspeicher__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "stromspeicher__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "stromspeicher__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "stromspeicher__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "stromspeicher__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "stromspeicher__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "stromspeicher__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "stromspeicher__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "stromspeicher__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "stromspeicher__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "stromspeicher__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "stromspeicher__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "stromspeicher__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "stromspeicher__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "stromspeicher__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "stromspeicher__-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "stromspeicher__-desktop-17-y12000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12000
+        },
+        {
+          "file": "stromspeicher__-desktop-18-y12750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12750
+        },
+        {
+          "file": "stromspeicher__-desktop-19-y13500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 13500
+        },
+        {
+          "file": "stromspeicher__-desktop-20-y14250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 14250
+        },
+        {
+          "file": "stromspeicher__-desktop-21-y15000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 15000
+        },
+        {
+          "file": "stromspeicher__-desktop-22-y15750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 15750
+        },
+        {
+          "file": "stromspeicher__-desktop-23-y16500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 16500
+        },
+        {
+          "file": "stromspeicher__-desktop-24-y17250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 17250
+        },
+        {
+          "file": "stromspeicher__-desktop-25-y17692.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 17692
+        },
+        {
+          "file": "stromspeicher__-desktop-click-y6000-00-Previous.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6000,
+          "target": "Previous"
+        },
+        {
+          "file": "stromspeicher__-desktop-click-y6000-01-Next.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6000,
+          "target": "Next"
+        },
+        {
+          "file": "stromspeicher__-desktop-click-y6750-00-Next.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6750,
+          "target": "Next"
+        }
+      ],
+      "docHeight": 19192
+    },
+    {
+      "route": "/wallbox/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "wallbox__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "wallbox__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "wallbox__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "wallbox__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "wallbox__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "wallbox__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "wallbox__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "wallbox__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "wallbox__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "wallbox__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "wallbox__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "wallbox__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "wallbox__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "wallbox__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "wallbox__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "wallbox__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "wallbox__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "wallbox__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "wallbox__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "wallbox__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "wallbox__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "wallbox__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "wallbox__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "wallbox__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "wallbox__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "wallbox__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "wallbox__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "wallbox__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "wallbox__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "wallbox__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "wallbox__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "wallbox__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "wallbox__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "wallbox__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "wallbox__-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "wallbox__-desktop-17-y12000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12000
+        },
+        {
+          "file": "wallbox__-desktop-18-y12750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12750
+        },
+        {
+          "file": "wallbox__-desktop-19-y13500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 13500
+        },
+        {
+          "file": "wallbox__-desktop-20-y13821.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 13821
+        },
+        {
+          "file": "wallbox__-desktop-click-y12000-00-Previous.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 12000,
+          "target": "Previous"
+        },
+        {
+          "file": "wallbox__-desktop-click-y12000-01-Next.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 12000,
+          "target": "Next"
+        },
+        {
+          "file": "wallbox__-desktop-click-y12750-00-Next.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 12750,
+          "target": "Next"
+        }
+      ],
+      "docHeight": 15321
+    },
+    {
+      "route": "/ersparnisrechner/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "ersparnisrechner__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "ersparnisrechner__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "ersparnisrechner__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "ersparnisrechner__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "ersparnisrechner__-desktop-04-y1865.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1865
+        }
+      ],
+      "docHeight": 3365
+    },
+    {
+      "route": "/pv-grossanlagen/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "pv-grossanlagen__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "pv-grossanlagen__-desktop-17-y11883.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11883
+        }
+      ],
+      "docHeight": 13383
+    },
+    {
+      "route": "/magazin/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "magazin__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "magazin__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "magazin__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "magazin__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "magazin__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "magazin__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "magazin__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "magazin__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "magazin__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "magazin__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "magazin__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "magazin__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "magazin__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "magazin__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "magazin__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "magazin__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "magazin__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "magazin__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "magazin__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "magazin__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "magazin__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "magazin__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "magazin__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "magazin__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "magazin__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "magazin__-desktop-07-y4482.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4482
+        }
+      ],
+      "docHeight": 5982
+    },
+    {
+      "route": "/news/energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "news__energiekonzepte-deutschland-setzt-exklusiv-auf-smarthome-loesung-homematic-ip__-desktop-05-y2921.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2921
+        }
+      ],
+      "docHeight": 4421
+    },
+    {
+      "route": "/karriere/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "karriere__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "karriere__-desktop-hover-00-nav1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "nav1"
+        },
+        {
+          "file": "karriere__-desktop-hover-01-Energiesystem.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiesystem"
+        },
+        {
+          "file": "karriere__-desktop-hover-02-Produkte.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Produkte"
+        },
+        {
+          "file": "karriere__-desktop-hover-03-Solaranlage.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Solaranlage"
+        },
+        {
+          "file": "karriere__-desktop-hover-04-Energiemanagement.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Energiemanagement"
+        },
+        {
+          "file": "karriere__-desktop-hover-05-Stromspeicher.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromspeicher"
+        },
+        {
+          "file": "karriere__-desktop-hover-06-Wallbox.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wallbox"
+        },
+        {
+          "file": "karriere__-desktop-hover-07-Wärmepumpe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Wärmepumpe"
+        },
+        {
+          "file": "karriere__-desktop-hover-08-Stromtarif.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Stromtarif"
+        },
+        {
+          "file": "karriere__-desktop-hover-09-Ratgeber.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ratgeber"
+        },
+        {
+          "file": "karriere__-desktop-hover-10-In_5_Schritten_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "In_5_Schritten_zur_Solar"
+        },
+        {
+          "file": "karriere__-desktop-hover-11-Amortisation.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Amortisation"
+        },
+        {
+          "file": "karriere__-desktop-hover-12-Alles_Wichtige_zur_Solar.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Alles_Wichtige_zur_Solar"
+        },
+        {
+          "file": "karriere__-desktop-hover-13-PV-Großanlagen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "PV-Großanlagen"
+        },
+        {
+          "file": "karriere__-desktop-hover-14-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "karriere__-desktop-hover-15-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "karriere__-desktop-hover-16-Kundenportal.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenportal"
+        },
+        {
+          "file": "karriere__-desktop-hover-17-Ersparnis_berechnen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Ersparnis_berechnen"
+        },
+        {
+          "file": "karriere__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "karriere__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "karriere__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "karriere__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "karriere__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "karriere__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "karriere__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "karriere__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "karriere__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "karriere__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "karriere__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "karriere__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "karriere__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "karriere__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "karriere__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "karriere__-desktop-16-y10729.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10729
+        }
+      ],
+      "docHeight": 12229
+    }
+  ]
+}

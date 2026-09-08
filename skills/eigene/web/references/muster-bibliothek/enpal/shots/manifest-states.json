@@ -1,0 +1,361 @@
+{
+  "base": "https://www.enpal.de",
+  "createdAt": "2026-08-31T11:08:56.097Z",
+  "static": true,
+  "states": true,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-hover-00.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "state-hover",
+          "selector": "button",
+          "index": 5
+        },
+        {
+          "file": "home-hover-01.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "state-hover",
+          "selector": "nav",
+          "index": 0
+        },
+        {
+          "file": "home-desktop-01-y0-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y8722-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8722
+        },
+        {
+          "file": "home-desktop-click-y4500-00-Go_to_last_slide-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "Go_to_last_slide"
+        },
+        {
+          "file": "home-desktop-click-y4500-01-Next_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "Next_slide"
+        },
+        {
+          "file": "home-desktop-click-y5250-00-Reihenhaus.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Reihenhaus"
+        },
+        {
+          "file": "home-desktop-click-y5250-01-Flachdach.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Flachdach"
+        },
+        {
+          "file": "home-desktop-click-y5250-02-Anderes.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Anderes"
+        },
+        {
+          "file": "home-desktop-click-y5250-03-Zurück-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Zurück"
+        },
+        {
+          "file": "home-desktop-click-y5250-04-Nein.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Nein"
+        },
+        {
+          "file": "home-desktop-click-y5250-05-Weiter.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Weiter"
+        },
+        {
+          "file": "home-desktop-click-y5250-06-Pultdach.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Pultdach"
+        },
+        {
+          "file": "home-desktop-click-y5250-07-Weiß_nicht.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 5250,
+          "target": "Weiß_nicht"
+        },
+        {
+          "file": "home-desktop-click-y7500-00-Morgens_abends.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 7500,
+          "target": "Morgens_abends"
+        },
+        {
+          "file": "home-desktop-click-y8250-00-Ja.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 8250,
+          "target": "Ja"
+        },
+        {
+          "file": "home-desktop-click-y8722-00-Choose_language-v2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 8722,
+          "target": "Choose_language"
+        }
+      ],
+      "docHeight": 10222
+    }
+  ]
+}

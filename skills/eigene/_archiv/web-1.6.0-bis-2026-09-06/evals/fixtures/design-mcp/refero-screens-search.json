@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"pagination\": {\"count\": 10, \"page\": 1, \"next_page\": 2, \"total_count\": 3118, \"total_pages\": 312}, \"records\": [{\"uuid\": \"5c1a397c-3cec-493f-9cea-dce90e95b761\", \"platform\": \"web\", \"page_url\": \"https://manychat.com/pricing\", \"refero_url\": \"https://refero.design/pages/5c1a397c-3cec-493f-9cea-dce90e95b761\", \"thumbnail_url\": \"https://images.refero.design/screenshots/manychat.com/desktop/62fbfd20-43de-4052-9996-23d404ca4913_thumb.jpg\", \"site\": {\"name\": \"ManyChat\"}, \"content\": \"{\\\"description\\\": \\\"Centered modal dialog titled \\\\\\\"Pricing table\\\\\\\" displayed over a dimmed, full-screen overlay. The modal \"}, {\"uuid\": \"48b87627-bbe6-415d-b314-632c38e40d95\", \"platform\": \"web\", \"page_url\": \"https://openai.com/chatgpt/pricing/\", \"refero_url\": \"https://refero.design/pages/48b87627-bbe6-415d-b314-632c38e40d95\", \"thumbnail_url\": \"https://images.refero.design/screenshots/openai.com/desktop/b914d6bc-9cbb-401a-a506-a137d5154ef2_thumb.jpg\", \"site\": {\"name\": \"OpenAI\"}, \"content\": \"{\\\"description\\\": \\\"The screen is a pricing page for a product/service with multiple subscription plans displayed. The over\"}]}"
+      }
+    ],
+    "isError": false
+  }
+}

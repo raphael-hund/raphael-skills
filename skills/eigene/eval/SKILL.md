@@ -1,6 +1,6 @@
 ---
 name: eval
-version: 0.3.2
+version: 0.3.3
 description: >
   Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel,
   rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet
@@ -16,7 +16,8 @@ requires_skills: []
 completion_criteria:
   - "G1 deterministisch grün BEVOR ein Judge läuft"
   - "G2-Judge liefert pass/fail + eingefügten Beweis, Schwelle 0.7"
-  - "Verifier nie aus der Autor-Familie; Fable nie Selbstprüfung"
+  - "Verifier nie aus der Autor-Familie; Fable nie Selbstprüfung (fable-builder-Bau prüft Sol/Grok, Fallback opus-critic mit Label Instanz-Trennung)"
+  - "Im Bau-Paket läuft der Judge als Qualitätsschleife (orchestrate/references/qualitaetsschleife.md): Score je Dimension, VETO-Frage, ≤3 Runden, dann ESCALATE"
   - "Jedes Verdikt trägt evidence+confidence; keine Severity-Einstufung ohne konkreten Beleg/Angriffspfad"
 ---
 
@@ -42,7 +43,7 @@ ohne dass etwas seine eigene Arbeit prüft.
    - Rubrik = Ja/Nein-Checkliste, **3–6 Fragen** (mehr wird gegamed), Start-Schwelle **0.7**.
    - Routine-Zwischenartefakte: 1–2 Judges.
    - **Ship-kritischer/roter Kundenoutput: volles Panel aus 3 Modellfamilien** (z. B.
-     Sonnet + Sol + Kimi), Median gegen Rubrik, **>20 % Divergenz = Flag an Raphael**,
+     Grok + Sol + Opus; Kimi tot), Median gegen Rubrik, **>20 % Divergenz = Flag an Raphael**,
      1 Regenerierung, dann Eskalation.
    - Am Ship-Pfad wird **jeder** Output gejudgt (kein Sampling); Sampling nur intern.
    - **Abgrenzung:** das Panel judgt EIN Artefakt gegen eine Rubrik. Offene

@@ -21,12 +21,12 @@ zu bauen).
 
 | Node-Typ | Worker | Grund |
 |---|---|---|
-| Recherche/Zweitmeinung | kimi-recherche | dritte Modellfamilie, nur lesen |
+| Recherche/Zweitmeinung | kimi-worker | dritte Modellfamilie, nur lesen |
 | Deutsche Texte, Frontend | kimi-worker | K3-Stärken |
-| Bau/Draft allgemein | sonnet-worker | Preis-Leistung |
+| Bau/Draft allgemein | kimi-worker oder luna-worker | K3 oder Mechanik |
 | Massen-Lesen, Gates ausführen, mechanische Edits | luna-worker | GPT-Werkbank |
 | Tests, Mechanik, klar begrenzte Umbauten | luna-worker | GPT-Werkbank |
-| Urteil/Score/Abnahme | sol-pruefer | unabhängiger Prüfer, läuft nativ (B9) |
+| Urteil/Score/Abnahme | sol-critic | unabhängiger Prüfer, läuft nativ (B9) |
 
 Verifier möglichst aus anderer Familie als der Schreiber (Empfehlung;
 bei Anbieter-Ausfall frei wählen und protokollieren).

@@ -1,0 +1,1254 @@
+{
+  "base": "https://www.farisschmidt.de",
+  "createdAt": "2026-08-31T06:46:30.920Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "home-desktop-17-y11920.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11920
+        }
+      ],
+      "docHeight": 13420
+    },
+    {
+      "route": "/termin",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "termin-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "termin-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        }
+      ],
+      "docHeight": 1500
+    },
+    {
+      "route": "/empfehlungsprogramm",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "empfehlungsprogramm-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "empfehlungsprogramm-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "empfehlungsprogramm-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "empfehlungsprogramm-desktop-03-y883.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 883
+        }
+      ],
+      "docHeight": 2383
+    },
+    {
+      "route": "/projekte/jantronic",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "projekte__jantronic-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "projekte__jantronic-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "projekte__jantronic-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "projekte__jantronic-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "projekte__jantronic-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "projekte__jantronic-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "projekte__jantronic-desktop-06-y3019.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3019
+        }
+      ],
+      "docHeight": 4519
+    },
+    {
+      "route": "/projekte/mk-boersenhandel",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "projekte__mk-boersenhandel-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "projekte__mk-boersenhandel-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "projekte__mk-boersenhandel-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "projekte__mk-boersenhandel-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "projekte__mk-boersenhandel-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "projekte__mk-boersenhandel-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "projekte__mk-boersenhandel-desktop-06-y3019.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3019
+        }
+      ],
+      "docHeight": 4519
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "home-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "home-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "home-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "home-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "home-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "home-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "home-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "home-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "home-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "home-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "home-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "home-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "home-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "home-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "home-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "home-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "home-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "home-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "home-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "home-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "home-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "home-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "home-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "home-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "home-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "home-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "home-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "home-mobile-30-y12238.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12238
+        },
+        {
+          "file": "home-mobile-31-y12660.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12660
+        },
+        {
+          "file": "home-mobile-32-y13082.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13082
+        },
+        {
+          "file": "home-mobile-33-y13504.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13504
+        },
+        {
+          "file": "home-mobile-34-y13926.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13926
+        },
+        {
+          "file": "home-mobile-35-y14348.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14348
+        },
+        {
+          "file": "home-mobile-36-y14770.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14770
+        },
+        {
+          "file": "home-mobile-37-y15192.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 15192
+        },
+        {
+          "file": "home-mobile-38-y15614.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 15614
+        },
+        {
+          "file": "home-mobile-39-y16036.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16036
+        },
+        {
+          "file": "home-mobile-40-y16458.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16458
+        },
+        {
+          "file": "home-mobile-41-y16880.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16880
+        },
+        {
+          "file": "home-mobile-42-y17253.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 17253
+        }
+      ],
+      "docHeight": 18097
+    },
+    {
+      "route": "/termin",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "termin-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "termin-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "termin-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "termin-mobile-03-y434.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 434
+        }
+      ],
+      "docHeight": 1278
+    },
+    {
+      "route": "/empfehlungsprogramm",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "empfehlungsprogramm-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "empfehlungsprogramm-mobile-07-y2439.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2439
+        }
+      ],
+      "docHeight": 3283
+    },
+    {
+      "route": "/projekte/jantronic",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "projekte__jantronic-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "projekte__jantronic-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "projekte__jantronic-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "projekte__jantronic-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "projekte__jantronic-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "projekte__jantronic-mobile-05-y1577.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1577
+        }
+      ],
+      "docHeight": 2421
+    },
+    {
+      "route": "/projekte/mk-boersenhandel",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "projekte__mk-boersenhandel-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "projekte__mk-boersenhandel-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "projekte__mk-boersenhandel-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "projekte__mk-boersenhandel-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "projekte__mk-boersenhandel-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "projekte__mk-boersenhandel-mobile-05-y1577.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1577
+        }
+      ],
+      "docHeight": 2421
+    }
+  ]
+}

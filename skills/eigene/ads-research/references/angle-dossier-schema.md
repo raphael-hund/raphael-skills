@@ -6,7 +6,7 @@ ads-video und ads-statics lesen nur diesen Pfad.
 
 ## Ablage
 
-`/root/clients/client-<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
+`/root/clients/<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
 
 MAKE (`kunde: make`) nutzt denselben Pfad unter `client-make`, wenn das Repo da ist.
 Onboarding: zuerst Kundenrepo, Brain `wiki/company/` nur wenn vorhanden.
@@ -125,7 +125,8 @@ streit_genannt: ja | nein
 `/root/raphael-skills/skills/eigene/ads/references/segment-map.md`.
 
 MAKE testet neue Angles zuerst als Static.
-Evers prüft ein Offer zuerst als Video.
+Evers beschreibt je nach Phase Static-Tests und Video-/VSL-Strecken; die
+konkrete Quelle nennen, kein pauschales Video-first daraus ableiten.
 Eigene Daten vom 02.08.2026 zeigen bei gleichem Spend kaum Formatunterschied.
 Das Dossier nennt den Streit und wählt mit Grund.
 
@@ -139,7 +140,7 @@ Das Dossier nennt den Streit und wählt mit Grund.
 - <was fehlt>
 
 ## Übergabe
-DOSSIER: /root/clients/client-<slug>/ads/research/<datum>-angle-dossier.md
+DOSSIER: /root/clients/<slug>/ads/research/<datum>-angle-dossier.md
 SEGMENT: <slug>
 ```
 

@@ -23,8 +23,8 @@ completion_criteria:
 # offers — Angebots-Architektur
 
 **Lies zuerst:**
-`/root/raphael-brain/business/` (Positionierung, falls zentral) **und** zur Laufzeit
-`/root/clients/client-<name>/wiki/ICP.md`, `PROOF.md`, `OFFER.md` (Vorlage:
+`/root/raphael-brain/wiki/company/offer/` und `/root/raphael-brain/wiki/company/icp/` **und** zur Laufzeit
+`/root/clients/<slug>/wiki/ICP.md`, `PROOF.md`, `OFFER.md` (liegen nicht in jedem Kundenrepo; Vorlage:
 `/root/raphael-brain/templates/offer-template.md`).
 
 ## Zweck (1 Satz)
@@ -51,7 +51,7 @@ beim Anbieter liegt — als Baustein von Loop 1 (offer-architect).
 - **Jede Ergebnis-/Wert-Zahl braucht Beleg** (PROOF.md) — unbelegt = als Annahme markieren,
   nicht als Fakt verkaufen (UWG § 5 Irreführung).
 - Garantien nur mit klaren, **einlösbaren** Bedingungen — sonst rechtliches Risiko.
-- Offer ist Business-Wissen: kanonisch nach `business/` schreibt **nur Raphael**; der Skill
+- Offer ist Business-Wissen: kanonisch nach `wiki/company/offer/` schreibt **nur Raphael**; der Skill
   liefert den Entwurf, Checkpoint Raphael in Loop 1.
 - Preis nicht aus dem Bauch: gegen ICP-Zahlungsbereitschaft + Wettbewerb + Marge prüfen.
 - Boni lösen Einwände, sind kein Ramsch-Stapel — Relevanz vor Menge.

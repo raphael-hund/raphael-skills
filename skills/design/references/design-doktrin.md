@@ -1,6 +1,7 @@
 # Design-Doktrin (fusioniert)
 
-> Fusion aus **impeccable** `[imp]`, **taste-skill** `[taste]`, **ui-ux-pro-max** `[uiux]`.
+> Fusion aus **impeccable** `[imp]`, **taste-skill** `[taste]`, **ui-ux-pro-max** `[uiux]`,
+> Ideen-Merge aus **frontend-design** (Anthropic, Apache-2.0) `[fd]`.
 > Dedupliziert. Jede Regel traegt Herkunfts-Tag(s). Widersprueche sind **ENTSCHIEDEN**
 > und im jeweiligen Abschnitt begruendet. Diese Datei gewinnt bei Regel-Konflikten.
 >
@@ -86,6 +87,7 @@
 
 **Der AI-Slop-Test:** Wenn jemand ohne Zweifel "AI made that" sagen koennte, ist es durchgefallen. `[imp]`
 - **Category-Reflex-Check (zwei Ebenen):** (1) Wenn man Theme+Palette allein aus der Kategorie raten koennte -> erster Trainingsdaten-Reflex. (2) Wenn man die Aesthetik aus Kategorie+Anti-Referenz raten koennte -> Falle eine Ebene tiefer. Beide muessen nicht offensichtlich sein. `[imp]`
+- **ENTSCHIEDEN (Konflikt): das aesthetische Risiko ist dial-abhaengig, nicht binaer.** `[fd]` frontend-design verlangt fuer jedes Projekt ein echtes Risiko, die Sektor-Dials (`stil-regeln.md` §1, Regel S15) daempfen VARIANCE fuer die meisten Sektoren — beides gilt: EIN Signature-Element bleibt Pflicht, nur sein Ausschlag skaliert mit dem Dial (Tabelle in `taste-kern.md` §3a). Kein Dial erlaubt null.
 
 **Harte Verbote (Match-and-refuse):**
 - Side-Stripe-Borders · Gradient-Text · Glassmorphism-als-Default · Hero-Metric-Template · identische Card-Grids. `[imp]`
@@ -93,6 +95,7 @@
 - **Em-Dash `—` (und `–` als Separator) in sichtbarem Text: NULL. ENTSCHIEDEN (Konflikt):** taste verbietet komplett, impeccable-Detektor (`em-dash-overuse`) flaggt nur Uebernutzung — **taste gewinnt.** Ersatz: Punkt, Komma, Doppelpunkt, Klammern, Zeilenumbruch, normaler Hyphen `-`.
 - **Marketing-Buzzwords/Filler-Verben** ("Elevate/Seamless/Unleash/Next-Gen/Revolutionize") — konkrete Verben. `[taste]`+`[imp]` Detektoren: `marketing-buzzword`, `theater-slop-phrase`, `aphoristic-cadence`.
 - **"Jane Doe"-Effekt:** keine generischen Namen/Avatare/Acme-Brands/Fake-perfekten Zahlen (99.99%, 50%). `[taste]`
+- **Broadsheet/Hairline als Default verboten (dritter Slop-Cluster).** `[fd]` Zeitungsraster mit Hairline-Rules ueberall, Radius 0 und dichten Spalten ist neben Cream/Serif (§2) und Near-black+Neon (§2) der dritte AI-Default 2026. Verboten ist das **Kostuem**: Serif-Editorial-Optik, wo der Inhalt keine Publikation ist, und das Zeitungsraster als Startpunkt statt als Entscheidung. *Override:* wenn der Brief diesen Look nennt, gewinnt der Brief — dann aber konsequent und mit editorialem Inhalt, nicht als Dekor.
 - **Div-basierte Fake-Screenshots/Fake-Product-UI: verboten** (der #1 Tell). Reales Bild, generiertes Bild, echte Mini-Komponente — oder nichts. `[taste]` Detektor: `broken-image`.
 - **Text darf seinen Container nicht ueberlaufen** — Heading-Copy auf jedem Breakpoint testen. `[imp]` Detektor: `text-overflow`.
 - **Deko-Tells (taste, Landing):** Scroll-Cues, Locale/Zeit/Wetter-Strips, Deko-Status-Dots, `border-t`+`border-b` auf jeder Zeile, Version-Footer auf Marketing, Pills-auf-Bildern, Foto-Credit-Deko, Split-Header (grosse Headline + kleiner Floater rechts). Alle Default-verboten.

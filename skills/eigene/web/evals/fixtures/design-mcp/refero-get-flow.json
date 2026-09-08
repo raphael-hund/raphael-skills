@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"records\": [{\"id\": 11398, \"platform\": \"web\", \"screens_count\": 4, \"refero_url\": \"https://refero.design/flows/11398\", \"name\": \"Checkout Link Editor\", \"description\": \"Happy path checkout links\", \"site\": {\"name\": \"Stripe\"}, \"steps\": [{\"title\": \"Open\", \"action\": \"Click\"}], \"related_queries\": [\"checkout\"]}]}"
+      }
+    ],
+    "isError": false
+  }
+}

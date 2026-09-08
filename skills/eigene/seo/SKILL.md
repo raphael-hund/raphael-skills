@@ -1,6 +1,6 @@
 ---
 name: seo
-version: 0.7.2
+version: 0.8.0
 description: >
   Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur,
   Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR,
@@ -11,7 +11,7 @@ description: >
   "Tech-Audit", "Backlinks", "Digital PR", "Statistikseite", "AI-Sichtbarkeit",
   "AEO", "GEO", "GSC", "Local SEO", "GBP", "E-E-A-T", "SERP-Feature",
   "Featured Snippet", "Themen-Cluster", "interne Verlinkung", "Graustufen",
-  "asozial SEO", "gray-hat", "gray hat".
+  "asozial SEO", "gray-hat", "gray hat", "Citation Outreach", "LLM mentions".
 class: F
 scope: agency
 sensitivity: internal
@@ -22,7 +22,9 @@ source: >
   distribb-skill (kein LICENSE, nur Paraphrase/Ideen, keine wörtliche
   Übernahme) @ f86596ce; AgriciDaniel/claude-seo (MIT) @ 6cf1ea9;
   AgriciDaniel/claude-blog (MIT) @ 49842ea9 (5-Gate-Delivery-Contract);
-  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube) —
+  Named-Source-Mechaniken 2026-08 (Borja/Edward/Tony/Brain/YouTube; buildinpublic/Sturm, Diamante, Sanders/StudioHawk, Patel);
+  mal_shaik/wespreadjam Vercel-Citation-Audit 2026-09-07 (Owned Assets, Vergleichs-Hub, Preis-Prompt-Lücke);
+  @borjafat 22 X-Artikel 28.07. bis 07.09.2026 als Playbook-Bibliothek (references/playbooks-borjafat.md).
   Details siehe references/quellen-2026-08.md
 loads:
   - references/wissens-router.md
@@ -41,6 +43,8 @@ loads:
   - references/ranking-plan.md
   - references/gsc-read.md
   - references/quellen-2026-08.md
+  - references/creator-lehren-2026-08.md
+  - references/playbooks-borjafat.md
 requires_skills: [copywriting@^0, eval@^0]
 completion_criteria:
   - "Tech-QA 0 Blocker (Meta/Schema/Canonical/Links) — G1 hart"
@@ -50,6 +54,7 @@ completion_criteria:
   - "Ranking-Plan (wenn angefordert) enthält Keyword-Ziele, Google-Aktionen, KI-Aktionen für AI Overviews, AI Mode, ChatGPT, Perplexity und Bing Copilot, Beleg-Zeiger, 30- und 90-Tage-Schritte"
   - "GSC nur read-only Snapshot mit Query-/Page-Zeilen oder ehrlicher Setup-Fallback"
   - "Graustufen nur nach Raphaels Go, jede Taktik mit Risiko-Label Penalty/Ban/rechtlich"
+  - "Citation Outreach: doctor, schema, idempotenter Demo-Lauf, kein external side effect"
 ---
 
 # seo — Loop 4: SEO
@@ -81,10 +86,23 @@ sichtbar wird, und bei Decay auffrischen.
 | **Google-Ranking-Plan** | `references/ranking-plan.md` + `scripts/ranking_plan.py` |
 | **KI-Suche** (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | `references/ideen-ai-sichtbarkeit-aeo.md` |
 | **Graustufen / asozial** | `references/graustufen.md` — nur nach Raphael-Go |
-| Named-Source-Mechaniken (Borja, Edward, Tony, Brain) | `references/quellen-2026-08.md` |
+| **Citation Outreach / LLM mentions** | `references/citation-outreach-automation.md` + `scripts/citation_outreach.py` |
+| **Owned Assets / Vergleichs-Hub / Preis-Prompt-Lücke** (KI-Zitate, Hypothesen) | `references/ideen-ai-sichtbarkeit-aeo.md` Abschnitt „Owned Assets" + Brain `seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` |
+| **Borja-Playbooks** (Buy-Intent-Seitentypen, GSC-Regex und Lücken-Loop, Page-Refresh, Topical Map, Information Gain, 4 kontextuelle Links, Statistikseite, 10 Linkbuilding-Taktiken, Trojan-Listicle, Journalisten-Score, LinkedIn, YouTube, Video-GEO, GEO-Loops, Local-Wochenloop, Agent-Jobs, Tier-Liste) | `references/playbooks-borjafat.md` |
+| Named-Source-Mechaniken kurz (Borja, Edward, Tony, Brain, mal_shaik) | `references/quellen-2026-08.md` |
 | Spezialtiefe Brain | `references/wissens-router.md` |
 
 Brain-Präfix immer `/root/raphael-brain/wiki/craft/seo/`. 1–3 Seiten, nie alle.
+
+## On-Page für Loop 2 (Website-Bau)
+
+Fährt der web-Skill die **Plan-Session**, liefert seo nur die On-Page-Grundlage:
+Keyword je Route, Sitemap-Entscheidung, Title-/Meta-/H1-Vorgabe — als Text ins
+`PLAN.md`. Kein SERP-Export, kein Ranking-Plan, kein technischer Audit; das
+Loop-4-Vollprogramm oben läuft nur bei ausdrücklichem SEO-Auftrag. Geprüft wird
+die Grundlage später deterministisch mit
+`web/scripts/onpage-check.mjs` (QA-Fach 5 G1). Vertrag auf der Web-Seite:
+`web/references/rolle-plan.md`.
 
 ## Ablauf
 
@@ -104,8 +122,10 @@ Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 
 - research fertig = SERP-Ausriss + GSC-Export liegen als Datei.
 - ranking-plan fertig = alle sechs Pflichtsektionen nicht leer, fünf Engines genannt.
+- ki-audit fertig = eingefrorenes Prompt-Set mit Kern-, Vergleichs- und Preis-Cluster, je Engine „verlinkt / erwähnt / fehlt", Wettbewerber daneben.
 - gsc-read fertig = Query-/Page-Zeilen im Export **oder** Setup-Fallback-Text.
 - graustufen fertig = Raphael-Go dokumentiert + jedes Item hat Penalty/Ban/rechtlich.
+- citation-outreach fertig = doctor + schema + idempotenter Demo-Lauf, kein external side effect.
 - publish fertig = Signatur, Tech-QA 0 Blocker.
 
 ## Harte Regeln
@@ -114,5 +134,7 @@ Kanal-Diagnose und Brand-Protect: `references/loop4-ablauf.md`.
 - GSC nur lesen. Write-Scope verboten.
 - Graustufen nicht im Default. Erst Go, dann `graustufen.md`, jede Zeile gelabelt.
 - Vendor-Studienzahlen sind kein Kundenbeleg.
-- Ein Fakt ein Ort: neue Mechanik steht in `quellen-2026-08.md` oder im Brain, nicht doppelt.
+- Citation Outreach: Client-Config Pflicht, live Target-Page Pflicht, Human Approval für send/spend, Vendorzahlen kein Kundenbeleg.
+- Ein Fakt ein Ort: Borja-Tiefe in `playbooks-borjafat.md`, Kurzfakten anderer Quellen in `quellen-2026-08.md` oder im Brain.
+- Borja-Zahlen sind Vendor-Snapshots (US, ein Tag). Sie priorisieren, sie belegen nichts im Kundenreport.
 - Codex/Kimi/Grok-Adapter dürfen nur zeigen. Dieselbe Trigger-Liste wie dieses Frontmatter.

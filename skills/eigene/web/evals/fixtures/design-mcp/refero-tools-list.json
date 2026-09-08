@@ -1,0 +1,32 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "refero_search_screens"
+      },
+      {
+        "name": "refero_get_similar_screens"
+      },
+      {
+        "name": "refero_get_screen_image"
+      },
+      {
+        "name": "refero_get_screen"
+      },
+      {
+        "name": "refero_search_flows"
+      },
+      {
+        "name": "refero_get_flow"
+      },
+      {
+        "name": "refero_search_styles"
+      },
+      {
+        "name": "refero_get_style"
+      }
+    ]
+  }
+}

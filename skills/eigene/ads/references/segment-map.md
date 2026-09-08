@@ -30,17 +30,19 @@ Ein Skill lädt den Craft-Kern plus **genau ein** Segment.
 
 1. `python3 scripts/load-wissen.py --skill <name> --kunde <slug>`
 2. Segment-Datei zuerst: `references/maerkte/<segment>.md`
-3. Brain nur zusätzlich, nie als Pflicht
+3. Detailwissen aus `wissen/index.md` passend zur Aufgabe wählen
 4. Nie die anderen drei Segmente laden
 
 ## Streit (nicht entschieden)
 
 MAKE und der ads-Router testen neue Angles zuerst als Static.
-Evers validiert ein Offer zuerst als Video, Statics hängen am Open-VSL.
+Evers beschreibt sowohl einfache Static-Tests vor Video als auch Video-/VSL-
+Strecken in weiterentwickelten Angeboten. Seine Quelle und die jeweilige Phase
+nennen; daraus folgt kein allgemeines Video-first-Gebot.
 
 Belege:
 
 - ads-Skill Statics-first: `SKILL.md` Abschnitt Strategie-Regel
-- Evers Video-first: `references/maerkte/agenturen-coaching.md`
+- Evers-Formate im Agenturkontext: `references/maerkte/agenturen-coaching.md`
 
 Der Katalog hält den Streit. Der Skill entscheidet nicht still.

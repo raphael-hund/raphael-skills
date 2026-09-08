@@ -1,0 +1,6 @@
+{
+  "_warum": "Budget NUR fuer das Anti-Set. Fuer echte Builds gilt DEFAULT_BUDGET im Gate (Performance 0.90).",
+  "_befund": "28.07.2026: dieselbe Fixture lieferte Performance 92 und 72, je nach Maschinenlast. Lighthouse misst bei einer statischen 6-KB-Seite den Server, nicht die Seite. Eine Fixture-Pruefung, deren Ergebnis vom Wetter abhaengt, meldet Rot ohne Fehler und Gruen ohne Beweis.",
+  "_deshalb": "Keine der sieben Fixtures hat ein Tempo-Problem eingebaut — sie testen Slop, Craft, a11y und tote Links. Performance wird darum hier nicht bewertet. accessibility/best-practices/seo bleiben scharf: die sind deterministisch und a4 reisst genau daran.",
+  "lighthousePerformance": 0
+}

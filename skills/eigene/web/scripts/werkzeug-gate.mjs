@@ -22,9 +22,12 @@
 //   - Inhaltliche Gates (axe, Tastatur, Lizenz, AVIF, Bundle-Budget) stehen im Router
 //     und laufen in den anderen QA-Faechern — nicht hier.
 //
+// Die Werkzeugtabelle steht exakt zwischen diesen Markern:
+//   <!-- WERKZEUGTABELLE:START -->
+//   <!-- WERKZEUGTABELLE:ENDE -->
 // Usage:
-//   node werkzeug-gate.mjs <projekt-verzeichnis> [--tabelle <pfad/art-direction.md>]
-// Exit 0 = gruen, Exit 1 = rot (kein Launch), Exit 2 = Aufruffehler.
+//   node werkzeug-gate.mjs <projekt-verzeichnis> --tabelle <pfad> --profile node|static|cms
+// Exit 0 = gruen, Exit 1 = Qualitaetsfehler, Exit 2 = Aufruf-/Vertragsfehler.
 
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, extname, relative, dirname } from "node:path";
@@ -32,18 +35,64 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROUTER_PATH = join(HERE, "..", "references", "tool-usecase-router.md");
+const TABLE_START = "<!-- WERKZEUGTABELLE:START -->";
+const TABLE_END = "<!-- WERKZEUGTABELLE:ENDE -->";
+const PROFILES = new Set(["node", "static", "cms"]);
+const USAGE =
+  "usage: node werkzeug-gate.mjs <projekt-verzeichnis> " +
+  "--tabelle <pfad> --profile node|static|cms";
 
-const args = process.argv.slice(2);
-const projectDir = args[0];
-if (!projectDir) {
-  console.error("usage: node werkzeug-gate.mjs <projekt-verzeichnis> [--tabelle <pfad>]");
+function invocationError(message) {
+  console.error(`Werkzeug-Gate: AUFRUFFEHLER\n  - ${message}`);
+  console.error(USAGE);
   process.exit(2);
 }
-const tableFlag = args.indexOf("--tabelle");
-const tablePath =
-  tableFlag !== -1 && args[tableFlag + 1]
-    ? args[tableFlag + 1]
-    : join(projectDir, "..", "art-direction.md");
+
+const args = process.argv.slice(2);
+if (args.includes("--help") || args.includes("-h")) {
+  console.log(USAGE);
+  process.exit(0);
+}
+let projectDir = null;
+let tablePath = null;
+let profile = null;
+for (let index = 0; index < args.length; index++) {
+  const arg = args[index];
+  if (arg === "--tabelle" || arg === "--profile") {
+    const value = args[index + 1];
+    if (!value || value.startsWith("-")) {
+      invocationError(`Wert fuer ${arg} fehlt`);
+    }
+    if (arg === "--tabelle") {
+      if (tablePath !== null) invocationError("--tabelle wurde mehrfach angegeben");
+      tablePath = value;
+    } else {
+      if (profile !== null) invocationError("--profile wurde mehrfach angegeben");
+      profile = value;
+    }
+    index++;
+  } else if (arg.startsWith("-")) {
+    invocationError(`unbekanntes Flag: ${arg}`);
+  } else if (projectDir === null) {
+    projectDir = arg;
+  } else {
+    invocationError(`unerwartetes Argument: ${arg}`);
+  }
+}
+
+if (!projectDir) invocationError("Projektverzeichnis fehlt");
+if (!tablePath) invocationError("--tabelle fehlt");
+if (!profile) invocationError("--profile fehlt");
+if (!PROFILES.has(profile)) invocationError(`unbekanntes Profil: ${profile}`);
+if (!existsSync(projectDir)) invocationError(`Projektverzeichnis fehlt: ${projectDir}`);
+try {
+  if (!statSync(projectDir).isDirectory()) {
+    invocationError(`Projektpfad ist kein Verzeichnis: ${projectDir}`);
+  }
+} catch (error) {
+  invocationError(`Projektverzeichnis nicht lesbar: ${error.message}`);
+}
+if (!existsSync(tablePath)) invocationError(`Tabellendatei fehlt: ${tablePath}`);
 
 // Bekannte Icon-Pakete. Ergaenzt um eine Heuristik auf "icon" im Paketnamen,
 // damit ein unbekanntes zweites Set (iconoir-react, @mui/icons-material …)
@@ -98,7 +147,16 @@ const BASELINE_DEPS = new Set([
   "prettier",
 ]);
 
-const SOURCE_EXT = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs"]);
+const SOURCE_EXT = new Set([
+  ".ts",
+  ".tsx",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".cjs",
+  ".html",
+  ".htm",
+]);
 const SKIP_DIRS = new Set([
   "node_modules",
   ".next",
@@ -161,6 +219,7 @@ function moduleSpecifiers(code) {
 function packageOf(specifier) {
   if (!specifier || specifier.startsWith(".") || specifier.startsWith("/")) return null;
   if (specifier.startsWith("@/") || specifier.startsWith("~/")) return null;
+  if (specifier.startsWith("node:") || /^[a-z]+:\/\//i.test(specifier)) return null;
   const parts = specifier.split("/");
   if (specifier.startsWith("@")) return parts.slice(0, 2).join("/");
   return parts[0];
@@ -170,7 +229,7 @@ const failures = [];
 const notes = [];
 
 const files = walk(projectDir);
-if (files.length === 0) {
+if (files.length === 0 && profile !== "cms") {
   failures.push(`keine Quelldateien unter ${projectDir} gefunden`);
 }
 
@@ -187,66 +246,123 @@ const parsed = files.map((file) => {
 });
 
 // --- 1. Werkzeugtabelle ist echt ---------------------------------------------
-// Nur Zeilen, die selbst einen gueltigen Router-Anker tragen, duerfen ein Paket
-// decken. Sonst legitimiert eine einzige gute Zeile den ganzen Rest der Tabelle.
-let validRows = [];
-let tableAnchors = [];
-if (!existsSync(tablePath)) {
+// Nur der explizit markierte Block gilt. Fruehere Token- oder Vergleichstabellen
+// und spaetere verworfene Alternativen koennen dadurch nichts legitimieren.
+function markdownCells(row) {
+  return row
+    .replace(/^\|/, "")
+    .replace(/\|$/, "")
+    .split("|")
+    .map((cell) => cell.trim());
+}
+
+let tableText;
+try {
+  tableText = readFileSync(tablePath, "utf8");
+} catch (error) {
+  invocationError(`Tabellendatei nicht lesbar (${tablePath}): ${error.message}`);
+}
+
+let routerText;
+try {
+  routerText = readFileSync(ROUTER_PATH, "utf8");
+} catch (error) {
+  invocationError(`Router nicht lesbar (${ROUTER_PATH}): ${error.message}`);
+}
+const routerAnchors = new Set(
+  [...routerText.matchAll(/\*\*Anker:\*\*\s*`#([a-z0-9_-]+)`/gi)].map((match) =>
+    match[1].toLowerCase()
+  )
+);
+if (routerAnchors.size === 0) {
+  invocationError(`Router ohne Anker gefunden: ${ROUTER_PATH}`);
+}
+
+const validRows = [];
+const tableAnchors = [];
+const startCount = tableText.split(TABLE_START).length - 1;
+const endCount = tableText.split(TABLE_END).length - 1;
+if (startCount !== 1 || endCount !== 1) {
   failures.push(
-    `Werkzeugtabelle fehlt (${tablePath}) — Schritt 5d im web-Skill ist die Freigabe fuer den Build`
+    `Werkzeugtabelle braucht genau einen Markerblock (${TABLE_START} ... ${TABLE_END}); ` +
+      `gefunden: Start ${startCount}, Ende ${endCount}`
   );
 } else {
-  // Auskommentiertes und Beispiel-Bloecke raus: eine verworfene Zeile darf kein
-  // Paket legitimieren.
-  const table = readFileSync(tablePath, "utf8")
-    .replace(/<!--[\s\S]*?-->/g, "")
-    .replace(/^```[\s\S]*?^```/gm, "");
-  const lines = table.split("\n").map((line) => line.trim());
-
-  // Nur der ERSTE zusammenhaengende Tabellenblock ist die Werkzeugtabelle.
-  // Eine zweite Tabelle weiter unten ("## Verworfen", "## Alternativen, die wir
-  // nicht genommen haben") dokumentiert Entscheidungen GEGEN etwas und darf
-  // nichts legitimieren.
-  const start = lines.findIndex((line) => line.startsWith("|"));
-  let end = start;
-  while (end >= 0 && end < lines.length && lines[end].startsWith("|")) end++;
-  const tableBlock = start === -1 ? [] : lines.slice(start, end);
-
-  const dataRows = tableBlock.filter(
-    (line) =>
-      !/^\|[\s|:-]+\|?$/.test(line) && // Trennzeile
-      !line.includes("Router-Anker") // Kopfzeile
-  );
-  if (dataRows.length === 0) {
-    failures.push(`Werkzeugtabelle in ${tablePath} hat keine Datenzeilen`);
-  }
-
-  // Anker gegen den echten Router pruefen — ein erfundenes `#none` faellt durch.
-  let routerAnchors = new Set();
-  if (existsSync(ROUTER_PATH)) {
-    const routerText = readFileSync(ROUTER_PATH, "utf8");
-    routerAnchors = new Set(
-      [...routerText.matchAll(/\*\*Anker:\*\*\s*`#([a-z-]+)`/g)].map((m) => m[1])
-    );
-  }
-  if (routerAnchors.size === 0) {
-    failures.push(`Router ohne Anker gefunden (${ROUTER_PATH}) — Gate kann nicht pruefen`);
-  }
-
-  for (const row of dataRows) {
-    const anchors = [...row.matchAll(/#([a-z-]+)/g)].map((m) => m[1]);
-    const valid = anchors.filter((a) => routerAnchors.has(a));
-    if (valid.length === 0) {
+  const start = tableText.indexOf(TABLE_START) + TABLE_START.length;
+  const end = tableText.indexOf(TABLE_END);
+  if (end <= start) {
+    failures.push(`Werkzeugtabellen-Marker stehen in falscher Reihenfolge: ${tablePath}`);
+  } else {
+    const marked = tableText
+      .slice(start, end)
+      .replace(/<!--[\s\S]*?-->/g, "")
+      .trim();
+    const lines = marked
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+    const nonTableLines = lines.filter((line) => !line.startsWith("|"));
+    if (nonTableLines.length > 0) {
       failures.push(
-        `Werkzeugtabellen-Zeile ohne gueltigen Router-Anker: ${row.slice(0, 90)}`
+        `Werkzeugtabellen-Markerblock enthaelt Inhalt ausserhalb der Tabelle: ` +
+          nonTableLines[0].slice(0, 90)
       );
-    } else {
-      validRows.push(row);
     }
-    tableAnchors.push(...valid);
-  }
-  if (tableAnchors.length > 0) {
-    notes.push(`Werkzeugtabelle: ${dataRows.length} Zeile(n), Anker ${[...new Set(tableAnchors)].join(", ")}`);
+    const tableBlock = lines.filter((line) => line.startsWith("|"));
+    if (tableBlock.length < 3) {
+      failures.push(`Werkzeugtabelle in ${tablePath} hat keine Datenzeilen`);
+    } else {
+      const header = markdownCells(tableBlock[0]);
+      const routerColumn = header.findIndex(
+        (cell) => cell.replace(/[`*_]/g, "").toLowerCase() === "router-anker"
+      );
+      const separator = markdownCells(tableBlock[1]);
+      if (routerColumn === -1) {
+        failures.push(`Werkzeugtabelle in ${tablePath} hat keine Spalte Router-Anker`);
+      } else if (
+        separator.length !== header.length ||
+        separator.some((cell) => !/^:?-{3,}:?$/.test(cell))
+      ) {
+        failures.push(`Werkzeugtabelle in ${tablePath} hat keine gueltige Trennzeile`);
+      } else {
+        const dataRows = tableBlock.slice(2);
+        for (const row of dataRows) {
+          const cells = markdownCells(row);
+          if (cells.length !== header.length) {
+            failures.push(`Werkzeugtabellen-Zeile hat falsche Spaltenzahl: ${row.slice(0, 90)}`);
+            continue;
+          }
+          const anchors = [
+            ...cells[routerColumn].matchAll(/#([a-z0-9_-]+)/gi),
+          ].map((match) => match[1].toLowerCase());
+          if (anchors.length === 0) {
+            failures.push(
+              `Werkzeugtabellen-Zeile ohne Router-Anker: ${row.slice(0, 90)}`
+            );
+            continue;
+          }
+          const unknown = anchors.filter((anchor) => !routerAnchors.has(anchor));
+          if (unknown.length > 0) {
+            invocationError(
+              `unbekannter Router-Anker in ${tablePath}: ${unknown
+                .map((anchor) => `#${anchor}`)
+                .join(", ")}`
+            );
+          }
+          validRows.push(row);
+          tableAnchors.push(...anchors);
+        }
+        if (dataRows.length === 0) {
+          failures.push(`Werkzeugtabelle in ${tablePath} hat keine Datenzeilen`);
+        } else if (tableAnchors.length > 0) {
+          notes.push(
+            `Werkzeugtabelle: ${dataRows.length} Zeile(n), Anker ${[
+              ...new Set(tableAnchors),
+            ].join(", ")}`
+          );
+        }
+      }
+    }
   }
 }
 
@@ -311,8 +427,12 @@ if (motionMissing.length > 0) {
 // --- 5. keine Abhaengigkeit ohne Werkzeugtabellen-Zeile ------------------------
 const pkgPath = join(projectDir, "package.json");
 if (!existsSync(pkgPath)) {
-  failures.push(`package.json fehlt unter ${projectDir}`);
-} else if (validRows.length > 0) {
+  if (profile === "node") {
+    failures.push(`package.json fehlt unter ${projectDir} (Profil node)`);
+  } else {
+    notes.push(`Profil ${profile}: package.json nicht erforderlich`);
+  }
+} else {
   let pkg;
   try {
     pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
@@ -321,23 +441,36 @@ if (!existsSync(pkgPath)) {
     failures.push(`package.json ist kein gueltiges JSON: ${error.message}`);
   }
   if (pkg) {
-    // Alle Abhaengigkeitsarten zaehlen — Verschieben nach devDependencies oder
-    // optionalDependencies aendert nichts daran, dass das Paket im Projekt landet.
+    // Wenn Static oder CMS Custom-JavaScript mit Paketdatei enthalten, gilt
+    // derselbe Dependency-Vertrag. Nur das Fehlen der Paketdatei ist erlaubt.
     const deps = [
-      ...Object.keys(pkg.dependencies ?? {}),
-      ...Object.keys(pkg.devDependencies ?? {}),
-      ...Object.keys(pkg.optionalDependencies ?? {}),
+      ...new Set([
+        ...Object.keys(pkg.dependencies ?? {}),
+        ...Object.keys(pkg.devDependencies ?? {}),
+        ...Object.keys(pkg.optionalDependencies ?? {}),
+      ]),
     ];
-    // Wortgenau pruefen, damit "motion" nicht durch "@emotion/react" gedeckt wird
-    // und umgekehrt.
-    // Der Paketname muss in EINER Zeile stehen, die selbst einen gueltigen
-    // Anker traegt — ein guter Anker legitimiert nicht die ganze Tabelle.
+    if (deps.includes("framer-motion")) {
+      failures.push(
+        `framer-motion als Abhaengigkeit — erlaubt ist Paket "motion" mit Import "motion/react"`
+      );
+    }
+
+    // Der Paketname muss in EINER gueltigen Zeile stehen. Fuer das Paket
+    // "motion" zaehlt auch seine kanonische Importbezeichnung "motion/react".
     const documented = (dep) => {
-      const escaped = dep.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const pattern = new RegExp(`(^|[^A-Za-z0-9@/_-])${escaped}([^A-Za-z0-9./_-]|$)`);
-      return validRows.some((row) => pattern.test(row));
+      const candidates = dep === "motion" ? ["motion", "motion/react"] : [dep];
+      return candidates.some((candidate) => {
+        const escaped = candidate.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const pattern = new RegExp(
+          `(^|[^A-Za-z0-9@/_-])${escaped}([^A-Za-z0-9./_-]|$)`
+        );
+        return validRows.some((row) => pattern.test(row));
+      });
     };
-    const undocumented = deps.filter((dep) => !BASELINE_DEPS.has(dep) && !documented(dep));
+    const undocumented = deps.filter(
+      (dep) => !BASELINE_DEPS.has(dep) && !documented(dep)
+    );
     if (undocumented.length > 0) {
       failures.push(
         `Abhaengigkeiten ohne Zeile in der Werkzeugtabelle: ${undocumented.join(", ")}`

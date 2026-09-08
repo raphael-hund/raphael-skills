@@ -14,6 +14,10 @@ tags: [ads, maerkte, b2b-dienstleister, hook, demo, garantie]
 
 Diese Anzeigen verkaufen SEO, Ads-Tools und Trainings an eine feste Branche.
 
+## Geltung dieser Marktbeobachtung
+
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+
 ## Regeln
 
 - n = 211 Ads im Segment `b2b-dienstleister`.
@@ -29,11 +33,11 @@ Diese Anzeigen verkaufen SEO, Ads-Tools und Trainings an eine feste Branche.
 
 ## Taktiken
 
-- Nenne die Branche im ersten Satz: Bildungsträger, Makler, Website-Käufer.
+- Mache Rolle oder Kaufsituation früh erkennbar; die Branche ist eine mögliche Ansprache.
 - Nimm F10, wenn das Produkt in 20 Sekunden auf dem Screen sichtbar wird.
-- Nimm F1 nur mit Frist und Risiko-Umkehr, die du tragen kannst.
+- Nutze eine Garantie-/Friststruktur nur mit tatsächlichen eigenen Bedingungen.
 - Ein Case reicht in der Kurzform A2, wenn die Zahl einen Zeitraum trägt.
-- Vermeide Gift-Booklet A5 und 3-Wege-Entscheidung A4.
+- Leadmagnet und Entscheidungsstruktur nur einsetzen, wenn sie die konkrete Informationslücke lösen. Seltenheit im Korpus ist kein Ausschlussgrund.
 
 ## Beispiele
 
@@ -55,6 +59,11 @@ Diese Anzeigen verkaufen SEO, Ads-Tools und Trainings an eine feste Branche.
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:15`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:106`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:16`
+
+## Historische Herkunft
+
+Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die operativen Quellen stehen im Skill. Für die Nutzung müssen diese Dateien nicht existieren.
+
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:98`
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:216`
 - `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:25`

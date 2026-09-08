@@ -1,0 +1,26 @@
+---
+import '../styles/page.css';
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="data:," />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="page-header">
+      <a class="site-name" href="/">Hybrid / integration proof</a>
+      <nav aria-label="Main navigation">
+        <a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Overview</a>
+        <a href="/service/" aria-current={Astro.url.pathname === '/service/' ? 'page' : undefined}>Service</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>Local technical demonstration · 06 September 2026</footer>
+    <slot name="portals" />
+  </body>
+</html>

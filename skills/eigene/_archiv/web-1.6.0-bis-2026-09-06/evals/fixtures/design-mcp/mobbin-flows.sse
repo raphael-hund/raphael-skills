@@ -1,0 +1,3 @@
+event: message
+data: {"jsonrpc": "2.0", "id": 1, "result": {"content": [{"type": "text", "text": "{\"flows\": [{\"index\": 0, \"id\": \"c05af68f-a703-4104-8e9a-c92c82cafc9d\", \"name\": \"Onboarding\", \"actions\": [\"Creating Account\"], \"screen_count\": 20, \"mobbin_url\": \"https://mobbin.com/flows/c05af68f-a703-4104-8e9a-c92c82cafc9d\", \"app_name\": \"Twenty\", \"platform\": \"web\", \"screens\": [{\"image_url\": \"https://mobbin.com/api/mcp/short/AAAA\", \"index\": 0}]}], \"page\": 1, \"has_next_page\": true}"}]}}
+

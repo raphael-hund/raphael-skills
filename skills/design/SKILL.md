@@ -1,6 +1,6 @@
 ---
 name: design
-version: 0.4.0
+version: 0.7.0
 description: >
   Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus
   impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-
@@ -8,8 +8,8 @@ description: >
   Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem
   Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der
   web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard ->
-  ui-ux-Linie, finale QA IMMER ueber die deterministischen
-  impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger:
+  ui-ux-Linie, passende QA ueber die deterministischen
+  impeccable-Detektoren und den kill-ai-slop-Scanner. Trigger:
   "Design polieren", "UI review", "sieht nach AI aus", "Slop entfernen",
   "Farben/Typo/Layout fixen", "Animation/Motion pruefen", "Kontrast/OKLCH",
   "Dashboard designen", "Referenz-Site als Stilvorlage", "Stitch",
@@ -35,10 +35,10 @@ requires_skills: []
 # Wie tief ist dieser Skill geprueft? Die Zahlen sind an Laeufe gebunden —
 # evals/run-doku-zahlen.mjs reisst, wenn eine hier falsch wird.
 eval_scorecard:
-  stand: 2026-07-30
+  stand: 2026-09-02
   laeufe:
-    - "evals/run-detect-check.mjs — 35 Faelle: Datei-Modus, 13 von 13 Regeln belegt, Typo-Skala in Variablen beide Richtungen"
-    - "evals/run-browser-detect-check.mjs — 39 Faelle: alle 37 Browser-Regeln belegt"
+    - "evals/run-detect-check.mjs — 36 Faelle: Datei-Modus, 14 von 14 dort herstellbaren Regeln belegt, Typo-Skala in Variablen beide Richtungen"
+    - "evals/run-browser-detect-check.mjs — 40 Faelle: 38 der 47 Browser-Regeln belegt, 9 ohne Fixture (Hover/Scroll/echte Bilder/Laufzeitfehler)"
     - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
     - "evals/run-variablen-check.mjs — 9 Faelle: 8 Regeln — sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
     - "evals/run-flag-wache-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
@@ -47,15 +47,15 @@ eval_scorecard:
     - "evals/run-verweise-design.mjs — faehrt die gemeinsame Verweis-Wache fuer diesen Skill (Pfade, loads-Eintraege, fehlende Kernmodul-Importe)"
     - "evals/run-struktur-design.mjs — faehrt die vier Struktur-Wachen oben in EINEM Lauf (65s gemessen 01.08.2026, ohne Browser)"
     - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
-    - "evals/run-doku-zahlen.mjs — 7 Zahlen: verspricht SKILL.md den echten Umfang?"
+    - "evals/run-doku-zahlen.mjs — 10 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 5 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (120s)"
     - "evals/run-exit-vertrag-check.mjs — 9 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (20s)"
   grenzen:
     - "Der URL-Modus von detect.mjs braucht puppeteer und laeuft auf diesem Rechner nicht — die Evals laden den Detektor per Playwright direkt in die Seite"
     - "Ein gruener Lauf heisst 'die bekannten Slop-Muster sind raus', nicht 'das Design ist gut'"
 completion_criteria:
-  - "impeccable-Detektoren laufen auf allen geaenderten UI-Dateien mit Exit 0 (node scripts/detect.mjs <dateien>)"
-  - "kill-ai-slop-Scanner laeuft auf allen geaenderten Frontend-Dateien, jeder Fund triagiert (Slop vs. bewusste Entscheidung) und report-bestaetigt (node scripts/scan-ai-slop.mjs <root>)"
+  - "Zur geänderten Oberfläche passende Detektoren ausgeführt; echte Funde behoben, bewusste Ausnahmen und nicht geprüfte Bereiche benannt"
+  - "Bei Slop-Prüfung den passenden Scanner verwenden und Funde triagieren; ein grüner Scan ersetzt keine gerenderte Sichtprüfung"
   - "Rubrik erfuellt: Kontrast WCAG AA (Body 4.5:1), EINE Theme-/Akzent-/Radius-Linie, Hero passt in Viewport, kein sichtbarer Em-Dash, Motion motiviert + reduced-motion, Bilder statt Fake-Screenshots"
   - "Register bewusst gewaehlt (Landing=taste ODER App=ui-ux) und im Design-Read benannt"
 gotchas:
@@ -86,7 +86,7 @@ gewaehlt und begruendet, ist in Ordnung. Das schaerft jeden Fund unten: erst
 fixen, was niemand entschieden hat.
 
 ## Immer zuerst: Design-Read (1 Zeile)
-Vor jeder Zeile Code eine Zeile ausgeben:
+Bei einer neuen visuellen Entscheidung den Design-Read knapp festhalten:
 > *"Lese das als: \<Seitenart> fuer \<Zielgruppe>, \<Vibe>-Sprache, Richtung \<System/Aesthetik>."*
 Nur EINE Rueckfrage, falls der Read echt zweideutig ist — sonst annehmen und weiter.
 
@@ -111,36 +111,32 @@ Wahl nach: (1) Task-Cue ("Landingpage" vs "Dashboard"), (2) konkrete Seite/Route
 2. Stack aus dem Projekt erkennen (package.json etc.), Empfehlungen daran binden.
 3. Doktrin anwenden. Karten hier als legitime Datencontainer (nicht verschachtelt).
 
-## Screenshot-Pflicht — nach JEDER sichtbaren Aenderung (Raphael-Regel, hart)
+## Sichtbare Änderungen prüfen
 
-Nichts Visuelles wird gebaut, geaendert oder als fertig gemeldet ohne
-Screenshot-Zyklus. Kein "muesste jetzt passen" — nur belegte Sicht.
+Vor einer Designentscheidung relevante neue Referenzen aus `/root/eingang`
+(letzte sieben Tage) und vorhandene Kundenvorgaben tatsächlich ansehen.
+Ein neues Asset vor dem Einbau auf Motiv, Kanten und Auflösung prüfen.
 
-1. Nach JEDER Aenderung rendern (Chrome headless `--screenshot`, Playwright,
-   `pdftoppm`, Figma `get_screenshot`) und das PNG **per Read ansehen**.
-2. **Jedes Asset einzeln ansehen, BEVOR es eingebaut wird:** Freisteller
-   wirklich freigestellt (kein sichtbarer Hintergrund-Kasten auf farbiger
-   Flaeche)? Richtiges Produkt/Motiv? Stil konsistent zu den Nachbar-Assets?
-   Nicht freigestellt -> Higgsfield `image_background_remover`, dann erneut ansehen.
-3. Kleinlich triagieren: Bildkanten, Farbsprung Asset- vs. Seitenhintergrund,
-   falsches Motiv, Abschnitt, Matsch-Aufloesung = Fehler -> fixen -> ERNEUT
-   Screenshot. Erst melden, wenn der letzte Zyklus sauber war.
-4. In JEDEN Subagent-Prompt fuer visuelle Arbeit diese Pflicht explizit
-   hineinschreiben (rendern + Read + nachbessern, mind. 2 Zyklen).
-5. Bei PDF-Export zusaetzlich `pdffonts <datei.pdf>` laufen lassen: Nur die
-   CI-Fonts duerfen eingebettet sein. Faellt etwas auf Arimo/Roboto/Arial o. ae.
-   zurueck, war der Webfont beim Headless-Render nicht da -> Fonts lokal per
-   `@font-face` buendeln (nie auf Netz-@import verlassen), neu rendern.
-6. **Nach JEDEM Fix ALLES nochmal pruefen, nicht nur die geaenderte Stelle.**
-   Wer einen Fehler fixt (Pfad, Layout, Bild-Quelle, CSS) und dann nur die
-   gefixte Seite anschaut, uebersieht dasselbe Problem auf den anderen Seiten.
-   Nach jedem Fix: ALLE Seiten/Assets erneut rendern und ansehen. Beispiel:
-   Bild-Pfad auf Seite 3 gefixt -> Seiten 1-11 alle nochmal ansehen, ob die
-   Bilder ueberall laden. Erst wenn ALLE Seiten sauber sind, ist die Arbeit
-   fertig.
+Nach einem zusammenhängenden sichtbaren Änderungspaket den aktuellen Stand
+rendern und die betroffenen Ansichten ansehen. Erneut prüfen nach einem
+relevanten Fix oder offenem Befund. Bei Shared Components deren tatsächliche
+Konsumenten einbeziehen; eine lokale Änderung erzwingt keinen erneuten Review
+aller unveränderten Seiten. Es gibt keine Mindestzahl Renderzyklen.
 
-## Finale QA — IMMER, unabhaengig von der Linie
-Kein Interface gilt als fertig, bevor BEIDE Scanner gruen sind.
+Innerhalb eines Web-Auftrags bestimmt `web/references/qa-faecher.md` die
+benötigten Belege. Der damit ausgestattete Owner führt Render/Browserprüfungen
+aus; ein Dateiworker ohne diese Werkzeuge liefert Dateien und seinen Prüfbedarf.
+Ein vorhandener gültiger visueller Beleg wird wiederverwendet. Motion und
+Interaktion werden zusätzlich am tatsächlichen Verhalten geprüft.
+
+Bei PDF-Export außerdem `pdffonts <datei.pdf>` prüfen: eingebettete Schriften
+müssen zum Designvertrag passen. Fehlende Webfonts vor einem erneuten Render
+im Rahmen der jeweiligen Lizenz beheben.
+
+## Finale QA passend zur Änderung
+Die betroffenen Ansichten rendern und passende Detektoren wählen. Bei einer
+umfassenden Slop-Prüfung ergänzen sich beide Scanner. Ein kleiner UI-Fix
+erfordert keinen vollständigen Scan aller unveränderten Dateien.
 
 ```bash
 node scripts/detect.mjs <geaenderte .html/.css/.jsx/.tsx-Dateien>
@@ -161,7 +157,9 @@ blind. Der Regelsatz ergaenzt `de-14` (Textstimme, im web-Gate ein Blocker),
 freigegebener Liste `copywriting/references/floskel-verbote.md`. Das web-Gate
 haengt ihn automatisch an und schreibt es ins Urteil, wenn er fehlt.
 
-**Der Detektor hatte 46 Regeln und keinen Test** (Befund 30.07.2026). Aufgefallen
+**Der Detektor fuehrt heute 59 Regeln** in `scripts/detector/registry/antipatterns.mjs` (Stand
+Re-Sync auf impeccable v4.0.5, 02.09.2026 — vorher 46). **46 Regeln und keinen
+Test** war der Befund vom 30.07.2026, aufgefallen
 an einer Seite mit `linear-gradient(90deg, #6366f1, #a855f7)` und
 `font-family: Inter`: `detect.mjs` meldete **nur** die Schriftart,
 `scan-ai-slop.mjs` fand auf derselben Datei beides. Zwei Prüfer, eine Seite,
@@ -174,26 +172,36 @@ Farb-Detektor wirkungslos. Behoben; Beleg:
 node evals/run-detect-check.mjs
 ```
 
-35 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: **13 von
-46** Regeln haben einen Testfall, und **33 sind über den Datei-Modus
-grundsätzlich nicht erreichbar** — sie liegen in `rules/checks.mjs` und brauchen
-ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
+36 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: von den
+**59** Registry-Regeln haben **14** einen Testfall im Datei-Modus, und **45 sind
+über den Datei-Modus grundsätzlich nicht erreichbar** — sie liegen in
+`scripts/detector/rules/checks.mjs` und brauchen ein gerendertes DOM. Keine einzige Regel ist im
+Datei-Modus herstellbar und dabei noch ohne Fixture. Im Datei-Modus ist damit
+**alles belegt, 14 von 14.**
 
 > **Korrektur einer Behauptung, die hier stand:** „dort deckt `craft-check` sie
-> ab" war ungemessen und ist falsch. Nachgezählt: 37 Browser-Regeln, davon haben
-> **11 ein fachliches Pendant** in `craft-check` (T1↔`overused-font`,
-> T2↔`ai-color-palette`/`gradient-text`, T5↔`repeated-section-kickers`,
-> M8↔`flat-type-hierarchy`, M3↔`line-length`, M11↔`border-accent-on-rounded` …).
-> Zwei weitere deckt axe (`low-contrast`→`color-contrast`,
-> `skipped-heading`→`heading-order`). **Rund 24 sind wirklich nur über den
-> Browser-Pfad des design-Detektors zu holen** — darunter `nested-cards`,
-> `cream-palette`, `oversized-h1`, `tiny-text`, `all-caps-body`,
-> `justified-text`, `tight-leading`, `cramped-padding`, `dark-glow`,
-> `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie nicht.
-> **Nachgetragen 30.07.2026:** Der Browser-Pfad hat jetzt eine Eval —
-> `node evals/run-browser-detect-check.mjs` (39 Fälle). **Alle 37 Browser-Regeln
-> sind belegt, keine offen.** Zusammen mit dem Datei-Modus (13 von 13) ist damit
-> jede Regel des Detektors durch mindestens einen Testfall gedeckt.
+> ab" war ungemessen und ist falsch. Nachgezählt am Code (02.09.2026):
+> **47 Browser-Regeln** in `scripts/detector/rules/checks.mjs`, davon haben **8 ein fachliches
+> Pendant** in `craft-check` (T1↔`overused-font`, T2↔`ai-color-palette`,
+> T5↔`kicker-above-heading`, T8↔`em-dash-overuse`, M3↔`line-length`,
+> M8↔`flat-type-hierarchy`, M11↔`gpt-thin-border-wide-shadow`,
+> M12↔`monotonous-spacing`). Zwei weitere deckt axe
+> (`low-contrast`→`color-contrast`, `skipped-heading`→`heading-order`).
+> **37 sind wirklich nur über den Browser-Pfad des design-Detektors zu holen** —
+> darunter `nested-cards`, `cream-palette`, `oversized-h1`, `tiny-text`,
+> `all-caps-body`, `justified-text`, `tight-leading`, `cramped-padding`,
+> `dark-glow`, `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie
+> nicht.
+> **Stand 02.09.2026:** Der Browser-Pfad hat eine eigene Eval —
+> `node evals/run-browser-detect-check.mjs` (40 Fälle). **Alle 47 Browser-Regeln
+> stehen dort namentlich in der Abdeckungsliste; 38 sind durch ein Fixture
+> belegt, 9 bleiben offen** (`marquee`, `pulsing-dot`,
+> `shape-assembled-illustration`, `radial-halo`, `em-dash-overuse`,
+> `radial-spotlight-glow`, `repeated-container-text`, `blinking-cursor`,
+> `content-hidden-at-rest`). Sie brauchen Hover, Scroll, ein dunkles Theme,
+> echte Bilder oder einen Laufzeitfehler — eine statische Seite stellt sie nicht
+> her. Die Lücke steht hier und in der Eval-Ausgabe namentlich, damit sie nicht
+> in einer Prozentzahl verschwindet.
 >
 > Der Weg dahin ging über sechs Runden, und in jeder war der Grund für einen
 > fehlenden Befund derselbe: **die Regel liest etwas anderes, als ihr Name
@@ -204,9 +212,10 @@ ein gerendertes DOM. Im Datei-Modus ist damit **alles belegt, 13 von 13.**
 > | `monotonous-spacing` | den **HTML-Text** (Tailwind-Klassen, `rem`) — nie `px` im Stylesheet |
 > | `image-hover-transform` | eine **CSS-Textsuche**, kein echter Hover nötig |
 > | `side-tab` / `border-accent-on-rounded` | `if/else` nach Kante: links/rechts vs. oben/unten |
-> | `hero-eyebrow-chip` | nur über einer **h1**, bei h2 schweigt sie |
-> | `single-font` / `overused-font` | erst ab **20 Textelementen** auf der Seite |
-> | `oversized-h1` | **drei** Bedingungen: ≥ 72px, ≥ 40 Zeichen, ≥ 28 % Viewport-Höhe |
+> | `hero-eyebrow-chip` | nur über einer **h1 ab 48px**, bei h2 schweigt sie; **drei** Styling-Zweige (tracked-caps, accent-bold, dash-prefix) |
+> | `overused-font` | erst ab **20 Textelementen** UND **≥ 15 %** Anteil an ihnen |
+> | `oversized-h1` | **drei** Bedingungen: ≥ 72px, ≥ 40 Zeichen, ≥ 28 % Viewport-Höhe **oder** ≥ 25 % Viewport-Fläche |
+> | `kicker-above-heading` | glattes Verbot ohne Zählung — **ein** Kicker genügt; steht über einer grossen h1 zugunsten von `hero-eyebrow-chip` zurück |
 >
 > Meine Annahme, `bounce-easing`, `layout-transition` und `image-hover-transform`
 > bräuchten echte Interaktion, war falsch — am Code nachgelesen lesen alle drei
@@ -238,16 +247,16 @@ Regeln auch dadurch „bestanden", dass sie auf alles anschlagen.
 Ablauf beider Scanner identisch (Scope -> Scan -> Triage -> Report -> Fix):
 1. **Scope**: Default = Frontend-Source, `node_modules`/`dist`/`.git`/Lockfiles
    raus.
-2. **Scan**: beide Scripte laufen lassen (`--json` fuer maschinelle Weiterverarbeitung).
+2. **Scan**: die für den Scope gewählten Scripte ausführen (`--json` fuer maschinelle Weiterverarbeitung).
 3. **Triage**: jeder Fund ist ein Hinweis, kein Urteil — pro Fund entscheiden
    Slop vs. bewusste, verteidigbare Entscheidung (Brand-Token, Logo, echte
    Illustration bleibt).
-4. **Report**: gruppierte Zusammenfassung vor jeder Aenderung zeigen (Tell,
-   file:line, ein Satz Begruendung, Fix-Richtung), Freigabe einholen statt
-   blind durchzufixen.
+4. **Report**: Befunde mit file:line und Begründung zusammenfassen. Bei einem
+   Änderungsauftrag die gedeckten Fixes ausführen; ein reiner Review-Auftrag
+   liefert den Bericht. Nur echte Produkt-/Scope-Entscheidungen vorlegen.
 5. **Fix**: erst Tokens/Theme, dann Komponenten, dann Einzelstellen, zuletzt
    Copy (`references/ai-slop-fixes.md`) — kleinstmoeglicher Diff, danach
-   erneut scannen bis der Count sinkt/auf 0 steht. Bestaetigte Ausnahmen per
+   die betroffenen Funde erneut prüfen. Bewusste Ausnahmen per
    `deslop-ignore-next-line <id>` (ID-scoped, nie global) im Code pinnen.
 
 Detektor-Details: `references/impeccable-detektoren.md` (Layout/Farbe/

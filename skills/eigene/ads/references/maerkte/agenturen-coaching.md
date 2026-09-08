@@ -14,6 +14,10 @@ tags: [ads, maerkte, agenturen-coaching, hook, proof, funnel]
 
 Diese Anzeigen locken Agentur-Chefs mit Umsatz-Zahlen in ein Gespräch.
 
+## Geltung dieser Marktbeobachtung
+
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+
 ## Regeln
 
 - n = 327 Ads im Segment `agenturen-coaching`.
@@ -32,7 +36,9 @@ Diese Anzeigen locken Agentur-Chefs mit Umsatz-Zahlen in ein Gespräch.
 - Nimm F1 nur mit tragbarer Garantie und Proof im nächsten Satz.
 - Bau A1 als Case-Kette, weil ein einzelner Case hier selten trägt.
 - Im Instant-Formular filtert die Umsatz-Frage die Leads.
-- Validiere das Offer zuerst als Video und lege Statics bei Evers auf den Open-VSL.
+- Format nach Offer-Reife wählen: Evers beschreibt einen einfachen Static-Test,
+  danach Video und später VSL; vorhandene Video-/VSL-Ads belegen keine allgemeine
+  Reihenfolge. Aktuelle Quellen und Grenzen stehen in `../marc-evers-playbook.md`.
 - Halte Fast-Lane-Call und Slow-Lane-Content getrennt.
 
 ## Beispiele
@@ -57,6 +63,11 @@ Diese Anzeigen locken Agentur-Chefs mit Umsatz-Zahlen in ein Gespräch.
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:19`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:14`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:59`
+
+## Historische Herkunft
+
+Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die operativen Quellen stehen im Skill. Für die Nutzung müssen diese Dateien nicht existieren.
+
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:216`
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:252`
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:311`

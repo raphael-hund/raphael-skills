@@ -1,0 +1,569 @@
+{
+  "base": "https://www.peter.at",
+  "createdAt": "2026-08-31T10:33:21.133Z",
+  "static": true,
+  "states": true,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "home-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "home-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "home-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "home-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "home-hover-00.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "state-hover",
+          "selector": "nav",
+          "index": 0
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y10697.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10697
+        },
+        {
+          "file": "home-desktop-click-y1500-00-Go_to_slide_1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_1"
+        },
+        {
+          "file": "home-desktop-click-y1500-01-Go_to_slide_2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_2"
+        },
+        {
+          "file": "home-desktop-click-y1500-02-Go_to_slide_3.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_3"
+        },
+        {
+          "file": "home-desktop-click-y1500-03-Go_to_slide_4.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_4"
+        },
+        {
+          "file": "home-desktop-click-y1500-04-Go_to_slide_5.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_5"
+        },
+        {
+          "file": "home-desktop-click-y1500-05-Go_to_slide_6.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_6"
+        },
+        {
+          "file": "home-desktop-click-y1500-06-Go_to_slide_7.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Go_to_slide_7"
+        },
+        {
+          "file": "home-desktop-click-y1500-07-Previous_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Previous_slide"
+        },
+        {
+          "file": "home-desktop-click-y1500-08-Next_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Next_slide"
+        },
+        {
+          "file": "home-desktop-click-y2250-00-Go_to_slide_1.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Go_to_slide_1"
+        },
+        {
+          "file": "home-desktop-click-y3750-00-Go_to_slide_8.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_8"
+        },
+        {
+          "file": "home-desktop-click-y3750-01-Go_to_slide_9.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_9"
+        },
+        {
+          "file": "home-desktop-click-y3750-02-Go_to_slide_10.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_10"
+        },
+        {
+          "file": "home-desktop-click-y3750-03-Go_to_slide_11.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_11"
+        },
+        {
+          "file": "home-desktop-click-y3750-04-Go_to_slide_12.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_12"
+        },
+        {
+          "file": "home-desktop-click-y3750-05-Go_to_slide_13.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_13"
+        },
+        {
+          "file": "home-desktop-click-y3750-06-Go_to_slide_14.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Go_to_slide_14"
+        },
+        {
+          "file": "home-desktop-click-y3750-07-Previous_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Previous_slide"
+        },
+        {
+          "file": "home-desktop-click-y3750-08-Next_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "Next_slide"
+        },
+        {
+          "file": "home-desktop-click-y4500-00-Go_to_slide_14.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "Go_to_slide_14"
+        },
+        {
+          "file": "home-desktop-click-y6750-00-Go_to_slide_3.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6750,
+          "target": "Go_to_slide_3"
+        },
+        {
+          "file": "home-desktop-click-y6750-01-Previous_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6750,
+          "target": "Previous_slide"
+        },
+        {
+          "file": "home-desktop-click-y6750-02-Next_slide.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 6750,
+          "target": "Next_slide"
+        },
+        {
+          "file": "home-desktop-click-y7500-00-Go_to_slide_2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 7500,
+          "target": "Go_to_slide_2"
+        }
+      ],
+      "docHeight": 12197
+    }
+  ]
+}

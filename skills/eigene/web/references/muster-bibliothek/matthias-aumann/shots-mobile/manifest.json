@@ -1,0 +1,773 @@
+{
+  "schema": "web/shot-sweep/v2",
+  "run_id": null,
+  "build_revision": null,
+  "capture_profile": {
+    "static": true,
+    "states": false,
+    "mobile": true
+  },
+  "base": "https://www.matthias-aumann.de",
+  "createdAt": "2026-09-02T17:50:47.058Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "state_matrix": {
+    "required": [],
+    "captured": [],
+    "not_applicable": [],
+    "failed": []
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "home-desktop-17-y11335.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 11335
+        },
+        {
+          "file": "home-desktop-click-y0-00-video_starten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 0,
+          "target": "video_starten"
+        },
+        {
+          "file": "home-desktop-click-y10500-00-Für_wen_ist_das_Training.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 10500,
+          "target": "Für_wen_ist_das_Training"
+        },
+        {
+          "file": "home-desktop-click-y11250-00-Was_unterscheidet_euer_T.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "Was_unterscheidet_euer_T"
+        },
+        {
+          "file": "home-desktop-click-y11250-01-Funktioniert_die_Beratun.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "Funktioniert_die_Beratun"
+        },
+        {
+          "file": "home-desktop-click-y11250-02-Wie_lange_dauert_die_Zus.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "Wie_lange_dauert_die_Zus"
+        },
+        {
+          "file": "home-desktop-click-y11250-03-Was_kostet_das_Unternehm.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 11250,
+          "target": "Was_kostet_das_Unternehm"
+        }
+      ],
+      "viewport_label": "desktop",
+      "label": "desktop",
+      "docHeight": 12835
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "home-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "home-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "home-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "home-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "home-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "home-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "home-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "home-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "home-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "home-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "home-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "home-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "home-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "home-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "home-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "home-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "home-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "home-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "home-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "home-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "home-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "home-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "home-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "home-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "home-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "home-mobile-28-y11200.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "scroll",
+          "y": 11200
+        },
+        {
+          "file": "home-mobile-click-y0-00-video_starten.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 0,
+          "target": "video_starten"
+        },
+        {
+          "file": "home-mobile-click-y10550-00-Für_wen_ist_das_Training.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 10550,
+          "target": "Für_wen_ist_das_Training"
+        },
+        {
+          "file": "home-mobile-click-y10550-01-Was_unterscheidet_euer_T.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 10550,
+          "target": "Was_unterscheidet_euer_T"
+        },
+        {
+          "file": "home-mobile-click-y10550-02-Funktioniert_die_Beratun.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 10550,
+          "target": "Funktioniert_die_Beratun"
+        },
+        {
+          "file": "home-mobile-click-y10972-00-Wie_lange_dauert_die_Zus.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 10972,
+          "target": "Wie_lange_dauert_die_Zus"
+        },
+        {
+          "file": "home-mobile-click-y10972-01-Was_kostet_das_Unternehm.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "viewport_label": "mobile",
+          "kind": "click",
+          "y": 10972,
+          "target": "Was_kostet_das_Unternehm"
+        }
+      ],
+      "viewport_label": "mobile",
+      "label": "mobile",
+      "docHeight": 12044
+    }
+  ]
+}

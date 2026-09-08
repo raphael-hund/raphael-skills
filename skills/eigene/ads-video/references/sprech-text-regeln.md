@@ -15,7 +15,7 @@ Zwei Referenz-Ebenen, beide Pflicht:
    lesen. Das sind Zeilen aus 682 echten, laufenden Ads. Zusätzlich Stichprobe aus der
    Referenz-Datenbank ziehen (siehe SKILL.md, „Referenz-Datenbank").
 2. **Kunden-Referenzen:** Referenz für MAKE:
-   `/root/clients/client-make/ads/skripte/2026-07-22-MAKE-Ad-Skripte.md`
+   `/root/clients/make/ads/skripte/2026-07-22-MAKE-Ad-Skripte.md` (Stand 07.09.2026 auf Disk nicht vorhanden; Ersatz: `/root/clients/make/ads/motion-graphic-2026-09-03/SKRIPT.md`)
    (Dominic, Du-Ansprache, kurze Hauptsätze, konkrete Zahlen/Namen statt Kategorien). Bei
    anderen Kunden: deren `ads/`-Ordner als Referenz-Set nutzen; existiert noch keiner, aus
    dem Voice-Dossier + einer echten Textprobe ableiten (siehe `copywriting`-Skill).

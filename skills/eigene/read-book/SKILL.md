@@ -119,8 +119,8 @@ verschluckt hat. Das ist der häufigste stille Fehler, deshalb hier prüfen und 
 später.
 
 Sehr lange Werke: Kapitel einzeln durch je einen frischen Subagenten laufen lassen
-(`orchestrate`, 4–6 parallel, nie mehr — RAM). Jeder Subagent bekommt **nur seinen
-Zeilenbereich**, nicht das ganze Buch.
+(`orchestrate`, parallel ohne künstliche Obergrenze). Jeder Subagent bekommt **nur
+seinen Zeilenbereich**, nicht das ganze Buch.
 
 ### Schritt 4 — Je Kapitel die fünf Blöcke
 
@@ -250,6 +250,6 @@ Kanonische Gate-Reihenfolge und ihre Gotchas:
 - **Ein Kandidat pro Buch** wird nie freigegeben, weil er zu viel auf einmal behauptet.
   Eine These, eine Seite.
 - **Kundenmaterial** (interne PDFs eines Kunden) gehört ins Kundenrepo unter
-  `/root/clients/client-<name>/raw/`, nicht ins zentrale Brain (TB4).
+  `/root/clients/<slug>/raw/` (TB4). Das zentrale Brain bleibt kundenfrei.
 - **Regel-19-konform berichten:** pass/fail mit eingefügtem Beleg (Befehl + Ausgabe),
   nie eine Gedankengang-Erklärung verlangen oder liefern.

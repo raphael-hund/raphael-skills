@@ -1,0 +1,808 @@
+{
+  "base": "https://priwatt.de",
+  "createdAt": "2026-08-31T11:30:58.452Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/erfahrungen/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "erfahrungen__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "erfahrungen__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "erfahrungen__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "erfahrungen__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "erfahrungen__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "erfahrungen__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "erfahrungen__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "erfahrungen__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "erfahrungen__-desktop-08-y5092.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5092
+        },
+        {
+          "file": "erfahrungen__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "erfahrungen__-desktop-click-y3000-00-Nächste_Folie.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "Nächste_Folie"
+        },
+        {
+          "file": "erfahrungen__-desktop-click-y4500-00-Mehr_lesen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "Mehr_lesen"
+        },
+        {
+          "file": "erfahrungen__-desktop-click-y4500-01-Newsletter_abonnieren.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 4500,
+          "target": "Newsletter_abonnieren"
+        }
+      ],
+      "docHeight": 6592
+    },
+    {
+      "route": "/career/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "career__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "career__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "career__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "career__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "career__-desktop-04-y1846.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1846
+        },
+        {
+          "file": "career__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "career__-desktop-click-y750-00-Bewerbung_abschicken.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 750,
+          "target": "Bewerbung_abschicken"
+        }
+      ],
+      "docHeight": 3346
+    },
+    {
+      "route": "/service/ertragsrechner/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "service__ertragsrechner__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-08-y4812.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4812
+        },
+        {
+          "file": "service__ertragsrechner__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        }
+      ],
+      "docHeight": 6312
+    },
+    {
+      "route": "/service/faq/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "service__faq__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "service__faq__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "service__faq__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "service__faq__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "service__faq__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "service__faq__-desktop-05-y2496.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2496
+        },
+        {
+          "file": "service__faq__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "service__faq__-desktop-click-y0-01-Wie_können_wir_Dir_helfe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Wie_können_wir_Dir_helfe"
+        },
+        {
+          "file": "service__faq__-desktop-click-y1500-00-Mehr_lesen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Mehr_lesen"
+        },
+        {
+          "file": "service__faq__-desktop-click-y1500-01-Newsletter_abonnieren.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 1500,
+          "target": "Newsletter_abonnieren"
+        }
+      ],
+      "docHeight": 3996
+    },
+    {
+      "route": "/kontakt/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "kontakt__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "kontakt__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "kontakt__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "kontakt__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "kontakt__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "kontakt__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "kontakt__-desktop-06-y3218.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3218
+        },
+        {
+          "file": "kontakt__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "kontakt__-desktop-click-y0-01-Wie_können_wir_Dir_helfe.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Wie_können_wir_Dir_helfe"
+        },
+        {
+          "file": "kontakt__-desktop-click-y2250-00-Mehr_lesen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Mehr_lesen"
+        },
+        {
+          "file": "kontakt__-desktop-click-y2250-01-Newsletter_abonnieren.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Newsletter_abonnieren"
+        }
+      ],
+      "docHeight": 4718
+    },
+    {
+      "route": "/balkonkraftwerk-mit-speicher/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-07-y4258.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4258
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y0-00-Alle_zulassen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Alle_zulassen"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y2250-00-Balkonkraftwerk_mit_Spei.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Balkonkraftwerk_mit_Spei"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y2250-01-So_funktioniert_ein_Balk.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "So_funktioniert_ein_Balk"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y2250-02-So_lohnt_sich_ein_Set_mi.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "So_lohnt_sich_ein_Set_mi"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y2250-03-Welches_Set_passt_zu_mir.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Welches_Set_passt_zu_mir"
+        },
+        {
+          "file": "balkonkraftwerk-mit-speicher__-desktop-click-y3750-00-E-Book_gratis_sichern.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3750,
+          "target": "E-Book_gratis_sichern"
+        }
+      ],
+      "docHeight": 5758
+    },
+    {
+      "route": "/store-in-deiner-naehe/",
+      "error": "sweep crashed: page.close: Protocol error (Target.disposeBrowserContext): Failed to find context with id C85B70DC06F800697E4F6CB65DD2490F",
+      "shots": []
+    }
+  ]
+}

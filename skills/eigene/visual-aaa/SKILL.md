@@ -1,12 +1,12 @@
 ---
 name: visual-aaa
-version: 1.0.0
+version: 1.2.0
 description: >
-  Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien,
-  HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render →
-  Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) →
-  Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und
-  Critic-PASS ist verboten. always: true.
+  Visuelle Abnahme von PDF-Seiten, Folien, HTML-A4, Ads-Statics und Websites.
+  Prüft tatsächlich gerenderte Ansichten gegen Auftrag und Referenz. Für Web
+  bestimmt der Web-Owner Umfang und nötige Nachweise; dieser Skill liefert
+  die vertiefte Bildprüfung bei entsprechender Anforderung. Trigger: "visuell
+  prüfen", "Screenshot-Check", "PDF vor Auslieferung", "visual-aaa".
 class: E
 scope: agency
 sensitivity: internal
@@ -21,38 +21,73 @@ loads:
   - references/fail-katalog.md
   - references/kritiker-kontrakt.md
   - references/ship-manifest.md
-  - references/autopsie-fc17bade.md
 requires_skills: [eval@^0]
 completion_criteria:
-  - "Jedes visuelle Deliverable hat einen frischen Render (PNG pro Seite/Ansicht) unter einem versionierten out/-Pfad"
-  - "Cockpit oder ausführende Rolle hat JEDES PNG per Read wirklich angesehen (Self-Read) und eine Befundliste geschrieben — nicht nur erzeugt"
-  - "python3 …/visual-g1.py <out-dir> Exit-Code 0 (G1 deterministisch grün) BEVOR ein LLM-Kritiker zählt"
-  - "Mindestens ein visual-kritiker aus ANDERER Modellfamilie als der Builder hat am echten PNG urteilt: pass|fail + BELEG; fail → Fix-Loop"
-  - "visual-ship.json existiert mit g1_exit=0, self_read=true, critic_verdicts[].verdict=pass, pages[] vollständig"
-  - "Kein DoneClaim ‚fertig‘ ohne visual-ship.json — Worker-Behauptungen gelten untrusted (eval Verifikations-Vertrag)"
-  - "Nach JEDEM Fix: Re-Render ALLER betroffenen Seiten + Re-G1 + Re-Critic (nicht nur die geänderte Stelle)"
+  - "Die beauftragten Ansichten wurden tatsächlich geöffnet und gegen die aktuelle Referenz geprüft; fehlender Bildzugriff ist BLOCKED"
+  - "Bei Web bestimmt /root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/qa-faecher.md die anwendbaren Nachweise; Bilder belegen keine Funktion"
+  - "Für die vollständige Abnahme von PDF/Ads: Render, Self-Read, Pixel-G1 und unabhängige Kritik sind dokumentiert"
+  - "Ein angefordertes Ship-Manifest validiert im aktuellen Vertrag; Fehler, fremde Revisionen und ungeprüfte Pflichtansichten ergeben kein PASS"
+  - "Nach Änderungen werden betroffene Ansichten und bekannte gemeinsame Verbraucher erneut geprüft; subjektive Abnahme bleibt beim Nutzer"
+
 ---
 
-# visual-aaa — hartes Pixel-Gate
+# visual-aaa — visuelle Abnahme
 
 ## Zweck (1 Satz)
 
 Visuelle Arbeit endet erst, wenn Pixel-Belege und ein fremder Kritiker grün
 sind — nie, wenn ein Worker „sieht gut aus“ sagt.
 
-## Wann dieser Skill greift (hart)
+## Rolle im Workflow (hart)
+
+`visual-aaa` ist ausschließlich der **terminale DoneClaim-Gate**, nie
+Workflow-Owner, Planer, Builder oder zweite Capture-Pipeline. Der jeweilige
+Host-Skill besitzt Auftrag, Scope und Produktion; bei Websites bleibt `web` der
+einzige Workflow-Owner und `shot-sweep.mjs` der Capture-Kanon. `visual-aaa`
+prüft nur die frischen Artefakte und Receipts dieses Owners. Ein AAA-PASS kann
+weder einen roten funktionalen Flow noch eine rote Regression überstimmen.
+
+## Wann dieser Skill greift
 
 | Deliverable | Pflicht? |
 |---|---|
 | Kunden-PDF / Offerte / Firmenvorstellung / Pitch-Deck | **immer** |
-| Landingpage / Website vor Ship | **immer** (zusätzlich zu `web` screenshot-kritik-loop) |
+| Website mit vertiefter visueller Abnahme | nach Web-Auftrag und QA-Auswahl |
 | Ads-Statics / Creatives | **immer** |
 | Interne Notiz-Skizze / Wireframe | nein (SOLO ok) |
 
-Wenn Raphael „richtig gut / AAA / bombensicher / visuell prüfen“ sagt → dieser
-Skill, Betriebsart **GAUNTLET** aus `orchestrate`/`orchestrate-gauntlet`.
+Eine ausdrückliche AAA-Abnahme verlangt eine unabhängige Bildprüfung. Die
+benötigten Rollen und Werkzeuge folgen dem tatsächlichen Hostvertrag.
 
-## Die 6 Schritte (Reihenfolge ist Gesetz)
+## Web-Aufträge
+
+Web bleibt der Workflow-Owner. Maßgeblich sind dessen
+`/root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/qa-faecher.md` und
+`/root/raphael-skills/skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/screenshot-kritik-loop.md`:
+
+1. Vorhandene aktuelle Bilder der betroffenen Ansichten verwenden. Neue Bilder
+   nur bei fehlendem oder veraltetem Beleg; kein zweiter vollständiger Sweep.
+2. Referenz und Ergebnis wirklich ansehen. Hierarchie, Typografie, Bildschnitt,
+   Konsistenz und beauftragte Viewports beurteilen. FullPage dient der Übersicht,
+   Detailurteile brauchen eine lesbare Ansicht oder einen Crop.
+3. Konkrete Abweichung mit Datei/Region und Bedeutung melden. Ein technischer
+   Bilddetektor ist eine Heuristik, keine automatische Geschmacksentscheidung.
+4. Nach einem Fix die betroffene Fläche und gemeinsame Verbraucher prüfen.
+   Funktion, Netzwerk, Datenwirkung und Reduced Motion haben eigene Nachweise.
+
+Keine universelle Hover-/Loading-/Mobile-Quote: Zustände werden als konkrete
+`route|viewport|target|state`-Anforderungen vereinbart. `--static` kennzeichnet
+stabilisierte Vergleichsbilder und beweist kein natürliches Laufzeitverhalten.
+Wenn ein Ship-Receipt verlangt ist, den bestehenden Writer nach
+`references/ship-manifest.md` verwenden. Alle Belege binden denselben Run,
+dieselbe Revision und Basis. Ein `FAIL`, `BLOCKED` oder fehlender Pflichtbeleg
+kann dadurch nicht zu Ready werden.
+
+Der folgende vollständige Renderablauf gilt für PDF, Folien und Ads-Statics;
+Web übernimmt daraus nur die benötigte Bildprüfung und gegebenenfalls den
+Ship-Writer.
+
+## Vollständige Abnahme für PDF, Folien und Ads
 
 ### 1. Messlatte + Scope
 
@@ -72,8 +107,6 @@ node /root/raphael-skills/skills/eigene/visual-aaa/scripts/render-a4-html.mjs \
 ```
 
 Für PDF: `pdftoppm -png -r 144 <pdf> <out-dir>/render/page`.
-Für Web: `shot-sweep.mjs --base <url> --out <out-dir>/render …` (Skill `web`).
-
 **Exit-Code des Renders muss 0 sein.** Leere/0-Byte-PNGs = FAIL.
 
 ### 3. Self-Read (nicht delegierbar fürs DoneClaim)
@@ -118,13 +151,13 @@ Was G1 prüft (siehe `scripts/visual-g1.py`):
 | `bottom-text-clip-risk` | helle/rote UI-Fläche endet abrupt am unteren Rahmen |
 | `low-variance-dead-zone` | große tote Einfarb-Fläche, die wie abgeschnitten wirkt |
 
-### 5. Critic-Loop (andere Modellfamilie)
+### 5. Unabhängige Bildprüfung
 
-Spawn `visual-kritiker` (oder Agent mit `agentType` aus anderer Familie als
-Builder — Default: Builder=`opus-builder`/`kimi-worker` → Kritiker=`grok-worker`
-oder `sol-pruefer` mit eingebettetem PNG-Kontext; Sol ist dateiblind → PNG
-vorher beschreiben+Pfad + Base64-Hinweis im Prompt, besser: vision-fähige
-Familie `grok-worker` / `kimi-worker` / `opus-builder`).
+Ein frischer Prüfer sieht die tatsächlichen Bilder und die Akzeptanzkriterien.
+Modell und Bildzugriff folgen dem aktuellen Host-/Nutzervertrag; historische
+Providerfehler sind keine dauerhaften Modelleigenschaften. Bei fehlendem
+Bildzugriff meldet der Owner `BLOCKED`. Eine andere Instanz ist keine Garantie
+für ein anderes Modell. Nachweise verwenden Dateipfade und bei Bedarf Crops.
 
 Prompt-Kern: `references/kritiker-kontrakt.md`. Format **nur**:
 
@@ -138,12 +171,14 @@ confidence: HIGH | MED | LOW
 - `fail` → Builder bekommt **nur** `biggest_gap`, fixt, Re-Render **aller**
   betroffenen Seiten, Re-G1, Re-Critic.
 - Max **5** Critic-Runden pro Seite, dann Eskalation an Raphael mit Belegen.
-- Builder ≠ Kritiker-Familie (AGENTS Regel 8).
+- Der unabhängige Prüfer hat nicht denselben Build-Kontext.
 
 ### 6. Ship-Manifest
 
 ```bash
 python3 /root/raphael-skills/skills/eigene/visual-aaa/scripts/write-ship-manifest.py \
+  --schema visual-aaa/ship/v2 \
+  --run-id <run-id> --build-revision <revision> \
   --out <out-dir>/visual-ship.json \
   --render-dir <out-dir>/render \
   --g1 <out-dir>/g1-report.json \
@@ -151,8 +186,11 @@ python3 /root/raphael-skills/skills/eigene/visual-aaa/scripts/write-ship-manifes
   --self-read true
 ```
 
-Ship nur wenn `visual-ship.json` valid und `ok: true`
-(`scripts/validate-ship-manifest.py` Exit 0).
+Ship nur wenn `visual-ship.json` im Schema `visual-aaa/ship/v2` valid und
+`ok: true` ist, seine `run_id`/`build_revision` zu Web-G1, Sweep und
+`run-evidence.json` passen und `scripts/validate-ship-manifest.py` Exit 0 liefert.
+`visual-aaa/ship/v1`, unbekannte Schemas oder stale Identität bleiben Historie,
+nie aktueller DoneClaim-Beleg.
 
 ## Verbote
 
@@ -163,23 +201,18 @@ Ship nur wenn `visual-ship.json` valid und `ok: true`
   „Outpaint-Ersatz“.
 - Fake-Gradient: `linear-gradient` der in <80 px von 0→#000 springt und die
   untere Hälfte tot schwarz macht.
-- Haiku als alleiniger visueller Kritiker (Raphael: keine Haiku-Subagents für
-  Urteil — Luna/Grok/Kimi/Opus).
+- Ein Bildurteil ohne tatsächlichen Bildzugriff oder entgegen aktueller Rollenfreigabe.
 
 ## Integration
 
-**Pflicht für alle Skills, die visuelle Deliverables ausliefern** (PDF, Landingpage, Ads-Static, Offerte, Folie). Kein DoneClaim ohne `visual-ship.json` (G1 Exit 0 + Critic pass HIGH + self_read=true).
-
-| Host-Skill | Status |
-|---|---|
-| `web` | ✅ `requires_skills` + completion_criteria (unconditionell nach Fix) |
-| `ads-statics` | ⬜ `requires_skills` + completion_criteria fehlen (muss ergänzt werden) |
-| `make-pdf` | ⬜ keine `requires_skills`/`completion_criteria` (muss ergänzt werden) |
-| `report` | ⬜ nur wenn PDFs ausgeliefert werden |
+Der aufrufende Fachskill hält Auftrag und Ergebnisumfang. Für Web gilt der
+Web-Zweig oben. Für PDF, Offerten, Folien und Ads bleiben die bestehenden
+vollständigen Render- und Abnahmeverträge gültig; dieser Skill ergänzt keine
+ungefragte Produktionsarbeit.
 
 ## Autopsie-Anker
 
-Die Fail-Klassen kommen aus [references/autopsie-fc17bade.md](references/autopsie-fc17bade.md)
+**Herkunft:** Die Fail-Klassen kommen aus [references/autopsie-fc17bade.md](references/autopsie-fc17bade.md)
 (Session `fc17bade-58f2-4a3a-8c8c-ecab3671be5c`, AlpenEnergie v11–v14). Jede
 neue Fail-Klasse, die Raphael fluchen lässt → hier + in `fail-katalog.md`
 nachtragen (`skill-update`).

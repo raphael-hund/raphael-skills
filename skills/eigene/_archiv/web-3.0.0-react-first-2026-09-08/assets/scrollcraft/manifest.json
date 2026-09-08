@@ -1,0 +1,22 @@
+{
+  "label": "GPT Image 2 → Kling 3.0 Turbo; akzeptierte erste 1,5 Sekunden. Später angeschnittene Garage verworfen.",
+  "video": "assets/real/clip.mp4",
+  "poster": "assets/real/poster.webp",
+  "sequence": {
+    "template": "assets/real/frames/frame-{iii}.webp",
+    "count": 24,
+    "start": 1,
+    "width": 640,
+    "height": 360
+  },
+  "policy": {
+    "mobileVideo": false,
+    "maxVideoBytes": 3145728,
+    "maxSequenceBytes": 1572864,
+    "maxDecodedBytes": 50331648,
+    "maxFrames": 48,
+    "timeoutMs": 8000
+  },
+  "asset": "assets/real/newgenerated-house.webp",
+  "assetLabel": "Neu erzeugtes Haus: GPT Image 2 → native Bildreparatur → Background Remover. Nur auf warmem hellem Hintergrund akzeptiert."
+}

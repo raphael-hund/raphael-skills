@@ -1,0 +1,1518 @@
+{
+  "base": "https://www.peter.at",
+  "createdAt": "2026-08-31T10:30:11.692Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/presse",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "presse-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "presse-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "presse-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "presse-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "presse-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "presse-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "presse-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "presse-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "presse-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "presse-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "presse-desktop-05-y2712.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2712
+        }
+      ],
+      "docHeight": 4212
+    },
+    {
+      "route": "/news/neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-05-y2794.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2794
+        }
+      ],
+      "docHeight": 4294
+    },
+    {
+      "route": "/karriere",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "karriere-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "karriere-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "karriere-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "karriere-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "karriere-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "karriere-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "karriere-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "karriere-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "karriere-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "karriere-desktop-04-y1594.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1594
+        }
+      ],
+      "docHeight": 3094
+    },
+    {
+      "route": "/partnerbetrieb-werden",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "partnerbetrieb-werden-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-02-y501.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 501
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-click-y0-00-Weiter.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Weiter"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-click-y0-01-el2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "el2"
+        }
+      ],
+      "docHeight": 2001
+    },
+    {
+      "route": "/weiterempfehlen",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "weiterempfehlen-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "weiterempfehlen-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "weiterempfehlen-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "weiterempfehlen-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "weiterempfehlen-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "weiterempfehlen-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "weiterempfehlen-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "weiterempfehlen-desktop-07-y3895.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3895
+        },
+        {
+          "file": "weiterempfehlen-desktop-click-y2250-00-Empfehlungscode_erhalten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Empfehlungscode_erhalten"
+        }
+      ],
+      "docHeight": 5395
+    },
+    {
+      "route": "/presse",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "presse-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "presse-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "presse-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "presse-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "presse-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "presse-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "presse-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "presse-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "presse-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "presse-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "presse-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "presse-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "presse-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "presse-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "presse-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "presse-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "presse-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "presse-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "presse-mobile-18-y6778.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6778
+        },
+        {
+          "file": "presse-mobile-click-y0-00-menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "menu"
+        }
+      ],
+      "docHeight": 7622
+    },
+    {
+      "route": "/news/neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-13-y4940.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4940
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-mobile-click-y0-00-menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "menu"
+        }
+      ],
+      "docHeight": 5784
+    },
+    {
+      "route": "/karriere",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "karriere-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "karriere-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "karriere-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "karriere-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "karriere-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "karriere-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "karriere-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "karriere-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "karriere-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "karriere-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "karriere-mobile-10-y3449.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3449
+        },
+        {
+          "file": "karriere-mobile-click-y0-00-menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "menu"
+        }
+      ],
+      "docHeight": 4293
+    },
+    {
+      "route": "/partnerbetrieb-werden",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "partnerbetrieb-werden-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-06-y2036.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2036
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-click-y0-00-menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "menu"
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-click-y0-01-Weiter.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Weiter"
+        },
+        {
+          "file": "partnerbetrieb-werden-mobile-click-y0-02-el2.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "el2"
+        }
+      ],
+      "docHeight": 2880
+    },
+    {
+      "route": "/weiterempfehlen",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "weiterempfehlen-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "weiterempfehlen-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "weiterempfehlen-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "weiterempfehlen-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "weiterempfehlen-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "weiterempfehlen-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "weiterempfehlen-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "weiterempfehlen-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "weiterempfehlen-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "weiterempfehlen-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "weiterempfehlen-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "weiterempfehlen-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "weiterempfehlen-mobile-12-y4479.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4479
+        },
+        {
+          "file": "weiterempfehlen-mobile-click-y0-00-menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "menu"
+        },
+        {
+          "file": "weiterempfehlen-mobile-click-y2110-00-Empfehlungscode_erhalten.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 2110,
+          "target": "Empfehlungscode_erhalten"
+        }
+      ],
+      "docHeight": 5323
+    }
+  ]
+}

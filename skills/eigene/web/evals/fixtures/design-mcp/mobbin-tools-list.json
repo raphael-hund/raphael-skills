@@ -1,0 +1,17 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "search_screens"
+      },
+      {
+        "name": "search_flows"
+      },
+      {
+        "name": "search_sections"
+      }
+    ]
+  }
+}

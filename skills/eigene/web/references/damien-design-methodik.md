@@ -1,5 +1,7 @@
 # Damien Ghader — Design-/Build-Methodik (Ideen-Merge)
 
+**Verbund (08.09.2026):** Weitere Creator-Methoden mit Attribution: [creator-methods.md](creator-methods.md).
+
 **Quelle:** X-Posts @damienghader (2026), extrahiert 2026-08-06 im Worktree
 `webdesign-skill-upgrade/sources/`. **Kein Vendoring**, keine Lovable-Pflicht —
 nur Methodik, die im lokalen Stack (Claude/Next/Tailwind/Motion) gilt.

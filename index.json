@@ -1,12 +1,12 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 140,
+  "skill_count": 29,
   "skills": [
     {
       "name": "design",
-      "version": "0.4.0",
+      "version": "0.7.0",
       "path": "skills/design/SKILL.md",
-      "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, finale QA IMMER ueber die deterministischen impeccable-Detektoren PLUS den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\", \"/taste\", \"/impeccable\", \"kill AI slop\", \"frontend-design\"."
+      "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, passende QA ueber die deterministischen impeccable-Detektoren und den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\", \"/taste\", \"/impeccable\", \"kill AI slop\", \"frontend-design\"."
     },
     {
       "name": "ads-copy",
@@ -22,9 +22,9 @@
     },
     {
       "name": "ads-statics",
-      "version": "2.6.2",
+      "version": "2.13.0",
       "path": "skills/eigene/ads-statics/SKILL.md",
-      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\". Bild danach: Skill higgsfield."
+      "description": "Zeigt auf ads Teil Statics. Angle mal Visual-Style-Briefs, acht Styles S1–S8. Hook-, Callout- und Angle-Formeln plus kategorisierte Referenz-Bibliothek (eine Datei pro Angle A01–A08 unter references/angles/, mit wörtlichem Onscreen-Text, Shortcuts und MAKE-Transfer) liegen als Pflicht-Lesen in references/. Copy ist ganze Sätze, Hook UND Deal in einer Ad, nur der ICP fühlt sich angesprochen. v2.6.1: Hormozi-Mapping der Callout-Typen, Likeness/Szene, WHAT×WHO×WHEN für Varianten. v2.7.0 (Raphael 03.09.2026): Deliverable ist Text plus visuelle Idee je Karte, nie ein Render. Bild-Produktion ist ein eigener Schritt (higgsfield, Shooting, Handy). v2.8.0 (Raphael 03.09.2026): Klarheit vor Handwerk. Ohne Case-Zahl auf der Karte gilt die Drei-Zeilen-Form: Zustand, Versprechen mit Frist, Null. Keine Schwellen, keine Bedingungen, kein Bundle-Beiwerk onscreen. v2.9.0 (Raphael 03.09.2026): Objektverkauf (Immobilie, Neubau, Produkt mit Preis) ist Produkt-Fakten-Preis-Button, keine Angle-Wahl; Abschnitt in teil-statics.md. v2.10.0 (Raphael 03.09.2026): Bild mit GPT Image 2. Logo, Look und Text als --image-Referenzen, JSON-Spec, Logo nie neu zeichnen. Pillow-Overlay verboten. Referenzen Raphael zuerst zeigen, dann Higgsfield. Beleg: PROPFIN-Welle 1. v2.11.0 (Raphael 04.09.2026): jede Static wird in 4:5 generiert (Text komplett im 4:5), danach per Outpaint auf 9:16 erweitert. Nie direkt 9:16, nie 1:1. Trigger: \"Statics bauen\", \"Static-Briefs\", \"Bildanzeigen\", \"Testwelle Statics\", \"S1-S8\"."
     },
     {
       "name": "ads-video",
@@ -34,51 +34,27 @@
     },
     {
       "name": "ads",
-      "version": "2.7.4",
+      "version": "4.2.0",
       "path": "skills/eigene/ads/SKILL.md",
-      "description": "Ein Skill für Paid Ads. Strategie zuerst (was testen, Static oder Video), dann ICP, Research, Video-Skript, Statics, Performance. Video-Skripte klingen wie eine Sprachnachricht. Performance zieht 7/30-Tage-Zahlen und sieht jedes Video per watch. Läuft ohne Second Brain. Trigger: \"Ads bauen\", \"Ad-Skript\", \"Video-Skript\", \"Ads Scripts\", \"Static-Briefs\", \"Angle-Dossier\", \"ICP für Ads\", \"Hooks schreiben\", \"Creatives\", \"Testwelle\", \"was zuerst\", \"Static oder Video\", \"Konto-Audit\", \"Ads Performance\", \"laufende Ads\", \"7 Tage\", \"30 Tage\"."
+      "description": "Paid Ads für Lead-Generation: Strategie, ICP, visuelle Konkurrenz-Recherche, Statics, sprechbare Video-Skripte, Drehbriefs und Auswertung bis zum Abschluss. Recherchiert die Meta Ads Library im Browser mit Playbacks und Bildbelegen. Enthält eine eigene Wissensbibliothek mit Autorenreferenzen, Quellen, Leadgen-Übertragung und Aussagegrenzen. Verbindet Wispr-Diktate, Creative-Produktion und das Kunden-Lern-Register. Für Ads bauen, Hooks, Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek, Konto-Audits, Creator- Wissen und 7/30-Tage-Auswertungen. Wissen und Referenzen liegen im Skill; Second Brain ist für Nutzung und Aktualisierung nicht erforderlich."
     },
     {
       "name": "brain",
-      "version": "0.1.0",
+      "version": "0.3.0",
       "path": "skills/eigene/brain/SKILL.md",
-      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff). Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\"."
-    },
-    {
-      "name": "codex-first",
-      "version": "0.1.0",
-      "path": "skills/eigene/codex-first/SKILL.md",
-      "description": "Delegiert ein Arbeitspaket an die Codex-CLI (GPT-5.6, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Billig/anders bauen (Codex), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/codex-first\", \"an Codex geben\", \"von GPT bauen lassen\", \"codex exec\", \"Cross-Vendor-Bau\"."
-    },
-    {
-      "name": "codex-orchestration",
-      "version": "0.1.0",
-      "path": "skills/eigene/codex-orchestration/SKILL.md",
-      "description": "Create, route, continue, monitor, and synthesize real user-visible Codex App tasks across the cloud models exposed by the live app, including OpenAI, Claude, Kimi, and Grok when available. Use for visible sub-threads, separate tasks, model comparisons, multi-model fan-out, Planner/Advisor/Designer/Executor workflows, Kimi or Grok tasks, or any request that explicitly wants Codex App tasks instead of hidden subagents, workflow workers, CLI sessions, or background agents. Trigger: \"Codex App tasks\", \"visible sub-threads\", \"multi-model fan-out\", \"model comparisons\"."
+      "description": "Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi: `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste), `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff). Ein Creator-Profil (alle Reels/Videos) läuft als einspeisen→verdichten→sichten nach references/creator-feed.md, mit Medien-IDs, Carousel-Videos und Abdeckungslücken. Verdrahtet auf die vorhandenen Brain-Skripte statt auf Freitext. Trigger: \"ins Brain\", \"einspeisen\", \"Brain aufräumen\", \"was weiß ich über\", \"Kandidaten sichten\", \"Wissen verdichten\", \"Brain prüfen\", \"brain\", \"Notiz ablegen\", \"Second Brain\", \"alle Reels transkribieren\", \"Creator-Feed ins Brain\", \"Nuggets thematisch\"."
     },
     {
       "name": "copywriting",
-      "version": "0.11.0",
+      "version": "0.14.0",
       "path": "skills/eigene/copywriting/SKILL.md",
       "description": "Feuert für JEDEN einzelnen deutschen Verkaufs-/Marketing-Text (Ads, Web, SEO, einzelne E-Mail) UND für das Vermenschlichen/Entfloskeln von KI-generiertem Text: klarer, aktiver, floskelfreier Text in der Brand-Voice des Kunden, frei von AI-Slop-Tells. Trigger: \"Text schreiben\", \"Copy\", \"umschreiben\", \"Stil prüfen\", \"entfloskeln\", \"klingt nach KI\", \"humanize\", \"AI-Slop raus\". Für mehrteilige Email-Sequenzen, Drip-Kampagnen, Trigger-/Automations-Flows (z.B. Warenkorbabbrecher-Mails) siehe emails als Primärskill; copywriting liefert dort nur den Text/Ton als Sekundärskill."
     },
     {
-      "name": "debug",
-      "version": "0.2.0",
-      "path": "skills/eigene/debug/SKILL.md",
-      "description": "Feuert bei jedem harten Bug, Testfehler oder unerwartetem Verhalten — BEVOR ein Fix vorgeschlagen wird. Disziplin: erst einen engen pass/fail-Loop bauen, dann Root Cause, dann Fix. Nach 3 Fehlversuchen wird die Architektur hinterfragt, nicht Fix Nr. 4 probiert. Trigger: \"debug\", \"diagnose\", \"warum schlägt der Test fehl\", \"geht nicht\", \"kaputt\", \"Regression\", \"langsam geworden\"."
-    },
-    {
       "name": "eval",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "path": "skills/eigene/eval/SKILL.md",
       "description": "Feuert für Qualitäts-Gates und Bewertung: eval-run (G1→G2), Judge-Panel, rubric-author. Jeder Ship-Output läuft hier durch. Ein Worker behauptet nie selbst \"fertig\" — eine andere Instanz verifiziert per striktem Verdikt-Vertrag, jede Einstufung braucht einen konkreten Beleg statt einer Vermutung. Trigger: \"evaluieren\", \"Gate fahren\", \"Judge\", \"Rubrik schreiben\", \"QA-Score\"."
-    },
-    {
-      "name": "extract-approach",
-      "version": "0.2.0",
-      "path": "skills/eigene/extract-approach/SKILL.md",
-      "description": "\"skillify this\" — feuert, wenn ein Arbeitsmuster zum ZWEITEN Mal auftaucht: extrahiert es als Skill-Kandidat nach _candidates/. Trigger: \"skillify this\", \"das haben wir schon mal so gemacht\", \"daraus einen Skill machen\"."
     },
     {
       "name": "firecrawl",
@@ -87,22 +63,16 @@
       "description": "Holt sauberen Web-Kontext über die Firecrawl-CLI oder den gehosteten MCP: suchen, eine URL scrapen, bei Bedarf klicken, lokale Dateien parsen. Trigger: \"Firecrawl\", \"Seite scrapen\", \"Web suchen\", \"firecrawl search\", \"firecrawl scrape\", \"sauberes Markdown von URL\"."
     },
     {
-      "name": "grok-first",
+      "name": "herdr-fleet",
       "version": "0.1.0",
-      "path": "skills/eigene/grok-first/SKILL.md",
-      "description": "Delegiert ein Arbeitspaket an die native Grok-Build-CLI. Grok arbeitet headless in seiner eigenen Harness; der aufrufende Agent prueft Diff und Tests danach selbst. Trigger: \"/grok-first\", \"an Grok geben\", \"grok -p\", \"schnelle Serien-Edits\", \"Cross-Vendor-Bau\"."
-    },
-    {
-      "name": "handoff",
-      "version": "0.5.0",
-      "path": "skills/eigene/handoff/SKILL.md",
-      "description": "Feuert für JEDE Übergabe — zwei Modi: (1) SESSION: vor jedem /clear und am Session-Ende einen Übergabe-Brief für die eigene nächste Session schreiben (PROGRESS.md/DECISIONS.md, Write-Set committen, hartes /clear). (2) EXTERN: das Gespräch zu einem redigierten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person verdichten (Verweis statt Duplikat, Ablage im OS-Temp). Fakten statt Anweisungen, inkl. Fallen/Sackgassen und Secret-Redaktion. Handoff ist Closeout: Brief schreiben, keine neue Produktarbeit. Trigger: \"handoff\", \"übergeben\", \"vor /clear\", \"Session beenden\", \"Session-Handoff fällig\", \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
+      "path": "skills/eigene/herdr-fleet/SKILL.md",
+      "description": "Koordinator-Skill für Herdr auf dem VPS: Fable/Astra als Lead, Worker (Opus für Frontend, Codex/Sol für Backend, Grok als Fremd-Reviewer) in eigenen Panes und Git-Worktrees, Arbeit als Bean-Datei auf main, Brief-Datei statt langem Prompt, Ankündigung per `fleet done`, Watcher routet Review/Followup/Refill, Lead landet mechanisch und pusht nie. Trigger: \"Herdr\", \"Flotte\", \"fleet\", \"mit Herdr bauen\", \"Worker in Panes\", \"Koordinator-Modus\", \"als Team bauen\"."
     },
     {
       "name": "higgsfield",
-      "version": "0.1.0",
+      "version": "0.4.0",
       "path": "skills/eigene/higgsfield/SKILL.md",
-      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
+      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten. v0.3.0 (Raphael 04.09.2026): Statics immer 4:5 generieren, dann outpaint auf 9:16. Nie direkt 9:16. v0.4.0 (Raphael 08.09.2026): Ein GPT-Image-Lauf pro Karte. Kein Edit, kein Fix-Lauf auf ein fertiges Bild; jeder weitere GPT-Image-Durchgang verfaelscht das Motiv (Noise). Feed = lokaler 4:5-Crop des Masters, Story = genau ein natives Outpaint 9:16 dieses Crops (Raphael 08.09.: keine lokalen Blur- oder Flaechenraender). Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
     },
     {
       "name": "idea-filter",
@@ -117,52 +87,16 @@
       "description": "Router auf Kommandosprache + Craft-Floor in design. Feuert NUR bei explizitem \"/impeccable\" oder einem namentlichen Kommando (audit, polish, bolder, quieter, distill, live). NICHT bei Website-/Landingpage-Bau — das ist web + design. Trigger: \"/impeccable\", \"impeccable audit\", \"impeccable polish\"."
     },
     {
-      "name": "kimi-first",
-      "version": "0.2.0",
-      "path": "skills/eigene/kimi-first/SKILL.md",
-      "description": "Delegiert ein Arbeitspaket an die Kimi-CLI (Kimi K3, 1M Kontext, Weg 2, non-interaktiv) und lässt Claude das Ergebnis als strenger Reviewer abnehmen. Ideal für Riesen-Kontexte/ Volumen; billig/anders bauen (Kimi), teuer prüfen (Claude), Merge behält Claude. Trigger: \"/kimi-first\", \"an Kimi geben\", \"kimi -p\", \"riesiger Kontext\", \"1M ingest\", \"Cross-Vendor-Bau\"."
-    },
-    {
-      "name": "kunden-chat",
-      "version": "0.3.0",
-      "path": "skills/eigene/kunden-chat/SKILL.md",
-      "description": "Feuert bei Kundenkommunikation auf WhatsApp und in Mails: Entwurf im Raphael-Ton aus echten MAKE-Chats, Verlauf und Dateien zuerst ziehen. always: true bei Kunden-Chat, Kundenmail, Update an den Kunden, Erinnerung, Freigabe-Frage, Liefer-Ansage. Trigger: \"WhatsApp an Kunden\", \"Kundenmail\", \"Nachricht an den Kunden\", \"Kundenupdate schreiben\", \"im Chat antworten\"."
-    },
-    {
-      "name": "no-ai-slop",
-      "version": "0.2.0",
-      "path": "skills/eigene/no-ai-slop/SKILL.md",
-      "description": "Router auf copywriting G1→G2. Feuert NUR bei explizitem \"/no-ai-slop\". NICHT bei Website-/Landingpage-Bau — web lädt copywriting, nicht diesen Skill. Trigger: \"/no-ai-slop\"."
-    },
-    {
       "name": "offers",
       "version": "0.2.0",
       "path": "skills/eigene/offers/SKILL.md",
       "description": "Feuert für Angebots-Design: Offer-Stack, Preislogik, Risiko-Umkehr, Value-Equation (Hormozi). Trigger: \"Angebot bauen\", \"Offer\", \"Preis festlegen\", \"Garantie\", \"Bonus-Stack\", \"Value Proposition schärfen\"."
     },
     {
-      "name": "onboard",
-      "version": "0.3.1",
-      "path": "skills/eigene/onboard/SKILL.md",
-      "description": "Feuert beim Kunden-Onboarding (Loop 1): neuer Kunde, Intake-Interview, ICP/Offer/Proof/Voice-Dossier aufbauen. Trigger: \"onboarden\", \"neuer Kunde\", \"ICP erarbeiten\", \"Dossier bauen\", \"Intake-Interview\"."
-    },
-    {
-      "name": "orchestrate-gauntlet",
-      "version": "3.0.0",
-      "path": "skills/eigene/orchestrate-gauntlet/SKILL.md",
-      "description": "Run one explicitly requested, bounded cross-family comparison against a measurable reference. Never auto-trigger from vague quality language. Trigger: \"orchestrate-gauntlet\", \"Gauntlet\", \"cross-model tournament\"."
-    },
-    {
       "name": "orchestrate",
-      "version": "2.1.0",
+      "version": "3.0.0",
       "path": "skills/eigene/orchestrate/SKILL.md",
-      "description": "Coordinate multi-step, website, visual, or mass work with Dynamic Workflows and Tasks. Spawn Opus, Grok, Kimi, and Sol subagents; Luna for mass. Trigger: \"orchestrieren\", \"delegieren\", \"Workflow\", \"Tasks\", website, Landingpage, Screenshots, visuelle QA, Unterseiten, Masse, Serie, \"Controller-Session\", \"Loop\", \"Graph\", \"Gauntlet\", \"Council\", or \"GRUENDLICH\" / \"gründlich in einem Durchlauf\"."
-    },
-    {
-      "name": "printingpress",
-      "version": "0.1.1",
-      "path": "skills/eigene/printingpress/SKILL.md",
-      "description": "\"Druckt agent-native CLI + SKILL.md für API-only Services aus einem Prompt. Target: ads-research, seo, pipedrive, trello. Intake → Draft-Welle (1-3 Luna parallel) → G1 mechanical → G2 cross-family → _candidates/. Nutze NUR wenn Raphael explizit 'printingpress' oder 'CLI für X' sagt. Trigger: \\\"printingpress\\\", \\\"CLI für X generieren\\\", \\\"Skillify API-only Tool\\\", \\\"Skill aus API-Spec drucken\\\".\""
+      "description": "Use when a task needs bounded delegation, parallel independent work or an explicitly requested workflow, loop, graph, gauntlet or council. Coordinate dependencies, write boundaries, result acceptance and recovery through the tools available in the current host."
     },
     {
       "name": "read-book",
@@ -171,28 +105,16 @@
       "description": "Feuert, wenn ein Buch, PDF, EPUB oder ein längeres Dokument inhaltlich ausgewertet werden soll: extrahiert den Text 100 % lokal (pdftotext / ebook-convert), arbeitet Kapitel für Kapitel und liefert je Kapitel TL;DR, Konzepte, Zitate mit Seitenzahl, Action Items und Frameworks. Legt das Rohmaterial mit Präfix `resource-` in /root/raphael-brain/raw/ ab (inkl. Herkunftsbeleg) und die Verdichtung als Kandidat in wiki/_candidates/ — nie direkt ins Wiki. Keine externen API-Aufrufe. Trigger: \"lies das Buch\", \"PDF auswerten\", \"EPUB zusammenfassen\", \"Buchnotizen\", \"read-book\", \"was steht in diesem Buch\", \"Kapitelzusammenfassung\", \"Buch ins Brain\"."
     },
     {
-      "name": "report",
-      "version": "0.1.0",
-      "path": "skills/eigene/report/SKILL.md",
-      "description": "Feuert für Kundenreports: baut Berichte NUR aus belegbaren, echten Zahlen — jede Zahl mit Quelle, sonst Block. Trigger: \"Report bauen\", \"Kundenbericht\", \"Weekly\", \"Performance-Report\", \"Ergebnisse zusammenfassen\"."
-    },
-    {
       "name": "seo",
-      "version": "0.7.2",
+      "version": "0.8.0",
       "path": "skills/eigene/seo/SKILL.md",
-      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\"."
+      "description": "Feuert für SEO (Loop 4): Keyword-/SERP-Research, Informationsarchitektur, Briefs, Produktion, Tech-QA, GSC-Monitoring, Refresh, Linkbuilding/Digital-PR, lokale SEO/GBP, AI-Sichtbarkeit (AEO/GEO), E-E-A-T, SERP-Feature-Analyse, interne Verlinkung/Cluster, Google-Ranking-Plan, KI-Suche (AI Overviews, AI Mode, ChatGPT, Perplexity, Bing Copilot), Graustufen/asozial/gray-hat. Trigger: \"SEO\", \"Keyword-Research\", \"Content-Brief\", \"Ranking\", \"Ranking-Plan\", \"Tech-Audit\", \"Backlinks\", \"Digital PR\", \"Statistikseite\", \"AI-Sichtbarkeit\", \"AEO\", \"GEO\", \"GSC\", \"Local SEO\", \"GBP\", \"E-E-A-T\", \"SERP-Feature\", \"Featured Snippet\", \"Themen-Cluster\", \"interne Verlinkung\", \"Graustufen\", \"asozial SEO\", \"gray-hat\", \"gray hat\", \"Citation Outreach\", \"LLM mentions\"."
     },
     {
-      "name": "session-failover",
-      "version": "0.6.0",
-      "path": "skills/eigene/session-failover/SKILL.md",
-      "description": "Auto-Compact erst bei 256k (Raphael 18.08.). Manuelles /compact nur wenn die TUI voll ist. Reicht Compact nicht: /handoff auf die Platte, /clear, neue Session in derselben TUI, /model kimi-k3, Handoff einfügen. Bei API-Fehler sofort Modell+Effort, nicht warten. Trigger: /compact, /handoff, /clear, /model, /effort, API-Fehler, 401, 408, 529, subscription disabled, synthetic, Fable tot, Session hängt, /session-failover."
-    },
-    {
-      "name": "session-watch",
-      "version": "0.20.0",
-      "path": "skills/eigene/session-watch/SKILL.md",
-      "description": "Eine oder zwei offene Claude-Sessions (Default: claude --cloud, sonst lokale Claude-TUI) von der Grok-Harness aus prüfen, bei Bedarf weiter prompten und technische Fehler selbst lösen. Ziel ist immer Claude. Zwei TUIs: Builder und Kritiker, Ping-Pong. Jede Sub-Session startet mit /goal plus Gauntlet-Closer (Fan-out, /loop, harter Kritiker, Blind-A/B, /ultracode). Driver dort: kimi-k3, opus oder fable. Alle 15 Minuten Stand messen. Prompt nur wenn Loop steht, Phase fertig ist oder Technik kaputt ist. Trigger: /session-watch, Cloud-Session watchen, Claude-Tab watchen, Worker weiter prompten, /watch-session."
+      "name": "sol-astra-advisor",
+      "version": "0.1.0",
+      "path": "skills/eigene/sol-astra-advisor/SKILL.md",
+      "description": "Codex-Arbeitsmodus, wenn Astra das Kontingent frisst: Sol (gpt-5.6-sol) trägt Fortschritt, Implementierung und Verifikation; Astra (gpt-6-astra, Effort high) wird nur als Berater mit frischem Kontext gerufen — bei harten Entscheidungen, Architektur-Trade-offs oder unabhängigem Review. Astra editiert keine Dateien und startet keine Agenten. Sol arbeitet danach weiter. Trigger: \"Astra fragen\", \"Berater\", \"advisor\", \"Zweitmeinung von Astra\", \"Architektur-Trade-off\", \"Sol baut, Astra berät\", \"$sol-astra-advisor\"."
     },
     {
       "name": "taste",
@@ -201,88 +123,22 @@
       "description": "Router auf die taste-Linie in design. Feuert NUR bei explizitem \"/taste\" oder \"taste-Linie\". NICHT bei Website-/Landingpage-Bau — das ist der web-Skill (laedt design progressiv). Trigger: \"/taste\", \"taste-Linie\", \"taste-Skill\"."
     },
     {
-      "name": "ui-ux",
-      "version": "0.2.0",
-      "path": "skills/eigene/ui-ux/SKILL.md",
-      "description": "Router auf die ui-ux-Linie in design. Feuert NUR bei explizitem \"/ui-ux\" oder \"ui-ux-Linie\". NICHT bei Website-Bau — das ist der web-Skill. Trigger: \"/ui-ux\", \"ui-ux-Linie\", \"ui-ux-pro-max Suche\"."
-    },
-    {
-      "name": "ultra-loop",
-      "version": "0.5.0",
-      "path": "skills/eigene/ultra-loop/SKILL.md",
-      "description": "Baut und betreibt einen selbstkritischen Dauer-Loop, der in JEDEM Durchgang einen echten dynamischen Workflow (Workflow-Tool) mit vielen Subagents startet: Worker-Flotte (Sol/Kimi/Luna/Opus/Grok, frei nach Verfügbarkeit; Haiku/Sonnet/Fable verboten) findet Schwächen → verifizieren → fixen → Gates grün → committen/pushen → Stand fortschreiben. Trigger: \"/ultra-loop\", \"Loop mit Workflows\", \"Dauer-Verbesserungs-Loop\", \"selbstkritischer Loop\", \"loop der sich verbessert\", \"ultracode-Loop\"."
-    },
-    {
-      "name": "ultracode",
-      "version": "1.0.0",
-      "path": "skills/eigene/ultracode/SKILL.md",
-      "description": "Expliziter, streng begrenzter Qualitätslauf für Claude Code. Verarbeitet höchstens drei disjunkte Items strikt nacheinander: ein Builder, echtes Gate, höchstens ein familienfremder Reviewer und keine Nachkommen. Trigger: \"/ultracode\", \"ultracode\"."
-    },
-    {
       "name": "visual-aaa",
-      "version": "1.0.1",
+      "version": "1.2.0",
       "path": "skills/eigene/visual-aaa/SKILL.md",
-      "description": "Feuert für JEDEN visuellen Deliverable vor Auslieferung (PDF-Seiten, Folien, HTML-A4, Landingpages, Ads-Statics, Offerte, Pitch-Deck). Erzwingt Render → Self-Read → G1 (deterministisch) → harter Kritiker (andere Modellfamilie) → Fix-Loop bis PASS. „Fertig“ ohne visual-ship.json mit g1_exit=0 und Critic-PASS ist verboten. always: true. Trigger: \"visuell prüfen\", \"Screenshot-Check\", \"PDF vor Auslieferung\", \"Landingpage abnehmen\", \"visual-aaa\"."
+      "description": "Visuelle Abnahme von PDF-Seiten, Folien, HTML-A4, Ads-Statics und Websites. Prüft tatsächlich gerenderte Ansichten gegen Auftrag und Referenz. Für Web bestimmt der Web-Owner Umfang und nötige Nachweise; dieser Skill liefert die vertiefte Bildprüfung bei entsprechender Anforderung. Trigger: \"visuell prüfen\", \"Screenshot-Check\", \"PDF vor Auslieferung\", \"visual-aaa\"."
     },
     {
       "name": "watch",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "path": "skills/eigene/watch/SKILL.md",
       "description": "Feuert, wenn ein Video (YouTube, Instagram, TikTok, Loom, Vimeo, Riverside, Zoom oder eine lokale Datei) inhaltlich analysiert oder als Vorlage seziert werden soll: lädt es lokal via yt-dlp, sampelt Frames via ffmpeg (Hook-Kontaktbögen + Body-Einzelbilder), zieht das Transkript und liefert Scene-by-Scene-Breakdown, \"Why it works\" und Steal-the-structure. 100 % lokal, null API-Kosten. Trigger: \"analysiere dieses Video\", \"watch\", \"Reel sezieren\", \"was macht diesen Hook stark\", \"Struktur klauen\"."
     },
     {
-      "name": "web-anti-slop",
-      "version": "0.1.0",
-      "path": "skills/eigene/web-anti-slop/SKILL.md",
-      "description": "Always-on Router innerhalb des web-Skills: verbindet visuelle, Copy- und Code-Anti-Slop-Gates, ohne sieben ähnliche Cleanup-Skills gleichzeitig zu laden. Läuft bei jedem Website-/Landingpage-Build; die importierten Spezialisten bleiben explizite Zweitmeinungen. Trigger: \"WebAntiSlop\", \"Web Anti-Slop\", \"Website ohne AI-Slop\", \"Anti-Slop Gate für Web\"."
-    },
-    {
       "name": "web",
-      "version": "0.22.0",
+      "version": "4.0.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Website-/Landingpage-Projekte (Loop 2) — immer dann, wenn eine komplette Site entsteht oder als Ganzes überarbeitet wird: Strategie, Sitemap, Copy, Build, QA, CRO-Learning, Website-Referenzen nachbauen, Bild-Rebuild, UI-Motion-Komponenten, Tool-Use-Case-Router (Defaults/Install statt Linkliste) und kuratierte Frontend-Referenzen. UI-Detailarbeit (Polish, Motion, Slop-Scan) sitzt im design-Skill und wird von hier progressiv nachgeladen — nicht als Extra-Skills taste/impeccable/ui-ux/kill-ai-slop/animate/frontend-design. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Landingpage für einen Kunden\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Popup/Lead-Magnet\", \"Screenshot nachbauen\", \"aus Bild bauen\"."
-    },
-    {
-      "name": "website-plan",
-      "version": "3.0.0",
-      "path": "skills/eigene/website-plan/SKILL.md",
-      "description": "Plant eine Kunden-Website ohne Production-Code und erzeugt eine eingefrorene Unterseiten-Queue für den sequenziellen Codex-Controller. Keine Workflow- Wellen, keine Zwischenfreigaben pro Seite und keine versteckten Agenten. Trigger: \"/website-plan\", \"Website planen\", \"kompletter Website-Plan\", \"Unterseiten einzeln planen\", \"Relaunch planen\"."
-    },
-    {
-      "name": "anti-slop-dmmulroy",
-      "version": "0.1.0",
-      "path": "skills/imported/anti-slop-dmmulroy/SKILL.md",
-      "description": "Installiert Dillon Mulroys konkrete Oxlint-Regeln für TypeScript/JavaScript in einem Projekt und erzwingt typ-ehrliche Grenzen. Nur bei explizitem Wunsch nach dieser Implementierung oder wenn web-anti-slop sie für Custom-TS/JS anfordert. Trigger: \"anti-slop dmmulroy\", \"Dillon anti-slop\", \"Oxlint Anti-Slop installieren\"."
-    },
-    {
-      "name": "code-slop-asyrafhussin",
-      "version": "0.1.0",
-      "path": "skills/imported/code-slop-asyrafhussin/SKILL.md",
-      "description": "Qualitativer AI-Code-Slop-Audit für PHP/Laravel und TypeScript/React: Erzähl-Kommentare, generische Namen, Overengineering, Defensive-Overdose, Test-Slop und Stil-Fingerprints. Nur explizit/lazy. Trigger: \"code slop asyraf\", \"AI-Code-Muster prüfen\", \"Code fühlt sich nach KI an\", \"Slop Ledger\"."
-    },
-    {
-      "name": "deslop-brianlovin",
-      "version": "0.1.0",
-      "path": "skills/imported/deslop-brianlovin/SKILL.md",
-      "description": "Minimaler Branch-Cleanup nach Brian Lovins Deslop-Prompt: entfernt nur im Diff eingeführte Erzähl-Kommentare, ortsfremde Defensive, any-Casts und Stilbrüche. Nur explizit/lazy. Trigger: \"deslop brianlovin\", \"Brian Lovin Code Cleanup\", \"Branch ent-sloppen\"."
-    },
-    {
-      "name": "deslop-davila",
-      "version": "0.1.0",
-      "path": "skills/imported/deslop-davila/SKILL.md",
-      "description": "Davila7-Variante des Branch-Cleanups mit zusätzlicher Python-Regel für Inline-Imports. Entfernt nur im Diff eingeführte Kommentare, ortsfremde Defensive, any-Casts und Stilbrüche. Nur explizit/lazy. Trigger: \"deslop davila\", \"Dani Avila deslop\", \"Python Inline-Imports ent-sloppen\"."
-    },
-    {
-      "name": "deslop-poteto",
-      "version": "0.1.0",
-      "path": "skills/imported/deslop-poteto/SKILL.md",
-      "description": "Poteto/Cursor-Variante für minimalen Code-Cleanup: entfernt unnötige Kommentare, ortsfremde Defensive, any-Casts und tiefe Verschachtelung aus dem aktuellen Diff, ohne Verhalten zu ändern. Nur explizit/lazy. Trigger: \"deslop poteto\", \"Cursor deslop\", \"Poteto Code Cleanup\"."
-    },
-    {
-      "name": "desloppify-peteromallet",
-      "version": "0.1.0",
-      "path": "skills/imported/desloppify-peteromallet/SKILL.md",
-      "description": "Manuelle Bedienoberfläche für Peter O'Malleys installierten Multi-Language- Scanner desloppify. Nur bei explizitem Health-Scan, Technical-Debt-Score oder Cleanup-Plan; nie für normalen Code-Review oder Einzelbugs. Trigger: \"desloppify\", \"Codebase Health Score\", \"Technical Debt scannen\", \"Cleanup-Plan mit desloppify\"."
+      "description": "Dach-Skill für Website- und Landingpage-Projekte in der Claude-Code-Harness: Plan, Fold-Duell, Bau, Kritik und Launch als Phasen mit Gates und Screenshots. Baut React-Projekte (Next.js App Router, TypeScript, Tailwind v4, shadcn/ui) und installiert Komponenten aus den verbundenen Registries, MCP-Servern und npm-Bibliotheken (21st.dev, shadcn, Mantine, Magic UI, Aceternity, Kibo und weitere), statt sie nachzubauen. Trägt SEO-Seitenkarte, DESIGN.md, Design-Depth- Kapitel, Motion-Regeln, Bildsuche, GPT-Image, Muster-Bibliothek und Stil-Regeln. Subagenten: Fable, Astra und Kimi zuerst, Opus und Grok dazu, Sol nur Backend, Luna/Sonnet/Terra nur Serien. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Kritik\", \"kompletter Website-Plan\", \"DESIGN.md\"."
     },
     {
       "name": "last30days",
@@ -291,28 +147,10 @@
       "description": "Recherchiert, was Leute in den letzten 30 Tagen wirklich über ein Thema sagen — Posts und Engagement aus Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub und dem Web, inkl. doctor-Health-Check. Vendored aus last30days-skill (mvanhorn). VORAUSSETZUNG: SCRAPECREATORS_API_KEY (ohne Key laufen nur keyless/degradierte Quellen). Trigger: \"last30days\", \"was sagen Leute über\", \"Trend-/Ad-Library-Scan\", \"Recency-Recherche\"."
     },
     {
-      "name": "thermo-nuclear-cursor",
-      "version": "0.1.0",
-      "path": "skills/imported/thermo-nuclear-cursor/SKILL.md",
-      "description": "Extrem strenger, diff-basierter Maintainability-Review aus Cursor Thermos: sucht strukturelle Vereinfachung, Spaghetti-Wachstum, falsche Abstraktionen, unsaubere Typgrenzen und Dateien über 1000 Zeilen. Nur explizit/lazy. Trigger: \"thermo nuclear review\", \"Thermos Code Quality\", \"maximal strenger Code-Review\"."
-    },
-    {
-      "name": "autolearn",
-      "version": "0.1.0",
-      "path": "skills/methodik/autolearn/SKILL.md",
-      "description": "Führt nach einem Fehler von der belegten Root Cause zur dauerhaften Verbesserung: Diagnose, Lernpunkt in Pflichtform, Übergabe an den zuständigen Skill und Regression-Check. Trigger: \"/autolearn\", \"nach einem Fehler lernen\", \"Fehler künftig verhindern\", \"Root Cause festhalten\"."
-    },
-    {
       "name": "brainstorm",
       "version": "2.0.0",
       "path": "skills/methodik/brainstorm/SKILL.md",
       "description": "Expliziter Ideenmodus ohne Kritikerwellen. Klärt das Ziel und entwickelt bis zu drei Perspektiven strikt nacheinander; anschließend synthetisiert der Parent einmal. Keine Umsetzung. Trigger: /brainstorm, \"brainstorme\" oder \"Lösungsrichtungen entwickeln\"."
-    },
-    {
-      "name": "code-review",
-      "version": "0.2.1",
-      "path": "skills/methodik/code-review/SKILL.md",
-      "description": "Deckt den vollen Code-Review-Zyklus ab: wann und wie ein Review anfordern (frischer Subagent, präzise Diff-Grenze statt Session-Historie), und wie Feedback danach behandelt wird — verifizieren statt performativ zustimmen, gezielt zurückfragen, technisch begründet widersprechen. Jeder Fund bekommt eine von drei Eskalationsstufen (auto-fix/no-op/ask-user), Reviews starten mit der erklärten Absicht des Autors, nicht nur dem Diff. Für tiefere Reviews steht optional die Zwei-Achsen-Methode (Standards vs. Spec, mit Fowler-Smell-Baseline) und ein 9-Kategorien-Audit-Playbook als Referenz bereit. Trigger: \"Code Review\", \"review anfordern\", \"Feedback bekommen\", \"PR review\", \"vor dem Merge prüfen\"."
     },
     {
       "name": "finish",
@@ -321,14 +159,8 @@
       "description": "Schließt einen Entwicklungs-Branch sauber ab: Tests verifizieren, Umgebung erkennen, genau die passenden Optionen anbieten (Merge, PR, Behalten, Verwerfen), gewählten Weg ausführen, Workspace aufräumen. Trigger: \"Branch abschließen\", \"fertig implementiert\", \"mergen oder PR\", \"finishing a development branch\"."
     },
     {
-      "name": "handoff-ext",
-      "version": "0.1.0",
-      "path": "skills/methodik/handoff-ext/SKILL.md",
-      "description": "Verdichtet das laufende Gespräch zu einem kompakten Übergabe-Dokument für eine andere Instanz, einen Subagenten oder eine externe Person, die weiterarbeiten soll — mit Redaktion sensibler Daten und Verweis statt Duplikat auf bestehende Artefakte. Trigger: \"Handoff für einen anderen Agenten\", \"an Subagenten übergeben\", \"externe Übergabe\", \"handoff-ext\"."
-    },
-    {
       "name": "plan",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "path": "skills/methodik/plan/SKILL.md",
       "description": "DER Planungs-Skill — einer für alles Planen. Führt von der rohen Idee bis zum umsetzbaren Plan und wählt selbst die Stufe: GRILL (Entscheidung durchbohren), SPEC (Idee zur freigegebenen Spec), PLAN (Spec zum bissgroßen Umsetzungsplan), TICKETS (in Tracer-Bullet-Tickets schneiden), UMSETZUNG (Subagent je Task). Ersetzt brainstorm, grill, to-spec, tickets und sdd. Trigger: \"planen\", \"Plan machen\", \"plane das\", \"Umsetzungsplan\", \"brainstorm\", \"Idee ausarbeiten\", \"Design-Spec\", \"Spec schreiben\", \"PRD\", \"grillen\", \"grill mich\", \"Entscheidung durchleuchten\", \"Tickets schreiben\", \"Plan schreiben\", \"Spec in Tasks zerlegen\", \"implementation plan\", \"Backlog bauen\", \"Plan umsetzen\", \"Tasks ausführen\"."
     },
@@ -339,508 +171,10 @@
       "description": "Recherchiert eine Sachfrage gegen vertrauenswürdige Primärquellen (Docs, Source Code, Specs, First-Party-APIs) im Hintergrund und hält die Befunde als zitierte Markdown-Datei fest. Die Recherche-Frage selbst wird zuerst scharf formuliert (Ziel + Entscheidung, 3-6 Unterfragen, Quellenhierarchie) und vor Abschluss läuft eine Gap-Round-Selbstkritik. Trigger: \"recherchieren\", \"Doku nachschlagen\", \"API-Fakten sammeln\", \"Hintergrund-Recherche\"."
     },
     {
-      "name": "skill-update",
-      "version": "0.3.0",
-      "path": "skills/methodik/skill-update/SKILL.md",
-      "description": "Nimmt einen einzelnen Lernpunkt (\"das hätte anders laufen sollen\") und trägt ihn in ALLE betroffenen bestehenden Skills nach — statt ihn in einem Skill zu vergraben oder als neuen Skill anzulegen. Zwingt den Lernpunkt zuerst in eine Pflichtform, sucht dann dreistufig über das Skill-Repo, unterscheidet Skill-Regel von Prinzip und legt jede Datei einzeln zur Freigabe vor. Trigger: \"Skill anpassen\", \"Lernpunkt einarbeiten\", \"das soll der Skill künftig anders machen\", \"Skills nachziehen\", \"skill-update\"."
-    },
-    {
-      "name": "tdd",
-      "version": "0.1.0",
-      "path": "skills/methodik/tdd/SKILL.md",
-      "description": "Test-Driven Development als eiserne Regel: erst der fehlschlagende Test, dann minimaler Code, dann Refactor. Kein Produktionscode ohne vorher gesehenen Fehlschlag. Trigger: \"TDD\", \"Test-Driven Development\", \"Red-Green-Refactor\", \"Feature implementieren\", \"Bugfix schreiben\"."
-    },
-    {
-      "name": "unstuck",
-      "version": "0.1.0",
-      "path": "skills/methodik/unstuck/SKILL.md",
-      "description": "Feuert, wenn die Arbeit an einer Wand steht, die KEIN Bug ist: Login/2FA verlangt, API-Limit erreicht, Werkzeug fehlt, Anbieter blockt, Weg scheint versperrt — und IMMER als Pflicht-Schnellpfad, bevor eine \"geht nicht\"/\"ist nicht möglich\"-Meldung an Raphael geht. Klassifiziert die Sackgasse (falsche Annahme / falsches Framing / Gatekeeper / Werkzeug), sammelt mindestens 10 Winkel, bevor bewertet wird, und erzwingt so die Autonomie-Doktrin \"Raphael ist der ALLERLETZTE Ausweg\". Trigger: \"geht nicht\", \"ich komme nicht weiter\", \"steckt fest\", \"keine Möglichkeit\", \"blockiert\", \"unstuck\", \"gibt es einen anderen Weg\", \"bin in einer Sackgasse\"."
-    },
-    {
-      "name": "writing-skills",
-      "version": "0.4.0",
-      "path": "skills/methodik/writing-skills/SKILL.md",
-      "description": "Beschreibt, wie in diesem Repo neue Skills geschrieben werden: Vorhersagbarkeit als Leitprinzip, Informationshierarchie (Frontmatter → SKILL.md-Schritte → references/), unser Pflicht-Frontmatter-Schema und wann validate-skill.py grün sein muss. Ergänzt um die TDD-Testdisziplin aus superpowers, die zwei Skill-Archetypen (Capability- vs. Process-Primitive) und eine Sicherheits-/Qualitäts-Checkliste für jedes vendorierte Fremd-Skill. Trigger: \"neuen Skill schreiben\", \"SKILL.md anlegen\", \"Skill überarbeiten\", \"Skill erstellen\", \"Frontmatter-Schema\", \"Fremd-Skill vendorieren\"."
-    },
-    {
-      "name": "personal",
-      "version": "1.0.0",
-      "path": "skills/personal/SKILL.md",
-      "description": "Direkter, fordernder Personal-Advisor-Modus nach den wiederkehrenden Mustern aus Hamza Ahmeds oeffentlichem Material (Kanal \"Hamza Advanced\") — grosser Bruder statt Berater-Floskeln. Wissen kommt aus dem Personal Second Brain (raw/person-2026-08-03-hamza-ahmed-advanced + freigegebene Wiki-Seiten), die Persoenlichkeit und die groben Glaubenssaetze stehen im Skill. Trigger: \"personal\", \"challenge mich\", \"Ausreden zerlegen\", \"Disziplin\", \"Gewohnheiten\", \"was wuerde Hamza sagen\", \"ehrliche Ansage\", \"Lebensentscheidung\"."
-    },
-    {
       "name": "raphael-chrome",
       "version": "0.3.1",
       "path": "skills/raphael-chrome/SKILL.md",
       "description": "Steuert und repariert Raphaels dauerhaften VPS-Chrome (CDP 127.0.0.1:9222) mit persistenten Logins und Passwort-Autofill. Nutzen fuer Login, Session, Autofill und Klick im eigenen Chrome. Oeffentliche Suche, Scrape und PDF zuerst ueber firecrawl. Trigger: chrome, browser, VPS-Browser, Cloudflare, CAPTCHA, Renderer, CDP, 9222, Passwort autofill, website klicken."
-    },
-    {
-      "name": "agentcookie",
-      "version": "0.1.0",
-      "path": "vendor-packs/agentcookie/SKILL.md",
-      "description": "Hält die Browser-Session eines autorisierten Mac verschlüsselt über Tailscale mit einer Linux-Agentenbox synchron, damit Agenten dort unter der eigenen Identität im Browser arbeiten. Prüft CLI, Pairing, Tailscale, CDP und Cookie-Policy und meldet fehlende Infrastruktur als BLOCKED statt als Erfolg. Trigger: \"agentcookie\", \"Browser-Session synchronisieren\", \"Agent ist im Browser ausgeloggt\", \"Cookies auf den Linux-Agenten\", \"Session-Sync Mac Linux\"."
-    },
-    {
-      "name": "ce-babysit-pr",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-babysit-pr/SKILL.md",
-      "description": "\"Babysits an open GitHub PR until merge-ready. Use when asked to watch a PR over time — not for one-shot comment resolution or one CI failure. GitHub (incl. Enterprise) only. Trigger: \\\"/ce-babysit-pr\\\"\""
-    },
-    {
-      "name": "ce-brainstorm",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-brainstorm/SKILL.md",
-      "description": "\"Explore vague or ambitious ideas into a right-sized requirements-only unified plan. Use when the user wants to brainstorm, scope what to build, or needs collaborative product framing before planning. Also use when they must scope work in territory they do not know, or ask for a blindspot pass. Not for executing already-specified work — implementation, debugging, or code review with no product scope left to decide. Not for a verdict on whether to adopt or switch to a named external technology, library, or platform; that is ce-pov. Trigger: \\\"/ce-brainstorm\\\"\""
-    },
-    {
-      "name": "ce-code-review",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-code-review/SKILL.md",
-      "description": "\"Structured code review for bugs, regressions, tests, and standards. Use before PRs or when asked to review code. Use when the user asks to apply this review's findings locally. Not for resolving feedback already left on a PR; that is ce-resolve-pr-feedback. Trigger: \\\"/ce-code-review\\\"\""
-    },
-    {
-      "name": "ce-commit-push-pr",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-commit-push-pr/SKILL.md",
-      "description": "\"Commit, push, and open a PR. Use when asked to ship/open a PR, or for PR-description-only flows like writing, rewriting, or describing a PR body. Trigger: \\\"/ce-commit-push-pr\\\"\""
-    },
-    {
-      "name": "ce-commit",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-commit/SKILL.md",
-      "description": "\"Create a git commit with a clear, value-communicating message. Use when the user asks to commit/save staged or unstaged changes with a repo-appropriate message. Trigger: \\\"/ce-commit\\\"\""
-    },
-    {
-      "name": "ce-compound-refresh",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-compound-refresh/SKILL.md",
-      "description": "\"Refresh the repo's captured learnings against the current codebase. Use when auditing stale, overlapping, superseded, or drifted learnings; avoid general refactor, debugging, or code review unless the learnings store is explicit. Trigger: \\\"/ce-compound-refresh\\\"\""
-    },
-    {
-      "name": "ce-compound",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-compound/SKILL.md",
-      "description": "\"Document a recently solved problem as a durable repo learning. Use when capturing a learning after work. Trigger: \\\"/ce-compound\\\"\""
-    },
-    {
-      "name": "ce-debug",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-debug/SKILL.md",
-      "description": "\"Diagnosis loop for bugs and failing behavior. Use when asked to debug or fix failing behavior. Trigger: \\\"/ce-debug\\\"\""
-    },
-    {
-      "name": "ce-doc-review",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-doc-review/SKILL.md",
-      "description": "\"Review requirements, plans, or specs with role-specific lenses. Use when the user wants to improve an existing planning document. Trigger: \\\"/ce-doc-review\\\"\""
-    },
-    {
-      "name": "ce-dogfood",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-dogfood/SKILL.md",
-      "description": "\"Hands-off, diff-scoped browser QA of the active branch: maps user flows, drives a real browser, autonomously fixes small breakages with regression tests and commits, judges experience against product personas, and writes a durable dogfood report. Manual invocation only. Trigger: \\\"/ce-dogfood\\\"\""
-    },
-    {
-      "name": "ce-explain",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-explain/SKILL.md",
-      "description": "\"Create a durable visual teaching artifact for something worth learning. Use when the user wants to be taught, wants a deep explainer, wants to understand a substantial change, or wants a work recap built for retention. Not for ordinary Q&A, operational diagnosis, or a concise trade-off that belongs in chat. For learning, not repo docs or verdicts. Trigger: \\\"/ce-explain\\\"\""
-    },
-    {
-      "name": "ce-handoff",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-handoff/SKILL.md",
-      "description": "\"Create a session handoff for another agent, or resume, find, and read any user-selected continuity source. Use when work or conversation must continue without access to the current session history. Trigger: \\\"/ce-handoff\\\"\""
-    },
-    {
-      "name": "ce-ideate",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-ideate/SKILL.md",
-      "description": "\"Generate and evaluate grounded ideas. Use when the user wants ideas, improvements, or surprising directions before choosing one to develop. Not for refining an idea they already have (ce-brainstorm) or judging one already on the table (ce-pov). Trigger: \\\"/ce-ideate\\\"\""
-    },
-    {
-      "name": "ce-lfg",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-lfg/SKILL.md",
-      "description": "\"Run the full autonomous shipping pipeline end-to-end, hands-off with no check-ins. Use only when the user explicitly asks to build or ship something autonomously all the way to an open PR, or invokes lfg directly — it pushes and opens a PR without stopping. Not for in-the-loop work where the user reviews each step: use ce-plan, ce-work, ce-debug, or ce-commit-push-pr instead. Trigger: \\\"/ce-lfg\\\"\""
-    },
-    {
-      "name": "ce-optimize",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-optimize/SKILL.md",
-      "description": "\"Run metric-driven optimization loops. Use when improving a measurable outcome through experiments. Trigger: \\\"/ce-optimize\\\"\""
-    },
-    {
-      "name": "ce-plan",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-plan/SKILL.md",
-      "description": "\"Create structured plans for multi-step work, including software and non-software tasks. Use when asked to plan, break down implementation, plan from requirements, or deepen an existing plan; prefer ce-brainstorm for exploratory framing. Trigger: \\\"/ce-plan\\\"\""
-    },
-    {
-      "name": "ce-polish",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-polish/SKILL.md",
-      "description": "\"Polish a working feature through user-directed live browser feedback. Use when a functional feature needs focused UX refinement before shipping. Trigger: \\\"/ce-polish\\\"\""
-    },
-    {
-      "name": "ce-pov",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-pov/SKILL.md",
-      "description": "\"Give a decisive, project-grounded point of view: a graded verdict on an external-adoption question, a holistic take on a document, or a position on a supplied approach set. Use for a solo POV. Use when asked to consult other models, reconcile their opinions, or `oracle`. Not for findings review (use ce-doc-review), neutral explainers, or generating options (use ce-ideate or ce-brainstorm). Trigger: \\\"/ce-pov\\\"\""
-    },
-    {
-      "name": "ce-product-pulse",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-product-pulse/SKILL.md",
-      "description": "\"Generate time-windowed product pulse reports from configured signals. Trigger: \\\"/ce-product-pulse\\\"\""
-    },
-    {
-      "name": "ce-promote",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-promote/SKILL.md",
-      "description": "\"Draft launch or promotion copy for a shipped feature. Trigger: \\\"/ce-promote\\\"\""
-    },
-    {
-      "name": "ce-proof",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-proof/SKILL.md",
-      "description": "\"Publish, read, comment on, or edit markdown in Proof. Use for Proof links, sharing specs/plans/drafts, or publish handoffs from planning workflows; avoid proofread, math, evidence, or proof-of-concept meanings. Trigger: \\\"/ce-proof\\\"\""
-    },
-    {
-      "name": "ce-prototype",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-prototype/SKILL.md",
-      "description": "\"Build a throwaway prototype to answer how something should work, feel, or read. Use when committing the wrong answer would be expensive to unravel and a cheap sketch cannot settle it. Not a rough visual probe during brainstorming, not for deciding what to build, not polishing a feature that already works, not implementing the real thing. Trigger: \\\"/ce-prototype\\\"\""
-    },
-    {
-      "name": "ce-resolve-pr-feedback",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-resolve-pr-feedback/SKILL.md",
-      "description": "\"Resolve PR review feedback. Use when addressing feedback already left on a PR. Not for reviewing the code before feedback exists; that is ce-code-review. Trigger: \\\"/ce-resolve-pr-feedback\\\"\""
-    },
-    {
-      "name": "ce-retune",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-retune/SKILL.md",
-      "description": "\"Retune a skill corpus for a new model, measurement-first: mine the run archive for a baseline, establish a noise floor, audit the corpus adversarially, then cut in measured passes until a pre-registered bar clears. Requires a benchmark harness that can A/B two builds of the corpus; refuses without one. Trigger: \\\"/ce-retune\\\"\""
-    },
-    {
-      "name": "ce-riffrec-feedback-analysis",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-riffrec-feedback-analysis/SKILL.md",
-      "description": "\"Analyze recorded product feedback into evidence for bugs and requirements. Use when a Riffrec capture or other screen, voice, or notes artifact needs interpretation. Use for Riffrec setup, capture, or sharing help when no recording exists yet. Trigger: \\\"/ce-riffrec-feedback-analysis\\\"\""
-    },
-    {
-      "name": "ce-setup",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-setup/SKILL.md",
-      "description": "\"Check Compound Engineering health and repo-local config. Trigger: \\\"/ce-setup\\\"\""
-    },
-    {
-      "name": "ce-simplify-code",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-simplify-code/SKILL.md",
-      "description": "\"Simplify settled, recently changed code for clarity, reuse, quality, and efficiency while preserving behavior. Use after implementation and before review; use ce-debug for bugs. Trigger: \\\"/ce-simplify-code\\\"\""
-    },
-    {
-      "name": "ce-strategy",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-strategy/SKILL.md",
-      "description": "\"Create or update STRATEGY.md. Use when starting a product, adding a strategy doc to an existing repo, changing direction or roadmap, or when ce-ideate, ce-brainstorm, or ce-plan need upstream product grounding. Trigger: \\\"/ce-strategy\\\"\""
-    },
-    {
-      "name": "ce-sweep",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-sweep/SKILL.md",
-      "description": "\"Sweep configured feedback sources (Slack, GitHub Issues; email experimental) for new items: acknowledge at source, analyze recordings, verify fixes merged to main, and emit an `lfg`-ready plan. First run sets up sources; supports mode:non-interactive for scheduled runs. Trigger: \\\"/ce-sweep\\\"\""
-    },
-    {
-      "name": "ce-test-browser",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-test-browser/SKILL.md",
-      "description": "\"Run browser tests for pages affected by the current branch or PR. Use when asked to run or check browser tests for the current change. Trigger: \\\"/ce-test-browser\\\"\""
-    },
-    {
-      "name": "ce-test-xcode",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-test-xcode/SKILL.md",
-      "description": "\"Test iOS apps in a simulator with XcodeBuildMCP. Use when iOS changes need simulator evidence before handoff. Trigger: \\\"/ce-test-xcode\\\"\""
-    },
-    {
-      "name": "ce-work",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-work/SKILL.md",
-      "description": "\"Execute a plan or concrete work prompt end-to-end. Use when implementing from a plan document, a spec path, or a clear build request; use ce-debug for open-ended bugs. Use when an outer orchestrator needs implementation and local verification only, without the shipping tail. Trigger: \\\"/ce-work\\\"\""
-    },
-    {
-      "name": "ce-worktree",
-      "version": "0.1.0",
-      "path": "vendor-packs/compound-engineering/ce-worktree/SKILL.md",
-      "description": "\"Set up isolated git worktrees — create a new branch for fresh work, or attach a worktree to an existing branch, PR, or commit. Use when starting isolated work or isolating an existing ref. Trigger: \\\"/ce-worktree\\\"\""
-    },
-    {
-      "name": "pstack-architect",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-architect/SKILL.md",
-      "description": "\"Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for /pstack-architect, 'architect this', 'design this', or non-trivial work where jumping to code would lock in the wrong shape. Trigger: \\\"/pstack-architect\\\"\""
-    },
-    {
-      "name": "pstack-arena",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-arena/SKILL.md",
-      "description": "\"Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it. Use for /pstack-arena, 'arena this', 'throw it in the arena', or when one attempt at a non-trivial artifact would lock in the wrong shape. Trigger: \\\"/pstack-arena\\\"\""
-    },
-    {
-      "name": "pstack-automate-me",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-automate-me/SKILL.md",
-      "description": "\"Use for \\\"automate me\\\", \\\"create/update/refresh my -mode skill\\\", \\\"turn/capture my preferences or working style into a skill\\\", or wanting agents to follow how the user works. Drafts or revises a personal -mode skill via create-skill + unslop, optionally pulling fresh evidence from recent transcripts. Trigger: \\\"/pstack-automate-me\\\"\""
-    },
-    {
-      "name": "pstack-blast-radius",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-blast-radius/SKILL.md",
-      "description": "\"Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up. Use for 'blast radius of X', 'what could this break', or reviewing a small diff you don't trust. Trigger: \\\"/pstack-blast-radius\\\"\""
-    },
-    {
-      "name": "pstack-bro",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-bro/SKILL.md",
-      "description": "\"Restate the last message in plain human language, with no jargon. Trigger: \\\"/pstack-bro\\\"\""
-    },
-    {
-      "name": "pstack-create-verification-skill",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-create-verification-skill/SKILL.md",
-      "description": "\"Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform. Use for /pstack-create-verification-skill, \\\"make a control skill for this repo\\\", or when a project has no scripted way to prove UI/CLI/service behavior. Trigger: \\\"/pstack-create-verification-skill\\\"\""
-    },
-    {
-      "name": "pstack-figure-it-out",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-figure-it-out/SKILL.md",
-      "description": "\"Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions via show-me-your-work. Use for /pstack-figure-it-out, 'figure it out', a large migration, or when no narrower playbook applies. Trigger: \\\"/pstack-figure-it-out\\\"\""
-    },
-    {
-      "name": "pstack-how",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-how/SKILL.md",
-      "description": "\"Use for \\\"how does X work\\\", code walkthroughs before changing something, and placement / ownership / layering questions (\\\"where should this live\\\", \\\"which package owns this\\\", \\\"is this the right layer\\\"). Explains subsystem architecture, runtime flow, onboarding mental models. Can critique architecture. Use why for motivation. Trigger: \\\"/pstack-how\\\"\""
-    },
-    {
-      "name": "pstack-interrogate",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-interrogate/SKILL.md",
-      "description": "\"Use for \\\"interrogate\\\", \\\"adversarial review\\\", \\\"multi-model review\\\", \\\"challenge this\\\", \\\"stress test this code\\\", \\\"find blind spots\\\", or \\\"tear this apart\\\". Multiple LLM reviewers challenge changes from independent angles. Trigger: \\\"/pstack-interrogate\\\"\""
-    },
-    {
-      "name": "pstack-maintain-verification-skill",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-maintain-verification-skill/SKILL.md",
-      "description": "\"Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for /pstack-maintain-verification-skill or \\\"audit the verify skill\\\". Trigger: \\\"/pstack-maintain-verification-skill\\\"\""
-    },
-    {
-      "name": "pstack-no-comments",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-no-comments/SKILL.md",
-      "description": "\"Spawn Comment Sicko, fix accepted findings, and offer encodings for claimed constraints. Trigger: \\\"/pstack-no-comments\\\"\""
-    },
-    {
-      "name": "pstack-poteto-mode",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-poteto-mode/SKILL.md",
-      "description": "\"poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, /pstack-poteto-mode, or requests to work in this style. Trigger: \\\"/pstack-poteto-mode\\\"\""
-    },
-    {
-      "name": "pstack-principle-boundary-discipline",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-boundary-discipline/SKILL.md",
-      "description": "\"Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure functions. Trigger: \\\"/pstack-principle-boundary-discipline\\\"\""
-    },
-    {
-      "name": "pstack-principle-build-the-lever",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-build-the-lever/SKILL.md",
-      "description": "\"Apply to any non-trivial work, not just bulk work: edits, migrations, analyses, checks. Build the tool that does it or proves it (codemod, script, generator, or a skill your subagents follow) instead of working by hand. The tool is the artifact a reviewer can rerun. Trigger: \\\"/pstack-principle-build-the-lever\\\"\""
-    },
-    {
-      "name": "pstack-principle-encode-lessons-in-structure",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-encode-lessons-in-structure/SKILL.md",
-      "description": "\"Apply when you catch yourself writing the same instruction a second time, or notice a recurring correction. Encode the rule as a lint, metadata flag, runtime check, or script instead of more text. Trigger: \\\"/pstack-principle-encode-lessons-in-structure\\\"\""
-    },
-    {
-      "name": "pstack-principle-exhaust-the-design-space",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-exhaust-the-design-space/SKILL.md",
-      "description": "\"Apply when facing a novel UI interaction or architectural decision with no precedent in the codebase. Build 2-3 competing prototypes and compare side by side before committing. Trigger: \\\"/pstack-principle-exhaust-the-design-space\\\"\""
-    },
-    {
-      "name": "pstack-principle-experience-first",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-experience-first/SKILL.md",
-      "description": "\"Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones. Trigger: \\\"/pstack-principle-experience-first\\\"\""
-    },
-    {
-      "name": "pstack-principle-fix-root-causes",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-fix-root-causes/SKILL.md",
-      "description": "\"Apply when debugging. Trace each symptom to its root cause and fix it there; reproduce first, ask why until you reach it, resist nil-check guards that silence crashes. Trigger: \\\"/pstack-principle-fix-root-causes\\\"\""
-    },
-    {
-      "name": "pstack-principle-foundational-thinking",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-foundational-thinking/SKILL.md",
-      "description": "\"Apply before writing logic: choosing core types and data structures, sequencing scaffold-vs-feature work, asking what concurrent actors share. Get the data structures right so downstream code becomes obvious. Trigger: \\\"/pstack-principle-foundational-thinking\\\"\""
-    },
-    {
-      "name": "pstack-principle-guard-the-context-window",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-guard-the-context-window/SKILL.md",
-      "description": "\"Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads. Trigger: \\\"/pstack-principle-guard-the-context-window\\\"\""
-    },
-    {
-      "name": "pstack-principle-laziness-protocol",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-laziness-protocol/SKILL.md",
-      "description": "\"Apply when refactoring, evaluating diff size, or tempted to add abstractions, layers, or signal threading. Bias toward deletion and the smallest change that solves the problem. Trigger: \\\"/pstack-principle-laziness-protocol\\\"\""
-    },
-    {
-      "name": "pstack-principle-make-operations-idempotent",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-make-operations-idempotent/SKILL.md",
-      "description": "\"Apply when designing commands, lifecycle steps, or processing loops that run amid crashes, restarts, and retries. Converge to the same end state regardless of partial prior runs. Trigger: \\\"/pstack-principle-make-operations-idempotent\\\"\""
-    },
-    {
-      "name": "pstack-principle-migrate-callers-then-delete-legacy-apis",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
-      "description": "\"Apply when introducing a new internal API while old callers still exist. Migrate callers and delete the old API in the same wave instead of preserving compatibility layers. Trigger: \\\"/pstack-principle-migrate-callers-then-delete-legacy-apis\\\"\""
-    },
-    {
-      "name": "pstack-principle-minimize-reader-load",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-minimize-reader-load/SKILL.md",
-      "description": "\"Apply when reviewing or shaping code that's hard to trace. Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope. Trigger: \\\"/pstack-principle-minimize-reader-load\\\"\""
-    },
-    {
-      "name": "pstack-principle-model-the-domain",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-model-the-domain/SKILL.md",
-      "description": "\"Apply when writing stateful logic, or when code branches a lot or repeats a shape assumption across files. Encode the domain in a structure instead of scattered conditionals. Trigger: \\\"/pstack-principle-model-the-domain\\\"\""
-    },
-    {
-      "name": "pstack-principle-never-block-on-the-human",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-never-block-on-the-human/SKILL.md",
-      "description": "\"Apply when tempted to ask 'should I do X?' on reversible work. Proceed, present the result, let the human course-correct after the fact; reserve confirmation for irreversible actions. Trigger: \\\"/pstack-principle-never-block-on-the-human\\\"\""
-    },
-    {
-      "name": "pstack-principle-outcome-oriented-execution",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-outcome-oriented-execution/SKILL.md",
-      "description": "\"Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code. Trigger: \\\"/pstack-principle-outcome-oriented-execution\\\"\""
-    },
-    {
-      "name": "pstack-principle-prove-it-works",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-prove-it-works/SKILL.md",
-      "description": "\"Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, or 'it compiles.'. Trigger: \\\"/pstack-principle-prove-it-works\\\"\""
-    },
-    {
-      "name": "pstack-principle-redesign-from-first-principles",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-redesign-from-first-principles/SKILL.md",
-      "description": "\"Apply when integrating a new requirement into an existing design. Redesign as if the requirement had been a foundational assumption from day one, instead of bolting it on. Trigger: \\\"/pstack-principle-redesign-from-first-principles\\\"\""
-    },
-    {
-      "name": "pstack-principle-separate-before-serializing-shared-state",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-separate-before-serializing-shared-state/SKILL.md",
-      "description": "\"Apply when concurrent actors might write to the same file, branch, key, or state object. Eliminate the sharing first; serialize structurally only when one shared writer is a real invariant. Trigger: \\\"/pstack-principle-separate-before-serializing-shared-state\\\"\""
-    },
-    {
-      "name": "pstack-principle-sequence-verifiable-units",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-sequence-verifiable-units/SKILL.md",
-      "description": "\"Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, and order delivery so the sequence proves itself to a reviewer. Trigger: \\\"/pstack-principle-sequence-verifiable-units\\\"\""
-    },
-    {
-      "name": "pstack-principle-subtract-before-you-add",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-subtract-before-you-add/SKILL.md",
-      "description": "\"Apply when sequencing an addition, refactor, or rewrite. Remove dead weight, redundant validators, and stub references first, then build on the simpler base. Trigger: \\\"/pstack-principle-subtract-before-you-add\\\"\""
-    },
-    {
-      "name": "pstack-principle-type-system-discipline",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-principle-type-system-discipline/SKILL.md",
-      "description": "\"Apply when designing types, reviewing a function signature, or writing code in any statically-typed language. Make illegal states unrepresentable, brand semantic primitives, parse external data at boundaries, refuse to lie to the compiler, exhaust variants, derive from authoritative schemas. Trigger: \\\"/pstack-principle-type-system-discipline\\\"\""
-    },
-    {
-      "name": "pstack-recall",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-recall/SKILL.md",
-      "description": "\"Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief. Use for 'recall my work on X', 'catch me up', 'what have I been working on', 'where did I leave off', before starting or resuming work. Trigger: \\\"/pstack-recall\\\"\""
-    },
-    {
-      "name": "pstack-reflect",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-reflect/SKILL.md",
-      "description": "\"Spawn three parallel review subagents over the active transcript, surface learnings, and route each to a concrete edit on an existing skill. Use when the user says reflect. Trigger: \\\"/pstack-reflect\\\"\""
-    },
-    {
-      "name": "pstack-setup-pstack",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-setup-pstack/SKILL.md",
-      "description": "\"Configure which models pstack uses per role. Detects your available models and writes an always-applied rule that overrides the skill defaults. Use for /pstack-setup-pstack, \\\"configure pstack models\\\", or changing pstack's model choices. Trigger: \\\"/pstack-setup-pstack\\\"\""
-    },
-    {
-      "name": "pstack-show-me-your-work",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-show-me-your-work/SKILL.md",
-      "description": "\"Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to trust the result. Use for /pstack-show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away. Trigger: \\\"/pstack-show-me-your-work\\\"\""
-    },
-    {
-      "name": "pstack-swarm",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-swarm/SKILL.md",
-      "description": "\"Fan out N parallel workers, drain them, and return one report. Use for /pstack-swarm, 'swarm this', or parallel coverage, races, gauntlets, and exploration. Trigger: \\\"/pstack-swarm\\\"\""
-    },
-    {
-      "name": "pstack-tdd",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-tdd/SKILL.md",
-      "description": "\"Use only when the user explicitly asks for TDD, a failing test, or a regression test, OR when the bug has an obvious cheap local test target. Skip when the test path is unclear, expensive, integration-heavy, or not requested. Trigger: \\\"/pstack-tdd\\\"\""
-    },
-    {
-      "name": "pstack-teach",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-teach/SKILL.md",
-      "description": "\"Explain a body of work plainly so a person actually understands it. Runs the `how` and `why` skills and weaves what they find into one clear explanation. Use for 'teach me this', 'help me really understand X', 'explain this change or subsystem to me'. Trigger: \\\"/pstack-teach\\\"\""
-    },
-    {
-      "name": "pstack-technical-writing",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-technical-writing/SKILL.md",
-      "description": "\"Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for /pstack-technical-writing or when writing or reviewing docs, RFCs, readmes, PR descriptions, or commit messages. Trigger: \\\"/pstack-technical-writing\\\"\""
-    },
-    {
-      "name": "pstack-typescript-best-practices",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-typescript-best-practices/SKILL.md",
-      "description": "\"TypeScript best practices. Use when reading or editing any .ts or .tsx file. Trigger: \\\"/pstack-typescript-best-practices\\\"\""
-    },
-    {
-      "name": "pstack-unslop",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-unslop/SKILL.md",
-      "description": "\"Cut AI tells from any writing. Must always apply. Trigger: \\\"/pstack-unslop\\\"\""
-    },
-    {
-      "name": "pstack-why",
-      "version": "0.1.0",
-      "path": "vendor-packs/pstack/pstack-why/SKILL.md",
-      "description": "\"Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds. Discovers available MCPs and queries each evidence category (source control, issue tracker, long-form docs, real-time chat, infrastructure observability, error tracking, product analytics warehouse) in parallel, then returns a cited read on decisions and tradeoffs. Use how for runtime behavior. Trigger: \\\"/pstack-why\\\"\""
     }
   ]
 }

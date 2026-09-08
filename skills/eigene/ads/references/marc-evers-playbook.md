@@ -1,209 +1,233 @@
-# Marc Evers — Playbook (39 Kanal-Videos + 90 Instagram-Reels, 28.08.2026)
+# Marc Evers — Ads, Video und kontinuierliches Lernen
 
-Wiki-Einstieg: `wiki/craft/ads/lehren/evers-lehren-liegen-in-zehn-seiten.md`.
+Quellenstand: 06.09.2026; lokalisiert: 07.09.2026. Arbeitsreferenz für Angebote,
+Creatives, Tests und den Weg zum qualifizierten Gespräch. Alle 508 bisher
+ausgewerteten Aussagen und Kontexte liegen im [lokalen Korpus](wissen/bestand/marc-evers-korpus.jsonl).
+Das [Quellenregister](wissen/bestand/marc-evers-quellen.md) erschliesst 118 Medien
+mit öffentlichen Original-URLs; [Abdeckungsdaten](wissen/bestand/marc-evers-quellen.json)
+halten Carousel-Positionen, Duplikate, Sprachlücken und Nachprüfungen fest.
+Die Arbeitsreferenz funktioniert vollständig innerhalb dieses Skills.
 
-Quelle: youtube.com/@Marc-Evers, alle 39 Videos transkribiert (YouTube-Captions +
-lokales Whisper). Instagram @marc.mev: 90 Reels (Apify-Transkripte, zwei Whisper-Nachträge).
-Rohdaten Vault: `raw/bookmark-2026-08-28-marc-evers-youtube-AyZPDYtGNPo.md`,
-`raw/bookmark-2026-08-28-marc-evers-instagram-reels.md`,
-`raw/bookmark-2026-08-28-marc-evers-youtube-inventar.md`.
-Ältere 38 YT-Transkripte: `/root/clients/make/ads/research/marc-evers-2026-08-19/transcripts/`.
-Wer: Zwei eigene Agenturen über Ads auf 50k+/Monat, betreut 80+ Agenturen
-(Webdesign/SEO). Er verkauft AN Agenturen. Seine Craft-Regeln gelten für uns,
-seine Marktzahlen (Leadpreise 10 €, Terminpreise 50–80 €) sind Agentur-Kontext,
-nicht MAKE-Inhaber-Kontext.
+## Geltung und Belegstärke
 
-Evers deckt sich mit Hormozi und Zac an den Kernen (ICP im Hook, Proof, ein Offer).
-Was er schärfer hat als beide: Instant-Form-Disziplin, Static-Validierung und
-Testing als Schachspiel.
+Evers spricht überwiegend zu Webdesignern und Agenturen. Seine Beispiele liefern
+Hypothesen für unsere Arbeit; eigene belegte Kundenkenntnis, freigegebene Angebote
+und Ergebnisse des konkreten Kontos haben Vorrang. Fremde Kundenzahlen bleiben bei ihrer Quelle. Ein eigenes Ergebnisversprechen
+braucht eigene Belege und einen geklärten Geltungsbereich.
 
----
+- **Lehre:** Evers empfiehlt ein Vorgehen. Das ist noch kein Wirkungsnachweis.
+- **Beobachtung:** Das Material zeigt eine Struktur oder Darstellungsform.
+  Ein gezeigtes Format beweist weder erfolgreiche Auslieferung noch Rentabilität.
+- **Selbstauskunft/Fremdschätzung:** Umsatz, ROAS, Kundenresultate und geschätzter
+  Spend bleiben als solche bezeichnet; Kontobelege und kausale Nachweise fehlen.
+- **Unsere Anwendung:** Arbeitsroutinen, Prüffragen und eigene Varianten sind
+  unsere Ableitung. Insbesondere Wispr ist keine belegte Empfehlung von Evers.
 
-## 1. Verkaufe das Ergebnis, nie das Produkt
+Der Inventarstand vom 06.09.2026 umfasst 95 Reels und 22 Videos innerhalb von acht
+Carousel-Posts. Ein im Profil-Crawl fehlender Beitrag wurde zusätzlich als
+Einzelvideo nachgeprüft; das Register umfasst somit 118 eindeutige Medien-IDs.
+Die tatsächliche Audio- und Bildabdeckung ist pro Fundstelle dokumentiert.
+Die drei Textauswertungen decken die 90 Archivabschnitte ab, mit dokumentierten
+Fallbacks und Transkriptlücken. Beim angefragten Reel `Dc8VLBYNLzz` wurden
+Transkript, Hook-Kontaktbogen und 27 Body-Frames geprüft; keine vollständige
+Echtzeit-Audioprüfung. Die früheren YouTube-Quellen bleiben als Archivkontext erhalten.
+Die im [Quellenregister](wissen/bestand/marc-evers-quellen.md) enthaltene Nachprüfung
+ergänzt sieben ältere Beiträge, darunter den fehlenden Schluss von DT2c0EDkkOb.
 
-Sein härtester Satz für uns: «Hör auf, Webdesign zu verkaufen.»
-Website-Preis-Ads ziehen Bottom-Funnel-Vergleicher: Leute, die schon wissen, dass
-sie eine Website wollen, und nur den Günstigsten suchen. Die füllen die Pipeline
-mit Sonderwunsch-Kunden unter 2.000 € Budget.
-Mid-Funnel kauft das Ergebnis: «eine Zielgruppe zu einer Transformation in einem
-Zeitfenster führen». Der Mechanismus (Website, SEO) tritt hinter das Ergebnis zurück.
-**MAKE: Die Ad verkauft Platz 1 und Anfragen. Die Website inkl. Fotoshooting ist,
-was dazugehört, nicht das Produkt.**
+## 1. Käufer, Ergebnis und Beweis vor der Ausarbeitung klären
 
-## 2. Nur drei USPs
+Evers verbindet das Angebot mit einem erwünschten geschäftlichen Ergebnis und
+einem nachvollziehbaren Weg dorthin. Angebot, Mechanismus und Person sind seine
+drei Perspektiven für Differenzierung; keine abschliessende Theorie aller USPs. [Q1]
 
-Angebot, Mechanismus, Person. Mehr gibt es nicht.
+Vor dem Skript festhalten: Für wen ist das Angebot, welche Situation löst es,
+was wird tatsächlich geliefert, welche Voraussetzungen bestehen und welcher
+eigene Beleg trägt die Behauptung? Ein Mechanismus erklärt die Leistung konkret.
+Eine Garantie darf nur mit den real vereinbarten Bedingungen erscheinen.
 
-- **Preis ist nie der USP.** «Günstigster der Region» ist der schlechteste.
-- **Angebot (No-Brainer) ist der Einstiegs-Filter**: warum sich jemand einträgt.
-  Gekauft wird danach über Mechanismus und Person.
-- **Mechanismus = ein neuer Weg zum Ergebnis** (sein «No-Funnel-Ads»).
-  Der Mechanismus nennt die Anforderung an den Kunden: wer sie nicht erfüllen will,
-  trägt sich nicht ein. Das ist Selbstqualifikation im Copy.
-- **Person als USP funktioniert lokal, nicht national.** Lokal trägt «der aus der
-  Stadt», national braucht es Angebot + Mechanismus.
-- Wer keine Cases hat, verkauft über die Person. Wer Cases hat: Beweise schlagen
-  das lauteste Angebot um ein Vielfaches, weil Angebote kopierbar sind und Proof nicht.
+„Webdesign mit SEO oder Ads verbinden“ ist sein häufiges Positionierungsbeispiel.
+Andere Beiträge berichten von Kunden ohne zwingende Neupositionierung.
+Daraus folgt eine Prüfung der Differenzierung und des passenden Leistungsbündels. [Q2]
+Das aktuelle Reel setzt die Case Study vor Anzeigen und Budgetausweitung. [Q3]
 
-## 3. Instant-Form: kein Interpretationsspielraum
+## 2. Den Einstieg passend zur Hypothese wählen
 
-Ad plus Formular müssen drei Fragen unmissverständlich beantworten:
-warum du, was das Angebot, **was nach dem Eintrag passiert**.
+Die Mini-VSL-Struktur lautet bei Evers sinngemäss: Käuferansprache und Ergebnis,
+Belege, Mechanismus, Probleme, weitere Belege/persönlicher Hintergrund, CTA. [Q4]
+Das ist eine auswählbare Argumentationsfolge. Andere besprochene Beispiele
+beginnen mit einer Preisfrage, einem unerwarteten Gedanken oder einer Geschichte. [Q5]
 
-- Jeder falsche Eintrag vergiftet den Pixel: Meta lernt aus dem Submit und holt mehr
-  davon. Müll-Leads sind selten ein Ad-Problem, meist ein Formular-Problem.
-- Der CTA definiert den konkreten nächsten Schritt («wir rufen dich in den nächsten
-  48 Stunden und schauen, ob wir dir helfen können»).
-- Follow-up sofort nach Opt-in, nicht nach drei Tagen. Nurturing unter 24 Stunden.
+Für einen Test können direkter Angebotsnutzen, konkrete Käufersituation,
+Problem, eigener Beleg oder eine relevante offene Frage den Einstieg tragen.
+Die Auswahl braucht einen Grund aus Zielgruppe, Bekanntheit, Kanal und Testziel.
+Es gilt weder „immer Callout zuerst“ noch „immer Offer zuerst“. Entscheidend:
+Die passende Person versteht früh, worum es geht und warum sie weitersehen soll.
+Ein qualifizierender Hinweis kann im Einstieg, Body oder Formular stehen.
 
-## 4. Static-first Validierung (seine Spearhead-Methode)
+Zum Kürzen empfiehlt Evers eine überschaubare Notizfläche mit Zielgruppe,
+Angebot, Proof, Mechanismus und CTA. Sie begrenzt die Argumentation; sie schreibt
+keine ideale Wortzahl oder universelle Reihenfolge vor. [Q6]
 
-1. Ergebnis-Offer auf ein super-simples Creative klatschen (schwarzer Screen,
-   nur der Claim, Canva reicht; eine gespeicherte Instagram-Story als Bild
-   wirkt noch nativer), auf ein Instant-Formular. Format 1:1 zuerst, 9:16 dazu.
-2. 5 Variationen, 30–50 € Tagesbudget, eine Woche. Frage: melden sich die
-   RICHTIGEN Leute auf diese Botschaft in dieser Zielgruppe?
-3. Erst nach Validierung Formate variieren (Split Screen, Studio, Green Screen)
-   und Budget rauf. Vorher keine Produktion.
-4. Mehrere Offer-Varianten testen, konsolidieren auf die, die 2–3 Neukunden bringt.
+## 3. Einfach produzieren und die Darstellung bewusst wählen
 
-Das ist exakt unsere Wellen-Logik, mit seiner Schärfe: zuerst Botschaft ×
-Zielgruppe validieren, dann Format.
+Evers beschreibt spontane Handyansprache, Untertitel, obere Texthook sowie
+Notiz-/Greenscreen-, Split-Screen- und UGC-artige Formate. [Q6, Q7, Q8]
+„Ugly“ ist eine Produktionsoption: schnell, direkt und mit überschaubarem Aufwand.
+Eine allgemeine Überlegenheit gegenüber sorgfältiger Produktion ist nicht belegt.
+Seine Angaben zu Minuten pro Aufnahme sind Richtwerte oder Selbstauskünfte.
 
-## 5. Ugly Ads
+**Tatsächlich am angefragten Reel beobachtet:** Sprecher vor schwarzer,
+nummerierter Notiz; Titel und Fingerzeig eröffnen den Clip. Anfangs verdeckt der
+Sprecher Text, später wird er kleiner und verschoben. Unsere Anwendung: Text und
+Sprecherfläche so anordnen, dass der gerade erklärte Schritt lesbar bleibt. [Q3]
+Die Beobachtung betrifft sein organisches Reel. Seine Paid-Performance ist damit unbelegt.
 
-- Je weniger die Ad aussieht wie eine Ad, desto besser. Handy, ein Take,
-  Texthook direkt in der Instagram-Reels-App gesetzt (sieht nativ aus).
-- Er hat ein Produktionsstudio und macht trotzdem Ugly Ads: schneller, performt
-  besser. High-Quality erst für validierte Winner.
-- Dieselben nativen Videos laufen organisch UND als Ad (Spark-Logik).
+Unsere Produktionsroutine mit gesprochenem Rohentwurf, optionalem Wispr-Diktat,
+Kürzung, Aufnahme und Varianten steht in `video-produktion.md`. Das Werkzeug und
+die konkrete Routine wurden für diesen Auftrag entwickelt.
 
-## 6. Testing als Schachspiel
+## 4. Static → Video → VSL als möglichen Entwicklungsweg nutzen
 
-- Die meisten Ad-Tests verlieren Geld. Ein Winner über 3–6 Monate zahlt alle
-  Tests zurück. Wer das nicht einpreist, testet nie weit genug.
-- Hypothese → Markt-Feedback → schärfere Hypothese. Der NÄCHSTE Zug zählt,
-  nicht der Masterplan. Nicht wilde neue Hooks erfinden, sondern das iterieren,
-  das schon funktioniert. «Das ist langweilig und genau das, was Umsatz bringt.»
-- **Wenn eine Ad brennt, ist meist nur die Hook tot, nicht der Body.**
-  80 % der Energie gehören in Hooks: viele Hooks auf wenige Bodies.
-- Winner-Regelwerk: Loser kommen ins «nie wieder»-Regelwerk, Winner in die
-  Scaling-Kampagne und werden Variation für Variation weitergebaut
-  (Creative-CRM: jede Ad hat Hypothese und Ergebnis).
-- 1–3 Ads mit 50 €/Tag sind kein Testing, das ist Sterben auf Raten.
-  Engpass ist fast immer zu wenig Ad-Volumen.
-- **A-Leads zuerst:** wer sich nur einträgt, ist B-Lead; wer zusätzlich einen
-  Termin bucht, ist A-Lead und wird zuerst angerufen.
+Ein ausführliches Beispiel beginnt mit einem einfachen Bild und Instant-Formular:
+Angebot bei gleicher Zielgruppe oder Zielgruppe bei gleichem Angebot variieren.
+Wenn passende Interessenten reagieren, folgt dieselbe Botschaft in Videoformaten.
+Nach ersten Abschlüssen kann die bewährte Verkaufsargumentation in eine VSL
+übergehen, um vor dem Gespräch mehr Kontext und Qualifizierung zu liefern. [Q8]
 
-## 7. Wenn die Werte kippen: Eimer-Modell statt Ad-Panik
+Die genannten zwei bis drei Kunden sind eine praktische Orientierung, keine
+statistische Validierung. Wer bereits belegte Botschaften, Videos oder einen
+funktionierenden Funnel besitzt, beginnt an seinem tatsächlichen Engpass.
+Es gibt weder eine allgemeine Static-Pflicht noch eine feste VSL-Länge für jeden Fall.
+Zusätzliche Reibung muss einen Zweck erfüllen: ungeeignete Kontakte reduzieren,
+Erwartungen klären oder Gesprächszeit sparen, ohne passende Kontakte blind auszusperren.
 
-- Meta leert Zielgruppen-Eimer: erst der wärmste, dann der nächste. Steigende
-  Leadpreise bei GLEICHER CTR heissen Eimerwechsel, nicht tote Ad.
-- Frequency hoch + CTR hält = die Ad wirkt noch, der Eimer ist leer.
-- First Click ≠ Last Click: dieselbe Ad macht den ersten Kontakt und trägt später
-  die Conversion, weil dazwischen das Ökosystem wirkt. In kleinen B2B-Märkten
-  über Monate nur mit First-Click/Last-Click-Denken lesen, sonst killst du die Ad,
-  die den Verkauf vorbereitet.
+## 5. Formular und Gespräch als Lerninstrument behandeln
 
-## 8. Fast-Lane / Slow-Lane
+Ad und Formular sollen erklären: Warum dieses Angebot, was bekommt die Person,
+was passiert nach der Anmeldung? Der CTA nennt den tatsächlichen nächsten Schritt.
+Fragen zu Entscheidungskompetenz, Budget und Handlungsbereitschaft sind mögliche
+Qualifikationsdimensionen; feste Umsatzgrenzen aus seinen Fällen sind keine Norm. [Q9]
 
-- Etwa die Hälfte des Ad-Traffics klickt nicht den Link, sondern geht aufs Profil.
-  Das Profil muss wie ein Funnel funktionieren (Cases, Story-Highlights, Wins).
-- Fast-Lane: kalt aus der Ad ins Formular, der Verkauf passiert im Gespräch.
-- Slow-Lane: kommt Wochen später über Content, presold. Der Call ist Bestellung.
-- Konsequenz für MAKE: Ads allein tragen nur die Hälfte. Raphaels Profil,
-  Story-Highlights mit Cases und Retargeting-Content sind Teil der Kampagne.
+Bei neuen Angeboten empfiehlt Evers Kontaktmöglichkeiten vor Video/Buchung,
+damit auch Nichtbucher nach ihren Gründen gefragt werden können. [Q10]
+Unsere Anwendung: Leadqualität, Erreichbarkeit, Buchung, stattgefundenes Gespräch,
+Abschluss und Zahlung getrennt festhalten. Die Gesprächssprache liefert Material
+für die nächste Botschaft und zeigt, wo Verständnis oder Voraussetzungen fehlen.
 
-## 9. Preis-Logik für Ads
+„Pixel Conditioning“ ist seine vereinfachte Erklärung für Formularauslese. [Q9, Q11]
+Nicht als Plattformgesetz übernehmen: Ein schlechter Lead „vergiftet“ nicht
+nachgewiesen den Pixel, und ein abgewiesener Eintrag belegt kein bestimmtes Event.
+Optimierungsziel, übermittelte Ereignisse und CRM-Rückmeldung im realen Setup prüfen.
 
-- Unter ~1.500 € Ticket rechnet sich Paid kaum (Gewinnungskosten kommen zu spät
-  zurück). Sein Sweet Spot: 3.000–7.000 € plus Retainer.
-- Bei Ziel-ROAS 5–10 darf die Akquise 10–20 % des Projektpreises fressen.
-- Höhere Preise erlauben mehr Adspend und damit mehr Tests. Der Teure testet
-  schneller zum Winner. Preise stehen nie in der Ad.
+## 6. Kontinuierlich lernen, schreiben, aufnehmen und testen
 
-## MAKE-Transfer (konkret)
+Der übertragbare Kreislauf: Kundenfragen und Kontodaten sammeln → Hypothese
+formulieren → Botschaft und Darstellung bauen → veröffentlichen/testen → passende
+Kontakte und wirtschaftliche Ergebnisse prüfen → nächsten Versuch ableiten. [Q12]
 
-- Unser Offer ist schon Ergebnis-first (Platz 1 in 30 Tagen, schriftlich). Die
-  Statics müssen die Website als Beiwerk führen, nicht als Produkt. Genau der
-  Welle-3-Fehler war: «wir bauen Websites» als Opener.
-- Evers' «kein Interpretationsspielraum» bestätigt den Zwei-Fragen-Test
-  (was macht die Firma, was bringt der Klick) und ergänzt: was passiert NACH
-  dem Eintrag. Der CTA sollte den nächsten Schritt nennen («wir melden uns
-  innerhalb von 24 Stunden»).
-- Unsere Stopp-Regel (100 CHF, 7 Tage) entspricht seiner Spearhead-Logik.
-- Eimer-Modell lesen, bevor wir eine MAKE-Ad killen: CTR hält + CPL steigt =
-  Eimer, nicht Ad.
+Neue Hooks, Winkel und Formate können ein funktionierendes Kernkonzept ausbauen.
+Daneben braucht es neue Konzepte, wenn das Problem tiefer liegt. Es gibt keine
+allgemeine Hook-only-Regel und keinen Beleg für eine feste 80-Prozent-Verteilung.
+Wirtschaftlich funktionierende Anzeigen müssen für neue Tests nicht automatisch
+abgeschaltet werden. Kapazität und freigegebener Testetat begrenzen die Produktion. [Q13]
 
-## Was wir nicht übernehmen
+Evers nennt wöchentliche neue Anzeigen und eine 30-Tage-Content-Challenge mit
+drei Reels täglich plus zwei YouTube-Videos pro Woche. Das sind seine Routinen,
+keine belegten Mindestmengen. Der sinnvolle eigene Rhythmus produziert genügend
+unterscheidbare Versuche und lässt Zeit für Auswertung, Verkauf und Lieferung. [Q12, Q14]
 
-- Seine Zahlen (10 € Leads, 50–80 € Termine, 10–30x ROAS) sind Agentur-an-Agentur
-  mit 80-Agenturen-Sample. Nicht auf Deutschschweizer Inhaber übertragen.
-- Foot-in-the-Door für 0 € («nächster Kunde in 7 Tagen, du zahlst 0 €») ist sein
-  Markt-Einstieg als Unbekannter. MAKE hat den AlpenEnergie-Case, wir brauchen
-  den Gratis-Köder nicht, er würde unseren 50k-Filter verwässern.
-- WhatsApp-Formular-Umweg: bei MAKE bleibt das Instant-Formular der Pfad.
+### Horizontale Skalierung und das 6×6-Ideenraster
 
----
+Nach einem funktionierenden Kern lassen sich Winkel und Formate kombinieren.
+Evers nennt Problem, Lösung, Social Proof, Preis, FOMO und Angst sowie UGC,
+Statics, Split Screen, Green Screen, High Production, Screen Recording und Proof.
+Er bezeichnet das als 6×6/36 Varianten, zählt sprachlich aber sieben Formate auf.
+Als Ideenraster nutzen; keine Pflichtmenge und kein rechnerisch sauberes Testdesign. [Q15]
+Jede Variante braucht eine eigene Hypothese. Kein künstlicher Zeitdruck, erfundener
+Beweis oder neues Leistungsversprechen, nur um eine Matrixzelle zu füllen.
 
-## 10. Flow, dann monetarisieren, dann Reibung
+## 7. Budget und Diagnose aus dem konkreten Geschäft ableiten
 
-Neu aus dem 90-Tage-Funnel-Video (`AyZPDYtGNPo`, 28.08.2026).
+Die Quellen nennen unterschiedliche Situationen: 30–50 Euro täglich in einer
+frühen Aufbauphase, 50 Euro täglich für einen Webdesigner, 200–300 Euro täglich
+für isolierte Konzepttests und 3.000 Euro monatlich in einem kontextarmen Kurzclip.
+Diese Aussagen ergeben keine gemeinsame Mindestgrenze oder universelle Stop-Regel. [Q16]
+Auch 4.000–8.000 Impressionen pro Konzept sind seine Testvorgabe. Ob genügend
+qualifizierte Gespräche für eine belastbare Entscheidung vorliegen, bleibt gesondert zu prüfen. [Q17]
 
-- Einziges Startziel: Verkaufsopportunitäten, nicht der perfekte Funnel.
-- Reihenfolge bleibt fest: massiver Lead-Flow der richtigen Leute → Closing → erst
-  dann Reibung (mehr Qualifikation, VSL, Ökosystem).
-- Wer mit Landingpage, 20-Minuten-Automation und Frankenstein-Funnel startet, weiss
-  hinterher nicht, welche Komponente tot ist, und hat kein Geld, alle zu testen.
-- Am Anfang darf der Prozess ineffizient sein. Zeit gegen Information tauschen:
-  Setting-Calls lehren Sprache, Ängste, Einwände. Der Ads-Manager liefert das nie.
-- Bis 80–100k Monatsumsatz schliesst der Inhaber selbst.
+Das aktuelle Rechenbeispiel: 4.500 Euro Spend / 150 Euro je Termin = 30 Termine;
+30 Termine × 20 Prozent Abschlussquote × 5.000 Euro Projektwert = 30.000 Euro Umsatz.
+Aus diesen Annahmen ergibt sich ein Umsatz-Spend-Quotient von rund 6,67. Ein
+entsprechendes gemessenes Kampagnenergebnis liegt dieser Rechnung nicht bei.
+Leistungskosten, Ausfälle, Zahlungszeitpunkt und Kapazität müssen hinzukommen. [Q3]
 
-## 11. Pixel Conditioning im Instant-Formular
+Das frühere „Eimer-Modell“ und Hook-Ermüdung bleiben Diagnosehypothesen.
+Gleiche CTR bei höherem CPL beweist keinen Zielgruppenwechsel; hohe Frequenz
+beweist keinen leeren „Eimer“. Auch Auktion, Conversion-Rate, Auslieferung,
+Tracking und Kontaktqualität prüfen. Budgetentscheidungen brauchen eigene Daten.
+Historische ROAS-, Preis- und Kundenzahlen sind keine erwartbaren Benchmarks. [Q18]
 
-- Meta optimiert auf den billigsten Submit. 5-€-Leads, die die Pipeline verstopfen,
-  sind teurer als 50-€-Leads, die zu 7.000-€-Kunden werden.
-- Zielgrösse: niedrigste Kosten pro **qualifizierter Verkaufsopportunität**, nicht
-  niedrigster CPL.
-- Formular prüft ICP-Fit: Investitionsfähigkeit (Umsatz), akutes Problem,
-  Handlungsbereitschaft, Entscheidungsträger. Nie Termin ohne Mit-Entscheider.
-- Erweiterte Logik: «0–5k Umsatz» kommt nicht durch. Meta sieht diesen Submit nicht
-  und lernt auf 5–10k / 10–20k / 20k+. Das nennt er Pixel Conditioning.
-- Setting-Gates vor dem Closing-Call: Handlungsbereitschaft, Budget, alle Entscheider.
+## 8. Content begleitet Entscheidungen über den ersten Klick hinaus
 
-## 12. Ad-Struktur, die er wiederholt
+Evers beschreibt Ads, Profil, Instagram-Reels, YouTube und Cases als miteinander
+verbundene Kontaktpunkte. Fragen, schlechte Vorerfahrungen und Einwände geben
+dem Content seine Themen; Vertrauen kann vor dem Gespräch entstehen. [Q19]
+Das ist keine belegte feste Verteilung zwischen sofortigen und späteren Käufen.
+Der berichtete Kaufweg dokumentiert einen einzelnen Fall; der Beitrag der
+einzelnen Kontakte wurde nicht durch ein Attributionsmodell gemessen.
+Produktionsaufwand, organische Verteilung und bezahlte Verteilung separat erfassen.
+Sein archiviertes Funnel-Beispiel enthält ausdrücklich Click- und Lead-Retargeting;
+deshalb lässt sich daraus kein pauschales „Slow-Lane braucht keinen Extra-Spend“ ableiten. [Q20]
 
-Callout → konkretes Ergebnis → Proof 1 → Mechanismus → Authority → CTA
-(optional Proof 2 vor Authority).
+## Quellenanker
 
-- Validieren zuerst Callout und Offer-Claim. Schnitt, Gang, Schreien sind Kleinigkeiten.
-- Teste 3–5 **grundlegend verschiedene Botschaften**, nicht 30 Mini-Variablen derselben Ad.
-- CTA nennt den nächsten Schritt («ich rufe dich in den nächsten 48 Stunden an»).
-- Startformate vor Produktion: Ugly Ads, Green Screen, Split Screen, Handy-Walk-and-Talk.
+### Eigene Ads nach ihrer Aufgabe lesen
 
-## 13. VSL hinter dem Formular, nicht davor
+Die [lokale Anzeigenanalyse vom 06.09.2026](wissen/bestand/marc-evers-ads.md)
+erfasst elf bei Foreplay als aktiv gelistete Ad-IDs mit zehn unterschiedlichen
+Videodateien. Dazu wurden 72 historische Bild-Assets gesichtet. Quelle sind lokale
+Foreplay-Medien und Provider-Transkripte; der Meta-Browser blieb blockiert.
 
-- Fast-Lane bleibt Ad → Instant-Formular.
-- Nach Validierung kommt ein 4-Minuten-VSL (B2B bis 15 Minuten) **hinter** den Eintrag:
-  Problem, grosse Idee, Wunschzustand, Proof, Mechanismus, Offer, CTA.
-- Ziel: 10–15 % der Formular-Leads buchen über den VSL einen Termin.
-- Slow-Lane ist kein Extra-Spend. Dieselbe Ad läuft weiter, IG und YouTube geben Kontext.
-  Click-Retargeting (geklickt, nicht eingetragen) und Lead-Retargeting (eingetragen,
-  nicht gekauft) tragen Winkel, Proof und Einwandbehandlung.
+- **Persönliches Angebot:** Selfie-Pitch mit punktuell eingeblendeten Gesprächs-
+  und Chatbelegen. Ein Mechanismus kann hier vor den ausführlichen Proof-Blöcken stehen.
+- **Proof:** kurze Gesprächsausschnitte, Bildschirmarbeit oder ein ausführliches
+  Kundeninterview. Dauer und Aufbau richten sich nach der benötigten Erklärung.
+- **Content-Einladung:** fünf eigenständige Anzeigen zeigen eine YouTube-Videokarte
+  und laden zum Klick ein. Content-Zuführung kann eigene Anzeigen erhalten;
+  Spend, Kampagnenziel und Rentabilität dieser Ads sind nicht bekannt.
 
-## 14. 6×6 horizontale Skalierung
+Historische Statics zeigen zusätzlich Dokumentvorschauen, Selfies mit
+Qualifikationshinweisen und gestaltete Blueprint-Tafeln. Manche nennen den
+persönlichen Rückruf nach Eintragung. Die tatsächliche Formular-/VSL-Reihenfolge
+wurde dadurch nicht geprüft. Gratis-Inhalt, Value Call und erfolgsabhängige
+Vergütungsgarantie auseinanderhalten. Diese Befunde schärfen die Aufgabe einer
+Ad; sie liefern keinen Erfolgsvergleich. [Beobachtungen und Ad-IDs](wissen/bestand/marc-evers-ads.md)
 
-Nur mehr Spend auf denselben Winner treibt Leadpreis und senkt ROAS.
-Aus **einer** Winner-Ad 36 Varianten: 6 Winkel × 6 Formate.
+### Lehrvideos
 
-- Winkel: Problem, Lösung, Social Proof, Preis, FOMO, Angst.
-- Formate, die er nennt: UGC, Statics, Split Screen, Green Screen, High Production,
-  Screen Recording, Proof. Die 36 ist seine Zählung, nicht sieben mal sechs.
-- Jede Variante trifft ein Subsegment desselben ICP. Kein neues Offer in dieser Matrix.
+Die Links führen zu den öffentlichen Originalen. Suche den jeweiligen Shortcode
+im [Korpus](wissen/bestand/marc-evers-korpus.jsonl), um alle einzelnen Aussagen,
+Aussagetypen und Grenzen zu lesen. Ein Shortcode ist kein sekundengenauer Videoanker.
 
-## MAKE-Transfer (Nachtrag 28.08.2026)
-
-- Pixel Conditioning gehört ins Instant-Formular, sobald Müll-Leads den Pixel füttern.
-  Umsatzfrage mit Kill-Zweig, nicht Mitarbeiterzahl.
-- 6×6 ist die Scaling-Stufe nach Spearhead, nicht der Start.
-- VSL hinter dem Formular erst nach den ersten Abschlüssen. Vorher keine Reibung.
+| ID | Aussage / Primärquelle |
+| --- | --- |
+| Q1 | Differenzierung: [DT2c0EDkkOb](https://www.instagram.com/p/DT2c0EDkkOb/); Schluss später nachgeprüft, ASR bleibt fehleranfällig. |
+| Q2 | Ergebnispositionierung: [DaD-jrwILl2](https://www.instagram.com/p/DaD-jrwILl2/); Gegenbeispiel [Dario](https://www.instagram.com/p/DURBZgYEv-2/). |
+| Q3 | Angefragtes Reel [Dc8VLBYNLzz](https://www.instagram.com/p/Dc8VLBYNLzz/): Korpus-IDs `-01` bis `-06`. |
+| Q4 | Mini-VSL: [DUTPDZQkvfY](https://www.instagram.com/p/DUTPDZQkvfY/). |
+| Q5 | Fremdanalysen: [Mario](https://www.instagram.com/p/DclG1yBA4aD/), [Iron Media](https://www.instagram.com/p/DckxwxLAy86/); Kommentar-Einstieg [DaBG7Wbob1E](https://www.instagram.com/p/DaBG7Wbob1E/). |
+| Q6 | Notizfläche und Greenscreen: [DakiUbUg2xi](https://www.instagram.com/p/DakiUbUg2xi/). |
+| Q7 | Spontane Direktansprache: [DaIx5weo3mJ](https://www.instagram.com/p/DaIx5weo3mJ/). |
+| Q8 | Static, Video, VSL: [DZ-JsE-MV05](https://www.instagram.com/p/DZ-JsE-MV05/). |
+| Q9 | Erwartung nach Eintrag: [DaNgjEwIKOF](https://www.instagram.com/p/DaNgjEwIKOF/); Qualifizierung/Pixel-Erklärung: [DbVvqwWsond](https://www.instagram.com/p/DbVvqwWsond/). |
+| Q10 | Nichtbucher befragen: [DaGOvTQIeGV](https://www.instagram.com/p/DaGOvTQIeGV/). |
+| Q11 | Pixel-Erklärung und Gesprächslernen: [AyZPDYtGNPo](https://www.youtube.com/watch?v=AyZPDYtGNPo). |
+| Q12 | Kontinuität: [DaQEtzuIMHh](https://www.instagram.com/p/DaQEtzuIMHh/); Wochenroutine: [Da-fcpBge2C](https://www.instagram.com/p/Da-fcpBge2C/). |
+| Q13 | Varianten: [DaqkxRGoe1W](https://www.instagram.com/p/DaqkxRGoe1W/); parallel weiterführen: [DaAeLySAYAb](https://www.instagram.com/p/DaAeLySAYAb/). |
+| Q14 | Content-Challenge: [DaM9maTIWld](https://www.instagram.com/p/DaM9maTIWld/); Kapazität: [DT5KobpkiJH](https://www.instagram.com/p/DT5KobpkiJH/). |
+| Q15 | 6×6-Raster: [AyZPDYtGNPo](https://www.youtube.com/watch?v=AyZPDYtGNPo). |
+| Q16 | Budgetkontexte: [30–50/Tag](https://www.instagram.com/p/Daia-vEogym/), [50/Tag](https://www.instagram.com/p/DaFyHj_IDcS/), [200–300/Tag](https://www.instagram.com/p/DadfCGrgUij/), [3.000/Monat](https://www.instagram.com/p/DaXzH5koo1i/). |
+| Q17 | Isolierte Konzepttests: [DadfCGrgUij](https://www.instagram.com/p/DadfCGrgUij/). |
+| Q18 | Extreme Ergebnisse ausdrücklich begrenzt: [Arber-Interview](https://www.instagram.com/p/DWHUzNDjCfj/). |
+| Q19 | Gründe für spätere Käufe: [DXZ7DPsAHYK](https://www.instagram.com/p/DXZ7DPsAHYK/); Content-System: [DXT_2rjyL-A](https://www.instagram.com/p/DXT_2rjyL-A/). |
+| Q20 | Click-/Lead-Retargeting: [AyZPDYtGNPo](https://www.youtube.com/watch?v=AyZPDYtGNPo). |

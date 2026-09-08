@@ -1,32 +1,38 @@
 ---
 name: brain
-version: 0.1.0
+version: 0.3.0
 description: >
   Der eine Einstieg ins Second Brain (/root/raphael-brain) mit sechs Modi:
   `einspeisen` (Rohmaterial nach raw/ mit Herkunftsbeleg), `verdichten` (Wissen als
   Kandidat, nie ins Wiki), `abrufen` (nur freigegebene Seiten, mit Quellenliste),
-  `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage für
-  Raphaels Freigabe) und `verbinden` (Verlinkungs-Vorschläge als Diff). Verdrahtet auf
+  `pruefen` (alle Gates in fester Reihenfolge), `sichten` (Kandidaten-Triage und
+  autorisierte Promotion) und `verbinden` (Verlinkungs-Vorschläge als Diff).
+  Ein Creator-Profil (alle Reels/Videos) läuft als einspeisen→verdichten→sichten
+  nach references/creator-feed.md, mit Medien-IDs, Carousel-Videos und Abdeckungslücken. Verdrahtet auf
   die vorhandenen Brain-Skripte statt auf Freitext. Trigger: "ins Brain", "einspeisen",
   "Brain aufräumen", "was weiß ich über", "Kandidaten sichten", "Wissen verdichten",
-  "Brain prüfen", "brain", "Notiz ablegen", "Second Brain".
+  "Brain prüfen", "brain", "Notiz ablegen", "Second Brain", "alle Reels transkribieren",
+  "Creator-Feed ins Brain", "Nuggets thematisch".
 class: W
 scope: agency
 sensitivity: internal
-source: eigenständig geschrieben; Idee "ein Einstiegs-Skill mit Modi über die vorhandenen
+source: >
+  eigenständig geschrieben; Idee "ein Einstiegs-Skill mit Modi über die vorhandenen
   Skripte" und die raw-Objekttypen aus coreyhaines31/makerskills second-brain + company-brain
   (Ideen-Merge, kein Vendoring). Analyse und Entscheidungen:
   raphael-command-center/ops/research/2026-08-03-makerskills-eval/PLAN.md:68-101
 loads:
   - /root/raphael-brain/AGENTS.md
   - /root/raphael-brain/wiki/_candidates/README.md
+  - references/creator-feed.md
 completion_criteria:
   - "Genau ein Modus wurde ausdrücklich benannt, bevor gearbeitet wurde"
   - "Jeder im gewählten Modus vorgeschriebene Skript-Aufruf ist mit seiner echten Ausgabe eingefügt — nicht behauptet"
-  - "Nichts wurde nach /root/raphael-brain/wiki/ geschrieben; jede neue Wissensseite liegt in wiki/_candidates/ mit status: candidate"
+  - "Keine Seite wurde direkt nach /root/raphael-brain/wiki/ geschrieben; Promotion lief ausschließlich über brain-promote.py mit privater root-owned 0600 One-shot-Autorisierung"
   - "Jede geschriebene Kandidatenseite nennt mindestens einen Beleg als datei:zeile und besteht scripts/wiki-lint.sh --changed-only"
   - "Jede neue raw-Datei hat einen Typ-Präfix aus AGENTS.md und einen Herkunftsbeleg (.provenance.md)"
   - "Im Modus abrufen liegt die Liste der konsultierten Seiten bei der Antwort; unbelegtes heißt 'nicht belegt' statt einer Ergänzung"
+  - "Ein Creator-Feed folgt references/creator-feed.md: eingefrorene URL-Liste, Sidecar vor Verdichten, atomare Nuggets mit standalone Quelle-Zeile, Promote als zwei Git-Commits; Check-Ausgabe eingefügt"
 ---
 
 # brain — ein Einstieg, sechs Modi, alles auf die echten Skripte verdrahtet
@@ -51,10 +57,12 @@ Ablage-Konvention (Präfixe, Sidecar, `_candidates`) steht **nur hier** bzw. in
 
 ## Die harte Regel (gilt in jedem Modus, ohne Ausnahme)
 
-> **Ein Agent schreibt NUR nach `/root/raphael-brain/wiki/_candidates/` (oder `raw/`).**
-> **Niemals nach `/root/raphael-brain/wiki/` selbst.**
-> Ins kanonische Wiki hebt allein Raphael, per `scripts/approve-candidate.sh <datei> <bereich> --yes`.
-> Das `--yes` setzt ein Agent **nie** selbst — Wiki-Kanonisierung ist Rot-Klasse (TB1).
+> **Ein Agent erstellt neue Seiten zuerst in `/root/raphael-brain/wiki/_candidates/` (oder `raw/`).**
+> **Niemals direkt nach `/root/raphael-brain/wiki/` schreiben.**
+> Nach bestandenen Gates zeigt `scripts/approve-candidate.sh <datei> <bereich>` nur
+> Ziel und Delegation an. Kanonisieren darf ausschließlich `scripts/brain-promote.py`
+> mit einer privaten, root-owned `0600` One-shot-Autorisierung, die Kandidaten-Hash,
+> Ziel, Ablauf und Nonce bindet. `--yes` allein ist ausdrücklich keine Autorisierung.
 
 Im Zweifel vor jedem Schreiben das Gate fragen, es antwortet deterministisch:
 
@@ -77,13 +85,16 @@ Immer genau **einen** Modus ansagen, bevor irgendetwas passiert. Kein Mischbetri
 | Modus | Wofür | Gate |
 |---|---|---|
 | `einspeisen` | Rohmaterial kommt rein | raw append-only (TB3) |
-| `verdichten` | Aus Rohmaterial wird eine Wissensseite | Freigabe nur Raphael |
+| `verdichten` | Aus Rohmaterial wird eine Wissensseite | Kandidat zuerst; Promotion nach Gates erlaubt |
 | `abrufen` | Eine Frage aus dem Brain beantworten | nur freigegebene Seiten |
 | `pruefen` | Gesundheitscheck über das Brain | — |
-| `sichten` | Kandidaten für Raphaels Freigabe aufbereiten | Anheben nur Raphael |
+| `sichten` | Kandidaten prüfen, disponieren und bei PASS autorisiert promoten | Vorschau über `approve-candidate.sh`; Promotion nur mit One-shot-Autorisierung |
 | `verbinden` | Fehlende Verlinkungen vorschlagen | nur Diff, keine Edits |
 
 Passt keiner: nachfragen statt improvisieren.
+
+Ein **Creator-Feed** (Profil, alle Reels) ist kein siebter Modus. Er fährt die
+drei Modi nacheinander. Ablauf und Git-Falle: `references/creator-feed.md`.
 
 ---
 
@@ -117,7 +128,7 @@ Ziel: Material liegt zitierfähig in `raw/`, mit Herkunft und Hash.
    **Gotcha:** Meldet der Check „Hash abweichend", wird **nie** neu baselined. Dann läuft
    `scripts/raw-baseline-anhang-pruefen.py` und weist nach, ob die Datei nur gewachsen ist.
 
-Kundenmaterial bleibt im Kundenrepo `/root/clients/client-<name>/` (TB4). Ins zentrale
+Kundenmaterial bleibt im Kundenrepo `/root/clients/<slug>/` (TB4). Ins zentrale
 Brain nur verallgemeinert, ohne Kundennamen.
 
 ---
@@ -153,7 +164,7 @@ Ziel: eine belegte Wissensseite als **Kandidat**. Nie direkt ins Wiki.
    ```
    Der dritte zeigt, welche Kennzahlen der Kanon schon kennt — ein Treffer heißt mergen,
    nicht danebenlegen.
-5. **Skeptiker-Schritt** bei Kandidaten aus Web-/Extern-Recherche: vor der Freigabefrage
+5. **Skeptiker-Schritt** bei Kandidaten aus Web-/Extern-Recherche: vor der Promotion
    eine **andere Modellfamilie** gegenchecken lassen (Regel 8). Unbestätigt →
    `confidence: low` oder verwerfen, nie ungeprüft weiterreichen.
 6. **Widerspruch statt Überschreiben:** Sagt die neue Erkenntnis das Gegenteil einer
@@ -189,7 +200,28 @@ Ziel: eine Antwort **nur** aus freigegebenem Wissen, mit offengelegten Quellen.
 5. **Ausgabe:** Antwort plus Liste der konsultierten Seiten mit Pfad und Datum. Längere
    Ausarbeitungen nach `/root/raphael-brain/exports/`. Fehlt der Beleg, lautet die Antwort
    **„nicht belegt"** — nie eine plausible Ergänzung.
-6. Flüchtiges (Mail, Kalender, CRM) wird live abgefragt, nicht ins Brain kopiert.
+6. **Quellwortlaut.** Beim Verdichten und in Recherche-Briefen fremden Text in eigener
+   indirekter Rede wiedergeben. Wörtliche Übernahme nur als kurzes markiertes Zitat
+   (`"..."` oder `>`), nie unmarkiert im Fließtext. Die Antwort organisiert nach Aussage
+   (wo Quellen sich treffen, wo sie abweichen), nicht als Gang durch die Quelle.
+   Rohablage bleibt unberührt: `raw/`, Transkript-Volltext, `customer-language/` und
+   Creator-Nuggets bleiben wörtlich und mit Herkunft; sobald derselbe Satz in Wiki oder
+   Brief erscheint, ist er Zitat. „Aufnahme vollständig / kein Kürzen“ gilt nur fürs Einspeisen.
+
+   Richtig: Zwei Quellen zur Hook-Rate. Die Schwelle steht in eigenen Sätzen; ein kurzes
+   markiertes Zitat; der Rest umformuliert. Falsch: Transkript- oder Wiki-Passagen
+   unmarkiert in den Fließtext kippen.
+
+   Beispiel (CORRECT): Beide Outlets sind sich einig über die Basis: die Brücke schloss
+   am 3. März, nachdem Prüfer Risse in den Schweißnähten fanden, und der Staat rechnet
+   mit etwa acht Monaten Reparatur. Unterschied ist die Betonung. Das Ledger behandelt
+   es als lokale Wirtschaftsgeschichte. Der Dispatch rahmt es als Finanzierungsversagen;
+   sein Leitartikel nennt die Schließung „entirely foreseeable.“ Zusammen erklärt das
+   Ledger, wen es jetzt trifft, und der Dispatch, wie es so weit kam — keine der beiden
+   Darstellungen allein gibt das ganze Bild. Organisiert nach Übereinstimmung und
+   Differenz, nicht als Gang durch einen Artikel. Jede Quelle in ein, zwei Sätzen
+   indirekter Rede; ein kurzes markiertes Zitat; jeder andere Claim umformuliert.
+7. Flüchtiges (Mail, Kalender, CRM) wird live abgefragt, nicht ins Brain kopiert.
 
 ---
 
@@ -222,7 +254,9 @@ Umgebungstatsache, keine Behauptung).
 
 ## Modus `sichten`
 
-Ziel: Raphael kann in einem Durchgang entscheiden. Der Agent entscheidet **nichts**.
+Ziel: Kandidaten deterministisch prüfen und disponieren. Bei eindeutigem PASS darf die
+Promotion nur erfolgen, wenn bereits eine passende One-shot-Autorisierung vorliegt; ohne
+sie bleibt der geprüfte Kandidat unangetastet. Inhaltliche Mehrdeutigkeit geht an Raphael.
 
 0. Zur Triage gehört auch der Unterordner `wiki/_candidates/ideen/` — Ideen-Briefe aus
    [idea-filter](/root/raphael-skills/skills/eigene/idea-filter/SKILL.md) (`type: idea-brief`);
@@ -235,12 +269,17 @@ Ziel: Raphael kann in einem Durchgang entscheiden. Der Agent entscheidet **nicht
    ersetzende Seite) · **überspringen** (mit Grund, warum später).
 4. Protokoll nach `/root/raphael-brain/exports/<YYYY-MM-DD>-kandidaten-sichtung.md`,
    plus **ein** Sammeleintrag in `/root/raphael-command-center/ops/review-inbox.md`.
-5. **Ende der Agentenarbeit.** Das Anheben macht Raphael:
+5. Bei `freigeben` zuerst Ziel und Delegation ohne Schreibwirkung prüfen:
    ```bash
-   /root/raphael-brain/scripts/approve-candidate.sh wiki/_candidates/<datei>.md <bereich> --yes
+   /root/raphael-brain/scripts/approve-candidate.sh wiki/_candidates/<datei>.md <bereich>
    ```
-   Ohne `--yes` zeigt das Skript nur eine Vorschau und verschiebt nichts. Ein Agent ruft
-   es höchstens **ohne** `--yes` auf, um die Vorschau ins Protokoll zu legen.
+   Liegt `BRAIN_PROMOTION_AUTHORIZATION` als private, root-owned `0600` One-shot-Datei
+   vor, die exakt Kandidat, Hash und Ziel bindet, führt der Agent die ausgegebene
+   `brain-promote.py`-Delegation aus. Fehlt sie, wird nicht promotet und kein Schutzpfad
+   umgangen. `--yes` allein bleibt deny.
+   Der Kandidat muss **in Git** liegen, bevor der Promote-Commit die kanonische Seite
+   addiert — sonst `promotion-receipt-source-not-deleted`. `wiki/hot.md` nicht stagen.
+   Reihenfolge: `references/creator-feed.md` Abschnitt 5.
 
 ---
 
@@ -291,5 +330,7 @@ Ehrlich getrennt von dem, was oben wirklich läuft:
   `brain-context.py synthesis`.
 - **Ein Modus pro Durchgang.** Einspeisen und Verdichten in einem Rutsch führt regelmäßig
   dazu, dass die Verdichtung auf eine Datei zeigt, deren Sidecar noch fehlt.
+- **Profil ≠ ein Video.** `/reels/`-Playlists per yt-dlp sind broken; Shortcodes
+  einfrieren, je Post laden. StructuredOutput allein ist kein Artefakt — JSON auf Disk.
 - **Nichts prüft die eigene Hausarbeit** (Regel 8): Wer verdichtet hat, sichtet nicht
   denselben Kandidaten.

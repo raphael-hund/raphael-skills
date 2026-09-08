@@ -56,9 +56,9 @@ Drei Regeln zur Latte:
 
 | Rolle | Wer | Was |
 |---|---|---|
-| **Lead** | Cockpit (Fable/Opus) | zerlegt in kleinste einzeln bewertbare Stücke, verteilt, hält den Stand — baut nicht selbst |
-| **Builder** | `kimi-worker` (Frontend/DE-Text), `sonnet-worker` (allgemein), `luna-worker` (Mechanik), `terra-bulk` (Volumen) | baut ein Stück |
-| **Kritiker** | **andere Familie als der Builder**: `sol-pruefer` (Urteil), `kimi-recherche`, sonst `sonnet-worker` | vergleicht gegen die Latte, benennt **die eine größte Lücke** |
+| **Lead** | Cockpit (Opus) | zerlegt in kleinste einzeln bewertbare Stücke, verteilt, hält den Stand — baut nicht selbst |
+| **Builder** | `fable-builder` (Substanz, max zwei parallel), `opus-builder` (Breite), `grok-worker` (Code/Tempo), `sol-worker` (Architektur/Copy), `luna-worker` (nur Masse) | baut ein Stück |
+| **Kritiker** | **andere Familie als der Builder**: `sol-critic` / `grok-critic` / `grok-critic` / `opus-critic` | vergleicht gegen die Latte, benennt **die eine größte Lücke** |
 | **Glätter** | ein frischer Agent nach jeder großen Welle | gleicht die unabhängig verbesserten Stücke zu einem Ganzen an |
 
 **Harte Kopplung an Regel 8:** Builder und Kritiker sind nie dieselbe Familie.
@@ -112,8 +112,8 @@ Prompt-Gerüst für den Lead:
 ZIEL:        <ein Satz, was am Ende existiert>
 LATTE:       <Datei/URLs/Screenshots — inspizierbar>
 REGELN:      <Rot-Klassen, Tabus, Marke/Doktrin, Zielordner>
-FLOTTE:      Builder je Stück (kimi-worker/sonnet-worker/luna-worker/terra-bulk),
-             Kritiker IMMER andere Familie (sol-pruefer/kimi-recherche/sonnet-worker)
+FLOTTE:      Builder je Stück nach work_type (Fable/Opus/Grok/Sol; Luna nur mass),
+             Kritiker IMMER andere Familie (sol-critic/grok-critic/grok-critic/opus-critic)
 KRITIKER:    blind A/B gegen die Latte, am echten Artefakt, EINE größte Lücke
 STAND:       workbench.md fortschreiben (Screenshot + Verdikt + offene Lücke je Stück)
 FREI:        Zerlegung, Reihenfolge, Anzahl Runden bestimmst du

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Debug"
-  short_description: "Codex adapter for the debug skill"
-  default_prompt: "Use $debug for this task."

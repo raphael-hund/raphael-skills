@@ -1,0 +1,42 @@
+---
+import Page from '../layouts/Page.astro';
+import { StaticCard } from '../components/StaticCard';
+import { DetailsDialog } from '../components/DetailsDialog';
+import '../styles/components.css';
+---
+<Page title="HTML first. One React island." description="A bounded Astro and shadcn integration proof with static HTML and one interactive island.">
+  <section class="intro" aria-labelledby="page-title">
+    <p class="eyebrow">Astro + shadcn / production proof</p>
+    <h1 id="page-title">HTML first.<br />One React island.</h1>
+    <p class="lead">The page stays ordinary HTML and CSS. A real shadcn Card is rendered into the page, and one Dialog adds interaction.</p>
+    <a class="native-link" href="/service/">Visit the static service page →</a>
+  </section>
+  <section class="proof-grid" aria-labelledby="components-title">
+    <div>
+      <p class="eyebrow">01 / build-time HTML</p>
+      <h2 id="components-title">Static component</h2>
+      <div class="shadcn-scope"><StaticCard /></div>
+    </div>
+    <div>
+      <p class="eyebrow">02 / one client:load island</p>
+      <h2>Interactive component</h2>
+      <p>The quick view is enhanced after JavaScript loads. The complete details are always one ordinary link away.</p>
+      <div class="shadcn-scope"><DetailsDialog client:load /></div>
+      <p><a id="always-details" class="native-link" href="/service/#details">Read service details without the dialog →</a></p>
+      <noscript><p>JavaScript is off. Use the service details link above.</p></noscript>
+    </div>
+  </section>
+  <section class="baseline" aria-labelledby="baseline-title">
+    <p class="eyebrow">03 / native CSS baseline</p>
+    <h2 id="baseline-title" class="text-lg font-semibold">Native heading and form controls</h2>
+    <p>These elements remain outside the component style scope, including deliberately colliding utility class names.</p>
+    <form action="/service/#details" method="get">
+      <label for="topic">Topic</label>
+      <div class="form-row">
+        <input id="topic" class="rounded-xl border" name="topic" value="HTML + islands" />
+        <button id="native-button" class="bg-primary rounded-xl" type="submit">View details</button>
+      </div>
+    </form>
+  </section>
+  <div slot="portals" id="shadcn-portals" class="shadcn-scope"></div>
+</Page>

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Skill Update"
-  short_description: "Codex adapter for the skill-update skill"
-  default_prompt: "Use $skill-update for this task."

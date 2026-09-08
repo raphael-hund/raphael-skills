@@ -25,17 +25,20 @@ runden-protokoll.md), gegenueber dem Original:
   - check_slice_falle: NEU. Warnt vor `.slice(` auf `JSON.stringify(...)` in
     agent()-Prompts — die "Slice-Falle" aus workflow-vorlage.md (3x real
     passiert, R13/R15): stiller Datenverlust an Folge-Agenten statt Datei+Pfad.
-  - check_model_fable: NEU. FAIL bei Fable als `model` oder `agentType` —
-    Fable/Opus sind seit 03.08.2026 im Gauntlet erlaubt (Raphael-Freigabe) und
-    laufen dort ueber die agentTypes fable-architekt / opus-builder. Ein rohes
+  - check_model_fable: NEU. FAIL bei Fable als `model` oder nicht freigegebenem
+    `agentType`. Fable/Opus laufen ueber die agentTypes fable-advisor /
+    opus-builder. Ein rohes
     model:'fable' im Workflow-Script bleibt trotzdem ein WARN: es umgeht die
     Agenten-Definition mit ihren Leitplanken (Bounded Task, kein Reward-Hacking,
     Selbstbenotungs-Verbot).
-  - check_multimodel_fleet: seit 28.07.2026 WARN (nicht FAIL) bei
+  - check_multimodel_fleet: multi-family blockiert Workflows mit nur einer Familie;
     Claude-only-Flotten. Grenze der Heuristik: sie sieht nur, OB irgendwo
     eine Nicht-Claude-Familie vorkommt — nicht, ob ausgerechnet der
     VERIFIER-Agent aus der anderen Familie stammt (Rollen sind statisch
     nicht erkennbar). Das prüft die Cockpit-Letztverifikation, nicht der Regex.
+    Seit 02.09.2026 liest der Check `/root/.claude/fleet-profile` (Env
+    `RAPHAEL_FLEET_PROFILE` schlägt die Datei, Default `multi-family`); im
+    Profil `claude-only` übernimmt check_claude_only_fleet.
   - render()/verdict()/CLI-Grundgeruest (argparse, --json, --sample) 1:1
     uebernommen, SAMPLE auf unsere Regeln erweitert.
 
@@ -43,10 +46,28 @@ Stdlib only. Heuristisch (Regex/Text) — fuehrt die Datei nicht aus. Keine
 Netz-Calls, kein exec.
 """
 import argparse
+import os
 import re
 import sys
 
 FAIL, WARN, PASS = "FAIL", "WARN", "PASS"
+
+FLEET_PROFILE_PATH = "/root/.claude/fleet-profile"
+DEFAULT_FLEET_PROFILE = "multi-family"
+
+
+def fleet_profile():
+    """Aktives Flottenprofil. Env `RAPHAEL_FLEET_PROFILE` schlaegt die Datei
+    (Tests sind so deterministisch). Fehlt beides: `multi-family`."""
+    env = os.environ.get("RAPHAEL_FLEET_PROFILE", "").strip()
+    if env:
+        return env
+    try:
+        with open(FLEET_PROFILE_PATH, "r", encoding="utf-8") as fh:
+            value = fh.read().strip()
+    except OSError:
+        return DEFAULT_FLEET_PROFILE
+    return value or DEFAULT_FLEET_PROFILE
 
 
 def _strip_comments(src):
@@ -165,66 +186,120 @@ def check_nondeterminism(code, findings):
             findings.append((FAIL, _lineno(code, m.start()), msg))
 
 
+def _is_real_fable(value):
+    """True only for Fable cockpit IDs. Gateway dd-aliases are other families."""
+    if not isinstance(value, str) or not value.strip():
+        return False
+    low = value.strip().lower()
+    if low.endswith("[1m]") or low.endswith("[1M]"):
+        low = low[:-4]
+    if low.startswith(("claude-fable-5-dd-", "claude-gw-dd-")):
+        return False
+    if low in {"fable", "claude-fable-5", "anthropic/claude-fable-5", "fable-advisor"}:
+        return True
+    if low.startswith("fable-"):
+        return True
+    return low.startswith("claude-fable-5")
+
+
 def check_model_fable(code, findings):
-    """model:'fable' als roher Override umgeht die Agenten-Definition.
+    """Rohes Fable-model / Fable-agentType blocken. dd-Aliase sind kein Fable.
 
-    Bekannte Grenze: dies ist eine Heuristik auf dem Quelltext, keine harte
-    Garantie. Sie erkennt nur das woertliche Literal model:'fable'
-    (case-insensitiv, faengt also auch 'Fable'/'FABLE'). Verschleierung durch
-    Variablen-Concat (z.B. `const m='fa'+'ble'; agent('p',{model:m})`) kann
-    dieser statische Check prinzipbedingt nicht erfassen. Die Cockpit-
-    Letztverifikation (siehe orchestrate/SKILL.md (Betriebsart LOOP), Abschnitt zur finalen
-    Pruefung vor dem Merge) ist die eigentliche Grenze gegen sowas — dieser
-    Check ist nur eine fruehe Advisory-Warnung, kein hartes Gate.
-
-    Backtick-Template-Strings werden vor dem Match maskiert: echte
-    Modell-Konfiguration steht in `model:'...'`/`model:"..."` (einfache/
-    doppelte Anfuehrungszeichen), waehrend Kritiker-Agent-Prompts (Backtick-
-    Templates) das Fable-Verbot haeufig als Text zitieren — ohne Maskierung
-    false-positiv FAIL auf legitimen Prompt-Text.
+    Gateway-Transport-IDs (`claude-fable-5-dd-*`, `claude-gw-dd-*`) enthalten
+    das Wort fable, sind aber Grok/Kimi/Sol/Luna/Terra. Ohne Dekodierung
+    blockt dieser Check die ganze Flotte (Livegang-Blocker §10).
     """
     masked = re.sub(r"`(?:[^`\\]|\\.)*`", lambda mm: " " * len(mm.group(0)), code)
-    # Freigegebene agentTypes (Raphael 03.08.2026): sie TRAGEN die Leitplanken,
-    # deshalb duerfen sie hier nicht als Verstoss anschlagen.
-    ERLAUBT = ("fable-architekt", "opus-builder")
-    patterns = (
-        r"model\s*:\s*['\"]fable['\"]",
-        r"agentType\s*:\s*['\"]([^'\"]*fable[^'\"]*)['\"]",
-    )
-    for pattern in patterns:
-        for m in re.finditer(pattern, masked, re.I):
-            if m.groups() and m.group(1).lower() in ERLAUBT:
+    # fable-builder: Fable als Builder-Leaf (Raphael 04.09.2026). Modell kommt aus der Agent-Datei.
+    ERLAUBT = ("fable-advisor", "fable-builder", "opus-builder")
+    for key in ("model", "agentType"):
+        for m in re.finditer(rf"\b{key}\s*:\s*['\"]([^'\"]+)['\"]", masked, re.I):
+            value = m.group(1).strip()
+            if value.lower() in ERLAUBT:
                 continue
-            findings.append((FAIL, _lineno(code, m.start()),
-                             "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen im Gauntlet ueber agentType 'fable-architekt' bzw. 'opus-builder' (Freigabe 03.08.2026) — dort stehen die Leitplanken."))
+            if _is_real_fable(value):
+                findings.append((FAIL, _lineno(code, m.start()),
+                                 "model:'fable' umgeht die Agenten-Definition. Fable/Opus laufen ueber agentType 'fable-advisor', 'fable-builder' bzw. 'opus-builder' — dort stehen Effort-, Child-Cap- und Build-Leitplanken."))
 
 
 def check_multimodel_fleet(code, findings):
-    """WARN (kein FAIL) seit 28.07.2026 — vorher Historie in zwei Schritten:
+    """multi-family: Workflow ohne echte Fremdfamilien-Agenten ist FAIL.
 
-    Bis 25.07.2026: FAIL, wenn nicht Sol, Kimi UND Luna als `agentType`
-    vorkamen. Ein OpenAI-Ausfall (biscuit_baker_service_me_circuit_open)
-    legte Sol und Luna gleichzeitig lahm — die Regel war nicht mehr
-    erfuellbar, obwohl Claude und Kimi lieferten. Raphael strich die
-    Pflicht (Flotten-Wahl frei).
-
-    25.-28.07.2026: kompletter No-Op — damit prüfte NICHTS mehr die
-    Empfehlung "Verifier aus anderer Modellfamilie", obwohl
-    eval/SKILL.md sie weiter als Kriterium führt (Kritik-Runde 28.07.).
-
-    Jetzt: WARN, wenn ein Workflow agent() nutzt, aber keine einzige
-    Nicht-Claude-Familie (sol-pruefer/kimi-*/luna-worker) vorkommt.
-    Warnung = starten erlaubt (Anbieter-Ausfall bleibt legitim), aber im
-    Runden-Protokoll vermerken, warum nur eine Familie lief.
+    Dynamic Workflow ``agent()`` erbt ohne ``agentType`` den Root Fable. Ein
+    ``model:``-Wert ist kein belastbarer Fremdmodell-Nachweis; nur ein globaler
+    Agent-Typ bindet den Gateway-Alias. Deshalb muss jeder substanzielle
+    Workflow im multi-family-Profil mindestens zwei Modellfamilien per
+    ``agentType`` nennen. Massenauswertung nutzt Stufe 2 (Sonnet/Luna/Terra),
+    Urteil/Bau Stufe 1; ein Kritiker kommt aus einer anderen Familie.
     """
     if not re.search(r"\bagent\s*\(", code):
         return
-    if re.search(r"agentType\s*:\s*['\"](sol-pruefer|kimi-[a-z]+|luna-worker)['\"]", code):
+    if fleet_profile() == "claude-only":
+        check_claude_only_fleet(code, findings)
         return
-    findings.append((WARN, 1,
-                     "Nur Claude-Familie im Workflow (kein sol-pruefer/kimi-*/luna-worker als agentType). "
-                     "Cross-Vendor-Verifier ist Empfehlung, kein Gate (Raphael 25.07.2026) — "
-                     "wenn Anbieter-Ausfall der Grund ist, im Runden-Protokoll vermerken."))
+
+    found = re.findall(r'agentType\s*:\s*[\'"]([^\'"]+)[\'"]', code)
+    total_agents = len(re.findall(r"\bagent\s*\(", code))
+    if len(found) < total_agents:
+        findings.append((FAIL, 1,
+                         f"{total_agents - len(found)} von {total_agents} agent()-Aufrufen ohne literal agentType: "
+                         "untypisierte Leaves erben Fable. Jeder einzelne Leaf braucht einen globalen agentType."))
+    family = {
+        "fable-builder": "Claude", "fable-critic": "Claude",
+        "opus-builder": "Claude", "opus-critic": "Claude",
+        "sonnet-worker": "Claude", "web-research": "Claude",
+        "astra-worker": "GPT", "astra-critic": "GPT",
+        "sol-worker": "GPT", "sol-critic": "GPT",
+        "luna-worker": "GPT", "terra-worker": "GPT",
+        "grok-worker": "Grok", "grok-critic": "Grok",
+        "kimi-worker": "Kimi", "kimi-critic": "Kimi",
+    }
+    families = {family[t] for t in found if t in family}
+    if not found:
+        findings.append((FAIL, 1,
+                         "Dynamic Workflow ohne agentType: alle agent()-Leaves erben Fable. "
+                         "Jeder Leaf braucht einen globalen agentType; im multi-family-Profil "
+                         "muessen mindestens zwei Modellfamilien vorkommen."))
+        return
+    if len(families) < 2:
+        shown = ", ".join(sorted(families)) or "keine bekannte Familie"
+        findings.append((FAIL, 1,
+                         f"Dynamic Workflow ist keine Multi-Modell-Flotte ({shown}). "
+                         "Mindestens zwei Modellfamilien per agentType sind Pflicht; "
+                         "ein model:-Override zaehlt nicht."))
+
+
+def check_claude_only_fleet(code, findings):
+    """Profil `claude-only`: Nur-Claude ist erlaubt, Fable als Worker nicht.
+
+    Zwei Heuristiken, beide WARN (Rollen sind statisch nicht sicher erkennbar,
+    das Urteil bleibt bei der Cockpit-Letztverifikation):
+      1. Fremdfamilien-agentTypes werden vom Proxy auf Fable umgeleitet und
+         sind hier `BLOCKED`, nicht Flottenbeleg.
+      2. Ist ein Review-Schritt erkennbar (Label/Phase/Prompt nennt Kritik,
+         Review, Verify, Judge), muessen Builder und Reviewer verschiedene
+         Modelle sein — Opus baut, Sonnet kritisiert. Nur Opus im ganzen
+         Workflow plus Review-Schritt = Self-Review.
+    """
+    fremd = re.search(
+        r"agentType\s*:\s*['\"](sol-critic|sol-worker|kimi-[a-z]+|luna-worker|grok-worker|grok-critic|terra-worker|grok-critic)['\"]",
+        code)
+    if fremd:
+        findings.append((WARN, _lineno(code, fremd.start()),
+                         f"Profil claude-only: `{fremd.group(1)}` ist nicht verfuegbar (Proxy leitet auf Fable um = BLOCKED). "
+                         "Besetzung nach der Profil-Tabelle in references/dispatch.md."))
+
+    if not re.search(r"(label|phase)\s*:\s*['\"][^'\"]*(kritik|critic|review|verify|judge|abnahme)",
+                     code, re.I) and not re.search(r"agentType\s*:\s*['\"][a-z-]*critic['\"]", code, re.I):
+        return
+
+    baut_opus = re.search(r"(agentType\s*:\s*['\"]opus-[a-z]+['\"]|model\s*:\s*['\"]opus['\"])", code, re.I)
+    hat_sonnet = re.search(r"(agentType\s*:\s*['\"]sonnet-[a-z]+['\"]|model\s*:\s*['\"]sonnet['\"])", code, re.I)
+    if baut_opus and not hat_sonnet:
+        findings.append((WARN, _lineno(code, baut_opus.start()),
+                         "Profil claude-only: Review-Schritt erkennbar, aber Builder und Reviewer laufen auf demselben "
+                         "Modell (nur Opus). Self-Review ist BLOCKED — Kritik als frische Sonnet-Instanz besetzen, "
+                         "Label `claude-only, Instanz-Trennung` (references/dispatch.md)."))
 
 
 def check_args_falle(code, findings):

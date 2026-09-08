@@ -1,0 +1,3 @@
+event: message
+data: {"jsonrpc": "2.0", "id": 1, "result": {"content": [{"type": "text", "text": "{\"screens\": [{\"index\": 0, \"id\": \"359a26bc-1516-411f-b83a-ab5896f8de50\", \"image_url\": \"https://mobbin.com/api/mcp/short/Os5cb8Jf\", \"mobbin_url\": \"https://mobbin.com/screens/359a26bc-1516-411f-b83a-ab5896f8de50\", \"app_name\": \"Higgsfield\", \"platform\": \"web\"}]}"}], "structuredContent": {}}}
+

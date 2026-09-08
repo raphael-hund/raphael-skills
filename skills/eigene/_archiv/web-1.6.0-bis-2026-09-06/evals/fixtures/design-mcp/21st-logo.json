@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "1 logo(s) for \"vercel\" (free). Fetch a url to get the SVG markup.\n\n### Vercel  [Hosting, Vercel]\nsvg: https://svgl.app/library/vercel.svg\ndark: https://svgl.app/library/vercel_dark.svg\nsite: https://vercel.com/\n"
+      }
+    ]
+  }
+}

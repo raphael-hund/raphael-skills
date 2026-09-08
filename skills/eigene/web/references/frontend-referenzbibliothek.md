@@ -1,5 +1,7 @@
 # Frontend-Referenzbibliothek — Kandidaten hinter dem Router
 
+**Verbund (08.09.2026):** Kandidaten-URLs bleiben hier. Für die 50 UI-Bibliotheken mit Lizenz und Warnhinweis gilt [ui-libraries.md](ui-libraries.md); für die verifizierten Registry-Namespaces, npm-Pakete und MCP-Server [component-registries.md](component-registries.md); UI-Skills-Taktiken in [ui-skills.md](ui-skills.md).
+
 Diese Bibliothek ist die **Kandidaten-Karte** zur Tweet-Sammlung. Sie ist
 **keine Installationsliste** und **kein erster Output** eines Agents.
 
@@ -18,6 +20,12 @@ liefert genau einen Eintrag (URL, Kategorie, Router-Modus und Metadaten) ohne
 Install und ohne Netz. `open` nimmt die Katalog-URL und holt die offizielle Site.
 Ohne diesen Öffnen-/Lesen-Schritt gilt die Site nicht als genutzt. URL-Dump allein
 zählt nicht.
+
+**Tiefzugriff:** Suche, Style-Seite, Registry-JSON und eine einzelne Komponente
+laufen über `node scripts/inspiration.mjs` (Refero Styles, Navbar Gallery,
+Magic UI, React Bits, 21st). Doku und Lizenzdeckel:
+`references/inspirations-quellen.md`. Das ersetzt weder `show`/`open` noch die
+Listen unten.
 
 Pro Projekt nur die kleinste sinnvolle Auswahl öffnen. Vor Übernahme: Lizenz,
 Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
@@ -63,6 +71,67 @@ Wartung, Barrierefreiheit, Bundle-Kosten, Supply-Chain.
 8. **Aktualität:** Vor Verwendung mit AgentReach die aktuelle Domain sowie die
    offizielle Doku öffnen. Bei Umleitung, aufgegebener Pflege oder unklarer
    Lizenz einen anderen Kandidaten wählen.
+
+## Lokale Vendor-Bibliothek
+
+Für die folgenden zehn Quellen ist die lokale Kopie unter
+`resources/components/<site>/` die primäre Arbeitsgrundlage. Zuerst den
+jeweiligen `INDEX.md` lesen, dann nur benötigte Payload-Dateien und Abhängigkeiten
+öffnen. Die Live-URL dient höchstens zur Aktualitätskontrolle; sie ist nie die
+einzige Bezugsquelle. Auswahl weiterhin nach Bedarf, Router, genau einem UI-Kit,
+Accessibility und Bundle-Kosten treffen.
+
+- **Beautiful UI — `beautifului.dev`:** `resources/components/beautifului/`.
+  20 Agent-/Daten-UI-Komponenten, Atoms und Tailwind-v4-Tokens. MIT; abweichende
+  Copyright-Nennung von Repo und Site vor Kundeneinsatz prüfen. Wählen für
+  Agent-Traces, Approval, Streaming, Tabellen und AI-native Workflows.
+- **beui.dev — `beui.dev`:** `resources/components/beui-dev/`. Vollständiger
+  offizieller Snapshot mit 81 Registry-Slugs, Motion-/Agent-Komponenten,
+  Previews und Registry-Routes. MIT. Wählen für breite Motion- und
+  Interaktionsmuster; bei einzelnen kuratierten Bausteinen zusätzlich
+  `references/ui-components/INDEX.md` beachten.
+- **Rare UI — `rareui.com`:** `resources/components/rareui/`. 15 TSX-
+  Komponenten einschließlich `family-drawer`, Registry-JSON und `cn`-Helper.
+  MIT; Site bittet um Attribution und untersagt Weiterverkauf als eigenes Kit.
+  Wählen für eigenständige expressive Motion-Widgets.
+- **transitions.dev — `transitions.dev`:**
+  `resources/components/transitions-dev/`. 32 freie Transition-Rezepte,
+  gemeinsame CSS-Tokens, Showcase, CLI und Refine-Tool. Rezepte unter den
+  lokalen Nutzungsbedingungen, Tooling MIT; nicht als konkurrierende Bibliothek
+  weiterverteilen. Wählen für gezielte Zustands- und Layoutübergänge.
+- **shadcn/ui — `ui.shadcn.com`:** `resources/components/shadcn-ui/`.
+  Vollständige v4-Registry mit 290 Einträgen, Base-Varianten, Blocks, Beispielen,
+  Themes und Metadaten. MIT. Default für zugängliche Primitives und den
+  Radix-/shadcn-Stack; Eintrag samt Dependencies und Aliasen übernehmen.
+- **UI Skills — `ui-skills.com`:** `resources/components/ui-skills/`.
+  Offizielles Site-/CLI-/Skill-Repo plus 269/269 lokal gesicherte Registry-
+  Skills. Root MIT; Fremd-Skills behalten individuelle, teils ungeklärte
+  Lizenzen. Wählen als lokale Skill-/Pattern-Recherche, Fremdcode erst nach
+  Prüfung seines Source-Eintrags nutzen.
+- **Origin UI — `coss.com/ui`:** `resources/components/coss-origin-ui/`.
+  1.446 Payload-Dateien aus App-Registry, UI-Package und Dokumentation. AGPL-3.0;
+  Copyleft-Auswirkungen vor Übernahme prüfen. Wählen für Registry-Varianten und
+  detaillierte Component-Dokumentation, nicht blind in proprietäre Projekte kopieren.
+- **Design System Checklist — `designsystemchecklist.com`:**
+  `resources/components/design-system-checklist/`. Kanonische Checklist-Daten,
+  Übersetzungen und App-UI. Upstream ohne Lizenz; nur interne Referenz, keine
+  Kundenauslieferung ohne Erlaubnis. Wählen für Design-System-Audit und
+  Vollständigkeitsprüfung, nicht als Komponentenkit.
+- **ReUI — `reui.io/components`:** `resources/components/reui/`. Vollständiges
+  Upstream-Repo mit Registry-Paketen, Radix-Komponenten, ReUI-Beispielen und
+  Dokumentation. MIT. Wählen für umfangreiche shadcn-kompatible Komponenten und
+  Varianten; gegen shadcn-Default abgrenzen und kein zweites Kit parallel führen.
+- **You Don't Need Animations — `emilkowal.ski/ui/you-dont-need-animations`:**
+  `resources/components/emil-no-animations/`. Offline-Artikel mit allen
+  referenzierten First-Party-JS-/CSS-/Medienassets und interaktiven Demos. Keine
+  explizite Lizenz; nur intern als Entscheidungs- und Motion-Referenz verwenden,
+  keinen Code oder Inhalt ohne Erlaubnis ausliefern.
+
+Die bestehende Bibliothek `references/ui-components/` (**beUI v2**) bleibt
+vollständig intakt und hat eine ergänzende Rolle: kuratierte, dokumentierte
+Copy-paste-Motion-Muster mit gemeinsamen Helpers und Accessibility-Hinweisen.
+Sie ist weder Ersatz noch Alias für `resources/components/beui-dev/` und ersetzt
+keinen anderen Vendor-Snapshot.
 
 ## Website- und UI-Inspiration
 

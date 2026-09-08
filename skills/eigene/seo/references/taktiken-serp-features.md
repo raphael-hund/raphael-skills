@@ -73,6 +73,10 @@ Keyword reichen für ein Brief.
   Seiten eingestellt (kein SERP-Feature mehr), das Markup bleibt aber für AI-Zitierbarkeit
   sinnvoll (Info-, kein Critical-Befund).
 
+## Buy-Intent-Seitentypen (Borja, 2026-07)
+
+Welche Seitenform je Kauf-Suchmuster gewinnt (Pricing als eigene Seite ohne Jahr, X-vs-Y als Marken-Seite mit Median 2 Backlinks, Alternatives mit Zahl im Title, Trial und Discount getrennt, Review fremd mit Byline): `playbooks-borjafat.md` Abschnitt 2.
+
 ## Gotchas
 
 - **Nicht mit Cluster-/Keyword-Research verwechseln.** SERP-Feature-Analyse prüft die Form

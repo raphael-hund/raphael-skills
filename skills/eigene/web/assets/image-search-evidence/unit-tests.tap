@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: CLI parses multiword queries, options and literal flags
+ok 1 - CLI parses multiword queries, options and literal flags
+  ---
+  duration_ms: 2.028747
+  type: 'test'
+  ...
+# Subtest: CLI rejects missing query, unknown providers and invalid counts
+ok 2 - CLI rejects missing query, unknown providers and invalid counts
+  ---
+  duration_ms: 0.564979
+  type: 'test'
+  ...
+# Subtest: Secret redaction handles encoded tokens, nested values and quotation marks
+ok 3 - Secret redaction handles encoded tokens, nested values and quotation marks
+  ---
+  duration_ms: 0.542266
+  type: 'test'
+  ...
+# Subtest: Local IPv4, IPv6, mapped and metadata addresses are blocked
+ok 4 - Local IPv4, IPv6, mapped and metadata addresses are blocked
+  ---
+  duration_ms: 6.52356
+  type: 'test'
+  ...
+# Subtest: SVG dimensions use viewBox or explicit pixel size
+ok 5 - SVG dimensions use viewBox or explicit pixel size
+  ---
+  duration_ms: 1.806458
+  type: 'test'
+  ...
+# Subtest: HTML, fake SVG, active SVG and truncated raster files are rejected
+ok 6 - HTML, fake SVG, active SVG and truncated raster files are rejected
+  ---
+  duration_ms: 0.823017
+  type: 'test'
+  ...
+# Subtest: PNG signature wins over extension and MIME
+ok 7 - PNG signature wins over extension and MIME
+  ---
+  duration_ms: 0.288997
+  type: 'test'
+  ...
+# Subtest: GIF, JPEG and WebP header dimensions are read
+ok 8 - GIF, JPEG and WebP header dimensions are read
+  ---
+  duration_ms: 0.265312
+  type: 'test'
+  ...
+# Subtest: AVIF brand and ispe dimensions are read
+ok 9 - AVIF brand and ispe dimensions are read
+  ---
+  duration_ms: 0.738126
+  type: 'test'
+  ...
+# Subtest: Logo auto priority stops at Simple Icons
+ok 10 - Logo auto priority stops at Simple Icons
+  ---
+  duration_ms: 1.906306
+  type: 'test'
+  ...
+# Subtest: Logo fallback reaches SVGL and preserves exact brand variants
+ok 11 - Logo fallback reaches SVGL and preserves exact brand variants
+  ---
+  duration_ms: 1.092426
+  type: 'test'
+  ...
+# Subtest: Logo priority visits keyed providers before Commons and DDG
+ok 12 - Logo priority visits keyed providers before Commons and DDG
+  ---
+  duration_ms: 1.349442
+  type: 'test'
+  ...
+# Subtest: Logo.dev supports company names without inventing a domain
+ok 13 - Logo.dev supports company names without inventing a domain
+  ---
+  duration_ms: 0.455923
+  type: 'test'
+  ...
+# Subtest: Brandfetch client ID alone does not make a prohibited CDN download
+ok 14 - Brandfetch client ID alone does not make a prohibited CDN download
+  ---
+  duration_ms: 0.217753
+  type: 'test'
+  ...
+# Subtest: Iconify preserves per-collection attribution
+ok 15 - Iconify preserves per-collection attribution
+  ---
+  duration_ms: 0.409566
+  type: 'test'
+  ...
+# Subtest: DDG extracts fresh vqd, original image URLs, dimensions and source page
+ok 16 - DDG extracts fresh vqd, original image URLs, dimensions and source page
+  ---
+  duration_ms: 0.603152
+  type: 'test'
+  ...
+# Subtest: Photo auto falls back to Commons when DDG has no token
+ok 17 - Photo auto falls back to Commons when DDG has no token
+  ---
+  duration_ms: 0.853305
+  type: 'test'
+  ...
+# Subtest: Search filters duplicate URLs, stock preview hosts and private addresses
+ok 18 - Search filters duplicate URLs, stock preview hosts and private addresses
+  ---
+  duration_ms: 0.625393
+  type: 'test'
+  ...
+# Subtest: Optional keyed APIs construct authentication and image fields
+ok 19 - Optional keyed APIs construct authentication and image fields
+  ---
+  duration_ms: 1.393366
+  type: 'test'
+  ...
+# Subtest: Missing optional keys are explicit errors without requests
+ok 20 - Missing optional keys are explicit errors without requests
+  ---
+  duration_ms: 0.516958
+  type: 'test'
+  ...
+# Subtest: Manifest records hash, source, date, actual type and merged runs
+ok 21 - Manifest records hash, source, date, actual type and merged runs
+  ---
+  duration_ms: 27.954048
+  type: 'test'
+  ...
+# Subtest: Download skips HTML and counts successful files toward --max
+ok 22 - Download skips HTML and counts successful files toward --max
+  ---
+  duration_ms: 4.584352
+  type: 'test'
+  ...
+# Subtest: All failed downloads still create a manifest with error evidence
+ok 23 - All failed downloads still create a manifest with error evidence
+  ---
+  duration_ms: 4.119624
+  type: 'test'
+  ...
+# Subtest: Manifest redacts API credentials including encoded values
+ok 24 - Manifest redacts API credentials including encoded values
+  ---
+  duration_ms: 3.959148
+  type: 'test'
+  ...
+# Subtest: Malformed and foreign manifests are preserved
+ok 25 - Malformed and foreign manifests are preserved
+  ---
+  duration_ms: 7.030508
+  type: 'test'
+  ...
+# Subtest: Lock and symlinked manifest are preserved without writes
+ok 26 - Lock and symlinked manifest are preserved without writes
+  ---
+  duration_ms: 7.338612
+  type: 'test'
+  ...
+# Subtest: Symlinked image targets are rejected
+ok 27 - Symlinked image targets are rejected
+  ---
+  duration_ms: 4.636241
+  type: 'test'
+  ...
+# Subtest: Unsplash download tracking uses authenticated canonical endpoint
+ok 28 - Unsplash download tracking uses authenticated canonical endpoint
+  ---
+  duration_ms: 3.937409
+  type: 'test'
+  ...
+# Subtest: Unsplash cannot send its secret to an untrusted tracking URL
+ok 29 - Unsplash cannot send its secret to an untrusted tracking URL
+  ---
+  duration_ms: 3.521552
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 222.850563

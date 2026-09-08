@@ -1,5 +1,7 @@
 # Bild-Rebuild — Website aus Screenshot/Mockup/Referenzbild nachbauen
 
+**Verbund (08.09.2026):** Die Elementzerlegung mit Inventar-IDs, Rasterasset vs. Code und Freistellungsprüfung steht in [image-to-code.md](image-to-code.md); diese Datei behält den Pixel-Check 1440/768/390.
+
 **Wofür:** Wenn die Vorlage kein lebendiger Klick-Link ist, sondern ein
 **Bild** — Screenshot, Figma-Export, Mockup, Fullpage-Longshot, Foto einer
 Referenzseite. "Bild zu Website", "Screenshot nachbauen", "aus diesem Mockup
@@ -187,8 +189,7 @@ neu bauen. Kein Reviewer erreichbar heißt `blocked`, nie Auto-PASS.
 ## Abgrenzung zu rebuild-prompt-vertrag.md — nicht doppelt lesen
 
 Der zuvor hier vorgemerkte Brain-Kandidat ist inzwischen freigegeben im
-Second-Brain-Wiki: `wiki/craft/webdesign/2026-07-20-rebuild-prompt-vertrag.md`
-(voller Pfad: `/root/raphael-brain/wiki/craft/webdesign/2026-07-20-rebuild-prompt-vertrag.md`). Er
+Second-Brain-Wiki: `/root/raphael-brain/wiki/craft/webdesign/2026-07-20-rebuild-prompt-vertrag.md`. Er
 vertieft nur Schritt 3 dieses Dokuments (Region-Map + Renderstrategie →
 deterministischer Build-Handoff) zu einer eigenständigen, werkzeugunabhängigen
 Vertrags-Anatomie (feste Reihenfolge, Verbatim-Blöcke, exakte px-Werte,

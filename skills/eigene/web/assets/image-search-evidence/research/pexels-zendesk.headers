@@ -1,0 +1,33 @@
+HTTP/2 200 
+date: Mon, 07 Sep 2026 11:27:30 GMT
+content-type: application/json; charset=utf-8
+server: cloudflare
+nel: {"report_to":"cf-nel","success_fraction":0.01,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=DwSuPNkQQVjo84nRg1o9dNI6sY4QwFIlURp5ng9%2BmJge05rN0iRbL%2B6a5bYr6pcasfCCiBVNm9RbyS7EUKP%2BRr%2FHQ8GSKA71Rsk3a9ApAKhTBGonyfrRuIEhKpg%2Bfcg8wA%3D%3D"}]}
+x-ua-compatible: IE=edge
+set-cookie: __cf_bm=.lmX6FSJPqmMiqmkaUYh6Afp02r8grgZrCCoIvrtNXE-1788780449.7379005-1.0.1.1-eLjwLRvOFZ.sLwz7kbWPtjjLoumD81.Qn16.zxHM1vjduC_mNjbbDgJYOn8X3MNRA2lqrmW5qIj5YDnmjKk19JRp753gz_ndYTDFi_2c7zh12yWl0syKjqVpnOaYgV5u; HttpOnly; SameSite=None; Secure; Path=/; Domain=help.pexels.com; Expires=Mon, 07 Sep 2026 11:57:30 GMT
+set-cookie: _cfuvid=QtwCeZfpe.3lNnNP6zmRGeHS3Ke7OFtEdzn34JXy9c4-1788780449.7379005-1.0.1.1-jcUjkBeBZOXKuvVvIdZ1JET6_0gDMcEi9VjamLk_zBo; HttpOnly; SameSite=None; Secure; Path=/; Domain=help.pexels.com
+x-zendesk-api-version: v2
+x-frame-options: SAMEORIGIN
+access-control-allow-origin: *
+access-control-expose-headers: X-Zendesk-API-Warn
+x-rate-limit: 2500
+x-rate-limit-remaining: 2499
+strict-transport-security: max-age=259200; includeSubDomains
+x-zendesk-origin-server: app-server-7d5546ffbc-97q2g
+etag: W/"7ba5369760d6d0997d454f70e1f481b0"
+cache-control: max-age=0, private, must-revalidate
+x-request-id: a3755d52d81ee50a-NRT
+x-runtime: 0.065033
+x-envoy-upstream-service-time: 75
+x-request-validation: matched
+x-openapi-route-path: /api/v2/help_center/{locale}/articles/{article_id}
+zendesk-service: help-center
+x-zendesk-zorg: yes
+protocol: HTTP/1.1 always
+vary: Accept-Encoding
+via: zorg
+x-envoy-decorator-operation: /api/v2/help_center/
+cf-cache-status: BYPASS
+cf-ray: a3755d52d81ee50a-TXL
+

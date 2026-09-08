@@ -41,6 +41,6 @@ SCORE = .. / 8   VERDICT = ..
 
 ## Panel-Modus (ship-kritisch)
 
-3 Modellfamilien (Sonnet + Sol + Kimi) bewerten unabhängig, **frische Sessions**. Median je
+3 Modellfamilien (Grok + Sol + Opus; Kimi tot 03.09.2026) bewerten unabhängig, **frische Sessions**. Median je
 Frage gegen Rubrik. Divergenz > 20 % zwischen den Judges → Flag an Raphael, 1 Regenerierung,
 dann Eskalation. Kein Judge bewertet Output der eigenen Autor-Session.

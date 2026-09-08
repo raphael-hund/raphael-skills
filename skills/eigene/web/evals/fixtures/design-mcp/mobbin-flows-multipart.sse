@@ -1,0 +1,6 @@
+event: message
+data: {"jsonrpc":"2.0","id":1,"result":{"content":[{"type":"text","text":"{\"flows\":[]}"}]}}
+
+event: message
+data: {"result":{"content":[{"type":"text","text":"{\"query\":\"onboarding\",\"page\":1,\"has_next_page\":true,\"flows\":[{\"index\":0,\"id\":\"c05af68f-a703-4104-8e9a-c92c82cafc9d\",\"name\":\"Onboarding\",\"actions\":[\"Creating Account\",\"Inviting Teammates & Friends\"],\"screen_count\":20,\"mobbin_url\":\"https://mobbin.com/flows/c05af68f-a703-4104-8e9a-c92c82cafc9d\",\"app_name\":\"Twenty\",\"platform\":\"web\",\"screens\":[{\"image_url\":\"https://mobbin.com/api/mcp/short/Os5cb8Jf\",\"position\":0}]}]}"},{"type":"text","text":"Flow 0: screen 1/20"},{"type":"text","text":"Flow 0: screen 6/20"}]},"jsonrpc":"2.0","id":1}
+

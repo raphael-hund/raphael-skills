@@ -1,4 +1,13 @@
 interface:
   display_name: "Web"
-  short_description: "Plan, build, audit, and improve websites"
-  default_prompt: "Use $web to plan, build, review, or improve this website."
+  short_description: "Websites planen, bauen, kritisieren und launchen: React-Stack, Registries, Screenshots, SEO"
+  default_prompt: "Nutze $web für diese Website: Rolle benennen (Plan, Kritik, Bau, Launch), Preflight, dann das Rollen-Dokument. Baue als React-Projekt aus assets/react-starter, hole Komponenten aus den konfigurierten Registries und 21st, baue jede Route der SEO-Seitenkarte, prüfe mit shot-sweep und Kritik-Leaves."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

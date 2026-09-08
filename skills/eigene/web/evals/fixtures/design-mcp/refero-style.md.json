@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "# Audyr \u2014 Style Reference\n> Structural Grid on White Canvas\n\n**Theme:** light\n\nAudyr employs a stark, almost monochromatic design language.\n\n## Colors\n- --color-ink: #0A0A0A\n- --color-canvas: #FFFFFF\n\n## Typography\n- Sans: Inter\n"
+      }
+    ],
+    "isError": false
+  }
+}

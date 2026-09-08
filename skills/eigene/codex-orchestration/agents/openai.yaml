@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Orchestration"
-  short_description: "Run visible tasks across cloud models"
-  default_prompt: "Use $codex-orchestration to split this work into visible Codex App tasks on the best available cloud models."

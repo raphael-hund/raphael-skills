@@ -60,8 +60,9 @@ const CANDIDATES = [
 const axePath = CANDIDATES.find((p) => fs.existsSync(p));
 if (!axePath) { console.error('axe-core nicht gefunden'); process.exit(2); }
 
-const { chromium } = await import('/usr/lib/node_modules/playwright/index.mjs');
-const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+const { loadPlaywright, launchChromium } = await import(new URL('./lib/playwright-loader.mjs', import.meta.url));
+const { chromium } = loadPlaywright();
+const browser = await launchChromium(chromium);
 let code = 0;
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });

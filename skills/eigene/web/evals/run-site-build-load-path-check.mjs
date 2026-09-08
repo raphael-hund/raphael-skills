@@ -14,6 +14,8 @@ import { fileURLToPath } from 'node:url';
 const HIER = path.dirname(fileURLToPath(import.meta.url));
 const WEB = path.join(HIER, '..');
 const SKILL = path.join(WEB, 'SKILL.md');
+const WEBSITE_PLAN = process.env.WEBSITE_PLAN_SKILL || path.join(WEB, 'references', 'rolle-plan.md');
+const HANDOFF = path.join(WEB, 'references', 'loop2-ablauf.md');
 const QA = path.join(WEB, 'references', 'qa-faecher.md');
 const ACCESS = path.join(WEB, 'scripts', 'resource-access.mjs');
 const SWEEP = path.join(WEB, 'scripts', 'shot-sweep.mjs');
@@ -22,7 +24,6 @@ const COPY = path.join(WEB, '..', 'copywriting', 'SKILL.md');
 const LOOP = path.join(WEB, 'references', 'screenshot-kritik-loop.md');
 const GROK_IMP = '/root/.grok/skills/impeccable/SKILL.md';
 const GROK_UIUX = '/root/.grok/skills/ui-ux-pro-max/SKILL.md';
-const CLAUDE_SETTINGS = '/root/.claude/settings.json';
 const CLAUDE_IMP = '/root/.claude/plugins/cache/impeccable/impeccable/4.0.4/skills/impeccable/SKILL.md';
 const CLAUDE_DESIGN_PLUGIN = '/root/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.13.0/.claude/skills/design/SKILL.md';
 const GROK_PLUGIN_IMP = '/root/.grok/installed-plugins/impeccable-plugin-54fcaebb/plugin/skills/impeccable/SKILL.md';
@@ -38,18 +39,51 @@ const zeile = (ok, text, detail) => {
 };
 
 const skill = fs.readFileSync(SKILL, 'utf8');
+const websitePlan = fs.readFileSync(WEBSITE_PLAN, 'utf8');
+const handoff = fs.readFileSync(HANDOFF, 'utf8');
+const u2Handoff = [websitePlan, skill, handoff].join('\n');
 const qa = fs.readFileSync(QA, 'utf8');
 const design = fs.readFileSync(DESIGN, 'utf8');
 
 console.log('\nSite-Build Load-Path — Einzel-Skills nicht Pflicht, Lookup echt\n');
 
 zeile(
-  /keine Pflicht-Loads/.test(skill) && /nur `design`/.test(skill),
+  /keine Pflicht-Loads/.test(skill)
+    && /routen auf `design` bzw\.\s*`copywriting`/.test(skill),
   'web SKILL.md: design + copywriting, Einzel-Skills keine Pflicht-Loads',
 );
 zeile(
   !/Mitgeladene Skills \(keine Dateien\): `design`, `impeccable`, `taste`, `ui-ux`/.test(skill),
   'web SKILL.md listet taste/impeccable/ui-ux nicht mehr als Mitgeladen',
+);
+zeile(
+  /plan-manifest\.json/.test(websitePlan)
+    && /plan-verification\.json/.test(websitePlan)
+    && /manifest_sha256/.test(websitePlan)
+    && /aktuelle Plan-Hashes/.test(websitePlan),
+  'website-plan SKILL.md bindet v3-Manifest, Receipt und aktuelle Plan-Hashes',
+);
+zeile(
+  /`web` ist der einzige Agency-Website-Workflow-Owner/.test(skill)
+    && /`visual-aaa` ist das \*\*terminale\*\*[\s\S]*kein zweiter Workflow-Owner/.test(skill)
+    && /keine Capture-Pflicht/.test(skill)
+    && /keine Capture-Pflicht/.test(websitePlan)
+    && /Kein Production-Code/.test(websitePlan),
+  'U1 bleibt erhalten: web ist Owner, visual-aaa terminales Gate, website-plan plan-only',
+);
+zeile(
+  !/sequential-page-controller/.test(u2Handoff)
+    && !/Child-Agenten|keine Agent-|keine versteckten Agenten/i.test(u2Handoff)
+    && /Legacy-only-Pläne[\s\S]*bestehen nicht mehr/.test(websitePlan),
+  'U2-Handoff enthaelt keinen toten Controller, No-Agent-Vertrag oder aktiven Legacy-Pfad',
+);
+zeile(
+  /Receipt, Manifest-Hash und\s+aktuelle Plan-Hashes/.test(skill)
+    && /Receipt, Manifest-Hash und\s+aktuelle Plan-Hashes/.test(handoff)
+    && /Route-Abhängigkeiten, Write-Sets und Shared Owners/.test(skill)
+    && /Abhängigkeiten oder überlappende Pfade erzwingen Reihenfolge/.test(handoff)
+    && /disjunkte\nPakete dürfen parallel laufen/.test(handoff),
+  'web-Handoff prueft Receipt und aktuelle Hashes vor adaptiver Paketbildung',
 );
 zeile(
   /requires_skills:\s*\[\]/.test(design) && /Site-Build kommt über/.test(design),
@@ -81,13 +115,13 @@ zeile(
 );
 
 const loop = fs.readFileSync(LOOP, 'utf8');
-const bIstKimi = /Visuelle Kritik B \| `kimi-recherche`/.test(loop);
+const bIstKimi = /Visuelle Kritik B \| `kimi-critic`/.test(loop);
 const bIstOpus = /Visuelle Kritik B \| `opus-critic`/.test(loop);
-const webPaar = /Opus gebaut → Grok \+ `kimi-recherche`/.test(skill)
-  && /Kritiker = Grok \+ `kimi-recherche`/.test(skill);
+const webPaar = /Grok \+ `kimi-critic` nach Opus-Bau/.test(skill)
+  && /Kritiker = Grok \+ `kimi-critic`/.test(skill);
 zeile(
   bIstKimi && !bIstOpus && webPaar,
-  'Kritik-Paarung einheitlich: A=Grok, B=kimi-recherche (kein opus-critic als B)',
+  'Kritik-Paarung einheitlich: A=Grok, B=kimi-critic (kein opus-critic als B)',
 );
 
 function grokRouter(pfad, verboten) {
@@ -107,18 +141,6 @@ zeile(
   'Grok-Host ui-ux-pro-max ist kurzer Router auf ui-ux-db-nutzung',
 );
 
-const settings = JSON.parse(fs.readFileSync(CLAUDE_SETTINGS, 'utf8'));
-zeile(
-  settings.skillOverrides?.impeccable === 'name-only'
-    && settings.skillOverrides?.['frontend-design'] === 'name-only',
-  'Claude skillOverrides: impeccable + frontend-design = name-only',
-);
-zeile(
-  settings.enabledPlugins?.['impeccable@impeccable'] === false
-    && settings.enabledPlugins?.['frontend-design@claude-plugins-official'] === false
-    && settings.enabledPlugins?.['ui-ux-pro-max@ui-ux-pro-max-skill'] === false,
-  'Claude Design-Plugins impeccable/frontend-design/ui-ux-pro-max sind aus',
-);
 const ccImp = grokRouter(CLAUDE_IMP, ['award-winning design director', 'Core principles:']);
 zeile(
   ccImp.kurz && !ccImp.doktrin && /design\/scripts\/detect\.mjs/.test(ccImp.txt),

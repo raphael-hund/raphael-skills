@@ -1,5 +1,7 @@
 # React/Next-Performance — Vercel-Regeln für echten Custom-Code
 
+**Verbund (08.09.2026):** Gilt für den Standardstack aus [stack.md](stack.md) (Next.js 16, React 19, statischer Export). Messregeln zu Feld- und Labordaten dort unter „Performance und Barrierefreiheit“.
+
 **Wofür:** Nur relevant, wenn der Build echten React/Next.js-Custom-Code erzeugt
 (eigene Komponenten, Data-Fetching, Server Actions) — **nicht** bei reinen
 Webflow/CMS-only-Projekten ohne Code (siehe Abgrenzung in

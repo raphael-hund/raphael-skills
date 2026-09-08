@@ -1,0 +1,70 @@
+{
+  "page": 1,
+  "per_page": 2,
+  "total_count": 4962,
+  "search_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "spellcheck_info": {},
+  "data": [
+    {
+      "id": "2165394859",
+      "aspect": 0.7805,
+      "description": "Male caucasian executive ceo businessman leader with diverse partners team, managers group at meeting. Multicultural professional businesspeople working together on business sales plan in boardroom.",
+      "image_type": "photo",
+      "media_type": "image",
+      "has_model_release": true,
+      "is_editorial": false,
+      "contributor": {
+        "id": "301539971"
+      },
+      "assets": {
+        "preview_1000": {
+          "height": 1000,
+          "width": 780,
+          "url": "https://image.shutterstock.com/image-photo/male-caucasian-executive-ceo-businessman-1000w-2165394859.jpg"
+        },
+        "large_thumb": {
+          "height": 150,
+          "width": 117,
+          "url": "https://image.shutterstock.com/image-photo/male-caucasian-executive-ceo-businessman-150nw-2165394859.jpg"
+        },
+        "preview_1500": {
+          "height": 1500,
+          "width": 1170,
+          "url": "https://image.shutterstock.com/z/stock-photo-male-caucasian-executive-ceo-businessman-leader-with-diverse-partners-team-managers-group-at-2165394859.jpg"
+        },
+        "huge_jpg": {
+          "height": 4000,
+          "width": 3122
+        }
+      }
+    },
+    {
+      "id": "1803698125",
+      "aspect": 1.5,
+      "description": "Business team collaborating in modern office during strategy meeting",
+      "image_type": "photo",
+      "media_type": "image",
+      "has_model_release": true,
+      "is_editorial": false,
+      "contributor": {
+        "id": "123456"
+      },
+      "assets": {
+        "preview_1000": {
+          "height": 667,
+          "width": 1000,
+          "url": "https://image.shutterstock.com/image-photo/business-team-1000w-1803698125.jpg"
+        },
+        "large_thumb": {
+          "height": 100,
+          "width": 150,
+          "url": "https://image.shutterstock.com/image-photo/business-team-150nw-1803698125.jpg"
+        },
+        "huge_jpg": {
+          "height": 3000,
+          "width": 4500
+        }
+      }
+    }
+  ]
+}

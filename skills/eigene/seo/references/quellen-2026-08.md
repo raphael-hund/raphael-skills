@@ -3,7 +3,23 @@
 Eine Zeile = ein Fakt. Kein fremder Wortlaut. Rohkorpus:
 `/root/raphael-brain/raw/2026-08-13-seo-skill-corpus/`.
 
-## @borjafat (X, Agent Reach + Thread-Fetch, 2026-08-13)
+## @borjafat (X, Agent Reach + Thread-Fetch, 2026-08-13; Nachzug 2026-09-07)
+
+Vollständige Playbook-Bibliothek aus 22 Artikeln (28.07. bis 07.09.2026): `playbooks-borjafat.md`.
+Roh: `raw/2026-08-13-seo-skill-corpus/borjafat/articles/` und `raw/2026-09-07-borjafat-articles/articles/`.
+Hier nur die Kurzfakten, die vor dem 13.08. schon eingetragen waren, plus die neuen Kernzahlen:
+
+- Topical Authority: Themen-Tiefe korreliert 0,329 mit Position, Backlinks 0,174; bei fixierter Tiefe fällt Backlinks auf 0,020 (2026-08-14, 2088271101604295096).
+- Information Gain: Abdeckung ohne Neues 48 % AIO-Zitatrate, Neues ohne Abdeckung 29 %, beides 53 % (2026-08-16, 2088991211285561457).
+- YouTube in 78 % der Kauf-Antworten in AI Mode; Median-Video 10:34, 140 von 202 mit Kapiteln (2026-08-17, 2089345908550820335).
+- „<Nische> statistics 2026": 24,4 % von Seite 1 gehen an Sites unter 1.000 RD; Seite 1 im Median 174 Tage alt (2026-08-18, 2089706011665858632).
+- Von AI Mode zitierte Listicles: 297 von 496 auf Sites unter 5.000 RD, 462 mit Kontaktweg (2026-08-19, 2090071174822740454).
+- Tier-Liste 2027: 61,8 % der AIO-Zitate sind Listicles, 37 % der zitierten Seiten außerhalb Top 20, 396 von 651 Domains genau einmal zitiert (2026-08-25, 2092246693068583414).
+- Video-GEO: YouTube Top 10 bei 86 von 140 „best X software"; AIO und AI Mode je 63 YouTube-Zitate in 100 Fragen, ChatGPT 0 (2026-09-02, 2095133322191970796).
+- Page-Refresh: Baseline mit gleichen Berichtszeiträumen, Vendor-Beschreibung gegen aktuelle Quelle prüfen, alte Zeile neben neue (2026-09-07, 2096929697716162715).
+- ChatGPT-Post 19.08.: Reddit 15 % → 0 %, Docs/Help 32 %, `site:`-Suchen ~17 %; Tagesstand (2090030550522236979).
+
+Ältere Kurzfakten (2026-08-13):
 
 - Money-Pages: 4–11 kontextuelle interne Links, Anker variieren, Nav/Footer ignorieren (2026-08-12, 2087569194447413600 / article 2086834254734831616).
 - GSC 12-Monats-Export: Queries mit Rank ohne eigene Seite = Lücke (2026-08-11, 2087204477203796343).
@@ -45,6 +61,49 @@ Reels in `heytony/transcripts/`:
 - Avalanche: Low-Volume zuerst (2025-06-27 / 2026-01-19).
 - AIO: Scope matchen, Konsenszahl, Big-Brand-SERP meiden, eine komplette Antwortseite, 3 Checks (2026-06-07).
 - Distribution + Task-Complete kann Checkliste schlagen; Disavow ohne Manual Action lassen (2026-08-11).
+
+
+## @buildinpublic / Edward Sturm (Scout 2026-08-30)
+
+Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-buildinpublic-capture.md`.
+
+- Compact Keywords ist sein First-Party-Frame; Inhouse-SEO-Hire soll darauf trainiert werden, Bewerbung nicht AI-geschrieben (2026-08-26, buildinpublic-capture.md: X-Status 2092641311228678532).
+- Ohne echte zitierbare Platzierungen schlägt man etablierte Marken in ChatGPT nicht; Listicle-Spam reicht nicht (2026-08-29, buildinpublic-capture.md).
+- Micro-Influencer 25–50 Dollar, wenige hundert Follower; Caption vorher in Google auf Index prüfen, Keyword an den Anfang; Kontrast zur 80-Dollar-Presse (2026-08-08, Video 8jHGa95T0GY, buildinpublic-capture.md).
+- Cheap/affordable/budget/free statt best nur wenn Intent und Brand das hergeben (2026-08-11, Video JC3OWXotIDo plus First-Party-Artikel, buildinpublic-capture.md).
+- Traffic-Decline nicht panisch: TOFU-Info verliert an LLMs — zuerst BOFU/Money-Pages prüfen (2026-08-25, Video TVMCf9MThIA, buildinpublic-capture.md).
+- August-Spam-Update Launch 18.08., Rollout laut Sturm bis 21.08.; Scaled-Content getroffen, SaaS belohnt (2026-08-22, Video -70To9bGXVQ, buildinpublic-capture.md).
+
+## Matt Diamante (Scout 2026-08-30)
+
+Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-diamante-capture.md`.
+
+- Im Fenster 2026-07-31–2026-08-30 kein Upload; neuestes Video 2026-04-30; Engine-Raw 0 First-Party-Items — keine Taktik ableiten (2026-08-30, diamante-capture.md).
+
+## Harry Sanders / StudioHawk (Scout 2026-08-30)
+
+Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-harrysanders-capture.md`.
+
+- IG harrysandersseo tot ohne ScrapeCreators; keine offizielle X-URL gefunden, nicht erfunden; last30days-Raw 0 First-Party zu Sanders (2026-08-30, harrysanders-capture.md).
+- StudioHawk-Blog 24.08.2026: 1.203.748 AI-Referral-Sessions, 600+ Properties; Tools/Templates/Rechner 7,5× Seitenanteil, How-to 5,65, Definitions 5,41, Listicles 5,09, Comparison 4,44 — Comparison nicht Platz 1 (2026-08-24, harrysanders-capture.md, URL studiohawk.com.au/blog/ai-search-format-leverage/).
+
+## Neil Patel (Scout 2026-08-30)
+
+Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-neilpatel-capture.md`.
+
+- Mentions auf Reddit, Foren, YouTube und Presse als Trust für SEO/AEO/GEO, nicht nur Backlinks (2026-08-29, neilpatel-capture.md, X-Status 2093760714125017247).
+- Paid kauft Audiences, SEO kauft oft Topics; Gewinner zielen auf die wertvolle Audience, nicht das meiste Volumen (2026-08-28, neilpatel-capture.md; Video 27.08.2026 CIGrrt_mVxM).
+- Search überall: Google, TikTok, YouTube, Reddit, ChatGPT — Map wo der Buyer fragt (2026-08-12, Video UlfniLzuwa0 plus Blog audience-first-seo, neilpatel-capture.md).
+- Pipeline-, Conversion- und LLM-Zahlen (u. a. 8× AI-Traffic) sind seine Claims, keine MAKE-Messung (2026-08-29 / 2026-08-05, neilpatel-capture.md).
+## @mal_shaik / wespreadjam (X-Bookmark 2026-09-07)
+
+Roh: `/root/raphael-brain/raw/bookmark-2026-09-07-seo-malshaik-vercel-ai-citation-audit.md`.
+Brain: `/root/raphael-brain/wiki/craft/seo/seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` (approved 2026-09-07, confidence low).
+
+- Vercel laut Audit 48 % Citation Share in der KI-Suche, Cloudflare 29 %, Netlify 20 %; ChatGPT 13/18 Prompts, Gemini 2/13 (2026-09-06, X-Status 2096746289920926027). Anbieter-Claim, Prompt-Set nicht veröffentlicht.
+- Sechs Hebel: eigenes Framework, eigene Bibliothek, Vergleichs-Hub mit 13 Einzelseiten, Template-Galerie je eine URL, Kurse mit Deploy-Abschluss, eigene Doku-Site (2026-09-06, ebd.).
+- Lücke: preissensible Prompts („cheapest", „alternatives if too expensive") gehen komplett an Wettbewerber (2026-09-06, ebd.).
+- Nachprüfung 2026-09-07: Vergleichs-Hub mit 13 Seiten bestätigt; npm `ai` 21,6 Mio./Woche statt 11,5 Mio.; GitHub 26,6k statt 23,7k Stars. Richtung stimmt, Zahlen im Tweet veraltet.
 
 ## Brain `/root/raphael-brain/wiki/craft/seo`
 

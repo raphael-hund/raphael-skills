@@ -1,0 +1,3300 @@
+{
+  "base": "https://www.ekd-solar.de",
+  "createdAt": "2026-08-31T06:41:26.525Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "home-desktop-17-y11773.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11773
+        }
+      ],
+      "docHeight": 13273
+    },
+    {
+      "route": "/solaranlage/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "solaranlage__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "solaranlage__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "solaranlage__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "solaranlage__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "solaranlage__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "solaranlage__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "solaranlage__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "solaranlage__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "solaranlage__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "solaranlage__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "solaranlage__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "solaranlage__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "solaranlage__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "solaranlage__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "solaranlage__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "solaranlage__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "solaranlage__-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "solaranlage__-desktop-17-y12000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12000
+        },
+        {
+          "file": "solaranlage__-desktop-18-y12750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 12750
+        },
+        {
+          "file": "solaranlage__-desktop-19-y13283.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 13283
+        }
+      ],
+      "docHeight": 14783
+    },
+    {
+      "route": "/unternehmen/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "unternehmen__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "unternehmen__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "unternehmen__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "unternehmen__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "unternehmen__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "unternehmen__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "unternehmen__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "unternehmen__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "unternehmen__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "unternehmen__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "unternehmen__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "unternehmen__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "unternehmen__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "unternehmen__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "unternehmen__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "unternehmen__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "unternehmen__-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "unternehmen__-desktop-17-y11557.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 11557
+        }
+      ],
+      "docHeight": 13057
+    },
+    {
+      "route": "/kundenerfahrungen/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "kundenerfahrungen__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "kundenerfahrungen__-desktop-12-y8230.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8230
+        }
+      ],
+      "docHeight": 9730
+    },
+    {
+      "route": "/waermepumpe/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "waermepumpe__-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "waermepumpe__-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "waermepumpe__-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "waermepumpe__-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "waermepumpe__-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "waermepumpe__-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "waermepumpe__-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "waermepumpe__-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "waermepumpe__-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "waermepumpe__-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "waermepumpe__-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "waermepumpe__-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "waermepumpe__-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "waermepumpe__-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "waermepumpe__-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "waermepumpe__-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "waermepumpe__-desktop-16-y10740.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 10740
+        }
+      ],
+      "docHeight": 12240
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "home-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "home-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "home-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "home-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "home-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "home-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "home-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "home-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "home-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "home-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "home-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "home-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "home-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "home-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "home-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "home-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "home-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "home-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "home-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "home-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "home-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "home-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "home-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "home-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "home-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "home-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "home-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "home-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "home-mobile-30-y12238.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12238
+        },
+        {
+          "file": "home-mobile-31-y12660.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12660
+        },
+        {
+          "file": "home-mobile-32-y13082.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13082
+        },
+        {
+          "file": "home-mobile-33-y13504.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13504
+        },
+        {
+          "file": "home-mobile-34-y13926.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13926
+        },
+        {
+          "file": "home-mobile-35-y14348.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14348
+        },
+        {
+          "file": "home-mobile-36-y14769.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14769
+        }
+      ],
+      "docHeight": 15613
+    },
+    {
+      "route": "/solaranlage/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "solaranlage__-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "solaranlage__-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "solaranlage__-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "solaranlage__-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "solaranlage__-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "solaranlage__-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "solaranlage__-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "solaranlage__-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "solaranlage__-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "solaranlage__-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "solaranlage__-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "solaranlage__-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "solaranlage__-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "solaranlage__-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "solaranlage__-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "solaranlage__-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "solaranlage__-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "solaranlage__-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "solaranlage__-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "solaranlage__-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "solaranlage__-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "solaranlage__-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "solaranlage__-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "solaranlage__-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "solaranlage__-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "solaranlage__-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "solaranlage__-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "solaranlage__-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "solaranlage__-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "solaranlage__-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "solaranlage__-mobile-30-y12238.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12238
+        },
+        {
+          "file": "solaranlage__-mobile-31-y12660.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12660
+        },
+        {
+          "file": "solaranlage__-mobile-32-y13082.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13082
+        },
+        {
+          "file": "solaranlage__-mobile-33-y13504.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13504
+        },
+        {
+          "file": "solaranlage__-mobile-34-y13926.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13926
+        },
+        {
+          "file": "solaranlage__-mobile-35-y14348.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14348
+        },
+        {
+          "file": "solaranlage__-mobile-36-y14770.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14770
+        },
+        {
+          "file": "solaranlage__-mobile-37-y15192.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 15192
+        },
+        {
+          "file": "solaranlage__-mobile-38-y15614.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 15614
+        },
+        {
+          "file": "solaranlage__-mobile-39-y16036.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16036
+        },
+        {
+          "file": "solaranlage__-mobile-40-y16458.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16458
+        },
+        {
+          "file": "solaranlage__-mobile-41-y16880.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16880
+        },
+        {
+          "file": "solaranlage__-mobile-42-y17302.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 17302
+        },
+        {
+          "file": "solaranlage__-mobile-43-y17724.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 17724
+        },
+        {
+          "file": "solaranlage__-mobile-44-y18146.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 18146
+        },
+        {
+          "file": "solaranlage__-mobile-45-y18568.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 18568
+        },
+        {
+          "file": "solaranlage__-mobile-46-y18990.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 18990
+        },
+        {
+          "file": "solaranlage__-mobile-47-y19412.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 19412
+        },
+        {
+          "file": "solaranlage__-mobile-48-y19834.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 19834
+        },
+        {
+          "file": "solaranlage__-mobile-49-y20256.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 20256
+        },
+        {
+          "file": "solaranlage__-mobile-50-y20678.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 20678
+        },
+        {
+          "file": "solaranlage__-mobile-51-y21100.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 21100
+        },
+        {
+          "file": "solaranlage__-mobile-52-y21522.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 21522
+        },
+        {
+          "file": "solaranlage__-mobile-53-y21944.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 21944
+        },
+        {
+          "file": "solaranlage__-mobile-54-y22366.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 22366
+        },
+        {
+          "file": "solaranlage__-mobile-55-y22788.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 22788
+        },
+        {
+          "file": "solaranlage__-mobile-56-y23210.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 23210
+        },
+        {
+          "file": "solaranlage__-mobile-57-y23222.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 23222
+        }
+      ],
+      "docHeight": 24066
+    },
+    {
+      "route": "/unternehmen/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "unternehmen__-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "unternehmen__-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "unternehmen__-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "unternehmen__-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "unternehmen__-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "unternehmen__-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "unternehmen__-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "unternehmen__-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "unternehmen__-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "unternehmen__-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "unternehmen__-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "unternehmen__-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "unternehmen__-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "unternehmen__-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "unternehmen__-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "unternehmen__-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "unternehmen__-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "unternehmen__-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "unternehmen__-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "unternehmen__-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "unternehmen__-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "unternehmen__-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "unternehmen__-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "unternehmen__-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "unternehmen__-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "unternehmen__-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "unternehmen__-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "unternehmen__-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "unternehmen__-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "unternehmen__-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "unternehmen__-mobile-30-y12238.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12238
+        },
+        {
+          "file": "unternehmen__-mobile-31-y12660.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12660
+        },
+        {
+          "file": "unternehmen__-mobile-32-y13082.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13082
+        },
+        {
+          "file": "unternehmen__-mobile-33-y13504.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13504
+        },
+        {
+          "file": "unternehmen__-mobile-34-y13926.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13926
+        },
+        {
+          "file": "unternehmen__-mobile-35-y14348.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14348
+        },
+        {
+          "file": "unternehmen__-mobile-36-y14770.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14770
+        },
+        {
+          "file": "unternehmen__-mobile-37-y15192.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 15192
+        },
+        {
+          "file": "unternehmen__-mobile-38-y15614.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 15614
+        },
+        {
+          "file": "unternehmen__-mobile-39-y16036.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16036
+        },
+        {
+          "file": "unternehmen__-mobile-40-y16458.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16458
+        },
+        {
+          "file": "unternehmen__-mobile-41-y16741.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 16741
+        }
+      ],
+      "docHeight": 17585
+    },
+    {
+      "route": "/kundenerfahrungen/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "kundenerfahrungen__-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-30-y12238.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12238
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-31-y12660.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12660
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-32-y13082.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13082
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-33-y13504.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13504
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-34-y13926.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 13926
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-35-y14348.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14348
+        },
+        {
+          "file": "kundenerfahrungen__-mobile-36-y14599.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 14599
+        }
+      ],
+      "docHeight": 15443
+    },
+    {
+      "route": "/waermepumpe/",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "waermepumpe__-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "waermepumpe__-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "waermepumpe__-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "waermepumpe__-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "waermepumpe__-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "waermepumpe__-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "waermepumpe__-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "waermepumpe__-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "waermepumpe__-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "waermepumpe__-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "waermepumpe__-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "waermepumpe__-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "waermepumpe__-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "waermepumpe__-mobile-13-y5064.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5064
+        },
+        {
+          "file": "waermepumpe__-mobile-14-y5486.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5486
+        },
+        {
+          "file": "waermepumpe__-mobile-15-y5908.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5908
+        },
+        {
+          "file": "waermepumpe__-mobile-16-y6330.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6330
+        },
+        {
+          "file": "waermepumpe__-mobile-17-y6752.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 6752
+        },
+        {
+          "file": "waermepumpe__-mobile-18-y7174.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7174
+        },
+        {
+          "file": "waermepumpe__-mobile-19-y7596.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 7596
+        },
+        {
+          "file": "waermepumpe__-mobile-20-y8018.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8018
+        },
+        {
+          "file": "waermepumpe__-mobile-21-y8440.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8440
+        },
+        {
+          "file": "waermepumpe__-mobile-22-y8862.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 8862
+        },
+        {
+          "file": "waermepumpe__-mobile-23-y9284.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9284
+        },
+        {
+          "file": "waermepumpe__-mobile-24-y9706.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 9706
+        },
+        {
+          "file": "waermepumpe__-mobile-25-y10128.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10128
+        },
+        {
+          "file": "waermepumpe__-mobile-26-y10550.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10550
+        },
+        {
+          "file": "waermepumpe__-mobile-27-y10972.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 10972
+        },
+        {
+          "file": "waermepumpe__-mobile-28-y11394.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11394
+        },
+        {
+          "file": "waermepumpe__-mobile-29-y11816.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 11816
+        },
+        {
+          "file": "waermepumpe__-mobile-30-y12192.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 12192
+        }
+      ],
+      "docHeight": 13036
+    }
+  ]
+}

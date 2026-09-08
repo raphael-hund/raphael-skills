@@ -13,8 +13,7 @@ sensitivity: internal
 requires_env: [SCRAPECREATORS_API_KEY]
 # Nachgetragen 03.08.2026: der Text nennt diese Reference zweimal als
 # verbindlich ("Read ... BEFORE proceeding"), geladen wurde sie nie.
-loads:
-  - references/save-html-brief.md
+# Branch-Load: save-html-brief.md nur bei Save-Operation, operating-manual.md nur bei Library-Recherche — nicht pauschal im Core-Load
 source: vendored from last30days-skill (mvanhorn) skills/last30days @ 249c7a4c040558a903d6838dee31012980d4946d (upstream v3.16.0)
 completion_criteria:
   - "SCRAPECREATORS_API_KEY ist gesetzt ODER dem Nutzer wurde klar gemeldet, dass nur keyless/degradierte Quellen laufen"

@@ -1,9 +1,55 @@
 # QA-Fächer (parallel, Schwarm gemischt)
 
+**Kunden-Vorschau (G1):** nur Fach 2 visuell — frische Shots plus
+`node /root/raphael-skills/skills/design/scripts/detect.mjs <dateien>` = Exit 0.
+Ablauf, Sitemap, Idee und Design blocken; Fakten-Nits parken als FAKT-GATE.
+Lighthouse/axe, Copy-G2 und Proof-Wahrheit sind ausschließlich Launch-Gates.
+
 Sechs Fächer: 1–4 parallel (gemischte Modellfamilien), danach 5 SEO und 6 Trust
-(können parallel zueinander laufen, brauchen aber fertige Routes/Content).
-G1 zuerst, dann fachlicher G2-Blick. Lighthouse/axe = 0 ist harte Ship-Bedingung.
-Rollen: `agent-roster.md`. AAA-Raster: `agentur-rubrik.md`.
+(können parallel zueinander laufen, brauchen aber fertige Routes/Content) für den
+Launch. G1 zuerst, dann fachlicher G2-Blick. Rollen: `agent-roster.md`.
+AAA-Raster: `agentur-rubrik.md`.
+
+## Drei Freigabedimensionen (getrennt, nicht verrechenbar)
+
+| Dimension | Eigenständiger PASS-Beleg |
+|---|---|
+| **Visuell** | Kanonischer Screenshot-Sweep, PNG-Read durch Kritik-Leaves, Kritik-Loop und bei Ship das terminale `visual-aaa`-Manifest. |
+| **Funktional** | Feste Nutzeraufgaben bestehen; Route×Viewport×Target×State-Matrix und target-lokale A11y sind vollständig; Formulare, Links und Recovery-Pfade funktionieren. |
+| **Regression** | Vorher/Nachher gegen denselben Auftrag und dieselbe Build-Revision; nur verlangter Scope geändert, alle geänderten und betroffenen Nachbarrouten erneut geprüft. |
+
+Gesamt-PASS gibt es nur bei **Visuell PASS**, **Funktional PASS** und
+**Regression PASS**. Keine Dimension darf eine andere aufrechnen: Eine attraktive Seite mit
+kaputtem Formular bleibt funktional rot; ein technisch grüner Flow mit sichtbarer
+Qualitätslücke bleibt visuell rot; eine gute lokale Änderung mit Nebenänderungen
+an Navigation, Tokens oder anderen Routen bleibt Regression rot. Ein neuer Build
+invalidiert ältere Sweep-, G1- und Ship-Receipts.
+
+## Web-G1: Basis und Receipt-Identität explizit
+
+```bash
+node /root/raphael-skills/skills/eigene/web/scripts/g1-gate.mjs \
+  --base <echte-dev-oder-live-url> --routes <route1,route2> \
+  --src <projekt-root> --build <build-root> --out <run-out>/g1 \
+  --run-id <run-id> --build-revision <revision>
+```
+
+`--base`, `--run-id` und `--build-revision` sind Pflicht; kein stiller Host-/Port-
+Default und kein anonymer Bericht. Fehlend = Aufruffehler/Exit 2 vor Browserstart.
+Der Bericht `web/g1-report/v2`, das Manifest `web/shot-sweep/v2` und
+`run-evidence.json` müssen dieselbe Run-ID, Build-Revision und Basis tragen.
+G1 startet den kanonischen Sweep mit `--static --states --mobile` und lehnt ein
+Manifest mit abweichendem `capture_profile`, fehlender Mobile-Route, unvollständiger
+State-Matrix oder Hover-only-Evidence ab.
+
+## Motion-Freigabe (erst nach stabilem Basisstand)
+
+Motion-Polish beginnt erst, wenn der **statische Basisstand PASS** und die
+**funktionale Dimension PASS** auf derselben Build-Revision sind. Erst danach
+zählen Motion-Belege: reale Eingabe und Timing, ein eigener Reduced-Motion-Pass
+sowie Lifecycle-Prüfung für Fresh Load, Hard Reload, Back/Forward, Resize und
+Unterbrechung mit Recovery. Motion ist eine zusätzliche Prüfung; sie repariert
+kein rotes statisches, funktionales oder Regression-Gate.
 
 **AI-Slop-Sequenz (fest, kein optionaler Zusatzschritt):** design ZUERST (Fach 2, `detect.mjs`
 Exit 0 **und** `scan-ai-slop.mjs` mit 0 Treffern — der Scanner endet IMMER mit Exit 0,
@@ -91,11 +137,22 @@ Fail = ein Punkt offen → zurück in den Bildgenerierungs-/Freisteller-Schritt,
 Layout nachbessern. (F) rot = kein Ship, auch wenn (A)–(E) grün sind.
 
 ## Fach 3 — A11y
-- G1: axe = 0 Fehler (hart). Farbkontrast AA, Fokus-Reihenfolge, Alt-Texte, Labels.
+- **Launch-Fach:** G1: axe = 0 Fehler (hart; nicht Vorschau). Farbkontrast AA,
+  Fokus-Reihenfolge, Alt-Texte, Labels.
 - Tastatur-Navigation vollständig, ARIA korrekt (nicht überladen).
+- **Target-lokal statt Seitenpauschale:** Für jeden Schlüssel aus
+  `Route × Viewport × Target × State` enthält der Capture-Beleg die echte
+  Tastatursequenz, den erwarteten und tatsächlichen Fokus, Rolle + Accessible
+  Name, ARIA-/Live-Region-Ergebnis, Escape-/Recovery-Pfad und Axe auf dem DOM
+  **nach** dem Übergang. Ein globaler Axe-Lauf oder ein Shot eines anderen
+  Buttons deckt dieses Target nicht ab.
+- Fokus-, Open/Expanded-, Loading-, Empty-, Error- und Success-Zustände bleiben
+  funktional rot, wenn Setup, Fokusassert, ARIA-State, Live-Region oder Recovery
+  fehlschlägt — auch bei visuell korrektem Screenshot.
 
 ## Fach 4 — Technik
-- G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO), Link-Check, HTML-validate.
+- **Launch-Fach:** G1: Lighthouse = 0 Fehler (Performance/Best-Practices/SEO;
+  nicht Vorschau), Link-Check, HTML-validate.
 - Meta/OG/Schema vorhanden, Canonical korrekt, keine Broken Links, responsive.
 - **G1 Werkzeug-Gate (hart):** `node /root/raphael-skills/skills/eigene/web/scripts/werkzeug-gate.mjs <projekt> --tabelle
   <pfad>/art-direction.md` = Exit 0. Prueft deterministisch: genau EIN Icon-System,
@@ -118,10 +175,16 @@ Layout nachbessern. (F) rot = kein Ship, auch wenn (A)–(E) grün sind.
 - Checkliste: `agentur-rubrik.md` Zeilen 11–17. Fail → kein Launch für öffentliche URLs.
 
 ## Fach 6 — Trust
+
+**Launch-only.** Eine Kunden-Vorschau darf mit Fach 6 rot raus (offene Zahlen,
+Domain, Platzhalter-Reviews), solange Fach 2 visuell sitzt und Ablauf/Sitemap/Idee
+stehen. Inhalt ist ein Swap. Launch: kein erfundener Proof als echt.
+
 - G1: Impressum + Datenschutz erreichbar und vollständig (DE); 404-Route gebrandet,
   Status 404, `noindex`, klarer Rückweg.
 - G1 Proof: jede sichtbare Zahl/Logo/Testimonial ist in `PROOF.md`/Dossier belegt —
-  erfundene Claims = Fail (nicht „später belegen“).
+  erfundene Claims = Fail (nicht „später belegen“). Unklare echte Zahl
+  (50 vs 60 Reviews, 24 vs 28h) = FAKT-GATE bis Launch, kein Erfinden.
 - G2: Testimonials Video/Screenshot+Identität (Fach-1-Regeln); keine KI-Personen in
   Beweis-Kontexten ohne Raphael-Freigabe; Partner-Logos nur freigegeben; Consent vor
   nicht-essentiellem Tracking wo nötig (`security-audit-playbook.md`).
@@ -133,3 +196,60 @@ Fach-QA übersieht. Kein Gate, nur Zusatzsignal.
 
 ## Regel
 Kein Launch, solange ein G1-Fach (1–6) rot ist. Findings → `client-<name>/wiki/qa-<datum>.md`.
+Kunden-Vorschau: Fach 2 rot = nicht zeigen. Fach 6 Trust-Zahlen und Custom-Domain
+sind kein Vorschau-Blocker.
+
+
+## Kontexttiefe: Prosa gegen Stichpunkte (Fach 5, hart)
+
+Eine Seite kann jedes SEO-Gate bestehen und trotzdem dünn wirken. Der Unterschied
+zwischen einer tragenden und einer dünnen Seite ist **nicht die Wortzahl**, sondern
+das Verhältnis erklärender Absätze zu Listenpunkten.
+
+Gemessener Referenzmaßstab (acht Weltklasse-Seiten, 01.09.2026):
+
+| | Absätze ab 25 Wörtern |
+|---|---|
+| inhaltlich tragende Seiten | 17–170 |
+| dünne Seiten | 0–7 |
+
+**Messung** (auf dem gerenderten Build, nicht auf der Quelle):
+
+```bash
+python3 - <<'EOF'
+import re,glob
+def txt(s): return ' '.join(re.sub(r'<[^>]+>',' ',s).split())
+for f in sorted(glob.glob('dist/*/index.html')):
+    h=open(f,encoding='utf-8').read()
+    m=re.search(r'<main.*?</main>',h,re.S); body=m.group(0) if m else h
+    ps=[len(txt(p).split()) for p in re.findall(r'<p[^>]*>(.*?)</p>',body,re.S)]
+    print(f.split('/')[1], sum(1 for w in ps if w>=25), len(re.findall(r'<li',body)))
+EOF
+```
+
+**Kontextlücke** = H2-Sektion mit mindestens 4 Listenpunkten und **keinem** Absatz ab
+25 Wörtern. Jede solche Sektion bekommt einen Einleitungsabsatz von 45–80 Wörtern
+**vor** der Liste, der erklärt, was der Leser gleich sieht und warum es für ihn zählt —
+keine Wiederholung der Liste.
+
+**Drei Messfallen, die Befunde überzeichnen:**
+- **FAQ-Sektionen sind keine Lücke.** Accordion-Antworten liegen in `<div>` und als
+  `FAQPage`-JSON-LD, nicht in `<p>`. Immer ausschließen.
+- **Nav und Footer mitzählen** hebt jede Route gleichmäßig an. Nur `<main>` messen.
+- **Zitat- und Testimonial-Sektionen sind keine Lücke.** Vier Kundenstimmen zählen
+  als „4 Listenpunkte ohne Erklärabsatz“, tragen aber bereits Prosa — nur eben
+  fremde. Ein erklärender Vorspann über Zitate ist Füllsel und schwächt sie.
+  Ausschließen, wenn die Kinder Namen, Ort oder Bewertungsquelle tragen.
+
+**Regel dahinter:** Die Metrik findet Kandidaten, nicht Urteile. Vor jedem Fix die
+Sektion ansehen — schließt der Absatz eine echte Erklärlücke, oder erfüllt er nur
+den Zähler? Im zweiten Fall die Metrik korrigieren, nicht die Seite.
+
+**Klon-Prüfung bei Orts-/Varianten-Seiten.** Tragen mehrere Seiten dieselben H2 mit
+ausgetauschtem Ortsnamen („Was wir in *X* räumen“), ist die Seite strukturell ein Klon —
+sie besteht jedes Gate und wirkt im Blindvergleich trotzdem generisch. Prüfen mit
+`grep -h '<h2' dist/*/index.html | sed 's/[A-ZÄÖÜ][a-zäöüß]*$//' | sort | uniq -c | sort -rn`.
+
+**Vorsicht bei Hierarchie-Vorwürfen.** „Die Hierarchie ergibt keinen Sinn“ meint fast nie
+kaputte Schachtelung. Erst messen (`h3_vor_erstem_h2`), bevor umgebaut wird — häufiger
+ist der wahre Befund **Monotonie**: dieselbe Kachelraster-Sektion auf jeder Route.

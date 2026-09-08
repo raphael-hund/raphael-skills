@@ -60,7 +60,7 @@
 // die Grenze koennte, steht statt `\b` eine explizite Zeichenklasse.
 export default [
   {
-    id: "de-14",
+    id: "de-14-AUS",
     group: "copy",
     name: "deutsche KI-Textstimme",
     fix: "die konkrete Sache sagen — Zahl, Nomen, Konsequenz",

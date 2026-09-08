@@ -1,5 +1,5 @@
 ---
-title: "Zahl-Proof und Du-Anrede gelten in allen drei Markt-Segmenten"
+title: "Marktübergreifende Muster liefern Auswahlmöglichkeiten für Leadgen-Ads"
 type: lesson
 confidence: medium
 status: candidate
@@ -8,11 +8,15 @@ sensitivity: internal
 tags: [ads, maerkte, uebertragbar, hook, proof]
 ---
 
-# Zahl-Proof und Du-Anrede gelten in allen drei Markt-Segmenten
+# Marktübergreifende Muster liefern Auswahlmöglichkeiten für Leadgen-Ads
 
 ## TLDR
 
-Nur Zahl-Proof und Du-Anrede stehen in allen drei Märkten.
+Beobachtete Bauformen helfen bei der Auswahl; ihre Häufigkeit belegt keinen Vorteil für einen neuen Kunden.
+
+## Geltung dieser Marktbeobachtung
+
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
 
 ## Regeln
 
@@ -28,10 +32,10 @@ Nur Zahl-Proof und Du-Anrede stehen in allen drei Märkten.
 
 ## Taktiken
 
-- Setze eine Zahl oder einen Namen in den Hook.
-- Sprich den ICP mit Du an. Siezen bleibt die Enpal-Ausnahme.
-- Nimm F2 oder einen Call-Out Hook als erste gemeinsame Form.
-- Setze Proof früh und noch einmal vor dem CTA.
+- Mache Thema und Relevanz erkennbar; Zahl oder Name nur mit passendem eigenem Beleg.
+- Verwende die belegte Anrede des Kunden und seines Marktes.
+- Wähle einen zur Testfrage passenden Einstieg; F2 und Call-Out sind mögliche Formen.
+- Setze den notwendigen Proof dort ein, wo er die konkrete Behauptung erklärt.
 - Sag im CTA die Aktion, den Ort und was danach passiert.
 
 ## Beispiele
@@ -52,5 +56,10 @@ Nur Zahl-Proof und Du-Anrede stehen in allen drei Märkten.
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:8`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:3`
 - `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:37`
+
+## Historische Herkunft
+
+Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die operativen Quellen stehen im Skill. Für die Nutzung müssen diese Dateien nicht existieren.
+
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:90`
 - `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:24`

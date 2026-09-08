@@ -1,0 +1,306 @@
+{
+  "observed_at": "2026-09-06",
+  "coverage_type": "primary_site_text_sample",
+  "sites": [
+    {
+      "id": "mk-boersenhandel",
+      "url": "https://www.mk-boersenhandel.ch/",
+      "category": "education_consultative_service",
+      "role": "mechanism_explanation_and_consultation_funnel",
+      "pages": [
+        {
+          "url": "https://www.mk-boersenhandel.ch/",
+          "type": "home_offer_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Problems, mentors, outcome claims, support, curriculum, technology, FAQ and consultation invitation form the extracted content sequence.",
+            "Primary consultation action and secondary technology demo action.",
+            "Checked content links returned the homepage, not separate content routes."
+          ],
+          "limitations": [
+            "No visual or motion evidence in this record.",
+            "Performance, qualification and review claims not independently verified.",
+            "Mixed trader statistics in extracted text require visibility and provenance review."
+          ]
+        },
+        {
+          "url": "https://www.mk-boersenhandel.ch/datenschutz",
+          "type": "legal_privacy",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Separate privacy route with website navigation."
+          ],
+          "limitations": [
+            "Legal adequacy not assessed."
+          ]
+        },
+        {
+          "url": "https://www.mk-boersenhandel.ch/impressum",
+          "type": "legal_imprint",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Separate business identity and contact route; footer returns to homepage content."
+          ],
+          "limitations": [
+            "Company and regulatory assertions not independently verified."
+          ]
+        }
+      ],
+      "patterns": [
+        "Explain the mechanism and who provides support separately.",
+        "Use a learning action alongside the primary consultation action where useful."
+      ],
+      "limitations": [
+        "https://www.mk-boersenhandel.ch/sitemap.xml failed in web access; complete domain inventory unconfirmed.",
+        "Only one commercial content route confirmed.",
+        "User preference does not validate claims or performance."
+      ]
+    },
+    {
+      "id": "jantronic",
+      "url": "https://www.jantronic.com/",
+      "category": "b2b_procurement_service",
+      "role": "multi_page_service_architecture_and_technical_proof",
+      "pages": [
+        {
+          "url": "https://www.jantronic.com/",
+          "type": "home_service_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Procurement proposition, conditions, supplier comparison, scenarios, inquiry, team and delivery process.",
+            "Commercial action requests requirements; no cart or checkout observed.",
+            "Image-video, map and messaging links exist."
+          ],
+          "limitations": [
+            "No visual, video or motion inspection in this record.",
+            "Repeated service copy may include hidden variants.",
+            "Business metrics and testimonials not independently verified."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/leistungen",
+          "type": "service_hub",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Procurement scenarios, component inspection, quality tiers, report links, purchasing excess stock, financing and next steps.",
+            "Specific operational claims have corresponding documentary proof links.",
+            "Footer credits Faris Schmidt."
+          ],
+          "limitations": [
+            "Linked reports not opened; their content and authenticity not verified.",
+            "Interactive panel behavior not tested."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/unternehmen",
+          "type": "company_team",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Company milestones, named team roles, direct contacts, media links, quality framework, values and service cross-links."
+          ],
+          "limitations": [
+            "Timeline behavior and team photography not visually inspected.",
+            "Company claims are first-party statements."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/hersteller",
+          "type": "manufacturer_directory",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Manufacturer list, PDF download, manufacturer inputs and technical series names.",
+            "Supports supplier coverage research before inquiry."
+          ],
+          "limitations": [
+            "Input/filter functionality and downloads not tested.",
+            "List length is not evidence of SEO performance or current inventory."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/kontakt",
+          "type": "contact_inquiry",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Name, email, phone, company and requirement fields; separate optional marketing consent.",
+            "Phone, video meeting and WhatsApp alternatives."
+          ],
+          "limitations": [
+            "Form not submitted; receipt, validation and state visibility unverified.",
+            "Response-time statement is an unverified site claim."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/news",
+          "type": "editorial_index",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Dated electronics, manufacturer and supply-chain topics plus contact close.",
+            "Article titles span product developments and buyer operating risks."
+          ],
+          "limitations": [
+            "All articles were not inspected.",
+            "Internal link extraction was incomplete; article routes also found through search."
+          ]
+        },
+        {
+          "url": "https://www.jantronic.com/newsletter-anmeldung",
+          "type": "newsletter_signup",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Dedicated signup requests contact/company details and selectable technical interests."
+          ],
+          "limitations": [
+            "Selection interaction and submission not tested."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/news/renesas-update---juli-2025",
+          "type": "editorial_detail",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Dated manufacturer update connects a market event to purchasing implications and a procurement contact; named author."
+          ],
+          "limitations": [
+            "Historical technical and financial news assertions not verified; not used as current factual advice."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/news/neue-impulse-im-halbleitermarkt-ti-stmicroelectronics-und-analog-devices-mit-spannenden-produktneuheiten",
+          "type": "editorial_detail",
+          "evidence": [
+            "indexed_text"
+          ],
+          "observations": [
+            "Search-index primary-page text shows manufacturer sections, applications, buyer questions, author and procurement close."
+          ],
+          "limitations": [
+            "Direct open failed; evidence is primary-page text returned by the search index, not a successful live page open.",
+            "Technical product claims not independently checked."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/datenschutz",
+          "type": "legal_privacy",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Dedicated administrative route reached from commercial pages."
+          ],
+          "limitations": [
+            "Legal adequacy not assessed."
+          ]
+        },
+        {
+          "url": "https://jantronic.com/impressum",
+          "type": "legal_imprint",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Dedicated company identity and contact route."
+          ],
+          "limitations": [
+            "Business registration details not independently verified."
+          ]
+        }
+      ],
+      "patterns": [
+        "Match page type to buyer task: service choice, manufacturer coverage, credibility, current knowledge or inquiry.",
+        "Tie quality claims to inspectable documentation.",
+        "Describe operational consequences in B2B copy.",
+        "Use newsletter interest segmentation when a long purchase cycle makes it useful."
+      ],
+      "limitations": [
+        "Sample is not a full domain crawl.",
+        "No browser, animation, form-receipt, technical SEO or ranking verification in this record.",
+        "Du/Sie variation and duplicate extracted blocks are review targets, not confirmed visible defects."
+      ]
+    },
+    {
+      "id": "jonah-struck",
+      "url": "https://www.jonahstruck.de/",
+      "category": "personal_brand_b2b_mentoring",
+      "role": "audience_specific_offer_and_application_funnel",
+      "pages": [
+        {
+          "url": "https://www.jonahstruck.de/",
+          "type": "home_offer_landing",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Audience, everyday problems, sales system, delivery formats, testimonials, person, process, FAQ and form.",
+            "Mentoring, community and course make delivery concrete.",
+            "Checked system, about and results links returned the homepage."
+          ],
+          "limitations": [
+            "No visual or motion evidence in this record.",
+            "Outcome claims and participant counts unverified.",
+            "Technical section label occurs in text extraction; visible status unknown."
+          ]
+        },
+        {
+          "url": "https://www.jonahstruck.de/datenschutz",
+          "type": "legal_privacy",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Separate privacy page; Webflow named as hosting provider."
+          ],
+          "limitations": [
+            "Provider statement is not source-code verification or evidence of a particular motion implementation.",
+            "Legal adequacy not assessed."
+          ]
+        },
+        {
+          "url": "https://www.jonahstruck.de/impressum",
+          "type": "legal_imprint",
+          "evidence": [
+            "web_text"
+          ],
+          "observations": [
+            "Separate identity/contact route and footer naming Faris Schmidt as website creator."
+          ],
+          "limitations": [
+            "Identity statements not independently verified."
+          ]
+        }
+      ],
+      "patterns": [
+        "Qualify audience early and explain practical delivery formats.",
+        "Connect outcomes to named customer context, subject to evidence.",
+        "Explain the real first steps and collect only fields used in follow-up."
+      ],
+      "limitations": [
+        "https://www.jonahstruck.de/sitemap.xml failed in web access; complete domain inventory unconfirmed.",
+        "Only one commercial content route confirmed.",
+        "Shared creator with JANtronic reduces independence of repeated patterns.",
+        "Application was not sent and conversion performance is unknown."
+      ]
+    }
+  ]
+}

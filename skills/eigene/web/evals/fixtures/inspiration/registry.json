@@ -1,0 +1,46 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "magicui",
+  "homepage": "https://magicui.design",
+  "items": [
+    {
+      "name": "index",
+      "type": "registry:style",
+      "description": "Base style, not a component.",
+      "files": []
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "An infinite scrolling component that can be used to display text, images, or videos.",
+      "dependencies": ["motion"],
+      "files": [{ "path": "registry/magicui/marquee.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "magic-card",
+      "type": "registry:ui",
+      "title": "Magic Card",
+      "description": "A spotlight effect that follows your mouse cursor and highlights borders on hover.",
+      "files": [{ "path": "registry/magicui/magic-card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "DotField-JS-CSS",
+      "title": "DotField",
+      "description": "Animated field of dots.",
+      "type": "registry:component"
+    },
+    {
+      "name": "DotField-TS-TW",
+      "title": "DotField",
+      "description": "Animated field of dots in TypeScript and Tailwind.",
+      "type": "registry:component"
+    },
+    {
+      "name": "BlobCursor-TS-TW",
+      "title": "BlobCursor",
+      "description": "Organic blob cursor.",
+      "type": "registry:component"
+    }
+  ]
+}

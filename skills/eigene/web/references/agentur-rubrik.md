@@ -1,5 +1,7 @@
 # Agentur-Rubrik — AAA Visual / SEO / Trust
 
+**Verbund (08.09.2026):** Die Rubrik bleibt das Launch-Gate 7. Für Bauanleitungen und Messwerte je Sektion gilt der [Design-Depth-Router](design-depth/INDEX.md); für die Kritiker-Rollen [quality-agents.md](quality-agents.md) und [kritik-matrix.md](kritik-matrix.md).
+
 **Zweck:** „AAA“ hier = **Top-Tier-Qualitätsraster** (nicht WCAG AAA).
 WCAG bleibt AA (axe=0) in QA Fach 3. Dieses Dokument macht Visual, SEO und
 Trust **prüfbar** — kein Bauchgefühl beim Ship.
@@ -30,7 +32,7 @@ Namensvariante erfinden; SEO-Detail bleibt in QA Fach 5, nicht im Blind-Shot.
 | 1 | Design-Read dokumentiert | 1 Zeile Seitentyp/Zielgruppe/Vibe vor Code | Datei `art-direction.md` oder Chat-Zeile | design SKILL |
 | 2 | Tokens eingefroren | ≤1 Accent + Neutrals, keine Drift-Werte | Grep Hex außerhalb Tokens | damien Foundations |
 | 3 | Type-Pair bewusst | Display ≠ Inter-Default; Scale dokumentiert | art-direction + Shot | lexlin #2 |
-| 4 | Hero = ein Moment | ≤1 Primär-CTA, Headline ≤2 Zeilen | First-Fold-Shot 1440×730 | lexlin #3–5 |
+| 4 | Hero = ein Moment | ≤1 Primär-CTA, Headline ≤2 Zeilen | First-Fold-Shot 1440×900 | lexlin #3–5 |
 | 5 | Layout-Familien wechseln | Keine 3× gleiche Card-Grid-Sektion hintereinander | Sweep alle Sections | lexlin #10 |
 | 6 | Spacing-Rhythmus | 8pt-Grid, keine Random-Gaps | Shot + Code-Stichprobe | damien Brandbook |
 | 7 | Radius-Logik konsistent | sharp XOR soft XOR pill seitenweit | Shot-Vergleich | lexlin #13 |

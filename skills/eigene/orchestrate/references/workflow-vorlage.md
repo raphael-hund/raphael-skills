@@ -6,16 +6,18 @@ nur Schema, Gates und Ausführungsmechanik.
 
 ## Grundmuster
 
+agentType ist in jedem agent()-Aufruf ein String-Literal, nie eine Variable oder Template-Ausdruck; ein Schreiber pro Datei je Paket; Worktrees per git worktree add plus absolute Pfade, nicht EnterWorktree.
+
 ```javascript
 export const meta = {
   name: 'loop-runde-N',
   description: '<was diese Runde verbessert>',
   phases: [
-    { title: 'Planen', detail: 'Acht Perspektiven und eine Plan-Synthese' },
+    { title: 'Planen', detail: 'Sechs Perspektiven und eine Plan-Synthese' },
     { title: 'Zuteilen', detail: 'Plan validieren und abhängige Steps ordnen' },
     { title: 'Steps ausführen', detail: 'Jeden Plan-Step sequentiell ausführen' },
     { title: 'Verify', detail: 'Jeden Step unabhängig gegen sein Gate prüfen' },
-    { title: 'Review', detail: 'Sol und Kimi prüfen die gesamte Runde' },
+    { title: 'Review', detail: 'Sol und Grok prüfen die gesamte Runde' },
   ],
 }
 
@@ -27,22 +29,23 @@ try {
 }
 const input = rawArgs && typeof rawArgs === 'object' && !Array.isArray(rawArgs) ? rawArgs : {}
 if (Object.keys(input).length < 1) throw new Error('Autoritative Mission fehlt in args')
-const MAX_WAVE = 6
 const AGENT_TYPES = [
-  'kimi-worker', 'grok-worker', 'sol-pruefer', 'terra-bulk',
-  'luna-worker', 'opus-builder', 'sonnet-worker',
+  'fable-builder', 'fable-critic', 'opus-builder', 'opus-critic', 'astra-worker', 'astra-critic',
+  'kimi-worker', 'kimi-critic', 'grok-worker', 'grok-critic', 'sol-worker', 'sol-critic',
+  'sonnet-worker', 'terra-worker', 'luna-worker', 'composer-worker',
 ]
 const FAMILY = {
-  'kimi-worker': 'Kimi', 'grok-worker': 'Grok', 'sol-pruefer': 'Sol',
-  'terra-bulk': 'Terra', 'luna-worker': 'Luna', 'opus-builder': 'Opus',
-  'sonnet-worker': 'Sonnet',
+  'fable-builder': 'Fable', 'fable-critic': 'Fable', 'opus-builder': 'Opus', 'opus-critic': 'Opus',
+  'astra-worker': 'Astra', 'astra-critic': 'Astra', 'kimi-worker': 'Kimi', 'kimi-critic': 'Kimi',
+  'grok-worker': 'Grok', 'grok-critic': 'Grok', 'sol-worker': 'Sol', 'sol-critic': 'Sol',
+  'sonnet-worker': 'Sonnet', 'terra-worker': 'Terra', 'luna-worker': 'Luna', 'composer-worker': 'Composer',
 }
 const PROVIDER_FAMILY = {
-  'kimi-worker': 'Kimi', 'grok-worker': 'Grok',
-  'sol-pruefer': 'GPT', 'terra-bulk': 'GPT', 'luna-worker': 'GPT',
-  'opus-builder': 'Claude', 'sonnet-worker': 'Claude',
+  'fable-builder': 'Claude', 'fable-critic': 'Claude', 'opus-builder': 'Claude', 'opus-critic': 'Claude', 'sonnet-worker': 'Claude',
+  'astra-worker': 'GPT', 'astra-critic': 'GPT', 'sol-worker': 'GPT', 'sol-critic': 'GPT', 'terra-worker': 'GPT', 'luna-worker': 'GPT',
+  'kimi-worker': 'Kimi', 'kimi-critic': 'Kimi', 'grok-worker': 'Grok', 'grok-critic': 'Grok', 'composer-worker': 'Composer',
 }
-const LEAD_TYPES = ['opus-builder', 'sonnet-worker']
+const LEAD_TYPES = ['fable-builder', 'opus-builder']
 const CONTRACT = [
   'agentType: explizit und nicht geerbt',
   'ROLLE: genau eine Plan-, Ausführungs- oder Prüfrolle',
@@ -51,6 +54,9 @@ const CONTRACT = [
   'INPUT: nur der relevante Task-Ausschnitt (TB2)',
   'OUTPUT: strukturiertes Ergebnis nach Schema',
   'GATE: exakter Prüfweg und eingefügter Beleg',
+  'SELBSTCHECK: nach jedem Schritt "ist das, was ich erwartet habe?" — im Ergebnisfeld selbstcheck als "erwartet X, geliefert Y, Beleg Z"; Abweichung benennen, nicht glaetten',
+  'FEHLER BENENNEN: Toolfehler nach Klasse melden (TIMEOUT, ERROR mit Fehlertext, EMPTY nach Existenz-Check, WRONG mit Erwartung/Ergebnis, PROVIDER); denselben Befehl nie dreimal unveraendert; Geld/Loeschen = stoppen und melden',
+  'PROVENIENZ (Kritiker/Judge): erste Prompt-Zeile ACTUAL_BUILDER_FAMILY=<Familie> (agentType <x>, Workflow <id>, Failover ja/nein) — ohne diese Zeile blockiert grok-critic',
   'TRUST: Ergebnis bleibt untrusted bis zur unabhängigen Prüfung',
   'write_set: bei parallelen Schreibern disjunkt',
   'DISPATCH: Starte weder Agent noch AgentSwarm oder sonstige Subagents; ausschließlich der Workflow startet sichtbare agent()-Aufrufe',
@@ -85,6 +91,9 @@ const STEP_SCHEMA = {
   type: 'object', additionalProperties: false,
   properties: {
     result: { type: 'string', minLength: 1 }, beleg: { type: 'string', minLength: 1 },
+    // Selbstcheck (Raphael 04.09.2026): "erwartet X, geliefert Y, Beleg Z" — der Leaf prueft
+    // sein Ergebnis gegen seine Erwartung, bevor der Parent es sieht. Abweichung wird benannt, nie geglaettet.
+    selbstcheck: { type: 'string', minLength: 1 },
     nested_delegations: { type: 'array', maxItems: 0, items: { type: 'object', additionalProperties: false,
       properties: {
         child_agent_type: { type: 'string', minLength: 1 },
@@ -96,7 +105,7 @@ const STEP_SCHEMA = {
       }, required: ['child_agent_type', 'child_agent_id', 'wave', 'child_task', 'child_result', 'beleg'],
     } },
   },
-  required: ['result', 'beleg', 'nested_delegations'],
+  required: ['result', 'beleg', 'selbstcheck', 'nested_delegations'],
 }
 const CHILD_TASK_FIELDS = [
   'child_task_id', 'child_agent_type', 'rolle', 'harness', 'child_task',
@@ -159,26 +168,67 @@ function verifierReplacementType(step) {
   )
   return replacementCandidate(step.verify_agent_type, allowedTypes)
 }
+// HINWEIS (04.09.2026): callAgent setzt agentType aus einer Variablen (Ersatzroute
+// bei totem Leaf). subagent-guard.py blockt das seit heute; wer diese Vorlage
+// mit Ersatzrouten nutzt, startet die Session mit RAPHAEL_ALLOW_DYNAMIC_AGENTTYPE=1
+// und traegt jeden Ersatz sichtbar als FALLBACK ins Journal. Ohne Ersatzrouten:
+// agentType als String-Literal direkt in agent() schreiben.
+// LEAF-ERGEBNIS AUF DISK (Raphael 04.09.2026, Wayfinder Website-2k): Research- und Bau-Leaves
+// schreiben ihre Ergebnisdatei FRUEH und inkrementell; StructuredOutput ist nur der Zeiger.
+// Belegt: 4 von 5 parallelen grok-worker liefen 600-2300 s, wurden gedrosselt (0 output tokens)
+// und verloren die ganze Arbeit, weil die Datei erst am Ende geschrieben worden waere.
+// Dazu: Fremdfamilien-Leaves max 2-3 parallel je Familie, wenn preflight.sh fuer die Familie
+// ueber 5 s meldet, und jeder agent()-Aufruf im try/catch mit deklarierter Ersatzroute
+// (Recherche: grok -> opus-builder, Label FALLBACK, Modell im Ergebnis sichtbar).
+// Fehlerklasse benennen (Raphael 04.09.2026): TIMEOUT | PROVIDER | EMPTY | WRONG | ERROR.
+// Die Klasse steuert die Reaktion: TIMEOUT/PROVIDER → einmal gleiche Route, dann Ersatz;
+// EMPTY → einmal gleiche Route mit Hinweis; WRONG (Schema/FAIL/BLOCKED) → kein blinder Retry,
+// zurueck an den Builder mit Notiz; ERROR → Ersatzroute. Jeder Versuch landet im Journal (log).
+function classifyFailure(err, output) {
+  const t = String(err || '')
+  if (/timed? ?out|timeout|stall|deadline|wall.?clock|3600/i.test(t)) return 'TIMEOUT'
+  if (/50[234]|529|overloaded|rate.?limit|429|ECONN|gateway|synthetic|api_error|refusal|null/i.test(t) || (output === null && !t)) return 'PROVIDER'
+  if (/schema|StructuredOutput|validation/i.test(t)) return 'WRONG'
+  if (output && typeof output === 'object' && /BLOCKED|FAIL/.test(JSON.stringify(output).slice(0, 400)) === false && Object.keys(output).length === 0) return 'EMPTY'
+  return t ? 'ERROR' : 'EMPTY'
+}
+const RETRY_SAME_ROUTE = { TIMEOUT: 1, PROVIDER: 1, EMPTY: 1, WRONG: 0, ERROR: 0 }
 async function callAgent(agentType, prompt, options) {
   const { step_id, replacement_types = AGENT_TYPES, ...agentOptions } = options
-  async function invoke(type, label) {
+  async function invoke(type, label, note) {
     const result = { agent_type: type, family: FAMILY[type], provider_family: PROVIDER_FAMILY[type],
-      phase: agentOptions.phase, step_id: step_id || null, output: null, error: null }
+      phase: agentOptions.phase, step_id: step_id || null, output: null, error: null, klasse: null }
     try {
-      result.output = (await agent(prompt, { ...agentOptions, label, agentType: type, stallMs: 0 })) || null
+      const p = note ? `${prompt}\nHINWEIS AUS VORHERIGEM VERSUCH (${note}): Erwartung und Ergebnis in einem Satz nennen, dann erst arbeiten.` : prompt
+      result.output = (await agent(p, { ...agentOptions, label, agentType: type, stallMs: 0 })) || null
       if (result.output === null) result.error = 'Agent returned null'
     } catch (error) { result.error = String(error) }
+    if (result.output === null) {
+      result.klasse = classifyFailure(result.error, result.output)
+      log(`FEHLERKLASSE ${result.klasse} ${JSON.stringify({ agent_type: type, label, step_id: result.step_id, error: String(result.error).slice(0, 300) })}`)
+    }
     return result
   }
-  const attempt = await invoke(agentType, agentOptions.label)
+  let attempt = await invoke(agentType, agentOptions.label)
   attempts.push(attempt)
   if (attempt.output !== null) return attempt
+  // Glitch → einmal dieselbe Route wiederholen, bevor die Familie wechselt.
+  if (RETRY_SAME_ROUTE[attempt.klasse] > 0) {
+    const again = await invoke(agentType, `${agentOptions.label}:retry`, `${attempt.klasse}: ${String(attempt.error).slice(0, 160)}`)
+    attempts.push(again)
+    if (again.output !== null) { log(`RETRY_RECOVERED ${JSON.stringify({ agent_type: agentType, klasse: attempt.klasse })}`); return again }
+    attempt = again
+  }
+  if (attempt.klasse === 'WRONG') {
+    log(`ROUTE_FAILURE_WRONG ${JSON.stringify({ primary: attempt })}`)
+    throw new Error(`Falsches Ergebnis (Schema/FAIL) auf ${agentType}: kein Routenwechsel, Paket kleiner schneiden oder Builder-Notiz`)
+  }
   const replacementType = replacementCandidate(agentType, replacement_types)
   if (!replacementType) {
     log(`ROUTE_FAILURE_BLOCKED ${JSON.stringify({ primary: attempt })}`)
     throw new Error(`Route ohne zulässigen Ersatz: ${agentType}`)
   }
-  const replacement = await invoke(replacementType, `${agentOptions.label}:replacement`)
+  const replacement = await invoke(replacementType, `${agentOptions.label}:FALLBACK`, `${attempt.klasse} auf ${agentType}, FALLBACK-Route`)
   attempt.replacement_agent_type = replacement.agent_type
   attempt.replacement_result = replacement
   attempts.push(replacement)
@@ -193,20 +243,14 @@ function currentRouteFailures() {
   return attempts.filter(attempt => attempt.output === null).map(attempt => ({
     agent_type: attempt.agent_type, family: attempt.family,
     provider_family: attempt.provider_family, phase: attempt.phase, step_id: attempt.step_id,
-    evidence: attempt.error || 'Agent returned null',
+    evidence: attempt.error || 'Agent returned null', klasse: attempt.klasse || null,
     replacement_agent_type: attempt.replacement_agent_type || null,
     replacement_result: attempt.replacement_result || null,
   }))
 }
 async function runInWaves(tasks) {
-  const results = []
-  for (let start = 0; start < tasks.length; start += MAX_WAVE) {
-    const wave = []
-    for (let index = start; index < tasks.length && index < start + MAX_WAVE; index += 1) wave.push(tasks[index])
-    const outputs = await parallel(wave.map(task => () => task.run()))
-    results.push(...(outputs || []).filter(Boolean))
-  }
-  return results
+  const outputs = await parallel(tasks.map(task => () => task.run()))
+  return (outputs || []).filter(Boolean)
 }
 function assertKnown(type, where) {
   if (!AGENT_TYPES.includes(type)) throw new Error(`Unbekannter AgentType in ${where}: ${type}`)
@@ -288,12 +332,10 @@ function validateNestedDelegations(step, leadPlan, lead, nested) {
     || nested.length !== step.child_agent_types.length) throw new Error(`Nested-Gate rot: ${step.id}`)
   const childTaskIds = new Set(leadPlan.output.child_tasks.map(child => child.child_task_id))
   const childCallIds = new Set()
-  const waveCounts = new Map()
   for (let index = 0; index < nested.length; index += 1) {
     const item = nested[index]
-    const expectedWave = Math.floor(index / MAX_WAVE) + 1
     if (!childTaskIds.has(item.child_task_id) || !item.child_call_id.trim()
-      || childCallIds.has(item.child_call_id) || item.wave !== expectedWave
+      || childCallIds.has(item.child_call_id) || item.wave !== 1
       || !item.child_task.trim() || !item.child_result.trim() || !item.beleg.trim()
       || !item.call || !attempts.includes(item.call) || item.call.output === null
       || item.call.step_id !== step.id || item.child_agent_type !== item.call.agent_type
@@ -303,22 +345,20 @@ function validateNestedDelegations(step, leadPlan, lead, nested) {
       throw new Error(`Nested-Runtime-Beleg ungültig: ${step.id}`)
     }
     childCallIds.add(item.child_call_id)
-    waveCounts.set(item.wave, (waveCounts.get(item.wave) || 0) + 1)
   }
-  for (const count of waveCounts.values()) if (count > MAX_WAVE) throw new Error(`Child-Welle > ${MAX_WAVE}: ${step.id}`)
 }
 
 phase('Planen')
 const panelStep = { id: 'plan-panel', ziel: 'Plan-Beitrag für die Mission', depends_on: [], agent_types: AGENT_TYPES,
-  nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-pruefer', gate: 'Vorschlag enthält Schritte und Gates' }
+  nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-critic', gate: 'Vorschlag enthält Schritte und Gates' }
 const panel = await runInWaves(AGENT_TYPES.map(agentType => ({ run: () => callAgent(
   agentType, promptFor(panelStep, [], 'Plan-Panel', `Liefere als ${agentType} eine Plan-Perspektive für: ${JSON.stringify(input)}`),
   { label: `plan-panel:${agentType}`, phase: 'Planen', step_id: panelStep.id, schema: PANEL_SCHEMA },
 ) })))
 const synthesisStep = { id: 'plan-synthesis', ziel: 'Echten Missionsplan synthetisieren', depends_on: ['plan-panel'],
-  agent_types: ['opus-builder'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-pruefer', gate: 'PLAN_SCHEMA und Familienabdeckung erfüllt' }
+  agent_types: ['opus-builder'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'sol-critic', gate: 'PLAN_SCHEMA und Familienabdeckung erfüllt' }
 const synthesisPrompt = promptFor(synthesisStep, panel, 'Plan-Synthese',
-  `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder und mindestens ein Step muss nested=true sein. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle acht AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Lass in jedem Step zusätzlich mindestens einen AgentType aus einer weiteren Providerfamilie frei, die sowohl von allen Ownern als auch vom primären Verifier verschieden ist. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; der Workflow startet dessen Children später sichtbar.`)
+  `Erzeuge ausschließlich einen PLAN nach PLAN_SCHEMA für die autoritative Mission. Jeder Step braucht alle Felder und mindestens ein Step muss nested=true sein. Verwende nur bekannte Typen, ordne Abhängigkeiten sequentiell, decke alle sechs AgentTypes über agent_types, Lead, Children oder Verify ab. Owner/Lead/Children und Verify eines Steps müssen aus unterschiedlichen Providerfamilien gemäß ${JSON.stringify(PROVIDER_FAMILY)} kommen. Lass in jedem Step zusätzlich mindestens einen AgentType aus einer weiteren Providerfamilie frei, die sowohl von allen Ownern als auch vom primären Verifier verschieden ist. Bei nested=true enthält agent_types ausschließlich den zugelassenen Lead; der Workflow startet dessen Children später sichtbar.`)
 const synthesis = await callAgent('opus-builder', synthesisPrompt,
   { label: 'plan-synthesis:opus', phase: 'Planen', step_id: synthesisStep.id, replacement_types: LEAD_TYPES, schema: PLAN_SCHEMA })
 const plan = synthesis.output
@@ -357,7 +397,7 @@ for (const step of plan.steps) {
         child_call_id: `${step.id}:child:${index + 1}`,
         planned_child_agent_type: child.child_agent_type,
         child_agent_type: childCall.agent_type,
-        wave: Math.floor(index / MAX_WAVE) + 1,
+        wave: 1,
         child_task: child.child_task, write_set: child.write_set,
         child_result: childCall.output.result, beleg: childCall.output.beleg,
         call: childCall }
@@ -407,10 +447,10 @@ for (const step of plan.steps) {
 
 phase('Review')
 const reviewStep = { id: 'review', ziel: 'Plan, Steps, Gates und Ausfälle prüfen', depends_on: plan.steps.map(step => step.id),
-  agent_types: ['sol-pruefer'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'kimi-worker', gate: 'Sol-Review plus Kimi-Gegencheck belegt' }
+  agent_types: ['sol-critic'], nested: false, lead_agent_type: '', child_agent_types: [], verify_agent_type: 'grok-critic', gate: 'Sol-Review plus Grok-Gegencheck belegt' }
 const REVIEW_AGENTS = {
-  sol: { agentType: 'sol-pruefer', role: 'Ship-Gate' },
-  kimi: { agentType: 'kimi-worker', role: 'Gegencheck' },
+  sol: { agentType: 'sol-critic', role: 'Ship-Gate' },
+  grok: { agentType: 'grok-critic', role: 'Gegencheck' },
 }
 const routeFailuresBeforeReview = currentRouteFailures()
 const solReplacementTypes = AGENT_TYPES.filter(
@@ -422,18 +462,18 @@ const sol_review = await callAgent(REVIEW_AGENTS.sol.agentType, promptFor(review
   { label: 'review:sol', phase: 'Review', step_id: reviewStep.id,
     replacement_types: solReplacementTypes, schema: REVIEW_SCHEMA })
 const routeFailuresAfterSol = currentRouteFailures()
-const kimiReplacementTypes = AGENT_TYPES.filter(
+const grokReplacementTypes = AGENT_TYPES.filter(
   type => PROVIDER_FAMILY[type] !== PROVIDER_FAMILY[sol_review.agent_type],
 )
-const kimi_review = await callAgent(REVIEW_AGENTS.kimi.agentType, promptFor(reviewStep,
-  [{ step_results }, { sol_review }, { route_failures: routeFailuresAfterSol }], 'Kimi-Gegencheck',
+const grok_review = await callAgent(REVIEW_AGENTS.grok.agentType, promptFor(reviewStep,
+  [{ step_results }, { sol_review }, { route_failures: routeFailuresAfterSol }], 'Grok-Gegencheck',
   'Greife das erste Review am echten Ergebnis und an allen bisherigen Routenausfällen an. Liefere pass/fail, nichtleeren Beleg und offene Lücken.'),
-  { label: 'review:kimi', phase: 'Review', step_id: reviewStep.id,
-    replacement_types: kimiReplacementTypes, schema: REVIEW_SCHEMA })
-if (PROVIDER_FAMILY[sol_review.agent_type] === PROVIDER_FAMILY[kimi_review.agent_type]) throw new Error('Review-Providerfamilien nicht unabhängig')
+  { label: 'review:grok', phase: 'Review', step_id: reviewStep.id,
+    replacement_types: grokReplacementTypes, schema: REVIEW_SCHEMA })
+if (PROVIDER_FAMILY[sol_review.agent_type] === PROVIDER_FAMILY[grok_review.agent_type]) throw new Error('Review-Providerfamilien nicht unabhängig')
 if (!sol_review.output || sol_review.output.verdict !== 'PASS' || !sol_review.output.beleg.trim()) throw new Error('Sol-Review-Gate rot')
-if (!kimi_review.output || kimi_review.output.verdict !== 'PASS' || !kimi_review.output.beleg.trim()) throw new Error('Kimi-Review-Gate rot')
-const review = { sol: sol_review, kimi: kimi_review }
+if (!grok_review.output || grok_review.output.verdict !== 'PASS' || !grok_review.output.beleg.trim()) throw new Error('Grok-Review-Gate rot')
+const review = { sol: sol_review, grok: grok_review }
 
 const family_coverage = {}
 for (const attempt of attempts) {
@@ -451,7 +491,8 @@ return { plan, step_results, family_coverage, nested_delegations, route_failures
 ## Varianten und Merkregeln
 
 - **Massen-Umbau:** Der Synthese-Subagent teilt nach disjunkten `write_set`s;
-  unabhängige Owner laufen nur innerhalb ihres Steps in Wellen von höchstens 6.
+  unabhängige Owner eines Steps laufen in einem `parallel()`-Aufruf, ohne
+  künstliche Wellengröße.
 - **Vendoring:** Ein Leaf-Worker liest Lizenz und Red Flags; ein unabhängiger
   Verify-Step prüft das echte Destillat. `pipeline()` bleibt Default für
   abhängige Datenflüsse; `parallel()` ist nur innerhalb eines Steps erlaubt.
