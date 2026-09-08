@@ -28,12 +28,13 @@ erforderlich. Kundeneigene Daten werden nur für den konkreten Auftrag ergänzt.
 | @brillaas | [Autorenreferenz](autoren/brillaas/index.md) | Seine erfassten Ansätze, Grenzen und Leadgen-Übertragung |
 | Nick Theriot / @nicktheriot_ | [Autorenreferenz](autoren/nicktheriot_/index.md) | Kontoführung und Creative-Tests; Käufe und qualifizierte Anfragen unterscheiden |
 | Heik Stepanjan / @heikstepo | [Autorenreferenz](autoren/heikstepo/index.md) | Meta-Ads für Info-Offers und Webinare: Copy als Zielgruppenwahl, Kampagnenstruktur, Show-up; Übertragung auf lokale Leadgen ausdrücklich prüfen |
+| Eric Steigner / @eric.steigner | [Autorenreferenz](autoren/eric-steigner/index.md) | Webinar-Mechanik, Neo-Offer, Sandbox-ABO und Cost-Cap-CBO für Coaches und Berater in DACH; Zahlen sind Eigenangaben, Übertragung auf lokale Leadgen ausdrücklich prüfen |
 | Marc Evers | [Autorenreferenz](autoren/marc-evers/index.md), [Playbook](../marc-evers-playbook.md), [Detailbestand](bestand/index.md) | Agentur-Offer, Proof, Formulare, Varianten und Sales-Kontext; zusätzlich seine eigenen ausgespielten Anzeigen |
 | Zac Regan / @startrunningads | [Playbook](../zac-regan-startrunningads.md), [Detailbestand](bestand/index.md) | Hooks, Copy, Leadqualität, Content und Engpässe |
 | Alex Hormozi | [Playbook](../hormozi-paid-ads.md) | Käuferansprache, Wertargumentation, Proof und Reibung als auswählbare Modelle |
 
 Die Autoren sind keine gemeinsame Stimme. Zack und Zac Regan sind verschiedene
-Personen. Heik widerspricht sich zwischen einzelnen Reels selbst; seine
+Personen. Eric Steigner widerspricht sich zwischen Videos verschiedener Jahre und Formate; seine Autorenreferenz führt diese Stellen. Heik widerspricht sich zwischen einzelnen Reels selbst; seine
 Autorenreferenz führt diese Stellen, statt sie zu glätten. Wiederholung oder Zustimmung mehrerer Autoren ersetzt keinen eigenen
 Kundentest. Quellenautor, beobachtete Behauptung und unsere Ableitung bleiben im
 jeweiligen Register erkennbar.

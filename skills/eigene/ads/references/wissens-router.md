@@ -44,6 +44,8 @@ Pfade gelten von `ads/references/` aus.
 | Zac Regan / @startrunningads (Hooks, Copy, Creative, Funnel) | `zac-regan-startrunningads.md` |
 | Detaillierter Bestand zu Evers und Regan | [wissen/bestand/index.md](wissen/bestand/index.md) |
 | Heik Stepanjan / @heikstepo (Kampagnenstruktur, Copy als Targeting, Webinar-Show-up, Widersprüche) | [wissen/autoren/heikstepo/index.md](wissen/autoren/heikstepo/index.md) |
+| Eric Steigner / @eric.steigner (Webinar-Mechanik, Neo-Offer, Sandbox-ABO, Cost-Cap-CBO, Widersprüche) | [wissen/autoren/eric-steigner/index.md](wissen/autoren/eric-steigner/index.md) |
+| ChatGPT Ads (Stand, Format, Gebote, Kategorien, DACH) | [wissen/plattformen/chatgpt-ads.md](wissen/plattformen/chatgpt-ads.md) |
 | Neues Creator-Wissen aufnehmen | [wissen/quellenpflege.md](wissen/quellenpflege.md) |
 
 ## Übergabe

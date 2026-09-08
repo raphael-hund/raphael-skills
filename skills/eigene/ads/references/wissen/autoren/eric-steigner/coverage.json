@@ -1,0 +1,54 @@
+{
+ "profile": "eric-steigner",
+ "generated_at": "2026-09-07",
+ "youtube": {
+  "channel": "https://www.youtube.com/@ericsteigner",
+  "videos": 87,
+  "shorts": 22,
+  "analyzed": 109,
+  "method": "yt-dlp --flat-playlist auf /videos und /shorts, Auto-Untertitel de-orig je Video"
+ },
+ "instagram": {
+  "profile": "https://www.instagram.com/eric.steigner/",
+  "own_reels_collected": 108,
+  "analyzed": 93,
+  "method": "Shortcode-Sammlung über Firecrawl-Websuche (site:instagram.com), Einzelabruf je Reel mit yt-dlp ohne Login; kein Profil-Crawl (Apify-Limit erschöpft, Cookies abgelaufen, Profil-API 429)",
+  "coverage_note": "Teilmenge des Profils. Suchtreffer sind nicht das ganze Profil; Reels ohne Suchindex fehlen. Profilzähler nicht abgerufen. Zählweise: 225 Shortcodes = 114 fremd + 103 eigene abgerufene + 8 unaufgelöste; die 108 Index-Einträge sind 103 Posts plus 5 Carousel-Kindmedien.",
+  "shortcodes_collected": 225,
+  "foreign_dropped": 114,
+  "own_reels_fetched": 103,
+  "carousel_child_media": 5,
+  "unresolved_shortcodes": 8
+ },
+ "sources": 217,
+ "learnings": 3960,
+ "sources_with_learnings": 202,
+ "transcript_sources": {
+  "transcript_youtube_auto": 92,
+  "transcript_whisper_local": 109,
+  "none": 15,
+  "caption_only": 1
+ },
+ "disposition_counts": {
+  "relevant": 202,
+  "not_analyzed": 15
+ },
+ "topic_counts": {
+  "measurement-economics": 383,
+  "source-context": 350,
+  "sales-nurture": 219,
+  "offer-icp": 530,
+  "hooks-copy": 439,
+  "targeting-delivery": 162,
+  "testing": 132,
+  "creative-research": 119,
+  "webinar-mechanics": 608,
+  "production": 227,
+  "funnel-qualification": 234,
+  "agency-operations": 263,
+  "scaling": 261,
+  "ai-tools": 33
+ },
+ "chatgpt_ads_sources": [],
+ "note": "YouTube über Auto-Untertitel (de-orig) bzw. whisper.cpp; Reels über whisper.cpp und Kontaktbögen. Aussagen sind Paraphrasen. Extraktion Luna (GPT-5.6), Gegenprüfung Grok 4.6, Nachbesserung Luna; 10 Videos initial mit Fable extrahiert und nachträglich mit Grok geprüft. Nach der Gegenprüfung ergänzte Aussagen liegen als Nachtragsdateien raw/bookmark-2026-09-07-eric-steigner-[yt-]<ID>-nachtrag[-2].md vor; Learning-IDs entsprechen den Raw-Ankern."
+}
