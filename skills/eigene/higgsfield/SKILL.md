@@ -1,6 +1,6 @@
 ---
 name: higgsfield
-version: 0.2.1
+version: 0.4.0
 description: >
   Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus
   Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext.
@@ -8,6 +8,13 @@ description: >
   als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten.
   v0.3.0 (Raphael 04.09.2026): Statics immer 4:5 generieren, dann outpaint
   auf 9:16. Nie direkt 9:16.
+  v0.4.0 (Raphael 08.09.2026): Ein GPT-Image-Lauf pro Karte. Kein Edit,
+  kein Fix-Lauf auf ein fertiges Bild; jeder weitere GPT-Image-Durchgang
+  verfaelscht das Motiv (Noise). Feed = lokaler 4:5-Crop des Masters,
+  Story = symmetrisch je 285 px per Streifen-Outpaint (flux_2_pro_outpaint
+  auf oberen/unteren Feed-Streifen, Feed bleibt pixelgenau). Kein
+  «Visualisierung» im Bild. Staging mitdenken: TV an der Wand, nichts
+  auf dem Boden.
   Trigger:
   "/higgsfield", "Higgsfield", "GPT Image", "gpt_image_2", "Freisteller",
   "Expand Image", "Outpaint", "Hintergrund entfernen", "Website-Bild",
@@ -32,7 +39,7 @@ completion_criteria:
   - "higgsfield generate cost vor generate create. Ausgabe der Cost-Zeile im Lauf genannt"
   - "Ergebnis per Read angesehen. Danach bilder.mjs add mit typ, motiv, style, modell, refs, prompt, quelle. Deutscher Bildtext steht im Index-motiv oder daneben"
   - "Personen-Nahaufnahme nur mit echter Personen-Referenz (Kunde oder Stock-Gesicht). Soul, Video, 3D-App nicht genutzt"
-  - "Ads-Static: generiert in 4:5 (Text komplett im 4:5), danach outpaint 9:16. Direkt-9:16 oder 1:1 ist Fail."
+  - "Ads-Static: genau EIN gpt_image_2-Lauf pro Karte (3:4, Text komplett in der 4:5-Safe-Zone). Feed 4:5 = lokaler Crop, Story 9:16 = Streifen-Outpaint je 285 px oben und unten (flux_2_pro_outpaint auf 500-px-Streifen, Feed pixelgenau in der Mitte). Kein Fussnoten-Text im Bild. Lokale Blur- oder Flaechenraender, gpt_image_2-Edit oder Fix-Lauf auf das fertige Bild sind Fail; passt es nicht, neuer Master mit korrigierter Spec."
   - "Ads-Static: Raphael sieht Logo, Look und Onscreen-Text bevor der Job laeuft. gpt_image_2 mit --image Logo, --image Look, Prompt = JSON-Spec plus Text-Fidelity. Logo nie neu zeichnen. Pillow-Overlay Fail."
 ---
 
