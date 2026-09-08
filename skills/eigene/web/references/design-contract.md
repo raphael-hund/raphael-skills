@@ -106,3 +106,7 @@ A local CSS consumption check reproduced the unitless-leading error: `line-heigh
 ## Final verification
 
 Sample each semantic token in a real component and record its computed property. Check actual font family/weight, container widths, responsive changes, image crop and all meaningful interaction states. Review every page independently at desktop and mobile widths. Record approved exceptions. Deliver a reconciled document whose statements match both intent and implementation, with remaining limitations plainly identified.
+
+## Forschungsstand 07.09.2026
+
+Die Zugangsaussage vom 06.09.2026 oben bleibt historische Evidenz. Am 07.09.2026 wurden vier Refero-Styles und neun Screens sowie 23 Mobbin-Bilder erfolgreich untersucht. Aktueller Umfang, Exportkonflikte und Grenzen: [Design-Studienindex](design-depth-sources.md). Keine pauschale NO_SUBSCRIPTION-Annahme für neue Aufträge; aktuelle Tools entdecken.

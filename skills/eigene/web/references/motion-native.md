@@ -854,3 +854,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## R21 · content-visibility und Reveal (Observation 0008)
+
+In offscreen Sektionen mit `content-visibility:auto` kein synchrones Layout-Lesen (`getBoundingClientRect`, `offsetHeight`) zur Reveal-Vorbereitung erzwingen. Das kann die eingesparte Layoutarbeit auslösen. Sichtbarkeit über IntersectionObserver und dessen Entrydaten behandeln; C07 ohne vorgezogene Layoutschleife verwenden. Vor nötigen Messungen deren Kosten und betroffene Sektionen ausdrücklich bestimmen.
