@@ -57,7 +57,7 @@ def discover_skill_files(*roots: Path) -> list[Path]:
     for root in roots:
         for path in root.rglob("SKILL.md"):
             parts = path.relative_to(root).parts
-            if "_candidates" in parts:
+            if "_candidates" in parts or "_archiv" in parts:
                 continue
             if any(part.startswith("_restored-") for part in parts):
                 continue
