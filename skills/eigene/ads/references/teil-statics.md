@@ -48,7 +48,7 @@ Pro Brief:
 
 - Angle + woher er kommt
 - Style S1–S8 + Format (Style steht fest, dann Onscreen-Copy).
-  In 4:5 generieren, danach auf 9:16 outpainten. Ausschnitt und Safe-Zones je Placement prüfen.
+  Ein GPT-Image-Lauf pro Karte (3:4-Master), Feed 4:5 als lokaler Crop, Story 9:16 als symmetrisches Streifen-Outpaint (je 285 px oben und unten, Feed pixelgenau); kein «Visualisierung» im Bild, Offenlegung im Primary Text; kein Edit-Lauf, keine lokalen Blur-Ränder (Raphael 08.09.2026, Details `higgsfield/references/ops.md`). Ausschnitt und Safe-Zones je Placement prüfen.
 - Onscreen-Copy: ganze Sätze, die ein Fremder in einer Sekunde auf dem Handy versteht.
   Konkreter Nutzen und erkennbares Angebot. Geld- oder Rankingwerte nur mit eigenem Beleg. Kein internes Wissen
   (keine Listen-Quote, kein CRM-Bruch, kein «13 von 87»).
@@ -152,4 +152,4 @@ Ein Brief, ein Style. Ein Angle bei Dienstleistung, eine Botschaft bei Objektver
 - keine interne Zählung auf dem Bild
 - Lokaler text-check Exit 0
 - Bild über higgsfield gpt_image_2 mit Logo, Look, Text-Spec; Pillow-Overlay Fail
-- Format: in 4:5 generiert, danach outpaint auf 9:16 (Raphael 04.09.2026). Direkt-9:16 Fail
+- Format: ein gpt_image_2-Lauf pro Karte, Feed = lokaler Crop, Story = symmetrisches Streifen-Outpaint; Edit- oder Fix-Lauf auf das fertige Bild und lokale Blur-Ränder sind Fail (Raphael 08.09.2026, ersetzt 04.09.). Direkt-9:16 Fail
