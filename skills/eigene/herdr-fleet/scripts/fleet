@@ -1,0 +1,489 @@
+#!/usr/bin/env bash
+# fleet — Herdr-Flotte auf dem VPS: Worker in eigenen Worktrees, Arbeit als Bean,
+# Ankündigung per Datei, Watcher routet Review/Followup/Refill, Lead landet.
+#
+# Quelle der Muster: andrebrov (X, 2097134891833917946) und Voxyz_ai Koordinator-
+# Prompts (2095917499430711319, 2086059460502417772). Umsetzung eigenständig.
+#
+# Alle Kommandos sind deterministisch (keine LLM-Aufrufe). Der Lead ruft sie auf.
+set -euo pipefail
+
+FLEET_DIR="${FLEET_DIR:-/root/.fleet}"
+FLEET_CONF="$FLEET_DIR/fleet.conf"
+[ -f "$FLEET_CONF" ] && . "$FLEET_CONF"
+FLEET_SESSION="${FLEET_SESSION:-fleet}"
+FLEET_TICK="${FLEET_TICK:-60}"
+FLEET_STALL_MIN="${FLEET_STALL_MIN:-15}"
+FLEET_MAIN="${FLEET_MAIN:-main}"
+FLEET_CLAUDE_MODEL="${FLEET_CLAUDE_MODEL:-claude-opus-5}"
+FLEET_CODEX_MODEL="${FLEET_CODEX_MODEL:-gpt-5.6-sol}"
+FLEET_GROK_MODEL="${FLEET_GROK_MODEL:-grok-4.6}"
+FLEET_EFFORT="${FLEET_EFFORT:-xhigh}"
+CLAUDE_WRAPPER="${CLAUDE_WRAPPER:-/root/tools/raphael-claude-process-wrapper}"
+HERDR_BIN="${HERDR_BIN:-/root/.local/bin/herdr}"
+BEANS_BIN="${BEANS_BIN:-/root/.local/bin/beans}"
+
+export HERDR_SESSION="$FLEET_SESSION"
+export PATH="/root/.local/bin:/root/.grok/bin:/usr/local/bin:$PATH"
+
+for d in agents briefs tasks dispatch inbox processed followups reviews/pending landable blocked reports credits log verify; do
+  mkdir -p "$FLEET_DIR/$d"
+done
+touch "$FLEET_DIR/queue"
+LOG="$FLEET_DIR/log/fleet.log"
+
+log() { printf '%s %s\n' "$(date -u +%FT%TZ)" "$*" | tee -a "$LOG" >&2; }
+die() { log "FEHLER: $*"; exit 1; }
+need() { command -v "$1" >/dev/null 2>&1 || die "fehlt: $1"; }
+hd() { "$HERDR_BIN" --session "$FLEET_SESSION" "$@"; }
+# `herdr status` liefert 0 auch ohne Server; erst ein echter API-Aufruf beweist Leben.
+server_alive() { hd agent list >/dev/null 2>&1; }
+jget() { python3 -c 'import sys,json
+d=json.load(sys.stdin)
+for k in sys.argv[1].split("."):
+    d=d[int(k)] if isinstance(d,list) else d.get(k)
+    if d is None: break
+print("" if d is None else (json.dumps(d) if isinstance(d,(dict,list)) else d))' "$1"; }
+now_ts() { date -u +%s; }
+claude_bin() {
+  if [ -n "${RAPHAEL_REAL_CLAUDE:-}" ] && [ -x "$RAPHAEL_REAL_CLAUDE" ]; then echo "$RAPHAEL_REAL_CLAUDE"; return; fi
+  ls -d /opt/raphael/claude-code/[0-9]*/claude 2>/dev/null | sort -V | tail -1
+}
+
+agent_field() { # name field
+  [ -f "$FLEET_DIR/agents/$1.json" ] || return 1
+  jget "$2" < "$FLEET_DIR/agents/$1.json"
+}
+agent_names() { ls "$FLEET_DIR/agents" 2>/dev/null | sed 's/\.json$//'; }
+agent_task() { cat "$FLEET_DIR/tasks/$1" 2>/dev/null || true; }
+agent_free() { [ ! -s "$FLEET_DIR/tasks/$1" ]; }
+kind_dry() { [ "$(cat "$FLEET_DIR/credits/$1" 2>/dev/null || echo ok)" = "dry" ]; }
+
+# ---------- Herdr-Server ----------
+cmd_up() {
+  need "$HERDR_BIN"
+  if server_alive; then log "Herdr-Session '$FLEET_SESSION' läuft bereits"; else
+    log "starte Herdr-Server (Session $FLEET_SESSION)"
+    ( setsid nohup env HERDR_SESSION="$FLEET_SESSION" "$HERDR_BIN" server >"$FLEET_DIR/log/herdr-server.log" 2>&1 & )
+    for _ in $(seq 1 20); do server_alive && break; sleep 0.5; done
+    server_alive || die "Herdr-Server kam nicht hoch (siehe $FLEET_DIR/log/herdr-server.log)"
+  fi
+  hd status | sed -n '1,12p'
+}
+cmd_down() { hd session stop "$FLEET_SESSION" 2>/dev/null | cut -c1-120 || true; log "Session gestoppt"; }
+
+# ---------- Dialoge nach dem Start wegklicken ----------
+settle_dialogs() { # name kind
+  local name="$1" kind="$2" screen i
+  for i in $(seq 1 40); do
+    screen="$(hd agent read "$name" --source detection --lines 60 2>/dev/null || hd pane read "$name" --source detection --lines 60 2>/dev/null || true)"
+    if printf '%s' "$screen" | grep -q "Press t to trust all"; then hd agent send-keys "$name" t >/dev/null; sleep 1; continue; fi
+    if printf '%s' "$screen" | grep -q "Press enter to view hooks"; then hd agent send-keys "$name" esc >/dev/null; sleep 1; continue; fi
+    if printf '%s' "$screen" | grep -q "Do you trust the contents"; then hd agent send-keys "$name" enter >/dev/null; sleep 1; continue; fi
+    if printf '%s' "$screen" | grep -q "trust this folder"; then hd agent send-keys "$name" down enter >/dev/null; sleep 1; continue; fi
+    if printf '%s' "$screen" | grep -q "Request too large"; then log "WARNUNG: $name meldet 'Request too large' — nie in /root oder Command-Center starten"; fi
+    case "$(hd agent get "$name" 2>/dev/null | jget result.agent.agent_status)" in idle|done) return 0;; esac
+    sleep 1
+  done
+  log "WARNUNG: $name ($kind) wurde nach 40 s nicht idle"
+  return 1
+}
+
+# ---------- Worker starten ----------
+cmd_spawn() {
+  local name="" kind="" role="" repo="" model="" effort="" readonly=0
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --kind) kind="$2"; shift 2;; --role) role="$2"; shift 2;; --repo) repo="$2"; shift 2;;
+      --model) model="$2"; shift 2;; --effort) effort="$2"; shift 2;; --readonly) readonly=1; shift;;
+      -*) die "unbekannte Option $1";; *) name="$1"; shift;;
+    esac
+  done
+  [ -n "$name" ] && [ -n "$kind" ] && [ -n "$role" ] && [ -n "$repo" ] || die "Aufruf: fleet spawn <name> --kind claude|codex|grok --role coder|reviewer|... --repo PATH [--model M] [--effort E] [--readonly]"
+  printf '%s' "$name" | grep -Eq '^[a-z][a-z0-9_-]{0,31}$' || die "Name muss [a-z][a-z0-9_-]{0,31} sein"
+  [ -f "$FLEET_DIR/agents/$name.json" ] && die "Agent $name existiert schon (fleet stop $name)"
+  repo="$(cd "$repo" && pwd -P)"; git -C "$repo" rev-parse --is-inside-work-tree >/dev/null || die "$repo ist kein Git-Repo"
+  effort="${effort:-$FLEET_EFFORT}"
+  case "$kind" in
+    claude) model="${model:-$FLEET_CLAUDE_MODEL}";; codex) model="${model:-$FLEET_CODEX_MODEL}";; grok) model="${model:-$FLEET_GROK_MODEL}";;
+    *) die "kind muss claude|codex|grok sein";;
+  esac
+  kind_dry "$kind" && die "Harness $kind ist als 'dry' markiert (fleet credits $kind ok zum Freigeben)"
+  server_alive || cmd_up >/dev/null
+
+  local branch="fleet/$name" cwd ws pane out
+  if [ "$readonly" = 1 ]; then
+    out="$(hd workspace create --cwd "$repo" --label "$name" --no-focus)"
+    cwd="$repo"
+  else
+    out="$(hd worktree create --cwd "$repo" --branch "$branch" --base "$FLEET_MAIN" --label "$name" --no-focus)"
+    cwd="$(printf '%s' "$out" | jget result.root_pane.cwd)"
+  fi
+  ws="$(printf '%s' "$out" | jget result.workspace.workspace_id)"
+  pane="$(printf '%s' "$out" | jget result.root_pane.pane_id)"
+  [ -n "$pane" ] || die "kein Pane aus Herdr-Antwort: $out"
+  sleep 2
+  case "$kind" in
+    claude)
+      # Die Shell-Funktion `claude` und der /usr/local/bin-Wrapper leiten in den
+      # Command-Center-Launcher um. Worker brauchen das echte Binary im eigenen Worktree.
+      local bin; bin="$(claude_bin)"; [ -x "$bin" ] || die "kein Claude-Binary unter /opt/raphael/claude-code"
+      hd pane run "$pane" "exec $CLAUDE_WRAPPER $bin --model $model --effort $effort --dangerously-skip-permissions" >/dev/null
+      local i; for i in $(seq 1 30); do [ "$(hd agent list | python3 -c 'import sys,json;a=[x for x in json.load(sys.stdin)["result"]["agents"] if x["pane_id"]==sys.argv[1]];print(a[0]["agent"] if a else "")' "$pane")" = "claude" ] && break; sleep 1; done
+      hd agent rename "$pane" "$name" >/dev/null || die "Claude in $pane nicht erkannt"
+      ;;
+    codex)
+      hd agent start "$name" --kind codex --pane "$pane" --timeout 120000 -- -m "$model" -c "model_reasoning_effort=$effort" >/dev/null 2>&1 || true
+      ;;
+    grok)
+      hd agent start "$name" --kind grok --pane "$pane" --timeout 120000 -- --model "$model" --reasoning-effort "$effort" >/dev/null 2>&1 || true
+      ;;
+  esac
+  settle_dialogs "$name" "$kind" || true
+  python3 - "$FLEET_DIR/agents/$name.json" "$name" "$kind" "$role" "$repo" "$cwd" "$branch" "$pane" "$ws" "$model" "$effort" "$readonly" <<'EOF'
+import json,sys,datetime
+p,name,kind,role,repo,cwd,branch,pane,ws,model,effort,ro=sys.argv[1:]
+json.dump({"name":name,"kind":kind,"role":role,"repo":repo,"worktree":cwd,"branch":(None if ro=="1" else branch),
+  "pane":pane,"workspace":ws,"model":model,"effort":effort,"readonly":ro=="1",
+  "started_at":datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")},open(p,"w"),indent=1)
+EOF
+  local st; st="$(hd agent get "$name" 2>/dev/null | jget result.agent.agent_status || echo unbekannt)"
+  log "spawn $name kind=$kind model=$model effort=$effort role=$role pane=$pane cwd=$cwd status=$st"
+  case "$st" in idle|done) ;; *) log "WARNUNG: $name ist '$st' — Pane prüfen: fleet screen $name";; esac
+}
+
+cmd_stop() {
+  local name="$1"; [ -f "$FLEET_DIR/agents/$name.json" ] || die "unbekannter Agent $name"
+  local ws; ws="$(agent_field "$name" workspace)"
+  hd agent send-keys "$name" ctrl+c >/dev/null 2>&1 || true; sleep 1
+  hd agent send-keys "$name" ctrl+c >/dev/null 2>&1 || true; sleep 1
+  hd workspace close "$ws" >/dev/null 2>&1 || hd workspace close "$ws" --force >/dev/null 2>&1 || true
+  rm -f "$FLEET_DIR/agents/$name.json" "$FLEET_DIR/tasks/$name" "$FLEET_DIR/dispatch/$name.json"
+  log "stop $name (Worktree bleibt auf Platte: $(agent_field "$name" worktree 2>/dev/null || echo '-')"
+}
+
+cmd_screen() { hd agent read "$1" --source recent-unwrapped --lines "${2:-60}"; }
+
+# ---------- Beans ----------
+bean_file_on_main() { # repo bean -> pfad relativ oder leer
+  git -C "$1" -c core.quotepath=off ls-tree --name-only "$FLEET_MAIN" -- .beans/ 2>/dev/null | grep -F "$2--" | head -1 || true
+}
+bean_status_on_main() { # repo bean
+  local f; f="$(bean_file_on_main "$1" "$2")"; [ -n "$f" ] || return 1
+  git -C "$1" show "$FLEET_MAIN:$f" | awk '/^status:/{print $2; exit}'
+}
+bean_in_flight() { grep -lx "$1" "$FLEET_DIR"/tasks/* 2>/dev/null | head -1 || true; }
+
+cmd_queue() {
+  case "${1:-}" in
+    add) shift; for b in "$@"; do grep -qx "$b" "$FLEET_DIR/queue" || echo "$b" >> "$FLEET_DIR/queue"; done; log "queue += $*";;
+    rm) shift; for b in "$@"; do sed -i "/^$b\$/d" "$FLEET_DIR/queue"; done;;
+    "") cat "$FLEET_DIR/queue";;
+    *) die "fleet queue [add|rm] BEAN...";;
+  esac
+}
+
+# ---------- Zuweisen ----------
+write_brief() { # agent bean kind goal mode(coder|review|followup) extra
+  local name="$1" bean="$2" mode="$3" extra="${4:-}"
+  local repo wt branch kind role; repo="$(agent_field "$name" repo)"; wt="$(agent_field "$name" worktree)"; branch="$(agent_field "$name" branch)"; kind="$(agent_field "$name" kind)"; role="$(agent_field "$name" role)"
+  local bfile; bfile="$(bean_file_on_main "$repo" "$bean")"
+  local body; body="$(git -C "$repo" show "$FLEET_MAIN:$bfile" 2>/dev/null || echo "(Bean nicht auf $FLEET_MAIN)")"
+  local out="$FLEET_DIR/briefs/$name.md" report="$FLEET_DIR/reports/$name-$bean-$(date -u +%Y%m%dT%H%M%SZ).md"
+  {
+    echo "# Brief für $name — Bean $bean ($mode)"
+    echo
+    echo "Du bist \`$name\` (Rolle: $role, Harness: $kind). Arbeitsverzeichnis: \`$wt\`"
+    [ -n "$branch" ] && [ "$branch" != "null" ] && echo "Branch: \`$branch\` (Basis: \`$FLEET_MAIN\`). Du pushst nie. Der Lead landet."
+    echo
+    echo "## Bean (Stand auf $FLEET_MAIN)"; echo; echo '```'; printf '%s\n' "$body"; echo '```'; echo
+    case "$mode" in
+      coder)
+        cat <<EOF
+## Auftrag
+- Setze genau diesen Bean um. Nichts außerhalb des Beans anfassen.
+- Arbeite nur in \`$wt\`. Kein \`git push\`, kein Deploy, keine Migration gegen Produktion, keine Secrets.
+- Committe auf \`$branch\` mit Bean-ID im Commit-Text. Kleine, nachvollziehbare Commits.
+- Führe die im Repo üblichen Checks aus (Build, Tests, Lint). Ergebnis gehört in den Report.
+- Bean-Datei nicht verschieben oder löschen; Status setzt der Lead auf $FLEET_MAIN.
+- Keine Plugin-Skills, Subagenten oder Fremd-Reviews starten; das Review macht die Flotte.
+EOF
+        ;;
+      followup)
+        cat <<EOF
+## Auftrag: Nacharbeit nach Review (CHANGES)
+Der Reviewer hat Änderungen verlangt. Sein Report: \`$extra\`
+- Lies den Report zuerst. Behebe jeden Punkt oder begründe im eigenen Report, warum nicht.
+- Gleicher Branch \`$branch\`, neue Commits, kein Force-Push, kein Push.
+EOF
+        ;;
+      review)
+        cat <<EOF
+## Auftrag: unabhängiger Review (Cross-Harness)
+Zu prüfen: Commit \`$extra\` (Branch des Coders). Du hast diesen Code nicht geschrieben.
+- Hole den Commit in deinen Worktree: \`git fetch\` ist nicht nötig, Repo ist geteilt. Lege einen Prüfzweig an:
+  \`git -C "$wt" checkout -q -B review/$bean $FLEET_MAIN && git -C "$wt" cherry-pick $extra\`
+- Baue und teste dort wirklich (Build + Tests des Projekts). Ein grüner Branch, der nur ein Statusfeld ändert, ist CHANGES.
+- Prüfe gegen den Bean: Ist er erfüllt? Sind Scope, Sicherheit und Verhalten sauber?
+- Nichts am Code ändern. Nur Report.
+- Lade keine Plugin-Skills oder Review-Frameworks; prüfe direkt (Diff lesen, bauen, testen).
+
+Dein Report endet zwingend mit genau diesen drei Zeilen:
+\`\`\`
+BEAN: MET|UNMET
+LANDABLE: YES|NO
+VERDICT: APPROVE|CHANGES
+\`\`\`
+EOF
+        ;;
+    esac
+    cat <<EOF
+
+## Report
+Schreibe deinen Report als Markdown nach: \`$report\`
+Inhalt: Ergebnis · Commit-Hash · geänderte Dateien · Testergebnis (Ausgabe kurz zitiert) · Screenshots (Pfade) · offene Punkte.
+Keine kompletten Logs, keine ganzen Dateien.
+
+## Ankündigen (Pflicht, exakt so, als letzte Aktion)
+\`\`\`
+fleet done $name $bean DONE "<eine Zeile Ergebnis>" $report
+\`\`\`
+Bei Blockade: \`fleet done $name $bean BLOCKED "<warum>" $report\`
+$( [ "$mode" = review ] && printf '%s\n' "Bei Änderungsbedarf: \`fleet done $name $bean CHANGES \"<eine Zeile>\" $report\`" )
+Danach nichts mehr tun. Warte auf den nächsten Brief.
+EOF
+  } > "$out"
+  printf '%s' "$report"
+}
+
+send_pointer() { # name
+  local name="$1"
+  hd agent prompt "$name" "Lies die Datei $FLEET_DIR/briefs/$name.md und führe sie aus." >/dev/null 2>&1 || true
+  local i st; for i in $(seq 1 10); do st="$(hd agent get "$name" | jget result.agent.agent_status)"; [ "$st" = "working" ] && return 0; sleep 1; done
+  hd agent send-keys "$name" enter >/dev/null 2>&1 || true
+}
+
+dispatch() { # name bean mode extra
+  local name="$1" bean="$2" mode="$3" extra="${4:-}"
+  local repo wt; repo="$(agent_field "$name" repo)"; wt="$(agent_field "$name" worktree)"
+  local report; report="$(write_brief "$name" "$bean" "$mode" "$extra")"
+  echo "$bean" > "$FLEET_DIR/tasks/$name"
+  local base; base="$(git -C "$wt" rev-parse HEAD 2>/dev/null || echo '')"
+  python3 - "$FLEET_DIR/dispatch/$name.json" "$bean" "$mode" "$base" "$report" "$extra" <<'EOF'
+import json,sys,time
+p,bean,mode,base,report,extra=sys.argv[1:]
+json.dump({"bean":bean,"mode":mode,"base":base,"report":report,"extra":extra,"at":int(time.time())},open(p,"w"))
+EOF
+  send_pointer "$name"
+  log "dispatch $name <- $bean ($mode)${extra:+ [$extra]}"
+}
+
+cmd_assign() {
+  local name="$1" bean="$2"; shift 2
+  [ -f "$FLEET_DIR/agents/$name.json" ] || die "unbekannter Agent $name"
+  agent_free "$name" || die "$name hat schon Task $(agent_task "$name")"
+  local repo; repo="$(agent_field "$name" repo)"
+  [ -n "$(bean_file_on_main "$repo" "$bean")" ] || die "Bean $bean liegt nicht auf $FLEET_MAIN in $repo — ein Bean, der nicht auf main ist, existiert nicht"
+  [ -z "$(bean_in_flight "$bean")" ] || die "Bean $bean ist bereits in Arbeit bei $(bean_in_flight "$bean")"
+  local mode="coder"; [ "$(agent_field "$name" role)" = "reviewer" ] && mode="review"
+  local extra="${1:-}"
+  [ "$mode" = review ] && [ -z "$extra" ] && die "Review braucht den Commit: fleet assign <reviewer> <bean> <commit>"
+  dispatch "$name" "$bean" "$mode" "$extra"
+}
+
+# ---------- Ankündigung ----------
+cmd_done() {
+  local name="$1" bean="$2" status="$3" line="$4" report="${5:-}"
+  case "$status" in DONE|BLOCKED|CHANGES) ;; *) die "Status muss DONE|BLOCKED|CHANGES sein";; esac
+  local f="$FLEET_DIR/inbox/$(date -u +%Y%m%dT%H%M%S)-$name-$bean.json"
+  python3 - "$f" "$name" "$bean" "$status" "$line" "$report" <<'EOF'
+import json,sys,time
+p,name,bean,status,line,report=sys.argv[1:]
+json.dump({"agent":name,"bean":bean,"status":status,"line":line.replace("\n"," ").strip(),"report":report,"at":int(time.time())},open(p,"w"))
+EOF
+  log "announce $name $bean $status: $line"
+}
+
+# ---------- Watcher ----------
+pick_reviewer() { # coder_kind
+  local n; for n in $(agent_names); do
+    [ "$(agent_field "$n" role)" = "reviewer" ] || continue
+    [ "$(agent_field "$n" kind)" != "$1" ] || continue
+    kind_dry "$(agent_field "$n" kind)" && continue
+    agent_free "$n" || continue
+    case "$(hd agent get "$n" 2>/dev/null | jget result.agent.agent_status)" in idle|done) ;; *) continue;; esac
+    echo "$n"; return 0
+  done; return 1
+}
+
+process_inbox() {
+  local f; for f in "$FLEET_DIR"/inbox/*.json; do
+    [ -f "$f" ] || continue
+    local agent bean status line report role kind
+    agent="$(jget agent <"$f")"; bean="$(jget bean <"$f")"; status="$(jget status <"$f")"; line="$(jget line <"$f")"; report="$(jget report <"$f")"
+    role="$(agent_field "$agent" role 2>/dev/null || echo '?')"; kind="$(agent_field "$agent" kind 2>/dev/null || echo '?')"
+    if [ "$(agent_task "$agent")" != "$bean" ]; then
+      log "STALE $agent meldet $bean, aktueller Task ist '$(agent_task "$agent")' — ignoriert"; mv "$f" "$FLEET_DIR/processed/"; continue
+    fi
+    rm -f "$FLEET_DIR/tasks/$agent"
+    case "$role:$status" in
+      reviewer:DONE|reviewer:CHANGES)
+        local verdict coder; verdict="$(grep -E '^VERDICT:' "$report" 2>/dev/null | tail -1 | awk '{print $2}')"
+        coder="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1])).get("coder",""))' "$FLEET_DIR/reviews/$bean.json" 2>/dev/null || true)"
+        if [ "$status" = DONE ] && [ "$verdict" = APPROVE ]; then
+          local commit; commit="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1])).get("commit",""))' "$FLEET_DIR/reviews/$bean.json" 2>/dev/null || true)"
+          printf '{"bean":"%s","commit":"%s","coder":"%s","reviewer":"%s","report":"%s"}\n' "$bean" "$commit" "$coder" "$agent" "$report" > "$FLEET_DIR/landable/$bean.json"
+          log "LANDABLE $bean commit=$commit (Review $agent APPROVE) → fleet land $coder $commit"
+        else
+          [ -n "$coder" ] && printf '%s\n%s\n' "$bean" "$report" > "$FLEET_DIR/followups/$coder"
+          log "CHANGES $bean → Followup-Lane für $coder (Report $report)"
+        fi
+        rm -f "$FLEET_DIR/reviews/$bean.json";;
+      *:DONE)
+        local wt commit; wt="$(agent_field "$agent" worktree)"; commit="$(git -C "$wt" rev-parse HEAD 2>/dev/null || echo '')"
+        printf '{"bean":"%s","coder":"%s","kind":"%s","commit":"%s","report":"%s","line":"%s"}\n' "$bean" "$agent" "$kind" "$commit" "$report" "$line" > "$FLEET_DIR/reviews/pending/$bean.json"
+        log "DONE $agent $bean commit=$commit → Review-Lane";;
+      *:BLOCKED)
+        cp "$f" "$FLEET_DIR/blocked/$agent-$bean.json"
+        hd notification show "BLOCKED $agent" --body "$bean: $line" >/dev/null 2>&1 || true
+        log "BLOCKED $agent $bean: $line — Lead entscheidet (fleet blocked)";;
+      *) log "unbekannte Kombination $role:$status für $agent — abgelegt";;
+    esac
+    mv "$f" "$FLEET_DIR/processed/"
+  done
+}
+
+process_review_lane() {
+  local f; for f in "$FLEET_DIR"/reviews/pending/*.json; do
+    [ -f "$f" ] || continue
+    local bean coder kind commit; bean="$(jget bean <"$f")"; coder="$(jget coder <"$f")"; kind="$(jget kind <"$f")"; commit="$(jget commit <"$f")"
+    [ -f "$FLEET_DIR/reviews/$bean.json" ] && { log "SKIP $bean ist schon im Review"; mv "$f" "$FLEET_DIR/processed/"; continue; }
+    local rev; rev="$(pick_reviewer "$kind" || true)"
+    if [ -z "$rev" ]; then log "RETRY $bean wartet auf freien Cross-Harness-Reviewer (Coder-Harness $kind)"; continue; fi
+    mv "$f" "$FLEET_DIR/reviews/$bean.json"
+    dispatch "$rev" "$bean" review "$commit"
+  done
+}
+
+refill() {
+  local n; for n in $(agent_names); do
+    [ "$(agent_field "$n" role)" = "coder" ] || continue
+    agent_free "$n" || continue
+    kind_dry "$(agent_field "$n" kind)" && { log "DRY $(agent_field "$n" kind): $n bekommt nichts"; continue; }
+    case "$(hd agent get "$n" 2>/dev/null | jget result.agent.agent_status)" in idle|done) ;; *) continue;; esac
+    local repo; repo="$(agent_field "$n" repo)"
+    if [ -s "$FLEET_DIR/followups/$n" ]; then
+      local fb fr; fb="$(sed -n 1p "$FLEET_DIR/followups/$n")"; fr="$(sed -n 2p "$FLEET_DIR/followups/$n")"; rm -f "$FLEET_DIR/followups/$n"
+      dispatch "$n" "$fb" followup "$fr"; continue
+    fi
+    local b; while read -r b; do
+      [ -n "$b" ] || continue
+      [ -n "$(bean_file_on_main "$repo" "$b")" ] || { log "GUARD $b nicht auf $FLEET_MAIN in $repo — bleibt in der Queue"; continue; }
+      local st; st="$(bean_status_on_main "$repo" "$b")"; [ "$st" = "todo" ] || { log "GUARD $b hat Status '$st' auf $FLEET_MAIN — aus Queue entfernt"; sed -i "/^$b\$/d" "$FLEET_DIR/queue"; continue; }
+      [ -z "$(bean_in_flight "$b")" ] || { log "GUARD $b ist in Arbeit — übersprungen"; continue; }
+      [ -f "$FLEET_DIR/reviews/$b.json" ] || [ -f "$FLEET_DIR/reviews/pending/$b.json" ] && { log "GUARD $b ist im Review"; continue; }
+      sed -i "/^$b\$/d" "$FLEET_DIR/queue"
+      dispatch "$n" "$b" coder ""; break
+    done < "$FLEET_DIR/queue"
+  done
+}
+
+cmd_watch() {
+  local once=0; [ "${1:-}" = "--once" ] && once=1
+  server_alive || die "Herdr-Session $FLEET_SESSION läuft nicht (fleet up)"
+  while :; do
+    process_inbox; process_review_lane; refill; cmd_check >/dev/null 2>&1 || true
+    [ "$once" = 1 ] && break
+    sleep "$FLEET_TICK"
+  done
+}
+
+# ---------- Artefakt-Check (Status ist keine Evidenz) ----------
+cmd_check() {
+  local n; printf '%-24s %-7s %-9s %-16s %-8s %-8s %s\n' AGENT KIND STATE TASK COMMITS LAST_C REPORT
+  for n in $(agent_names); do
+    [ -n "${1:-}" ] && [ "$1" != "$n" ] && continue
+    local kind wt st task base at commits lastc rep repage flag=""
+    kind="$(agent_field "$n" kind)"; wt="$(agent_field "$n" worktree)"; task="$(agent_task "$n")"
+    st="$(hd agent get "$n" 2>/dev/null | jget result.agent.agent_status || echo '-')"
+    if [ -n "$task" ] && [ -f "$FLEET_DIR/dispatch/$n.json" ]; then
+      base="$(jget base <"$FLEET_DIR/dispatch/$n.json")"; at="$(jget at <"$FLEET_DIR/dispatch/$n.json")"; rep="$(jget report <"$FLEET_DIR/dispatch/$n.json")"
+      commits="$(git -C "$wt" rev-list --count "${base:-HEAD}..HEAD" 2>/dev/null || echo 0)"
+      lastc="$(( ( $(now_ts) - $(git -C "$wt" log -1 --format=%ct 2>/dev/null || echo 0) ) / 60 ))m"
+      if [ -f "$rep" ]; then repage="$(( ( $(now_ts) - $(stat -c %Y "$rep") ) / 60 ))m"; else repage="-"; fi
+      local age=$(( ( $(now_ts) - at ) / 60 ))
+      if [ "$age" -ge "$FLEET_STALL_MIN" ] && [ "$commits" = 0 ] && [ ! -f "$rep" ]; then flag=" !! kein Commit, kein Report seit ${age}m"; log "FLAG $n: Dispatch $task seit ${age}m ohne Commit und ohne Report"; fi
+      local scr; scr="$(hd agent read "$n" --source detection --lines 40 2>/dev/null || true)"
+      if printf '%s' "$scr" | grep -qiE "usage limit|rate limit|out of credits|quota exceeded|insufficient credits"; then echo dry > "$FLEET_DIR/credits/$kind"; flag="$flag !! $kind DRY"; log "DRY $kind erkannt auf $n"; fi
+    else commits="-"; lastc="-"; repage="-"; fi
+    printf '%-24s %-7s %-9s %-16s %-8s %-8s %s%s\n' "$n" "$kind" "$st" "${task:--}" "$commits" "$lastc" "$repage" "$flag"
+  done
+}
+
+cmd_status() {
+  echo "Session: $FLEET_SESSION  Dir: $FLEET_DIR  Tick: ${FLEET_TICK}s"
+  server_alive && echo "Herdr: läuft" || echo "Herdr: AUS (fleet up)"
+  echo; cmd_check
+  echo; echo "Queue: $(tr '\n' ' ' < "$FLEET_DIR/queue")"
+  echo "Review-Lane wartend: $(ls "$FLEET_DIR/reviews/pending" 2>/dev/null | sed 's/\.json//' | tr '\n' ' ')"
+  echo "Im Review: $(ls "$FLEET_DIR/reviews" 2>/dev/null | grep -v pending | sed 's/\.json//' | tr '\n' ' ')"
+  echo "Followups: $(ls "$FLEET_DIR/followups" 2>/dev/null | tr '\n' ' ')"
+  echo "Landable: $(ls "$FLEET_DIR/landable" 2>/dev/null | sed 's/\.json//' | tr '\n' ' ')"
+  echo "Blocked: $(ls "$FLEET_DIR/blocked" 2>/dev/null | tr '\n' ' ')"
+  echo "Credits dry: $(grep -l dry "$FLEET_DIR"/credits/* 2>/dev/null | xargs -rn1 basename | tr '\n' ' ')"
+}
+
+cmd_credits() { [ -n "${2:-}" ] || die "fleet credits <kind> dry|ok"; echo "$2" > "$FLEET_DIR/credits/$1"; log "credits $1 = $2"; }
+cmd_blocked() { for f in "$FLEET_DIR"/blocked/*.json; do [ -f "$f" ] && python3 -c 'import json,sys;d=json.load(open(sys.argv[1]));print(d["agent"],d["bean"],d["line"],d.get("report",""))' "$f"; done; true; }
+
+# ---------- Landen (nur der Lead, mechanisch, nie push) ----------
+cmd_land() {
+  local coder="$1" commit="$2" check="${FLEET_CHECK:-}"; shift 2
+  while [ $# -gt 0 ]; do case "$1" in --check) check="$2"; shift 2;; *) die "unbekannt $1";; esac; done
+  local repo; repo="$(agent_field "$coder" repo)"
+  local bean; bean="$(ls "$FLEET_DIR/landable" 2>/dev/null | sed 's/\.json//' | while read -r b; do [ "$(jget commit <"$FLEET_DIR/landable/$b.json")" = "$commit" ] && echo "$b"; done | head -1)"
+  [ -n "$bean" ] || die "Commit $commit ist nicht als landable freigegeben (Review fehlt oder CHANGES)"
+  # Verify-Worktree liegt außerhalb des Repos und immer auf losgelöstem HEAD,
+  # damit der Cherry-Pick nie direkt auf main landet.
+  local verify="$FLEET_DIR/verify/$(basename "$repo")"
+  if [ -d "$verify" ]; then git -C "$repo" worktree remove --force "$verify" >/dev/null 2>&1 || rm -rf "$verify"; fi
+  git -C "$repo" worktree prune
+  git -C "$repo" worktree add -q --detach "$verify" "$FLEET_MAIN" || die "Verify-Worktree unter $verify scheitert"
+  git -C "$verify" cherry-pick -x "$commit" || { git -C "$verify" cherry-pick --abort; die "Cherry-Pick von $commit auf $FLEET_MAIN scheitert"; }
+  if [ -n "$check" ]; then log "land: Check '$check' in $verify"; ( cd "$verify" && bash -c "$check" ) || die "Check rot — nicht gelandet"; else log "land: kein Check konfiguriert (FLEET_CHECK oder --check)"; fi
+  local vc; vc="$(git -C "$verify" rev-parse HEAD)"
+  [ -z "$(git -C "$repo" status --porcelain --untracked-files=no)" ] || die "Integrations-Checkout $repo hat lokale Änderungen — erst aufräumen"
+  git -C "$repo" checkout -q "$FLEET_MAIN" || die "checkout $FLEET_MAIN scheitert"
+  git -C "$repo" merge --no-ff -q -m "land($bean): $commit via $coder" "$vc" || die "merge --no-ff scheitert"
+  git -C "$repo" worktree remove --force "$verify" >/dev/null 2>&1 || true
+  local bf; bf="$(bean_file_on_main "$repo" "$bean")"
+  if [ -n "$bf" ] && command -v "$BEANS_BIN" >/dev/null; then ( cd "$repo" && "$BEANS_BIN" update "$bean" -s completed --body-append "
+
+## Summary of Changes
+Gelandet als Merge von $vc (Cherry-Pick von $commit, Coder $coder)." >/dev/null && git add "$bf" && git commit -q --no-verify -m "bean($bean): completed" ) || true; fi
+  # --no-verify: reiner Metadaten-Commit; der globale Ponytail-Pre-Commit-Hook (LLM-Review) würde ihn minutenlang blockieren.
+  mv "$FLEET_DIR/landable/$bean.json" "$FLEET_DIR/processed/landed-$bean.json"
+  log "LANDED $bean: $commit → $FLEET_MAIN ($(git -C "$repo" rev-parse --short HEAD)). Kein Push. Push macht Raphael."
+}
+
+usage() { cat <<EOF
+fleet — Herdr-Flotte (Session: $FLEET_SESSION, Verzeichnis: $FLEET_DIR)
+  up | down | status | check [AGENT] | screen AGENT [LINES]
+  spawn NAME --kind claude|codex|grok --role coder|reviewer|... --repo PATH [--model M] [--effort E] [--readonly]
+  stop NAME
+  queue [add|rm BEAN...]
+  assign AGENT BEAN [COMMIT]          Brief schreiben + Pointer senden (Reviewer braucht COMMIT)
+  done AGENT BEAN DONE|BLOCKED|CHANGES "<eine Zeile>" REPORT    (rufen die Agenten auf)
+  watch [--once]                       Inbox → Lanes → Guards → Dispatch, Tick ${FLEET_TICK}s
+  land CODER COMMIT [--check "cmd"]    Cherry-Pick in Verify-Worktree, Check, merge --no-ff. Nie push.
+  credits KIND dry|ok | blocked
+EOF
+}
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  up) cmd_up;; down) cmd_down;; status) cmd_status;; check) cmd_check "$@";; screen) cmd_screen "$@";;
+  spawn) cmd_spawn "$@";; stop) cmd_stop "$@";; queue) cmd_queue "$@";; assign) cmd_assign "$@";;
+  done) cmd_done "$@";; watch) cmd_watch "$@";; land) cmd_land "$@";; credits) cmd_credits "$@";; blocked) cmd_blocked;;
+  ""|-h|--help|help) usage;; *) usage; exit 2;;
+esac
