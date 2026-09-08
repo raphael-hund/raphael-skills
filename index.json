@@ -1,12 +1,18 @@
 {
   "generated_by": "tools/build-index.py",
-  "skill_count": 29,
+  "skill_count": 30,
   "skills": [
     {
       "name": "design",
       "version": "0.7.0",
       "path": "skills/design/SKILL.md",
       "description": "Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion- Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH), Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard -> ui-ux-Linie, passende QA ueber die deterministischen impeccable-Detektoren und den kill-ai-slop-Scanner. Trigger: \"Design polieren\", \"UI review\", \"sieht nach AI aus\", \"Slop entfernen\", \"Farben/Typo/Layout fixen\", \"Animation/Motion pruefen\", \"Kontrast/OKLCH\", \"Dashboard designen\", \"Referenz-Site als Stilvorlage\", \"Stitch\", \"Screen in Stitch bauen\", \"Design mit Google Stitch\", \"/taste\", \"/impeccable\", \"kill AI slop\", \"frontend-design\"."
+    },
+    {
+      "name": "web",
+      "version": "3.0.0",
+      "path": "skills/eigene/_archiv/web-3.0.0-react-first-2026-09-08/SKILL.md",
+      "description": "Build or redesign credible React service-business websites (Next.js App Router, TypeScript, Tailwind v4, shadcn/ui with namespaced registries), with implemented SEO subpages, reference-informed DESIGN.md and independent browser review. Install real components from the connected registries (21st.dev MCP and CLI, shadcn MCP, Mantine MCP, Magic UI, Aceternity, Kibo and the further catalogued libraries) instead of rebuilding them. Analyse supplied websites into source-linked patterns. Integrate GPT Image website imagery and separate assets with content/style references, IMAGE-SPEC and optional Scrollcraft motion; search and place logos, icons and reference photos with the bundled image-search script; choose components from a 50-library catalogue with licence, registry namespace and install route; implement interface motion natively from the Emil Kowalski rules; pick gallery references from the 56-source catalogue and Refero MCP. Build every UI surface from the measured design-depth chapters via their router. Also create or reconcile DESIGN.md. Use for Raphael's website builds, reference-learning requests and substantial frontend SEO work; preserve narrower scopes."
     },
     {
       "name": "ads-copy",
@@ -70,9 +76,9 @@
     },
     {
       "name": "higgsfield",
-      "version": "0.2.1",
+      "version": "0.4.0",
       "path": "skills/eigene/higgsfield/SKILL.md",
-      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten. v0.3.0 (Raphael 04.09.2026): Statics immer 4:5 generieren, dann outpaint auf 9:16. Nie direkt 9:16. Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
+      "description": "Higgsfield-CLI fuer Website- und Ads-Bilder: GPT Image 2, Inhalt- plus Stil-Referenz, Kamera nur bei Fotos, Index plus Bildtext. v0.2.0 (Raphael 03.09.2026): Ads-Static = Logo plus Look plus JSON-Spec als --image, Logo compositen nie neu zeichnen, Text 1:1 mit Umlauten. v0.3.0 (Raphael 04.09.2026): Statics immer 4:5 generieren, dann outpaint auf 9:16. Nie direkt 9:16. v0.4.0 (Raphael 08.09.2026): Ein GPT-Image-Lauf pro Karte. Kein Edit, kein Fix-Lauf auf ein fertiges Bild; jeder weitere GPT-Image-Durchgang verfaelscht das Motiv (Noise). Feed = lokaler 4:5-Crop des Masters, Story = genau ein natives Outpaint 9:16 dieses Crops (Raphael 08.09.: keine lokalen Blur- oder Flaechenraender). Trigger: \"/higgsfield\", \"Higgsfield\", \"GPT Image\", \"gpt_image_2\", \"Freisteller\", \"Expand Image\", \"Outpaint\", \"Hintergrund entfernen\", \"Website-Bild\", \"Ads-Static Bild\"."
     },
     {
       "name": "idea-filter",
@@ -138,7 +144,7 @@
       "name": "web",
       "version": "4.0.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Dach-Skill für Website- und Landingpage-Projekte in Claude Code: Rollen Plan, Fold-Duell, Bau, Kritik, Launch mit Gates und Screenshots (shot-sweep); React-Stack (Next.js App Router, Tailwind v4, shadcn) aus geprüftem Starter; Komponenten aus verifizierten Registries, npm und den MCP-Servern 21st, shadcn, Mantine; SEO-Seitenkarte, DESIGN.md, Design-Depth-Kapitel, Motion, Bildsuche, GPT-Image, Stil-Regeln, Muster-Bibliothek; Subagenten Fable/Astra/Kimi zuerst, Opus und Grok dazu."
+      "description": "Dach-Skill für Website- und Landingpage-Projekte in der Claude-Code-Harness: Plan, Fold-Duell, Bau, Kritik und Launch als Phasen mit Gates und Screenshots. Baut React-Projekte (Next.js App Router, TypeScript, Tailwind v4, shadcn/ui) und installiert Komponenten aus den verbundenen Registries, MCP-Servern und npm-Bibliotheken (21st.dev, shadcn, Mantine, Magic UI, Aceternity, Kibo und weitere), statt sie nachzubauen. Trägt SEO-Seitenkarte, DESIGN.md, Design-Depth- Kapitel, Motion-Regeln, Bildsuche, GPT-Image, Muster-Bibliothek und Stil-Regeln. Subagenten: Fable, Astra und Kimi zuerst, Opus und Grok dazu, Sol nur Backend, Luna/Sonnet/Terra nur Serien. Trigger: \"Website bauen\", \"Landingpage bauen\", \"Sitemap\", \"Webseite launchen\", \"CRO\", \"Referenzseite nachbauen\", \"Website clonen\", \"Screenshot nachbauen\", \"aus Bild bauen\", \"Website planen\", \"Website-Kritik\", \"kompletter Website-Plan\", \"DESIGN.md\"."
     },
     {
       "name": "last30days",
