@@ -34,7 +34,7 @@
     },
     {
       "name": "ads",
-      "version": "4.1.0",
+      "version": "4.2.0",
       "path": "skills/eigene/ads/SKILL.md",
       "description": "Paid Ads für Lead-Generation: Strategie, ICP, visuelle Konkurrenz-Recherche, Statics, sprechbare Video-Skripte, Drehbriefs und Auswertung bis zum Abschluss. Recherchiert die Meta Ads Library im Browser mit Playbacks und Bildbelegen. Enthält eine eigene Wissensbibliothek mit Autorenreferenzen, Quellen, Leadgen-Übertragung und Aussagegrenzen. Verbindet Wispr-Diktate, Creative-Produktion und das Kunden-Lern-Register. Für Ads bauen, Hooks, Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek, Konto-Audits, Creator- Wissen und 7/30-Tage-Auswertungen. Wissen und Referenzen liegen im Skill; Second Brain ist für Nutzung und Aktualisierung nicht erforderlich."
     },
@@ -124,9 +124,9 @@
     },
     {
       "name": "web",
-      "version": "2.0.0",
+      "version": "2.2.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Build or redesign credible HTML-first service-business websites with custom CSS, vanilla JS or optional Astro component islands, implemented SEO subpages, reference-informed DESIGN.md and independent browser review. Analyse supplied websites into source-linked patterns; use 21st.dev when connected. Integrate GPT Image website imagery and separate assets with content/style references, IMAGE-SPEC and optional Scrollcraft motion; search and place logos, icons and reference photos with the bundled image-search script; choose components from a 50-library catalogue with licence and island routes; implement interface motion natively from the Emil Kowalski rules; pick gallery references from the 56-source catalogue and Refero MCP. Also create or reconcile DESIGN.md. Use for Raphael's website builds, reference-learning requests and substantial frontend SEO work; preserve narrower scopes."
+      "description": "Build or redesign credible HTML-first service-business websites with custom CSS, vanilla JS or optional Astro component islands, implemented SEO subpages, reference-informed DESIGN.md and independent browser review. Analyse supplied websites into source-linked patterns; use 21st.dev when connected. Integrate GPT Image website imagery and separate assets with content/style references, IMAGE-SPEC and optional Scrollcraft motion; search and place logos, icons and reference photos with the bundled image-search script; choose components from a 50-library catalogue with licence and island routes; implement interface motion natively from the Emil Kowalski rules; pick gallery references from the 56-source catalogue and Refero MCP. Build every UI surface from the measured design-depth chapters via their router. Also create or reconcile DESIGN.md. Use for Raphael's website builds, reference-learning requests and substantial frontend SEO work; preserve narrower scopes."
     },
     {
       "name": "last30days",
