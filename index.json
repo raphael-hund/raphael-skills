@@ -136,9 +136,9 @@
     },
     {
       "name": "web",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "path": "skills/eigene/web/SKILL.md",
-      "description": "Build or redesign credible React service-business websites (Next.js App Router, TypeScript, Tailwind v4, shadcn/ui with namespaced registries), with implemented SEO subpages, reference-informed DESIGN.md and independent browser review. Install real components from the connected registries (21st.dev MCP and CLI, shadcn MCP, Mantine MCP, Magic UI, Aceternity, Kibo and the further catalogued libraries) instead of rebuilding them. Analyse supplied websites into source-linked patterns. Integrate GPT Image website imagery and separate assets with content/style references, IMAGE-SPEC and optional Scrollcraft motion; search and place logos, icons and reference photos with the bundled image-search script; choose components from a 50-library catalogue with licence, registry namespace and install route; implement interface motion natively from the Emil Kowalski rules; pick gallery references from the 56-source catalogue and Refero MCP. Build every UI surface from the measured design-depth chapters via their router. Also create or reconcile DESIGN.md. Use for Raphael's website builds, reference-learning requests and substantial frontend SEO work; preserve narrower scopes."
+      "description": "Dach-Skill für Website- und Landingpage-Projekte in Claude Code: Rollen Plan, Fold-Duell, Bau, Kritik, Launch mit Gates und Screenshots (shot-sweep); React-Stack (Next.js App Router, Tailwind v4, shadcn) aus geprüftem Starter; Komponenten aus verifizierten Registries, npm und den MCP-Servern 21st, shadcn, Mantine; SEO-Seitenkarte, DESIGN.md, Design-Depth-Kapitel, Motion, Bildsuche, GPT-Image, Stil-Regeln, Muster-Bibliothek; Subagenten Fable/Astra/Kimi zuerst, Opus und Grok dazu."
     },
     {
       "name": "last30days",

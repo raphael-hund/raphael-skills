@@ -1,5 +1,7 @@
 # MAKE Web Astra — orchestration and quality protocol
 
+**Verbund (08.09.2026):** Spawn-Plan, Familienzählung und drei Ausgänge je Kritik stehen in [kritik-matrix.md](kritik-matrix.md); Rollen-Wörterbuch in [agent-roster.md](agent-roster.md). Diese Datei ergänzt die Paketform je Prüfaufgabe.
+
 Read for major full-site delegation and independent review. This is a reusable protocol, not evidence of an already completed website. Contents: roles; dependencies/ownership; evidence; criticism; iteration; lean changes.
 
 ## One controller, twenty useful specialist agents

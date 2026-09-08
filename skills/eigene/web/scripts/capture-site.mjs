@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // Standalone Node >=18 helper. No dependency installation or browser download.
-import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { resolve, join } from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { parseArgs } from 'node:util';
+import { loadPlaywright as loadPlaywrightFromSkill, launchChromium } from './lib/playwright-loader.mjs';
 
 const help = `Usage: node capture-site.mjs --url URL --out DIRECTORY [options]
   --mode both|desktop|mobile       Default both; independent contexts
@@ -46,14 +46,8 @@ function options() {
 }
 
 function loadPlaywright(opt) {
-  const require = createRequire(import.meta.url);
-  // Normal resolution next to this script, then the invoking project. No host paths.
-  const entry = opt.modulePath ? resolve(opt.modulePath) : (() => {
-    try { return require.resolve('playwright'); }
-    catch { return createRequire(join(process.cwd(), 'package.json')).resolve('playwright'); }
-  })();
-  const playwright = require(entry);
-  return { playwright, entry: require.resolve(entry) };
+  const loaded = loadPlaywrightFromSkill({ modulePath: opt.modulePath });
+  return { playwright: loaded.playwright, entry: loaded.entry };
 }
 
 const presets = {
@@ -293,7 +287,9 @@ export async function main() {
     const { playwright, entry } = loadPlaywright(opt);
     manifest.playwrightModule = entry;
     manifest.executablePath = opt.executablePath ? resolve(opt.executablePath) : playwright.chromium.executablePath();
-    browser = await playwright.chromium.launch({ headless: true, executablePath: manifest.executablePath });
+    browser = await launchChromium(playwright.chromium, {
+      executablePath: manifest.executablePath,
+    });
     manifest.browser = { name: 'chromium', version: browser.version() };
     for (const name of opt.mode === 'both' ? ['desktop', 'mobile'] : [opt.mode])
       manifest.records.push(await captureView(browser, name, opt));

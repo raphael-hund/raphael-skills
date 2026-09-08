@@ -6,6 +6,10 @@ import { fileURLToPath } from 'node:url';
 
 const corpusDir = fileURLToPath(new URL('../references/corpus/', import.meta.url));
 const argv = process.argv.slice(2);
+if (argv.includes('--help') || argv.includes('-h')) {
+  console.log('Usage: reference-corpus.mjs list|search|validate [--query text] [--type text] [--domain host]');
+  process.exit(0);
+}
 const command = argv.shift() || 'list';
 const opts = {};
 for (let i = 0; i < argv.length; i++) {

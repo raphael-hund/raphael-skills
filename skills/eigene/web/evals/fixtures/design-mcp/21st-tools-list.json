@@ -1,0 +1,113 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "search"
+      },
+      {
+        "name": "search_picker"
+      },
+      {
+        "name": "get_inspiration"
+      },
+      {
+        "name": "record_inspiration_feedback"
+      },
+      {
+        "name": "search_logo"
+      },
+      {
+        "name": "get_component"
+      },
+      {
+        "name": "get_theme"
+      },
+      {
+        "name": "list_bookmarks"
+      },
+      {
+        "name": "bookmark"
+      },
+      {
+        "name": "list_bookmark_lists"
+      },
+      {
+        "name": "get_bookmark_list"
+      },
+      {
+        "name": "create_bookmark_list"
+      },
+      {
+        "name": "add_to_list"
+      },
+      {
+        "name": "list_teams"
+      },
+      {
+        "name": "list_team_libraries"
+      },
+      {
+        "name": "list_team_lists"
+      },
+      {
+        "name": "list_team_components"
+      },
+      {
+        "name": "get_usage"
+      },
+      {
+        "name": "generate"
+      },
+      {
+        "name": "get_generation"
+      },
+      {
+        "name": "iterate_generation"
+      },
+      {
+        "name": "get_take"
+      },
+      {
+        "name": "edit_component"
+      },
+      {
+        "name": "submit_component"
+      },
+      {
+        "name": "withdraw_component"
+      },
+      {
+        "name": "resubmit_component"
+      },
+      {
+        "name": "remove_component_from_catalog"
+      },
+      {
+        "name": "delete_component"
+      },
+      {
+        "name": "edit_theme"
+      },
+      {
+        "name": "delete_theme"
+      },
+      {
+        "name": "edit_template"
+      },
+      {
+        "name": "delete_template"
+      },
+      {
+        "name": "get_profile"
+      },
+      {
+        "name": "edit_profile"
+      },
+      {
+        "name": "upload_profile_media"
+      }
+    ]
+  }
+}

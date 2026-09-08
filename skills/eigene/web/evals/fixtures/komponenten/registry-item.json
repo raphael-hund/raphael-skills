@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aurora-background",
+  "title": "Aurora Background",
+  "type": "registry:ui",
+  "license": "pr\u00fcfen",
+  "author": "Manu Arora <hi@manuarora.in>",
+  "dependencies": [
+    "clsx"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/aurora-background.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\";\nimport { cn } from \"@/lib/utils\";\nimport React, { ReactNode } from \"react\";\nexport function AuroraBackground({ children }: { children?: ReactNode }) {\n  return <div className={cn(\"relative\")}>{children}</div>;\n}\n"
+    }
+  ]
+}

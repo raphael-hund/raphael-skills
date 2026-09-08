@@ -1,0 +1,40 @@
+{
+  "total_count": 96,
+  "page": 1,
+  "per_page": 2,
+  "data": [
+    {
+      "id": "e1d2a2f8969090a54ee39ad75012849766",
+      "user": {
+        "username": "raphael1766499"
+      },
+      "license": "standard",
+      "download_time": "2026-07-08T10:12:32.000Z",
+      "is_downloadable": true,
+      "image": {
+        "id": "144338077",
+        "format": {
+          "size": "huge"
+        },
+        "is_ai_generated": false
+      },
+      "subscription_id": "ZGU0ZjBiYjk2ODIyNGQ3N2I2YTIxMGRmOGZiOGJmZTktaW1hZ2VzLXN0YW5kYXJk"
+    },
+    {
+      "id": "f2e3b3g9a7b1c2d3e4f5a6b7c8d9e0f1",
+      "user": {
+        "username": "raphael1766499"
+      },
+      "license": "standard",
+      "download_time": "2026-06-01T09:00:00.000Z",
+      "is_downloadable": false,
+      "image": {
+        "id": "999888777",
+        "format": {
+          "size": "medium"
+        }
+      },
+      "subscription_id": "ZGU0ZjBiYjk2ODIyNGQ3N2I2YTIxMGRmOGZiOGJmZTktaW1hZ2VzLXN0YW5kYXJk"
+    }
+  ]
+}

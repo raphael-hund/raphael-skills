@@ -21,7 +21,7 @@ Catalog entries marked `integrate` supply generally useful guidance; `conditiona
 | Focused polish | Impeccable operations; Jakub better-*; Refactoring UI; UI Skills playbook | Choose the operation addressing the defect: hierarchy, type, color, layout, states or resilience. Avoid a second full redesign. |
 | Accessibility and usable forms | ibelick/fixing-accessibility; AccessLint; Wshobson WCAG; Addy accessibility | Native semantics, measured contrast, keyboard/focus, meaningful errors and manual task checks. Automated scans are partial evidence. |
 | Animation and interaction | Emil; Raphael Salaja; transitions.dev; GSAP; iart-ai; Wshobson | Start with motion purpose and lifecycle. Native CSS/WAAPI first when sufficient; preserve selected framework APIs and reduced motion. |
-| shadcn, libraries and tokens | shadcn-ui/shadcn; ui-styling; build-primitive; Million token/source entries | Preserve primitive family and local customizations. Reuse real source as static HTML output or bounded islands; do not force full React. |
+| shadcn, libraries and tokens | shadcn-ui/shadcn; ui-styling; build-primitive; Million token/source entries | Preserve primitive family and local customizations. Reuse real source as Server or Client Components in the React project. |
 | Measured performance/SEO | Addy quality/CWV/performance/SEO; ibelick metadata/motion; Iannuttall SEO | Diagnose actual bottleneck and intent with observed evidence. No ranking guarantees or screenshots as SEO proof. |
 | Browser and stress review | agent-browser; Playwright CLI; Jakub break; Superfuture design-review; AccessLint diff | Use available supported browser tools; exercise real states and preserve earlier baseline failures. |
 | Image, 3D and cinematic media | Taste image/brandkit; CloudAI Three.js; MengTo; Scroll-world; signal-geometry/chalk-logic | Select a medium for communication and performance, retain DOM content, factual authenticity, independent assets and inspected fallback. |
@@ -93,7 +93,7 @@ For complex SVG/timeline review, an isolated pause/seek control helps inspect st
 
 ## Stack-specific knowledge stays conditional
 
-Public content and useful links stay in the initial HTML. Use existing [component-island boundaries](component-islands.md) to contain client state and CSS. Only interactive islands ship client React; static React component rendering is valid reuse without browser React.
+Public content and useful links stay in the initial HTML. Use existing [component-island boundaries](component-islands.md) to contain client state and CSS. Only interactive Client Components ship client-side state; static React component rendering is valid reuse without browser React.
 
 Inspect the installed library/version and chosen primitive first. Radix and Base UI recipes differ; migration entails consumer props, composition/render APIs, controlled state, focus and portal behavior, not an import-string substitution. Do not migrate a working primitive family merely because a new upstream skill exists.
 
@@ -118,7 +118,7 @@ Use charts only when verified data answers an actual reader question. Choose com
 
 Keep useful mechanisms; reject misplaced absolutes. In particular:
 
-- No automatic global React, Next.js, Tailwind, UnoCSS, shadcn migration or UI-library installation.
+- No automatic UnoCSS migration or blanket UI-library installation; React, Next.js, Tailwind and shadcn are the stack since 08.09.2026, libraries are installed per component job through [component-registries.md](component-registries.md).
 - No universal font, monochrome palette, one-accent law, fixed section count, mandatory card ban, glass hero, animation quota or screenshot/image-generation quota.
 - No invented testimonials, staff, client logos, statistics, prices, scarcity, locations, portfolio projects or ranking claims.
 - No automated score as complete accessibility, design, SEO, field-performance or conversion proof.

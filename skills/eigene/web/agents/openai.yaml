@@ -1,7 +1,7 @@
 interface:
-  display_name: "MAKE Web Astra"
-  short_description: "HTML-Websites, UI-Libraries, Motion, Bildsuche, GPT Image und SEO"
-  default_prompt: "Nutze $web für eine Service-Website mit HTML, CSS, Vanilla JavaScript, DESIGN.md und SEO-Unterseiten. Nutze passende UI-Skills-Taktiken und bei sinnvoller Komponentenwiederverwendung Astro mit gezielten shadcn-Inseln. Erstelle benötigte Bilder und Einzelassets mit getrennten Inhalts-/Stilreferenzen und IMAGE-SPEC; suche Logos, Icons und Referenzbilder mit dem Bildsuche-Skript, wähle Komponenten aus dem 50-Bibliotheken-Katalog, setze Bewegung nach den nativen Motion-Regeln um, nutze Scrollcraft bei sinnvollem Bewegungsbedarf und prüfe die tatsächliche Darstellung."
+  display_name: "Web"
+  short_description: "Websites planen, bauen, kritisieren und launchen: React-Stack, Registries, Screenshots, SEO"
+  default_prompt: "Nutze $web für diese Website: Rolle benennen (Plan, Kritik, Bau, Launch), Preflight, dann das Rollen-Dokument. Baue als React-Projekt aus assets/react-starter, hole Komponenten aus den konfigurierten Registries und 21st, baue jede Route der SEO-Seitenkarte, prüfe mit shot-sweep und Kritik-Leaves."
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
 policy:

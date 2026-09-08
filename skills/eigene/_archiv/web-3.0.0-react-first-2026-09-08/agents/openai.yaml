@@ -1,0 +1,13 @@
+interface:
+  display_name: "MAKE Web Astra"
+  short_description: "React-Websites (Next.js, shadcn-Registries, 21st), Motion, Bildsuche, GPT Image und SEO"
+  default_prompt: "Nutze $web für eine Service-Website als React-Projekt (Next.js App Router, Tailwind v4, shadcn/ui) mit DESIGN.md und SEO-Unterseiten. Installiere Komponenten aus den konfigurierten Registries (21st, Magic UI, Aceternity, Kibo, Mantine und weitere) statt sie nachzubauen; nutze passende UI-Skills-Taktiken. Erstelle benötigte Bilder und Einzelassets mit getrennten Inhalts-/Stilreferenzen und IMAGE-SPEC; suche Logos, Icons und Referenzbilder mit dem Bildsuche-Skript, wähle Komponenten aus dem 50-Bibliotheken-Katalog, setze Bewegung nach den nativen Motion-Regeln um, nutze Scrollcraft bei sinnvollem Bewegungsbedarf und prüfe die tatsächliche Darstellung."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

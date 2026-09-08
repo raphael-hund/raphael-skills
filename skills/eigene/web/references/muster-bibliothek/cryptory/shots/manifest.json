@@ -1,0 +1,409 @@
+{
+  "schema": "web/shot-sweep/v2",
+  "run_id": null,
+  "build_revision": null,
+  "capture_profile": {
+    "static": false,
+    "states": false,
+    "mobile": false
+  },
+  "base": "https://cryptory.de",
+  "createdAt": "2026-09-02T17:44:05.432Z",
+  "static": false,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "state_matrix": {
+    "required": [],
+    "captured": [],
+    "not_applicable": [],
+    "failed": []
+  },
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "static": false,
+      "shots": [
+        {
+          "file": "home-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "viewport_label": "desktop",
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "home-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "home-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "home-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "home-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "home-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "home-desktop-07-y4500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 4500
+        },
+        {
+          "file": "home-desktop-08-y5250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 5250
+        },
+        {
+          "file": "home-desktop-09-y6000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 6000
+        },
+        {
+          "file": "home-desktop-10-y6750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 6750
+        },
+        {
+          "file": "home-desktop-11-y7500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 7500
+        },
+        {
+          "file": "home-desktop-12-y8250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 8250
+        },
+        {
+          "file": "home-desktop-13-y9000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 9000
+        },
+        {
+          "file": "home-desktop-14-y9750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 9750
+        },
+        {
+          "file": "home-desktop-15-y10500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 10500
+        },
+        {
+          "file": "home-desktop-16-y11250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 11250
+        },
+        {
+          "file": "home-desktop-17-y12000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 12000
+        },
+        {
+          "file": "home-desktop-18-y12750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 12750
+        },
+        {
+          "file": "home-desktop-19-y13500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 13500
+        },
+        {
+          "file": "home-desktop-20-y14250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 14250
+        },
+        {
+          "file": "home-desktop-21-y15000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 15000
+        },
+        {
+          "file": "home-desktop-22-y15750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 15750
+        },
+        {
+          "file": "home-desktop-23-y16130.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "scroll",
+          "y": 16130
+        },
+        {
+          "file": "home-desktop-click-y12750-00-Maximilian_Kleeschulte_U.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "Maximilian_Kleeschulte_U"
+        },
+        {
+          "file": "home-desktop-click-y12750-01-Fabian_Drenkhahn_Angeste.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "Fabian_Drenkhahn_Angeste"
+        },
+        {
+          "file": "home-desktop-click-y12750-02-Karsten_Krzyzanowski_Zol.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "Karsten_Krzyzanowski_Zol"
+        },
+        {
+          "file": "home-desktop-click-y12750-03-Nikolai_Gruhn_Gastronom.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 12750,
+          "target": "Nikolai_Gruhn_Gastronom"
+        },
+        {
+          "file": "home-desktop-click-y13500-00-Maximilian_Kleeschulte_U.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 13500,
+          "target": "Maximilian_Kleeschulte_U"
+        },
+        {
+          "file": "home-desktop-click-y13500-01-Click_for_sound.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "viewport_label": "desktop",
+          "kind": "click",
+          "y": 13500,
+          "target": "Click_for_sound"
+        }
+      ],
+      "viewport_label": "desktop",
+      "label": "desktop",
+      "docHeight": 17630
+    }
+  ]
+}

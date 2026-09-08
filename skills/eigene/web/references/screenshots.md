@@ -1,5 +1,7 @@
 # Screenshots that support real visual judgement
 
+**Verbund (08.09.2026):** Kanonischer Sweep ist `scripts/shot-sweep.mjs` (Fold 1440×900, Mobil 390×844, `--base` Pflicht); Kritik-Ablauf, Shot-Budget und Kacheln in [screenshot-kritik-loop.md](screenshot-kritik-loop.md), Zustände in [state-capture-contract.md](state-capture-contract.md), Prüffächer in [qa-faecher.md](qa-faecher.md).
+
 Read for reference inspection, browser critique, responsive review and visual retesting. This protocol turns actual rendered pages into inspectable evidence. It does not prescribe a screenshot quota or make still images certify functionality, accessibility or SEO.
 
 The transferable lesson from documented builders is to combine visual inspection with runtime observations, then retest the changed result. Lovable documents browser screenshots alongside actions, console/network observations and explicit limitations in subtle visual judgement. Base44 documents screenshot-based critique and refinement from global design to individual elements. These are public workflows, not evidence of either product's hidden prompts or implementation. [Lovable browser testing](https://docs.lovable.dev/features/browser-testing), [Base44 design guidance](https://docs.base44.com/Building-your-app/Designing-with-AI).

@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><body>
+<article class="card" id="latitude"><h3>Latitude</h3><pre id="src-latitude" data-astro-cid-xvcyxw6w><code data-astro-cid-xvcyxw6w>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;lat&quot; viewBox=&quot;0 0 64 64&quot; width=&quot;96&quot; height=&quot;96&quot; fill=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;Loading&quot;&gt;
+  &lt;style&gt;
+    /* Two knobs: color is the ink, --rate multiplies every duration.
+       --paper, --lit and --shade say what this one is drawn on. */
+    svg { color: <span class="tok" data-tok="ink" data-astro-cid-xvcyxw6w>#f5f5f7</span>; --paper: <span class="tok" data-tok="paper" data-astro-cid-xvcyxw6w>#0a0a0c</span>; --lit: <span class="tok" data-tok="lit" data-astro-cid-xvcyxw6w>.26</span>; --shade: <span class="tok" data-tok="shade" data-astro-cid-xvcyxw6w>.62</span>; --rate: 1; }
+
+    .lat { --dur: 2.4s; --n: 7; }
+    .lat-ground { fill: var(--paper, #0a0a0c); }
+    .lat-rim    { stroke: currentColor; stroke-width: 1; opacity: .08; }
+
+    /* the sphere is lit from the top left and falls away bottom right; how
+       hard depends on the paper it is drawn on */
+    .lat-lit   { stop-opacity: var(--lit, .26); }
+    .lat-shade { stop-opacity: var(--shade, .62); }
+
+    .lat-shell {
+      animation: lat-breathe calc(var(--dur) * var(--rate, 1)) ease-in-out infinite;
+    }
+
+    .lat-band {
+      fill: currentColor;
+      opacity: .14;
+      animation: lat-wave calc(var(--dur) * var(--rate, 1)) ease-in-out infinite;
+      /* one period spread across the stack = a wave climbing it */
+      animation-delay: calc(var(--i) * var(--dur) * var(--rate, 1) / var(--n) * -1);
+    }
+
+    @keyframes lat-wave {
+      0%, 100% { opacity: .14; }
+      38%      { opacity: 1; }
+      64%      { opacity: .34; }
+    }
+
+    @keyframes lat-breathe {
+      0%, 100% { opacity: .82; }
+      45%      { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lat-shell { animation: none; opacity: 1; }
+      .lat-band  { animation: none; opacity: calc(.22 + var(--i) * .11); }
+    }
+  &lt;/style&gt;
+
+  &lt;circle class=&quot;lat-ground&quot; cx=&quot;32&quot; cy=&quot;32&quot; r=&quot;30&quot;/&gt;
+  &lt;g class=&quot;lat-shell&quot;&gt;
+    &lt;path class=&quot;lat-band&
+&lt;/svg&gt;</code></pre></article>
+<article class="card" id="scanline"><h3>Scanline</h3><pre id="src-scanline" data-astro-cid-xvcyxw6w><code data-astro-cid-xvcyxw6w>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;scan&quot; viewBox=&quot;0 0 64 64&quot; width=&quot;96&quot; height=&quot;96&quot; fill=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;Loading&quot;&gt;
+  &lt;style&gt;
+    /* Two knobs: color is the ink, --rate multiplies every duration. */
+    svg { color: <span class="tok" data-tok="ink" data-astro-cid-xvcyxw6w>#f5f5f7</span>; --rate: 1; }
+
+    .scan-rule { stroke: currentColor; stroke-width: .7; opacity: .34; }
+
+    /* every packet snaps to the rule grid, so it reads as one line of the
+       buffer being rewritten in place */
+    .scan-packet {
+      fill: currentColor;
+      opacity: 0;
+      animation: scan-run calc(var(--dur) * var(--rate, 1)) cubic-bezier(.5, 0, .5, 1) infinite;
+      animation-delay: calc(var(--delay) * var(--rate, 1));
+    }
+
+    .scan-glow { animation: scan-sweep calc(4.2s * var(--rate, 1)) linear infinite; }
+
+    @keyframes scan-run {
+      0%   { transform: translateX(calc(var(--dir) * -35px)); opacity: 0; }
+      12%  { opacity: 1; }
+      82%  { opacity: 1; }
+      100% { transform: translateX(calc(var(--dir) * 67px)); opacity: 0; }
+    }
+
+    @keyframes scan-sweep { from { transform: translateY(-22px); } to { transform: translateY(22px); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scan-packet { animation: none; opacity: .92; transform: translateX(calc(var(--dir) * 14px)); }
+      .scan-glow   { display: none; }
+    }
+  &lt;/style&gt;
+
+  &lt;defs&gt;
+    &lt;clipPath id=&quot;scan-disc&quot;&gt;&lt;circle cx=&quot;32&quot; cy=&quot;32&quot; r=&quot;32&quot;/&gt;&lt;/clipPath&gt;
+    &lt;linearGradient id=&quot;scan-sweep&quot; x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;0&quot; y2=&quot;1&quot;&gt;
+      &lt;stop offset=&quot;0%&quot; stop-color=&quot;currentColor&quot; stop-opacity=&quot;0&quot;/&gt;
+      &lt;stop offset=&quot;50%&quot; stop-color=&quot;currentColor&quot; stop-opacity=&quot;.22&quot;/&gt;
+      &lt;stop offset=&quot;100%&quot; stop-color=&quot;currentColor&quot; stop-opacity=&quot;0&quot;/&gt;
+    &lt;/linearGradient&gt;
+  &lt;/defs&gt;
+  &lt;g clip-
+&lt;/svg&gt;</code></pre></article>
+<article class="card" id="waveform"><h3>Waveform</h3><pre id="src-waveform" data-astro-cid-xvcyxw6w><code data-astro-cid-xvcyxw6w>&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;wav&quot; viewBox=&quot;0 0 64 64&quot; width=&quot;96&quot; height=&quot;96&quot; fill=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;Loading&quot;&gt;
+  &lt;style&gt;
+    /* Two knobs: color is the ink, --rate multiplies every duration. */
+    svg { color: <span class="tok" data-tok="ink" data-astro-cid-xvcyxw6w>#f5f5f7</span>; --rate: 1; }
+
+    .wav { --dur: 1.8s; }
+
+    /* the bars shimmer on the beads&#39; phase, so the wave carries through the
+       whole disc rather than only in the dots */
+    .wav-bar {
+      stroke: currentColor;
+      stroke-width: .8;
+      opacity: .24;
+      animation: wav-shimmer calc(var(--dur) * var(--rate, 1)) ease-in-out infinite;
+      animation-delay: calc(var(--i) * var(--dur) * var(--rate, 1) / -9);
+    }
+
+    .wav-bead {
+      fill: currentColor;
+      animation: wav-bob calc(var(--dur) * var(--rate, 1)) ease-in-out infinite;
+      animation-delay: calc(var(--i) * var(--dur) * var(--rate, 1) / -7);
+    }
+
+    @keyframes wav-bob     { 0%, 100% { transform: translateY(-16px); } 50% { transform: translateY(16px); } }
+    @keyframes wav-shimmer { 0%, 100% { opacity: .2; } 50% { opacity: .62; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wav-bar  { animation: none; opacity: .3; }
+      .wav-bead { animation: none; transform: translateY(calc((var(--i) - 2) * 7px)); }
+    }
+  &lt;/style&gt;
+
+  &lt;defs&gt;&lt;clipPath id=&quot;wav-disc&quot;&gt;&lt;circle cx=&quot;32&quot; cy=&quot;32&quot; r=&quot;32&quot;/&gt;&lt;/clipPath&gt;&lt;/defs&gt;
+  &lt;g clip-path=&quot;url(#wav-disc)&quot;&gt;
+    &lt;line class=&quot;wav-bar&quot; x1=&quot;4.00&quot; y1=&quot;0&quot; x2=&quot;4.00&quot; y2=&quot;64&quot; style=&quot;--i:0&quot;/&gt;
+    &lt;line class=&quot;wav-bar&quot; x1=&quot;8.00&quot; y1=&quot;0&quot; x2=&quot;8.00&quot; y2=&quot;64&quot; style=&quot;--i:1&quot;/&gt;
+    &lt;line class=&quot;wav-bar&quot; x1=&quot;12.00&quot; y1=&quot;0&quot; x2=&quot;12.00&quot; y2=&quot;64&quot; style=&quot;--i:2&quot;/&gt;
+    &lt;line class=&quot;wav-bar&quot; x1=&quot;16.00&quo
+&lt;/svg&gt;</code></pre></article>
+</body></html>

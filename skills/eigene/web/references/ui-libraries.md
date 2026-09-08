@@ -1,6 +1,10 @@
-# UI-Bibliotheken für HTML-first-Websites
+# UI-Bibliotheken: Lizenz, Stärken und Warnhinweise
 
-Dieses Modul hilft dem Website-Agenten, aus 50 UI-Bibliotheken passende Komponenten für HTML-first-Service-Websites auszuwählen.
+**Verbund (08.09.2026):** Werkzeugtabelle und `werkzeug-gate.mjs` aus [tool-usecase-router.md](tool-usecase-router.md) bleiben Pflicht vor jedem `npm i` oder `shadcn add`.
+
+**Stand 08.09.2026:** Der Skill baut React-Projekte; die Installation läuft über die verifizierten Namespaces, npm-Pakete und MCP-Server in [component-registries.md](component-registries.md). Dieses Modul bleibt die Quelle für Lizenz, Kern und Warnhinweis je Bibliothek. Die Einbauwege A–E darunter sind Legacy-Kürzel der HTML-first-Zeit: A/B heissen im React-Stack „nur als Markup-Vorlage“, C/D heissen „Registry- oder npm-Install“, E bleibt „ungeeignet“.
+
+Dieses Modul hilft dem Website-Agenten, aus 50 UI-Bibliotheken passende Komponenten für Service-Websites auszuwählen.
 Die drei Recherche-Teile dokumentieren die Quellenprüfung vom 07.09.2026 über Docs, Repositories, Lizenzdateien, Paketmetadaten und Registry-Antworten.
 Es gab keine Installation, keinen CLI-Einbau, keinen Build und keinen Browsertest; dieses Modul konsolidiert ausschliesslich die gelieferten Befunde.
 
@@ -12,8 +16,8 @@ Die Tabelle erhält die Originaldefinitionen aller drei Teile; ihre A/B-Grenzen 
 |---|---|---|---|
 | A | Direktes HTML mit frameworkfreiem CSS oder JavaScript. | Originalbaustein in HTML mit frameworkfreiem JavaScript nutzbar. | Direktes HTML mit frameworkfreiem DOM-JavaScript, etwa Flowbite oder Preline. |
 | B | HTML mit Tailwind-/CSS-Klassen; keine Komponenten-JavaScript-Runtime. | HTML mit kompiliertem Tailwind-/Bibliotheks-CSS; kein Framework-JavaScript nötig. | HTML mit gebautem Tailwind-CSS; der gewählte Baustein benötigt keine Komponenten-Runtime. Native Elemente wie details können trotzdem interaktiv sein. |
-| C | React-Komponente statisch beim Astro-Build rendern, ohne `client:*`. | React-Komponente beim Astro-Build statisch rendern, ohne `client:*`. | React nur beim Astro-Build rendern, ohne client:*-Direktive. Nur für tatsächlich statische Ausgabe oder erhaltene native HTML-Funktion. |
-| D | React-Insel mit Hydration für Interaktion oder Animation. | React-Insel mit Hydration für Zustand, Ereignisse, Animation oder Browser-APIs. | Zusammengehörige React-Interaktion als hydrierte Insel. Trigger, Zustand und Provider bleiben innerhalb derselben Insel. |
+| C | Legacy-Definition (Astro statisch). Im React-Stack: Registry-Install als Server Component. | dito | dito |
+| D | Legacy-Definition (Astro-Insel). Im React-Stack: Registry-Install als Client Component (`"use client"`), Trigger, Zustand und Provider in derselben Komponente. |  dito | dito |
 | E | Für unseren Standardweg ungeeignet oder unter der genannten Bedingung ausgeschlossen. | Zurzeit nicht geeignet; Grund steht beim Eintrag. | Derzeit ungeeignet oder gesperrt; der jeweilige Datensatz nennt den Grund. |
 
 Teil A zählt vorgefertigtes CSS zu A; Teile B/C beschreiben A über frameworkfreies JavaScript.
@@ -27,7 +31,7 @@ Die Route gilt für die genannte Variante samt Voraussetzungen; TSX mit Tailwind
 2. **Passende Zeile in der Schnellauswahl suchen:** höchstens drei Kandidaten pro Bedarf prüfen und ihre konkreten Varianten vergleichen.
 3. **Lizenz und Route lesen:** Warnhinweise gelten vor einer technischen Empfehlung; bei E oder ungeklärten Nutzungsrechten keine Übernahme starten.
 4. **Einzelprofil im [Korpus-JSON](corpus/ui-libraries-2026-09.json) abrufen:** über `nr` auswählen; Quellen, `useful_components`, Imports und Registry-Befunde lesen.
-5. **Nach [component-islands.md](component-islands.md) einbauen:** statische Ausgabe erhalten und nur zusammengehörige Interaktion hydratisieren.
+5. **Nach [component-registries.md](component-registries.md) installieren:** `shadcn search`/`view`/`add`, dann `package.json`-Diff lesen und `"use client"` prüfen.
 6. **Fallbacks und tatsächliche Requests prüfen:** HTML ohne JavaScript, echte Interaktion und Formularwege sowie gelieferte JS-/CSS-Kosten messen.
 
 - Pro Komponentenjob genau eine Implementierung behalten; zusätzliche Bibliotheken dürfen keine zweite Button-, Dialog- oder Formularbasis erzeugen.
@@ -181,7 +185,7 @@ Routenentscheidungen beruhen auf Quellen; SSR, Hydration, Barrierefreiheit und P
 - **Bezugswege:** Jolly ist live deaktiviert; Cult UI und Motion Primitives lieferten 429, Watermelons CLI E404, NexUIs API eine leere Komponentenliste.
 - **Metadatenqualität:** Sera hat kollidierende Dateipfade; weitere Registries lassen Imports, CSS oder passende Primitive-Abhängigkeiten aus.
 
-Beim Einbau nach [component-islands.md](component-islands.md) rohe HTML-Ausgabe, direkte Unterseitenaufrufe und nutzbare Links bei fehlgeschlagenem JavaScript prüfen.
+Beim Einbau nach [component-registries.md](component-registries.md) das Response-HTML der prerenderten Route, direkte Unterseitenaufrufe und nutzbare Links bei fehlgeschlagenem JavaScript prüfen.
 Sofort nötige Interaktion erhält begründet `client:load`; `client:visible` eignet sich nur bei vertretbar später Aktivierung.
 `client:only="react"` braucht einen belegten Browser-only-Grund und sichtbaren Fallback; wichtige Inhalte bleiben ausserhalb dieser Grenze.
 Portale, Fokus, Escape, mobile Bedienung, Reduced Motion und tatsächliche JS-/CSS-Requests am Produktionsbuild testen.

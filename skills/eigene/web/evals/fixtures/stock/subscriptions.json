@@ -1,0 +1,43 @@
+{
+  "data": [
+    {
+      "id": "ZGU0ZjBiYjk2ODIyNGQ3N2I2YTIxMGRmOGZiOGJmZTktaW1hZ2VzLXN0YW5kYXJk",
+      "expiration_time": "2026-09-05T05:04:00-04:00",
+      "license": "standard",
+      "description": "Standard Image License",
+      "asset_type": "images",
+      "allotment": {
+        "start_time": "2026-09-03T05:04:01-04:00",
+        "end_time": "2026-09-04T05:04:00-04:00",
+        "downloads_left": 100,
+        "downloads_limit": 100
+      }
+    },
+    {
+      "id": "ZGU0ZjBiYjk2ODIyNGQ3N2I2YTIxMGRmOGZiOGJmZTktYXVkaW8tYXVkaW9fc3RhbmRhcmQ=",
+      "expiration_time": "2026-09-05T05:04:00-04:00",
+      "license": "audio_standard",
+      "description": "Standard Music License",
+      "asset_type": "audio",
+      "allotment": {
+        "start_time": "2026-09-03T05:04:01-04:00",
+        "end_time": "2026-09-04T05:04:00-04:00",
+        "downloads_left": 100,
+        "downloads_limit": 100
+      }
+    },
+    {
+      "id": "cab04d4f33a4b5c6d7e8f9a0b1c2d3e4-api-free",
+      "expiration_time": "2027-06-25T12:52:07-04:00",
+      "license": "integrated_media",
+      "description": "PS Core Free Product - Image",
+      "asset_type": "images",
+      "allotment": {
+        "start_time": "2026-08-25T12:52:07-04:00",
+        "end_time": "2026-09-25T12:52:07-04:00",
+        "downloads_left": 500,
+        "downloads_limit": 500
+      }
+    }
+  ]
+}

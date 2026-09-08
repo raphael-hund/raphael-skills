@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "2 project-aware inspiration result(s) for \"pricing section\". Component code was not retrieved.\n\n1. [component] Pricing Section (70%)\n   Matches pricing, section\n   https://21st.dev/@kokonutd/components/pricing-section\n\n2. [component] Pricing table (55%)\n   Matches pricing\n   https://21st.dev/@dgearsonu1/components/pricing-table\n"
+      }
+    ]
+  }
+}

@@ -1,0 +1,776 @@
+{
+  "base": "https://www.farisschmidt.de",
+  "createdAt": "2026-08-31T10:29:16.862Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/webflow-kurs",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "webflow-kurs-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "webflow-kurs-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "webflow-kurs-desktop-click-y0-00-Klar_passt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 1500
+    },
+    {
+      "route": "/check",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "check-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "check-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "check-desktop-click-y0-00-Checkliste_freischalten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Checkliste_freischalten"
+        },
+        {
+          "file": "check-desktop-click-y0-01-Klar_passt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 1500
+    },
+    {
+      "route": "/checkliste",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "checkliste-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "checkliste-desktop-hover-00-Home.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Home"
+        },
+        {
+          "file": "checkliste-desktop-hover-01-Leistungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Leistungen"
+        },
+        {
+          "file": "checkliste-desktop-hover-02-Referenzen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Referenzen"
+        },
+        {
+          "file": "checkliste-desktop-hover-03-Prozess.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Prozess"
+        },
+        {
+          "file": "checkliste-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "checkliste-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "checkliste-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "checkliste-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "checkliste-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "checkliste-desktop-06-y3010.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3010
+        },
+        {
+          "file": "checkliste-desktop-click-y0-00-Klar_passt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        },
+        {
+          "file": "checkliste-desktop-click-y3000-00-Weiter.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 3000,
+          "target": "Weiter"
+        }
+      ],
+      "docHeight": 4510
+    },
+    {
+      "route": "/ressourcen/kostenlose-checkliste",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "ressourcen__kostenlose-checkliste-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-desktop-click-y0-00-Checkliste_freischalten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Checkliste_freischalten"
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-desktop-click-y0-01-Klar_passt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 1500
+    },
+    {
+      "route": "/ressourcen/claude-seo",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "ressourcen__claude-seo-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__claude-seo-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__claude-seo-desktop-click-y0-00-Klar_passt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 1500
+    },
+    {
+      "route": "/webflow-kurs",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "webflow-kurs-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "webflow-kurs-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "webflow-kurs-mobile-click-y0-00-Klar_passt.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 844
+    },
+    {
+      "route": "/check",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "check-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "check-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "check-mobile-02-y110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 110
+        },
+        {
+          "file": "check-mobile-click-y0-00-Checkliste_freischalten.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Checkliste_freischalten"
+        },
+        {
+          "file": "check-mobile-click-y0-01-Klar_passt.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 954
+    },
+    {
+      "route": "/checkliste",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "checkliste-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "checkliste-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "checkliste-mobile-02-y422.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 422
+        },
+        {
+          "file": "checkliste-mobile-03-y844.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 844
+        },
+        {
+          "file": "checkliste-mobile-04-y1266.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1266
+        },
+        {
+          "file": "checkliste-mobile-05-y1688.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 1688
+        },
+        {
+          "file": "checkliste-mobile-06-y2110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2110
+        },
+        {
+          "file": "checkliste-mobile-07-y2532.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2532
+        },
+        {
+          "file": "checkliste-mobile-08-y2954.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 2954
+        },
+        {
+          "file": "checkliste-mobile-09-y3376.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3376
+        },
+        {
+          "file": "checkliste-mobile-10-y3798.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 3798
+        },
+        {
+          "file": "checkliste-mobile-11-y4220.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4220
+        },
+        {
+          "file": "checkliste-mobile-12-y4642.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 4642
+        },
+        {
+          "file": "checkliste-mobile-13-y5059.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 5059
+        },
+        {
+          "file": "checkliste-mobile-click-y0-00-menu.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "menu"
+        },
+        {
+          "file": "checkliste-mobile-click-y0-01-Klar_passt.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        },
+        {
+          "file": "checkliste-mobile-click-y4642-00-Weiter.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 4642,
+          "target": "Weiter"
+        }
+      ],
+      "docHeight": 5903
+    },
+    {
+      "route": "/ressourcen/kostenlose-checkliste",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "ressourcen__kostenlose-checkliste-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-mobile-02-y110.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 110
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-mobile-click-y0-00-Checkliste_freischalten.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Checkliste_freischalten"
+        },
+        {
+          "file": "ressourcen__kostenlose-checkliste-mobile-click-y0-01-Klar_passt.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 954
+    },
+    {
+      "route": "/ressourcen/claude-seo",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "ressourcen__claude-seo-mobile-00-fold.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__claude-seo-mobile-01-y0.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "ressourcen__claude-seo-mobile-click-y0-00-Klar_passt.png",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "width": 390,
+          "height": 844,
+          "kind": "click",
+          "y": 0,
+          "target": "Klar_passt"
+        }
+      ],
+      "docHeight": 844
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "# Violet Bloom (theme)\nby serafimcloud\npage: https://21st.dev/community/themes/violet-bloom\n\n## CSS\n```css\n:root {\n  --background: #fdfdfd;\n  --primary: #7033ff;\n}\n```\n"
+      }
+    ]
+  }
+}

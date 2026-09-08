@@ -1,5 +1,7 @@
 # GPT Image: vollständige Bilder und einzelne Assets
 
+**Verbund (08.09.2026):** Entscheidungsbaum, Recraft-Vorlage, Higgsfield-Bearbeitung und AVIF-Index: [bildgenerierung.md](bildgenerierung.md).
+
 Laden, wenn eine Website neue oder bearbeitete Rastermedien braucht. Dieses Modul verbindet Raphaels Inhalts-/Stilreferenzen mit dem vorhandenen [Elementablauf](image-to-code.md), der [Motiv- und Stilbibliothek](image-library.md) und [Scrollcraft](scrollcraft.md). Es ist Teil von Web, kein zusätzlicher Gesamtworkflow.
 
 Herkunft: Raphaels Auftrag vom 06.09.2026, bestehender Higgsfield-Ablauf und verifizierte Sorglos-Quellen. Problem: Bildgenerierung war nur beiläufig an Image-to-Code angehängt; getrennte Objektassets, wiederverwendbare Stilanalysen und die Medienübergabe an Scroll fehlten als konkreter Vertrag.

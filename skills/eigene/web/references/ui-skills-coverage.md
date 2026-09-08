@@ -63,7 +63,7 @@ Alle 289 primären Quell-URLs waren erreichbar. Keine primäre Skill-Datei fehlt
 
 ## Integration und Prüfung
 
-Die Konsolidierung ist mit SKILL.md, Startprompt, DESIGN.md-Vertrag/Vorlage, Komponenten-/Stack-Entscheidungen, SEO-Metadaten, Screenshot-Verfahren sowie Bild-/Scrollmodulen verbunden. HTML-first und tatsächliche shadcn-Wiederverwendung über statische Ausgabe oder gezielte Astro-Inseln bleiben gültig. Die 289 Einträge wurden als abrufbares Wissen integriert; **keine globale Installation von 289 Skills**, neuen Hooks oder fremden Laufzeiten ist erfolgt.
+Die Konsolidierung ist mit SKILL.md, Startprompt, DESIGN.md-Vertrag/Vorlage, Komponenten-/Stack-Entscheidungen, SEO-Metadaten, Screenshot-Verfahren sowie Bild-/Scrollmodulen verbunden. HTML-first mit Astro-Inseln war der Stand bis 07.09.2026; seit 08.09.2026 gilt der React-Stack aus stack.md, die shadcn-Wiederverwendung läuft über Registries. Die 289 Einträge wurden als abrufbares Wissen integriert; **keine globale Installation von 289 Skills**, neuen Hooks oder fremden Laufzeiten ist erfolgt.
 
 Die unabhängige Playbook-Prüfung bestätigt 47 eindeutige Einträge und korrekte kontextuelle Übertragung. Die am 07.09.2026 abgeschlossene Integrationsprüfung bestätigt alle 289 Datensätze und ihre Prüfsummen, unveränderte Extraktionsinhalte sowie substanzielle Quellenstichproben aus allen zwölf Batches. Eine kleine Fehlzuordnung von `shadcn/improve` wurde anschliessend zur Review-Unterstützung korrigiert und gezielt geprüft.
 

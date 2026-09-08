@@ -17,7 +17,7 @@ Raphael wants this exact workflow available, element by element. The post "How T
 5. **Build one section at a time and hand over the assets.** Literal Codex prompt: *"lets build a website. i will provide the images and you just clone the rest of the website. so do NOT generate or build the asset in this image. focus on the components and details. here is the hero section. copy it. after that give me the dir of the folder where i need to put my images in  use react + nextjs / start local dev server afterwards"*. (MAKE drops the React/Next.js clause; see adaptations.) The agent reports the folder and exact filename; drop the cutouts there. Text, buttons and cards become code; only the boxed objects are images.
 6. **Screenshot, fix, repeat per section.** Alignment or overlap issues: screenshot, hand to the agent, fix. Then *"Add animations when scrolling into a new section. Should feel smooth and clean"*, hover states, responsiveness.
 
-MAKE adaptations: HTML/CSS/vanilla JS instead of his React/Next.js example; [motion-native.md](motion-native.md) for step 6; real business copy and truthful proof instead of the mockup's decorative numbers; the element inventory below records every boxed object with ID before extraction so nothing is silently dropped. Regenerated objects are derivatives and are compared against the mockup; brand logos, UI icons and real product photos come from originals, svgl/Iconify or [image-search.md](image-search.md), never from step 3; boxed icons in step 2 are inventoried, then sourced, not regenerated. Independent replication of the method exists in the thread (Yan, 22-second rebuild video).
+MAKE adaptations: React components in the Next.js project, matching his React/Next.js example; [motion-native.md](motion-native.md) for step 6; real business copy and truthful proof instead of the mockup's decorative numbers; the element inventory below records every boxed object with ID before extraction so nothing is silently dropped. Regenerated objects are derivatives and are compared against the mockup; brand logos, UI icons and real product photos come from originals, svgl/Iconify or [image-search.md](image-search.md), never from step 3; boxed icons in step 2 are inventoried, then sourced, not regenerated. Independent replication of the method exists in the thread (Yan, 22-second rebuild video).
 
 **Extraction prompt, MAKE form:**
 
@@ -34,7 +34,7 @@ Classify by the element's real job:
 | Element | Preferred implementation | What must remain separate |
 |---|---|---|
 | Headline/body/labels | Semantic HTML with real text | Searchable words, reading order and responsive wrap |
-| Button/navigation/form/card UI | HTML/CSS with vanilla JS where needed | Links, focus, controls, loading/error states |
+| Button/navigation/form/card UI | React components with semantic markup (shadcn base, registry items) | Links, focus, controls, loading/error states |
 | Person/product/complex illustration | Individual licensed raster asset with transparency when useful | Foreground silhouette and independent backdrop |
 | Existing brand logo | Supplied/authorised original SVG or image | Exact identity, proportions and protected clear space |
 | Simple vector/diagram/shape | Existing SVG or code-native geometry | Accessible text/content and meaningful geometry |
@@ -61,7 +61,7 @@ If an extraction tool or lawful asset is missing, document the exact affected el
 
 > Verwende [ORIGINALDATEI] und die markierte Region [ELEMENT-ID / REGION]. Stelle ausschliesslich [OBJEKT] frei. Erhalte Form, Pose, Perspektive, Materialdetails und vorhandene Markenmerkmale. Entferne den Hintergrund samt fremdem Text und Nachbarobjekten. Liefere das Objekt als einzelne Datei mit echtem Alphakanal, ausreichendem Rand und ohne eingemaltes Schachbrett. Erzeuge keine neue Website-Komposition und zeichne das Logo nicht neu. Wenn eine unveränderte Extraktion nicht möglich ist, kennzeichne eine Neugenerierung ausdrücklich. Die anschliessende Dateiprüfung entscheidet, ob Identität und Kanten ausreichend erhalten sind.
 
-## 3. Compose the elements in HTML
+## 3. Compose the elements as React components
 
 Build section structure and text flow first. Give visual objects independent layers/containers and CSS variables for scale, offsets and stacking. Use Grid/Flexbox for layout and restrained absolute positioning for intentional overlays. Match relationships rather than copying desktop pixel coordinates onto mobile.
 
@@ -81,6 +81,6 @@ Acceptance: every selected element is accounted for with a genuine asset or func
 
 ## Reusable implementation prompt (MAKE synthesis)
 
-> Inspect the supplied reference and list its individual elements before coding. Assign each element a stable ID and choose semantic HTML/CSS/SVG or a separate raster asset according to its job. Preserve original files. Extract only the licensed foreground objects that need independent placement; inspect real transparency and edges. Keep text, cards, navigation, buttons and forms as editable functioning code. Compose the section using HTML, custom CSS and vanilla JavaScript, with explicit desktop/mobile relationships and reduced-motion behavior. Implement every selected element, compare actual browser captures against the reference, correct concrete mismatches and record the final source/selector and evidence in DESIGN.md and the existing asset manifest.
+> Inspect the supplied reference and list its individual elements before coding. Assign each element a stable ID and choose semantic HTML/CSS/SVG or a separate raster asset according to its job. Preserve original files. Extract only the licensed foreground objects that need independent placement; inspect real transparency and edges. Keep text, cards, navigation, buttons and forms as editable functioning code. Compose the section as React components with semantic markup and Tailwind/CSS tokens, with explicit desktop/mobile relationships and reduced-motion behavior. Implement every selected element, compare actual browser captures against the reference, correct concrete mismatches and record the final source/selector and evidence in DESIGN.md and the existing asset manifest.
 
 Visual review detail from current Impeccable: do not approximate a genuinely organic photographic contour with arbitrary CSS polygons, or bury a selected raster under an almost opaque overlay. Use appropriate extracted imagery and inspect the resulting visible contribution; these are review questions, not claims that a detector ran. See [dependency evidence](dependencies.md).

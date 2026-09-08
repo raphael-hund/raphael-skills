@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"uuid\":\"5c1a397c-3cec-493f-9cea-dce90e95b761\",\"platform\":\"web\",\"page_url\":\"https://manychat.com/pricing\",\"refero_url\":\"https://refero.design/pages/5c1a397c-3cec-493f-9cea-dce90e95b761\",\"thumbnail_url\":\"https://images.refero.design/screenshots/example_thumb.jpg\",\"site\":{\"name\":\"ManyChat\",\"domain\":\"manychat.com\"},\"content\":\"Pricing\"}"
+      }
+    ]
+  }
+}

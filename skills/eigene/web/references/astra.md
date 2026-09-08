@@ -1,5 +1,7 @@
 # GPT-6 Astra: grounded skill guidance
 
+**Verbund (08.09.2026):** In der Claude-Code-Harness ist die Hauptsession Fable; Astra läuft als `astra-worker`/`astra-critic` (Stufe 1). Diese Datei gilt für Codex-Sessions mit `$web`.
+
 Read for Astra-specific orchestration and resumable long tasks. Source review: 2026-09-06.
 
 ## Official facts
@@ -12,7 +14,7 @@ The official frontend prompt page explicitly targets **GPT-5.5**, while saying m
 
 ## Recommended skill implementation — our synthesis
 
-1. Put one short execution contract first: deliver the complete agreed HTML-first SEO site, using native code or documented component islands as appropriate; resolve reversible choices autonomously; use existing authorisation; ask only about material blockers; preserve task scope through steering.
+1. Put one short execution contract first: deliver the complete agreed SEO site as a React project (Next.js App Router, see stack.md), installing components from the configured registries; resolve reversible choices autonomously; use existing authorisation; ask only about material blockers; preserve task scope through steering.
 2. Audit loaded instructions for conflicts. Keep `/unlazy`, Impeccable, Taste, Compound, and SEO modules scoped to their responsibilities. Never invent `/loop`, `ultracode`, background execution, or model settings.
 3. Stage durable contracts: business evidence → search-intent/page map → reference observations → `DESIGN.md` and tokens → representative homepage/service-page build → remaining SEO pages → independent review → authorised deployment.
 4. Save checkpoints containing decisions, current implementation, remaining defects, screenshots, checks run, and exact next actions. Resume these after compaction; do not restart research.

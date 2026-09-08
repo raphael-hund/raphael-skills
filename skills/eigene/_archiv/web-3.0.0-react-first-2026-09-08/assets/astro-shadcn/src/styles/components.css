@@ -1,0 +1,35 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tw-animate-css";
+@source "../registry/new-york-v4/ui";
+@source "../components";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* The static portal container scopes CSS without changing Radix Presence children. */
+@scope (.shadcn-scope) {
+  @layer base {
+    *, ::before, ::after { box-sizing: border-box; border: 0 solid var(--border); }
+    h2, h3, p { margin: 0; font-size: inherit; font-weight: inherit; }
+    button { font: inherit; cursor: pointer; }
+    button:disabled { cursor: wait; }
+  }
+  @layer utilities { @tailwind utilities source(none); }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation: none !important; transition: none !important; }
+  }
+}

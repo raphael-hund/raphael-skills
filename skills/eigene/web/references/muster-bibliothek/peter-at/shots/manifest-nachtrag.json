@@ -1,0 +1,678 @@
+{
+  "base": "https://www.peter.at",
+  "createdAt": "2026-08-31T10:28:38.315Z",
+  "static": true,
+  "states": false,
+  "viewports": {
+    "fold": {
+      "width": 1440,
+      "height": 900
+    },
+    "deep": {
+      "width": 1440,
+      "height": 1500
+    },
+    "scrollStepPx": 750
+  },
+  "routes": [
+    {
+      "route": "/presse",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "presse-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "presse-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "presse-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "presse-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "presse-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "presse-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "presse-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "presse-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "presse-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "presse-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "presse-desktop-05-y2712.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2712
+        }
+      ],
+      "docHeight": 4212
+    },
+    {
+      "route": "/news/neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "news__neue-finanzierung-macht-pv-anlagen-ab-58-euro-moglich-desktop-05-y2794.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2794
+        }
+      ],
+      "docHeight": 4294
+    },
+    {
+      "route": "/karriere",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "karriere-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "karriere-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "karriere-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "karriere-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "karriere-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "karriere-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "karriere-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "karriere-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "karriere-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "karriere-desktop-04-y1594.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1594
+        }
+      ],
+      "docHeight": 3094
+    },
+    {
+      "route": "/partnerbetrieb-werden",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "partnerbetrieb-werden-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-02-y501.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 501
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-click-y0-00-Weiter.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "Weiter"
+        },
+        {
+          "file": "partnerbetrieb-werden-desktop-click-y0-01-el2.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 0,
+          "target": "el2"
+        }
+      ],
+      "docHeight": 2001
+    },
+    {
+      "route": "/weiterempfehlen",
+      "status": 200,
+      "static": true,
+      "shots": [
+        {
+          "file": "weiterempfehlen-desktop-00-fold.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "fold",
+          "y": 0
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-00-Kundenerfahrungen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kundenerfahrungen"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-01-Über_uns.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Über_uns"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-02-Freunde_empfehlen.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Freunde_empfehlen"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-03-Kontakt.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Kontakt"
+        },
+        {
+          "file": "weiterempfehlen-desktop-hover-04-Jetzt_Ersparnis_berechne.png",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "width": 1440,
+          "height": 900,
+          "kind": "hover",
+          "target": "Jetzt_Ersparnis_berechne"
+        },
+        {
+          "file": "weiterempfehlen-desktop-01-y0.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 0
+        },
+        {
+          "file": "weiterempfehlen-desktop-02-y750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 750
+        },
+        {
+          "file": "weiterempfehlen-desktop-03-y1500.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 1500
+        },
+        {
+          "file": "weiterempfehlen-desktop-04-y2250.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 2250
+        },
+        {
+          "file": "weiterempfehlen-desktop-05-y3000.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3000
+        },
+        {
+          "file": "weiterempfehlen-desktop-06-y3750.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3750
+        },
+        {
+          "file": "weiterempfehlen-desktop-07-y3895.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "scroll",
+          "y": 3895
+        },
+        {
+          "file": "weiterempfehlen-desktop-click-y2250-00-Empfehlungscode_erhalten.png",
+          "viewport": {
+            "width": 1440,
+            "height": 1500
+          },
+          "width": 1440,
+          "height": 1500,
+          "kind": "click",
+          "y": 2250,
+          "target": "Empfehlungscode_erhalten"
+        }
+      ],
+      "docHeight": 5395
+    }
+  ]
+}

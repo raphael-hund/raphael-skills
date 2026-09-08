@@ -1,5 +1,7 @@
 # Search architecture and implemented SEO pages
 
+**Verbund (08.09.2026):** On-Page-Gate am gebauten Stand: `scripts/onpage-check.mjs`; SEO-Linse der Kritik: [rolle-kritik.md](rolle-kritik.md) (d).
+
 Read before sitemap/content work and before release. The acceptance object is a complete useful page at a working route, not a keyword list, planned sitemap or thin generated template.
 
 ## Research to route decisions

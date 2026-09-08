@@ -47,6 +47,10 @@ function usage() {
 
 async function main() {
   const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(usage());
+    return;
+  }
   let input;
   let phase = 'plan';
   let phaseSeen = false;

@@ -1,5 +1,7 @@
 # Inheriting Raphael's web corpus
 
+**Verbund (08.09.2026):** Die hier referenzierten Dateien `sitemap-section-planung.md`, `tool-usecase-router.md`, `screenshot-kritik-loop.md` und `radix-shadcn-tailwind-stack.md` liegen seit 4.0.0 wieder lokal in diesem Skill.
+
 Use when working from `raphael-hund/raphael-skills` or its client projects. Inspect current source through GitHub and the actual project before combining instructions. Preserve established decisions; this adapter is not permission to rewrite unrelated skills.
 
 The corpus already divides responsibilities between the whole-site `web`, combined visual `design`, and SEO owner `seo`. Its local Taste and Impeccable skills are routers into that design system. Do not load every overlapping upstream as a new controller. [Web](https://github.com/raphael-hund/raphael-skills/blob/main/skills/eigene/web/SKILL.md), [design](https://github.com/raphael-hund/raphael-skills/blob/main/skills/design/SKILL.md), [SEO](https://github.com/raphael-hund/raphael-skills/blob/main/skills/eigene/seo/SKILL.md)
@@ -26,7 +28,7 @@ Sources: [sitemap and sections](https://github.com/raphael-hund/raphael-skills/b
 | Fixed screenshot dimensions or three-cycle maximum | Inspect meaningful page/state coverage and unresolved defects; avoid repetitive clean checks. |
 | Mandatory approval before routine fixes | Follow the existing session's authorisation; ask only for a genuinely material missing decision. |
 
-The historical whole-site Next App Router preference is superseded for new websites by HTML-first output. Actual shadcn components may be rendered at build time or used in bounded React islands through the current [hybrid route](component-islands.md). Preserve a suitable existing Next/React application; a new whole-app conversion still needs its own justification. [Historical stack guidance](https://github.com/raphael-hund/raphael-skills/blob/main/skills/eigene/web/references/radix-shadcn-tailwind-stack.md)
+The whole-site Next App Router preference is the default again since 08.09.2026 ([stack.md](stack.md)); the HTML-first interlude of 06.–07.09.2026 survives only as the [legacy route](component-islands.md) for existing HTML sites. Preserve a suitable existing Next/React application and extend it. [Historical stack guidance](https://github.com/raphael-hund/raphael-skills/blob/main/skills/eigene/web/references/radix-shadcn-tailwind-stack.md)
 
 ## Source status
 

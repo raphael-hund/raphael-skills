@@ -1,6 +1,8 @@
 # Design aus Referenzen ableiten
 
-Einstieg für explizites Referenzlernen, detaillierte Bildanalyse und die Übertragung von Inspirationsseiten in einen eigenen HTML-first Entwurf. Ergänzt [service-learning.md](service-learning.md), [image-to-code.md](image-to-code.md) und [design-contract.md](design-contract.md). Für konkrete Konstruktion [Anatomie](design-anatomy.md), [Effekte](design-effects.md), [UX-Entscheidungen](design-ux-decisions.md) nach Bedarf laden. Für Bauanleitungen, Messwerte und Stilfamilien den [Design-Depth Router](design-depth/INDEX.md) mit vierzehn tiefen Kapiteln nutzen; Einzelanalysen unter [studies/design-depth/deep/](studies/design-depth/deep/).
+**Verbund (08.09.2026):** Vor der Art-Direction gelten zusätzlich [stil-regeln.md](stil-regeln.md) (Sektor-Dials, Präzedenz der Kunden-DESIGN.md) und 2–3 Cases aus [muster-bibliothek/INDEX.md](muster-bibliothek/INDEX.md).
+
+Einstieg für explizites Referenzlernen, detaillierte Bildanalyse und die Übertragung von Inspirationsseiten in einen eigenen Entwurf. Ergänzt [service-learning.md](service-learning.md), [image-to-code.md](image-to-code.md) und [design-contract.md](design-contract.md). Für konkrete Konstruktion [Anatomie](design-anatomy.md), [Effekte](design-effects.md), [UX-Entscheidungen](design-ux-decisions.md) nach Bedarf laden. Für Bauanleitungen, Messwerte und Stilfamilien den [Design-Depth Router](design-depth/INDEX.md) mit vierzehn tiefen Kapiteln nutzen; Einzelanalysen unter [studies/design-depth/deep/](studies/design-depth/deep/).
 
 ## 1. Die richtige Quelle für die Entscheidung
 

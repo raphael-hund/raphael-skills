@@ -1,189 +1,190 @@
 ---
 name: web
-description: Build or redesign credible HTML-first service-business websites with custom CSS, vanilla JS or optional Astro component islands, implemented SEO subpages, reference-informed DESIGN.md and independent browser review. Analyse supplied websites into source-linked patterns; use 21st.dev when connected. Integrate GPT Image website imagery and separate assets with content/style references, IMAGE-SPEC and optional Scrollcraft motion; search and place logos, icons and reference photos with the bundled image-search script; choose components from a 50-library catalogue with licence and island routes; implement interface motion natively from the Emil Kowalski rules; pick gallery references from the 56-source catalogue and Refero MCP. Build every UI surface from the measured design-depth chapters via their router. Also create or reconcile DESIGN.md. Use for Raphael's website builds, reference-learning requests and substantial frontend SEO work; preserve narrower scopes.
+description: >
+  Dach-Skill für Website- und Landingpage-Projekte in der Claude-Code-Harness:
+  Plan, Fold-Duell, Bau, Kritik und Launch als Phasen mit Gates und Screenshots.
+  Baut React-Projekte (Next.js App Router, TypeScript, Tailwind v4, shadcn/ui)
+  und installiert Komponenten aus den verbundenen Registries, MCP-Servern und
+  npm-Bibliotheken (21st.dev, shadcn, Mantine, Magic UI, Aceternity, Kibo und
+  weitere), statt sie nachzubauen. Trägt SEO-Seitenkarte, DESIGN.md, Design-Depth-
+  Kapitel, Motion-Regeln, Bildsuche, GPT-Image, Muster-Bibliothek und Stil-Regeln.
+  Subagenten: Fable, Astra und Kimi zuerst, Opus und Grok dazu, Sol nur Backend,
+  Luna/Sonnet/Terra nur Serien. Trigger: "Website bauen", "Landingpage bauen",
+  "Sitemap", "Webseite launchen", "CRO", "Referenzseite nachbauen", "Website
+  clonen", "Screenshot nachbauen", "aus Bild bauen", "Website planen",
+  "Website-Kritik", "kompletter Website-Plan", "DESIGN.md".
 metadata:
-  raphael-version: "2.2.0"
-  raphael-changelog: '["2.0.1 (07.09.2026): Rückverweis-Gate vor Versionssprüngen, Reveal-Regel für content-visibility, Headless-QA bei View Transitions, Referenzrollen-Regel für Bildserien", "2.0.2 (07.09.2026): §8a Review-Identität (Backend-Revision binden), §8b Domain→Projekt-Bindung vor Deploy, Dokumentarfoto-Inhaltsfreigabe in §6", "2.0.3 (07.09.2026): §8c Tracking+Datenschutz als eine Lieferung, §8d Fortschritt am sichtbaren Produkt berichten", "2.1.0 (07.09.2026): Design-Depth-Module Anatomie, Effekte, UX-Entscheidungen, Quellenindex und datierte Studien", "2.2.0 (07.09.2026): 14 tiefe Design-Depth-Kapitel mit Bauanleitungen und Stilfamilien, Router references/design-depth/INDEX.md, 54 Einzelanalysen unter studies/design-depth/deep, Kernregeln in den Kurzmodulen"]'
-  raphael-design-depth: "2.2.0: 14 deep chapters (spacing/layout, color, typography, buttons, cards, tables/data, mobile, effects, motion, imagery, forms, navigation, states/proof/pricing, commonalities) with build recipes and style families, routed via references/design-depth/INDEX.md; 54 measured single analyses; anatomy, effects and UX modules carry the top-10 rules per chapter"
+  raphael-version: "4.0.0"
+  raphael-changelog: '["0.34.0 (04.09.2026): Fold-Duell als Welle 0, Referenzen als Bilder, Blind-Judge, Komponenten vor Eigenbau", "2.0.0 bis 2.2.0 (07.09.2026): MAKE Web Astra mit 56 Galerien, 50 UI-Bibliotheken, Motion-Regeln, Bildsuche, GPT-Image, 14 Design-Depth-Kapiteln", "3.0.0 (08.09.2026): React-first, verifizierte Registries, react-starter, 21st-CLI und Design Context, shadcn- und Mantine-MCP", "4.0.0 (08.09.2026): Zusammenführung 0.34.0 + 2.2.0 + 3.0.0: Rollen, Gates, Skripte und Muster-Bibliothek aus 0.34.0, Wissensmodule aus 2.2.0, React-Stack und Registries aus 3.0.0; Agentenkatalog auf Fable/Astra/Kimi + Opus/Grok; Workflow-Tool statt /orchestrate; Playwright-Loader für alle Screenshot-Skripte"]'
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: '["references/image-to-code.md", "references/image-search.md", "references/ui-libraries.md", "references/motion-native.md", "references/inspiration-galleries.md", "references/dependencies.md", "references/design-depth.md", "references/design-anatomy.md", "references/design-effects.md", "references/design-ux-decisions.md", "references/design-depth/INDEX.md"]'
-  raphael-requires-skills: '["design@^0","copywriting@^0","seo@^0","higgsfield@^0"]'
-  raphael-completion-criteria: '["Alle vereinbarten Seiten und SEO-Unterseiten existieren als vollständiges HTML mit echten Inhalten, Metadaten und internen Links", "DESIGN.md ist mit dem tatsächlichen CSS, den Assets und dem gerenderten Verhalten abgeglichen", "Desktop- und Mobilaufnahmen, Roh-HTML, Statuscodes, Links, Formulare und Bewegung wurden am gebauten Stand geprüft und Abweichungen behoben oder benannt", "Logos, Icons und Bilder sind mit Quelle im Manifest eingebaut; fehlende Zugriffe oder ungeprüfte Eigenschaften sind ausdrücklich genannt", "Veröffentlichung nur im beauftragten Umfang, danach Prüfung der ausgelieferten URLs"]'
-
+  raphael-loads: '["references/anfaenger-pfad.md", "references/rolle-plan.md", "references/rolle-kritik.md", "references/rolle-bau.md", "references/rolle-launch.md", "references/fold-duell.md", "references/kritik-matrix.md", "references/agent-roster.md", "references/stack.md", "references/component-registries.md", "references/21st-dev.md", "references/stil-regeln.md", "references/muster-bibliothek/INDEX.md", "references/design-depth.md", "references/design-depth/INDEX.md", "references/motion-native.md", "references/image-search.md", "references/gpt-image.md", "references/seo-pages.md", "references/screenshots.md", "references/load-graph.md", "references/loop2-ablauf.md", "references/tool-usecase-router.md", "references/modus-inspiration.md", "references/zugangskarte.md"]'
+  raphael-requires-skills: '["copywriting@^0","design@^0","seo@^0","higgsfield@^0"]'
+  raphael-completion-criteria: '["Rolle in einem Satz benannt (Plan|Kritik|Bau|Launch), genau ein Rollen-Dokument geladen, Preflight aus dem Abschnitt Vor dem ersten Edit gelaufen", "Website ist ein React-Projekt aus assets/react-starter; jede vereinbarte Route der SEO-Seitenkarte ist prerendert und trägt Inhalt, Metadaten und Links im Response-HTML (curl-Beleg am Produktionsbuild)", "Wiederverwendbare Komponenten kommen aus den konfigurierten Registries, npm oder 21st mit Herkunft, Lizenz und entfernten Abhängigkeiten in DESIGN.md; Eigenbau nur mit Suchbeleg", "Bei Neuaufbau/Redesign hat Raphael das Fold-Duell gesehen und in DECISIONS.md gewählt, bevor Routen gebaut wurden", "Plan, Fold-Duell, Bau und Kritik als Phasen in einem Chat, Zustand auf Platte (PLAN.md, PRUEFGEGEN.md, STATUS.md, KRITIK-n.md); Neuaufbau: Fold-Duell-GO öffnet den ersten Bau, danach öffnet nur KRITIK-n.md den nächsten Bau", "Parent dünn: kein CSS/TSX-Edit, kein PNG-Read im Parent; jedes PNG liest ein Kritik-Leaf, Parent führt das Shot-Ledger", "Fold-Duell und Bau starten im ersten Turn einen Dynamic Workflow (multi-family); Fable/Astra/Kimi primär, Opus ergänzend; nach jedem Bau genau ein Stufe-2-Kritiker anderer Familie, zweiter nur nach FAIL; vor Auslieferung genau eine Stufe-1-Abnahme", "Screenshots über scripts/shot-sweep.mjs mit --base (1440×900 Fold und 390×844), nach jedem Fix frischer Sweep; DESIGN.md mit CSS und gerendertem Stand abgeglichen", "Launch nur mit allen Gates aus rolle-launch.md grün und Raphaels Signatur; kein Push, Deploy oder Versand ohne Auftrag"]'
 ---
 
-# Web
+# web: Website-Skill (Claude Code)
 
-Deliver a recognisable, credible, fully functioning website whose search architecture is actually implemented. A beautiful homepage, sitemap or audit alone does not complete a website build. Use the real business, audience, market, assets and offer to determine the design. Default communication to clear German with Swiss ss for Raphael; use the project's required language for site copy.
+Diese Datei ist der **Router**. Sie sagt, welche Phase du bist, welche eine Datei
+du dafür lädst und welche Gates gelten. Das Handbuch steht in den Referenzen.
 
-For Raphael's service businesses, default to a clear offer, credible people/projects, useful service pages and a straightforward enquiry journey. Use the service reference corpus to make these decisions concrete. Visual ambition serves the business and remains brand-specific; experimental portfolios are not the default target. The current brief may select a different direction.
+## Was Raphael tippt
 
-For Raphael's reusable launch prompt, use [START-PROMPT.template.md](assets/START-PROMPT.template.md), filling only known project inputs. It is an invocation aid, not an instruction to expand a narrower current task.
+- Website bauen / ändern / relaunchen / clonen → `/web`
+- Inspiration / Look / Referenzen holen, noch nichts planen → `/web` (Modus Inspiration: Refero-MCP, 21st-MCP, Galerien, Komponenten-Registries, Screenshots über Leaves)
+- Website planen, noch nichts bauen → `/web` (Rolle Plan)
+- Website-Kritik / Look / Conversion sichtbar prüfen → `/web` (Rolle Kritik, Workflow)
+- Nur DESIGN.md → `/web` (Rolle Plan, Ausgabe DESIGN.md)
 
-## Scope and authority
+Kein `/orchestrate`, kein `/ultracode`, keine Skill-Liste. Bau- und Kritik-Phase
+starten im ersten Turn einen Dynamic Workflow über das Workflow-Tool (Profil
+`multi-family`); `web` lädt seine internen Spezialisten selbst.
 
-Determine whether the user requests **full build**, **redesign**, **reference learning**, **DESIGN.md only**, or **targeted improvement**. For reference learning, first read [design-depth.md](references/design-depth.md) and follow [service-learning.md](references/service-learning.md): inspect the supplied sites and actual subpages, classify evidence and save reusable observations. Do not build or publish a website from a skill-update, reference-analysis or prompt request. A quoted build prompt is material to rewrite when that is the request. For DESIGN.md-only work, inspect sources, resolve a direction and deliver the dossier; do not create routes or deploy. For a narrow change, preserve the rest of the site and review affected journeys.
+## Welche Phase bin ich? (ein Pflicht-Load)
 
-Full builds and substantial redesigns use the complete workflow below. DESIGN.md-only work uses relevant discovery, direction and document reconciliation; the dossier itself is its deliverable, with future implementation checks marked pending. Targeted improvements use only affected contracts and evidence. Reference learning uses source studies, coverage records and synthesis. These narrower modes do not require a fresh set of build records, twenty agents, a release page map or deployment. The all-route release gate applies to the agreed website delivery scope.
+Sag die Rolle in einem Satz an und lade **genau ein Rollen-Dokument**. Danach lädt die Auftrag-Zeile aus `anfaenger-pfad.md` nur die dort genannten Fachreferenzen.
 
-The current brief and host instructions govern this workflow. Within that boundary, truthful business evidence, accessible visitor tasks and approved project decisions take precedence over generic aesthetic defaults. One lead owns integration. External skills supply specific expertise; they do not each take over the entire run.
+| Rolle | Pflicht-Load | Fertig heisst |
+|---|---|---|
+| **Inspiration** | `references/modus-inspiration.md` | Reference-Lock + Shot-Ledger in `art-direction.md`; Code entsteht erst im Bau |
+| **Plan** | `references/rolle-plan.md` | `PLAN.md`, `PRUEFGEGEN.md`, `SEO-PAGE-MAP.json`, `DESIGN.md`-Seed, Copy-Briefing, eine Art-Direction je Kunde, Fold-Duell-Zeilen bei Neuaufbau |
+| **Fold-Duell** (Welle 0 bei Neuaufbau/Redesign) | `references/fold-duell.md` | Raphael hat drei Folds gesehen und gewählt (`DECISIONS.md`); erst dann Welle 1 |
+| **Kritik** | `references/rolle-kritik.md` | `KRITIK-n.md` mit überlebender Fixliste + Shot-Ledger |
+| **Bau** | `references/rolle-bau.md` | Fixliste umgesetzt, Re-Sweep grün, `STATUS.md` aktuell, alle Routen der Seitenkarte gebaut |
+| **Launch** | `references/rolle-launch.md` | alle Launch-Gates grün, Raphaels Signatur liegt vor |
 
-Use the host's actual Astra model and native tools. A skill cannot switch the main model, create concurrency slots, install hooks, or make slash commands exist. Read [astra.md](references/astra.md) for model-specific guidance and progress. Read [dependencies.md](references/dependencies.md) before combining named skills; read [existing-web.md](references/existing-web.md) when inheriting Raphael's repository.
+Jede Rolle startet mit dem Gate:
 
-## 1. Establish the contract
-
-Inspect the project, AGENTS.md, dependencies, hosting configuration, business sources and assets. Discover connected tools before declaring access missing. Prefer GitHub for repositories and an available Mobbin/Refero connection for their content. Ask only for facts that materially block progress after useful discovery.
-
-For new builds and substantive component work, discover and actually use the connected 21st.dev MCP for relevant component research and implementation according to [21st-dev.md](references/21st-dev.md). Record a concrete connection/authentication gap if unavailable and continue authorised work. A skill entry or MCP URL is not an active connection; do not manufacture successful usage or repeatedly request setup.
-
-Create or reuse these records without duplicating an established equivalent:
-
-| Record | Purpose |
-|---|---|
-| `PRODUCT.md` | Verified audience, offer, territory, voice, differentiation, contact destinations, proof and unknowns |
-| `PLAN.md` | Scope, requirements, dependencies, ownership, actual agent handles and acceptance gates |
-| `SEO-PAGE-MAP.json` | Authoritative routes, intent, distinct value, links, indexability and implementation/evidence status |
-| `DESIGN.md` | Selected intent, executable token source and responsive/component contracts |
-| `docs/design/references.md` | Inspected examples, screenshots, confidence and chosen adaptations |
-| `docs/qa/` | Route/state screenshots, findings, measured checks and retests |
-| `docs/qa/screenshots.json` | Actual revision, route, CSS viewport, DPR, state, readiness, capture and reviewer for each image |
-| `STATUS.md` | Snapshot, decisions, outstanding work, blockers and exact next actions |
-
-Map every independently omittable requirement to an owner and observable evidence. Use Unlazy when its acceptance tracking adds value or the user requests it. Raphael's current instructions permit automatic skill selection and prioritise quality; missing time, token or agent budgets are not a start/continuation gate. Its helper commands and hooks retain their actual runtime and authorization requirements; do not call handwritten checklists CLI-certified evidence. A repository description is not proof of installation.
-
-## 2. Research and build the search architecture
-
-Read [seo-pages.md](references/seo-pages.md). Use authorised OpenSEO, DataForSEO, Search Console or other existing evidence. Record query, geography, date and source for metrics. Without access, continue evidence-backed intent research and label numerical data unavailable.
-
-Plan appropriate service details, hubs, genuine local/service-area pages, case studies and guides. Do not create a URL for every wording variant or every service × city combination. Explain merge/reject decisions.
-
-**For full builds and redesigns, implement every SEO subpage agreed in the page map in the same delivery.** No hidden homepage-only MVP, empty route, copied city text or deferred content remainder. Each page needs its own user value and truthful evidence. If material content cannot be established, surface that limitation instead of inventing it or marking the route complete.
-
-Brief each page: visitor intent, answer/offer, unique value, sources, proof, primary action, section jobs, internal links, metadata and applicable schema. Useful content must remain readable; do not truncate it to obey generic paragraph or hero word limits.
-
-## 3. Select and document art direction
-
-Use the installed Refero design methodology for research and synthesis; Taste and Impeccable supply selected implementation and craft operations within that direction. Read [inspiration.md](references/inspiration.md), the ranked [56-source gallery catalogue](references/inspiration-galleries.md) with its search recipe for trade and consulting websites, [creator-methods.md](references/creator-methods.md), and [design-contract.md](references/design-contract.md). Start visual direction with the connected Refero MCP (styles, then screens) when it is available, then add gallery examples the styles do not cover. Select relevant whole-site, mobile and component references; inspect actual examples beyond gallery homepages. Honour explicit requests to visit an entire supplied list, recording inaccessible sources accurately.
-
-For service-business work, read [service-patterns.md](references/service-patterns.md) and retrieve matching pages from [service-learning.md](references/service-learning.md) before broad gallery exploration. Use the source studies selectively: [solar](references/service-sites-solar.md), [agencies/local services](references/service-sites-agencies.md), [B2B and personal specialists](references/service-sites-specialists.md), [SEO Labs and verified client relationships](references/service-sites-seolabs.md), and [visual/state evidence](references/service-sites-visual.md). Analyse homepage, relevant inner-page families and enquiry journeys separately. Treat liked sites as preference evidence, with specific strengths and weaknesses; do not infer rankings or conversion results from appearance. The corpus is retrievable knowledge, not model training.
-
-For screenshot-led builder workflows read [builder-workflows.md](references/builder-workflows.md). For Viktor Oddy/MotionSites references read [video-methods.md](references/video-methods.md), retaining the distinction between transcript evidence, viewed frames and original synthesis. Use Elaya's page-intent planning conditionally through the dependency adapter; brand decisions and truthful proof remain authoritative.
-
-Consult [video-coverage.md](references/video-coverage.md) when expanding video research or assessing what was actually reviewed. Public channel enumeration, caption analysis and full visual viewing are separate coverage claims.
-
-For each adopted principle record source, screenshot/viewport, observation, brand fit and implementation adaptation. Do not copy identity or unlicensed assets. Gallery popularity does not demonstrate SEO or conversion performance. Separate primary observations from snippets and inference.
-
-For a major new identity, compare a few structurally different directions before choosing. Matt Pocock's prototype helper is optional when exploration adds value. Preserve approved visual identity. When visual references contain reusable elements, apply [image-to-code.md](references/image-to-code.md): inventory each element, assign it to real HTML/CSS/SVG or an individual raster asset, extract suitable licensed assets, and compose a responsive implementation. Raphael explicitly wants this element-by-element method. Generate a section mockup only when it resolves a visual decision; never flatten indexable text or functioning controls into an image.
-
-Create a seed `DESIGN.md` from [DESIGN.template.md](assets/DESIGN.template.md). Specify semantic tokens, font rights/fallbacks, composition, imagery, responsive behaviour, motion, interactions and SEO page families. Describe concrete brand signals. Taste's variance/motion/density controls describe choices, not scores to maximise. Load only the selected Taste variant.
-
-For rules distilled from twelve further reviewed agent skills (Hallmark self-critique axes, Stitch design.md prohibitions with values, one-image-per-section mockups, GEO/AEO methods and bot lists, Astro SEO must-checks, motion checklists, polish-pass QA, prompt-injection hygiene for inspected sites), read [external-skills-2026-09.md](references/external-skills-2026-09.md) and apply only the rules mapped to the current phase; its React/Tailwind-bound sources are excluded. For reusable UI tactics and specialist selection, read [UI Skills consolidation](references/ui-skills.md) and only the relevant parts of its [47-tactic playbook](references/ui-playbook.md). The full catalog's source-linked extractions remain retrievable through that index. For assistant/workspace interactions, consult Raphael's additional [Beautiful UI reference and shadcn registry adapter](references/beautiful-ui.md). Apply principles to the present visitor task; do not activate hundreds of workflows, import another brand's aesthetic, or add a framework merely because a source assumes it.
-
-For every new UI surface, read [design-anatomy.md](references/design-anatomy.md); for material and graphic effects read [design-effects.md](references/design-effects.md); for proof, pricing, forms and navigation read [design-ux-decisions.md](references/design-ux-decisions.md). These three modules carry the top-ten rules of each deep chapter; when a section needs a build recipe, measured value or style-family variant, open the [Design-Depth Router](references/design-depth/INDEX.md) and load only the chapter for that task (spacing/layout, colour, typography, buttons, cards, tables/data, mobile, effects, motion, imagery, forms, navigation, states/proof/pricing, commonalities). The router also holds the precedence rules for conflicts between modules. Use the [dated source studies](references/design-depth-sources.md) for the supplied X corpus, Mobbin/Refero and design-system generators. Distinguish observed pixels, measured values, source claims and your own construction; resolve export conflicts before adopting tokens.
-
-## 4. Implement the complete website
-
-Before changing UI, cite the applicable DESIGN.md section/rule in the existing task record and explain any new pattern or uncovered decision. After implementation, connect those rules to actual source and current state evidence; classify mismatches, scoped exceptions and justified system extensions through [the active contract procedure](references/design-contract.md#values-reasons-and-explicit-rule-references). Explicit user decisions govern conflicts; routine gaps follow the established system without an automatic permission stop.
-
-Read [stack.md](references/stack.md). Default output: **semantic HTML + custom CSS + vanilla JavaScript where sufficient**. Build a real HTML document per SEO route. For actual shadcn/React library reuse on an HTML-oriented website, prefer [Astro component islands](references/component-islands.md): render static components at build time and hydrate only interactive areas. A useful component can justify a bounded island; converting the whole site to a React application still requires application complexity such as many interdependent views and shared states. Preserve a viable existing stack for targeted work. For ChatGPT Sites, follow actual Sites building/hosting instructions and framework/runtime constraints.
-
-For interface motion, apply [motion-native.md](references/motion-native.md): Emil Kowalski's animation rules translated into CSS transitions, `@starting-style`, WAAPI and native View Transitions, with duration/easing tokens, reduced-motion handling and the situation table for navigation, dialogs, cards, scroll reveal, page changes and form feedback. A `motion` React runtime belongs only in a bounded island for genuine gesture physics or reused React primitives; scroll-driven media remain under [Scrollcraft](references/scrollcraft.md).
-
-For logos, icons, known products, place imagery and photographic content references, apply [image-search.md](references/image-search.md) with `scripts/find-images.mjs` before generating anything: search, download with manifest, prefer SVG, and place logos and icons directly without a copyright query. A found photo is either used directly or handed to GPT Image as a content reference for a new scene with changed perspective and look; Raphael explicitly wants no rights-clarification loop here.
-
-For new or edited images and individual raster assets, apply the integrated [GPT Image module](references/gpt-image.md). Distinguish complete images from independently placed assets; supply actual content and style reference files with explicit roles, record photographic observations separately from desired settings, and use the [image/asset library](references/image-library.md) selectively. Use the native image tool or the user-authorised Higgsfield route, verify files and alpha, then compose real HTML elements. For image-to-video and scroll-controlled media, follow the [Scrollcraft adapter](references/scrollcraft.md) with an inspected still fallback.
-
-Build foundations and shared components, then compose pages in bounded sections. For full builds and redesigns load [design-depth.md](references/design-depth.md) with its anatomy, effects and UX modules before the first component, and take each section's build recipe from the matching chapter in the [Design-Depth Router](references/design-depth/INDEX.md). For any reusable component need, consult [ui-libraries.md](references/ui-libraries.md): 50 catalogued libraries with licence, stack, route A–E (native HTML, Tailwind-only, static Astro render, hydrated island, unsuitable) and warnings, plus a per-library profile in the corpus JSON. Evaluate shadcn/ui for needed UI components in suitable React projects and HTML-first sites with component islands using the [dependency adapter](references/dependencies.md#shadcnui-selected-components-within-the-chosen-stack). Reuse actual compatible source or a suitable native pattern; adapt to DESIGN.md and retain existing local components. Keep typography, imagery and interactions coherent without repeating one layout mechanically. Prefer authentic brand imagery; generated illustrations cannot masquerade as staff, premises or completed projects.
-
-Carry selected reference patterns into named component jobs. Use relevant 21st.dev search/inspiration/generation tools that the host actually exposes, then inspect provenance, permitted reuse, dependencies and behaviour. Restyle useful components to DESIGN.md; retain accessible semantics and truthful content. Reuse the chosen implementation across page families. Do not add spectacle or call the MCP repeatedly for an unchanged need.
-
-Deliver indexable content and crawlable links in initial HTML using a supported rendering strategy. Isolate browser-only interaction. Implement meaningful statuses, metadata, canonicals, sitemap, robots, responsive images and truthful applicable schema. Check installed framework APIs.
-
-Every control must fulfil its promise. Forms require a genuine destination, labels, validation, loading, success and failure behaviour. Verify receipt when authorised and feasible. A missing backend must not produce fake success; provide an honest contact alternative and record the missing integration.
-
-## 5. Delegate and integrate
-
-Read [quality-agents.md](references/quality-agents.md). When Raphael explicitly requests the major twenty-agent mode, use **20 distinct bounded subagents** across useful assignments, scheduled within actual capacity. Otherwise select only the independent packages the task needs; no recurring agent quota. Reuse agents for their fixes; do not inflate counts with renamed roles or pretend all 20 ran simultaneously. Reserve independent critics and schedule ready assignments within host limits.
-
-Give each worker the relevant contract, exact owned paths, dependencies, required evidence and return format. Tokens, routing configuration and package dependencies each have one writer at a time. Implementation waits for stable interfaces and facts. The lead verifies integration, rather than accepting confident reports as proof.
-
-Use Compound's plan/work/code-review/compound phases through the adapter. The website lead owns design, SEO scope and shipping. Impeccable supplies visual judgment and focused craft repairs. Avoid overlapping orchestrators and incompatible visual authorities.
-
-## 6. Inspect and improve the running site
-
-Read and apply [screenshots.md](references/screenshots.md) before browser review. Discover the supported browser API; capture loaded fonts, decoded images and stable content at real CSS viewport sizes. Record full-page context plus readable viewport/detail images and interaction states. Capturing an image is not inspecting it; hand the actual pixels to independent critics. Associate evidence with the exact revision and replace stale captures after affected changes.
-
-Capture and inspect **every built page at desktop and mobile widths**, plus representative intermediate widths and important states. Compare equivalent reference and implementation views. Review typography, composition, imagery, brand recognition, reading rhythm, trust, motion and conversion clarity. No hero-only approval.
-
-Independent critics report route, viewport/state, screenshot, observed defect, severity, fix and retest evidence. Review complete journeys, keyboard use, touch, long content and reduced motion. Separately verify raw HTML, metadata, statuses, links, route coverage, forms and measured performance. Screenshots cannot certify crawlability; Lighthouse cannot certify field performance or excellent design.
-
-Documentary photography (real customer photos) additionally needs a content release at original detail: read every visible display, clothing logo, vehicle badge and name tag at sufficient magnification and check against the exclusion list and alt text — unreadable stays unconfirmed. Contact sheets are selection aids only (see design skill; Observation 0021).
-
-Fix consequential defects, capture fresh evidence and repeat affected checks. Do not stop at a first decent page or because a generic skill capped rounds. Do not rerun clean suites without a remaining risk. If revisions stop improving the result, revisit the direction or constraint. Never manufacture enthusiastic reviews, blind comparisons or endless activity.
-
-## 7. Reconcile, verify and deliver
-
-Reconcile final `DESIGN.md` with approved intent, token files, generated CSS, loaded fonts, components and rendered measurements. Resolve accidental drift; do not legitimise mistakes by silently rewriting the contract. Record deliberate exceptions. Impeccable's document route can help after checking its actual schema and behaviour.
-
-For website delivery, run the supplied checker during planning and release:
-
-```sh
-node <skill-dir>/scripts/validate-page-map.mjs SEO-PAGE-MAP.json --phase plan
-node <skill-dir>/scripts/validate-page-map.mjs SEO-PAGE-MAP.json --phase release --scope-map SEO-PAGE-MAP.approved.json
+```bash
+node /root/raphael-skills/skills/eigene/web/scripts/session-gate.mjs \
+  --rolle plan|kritik|fold-duell|bau --client /root/clients/<kunde>/web/handoff
 ```
 
-Read its schema and limits in [seo-pages.md](references/seo-pages.md). After the page scope is agreed, retain `SEO-PAGE-MAP.approved.json` as the scope snapshot and update it only for an explicit scope decision. The release comparison detects omitted/extra routes and changed indexing/canonicals. The checker validates declared metadata, graph consistency and evidence-reference strings; it does not browse or judge content quality. Independently open the evidence and inspect the implementation. Every release page must be built and verified. Removed/deferred scope must be recorded explicitly.
+Exit 0 = frei, Exit 2 = gesperrt (zurück an die Vorphase). Launch läuft unter `--rolle bau`. Kanonischer Handoff ist `/root/clients/<kunde>/web/handoff`; bestehende Pfade `/root/clients/client-<name>/web/handoff` und `/root/clients/<kunde>/website/<lauf>/handoff` bleiben akzeptierte Aliase. Fehlt der Handoff-Prompt, ist es Plan.
 
-Completion requires all agreed routes, functioning journeys, current visual/SEO evidence, reconciled DESIGN.md and no critical unresolved defects. Report limitations rather than perfection or rankings guarantees. Capture proven non-obvious project lessons through Compound's project workflow when useful; do not duplicate them into the Second Brain unless requested. Keep task status with the task. Compound capture is optional when no new lesson warrants it; do not automatically edit unrelated personal skills.
+## Vor dem ersten Edit (Preflight, jede Session)
 
-Publish within current user authorization. For requested public Sites deployment, use Sites hosting, verify public visibility, then check deployed home/inner routes, assets and key journeys. Public reachability, crawlability and actual search indexing are separate claims. Return the exact verified URL and concise validation.
+1. Harness prüfen: `claude mcp list` zeigt `21st`, `shadcn`, `mantine`, `refero` als Connected; `id` und `stat` des Projektordners vergleichen, Schreibprobe (`touch`) auf Projekt und Skill-Quelle; `test -r /root/.secrets/api-keys.env`, sonst `sudo /root/raphael-command-center/ops/bin/heal-secrets-acl.sh`. Ergebnis in einer Zeile.
+2. `references/anfaenger-pfad.md` §1: **eine** Auftrag-Zeile wählen, nur die dort genannten Dateien laden.
+3. Vor Art-Direction: `references/stil-regeln.md` (Sektor-Dials §1) + 2 bis 3 Cases aus `references/muster-bibliothek/INDEX.md` + `references/design-depth.md` mit den Kapiteln aus `references/design-depth/INDEX.md`, die die Sektion braucht.
+4. Projekt lesen: `/root/clients/<kunde>/wiki/ICP.md`, `OFFER.md`, `PROOF.md`, `VOICE.md`, `/root/raphael-brain/wiki/hot.md`.
+5. Referenzen holen: `ls -lt /root/eingang | head -20`, bildhafte Dateien der letzten 7 Tage durch `astra-worker`, `kimi-worker` oder `fable-builder` ansehen lassen; in der Plan-Phase höchstens drei Bilder, kein Produktionsbau.
+6. Auftrag + geladene Pfade in einem Satz nennen.
 
-## 8. Vor einem Versionssprung oder Umbau (Raphael, 07.09.2026)
+## Rote Linien (gelten in jeder Rolle)
 
-### 8a. Review-Identität: Frontend-Build UND Backend-Revision binden (Observation 0022)
+- **Raphael sieht den Look, bevor Routen gebaut werden.** Bei Neuaufbau, Redesign oder «Look von null» ist Welle 0 das Fold-Duell: drei Fold-Richtungen, ein Montage-Bild im Eingang, seine Wahl in `DECISIONS.md`. Erstes Bild ≤30 Minuten nach Auftrag.
+- **Referenzen sind Bilder.** Referenzbilder und Referenz-Folds gehen als `BILDLISTE.txt` an jeden Builder- und Judge-Leaf; Berichte tragen je Bild «gesehen:». Der Judge fragt blind «besser Build oder besser Referenz?» je Achse; «Referenz besser» auf Visual = FAIL.
+- **Kunden-`DESIGN.md` und Raphaels Referenz schlagen `stil-regeln.md`.** Ein Widerspruch wird als Zeile in `brand/DESIGN.md` aufgelöst.
+- **React-Stack, Komponenten holen statt nachbauen.** Neue Sites starten aus `assets/react-starter` (`references/stack.md`). Jede Komponentenfamilie zuerst über die konfigurierten Registries, das shadcn-MCP, 21st (MCP oder CLI mit Design Context) und npm nach `references/component-registries.md`; Eigenbau nur mit Zeile «gesucht in …, nichts passte, weil …» im Bericht und in `DESIGN.md`. HTML-first und Astro-Inseln gelten nur noch für bestehende HTML-Projekte (`references/component-islands.md`).
+- **Jede SEO-Route wird gebaut.** `SEO-PAGE-MAP.json` (`references/seo-pages.md`) ist der Umfang; keine Homepage-only-Lieferung, keine leeren Routen, kein kopierter Ortstext. Beleg ist `curl` am Produktionsbuild.
+- **Screenshots sind der einzige Design-Beweis.** `scripts/shot-sweep.mjs` mit Pflicht-`--base`, über HTTP, 1440×900 Fold **und** 390×844, `--static`; nach jedem Fix frischer Sweep. Aufnahmeregeln und Headless-Fallen: `references/screenshots.md`. Zusätzlich vor der Abnahme: jede Datei in `components/ui/` einem Registry-Eintrag oder einer festgehaltenen Eigenbau-Begründung in `DESIGN.md` zuordnen.
+- **Parent bleibt dünn; Bau-Session = Controller.** Der Parent editiert keine CSS-/TSX-Datei und liest keine PNG-Binaries. Jedes PNG liest ein Kritik-Leaf; der Parent führt das Shot-Ledger (`pfad | viewport | gelesen-von | verdict`) in `STATUS.md`. Bau- und Kritik-Phase **müssen** im ersten Turn einen Dynamic Workflow starten.
+- **Drei Sessions in einem Chat, Kritik-Flotte nur nach `references/kritik-matrix.md`.** Plan, Kritik und Bau sind drei Workflow-Phasen mit Zustand auf Platte. Genau ein Stufe-2-Kritiker anderer Familie nach jedem Bau, `effort: high`; Abnahme aus Stufe 1 vor Auslieferung. Ein Befund lebt nur nach der Merge-Regel: zwei unabhängige Leaves oder eine Linse mit deterministischem Gate-Beleg (SEO `onpage-check.mjs`, Copy G0/G1, Trust `PROOF.md`). Wer baut, prüft nicht. Provenienz aus `ANGEFRAGTES MODELL` plus Fallback-Hinweis.
+- **Copy schreibt nie der Integrator.** Copy kommt aus einem eigenen Copy-Leaf (`astra-worker`, dann `kimi-worker`, dann `fable-builder`) mit `forbidden-check.py`-Beleg; der Integrator baut sie unverändert ein.
+- **Kunden-Vorschau ist kein Launch.** Vorschau-Blocker sind nur Ablauf, Sitemap, Idee, Design; Inhalt und Domain parken als `content-park`/`ops-park` oder FAKT-GATE (`scripts/preview-befund-klasse.mjs`), nie als `biggest_gap`. Der Web-Skill entscheidet keine Kundenfakten eigenmächtig.
+- **Launch nur mit Raphaels Signatur** plus Deploy-Egress-Gate. Kein Push, Deploy oder Versand ohne Auftrag; Zustimmung zum Ergebnis ist keine Freigabe dafür.
+- **Gates werden nicht umgebaut, um durchzukommen.** Ein fälschlich blockendes Gate ist ein Befund in `STATUS.md` (was blockt, warum fälschlich, kleinster Fix-Vorschlag); keine Session editiert Hooks, Validatoren oder fremde Skills, um ein Gate zu öffnen.
 
-Ein Build-Hash des statischen Frontends allein identifiziert nicht, was der Browser gesehen hat, wenn der Server Backend-Module dynamisch importiert oder separat deployed ist. Vor einem Browser-Review:
+## Subagenten (Claude-Code-Harness, Raphael 08.09.2026)
 
-1. Alle separat deployten oder dynamisch importierten Laufzeit-Komponenten aufzählen.
-2. Statische Build-ID **plus** Hashes der tatsächlich verwendeten Backend-Module festhalten — vor und nach dem Lauf.
-3. Mixed-Revision-Evidenz (alte Assets + neuer Renderer o. ä.) explizit taggen; sie taugt nicht für finale Freigaben.
+| Job | Zuerst | Dazu | Nie |
+|---|---|---|---|
+| Plan, Architektur, Design-Richtung | Hauptsession (Fable), `astra-worker`, `kimi-worker` | | Sol, Luna, Sonnet, Haiku |
+| Frontend, UI, Integration | `fable-builder` (max zwei parallel), `astra-worker`, `kimi-worker` | `opus-builder` (Breite) | Sol |
+| Copy | `astra-worker` | `kimi-worker`, `fable-builder` | Opus, Sol, Haiku |
+| Technik, Debug, Browser, Toolchain | `grok-worker` | | |
+| Backend, API, Tests | `grok-worker`, `sol-worker` | `composer-worker` | Frontend über Sol |
+| Research, Gegenposition | `kimi-worker`, `grok-worker` | `web-research` (Haiku, nur Fetch) | Astra |
+| Kartierung, Serien, Massen-Read | `sonnet-worker`, `luna-worker`, `terra-worker`, `Explore` | | Urteil, Design |
+| Erste Kritik nach Bau (Stufe 2) | `grok-critic` (visuell), `opus-critic` (Code/UX; nach Fable-Build als Instanz-Trennung gekennzeichnet, nie nach Opus) | `sol-critic` (nur Code/Backend) | gleiche Familie wie Builder |
+| Abnahme vor Auslieferung (Stufe 1) | `fable-critic`, `astra-critic`, `kimi-critic` (andere Familie als Builder) | | nach eigenem Bau |
 
-Ein Fingerprint einer Deploy-Grenze zertifiziert keine zweite, mutable Grenze, nur weil beide über dieselbe URL erreichbar sind.
+Rollen-Wörterbuch mit Kontextpaketen: `references/agent-roster.md`. Spawn-Plan
+der Kritik: `references/kritik-matrix.md`. Jedes Paket nennt Ziel, Eingaben,
+`write_set`, Prüfbefehl, Stop-Bedingung, Zeitbudget und Rückgabeformat; Reviews
+zusätzlich `ACTUAL_BUILDER_FAMILY`. Serienarbeit (URL-Proben, Massen-Checks)
+läuft als Skript oder Stufe-3-Leaf, nie als offenes 50er-Paket an Stufe 2
+(Observation 0063).
 
-### 8b. Vor dem ersten Deploy: Domain→Projekt-Bindung auflösen (Observation 0025)
+## Wissensmodule (bedarfsweise, nie alle)
 
-Ein READY-Build belegt, dass gebaut wurde — nicht, dass die Domain es ausliefert. Wo mehrere Projekte denselben Namensstamm tragen (z. B. `projekt` und `projekt-next`), ist die Bindung Domain→Projekt eine eigene Tatsache:
+| Thema | Datei | Wann |
+|---|---|---|
+| Stack, Projektstruktur, Client/Server-Grenze, Export | `references/stack.md`, `assets/react-starter/README.md` | vor dem ersten Bau-Paket |
+| Registries, npm, MCP, Suchreihenfolge je Komponentenjob | `references/component-registries.md`, `references/21st-dev.md`, `references/ui-libraries.md` | vor jeder neuen Komponentenfamilie |
+| Werkzeugtabelle, Icon/Font/Motion-Defaults, `werkzeug-gate.mjs` | `references/tool-usecase-router.md`, `references/zugangskarte.md` | art-direction, components, build |
+| Stil-Regeln, Muster-Bibliothek, Sektor-Dials | `references/stil-regeln.md`, `references/muster-bibliothek/INDEX.md` | vor jeder Art-Direction |
+| Design-Depth: Anatomie, Effekte, UX, 14 Kapitel mit Messwerten | `references/design-depth.md`, `references/design-anatomy.md`, `references/design-effects.md`, `references/design-ux-decisions.md`, `references/design-depth/INDEX.md` | vor der ersten Komponente eines Neuaufbaus; pro Sektion das passende Kapitel |
+| DESIGN.md-Vertrag und Abgleich | `assets/DESIGN.template.md`, `references/design-contract.md` | Plan und Reconcile |
+| Inspiration: Refero, Galerien, Service-Referenzen, Creator-Methoden | `references/modus-inspiration.md`, `references/inspiration.md`, `references/inspiration-galleries.md`, `references/service-learning.md`, `references/creator-methods.md`, `references/video-methods.md` | Modus Inspiration |
+| Motion | `references/motion-native.md` (CSS, WAAPI, View Transitions, `motion/react`), `references/motion-doktrin.md` (wann animieren), `scripts/motion-check.mjs` | build, polish |
+| Bilder: Suche, GPT-Image, Bibliothek, Image-to-Code, Scrollcraft | `references/image-search.md` + `scripts/find-images.mjs`, `references/gpt-image.md`, `references/image-library.md`, `references/image-to-code.md`, `references/scrollcraft.md`, `references/bildgenerierung.md`, `scripts/bilder.mjs`, `scripts/stock.mjs` | art-direction, build |
+| SEO-Seitenkarte und Release-Vergleich | `references/seo-pages.md`, `scripts/validate-page-map.mjs`, `scripts/onpage-check.mjs` | Plan und Launch |
+| Screenshots und QA | `references/screenshots.md`, `references/screenshot-kritik-loop.md`, `references/qa-faecher.md`, `scripts/shot-sweep.mjs`, `scripts/capture-site.mjs`, `scripts/axe-run.mjs`, `scripts/tastatur-check.mjs`, `scripts/formular-check.mjs`, `scripts/craft-check.mjs`, `scripts/g1-gate.mjs` | Kritik, Bau, Launch |
+| Landingpage, Sitemap, IA, Conversion | `references/landingpage-struktur.md`, `references/sitemap-section-planung.md`, `references/informationsarchitektur.md`, `references/conversion-elemente.md`, `references/cro-diagnose.md` | Plan |
+| UI-Skills-Taktiken, Beautiful UI, externe Skills | `references/ui-skills.md`, `references/ui-playbook.md`, `references/beautiful-ui.md`, `references/external-skills-2026-09.md` | bei konkreter Schwäche |
+| Klon und Rebuild aus Bild | `references/web-clone-playbook.md`, `references/rebuild-from-image.md`, `scripts/web-clone/` | Referenz nachbauen |
+| Bestehende Projekte, Abhängigkeiten, weitere Skills | `references/existing-web.md`, `references/dependencies.md`, `references/load-graph.md` | Übernahme, Skill-Kombination |
+| Launch, Deploy, Evidence | `references/rolle-launch.md`, `references/vercel-git-deploy.md`, `references/run-evidence-contract.md`, `scripts/run-evidence.mjs` | Launch |
 
-1. **Vor dem Bau**: Hosting-Projekt der Zieldomain auflösen (`vercel domains inspect <domain>`, Netlify-/Cloudflare-Äquivalent) und gegen das Repo-Projekt halten, in dem gebaut wird.
-2. **Nach dem Deploy**: Der Beleg ist ein Treffer im HTML der echten Domain — nie der READY-Status und nie die `*.vercel.app`-URL.
-3. Bei Abweichung Repo und Domain im Statusdokument benennen, statt den grünen Build als Lieferung zu melden.
+Volle Auftrag→Datei-Matrix: `references/anfaenger-pfad.md` §8. Was ein
+Site-Build lädt und was nie: `references/load-graph.md`.
 
-### 8c. Tracking-Code und Offenlegung sind eine Lieferung (Observation 0029)
+## Ablauf in einer Zeile
 
-Wer ein Dritt-Skript mit Datenerhebung live stellt (Analytics, Ads, Pixel, Maps, Fonts, Chat), liefert im selben Deploy den passenden Abschnitt der Datenschutzerklärung mit und prüft den Consent-Status. Beleg ist ein Treffer des Dienstnamens im HTML der Live-Rechtsseite, nicht der Commit. Fehlt ein Consent-Mechanismus, wird das als offener Punkt im Statusdokument benannt, nicht stillschweigend übergeben.
+strategy → SEO-Seitenkarte → copy-Briefing → Referenzrichtung (**stil-regeln + Cases + design-depth**) → Fold-Duell (Neuaufbau) → gewählte Art-Direction als Tokens → components (Registries, Werkzeugtabelle) → build (alle Routen) → shot-sweep → Kritik-Flotte → Fixliste → Re-Sweep → SEO+Trust → Abnahme Stufe 1 → run-evidence `validate --ready` → Launch (Signatur) → cro-learn.
+Detail-Ablauf und Gates: `references/loop2-ablauf.md`.
 
-### 8d. Fortschritt wird am sichtbaren Produkt berichtet (Observation 0030)
+## Gotchas (kurz)
 
-Grüne Tests und Lighthouse-Werte sind unterstützende Evidenz, nicht das Ergebnis. Zuerst die wichtigsten gerenderten Seitenfamilien in lesbaren Desktop- und Mobilansichten prüfen und konkrete sichtbare Mängel priorisieren; Fortschritt anhand sichtbarer Vorher/Nachher-Veränderungen zeigen. Nach ausdrücklicher Nutzerkorrektur auf sichtbare Qualität keine weiteren optionalen Performance-Läufe als Fortschrittsmeldung.
+- **Dev-Server nur über `raphael-preview start --cwd <dir> --port <n>`**; `shot-sweep` liest `--base` aus `.ai/preview-<port>.json`. Statischer Export: `scripts/pruefstand.mjs` liefert `out/` wie Vercel aus. Keine handgebauten Warteschleifen mit `curl`.
+- **Playwright** kommt aus `scripts/lib/playwright-loader.mjs` (Reihenfolge `PLAYWRIGHT_ROOT`, Projekt, `/root/.local/share/web-skill-node`). Fehlt es: Installationsbefehl aus der Fehlermeldung, nie ein Ad-hoc-Skript.
+- **Headless und View Transitions:** bei `@view-transition{navigation:auto}` Tests headed unter `xvfb-run -a` oder Kontext mit `reducedMotion:'reduce'`; vor jeder Controller-Diagnose `:active-view-transition` und rAF-Ticks messen (Observation 0013).
+- **Session-Wechsel** (Codex und Claude, root und raphael-claude): fremdes Eigentum in Repo, `/tmp`-Ausgabepfaden und `.npm` vor dem ersten Schreibschritt beheben (Observations 0037 bis 0040, 0061). Build-Skripte kopieren byteweise, QA-Skripte prüfen den Ausgabeordner vor dem Browserstart.
+- **Deploy** aus frischem Worktree erst nach `vercel link --project <name>`; Beleg ist ein Treffer im HTML der echten Domain, nie der READY-Status (Observations 0025, 0035). Tracking-Skript und Datenschutz-Abschnitt sind eine Lieferung (0029).
+- **Grüne Tests belegen keinen frischen Build** (0051): vor dem Sweep `find src -newer out/index.html` leer oder frisch bauen. Leere Bildflächen in Vollseiten-Captures sind Capture-Verdacht (0050, 0054).
+- **Paket `motion`, Import `motion/react`**, nie `framer-motion`. **Ein Icon-System**, Default Lucide. Fonts über `next/font` mit `latin` + `latin-ext`, Adobe Fonts über `scripts/adobe-fonts-kit.mjs`.
+- **Keine Dependency ohne Zeile in der Werkzeugtabelle** (`werkzeug-gate.mjs`); nach jedem `shadcn add` die `package.json`-Diff lesen.
+- **Lighthouse/axe = 0** hart für den Launch, nicht die Vorschau. **AAA hier = Agentur-Rubrik**, WCAG bleibt AA.
+- **Update an Bestandsseite = neuer Worktree**, nie im Root-Checkout.
+- **Stock-Fotos nur über `scripts/stock.mjs`** (Shutterstock, Lizenznachweis) oder `scripts/find-images.mjs` (Logos/Icons ohne Rechte-Rückfrage, Fotos als Referenz für GPT-Image).
+- **Dokumentarfotos** brauchen eine Inhaltsfreigabe am Original (Displays, Logos auf Kleidung, Kennzeichen, Namensschilder); Kontaktbögen sind nur Auswahlhilfe (Observation 0021).
 
+## Feedback-Pfad
 
-Wer Dateien verschiebt oder umbenennt, ist für die Rückverweise verantwortlich — nicht der Ort, der verweist. Vor jedem Versionssprung oder Umbau, der Pfade ändert:
+- Raphael-Nein zu einem Asset/Motiv/Muster → `DESIGN.md`/`DECISIONS.md`, Datei per `bilder.mjs reject` löschen, Code auf den Ersatz umstellen.
+- Raphael-Nein zur **Methode** → eine Observation im task-observer-Log (Zielskill `web`), kein neuer Skill.
+- **Kritik hat X übersehen** → Fehlzeile in `PRUEFGEGEN.md`; bei Wiederholung Zeile in `references/agentur-rubrik.md`.
+- Geschmackskalibrierung an einer Referenz → `muster-bibliothek`.
 
-```sh
-grep -rl "<alter-skill-pfad>" /root/raphael-brain/wiki
-python3 /root/raphael-brain/scripts/externe-pfade-check.py
-```
+## Evals
 
-Tote Ziele als Review-Inbox-Eintrag melden (`/root/raphael-command-center/ops/review-inbox.md`), nicht still liegen lassen. Ein Umbau-Changelog ohne diese Prüfung produziert stille Waisen in jedem System, das auf absolute Pfade setzt (Observation 0004; gilt ebenso für die Skills ads und design).
+Alle Prüfer liegen in `evals/`; Umfang zeigt `node evals/run-eval-umfang.mjs`.
+Vorschau-vor-Launch-Vertrag und Session-Gate hängen an
+`evals/run-preview-vs-launch-check.mjs`. Referenz-Zuläufe:
+`evals/run-kanon-pipeline-check.mjs` (Eingang → Case) und
+`evals/run-x-bookmark-pipeline-check.mjs` (X-Bookmarks → Ledger).
 
-## 9. Browser-QA bei View Transitions (Raphael, 07.09.2026)
+## Geteilte Abhängigkeiten
 
-In der am 07.09.2026 untersuchten Headless-Chromium-Laufzeit blieben bei `@view-transition{navigation:auto}` cross-document View Transitions hängen; das ist kein versionsübergreifendes Chromium-Gesetz: `:active-view-transition` bleibt dauerhaft aktiv, `requestAnimationFrame` liefert 0 Ticks, WAAPI steht bei `currentTime 0` — Tests messen dann einen eingefrorenen Zustand, keinen Produktfehler. Regeln:
+- `/root/raphael-skills/skills/design/` (taste-kern, ui-ux-db-nutzung, impeccable-detektoren, design-doktrin, `design/scripts/detect.mjs`, `design/scripts/scan-ai-slop.mjs`)
+- `/root/raphael-skills/skills/eigene/copywriting/` (`scripts/forbidden-check.py`, `/root/.claude/forbidden.md`)
+- `/root/raphael-skills/skills/eigene/seo/`
+- `/root/raphael-skills/skills/eigene/visual-aaa/` (terminales Pixel-Gate, nur über Pfad; nicht als Slash verlinkt)
+- `/root/raphael-skills/skills/eigene/eval/` (nur über Pfad)
+- `/root/raphael-command-center/ops/bin/raphael-preview`, `heal-secrets-acl.sh`
+- `/root/tools/shots-verkleinern.sh` (Kacheln für Kritik-Leaves)
 
-1. Nach Navigationen Tests entweder headed unter `xvfb-run -a` fahren oder den Kontext mit `reducedMotion:'reduce'` anlegen, wenn nicht die Animation selbst geprüft wird.
-2. Vor jeder Controller-Diagnose `:active-view-transition` und rAF-Ticks messen.
-3. Aussenklicks in Tests auf `main h1` statt auf Koordinaten legen (Koordinaten können `tel:`-Links mit externem Protokoll-Dialog treffen).
+Aus dem Ablauf gestrichen, weil nicht mehr vorhanden: `web-anti-slop`,
+`/root/tools/uikit-vault` (Archiv: `references/_archiv/vault-abhaengig/`),
+`orchestrate` als Chip (ersetzt durch das Workflow-Tool).
 
-Schlägt ein Test nur in einer Laufzeitvariante fehl, zuerst die Laufzeit messen (Rendering-Loop, Animationszeitleiste), bevor Produktcode umgebaut wird — sonst werden Fixes gegen Testartefakte gebaut (Observation 0013).
+## Versionierung und Rückverweise
+
+Gepflegte Quelle: `/root/raphael-skills/skills/eigene/web`, verlinkt nach
+`/root/.claude/skills/web`, `/root/.codex/skills/web`, `/root/.agents/skills/web`.
+Vor jedem Umbau, der Pfade ändert: `grep -rl "<alter-pfad>" /root/raphael-brain/wiki`
+und `python3 /root/raphael-brain/scripts/externe-pfade-check.py`; tote Ziele in
+`/root/raphael-command-center/ops/review-inbox.md` melden (Observation 0004).

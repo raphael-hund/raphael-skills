@@ -1,0 +1,34 @@
+{
+  "repository": "https://github.com/shadcn-ui/ui",
+  "commit": "5c7072da672b0048bc6771e3204063a2537df91a",
+  "retrieved": "2026-09-06",
+  "license": "MIT",
+  "licenseURL": "https://raw.githubusercontent.com/shadcn-ui/ui/5c7072da672b0048bc6771e3204063a2537df91a/LICENSE.md",
+  "licenseSHA256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
+  "sources": [
+    {
+      "name": "card",
+      "sourceURL": "https://raw.githubusercontent.com/shadcn-ui/ui/5c7072da672b0048bc6771e3204063a2537df91a/apps/v4/registry/new-york-v4/ui/card.tsx",
+      "upstreamSHA256": "ef8305b12c3112dab42a4708b41b1ebcc042fa5ab4c20f039da8d45b09ed5059",
+      "localSHA256": "ef8305b12c3112dab42a4708b41b1ebcc042fa5ab4c20f039da8d45b09ed5059",
+      "verbatim": true,
+      "adaptation": null
+    },
+    {
+      "name": "dialog",
+      "sourceURL": "https://raw.githubusercontent.com/shadcn-ui/ui/5c7072da672b0048bc6771e3204063a2537df91a/apps/v4/registry/new-york-v4/ui/dialog.tsx",
+      "upstreamSHA256": "2ade6074e5fad0a4eb171ead44c43d3301a3c83d186d7236fb1fdbea80ee556b",
+      "localSHA256": "4ce684e6e9c60f7d88242332efac5cf38e2b5835de1ef51ce628f3cccfb19445",
+      "verbatim": false,
+      "adaptation": "DialogPortal targets the stable document-owned #shadcn-portals container. Upstream direct Portal children and their Presence lifecycle are preserved."
+    },
+    {
+      "name": "button",
+      "sourceURL": "https://raw.githubusercontent.com/shadcn-ui/ui/5c7072da672b0048bc6771e3204063a2537df91a/apps/v4/registry/new-york-v4/ui/button.tsx",
+      "upstreamSHA256": "79dd6f75f8136394442202d6b8b922fb269eaad0a5dba579397c9d5b41f893bb",
+      "localSHA256": "79dd6f75f8136394442202d6b8b922fb269eaad0a5dba579397c9d5b41f893bb",
+      "verbatim": true,
+      "adaptation": null
+    }
+  ]
+}

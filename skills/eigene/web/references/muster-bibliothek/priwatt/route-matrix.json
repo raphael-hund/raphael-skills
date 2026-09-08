@@ -1,0 +1,1468 @@
+{
+  "schema_version": 1,
+  "snapshot": {
+    "captured_at_utc": "2026-08-31T15:32:18Z",
+    "sources": {
+      "sitemap_index": {
+        "url": "https://priwatt.de/sitemap.xml",
+        "final_url": "https://priwatt.de/sitemap.xml",
+        "status": 200
+      },
+      "child_sitemaps": [
+        {
+          "url": "https://priwatt.de/sitemap-0.xml",
+          "final_url": "https://priwatt.de/sitemap-0.xml",
+          "status": 200
+        }
+      ],
+      "homepage": {
+        "url": "https://priwatt.de/",
+        "final_url": "https://priwatt.de/",
+        "status": 200
+      }
+    },
+    "legal_exclusions": [
+      "impressum",
+      "datenschutzerklaerung",
+      "datenschutz",
+      "barrierefreiheitserklaerung",
+      "agb",
+      "widerruf"
+    ],
+    "route_universe_count": 59,
+    "sitemap_count": 48,
+    "navigation_count": 45,
+    "live_delta_from_critic": {
+      "status": "none",
+      "critic_route_universe_count": 59
+    },
+    "route_universe_routes": [
+      "/",
+      "/balkonkraftwerk-800-watt",
+      "/balkonkraftwerk-mit-speicher",
+      "/balkonkraftwerk-speicher",
+      "/balkonkraftwerk-speicher/goodwe",
+      "/blog",
+      "/blog/viessmann-waermepumpe-vitocal-250-a",
+      "/career",
+      "/ebooks",
+      "/ebooks/balkonkraftwerk-bibel",
+      "/ebooks/waermepumpen-bibel",
+      "/erfahrungen",
+      "/franchise-partner-werden",
+      "/kontakt",
+      "/kontakt/email",
+      "/lieckipedia-umzug",
+      "/newsletter",
+      "/presseraum",
+      "/ruecknahme-recycling",
+      "/sales/balkonkraftwerk-2000-watt",
+      "/service",
+      "/service/erklaer-videos",
+      "/service/ertragsrechner",
+      "/service/faq",
+      "/solaranlagen",
+      "/solaranlagen/12-module-5-kwp",
+      "/solaranlagen/16-module-7-kwp",
+      "/solaranlagen/20-module-9-kwp",
+      "/solaranlagen/24-module-10-kwp",
+      "/solaranlagen/komplettsets-ohne-montage",
+      "/solaranlagen/komplettsets-sunenergyxt",
+      "/stecker-solaranlagen",
+      "/stecker-solaranlagen/balkon",
+      "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "/stecker-solaranlagen/erweiterungssets",
+      "/stecker-solaranlagen/fassade",
+      "/stecker-solaranlagen/flachdach",
+      "/stecker-solaranlagen/garten",
+      "/stecker-solaranlagen/garten/garten/priflat-quattro/SW11905.4",
+      "/stecker-solaranlagen/ohne-halterung",
+      "/stecker-solaranlagen/ohne-halterung/pribasic-duo-ohne-halterung/SW10753.7",
+      "/stecker-solaranlagen/ohne-halterung/pribasic-duo/SW11817.4",
+      "/stecker-solaranlagen/ohne-halterung/pribasic-duo/SW11911.4",
+      "/stecker-solaranlagen/ohne-halterung/pribasic-ohne-halterung/SW10701.2",
+      "/stecker-solaranlagen/ohne-halterung/pribasic-quattro/SW11913.4",
+      "/stecker-solaranlagen/schraegdach",
+      "/store-in-deiner-naehe",
+      "/store-in-deiner-naehe/bad-oeynhausen",
+      "/store-in-deiner-naehe/riegel-am-kaiserstuhl",
+      "/store-in-deiner-naehe/teutschenthal",
+      "/ueber-uns",
+      "/waermepumpen",
+      "/wechselrichter-update-800-watt",
+      "/zahlung-und-versand",
+      "/zubehoer",
+      "/zubehoer/energiemessung",
+      "/zubehoer/halterung-balkonkraftwerk",
+      "/zubehoer/kabel",
+      "/zubehoer/solarmoduleundwechselrichter"
+    ]
+  },
+  "routes": [
+    {
+      "route": "/",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "home",
+      "representative_route": "/",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/home-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/home-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Sitewide home/product-slider shell; existing Atlas route."
+    },
+    {
+      "route": "/balkonkraftwerk-800-watt",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "campaign-product-landing",
+      "representative_route": "/balkonkraftwerk-mit-speicher",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/balkonkraftwerk-mit-speicher__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/balkonkraftwerk-mit-speicher-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y2250-00-Balkonkraftwerk_mit_Spei.png",
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y2250-01-So_funktioniert_ein_Balk.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "SEO/campaign landing family: branded image hero, offer/benefit sections, lead path and FAQ in the same priwatt marketing shell; representative is deeply documented."
+    },
+    {
+      "route": "/balkonkraftwerk-mit-speicher",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "campaign-product-landing",
+      "representative_route": "/balkonkraftwerk-mit-speicher",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/balkonkraftwerk-mit-speicher__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/balkonkraftwerk-mit-speicher-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y2250-00-Balkonkraftwerk_mit_Spei.png",
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y2250-01-So_funktioniert_ein_Balk.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "SEO/campaign landing family: branded image hero, offer/benefit sections, lead path and FAQ in the same priwatt marketing shell; representative is deeply documented."
+    },
+    {
+      "route": "/balkonkraftwerk-speicher",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "storage-product-landing",
+      "representative_route": "/balkonkraftwerk-speicher",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/balkonkraftwerk-speicher-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/balkonkraftwerk-speicher-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Storage landing family; GoodWe is the vendor/model variant. Representative captured desktop+mobile."
+    },
+    {
+      "route": "/balkonkraftwerk-speicher/goodwe",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "storage-product-landing",
+      "representative_route": "/balkonkraftwerk-speicher",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/balkonkraftwerk-speicher-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/balkonkraftwerk-speicher-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Storage landing family; GoodWe is the vendor/model variant. Representative captured desktop+mobile."
+    },
+    {
+      "route": "/blog",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "blog-index",
+      "representative_route": "/blog",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/blog-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/blog-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Editorial listing with category filters, featured article, 3-column card grid and pagination."
+    },
+    {
+      "route": "/blog/viessmann-waermepumpe-vitocal-250-a",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "editorial-article",
+      "representative_route": "/blog/viessmann-waermepumpe-vitocal-250-a",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/blog__viessmann-waermepumpe-vitocal-250-a-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/blog__viessmann-waermepumpe-vitocal-250-a-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Long-form editorial template with title/meta/author hero, share rail and narrow article body."
+    },
+    {
+      "route": "/career",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "career-listing",
+      "representative_route": "/career",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/career__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/career-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/career__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/career__-desktop-click-y750-00-Bewerbung_abschicken.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Existing career listing Atlas route."
+    },
+    {
+      "route": "/ebooks",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "ebook-index",
+      "representative_route": "/ebooks",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/ebooks-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/ebooks-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Three-card guide/ebook index."
+    },
+    {
+      "route": "/ebooks/balkonkraftwerk-bibel",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "ebook-lead-magnet",
+      "representative_route": "/ebooks/balkonkraftwerk-bibel",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/ebooks__balkonkraftwerk-bibel-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/ebooks__balkonkraftwerk-bibel-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Both ebook detail routes share identical DOM signature 8e8482ec5d98eba3; Balkonkraftwerk guide is the captured representative."
+    },
+    {
+      "route": "/ebooks/waermepumpen-bibel",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "ebook-lead-magnet",
+      "representative_route": "/ebooks/balkonkraftwerk-bibel",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/ebooks__balkonkraftwerk-bibel-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/ebooks__balkonkraftwerk-bibel-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Both ebook detail routes share identical DOM signature 8e8482ec5d98eba3; Balkonkraftwerk guide is the captured representative."
+    },
+    {
+      "route": "/erfahrungen",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "customer-stories",
+      "representative_route": "/erfahrungen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/erfahrungen__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/erfahrungen-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Existing testimonials/customer-stories route; recaptured in raw batch-01 and recovered into closure manifest."
+    },
+    {
+      "route": "/franchise-partner-werden",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "franchise-landing",
+      "representative_route": "/franchise-partner-werden",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/franchise-partner-werden-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/franchise-partner-werden-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Distinct franchise acquisition template with store hero, proof metrics, role split and product cards."
+    },
+    {
+      "route": "/kontakt",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "contact-support",
+      "representative_route": "/kontakt",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/kontakt__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/kontakt-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/kontakt__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/kontakt__-desktop-click-y0-01-Wie_können_wir_Dir_helfe.png",
+          "shots/kontakt__-desktop-click-y2250-00-Mehr_lesen.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Contact hub and channel-specific email path share the support/form shell; /kontakt is documented representative."
+    },
+    {
+      "route": "/kontakt/email",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "contact-support",
+      "representative_route": "/kontakt",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/kontakt__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/kontakt-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/kontakt__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/kontakt__-desktop-click-y0-01-Wie_können_wir_Dir_helfe.png",
+          "shots/kontakt__-desktop-click-y2250-00-Mehr_lesen.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Contact hub and channel-specific email path share the support/form shell; /kontakt is documented representative."
+    },
+    {
+      "route": "/lieckipedia-umzug",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "historical-migration-oneoff",
+      "representative_route": "/lieckipedia-umzug",
+      "manifest": null,
+      "desktop": [],
+      "mobile": [],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Route is intentionally excluded from visual reference capture; no state claim is made."
+      },
+      "disposition": "intentional_exclusion",
+      "reason": "One-off historical shop-migration bridge, not a reusable current template family; retained explicitly in denominator."
+    },
+    {
+      "route": "/newsletter",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "newsletter-landing",
+      "representative_route": "/newsletter",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/newsletter-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/newsletter-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Distinct newsletter acquisition template with image hero, benefit list and lavender form card."
+    },
+    {
+      "route": "/presseraum",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "press-hub",
+      "representative_route": "/presseraum",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/presseraum-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/presseraum-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Distinct press hub with contact card, downloadable asset buttons, logo strip and press articles."
+    },
+    {
+      "route": "/ruecknahme-recycling",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "regulatory-utility",
+      "representative_route": "/ruecknahme-recycling",
+      "manifest": null,
+      "desktop": [],
+      "mobile": [],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Route is intentionally excluded from visual reference capture; no state claim is made."
+      },
+      "disposition": "intentional_exclusion",
+      "reason": "Regulatory disposal text route; excluded from design-reference capture but retained explicitly in denominator."
+    },
+    {
+      "route": "/sales/balkonkraftwerk-2000-watt",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "campaign-product-landing",
+      "representative_route": "/balkonkraftwerk-mit-speicher",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/balkonkraftwerk-mit-speicher__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/balkonkraftwerk-mit-speicher-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y2250-00-Balkonkraftwerk_mit_Spei.png",
+          "shots/balkonkraftwerk-mit-speicher__-desktop-click-y2250-01-So_funktioniert_ein_Balk.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "SEO/campaign landing family: branded image hero, offer/benefit sections, lead path and FAQ in the same priwatt marketing shell; representative is deeply documented."
+    },
+    {
+      "route": "/service",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "service-hub",
+      "representative_route": "/service",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/service-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/service-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Service index template with six illustrated navigation tiles and shared newsletter block."
+    },
+    {
+      "route": "/service/erklaer-videos",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "explain-video-hub",
+      "representative_route": "/service/erklaer-videos",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/service__erklaer-videos-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/service__erklaer-videos-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Video library template with category filters, consent placeholders and card grid."
+    },
+    {
+      "route": "/service/ertragsrechner",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "savings-calculator",
+      "representative_route": "/service/ertragsrechner",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/service__ertragsrechner__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/service__ertragsrechner-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/service__ertragsrechner__-desktop-click-y0-00-Alle_zulassen.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Existing interactive calculator Atlas route."
+    },
+    {
+      "route": "/service/faq",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "faq-hub",
+      "representative_route": "/service/faq",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/service__faq__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/service__faq-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/service__faq__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/service__faq__-desktop-click-y0-01-Wie_können_wir_Dir_helfe.png",
+          "shots/service__faq__-desktop-click-y1500-00-Mehr_lesen.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Existing FAQ hub Atlas route."
+    },
+    {
+      "route": "/solaranlagen",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "solar-system-landing",
+      "representative_route": "/solaranlagen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/solaranlagen__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/solaranlagen__-desktop-click-y6750-00-FAQs.png",
+          "shots/solaranlagen__-desktop-click-y6750-01-Beratung.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Existing solar service landing Atlas route."
+    },
+    {
+      "route": "/solaranlagen/12-module-5-kwp",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "solar-configured-system",
+      "representative_route": "/solaranlagen/12-module-5-kwp",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__12-module-5-kwp-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__12-module-5-kwp-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Module-count variants of one configured-system template; 12-module/5-kWp representative captured desktop+mobile."
+    },
+    {
+      "route": "/solaranlagen/16-module-7-kwp",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "solar-configured-system",
+      "representative_route": "/solaranlagen/12-module-5-kwp",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__12-module-5-kwp-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__12-module-5-kwp-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Module-count variants of one configured-system template; 12-module/5-kWp representative captured desktop+mobile."
+    },
+    {
+      "route": "/solaranlagen/20-module-9-kwp",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "solar-configured-system",
+      "representative_route": "/solaranlagen/12-module-5-kwp",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__12-module-5-kwp-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__12-module-5-kwp-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Module-count variants of one configured-system template; 12-module/5-kWp representative captured desktop+mobile."
+    },
+    {
+      "route": "/solaranlagen/24-module-10-kwp",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "solar-configured-system",
+      "representative_route": "/solaranlagen/12-module-5-kwp",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__12-module-5-kwp-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__12-module-5-kwp-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Module-count variants of one configured-system template; 12-module/5-kWp representative captured desktop+mobile."
+    },
+    {
+      "route": "/solaranlagen/komplettsets-ohne-montage",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "solar-complete-set-grid",
+      "representative_route": "/solaranlagen/komplettsets-ohne-montage",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__komplettsets-ohne-montage__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__komplettsets-ohne-montage-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/solaranlagen__komplettsets-ohne-montage__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/solaranlagen__komplettsets-ohne-montage__-desktop-click-y4500-00-FAQs.png",
+          "shots/solaranlagen__komplettsets-ohne-montage__-desktop-click-y4500-01-Welches_Komplettset_pass.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Complete-set selection/grid family; without-montage representative already documented."
+    },
+    {
+      "route": "/solaranlagen/komplettsets-sunenergyxt",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "solar-complete-set-grid",
+      "representative_route": "/solaranlagen/komplettsets-ohne-montage",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/solaranlagen__komplettsets-ohne-montage__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/solaranlagen__komplettsets-ohne-montage-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/solaranlagen__komplettsets-ohne-montage__-desktop-click-y0-00-Alle_zulassen.png",
+          "shots/solaranlagen__komplettsets-ohne-montage__-desktop-click-y4500-00-FAQs.png",
+          "shots/solaranlagen__komplettsets-ohne-montage__-desktop-click-y4500-01-Welches_Komplettset_pass.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Complete-set selection/grid family; without-montage representative already documented."
+    },
+    {
+      "route": "/stecker-solaranlagen",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "plug-in-solar-hub",
+      "representative_route": "/stecker-solaranlagen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Existing plug-in-solar hub Atlas route."
+    },
+    {
+      "route": "/stecker-solaranlagen/balkon",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/erweiterungssets",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/fassade",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/flachdach",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/garten",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/garten/garten/priflat-quattro/SW11905.4",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/ohne-halterung",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/ohne-halterung/pribasic-duo-ohne-halterung/SW10753.7",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/ohne-halterung/pribasic-duo/SW11817.4",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/ohne-halterung/pribasic-duo/SW11911.4",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/ohne-halterung/pribasic-ohne-halterung/SW10701.2",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/ohne-halterung/pribasic-quattro/SW11913.4",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-product-detail",
+      "representative_route": "/stecker-solaranlagen/balkon/pribalcony-duo/SW11834.4",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon__pribalcony-duo__SW11834.4-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "SKU routes share configurator/product-detail layout; priBalcony Duo representative captured desktop+mobile."
+    },
+    {
+      "route": "/stecker-solaranlagen/schraegdach",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "mounting-category",
+      "representative_route": "/stecker-solaranlagen/balkon",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/stecker-solaranlagen__balkon-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/stecker-solaranlagen__balkon-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Mounting/category variants in one plug-in-solar category family; balcony representative captured desktop+mobile."
+    },
+    {
+      "route": "/store-in-deiner-naehe",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "store-locator",
+      "representative_route": "/store-in-deiner-naehe",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/store-in-deiner-naehe__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/store-in-deiner-naehe-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "proven",
+        "paths": [
+          "shots/store-in-deiner-naehe__-desktop-click-y0-00-Alle_zulassen.png"
+        ],
+        "reason": "Existing deterministic hover/click capture in the representative route."
+      },
+      "disposition": "covered",
+      "reason": "Existing store locator Atlas route."
+    },
+    {
+      "route": "/store-in-deiner-naehe/bad-oeynhausen",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "store-detail",
+      "representative_route": "/store-in-deiner-naehe/bad-oeynhausen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/store-in-deiner-naehe__bad-oeynhausen-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/store-in-deiner-naehe__bad-oeynhausen-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Location-detail family; Bad Oeynhausen representative captured desktop+mobile."
+    },
+    {
+      "route": "/store-in-deiner-naehe/riegel-am-kaiserstuhl",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "store-detail",
+      "representative_route": "/store-in-deiner-naehe/bad-oeynhausen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/store-in-deiner-naehe__bad-oeynhausen-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/store-in-deiner-naehe__bad-oeynhausen-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Location-detail family; Bad Oeynhausen representative captured desktop+mobile."
+    },
+    {
+      "route": "/store-in-deiner-naehe/teutschenthal",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "store-detail",
+      "representative_route": "/store-in-deiner-naehe/bad-oeynhausen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/store-in-deiner-naehe__bad-oeynhausen-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/store-in-deiner-naehe__bad-oeynhausen-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Location-detail family; Bad Oeynhausen representative captured desktop+mobile."
+    },
+    {
+      "route": "/ueber-uns",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "about-company",
+      "representative_route": "/ueber-uns",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/ueber-uns__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/ueber-uns__-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Existing company/about Atlas route."
+    },
+    {
+      "route": "/waermepumpen",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "heatpump-landing",
+      "representative_route": "/waermepumpen",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/waermepumpen__-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/waermepumpen__-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Existing heatpump landing Atlas route."
+    },
+    {
+      "route": "/wechselrichter-update-800-watt",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "technical-update-oneoff",
+      "representative_route": "/wechselrichter-update-800-watt",
+      "manifest": null,
+      "desktop": [],
+      "mobile": [],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Route is intentionally excluded from visual reference capture; no state claim is made."
+      },
+      "disposition": "intentional_exclusion",
+      "reason": "One-off inverter migration/update guide, not reused as a site template; retained explicitly in denominator."
+    },
+    {
+      "route": "/zahlung-und-versand",
+      "source": [
+        "navigation"
+      ],
+      "template_group": "commerce-utility",
+      "representative_route": "/zahlung-und-versand",
+      "manifest": null,
+      "desktop": [],
+      "mobile": [],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Route is intentionally excluded from visual reference capture; no state claim is made."
+      },
+      "disposition": "intentional_exclusion",
+      "reason": "Checkout policy/fulfilment utility text route; excluded from design-reference capture but retained explicitly in denominator."
+    },
+    {
+      "route": "/zubehoer",
+      "source": [
+        "sitemap",
+        "navigation"
+      ],
+      "template_group": "accessory-category",
+      "representative_route": "/zubehoer",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/zubehoer-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/zubehoer-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Accessory category variants; /zubehoer captured. Sample /zubehoer/energiemessung shares DOM signature 8c98ddf535b9d0a6."
+    },
+    {
+      "route": "/zubehoer/energiemessung",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "accessory-category",
+      "representative_route": "/zubehoer",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/zubehoer-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/zubehoer-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Accessory category variants; /zubehoer captured. Sample /zubehoer/energiemessung shares DOM signature 8c98ddf535b9d0a6."
+    },
+    {
+      "route": "/zubehoer/halterung-balkonkraftwerk",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "accessory-category",
+      "representative_route": "/zubehoer",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/zubehoer-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/zubehoer-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Accessory category variants; /zubehoer captured. Sample /zubehoer/energiemessung shares DOM signature 8c98ddf535b9d0a6."
+    },
+    {
+      "route": "/zubehoer/kabel",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "accessory-category",
+      "representative_route": "/zubehoer",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/zubehoer-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/zubehoer-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Accessory category variants; /zubehoer captured. Sample /zubehoer/energiemessung shares DOM signature 8c98ddf535b9d0a6."
+    },
+    {
+      "route": "/zubehoer/solarmoduleundwechselrichter",
+      "source": [
+        "sitemap"
+      ],
+      "template_group": "accessory-category",
+      "representative_route": "/zubehoer",
+      "manifest": "shots/manifest-route-closure.json",
+      "desktop": [
+        "shots/zubehoer-desktop-00-fold.png"
+      ],
+      "mobile": [
+        "shots/zubehoer-mobile-00-fold.png"
+      ],
+      "states": {
+        "status": "unproven",
+        "paths": [],
+        "reason": "Closure capture used --no-interact to keep bounded batches deterministic; the persistent cookie-consent overlay prevented a trustworthy hover/focus/pressed capture."
+      },
+      "disposition": "covered",
+      "reason": "Accessory category variants; /zubehoer captured. Sample /zubehoer/energiemessung shares DOM signature 8c98ddf535b9d0a6."
+    }
+  ],
+  "summary": {
+    "unexplained_productive": 0,
+    "atlas_without_manifest": [],
+    "covered": 55,
+    "intentional_exclusion": 4
+  }
+}

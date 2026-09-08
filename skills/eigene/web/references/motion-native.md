@@ -1,6 +1,8 @@
 # Emil Kowalski Motion für MAKE Web Astra
 
-Referenzmodul für HTML/CSS, Vanilla JavaScript und gezielte Astro-Inseln. Stand: 2026-09-07.
+**Verbund (08.09.2026):** Ob eine Bewegung überhaupt gebaut wird, entscheidet [motion-doktrin.md](motion-doktrin.md) (Vier-Fragen-Prüfung); `scripts/motion-check.mjs` prüft die Umsetzung.
+
+Referenzmodul für CSS, WAAPI, View Transitions und `motion/react` im React-Stack; der Astro-Abschnitt weiter unten gilt nur noch für Legacy-HTML-Projekte. Stand: 2026-09-07.
 
 Lade dieses Modul beim Bau einer Website-Interaktion. Es liefert die Web-Umsetzung der vorhandenen Motion-Doktrin. Für Begriffe, Designbegründungen und umfassende Audits gelten die verlinkten Design-Referenzen. Die Codebeispiele teilen die Tokens aus Beispiel C01; ihre Klassen und Bezeichner sind Englisch.
 
@@ -731,9 +733,9 @@ Eine vorhandene dekorative Schleife lässt sich mit `element.toggleAttribute('da
 
 | Bedarf | Einbau |
 |---|---|
-| CSS-Transition, `@starting-style`, WAAPI oder native View Transition | Direkt in HTML/`.astro`; keine React-Insel |
-| Frameworkfreie Motion-API `import { animate } from 'motion'` | Gebündeltes Vanilla-Modul innerhalb der Astro-Seite; allein dafür kein React nötig |
-| `motion/react`, `useSpring`, `useMotionValue`, `AnimatePresence`, `layout`/`layoutId`, React-Drag-/Reorder-Widget | Vollständige zusammenhängende Interaktion in einer React-Insel |
+| CSS-Transition, `@starting-style`, WAAPI oder native View Transition | Direkt in der Komponente oder `globals.css`; kein `motion` nötig |
+| Frameworkfreie Motion-API `import { animate } from 'motion'` | In einem `useEffect` einer Client-Komponente; Cleanup beim Unmount |
+| `motion/react`, `useSpring`, `useMotionValue`, `AnimatePresence`, `layout`/`layoutId`, React-Drag-/Reorder-Widget | Client-Komponente (`"use client"`); Provider und Zustand in derselben Komponente |
 | Wiederverwendetes Sheet mit React-Primitives, Portalen und Fokusmanagement | Trigger, Sheet, Provider und gestenabhängige Zustände in derselben Insel; Library-Lebenszyklus bewahren |
 | Einzelner Hover, einfacher Fade, Karten-Eintritt oder Kontakt-Modal | Native Beispiele verwenden; die Motion-Runtime bringt dafür keinen nötigen Funktionsgewinn |
 
@@ -759,7 +761,7 @@ Bei einer physikalischen Feder Geschwindigkeit und aktuellen Wert weiterreichen.
 
 Bei Reduced Motion den dekorativen Spring-Lauf stoppen und den gültigen Zielzustand sofort setzen. Direkte, funktional nötige Pointer-Manipulation und alternative Keyboard-/Button-Bedienung müssen weiter funktionieren. Im React-Widget `useReducedMotion()` oder einen passenden Media-Query-Hook verwenden; laufende Motion Values gezielt stoppen. Ein globales `transform: none !important` würde unter Umständen das Sheet falsch positionieren.
 
-### Astro-Grenze
+### Astro-Grenze (Legacy, nur bestehende HTML-Projekte)
 
 Konzeptioneller Einbau; `MotionSheet.tsx` ist ein projektspezifischer Wrapper um einen geprüften Baustein und gehört nicht zum Fork.
 
@@ -783,7 +785,7 @@ import MotionSheet from '../components/MotionSheet.tsx';
 - Portale, globale Tokens und Exit-Erkennung entsprechend [component-islands.md](component-islands.md) prüfen. Eine Primitive durch selbst erdachte Exit-Timer zu ersetzen kann Fokus und DOM-Abbau beschädigen.
 - Paketversion, Lizenz, Direktive, Fallback, Provider-/Portalgrenze und tatsächliche JS-/CSS-Requests im Komponentenabschnitt der Projekt-`DESIGN.md` festhalten. Produktionsbundle gzip messen; eine kleine Insel kann React und weitere Primitives laden.
 
-Dieses Modul fordert keine Änderung des bestehenden HTML-first-Vertrags und keinen Wechsel der gesamten Website zu React. Astro-/Motion-Code ist hier ein Einbauentwurf; vor Übernahme braucht die konkrete Komponente einen Build und Interaktionstests.
+Seit 08.09.2026 ist React der Standardstack; `motion/react` in einer Client-Komponente ist damit der Normalfall für Gesten, Layout- und Presence-Übergänge, CSS/WAAPI bleibt für einfache Übergänge richtig. Die Astro-Insel-Hinweise gelten nur noch für Legacy-HTML-Projekte. Vor Übernahme braucht die konkrete Komponente einen Build und Interaktionstests.
 
 ## 7. C14 · Umsetzung prüfen
 

@@ -1,5 +1,7 @@
 # Reference selection and inspection
 
+**Verbund (08.09.2026):** Werkzeuge und Ablauf im Modus Inspiration: [modus-inspiration.md](modus-inspiration.md), [inspirations-quellen.md](inspirations-quellen.md), [zugangskarte.md](zugangskarte.md); Geschmackskalibrierung an Cases: [muster-bibliothek/INDEX.md](muster-bibliothek/INDEX.md) und [stil-regeln.md](stil-regeln.md).
+
 Use this catalogue to choose evidence for the current brand, page and design question. It is a menu for future projects. If the user explicitly requests visiting the full list, attempt that scope and record access results; do not silently substitute a few favourites.
 
 For service-business projects, start with Raphael's [service-pattern synthesis](service-patterns.md) and [source-linked corpus workflow](service-learning.md). The original 13 service references, the six additional browser studies in [service-expansion-2026-09.json](corpus/service-expansion-2026-09.json), and the inspected SEO Labs client sites form a separate task-specific collection. A second, ranked catalogue of 56 further sources (Pinterest to Appinspo, checked 2026-09-07) lives in [inspiration-galleries.md](inspiration-galleries.md). The 30-domain gallery/tool catalogue below remains supplemental discovery, not the default aesthetic target. Consult [21st-dev.md](21st-dev.md) for the recurring component MCP workflow and its actual connection status.

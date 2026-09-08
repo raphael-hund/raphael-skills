@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"pagination\": {\"count\": 10, \"page\": 1, \"next_page\": 2, \"total_count\": 1000, \"total_pages\": 100}, \"records\": [{\"platform\": \"desktop\", \"title\": \"Audyr\", \"url\": \"https://audyr.com\", \"uuid\": \"9552d07f-2f68-4dd7-a0e9-d779d4a31562\", \"preview_url\": \"https://images.refero.design/styles/audyr.com/9552d07f-2f68-4dd7-a0e9-d779d4a31562/preview_0.jpg\", \"description\": \"A stark, minimalist SaaS landing page with a crisp white canvas, restrained monochrome palette, and a highly structural grid-based composition. The overall feel is clean, direct...\"}, {\"platform\": \"desktop\", \"title\": \"Podscan.fm\", \"url\": \"https://podscan.fm\", \"uuid\": \"c9623ee3-a9df-4422-a886-0afc1dd1ccf4\", \"preview_url\": \"https://images.refero.design/styles/podscan.fm/c9623ee3-a9df-4422-a886-0afc1dd1ccf4/preview_0.jpg\", \"description\": \"A clean, light SaaS landing page with a polished whiteboard feel and subtle digital accents. The overall mood is crisp, calm, and productivity-oriented, with a spacious centered...\"}, {\"platform\": \"desktop\", \"title\": \"Superpower\", \"url\": \"https://superpower.com\", \"uuid\": \"589c0a33-a38c-4f77-a7b0-bf0c602c937d\", \"preview_url\": \"https://images.refero.design/styles/superpower.com/589c0a33-a38c-4f77-a7b0-bf0c602c937d/preview_0.jpg\", \"description\": \"A crisp, high-contrast health brand aesthetic with a clinical, premium feel. The design is built on a stark black-and-white foundation with a single vivid vermillion accent that...\"}]}"
+      }
+    ],
+    "isError": false
+  }
+}

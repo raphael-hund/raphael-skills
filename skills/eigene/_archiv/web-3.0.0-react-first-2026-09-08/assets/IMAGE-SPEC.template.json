@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "status": "template",
+  "assetId": "replace-with-project-element-id",
+  "outputClass": "asset",
+  "medium": "illustration",
+  "purpose": "Individuell platzierbares Hausmodell für eine Leistungssektion",
+  "interpretation": "new-illustrative-image",
+  "subject": {
+    "description": "Aus dem Brief und der Inhaltsvorlage bestimmen",
+    "mustPreserve": [],
+    "allowedChanges": [],
+    "truthStatus": "concept-not-real-project-evidence"
+  },
+  "references": [
+    {
+      "id": "content-01",
+      "path": "references/content.png",
+      "role": "content",
+      "editTarget": false,
+      "origin": "Userdatei oder genaue Originalquelle eintragen",
+      "reuseBasis": "Vor Verwendung prüfen",
+      "take": ["Motiv und festgelegte Geometrie"],
+      "ignore": ["Nicht beauftragte Stilmerkmale"],
+      "viewed": false
+    },
+    {
+      "id": "style-01",
+      "path": "references/style.png",
+      "role": "style",
+      "editTarget": false,
+      "origin": "Shooting, freigegebenes Projektasset oder genaue Originalquelle",
+      "reuseBasis": "Vor Verwendung prüfen",
+      "take": ["Palette", "Lichtcharakter", "Materialdarstellung"],
+      "ignore": ["Fremde Personen", "Logos", "Texte", "Gegenstände"],
+      "viewed": false
+    }
+  ],
+  "styleAnalysis": {
+    "observed": [],
+    "metadata": {
+      "sourceFile": null,
+      "camera": null,
+      "focalLengthMm": null,
+      "aperture": null,
+      "shutterSeconds": null
+    },
+    "inferred": [],
+    "desired": {
+      "palette": [],
+      "lightDirection": null,
+      "lightSoftness": null,
+      "composition": null
+    }
+  },
+  "photography": null,
+  "illustration": {
+    "family": "Aus der passenden Referenzfamilie bestimmen",
+    "viewpoint": null,
+    "projection": null,
+    "contour": null,
+    "volume": null,
+    "materials": [],
+    "texture": null,
+    "detailDensity": null,
+    "shadow": null
+  },
+  "output": {
+    "aspectRatio": "1:1",
+    "targetPixelSize": null,
+    "background": "transparent",
+    "safeMargin": "Motiv und Schatten zunächst vollständig erhalten",
+    "trim": "Nur nach Alpha-/Kantenprüfung; Versatz bei gemeinsamen Layern erhalten",
+    "exactText": [],
+    "exclude": ["Website-Layout", "Bedienelemente", "erfundene Logos", "zusätzliche Objekte"]
+  },
+  "runtime": {
+    "provider": null,
+    "tool": null,
+    "modelOrJobType": null,
+    "capabilityCheckedAt": null,
+    "submittedReferenceOrder": [],
+    "promptFile": null,
+    "estimatedCredits": null,
+    "jobId": null,
+    "originalOutput": null
+  },
+  "placement": {
+    "route": null,
+    "elementId": null,
+    "desktop": null,
+    "mobile": null,
+    "layerGroup": null,
+    "zOrder": null,
+    "trimOffset": null,
+    "motion": "none",
+    "staticFallback": null
+  },
+  "qa": {
+    "fileInspected": false,
+    "identityAndStyle": "unverified",
+    "alpha": "unverified",
+    "lightAndDarkEdges": "unverified",
+    "desktopEvidence": null,
+    "mobileEvidence": null,
+    "limitations": []
+  }
+}

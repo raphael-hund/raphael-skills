@@ -1,5 +1,7 @@
 # Bildsuche für MAKE Web Astra
 
+**Verbund (08.09.2026):** Lizenzierte Stock-Fotos für Kundenseiten laufen über `scripts/stock.mjs` ([stock-bilder.md](stock-bilder.md)); der Bild-Index in AVIF über `scripts/bilder.mjs` ([bildgenerierung.md](bildgenerierung.md)).
+
 Laden, sobald eine Website vorhandene Logos, Icons, Produktbilder, Ortsbilder oder fotografische Inhaltsreferenzen braucht. Dieses Modul ergänzt [GPT Image](gpt-image.md) und den [Higgsfield-Skill](/root/raphael-skills/skills/eigene/higgsfield/SKILL.md). Recherche und Live-Tests stammen vom 07.09.2026.
 
 ## Arbeitsregel
