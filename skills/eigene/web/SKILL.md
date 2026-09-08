@@ -170,7 +170,7 @@ Vorschau-vor-Launch-Vertrag und Session-Gate hängen an
 ## Geteilte Abhängigkeiten
 
 - `/root/raphael-skills/skills/design/` (taste-kern, ui-ux-db-nutzung, impeccable-detektoren, design-doktrin, `design/scripts/detect.mjs`, `design/scripts/scan-ai-slop.mjs`)
-- `/root/raphael-skills/skills/eigene/copywriting/` (`scripts/forbidden-check.py`, `/root/.claude/forbidden.md`)
+- `/root/raphael-skills/skills/eigene/copywriting/` (`copywriting/scripts/forbidden-check.py`, `/root/.claude/forbidden.md`)
 - `/root/raphael-skills/skills/eigene/seo/`
 - `/root/raphael-skills/skills/eigene/visual-aaa/` (terminales Pixel-Gate, nur über Pfad; nicht als Slash verlinkt)
 - `/root/raphael-skills/skills/eigene/eval/` (nur über Pfad)

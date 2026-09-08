@@ -52,7 +52,7 @@ Alles unten ist live getestet (Herdr 0.9.0, Codex 0.153.4, Claude Code 2.1.257, 
   VERDICT: APPROVE` → `fleet land` (Cherry-Pick in losgelösten Verify-Worktree, pytest,
   `merge --no-ff`). Nichts gepusht.
 - **Globaler Git-Hook:** `core.hooksPath=/root/.config/git/hooks` startet bei jedem Commit
-  ein Ponytail-LLM-Review (Codex exec, bis 3×240 s). Coder-Commits laufen dadurch länger;
+  kein LLM-Review-Hook mehr (Ponytail am 08.09.2026 auf Raphaels Wunsch entfernt);
   der Bean-Status-Commit in `fleet land` nutzt deshalb `--no-verify`. Merge-Commits lösen
   den Pre-Commit-Hook nicht aus.
 - Codex-Reviewer lud selbstständig das Plugin `compound-engineering` (ce-code-review) und

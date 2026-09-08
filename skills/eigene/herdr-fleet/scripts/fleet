@@ -461,7 +461,7 @@ cmd_land() {
 
 ## Summary of Changes
 Gelandet als Merge von $vc (Cherry-Pick von $commit, Coder $coder)." >/dev/null && git add "$bf" && git commit -q --no-verify -m "bean($bean): completed" ) || true; fi
-  # --no-verify: reiner Metadaten-Commit; der globale Ponytail-Pre-Commit-Hook (LLM-Review) würde ihn minutenlang blockieren.
+  # --no-verify: reiner Metadaten-Commit ohne Review-Hook (Ponytail am 08.09.2026 entfernt).
   mv "$FLEET_DIR/landable/$bean.json" "$FLEET_DIR/processed/landed-$bean.json"
   log "LANDED $bean: $commit → $FLEET_MAIN ($(git -C "$repo" rev-parse --short HEAD)). Kein Push. Push macht Raphael."
 }
