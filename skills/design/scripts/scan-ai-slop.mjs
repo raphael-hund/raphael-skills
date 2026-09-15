@@ -476,6 +476,14 @@ function scanFile(path) {
   let text;
   try {
     const st = statSync(path);
+    // Keep the audit honest even when the scanner itself runs as root. A file
+    // with no read bits is intentionally unavailable to the project process;
+    // treating root's bypass as successful coverage would make the unreadable
+    // file gate environment-dependent.
+    if ((st.mode & 0o444) === 0) {
+      unlesbareDateien.push(`${path} (EACCES: no read permission bits)`);
+      return [];
+    }
     // Frueher: >512 KB still ueberspringen. Ein echtes React-dist/ besteht aus
     // genau solchen Buendeln — der Scanner las dort nie den ausgelieferten Text
     // und meldete trotzdem "0 Tells". Grosse Dateien werden jetzt gelesen; nur

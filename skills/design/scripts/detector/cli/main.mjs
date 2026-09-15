@@ -156,6 +156,8 @@ Options:
   --no-inline-ignores Do not honor in-file impeccable-disable* ignore comments
   --no-design-system  Do not load local DESIGN.md / .impeccable/design.json context
   --no-advisory       Suppress advisory findings entirely (e.g. em-dash overuse)
+  --gpt               Legacy compatibility flag; accepted but ignored
+  --gemini            Legacy compatibility flag; accepted but ignored
   --help              Show this help message
 
 Advisory findings:

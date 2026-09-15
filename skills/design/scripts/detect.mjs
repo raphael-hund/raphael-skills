@@ -82,7 +82,7 @@ function zaehlePruefbare(wurzel, tiefe = 0) {
 // Die Wache dafuer ist evals/run-flag-hilfe-check.mjs im web-Skill; sie kennt
 // diese Ausnahme ueber das Wort VERALTET in dieser Zeile.
 const FLAG_ERLAUBT = ['fast', 'gemini', 'gpt', 'help', 'json',   // fast = VERALTET
-  'no-config', 'no-design-system', 'no-inline-ignores', 'quiet', 'scope'];
+  'no-advisory', 'no-config', 'no-design-system', 'no-inline-ignores', 'quiet', 'scope', 'viewport'];
 {
   const fremd = process.argv.slice(2)
     .filter((a) => a.startsWith('--'))

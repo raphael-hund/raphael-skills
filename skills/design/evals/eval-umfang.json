@@ -6,5 +6,7 @@
   "run-hilfe-check.mjs": 3,
   "run-struktur-design.mjs": 4,
   "run-variablen-check.mjs": 9,
-  "run-verweise-design.mjs": 25
+  "run-verweise-design.mjs": 25,
+  "run-impeccable-receipt-check.mjs": 1,
+  "run-impeccable-capability-matrix-check.mjs": 2
 }

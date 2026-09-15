@@ -138,6 +138,33 @@ Severity: (W)=warning, (a)=advisory, (E)=error. IDs sind zum gezielten Ignoriere
 
 ## QA-Ablauf (verbindlich)
 
+## Receipt- und Schweregradvertrag
+
+Impeccable liefert drei getrennte Aussagen, die in einem QA-Receipt erhalten
+bleiben müssen:
+
+1. **Static**: deterministische Datei-/Regex-Regeln.
+2. **Browser**: gerenderte DOM-, Layout- und Laufzeitregeln.
+3. **Design system**: Abgleich gegen das aktive `DESIGN.md`.
+
+Jeder Fund bleibt mit `id`, `severity`, `category`, `file`, `line` und
+`snippet` erhalten. `error` blockiert den jeweiligen technischen Gate-Lauf,
+`warning` verlangt Triage und `advisory` ist ein dokumentierter Hinweis. Eine
+bewusste Ausnahme nennt immer Regel-ID, Scope, Grund, Owner und Ablauf- oder
+Retest-Bedingung. Ein Ignore ohne Grund ist ungültig.
+
+Maschinenlesbare Reports werden mit `scripts/impeccable-receipt.mjs` in einen
+Receipt überführt. Der Aufruf erhält `--surface static|browser|design-system`,
+`--run-id`, Eingabe-Report und Ausgabe-Pfad. Der Receipt bewahrt die Findings,
+Severity-Zähler und den Blocking-Status getrennt nach Oberfläche. So kann ein
+Browser-Review nicht versehentlich als Static-PASS und ein Advisory nicht als
+technischer Blocker verbucht werden.
+
+Ein PASS bedeutet ausschließlich: „die gewählten deterministischen Regeln
+haben im geprüften Scope keinen offenen Fund“. Er bedeutet weder gute
+Gestaltung, Conversion, SEO, A11y-Vollständigkeit noch AAA-Qualität. Gerenderte
+Sichtprüfung, Motion-Review und die Handrubrik bleiben eigenständige Belege.
+
 1. Alle im Task geaenderten UI-Dateien sammeln (git-diff hilft).
 2. `node scripts/detect.mjs <dateien>` laufen lassen.
 3. Jeden Fund **fixen** (Default) oder mit echtem Grund inline ignorieren.

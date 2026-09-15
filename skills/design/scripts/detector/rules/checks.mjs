@@ -4810,14 +4810,14 @@ function keyframesToggleVisibilityDOM(name) {
       if (rule.type !== 7 || rule.name !== name) continue; // 7 = KEYFRAMES_RULE
       let togglesOut = false;
       for (const frame of rule.cssRules || []) {
-        const fs = frame.style;
-        if (!fs) continue;
-        for (let i = 0; i < fs.length; i++) {
-          const prop = fs[i];
+        const frameStyle = frame.style;
+        if (!frameStyle) continue;
+        for (let i = 0; i < frameStyle.length; i++) {
+          const prop = frameStyle[i];
           if (prop === 'opacity') {
-            if ((parseFloat(fs.getPropertyValue('opacity')) || 0) <= 0.15) togglesOut = true;
+            if ((parseFloat(frameStyle.getPropertyValue('opacity')) || 0) <= 0.15) togglesOut = true;
           } else if (prop === 'visibility') {
-            if (/hidden/i.test(fs.getPropertyValue('visibility'))) togglesOut = true;
+            if (/hidden/i.test(frameStyle.getPropertyValue('visibility'))) togglesOut = true;
           } else if (prop !== 'animation-timing-function') {
             return false; // keyframes animate something else — not a blink
           }

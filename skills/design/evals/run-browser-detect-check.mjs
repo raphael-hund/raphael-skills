@@ -433,7 +433,10 @@ if (httpCode() !== '000') {
 // stdio:'ignore' bleibt nur "antwortet nicht" — wahr, aber ohne Grund.
 // Gemessen 01.08.2026 in der Schwester-Eval: ein verworfener
 // Python-SyntaxError kostete sechs Fehlversuche.
-const serverLog = path.join(os.tmpdir(), 'server-run-browser-detect-check.log');
+// Keep the server log inside this run's private temp directory. A fixed path
+// in /tmp can be left owned by another user after an interrupted run, making
+// an otherwise healthy eval fail before it reaches the browser checks.
+const serverLog = path.join(ordner, 'server.log');
 const server = spawn('python3', ['-m', 'http.server', String(PORT)], {
   cwd: ordner, stdio: ['ignore', 'ignore', fs.openSync(serverLog, 'w')], detached: false,
 });

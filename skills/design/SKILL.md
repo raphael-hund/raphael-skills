@@ -21,16 +21,16 @@ sensitivity: internal
 loads:
   - references/design-doktrin.md
   - references/impeccable-detektoren.md
+  - references/impeccable-capability-matrix.json
   - references/taste-kern.md
   - references/ui-ux-db-nutzung.md
   # Weitere References (ai-slop-*, motion-*, farben-*, etc.) werden nur bei Bedarf nachgeladen — siehe Progressive Disclosure unten.
 provenance: >
-  Fusion aus drei Upstream-Skills (impeccable, taste, ui-ux-pro-max), uebernommen
-  am 2026-07-19 aus --depth-1-Klonen unter /root/tools/vendor/. Herkunft, Commits,
-  Lizenzen und die entfernten Teile (Gemini-Bildgenerierung, imagegen-Pflicht)
-  stehen vollstaendig in VENDORING.md dieses Skills — diese Zeile ist nur der
-  Zeiger, nicht die Zweitfassung. Spaeter ergaenzt: emilkowalski-Motion- und
-  jakubkrehel-Detailskills, kill-ai-slop-Scanner.
+  Fusion aus impeccable, taste und ui-ux-pro-max; Herkunft, Commits, Lizenzen,
+  entfernte Teile und die spaetere Motion-Ergaenzung stehen in VENDORING.md.
+  Emil-Kowalski-Quellen sind im Web-Skill unveraendert vendored und werden dort
+  ueber Aktivierungsvertrag und Rezeptmatrix selektiv genutzt; design uebernimmt
+  daraus nur die begruendete Motion-Doktrin, nicht einen zweiten Router.
 requires_skills: []
 # Wie tief ist dieser Skill geprueft? Die Zahlen sind an Laeufe gebunden —
 # evals/run-doku-zahlen.mjs reisst, wenn eine hier falsch wird.
@@ -46,7 +46,8 @@ eval_scorecard:
     - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
     - "evals/run-verweise-design.mjs — faehrt die gemeinsame Verweis-Wache fuer diesen Skill (Pfade, loads-Eintraege, fehlende Kernmodul-Importe)"
     - "evals/run-struktur-design.mjs — faehrt die vier Struktur-Wachen oben in EINEM Lauf (65s gemessen 01.08.2026, ohne Browser)"
-    - "evals/run-eval-umfang.mjs — 5 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-eval-umfang.mjs — 6 Evals: hat jede noch ihre Faelle?"
+    - "evals/run-impeccable-capability-matrix-check.mjs — 2 Fixtures: available/advisory/unavailable boundary"
     - "evals/run-doku-zahlen.mjs — 10 Zahlen: verspricht SKILL.md den echten Umfang?"
     - "evals/run-zahlen-gegen-lauf.mjs — 5 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (120s)"
     - "evals/run-exit-vertrag-check.mjs — 9 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (20s)"
