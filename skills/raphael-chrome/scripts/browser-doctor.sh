@@ -2,6 +2,29 @@
 set -u
 
 MODE="${1:-check}"
+
+if [ "$MODE" = "-h" ] || [ "$MODE" = "--help" ]; then
+  cat <<'HILFE'
+browser-doctor.sh - prueft und repariert die Arbeitsfaehigkeit des Chrome-Dienstes.
+
+Aufruf: bash browser-doctor.sh {check|repair}
+
+  check    CDP-Health, Renderer-Anzahl und Seiten-Runtime pruefen (Vorgabe)
+  repair   erst pruefen, dann CDP-Stoerprozesse raeumen und den Dienst neu starten
+
+Ausgabe ist eine JSON-Zeile mit health, runtime, renderers,
+playwright_cdp_processes und repaired.
+
+Exit 0 = arbeitsfaehig, 10 = Health fehlgeschlagen, 11 = kein Renderer,
+12 = Neustart fehlgeschlagen, 13 = nach Reparatur weiter defekt,
+14 = Seiten-Runtime antwortet nicht, 2 = Aufruf abgelehnt.
+
+Umgebung: RAPHAEL_CHROME_SERVICE, RAPHAEL_CHROME_NOISE_KILLER,
+RAPHAEL_CHROME_DOCTOR_TIMEOUT.
+HILFE
+  exit 0
+fi
+
 SERVICE="${RAPHAEL_CHROME_SERVICE:-raphael-chrome.service}"
 NOISE_KILLER="${RAPHAEL_CHROME_NOISE_KILLER:-/root/raphael-command-center/tools/kill-playwright-cdp-noise.sh}"
 HEALTH_TIMEOUT="${RAPHAEL_CHROME_DOCTOR_TIMEOUT:-12}"
@@ -125,5 +148,5 @@ repair() {
 case "$MODE" in
   check) check ;;
   repair) repair ;;
-  *) printf 'usage: %s {check|repair}\n' "$0" >&2; exit 64 ;;
+  *) printf 'usage: browser-doctor.sh {check|repair}\n' >&2; exit 2 ;;
 esac

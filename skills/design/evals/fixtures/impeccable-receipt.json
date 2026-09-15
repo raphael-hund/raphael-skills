@@ -1,0 +1,4 @@
+[
+  {"antipattern":"nested-cards","severity":"warning","category":"slop","file":"src/App.tsx","line":12,"snippet":"card inside card"},
+  {"antipattern":"blinking-cursor","advisory":true,"category":"motion","file":"src/Hero.tsx","line":8,"snippet":"blink"}
+]

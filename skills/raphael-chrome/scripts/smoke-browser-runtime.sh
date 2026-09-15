@@ -1,6 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+case "${1:-}" in
+  -h|--help)
+    cat <<'HILFE'
+smoke-browser-runtime.sh - Rauchtest der Chrome-Runtime an einem echten Tab.
+
+Aufruf: bash smoke-browser-runtime.sh
+
+Keine Argumente. Der Test oeffnet einen leeren Tab und prueft nacheinander
+Runtime, contenteditable-Ersetzung, Challenge-Erkennung, Challenge-Warten und
+den Passiv-JSD-Fehlalarm. Der Tab wird am Ende geschlossen.
+
+Der Test braucht einen laufenden Chrome-Dienst; die Hilfe startet nichts.
+
+Exit 0 = alle Schritte PASS, ungleich 0 = ein Schritt gebrochen,
+2 = Aufruf abgelehnt.
+
+Umgebung: RAPHAEL_CHROME_CLI (Vorgabe raphael-chrome).
+HILFE
+    exit 0
+    ;;
+esac
+if [ "$#" -gt 0 ]; then
+  printf '%s\n' "usage: smoke-browser-runtime.sh  (keine Argumente; -h zeigt die Hilfe)" >&2
+  exit 2
+fi
+
 CLI="${RAPHAEL_CHROME_CLI:-raphael-chrome}"
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 TMP="$(mktemp -d)"

@@ -1,0 +1,10 @@
+{
+  "schema": "design/impeccable-capability-matrix/v1",
+  "source": { "full_upstream_not_claimed": true },
+  "capabilities": [
+    { "id": "upstream", "lens": "full upstream", "surface": "upstream", "scope": "context", "runner": null, "fixture": null, "status": "unavailable", "exit_semantics": { "pass": 0 }, "unavailable_conditions": ["not-vendored"], "launch_blocking": "never-pass", "owner": "design", "reviewer": "maintainer" },
+    { "id": "review", "lens": "review", "surface": "review", "scope": "evidence", "runner": null, "fixture": "receipt", "status": "advisory", "exit_semantics": { "pass": "reviewer-verdict" }, "unavailable_conditions": ["reviewer-missing"], "launch_blocking": "wrong", "owner": "design", "reviewer": "reviewer" },
+    { "id": "static", "lens": "static", "surface": "static", "scope": "source", "runner": "scripts/detect.mjs", "fixture": "fixture", "status": "available", "exit_semantics": { "pass": 0 }, "unavailable_conditions": [], "launch_blocking": "errors-and-untriaged-warnings", "owner": "design", "reviewer": "reviewer" },
+    { "id": "browser", "lens": "browser", "surface": "browser", "scope": "route", "runner": "runner", "fixture": "fixture", "status": "available", "exit_semantics": { "pass": 0 }, "unavailable_conditions": [], "launch_blocking": "errors-and-untriaged-warnings", "owner": "design", "reviewer": "reviewer" }
+  ]
+}

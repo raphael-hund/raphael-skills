@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+case "${1:-}" in
+  -h|--help)
+    cat <<'HILFE'
+test-browser-doctor.sh - Regressionstest fuer browser-doctor.sh.
+
+Aufruf: bash test-browser-doctor.sh
+
+Keine Argumente. Der Test legt sich eigene raphael-chrome-, pgrep- und
+sudo-Attrappen in ein temporaeres PATH-Verzeichnis und prueft damit den
+Argumentvertrag sowie die Exit-Codes 0, 10, 11 und 14 von check und den
+Reparaturweg von repair. Kein echter Chrome, kein Dienst-Neustart.
+
+Exit 0 = alle Faelle bestanden, 1 = ein Fall gebrochen, 2 = Aufruf abgelehnt.
+HILFE
+    exit 0
+    ;;
+esac
+if [ "$#" -gt 0 ]; then
+  printf '%s\n' "usage: test-browser-doctor.sh  (keine Argumente; -h zeigt die Hilfe)" >&2
+  exit 2
+fi
+
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 DOCTOR="$ROOT/browser-doctor.sh"
 TMP="$(mktemp -d)"
@@ -59,6 +81,9 @@ run_expect() {
   printf '%s\n' "$output"
 }
 
+run_expect 2 --ein-unbekanntes-flag >/dev/null
+run_expect 2 quatschmodus >/dev/null
+run_expect 0 --help | grep -q 'browser-doctor.sh'
 FAKE_HEALTH=ok FAKE_RENDERERS=2 run_expect 0 check | grep -q '"health":"ok"'
 FAKE_HEALTH=failed FAKE_RENDERERS=2 run_expect 10 check | grep -q '"health":"failed"'
 FAKE_HEALTH=ok FAKE_RENDERERS=0 run_expect 11 check | grep -q '"renderers":0'

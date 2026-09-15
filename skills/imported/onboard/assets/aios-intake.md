@@ -82,4 +82,4 @@ The single biggest time-suck or recurring drudgery. Plus where tasks/projects li
 
 ---
 
-When this file is filled, run `/onboard` (or re-run it) and the wizard will scaffold your Day-1 file set: `context/`, `references/voice.md`, populated `connections.md`, and a filled `CLAUDE.md`.
+When this file is filled, run `/onboard` (or re-run it) and the wizard will scaffold your Day-1 file set: `context/`, a voice file in the selected project's `references` directory, populated `connections.md`, and a filled `CLAUDE.md`.

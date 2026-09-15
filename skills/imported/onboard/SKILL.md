@@ -68,12 +68,12 @@ Domain 3 (Calendar) is auto-inferred from Q5: Gmail → Google Cal; Outlook → 
 
 ### Step 3: Scaffold the Day-1 file set
 
-Once the intake is complete, generate these files (or update if re-running). Back up originals to `archives/intake-{YYYY-MM-DD-HHMM}/` if any exist.
+Once the intake is complete, generate these files (or update if re-running). Back up existing files to `archives/intake-{YYYY-MM-DD-HHMM}/` if any exist.
 
 1. **`context/about-me.md`** — from Q1 (identity, role) + Q7 (top_pain). One short paragraph each.
 2. **`context/about-business.md`** — from Q1 (offer, ICP) + Q4 (revenue model). One paragraph.
 3. **`context/priorities.md`** — from Q3. Numbered list, one line per priority.
-4. **`references/voice.md`** — from Q2. Paste samples verbatim with a short header explaining their use ("Match this register when drafting; don't fake voice on external content without showing me first").
+4. **Voice file in the selected project** — create `voice.md` in that project's `references` directory from Q2. Paste samples verbatim with a short header explaining their use ("Match this register when drafting; don't fake voice on external content without showing me first").
 5. **`connections.md`** — populate the 7-row table from Q4-Q7 answers. Each row gets `mechanism: not yet connected`, `auth: —`, `last checked: —`. The user wires connections on Day 2.
 6. **Operating manual (`AGENTS.md` / `CLAUDE.md`)**: fill applicable `{{...}}` placeholders with the user's name, priority, voice summary, and connections summary. In an established manual, update only the selected context or its route; preserve other instructions. Keep shared guidance synchronized when required by the project.
 
@@ -101,7 +101,7 @@ The Default Shift question seeds the Mindset framework before `/level-up` formal
 1. **The 7-question cap is non-negotiable.** Don't add Q8 in conversation.
 2. **Voice paste cannot be skipped.** If the user types samples mid-chat, refuse and tell them to paste from real writing.
 3. **One-shot scaffold.** After Step 2 ends, write Step 3 files in a single batch. No multi-turn confirmation. The user iterates by editing `aios-intake.md` and re-running.
-4. **Idempotent.** Re-running with an edited intake refreshes context files; backs up originals to `archives/intake-{ts}/`. Skips questions already answered unless the user wants to revise.
+4. **Idempotent.** Re-running with an edited intake refreshes context files; backs up existing files to `archives/intake-{ts}/`. Skips questions already answered unless the user wants to revise.
 5. **Closing screen is three lines.** Not a menu.
 6. **No extra skills generated.** Don't scaffold `/today`, `/draft`, `/connect`, etc. The kit ships four skills: `/onboard`, `/audit`, `/level-up`, and `/link`; the user authors more via `/level-up`.
 7. **Read-only on `references/3ms-framework.md`.** It already ships in the kit. Don't overwrite.

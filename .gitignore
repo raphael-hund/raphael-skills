@@ -31,3 +31,8 @@ skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/muster-bibliothek/**/*
 # macOS AppleDouble-Reste und Ad-hoc-Backups
 ._*
 *.bak-*
+.cursor/
+.superpowers/
+.unlazy/
+.git.bak-husk-*/
+__pycache__/
