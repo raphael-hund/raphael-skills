@@ -37,8 +37,8 @@ Import-Commands:
 
 ```bash
 ENGINE=/root/raphael-skills/skills/eigene/seo/scripts/citation_outreach.py
-CONFIG=/root/clients/<slug>/seo/citation-outreach/config.json
-WS=/root/clients/<slug>/seo/citation-outreach
+CONFIG=/root/02 CLIENTS/<slug>/seo/citation-outreach/config.json
+WS=/root/02 CLIENTS/<slug>/seo/citation-outreach
 
 python3 "$ENGINE" --config "$CONFIG" --workspace "$WS" import-citations "$WS/inbox/citations.jsonl"
 python3 "$ENGINE" --config "$CONFIG" --workspace "$WS" import-contacts "$WS/inbox/contacts.jsonl"

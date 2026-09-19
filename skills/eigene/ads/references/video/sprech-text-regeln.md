@@ -16,7 +16,7 @@ Zwei Referenz-Ebenen, beide Pflicht:
    Referenz-Datenbank ziehen (`../korpus/referenz-ads.md`).
 2. **Kunden-Referenzen:** Referenz für das Referenzkonto (externe Konvention, Kundenrepo
    außerhalb des Skills):
-   `/root/clients/referenzkonto/ads/skripte/2026-07-22-Referenzkonto-Ad-Skripte.md` (extern; Stand 07.09.2026 auf Disk nicht vorhanden; Ersatz: `/root/clients/referenzkonto/ads/motion-graphic-2026-09-03/SKRIPT.md`, ebenfalls extern)
+   `/root/02 CLIENTS/referenzkonto/ads/skripte/2026-07-22-Referenzkonto-Ad-Skripte.md` (extern; Stand 07.09.2026 auf Disk nicht vorhanden; Ersatz: `/root/02 CLIENTS/referenzkonto/ads/motion-graphic-2026-09-03/SKRIPT.md`, ebenfalls extern)
    (Dominic, Du-Ansprache, kurze Hauptsätze, konkrete Zahlen/Namen statt Kategorien). Bei
    anderen Kunden: deren `ads/`-Ordner als Referenz-Set nutzen; existiert noch keiner, aus
    dem Voice-Dossier + einer echten Textprobe ableiten (siehe `copywriting`-Skill, extern, falls installiert).

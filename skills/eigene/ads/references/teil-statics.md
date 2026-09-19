@@ -8,7 +8,7 @@ Style wählen **bevor** Copy.
 ## Pflicht vor dem Schreiben
 
 0. Lies das eigene Lern-Register des Kunden, wenn vorhanden:
-   `/root/clients/<slug>/ads/lern-register.md`. Eigene Resultate schlagen jede
+   `/root/02 CLIENTS/<slug>/ads/lern-register.md`. Eigene Resultate schlagen jede
    Markt-Referenz. Was dort als tot markiert ist, wird nicht wieder gebaut.
 1. Lies `craft/statics.md`: S1–S8, Hook F01–F12, Callout C01–C06, Angle A01–A08 (Stil-/ID-Kanon).
    Das Pflicht-Schema für den Brief selbst ist `statics/brief-schema.md` — es füllen,
@@ -128,10 +128,10 @@ Preisanker, Verknappung als kleines Element, ein Button. Alle Karten einer Welle
 dieselbe Botschaft, nur das Foto wechselt (Aussen, Innen, Drohne, Portal-Look).
 Beleg: Foreplay-Langläufer Specht Cuxhaven 529 Tage, Blumenauer München 345 Tage,
 BUWOG Havel Lichter 142 Tage, Haus Arbor 142 Tage (Sichtung 03.09.2026, Dossier
-`/root/clients/<slug>/ads/research/2026-09-03-angle-dossier-statics.md`).
+`/root/02 CLIENTS/<slug>/ads/research/2026-09-03-angle-dossier-statics.md`).
 Nicht auf die Karte: wer baut, seit wann, wie oft; Auswahl-Fragen; Lage-Dreiklänge;
 alles, was der Käufer erst nach «Was ist das, was kostet es» wissen will.
-Beispiel: `/root/clients/<slug>/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
+Beispiel: `/root/02 CLIENTS/<slug>/ads/statics/welle-1-umiken/TEXT-UND-IDEE.md`.
 
 ## Bild (Raphael, 03.09.2026 abends; Standard verschärft 18.09.2026)
 
@@ -215,7 +215,7 @@ Eyebrow 36 (Eyebrow optional, mit Pin-Icon als Ort-/Objekt-Etikett). Pflicht:
 Headline und CTA immer; Body oder Bullets, gern beide. Gesamt unter 35 Wörter —
 zu viel Text ist häufiger Fail als zu wenig; wenn Headline und Bullets reichen,
 gibt es keinen Body.
-Beispiel mit allen Varianten: `/root/clients/ak-omega/ads/statics/COPY-VARIANTEN-2026-09-06.md`
+Beispiel mit allen Varianten: `/root/02 CLIENTS/ak-omega/ads/statics/COPY-VARIANTEN-2026-09-06.md`
 (externe Konvention: Kundenrepo).
 
 ### Klarheit vor Handwerk (Raphael, 03.09.2026)
@@ -258,7 +258,7 @@ die Ablauf-Kurzform je Karte:
 
 Beleg für die Pillow-/Redraw-Härte: PROPFIN-Welle 1, Umiken-Karten v1 mit
 Headline «Umike» und Logo-Matsch (KRITIK-KARTEN.md, externe Konvention: Kundenrepo).
-Beispiel Text: `/root/clients/referenzkonto/ads/statics/welle-4-branchen/TEXT-UND-IDEE.md`
+Beispiel Text: `/root/02 CLIENTS/referenzkonto/ads/statics/welle-4-branchen/TEXT-UND-IDEE.md`
 (externe Konvention: Kundenrepo).
 
 Ein Brief ohne gelesene Angle-Datei ist unbelegt und wird nicht ausgeliefert.

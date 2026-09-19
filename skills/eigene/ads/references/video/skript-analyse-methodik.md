@@ -68,6 +68,6 @@ Skripte) keine Phase 2, sonst ist das "Skelett" geraten statt abgeleitet.
 Diese Methodik läuft in Schritt 3 (Referenz-Skripte analysieren) des Video-
 Ablaufs (`../teil-video.md`), bevor in Schritt 4 nach Skelett geschrieben wird. Referenz-Set: bestehende
 Kundenskripte (`ads/skripte/` des Kunden, externe Konvention Kundenrepo) plus bei Bedarf Wettbewerbs-/Swipe-Material.
-Beim Referenzkonto: `/root/clients/referenzkonto/ads/skripte/2026-07-22-Referenzkonto-Ad-Skripte.md` (extern; Stand 07.09.2026 auf Disk nicht vorhanden; 6 Skripte,
+Beim Referenzkonto: `/root/02 CLIENTS/referenzkonto/ads/skripte/2026-07-22-Referenzkonto-Ad-Skripte.md` (extern; Stand 07.09.2026 auf Disk nicht vorhanden; 6 Skripte,
 2 Bodies × Hook-Varianten) ist selbst schon ein Ergebnis dieser Methodik und kann direkt
 als Referenz-Set für Phase 1 dienen.

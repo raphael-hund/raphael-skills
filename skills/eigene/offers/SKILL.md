@@ -23,9 +23,9 @@ completion_criteria:
 # offers — Angebots-Architektur
 
 **Lies zuerst:**
-`/root/raphael-brain/wiki/company/offer/` und `/root/raphael-brain/wiki/company/icp/` **und** zur Laufzeit
-`/root/clients/<slug>/wiki/ICP.md`, `PROOF.md`, `OFFER.md` (liegen nicht in jedem Kundenrepo; Vorlage:
-`/root/raphael-brain/templates/offer-template.md`).
+`/root/01 COMPANY/offer/` und `/root/01 COMPANY/icp/` **und** zur Laufzeit
+`/root/02 CLIENTS/<slug>/wiki/ICP.md`, `PROOF.md`, `OFFER.md` (liegen nicht in jedem Kundenrepo; Vorlage:
+`/root/01 COMPANY/templates/offer-template.md`).
 
 ## Zweck (1 Satz)
 

@@ -33,7 +33,7 @@ Produktion zusätzlich `video-produktion.md` lesen; dort liegen auch die Wispr-V
 ## Bevor du schreibst (5 Dinge)
 
 0. Lies das eigene Lern-Register des Kunden, wenn vorhanden:
-   `/root/clients/<slug>/ads/lern-register.md`. Eigene Resultate schlagen jede
+   `/root/02 CLIENTS/<slug>/ads/lern-register.md`. Eigene Resultate schlagen jede
    Markt-Referenz. Was dort als tot markiert ist, wird nicht wieder gebaut.
 1. **Wer + was er bekommt.** Aus Teil ICP oder aus dem, was der User sagt.
 2. **Ein echter Proof.** Prüffähiger Case, Demonstration oder Artefakt mit Quelle.

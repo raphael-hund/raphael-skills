@@ -8,7 +8,7 @@ Klicks, billige Formularabsendungen und Plattform-ROAS sind Zwischenbeobachtunge
 
 Vorhandenes Kundenmaterial und das beauftragte Ziel lesen. Angebot, ICP, Proof,
 Servicegebiet, tatsächlichen Folgeschritt und verfügbare Bearbeitungskapazität
-benennen. Das Kunden-Lernregister unter `/root/clients/<slug>/ads/lern-register.md`
+benennen. Das Kunden-Lernregister unter `/root/02 CLIENTS/<slug>/ads/lern-register.md`
 lesen, wenn vorhanden. Eigene überprüfte Resultate haben Vorrang vor Default-Wellen
 und Autorenmustern. Fehlt Kundenwissen, mit offen bezeichneten Annahmen arbeiten;
 allgemeine Recherche ist auch ohne Kundenkonto möglich.
@@ -103,7 +103,7 @@ Leadqualität an der ganzen Kette prüfen: Botschaft, nächster Schritt, Formula
 Kontakt, Buchung, Erscheinen und Sales. Instant Forms sind weder grundsätzlich
 schlecht noch grundsätzlich die beste Wahl. Die Aussage „Instant Forms liefern
 schlechte Leads“ braucht einen konkreten Eintrag mit Zeitraum und Qualitätsbefund
-im Kunden-Lernregister `/root/clients/<slug>/ads/lern-register.md` sowie dessen
+im Kunden-Lernregister `/root/02 CLIENTS/<slug>/ads/lern-register.md` sowie dessen
 Abschnitt oder Zeilenbeleg. Ohne diesen Verweis bleibt die Aussage neutral.
 Ein zusätzlicher Pflichtschritt muss einen konkreten Auswahl- oder Informationszweck erfüllen.
 
@@ -262,7 +262,7 @@ Gewinner-Merkmal identifiziert: Offer, Person (z. B. Frau mit Schild im Bild),
 Format oder lokale Ansprache. Beispiel aus dem Chef-Diktat: „Frau + Schild +
 Lokal" als erkennbare Gewinn-Kombination. Jede Testwelle dokumentiert ihre
 gefundene Winning Variable im Kunden-Lern-Register
-(`/root/clients/<slug>/ads/lern-register.md`), damit spätere Wellen darauf
+(`/root/02 CLIENTS/<slug>/ads/lern-register.md`), damit spätere Wellen darauf
 aufbauen statt von null zu starten. Das präzisiert den Testvertrag oben („gezielt
 veränderte Eigenschaft"), ersetzt ihn aber nicht: Unbelegte Variablen (im Korpus
 nicht auswertbar, etwa „Frau in der Ad") bleiben Hypothesen, keine Regeln.

@@ -11,7 +11,7 @@ Schema, Commands, Stalls: `pipeline.schema.json` und
 ## Vor dem ersten Command
 
 - Config liegt im Kundenrepo, nicht im Skill. Workspace:
-  `/root/clients/<slug>/seo/citation-outreach`.
+  `/root/02 CLIENTS/<slug>/seo/citation-outreach`.
 - `mode=offline` oder Live mit publizierter Non-Homepage = `brand.target_link_url`.
   Sonst `BLOCKED_TARGET_PAGES`.
 - Cadence der Campaign nicht wechseln.
@@ -19,8 +19,8 @@ Schema, Commands, Stalls: `pipeline.schema.json` und
 
 ```bash
 ENGINE=/root/raphael-skills/skills/eigene/seo/scripts/citation_outreach.py
-CONFIG=/root/clients/<slug>/seo/citation-outreach/config.json
-WS=/root/clients/<slug>/seo/citation-outreach
+CONFIG=/root/02 CLIENTS/<slug>/seo/citation-outreach/config.json
+WS=/root/02 CLIENTS/<slug>/seo/citation-outreach
 ```
 
 Flags bevorzugt vor dem Subcommand. Nach dem Subcommand geht ebenfalls.

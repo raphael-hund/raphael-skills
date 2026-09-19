@@ -1,7 +1,7 @@
 # Grigoletti CH — Kontrast-Referenz (Webdesign, Basel)
 
 Dario Grigoletti, Framer-Freelancer aus Basel, Zielgruppe lokale KMU/Handwerk.
-Quelle: `/root/clients/referenzkonto/ads/research/2026-08-28-page-391066367423223.md` (Meta Ad Library CH, 28.08.2026; externe Konvention: Kundenrepo).
+Quelle: `/root/02 CLIENTS/referenzkonto/ads/research/2026-08-28-page-391066367423223.md` (Meta Ad Library CH, 28.08.2026; externe Konvention: Kundenrepo).
 14 Einzel-Ads in **7 Creative-Gruppen**, davon **genau 1 aktiv**.
 
 ## Kontrast-Referenz — was hier NICHT steht

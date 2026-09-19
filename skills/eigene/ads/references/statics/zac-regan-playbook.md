@@ -2,7 +2,7 @@
 
 Datenbasis: 258 Reels transkribiert und analysiert (19.08.2026): alle 27 Reels aus
 Raphaels Bookmarks + die Top 70 nach Plays + alle Reels der letzten 45 Tage aus
-693 Profil-Posts. Rohdaten: `/root/clients/referenzkonto/ads/research/startrunningads-2026-08-19/`
+693 Profil-Posts. Rohdaten: `/root/02 CLIENTS/referenzkonto/ads/research/startrunningads-2026-08-19/`
 (externe Konvention: Kundenrepo)
 (Transkripte, Frames, `analysis-all.json` mit Hook-Formel, Struktur, Lesson pro Reel).
 

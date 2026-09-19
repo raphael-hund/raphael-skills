@@ -5,7 +5,7 @@
 Kurze, griffbereite Formeln. Formel zuerst, Struktur, drei Onscreen-Beispiele, wann sie trägt.
 Quelle: Live-Recherche 2025–2026 (Stirling, Adligator, Bestever, Flighted, Motion) plus Referenzkonto-Korpus
 (110 Statics, eigene Spend-Daten). Zusammengezogen in
-`/root/clients/referenzkonto/ads/research/2026-08-18-static-copy-formeln-grok.md`
+`/root/02 CLIENTS/referenzkonto/ads/research/2026-08-18-static-copy-formeln-grok.md`
 (externe Konvention: Kundenrepo).
 
 Pflicht-Reihenfolge vor jeder Karte: **Style S1–S8 → Angle A01–A08 → Hook F01–F12 → Callout C01–C06.**

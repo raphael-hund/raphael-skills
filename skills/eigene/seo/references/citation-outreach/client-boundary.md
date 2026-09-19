@@ -23,7 +23,7 @@ Kein Live-Inbox, keine echten Editor-Mails, keine Kunden-SQLite, keine Tokens.
 Workspace und Config:
 
 ```text
-/root/clients/<slug>/seo/citation-outreach/
+/root/02 CLIENTS/<slug>/seo/citation-outreach/
   config.json
   .citation-outreach-client          # eine Zeile: client_id
   citation_outreach.sqlite
@@ -32,20 +32,20 @@ Workspace und Config:
   inbox/replies.jsonl
 ```
 
-`<slug>` ist der Client-Ordnername unter `/root/clients/`, ohne `client-`-Praefix.
+`<slug>` ist der Client-Ordnername unter `/root/02 CLIENTS/`, ohne `client-`-Praefix.
 `client_id` in der Config muss zum Marker passen.
 
 Start aus dem Template, nicht aus einer Kopie fremder Kundendaten:
 
 ```bash
-mkdir -p /root/clients/<slug>/seo/citation-outreach/inbox
+mkdir -p /root/02 CLIENTS/<slug>/seo/citation-outreach/inbox
 cp /root/raphael-skills/skills/eigene/seo/examples/citation-outreach/client-template.json \
-  /root/clients/<slug>/seo/citation-outreach/config.json
+  /root/02 CLIENTS/<slug>/seo/citation-outreach/config.json
 # client_id, campaign_id, brand, own_domains, target_pages ersetzen
 
 python3 /root/raphael-skills/skills/eigene/seo/scripts/citation_outreach.py \
-  --config /root/clients/<slug>/seo/citation-outreach/config.json \
-  --workspace /root/clients/<slug>/seo/citation-outreach \
+  --config /root/02 CLIENTS/<slug>/seo/citation-outreach/config.json \
+  --workspace /root/02 CLIENTS/<slug>/seo/citation-outreach \
   init
 ```
 

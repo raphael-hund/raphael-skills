@@ -8,7 +8,7 @@ Standardisiertes Format für Statics-Briefs. Ein Brief = eine Zelle in der
 Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe Blocker unten.
 
 **Pflicht vor jedem Brief, in Reihenfolge:**
-0. **Eigenes Lern-Register lesen**, wenn vorhanden: `/root/clients/<slug>/ads/lern-register.md`
+0. **Eigenes Lern-Register lesen**, wenn vorhanden: `/root/02 CLIENTS/<slug>/ads/lern-register.md`
    (externe Konvention: Kundenrepo).
    Eigene Winner/Loser mit Zahl schlagen jede Markt-Referenz. Was dort als tot
    markiert ist, wird nicht wieder gebaut.
@@ -47,8 +47,8 @@ Angle × Visual-Style-Matrix. Kein Konzept ohne Grounding, siehe Blocker unten.
   3:4-Master-Doktrin oben. Historische Alt-Fassung: 9:16 anlegen, Kern im zentrierten 1:1]
 
 **Grounding-Quelle:** [Pflichtfeld, echte Review/Winning-Ad/Ad-Kommentar/Kundenzitat aus
-  `/root/clients/<slug>/wiki/absprachen.md`, `/root/clients/<slug>/wiki/learnings.md`,
-  `/root/clients/<slug>/ads/lern-register.md` oder `raw/meetings`. Kein Beleg = kein Brief,
+  `/root/02 CLIENTS/<slug>/wiki/absprachen.md`, `/root/02 CLIENTS/<slug>/wiki/learnings.md`,
+  `/root/02 CLIENTS/<slug>/ads/lern-register.md` oder `raw/meetings`. Kein Beleg = kein Brief,
   siehe Blocker unten]
 
 **Status:** [sofort produzierbar | wartet auf Material: <was fehlt> | Grounding fehlt]
@@ -71,8 +71,8 @@ auf 2–3 Favoriten clustern.
 ## Grounding-Pflicht (harter Blocker)
 
 Jedes Konzept braucht eine Quelle: echte Review, Winning-Ad, Ad-Kommentar oder Zitat aus
-`/root/clients/<slug>/wiki/absprachen.md`, `/root/clients/<slug>/wiki/learnings.md`,
-`/root/clients/<slug>/ads/lern-register.md` oder `raw/meetings`. Keine erfundenen Claims,
+`/root/02 CLIENTS/<slug>/wiki/absprachen.md`, `/root/02 CLIENTS/<slug>/wiki/learnings.md`,
+`/root/02 CLIENTS/<slug>/ads/lern-register.md` oder `raw/meetings`. Keine erfundenen Claims,
 Statistiken, Testimonials, Chats oder Dashboard-Screens. Fehlt Rohmaterial für eine Zelle:
 **stoppen und um Material bitten**, nicht ungegroundet weiterproduzieren. Dieselbe Härte
 wie claims-qa, nur schon am Brief statt erst am Text.

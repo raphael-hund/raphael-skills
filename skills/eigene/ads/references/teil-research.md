@@ -15,7 +15,7 @@ starten. Vorhandene lokale Grundlagen nutzen und die gelieferten Bilder/Videos
 nach `meta-ads-library.md` prüfen; fehlenden Kontext als Lücke nennen.
 
 1. Vor der Suche vorhandenen ICP und das eigene Lern-Register
-   `/root/clients/<slug>/ads/lern-register.md` lesen. Über `INDEX.md`
+   `/root/02 CLIENTS/<slug>/ads/lern-register.md` lesen. Über `INDEX.md`
    passende Themen und Referenzen als Prüfraster wählen. Bereits
    gelesene Grundlagen nicht erneut laden. Fehlender Kundenkontext blockiert
    keine allgemeine Library-Recherche; Annahmen zum Markt ausweisen.
@@ -70,7 +70,7 @@ Mindestens:
   Playback-Abdeckung aus `meta-ads-library.md`; Beobachtung und Testhypothese trennen
 
 Ablage, wenn Kundenrepo da:
-`/root/clients/<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
+`/root/02 CLIENTS/<slug>/ads/research/<YYYY-MM-DD>-angle-dossier.md`
 Sonst dorthin, wo der User die Datei haben will.
 
 ## Gate für das Angle-Dossier

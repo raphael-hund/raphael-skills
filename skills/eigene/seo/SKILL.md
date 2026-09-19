@@ -102,8 +102,8 @@ completion_criteria:
 
 # seo — Advanced SEO (Google + KI-Suche, Loop 4)
 
-**Lies zuerst:** `client-<name>/wiki/ICP.md`, `OFFER.md`, `VOICE.md`,
-`/root/raphael-brain/wiki/hot.md`. Stil über **copywriting**.
+**Lies zuerst:** `/root/02 CLIENTS/<slug>/wiki/ICP.md`, `OFFER.md`, `VOICE.md`,
+`/root/01 COMPANY/icp/` und `/root/01 COMPANY/voice/`. Stil über **copywriting**.
 
 ## Grundverständnis 2026
 

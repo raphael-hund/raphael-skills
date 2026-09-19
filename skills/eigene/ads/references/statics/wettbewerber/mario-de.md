@@ -1,7 +1,7 @@
 # Mario Reinwarth DE — Bauform-Referenz (Funnel/Ads, Coaches & Berater)
 
 Mario Reinwarth, mr. online marketing, Online-Marketing-Dienstleister seit 2012.
-Quelle: `/root/clients/referenzkonto/ads/research/2026-08-28-page-281098718424668.md` (Meta Ad Library DE, 28.08.2026; externe Konvention: Kundenrepo).
+Quelle: `/root/02 CLIENTS/referenzkonto/ads/research/2026-08-28-page-281098718424668.md` (Meta Ad Library DE, 28.08.2026; externe Konvention: Kundenrepo).
 ~480 Ergebnisse, erfasst: Top-27 nach Impressions plus 29 aktive = **56 Ads in 36 Gruppen**.
 Format-Mix: **~65 % Static-Textkarten**, ~35 % Videos.
 

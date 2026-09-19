@@ -14,7 +14,7 @@ Nicht aus dem Gedächtnis schreiben.
 4. Zusätzlich echte Statics zum Segment ziehen:
    `python3 "$ADS_ROOT/scripts/load-referenzen.py" --kind static --suche "<segment-wort>"`
    (Volltext-Pool aus Notion, 461 Statics mit Copy + Layout. Offline-Absicherung:
-   lokaler Dump unter `/root/clients/referenzkonto/ads/research/referenz-pool-dump/` (externe
+   lokaler Dump unter `/root/02 CLIENTS/referenzkonto/ads/research/referenz-pool-dump/` (externe
    Konvention: Kundenrepo) — die Dateien
    `*-2026-08-30-kategorisiert.json` (Quelldatei extern/archiviert, nicht im Skill)
    tragen `angle_tax` (A01–A08), `hook_tax` (F01–F12),

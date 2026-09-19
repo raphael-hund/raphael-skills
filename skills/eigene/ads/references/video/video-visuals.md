@@ -95,7 +95,7 @@ wiederverwendet wird (Konsistenz über den ganzen Batch):
 - Hintergrund festlegen (meist "white background")
 - Format/Ratio festlegen (z. B. 16:9, Elemente GROSS und lesbar: Handy-Bildschirm testen)
 - Farbakzente sparsam und markenkonform benennen (Brand-Farbe aus `brand/` des Kunden
-  — externe Konvention, Kundenrepo unter `/root/clients/<slug>/`,
+  — externe Konvention, Kundenrepo unter `/root/02 CLIENTS/<slug>/`,
   nie raten: im Referenzkonto-Fall war "#E30613" eine Annahme, die gegen `brand/` geprüft werden
   musste)
 - Negativ-Liste ("no clean vector shapes, no 3D, no photo" o.ä.) — verhindert Drift zum
