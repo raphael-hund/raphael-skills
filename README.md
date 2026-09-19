@@ -1,75 +1,74 @@
-# raphael-skills
+> Seit 16.09.2026 ist `/Volumes/STORAGE/05 SYSTEM/SKILLS/shared` auf dem Mac die Hauptquelle.
+> `/root/skills` auf dem VPS ist die empfangende Betriebskopie. Die folgenden
+> Pfade und Befehle beschreiben die VPS-Anbindung; Mac-Anbindung: `../README.md`.
 
-Kleiner Quellbestand für die tatsächlich verwendeten Skills. Bereinigt am 06.09.2026.
+# Gemeinsame Skills
 
-## Aktiver Kern
+Stand: 16.09.2026. `/root/skills` ist die zentrale Quelle fuer die VPS-Skills.
+Der alte Pfad `/root/raphael-skills` ist nur eine Kompatibilitaets-Verknuepfung.
 
-Auf dem VPS sind siebzehn Skills aktiv. Sechzehn davon liegen in diesem Repo:
-**3d-brain, ads, audit, brain, copywriting, design, grill-me, higgsfield, level-up,
-link, onboard, seo, task-observer, treg, watch und web**.
+## Inhalt
 
-Ein weiterer Skill beschreibt interne VPS-Infrastruktur und liegt deshalb bewusst
-ausserhalb dieses oeffentlichen Repos, unter `/root/skills-lokal/`. Er ist per
-Symlink in allen drei Einstiegsorten genauso aktiv wie die uebrigen.
+- `catalog/`: alle 63 freigeschalteten Skills als Verknuepfungen, keine Kopien.
+- `skills/eigene/`: eigene Fachskills, einschliesslich `web` und `web-design`.
+- `skills/design/`: vorhandener Design-Skill.
+- `skills/imported/treg/`: vorhandener treg-Skill.
+- `plugins/superpowers/`: offizieller Checkout von obra/superpowers, Version 6.3.0.
+- `plugins/compound-engineering/`: offizieller Checkout von EveryInc/compound-engineering-plugin, Version 3.26.3.
+- `manifest.json`: Quellen, Plugin-Versionen, Git-Commits und ZIP-Pruefsumme.
+- `tools/sync-links.py`: prueft/repariert die Verknuepfungen.
 
-Seit dem 07.09.2026 gibt es genau eine Quelle je Skill. Alle drei Einstiegsorte
-enthalten denselben Satz Symlinks, die direkt auf die kanonische Quelle unter
-`skills/` zeigen:
+Die bisherige Unterteilung der Fachquellen bleibt erhalten, damit relative
+Verweise und Git-Historie nicht durch eine weitere Umstrukturierung brechen.
 
-- `/root/.claude/skills` (Claude Code)
-- `/root/.codex/skills` (Codex)
-- `/root/.agents/skills` (harness-neutral)
+## Anbindung
 
-Es gibt keine Adapter-Stubs mehr. Wer einen Skill ändert, ändert die Quelle unter
-`skills/` — alle Harnesses sehen die Änderung sofort, ohne Versionsparität zu pflegen.
+| Umgebung | Eigene Skills | Fremdplugins |
+|---|---|---|
+| Codex | `~/.codex/skills/` und `~/.agents/skills/`, direkte Links | nativ registriert |
+| Claude Code | `~/.claude/skills/`, direkte Links | nativ registriert |
+| Kimi | `~/.kimi/skills` → `catalog/` | Skill-Dateien im Katalog |
+| Cursor | `~/.cursor/skills` → `catalog/` | Skill-Dateien im Katalog |
 
-Planung, Ausführung, Code-Review und Subagents verwenden die nativen Funktionen
-der jeweiligen App. Die zusätzlichen Compound-Engineering-Pflichtworkflows,
-Orchestrierungsadapter und breiten Skill-Installer sind archiviert.
+Kimi CLI ist auf diesem VPS derzeit nicht installiert. Sein Skill-Suchpfad ist
+vorbereitet; eine echte Kimi-Session wurde nicht getestet. Die portablen Links
+stellen Skills bereit, keine host-spezifischen Plugin-Hooks oder Tools.
 
-## Was hier noch liegt
+Codex und Claude erhalten Plugin-Skills ueber ihre native Installation.
+Darum stehen diese nicht zusaetzlich in ihren allgemeinen Skill-Suchordnern.
+Die Plugin-Manager verwalten installierte Cache-Snapshots; diese sind generiert
+und kein Ort fuer manuelle Aenderungen. Die zentrale Marketplace-Quelle ist
+jeweils der Checkout in `plugins/`.
 
-- `skills/`: kanonische Quellen und konkret benötigte Supportmodule. Ads nutzt
-  beispielsweise die bestehenden Video-, Static-, Copy- und Recherche-Referenzen.
-  Supportmodule sind keine zusätzlichen global aktivierten Skills.
-- `tools/`: vorhandene Index-Erstellung und Prüfung.
-- `index.json`: die 28 verbleibenden kanonischen Definitionen, einschließlich
-  Supportmodulen. Diese Zahl ist nicht die Anzahl aktiver Skills.
-
-Die früheren `codex/skills/` und `kimi/skills/` Adapter sind am 07.09.2026 entfallen
-und liegen unter `/root/archiv/skills-adapter-2026-09-07/`. Sie waren Stubs, die nur
-auf die kanonische Quelle verwiesen; die Harnesses zeigen jetzt direkt dorthin.
-
-`skills/eigene/web` ist seit dem 07.09.2026 MAKE Web Astra (Version 2.0.0):
-HTML-first-Websites, 56 Inspirationsquellen, 50 UI-Bibliotheken, native Motion,
-Bildsuche, GPT Image und SEO. Claude (`/web`), Codex (`$web`) und `.agents`
-zeigen per Symlink auf diese Quelle. Der vorherige Web-Skill 1.6.0 liegt unter
-`skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/`; higgsfield, visual-aaa,
-ads-video und design verweisen für ihre Bild- und Prüfhelfer dorthin.
-Einzelne Skripte unter `web/scripts` und `visual-aaa/scripts` bleiben für eine
-bereits laufende Website-Prüfung erreichbar; sie aktivieren keinen Skill.
+Codex-Systemskills in `~/.codex/skills/.system` und vom Desktop verwaltete
+App-Plugins bleiben vom Anbieter verwaltet. Sie werden nicht in dieses
+Fachskill-Repository kopiert.
 
 ## Pflege
 
-Quellen am vorhandenen Ort ändern. Keine vollständigen Importpakete oder
-Adapterflotten automatisch installieren. Herkunft und Lizenzhinweise der
-behaltenen Dateien erhalten.
+Neue eigene Skills unter `skills/eigene/<name>/SKILL.md` ablegen, dann:
 
-Nach Quelländerungen: `python3 tools/build-index.py` und anschließend
-`python3 tools/build-index.py --check`. Der Index installiert nichts.
+```bash
+python3 /root/skills/tools/sync-links.py --apply
+python3 /root/skills/tools/sync-links.py
+```
 
-## Archiv und Host-Grenze
+Plugins gezielt in ihren Checkouts aktualisieren und danach mit den nativen
+Plugin-Managern neu installieren/aktualisieren. Git-Commits und Versionen in
+`manifest.json` nach gepruefter Aktualisierung nachziehen. Keine automatischen
+Git-Updates eingerichtet. Nach Plugin-Aenderungen neue Sessions starten.
 
-Entfernte Dateien samt unversionierter Änderungen liegen unter
-`/root/archiv/setup-bereinigung-runde2-2026-09-06`. Die vier eingebetteten
-Git-Arbeitskopien wurden mit `git worktree move` dorthin verschoben.
-Das Original-Manifest und die Prüfungen stehen unter
-`/root/eingang/ausgang/setup-bereinigung-runde2-2026-09-06`.
-Die beabsichtigten getrackten Löschungen sind im Git-Index vorgemerkt, damit
-parallele Reparatur-Tasks sie nicht per `git checkout` zurückholen. Es wurde
-kein Commit erstellt. Das vorherige Git-Index-Abbild ist im Archiv gesichert.
+Beispiele in Codex: `$superpowers:brainstorming` und
+`$compound-engineering:ce-plan`.
 
-Auf dem Mac existierte ein abweichender älterer Quellbestand. Er wurde separat
-bereinigt; die aktuelle Kopplung beider Syncthing-Ordner ist nicht bestätigt.
-Die Mac-Sicherungen liegen unter
-`~/.local/share/setup-bereinigung-runde2-2026-09-06`.
+`web-design` stammt aus Raphaels `web-design 3.zip`; alle 14 Markdown-Dateien
+wurden unveraendert uebernommen. macOS-Metadaten wurden ausgelassen. Der bisherige
+`web`-Skill bleibt erhalten. Seine identische Claude-Kopie wurde archiviert.
+Der bisherige Web-Skill enthaelt vier eingebettete Vendor-Skills, die Codex
+rekursiv findet; sie sind keine weiteren Eintraege im 63er-Katalog.
+
+Syncthing verwendet `/root/skills` bei unveraenderter Folder-ID `skills`.
+Der Zustand anderer Geraete wurde nicht geprueft.
+
+Sicherung: `/root/archiv/vps-aufraeumen-2026-09-16/`.
+Die vorgefundenen lokalen SEO-Aenderungen wurden beibehalten.

@@ -36,3 +36,7 @@ skills/eigene/_archiv/web-1.6.0-bis-2026-09-06/references/muster-bibliothek/**/*
 .unlazy/
 .git.bak-husk-*/
 __pycache__/
+
+# Lokale Plugin-Checkouts und generierte Skill-Verknuepfungen
+/plugins/
+/catalog/

@@ -25,7 +25,6 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | Regressionen nach Deploy erkennen — SEO-Elemente als Baseline snapshoten und vergleichen | `seo-drift.md` |
 | Bilder für SEO/Performance optimieren (Alt-Texte, Größen, Formate, CLS, Image-SERP) | `seo-images.md` |
 | SEO-Bild-Assets per AI generieren (OG-Preview, Hero, Infografik, Favicon) | `seo-image-gen.md` |
-| Produktseiten-/E-Commerce-SEO + Google-Shopping/Amazon-Intelligence | `seo-ecommerce.md` |
 | lokale WEBSITE-Signale prüfen (GBP, NAP, Citations, Reviews, lokales Schema, Location-Pages) | `seo-local.md` |
 | Maps-PLATTFORM-Präsenz analysieren (Geo-Grid, SoLV, Live-GBP-Audit, Review-Intelligence) | `seo-maps.md` |
 | für AI-Suche sichtbar werden (AI Overviews, AI Mode, ChatGPT, Perplexity, Citability) | `seo-geo.md` |
@@ -33,6 +32,8 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | ein Backlink-Profil bewerten (Referring Domains, Anchor, toxische Links, Competitor-Gap, Disavow) | `seo-backlinks.md` |
 | echte Google-Felddaten ziehen (GSC, CrUX/PageSpeed, Indexing, GA4, YouTube, NLP) | `seo-google.md` |
 | Live-SERP-/Keyword-/Backlink-/OnPage-Daten via DataForSEO holen (mit Kosten-Guardrails) | `seo-dataforseo.md` |
+| Live-Keyword-/Domain-/SERP-/Backlink-/Audit-/AIRT-Daten via SE-Ranking-MCP holen (Setup, Tools, Credits, Fallstricke) | **Skill: `se-ranking-mcp.md` (Kern)** — Brain-Tiefe: `seo-dataforseo.md` (Kosten-Guardrail-Muster analog) |
+| die 8 priorisierten SE-Ranking-Workflows abarbeiten (Keyword+Cluster, Wettbewerber, Local, SERP-Briefs, AIRT, Audit+Backlinks, Rank-Tracking+Decay, pSEO) | **Skill: `se-ranking-workflows.md` (Kern)** |
 | Google-Ranking-Plan (30/90, Google vs KI getrennt) aus echten Exporten | Skill: `ranking-plan.md` — Brain-Tiefe: `seo-plan.md` + `seo-google.md` |
 | KI-Engines namentlich (AIO, AI Mode, ChatGPT, Perplexity, Copilot) | Skill: `ideen-ai-sichtbarkeit-aeo.md` — Brain-Tiefe: `seo-geo.md` |
 | Graustufen / Penalty-Muster (Doorway, Scaled, Expired, Parasite) | Skill: `graustufen.md` — Brain: `seo.md` + `seo-programmatic.md` |
@@ -51,6 +52,7 @@ die passende Brain-Seite mit dem Read-Tool nach — dort liegt die belegte Tiefe
 | Friction / Conversion nach Ranking | Skill: `creator-lehren-2026-08.md` — Brain: `seo-friction-conversion.md` |
 | Zero-Click und Zitierbarkeit | Skill: `creator-lehren-2026-08.md` — Brain: `seo-zero-click-und-zitierbarkeit.md` |
 | GA4 / Analytics versteckt AI-Traffic | Skill: `creator-lehren-2026-08.md` — Brain: `seo-analytics-ai-traffic.md` |
+| AI-Referral in GA4 messen (Regex-Exploration, Channel Group, Conversions aus KI-Traffic, 3-Säulen-Regel) | **Skill: `ga4-ki-traffic.md` (Kern)** — Brain-Tiefe: `seo-google.md` (GA4-Felddaten) + `seo-analytics-ai-traffic.md` |
 | Frische, Republish, Deindex | Skill: `creator-lehren-2026-08.md` — Brain: `seo-freshness-deindex.md` |
 | Neue Site: IA und interne Links | Skill: `creator-lehren-2026-08.md` — Brain: `seo-internal-links-ia.md` |
 | Borja-Playbooks in Tiefe (Buy-Intent, GSC-Loops, Topical Map, Information Gain, Linkbuilding, Plattformen, GEO-Loops, Local, Agent-Jobs, Tier-Liste) | Skill: `playbooks-borjafat.md`. Roh: Brain `raw/2026-08-13-seo-skill-corpus/borjafat/`, `raw/2026-09-07-borjafat-articles/` |

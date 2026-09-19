@@ -122,22 +122,20 @@ copy-pasten (AI-Engines und Google werten Duplicate Content ab):
 
 | Directory-Typ | Framing |
 |---|---|
-| Startup-Directories | Ergebnis/Outcome |
-| SaaS-Directories | "Alternative zu X"-Framing |
-| KI-Directories | KI-first-Architektur |
 | Branchen-Verzeichnisse | Fachtiefe/ROI |
 | Lokale Verzeichnisse | NAP-Konsistenz, Region |
 
-**Product-Hunt-Launch (falls relevant für Kunden mit SaaS-Produkt):** Launch dienstags bis
-donnerstags um 00:01 Pacific Time, die ersten 2 Stunden entscheiden über algorithmische
-Reichweite, nie um Upvotes bitten (wirkt spamig und wird 2026 algorithmisch abgestraft) —
-stattdessen um ehrliches Feedback fragen, das konvertiert nachweislich besser.
+(Startup-/SaaS-/KI-Directories und Product-Hunt-Launches sind Software-spezifisch und
+für Service Businesses nicht zutreffend — nicht Teil dieses Playbooks.)
 
-**Review-Plattformen (G2/Capterra) — das 10-in-30-Protokoll:** 20 zufriedene Nutzer direkt per
-E-Mail mit Direktlink zur Bewertung anschreiben (kein Formular dazwischen), ein moderates
-Dankeschön anbieten (z. B. Gutschein — bei G2/TrustRadius ausdrücklich erlaubt), einmal nach 5
-Tagen nachfassen. Realistische Konversion: 50 % → 10 Bewertungen aus 20 Anfragen. 10
-Bewertungen sind die Schwelle für die Aufnahme ins Grid.
+**Review-Protokoll (10-in-30, Plattform nach Branche):** 20 zufriedene Kunden direkt per
+E-Mail mit Direktlink zur Bewertung anschreiben (kein Formular dazwischen), einmal nach 5
+Tagen nachfassen. Für regionale Dienstleister ist das Google Business Profile die
+primäre Review-Plattform (siehe `taktiken-local-seo-gbp.md`, Review-Gating-Verbot
+beachten — keine Gegenleistung); branchenspezifische Portale nach denselben Regeln.
+Software-Plattformen (G2/Capterra) nur, wenn der Kunde tatsächlich ein Software-Produkt
+führt — dort gilt: moderates Dankeschön ausdrücklich erlaubt, realistische Konversion
+50 %, 10 Bewertungen als Sichtbarkeits-Schwelle.
 
 ## Borja-Taktiken (2026-08)
 

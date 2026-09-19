@@ -33,6 +33,22 @@ Leerer Body bei HTTP-200/„ok“ ist ein Fehler, kein Fallback.
 
 Kein Fake-Snapshot. Keine erfundenen Queries.
 
+## Generative AI Reports (seit 03.06.2026, weltweit seit 31.08.2026)
+
+GSC zeigt seit Juni 2026 dedizierte „Search Generative AI"-Reports
+(Impressionen aus AI Overviews, AI Mode, GenAI in Discover). **Nur
+Impressionen — keine Klicks, keine CTR, keine Queries; UI-only** (weder
+Search Analytics API noch BigQuery; verifiziert 11.08.2026. Quellen:
+mariehaynes.com 03.06.2026; SEJ 31.08.2026).
+
+Konsequenz für dieses Skript: GenAI-Daten kommen **nicht** über die API —
+der `--live`-Export bleibt die klassische Query-/Page-Ebene. GenAI-Report
+manuell im UI lesen und als Trend-Zeile (Datum, Impressionen, Seiten-Top-5)
+im Report ergänzen. Konversationelle AI-Queries lassen sich indirekt über
+Regex-/ML-Klassifikatoren auf dem normalen Query-Export schätzen — Details
+und Caveats in `taktiken-gsc-workflows.md` §7. GenAI-Impressionen sind eine
+Trend-Anzeige, kein Traffic-Beleg (3-Säulen-Regel, `taktiken-ai-suche-geo.md` §7).
+
 ## Tiers (Tiefe, nicht hier kopieren)
 
 Brain: `/root/raphael-brain/wiki/craft/seo/seo-google.md` (Tier 0–3, Quotas).

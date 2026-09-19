@@ -19,8 +19,7 @@ Kurzreferenz für Structured Data. Quelle: `schema`-Skill aus coreyhaines/market
 | `Organization` | Firmen-/Über-uns-Seite | `name`, `url` |
 | `WebSite` | Startseite (Sitelinks-Suchbox) | `name`, `url` |
 | `Article`/`BlogPosting` | Blogartikel, News | `headline`, `image`, `datePublished`, `author` |
-| `Product` | Produktseiten | `name`, `image`, `offers` |
-| `SoftwareApplication` | SaaS/App-Seiten | `name`, `offers` |
+| `Service` | Leistungsseiten | `name`, `provider` |
 | `FAQPage` | FAQ-Inhalte | `mainEntity` (Array aus Question/Answer) |
 | `HowTo` | Anleitungen | `name`, `step` |
 | `BreadcrumbList` | Seiten mit Breadcrumbs | `itemListElement` |

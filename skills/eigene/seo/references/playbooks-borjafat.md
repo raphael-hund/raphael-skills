@@ -1,8 +1,10 @@
-# Borja-Playbooks (Distribb), 28.07. bis 07.09.2026
+# Borja-Playbooks (Distribb), 28.07. bis 18.09.2026
 
-Vollständige Taktik-Bibliothek aus 22 X-Artikeln von @borjafat (Borja Obeso, Co-Founder
-Distribb). Verdichtet am 2026-09-07 im Auftrag von Raphael. Kein fremder Wortlaut, alle
-Mechaniken paraphrasiert. Jede Zahl trägt die Artikel-ID als Beleg.
+Taktik-Bibliothek aus den X-Artikeln von @borjafat (Borja Obeso, Co-Founder
+Distribb). Verdichtet am 2026-09-07 im Auftrag von Raphael (22 Artikel), Update
+2026-09-18 um acht IDs (zwei Zusatzfunde im Alt-Zeitraum 12.08./04.09., sechs neue
+Artikel 09.09. bis 18.09.). Kein fremder Wortlaut, alle Mechaniken paraphrasiert.
+Jede Zahl trägt die Artikel-ID als Beleg.
 
 Rohkorpus (Primärbeleg, dort nachlesen):
 - `/root/raphael-brain/raw/2026-08-13-seo-skill-corpus/borjafat/articles/` (12 Artikel bis 13.08.)
@@ -21,30 +23,42 @@ Rohkorpus (Primärbeleg, dort nachlesen):
 
 ## Artikel-Index
 
-| ID | Datum | Thema | Kern |
-|---|---|---|---|
-| 2082123466246144000 | 28.07. | Missing Visual (Infografik) | Ask-first, Grafik aus deren H2s |
-| 2078457662723801088 | 29.07. | Buy-Intent-Keywords | 9 Seitentypen je Kaufentscheidung |
-| 2082791179066753024 | 30.07. | Article Trailer (60-s-Video) | Zitierte Listicle, neue Daten, Video als Gabe |
-| 2083164906480656384 | 31.07. | Copilot 90 Tage | 10 fixe Buyer-Fragen, 30/60/90 |
-| 2084241280763129856 | 03.08. | 10 Linkbuilding-Taktiken | Link-Nachfrage finden, die schon existiert |
-| 2084599815803998208 | 04.08. | Parasite-pSEO | Parent × ICP × Stadt auf Fremd-Domains |
-| 2084968809786466304 | 05.08. | 11 GEO-Loops | Tägliches Sampling, Coverage, Entity, Decay |
-| 2085358893668913152 | 06.08. | Journalisten-Routine | 5 Plattformen, Score, 70 % ablehnen |
-| 2086508407373119489 | 10.08. | LinkedIn-SEO | Query in Headline, Slug, ein Backlink |
-| 2087141630855811072 | 11.08. | GSC-Lücken-Loop | Query mit Rank ohne eigene Seite |
-| 2086834254734831616 | 12.08. | Interne Verlinkung | 4+ kontextuelle Links, Template raus |
-| 2087512312672370688 | 13.08. | Local / Maps | Kategorie, Name, Felder, Reviews, Wochen-Loop |
-| 2088271101604295096 | 14.08. | Topical Authority | Tiefe schlägt Links, Ledger, Autor, Studie |
-| 2088991211285561457 | 16.08. | Information Gain | Abdeckung zuerst, dann eine eigene Zahl |
-| 2089345908550820335 | 17.08. | YouTube Buy-Intent | Lange Videos, Kapitel, Beschreibung |
-| 2089706011665858632 | 18.08. | Statistikseite | Kleine Sites gewinnen „statistics 2026" |
-| 2090071174822740454 | 19.08. | „Trojan" Listicle-Outreach | Kaputtes Item als Einstieg |
-| 2090424980295069918 | 20.08. | 7-Minuten-Wochenroutine | Pillar + 3 Buying-Posts + Video + Listicle |
-| 2092246693068583414 | 25.08. | Tier-Liste 2027 | S bis F, Studie 250 Software-Searches |
-| 2095133322191970796 | 02.09. | Video-GEO für SaaS | Langform zuerst, Shorts als Schnitt |
-| 2095510032691396896 | 03.09. | 8 Agent-Jobs | Setup + 7 Wochenjobs |
-| 2096929697716162715 | 07.09. | 10-Schritt Page-Refresh | Bestehende Seite aus GSC verbessern |
+Status-Spalte: „übernommen" = Inhalt steht in den Abschnitten unten; „nicht
+übernommen" = bewusst ausgelassen (kein Service-Business-Fokus bzw. Graustufen-
+Charakter), Provenienz bleibt hier ehrlich dokumentiert.
+
+| ID | Datum | Thema | Kern | Status |
+|---|---|---|---|---|
+| 2082123466246144000 | 28.07. | Missing Visual (Infografik) | Ask-first, Grafik aus deren H2s | übernommen |
+| 2078457662723801088 | 29.07. | Buy-Intent-Keywords | 9 Seitentypen je Kaufentscheidung | übernommen |
+| 2082791179066753024 | 30.07. | Article Trailer (60-s-Video) | Zitierte Listicle, neue Daten, Video als Gabe | übernommen |
+| 2083164906480656384 | 31.07. | Copilot 90 Tage | 10 fixe Buyer-Fragen, 30/60/90 | übernommen |
+| 2084241280763129856 | 03.08. | 10 Linkbuilding-Taktiken | Link-Nachfrage finden, die schon existiert | übernommen |
+| 2084599815803998208 | 04.08. | Parasite-pSEO | Parent × ICP × Stadt auf Fremd-Domains | nicht übernommen (Graustufen-Risiko-Wissen bleibt in `graustufen.md`) |
+| 2084968809786466304 | 05.08. | 11 GEO-Loops | Tägliches Sampling, Coverage, Entity, Decay | übernommen |
+| 2085358893668913152 | 06.08. | Journalisten-Routine | 5 Plattformen, Score, 70 % ablehnen | übernommen |
+| 2086508407373119489 | 10.08. | LinkedIn-SEO | Query in Headline, Slug, ein Backlink | übernommen |
+| 2087141630855811072 | 11.08. | GSC-Lücken-Loop | Query mit Rank ohne eigene Seite | übernommen |
+| 2086834254734831616 | 12.08. | Interne Verlinkung | 4+ kontextuelle Links, Template raus | übernommen |
+| 2087509184585646163 | 12.08. | Interne-Verlinkungs-Task (Zusatzfund) | 6-Schritt-Task, abgedeckt in Abschnitt 6; Titel via Recherche 18.09., kein Volltext | übernommen |
+| 2087512312672370688 | 13.08. | Local / Maps | Kategorie, Name, Felder, Reviews, Wochen-Loop | übernommen |
+| 2088271101604295096 | 14.08. | Topical Authority | Tiefe schlägt Links, Ledger, Autor, Studie | übernommen |
+| 2088991211285561457 | 16.08. | Information Gain | Abdeckung zuerst, dann eine eigene Zahl | übernommen |
+| 2089345908550820335 | 17.08. | YouTube Buy-Intent | Lange Videos, Kapitel, Beschreibung | übernommen |
+| 2089706011665858632 | 18.08. | Statistikseite | Kleine Sites gewinnen „statistics 2026" | übernommen |
+| 2090071174822740454 | 19.08. | „Trojan" Listicle-Outreach | Kaputtes Item als Einstieg | übernommen |
+| 2090424980295069918 | 20.08. | 7-Minuten-Wochenroutine | Pillar + 3 Buying-Posts + Video + Listicle | übernommen |
+| 2092246693068583414 | 25.08. | Tier-Liste 2027 | S bis F, Studie 250 Software-Searches | übernommen |
+| 2095133322191970796 | 02.09. | Video-GEO für SaaS | Langform zuerst, Shorts als Schnitt | nicht übernommen (kein Service-Business-Fokus) |
+| 2095510032691396896 | 03.09. | 8 Agent-Jobs | Setup + 7 Wochenjobs | übernommen |
+| 2095844768081179067 | 04.09. | Buy-Intent-pSEO mit Framer Agent (Zusatzfund) | 10 Schritte; Titel via Recherche 18.09., kein Volltext | nicht übernommen (kein Service-Business-Fokus) |
+| 2096929697716162715 | 07.09. | 10-Schritt Page-Refresh | Bestehende Seite aus GSC verbessern | übernommen |
+| 2097697305725960506 | 09.09. | 8 Startup-Growth-Channels | Kanäle easy/medium/hard, buyer-brief.md, LLM-Prompts | nicht übernommen (kein Service-Business-Fokus) |
+| 2098138361324347396 | 10.09. | Google-Trends-Feature (5 Schritte) | Explore ohne Keyword, Rising/Breakout, 5-Jahres-Check; X-URL 404, Volltext via Rattibha | übernommen |
+| 2099860622955397212 | 15.09. | Backlinks aus Customer Stories | Eigenen Tool-Workflow publizieren, Vendor featured | übernommen |
+| 2100228509398335975 | 16.09. | GPT-6-Astra-Agent-Setup | Distribb-Skill, 15 delegierbare Jobs, Anti-Erfindungs-Regeln | übernommen (modell-neutral bereinigt, Abschnitt 12.4) |
+| 2100548186448289970 | 17.09. | 12 Backlink-Taktiken mit AI | Leverage statt Betteln, Destination-Vielfalt, Exchange-Warnung | übernommen |
+| 2100908380793475496 | 18.09. | 8 Internal-Linking-Hacks | Pillar/Money/Pos. 11–20, Automatisierungs-Prompt | übernommen |
 
 Dazu drei Kurz-Posts außerhalb der Artikel (Abschnitte 10.3 und 12.3): 2090030550522236979
 (ChatGPT-Quellen, 19.08.), 2091911350444314937 (sechs Routinen, 24.08.), 2092036373855576522
@@ -125,7 +139,7 @@ GSC → Performance → Query → Custom (regex). Vollständigste Variante aus d
 (?i)^(who|what|where|when|why|how|which|can|could|do|does|is|are|should|will|would)\b
 ```
 
-Kürzere Varianten in Parasite (2084599815803998208, ohne `(?i)`, `could`, `would`), LinkedIn
+Kürzere Varianten in 2084599815803998208 (ohne `(?i)`, `could`, `would`), LinkedIn
 (2086508407373119489) und Wochenroutine (2090424980295069918). Lange Konversations-Queries
 (acht Wörter und mehr): `(?i)^(\S+\s+){7,}\S+$`. GSC nutzt RE2, Lookaheads laufen nicht,
 Groß/Klein nur mit `(?i)`. Deutsche Entsprechung selbst bauen (wer|was|wo|wann|warum|wie|
@@ -156,8 +170,8 @@ eine zweite URL für dasselbe Keyword.
 
 ### 3.4 Page-Refresh in zehn Schritten (2096929697716162715, 07.09.)
 
-Der jüngste Artikel. Gültig unabhängig vom Modell (Astra-Benchmark-Zahlen sind OpenAI-Evals,
-keine SEO-Messung):
+Der jüngste Artikel. Gilt unabhängig vom eingesetzten Modell (die im Artikel
+beworbenen Benchmark-Zahlen messen Modellfähigkeit, keine SEO-Ergebnisse):
 
 1. Fünf bestehende Seiten mit Grund wählen: komplette Berichtszeiträume, Queries je
    einzelner Seite lesen, ein Edit je Chance.
@@ -264,10 +278,12 @@ Sieben Schritte, Budget ein Nachmittag für 1 bis 4:
 Test vor dem Schreiben: Lohnt die Seite auch, wenn Google null Klicks schickt (AIO kostet im
 Schnitt rund 15 % CTR, Amsive-Zahl)? Wenn ja, schreiben.
 
-## 6. Interne Verlinkung (2086834254734831616, Wochenroutine, 10-Schritt-Refresh)
+## 6. Interne Verlinkung (2086834254734831616, 2087509184585646163, Wochenroutine, 10-Schritt-Refresh)
 
 Studie: 534.888 interne Links auf 38 B2B-SaaS-Sites. 67,8 % Template/Nav/Footer, trennen
-rankende von nicht rankenden Seiten mit AUC 0,510. Body-Links 0,612.
+rankende von nicht rankenden Seiten mit AUC 0,510. Body-Links 0,612. Stichprobe ist
+B2B-SaaS — Mechanik (kontextuelle Body-Links zählen, Template nicht) auf Dienstleister-
+Sites übertragen, Schwellenwerte als Richtung lesen, nicht als Kundenbeleg.
 
 | Kontextuelle Inbound-Links | Rank-Rate |
 |---|---|
@@ -301,6 +317,48 @@ Service-Seite ↔ Buying-Posts in beide Richtungen, Suchphrase als Linktext.
 Bezug zum Bestand: `taktiken-interne-verlinkung-cluster.md` verlangt 3 Inbound-Links und
 ≤ 40 % gleicher Anker. Borja liefert die Datenbasis für 4 kontextuelle Links; Nav und Footer
 zählen dort nicht mit.
+
+Zusatzfund 2087509184585646163 (12.08., „6-step internal linking task", Titel
+43.300 AI Mentions in 3 Monaten — Borja-Vendor-Snapshot, belegt nichts): inhaltlich vom
+Sechs-Schritte-Rezept oben abgedeckt, nur die ID ergänzt; Volltext nicht erneut gespiegelt.
+
+### 6.1 Acht Internal-Linking-Hacks (2100908380793475496, 18.09.)
+
+Mini-Studie: interne Links in elf öffentlichen Mailchimp-Artikeln (B2B-SaaS-Stichprobe —
+Strukturbeobachtung auf Dienstleister-Sites übertragen, nicht als Kundenbeleg). Alle elf
+verlinken weitere Educational-Seiten, sieben von elf im Body auf Produktseiten, alle
+zusätzlich über den Footer. Kein Ranking-Test, nur Strukturbeobachtung.
+
+Acht Schritte (durchgehendes Beispiel: E-Mail-Marketing-Software):
+1. GSC: 3 Monate, Web Search, Land und Device konsistent; Page-Performance und Queries je
+   Seite exportieren; 28 vs. 28 Tage für Verlierer. Ø-Position ist Mittel über alle
+   Queries — seitenrelevante Queries nutzen.
+2. Seiten nach Leserfrage gruppieren, nicht nach Wort (Welcome-Template und Sequence-Guide
+   gehören zusammen, Domain-Authentication nicht).
+3. Ein Pillar je Breitthema: Pillar → Support, Support → Pillar, verwandte Pillars
+   untereinander am echten Übergangspunkt.
+4. Money-Pages je Topic-Gruppe zuweisen; Passagen suchen, wo der nächste Schritt passt;
+   Money ↔ Money bei Vergleich/Kombination; jede Richtung separat bewerten.
+5. Link-Struktur: support ↔ support, support → pillar/money, money ↔ money,
+   pillar ↔ pillar, pillar → money. Template darf direkt auf die Produktseite, wenn es
+   das Versenden erklärt.
+6. Positions-11-bis-20-Boost: Query und Seite gemeinsam priorisieren, passende Artikel
+   finden, exakten Satz plus Anker draften, Baseline (Query-Performance + Datum)
+   festhalten, Folgewochen mit gleichen Filtern vergleichen. Distribb-Beispiel: Query
+   „backlink exchange" Ø-Position 17,0.
+7. Footer als konsistente Route: kleines Set aus Money- und Pillar-Seiten (Products- und
+   Guides-Spalte), nur website-weit nützliche Ziele.
+8. Anker variieren: derselbe Zielseite passen „welcome email sequence", „plan the emails
+   that follow", „welcome sequence examples" — klarste Formulierung darf wiederholt
+   werden. Jeder Vorschlag als kompletter Satz, damit Versprechen gegen Zielinhalt
+   prüfbar ist.
+
+Automatisierungs-Prompt (Kern): Agent bekommt GSC-Exporte, Website-Content, bestehende
+Linkliste; fehlende Inputs benennen; Gruppierung, Pillar und Money je Gruppe, 11–20-Finder,
+Vorschläge in allen fünf Richtungen mit Source-URL, Destination, bestehendem Satz,
+vorgeschlagenem Satz, Anker, Leser-Grund; bereits vorhandene Links ausschließen; Edits
+gesammelt zeigen; nach Anwenden Links prüfen und Seiten/Datum loggen; Lauf bei neuen
+Artikeln wiederholen. Label: weiß (reine On-Site-Arbeit).
 
 ## 7. Statistikseite ohne Backlinks (2089706011665858632, 2085358893668913152)
 
@@ -444,6 +502,67 @@ Freie Pläne: Connectively 3 Antworten, Qwoted 2 Pitches im Monat mit 2 h Delay.
 Unser Bestand: `taktiken-linkbuilding-digitalpr.md` hat einen anderen Score (Stats-Seite ja/
 nein). Borjas Score entscheidet über die Anfrage selbst. Beide nebeneinander nutzen.
 
+### 8.6 Customer-Story-Backlinks (2099860622955397212, 15.09.)
+
+Ein bereits genutztes Tool in eine Customer Story verwandeln, die das Vendor-Marketing
+veröffentlichen will — redaktioneller Link statt Placement-Fee. Einordnung für
+Dienstleister: Sie stehen hier auf der KUNDEN-Seite — die Treuhand nutzt eine
+Buchhaltungssoftware, der Handwerker ein Branchentool, die Praxis eine
+Terminplanung. Genau diese Vendor haben ein Interesse an echten Praxis-Stories
+und verlinken dafür auf die Kunden-Site. Mini-Stichprobe: drei
+publizierte Customer Stories (Claude, Airtable, Zapier), zwei verlinkten die Kunden-Site,
+eine nur einen weiteren Vendor-Artikel. Zeigt nur, dass Stories Links enthalten können —
+nichts über Annahmequote oder Ranking-Effekt. „Free" heißt: keine Gebühr, Subscription
+und Zeit kosten trotzdem, der Vendor entscheidet.
+
+Sechs Schritte (Prompts mit expliziten Anti-Erfindungs-Regeln, Agent nur mit nötigen
+Tabs/Daten):
+1. Tool-Liste mit je einem Satz echter Nutzung; Workflow wählen, den du aus Erfahrung
+   erklärst (Prompt-Regel: „Do not invent my workflow, results, or tool usage").
+2. Zeigen statt behaupten: Interview Frage für Frage, Screenshots mit sichtbarem
+   App-Namen, keine Kundendaten; jede faktische Behauptung mit Beleg, Lücken markieren;
+   ohne Messung Workflow beschreiben statt Traffic-Claims. Ergebnis: Proof-Ordner.
+3. Case Study publizieren: Problem kurz, Workflow im Zentrum, Screenshot je Aktion, nur
+   belegte Claims mit Datum; Freigabe vor Veröffentlichung; öffentlich ohne Login; URL
+   sichern (das Original, das der Vendor verlinken soll).
+4. Story-Ansprechpartner finden: Customer-Story-Seiten, öffentliche Team-Infos, Support
+   nur als Routing; keine geratenen Mails, keine erfundenen Jobtitel; Submission-
+   Requirements prüfen. Noch nichts senden.
+5. Fertige Story senden (unter 150 Wörter): was sie lehrt, öffentliche URL, Hilfe bei
+   Adaption anbieten, Bitte um Credit-Link aufs Original; URL vor Versand testen; genau
+   ein kurzes Follow-up nach etwa einer Woche, dann aufhören.
+6. Veröffentlichtes Feature prüfen: Name und Story korrekt, Credit-Link-Ziel kontrolliert
+   (Firmenname kann Plaintext sein oder woandershin linken), rel-Attribut falls prüfbar
+   sonst „unverified"; Erwähnung ohne Link → Nachlink-Bitte nur draften; Referral-
+   Besucher beobachten; kein Kausalitäts-Claim auf Rankings.
+
+Label: weiß (verdiente redaktionelle Links, echte Evidenz).
+
+### 8.7 Zwölf Backlink-Taktiken, mit AI automatisierbar (2100548186448289970, 17.09.)
+
+Prinzip „Leverage statt kaltem Betteln": erst eigene vorhandene Links und Seiten, dann
+Outreach. Stichprobe: 43 Links in Linkbuilding-Guides, 41 distinct Destination-URLs —
+auch Homepages werden verlinkt; die Destination muss zum zitierenden Satz passen.
+
+| # | Taktik | Kern | Label |
+|---|---|---|---|
+| 1 | Verlorene Links recovern | Broken Backlinks / Best-by-links + 404-Filter auf eigene Domain, Linker öffnen, Seite wiederherstellen oder 301 auf Äquivalent; nicht alles auf die Homepage (Soft 404); recovered ≠ neu verdient getrennt zählen; geblockt = „unverified" | Weiß |
+| 2 | Unlinked Mentions | `"brand" -site:domain`, jede Trefferseite wirklich öffnen (Snippet sagt nichts über den Link), Link-Bitte | Weiß |
+| 3 | Free Tools | Kleines wiederkehrendes Leser-Problem als kostenloses Tool (UTM-Builder neben Kampagnen-Guide), statisch statt API je Klick, HTTPS, permanente URL, dann Guide-Autoren auf die Einsatzstelle hinweisen | Weiß bis grau (outreach-abhängig) |
+| 4 | Listicle-Outreach | AI-Suchtools nach Kategorie fragen, zitierte Artikel notieren (Citation = Prospecting-Signal, keine Garantie), Listen mit ≥ 2 Konkurrenten ohne dich, evidenzbasierte Ergänzung | Weiß bis grau |
+| 5 | Konkurrenz-Links kopieren | Link Intersect; verlinkende Seite öffnen, Grund des Links bestimmt die Arbeit; Acquisitions/Sponsorships separat markieren (keine Chance) | Weiß bis grau |
+| 6 | Broken Link Building | 404/410 der Konkurrenz, Archive-Copy lesen (ursprüngliches Bedürfnis), Ersatz nur wenn wirklich passend (Produkt-Homepage ≠ Ersatz für Template) | Weiß bis grau |
+| 7 | Veraltete Guides fixen | Eingestellte Tools mit First-Party-Ankündigung verifizieren (Beispiel Google Optimize, offiziell eingestellt September 2023), exakt benennen welche Instruktion veraltet ist, aktuellen Walkthrough anbieten | Weiß |
+| 8 | Statistikseite | Abschnitt 7; zusätzlich: Raw Records und reproduzierbare Rechnungen sichern, geborgte Zahlen mit Originalquelle und Datum; nur Antwortende zu messen versteckt die Failed Pitches | Weiß |
+| 9 | Reporter Outreach | Abschnitt 8.5; Submission Rules und AI-Disclosure-Regeln des Services prüfen, keine erfundenen Credentials | Weiß |
+| 10 | Infografiken | Abschnitt 8.2; Warnung: Grafik gegen Ranking-Link als Bedingung = Google-Link-Spam-Beispiel → ohne Link-Bedingung anbieten | Weiß, mit Link-Bedingung grau |
+| 11 | Article-to-Video | Abschnitt 8.3; erst fragen ob Fremd-Beiträge akzeptiert werden, aufwendig → nur relevante Publisher | Weiß bis grau |
+| 12 | Link Exchanges | Platzierung je Quelle/Destination/Kontext prüfen, Quell-URL + Ziel dokumentieren, Live-Status nachprüfen; **Borjas eigene Warnung**: Google listet exzessive Exchanges und automatisierte Link-Services als Link Spam; Relevanz und echte Business-Websites machen einen Exchange nicht automatisch konform — gilt auch für Distribbs Netzwerk; Publisher müssen ablehnen/qualifizieren dürfen; Automation nur für Inspektion und Doku | Graustufen: Penalty-Risiko bei Skalierung, nur mit Go |
+
+Abschluss-Checks (gelten für alle zwölf): Quelle/Destination/Anker/Datum/Attribute je Link
+dokumentieren; recovered vs. neu vs. distinct Referring Domains getrennt zählen;
+Referral-Traffic beobachten; keine Kausal-Claims für einzelne Links.
+
 ## 9. Plattform-Playbooks
 
 ### 9.1 LinkedIn (2086508407373119489)
@@ -502,40 +621,60 @@ Neun Schritte:
 Messen: YouTube-Studio-Traffic-Quelle „YouTube search", GSC-Fragen-Impressionen, monatlich
 Kauf-Keywords in AI Mode per Hand.
 
-### 9.3 Video-GEO für SaaS (2095133322191970796)
+### 9.3 Video-GEO für SaaS (2095133322191970796) — nicht übernommen
 
-Studie 01.09.: 140 „best X software"-Searches über DataForSEO US mobil. YouTube in den Top 10
-bei 86 von 140; 29 mit Video-Reihe, alle Langform. OtterlyAI (zitiert): 94 % der YouTube-
-Zitate in KI-Antworten gehen an Langform, 40,83 % der zitierten Videos unter 1.000 Views.
-Ahrefs (zitiert): YouTube 21,1 % der AIO-Zitate, Instagram 5,8 %, TikTok 3,2 %. Eigene
-100-Fragen-Studie: AIO und AI Mode je 63 YouTube-Zitate, Gemini 3, ChatGPT 0. Vendor-Sites
-zwischen 36,0 % und 47,4 % der Zitate auf allen fünf Engines.
+Nicht übernommen (kein Service-Business-Fokus, SaaS-spezifisches Playbook). Provenienz
+im Artikel-Index; YouTube-Mechaniken für Kauf-Intent bleiben über Abschnitt 9.2 nutzbar.
 
-Fünf Schritte: Keyword mobil googeln und Video-Reihe prüfen → ein langes Video, Title =
-Suche, Title in 20 Sekunden laut, jedes Tool auf dem Bildschirm, Tools plus Minute in der
-Beschreibung → 3 bis 5 Shorts unter 60 s daraus schneiden, Reihenfolge YouTube Shorts →
-Instagram → TikTok, kein „Link in der Beschreibung" in Shorts → eine Seite je Suche mit Video
-oben, Preisen und Namen der verglichenen Tools → monatlich AIO und AI Mode prüfen, Gemini
-und ChatGPT hierfür überspringen.
+### 9.4 Parasite-pSEO (2084599815803998208) — nicht übernommen
 
-### 9.4 Parasite-pSEO (2084599815803998208)
+Nicht übernommen (Graustufen-Playbook auf Fremd-Domains). Das Risiko-Wissen dazu bleibt
+als Aufklärung in `graustufen.md` erhalten (Site-Reputation-Abuse, Scaled Content, nur
+nach Raphaels Go); Provenienz im Artikel-Index. Das dort genannte Format-Rezept
+(Summary-Block, FAQ aus GSC-Fragen, eine eigene Zahl) ist weiß und gilt für eigene
+Seiten weiter.
 
-Ahrefs (zitiert): 1,74 % neuer URLs erreichen in einem Jahr die Top 10; 72,9 % der Top-10-
-Seiten sind älter als drei Jahre, das durchschnittliche #1-Ergebnis fünf Jahre.
+Zusatzfund 2095844768081179067 (04.09., Buy-Intent-pSEO mit Website-Builder-Agent):
+ebenfalls nicht übernommen (kein Service-Business-Fokus); Titel nur via Recherche
+18.09. verifiziert, kein Volltext. Provenienz im Artikel-Index.
 
-Sieben Schritte: GSC-Fragen-Regex → 10 bis 30 Parent-Keywords → Layer ICP und Layer Stadt
-(31 × 86 × 99 = 166.114 Queries, teure Verticals zuerst) → Accounts auf Medium, Substack,
-YouTube, Instagram, GitHub → Routinen und Browser-Use → Format je Post: Summary-Block 3 bis
-5 Sätze, Antwort im ersten Absatz, FAQ aus GSC-Fragen, ein Bild mit Keyword als Dateiname
-und Alt, interne Links im Account, eine eigene Zahl → Nightly-Routine mit Unique-Constraint
-je Keyword, Fehler zurück in den Pool, Publish-URL muss öffentlich sein (Automation meldete
-Erfolg auf einem Draft).
+### 9.5 Google-Trends-Feature (2098138361324347396, 10.09.)
 
-Location-Layer optional; reiner Versandhandel braucht keine Stadt.
+Provenienz: Artikel-URL auf X derzeit 404; Extraktion vollständig aus dem Rattibha-Archiv
+(en.rattibha.com/thread/2098387843039002967), Promo-Status 2098387843039002967 vom 11.09.
+— kein Primärabruf auf X, entsprechend gekennzeichnet.
 
-Label: Graustufen (Site-Reputation-Abuse, Scaled Content). In `graustufen.md` gelistet, nur
-nach Raphaels Go. Das Format-Rezept (Summary, FAQ, eigene Zahl) ist weiß und gilt auch für
-eigene Seiten.
+Neues Trends-Feature: Explore braucht kein Keyword mehr, Land plus Kategorie reichen.
+Zwei Content-Arten: Timely (Trends reiten) und Timeless (Evergreen). Fünf Schritte
+(Beispiel US-Skincare, Screenshots vom 10.09.):
+
+1. Kategorie wählen: Trends → Explore, Suchfeld leer lassen, Land plus Zeitraum (12
+   Monate), unter „All categories" die Branche tippen, Web Search belassen.
+2. Steigende Suche finden: bei „Search queries" auf Rising stellen; Beispiel-Fund „best
+   hand creams for dry skin" als Breakout markiert.
+3. Spezifischer werden: Produktname als Search term eingeben, gleiche Filter, Related
+   queries → Rising, auch Seite 2 (Fund „retinol hand cream", +50 % Wachstum). Begriff,
+   Wert und Einstellungen speichern. Passender Content: Vergleich der eigenen Produkte.
+4. Abklingende Themen vermeiden: Zeitraum auf 5 Jahre, rechte Chartseite lesen. Fällt
+   weiter → anderes Thema; wiederkehrender Peak → saisonal, Artikel vor dem nächsten
+   Peak planen; stabil/wachsend → SERP checken. Warnungen: Land/Kategorie vor Chart-
+   Vergleichen prüfen (Trends setzt Filter zurück); die 0–100-Skala ist relatives
+   Interesse, kein Suchvolumen. Vor dem Schreiben prüfen, ob eine bestehende Seite
+   verbessert werden kann.
+5. Optional automatisieren: Agent wiederholt die Schritte täglich/wöchentlich, braucht
+   Browser-Zugriff (Google Trends); als wiederkehrender Scheduled Task im Agent-Setup
+   (modell-neutral). Outreach-Anteil wie gehabt: Zitierbares liefern (Produkttest, Vergleich,
+   Daten-Finding), Autoren von Best-of-Listen anschreiben.
+
+Label: weiß (Trend-Recherche plus eigener Content); automatisierter Pitch-Versand nur
+review-basiert. Ergänzt Abschnitt 7 (Statistik/Trends-Seiten) um die Früh-Erkennung.
+
+### 9.6 Acht Startup-Growth-Channels (2097697305725960506, 09.09.) — nicht übernommen
+
+Nicht übernommen (Startup-Growth-Kanon, kein Service-Business-Fokus). Provenienz im
+Artikel-Index. Die von Borja selbst markierten Graustellen aus diesem Artikel
+(Comment-Gating/Lead-Magnet-DMs, Cold-E-Mail-Skalierung, Trademark-Bidding,
+nicht-disclosed Brand Accounts) bleiben als Risiko-Wissen in Abschnitt 14 gelistet.
 
 ## 10. KI-Sichtbarkeit: Loops und Messung
 
@@ -546,8 +685,8 @@ ChatGPT 2,1 %; AIO auf 48 % der Queries, Top-Ergebnis verliert dann 58 % Klicks;
 State: identische Prompts liefern nur zu 73 % gleiche Antworten; Peec AI: Reddit rund 40 %
 der Zitate, Reddit + Wikipedia + YouTube + LinkedIn + Forbes + zehn weitere rund 68 %.
 
-Setup: elf geplante Prompts mit je zehn Sub-Agenten (Markdown-Dateien in `.claude/agents/`),
-`claude -p` per Cron, eine Cron-Zeile je Loop. Loops:
+Setup: elf geplante Prompts mit je zehn Sub-Agenten (Markdown-Dateien im Agent-Setup),
+Headless-LLM-Aufruf per Cron, eine Cron-Zeile je Loop (modell-neutral). Loops:
 
 | # | Loop | Output |
 |---|---|---|
@@ -561,7 +700,7 @@ Setup: elf geplante Prompts mit je zehn Sub-Agenten (Markdown-Dateien in `.claud
 | 8 | Freshness | Diff gegen 7 Tage: Zitat 3+ Tage da und heute weg, neuer Rivale in Top 3, eigene URL verschwunden; nach Slack |
 | 9 | Content Decay | Je verlorene URL: was die Gewinner haben; Rewrite mit Summary-Block, Antwort im ersten Absatz, FAQ aus echten Prompts, eine eigene Zahl |
 | 10 | Daily Visibility | Share of Voice je Engine, Coverage, Wins, Losses, fünf Bullets ohne Adjektive |
-| 11 | Distribution | Abschnitt 9.4 |
+| 11 | Distribution | Parasite-Distribution nicht übernommen (Abschnitt 9.4); Risiko-Wissen in `graustufen.md` |
 
 Unser Bestand: `ideen-ai-sichtbarkeit-aeo.md` hat das Monitoring als Monatstabelle. Borja
 liefert die tägliche, dreifach gesampelte Variante. Das Prompt-Set bleibt eingefroren (Kern,
@@ -670,6 +809,46 @@ Brand neben Keyword suchen lassen → Antwort dort platzieren, wo KI liest. Der 
 24.08. (2092036373855576522): das #1-Organik-Ergebnis stand nur in 52 % der Fälle in der
 AI Overview.
 
+### 12.4 Agent-Setup mit 15 delegierbaren Jobs (2100228509398335975, 16.09.)
+
+Vendor-Hinweis (neutral dokumentiert): Der Distribb-Skill ist Vendor-Material, das einem
+Agent-Setup ein „SEO-Gehirn" für 15 delegierbare Jobs geben soll. Keine Installations-
+Anweisung — übernommen werden nur Paraphrase/Ideen, kein Hype, unsere Auftragslogik
+bleibt diese Datei. Skill kostenlos, AI-Abo/Distribb kosten extra. „78k AI Mentions" im
+Titel ist der GSC-„Generative AI features"-Report (78,2K Impressions in 3 Monaten, nur
+Impressionen, keine Click-/CTR-/Prompt-Metriken) — Vendor-Snapshot, belegt nichts.
+Wichtige Messregel aus dem Artikel: AI-Impressions nie zu Web-Impressions addieren,
+Google zählt sie dort schon mit.
+
+Eigene Datenpunkte: 100 Seiten aus frischem GSC-Export — nach Clicks vs. nach Impressions
+sortiert ergeben fast komplett verschiedene Top-10 (nur zwei Seiten überlappen);
+Beispiel-Artikel 28.761 Impressions bei 20 Clicks; Kannibalismus-Beispiel: eine Query,
+zwei eigene Seiten mit 5.849 vs. 2.434 Impressions.
+
+Die 15 Jobs (jeder mit Anti-Fehlschluss-Regeln, Auto-Push aus):
+
+| # | Job | Kernregel |
+|---|---|---|
+| 1 | Keyword research | Von bestehenden GSC-Queries starten; GSC = „observed", AI-Vorschläge = „ideas to test", kein gemessenes Volumen; erst bestehenden Seiten zuordnen, dann neue vorschlagen |
+| 2 | Search-Console-Audit | Vollständige, vergleichbare Zeiträume, gleiche Filter; Shortlists getrennt nach Clicks/Impressions/Rückgang; benennen, was die Reports nicht hergeben |
+| 3 | AI Mentions tracken | Buyer-Fragen ohne Markenwissen; Prompt, Datum, Engine, Modus protokollieren; unlinked Mention ≠ Citation; fehlende Antwort ≠ „keine Erwähnung" (keine falschen Nullen) |
+| 4 | Citation Gaps | Quellen hinter AI-Empfehlungen öffnen; die zitierte Seite zeigt die genutzte Evidenz |
+| 5 | Opportunity Scoring | Buyer Fit + Evidenz 1–5 mit Begründung und Effort; Optionen Refresh/neue Seite/weiter prüfen/liegen lassen; Scores sind Urteile, keine Traffic-Prognosen |
+| 6 | Topical Authority mappen | Jede Frage einer bestehenden URL, neue Seite nur bei echter Lücke; Duplicate Intent flaggen (Deckung Abschnitt 4) |
+| 7 | Content Briefs | EINE nützliche Ergänzung mit neuer Evidenz; dokumentierte Features vs. Hands-on-Tests trennen; unverifizierte Claims leer lassen |
+| 8 | LLM-Struktur | Hauptantwort leicht auffindbar, deskriptive Headings, Quellen nah an Claims; Google verlangt kein AI-Spezial-Markup; klare Formatierung garantiert keine Citation |
+| 9 | Interne Links | Crawl-basiert Quellseiten, exakter Satz + Anker, Destination/Canonical prüfen; GSC-Links-Report ist nur eine Stichprobe; Footer ≠ kontextuell (Deckung Abschnitt 6) |
+| 10 | Cannibalization Check | GSC auf eine Query filtern → Pages-Tab; harmloses Overlap vs. Konflikt unterscheiden; keine Diagnose aus ähnlichen Titeln allein |
+| 11 | Content-Refresh-Plan | Grund + Evidenz, Ist-Text neben Ersatz-Text, Reviewer + Datum, Baseline vor Publish (Deckung Abschnitt 3.4) |
+| 12 | Technical Audits | Crawl + Indexierungs-Evidenz; Homepage-Fetch beweist nichts für den Rest der Site |
+| 13 | Link Outreach vorbereiten | Publisher lesen, spezifische Lücke + getestetes Finding als Pitch; Prospects/gesendete Mails/verdiente Links strikt getrennt; kommerzielle Terms reviewen |
+| 14 | Link-Exchange-Platzierungen prüfen | Jede Platzierung in Quelle/Destination/Kontext lesen; Relevanz > Domain Score; **Plattform-Verifizierung ≠ Google-Konformität** (siehe Abschnitt 14) |
+| 15 | SEO-Reporting automatisieren | Shipped Changes vs. Empfehlungen trennen; Web- vs. Google-AI-Impressions vs. externe AI-Citations strikt getrennt; Plain English; Ende mit nächster Aktion + Owner + fehlender Evidenz |
+
+Label: weiß (Audit-/Review-zentriert, durchgehend Anti-Halluzinations-Regeln). Ergänzt
+12.2: dieselbe Delegationslogik, jetzt mit expliziten Mess- und Trennregeln, die mit
+unserer 3-Säulen-Regel (SKILL.md) konform sind.
+
 ## 13. Tools und Plattformen
 
 | Tool | Einsatz laut Borja | Unser Zugang |
@@ -683,8 +862,12 @@ AI Overview.
 | HeyGen, Seedance 2.5 (Fal), ElevenLabs, OpenAI | Avatar-Hook, B-Roll, Voice, Captions (super-video-maker) | eigener Video-Weg über `watch`/`higgsfield` |
 | gpt-image-2, Nano Banana | Infografiken aus Autor-Wortlaut | `higgsfield`-Skill |
 | Medium, Substack, YouTube, Instagram, GitHub, LinkedIn Pulse | Parasite / Plattform-SEO | nur nach Go (außer LinkedIn/YouTube weiß) |
-| Claude Code Cron, `claude -p`, Sub-Agenten | Loops und Routinen | Workflow-Tool, Cron |
+| Agent-Runtime mit Headless-Aufruf, Sub-Agenten, Cron (modell-neutral) | Loops und Routinen | Workflow-Tool, Cron |
 | Distribb | Vendor-Agent (Exchange, Outreach, Video, Publishing, `/backlink-targets`, `/suggestions`) | kein Bestandteil des Skills |
+| Distribb Skill (Vendor-Hinweis) | Vendor-„SEO-Gehirn" für 15 Agent-Jobs (2100228509398335975) | neutral dokumentiert, Paraphrase-Ideen; kein Vendor-Hype |
+| Google Trends Explore (Kategorie ohne Keyword, Rising/Breakout) | Früh-Erkennung steigender Suchen (2098138361324347396) | manuell, kostenlos |
+| Scheduled Tasks im Agent-Setup (modell-neutral) | Wiederkehrende Agent-Läufe (Trends-Check, SEO-Review) mit Browser-Zugriff | Workflow-Tool, Human Review vor Publish |
+| Meta Pixel/CAPI, Google Ads, Manychat, Stripe | Paid-Tracking, DM-Lead-Magnets, Revenue-Beleg (2097697305725960506) | nicht Bestandteil des SEO-Skills |
 | Remotion | Launch-Videos (Post 26.08.) | nur Hinweis |
 
 ## 14. Risiko und Freigabe (Kurzmap auf `graustufen.md`)
@@ -693,6 +876,12 @@ AI Overview.
 |---|---|---|
 | Parasite-pSEO auf Fremd-Domains in Masse | Penalty (Site-Reputation, Scaled) | ja |
 | Link-Exchange-Netzwerk mit Credits | Penalty (Link-Spam bei Übermaß) | ja |
+| Link-Exchange, auch „relevant" und verifiziert (Borja-Warnung 2100548186448289970: Relevanz + echte Business-Sites machen ihn nicht automatisch konform; Plattform-Verifizierung ≠ Google-Konformität) | Penalty (Link-Spam) | ja |
+| Infografik/Grafik nur gegen Ranking-Link-Bedingung (2100548186448289970: Google-Link-Spam-Beispiel) | Penalty | ja; ohne Link-Bedingung weiß |
+| Comment-Gating / Lead-Magnet-DMs (2097697305725960506) | rechtlich (Plattform-ToS) | ja |
+| Cold-E-Mail-Skalierung (2097697305725960506) | rechtlich (Spam-Recht, Spam-Traps) | ja |
+| Trademark-Bidding auf Konkurrenz-Keywords (2097697305725960506) | rechtlich | ja |
+| Nicht-disclosed Brand Accounts für UGC (2097697305725960506) | rechtlich | nie |
 | Bezahlte Listicle-Slots | Penalty, wenn Dofollow ohne Kennzeichnung | ja |
 | Review-Prompt mit Keyword-Skript | Ban (Fake Engagement) | nie |
 | Keyword im GBP-Namen | Ban (GBP) | nie |
@@ -703,6 +892,9 @@ AI Overview.
 | Statistikseite mit eigener Zahl | weiß | nein |
 | Listicle-Outreach mit Fix-Angebot | weiß | nein |
 | Journalisten-Antworten in eigenen Themen | weiß | nein |
+| Customer-Story-Backlink mit echter Evidenz (2099860622955397212) | weiß | nein |
+| Google-Trends-Rising-Früh-Erkennung (2098138361324347396) | weiß | nein |
+| Interne Links nach 8-Hacks-Rezept (2100908380793475496) | weiß | nein |
 
 ## 15. Widersprüche und Grenzen
 
@@ -714,14 +906,23 @@ AI Overview.
 - Interne Links: Borja misst „rankt überhaupt", keine Positionsgewinne. Erwartung im
   Ranking-Plan entsprechend formulieren.
 - Statistikseite: Link-Effekt ist laut Borja eine Wette. Nur Ranking kleiner Sites gemessen.
-- Alle „Mentions"-Zahlen (37k bis 64k in drei Monaten, 20 Mio. Klicks auf 300 Sites) sind
-  Distribb-Marketing ohne Methodik.
+- Alle „Mentions"-Zahlen (37k bis 78k in drei Monaten, 20 Mio. Klicks auf 300 Sites) sind
+  Distribb-Marketing ohne Methodik. Neu dazu: „78k AI Mentions" (2100228509398335975) ist
+  nur der GSC-GenAI-Impressions-Report, „43.300 Mentions" (2087509184585646163) und „$4M
+  in 10 Years" (2097697305725960506) sind Titel-Selbstauskünfte. Regel unverändert:
+  Borja-Zahlen priorisieren, sie belegen nichts.
+- Der Google-Trends-Artikel (2098138361324347396) ist auf X derzeit 404; Inhalt stammt
+  vollständig aus dem Rattibha-Archiv. Sekundärquelle, kein Primärabruf — bei Zweifel
+  nicht zitieren, sondern nachziehen.
+- Die zwei Zusatzfunde (2087509184585646163, 2095844768081179067) sind nur über Titel und
+  Recherche-Metadaten verifiziert; der erste wurde inhaltlich Abschnitt 6 zugeordnet,
+  der zweite nicht übernommen (kein Service-Business-Fokus) — beide ohne Volltext.
 - Reddit-Wegfall in ChatGPT (19.08.) und LinkedIn-Anteile sind Tagesstände. Vor jeder
   Empfehlung eigenes Sampling.
 - Alle Studien sind US-Desktop oder US-Mobil, englisch, ein Snapshot. Übertragung auf
   deutsche Kunden ist Hypothese.
-- Der Artikel vom 07.09. bewirbt GPT-6 Astra; die Benchmark-Zahlen messen Modellfähigkeit,
-  keine SEO-Ergebnisse.
+- Der Artikel vom 07.09. bewirbt ein konkretes Modell-Produkt; die Benchmark-Zahlen messen
+  Modellfähigkeit, keine SEO-Ergebnisse.
 
 ## 16. Quellenmatrix (Mechanik → Artikel-ID)
 
@@ -734,7 +935,7 @@ AI Overview.
 | Page-Refresh 10 Schritte (bestehende GSC-Seite), Baseline, Vendor-Korrektur | 2096929697716162715 |
 | Topical Map, Ledger, Autorenseite | 2088271101604295096 |
 | Information-Gain-Reihenfolge, Studien-Leiter | 2088991211285561457 |
-| 4 kontextuelle Links, Template-Links raus, Anker | 2086834254734831616 |
+| 4 kontextuelle Links, Template-Links raus, Anker | 2086834254734831616, 2087509184585646163 (Zusatzfund) |
 | Statistikseite (Shapes, /statistics/, Jahr im Title) | 2089706011665858632 |
 | 10 Linkbuilding-Taktiken | 2084241280763129856 |
 | Missing Visual | 2082123466246144000 |
@@ -743,8 +944,8 @@ AI Overview.
 | Journalisten-Score, Bio, sent.json | 2085358893668913152 |
 | LinkedIn Pulse Headline, Slug, Backlink | 2086508407373119489 |
 | YouTube Länge, Kapitel, Beschreibung, Kommentare | 2089345908550820335 |
-| Video-GEO Langform → Shorts, Plattform-Reihenfolge | 2095133322191970796 |
-| Parasite-pSEO, Nightly-Routine | 2084599815803998208, 2084968809786466304 |
+| Video-GEO für SaaS | 2095133322191970796 (nicht übernommen — kein Service-Business-Fokus) |
+| Parasite-pSEO | 2084599815803998208 (nicht übernommen — Risiko-Wissen in `graustufen.md`), Nightly-Routine 2084968809786466304; Buy-Intent-pSEO-Zusatzfund 2095844768081179067 (nicht übernommen — kein Service-Business-Fokus) |
 | ChatGPT-Quellenverschiebung, sechs Routinen, 52 %-Befund (Posts) | 2090030550522236979, 2091911350444314937, 2092036373855576522 |
 | 11 GEO-Loops, dreifaches Sampling, Entity-Audit, llms.txt | 2084968809786466304 |
 | Copilot 90 Tage, 10 fixe Fragen | 2083164906480656384 |
@@ -752,3 +953,9 @@ AI Overview.
 | Wochenroutine 6 Schritte | 2090424980295069918 |
 | 8 Agent-Jobs, Monday Analyst | 2095510032691396896 |
 | Tier-Liste, 250-Search-Studie | 2092246693068583414 |
+| 8 Internal-Linking-Hacks (Pillar/Money/Pos. 11–20, Footer-Set, Anker-Varianten, Automatisierungs-Prompt) | 2100908380793475496 |
+| Customer-Story-Backlinks (Proof-Ordner, Credit-Link, ein Follow-up) | 2099860622955397212 |
+| 12 Backlink-Taktiken mit AI (Recover, Free Tools, Link Intersect, veraltete Guides, Exchange-Warnung) | 2100548186448289970 |
+| Google-Trends-Explore ohne Keyword (Rising/Breakout, 5-Jahres-Check) — Provenienz Rattibha | 2098138361324347396 |
+| 8 Startup-Growth-Channels | 2097697305725960506 (nicht übernommen — kein Service-Business-Fokus) |
+| Agent-Setup, Distribb-Skill (Vendor-Hinweis), 15 delegierbare Jobs, AI-Impressions-Trennregel | 2100228509398335975 |

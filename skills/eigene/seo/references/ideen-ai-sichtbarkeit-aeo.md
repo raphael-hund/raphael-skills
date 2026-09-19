@@ -1,5 +1,13 @@
 # Ideen — AI-Sichtbarkeit (AEO/GEO)
 
+> **Update 2026-09:** Für KI-Suche zuerst `taktiken-ai-suche-geo.md` laden
+> (Query Fan-Out, Engine-Matrix, Messung, Placebo-Liste). Diese Datei bleibt
+> die Grundlagenschicht. Wichtigste Präzisierung: llms.txt ist inzwischen
+> **offiziell wirkungslos für Google** (Docs 2026-06-15) und ohne messbare
+> Zitations-Korrelation (300k-Domain-Studie) — Details in
+> `taktiken-ai-suche-geo.md` Abschnitt 8.
+
+
 Als "Ideen" markiert, nicht "Regeln": AI-Suchoptimierung ist 2026 ein sich noch entwickelndes
 Feld ohne verlässliche, offiziell bestätigte Ranking-Signale (außer bei Google selbst, siehe
 unten). Als Werkzeugkasten nutzen, nicht als geprüfte Checkliste behandeln — Wirkung nicht

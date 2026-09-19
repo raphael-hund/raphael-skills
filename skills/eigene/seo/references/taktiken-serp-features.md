@@ -21,12 +21,12 @@ verrät, was Google für diese Anfrage als richtige Antwortform gelernt hat.
 
 Für die Top-10-Ergebnisse eines Ziel-Keywords erfassen:
 
-- Seitentyp je Ergebnis (Blogartikel, Produktseite, Vergleichsseite, Tool/Rechner, Video,
-  Listicle, Ratgeber …)
+- Seitentyp je Ergebnis (Blogartikel, Leistungs-/Angebotsseite, Vergleichsseite,
+  Tool/Rechner, Video, Listicle, Ratgeber …)
 - Content-Format (Long-Form, Listicle, How-To, Vergleich)
 - Vorhandene SERP-Features: Featured Snippet (Absatz/Liste/Tabelle/Video), People Also Ask
   (alle sichtbaren Fragen notieren), Ads (Anzahl + Botschaft-Thema), Related Searches,
-  Knowledge Panel/Local Pack/Shopping-Ergebnisse, AI-Overview-Präsenz und deren Quellentypen.
+  Knowledge Panel/Local Pack, AI-Overview-Präsenz und deren Quellentypen.
 
 **SERP-Konsens berechnen:**
 
@@ -40,9 +40,9 @@ Für die Top-10-Ergebnisse eines Ziel-Keywords erfassen:
 
 | Eigener Typ | SERP erwartet | Schwere | Empfehlung |
 |---|---|---|---|
-| Blogartikel | Produktseiten | kritisch | eigene Produktseite bauen |
+| Blogartikel | Leistungs-/Angebotsseiten | kritisch | eigene Leistungsseite bauen |
 | Blogartikel | Vergleich | hoch | zu Vergleichsseite mit Matrix umbauen |
-| Produktseite | Informativ | hoch | erklärende Content-Ebene ergänzen |
+| Leistungsseite | Informativ | hoch | erklärende Content-Ebene ergänzen |
 | Landingpage | Tool/Rechner | hoch | interaktives Tool-Element bauen |
 | Service-Seite | Local-Ergebnisse | mittel | lokale Signale + Schema ergänzen |
 | Typ passt | – | passt | Fokus auf Content-Tiefe und UX statt Struktur |

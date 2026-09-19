@@ -1,0 +1,1690 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animations-Rezepte: Live-Demo</title>
+<meta name="description" content="Live-Demo aller Animations-Rezepte aus animation-rezepte.md: Tokens, Reveal, Hero, Zaehler, FAQ, Tabs, Header, Buttons, Funnel, Marquee, Icon-Wechsel.">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* ============================================================
+   1. Motion-Tokens (Pflicht) - Werte woertlich aus §1
+   ============================================================ */
+:root {
+  /* Easing (aus emilkowalski/skills + impeccable) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);        /* UI: Dropdown, Popover, Dialog */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);    /* Reveals, Hero, alles Sichtbare */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);     /* Scroll-Reveals, Landing */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);    /* Bewegung auf dem Screen (Tabs, Slider) */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);     /* Drawer, Sheets, Mobile-Nav */
+  --ease-hover: ease;                                 /* Farbe, Border, Opacity */
+
+  /* Dauer */
+  --dur-press: 120ms;      /* Button :active */
+  --dur-hover: 150ms;      /* Farbe, Border, Opacity */
+  --dur-ui: 200ms;         /* Dropdown, Tooltip, Tabs */
+  --dur-dialog: 250ms;     /* Modal, Sheet */
+  --dur-drawer: 450ms;     /* Mobile-Nav, Drawer */
+  --dur-reveal: 600ms;     /* Scroll-Reveal */
+  --dur-hero: 700ms;       /* Hero-Entrance pro Gruppe */
+  --dur-counter: 1400ms;   /* Zaehler */
+
+  /* Distanzen */
+  --reveal-y: 16px;        /* Business: 12 bis 20px, nie 40px+ */
+  --exit-y: -8px;
+
+  /* Demo-Steuerung: Faktor aus dem Slider oben rechts */
+  --speed-factor: 1;
+
+  /* Flaechen der Demo selbst (neutral, hell, ein Akzent) */
+  --canvas: oklch(0.99 0 0);
+  --surface: oklch(1 0 0);
+  --sunken: oklch(0.97 0.004 250);
+  --ink: oklch(0.22 0.012 250);
+  --ink-muted: oklch(0.52 0.012 250);
+  --border: oklch(0.9 0.006 250);
+  --border-strong: oklch(0.82 0.01 250);
+  --accent: oklch(0.55 0.15 250);
+  --accent-hover: oklch(0.47 0.15 250);
+  --accent-fg: oklch(0.99 0 0);
+  --focus: oklch(0.55 0.15 250);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --reveal-y: 0px;
+    --exit-y: 0px;
+    --dur-reveal: 250ms;
+    --dur-hero: 250ms;
+  }
+}
+
+/* Der Schalter oben setzt html.reduce; der Block wirkt genauso wie der Systemwunsch.
+   Transform-Bewegung und Loops fallen weg, Opacity und Farbe bleiben. */
+html.reduce {
+  --reveal-y: 0px;
+  --exit-y: 0px;
+  --dur-reveal: 250ms;
+  --dur-hero: 250ms;
+  --dur-ui: 0ms;
+  --dur-dialog: 0ms;
+  --dur-drawer: 0ms;
+  --dur-counter: 0ms;
+}
+
+/* ============================================================
+   Basis der Demo
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; line-height: 1.15; letter-spacing: -0.015em; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.wrap { width: min(72rem, calc(100% - 3rem)); margin-inline: auto; }
+
+code, pre, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+.note { color: var(--ink-muted); font-size: 0.9rem; }
+
+/* ============================================================
+   8. Sticky-Header: Hintergrund und Schatten, Hoehe stabil
+   ============================================================ */
+/* Sentinel: 1px hoch, 8px unterhalb der Dokumentkante.
+   Wichtig: Ein Sentinel ganz oben am Dokument (top: 0) liegt schon bei
+   Scrollposition 0 ausserhalb des Messbereichs, der Header stuende dann von
+   Anfang an auf data-scrolled="true". Mit top: 8px verlaesst er den
+   Messbereich, sobald die Seite 9px gescrollt ist. */
+#top-sentinel {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  transition:
+    background-color calc(var(--dur-ui) / var(--speed-factor)) var(--ease-hover),
+    box-shadow calc(var(--dur-ui) / var(--speed-factor)) var(--ease-hover);
+}
+.site-header[data-scrolled="true"] {
+  background-color: color-mix(in oklab, var(--canvas) 88%, transparent);
+  backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: 0 1px 0 var(--border);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .site-header[data-scrolled="true"] { background-color: var(--canvas); backdrop-filter: none; }
+}
+
+.header-inner { display: flex; align-items: center; gap: 16px; }
+.brand { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; }
+
+.controls { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.switch-track {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 18px;
+  border-radius: 999px;
+  background-color: var(--sunken);
+  border: 1px solid var(--border-strong);
+}
+.switch-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background-color: var(--ink-muted);
+  transition: transform calc(var(--dur-hover) / var(--speed-factor)) var(--ease-out);
+}
+.switch[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.switch[aria-pressed="true"] .switch-track { background-color: var(--accent); border-color: var(--accent); }
+.switch[aria-pressed="true"] .switch-knob { transform: translateX(12px); background-color: var(--accent-fg); }
+
+.speed { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--ink-muted); }
+.speed input[type="range"] { width: 140px; accent-color: var(--accent); }
+.speed output { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* ============================================================
+   Sektions-Geruest
+   ============================================================ */
+.demo-section { padding-block: 5rem; border-top: 1px solid var(--border); }
+.demo-section:first-of-type { border-top: 0; }
+
+.section-head { max-width: 46rem; margin-bottom: 2.5rem; }
+.section-kicker {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.section-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 10px; }
+.section-purpose { color: var(--ink-muted); }
+
+.mini-head {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+}
+
+pre.code {
+  margin: 0;
+  padding: 20px;
+  background-color: var(--sunken);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  color: var(--ink);
+}
+
+/* ============================================================
+   1. Tokens: Kurven und Dauern sichtbar
+   ============================================================ */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.ease-list { display: grid; gap: 16px; margin-bottom: 20px; }
+/* Beschriftung ueber der Bahn, damit der laufende Punkt nie ueber den Text faehrt */
+.ease-track { display: grid; gap: 6px; }
+.ease-track .mono { font-size: 0.78rem; color: var(--ink-muted); }
+.ease-bar {
+  position: relative;
+  height: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.ease-lane { position: absolute; left: 0; right: 0; top: 0; height: 18px; }
+.ease-dot {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background-color: var(--accent);
+}
+.ease-track.is-playing .ease-lane {
+  animation: ease-run calc(var(--dur-reveal) / var(--speed-factor)) var(--e) both;
+  animation-duration: calc(var(--dur-reveal) / var(--speed-factor));
+}
+@keyframes ease-run {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100% - 12px)); }
+}
+
+.dur-list { display: grid; gap: 10px; }
+.dur-row { display: grid; grid-template-columns: 11rem 4.5rem 1fr; align-items: center; gap: 12px; font-size: 0.78rem; }
+.dur-row .mono { color: var(--ink-muted); }
+.dur-bar { height: 8px; border-radius: 999px; background-color: var(--accent); opacity: 0.85; }
+
+/* ============================================================
+   9. Buttons und Cards
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--accent-fg);
+  transition:
+    background-color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    transform calc(var(--dur-press) / var(--speed-factor)) var(--ease-out);
+}
+.btn-primary:active { transform: scale(0.97); }
+.btn-secondary {
+  background-color: var(--surface);
+  color: var(--ink);
+  border-color: var(--border-strong);
+  transition:
+    background-color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    border-color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    transform calc(var(--dur-press) / var(--speed-factor)) var(--ease-out);
+}
+.btn-secondary:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background-color: var(--accent-hover); }
+  .btn-secondary:hover { background-color: var(--sunken); border-color: var(--ink-muted); }
+}
+.btn .arrow { display: inline-block; transition: transform calc(var(--dur-hover) / var(--speed-factor)) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover .arrow { transform: translateX(2px); }
+}
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+.card {
+  position: relative;
+  padding: 24px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.06), 0 8px 24px -8px oklch(0 0 0 / 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { border-color: var(--border-strong); }
+  .card:hover::after { opacity: 1; }
+}
+.card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.card p { color: var(--ink-muted); font-size: 0.92rem; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+/* ============================================================
+   3. Scroll-Reveal (einmal, ruhig, gruppiert)
+   Default sichtbar, Startzustand nur unter html.js
+   ============================================================ */
+.reveal { opacity: 1; transform: none; }
+
+html.js .reveal:not([data-visible="true"]) {
+  opacity: 0;
+  transform: translateY(var(--reveal-y));
+}
+html.js .reveal[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity calc(var(--dur-reveal) / var(--speed-factor)) var(--ease-reveal),
+    transform calc(var(--dur-reveal) / var(--speed-factor)) var(--ease-reveal);
+  transition-delay: calc(var(--i, 0) * 70ms / var(--speed-factor));
+}
+
+.reveal-group + .reveal-group { margin-top: 20px; }
+.group-label { font-size: 0.78rem; color: var(--ink-muted); margin-bottom: 10px; }
+
+/* ============================================================
+   4. Hero-Entrance (Zeilen-Maske, 3 Gruppen, 90ms Stagger)
+   ============================================================ */
+.hero-demo {
+  position: relative;
+  padding: clamp(24px, 5vw, 56px);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+.hero-line-mask { overflow: hidden; font-size: clamp(1.9rem, 4.6vw, 3rem); font-weight: 600; }
+.hero-line { display: block; }
+
+html.js .hero-demo .hero-line { transform: translateY(110%); }
+html.js .hero-demo[data-play="true"] .hero-line {
+  animation: hero-line calc(var(--dur-hero) / var(--speed-factor)) var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms / var(--speed-factor));
+}
+@keyframes hero-line { to { transform: translateY(0); } }
+
+html.js .hero-demo .hero-enter { opacity: 0; transform: translateY(16px); filter: blur(4px); }
+html.js .hero-demo[data-play="true"] .hero-enter {
+  animation: hero-enter calc(var(--dur-hero) / var(--speed-factor)) var(--ease-out-expo) forwards;
+  animation-delay: calc(120ms + var(--i, 0) * 90ms / var(--speed-factor));
+}
+@keyframes hero-enter { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+.hero-sub { margin-top: 28px; margin-bottom: 20px; max-width: 34rem; color: var(--ink-muted); }
+.hero-trust { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--ink-muted); font-size: 0.9rem; }
+
+/* ============================================================
+   5. Zaehler
+   ============================================================ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.stat { padding: 24px; background-color: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+.stat-value {
+  display: block;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label { display: block; margin-top: 6px; color: var(--ink-muted); font-size: 0.9rem; }
+
+/* ============================================================
+   6. Akkordeon / FAQ (grid-template-rows 0fr -> 1fr)
+   ============================================================ */
+.faq-list { border-top: 1px solid var(--border); }
+.faq { border-bottom: 1px solid var(--border); }
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 20px;
+  font-weight: 500;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq-plus { flex: none; transform-origin: center; transition: transform calc(var(--dur-ui) / var(--speed-factor)) var(--ease-out); }
+.faq[open] .faq-plus { transform: rotate(45deg); }
+
+.faq-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows calc(220ms / var(--speed-factor)) var(--ease-out),
+    opacity calc(180ms / var(--speed-factor)) var(--ease-out);
+}
+.faq[open] .faq-body { grid-template-rows: 1fr; opacity: 1; }
+.faq-inner { overflow: hidden; }
+.faq-inner p { padding-bottom: 20px; color: var(--ink-muted); max-width: 44rem; }
+
+/* ============================================================
+   7. Tabs mit Underline-Indicator
+   ============================================================ */
+.tablist {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.tab {
+  padding-block: 12px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover);
+}
+.tab[aria-selected="true"] { color: var(--ink); }
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 1px;
+  transform-origin: left center;
+  background-color: var(--accent);
+  transition: transform calc(var(--dur-ui) / var(--speed-factor)) var(--ease-in-out);
+}
+.tab-panels { display: grid; margin-top: 24px; }
+.tab-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    visibility 0s linear calc(var(--dur-hover) / var(--speed-factor));
+  padding: 24px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.tab-panel[data-active="true"] {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    visibility 0s linear 0s;
+}
+.tab-panel h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.tab-panel p { color: var(--ink-muted); font-size: 0.92rem; }
+
+/* ============================================================
+   10. Funnel-Step-Wechsel
+   Exit 150ms nach links, Enter 250ms von rechts, Hoehe stabil
+   ============================================================ */
+.funnel {
+  padding: 28px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.funnel-progress-track { height: 4px; border-radius: 999px; background-color: var(--sunken); overflow: hidden; margin-bottom: 24px; }
+.funnel-progress {
+  height: 100%;
+  background-color: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0.3333);
+  transition: transform calc(300ms / var(--speed-factor)) var(--ease-out);
+}
+.funnel-frame { position: relative; min-height: 168px; }
+.funnel-step { opacity: 1; }
+.funnel-step[data-exit="true"] {
+  animation: step-exit calc(150ms / var(--speed-factor)) var(--ease-out) forwards;
+}
+.funnel-step[data-enter="true"] {
+  animation: step-enter calc(250ms / var(--speed-factor)) var(--ease-out) both;
+}
+@keyframes step-exit { to { opacity: 0; transform: translateX(var(--funnel-dx, -12px)); } }
+@keyframes step-enter {
+  from { opacity: 0; transform: translateX(var(--funnel-dx, 12px)); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.funnel-step h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.funnel-step p { color: var(--ink-muted); font-size: 0.92rem; }
+.funnel-actions { display: flex; gap: 12px; margin-top: 24px; }
+.funnel-count { margin-left: auto; align-self: center; font-size: 0.85rem; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+/* ============================================================
+   11. Marquee / Logo-Wall
+   ============================================================ */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+  animation-duration: calc(50s / var(--speed-factor));
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-group { display: flex; gap: 64px; padding-right: 64px; }
+.logo {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  opacity: 0.45;
+  white-space: nowrap;
+}
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+}
+
+/* ============================================================
+   15. Icon-Wechsel
+   ============================================================ */
+.icon-swap { position: relative; display: inline-grid; place-items: center; }
+.icon-swap > svg {
+  grid-area: 1 / 1;
+  transition:
+    opacity calc(300ms / var(--speed-factor)) cubic-bezier(0.2, 0, 0, 1),
+    transform calc(300ms / var(--speed-factor)) cubic-bezier(0.2, 0, 0, 1),
+    filter calc(300ms / var(--speed-factor)) cubic-bezier(0.2, 0, 0, 1);
+}
+.icon-swap > .is-hidden { opacity: 0; transform: scale(0.25); filter: blur(4px); }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 0.9rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background-color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    transform calc(var(--dur-press) / var(--speed-factor)) var(--ease-out);
+}
+.icon-btn:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover { background-color: var(--sunken); }
+}
+
+/* ============================================================
+   18. Playback-Speed: Probe
+   ============================================================ */
+.sample-box {
+  padding: 24px;
+  background-color: var(--sunken);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+.sample-item { opacity: 1; }
+html.js .sample-box[data-play="true"] .sample-item {
+  animation: hero-enter calc(var(--dur-hero) / var(--speed-factor)) var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 90ms / var(--speed-factor));
+}
+.readout { font-size: 0.85rem; color: var(--ink-muted); }
+.readout code { color: var(--ink); }
+
+/* ============================================================
+   12. Hover-Gating: Probe
+   ============================================================ */
+.hover-probe {
+  padding: 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition:
+    background-color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover),
+    border-color calc(var(--dur-hover) / var(--speed-factor)) var(--ease-hover);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hover-probe:hover { background-color: var(--sunken); border-color: var(--accent); }
+}
+
+/* ============================================================
+   16. Reduced Motion: Transform raus, Loops aus
+   Sanft, nicht null: Opacity und Farbe bleiben, Transform und Loops fallen weg.
+   !important, weil der JS-Startzustand (html.js) sonst hoeher spezifisch waere
+   und Inhalte bei reduzierter Bewegung unsichtbar bleiben koennten.
+   ============================================================ */
+html.reduce .reveal:not([data-visible="true"]) { opacity: 1 !important; }
+html.reduce .reveal,
+html.reduce .hero-demo .hero-line,
+html.reduce .hero-demo .hero-enter { transform: none !important; filter: none !important; }
+html.reduce .reveal,
+html.reduce .hero-demo .hero-line,
+html.reduce .hero-demo .hero-enter,
+html.reduce .sample-box .sample-item { animation: none !important; opacity: 1 !important; }
+html.reduce .marquee-track { animation: none !important; }
+html.reduce .ease-track.is-playing .ease-lane { animation: none !important; }
+html.reduce .btn-primary:active,
+html.reduce .btn-secondary:active,
+html.reduce .icon-btn:active { transform: none !important; }
+html.reduce .funnel-step[data-exit="true"] { animation: fade-out 100ms ease forwards !important; }
+html.reduce .funnel-step[data-enter="true"] { animation: fade-in 150ms ease both !important; }
+html.reduce .funnel-progress { transition: none !important; }
+html.reduce .switch-knob { transition: none !important; }
+html.reduce .site-header { transition: none !important; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-out { to { opacity: 0; } }
+
+/* Derselbe Block fuer den Systemwunsch, nicht nur fuer den Schalter */
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal:not([data-visible="true"]) { opacity: 1 !important; }
+  .reveal,
+  .hero-demo .hero-line,
+  .hero-demo .hero-enter { transform: none !important; filter: none !important; }
+  html.js .reveal,
+  html.js .hero-demo .hero-line,
+  html.js .hero-demo .hero-enter,
+  html.js .sample-box .sample-item { animation: none !important; opacity: 1 !important; }
+  .marquee-track { animation: none !important; }
+  .ease-track.is-playing .ease-lane { animation: none !important; }
+  .btn-primary:active, .btn-secondary:active, .icon-btn:active { transform: none !important; }
+  .funnel-step[data-exit="true"] { animation: fade-out 100ms ease forwards !important; }
+  .funnel-step[data-enter="true"] { animation: fade-in 150ms ease both !important; }
+  .funnel-progress { transition: none !important; }
+  .switch-knob { transition: none !important; }
+  .site-header { transition: none !important; }
+}
+
+/* Fuss */
+.site-foot { padding-block: 48px 64px; border-top: 1px solid var(--border); color: var(--ink-muted); font-size: 0.9rem; }
+
+@media (max-width: 720px) {
+  .header-inner { gap: 10px; }
+  .brand { font-size: 0.8rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .controls { gap: 10px; }
+  .switch span:last-child { display: none; }
+  .speed { gap: 6px; font-size: 0.78rem; }
+  /* Beschriftung bleibt fuer Screenreader da, nimmt aber keinen Platz ein */
+  .speed label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+  .speed input[type="range"] { width: 90px; }
+  .dur-row { grid-template-columns: 8rem 4rem 1fr; }
+}
+
+/* Sehr schmale Viewports: der Header traegt zwei Bedienelemente, also darf
+   der Markenname hier ganz weichen statt die Seite breiter zu machen. */
+@media (max-width: 460px) {
+  .brand { display: none; }
+  .controls { margin-left: auto; }
+  .speed input[type="range"] { width: 76px; }
+}
+</style>
+</head>
+<body>
+<div id="top-sentinel" aria-hidden="true"></div>
+
+<header class="site-header" id="site-header">
+  <div class="wrap header-inner">
+    <span class="brand">Animations-Rezepte, Live-Demo</span>
+    <div class="controls">
+      <button class="switch" id="reduce-toggle" type="button" aria-pressed="false">
+        <span class="switch-track" aria-hidden="true"><span class="switch-knob"></span></span>
+        <span>Reduced Motion simulieren</span>
+      </button>
+      <div class="speed">
+        <label for="speed">Playback-Speed</label>
+        <input id="speed" type="range" min="10" max="100" step="5" value="100">
+        <output id="speed-out" for="speed">100 %</output>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     8. Sticky-Header: Sentinel
+     ============================================================ -->
+<section class="demo-section" id="s-header">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 8</p>
+      <h2>Sticky-Header mit Sentinel</h2>
+      <p class="section-purpose">Der Header reagiert auf Scrollposition, ohne einen Scroll-Listener zu betreiben.</p>
+    </div>
+
+    <div class="reveal-group reveal" style="--i:0" data-reveal>
+      <p class="mini-head">Hintergrund und Schatten 200 ms, Hoehe stabil</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Sentinel statt Scroll-Listener</h3>
+          <p>Ein 1 px hohes Element am Seitenanfang wird beobachtet. Sobald es den Viewport verlaesst, setzt der Observer <span class="mono">data-scrolled="true"</span>. Kein Layout-Thrash, kein Frame-Handler.</p>
+        </div>
+        <div class="card">
+          <h3>Nur Farbe und Schatten</h3>
+          <p>Animiert werden <span class="mono">background-color</span> und <span class="mono">box-shadow</span> mit 200 ms. Die Hoehe von 72 px bleibt konstant, weil Layout-Animationen die Hauptursache fuer Ruckeln sind.</p>
+        </div>
+        <div class="card">
+          <h3>Status jetzt</h3>
+          <p class="readout">Header-Zustand: <code id="header-state">data-scrolled="false"</code></p>
+          <p class="readout" style="margin-top:8px">Zum Pruefen: scrollen, der Zustand springt auf <span class="mono">true</span>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     1. Motion-Tokens
+     ============================================================ -->
+<section class="demo-section" id="s-tokens">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 1</p>
+      <h2>Motion-Tokens</h2>
+      <p class="section-purpose">Jede Animation referenziert diese Kurven und Dauern, keine wird frei erfunden.</p>
+    </div>
+
+    <div class="token-grid">
+      <div class="reveal-group reveal" style="--i:0" data-reveal>
+        <p class="mini-head">Easing: Kugel laeuft 600 ms, Kurve als Bahn</p>
+        <div class="ease-list" id="ease-list">
+          <div class="ease-track" style="--e: var(--ease-out)">
+            <span class="mono">--ease-out 0.23, 1, 0.32, 1</span>
+            <div class="ease-bar"><div class="ease-lane"><span class="ease-dot"></span></div></div>
+          </div>
+          <div class="ease-track" style="--e: var(--ease-out-expo)">
+            <span class="mono">--ease-out-expo 0.16, 1, 0.3, 1</span>
+            <div class="ease-bar"><div class="ease-lane"><span class="ease-dot"></span></div></div>
+          </div>
+          <div class="ease-track" style="--e: var(--ease-reveal)">
+            <span class="mono">--ease-reveal 0.22, 1, 0.36, 1</span>
+            <div class="ease-bar"><div class="ease-lane"><span class="ease-dot"></span></div></div>
+          </div>
+          <div class="ease-track" style="--e: var(--ease-in-out)">
+            <span class="mono">--ease-in-out 0.77, 0, 0.175, 1</span>
+            <div class="ease-bar"><div class="ease-lane"><span class="ease-dot"></span></div></div>
+          </div>
+          <div class="ease-track" style="--e: var(--ease-drawer)">
+            <span class="mono">--ease-drawer 0.32, 0.72, 0, 1</span>
+            <div class="ease-bar"><div class="ease-lane"><span class="ease-dot"></span></div></div>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" id="ease-play" type="button">Kurven erneut abspielen</button>
+        </div>
+        <p class="note" style="margin-top:12px">Die Zeile ueber jeder Bahn nennt die Kurve, die der Punkt faehrt. Alle fuenf laufen dieselben 600 ms, nur die Bahn macht den Unterschied sichtbar.</p>
+      </div>
+
+      <div class="reveal-group reveal" style="--i:1" data-reveal>
+        <p class="mini-head">Dauer: Balkenbreite proportional zur Zeit</p>
+        <div class="dur-list">
+          <div class="dur-row"><span class="mono">--dur-press</span><span>120 ms</span><span class="dur-bar" style="width:8.6%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-hover</span><span>150 ms</span><span class="dur-bar" style="width:10.7%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-ui</span><span>200 ms</span><span class="dur-bar" style="width:14.3%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-dialog</span><span>250 ms</span><span class="dur-bar" style="width:17.9%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-drawer</span><span>450 ms</span><span class="dur-bar" style="width:32.1%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-reveal</span><span>600 ms</span><span class="dur-bar" style="width:42.9%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-hero</span><span>700 ms</span><span class="dur-bar" style="width:50%"></span></div>
+          <div class="dur-row"><span class="mono">--dur-counter</span><span>1400 ms</span><span class="dur-bar" style="width:100%"></span></div>
+        </div>
+        <p class="mini-head" style="margin-top:24px">Block zum Kopieren</p>
+<pre class="code">:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-hover: ease;
+
+  --dur-press: 120ms;   --dur-hover: 150ms;
+  --dur-ui: 200ms;      --dur-dialog: 250ms;
+  --dur-drawer: 450ms;  --dur-reveal: 600ms;
+  --dur-hero: 700ms;    --dur-counter: 1400ms;
+
+  --reveal-y: 16px;     --exit-y: -8px;
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. Scroll-Reveal
+     ============================================================ -->
+<section class="demo-section" id="s-reveal">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 3</p>
+      <h2>Scroll-Reveal mit IntersectionObserver</h2>
+      <p class="section-purpose">Sektionen erscheinen einmalig und ruhig, in Gruppen statt als Einzelteile.</p>
+    </div>
+
+    <div class="reveal-group" id="reveal-a">
+      <p class="mini-head">Gruppe A: drei Karten, gleiche Zeile, Elemente erscheinen zusammen</p>
+      <div class="card-grid">
+        <div class="card reveal" style="--i:0" data-reveal>
+          <h3>Reveal-Karte A1</h3>
+          <p>Startzustand <span class="mono">opacity 0</span> und <span class="mono">translateY(16px)</span>, gesetzt ausschliesslich unter <span class="mono">html.js</span>.</p>
+        </div>
+        <div class="card reveal" style="--i:1" data-reveal>
+          <h3>Reveal-Karte A2</h3>
+          <p>Stagger 70 ms mal Index, hier <span class="mono">--i:1</span>. Sechs Karten liegen insgesamt nicht einzeln am Observer, sondern in zwei Gruppen.</p>
+        </div>
+        <div class="card reveal" style="--i:2" data-reveal>
+          <h3>Reveal-Karte A3</h3>
+          <p>Dauer 600 ms mit <span class="mono">--ease-reveal</span>. Nach dem Eintritt trennt der Observer sich, ein zweiter Scroll loest nichts aus.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal-group" id="reveal-b">
+      <p class="mini-head">Gruppe B: drei Karten, eigener Observer-Eintritt, gleiche Mechanik</p>
+      <div class="card-grid">
+        <div class="card reveal" style="--i:0" data-reveal>
+          <h3>Reveal-Karte B1</h3>
+          <p>Schwelle 0.15 und <span class="mono">rootMargin "0px 0px -10% 0px"</span>: Die Karte muss zu einem Sechstel sichtbar sein und 10 Prozent unterhalb der Kante liegen.</p>
+        </div>
+        <div class="card reveal" style="--i:1" data-reveal>
+          <h3>Reveal-Karte B2</h3>
+          <p>Distanz bleibt zwischen 12 und 20 px. Groessere Wege lesen sich als Slide, nicht als Erscheinen.</p>
+        </div>
+        <div class="card reveal" style="--i:2" data-reveal>
+          <h3>Reveal-Karte B3</h3>
+          <p>Mit deaktiviertem JavaScript bleibt alles sichtbar, weil der Startzustand an die Klasse <span class="mono">js</span> am Wurzelelement gebunden ist.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="btn btn-secondary" id="reveal-reset" type="button">Reveals zuruecksetzen</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. Hero-Entrance
+     ============================================================ -->
+<section class="demo-section" id="s-hero">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 4</p>
+      <h2>Hero-Entrance mit Line-Mask</h2>
+      <p class="section-purpose">Der eine authored Moment: drei Gruppen laufen gestaffelt mit 90 ms Versatz.</p>
+    </div>
+
+    <div class="hero-demo reveal" data-reveal id="hero-demo" data-play="false">
+      <h1 class="hero-line-mask">
+        <span class="hero-line" style="--i:0">Strom vom eigenen Dach.</span>
+        <span class="hero-line" style="--i:1">Ohne Anzahlung, in 6 Wochen.</span>
+      </h1>
+      <div class="hero-enter" style="--i:2">
+        <p class="hero-sub">Gruppe zwei: Subline und Button-Reihe erscheinen zusammen, mit 4 px Blur als Startwert. Der Button ist ab 300 ms klickbar, weil die Animation die Interaktion nie blockiert.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#s-hero" id="hero-cta">Angebot anfordern <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <span class="note" id="hero-cta-hint">Noch nicht geklickt.</span>
+        </div>
+      </div>
+      <div class="hero-enter hero-trust" style="--i:3">
+        Gruppe drei: Trust-Zeile, Start bei 120 ms plus 3 mal 90 ms, Ende der Sequenz nach 1,1 s.
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="btn btn-secondary" id="hero-replay" type="button">Hero erneut abspielen</button>
+    </div>
+    <p class="note" style="margin-top:12px">Die Masken laufen mit <span class="mono">translateY(110%)</span> in einem <span class="mono">overflow: hidden</span> Elternelement. Keyframes sind hier richtig, weil die Sequenz genau einmal laeuft.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. Zaehler
+     ============================================================ -->
+<section class="demo-section" id="s-counter">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 5</p>
+      <h2>Zaehler</h2>
+      <p class="section-purpose">Drei Kennzahlen laufen einmalig bei Sichtbarkeit hoch, mit rAF und Ease-out.</p>
+    </div>
+
+    <div class="stat-grid reveal-group reveal" style="--i:0" data-reveal>
+      <div class="stat">
+        <span class="stat-value" data-counter data-to="2000" data-suffix="+">2.000+</span>
+        <span class="stat-label">Anlagen installiert, Endwert steht im HTML</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" data-counter data-to="98" data-suffix=" %">98 %</span>
+        <span class="stat-label">Weiterempfehlung, tabular-nums haelt die Breite</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" data-counter data-to="6" data-suffix=" Wochen">6 Wochen</span>
+        <span class="stat-label">Von Auftrag bis Inbetriebnahme</span>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:24px">
+      <button class="btn btn-secondary" id="counter-replay" type="button">Zaehler erneut starten</button>
+    </div>
+    <p class="note" style="margin-top:12px">Ease-out-Expo, nicht linear: <span class="mono">1 - Math.pow(2, -10 * t)</span>. Die Zahl steigt schnell und setzt sich sanft auf den Endwert.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. FAQ-Akkordeon
+     ============================================================ -->
+<section class="demo-section" id="s-faq">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 6</p>
+      <h2>FAQ-Akkordeon</h2>
+      <p class="section-purpose">Die Hoehe waechst von 0fr auf 1fr, ganz ohne Messen in JavaScript.</p>
+    </div>
+
+    <div class="faq-list reveal-group reveal" style="--i:0" data-reveal>
+      <p class="mini-head">Drei Fragen, exklusiv geoeffnet per name="faq"</p>
+      <details class="faq" name="faq" open>
+        <summary>
+          <span>Wie lange dauert die Installation?</span>
+          <svg class="faq-plus" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+            <path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+          </svg>
+        </summary>
+        <div class="faq-body"><div class="faq-inner">
+          <p>In der Regel ein bis zwei Tage vor Ort. Das Plus-Icon dreht sich um 45 Grad und wird damit zum Kreuz, mit 200 ms und <span class="mono">--ease-out</span>.</p>
+        </div></div>
+      </details>
+      <details class="faq" name="faq">
+        <summary>
+          <span>Was passiert mit dem alten Zaehler?</span>
+          <svg class="faq-plus" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+            <path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+          </svg>
+        </summary>
+        <div class="faq-body"><div class="faq-inner">
+          <p>Er wird getauscht und angerechnet. Die Zeilenanimation auf <span class="mono">grid-template-rows</span> laeuft mit 220 ms, die Opacity mit 180 ms, damit der Text nicht hart aufblitzt.</p>
+        </div></div>
+      </details>
+      <details class="faq" name="faq">
+        <summary>
+          <span>Welche Foerderung ist anrechenbar?</span>
+          <svg class="faq-plus" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+            <path d="M9 3v12M3 9h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+          </svg>
+        </summary>
+        <div class="faq-body"><div class="faq-inner">
+          <p>Die Beratung prueft die aktuelle Foerderlage im Erstgespraech. Dieser Text dient nur als Beispielinhalt fuer das Layout der Demo.</p>
+        </div></div>
+      </details>
+    </div>
+    <p class="note" style="margin-top:16px">Grenze des Rezepts: Ein natives <span class="mono">details</span> kann nicht schliessen animieren. Fuer eine Exit-Animation braucht es Base UI Collapsible mit denselben 220 ms.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. Tabs
+     ============================================================ -->
+<section class="demo-section" id="s-tabs">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 7</p>
+      <h2>Tabs mit Underline-Indicator</h2>
+      <p class="section-purpose">Der Strich faehrt von A nach B, statt zu springen oder zu wachsen.</p>
+    </div>
+
+    <div class="reveal-group reveal" style="--i:0" data-reveal>
+      <div class="tablist" role="tablist" id="tablist">
+        <button class="tab" type="button" role="tab" id="tab-1" data-id="tab-1" aria-selected="true" aria-controls="panel-1">Photovoltaik</button>
+        <button class="tab" type="button" role="tab" id="tab-2" data-id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">Speicher</button>
+        <button class="tab" type="button" role="tab" id="tab-3" data-id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1">Wallbox</button>
+        <span class="tab-indicator" id="tab-indicator" aria-hidden="true"></span>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" data-active="true">
+          <h3>Photovoltaik</h3>
+          <p>Der Indicator ist ein eigenes Element, das per <span class="mono">translateX</span> und <span class="mono">scaleX</span> faehrt, mit 200 ms und <span class="mono">--ease-in-out</span>. Ein Element, das auf dem Screen von A nach B faehrt, bekommt eine In-Out-Kurve, kein Ease-out.</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2">
+          <h3>Speicher</h3>
+          <p>Das Panel wechselt per Opacity-Crossfade mit 150 ms. Ein Slide waere hier falsche Bewegung, weil der Inhalt nicht von aussen kommt, sondern an derselben Stelle steht.</p>
+        </div>
+        <div class="tab-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3">
+          <h3>Wallbox</h3>
+          <p>Der Versatz zwischen den Tabs ist konstant 24 px. Die Pfeiltasten wechseln den Tab, auch das ist Navigation und bleibt ohne eigene Animation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9. Buttons und Cards
+     ============================================================ -->
+<section class="demo-section" id="s-buttons">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 9</p>
+      <h2>Buttons und Cards</h2>
+      <p class="section-purpose">Druck gibt 0,97 zurueck, Hover wechselt Flaechen statt Groessen.</p>
+    </div>
+
+    <div class="reveal-group reveal" style="--i:0" data-reveal>
+      <p class="mini-head">Buttons: Press scale(0.97) mit 120 ms, Hover Farbe mit 150 ms</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" type="button">Angebot anfordern <span class="arrow" aria-hidden="true">&rarr;</span></button>
+        <button class="btn btn-secondary" type="button">Unterlagen ansehen</button>
+      </div>
+      <p class="note" style="margin-top:12px">Der Pfeil verschiebt sich bei Hover um 2 px, der Button selbst waechst nie.</p>
+    </div>
+
+    <div class="reveal-group reveal" style="--i:1" data-reveal>
+      <p class="mini-head" style="margin-top:32px">Cards: Schatten als eigener Layer, nur Opacity animiert</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Card mit Shadow-Layer</h3>
+          <p>Der Schatten liegt als <span class="mono">::after</span> auf der Karte und wechselt seine Opacity in 150 ms. Kein <span class="mono">transform</span> auf der Karte, kein Zoom auf Bildern.</p>
+        </div>
+        <div class="card">
+          <h3>Warum kein Wachstum</h3>
+          <p>Eine Karte, die bei Hover auf 1,05 skaliert, verschiebt Nachbarn und liest sich als Unruhe. Der Flaechenwechsel zeigt dieselbe Zuwendung ohne Layoutbewegung.</p>
+        </div>
+        <div class="card">
+          <h3>Bilder in Cards</h3>
+          <p>Bilder werden bei Hover nie animiert. Wenn eine Karte ein Bild traegt, bleibt es in Groesse und Position unveraendert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. Funnel-Step-Wechsel
+     ============================================================ -->
+<section class="demo-section" id="s-funnel">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 10</p>
+      <h2>Funnel-Step-Wechsel</h2>
+      <p class="section-purpose">Der alte Schritt geht kurz nach links, der neue kommt von rechts herein.</p>
+    </div>
+
+    <div class="funnel reveal" data-reveal id="funnel">
+      <div class="funnel-progress-track"><div class="funnel-progress" id="funnel-progress"></div></div>
+      <div class="funnel-frame" id="funnel-frame">
+        <div class="funnel-step" data-step="1">
+          <h3>Schritt 1: Dachflaeche</h3>
+          <p>Exit 150 ms mit 12 px nach links, Enter 250 ms mit 12 px von rechts, beide mit <span class="mono">--ease-out</span>. Der Ausgang ist immer kuerzer als der Eingang.</p>
+        </div>
+        <div class="funnel-step" data-step="2" hidden>
+          <h3>Schritt 2: Verbrauch</h3>
+          <p>Der Fortschrittsbalken laeuft per <span class="mono">scaleX</span> mit <span class="mono">transform-origin: left</span> und 300 ms. Die Breite selbst wird nie animiert.</p>
+        </div>
+        <div class="funnel-step" data-step="3" hidden>
+          <h3>Schritt 3: Kontakt</h3>
+          <p>Die Hoehe des Containers kommt aus <span class="mono">min-height</span> und bleibt stabil, damit die Seite beim Wechsel nicht springt. Rueckwaerts laeuft die gespiegelte Richtung.</p>
+        </div>
+      </div>
+      <div class="funnel-actions">
+        <button class="btn btn-secondary" id="funnel-back" type="button">Zurueck</button>
+        <button class="btn btn-primary" id="funnel-next" type="button">Weiter</button>
+        <span class="funnel-count" id="funnel-count">Schritt 1 von 3</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. Marquee
+     ============================================================ -->
+<section class="demo-section" id="s-marquee">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 11</p>
+      <h2>Marquee mit Mask</h2>
+      <p class="section-purpose">Eine Logo-Reihe laeuft linear, an den Raendern weich ausgeblendet, und haelt bei Hover an.</p>
+    </div>
+  </div>
+
+  <div class="marquee reveal" data-reveal>
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span class="logo">Nordlicht Energie</span>
+        <span class="logo">Dachwerk Sued</span>
+        <span class="logo">Speicherbau AG</span>
+        <span class="logo">Elektro Vogt</span>
+        <span class="logo">Solarpark Rhein</span>
+        <span class="logo">Waermepumpe Kolb</span>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <span class="logo">Nordlicht Energie</span>
+        <span class="logo">Dachwerk Sued</span>
+        <span class="logo">Speicherbau AG</span>
+        <span class="logo">Elektro Vogt</span>
+        <span class="logo">Solarpark Rhein</span>
+        <span class="logo">Waermepumpe Kolb</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="note" style="margin-top:16px">Der DOM traegt zwei identische Gruppen, die zweite ist <span class="mono">aria-hidden</span>. Die Maske blendet 10 Prozent links und rechts aus. Laufzeit 50 s pro Loop, Pause bei Hover nur auf Geraeten mit echter Maus.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     15. Icon-Wechsel
+     ============================================================ -->
+<section class="demo-section" id="s-icons">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 15</p>
+      <h2>Icon-Wechsel Hamburger zu Kreuz</h2>
+      <p class="section-purpose">Beide Icons liegen uebereinander im DOM, gewechselt wird per Crossfade.</p>
+    </div>
+
+    <div class="reveal-group reveal" style="--i:0" data-reveal>
+      <button class="icon-btn" id="icon-btn" type="button" aria-expanded="false">
+        <span class="icon-swap" aria-hidden="true">
+          <svg id="icon-menu" width="20" height="20" viewBox="0 0 20 20" focusable="false">
+            <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+          </svg>
+          <svg id="icon-close" class="is-hidden" width="20" height="20" viewBox="0 0 20 20" focusable="false">
+            <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"></path>
+          </svg>
+        </span>
+        <span id="icon-label">Menue oeffnen</span>
+      </button>
+      <p class="note" style="margin-top:12px">Werte aus better-ui: <span class="mono">scale 0.25 in den Start, opacity 0 auf 1, blur 4px auf 0</span>, 300 ms mit <span class="mono">cubic-bezier(0.2, 0, 0, 1)</span>. Ohne Bibliothek reichen zwei SVGs im selben Grid-Feld.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     16. Reduced Motion und Hover-Gating
+     ============================================================ -->
+<section class="demo-section" id="s-reduce">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 16</p>
+      <h2>Reduced Motion und Hover-Gating</h2>
+      <p class="section-purpose">Bewegung faellt weg, Lesbarkeit bleibt, und Hover gilt nur fuer echte Zeigegeraete.</p>
+    </div>
+
+    <div class="card-grid reveal-group reveal" style="--i:0" data-reveal>
+      <div class="card">
+        <h3>Sanft, nicht null</h3>
+        <p>Bei reduzierter Bewegung bleiben Opacity und Farbe, Transform-Bewegung und Loops fallen weg. Ein globales <span class="mono">animation-duration: 0.01ms</span> ist kein Fix, sondern ein Befund.</p>
+      </div>
+      <div class="card">
+        <h3>Probe fuer Hover</h3>
+        <div class="hover-probe" id="hover-probe" style="margin-top:12px">
+          <p class="readout">Dieses Feld wechselt Flaeche und Rahmen nur, wenn <span class="mono">@media (hover: hover) and (pointer: fine)</span> zutrifft. Die Regel steht ausschliesslich in dieser Media-Query, ein Touchgeraet bekommt keinen Klebezustand.</p>
+        </div>
+        <p class="readout" id="hover-mq" style="margin-top:12px">Media-Query wird geprueft.</p>
+      </div>
+      <div class="card">
+        <h3>Probe fuer Reduced Motion</h3>
+        <p class="readout">Aktueller Zustand: <code id="reduce-state">Animationen aktiv</code></p>
+        <div class="btn-row" style="margin-top:12px">
+          <button class="btn btn-secondary" id="reduce-toggle-2" type="button">Klasse reduce umschalten</button>
+        </div>
+        <p class="readout" style="margin-top:12px">Erkannter Systemwunsch: <code id="system-reduce">nein</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     18. Feel-Check: Playback-Speed
+     ============================================================ -->
+<section class="demo-section" id="s-speed">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <p class="section-kicker">Rezept 18</p>
+      <h2>Feel-Check mit 10 Prozent Speed</h2>
+      <p class="section-purpose">Was bei 10 Prozent falsch wirkt, ist bei 100 Prozent subtil falsch.</p>
+    </div>
+
+    <div class="sample-box reveal" data-reveal id="sample-box" data-play="false">
+      <p class="sample-item" style="--i:0">Dieser Block laeuft mit <span class="mono">hero-enter</span> und teilt die Dauer <span class="mono">--dur-hero</span> durch den Faktor aus dem Slider.</p>
+      <p class="sample-item" style="--i:1; margin-top:10px; color: var(--ink-muted)">Bei 10 Prozent dauert dieselbe Sequenz das Zehnfache. Sprung, Kurve und Staffelung werden lesbar, Fehler zeigen sich sofort.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="sample-play" type="button">Probe erneut abspielen</button>
+    </div>
+
+    <div class="card reveal" data-reveal style="margin-top:24px; max-width: 40rem">
+      <h3>Aktuelle Rechenwerte</h3>
+      <p class="readout">Reveal: <code id="calc-reveal">600ms</code>, Hero: <code id="calc-hero">700ms</code>, Stagger: <code id="calc-stagger">70ms</code>, Marquee-Loop: <code id="calc-marquee">50s</code></p>
+      <p class="readout" style="margin-top:8px">Alle Dauern hängen als <span class="mono">calc(Wert / var(--speed-factor))</span> am Faktor. Bei 1 bleibt jeder Wert exakt der Token-Wert.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Live-Demo zu <span class="mono">animation-rezepte.md</span>. Alle Werte stammen woertlich aus den Rezepten 1 bis 18: Easing-Kurven, Dauern, Versaetze und Distanzen sind nicht gerundet.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var hoverFine = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+  function reduced() {
+    return prefersReduce.matches || root.classList.contains("reduce");
+  }
+
+  function speed() {
+    var v = parseFloat(getComputedStyle(root).getPropertyValue("--speed-factor"));
+    return (isNaN(v) || v <= 0) ? 1 : v;
+  }
+
+  /* ==========================================================
+     3. Scroll-Reveal, once, gruppiert
+     ========================================================== */
+  function initReveals() {
+    var items = [].slice.call(document.querySelectorAll("[data-reveal]"));
+    if (!items.length) return;
+
+    if (reduced() || !("IntersectionObserver" in window)) {
+      items.forEach(function (el) { el.dataset.visible = "true"; });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.dataset.visible = "true";
+        io.unobserve(entry.target); /* einmal, nie wieder */
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
+
+    items.forEach(function (el) { io.observe(el); });
+    revealObserver = io;
+  }
+
+  var revealObserver = null;
+
+  var revealReset = document.getElementById("reveal-reset");
+  if (revealReset) {
+    revealReset.addEventListener("click", function () {
+      var items = [].slice.call(document.querySelectorAll("[data-reveal]"));
+      if (revealObserver) revealObserver.disconnect();
+      items.forEach(function (el) { delete el.dataset.visible; });
+      /* Reflow erzwingen, damit der Startzustand (opacity 0) wirklich anliegt,
+         bevor der neue Observer das Element wieder sichtbar schaltet. */
+      void document.body.offsetWidth;
+      initReveals();
+      var target = document.getElementById("reveal-a");
+      if (target) target.scrollIntoView({ block: "center" });
+    });
+  }
+
+  /* ==========================================================
+     4. Hero-Entrance erneut abspielen
+     ========================================================== */
+  function playHero() {
+    var hero = document.getElementById("hero-demo");
+    if (!hero) return;
+    hero.dataset.play = "false";
+    void hero.offsetWidth;
+    hero.dataset.play = "true";
+  }
+
+  var heroReplay = document.getElementById("hero-replay");
+  if (heroReplay) heroReplay.addEventListener("click", playHero);
+
+  var heroCta = document.getElementById("hero-cta");
+  if (heroCta) {
+    heroCta.addEventListener("click", function (event) {
+      event.preventDefault();
+      document.getElementById("hero-cta-hint").textContent = "Geklickt, die Animation blockiert nichts.";
+    });
+  }
+
+  /* ==========================================================
+     5. Zaehler: rAF plus easeOutExpo, einmalig bei Sichtbarkeit
+     ========================================================== */
+  var fmt = new Intl.NumberFormat("de-DE");
+
+  function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+  function runCounter(el) {
+    var to = parseFloat(el.dataset.to || "0");
+    var suffix = el.dataset.suffix || "";
+    if (reduced()) {
+      el.textContent = fmt.format(to) + suffix;
+      return;
+    }
+    var duration = 1400 / speed();
+    var start = performance.now();
+    el.dataset.running = "true";
+
+    function tick(now) {
+      var p = Math.min(1, (now - start) / duration);
+      el.textContent = fmt.format(Math.round(to * easeOutExpo(p))) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else delete el.dataset.running;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function initCounters(force) {
+    var counters = [].slice.call(document.querySelectorAll("[data-counter]"));
+    if (!counters.length) return;
+
+    if (force) {
+      counters.forEach(function (el) { runCounter(el); });
+      return;
+    }
+    if (reduced() || !("IntersectionObserver" in window)) {
+      counters.forEach(function (el) {
+        el.textContent = fmt.format(parseFloat(el.dataset.to || "0")) + (el.dataset.suffix || "");
+      });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        runCounter(entry.target);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (el) { io.observe(el); });
+  }
+
+  var counterReplay = document.getElementById("counter-replay");
+  if (counterReplay) {
+    counterReplay.addEventListener("click", function () {
+      initCounters(true);
+      counterReplay.textContent = "Zaehler erneut starten";
+    });
+  }
+
+  /* ==========================================================
+     7. Tabs: Indicator per translateX und scaleX
+     ========================================================== */
+  function initTabs() {
+    var list = document.getElementById("tablist");
+    var indicator = document.getElementById("tab-indicator");
+    if (!list || !indicator) return;
+    var tabs = [].slice.call(list.querySelectorAll('[role="tab"]'));
+
+    function move(id) {
+      var btn = list.querySelector('[data-id="' + id + '"]');
+      if (!btn) return;
+      indicator.style.transform = "translateX(" + btn.offsetLeft + "px) scaleX(" + btn.offsetWidth + ")";
+    }
+
+    function select(id, focus) {
+      tabs.forEach(function (t) {
+        var on = t.dataset.id === id;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute("aria-controls"));
+        if (panel) panel.dataset.active = on ? "true" : "false";
+      });
+      move(id);
+      if (focus) {
+        var active = list.querySelector('[data-id="' + id + '"]');
+        if (active) active.focus();
+      }
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () { select(t.dataset.id, false); });
+      t.addEventListener("keydown", function (event) {
+        var i = tabs.indexOf(t);
+        if (event.key === "ArrowRight") { event.preventDefault(); select(tabs[(i + 1) % tabs.length].dataset.id, true); }
+        if (event.key === "ArrowLeft") { event.preventDefault(); select(tabs[(i - 1 + tabs.length) % tabs.length].dataset.id, true); }
+      });
+    });
+
+    var active = list.querySelector('[aria-selected="true"]');
+    if (active) move(active.dataset.id);
+    window.addEventListener("resize", function () {
+      var current = list.querySelector('[aria-selected="true"]');
+      if (current) move(current.dataset.id);
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        var current = list.querySelector('[aria-selected="true"]');
+        if (current) move(current.dataset.id);
+      });
+    }
+  }
+
+  /* ==========================================================
+     8. Sticky-Header per Sentinel
+     ========================================================== */
+  function initHeader() {
+    var sentinel = document.getElementById("top-sentinel");
+    var header = document.getElementById("site-header");
+    var state = document.getElementById("header-state");
+    if (!sentinel || !header) return;
+
+    function apply(scrolled) {
+      header.dataset.scrolled = scrolled ? "true" : "false";
+      if (state) state.textContent = 'data-scrolled="' + (scrolled ? "true" : "false") + '"';
+    }
+
+    if (!("IntersectionObserver" in window)) { apply(false); return; }
+    var io = new IntersectionObserver(function (entries) {
+      apply(!entries[0].isIntersecting);
+    }, { threshold: 0 });
+    io.observe(sentinel);
+  }
+
+  /* ==========================================================
+     10. Funnel-Step-Wechsel
+     Exit 150ms, Enter 250ms, je 12px
+     ========================================================== */
+  function initFunnel() {
+    var frame = document.getElementById("funnel-frame");
+    var progress = document.getElementById("funnel-progress");
+    var count = document.getElementById("funnel-count");
+    var next = document.getElementById("funnel-next");
+    var back = document.getElementById("funnel-back");
+    if (!frame || !progress || !next || !back) return;
+
+    var steps = [].slice.call(frame.querySelectorAll(".funnel-step"));
+    var current = 0;
+    var busy = false;
+
+    function paint() {
+      progress.style.transform = "scaleX(" + ((current + 1) / steps.length) + ")";
+      if (count) count.textContent = "Schritt " + (current + 1) + " von " + steps.length;
+      back.disabled = current === 0;
+      back.style.opacity = current === 0 ? "0.5" : "1";
+      next.textContent = current === steps.length - 1 ? "Absenden" : "Weiter";
+    }
+
+    function go(dir) {
+      var target = current + dir;
+      if (busy || target < 0 || target > steps.length - 1) return;
+      busy = true;
+
+      var outEl = steps[current];
+      var inEl = steps[target];
+      /* Enter kommt aus der Gegenrichtung, Exit geht in die Richtung */
+      outEl.style.setProperty("--funnel-dx", (dir > 0 ? -12 : 12) + "px");
+      inEl.style.setProperty("--funnel-dx", (dir > 0 ? 12 : -12) + "px");
+      inEl.hidden = false;
+      inEl.dataset.enter = "true";
+
+      var exitMs = reduced() ? 100 : 150 / speed();
+      window.setTimeout(function () {
+        outEl.hidden = true;
+        delete outEl.dataset.exit;
+        outEl.style.removeProperty("--funnel-dx");
+        current = target;
+        paint();
+        busy = false;
+        window.setTimeout(function () { delete inEl.dataset.enter; }, reduced() ? 160 : 260 / speed());
+      }, exitMs);
+
+      outEl.dataset.exit = "true";
+    }
+
+    next.addEventListener("click", function () { go(1); });
+    back.addEventListener("click", function () { go(-1); });
+    paint();
+  }
+
+  /* ==========================================================
+     15. Icon-Wechsel Hamburger zu Kreuz
+     ========================================================== */
+  function initIconSwap() {
+    var btn = document.getElementById("icon-btn");
+    var menu = document.getElementById("icon-menu");
+    var close = document.getElementById("icon-close");
+    var label = document.getElementById("icon-label");
+    if (!btn || !menu || !close || !label) return;
+
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      menu.classList.toggle("is-hidden", !open);
+      close.classList.toggle("is-hidden", open);
+      label.textContent = open ? "Menue oeffnen" : "Menue schliessen";
+    });
+  }
+
+  /* ==========================================================
+     16. Reduced-Motion-Schalter
+     ========================================================== */
+  function initReduce() {
+    var buttons = [document.getElementById("reduce-toggle"), document.getElementById("reduce-toggle-2")].filter(Boolean);
+    var state = document.getElementById("reduce-state");
+    var system = document.getElementById("system-reduce");
+    var mq = document.getElementById("hover-mq");
+
+    function paint() {
+      var on = root.classList.contains("reduce");
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", on ? "true" : "false"); });
+      if (state) state.textContent = on ? "reduce aktiv: nur Crossfade" : "Animationen aktiv";
+      if (system) system.textContent = prefersReduce.matches ? "ja" : "nein";
+      if (mq) {
+        mq.textContent = hoverFine.matches
+          ? "Hover-Gating aktiv: echtes Zeigegeraet erkannt."
+          : "Hover-Gating greift: Touchgeraet, Hover-Regeln sind aus.";
+      }
+    }
+
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        root.classList.toggle("reduce");
+        paint();
+        if (window.__onReduceChange) window.__onReduceChange();
+      });
+    });
+
+    if (prefersReduce.addEventListener) prefersReduce.addEventListener("change", paint);
+    if (hoverFine.addEventListener) hoverFine.addEventListener("change", paint);
+    paint();
+    window.__paintReduce = paint;
+  }
+
+  /* ==========================================================
+     18. Playback-Speed fuer den Feel-Check
+     ========================================================== */
+  /* Wenn der Schalter umgelegt wird: Reveals und Zaehler sofort in den Endzustand */
+  window.__onReduceChange = function () {
+    if (!root.classList.contains("reduce")) return;
+    [].slice.call(document.querySelectorAll("[data-reveal]")).forEach(function (el) {
+      el.dataset.visible = "true";
+    });
+    [].slice.call(document.querySelectorAll("[data-counter]")).forEach(function (el) {
+      el.textContent = fmt.format(parseFloat(el.dataset.to || "0")) + (el.dataset.suffix || "");
+    });
+    var h = document.getElementById("hero-demo");
+    if (h) h.dataset.play = "true";
+    var box = document.getElementById("sample-box");
+    if (box) box.dataset.play = "true";
+  };
+
+  function initSpeed() {
+    var slider = document.getElementById("speed");
+    var out = document.getElementById("speed-out");
+    if (!slider || !out) return;
+
+    function paint() {
+      var pct = parseInt(slider.value, 10);
+      root.style.setProperty("--speed-factor", String(pct / 100));
+      out.textContent = pct + " %";
+      var r = document.getElementById("calc-reveal");
+      var h = document.getElementById("calc-hero");
+      var s = document.getElementById("calc-stagger");
+      var m = document.getElementById("calc-marquee");
+      if (r) r.textContent = Math.round(600 / (pct / 100)) + "ms";
+      if (h) h.textContent = Math.round(700 / (pct / 100)) + "ms";
+      if (s) s.textContent = Math.round(70 / (pct / 100)) + "ms";
+      if (m) m.textContent = Math.round(50 / (pct / 100)) + "s";
+    }
+
+    slider.addEventListener("input", paint);
+    paint();
+  }
+
+  function playSample() {
+    var box = document.getElementById("sample-box");
+    if (!box) return;
+    box.dataset.play = "false";
+    void box.offsetWidth;
+    box.dataset.play = "true";
+  }
+
+  var samplePlay = document.getElementById("sample-play");
+  if (samplePlay) samplePlay.addEventListener("click", playSample);
+
+  function playEase() {
+    var tracks = [].slice.call(document.querySelectorAll(".ease-track"));
+    /* Klasse weg, Reflow erzwingen, Klasse zurueck: so laeuft dieselbe Animation erneut.
+       Die Klasse bleibt danach stehen, damit der Punkt am Ende liegen bleibt und die
+       fuenf Kurven im Stillstand vergleichbar sind. */
+    /* Klasse weg, synchron Reflow erzwingen, Klasse zurueck. Ein rAF dazwischen
+       reicht nicht: der Callback laeuft vor der Stilberechnung, die Klasse waere
+       also nie wirklich entfernt gewesen und die Animation liefe weiter. */
+    tracks.forEach(function (t) { t.classList.remove("is-playing"); });
+    tracks.forEach(function (t) { void t.querySelector(".ease-bar").offsetWidth; });
+    tracks.forEach(function (t) { t.classList.add("is-playing"); });
+  }
+
+  var easePlay = document.getElementById("ease-play");
+  if (easePlay) easePlay.addEventListener("click", playEase);
+
+  /* ==========================================================
+     Start
+     ========================================================== */
+  initReveals();
+  initCounters(false);
+  initTabs();
+  initHeader();
+  initFunnel();
+  initIconSwap();
+  initReduce();
+  initSpeed();
+
+  /* Hero und Kurven starten, sobald sie im Bild sind */
+  var hero = document.getElementById("hero-demo");
+  if (hero) {
+    if (reduced() || !("IntersectionObserver" in window)) {
+      hero.dataset.play = "true";
+    } else {
+      var heroIo = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        heroIo.disconnect();
+        playHero();
+      }, { threshold: 0.25 });
+      heroIo.observe(hero);
+    }
+  }
+
+  var easeList = document.getElementById("ease-list");
+  if (easeList && !reduced()) {
+    var easeIo = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      easeIo.disconnect();
+      playEase();
+    }, { threshold: 0.4 });
+    easeIo.observe(easeList);
+  }
+
+  var sampleBox = document.getElementById("sample-box");
+  if (sampleBox && !reduced()) {
+    var sampleIo = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      sampleIo.disconnect();
+      playSample();
+    }, { threshold: 0.4 });
+    sampleIo.observe(sampleBox);
+  }
+
+})();
+</script>
+</body>
+</html>

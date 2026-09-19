@@ -82,8 +82,8 @@ Befund ohne Aktion ist Rauschen.
 
 ## Häufige Fehlbilder nach Seitentyp
 
-- **SaaS/Produkt:** dünne Produktseiten, fehlende Vergleichs-/Alternative-Seiten.
-- **E-Commerce:** dünne Kategorieseiten, doppelte Produktbeschreibungen, fehlendes Produkt-Schema.
+- **Dienstleister/Praxis:** dünne Leistungsseiten, fehlende Leistung×Region-Seiten,
+  fehlende Vergleichs-/Alternative-Seiten (z. B. Anbietervergleiche, Kosten-Seiten).
 - **Content/Blog:** veraltete Inhalte ohne Refresh, Kannibalisierung, schwache interne Verlinkung.
 - **Lokal:** inkonsistentes NAP (Name/Adresse/Telefon), fehlendes LocalBusiness-Schema, keine
   gepflegte Google-Business-Profile-Präsenz (siehe `taktiken-content-distribution.md`).

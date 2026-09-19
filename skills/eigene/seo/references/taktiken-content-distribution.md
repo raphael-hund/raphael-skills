@@ -91,29 +91,11 @@ sich), Erwartung beim Kunden aber realistisch halten.
 
 ## Programmatic SEO (Seiten-Skalierung über Templates)
 
-Nur einsetzen, wenn echte, differenzierende Daten pro Seite vorhanden sind — sonst Thin-Content-
-Risiko. Zwölf etablierte Muster, in Kombination einsetzbar (z. B. "beste Coworking-Spaces in
-München" = Curation + Location):
-
-| Muster | Beispiel |
-|---|---|
-| Templates | "Rechnungsvorlage" |
-| Curation | "beste Website-Baukästen" |
-| Umrechner | "10 EUR in USD" |
-| Vergleiche | "Webflow vs. WordPress" |
-| Beispiele | "Landingpage-Beispiele" |
-| Standorte | "Zahnarzt in Wien" |
-| Zielgruppen | "CRM für Immobilienmakler" |
-| Integrationen | "Slack-Asana-Integration" |
-| Glossar | "was ist pSEO" |
-| Directory | "KI-Copywriting-Tools" |
-| Profile | "[Name] Geschäftsführer" |
-
-**Grundregeln:** jede Seite braucht echten, unterschiedlichen Wert (nicht nur ausgetauschte
-Variablen), eigene Daten schlagen fremde/öffentliche Daten in der Verteidigungsfähigkeit,
-Unterordner statt Subdomains (`seite.de/vorlagen/` konsolidiert Domain-Autorität, eine
-Subdomain splittet sie), lieber 100 gute Seiten als 10.000 dünne. Dünne Varianten ohne
-Suchvolumen lieber `noindex`, statt Crawl-Budget zu verschwenden.
+**Seit 2026-09 ausgelagert:** Der vollständige pSEO-Playbook (Domain-Strategie,
+Pattern-Findung, Daten-Cleaning, Template-Engineering, Skalierungs-Protokoll,
+Qualitäts-Gates) steht in `taktiken-programmatic-seo.md`. Kernregel hier nur
+als Erinnerung: nur einsetzen, wenn echte, differenzierende Daten pro Seite
+vorhanden sind — sonst Thin-Content-Risiko.
 
 ## Onboarding-Fahrplan für neue/DA-schwache Projekte (Sprint-Idee, kein starres Programm)
 
