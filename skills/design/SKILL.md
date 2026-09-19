@@ -1,298 +1,120 @@
 ---
 name: design
-version: 0.7.0
 description: >
-  Frontend-Design-Skill für UI-Detailarbeit an Interfaces (Fusion aus
-  impeccable + taste + ui-ux-pro-max + kill-ai-slop + emilkowalski-Motion-
-  Skills + jakubkrehel-Detailskills): Polish, Review, Motion, Farben (OKLCH),
-  Typografie und AI-Slop-Scan an bestehendem oder in Arbeit befindlichem
-  Frontend. NICHT für komplette Website-Projekte/Site-Builds — das ist der
-  web-Skill. Router: Landing/Portfolio -> taste-Linie, App/Dashboard ->
-  ui-ux-Linie, passende QA ueber die deterministischen
-  impeccable-Detektoren und den kill-ai-slop-Scanner. Trigger:
-  "Design polieren", "UI review", "sieht nach AI aus", "Slop entfernen",
-  "Farben/Typo/Layout fixen", "Animation/Motion pruefen", "Kontrast/OKLCH",
-  "Dashboard designen", "Referenz-Site als Stilvorlage", "Stitch",
-  "Screen in Stitch bauen", "Design mit Google Stitch", "/taste",
-  "/impeccable", "kill AI slop", "frontend-design".
-class: F
-scope: agency
-sensitivity: internal
-loads:
-  - references/design-doktrin.md
-  - references/impeccable-detektoren.md
-  - references/impeccable-capability-matrix.json
-  - references/taste-kern.md
-  - references/ui-ux-db-nutzung.md
-  # Weitere References (ai-slop-*, motion-*, farben-*, etc.) werden nur bei Bedarf nachgeladen — siehe Progressive Disclosure unten.
-provenance: >
-  Fusion aus impeccable, taste und ui-ux-pro-max; Herkunft, Commits, Lizenzen,
-  entfernte Teile und die spaetere Motion-Ergaenzung stehen in VENDORING.md.
-  Emil-Kowalski-Quellen sind im Web-Skill unveraendert vendored und werden dort
-  ueber Aktivierungsvertrag und Rezeptmatrix selektiv genutzt; design uebernimmt
-  daraus nur die begruendete Motion-Doktrin, nicht einen zweiten Router.
-requires_skills: []
-# Wie tief ist dieser Skill geprueft? Die Zahlen sind an Laeufe gebunden —
-# evals/run-doku-zahlen.mjs reisst, wenn eine hier falsch wird.
-eval_scorecard:
-  stand: 2026-09-02
-  laeufe:
-    - "evals/run-detect-check.mjs — 36 Faelle: Datei-Modus, 14 von 14 dort herstellbaren Regeln belegt, Typo-Skala in Variablen beide Richtungen"
-    - "evals/run-browser-detect-check.mjs — 40 Faelle: 38 der 47 Browser-Regeln belegt, 9 ohne Fixture (Hover/Scroll/echte Bilder/Laufzeitfehler)"
-    - "evals/run-dna-scaffold-check.mjs — destilliert dna-scaffold eine echte Design-DNA?"
-    - "evals/run-variablen-check.mjs — 9 Faelle: 8 Regeln — sehen sie durch CSS-Tokens hindurch oder nur auf rohes CSS?"
-    - "evals/run-flag-wache-check.mjs — 3 Werkzeuge: lehnt jedes ein unbekanntes Flag mit Exit 2 ab?"
-    - "evals/run-sabotage.mjs — 4 Faelle: merkt jede Eval, wenn ihr Detektor kaputtgeht?"
-    - "evals/run-hilfe-check.mjs — 3 Werkzeuge: beantwortet jedes --help, statt zu arbeiten?"
-    - "evals/run-verweise-design.mjs — faehrt die gemeinsame Verweis-Wache fuer diesen Skill (Pfade, loads-Eintraege, fehlende Kernmodul-Importe)"
-    - "evals/run-struktur-design.mjs — faehrt die vier Struktur-Wachen oben in EINEM Lauf (65s gemessen 01.08.2026, ohne Browser)"
-    - "evals/run-eval-umfang.mjs — 6 Evals: hat jede noch ihre Faelle?"
-    - "evals/run-impeccable-capability-matrix-check.mjs — 2 Fixtures: available/advisory/unavailable boundary"
-    - "evals/run-doku-zahlen.mjs — 10 Zahlen: verspricht SKILL.md den echten Umfang?"
-    - "evals/run-zahlen-gegen-lauf.mjs — 5 Evals: deckt sich die dokumentierte Fallzahl mit dem Lauf? (120s)"
-    - "evals/run-exit-vertrag-check.mjs — 9 Faelle: heisst der Exit-Code bei jedem Werkzeug dasselbe? (20s)"
-  grenzen:
-    - "Der URL-Modus von detect.mjs braucht puppeteer und laeuft auf diesem Rechner nicht — die Evals laden den Detektor per Playwright direkt in die Seite"
-    - "Ein gruener Lauf heisst 'die bekannten Slop-Muster sind raus', nicht 'das Design ist gut'"
-completion_criteria:
-  - "Zur geänderten Oberfläche passende Detektoren ausgeführt; echte Funde behoben, bewusste Ausnahmen und nicht geprüfte Bereiche benannt"
-  - "Bei Slop-Prüfung den passenden Scanner verwenden und Funde triagieren; ein grüner Scan ersetzt keine gerenderte Sichtprüfung"
-  - "Rubrik erfuellt: Kontrast WCAG AA (Body 4.5:1), EINE Theme-/Akzent-/Radius-Linie, Hero passt in Viewport, kein sichtbarer Em-Dash, Motion motiviert + reduced-motion, Bilder statt Fake-Screenshots"
-  - "Register bewusst gewaehlt (Landing=taste ODER App=ui-ux) und im Design-Read benannt"
-gotchas:
-  - "Quellen-Konflikt Em-Dash: taste verbietet '—' komplett in sichtbarem Text; impeccable-Detektor flaggt nur Uebernutzung. ENTSCHIEDEN: taste gewinnt (null Em-Dash im Output)."
-  - "Quellen-Konflikt Cards: ui-ux-DB empfiehlt KPI-/Datenkarten fuer Dashboards, taste+impeccable nennen Cards die faule Antwort. ENTSCHIEDEN: registerabhaengig (App=Cards ok, Landing=vermeiden). Verschachtelte Cards immer falsch."
-  - "Quellen-Konflikt Tracking: taste-Default 'tracking-tighter' (-0.05em) unterschreitet impeccables Floor -0.04em. ENTSCHIEDEN: Floor -0.04em (Detektor 'extreme-negative-tracking' gewinnt)."
-  - "impeccable ist auf ganze Projektkontexte (PRODUCT.md/DESIGN.md, context.mjs) ausgelegt. In design nutzen wir NUR den Detektor-Kern deterministisch; der context.mjs-Setup-Flow ist NICHT Teil dieses Skills."
-  - "ui-ux 'design'-Skill (Logo/CIP/Icon/Banner) haengt an GEMINI_API_KEY (bezahlt) — komplett ENTFERNT. Nur die Offline-DB (search.py, BM25, stdlib) ist vendored."
-  - "taste imagegen-Teile (generate_image-Pflicht) ENTFERNT — hier: Bild-Slots + reale Quellen (picsum-seed), nie div-Fake-Screenshots."
-  - "kill-ai-slop-Detektoren sind englischsprachig (Tell 14 AI-Copywriting-Voice greift nur auf englischen Text). ERLEDIGT 29.07.2026: scripts/rules.de.mjs ergaenzt drei deutsche Tells (de-14 Textstimme = Blocker, de-15 Werbe-Interpunktion, de-16 Werbe-Leerformel), Muster aus copywriting/references/floskel-verbote.md. Immer mit --rules=scripts/rules.de.mjs scannen, wenn der Text deutsch ist; das web-Gate haengt ihn automatisch an. Beleg: web/evals/run-slop-de-check.mjs (67/67, inkl. 14 Falsch-Positiv-Faelle)."
-  - "UI-Polish-Details (jakubkrehel) liefert exaktere Zahlenwerte (Scale 0.96 nicht 0.9, Blur 4px nicht 2px) als manche Faustregeln in design-doktrin.md/taste-kern.md. Bei Widerspruch gewinnt der exaktere, deterministisch pruefbare Wert aus ui-polish-details.md."
+  Master-level UI design craft — how to truly design, end to end. Covers color logic
+  (OKLCH, one-accent discipline, semantic tokens), eased gradients (never flat-linear),
+  the complete Figma effects cookbook (Background/Layer Blur, Transparency, Border
+  Radius, Inner/Outer Glow, Inner/Drop Shadow, Gradient Borders), button engineering,
+  a motion canon (easings, springs, scroll-driven), forensic screenshot/site autopsy
+  (reverse-engineer designs into tokens + effect specs), image-asset strategy,
+  component taxonomy (Refero/Mobbin), typography, anti-slop catalog, and
+  React/Tailwind recipes. Use when: designing websites/landing pages/dashboards,
+  analyzing or rebuilding screenshots/sites, building components (buttons, cards,
+  navbars, pricing, heroes), choosing colors/gradients/effects/animations, generating
+  UI assets, or producing design-quality React code. Triggers: "design", "UI",
+  "landing page", "make it premium", "gradient", "button", "animation", "looks like
+  AI", "analyze this screenshot", "rebuild this site".
+license: Complete terms in LICENSE.txt
 ---
 
-# design — Anti-Slop Frontend (Router)
+# UI Design Mastery
 
-**Site-Build kommt über `web`.** Hier nur UI-Detail. Nicht extra laden:
-`taste`, `impeccable`, `ui-ux`, `kill-ai-slop`, `design-taste-frontend`.
-Kommandosprache + Craft-Floor: `references/commands-de.md` +
-`references/craft-floor-de.md`. taste-Linie: `references/taste-kern.md`.
-Slop-Scan: `scripts/scan-ai-slop.mjs` (deutsch: `--rules=scripts/rules.de.mjs`).
+Teaches genuine design craft, not layout assembly. Every rule ships with concrete values —
+`cubic-bezier(0.22,1,0.36,1)` beats "smooth", `oklch(70% 0.15 250)` beats "a nice blue".
 
-**Zweck (1 Satz):** Interfaces bauen/pruefen, die niemand als "AI-gemacht" erkennt —
-teuer denkt (Register + Doktrin), billig tippt, deterministisch geprueft.
+## Core convictions
 
-**Leitsatz:** Slop ist die Abwesenheit einer Entscheidung. Ein Element ist nur
-Slop, wenn es ein nicht getroffener Default ist — dasselbe Element, bewusst
-gewaehlt und begruendet, ist in Ordnung. Das schaerft jeden Fund unten: erst
-fixen, was niemand entschieden hat.
+1. **Slop is the absence of a decision.** Every color, radius, shadow, and duration is chosen, or it's slop.
+2. **One accent, fully committed.** The palette is a neutral canvas + one chromatic accent, quarantined to actions and state. (Proof: Oura, Miles, IQ Capital, every autopsy in this skill's research base.)
+3. **Gradients are eased, never flat-linear.** Distribute stops along an easing curve, interpolate in OKLCH, kill banding with grain. → `references/gradients-and-easing.md`
+4. **Effects are engineering, not decoration.** Every blur, glow, shadow and gradient border has parameters, purpose, and failure modes. → `references/figma-effects-cookbook.md`
+5. **Motion earns its place.** Frequency gate first; exact easings and duration budgets; exit = 60–70% of enter. → `references/motion-and-animation.md`
+6. **Steal like a forensic scientist.** Any screenshot or site can be dissected into tokens and rebuilt better. → `references/screenshot-autopsy.md`
+7. **The brief wins.** Client-pinned brand, colors, fonts, and legal constraints override every rule here. Conscious, documented deviation beats blind obedience.
 
-## Immer zuerst: Design-Read (1 Zeile)
-Bei einer neuen visuellen Entscheidung den Design-Read knapp festhalten:
-> *"Lese das als: \<Seitenart> fuer \<Zielgruppe>, \<Vibe>-Sprache, Richtung \<System/Aesthetik>."*
-Nur EINE Rueckfrage, falls der Read echt zweideutig ist — sonst annehmen und weiter.
+## Modes
 
-## Router — welche Linie?
-Nach dem Design-Read genau eine Linie waehlen (erster Treffer gewinnt):
+Pick the mode from the request; load only the references listed for it.
 
-| Signal | Linie | Was laden |
+Quick routing — first matching line wins:
+
+```text
+Screenshot/URL to dissect or rebuild?        → Mode A (AUTOPSY)
+One component to engineer?                   → Mode C (COMPONENT LAB)
+"Design a site/page for X" from nothing?     → Mode B (CREATE)
+"Give me the code" / after B or C?           → Mode D (BUILD)
+Ambiguous ("make it premium", "redesign")?   → Mode B if greenfield; Mode A on the current site first if one exists
+```
+
+### Mode A — AUTOPSY (analyze / reverse-engineer)
+Trigger: a screenshot, Figma export, or URL lands in the conversation ("analyze", "rebuild", "what makes this good").
+1. Read `references/screenshot-autopsy.md` — follow the 8-step forensic process.
+2. Run `scripts/extract_palette.py` on the image; `scripts/check_contrast.py` on key pairs.
+3. Classify effects with `references/figma-effects-cookbook.md` (measure, don't guess — mark estimates ±10%).
+4. Deliver the Autopsy Report (template in screenshot-autopsy.md): tokens, type system, effect stack, component inventory, asset strategy, "what makes it work" verdict.
+5. If asked to rebuild → switch to Mode D with the extracted tokens.
+
+### Mode B — CREATE (design from scratch)
+Trigger: "design a landing page / dashboard / site for X".
+1. Extract the brief: page type, audience (**the audience chooses the aesthetic**), vibe, pinned brand assets. One clarifying question max, else assume and commit.
+2. Direction: pick palette logic (`references/color-logic.md`), type system (`references/typography.md`), structure (`references/layout-and-sections.md`).
+3. Effects + gradients: `references/figma-effects-cookbook.md`, `references/gradients-and-easing.md`; use `scripts/gradient_gen.py` for every gradient — never hand-write flat linear stops.
+4. Motion: `references/motion-and-animation.md` — gate first, then recipes.
+5. Image assets: `references/image-asset-strategy.md` — decide per section which asset type and why; generate with the image_generation plugin when available.
+6. Component choices: `references/component-taxonomy.md` + `references/buttons.md`.
+7. Output: a complete DESIGN SPEC (tokens, type scale, effect stacks, section plan, asset list, motion plan) — then Mode D if code is wanted.
+
+### Mode C — COMPONENT LAB (engineer one component)
+Trigger: "build me a button / card / navbar / pricing table / modal…"
+1. Read `references/component-taxonomy.md` for the component's disciplines and variants.
+2. Check `references/react-component-libraries.md` first — a curated registry component may already nail it (registry-first rule; always re-bind to your tokens, never ship demo defaults).
+3. Buttons specifically: `references/buttons.md` is law — anatomy, variant ladder, state matrix, effect stacks.
+4. Apply effects from `references/figma-effects-cookbook.md`; hover physics from `references/motion-and-animation.md`; pick animation libraries via `references/animation-libraries.md`.
+5. Deliver spec + code (React/Tailwind per `references/react-tailwind-recipes.md`).
+
+### Mode D — BUILD (production code)
+Trigger: "give me the code" or after Mode B/C.
+1. Read `references/react-tailwind-recipes.md` — token setup, component recipes, motion setup, quality gates.
+2. Emit complete, copy-paste-ready React + Tailwind. No placeholders without slot markers, no fake data presented as real.
+3. Run the Pre-Flight checklist from `references/anti-slop-catalog.md` before delivering.
+
+## References (progressive disclosure — load only what the mode needs)
+
+Every reference opens with a header: purpose, when to load, when NOT to load, TOC. Trust it.
+
+| File | ~lines | Load for |
 |---|---|---|
-| Landing, Marketing, Kampagne, Portfolio, Editorial, Long-form (Design IST das Produkt) | **taste-Linie** | `references/taste-kern.md` + `references/design-doktrin.md` |
-| App, Dashboard, Admin, Tool, SaaS-Produkt-UI, Formulare, Settings (Design DIENT dem Produkt) | **ui-ux-Linie** | `references/ui-ux-db-nutzung.md` + `references/design-doktrin.md` |
-| Redesign | Modus erkennen (preserve/overhaul), dann Linie nach Zielseite | taste-kern §Redesign + Doktrin |
+| `references/color-logic.md` | 325 | Palettes, OKLCH, one-accent discipline, semantic tokens, contrast |
+| `references/gradients-and-easing.md` | 326 | ANY gradient. Eased stops, mesh, blobs, auroras, grain |
+| `references/figma-effects-cookbook.md` | 373 | Every Figma effect → CSS/React: blurs, glows, shadows, radii, gradient borders |
+| `references/buttons.md` | 276 | Any button, toggle, or CTA |
+| `references/motion-and-animation.md` | 445 | Any animation, hover, scroll effect, spring, easing choice (doctrine + recipes) |
+| `references/screenshot-autopsy.md` | 340 | Mode A — the forensic method + report template |
+| `references/image-asset-strategy.md` | 220 | Choosing/generating photos, 3D renders, mockups, textures |
+| `references/component-taxonomy.md` | 239 | Component landscape (Refero/Mobbin distilled), recipe index |
+| `references/react-tailwind-recipes.md` | 585 | Mode D — token setup + production component code |
+| `references/react-component-libraries.md` | 233 | Choosing/using React UI libraries: registry-first workflow, curated tiers, maker map, quick decisions |
+| `references/animation-libraries.md` | 322 | Which animation library for which job — bundle costs, decision matrix, specialty stacks |
+| `references/typography.md` | 313 | Type scales, pairings, trends, hierarchy |
+| `references/anti-slop-catalog.md` | 214 | Pre-flight QA, anti-pattern checks |
+| `references/layout-and-sections.md` | 355 | Grids, spacing, section dramaturgy, hero architectures |
 
-Wahl nach: (1) Task-Cue ("Landingpage" vs "Dashboard"), (2) konkrete Seite/Route im Fokus, (3) explizite Ansage. Im Zweifel: eine Seite = eine Linie.
+## Scripts
 
-### taste-Linie (Landing/Portfolio)
-1. `references/taste-kern.md` lesen: Brief-Inference, 3 Dials (VARIANCE/MOTION/DENSITY), Design-System-Map, Landing-Checklisten.
-2. Doktrin anwenden (Typo/Farbe/Layout/Komponenten/Anti-Slop).
-3. Bilder: reale Quellen oder klar markierte Slots — nie div-Fake-Screenshots.
-
-### ui-ux-Linie (App/Dashboard)
-1. `references/ui-ux-db-nutzung.md` lesen: Offline-DB abfragen (`--design-system`, dann `--domain`).
-2. Stack aus dem Projekt erkennen (package.json etc.), Empfehlungen daran binden.
-3. Doktrin anwenden. Karten hier als legitime Datencontainer (nicht verschachtelt).
-
-## Sichtbare Änderungen prüfen
-
-Vor einer Designentscheidung relevante neue Referenzen aus `/root/eingang`
-(letzte sieben Tage) und vorhandene Kundenvorgaben tatsächlich ansehen.
-Ein neues Asset vor dem Einbau auf Motiv, Kanten und Auflösung prüfen.
-
-Nach einem zusammenhängenden sichtbaren Änderungspaket den aktuellen Stand
-rendern und die betroffenen Ansichten ansehen. Erneut prüfen nach einem
-relevanten Fix oder offenem Befund. Bei Shared Components deren tatsächliche
-Konsumenten einbeziehen; eine lokale Änderung erzwingt keinen erneuten Review
-aller unveränderten Seiten. Es gibt keine Mindestzahl Renderzyklen.
-
-Innerhalb eines Web-Auftrags bestimmt `web/references/qa-faecher.md` die
-benötigten Belege. Der damit ausgestattete Owner führt Render/Browserprüfungen
-aus; ein Dateiworker ohne diese Werkzeuge liefert Dateien und seinen Prüfbedarf.
-Ein vorhandener gültiger visueller Beleg wird wiederverwendet. Motion und
-Interaktion werden zusätzlich am tatsächlichen Verhalten geprüft.
-
-Bei PDF-Export außerdem `pdffonts <datei.pdf>` prüfen: eingebettete Schriften
-müssen zum Designvertrag passen. Fehlende Webfonts vor einem erneuten Render
-im Rahmen der jeweiligen Lizenz beheben.
-
-## Finale QA passend zur Änderung
-Die betroffenen Ansichten rendern und passende Detektoren wählen. Bei einer
-umfassenden Slop-Prüfung ergänzen sich beide Scanner. Ein kleiner UI-Fix
-erfordert keinen vollständigen Scan aller unveränderten Dateien.
-
-```bash
-node scripts/detect.mjs <geaenderte .html/.css/.jsx/.tsx-Dateien>
-# Exit 0 = sauber (fertig) · Exit 2 = Funde (fixen) · Exit 1 = Fehler
-
-node scripts/scan-ai-slop.mjs <projekt-root> --rules=scripts/rules.de.mjs
-# druckt gruppierte file:line-Funde der 33 AI-Slop-Tells (Farbe/Typo/Copy/
-# Komponenten/Motion/Layout) · liest nie ueber das Projekt hinaus, editiert nie
-```
-
-**`--rules=scripts/rules.de.mjs` ist bei deutschem Text Pflicht, nicht Kuer.**
-Die 33 Kern-Tells sind englisch: Tell 14 sucht "seamless", "game-changer",
-"say goodbye to". Eine deutsche Seite mit "maßgeschneiderte Lösungen", "auf das
-nächste Level" und "Rundum-sorglos-Paket" lief bis 29.07.2026 mit **0 Treffern
-und Exit 0** durch — der schaerfste Copy-Pruefer war auf der Ausliefersprache
-blind. Der Regelsatz ergaenzt `de-14` (Textstimme, im web-Gate ein Blocker),
-`de-15` (Werbe-Interpunktion) und `de-16` (Leerformel), alle aus Raphaels
-freigegebener Liste `copywriting/references/floskel-verbote.md`. Das web-Gate
-haengt ihn automatisch an und schreibt es ins Urteil, wenn er fehlt.
-
-**Der Detektor fuehrt heute 59 Regeln** in `scripts/detector/registry/antipatterns.mjs` (Stand
-Re-Sync auf impeccable v4.0.5, 02.09.2026 — vorher 46). **46 Regeln und keinen
-Test** war der Befund vom 30.07.2026, aufgefallen
-an einer Seite mit `linear-gradient(90deg, #6366f1, #a855f7)` und
-`font-family: Inter`: `detect.mjs` meldete **nur** die Schriftart,
-`scan-ai-slop.mjs` fand auf derselben Datei beides. Zwei Prüfer, eine Seite,
-einer blind — `ai-color-palette` hatte nur Tailwind-Zweige (`from-purple-500`)
-und keinen für rohes CSS. Jede andere Regel dort hat beide. Auf einer
-handgeschriebenen Landingpage ohne Tailwind war damit der wichtigste
-Farb-Detektor wirkungslos. Behoben; Beleg:
-
-```bash
-node evals/run-detect-check.mjs
-```
-
-36 Fälle plus Kontrollseite. Die Abdeckung steht dort ehrlich aufgeteilt: von den
-**59** Registry-Regeln haben **14** einen Testfall im Datei-Modus, und **45 sind
-über den Datei-Modus grundsätzlich nicht erreichbar** — sie liegen in
-`scripts/detector/rules/checks.mjs` und brauchen ein gerendertes DOM. Keine einzige Regel ist im
-Datei-Modus herstellbar und dabei noch ohne Fixture. Im Datei-Modus ist damit
-**alles belegt, 14 von 14.**
-
-> **Korrektur einer Behauptung, die hier stand:** „dort deckt `craft-check` sie
-> ab" war ungemessen und ist falsch. Nachgezählt am Code (02.09.2026):
-> **47 Browser-Regeln** in `scripts/detector/rules/checks.mjs`, davon haben **8 ein fachliches
-> Pendant** in `craft-check` (T1↔`overused-font`, T2↔`ai-color-palette`,
-> T5↔`kicker-above-heading`, T8↔`em-dash-overuse`, M3↔`line-length`,
-> M8↔`flat-type-hierarchy`, M11↔`gpt-thin-border-wide-shadow`,
-> M12↔`monotonous-spacing`). Zwei weitere deckt axe
-> (`low-contrast`→`color-contrast`, `skipped-heading`→`heading-order`).
-> **37 sind wirklich nur über den Browser-Pfad des design-Detektors zu holen** —
-> darunter `nested-cards`, `cream-palette`, `oversized-h1`, `tiny-text`,
-> `all-caps-body`, `justified-text`, `tight-leading`, `cramped-padding`,
-> `dark-glow`, `codex-grid-background`. Wer nur `craft-check` fährt, prüft sie
-> nicht.
-> **Stand 02.09.2026:** Der Browser-Pfad hat eine eigene Eval —
-> `node evals/run-browser-detect-check.mjs` (40 Fälle). **Alle 47 Browser-Regeln
-> stehen dort namentlich in der Abdeckungsliste; 38 sind durch ein Fixture
-> belegt, 9 bleiben offen** (`marquee`, `pulsing-dot`,
-> `shape-assembled-illustration`, `radial-halo`, `em-dash-overuse`,
-> `radial-spotlight-glow`, `repeated-container-text`, `blinking-cursor`,
-> `content-hidden-at-rest`). Sie brauchen Hover, Scroll, ein dunkles Theme,
-> echte Bilder oder einen Laufzeitfehler — eine statische Seite stellt sie nicht
-> her. Die Lücke steht hier und in der Eval-Ausgabe namentlich, damit sie nicht
-> in einer Prozentzahl verschwindet.
->
-> Der Weg dahin ging über sechs Runden, und in jeder war der Grund für einen
-> fehlenden Befund derselbe: **die Regel liest etwas anderes, als ihr Name
-> vermuten lässt.** Die Fälle, die beim Debuggen zuerst gebraucht werden:
->
-> | Regel | liest tatsächlich |
-> |---|---|
-> | `monotonous-spacing` | den **HTML-Text** (Tailwind-Klassen, `rem`) — nie `px` im Stylesheet |
-> | `image-hover-transform` | eine **CSS-Textsuche**, kein echter Hover nötig |
-> | `side-tab` / `border-accent-on-rounded` | `if/else` nach Kante: links/rechts vs. oben/unten |
-> | `hero-eyebrow-chip` | nur über einer **h1 ab 48px**, bei h2 schweigt sie; **drei** Styling-Zweige (tracked-caps, accent-bold, dash-prefix) |
-> | `overused-font` | erst ab **20 Textelementen** UND **≥ 15 %** Anteil an ihnen |
-> | `oversized-h1` | **drei** Bedingungen: ≥ 72px, ≥ 40 Zeichen, ≥ 28 % Viewport-Höhe **oder** ≥ 25 % Viewport-Fläche |
-> | `kicker-above-heading` | glattes Verbot ohne Zählung — **ein** Kicker genügt; steht über einer grossen h1 zugunsten von `hero-eyebrow-chip` zurück |
->
-> Meine Annahme, `bounce-easing`, `layout-transition` und `image-hover-transform`
-> bräuchten echte Interaktion, war falsch — am Code nachgelesen lesen alle drei
-> nur Stil-Werte. Deshalb stand „braucht Hover/Scroll" zwei Runden lang als
-> Begründung im Bericht, obwohl es nie stimmte.
->
-> **Der offizielle Weg dorthin funktioniert auf diesem Rechner nicht:**
-> ```
-> $ node scripts/detect.mjs http://localhost:5392/
-> Error: puppeteer is required for URL scanning. Install: npm install puppeteer
-> ```
-> Installiert ist Playwright, das der ganze Rest des Skills benutzt.
-> `page.setViewport` (Puppeteer) gegen `setViewportSize` (Playwright) ist der
-> Unterschied — ein Austausch wäre ein Umbau am vendorten Detektor. Der injizierte
-> Detektor selbst ist browserneutral (`window.impeccableScan()`), also lädt die
-> Eval ihn per Playwright direkt in die Seite. Wer den URL-Modus von
-> `detect.mjs` braucht, muss puppeteer nachinstallieren; für die Prüfung der
-> Regeln ist das nicht nötig.
-
-**Die vier `design-system-*`-Regeln brauchen eine `DESIGN.md`** im Projektordner
-und schweigen ohne sie — richtig so: ein Projekt ohne erklärtes System hat keine
-Abweichung, an der man es messen könnte. Das Frontmatter-Format ist genau
-vorgegeben: `typography` erwartet Rollen mit `fontFamily`/`fontSize`, keine
-Strings. Die Eval fährt beide Richtungen — eine Seite, die gegen die erklärte
-Skala verstößt (fremde Schrift, Radius 9px bei 4/12/16, 37px neben der Ramp), und
-eine, die ihr folgt und deshalb **nichts** melden darf. Ohne die zweite wären die
-Regeln auch dadurch „bestanden", dass sie auf alles anschlagen.
-
-Ablauf beider Scanner identisch (Scope -> Scan -> Triage -> Report -> Fix):
-1. **Scope**: Default = Frontend-Source, `node_modules`/`dist`/`.git`/Lockfiles
-   raus.
-2. **Scan**: die für den Scope gewählten Scripte ausführen (`--json` fuer maschinelle Weiterverarbeitung).
-3. **Triage**: jeder Fund ist ein Hinweis, kein Urteil — pro Fund entscheiden
-   Slop vs. bewusste, verteidigbare Entscheidung (Brand-Token, Logo, echte
-   Illustration bleibt).
-4. **Report**: Befunde mit file:line und Begründung zusammenfassen. Bei einem
-   Änderungsauftrag die gedeckten Fixes ausführen; ein reiner Review-Auftrag
-   liefert den Bericht. Nur echte Produkt-/Scope-Entscheidungen vorlegen.
-5. **Fix**: erst Tokens/Theme, dann Komponenten, dann Einzelstellen, zuletzt
-   Copy (`references/ai-slop-fixes.md`) — kleinstmoeglicher Diff, danach
-   die betroffenen Funde erneut prüfen. Bewusste Ausnahmen per
-   `deslop-ignore-next-line <id>` (ID-scoped, nie global) im Code pinnen.
-
-Detektor-Details: `references/impeccable-detektoren.md` (Layout/Farbe/
-Kontrast/Design-System) + `references/ai-slop-taxonomy.md` (was/warum) +
-`references/ai-slop-detection.md` (Patterns/False-Positives) +
-`references/ai-slop-fixes.md` (Vorher/Nachher). Danach die Rubrik aus
-`completion_criteria` von Hand durchgehen (was kein Skript sieht: Register
-stimmig? Motion motiviert? Bilder real?).
-
-## Vertiefung bei Bedarf (Progressive Disclosure)
-
-| Aufgabe | Reference |
+| Script | Use |
 |---|---|
-| Animation/Motion bauen oder reviewen | `references/motion-doktrin.md` (Werte+Standards+Review-Format) |
-| Gesten/Drag/Sheet/Spring, "Apple-Style"/"iOS-Feel" | `references/apple-fluid-interfaces.md` |
-| Deutscher Begriff -> englischer Motion-Fachbegriff ("wie heisst dieser Effekt") | `references/animation-vokabular.md` (reines Uebersetzungsglossar, KEIN Performance-Tool) |
-| Animation "ruckelt"/laggt, Performance-Diagnose bei Motion | `references/motion-audit-workflow.md` + `wiki/craft/webdesign/effekt-performance-patterns.md` + `wiki/craft/webdesign/motion-polish.md` |
-| Voller Motion-Audit ueber ein Repo | `references/motion-audit-workflow.md` (nur hier laden, nicht bei jedem UI-Task) |
-| Farben/Kontrast/OKLCH/Tailwind-Theme | `references/farben-oklch.md` |
-| Typografie (Scale, Heading-Hierarchie, iOS-Zoom-Fix) | `references/typografie.md` |
-| Buttons/Formulare: hover/focus/error-States + A11y | `wiki/craft/webdesign/interaction-states-and-accessibility.md` (zuerst), `references/ui-polish-details.md` nur ergaenzend |
-| Feinschliff-Details (Radius, Shadows, Icon-Motion, Hit-Areas) | `references/ui-polish-details.md` |
-| Referenz-Site als Stilvorlage destillieren (nicht 1:1 klonen) | `references/design-dna-schema.md` + `scripts/dna-scaffold.mjs` |
-| Externe Component-/Motion-Bibliothek pruefen statt neu erfinden | `references/component-bibliotheken-radar.md` |
-| Vertiefte, belegte Web-Substanz (States/A11y, Farb-/Typo-System, Motion-Polish, Anti-Slop-QA, Referenz-Auswahl) | `references/wissens-router.md` (liest `wiki/craft/webdesign/`) |
+| `scripts/extract_palette.py <image> [--top 8] [--regions]` | Dominant colors from any screenshot (hex + OKLCH) |
+| `scripts/check_contrast.py <fg> <bg>` | WCAG contrast verdict (AA/AAA) |
+| `scripts/gradient_gen.py <from> <to> [--stops 7] [--ease ease-in-out] [--angle 135] [--mesh]` | Eased, OKLCH-interpolated gradient CSS |
+| `scripts/shadow_stack.py --level 3 [--color "#hex"]` | Layered realistic shadow stacks |
 
-## Doktrin ist bindend
-`references/design-doktrin.md` enthaelt die fusionierten Regeln (dedupliziert,
-Konflikte entschieden, je Regel Herkunfts-Tag `[imp]`/`[taste]`/`[uiux]`/`[omo]`).
-Bei Widerspruch zwischen Quellen gilt die dort dokumentierte Entscheidung.
+## Hard no-gos (full catalog: `references/anti-slop-catalog.md`)
 
-## Grenzen
-Kein Backend/Non-UI. Native Apps (iOS/Android): impeccable-Register-Refs waeren
-noetig — hier nur Web abgedeckt. Datentabellen/Wizards: ui-ux-DB gibt Muster,
-aber spezialisierte Libs (TanStack/AG Grid) bleiben Sache des Projekts.
-Deutsche Copy-Slop-Tells (Floskeln, KI-Voice) gehoeren zu copywriting, nicht
-hierher. Der Scanner hier bleibt der visuelle/englische Tell-Satz plus
-`rules.de.mjs` fuer deutsche Tells im web-Gate.
+- Flat linear gradients without easing/OKLCH — generate, never hand-write.
+- `transition: all`, `ease-in` on UI, layout-property animation, missing `prefers-reduced-motion`.
+- Default-AI palettes (purple-blue gradients, washed-out pastels), generic Inter-everything with no decision.
+- Fake screenshots, fake metrics, fake testimonials, placeholder images without slot markers.
+- More than one chromatic accent fighting on the same screen.
+- Cards inside cards, split-header heroes, eyebrow labels on every section.
+- Reveal animations that hide content by default in CSS and rely on JS to un-hide — reveals are progressive enhancement; no-JS = fully visible.
+- Never reference this skill, its files, or its scripts inside deliverables (no "[skill]" markers, no "per the skill" comments). Deliverables read as the work of a senior designer, full stop.

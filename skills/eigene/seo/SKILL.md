@@ -160,9 +160,9 @@ sichtbar wird, und bei Decay auffrischen.
 | **Borja-Playbooks** (Buy-Intent-Seitentypen, GSC-Regex und Lücken-Loop, Page-Refresh, Topical Map, Information Gain, 4 kontextuelle Links, Statistikseite, Linkbuilding-Taktiken inkl. Customer-Story-Links, Trojan-Listicle, Journalisten-Score, LinkedIn, YouTube, Google-Trends-Rising, GEO-Loops, Local-Wochenloop, Agent-Jobs, Tier-Liste) | `references/playbooks-borjafat.md` |
 | **Creator-Lehren** (Audience-first, Mentions > Backlinks, Search Everywhere im Brain) | `references/creator-lehren-2026-08.md` |
 | Named-Source-Mechaniken kurz | `references/quellen-2026-08.md`, `references/quellen-2026-09.md` |
-| Spezialtiefe Brain | `references/wissens-router.md` |
+| Spezialtiefe | `references/wissens-router.md` |
 
-Brain-Präfix immer `/root/raphael-brain/wiki/craft/seo/`. 1–3 Seiten, nie alle.
+Alle Nachschlageziele liegen in `references/` dieses Skills. Lade **1–3 Seiten**, nie alle.
 
 ## On-Page für Loop 2 (Website-Bau)
 

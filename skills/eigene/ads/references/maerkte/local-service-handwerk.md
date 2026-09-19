@@ -16,7 +16,7 @@ Diese Anzeigen suchen Hausbesitzer und Handwerker mit Ort, Preis und kurzem Chec
 
 ## Geltung dieser Marktbeobachtung
 
-Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../leadgen-betriebsmodell.md](../leadgen-betriebsmodell.md).
 
 ## Regeln
 
@@ -27,7 +27,7 @@ Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrol
 - Funnel: Geo-Direct A6 mit 2-Minuten-Check bei Enpal, Kurzform A2 plus Analyse bei SEOLabs.
 - Tragender Proof ist P-zahl in 93 Ads. Case-Kette kommt 0 Mal vor.
 - Static überwiegt mit 95 Ads gegen 38 Videos. CTA oft meta-learn-more, 49 Mal.
-- Enpal siezt in den Video-Ads, MAKE duzt den Betrieb.
+- Enpal siezt in den Video-Ads, das Referenzkonto duzt den Betrieb.
 - Tabu: 30.000-Euro-Monatsumsatz, 1on1-Sparring, Kommentar-Keyword, Lamborghini-Shame, F1-Einkommens-Garantie, F12-Knappheit.
 
 ## Taktiken
@@ -36,7 +36,7 @@ Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrol
 - Zeige einen eigenen prüfbaren Beleg; fremde Anfragenzahlen, Rankings oder Konditionen nicht übernehmen.
 - Führe zum tatsächlichen nächsten Schritt: etwa Anruf, Check, Formular oder Termin.
 - Nutze die Funktion eines lokalen Cases als Referenz; für eigene Aussagen sind eigene Cases nötig.
-- Lade dieses Segment für MAKE.
+- Lade dieses Segment für das Referenzkonto.
 
 ## Beispiele
 
@@ -52,14 +52,14 @@ Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrol
 
 ## Quelle
 
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:8`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:13`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:51`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:529`
+- `../korpus/scripts-711.jsonl:8`
+- `../korpus/scripts-711.jsonl:13`
+- `../korpus/scripts-711.jsonl:51`
+- `../korpus/scripts-711.jsonl:529`
 
 ## Historische Herkunft
 
 Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die operativen Quellen stehen im Skill. Für die Nutzung müssen diese Dateien nicht existieren.
 
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:122`
-- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:22`
+- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer.md:22`

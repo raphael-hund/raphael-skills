@@ -15,6 +15,7 @@ Verboten = harter Block, geht nicht live. Riskant = umschreiben + belegen, dann 
 - **Sensational / shock content**, Clickbait, irreführende Behauptungen.
 - **Non-functional landing page** / Mismatch Anzeige ↔ Zielseite.
 - **Zählerstände/Countdowns**, die faken Bestand/Dringlichkeit vortäuschen.
+  ⚠️ **Querverweis Chef-Vetos 59/60 (18.09.2026, `konflikt-register.md`):** Urgency/Countdown und Knappheit sind intern **erlaubt** — die Meta-Policy bleibt die Grenze (kein fake-Bestand als technischer Fake/Zähler). Einordnung: mindestens `riskant`, echter Grund/Beleg mitliefern, kein internes Verbot mehr.
 - **Third-party-Marken/Prominente** ohne Genehmigung (Testimonial-Fake).
 
 ## B. HWG (Heilmittelwerbegesetz, DE) — Gesundheit/Beauty/Supplements
@@ -34,6 +35,7 @@ Verboten = harter Block, geht nicht live. Riskant = umschreiben + belegen, dann 
 - **Spitzenstellungswerbung** ("Nr. 1", "der Beste", "einzigartig") nur mit Beleg.
 - **Testsiegel/Bewertungen**: Quelle + Fundstelle nötig; keine erfundenen Bewertungen (§ 5b).
 - **Dringlichkeit/Countdown** ohne echten Grund = irreführend.
+  ⚠️ **Querverweis Chef-Vetos 59/60/70 (18.09.2026, `konflikt-register.md`):** Urgency, Knappheit (auch bei freiem Bestand) und „Gratis" im Hook (wenn danach ein Vorausgespräch kommt) sind intern **erlaubt** — UWG/Meta-Policy bleiben als Grenze geprüft. Einordnung: `riskant` statt `verboten`, echten Grund belegen, dann erneut prüfen.
 - **Garantie**: nur mit klaren, einlösbaren Bedingungen.
 
 ## Einordnungs-Heuristik (Output-Format der claims-qa)

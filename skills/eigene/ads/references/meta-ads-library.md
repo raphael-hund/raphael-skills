@@ -75,10 +75,13 @@ ist kein Sprachtranskript. Für eine reine visuelle Aussage genügt die belegte
 Bildsichtung; Aussagen über Voiceover erfordern Audio/Transkript.
 
 Für genaue Video-Zerlegung den verfügbaren `watch`-Skill lesen und dessen
-Extraktionsmechanik nutzen. Eine rechtmässig zugängliche Video-/Post-URL oder
-lokale Datei an den vorhandenen Helper geben:
+Extraktionsmechanik nutzen (optionale externe Integration — externe Quelle,
+nicht im Paket; dieser Skill funktioniert vollständig ohne sie). Eine
+rechtmässig zugängliche Video-/Post-URL oder lokale Datei an den vorhandenen
+Helper geben:
 
 ```bash
+# externe Quelle, nicht im Paket (optionaler watch-Skill)
 bash /root/raphael-skills/skills/eigene/watch/scripts/watch-extract.sh "/tmp/<video>.mp4" "/tmp/ads-watch-<id>"
 ```
 

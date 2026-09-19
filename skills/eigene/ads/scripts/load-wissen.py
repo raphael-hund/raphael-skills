@@ -20,7 +20,6 @@ SEGMENTS = (
 )
 
 KUNDE_SEGMENT = {
-    "make": "local-service-handwerk",
     "wilhelm": "local-service-handwerk",
     "sorglos": "local-service-handwerk",
     "evers": "agenturen-coaching",
@@ -29,8 +28,8 @@ KUNDE_SEGMENT = {
 
 SKILL_KERN = {
     "ads": [
-        "references/wissen/index.md",
-        "references/wissen/leadgen-betriebsmodell.md",
+        "references/INDEX.md",
+        "references/leadgen-betriebsmodell.md",
         "references/segment-map.md",
     ],
     "ads-research": [

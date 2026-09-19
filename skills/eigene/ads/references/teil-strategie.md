@@ -1,6 +1,6 @@
 # Teil Strategie: eine wirtschaftlich relevante Lernfrage lösen
 
-Grundlage ist [wissen/leadgen-betriebsmodell.md](wissen/leadgen-betriebsmodell.md).
+Grundlage ist [leadgen-betriebsmodell.md](leadgen-betriebsmodell.md).
 Ziel sind passende Kontakte und wirtschaftliche Abschlüsse im gewählten Horizont.
 Klicks, billige Formularabsendungen und Plattform-ROAS sind Zwischenbeobachtungen.
 
@@ -48,7 +48,9 @@ Eigenschaften verändern und anschliessend einer einzigen die Wirkung zuschreibe
 | Formatvergleich ist die eigentliche Frage und Exposition finanzierbar | Begrenzter paralleler Vergleich |
 
 Static-first, Video-first oder parallel ausdrücklich mit einem Grund benennen.
-Es gibt weder fünf Pflicht-Statics noch eine feste Mindestzahl Videos. Ein
+**Default ist Static zuerst — direkter Video-Start ist aber jederzeit erlaubt,
+kein Ausschluss (Entscheid Raphael 18.09.2026, schliesst Streit K2).** Es gibt
+weder fünf Pflicht-Statics noch eine feste Mindestzahl Videos. Ein
 Static-Erfolg garantiert keinen Video-Erfolg; Übergang, Bild und gesprochene
 Behauptung müssen in der neuen Form funktionieren. Objektverkauf folgt den
 konkreten Gestaltungsregeln in [teil-statics.md](teil-statics.md).
@@ -105,7 +107,7 @@ im Kunden-Lernregister `/root/clients/<slug>/ads/lern-register.md` sowie dessen
 Abschnitt oder Zeilenbeleg. Ohne diesen Verweis bleibt die Aussage neutral.
 Ein zusätzlicher Pflichtschritt muss einen konkreten Auswahl- oder Informationszweck erfüllen.
 
-Optimierungsereignis und CRM-Rückmeldung nach [Betriebsmodell](wissen/leadgen-betriebsmodell.md)
+Optimierungsereignis und CRM-Rückmeldung nach [Betriebsmodell](leadgen-betriebsmodell.md)
 prüfen. Rohlead, qualifizierter Lead und gebuchtes Gespräch nicht vertauschen.
 Eine Umsatzfrage oder ein neues Pixel ist keine allgemeine Reparatur.
 
@@ -118,6 +120,25 @@ Qualifizierung getrennt zurückmelden; Events nicht pauschal unterdrücken.
 
 ## Messen und Stopp-Regeln
 
+**Mess-Grundsätze (Entscheid Raphael 18.09.2026):**
+
+- **Hauptgrössen sind Terminpreis und Abschlussquote.** CPL ist egal —
+  Diagnosegrösse, nie Zielgrösse. Kein E-Commerce-ROAS-Denken.
+- **Auswertungs-Kadenz: wöchentlich.** Ads werden immer nur wöchentlich
+  ausgewertet; Skalierungs-Schrittweite bleibt 20–30 %, aber der Entscheid
+  fällt wöchentlich. Nie nach 48 h killen, nie nach einem guten Tag Budget
+  erhöhen (3–5 Tage Ruhe).
+- **Bewertung im Gesamtbestand, nicht je Einzel-Ad.** Es gibt keine starren
+  Winner-Definitionen — bewertet wird der Bestand an Terminpreis und
+  Abschlussquote. Eine Hit-Rate von ~10 % ist ok, wenn der Terminpreis stimmt.
+- **Reife ~3 Wochen; bei langem Sales-Cycle bis 6 Wochen.** Keine Verkäufe
+  → kein Urteil.
+- **Frequenz (Cold) ist nur Diagnose:** Band 2,0–2,5, ab 2,5 Creative
+  tauschen als Richtwert — Entscheidungen laufen nie über die Frequenz,
+  sondern nur über den Terminpreis (schliesst K4).
+- **Bauchgefühl ist erlaubt**, wenn es auf den wichtigen Daten basiert
+  (Terminpreis, Abschlussquote).
+
 Bei einer Lead-Welle zählt die qualifizierte Anfrage beziehungsweise
 Verkaufsopportunität im wirtschaftlichen Testvertrag. Bei der Static-Vorfilter-Welle
 bewerten CTR und Klickpreis das Angle-Signal. Dieses Signal belegt weder Leadqualität
@@ -126,7 +147,7 @@ nachgelagerte Qualität und den Kundenkontext prüfen. Kundenspezifische Warnsch
 gehören ins Kunden-Lernregister.
 
 Die folgenden Kill-Heuristiken betreffen nur Lead-Wellen. Die Unsicherheit
-ohne Abschluss erklärt [wissen/leadgen-betriebsmodell.md](wissen/leadgen-betriebsmodell.md)
+ohne Abschluss erklärt [leadgen-betriebsmodell.md](leadgen-betriebsmodell.md)
 (vereinfachtes Poisson-Modell; das legitimiert keine Standard-Kills). Ihre Schwellen
 sind Heuristiken, die nur mit passender Ereignisdefinition, Kohortenreife und
 vereinbarter Verlustgrenze gelten. Für den Static-Vorfilter greifen diese
@@ -212,7 +233,89 @@ Die Entscheidung und ihre Belege bleiben im Brain; der Skill enthält den ausfü
 Ablauf. Die Verweise sind optional und übertragen keine Kontozahlen als Benchmarks:
 
 - `/root/raphael-brain/HANDOFF.md:33-34`
-- `/root/raphael-brain/wiki/craft/ads/lehren/STREIT-2026-07-30-statics-zuerst-gegen-eigene-daten.md:115-128`
+- Streitakte „Statics zuerst vs. eigene Daten“: siehe `konflikt-register.md` (K2/D2) und `eigene-regeln.md` (Format-Urteil)
+
+## Hook-Filter
+
+Der Hook-Filter ist kanonisch in [hook-werkstatt.md](hook-werkstatt.md) §1
+geführt: Committed-vs-Curious, die Copy-Zerlegung Person/Situation/Intention
+und die No-Duplication-Regel. Nicht hier duplizieren — dort lesen.
+Strategisch relevant bleibt nur: zeigt die Messung hohe CTR bei tiefer
+Qualität/Conversion, den Hook von Curious nach Committed schieben
+(präzisierende Zusätze, Zielgruppen-Situation, ggf. Fachwort).
+
+*Historie: die Zeile „Link-CTR > ~2 % = zu wenig Filterung" aus der aufgelösten
+hook-taxonomie.md (Legacy) wird nicht übernommen: kanonisch gilt die
+Verbund-Lesart aus [leadgen-betriebsmodell.md](leadgen-betriebsmodell.md)
+(CTR nur im Verbund mit Zeitraum/Qualität lesen); die härteren Abstufungen sind
+historische Stände und werden in [konflikt-register.md](konflikt-register.md)
+dokumentiert.*
+
+## Winning Variables (Chef-SOP, Anregungs-Layer)
+
+**Anregung, kein Gesetz — bei Konflikt gilt der Rest dieser Datei.** Korpus-
+Evidenz: 🟡 teilweise gestützt (s. Konflikt-Entscheid 14,
+[konflikt-register.md](konflikt-register.md)).
+
+Eine **Winning Variable** ist die eine Eigenschaft, die eine Testwelle als
+Gewinner-Merkmal identifiziert: Offer, Person (z. B. Frau mit Schild im Bild),
+Format oder lokale Ansprache. Beispiel aus dem Chef-Diktat: „Frau + Schild +
+Lokal" als erkennbare Gewinn-Kombination. Jede Testwelle dokumentiert ihre
+gefundene Winning Variable im Kunden-Lern-Register
+(`/root/clients/<slug>/ads/lern-register.md`), damit spätere Wellen darauf
+aufbauen statt von null zu starten. Das präzisiert den Testvertrag oben („gezielt
+veränderte Eigenschaft"), ersetzt ihn aber nicht: Unbelegte Variablen (im Korpus
+nicht auswertbar, etwa „Frau in der Ad") bleiben Hypothesen, keine Regeln.
+
+Der Diktat-Pfad **„Statics → Video"** (Masse vor Qualität: erst billig
+Statics testen, Gewinner als Video vertiefen) deckt sich mit
+der Default-Welle als Static-Vorfilter oben. Die früher angehängte VSL-Endstufe
+ist korrigiert (18.09.2026): VSLs sind bei uns **selten** — Ausnahme für
+erklärungsbedürftige High-Ticket-Funnel mit funktionierendem Front-End, kein
+Standard-Ziel. Siehe Abschnitt „Landingpage oder Lead-Formular" unten. Die
+ursprüngliche Anregung
+ist korpus-extern. **Der Statics-zuerst-Streit ist entschieden (Entscheid
+Raphael 18.09.2026, K2): Static zuerst ist der Default, direkter Video-Start
+ist jederzeit erlaubt** ([konflikt-register.md](konflikt-register.md), K2);
+die begründete Formatwahl im Abschnitt „Format auswählen" führt weiterhin. „Formatfrage nie still entscheiden"
+gilt auch hier. Lokale Ansprache („bei DIESER Wohnung in Luzern") ist im Korpus
+fast abwesend und damit eine ungetestete Chance — Empfehlung: als eigene
+Testwelle prüfen (Konflikt-Entscheid 14).
+
+## Landingpage oder Lead-Formular (Entscheid, 18.09.2026)
+
+Die Frage ist phasenabhängig, nicht ideologisch (aufgelöster Streit K10):
+
+- **Lead-Formular (Instant Form) = Default in der Testphase.** Unvalidiertes
+  Offer, kleines Budget, Speed-to-Lead zählt mehr als Erklärtiefe.
+  **Disqualifizieren ist optional, nicht Pflicht (Chef-Entscheid 18.09.2026).**
+  Default: alle mitnehmen, die ein echtes Bedürfnis haben — **routen statt
+  wegfiltern**. Beispiel vom Chef: Bei Umsatz-Qualifizierung gehen die
+  <10k-Leads nicht verloren, sondern bekommen das Website-Offer — sie haben
+  das Bedürfnis (gute eigene Erfahrung damit). **Filterfragen sind ein
+  Werkzeug bei Lead-Qualitäts-Problemen, keine Standard-Pflicht** — der
+  Befund bleibt bestehen (34 % der Verluste sind Preis/Budget, siehe
+  eigene-regeln.md), aber er begründet eine Option, keine Regel. Getrennte
+  Danke-Seiten/Events für qualifiziert vs. unqualifiziert bleiben sinnvoll,
+  damit Meta Qualitäts-Unterschiede lernen kann
+  (messung/2026-07-20-lead-qualifizierung-pixel-conversions-api.md).
+- **Landingpage** erst, wenn das Offer validiert ist (Termine kommen
+  reproduzierbar), das Angebot High-Ticket mit Erklärungsbedarf ist oder die
+  Formular-Leads nachweislich verwässern. Eine LP ist ein eigenes Produkt
+  (Speed, Mobile, Consent, Server-Tracking) — siehe
+  messung/2026-07-20-lead-qualifizierung-pixel-conversions-api.md
+  (CAPI/Server-Tracking) und creative/2026-07-23-lead-magnet-und-funnel.md.
+- **VSL** bleibt die seltene Ausnahme (erklärungsbedürftige High-Ticket-Funnel
+  mit funktionierendem Front-End). Kein Standard-Ziel, keine Standard-Endstufe.
+- **Formular-Fragen (Entscheid Raphael 18.09.2026):** Keine
+  Budgetbereitschafts-Fragen im Instant-Form. Gute Fragen sind **Zeitrahmen**
+  („Wann willst du starten?") und **Umfang**. Routing vs. Rausfiltern richtet
+  sich nach dem Grund: **„zu billig" → routen** (andere Strecke/anderes
+  Offer, der Lead geht nicht verloren); **„keine Zeit" → rausfiltern**.
+- Der Entscheid gehört in den Testvertrag; ein Wechsel der Strecke ist eine
+  eigene Testfrage, kein Nebenbei. **Der Skill wechselt die Strecke NIE
+  eigenständig — Strecken-Wechsel ist ein Chef-Gate (Entscheid Raphael
+  18.09.2026).**
 
 ## Rot
 

@@ -16,7 +16,7 @@ Beobachtete Bauformen helfen bei der Auswahl; ihre Häufigkeit belegt keinen Vor
 
 ## Geltung dieser Marktbeobachtung
 
-Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../leadgen-betriebsmodell.md](../leadgen-betriebsmodell.md).
 
 ## Regeln
 
@@ -46,20 +46,20 @@ Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrol
 
 ## Gilt nicht wenn
 
-- Der Kunde ist MAKE oder ein Handwerksbetrieb. Dann `local-service-handwerk`.
+- Der Kunde ist das Referenzkonto oder ein Handwerksbetrieb. Dann `local-service-handwerk`.
 - Der Kunde ist eine Agentur oder ein Coach. Dann `agenturen-coaching`.
 - Der Kunde kauft SEO, Demo oder Tool. Dann `b2b-dienstleister`.
 
 ## Quelle
 
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:29`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:8`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:3`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:37`
+- `../korpus/scripts-711.jsonl:29`
+- `../korpus/scripts-711.jsonl:8`
+- `../korpus/scripts-711.jsonl:3`
+- `../korpus/scripts-711.jsonl:37`
 
 ## Historische Herkunft
 
 Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die operativen Quellen stehen im Skill. Für die Nutzung müssen diese Dateien nicht existieren.
 
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:90`
-- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:24`
+- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer.md:24`

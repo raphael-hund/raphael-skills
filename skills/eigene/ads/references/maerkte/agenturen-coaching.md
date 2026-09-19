@@ -16,7 +16,7 @@ Diese Anzeigen locken Agentur-Chefs mit Umsatz-Zahlen in ein Gespräch.
 
 ## Geltung dieser Marktbeobachtung
 
-Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../leadgen-betriebsmodell.md](../leadgen-betriebsmodell.md).
 
 ## Regeln
 
@@ -57,12 +57,12 @@ Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrol
 
 ## Quelle
 
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:29`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:21`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:24`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:19`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:14`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:59`
+- `../korpus/scripts-711.jsonl:29`
+- `../korpus/scripts-711.jsonl:21`
+- `../korpus/scripts-711.jsonl:24`
+- `../korpus/scripts-711.jsonl:19`
+- `../korpus/scripts-711.jsonl:14`
+- `../korpus/scripts-711.jsonl:59`
 
 ## Historische Herkunft
 
@@ -73,4 +73,4 @@ Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die 
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:311`
 - `raw/meetings/2026-08-05-impromptu-zoom-meeting-170417796.md:674`
 - `raw/meetings/2026-08-05-impromptu-zoom-meeting-170417796.md:854`
-- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:23`
+- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer.md:23`

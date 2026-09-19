@@ -16,7 +16,7 @@ Diese Anzeigen verkaufen SEO, Ads-Tools und Trainings an eine feste Branche.
 
 ## Geltung dieser Marktbeobachtung
 
-Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../wissen/leadgen-betriebsmodell.md](../wissen/leadgen-betriebsmodell.md).
+Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrollierte Erfolgsstudie. Häufigkeit, Abwesenheit oder Umsatzbehauptung einer Bauform erzeugen keine Pflicht und kein Verbot. Anrede, Hook, Proof, Formular und Format am konkreten Auftrag wählen; Details in [../leadgen-betriebsmodell.md](../leadgen-betriebsmodell.md).
 
 ## Regeln
 
@@ -54,11 +54,11 @@ Die Zahlen beschreiben den lokalen Referenzkorpus vom August 2026, keine kontrol
 
 ## Quelle
 
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:3`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:37`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:15`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:106`
-- `/root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl:16`
+- `../korpus/scripts-711.jsonl:3`
+- `../korpus/scripts-711.jsonl:37`
+- `../korpus/scripts-711.jsonl:15`
+- `../korpus/scripts-711.jsonl:106`
+- `../korpus/scripts-711.jsonl:16`
 
 ## Historische Herkunft
 
@@ -66,4 +66,4 @@ Diese früheren Ablageorte sind reine Audit-Verweise; das lokale Wissen und die 
 
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:98`
 - `raw/ads-quellen/2026-08-13-marc-evers-no-funnel-ads-blueprint.txt:216`
-- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer-make.md:25`
+- `wiki/craft/ads/creative/2026-07-20-referenz-nischen-transfer.md:25`

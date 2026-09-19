@@ -2,11 +2,10 @@
 
 Quellenstand: 06.09.2026; lokalisiert: 07.09.2026. Arbeitsreferenz für Angebote,
 Creatives, Tests und den Weg zum qualifizierten Gespräch. Alle 508 bisher
-ausgewerteten Aussagen und Kontexte liegen im [lokalen Korpus](wissen/bestand/marc-evers-korpus.jsonl).
-Das [Quellenregister](wissen/bestand/marc-evers-quellen.md) erschliesst 118 Medien
-mit öffentlichen Original-URLs; [Abdeckungsdaten](wissen/bestand/marc-evers-quellen.json)
-halten Carousel-Positionen, Duplikate, Sprachlücken und Nachprüfungen fest.
-Die Arbeitsreferenz funktioniert vollständig innerhalb dieses Skills.
+ausgewerteten Aussagen und Kontexte sind in dieser Arbeitsreferenz destilliert;
+der zugrunde liegende Roh-Korpus und das Quellenregister (118 Medien mit
+öffentlichen Original-URLs) wurden am 18.09.2026 auf Chef-Direktive entfernt
+(siehe `purge-log.md`).
 
 ## Geltung und Belegstärke
 
@@ -31,8 +30,8 @@ Die drei Textauswertungen decken die 90 Archivabschnitte ab, mit dokumentierten
 Fallbacks und Transkriptlücken. Beim angefragten Reel `Dc8VLBYNLzz` wurden
 Transkript, Hook-Kontaktbogen und 27 Body-Frames geprüft; keine vollständige
 Echtzeit-Audioprüfung. Die früheren YouTube-Quellen bleiben als Archivkontext erhalten.
-Die im [Quellenregister](wissen/bestand/marc-evers-quellen.md) enthaltene Nachprüfung
-ergänzt sieben ältere Beiträge, darunter den fehlenden Schluss von DT2c0EDkkOb.
+Eine Nachprüfung im Quellenregister (entfernt 18.09.2026) ergänzte sieben
+ältere Beiträge, darunter den fehlenden Schluss von DT2c0EDkkOb.
 
 ## 1. Käufer, Ergebnis und Beweis vor der Ausarbeitung klären
 
@@ -183,8 +182,8 @@ deshalb lässt sich daraus kein pauschales „Slow-Lane braucht keinen Extra-Spe
 
 ### Eigene Ads nach ihrer Aufgabe lesen
 
-Die [lokale Anzeigenanalyse vom 06.09.2026](wissen/bestand/marc-evers-ads.md)
-erfasst elf bei Foreplay als aktiv gelistete Ad-IDs mit zehn unterschiedlichen
+Die lokale Anzeigenanalyse vom 06.09.2026 (Rohdatei entfernt 18.09.2026)
+erfasste elf bei Foreplay als aktiv gelistete Ad-IDs mit zehn unterschiedlichen
 Videodateien. Dazu wurden 72 historische Bild-Assets gesichtet. Quelle sind lokale
 Foreplay-Medien und Provider-Transkripte; der Meta-Browser blieb blockiert.
 
@@ -201,13 +200,13 @@ Qualifikationshinweisen und gestaltete Blueprint-Tafeln. Manche nennen den
 persönlichen Rückruf nach Eintragung. Die tatsächliche Formular-/VSL-Reihenfolge
 wurde dadurch nicht geprüft. Gratis-Inhalt, Value Call und erfolgsabhängige
 Vergütungsgarantie auseinanderhalten. Diese Befunde schärfen die Aufgabe einer
-Ad; sie liefern keinen Erfolgsvergleich. [Beobachtungen und Ad-IDs](wissen/bestand/marc-evers-ads.md)
+Ad; sie liefern keinen Erfolgsvergleich.
 
 ### Lehrvideos
 
 Die Links führen zu den öffentlichen Originalen. Suche den jeweiligen Shortcode
-im [Korpus](wissen/bestand/marc-evers-korpus.jsonl), um alle einzelnen Aussagen,
-Aussagetypen und Grenzen zu lesen. Ein Shortcode ist kein sekundengenauer Videoanker.
+in der jeweiligen Quelle, um einzelne Aussagen nachzulesen. Ein Shortcode ist
+kein sekundengenauer Videoanker.
 
 | ID | Aussage / Primärquelle |
 | --- | --- |
@@ -231,3 +230,80 @@ Aussagetypen und Grenzen zu lesen. Ein Shortcode ist kein sekundengenauer Videoa
 | Q18 | Extreme Ergebnisse ausdrücklich begrenzt: [Arber-Interview](https://www.instagram.com/p/DWHUzNDjCfj/). |
 | Q19 | Gründe für spätere Käufe: [DXZ7DPsAHYK](https://www.instagram.com/p/DXZ7DPsAHYK/); Content-System: [DXT_2rjyL-A](https://www.instagram.com/p/DXT_2rjyL-A/). |
 | Q20 | Click-/Lead-Retargeting: [AyZPDYtGNPo](https://www.youtube.com/watch?v=AyZPDYtGNPo). |
+
+## Stand 18.09.2026 (9 Video-Transkripte)
+
+Zweite Quellenlage: 9 YouTube-Transkripte (Kanal @Marc-Evers), je nur der erste
+~10–13-Minuten-Block ladbar; 6 Videos nicht ladbar (Auto-Dubbing/Bot-Check).
+Geltung wie oben: Selbstauskünfte bleiben Selbstauskünfte; eigene-regeln.md und
+chef-entscheide.md gehen bei Kollision vor. DACH-Kontext: Evers arbeitet selbst
+im DACH-Markt — seine Zahlen sind damit näher an unserer Realität als US-Cases,
+aber Coaching-/Agentur-Markt, nicht Local-Service.
+
+**No-Funnel-Ads-System** ([DR71tb9xMtE](https://www.youtube.com/watch?v=DR71tb9xMtE),
+[DFhrnxm_tjM](https://www.youtube.com/watch?v=DFhrnxm_tjM)): Direkt-Response auf
+Instant Forms, bewusst ohne Landingpage/VSL/E-Mail-Strecke; Qualifizierung passiert
+sales-based durch einen Setter, der alle Leads sofort durchruft (berichtete
+Closingraten >70 %, teils 80–90 %, [Z_9P4iRhiDs](https://www.youtube.com/watch?v=Z_9P4iRhiDs)).
+Einstiegsbudget 30–50 €/Tag (DFhr). Passt zu unserem Lead-Gen-Betriebsmodell;
+die Setter-Regel deckt sich mit Doktrin 9 (Reaktionszeit).
+
+**3-USP-System** (DR71, ~8:30–12:20): Jede Ad braucht einen USP —
+Person (lokal ausspielen, ~20–30 km Radius, z. B. vor lokalem Wahrzeichen),
+Angebot/Nobrainer (Garantie/Risk-Reversal, DACH-weit ausspielbar) oder
+benannten Mechanismus. In DFhr: Person + Mechanismus kombinieren ist die
+stärkste Kombination; Angebot-USP wird selten Haupt-USP.
+
+**Pflichtpreis 3–7k € (CAC-Arbitrage)** (DFhr, ~6–9 Min.): Wer 5.000-€-Websites
+verkauft, kann 500–1.000 € CAC tragen; bei 1.000-€-Preisen nur 100–200 € — und
+verliert die Ads-Auktion gegen besser kalkulierende Konkurrenten. Hohe Preise
+sind Voraussetzung für bezahlte Werbung, keine Option.
+
+**6-Beat-Skript-Masterstruktur** ([kEdH-v55beM](https://www.youtube.com/watch?v=kEdH-v55beM),
+9:48–12:22): (1) Zielgruppenansprache in der Hook → (2) spezifisches Ergebnis
+(in den Händen des Kunden, nicht die Lieferung) → (3) Proof (seine Praxis:
+„Proof Overload") → (4) spezifischer Mechanismus inkl. Anforderungen an den
+Kunden → (5) Autorität der Person → (6) klarer CTA, wörtlich: „Trag dich unten
+ein, ich rufe dich in den nächsten 48 Stunden an und schaue, ob und inwiefern
+ich dir weiterhelfen kann." Format: Handy/Reels-Look, ~1 Min., Texthook oben
+per IG-Story-Editor. Skelette mit wörtlichen Hooks in `beispiele.md`.
+
+**Spearhead-Validierung** (kEdH, 6:05–8:54): Wenige fundamental verschiedene
+Kernbotschaften („Sperrspitzen") zuerst billig auf Instant Forms validieren;
+die Gewinner-Botschaft danach in Formate giessen — nicht umgekehrt.
+
+**Umsatz-Level-Routing** (Z_9, 6:24–9:25): Unter ~20–30k €/Monat sales-based
+(No Funnel Ads, wenig Barrieren); über ~50k €/Monat marketing-based (mehr
+Barrieren, IG-Funnel, YouTube-„Indoktrination", Proof über zweiten IG-Account).
+
+**Winner-Iteration statt Neuerfindung** ([CT8-yITdmk0](https://www.youtube.com/watch?v=CT8-yITdmk0)):
+Best Performer variieren — neue Hooks, Formate, Painpoints, Winkel; Core Offer
+bleibt. Winkel-Liste (wörtlich): Problemwahrnehmung, Lösungswahrnehmung, Social
+Proof, Angst/FOMO, Preiswinkel. Greenscreen+Notizapp: Copy auf Zielgruppenansprache
++ Offer Claim + Proof komprimieren. Anspruch 30–50 Creatives (Chef-Kontext:
+10-%-Hit-Rate ok, eigene-regeln.md).
+
+**Harte Zahlen (Selbstauskunft/Screenshots, keine Kontobelege):**
+144 Leads à 9,26 €, ~15x ROAS (DR71); 77.500 € Neukundenumsatz im Januar bei
+5.470 € Adspend, Cash Collect 40.217 € (Z_9); 4–7 € Leadpreis, 50–70 € Terminpreis,
+Offer mit 10–30x ROAS bei 5 Kunden ([X_2EOYDv1zA](https://www.youtube.com/watch?v=X_2EOYDv1zA));
+33k € Umsatz in einer Woche bei 80 % Profit ([mvqZRmXeVWM](https://www.youtube.com/watch?v=mvqZRmXeVWM));
+Webdesigner-Case 10k → 49k €/Monat in 3 Monaten bei 1.500 € Adspend
+([7sBMB6zvKtg](https://www.youtube.com/watch?v=7sBMB6zvKtg)). Skalierungs-Schwelle
+laut Evers: sobald 1.000 € Spend verlässlich 10.000 € Umsatz bringt, ist Volumen
+(mehr Creatives) die Aufgabe, nicht Klein-Optimierung (CT8).
+
+**Fliessbandagentur-Modell** (7sBM, 4:31–7:40): Zielbild 60k €/Monat = 20 Kunden
+× 3.000 € Retainer; Ads gleichen dann nur Churn aus; kleines Team, ~80 % Marge.
+Agentur-Zielmodell, keine Ad-Taktik.
+
+**Anti-Learning FITD** ([vqg2Jyvh5Ag](https://www.youtube.com/watch?v=vqg2Jyvh5Ag) vs. DR71):
+Foot-in-the-Door über kostenlose Mehrwert-Calls konvertierte bei ihm schlecht
+(falsche Erwartungshaltung); den „kostenlosen Websiteentwurf" lehrt er trotzdem —
+Unterschied: greifbares Artefakt statt Beratungsleistung.
+
+**Lücke:** Explizite Static-Ad-Lehre (Selfie+Bubbles, Garantie-Layouts o. ä.)
+kommt in den 9 gelesenen Transkripten nicht vor — Evers spricht dort fast nur
+über Video-Ads. Die Selfie-/Static-Befunde oben (Quellenanker) stammen aus der
+älteren Foreplay-Sichtung, nicht aus diesen Transkripten. Folgeextraktion
+empfohlen: DR71 ab 12:20, „Instant Form Fix" (5G1L_KBzpIY).

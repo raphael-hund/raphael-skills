@@ -47,7 +47,7 @@ Transkript zeitlich aligned ergeben einen Scene-by-Scene-Breakdown statt nur Tex
 
 - Konkurrenz-/Swipe-Analyse: „Was macht dieser Hook / dieses Reel stark?"
 - Content-Recherche: Transkript eines YT-Videos ohne Whisper/API-Kosten.
-- Vorlagenbau: Struktur eines funktionierenden Videos abstrahieren (→ `wiki/craft/hooks/`).
+- Vorlagenbau: Struktur eines funktionierenden Videos abstrahieren (→ `ads/references/video/hook-formeln.md`).
 - Ads-Performance: `ads` Teil Performance ruft diesen Helper für jedes Video mit Spend.
   Ablauf und Ablage stehen in `ads/references/loop3-ablauf.md` Abschnitt Performance.
 

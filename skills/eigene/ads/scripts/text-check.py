@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prüft einen Text deterministisch gegen /root/.claude/forbidden.md.
+"""Prüft einen Text deterministisch gegen eingebettete Regeln, portabel (früherer /root/.claude/forbidden.md-Verweis überholt).
 
 Aufruf:  forbidden-check.py <datei.md>          einzelne Datei
          forbidden-check.py --text "..."        Text direkt

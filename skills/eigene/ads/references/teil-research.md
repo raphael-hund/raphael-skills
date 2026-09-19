@@ -15,8 +15,8 @@ starten. Vorhandene lokale Grundlagen nutzen und die gelieferten Bilder/Videos
 nach `meta-ads-library.md` prüfen; fehlenden Kontext als Lücke nennen.
 
 1. Vor der Suche vorhandenen ICP und das eigene Lern-Register
-   `/root/clients/<slug>/ads/lern-register.md` lesen. Über `wissen/index.md`
-   passende Themen und Autorenreferenzen als Prüfraster wählen. Bereits
+   `/root/clients/<slug>/ads/lern-register.md` lesen. Über `INDEX.md`
+   passende Themen und Referenzen als Prüfraster wählen. Bereits
    gelesene Grundlagen nicht erneut laden. Fehlender Kundenkontext blockiert
    keine allgemeine Library-Recherche; Annahmen zum Markt ausweisen.
    Die historische Hormozi-Recherche mit „Gewinnern“, ungefähr 50 Ads und

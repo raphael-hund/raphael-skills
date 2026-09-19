@@ -1,13 +1,11 @@
 # Creator-Lehren 2026-08 — Playbook (Pointer)
 
-Der Creator-Feed bleibt im Brain. Diese Datei ist nur Katalog plus Arbeitsprinzipien.
+Diese Datei ist Katalog plus Arbeitsprinzipien — der Kern der Creator-Lehren.
 Keine Transkripte, kein fremder Wortlaut, keine Nugget-Halde.
 
-Pfadpräfix immer `/root/raphael-brain/wiki/craft/seo/`. Lade **1–3 Seiten**, nie alle.
-Index der Freigabe: `seo-creator-index.md`.
-Fakten mit Datum: `quellen-2026-08.md`. GEO-Unterbau bleibt `seo-geo.md`.
-
-Harry Sanders IG: `seo-harrysanders-ig.md` (approved).
+Fakten mit Datum: `quellen-2026-08.md`, `quellen-2026-09.md`.
+KI-Suche und GEO: `taktiken-ai-suche-geo.md`, `ideen-ai-sichtbarkeit-aeo.md`.
+Weitere Spezialthemen: `wissens-router.md`.
 
 ## Katalog (approved, nutzen)
 

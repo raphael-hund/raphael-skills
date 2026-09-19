@@ -97,20 +97,19 @@ Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-neilpatel-capture.md`.
 - Pipeline-, Conversion- und LLM-Zahlen (u. a. 8× AI-Traffic) sind seine Claims, keine MAKE-Messung (2026-08-29 / 2026-08-05, neilpatel-capture.md).
 ## @mal_shaik / wespreadjam (X-Bookmark 2026-09-07)
 
-Roh: `/root/raphael-brain/raw/bookmark-2026-09-07-seo-malshaik-vercel-ai-citation-audit.md`.
-Brain: `/root/raphael-brain/wiki/craft/seo/seo-owned-assets-und-vergleichs-hub-fuer-ki-zitate.md` (approved 2026-09-07, confidence low).
+Anwendung: `ideen-ai-sichtbarkeit-aeo.md` (Abschnitt „Owned Assets"). Anbieter-Claim, confidence low.
 
 - Vercel laut Audit 48 % Citation Share in der KI-Suche, Cloudflare 29 %, Netlify 20 %; ChatGPT 13/18 Prompts, Gemini 2/13 (2026-09-06, X-Status 2096746289920926027). Anbieter-Claim, Prompt-Set nicht veröffentlicht.
 - Sechs Hebel: eigenes Framework, eigene Bibliothek, Vergleichs-Hub mit 13 Einzelseiten, Template-Galerie je eine URL, Kurse mit Deploy-Abschluss, eigene Doku-Site (2026-09-06, ebd.).
 - Lücke: preissensible Prompts („cheapest", „alternatives if too expensive") gehen komplett an Wettbewerber (2026-09-06, ebd.).
 - Nachprüfung 2026-09-07: Vergleichs-Hub mit 13 Seiten bestätigt; npm `ai` 21,6 Mio./Woche statt 11,5 Mio.; GitHub 26,6k statt 23,7k Stars. Richtung stimmt, Zahlen im Tweet veraltet.
 
-## Brain `/root/raphael-brain/wiki/craft/seo`
+## Kernzahlen (aus dem Skill nachschlagen)
 
-- `seo-google.md`: GSC-Tiers, Quick-Win Pos. 4–10, Indexing-API nur Job/Broadcast.
-- `seo-geo.md`: Citability 134–167 Wörter, 44 % aus erstem Drittel, Brand-Mentions > Backlinks, Engines getrennt.
-- `seo.md`: Doorway 30/50, Scaled-Content, Expired-Domain, Site-Reputation.
-- `seo-plan.md`: 30/90-ähnliche Phasen (Foundation 1–4, Expansion 5–12 Wochen).
+- GSC-Tiers, Quick-Win Pos. 4–10, Indexing-API nur Job/Broadcast → `se-ranking-mcp.md`, `taktiken-gsc-workflows.md`.
+- Citability 134–167 Wörter, 44 % aus erstem Drittel, Brand-Mentions > Backlinks, Engines getrennt → `taktiken-ai-suche-geo.md`.
+- Doorway 30/50, Scaled-Content, Expired-Domain, Site-Reputation → `graustufen.md`.
+- 30/90-Phasen (Foundation 1–4, Expansion 5–12 Wochen) → `ranking-plan.md`.
 
 ## YouTube Recency + last30days
 

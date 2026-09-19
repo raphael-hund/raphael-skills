@@ -78,9 +78,9 @@ def test_unknown_customer_selects_neutral_segment() -> None:
 
 
 def test_known_customer_keeps_explicit_mapping() -> None:
-    # Given the existing MAKE mapping.
-    # When explicitly requesting MAKE.
-    result = run("--skill", "ads", "--kunde", "make")
+    # Given an existing customer mapping.
+    # When explicitly requesting that customer.
+    result = run("--skill", "ads", "--kunde", "wilhelm")
     # Then only its service segment is selected.
     assert result.returncode == 0, result.stdout + result.stderr
     assert "SEGMENT=local-service-handwerk\n" in result.stdout
@@ -93,7 +93,7 @@ def test_known_customer_keeps_explicit_mapping() -> None:
 def test_explicit_segment_overrides_customer() -> None:
     # Given a known customer and an explicit B2B segment.
     # When both arguments are passed.
-    result = run("--skill", "ads", "--kunde", "make", "--segment", "b2b-dienstleister")
+    result = run("--skill", "ads", "--kunde", "wilhelm", "--segment", "b2b-dienstleister")
     # Then the explicit segment wins.
     assert result.returncode == 0, result.stdout + result.stderr
     assert "SEGMENT=b2b-dienstleister\n" in result.stdout
@@ -146,7 +146,7 @@ def test_legacy_skill_choices_still_resolve() -> None:
     # Given the four existing legacy CLI choices.
     for skill in ("ads-research", "ads-video", "ads-statics", "ads-copy"):
         # When selecting an existing choice.
-        result = run("--skill", skill, "--kunde", "make")
+        result = run("--skill", skill, "--kunde", "wilhelm")
         # Then every required reference exists and the segment resolves.
         assert result.returncode == 0, result.stdout + result.stderr
         assert "SEGMENT=local-service-handwerk\n" in result.stdout

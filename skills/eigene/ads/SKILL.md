@@ -1,135 +1,143 @@
 ---
 name: ads
 description: >
-  Paid Ads für Lead-Generation: Strategie, ICP, visuelle Konkurrenz-Recherche, Statics,
-  sprechbare Video-Skripte, Drehbriefs und Auswertung bis zum Abschluss. Recherchiert die
-  Meta Ads Library im Browser mit Playbacks und Bildbelegen. Enthält eine eigene
-  Wissensbibliothek mit Autorenreferenzen, Quellen, Leadgen-Übertragung und Aussagegrenzen.
-  Verbindet Wispr-Diktate, Creative-Produktion und das Kunden-Lern-Register. Für Ads bauen,
-  Hooks, Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek, Konto-Audits, Creator-
-  Wissen und 7/30-Tage-Auswertungen. Wissen und Referenzen liegen im Skill; Second Brain ist
-  für Nutzung und Aktualisierung nicht erforderlich.
+  Generisches Produktions-Framework für Paid Ads: Strategie auswerfen, Statics
+  bauen, Videos bauen. Nutzen bei: Ads bauen, Hooks schreiben, Video-Skripte,
+  Ads Scripts, Static-Briefs, Testwellen, Werbebibliothek-Recherche (Meta Ads
+  Library mit Playbacks/Bildbelegen), Offer bauen (Hormozi), Kill/Keep/Scale,
+  Cialdini-Psychologie, CPL-/Deckungsbeitrag-Rechnung, Diagnose (Ad performt
+  nicht), Wispr-Diktat und Drehbrief. Nicht für: E-Commerce-ROAS-Optimierung,
+  Plattform-Konto-Setup-Anleitungen (Ads Manager Klick-Führung), Google Ads,
+  Landingpage-Umsetzung, organische Content-Strategie. Funktioniert für jeden
+  Kunden; references/eigene-regeln.md ist Methodik-Vorlage, keine Kundenvorgabe.
 metadata:
-  raphael-version: "4.2.0"
+  raphael-version: "6.0.0"
   raphael-class: "F"
   raphael-scope: "agency"
   raphael-sensitivity: "internal"
-  raphael-loads: "[\"references/wissen/index.md\", \"references/wissen/leadgen-betriebsmodell.md\", \"references/wissen/quellenpflege.md\", \"references/teil-strategie.md\", \"references/teil-icp.md\", \"references/teil-research.md\", \"references/teil-video.md\", \"references/teil-statics.md\", \"references/loop3-ablauf.md\", \"references/claims-verbote.md\"]"
   raphael-requires-skills: "[]"
-  raphael-changelog: "[\"4.2.0 (07.09.2026): Eric-Steigner-Autorenregister unter wissen/autoren/eric-steigner (109 YouTube-Videos, 93 Reels, 3.960 Aussagen, Widerspruchstabelle, ChatGPT-Ads-Befund); Plattformseite wissen/plattformen/chatgpt-ads.md (offizieller OpenAI-Stand DACH 31.08.2026, Format, Gebote, erlaubte und verbotene Kategorien, Leadgen-Anwendung); Router und Wissen-Index verdrahtet\", \"4.1.0 (07.09.2026): Marc-Evers-Autorenregister unter wissen/autoren/marc-evers (508 Learnings, 118 Quellen, eigene Ads verlinkt); MAKE-eigene Ads-Beschluesse und Betriebskadenz unter wissen/make/ads-regeln.md (13.08.-Regeln Anrede/H17/Statics, Hook- und Testing-Lehren, apply.py-Kadenz 31.08. ersetzt 28.08.); Router und Wissen-Index verdrahtet\", \"4.0.0 (07.09.2026): Wissensbibliothek im Skill unter references/wissen (Zack/@zackpaid, George Clem, @brillaas, Nick Theriot, Bestand Evers/Regan), Leadgen-Betriebsmodell, Quellenpflege, craft/, Meta-Ads-Library-Playbacks, portable Helfer text-check.py und media-extract.sh, Frontmatter auf metadata-Form; Claude und Codex laden dieselbe Quelle. Umbau lief in Codex Desktop (Thread 01a077e3), Arbeitsverzeichnis /tmp/ads-four-creators-2026-09-06\", \"3.0.0 (06.09.2026): Marc-Evers-Quellen neu ausgewertet, aktuelle Reels und Carousel-Videos erfasst, Werbeformen gesichtet; Quellenarten und Messgrenzen getrennt; video-produktion.md, Wispr-Vorlagen und fortlaufendes Lernen ergÃ¤nzt\", \"2.7.7 (06.09.2026): Kalter Leser zuerst im Teil Statics, sechs Textelemente in ads-statics\", \"2.7.6 (03.09.2026): Statics-Bild mit GPT Image 2 aus Logo, Look, JSON-Spec; Pillow-Overlay Fail\", \"2.7.5 (03.09.2026): Foreplay-Export mit Medien im Teil Research, Objektverkauf-Regel im Teil Statics\", \"2.7.4 (30.08.2026): Zac Regan / @startrunningads aus 41 Reels\", \"2.7.3 (28.08.2026): Evers 39. Video und 90 Reels: Flow vor Reibung, Pixel Conditioning, VSL hinter Formular, 6x6\", \"2.7.2: Lern-Register pro Kunde, Write-back nach Auswertung, Hypothese im Brief\", \"2.7.1: Marc-Evers-Playbook\", \"2.7.0 (19.08.2026): Hormozi-Doktrin aus zwei Paid-Ads-Trainings\", \"2.2.0: Strategie in teil-strategie (Static-first, Konzept-Achsen, Andromeda)\", \"2.0.0 (13.08.2026): ein Skill, vier Teile, ohne Brain-Pflicht; Fusion Loop-3 plus Korpus 711\"]"
-  raphael-completion-criteria: "[\"Passender Teil und lokal auflösbare Referenzen gelesen\", \"Originalquelle, Aussage und Leadgen-Anwendung getrennt\", \"Keine erfundenen Kundenergebnisse oder unbelegten Performance-Gewinner\", \"Sichtungs- und Erfassungslücken ausgewiesen\", \"Kontoaktionen nur im autorisierten Umfang\"]"
+  raphael-changelog: "[\"6.0.0 (18.09.2026): Radikal verschlankt auf Chef-Direktive — Skill ist generisches Framework für Strategie/Statics/Videos; MAKE-Interna, Vendor-Dumps, Roh-Archive und Creator-Rohbibliothek entfernt (purge-log.md)\", \"5.0.0 (18.09.2026): Mega-Merge ads+ads-statics+ads-video+Wiki+Lehren-Kanon+Nuggets+Recherche 2026-09-18\"]"
+  raphael-completion-criteria: "[\"Passender Teil und lokal aufloesbare Referenzen gelesen\", \"Originalquelle, Aussage und Leadgen-Anwendung getrennt\", \"Keine erfundenen Kundenergebnisse oder unbelegten Performance-Gewinner\", \"Sichtungs- und Erfassungsluecken ausgewiesen\", \"Kontoaktionen nur im autorisierten Umfang\"]"
 ---
 
-# ads — Lead-Generation von der Botschaft bis zum Abschluss
+# ads — Produktions-Framework: Strategie auswerfen, Statics bauen, Videos bauen
 
-Start bei `references/wissen/index.md`: Themen, Autoren und lokale Detailbelege.
-MAKEs eigene Ads-Beschlüsse und die Betriebskadenz stehen in
-`references/wissen/make/ads-regeln.md` und gehen im Konfliktfall jedem
-Creator-Rat vor.
-Für Entscheidungen über Qualität, Kosten, Tests oder Wachstum zusätzlich
-`references/wissen/leadgen-betriebsmodell.md`. Aus E-Commerce übernommene Ideen
-werden auf Anfrage, Qualifizierung, Termin, Gespräch und Abschluss geprüft.
-Ein Kauf-ROAS oder Warenkorbwert wird nicht einfach in CPL umbenannt.
+Start bei `references/INDEX.md` — er routet jede Aufgabe zur richtigen Datei.
 
-Kundenauftrag, eigenes Lern-Register und überprüfte Resultate haben Vorrang.
-Autorenaussage, beobachtetes Beispiel und unsere Anwendung bleiben getrennt.
-Fremde Budgets, Quoten und Umsatzwerte sind keine Vorgaben für den Kunden.
-Bei Bedarf liefern die lokalen Playbooks von Hormozi, Marc Evers und Zac Regan
-ergänzende Muster. Nicht alle Autoren für jede Aufgabe laden.
+Der Skill leistet drei Dinge, generisch für jeden Kunden: **Strategie auswerfen**
+(Konzept, Formatwahl, Testwelle, Messplan), **Statics bauen** (Briefs und Copy nach
+`references/statics/`), **Videos bauen** (Skripte und Drehbriefe nach `references/video/`).
+
+**Nicht zuständig:** E-Commerce-ROAS-Optimierung, Plattform-Konto-Setup als
+Klick-Anleitung (Ads Manager), Google Ads, Landingpage-Umsetzung, organische
+Content-Strategie.
+
+**Vorrang-Ordnung bei Konflikten (oben gewinnt):**
+1. Kundenauftrag und Kunden-Lern-Register
+2. Chef-Entscheide in `references/konflikt-register.md` (Sammelstelle: `references/chef-entscheide.md`) — vor jedem Creator-Rat
+3. Craft-Kanon (`references/craft/`, `references/eigene-regeln.md` als Methodik)
+4. Chef-SOP (`references/doktieren-sop.md` — Anregungs-Layer, kein Gesetz)
+5. Creator-Rat (`references/marc-evers-playbook.md`, `references/zac-regan-startrunningads.md`, `references/hormozi-paid-ads.md`, `references/brandon-willington-playbook.md`, `references/shiver-gordon-taktiken.md`)
+6. Fremd-Benchmarks (nie als eigene Schwelle verkaufen)
 
 ## Schritt 0
 
-`ADS_ROOT` bezeichnet den Ordner der tatsächlich geladenen `SKILL.md`.
-Diesen absoluten Pfad für Shell-Aufrufe einsetzen; er kann im Plugin-Cache,
-in einer lokalen Installation oder im Quellverzeichnis liegen. Claude und
-Codex verwenden denselben Skill und dieselben enthaltenen Helfer.
+`ADS_ROOT` = Ordner der tatsächlich geladenen `SKILL.md`; diesen absoluten Pfad
+für Shell-Aufrufe einsetzen.
 
 ```bash
-python3 "$ADS_ROOT/scripts/load-wissen.py" --skill ads --kunde <slug>
+python3 "$ADS_ROOT/scripts/load-wissen.py" --skill ads --kunde <slug|leer>
 ```
 
-Der Loader nennt lokale Wissenspfade und das passende Segment unter
-`references/maerkte/`. Ohne bekannten Kunden `--segment` aus dem Auftrag wählen
-oder `uebertragbar` verwenden; keine MAKE-Annahmen einsetzen. Die aufgelösten
-Dateien tatsächlich lesen. Der Loader führt keine Brain-Abfrage aus.
+Der Loader nennt den Einstieg und das passende Segment unter `references/maerkte/`.
+Ohne bekannten Kunden `--segment` aus dem Auftrag wählen oder `uebertragbar`
+verwenden; keine Kundenannahmen einsetzen. Aufgelöste Dateien tatsächlich lesen.
 
 ## Welcher Teil
 
 | Auftrag | Datei |
 |---|---|
-| Was zuerst, Konzept, Static oder Video | `references/teil-strategie.md` |
-| Wer kauft, was tut weh | `references/teil-icp.md` |
-| Angles, Konkurrenz, Dossier, Meta Ads Library, Werbebibliothek, Ad-Playbacks | `references/teil-research.md` |
-| **Video-Ad-Skript (Ads Scripts)** | `references/teil-video.md` |
-| Wispr-Diktat, Drehbrief, regelmässige Video-Produktion | `references/teil-video.md` → `references/video-produktion.md` |
-| Static-Brief | `references/teil-statics.md` |
-| Laufende Ads, 7/30 Tage, Kill/Keep | `references/loop3-ablauf.md` (Abschnitt Performance) |
-| Wissen eines Creators ergänzen, alle Posts/Themen erschliessen | `references/wissen/quellenpflege.md` |
+| Strategie, Konzept, Testwelle, Static oder Video | `references/teil-strategie.md` |
+| ICP (wer kauft, was tut weh) | `references/teil-icp.md` |
+| Research, Dossier, Werbebibliothek/Meta Ads Library | `references/teil-research.md` + `references/meta-ads-library.md` |
+| Video-Skript (Ads Scripts), Wispr-Diktat, Drehbrief | `references/teil-video.md` + `references/video/` |
+| Static-Brief, Statics S1–S8 | `references/teil-statics.md` + `references/statics/` |
+| Ad Copy / Primary Text schreiben | `references/ad-copy.md` + `references/copy-referenztexte.md` |
+| Offer bauen, Value Proposition, Hormozi | `references/offer-architektur.md` + `references/creative/offer-ergebnis-risikoumkehr.md` |
+| Hooks schreiben | `references/hook-werkstatt.md` + `references/video/hook-formeln.md` |
+| Laufende Ads, 7/30 Tage, Kill/Keep/Scale, Diagnose | `references/loop3-ablauf.md` + `references/eigene-regeln.md` + `references/messung/` |
+| Claims, Compliance, was darf die Ad versprechen | `references/claims-verbote.md` |
+| Messlatten, CPL-Rechnung, Baseline-Methodik | `references/eigene-regeln.md` + `references/leadgen-betriebsmodell.md` |
+| Referenz-Korpus (711 Ads, Gewinner-Muster) | `references/korpus/` |
+| Konflikte, Chef-Entscheide | `references/konflikt-register.md` + `references/chef-entscheide.md` |
 
-Den passenden Teil lesen, Detailwissen über dessen Links gezielt ergänzen.
-`metadata.raphael-loads` ist das Dateimanifest, kein Lade-Befehl.
+Alles Weitere (Playbooks, Psychologie, Beispiele, Recherche-Stand):
+`references/INDEX.md` ist der Voll-Router.
 
-Video ist der Default, wenn der User „Skript" oder „Ads Scripts" sagt.
-Performance ist der Default bei „Zahlen", „7 Tage", „30 Tage", „laufende Ads".
-Jedes Video mit Spend wird visuell und sprachlich ausgewertet. Der enthaltene
-Helfer `scripts/media-extract.sh` liefert Kontaktbögen, Body-Frames und
-verfügbare Untertitel. Extraktion ist keine Sichtung: Bilder tatsächlich
-öffnen, Sprachquelle lesen oder anhören, fehlendes Transkript ausweisen.
-Konkurrenz-Recherche startet im Teil Research; dort gehört die visuelle Meta
-Ads Library zum Ablauf. Vor Empfehlungen aus Video-Ads die Playbacks ansehen.
-Eine reine Library-Recherche liefert Recherche und Belege, keine ungefragten Creatives.
+Video ist Default bei „Skript"/„Ads Scripts"; Performance ist Default bei
+„Zahlen", „7/30 Tage", „laufende Ads". Nur den passenden Teil lesen, Detailwissen
+über dessen Links ergänzen — nie alle Ordner auf einmal; GROSSE Dateien
+(`korpus/`) gezielt per Abschnitt.
 
-Testwelle / was zuerst / Static oder Video: zuerst `references/teil-strategie.md`.
-Auch bei direktem Skript- oder Statics-Einstieg: die drei Strategie-Zeilen
-(Konzept, Welle, Messen) stehen im Output. Eine Zeile je Punkt reicht.
+## Doktrin-Kern
+
+1. Concept vor Pixel: Static = Persona x Angle x Offer x Format; die Botschaft schlägt die Produktion.
+2. Kalter Leser zuerst: die Ad muss ohne Vorwissen und ohne Ton funktionieren.
+3. Spezifisch schreiben: Namen, Zahlen, Zeitraum, Population — oder weglassen.
+4. Proof muss echt sein: nie KI-generierte Chats, Testimonials, Gesichter oder Case-Zahlen.
+5. Static testet die Message billig, Video vertieft nur validierte Gewinner. VSL ist die seltene Ausnahme für erklärungsbedürftige High-Ticket-Funnel, nicht die Standard-Endstufe (Korrektur 18.09.2026).
+6. Die Formatfrage (Static/Video/parallel) nie still entscheiden — im Output begründen.
+7. Beim Testen Struktur-Varianz: andere Angles und psychologische Effekte, keine Umformulierungen.
+8. Jede Zahl trägt Geltungsbereich und Nenner; Fremd-Benchmarks sind keine eigene Schwelle.
+9. Prozess-Hebel vor Creative-Diskussion: Reaktion so schnell wie möglich, am selben Tag (Chef-Entscheid 18.09.2026) und Nachfassen entscheiden oft mehr als die Ad.
+10. Erlaubter CPL = Deckungsbeitrag x Lead→Verkauf-Quote (Ziel: CPL ≤ 50 % davon).
+11. Eine Karte = eine Botschaft; Qualifier und eine Zahl im ersten Blick.
+12. Claims-Prüfung vor jeder Schaltung (`references/claims-verbote.md`).
+13. Jeder Test endet im Lern-Register: Beobachtung, Interpretation, nächste Testfrage.
+14. Geld: Signatur — nie autonom schalten, pausieren oder skalieren.
+15. Winning Variables dokumentieren: Offer, Person, Format, lokale Ansprache.
+16. Wir optimieren auf Termine, nicht auf Lead-Preis und nicht auf Kosten (Chef 18.09.2026). Steuergrösse ist der Preis je Termin; CPL ist Diagnosegrösse, nie Zielgrösse.
 
 ## Reihenfolge
 
-Bei reiner Library-/Playback-/Materialanalyse gelten die Belege und der Umfang
-aus Teil Research; keine ungefragte Formatentscheidung oder CREATE-Ausgabe.
-Die folgenden Strategie-Zeilen gelten für Strategie, Angle-Dossier und Produktion.
-
-Strategie-Frage **nicht still** entscheiden. Im Output nennen:
-Static-first, Video-first oder ein begründeter paralleler Test plus Grund.
-Dann drei Denkzeilen: OBSERVE, THINK (Unit Economics), CREATE.
-Nicht alle zehn Prinzipien abspulen.
-
-ICP → Research → Video oder Statics.
-Fehlt ICP: holen oder `kunden-layer: fehlt` schreiben, dann Craft-Kern.
-
-Konto, Kill/Keep/Scale: `references/loop3-ablauf.md` nur bei Bedarf.
-Claims vor Schaltung: `references/claims-verbote.md` und eine zur Aufgabe passende Prüfung.
-Geld: Signatur. Nie autonom schalten.
+Strategie-Frage **nicht still** entscheiden: im Output Static-first, Video-first
+oder begründeten parallelen Test nennen, dann drei Denkzeilen OBSERVE, THINK
+(Unit Economics), CREATE — auch bei direktem Skript-/Statics-Einstieg.
+Reihenfolge: ICP → Research → Video oder Statics. Fehlt ICP: holen oder
+`kunden-layer: fehlt` schreiben, dann Craft-Kern. Jedes Video mit Spend wird
+visuell und sprachlich ausgewertet (`scripts/media-extract.sh` liefert
+Kontaktbögen, Body-Frames, Untertitel); Extraktion ersetzt keine Sichtung —
+Bilder öffnen, Ton lesen/anhören, fehlendes Transkript ausweisen.
 
 ## Enthaltene Werkzeuge
 
-- `python3 "$ADS_ROOT/scripts/text-check.py" <entwurf.md>` prüft Copy lokal;
-  Exit 1 bedeutet harte Muster. Hinweise fachlich beurteilen. Dieser Filter
-  belegt weder rechtliche Freigabe noch die Richtigkeit von Kundenzahlen.
-- `bash "$ADS_ROOT/scripts/media-extract.sh" --doctor` prüft die benötigten
-  Medienwerkzeuge. Mit Video-URL oder lokalem Dateipfad entstehen lokale
-  Analyseartefakte; die Ausgabe nennt den tatsächlichen Sichtungsstatus.
-- Ergänzende Copywriting-, Watch- oder Bildwerkzeuge nur nutzen, wenn sie
-  vorhanden und für den Auftrag sinnvoll sind. Live-Konto- oder Foreplay-
-  Zugänge sind optionale autorisierte Integrationen; keine Secrets voraussetzen.
+- `python3 "$ADS_ROOT/scripts/load-wissen.py" --skill ads --kunde <slug>` — Schritt 0.
+- `python3 "$ADS_ROOT/scripts/text-check.py" <entwurf.md>` — lokaler Copy-Check;
+  Exit 1 = harte Muster; belegt weder rechtliche Freigabe noch Kundenzahlen.
+- `bash "$ADS_ROOT/scripts/media-extract.sh" --doctor` — Medienwerkzeuge prüfen;
+  mit Video-URL/Dateipfad entstehen lokale Analyseartefakte mit Sichtungsstatus.
 
-## Creator-Wissen aktualisieren
+## Bild-Produktion und externe Integrationen
 
-Nur bei entsprechendem Auftrag `references/wissen/quellenpflege.md` verwenden.
-Inventar, paraphrasierte Learnings, Original-URLs, Autor/Datum, Kontext und
-Übertragungsgrenzen unter `references/wissen/` halten. Die Themenübersicht macht
-jede Wissenseinheit auffindbar; Autorenregister erhalten die Herkunft.
-Threads, Replies, Artikel und Medien mitprüfen, sobald sie Inhalt tragen.
-Ein vollständiger Scraper-Lauf beweist nur den zugänglichen Umfang. Lücken und
-nicht übertragbare Themen behalten einen begründeten Eintrag.
-Eine Speicherung im Second Brain erfolgt nur auf ausdrücklichen Auftrag.
-Gewöhnliche Ad-Produktion startet keinen Creator-Import oder Skill-Umbau.
+Statics werden **immer mit Higgsfield gebaut, immer mit dem neuesten
+GPT-Image-Modell (aktuell GPT Image 2.5)** — mit Referenzbildern für Stil und
+Inhalt als Pflicht-Beigabe (Entscheid Raphael 18.09.2026, Details in
+`references/teil-statics.md` Abschnitt «Bild»).
+
+Weitere Integrationen nur nutzen, wenn installiert und für den Auftrag
+sinnvoll: `copywriting`/forbidden-check (zusätzlicher Copy-Filter),
+`no-ai-slop` (Slop-Erkennung), `claims-qa` (vertiefte Claims-Prüfung), `watch`
+(Video-Sichtung/Transkription). Live-Konto- oder Foreplay-Zugänge sind
+optionale autorisierte Integrationen; keine Secrets voraussetzen.
 
 ## Rot
 
-- Second Brain als Pflicht behandeln
 - Alle Teile auf einmal laden
 - Kundenzahlen erfinden
+- Erfundene Case-Zahlen verwenden (Beleg: „$17.000→$107.000" ist verbrannt und entfernt)
+- Fremd-Benchmarks als eigene Schwelle verkaufen
+- KI-generierten Proof (Fake-Chats, Fake-Testimonials, KI-Gesichter als Case, erfundene ROAS-Screens)
 - Coaching-Umsatz in Local-Service kopieren
 - „Wenn du [ICP] bist und [Outcome] willst, brauchst du [Offer]"
-- Static-first vs Video-first still entscheiden
+- Static-first vs. Video-first still entscheiden
+- Autonom schalten, pausieren oder Budget bewegen — Geld braucht Signatur

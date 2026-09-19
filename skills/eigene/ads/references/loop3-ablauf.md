@@ -1,7 +1,7 @@
 # Performance: Lead-Generation von Auslieferung bis Abschluss
 
 Für Kontoauswertung und Kill/Keep/Scale lesen. Berechnungen, CRM-Integration und
-Primärquellen stehen in [wissen/leadgen-betriebsmodell.md](wissen/leadgen-betriebsmodell.md).
+Primärquellen stehen in [leadgen-betriebsmodell.md](leadgen-betriebsmodell.md).
 Diese Referenz beschreibt den Arbeitsablauf, keine automatische Kontosteuerung.
 
 ## Eingangsdaten und Beobachtung

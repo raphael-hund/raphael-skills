@@ -13,7 +13,7 @@ Knappheiten und Bedingungen dürfen nicht in Kundenangebote übernommen werden.
 ## Herkunft und Verwendung
 
 - **Korpusbeleg:** ein identifizierbarer Datensatz im lokalen
-  [711-Record-Bestand](../analyse-2026-08-13/scripts-711.jsonl). Die
+  [711-Record-Bestand](../korpus/scripts-711.jsonl). Die
   Record-ID ist stabiler als eine Position in einem alten Shard. `complete`
   beschreibt den damaligen Datenstand. Wirksamkeit und aktuelle Sichtung
   benötigen jeweils eigene Belege.
@@ -31,7 +31,7 @@ Knappheiten und Bedingungen dürfen nicht in Kundenangebote übernommen werden.
 Zum Nachsehen einer Record-ID genügt lokal etwa:
 
 ```bash
-rg 'rec3M1FPdEIp15Da2' /root/raphael-skills/skills/eigene/ads/references/analyse-2026-08-13/scripts-711.jsonl
+rg 'rec3M1FPdEIp15Da2' "$ADS_ROOT"/references/korpus/scripts-711.jsonl
 ```
 
 Das ist eine optionale Vertiefung. Die Guides enthalten die nutzbaren Muster
@@ -98,9 +98,10 @@ redaktionelle These. Der alte Katalog enthält hierzu nicht überall eindeutige
 - [Hormozi](../hormozi-paid-ads.md): Callout-Typen und Varianten über Nutzen,
   Perspektive und Zeit. Werbemittel von Acquisition.com/Vantage nicht mit
   nachgewiesener Wirksamkeit einer persönlichen Lehre gleichsetzen.
-- [Hook-Taxonomie](../hook-taxonomie.md) und
-  [Segmentkarte](../segment-map.md): vorhandene lokale Ordnung, keine
-  zusätzliche externe Datenabhängigkeit.
+- [Hook-Filter in der Strategie](../teil-strategie.md) (Committed-vs-Curious,
+  Hook als drei Komponenten; aus der aufgelösten hook-taxonomie.md, Stand
+  18.09.2026) und [Segmentkarte](../segment-map.md): vorhandene lokale Ordnung,
+  keine zusätzliche externe Datenabhängigkeit.
 
 ## Was bei der Lokalisierung bewusst nicht zur Regel wurde
 

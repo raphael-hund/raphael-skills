@@ -3,10 +3,9 @@
 Quellenstand: 30.08.2026; lokalisiert und eingeordnet: 07.09.2026.
 [Profil](https://www.instagram.com/startrunningads/). Die bisherigen 500 atomaren
 Notizen aus 41 Instagram-Reels sind als eigene kurze Paraphrasen vollständig im
-[Skill-Korpus](wissen/bestand/zac-regan-korpus.jsonl) enthalten. Das
-[Quellenregister](wissen/bestand/zac-regan-quellen.md) verknüpft Original-URLs,
-Themen und Fundstellen. Suche nach Shortcode, Thema oder Aussage-ID; ein Zugriff
-auf ein anderes Wissenssystem ist für die Arbeit nicht erforderlich.
+dieser Arbeitsreferenz destilliert. Der Roh-Korpus und das Quellenregister
+(Original-URLs, Themen, Fundstellen) wurden am 18.09.2026 auf Chef-Direktive
+entfernt (siehe `purge-log.md`).
 
 Zac Regan ist **nicht Zack unter @zackpaid** und nicht Marc Evers. Aussagen bleiben
 bei ihrer jeweiligen Quelle. Regans Beispiele betreffen vor allem hochpreisige
@@ -203,3 +202,48 @@ weiterführendes Material an. Das ist beobachtete Content-Distribution, keine
 vollständige Anleitung oder Garantie für einen Paid-Lead-Funnel. Einzelne Captions
 fehlen; Versandautomationen und nachfolgende Inhalte wurden nicht überall geprüft.
 Eigene CTA nur einsetzen, wenn die versprochene Ressource und der Folgeprozess bestehen.
+
+## Stand 18.09.2026 (7 Transkripte)
+
+Zweite Quellenlage: 7 YouTube-Videos vollständig transkribiert (@startrunningads,
+justscale.co; US, High-Ticket/Service). Nur NEUE Punkte gegenüber dem Stand oben;
+bestätigtes Altbekanntes ist nicht wiederholt. US-Kontext: Markt-Beispiele und
+Dollar-Zahlen sind nicht DACH-kalibriert.
+
+**1. Pain hooken, nicht diggen** ([a3jcuEzMqM0](https://www.youtube.com/watch?v=a3jcuEzMqM0),
+[m0RNLMbWV8w](https://www.youtube.com/watch?v=m0RNLMbWV8w)): Pain nur als Hook;
+wer im Schmerz „gräbt", zieht broke/verzweifelte Leads. Solvente Käufer reagieren
+auf Opportunity/Expansion — zweite Skripthälfte outcome-fokussiert; aggressive
+Speed-to-Money-Versprechen sprechen laut ihm nur Menschen ohne Geld an (Abschnitt 6).
+**2. Ein falsches Wort disqualifiziert** (m0RNLMbWV8w): Eine einzelne Zeile
+(„we help students make a million dollars") killte einen sonst perfekten BisOp-Ad
+für die kaufkräftige Zielgruppe. Sprach-Qualifizierer: „Do you have 100k liquid
+capital?" statt „bankroll" (Gambler-Term). Prüf-Frage pro Zeile: zieht sie die
+Zielperson an oder stösst sie ab?
+**3. Mom-Test** (m0RNLMbWV8w): Vor dem Schreiben eine konkrete bekannte Person
+visualisieren und nur zu ihr sprechen (sein Beispiel: eigene Mutter im BisOp-Markt).
+Gegenmittel gegen „alle ansprechen" aus Budget-Angst, das Ideal-Käufer vergrault.
+Konkretisierung der Imagination Method (Abschnitt 4).
+**4. 70-%-Ship-Regel** (a3jcuEzMqM0): „If I'm 70% happy with an ad, I'm going
+to run it." Testing schlägt Perfektion — passt zu Abschnitt 7.
+**5. Identity-Validation- & Counter-Positioning-Openers** ([GnxuiV9Scow](https://www.youtube.com/watch?v=GnxuiV9Scow)):
+Erst Beliefs validieren, dann bridgen — „If you feel like you don't have the
+time… you're totally right in thinking that." → Wache sinkt → Pivot. Frontal-
+Call-outs („your business isn't growing because you don't know X") lassen die
+Wache hochgehen. Counter-Positioning wörtlich: „I'm not that guy. I'm not that
+guy, but I do know this." (gegen den Guru-Frame). Skelette in `beispiele.md`.
+**6. Incentive-Engineering** ([xSG5Wims9jY](https://www.youtube.com/watch?v=xSG5Wims9jY)):
+Incentive = Grund zu handeln; rückwärts vom Ziel der Person konstruieren. Fear of
+Loss > Gain (Kommission vorab auszahlen und bei Nicht-Leistung zurückbuchen wirkt
+stärker als Bonus danach). Offer-Struktur: „We'll book you 30 qualified calls, and
+if we don't, we'll pay you $5,000." Falsch gesetzter Incentive kippt das System.
+Garantie-Höhe in DACH nur mit geklärten Bedingungen (chef-entscheide.md K7).
+**7. Awareness als Scaling-Roadmap** ([dPBKTEQpuiM](https://www.youtube.com/watch?v=dPBKTEQpuiM)):
+Mit Most-Aware-Ads starten (höchster ROAS, v. a. mit Organic-Audience); Skalierung
+= Skripte stufenweise Richtung unaware schreiben. Unaware-Ads füttern das System:
+Unaware-Ad killen → Most-Aware-Performance fällt (Algorithmus bespielt Engager
+weiter). Ergänzt Abschnitt 5 um eine konkrete Progression.
+**8. Drei Ad-Formate** (a3jcuEzMqM0): (A) Direct Offer — „We will help you do
+[Ergebnis] in [Zeit] or [Garantie]", mehr nicht; (B) PAS; (C) Opportunity-based —
+Pain-Hook, zweite Hälfte Outcome-Story (sein Favorit). Directness schlägt
+Mechanism-Fluff; konkret schreiben („increase your click-through rate by 0.5%").

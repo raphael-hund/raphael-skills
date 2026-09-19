@@ -49,7 +49,8 @@ Regex-/ML-Klassifikatoren auf dem normalen Query-Export schätzen — Details
 und Caveats in `taktiken-gsc-workflows.md` §7. GenAI-Impressionen sind eine
 Trend-Anzeige, kein Traffic-Beleg (3-Säulen-Regel, `taktiken-ai-suche-geo.md` §7).
 
-## Tiers (Tiefe, nicht hier kopieren)
+## Tiers
 
-Brain: `/root/raphael-brain/wiki/craft/seo/seo-google.md` (Tier 0–3, Quotas).
+Felddaten-Werkzeuge (GSC, CrUX/PageSpeed, Indexing, GA4) und ihre Tiers stehen in
+`se-ranking-mcp.md` und `taktiken-gsc-workflows.md`.
 GSC-Daten haben 2–3 Tage Lag. Quick-Win-Fenster: Position 4–10, hohe Impressions.

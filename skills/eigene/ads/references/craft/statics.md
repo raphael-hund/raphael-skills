@@ -7,7 +7,8 @@ Strukturbelege von neu zu prüfenden Bildern. Diese Datei benötigt keinen
 Notion-/Brain-Abruf und keine Geschwister-Skills.
 
 **ID-Namensräume:** S1–S8 = visueller Rahmen; `static:F01–F12` = Hook;
-C01–C06 = Selbstselektion; `static:A01–A08` = Angle. Video-F1/A1 haben
+`static:C01–C06` = Selbstselektion; `static:A01–A08` = Angle. Die Schreibweise
+ohne Präfix in dieser Datei (C01–C06) ist identisch gemeint. Video-F1/A1 haben
 andere Bedeutungen. Erst Botschaft und Rahmen festlegen, dann die Copy an den
 Rahmen anpassen. Native Post-, Chat- und Story-Formen sind Optionen, keine
 bewiesenen Gewinner für kalte oder warme Zielgruppen.
@@ -130,15 +131,23 @@ um einen Text menschlich wirken zu lassen.
   Welle bleibt die Botschaft gleich, das Foto wechselt. Gegenstand und Ort
   gehören zu einer Preis-Headline. Keine erfundene Verfügbarkeit.
 - **Bildproduktion:** Erst Text/Idee und echte Logo-/Look-/Inhaltsreferenzen.
-  In **4:5 generieren, danach auf 9:16 outpainten**. Nicht direkt in 9:16
-  generieren. Beim Export jedes Placement und dessen aktuelle UI/Crops prüfen;
-  kritische Inhalte mit ausreichendem Abstand zu Rändern und Bedienelementen.
+  > **Ersetzt (08.09.2026):** Die Format-Anleitung unten (4:5 generieren → 9:16 outpainten) ist überholt — kanonisch ist die 3:4-Master-Doktrin in ../teil-statics.md (3:4-Master, Feed 4:5 als lokaler Crop, Story 9:16 als symmetrisches Streifen-Outpaint je 285 px). Die ältere Fassung bleibt als Historie stehen.
+  Historische Alt-Fassung: In **4:5 generieren, danach auf 9:16 outpainten**.
+  Nicht direkt in 9:16 generieren. Beim Export jedes Placement und dessen
+  aktuelle UI/Crops prüfen; kritische Inhalte mit ausreichendem Abstand zu
+  Rändern und Bedienelementen.
 - **Originaltreue:** Tatsächliches Logo compositen, nicht neu zeichnen.
   Freigegebene Copy einschliesslich Umlauten erhalten. Keine erfundenen Kunden,
   Chats, Cases oder Dashboards als Beweis. Raphaels vorgesehene Bildproduktion
   läuft über Higgsfield; kein Pillow-Overlay als Ersatz für diesen Ablauf.
 
-## Brief-Vorlage
+## Brief-Vorlage (Historie/Detailfelder — nicht das Pflicht-Schema)
+
+> **Kanonisches Pflicht-Schema für Statics-Briefs ist
+> [`../statics/brief-schema.md`](../statics/brief-schema.md)** (Festlegung
+> 18.09.2026). Diese Datei bleibt Stil-/ID-Kanon (S1–S8, F01–F12, C01–C06,
+> A01–A08, Produktionsanforderungen). Die Vorlage unten ist die ältere
+> Detailfeld-Variante — im Konflikt gilt brief-schema.md.
 
 ```markdown
 ## <Arbeitstitel>
