@@ -1,7 +1,8 @@
 # Quellen 2026-08 — Mechaniken mit Datum
 
-Eine Zeile = ein Fakt. Kein fremder Wortlaut. Rohkorpus:
-`/root/raphael-brain/raw/2026-08-13-seo-skill-corpus/`.
+Eine Zeile = ein Fakt. Kein fremder Wortlaut. Der Rohkorpus
+(`raphael-brain/raw/2026-08-13-seo-skill-corpus/`) wurde mit dem Second Brain
+am 19.09.2026 gelöscht und ist lokal nicht mehr abrufbar.
 
 ## @borjafat (X, Agent Reach + Thread-Fetch, 2026-08-13; Nachzug 2026-09-07)
 
@@ -65,7 +66,7 @@ Reels in `heytony/transcripts/`:
 
 ## @buildinpublic / Edward Sturm (Scout 2026-08-30)
 
-Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-buildinpublic-capture.md`.
+Roh (mit dem Brain am 19.09.2026 gelöscht): `bookmark-2026-08-30-seo-buildinpublic-capture.md`.
 
 - Compact Keywords ist sein First-Party-Frame; Inhouse-SEO-Hire soll darauf trainiert werden, Bewerbung nicht AI-geschrieben (2026-08-26, buildinpublic-capture.md: X-Status 2092641311228678532).
 - Ohne echte zitierbare Platzierungen schlägt man etablierte Marken in ChatGPT nicht; Listicle-Spam reicht nicht (2026-08-29, buildinpublic-capture.md).
@@ -76,20 +77,20 @@ Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-buildinpublic-capture.md`.
 
 ## Matt Diamante (Scout 2026-08-30)
 
-Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-diamante-capture.md`.
+Roh (mit dem Brain am 19.09.2026 gelöscht): `bookmark-2026-08-30-seo-diamante-capture.md`.
 
 - Im Fenster 2026-07-31–2026-08-30 kein Upload; neuestes Video 2026-04-30; Engine-Raw 0 First-Party-Items — keine Taktik ableiten (2026-08-30, diamante-capture.md).
 
 ## Harry Sanders / StudioHawk (Scout 2026-08-30)
 
-Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-harrysanders-capture.md`.
+Roh (mit dem Brain am 19.09.2026 gelöscht): `bookmark-2026-08-30-seo-harrysanders-capture.md`.
 
 - IG harrysandersseo tot ohne ScrapeCreators; keine offizielle X-URL gefunden, nicht erfunden; last30days-Raw 0 First-Party zu Sanders (2026-08-30, harrysanders-capture.md).
 - StudioHawk-Blog 24.08.2026: 1.203.748 AI-Referral-Sessions, 600+ Properties; Tools/Templates/Rechner 7,5× Seitenanteil, How-to 5,65, Definitions 5,41, Listicles 5,09, Comparison 4,44 — Comparison nicht Platz 1 (2026-08-24, harrysanders-capture.md, URL studiohawk.com.au/blog/ai-search-format-leverage/).
 
 ## Neil Patel (Scout 2026-08-30)
 
-Roh: `/root/raphael-brain/raw/bookmark-2026-08-30-seo-neilpatel-capture.md`.
+Roh (mit dem Brain am 19.09.2026 gelöscht): `bookmark-2026-08-30-seo-neilpatel-capture.md`.
 
 - Mentions auf Reddit, Foren, YouTube und Presse als Trust für SEO/AEO/GEO, nicht nur Backlinks (2026-08-29, neilpatel-capture.md, X-Status 2093760714125017247).
 - Paid kauft Audiences, SEO kauft oft Topics; Gewinner zielen auf die wertvolle Audience, nicht das meiste Volumen (2026-08-28, neilpatel-capture.md; Video 27.08.2026 CIGrrt_mVxM).

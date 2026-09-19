@@ -6,9 +6,12 @@ Distribb). Verdichtet am 2026-09-07 im Auftrag von Raphael (22 Artikel), Update
 Artikel 09.09. bis 18.09.). Kein fremder Wortlaut, alle Mechaniken paraphrasiert.
 Jede Zahl trägt die Artikel-ID als Beleg.
 
-Rohkorpus (Primärbeleg, dort nachlesen):
-- `/root/raphael-brain/raw/2026-08-13-seo-skill-corpus/borjafat/articles/` (12 Artikel bis 13.08.)
-- `/root/raphael-brain/raw/2026-09-07-borjafat-articles/articles/` (10 Artikel ab 14.08.)
+Rohkorpus (Primärbeleg): lag im Second Brain unter
+`raphael-brain/raw/2026-08-13-seo-skill-corpus/borjafat/articles/` (12 Artikel bis
+13.08.) und `raphael-brain/raw/2026-09-07-borjafat-articles/articles/` (10 Artikel
+ab 14.08.). **Das Brain wurde am 19.09.2026 aufgelöst — die Rohartikel sind lokal
+nicht mehr abrufbar.** Die Mechaniken unten sind paraphrasiert und mit Artikel-ID
+belegt; wer den Wortlaut braucht, zieht die Artikel neu von Borjafats Quelle.
 
 ## Wie du diese Datei liest
 
